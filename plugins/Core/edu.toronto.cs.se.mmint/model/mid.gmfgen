@@ -88,7 +88,7 @@
           xsi:type="gmfgen:OpenDiagramBehaviour"
           editPolicyClassName="ModelOpenDiagramEditPolicy"
           diagramKind="Mid"
-          editorID="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"/>
+          editorID="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicyRoles.SEMANTIC_ROLE"
@@ -168,7 +168,7 @@
           xsi:type="gmfgen:OpenDiagramBehaviour"
           editPolicyClassName="ModelOpenDiagramEditPolicy"
           diagramKind="Mid"
-          editorID="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID"/>
+          editorID="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicyRoles.SEMANTIC_ROLE"

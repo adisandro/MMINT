@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.edit.policies;
 
 import java.util.Iterator;
@@ -51,15 +51,15 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelItemSemanticEditPolicy() {
-		super(MIDElementTypes.Model_2011);
+		super(MIDElementTypes.Model_2001);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
@@ -146,19 +146,19 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req.getElementType()) {
+		if (MIDElementTypes.ExtendibleElementSupertype_4001 == req.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4002 == req.getElementType()) {
 			return null;
 		}
-		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4003 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4004 == req.getElementType()) {
 			return null;
 		}
-		if (MIDElementTypes.ModelEndpoint_4019 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4005 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -168,19 +168,19 @@ public class ModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementSupertype_4013 == req.getElementType()) {
+		if (MIDElementTypes.ExtendibleElementSupertype_4001 == req.getElementType()) {
 			return getGEFWrapper(new ExtendibleElementSupertypeCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4002 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4003 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.ModelEndpoint_4018 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4004 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpoint2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.ModelEndpoint_4019 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4005 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpoint3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

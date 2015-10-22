@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.navigator;
 
 import java.util.ArrayList;
@@ -38,6 +38,7 @@ import org.eclipse.ui.navigator.ICommonContentProvider;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
@@ -45,7 +46,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
@@ -56,33 +56,33 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
 public class MIDNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final Object[] EMPTY_ARRAY = new Object[0];
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Viewer myViewer;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private AdapterFactoryEditingDomain myEditingDomain;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Runnable myViewerRefreshRunnable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public MIDNavigatorContentProvider() {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
@@ -127,8 +127,8 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -140,15 +140,15 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	void unloadAllResources() {
 		for (Resource nextResource : myEditingDomain.getResourceSet().getResources()) {
 			nextResource.unload();
@@ -156,8 +156,8 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	void asyncRefresh() {
 		if (myViewer != null && !myViewer.getControl().isDisposed()) {
 			myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
@@ -165,15 +165,15 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void restoreState(IMemento aMemento) {
 	}
 
@@ -184,14 +184,14 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -204,7 +204,7 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 					topViews.add((View) o);
 				}
 			}
-			result.addAll(createNavigatorItems(selectViewsByType(topViews, MultiModelEditPart.MODEL_ID), file, false));
+			result.addAll(createNavigatorItems(selectViewsByType(topViews, MIDEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -222,9 +222,9 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 		}
 
 		/*
-		 * Due to plugin.xml restrictions this code will be called only for views representing
-		 * shortcuts to this diagram elements created on other diagrams. 
-		 */
+		* Due to plugin.xml restrictions this code will be called only for views representing
+		* shortcuts to this diagram elements created on other diagrams. 
+		*/
 		if (parentElement instanceof IAdaptable) {
 			View view = (View) ((IAdaptable) parentElement).getAdapter(View.class);
 			if (view != null) {
@@ -236,18 +236,19 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 
-			case MultiModelEditPart.VISUAL_ID: {
+			case MIDEditPart.VISUAL_ID: {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				result.addAll(getForeignShortcuts((Diagram) view, parentElement));
 				Diagram sv = (Diagram) view;
 				MIDNavigatorGroup links = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_MultiModel_1000_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_MID_1000_links,
+					"icons/linksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getChildrenByType(
 					Collections.singleton(sv),
@@ -299,11 +300,13 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Node sv = (Node) view;
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Model_2011_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_Model_2001_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Model_2011_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_Model_2001_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
@@ -346,11 +349,13 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Node sv = (Node) view;
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Model_2012_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_Model_2002_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Model_2012_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_Model_2002_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
@@ -393,11 +398,13 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Node sv = (Node) view;
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelRel_2013_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelRel_2003_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelRel_2013_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelRel_2003_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
@@ -444,11 +451,13 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Node sv = (Node) view;
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelRel_2014_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelRel_2004_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelRel_2014_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelRel_2004_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
@@ -495,11 +504,13 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Node sv = (Node) view;
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Operator_2015_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_Operator_2005_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_Operator_2015_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_Operator_2005_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getIncomingLinksByType(
 					Collections.singleton(sv),
@@ -542,11 +553,13 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Edge sv = (Edge) view;
 				MIDNavigatorGroup target = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ExtendibleElementSupertype_4013_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ExtendibleElementSupertype_4001_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup source = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ExtendibleElementSupertype_4013_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ExtendibleElementSupertype_4001_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getLinksTargetByType(
 					Collections.singleton(sv),
@@ -601,14 +614,17 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Edge sv = (Edge) view;
 				MIDNavigatorGroup target = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4014_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4002_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4014_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4002_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup source = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4014_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4002_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getLinksTargetByType(
 					Collections.singleton(sv),
@@ -654,17 +670,21 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Edge sv = (Edge) view;
 				MIDNavigatorGroup target = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_BinaryModelRel_4015_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_BinaryModelRel_4003_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_BinaryModelRel_4015_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_BinaryModelRel_4003_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup source = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_BinaryModelRel_4015_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_BinaryModelRel_4003_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup outgoinglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_BinaryModelRel_4015_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_BinaryModelRel_4003_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getLinksTargetByType(
 					Collections.singleton(sv),
@@ -717,14 +737,17 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Edge sv = (Edge) view;
 				MIDNavigatorGroup target = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4018_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4004_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4018_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4004_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup source = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4018_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4004_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getLinksTargetByType(
 					Collections.singleton(sv),
@@ -766,14 +789,17 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 				LinkedList<MIDAbstractNavigatorItem> result = new LinkedList<MIDAbstractNavigatorItem>();
 				Edge sv = (Edge) view;
 				MIDNavigatorGroup target = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4019_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4005_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup incominglinks = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4019_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4005_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				MIDNavigatorGroup source = new MIDNavigatorGroup(
-					Messages.NavigatorGroupName_ModelEndpoint_4019_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+					Messages.NavigatorGroupName_ModelEndpoint_4005_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
 				Collection<View> connectedViews;
 				connectedViews = getLinksTargetByType(
 					Collections.singleton(sv),
@@ -815,8 +841,8 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Collection<View> getLinksSourceByType(Collection<Edge> edges, String type) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (Edge nextEdge : edges) {
@@ -904,7 +930,7 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
+		return MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
 	}
 
 	/**
@@ -933,8 +959,8 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object getParent(Object element) {
 		if (element instanceof MIDAbstractNavigatorItem) {
 			MIDAbstractNavigatorItem abstractNavigatorItem = (MIDAbstractNavigatorItem) element;
@@ -944,8 +970,8 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

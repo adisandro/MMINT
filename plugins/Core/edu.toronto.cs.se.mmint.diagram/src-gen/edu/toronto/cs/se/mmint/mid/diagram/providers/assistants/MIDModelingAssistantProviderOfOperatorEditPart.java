@@ -33,29 +33,31 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDModelingAssistantProvide
 public class MIDModelingAssistantProviderOfOperatorEditPart extends MIDModelingAssistantProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return doGetRelTypesOnSource((OperatorEditPart) sourceEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnSource(OperatorEditPart source) {
 		List<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
-		types.add(MIDElementTypes.ModelEndpoint_4018);
-		types.add(MIDElementTypes.ModelEndpoint_4019);
+		types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
+		types.add(MIDElementTypes.ModelEndpoint_4004);
+		types.add(MIDElementTypes.ModelEndpoint_4005);
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
@@ -63,147 +65,151 @@ public class MIDModelingAssistantProviderOfOperatorEditPart extends MIDModelingA
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<IElementType> doGetRelTypesOnSourceAndTarget(OperatorEditPart source, IGraphicalEditPart targetEditPart) {
+	* @generated
+	*/
+	public List<IElementType> doGetRelTypesOnSourceAndTarget(
+			OperatorEditPart source, IGraphicalEditPart targetEditPart) {
 		List<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
+			types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
+			types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
+			types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
+			types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
 		}
 		if (targetEditPart instanceof OperatorEditPart) {
-			types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
+			types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
 		}
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4018);
+			types.add(MIDElementTypes.ModelEndpoint_4004);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4018);
+			types.add(MIDElementTypes.ModelEndpoint_4004);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4018);
+			types.add(MIDElementTypes.ModelEndpoint_4004);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4018);
+			types.add(MIDElementTypes.ModelEndpoint_4004);
 		}
 		if (targetEditPart instanceof OperatorEditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4018);
+			types.add(MIDElementTypes.ModelEndpoint_4004);
 		}
 		if (targetEditPart instanceof ModelEditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4019);
+			types.add(MIDElementTypes.ModelEndpoint_4005);
 		}
 		if (targetEditPart instanceof Model2EditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4019);
+			types.add(MIDElementTypes.ModelEndpoint_4005);
 		}
 		if (targetEditPart instanceof ModelRelEditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4019);
+			types.add(MIDElementTypes.ModelEndpoint_4005);
 		}
 		if (targetEditPart instanceof ModelRel2EditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4019);
+			types.add(MIDElementTypes.ModelEndpoint_4005);
 		}
 		if (targetEditPart instanceof OperatorEditPart) {
-			types.add(MIDElementTypes.ModelEndpoint_4019);
+			types.add(MIDElementTypes.ModelEndpoint_4005);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return doGetTypesForTarget((OperatorEditPart) sourceEditPart, relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetTypesForTarget(OperatorEditPart source, IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
-		if (relationshipType == MIDElementTypes.ExtendibleElementSupertype_4013) {
-			types.add(MIDElementTypes.Model_2011);
-			types.add(MIDElementTypes.Model_2012);
-			types.add(MIDElementTypes.ModelRel_2013);
-			types.add(MIDElementTypes.ModelRel_2014);
-			types.add(MIDElementTypes.Operator_2015);
+		if (relationshipType == MIDElementTypes.ExtendibleElementSupertype_4001) {
+			types.add(MIDElementTypes.Model_2001);
+			types.add(MIDElementTypes.Model_2002);
+			types.add(MIDElementTypes.ModelRel_2003);
+			types.add(MIDElementTypes.ModelRel_2004);
+			types.add(MIDElementTypes.Operator_2005);
 		}
-		else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
-			types.add(MIDElementTypes.Model_2011);
-			types.add(MIDElementTypes.Model_2012);
-			types.add(MIDElementTypes.ModelRel_2013);
-			types.add(MIDElementTypes.ModelRel_2014);
-			types.add(MIDElementTypes.Operator_2015);
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4004) {
+			types.add(MIDElementTypes.Model_2001);
+			types.add(MIDElementTypes.Model_2002);
+			types.add(MIDElementTypes.ModelRel_2003);
+			types.add(MIDElementTypes.ModelRel_2004);
+			types.add(MIDElementTypes.Operator_2005);
 		}
-		else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
-			types.add(MIDElementTypes.Model_2011);
-			types.add(MIDElementTypes.Model_2012);
-			types.add(MIDElementTypes.ModelRel_2013);
-			types.add(MIDElementTypes.ModelRel_2014);
-			types.add(MIDElementTypes.Operator_2015);
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4005) {
+			types.add(MIDElementTypes.Model_2001);
+			types.add(MIDElementTypes.Model_2002);
+			types.add(MIDElementTypes.ModelRel_2003);
+			types.add(MIDElementTypes.ModelRel_2004);
+			types.add(MIDElementTypes.Operator_2005);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetRelTypesOnTarget((OperatorEditPart) targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnTarget(OperatorEditPart target) {
 		List<IElementType> types = new ArrayList<IElementType>(4);
-		types.add(MIDElementTypes.ExtendibleElementSupertype_4013);
-		types.add(MIDElementTypes.ModelEndpoint_4014);
-		types.add(MIDElementTypes.ModelEndpoint_4018);
-		types.add(MIDElementTypes.ModelEndpoint_4019);
+		types.add(MIDElementTypes.ExtendibleElementSupertype_4001);
+		types.add(MIDElementTypes.ModelEndpoint_4002);
+		types.add(MIDElementTypes.ModelEndpoint_4004);
+		types.add(MIDElementTypes.ModelEndpoint_4005);
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetTypesForSource((OperatorEditPart) targetEditPart, relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetTypesForSource(OperatorEditPart target, IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
-		if (relationshipType == MIDElementTypes.ExtendibleElementSupertype_4013) {
-			types.add(MIDElementTypes.Model_2011);
-			types.add(MIDElementTypes.Model_2012);
-			types.add(MIDElementTypes.ModelRel_2013);
-			types.add(MIDElementTypes.ModelRel_2014);
-			types.add(MIDElementTypes.Operator_2015);
+		if (relationshipType == MIDElementTypes.ExtendibleElementSupertype_4001) {
+			types.add(MIDElementTypes.Model_2001);
+			types.add(MIDElementTypes.Model_2002);
+			types.add(MIDElementTypes.ModelRel_2003);
+			types.add(MIDElementTypes.ModelRel_2004);
+			types.add(MIDElementTypes.Operator_2005);
 		}
-		else if (relationshipType == MIDElementTypes.ModelEndpoint_4014) {
-			types.add(MIDElementTypes.ModelRel_2013);
-			types.add(MIDElementTypes.ModelRel_2014);
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4002) {
+			types.add(MIDElementTypes.ModelRel_2003);
+			types.add(MIDElementTypes.ModelRel_2004);
 		}
-		else if (relationshipType == MIDElementTypes.ModelEndpoint_4018) {
-			types.add(MIDElementTypes.Operator_2015);
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4004) {
+			types.add(MIDElementTypes.Operator_2005);
 		}
-		else if (relationshipType == MIDElementTypes.ModelEndpoint_4019) {
-			types.add(MIDElementTypes.Operator_2015);
+		else if (relationshipType == MIDElementTypes.ModelEndpoint_4005) {
+			types.add(MIDElementTypes.Operator_2005);
 		}
 		return types;
 	}

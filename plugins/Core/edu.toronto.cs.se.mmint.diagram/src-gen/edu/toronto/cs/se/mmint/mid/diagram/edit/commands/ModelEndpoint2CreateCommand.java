@@ -35,18 +35,18 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 public class ModelEndpoint2CreateCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelEndpoint2CreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -54,8 +54,8 @@ public class ModelEndpoint2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -70,12 +70,12 @@ public class ModelEndpoint2CreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canCreateModelEndpoint_4018(getSource(), getTarget());
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canCreateModelEndpoint_4004(getSource(), getTarget());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -91,8 +91,8 @@ public class ModelEndpoint2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void doConfigure(ModelEndpoint newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
@@ -108,22 +108,22 @@ public class ModelEndpoint2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Operator getSource() {
 		return (Operator) source;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElement getTarget() {
 		return (ExtendibleElement) target;
 	}

@@ -50,7 +50,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
@@ -66,32 +65,32 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * @generated
-	 */
+	* Extended request data key to hold editpart visual id.
+	* @generated
+	*/
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final IElementType myElementType;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MIDBaseItemSemanticEditPolicy(IElementType elementType) {
 		myElementType = elementType;
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
-	 * 
-	 * @generated
-	 */
+	* Extended request data key to hold editpart visual id.
+	* Add visual id of edited editpart to extended data of the request
+	* so command switch can decide what kind of diagram element is being edited.
+	* It is done in those cases when it's not possible to deduce diagram
+	* element kind from domain element.
+	* 
+	* @generated
+	*/
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
@@ -104,17 +103,17 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Returns visual id from request parameters.
-	 * @generated
-	 */
+	* Returns visual id from request parameters.
+	* @generated
+	*/
 	protected int getVisualID(IEditCommandRequest request) {
 		Object id = request.getParameter(VISUAL_ID_KEY);
 		return id instanceof Integer ? ((Integer) id).intValue() : -1;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -127,20 +126,20 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
 		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View) getHost().getModel()));
 		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
-					.getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy
+					? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -158,16 +157,16 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IElementType getContextElementType(IEditCommandRequest request) {
 		IElementType requestContextElementType = MIDElementTypes.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
 		if (req instanceof CreateRelationshipRequest) {
 			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
@@ -206,106 +205,107 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getConfigureCommand(ConfigureRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getCreateCommand(CreateElementRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getSetCommand(SetRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getEditContextCommand(GetEditContextRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getMoveCommand(MoveRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected final Command getGEFWrapper(ICommand cmd) {
 		return new ICommandProxy(cmd);
 	}
 
 	/**
-	 * Returns editing domain from the host edit part.
-	 * @generated
-	 */
+	* Returns editing domain from the host edit part.
+	* @generated
+	*/
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
 	}
 
 	/**
-	 * Clean all shortcuts to the host element from the same diagram
-	 * @generated
-	 */
+	* Clean all shortcuts to the host element from the same diagram
+	* @generated
+	*/
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
+					|| nextView.getElement() != view.getElement()) {
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -313,8 +313,8 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static LinkConstraints getLinkConstraints() {
 		LinkConstraints cached = MIDDiagramEditorPlugin.getInstance().getLinkConstraints();
 		if (cached == null) {
@@ -329,8 +329,8 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static class LinkConstraints {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
@@ -338,64 +338,67 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateExtendibleElementSupertype_4013(ExtendibleElement source, ExtendibleElement target) {
+		public boolean canCreateExtendibleElementSupertype_4001(ExtendibleElement source, ExtendibleElement target) {
 			if (source != null) {
 				if (source.getSupertype() != null) {
 					return false;
 				}
 			}
 
-			return canExistExtendibleElementSupertype_4013(source, target);
+			return canExistExtendibleElementSupertype_4001(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelEndpoint_4014(ModelRel source, ExtendibleElement target) {
-			return canExistModelEndpoint_4014(null, source, target);
+		public boolean canCreateModelEndpoint_4002(ModelRel source, ExtendibleElement target) {
+			return canExistModelEndpoint_4002(null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateBinaryModelRel_4015(MultiModel container, Model source, Model target) {
-			return canExistBinaryModelRel_4015(container, null, source, target);
+		public boolean canCreateBinaryModelRel_4003(
+				edu.toronto.cs.se.mmint.mid.MID container, Model source, Model target) {
+			return canExistBinaryModelRel_4003(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelEndpoint_4018(Operator source, ExtendibleElement target) {
-			return canExistModelEndpoint_4018(null, source, target);
+		public boolean canCreateModelEndpoint_4004(Operator source, ExtendibleElement target) {
+			return canExistModelEndpoint_4004(null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelEndpoint_4019(Operator source, ExtendibleElement target) {
-			return canExistModelEndpoint_4019(null, source, target);
+		public boolean canCreateModelEndpoint_4005(Operator source, ExtendibleElement target) {
+			return canExistModelEndpoint_4005(null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistExtendibleElementSupertype_4013(ExtendibleElement source, ExtendibleElement target) {
+		* @generated
+		*/
+		public boolean canExistExtendibleElementSupertype_4001(ExtendibleElement source, ExtendibleElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistModelEndpoint_4014(ModelEndpoint linkInstance, ModelRel source, ExtendibleElement target) {
+		* @generated
+		*/
+		public boolean canExistModelEndpoint_4002(
+				ModelEndpoint linkInstance, ModelRel source, ExtendibleElement target) {
 			try {
 				if (source == null) {
 					return true;
 				}
 				else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap(
-						"oppositeEnd", MIDPackage.eINSTANCE.getExtendibleElement()); //$NON-NLS-1$
-					Object sourceVal = MIDOCLFactory.getExpression(4, RelationshipPackage.eINSTANCE.getModelRel(), env)
-							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections
+						.<String, EClassifier> singletonMap("oppositeEnd", MIDPackage.eINSTANCE.getExtendibleElement()); //$NON-NLS-1$
+					Object sourceVal = MIDOCLFactory
+						.getExpression(4, RelationshipPackage.eINSTANCE.getModelRel(), env)
+						.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -404,10 +407,11 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				}
 				else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap(
-						"oppositeEnd", RelationshipPackage.eINSTANCE.getModelRel()); //$NON-NLS-1$
-					Object targetVal = MIDOCLFactory.getExpression(5, MIDPackage.eINSTANCE.getExtendibleElement(), env)
-							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections
+						.<String, EClassifier> singletonMap("oppositeEnd", RelationshipPackage.eINSTANCE.getModelRel()); //$NON-NLS-1$
+					Object targetVal = MIDOCLFactory
+						.getExpression(5, MIDPackage.eINSTANCE.getExtendibleElement(), env)
+						.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -421,24 +425,26 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistBinaryModelRel_4015(MultiModel container, BinaryModelRel linkInstance, Model source,
-				Model target) {
+		* @generated
+		*/
+		public boolean canExistBinaryModelRel_4003(
+				edu.toronto.cs.se.mmint.mid.MID container, BinaryModelRel linkInstance, Model source, Model target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistModelEndpoint_4018(ModelEndpoint linkInstance, Operator source, ExtendibleElement target) {
+		* @generated
+		*/
+		public boolean canExistModelEndpoint_4004(
+				ModelEndpoint linkInstance, Operator source, ExtendibleElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistModelEndpoint_4019(ModelEndpoint linkInstance, Operator source, ExtendibleElement target) {
+		* @generated
+		*/
+		public boolean canExistModelEndpoint_4005(
+				ModelEndpoint linkInstance, Operator source, ExtendibleElement target) {
 			return true;
 		}
 	}

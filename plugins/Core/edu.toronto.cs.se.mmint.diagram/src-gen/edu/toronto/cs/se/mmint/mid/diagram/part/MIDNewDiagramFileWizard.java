@@ -39,7 +39,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 
 /**
  * @generated
@@ -47,23 +47,23 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 public class MIDNewDiagramFileWizard extends Wizard {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private WizardNewFileCreationPage myFileCreationPage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ModelElementSelectionPage diagramRootElementSelectionPage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private TransactionalEditingDomain myEditingDomain;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDNewDiagramFileWizard(URI domainModelURI, EObject diagramRoot, TransactionalEditingDomain editingDomain) {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
@@ -73,9 +73,8 @@ public class MIDNewDiagramFileWizard extends Wizard {
 			Messages.MIDNewDiagramFileWizard_CreationPageName,
 			StructuredSelection.EMPTY);
 		myFileCreationPage.setTitle(Messages.MIDNewDiagramFileWizard_CreationPageTitle);
-		myFileCreationPage.setDescription(NLS.bind(
-			Messages.MIDNewDiagramFileWizard_CreationPageDescription,
-			MultiModelEditPart.MODEL_ID));
+		myFileCreationPage
+			.setDescription(NLS.bind(Messages.MIDNewDiagramFileWizard_CreationPageDescription, MIDEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = URI.decode(domainModelURI.trimFileExtension().lastSegment());
 		if (domainModelURI.isPlatformResource()) {
@@ -101,16 +100,16 @@ public class MIDNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addPages() {
 		addPage(myFileCreationPage);
 		addPage(diagramRootElementSelectionPage);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean performFinish() {
 		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
@@ -126,14 +125,14 @@ public class MIDNewDiagramFileWizard extends Wizard {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				int diagramVID = MIDVisualIDRegistry.getDiagramVisualID(diagramRootElementSelectionPage
-						.getModelElement());
-				if (diagramVID != MultiModelEditPart.VISUAL_ID) {
+				int diagramVID = MIDVisualIDRegistry
+					.getDiagramVisualID(diagramRootElementSelectionPage.getModelElement());
+				if (diagramVID != MIDEditPart.VISUAL_ID) {
 					return CommandResult.newErrorCommandResult(Messages.MIDNewDiagramFileWizard_IncorrectRootError);
 				}
 				Diagram diagram = ViewService.createDiagram(
 					diagramRootElementSelectionPage.getModelElement(),
-					MultiModelEditPart.MODEL_ID,
+					MIDEditPart.MODEL_ID,
 					MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
@@ -157,27 +156,27 @@ public class MIDNewDiagramFileWizard extends Wizard {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class DiagramRootElementSelectionPage extends ModelElementSelectionPage {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected DiagramRootElementSelectionPage(String pageName) {
 			super(pageName);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected String getSelectionTitle() {
 			return Messages.MIDNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected boolean validatePage() {
 			if (getModelElement() == null) {
 				setErrorMessage(Messages.MIDNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
@@ -186,7 +185,7 @@ public class MIDNewDiagramFileWizard extends Wizard {
 			boolean result = ViewService.getInstance().provides(
 				new CreateDiagramViewOperation(
 					new EObjectAdapter(getModelElement()),
-					MultiModelEditPart.MODEL_ID,
+					MIDEditPart.MODEL_ID,
 					MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null : Messages.MIDNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;

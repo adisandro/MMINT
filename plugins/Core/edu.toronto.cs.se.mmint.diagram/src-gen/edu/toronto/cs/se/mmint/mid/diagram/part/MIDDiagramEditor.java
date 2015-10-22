@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.part;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ import org.eclipse.ui.part.ShowInContext;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem;
 
@@ -130,8 +130,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
-		MultiModel multiModel = (MultiModel) this.getDiagram().getElement();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
+		MID typeMID = (MID) this.getDiagram().getElement();
+		if (!MultiModelConstraintChecker.isInstancesLevel(typeMID)) {
 			for (Object paletteContainer : root.getChildren()) {
 				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
 					if (paletteEntry instanceof ToolEntry
@@ -248,9 +248,9 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 			provider.changed(getEditorInput());
 		}
 
-		MultiModel multiModel = (MultiModel) this.getDiagram().getElement();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.syncRepository(multiModel);
+		MID mid1 = (MID) this.getDiagram().getElement();
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid1)) {
+			MMINT.syncRepository(mid1);
 			// diagram sync required
 			final String relDiagramId = "edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID";
 			for (IEditorReference editorRef : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
@@ -263,8 +263,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 				if (!editor.getSite().getId().equals(relDiagramId)) {
 					continue;
 				}
-				MultiModel multiModel2 = (MultiModel) editor.getDiagram().getElement().eContainer();
-				if (!MultiModelConstraintChecker.isInstancesLevel(multiModel2)) {
+				MID mid2 = (MID) editor.getDiagram().getElement().eContainer();
+				if (!MultiModelConstraintChecker.isInstancesLevel(mid2)) {
 					IDocumentProvider provider2 = editor.getDocumentProvider();
 					try {
 						provider2.synchronize(editorRef.getEditorInput());
@@ -324,8 +324,11 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		final IEditorInput newInput = new FileEditorInput(file);
 		// Check if the editor is already open
 		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor().getEditorMatchingStrategy();
-		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.getEditorReferences();
+		IEditorReference[] editorRefs = PlatformUI
+			.getWorkbench()
+			.getActiveWorkbenchWindow()
+			.getActivePage()
+			.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
 				MessageDialog.openWarning(
@@ -338,11 +341,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			getDocumentProvider(newInput).saveDocument(
-				progressMonitor,
-				newInput,
-				getDocumentProvider().getDocument(getEditorInput()),
-				true);
+			getDocumentProvider(newInput)
+				.saveDocument(progressMonitor, newInput, getDocumentProvider().getDocument(getEditorInput()), true);
 			success = true;
 		}
 		catch (CoreException x) {
@@ -418,8 +418,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 				}
 
 			});
-		getDiagramGraphicalViewer().addDropTargetListener(
-			new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
+		getDiagramGraphicalViewer()
+			.addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
 
 				protected Object getJavaObject(TransferData data) {
 					return LocalTransfer.getInstance().nativeToJava(data);
@@ -465,15 +465,15 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
 			super(viewer, xfer);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected List getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
 			HashSet<URI> uris = new HashSet<URI>();
@@ -508,8 +508,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected abstract Object getJavaObject(TransferData data);
 
 	}

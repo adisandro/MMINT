@@ -130,7 +130,7 @@ Contributors:
       </MarkerNavigationProvider>
    </extension>
 
-   <extension id="diagnostic" name="Mid Diagram Type problems" point="org.eclipse.core.resources.markers">
+   <extension id="diagnostic" name="MID Diagram Type problems" point="org.eclipse.core.resources.markers">
       <?gmfgen generated="true"?>
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
@@ -256,8 +256,8 @@ Contributors:
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="MID"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013,4014,4015,4018,4019"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
       </viewProvider>
    </extension>
 
@@ -269,13 +269,13 @@ Contributors:
             <method name="getType()" value="MID"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2011,2012,2013,2014,2015"/>
+            <method name="getType()" value="2001,2002,2003,2004,2005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4013,4014,4015,4018,4019"/>
+            <method name="getType()" value="4001,4002,4003,4004,4005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5011,5016,5012,5017,5013,5018,5014,5019,5015"/>
+            <method name="getType()" value="5001,5002,5003,5004,5005,5006,5007,5008,5009"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value=""/>
@@ -287,35 +287,35 @@ Contributors:
    
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfMultiModelEditPart">
+      <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfMIDEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart" id="MultiModel_1000"/>
-         <context elements="MultiModel_1000"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart" id="MID_1000"/>
+         <context elements="MID_1000"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModelEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart" id="Model_2011"/>
-         <context elements="Model_2011"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart" id="Model_2001"/>
+         <context elements="Model_2001"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModel2EditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart" id="Model_2012"/>
-         <context elements="Model_2012"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart" id="Model_2002"/>
+         <context elements="Model_2002"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModelRelEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart" id="ModelRel_2013"/>
-         <context elements="ModelRel_2013"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart" id="ModelRel_2003"/>
+         <context elements="ModelRel_2003"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfModelRel2EditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart" id="ModelRel_2014"/>
-         <context elements="ModelRel_2014"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart" id="ModelRel_2004"/>
+         <context elements="ModelRel_2004"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.assistants.MIDModelingAssistantProviderOfOperatorEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart" id="Operator_2015"/>
-         <context elements="Operator_2015"/>
+         <object class="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart" id="Operator_2005"/>
+         <context elements="Operator_2005"/>
       </modelingAssistantProvider>
       
    </extension>
@@ -340,7 +340,7 @@ Contributors:
       <decoratorProvider class="edu.toronto.cs.se.mmint.mid.diagram.providers.MIDShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
-            <method name="getType()" value="2011,2012,2013,2014,2015"/>
+            <method name="getType()" value="2001,2002,2003,2004,2005"/>
          </object>
          <context decoratorTargets="generated-top-nodes"/>
       </decoratorProvider>
@@ -350,107 +350,107 @@ Contributors:
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.MultiModel_1000"
-               name="%metatype.name.MultiModel_1000"
+               id="edu.toronto.cs.se.mmint.diagram.MID_1000"
+               name="%metatype.name.MID_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="MultiModel"
-               edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.MultiModelEditHelper">
+               eclass="MID"
+               edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.MIDEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.Model_2011"
-               name="%metatype.name.Model_2011"
+               id="edu.toronto.cs.se.mmint.diagram.Model_2001"
+               name="%metatype.name.Model_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Model"
                edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.ModelEditHelper">
-            <param name="semanticHint" value="2011"/>
+            <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.Model_2012"
-               name="%metatype.name.Model_2012"
+               id="edu.toronto.cs.se.mmint.diagram.Model_2002"
+               name="%metatype.name.Model_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.diagram.Model_2011"/>
-            <param name="semanticHint" value="2012"/>
+            <specializes id="edu.toronto.cs.se.mmint.diagram.Model_2001"/>
+            <param name="semanticHint" value="2002"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.ModelRel_2013"
-               name="%metatype.name.ModelRel_2013"
+               id="edu.toronto.cs.se.mmint.diagram.ModelRel_2003"
+               name="%metatype.name.ModelRel_2003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ModelRel"
                edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.ModelRelEditHelper">
-            <param name="semanticHint" value="2013"/>
+            <param name="semanticHint" value="2003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.ModelRel_2014"
-               name="%metatype.name.ModelRel_2014"
+               id="edu.toronto.cs.se.mmint.diagram.ModelRel_2004"
+               name="%metatype.name.ModelRel_2004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelRel_2013"/>
-            <param name="semanticHint" value="2014"/>
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelRel_2003"/>
+            <param name="semanticHint" value="2004"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Operator">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.Operator_2015"
-               name="%metatype.name.Operator_2015"
+               id="edu.toronto.cs.se.mmint.diagram.Operator_2005"
+               name="%metatype.name.Operator_2005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Operator"
                edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.OperatorEditHelper">
-            <param name="semanticHint" value="2015"/>
+            <param name="semanticHint" value="2005"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.ExtendibleElementSupertype_4013"
-               name="%metatype.name.ExtendibleElementSupertype_4013"
+               id="edu.toronto.cs.se.mmint.diagram.ExtendibleElementSupertype_4001"
+               name="%metatype.name.ExtendibleElementSupertype_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4013"/>
+            <param name="semanticHint" value="4001"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"
-               name="%metatype.name.ModelEndpoint_4014"
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4002"
+               name="%metatype.name.ModelEndpoint_4002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ModelEndpoint"
                edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.ModelEndpointEditHelper">
-            <param name="semanticHint" value="4014"/>
+            <param name="semanticHint" value="4002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.diagram.BinaryModelRel_4015"
-               name="%metatype.name.BinaryModelRel_4015"
+               id="edu.toronto.cs.se.mmint.diagram.BinaryModelRel_4003"
+               name="%metatype.name.BinaryModelRel_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="BinaryModelRel"
                edithelper="edu.toronto.cs.se.mmint.mid.diagram.edit.helpers.BinaryModelRelEditHelper">
-            <param name="semanticHint" value="4015"/>
+            <param name="semanticHint" value="4003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"
-               name="%metatype.name.ModelEndpoint_4018"
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4004"
+               name="%metatype.name.ModelEndpoint_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
-            <param name="semanticHint" value="4018"/>
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4002"/>
+            <param name="semanticHint" value="4004"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID">
          <specializationType
-               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"
-               name="%metatype.name.ModelEndpoint_4019"
+               id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4005"
+               name="%metatype.name.ModelEndpoint_4005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
-            <param name="semanticHint" value="4019"/>
+            <specializes id="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4002"/>
+            <param name="semanticHint" value="4005"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -465,17 +465,17 @@ Contributors:
          </enablement>
       </clientContext> 
       <binding context="edu.toronto.cs.se.mmint.diagram.TypeContext">
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.MultiModel_1000"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Model_2011"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Model_2012"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelRel_2013"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelRel_2014"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.Operator_2015"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.ExtendibleElementSupertype_4013"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4014"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.BinaryModelRel_4015"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4018"/>
-         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4019"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.MID_1000"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.Model_2001"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.Model_2002"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelRel_2003"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelRel_2004"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.Operator_2005"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ExtendibleElementSupertype_4001"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4002"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.BinaryModelRel_4003"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4004"/>
+         <elementType ref="edu.toronto.cs.se.mmint.diagram.ModelEndpoint_4005"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -682,7 +682,7 @@ Contributors:
                <and>
                   <with variable="activePartId"><equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart"/>
+                     <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -692,7 +692,7 @@ Contributors:
                <and>
                   <with variable="activePartId"><equals value="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart"/>
+                     <instanceof value="edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>

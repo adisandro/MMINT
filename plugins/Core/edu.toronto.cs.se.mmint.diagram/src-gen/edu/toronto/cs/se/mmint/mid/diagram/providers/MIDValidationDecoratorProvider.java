@@ -48,7 +48,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
@@ -59,28 +59,28 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDValidationDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final String KEY = "validationStatus"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final String MARKER_TYPE = MIDDiagramEditorPlugin.ID + ".diagnostic"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static MarkerObserver fileObserver;
 
 	/**
-	 * @generated
-	 */
-	private static Map/*<String, List<IDecorator>>*/allDecorators = new HashMap();
+	* @generated
+	*/
+	private static Map/*<String, List<IDecorator>>*/ allDecorators = new HashMap();
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
 		if (editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
@@ -102,27 +102,27 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 		View view = (View) decoratorTarget.getAdapter(View.class);
-		return view != null && MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
+		return view != null && MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static void refreshDecorators(View view) {
 		refreshDecorators(ViewUtil.getIdStr(view), view.getDiagram());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static void refreshDecorators(String viewId, Diagram diagram) {
 		final List decorators = viewId != null ? (List) allDecorators.get(viewId) : null;
 		if (decorators == null || decorators.isEmpty() || diagram == null) {
@@ -151,18 +151,18 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static class StatusDecorator extends AbstractDecorator {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private String viewId;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public StatusDecorator(IDecoratorTarget decoratorTarget) {
 			super(decoratorTarget);
 			try {
@@ -180,8 +180,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void refresh() {
 			removeDecoration();
 			View view = (View) getDecoratorTarget().getAdapter(View.class);
@@ -217,15 +217,15 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 			Label toolTip = null;
 			for (int i = 0; i < markers.length; i++) {
 				IMarker marker = markers[i];
-				String attribute = marker.getAttribute(
-					org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID,
-					""); //$NON-NLS-1$
+				String attribute = marker
+					.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
 				if (attribute.equals(elementId)) {
 					int nextSeverity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
 					Image nextImage = getImage(nextSeverity);
 					if (foundMarker == null) {
 						foundMarker = marker;
-						toolTip = new Label(marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
+						toolTip = new Label(
+							marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
 							nextImage);
 					}
 					else {
@@ -237,7 +237,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 							comositeLabel.add(toolTip);
 							toolTip = comositeLabel;
 						}
-						toolTip.add(new Label(marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
+						toolTip.add(new Label(
+							marker.getAttribute(IMarker.MESSAGE, ""), //$NON-NLS-1$
 							nextImage));
 					}
 					severity = (nextSeverity > severity) ? nextSeverity : severity;
@@ -255,22 +256,24 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 				else {
 					int margin = -1;
 					if (editPart instanceof org.eclipse.gef.GraphicalEditPart) {
-						margin = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart) editPart).getFigure())
-								.DPtoLP(margin);
+						margin = MapModeUtil
+							.getMapMode(((org.eclipse.gef.GraphicalEditPart) editPart).getFigure())
+							.DPtoLP(margin);
 					}
-					setDecoration(getDecoratorTarget().addShapeDecoration(
-						getImage(severity),
-						IDecoratorTarget.Direction.NORTH_EAST,
-						margin,
-						true));
+					setDecoration(
+						getDecoratorTarget().addShapeDecoration(
+							getImage(severity),
+							IDecoratorTarget.Direction.NORTH_EAST,
+							margin,
+							true));
 				}
 				getDecoration().setToolTip(toolTip);
 			}
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Image getImage(int severity) {
 			String imageName = ISharedImages.IMG_OBJS_ERROR_TSK;
 			switch (severity) {
@@ -287,8 +290,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void activate() {
 			if (viewId == null) {
 				return;
@@ -320,8 +323,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void deactivate() {
 			if (viewId == null) {
 				return;
@@ -346,49 +349,49 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static class MarkerObserver implements IFileObserver {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Diagram diagram;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private MarkerObserver(Diagram diagram) {
 			this.diagram = diagram;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleFileRenamed(IFile oldFile, IFile file) {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleFileMoved(IFile oldFile, IFile file) {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleFileDeleted(IFile file) {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleFileChanged(IFile file) {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleMarkerAdded(IMarker marker) {
 			if (marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, null) != null) {
 				handleMarkerChanged(marker);
@@ -396,16 +399,16 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleMarkerDeleted(IMarker marker, Map attributes) {
 			String viewId = (String) attributes.get(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID);
 			refreshDecorators(viewId, diagram);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void handleMarkerChanged(IMarker marker) {
 			if (!MARKER_TYPE.equals(getType(marker))) {
 				return;
@@ -415,8 +418,8 @@ public class MIDValidationDecoratorProvider extends AbstractProvider implements 
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private String getType(IMarker marker) {
 			try {
 				return marker.getType();

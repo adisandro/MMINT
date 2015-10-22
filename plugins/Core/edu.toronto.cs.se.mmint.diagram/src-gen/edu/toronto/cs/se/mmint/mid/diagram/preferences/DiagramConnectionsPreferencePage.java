@@ -21,8 +21,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DiagramConnectionsPreferencePage() {
 		setPreferenceStore(MIDDiagramEditorPlugin.getInstance().getPreferenceStore());
 	}

@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
@@ -30,23 +29,23 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 public class BinaryModelRelReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public BinaryModelRelReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -55,8 +54,8 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof BinaryModelRel) {
 			return false;
@@ -71,46 +70,42 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Model && newEnd instanceof Model)) {
 			return false;
 		}
 		Model target = getLink().getTargetModel();
-		if (!(getLink().eContainer() instanceof MultiModel)) {
+		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.mmint.mid.MID)) {
 			return false;
 		}
-		MultiModel container = (MultiModel) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4015(
-			container,
-			getLink(),
-			getNewSource(),
-			target);
+		edu.toronto.cs.se.mmint.mid.MID container = (edu.toronto.cs.se.mmint.mid.MID) getLink().eContainer();
+		return MIDBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistBinaryModelRel_4003(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Model && newEnd instanceof Model)) {
 			return false;
 		}
 		Model source = getLink().getSourceModel();
-		if (!(getLink().eContainer() instanceof MultiModel)) {
+		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.mmint.mid.MID)) {
 			return false;
 		}
-		MultiModel container = (MultiModel) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistBinaryModelRel_4015(
-			container,
-			getLink(),
-			source,
-			getNewTarget());
+		edu.toronto.cs.se.mmint.mid.MID container = (edu.toronto.cs.se.mmint.mid.MID) getLink().eContainer();
+		return MIDBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistBinaryModelRel_4003(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
@@ -125,52 +120,52 @@ public class BinaryModelRelReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setSourceModel(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTargetModel(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected BinaryModelRel getLink() {
 		return (BinaryModelRel) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Model getOldSource() {
 		return (Model) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Model getNewSource() {
 		return (Model) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Model getOldTarget() {
 		return (Model) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Model getNewTarget() {
 		return (Model) newEnd;
 	}

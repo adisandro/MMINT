@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.part;
 
 import java.io.IOException;
@@ -61,10 +61,10 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 
 /**
  * @generated
@@ -72,8 +72,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 public class MIDDiagramEditorUtil {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Map<?, ?> getSaveOptions() {
 		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
@@ -82,8 +82,8 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean openDiagram(Resource diagram) throws PartInitException {
 		String path = diagram.getURI().toPlatformString(true);
 		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
@@ -95,8 +95,8 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static void setCharset(IFile file) {
 		if (file == null) {
 			return;
@@ -110,14 +110,11 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
-		return DefaultDiagramEditorUtil.getUniqueFileName(
-			containerFullPath,
-			fileName,
-			extension,
-			DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
+		return DefaultDiagramEditorUtil
+			.getUniqueFileName(containerFullPath, fileName, extension, DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
 	}
 
 	/**
@@ -139,9 +136,9 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
-	 * @generated
-	 */
+	* This method should be called within a workspace modify operation since it creates resources.
+	* @generated
+	*/
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		progressMonitor.beginTask(Messages.MIDDiagramEditorUtil_CreateDiagramProgressTask, 3);
@@ -154,13 +151,11 @@ public class MIDDiagramEditorUtil {
 			Collections.EMPTY_LIST) {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				MultiModel model = createInitialModel();
+				MID model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService.createDiagram(
-					model,
-					MultiModelEditPart.MODEL_ID,
-					MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService
+					.createDiagram(model, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
@@ -170,7 +165,7 @@ public class MIDDiagramEditorUtil {
 				try {
 					modelResource.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
 					diagramResource
-							.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
+						.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
 				}
 				catch (IOException e) {
 
@@ -180,10 +175,9 @@ public class MIDDiagramEditorUtil {
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(
-				command,
-				new SubProgressMonitor(progressMonitor, 1),
-				null);
+			OperationHistoryFactory
+				.getOperationHistory()
+				.execute(command, new SubProgressMonitor(progressMonitor, 1), null);
 		}
 		catch (ExecutionException e) {
 			MIDDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
@@ -194,41 +188,39 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static MultiModel createInitialModelGen() {
-		return MIDFactory.eINSTANCE.createMultiModel();
+	* Create a new instance of domain element associated with canvas.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @generated
+	*/
+	private static MID createInitialModelGen() {
+		return MIDFactory.eINSTANCE.createMID();
 	}
 
 	/**
-	 * Better creates the new instance of domain element associated with canvas.
-	 * 
 	 * @generated NOT
 	 */
-	private static MultiModel createInitialModel() {
+	private static MID createInitialModel() {
 
-		MultiModel multimodel = createInitialModelGen();
-		multimodel.setLevel(MIDLevel.INSTANCES);
+		MID instanceMID = createInitialModelGen();
+		instanceMID.setLevel(MIDLevel.INSTANCES);
 
-		return multimodel;
+		return instanceMID;
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static void attachModelToResource(MultiModel model, Resource resource) {
+	* Store model element in the resource.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @generated
+	*/
+	private static void attachModelToResource(MID model, Resource resource) {
 		resource.getContents().add(model);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List<EditPart> editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
@@ -241,16 +233,17 @@ public class MIDDiagramEditorUtil {
 		}
 
 		if (!editParts.isEmpty()) {
-			diagramPart.getDiagramGraphicalViewer().reveal(
-				firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
+			diagramPart
+				.getDiagramGraphicalViewer()
+				.reveal(firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
 		}
 	}
 
 	/**
-	 * @generated
-	 */
-	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element,
-			List<EditPart> editPartCollector) {
+	* @generated
+	*/
+	private static int findElementsInDiagramByID(
+			DiagramEditPart diagramPart, EObject element, List<EditPart> editPartCollector) {
 		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart.getViewer();
 		final int intialNumOfEditParts = editPartCollector.size();
 
@@ -290,10 +283,10 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * @generated
-	 */
-	public static View findView(DiagramEditPart diagramEditPart, EObject targetElement,
-			LazyElement2ViewMap lazyElement2ViewMap) {
+	* @generated
+	*/
+	public static View findView(
+			DiagramEditPart diagramEditPart, EObject targetElement, LazyElement2ViewMap lazyElement2ViewMap) {
 		boolean hasStructuralURI = false;
 		if (targetElement.eResource() instanceof XMLResource) {
 			hasStructuralURI = ((XMLResource) targetElement.eResource()).getID(targetElement) == null;
@@ -313,36 +306,36 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
-	 * @generated
-	 */
+	* XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	* @generated
+	*/
 	public static class LazyElement2ViewMap {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Map<EObject, View> element2ViewMap;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private View scope;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Set<? extends EObject> elementSet;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public LazyElement2ViewMap(View scope, Set<? extends EObject> elements) {
 			this.scope = scope;
 			this.elementSet = elements;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap<EObject, View>();
@@ -362,10 +355,10 @@ public class MIDDiagramEditorUtil {
 		}
 
 		/**
-		 * @generated
-		 */
-		private static boolean buildElement2ViewMap(View parentView, Map<EObject, View> element2ViewMap,
-				Set<? extends EObject> elements) {
+		* @generated
+		*/
+		private static boolean buildElement2ViewMap(
+				View parentView, Map<EObject, View> element2ViewMap, Set<? extends EObject> elements) {
 			if (elements.size() == element2ViewMap.size()) {
 				return true;
 			}

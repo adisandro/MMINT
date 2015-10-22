@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.part;
 
 import java.util.Collection;
@@ -28,9 +28,9 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -52,31 +51,31 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 public class MIDDiagramUpdater {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isShortcutOrphaned(View view) {
 		return !view.isSetElement() || view.getElement() == null || view.getElement().eIsProxy();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<MIDNodeDescriptor> getSemanticChildren(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-			case MultiModelEditPart.VISUAL_ID:
-				return getMultiModel_1000SemanticChildren(view);
+			case MIDEditPart.VISUAL_ID:
+				return getMID_1000SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
-	public static List<MIDNodeDescriptor> getMultiModel_1000SemanticChildren(View view) {
+	* @generated
+	*/
+	public static List<MIDNodeDescriptor> getMID_1000SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		MultiModel modelElement = (MultiModel) view.getElement();
+		edu.toronto.cs.se.mmint.mid.MID modelElement = (edu.toronto.cs.se.mmint.mid.MID) view.getElement();
 		LinkedList<MIDNodeDescriptor> result = new LinkedList<MIDNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getModels().iterator(); it.hasNext();) {
 			Model childElement = (Model) it.next();
@@ -110,84 +109,84 @@ public class MIDDiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<MIDLinkDescriptor> getContainedLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
-			case MultiModelEditPart.VISUAL_ID:
-				return getMultiModel_1000ContainedLinks(view);
+			case MIDEditPart.VISUAL_ID:
+				return getMID_1000ContainedLinks(view);
 			case ModelEditPart.VISUAL_ID:
-				return getModel_2011ContainedLinks(view);
+				return getModel_2001ContainedLinks(view);
 			case Model2EditPart.VISUAL_ID:
-				return getModel_2012ContainedLinks(view);
+				return getModel_2002ContainedLinks(view);
 			case ModelRelEditPart.VISUAL_ID:
-				return getModelRel_2013ContainedLinks(view);
+				return getModelRel_2003ContainedLinks(view);
 			case ModelRel2EditPart.VISUAL_ID:
-				return getModelRel_2014ContainedLinks(view);
+				return getModelRel_2004ContainedLinks(view);
 			case OperatorEditPart.VISUAL_ID:
-				return getOperator_2015ContainedLinks(view);
+				return getOperator_2005ContainedLinks(view);
 			case ModelEndpointEditPart.VISUAL_ID:
-				return getModelEndpoint_4014ContainedLinks(view);
+				return getModelEndpoint_4002ContainedLinks(view);
 			case BinaryModelRelEditPart.VISUAL_ID:
-				return getBinaryModelRel_4015ContainedLinks(view);
+				return getBinaryModelRel_4003ContainedLinks(view);
 			case ModelEndpoint2EditPart.VISUAL_ID:
-				return getModelEndpoint_4018ContainedLinks(view);
+				return getModelEndpoint_4004ContainedLinks(view);
 			case ModelEndpoint3EditPart.VISUAL_ID:
-				return getModelEndpoint_4019ContainedLinks(view);
+				return getModelEndpoint_4005ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<MIDLinkDescriptor> getIncomingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case ModelEditPart.VISUAL_ID:
-				return getModel_2011IncomingLinks(view);
+				return getModel_2001IncomingLinks(view);
 			case Model2EditPart.VISUAL_ID:
-				return getModel_2012IncomingLinks(view);
+				return getModel_2002IncomingLinks(view);
 			case ModelRelEditPart.VISUAL_ID:
-				return getModelRel_2013IncomingLinks(view);
+				return getModelRel_2003IncomingLinks(view);
 			case ModelRel2EditPart.VISUAL_ID:
-				return getModelRel_2014IncomingLinks(view);
+				return getModelRel_2004IncomingLinks(view);
 			case OperatorEditPart.VISUAL_ID:
-				return getOperator_2015IncomingLinks(view);
+				return getOperator_2005IncomingLinks(view);
 			case ModelEndpointEditPart.VISUAL_ID:
-				return getModelEndpoint_4014IncomingLinks(view);
+				return getModelEndpoint_4002IncomingLinks(view);
 			case BinaryModelRelEditPart.VISUAL_ID:
-				return getBinaryModelRel_4015IncomingLinks(view);
+				return getBinaryModelRel_4003IncomingLinks(view);
 			case ModelEndpoint2EditPart.VISUAL_ID:
-				return getModelEndpoint_4018IncomingLinks(view);
+				return getModelEndpoint_4004IncomingLinks(view);
 			case ModelEndpoint3EditPart.VISUAL_ID:
-				return getModelEndpoint_4019IncomingLinks(view);
+				return getModelEndpoint_4005IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<MIDLinkDescriptor> getOutgoingLinks(View view) {
 		switch (MIDVisualIDRegistry.getVisualID(view)) {
 			case ModelEditPart.VISUAL_ID:
-				return getModel_2011OutgoingLinks(view);
+				return getModel_2001OutgoingLinks(view);
 			case Model2EditPart.VISUAL_ID:
-				return getModel_2012OutgoingLinks(view);
+				return getModel_2002OutgoingLinks(view);
 			case ModelRelEditPart.VISUAL_ID:
-				return getModelRel_2013OutgoingLinks(view);
+				return getModelRel_2003OutgoingLinks(view);
 			case ModelRel2EditPart.VISUAL_ID:
-				return getModelRel_2014OutgoingLinks(view);
+				return getModelRel_2004OutgoingLinks(view);
 			case OperatorEditPart.VISUAL_ID:
-				return getOperator_2015OutgoingLinks(view);
+				return getOperator_2005OutgoingLinks(view);
 			case ModelEndpointEditPart.VISUAL_ID:
-				return getModelEndpoint_4014OutgoingLinks(view);
+				return getModelEndpoint_4002OutgoingLinks(view);
 			case BinaryModelRelEditPart.VISUAL_ID:
-				return getBinaryModelRel_4015OutgoingLinks(view);
+				return getBinaryModelRel_4003OutgoingLinks(view);
 			case ModelEndpoint2EditPart.VISUAL_ID:
-				return getModelEndpoint_4018OutgoingLinks(view);
+				return getModelEndpoint_4004OutgoingLinks(view);
 			case ModelEndpoint3EditPart.VISUAL_ID:
-				return getModelEndpoint_4019OutgoingLinks(view);
+				return getModelEndpoint_4005OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -195,352 +194,362 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getMultiModel_1000ContainedLinks(View view) {
-		MultiModel modelElement = (MultiModel) view.getElement();
+	public static List<MIDLinkDescriptor> getMID_1000ContainedLinks(View view) {
+		edu.toronto.cs.se.mmint.mid.MID modelElement = (edu.toronto.cs.se.mmint.mid.MID) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_BinaryModelRel_4015(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_BinaryModelRel_4003(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModel_2011ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModel_2001ContainedLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModel_2012ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModel_2002ContainedLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelRel_2013ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelRel_2003ContainedLinks(View view) {
 		ModelRel modelElement = (ModelRel) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4014(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelRel_2014ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelRel_2004ContainedLinks(View view) {
 		ModelRel modelElement = (ModelRel) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4014(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getOperator_2015ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getOperator_2005ContainedLinks(View view) {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4018(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4019(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4005(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4014ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4002ContainedLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getBinaryModelRel_4015ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getBinaryModelRel_4003ContainedLinks(View view) {
 		BinaryModelRel modelElement = (BinaryModelRel) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4014(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4018ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4004ContainedLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4019ContainedLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4005ContainedLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModel_2011IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModel_2001IncomingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModel_2012IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModel_2002IncomingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelRel_2013IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelRel_2003IncomingLinks(View view) {
 		ModelRel modelElement = (ModelRel) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelRel_2014IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelRel_2004IncomingLinks(View view) {
 		ModelRel modelElement = (ModelRel) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getOperator_2015IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getOperator_2005IncomingLinks(View view) {
 		Operator modelElement = (Operator) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4014IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4002IncomingLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getBinaryModelRel_4015IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getBinaryModelRel_4003IncomingLinks(View view) {
 		BinaryModelRel modelElement = (BinaryModelRel) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4015(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BinaryModelRel_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4018IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4004IncomingLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4019IncomingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4005IncomingLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view
-				.eResource().getResourceSet().getResources());
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+			.find(view.eResource().getResourceSet().getResources());
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4018(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4019(modelElement, crossReferences));
+		result
+			.addAll(getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ModelEndpoint_4005(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModel_2011OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModel_2001OutgoingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModel_2012OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModel_2002OutgoingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelRel_2013OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelRel_2003OutgoingLinks(View view) {
 		ModelRel modelElement = (ModelRel) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelRel_2014OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelRel_2004OutgoingLinks(View view) {
 		ModelRel modelElement = (ModelRel) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getOperator_2015OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getOperator_2005OutgoingLinks(View view) {
 		Operator modelElement = (Operator) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4018(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4019(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4005(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4014OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4002OutgoingLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getBinaryModelRel_4015OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getBinaryModelRel_4003OutgoingLinks(View view) {
 		BinaryModelRel modelElement = (BinaryModelRel) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ModelEndpoint_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4018OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4004OutgoingLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<MIDLinkDescriptor> getModelEndpoint_4019OutgoingLinks(View view) {
+	public static List<MIDLinkDescriptor> getModelEndpoint_4005OutgoingLinks(View view) {
 		ModelEndpoint modelElement = (ModelEndpoint) view.getElement();
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(modelElement));
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4014(ModelRel container) {
+	* @generated
+	*/
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4002(
+			ModelRel container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> links = container.getModelEndpoints().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -552,21 +561,22 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ExtendibleElement dst = link.getTarget();
-			result.add(new MIDLinkDescriptor(
-				container,
-				dst,
-				link,
-				MIDElementTypes.ModelEndpoint_4014,
-				ModelEndpointEditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					container,
+					dst,
+					link,
+					MIDElementTypes.ModelEndpoint_4002,
+					ModelEndpointEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryModelRel_4015(
-			MultiModel container) {
+	* @generated
+	*/
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_BinaryModelRel_4003(
+			edu.toronto.cs.se.mmint.mid.MID container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> links = container.getModels().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -579,20 +589,22 @@ public class MIDDiagramUpdater {
 			}
 			Model dst = link.getTargetModel();
 			Model src = link.getSourceModel();
-			result.add(new MIDLinkDescriptor(
-				src,
-				dst,
-				link,
-				MIDElementTypes.BinaryModelRel_4015,
-				BinaryModelRelEditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					src,
+					dst,
+					link,
+					MIDElementTypes.BinaryModelRel_4003,
+					BinaryModelRelEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4018(Operator container) {
+	* @generated
+	*/
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4004(
+			Operator container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> links = container.getInputs().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -604,20 +616,22 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ExtendibleElement dst = link.getTarget();
-			result.add(new MIDLinkDescriptor(
-				container,
-				dst,
-				link,
-				MIDElementTypes.ModelEndpoint_4018,
-				ModelEndpoint2EditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					container,
+					dst,
+					link,
+					MIDElementTypes.ModelEndpoint_4004,
+					ModelEndpoint2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4019(Operator container) {
+	* @generated
+	*/
+	private static Collection<MIDLinkDescriptor> getContainedTypeModelFacetLinks_ModelEndpoint_4005(
+			Operator container) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		for (Iterator<?> links = container.getOutputs().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -629,12 +643,13 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ExtendibleElement dst = link.getTarget();
-			result.add(new MIDLinkDescriptor(
-				container,
-				dst,
-				link,
-				MIDElementTypes.ModelEndpoint_4019,
-				ModelEndpoint3EditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					container,
+					dst,
+					link,
+					MIDElementTypes.ModelEndpoint_4005,
+					ModelEndpoint3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -642,17 +657,18 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(
+	private static Collection<MIDLinkDescriptor> getIncomingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(
 			ExtendibleElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == MIDPackage.eINSTANCE.getExtendibleElement_Supertype()) {
-				result.add(new MIDLinkDescriptor(
-					setting.getEObject(),
-					target,
-					MIDElementTypes.ExtendibleElementSupertype_4013,
-					ExtendibleElementSupertypeEditPart.VISUAL_ID));
+				result.add(
+					new MIDLinkDescriptor(
+						setting.getEObject(),
+						target,
+						MIDElementTypes.ExtendibleElementSupertype_4001,
+						ExtendibleElementSupertypeEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -661,7 +677,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4014(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4002(
 			ExtendibleElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
@@ -678,12 +694,13 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			ModelRel container = (ModelRel) link.eContainer();
-			result.add(new MIDLinkDescriptor(
-				container,
-				target,
-				link,
-				MIDElementTypes.ModelEndpoint_4014,
-				ModelEndpointEditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					container,
+					target,
+					link,
+					MIDElementTypes.ModelEndpoint_4002,
+					ModelEndpointEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -692,8 +709,8 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryModelRel_4015(Model target,
-			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_BinaryModelRel_4003(
+			Model target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
@@ -706,12 +723,13 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			Model src = link.getSourceModel();
-			result.add(new MIDLinkDescriptor(
-				src,
-				target,
-				link,
-				MIDElementTypes.BinaryModelRel_4015,
-				BinaryModelRelEditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					src,
+					target,
+					link,
+					MIDElementTypes.BinaryModelRel_4003,
+					BinaryModelRelEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -719,7 +737,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4018(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4004(
 			ExtendibleElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
@@ -736,12 +754,13 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			Operator container = (Operator) link.eContainer();
-			result.add(new MIDLinkDescriptor(
-				container,
-				target,
-				link,
-				MIDElementTypes.ModelEndpoint_4018,
-				ModelEndpoint2EditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					container,
+					target,
+					link,
+					MIDElementTypes.ModelEndpoint_4004,
+					ModelEndpoint2EditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -750,7 +769,7 @@ public class MIDDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4019(
+	private static Collection<MIDLinkDescriptor> getIncomingTypeModelFacetLinks_ModelEndpoint_4005(
 			ExtendibleElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
@@ -767,46 +786,48 @@ public class MIDDiagramUpdater {
 				continue;
 			}
 			Operator container = (Operator) link.eContainer();
-			result.add(new MIDLinkDescriptor(
-				container,
-				target,
-				link,
-				MIDElementTypes.ModelEndpoint_4019,
-				ModelEndpoint3EditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					container,
+					target,
+					link,
+					MIDElementTypes.ModelEndpoint_4005,
+					ModelEndpoint3EditPart.VISUAL_ID));
 
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4013(
+	* @generated
+	*/
+	private static Collection<MIDLinkDescriptor> getOutgoingFeatureModelFacetLinks_ExtendibleElement_Supertype_4001(
 			ExtendibleElement source) {
 		LinkedList<MIDLinkDescriptor> result = new LinkedList<MIDLinkDescriptor>();
 		ExtendibleElement destination = source.getSupertype();
 		if (destination == null) {
 			return result;
 		}
-		result.add(new MIDLinkDescriptor(
-			source,
-			destination,
-			MIDElementTypes.ExtendibleElementSupertype_4013,
-			ExtendibleElementSupertypeEditPart.VISUAL_ID));
+		result.add(
+			new MIDLinkDescriptor(
+				source,
+				destination,
+				MIDElementTypes.ExtendibleElementSupertype_4001,
+				ExtendibleElementSupertypeEditPart.VISUAL_ID));
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryModelRel_4015(Model source) {
-		MultiModel container = null;
+	* @generated
+	*/
+	private static Collection<MIDLinkDescriptor> getOutgoingTypeModelFacetLinks_BinaryModelRel_4003(Model source) {
+		edu.toronto.cs.se.mmint.mid.MID container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
 		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if (element instanceof MultiModel) {
-				container = (MultiModel) element;
+			if (element instanceof edu.toronto.cs.se.mmint.mid.MID) {
+				container = (edu.toronto.cs.se.mmint.mid.MID) element;
 			}
 		}
 		if (container == null) {
@@ -827,48 +848,53 @@ public class MIDDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new MIDLinkDescriptor(
-				src,
-				dst,
-				link,
-				MIDElementTypes.BinaryModelRel_4015,
-				BinaryModelRelEditPart.VISUAL_ID));
+			result.add(
+				new MIDLinkDescriptor(
+					src,
+					dst,
+					link,
+					MIDElementTypes.BinaryModelRel_4003,
+					BinaryModelRelEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<MIDNodeDescriptor> getSemanticChildren(View view) {
 			return MIDDiagramUpdater.getSemanticChildren(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<MIDLinkDescriptor> getContainedLinks(View view) {
 			return MIDDiagramUpdater.getContainedLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<MIDLinkDescriptor> getIncomingLinks(View view) {
 			return MIDDiagramUpdater.getIncomingLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<MIDLinkDescriptor> getOutgoingLinks(View view) {
 			return MIDDiagramUpdater.getOutgoingLinks(view);
 		}

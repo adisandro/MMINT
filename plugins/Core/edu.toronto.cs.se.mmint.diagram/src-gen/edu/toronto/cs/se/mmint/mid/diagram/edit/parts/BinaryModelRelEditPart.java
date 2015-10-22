@@ -33,56 +33,60 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ModelRelOpenDiagramEdit
 public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 4015;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 4003;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public BinaryModelRelEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BinaryModelRelItemSemanticEditPolicy());
+		installEditPolicy(
+			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
+			new BinaryModelRelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BinaryModelRelSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ModelRelOpenDiagramEditPolicy());
+		installEditPolicy(
+			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.OPEN_ROLE,
+			new ModelRelOpenDiagramEditPolicy());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
-			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape().getFigureBinaryModelRelLabelFigure());
+		if (childEditPart instanceof WrappingLabel12EditPart) {
+			((WrappingLabel12EditPart) childEditPart).setLabel(getPrimaryShape().getFigureBinaryModelRelLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel8EditPart) {
-			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureMAVOBinaryModelRelLabelFigure());
+		if (childEditPart instanceof WrappingLabel13EditPart) {
+			((WrappingLabel13EditPart) childEditPart)
+				.setLabel(getPrimaryShape().getFigureCustomBinaryModelRelLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel9EditPart) {
-			((WrappingLabel9EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureBinaryModelRelSourceModelEndpointLabelFigure());
+		if (childEditPart instanceof WrappingLabel14EditPart) {
+			((WrappingLabel14EditPart) childEditPart)
+				.setLabel(getPrimaryShape().getFigureBinaryModelRelSourceModelEndpointLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel15EditPart) {
-			((WrappingLabel15EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureBinaryModelRelTargetModelEndpointLabelFigure());
+			((WrappingLabel15EditPart) childEditPart)
+				.setLabel(getPrimaryShape().getFigureBinaryModelRelTargetModelEndpointLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -91,16 +95,16 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
+		if (childEditPart instanceof WrappingLabel12EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel8EditPart) {
+		if (childEditPart instanceof WrappingLabel13EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel9EditPart) {
+		if (childEditPart instanceof WrappingLabel14EditPart) {
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel15EditPart) {
@@ -110,8 +114,8 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -120,21 +124,21 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new BinaryModelRelFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public BinaryModelRelFigure getPrimaryShape() {
 		return (BinaryModelRelFigure) getFigure();
 	}
@@ -148,7 +152,6 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 		 * @generated
 		 */
 		private WrappingLabel fFigureBinaryModelRelLabelFigure;
-
 		/**
 		 * @generated
 		 */
@@ -157,11 +160,10 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 		 * @generated
 		 */
 		private WrappingLabel fFigureBinaryModelRelTargetModelEndpointLabelFigure;
-
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOBinaryModelRelLabelFigure;
+		private WrappingLabel fFigureCustomBinaryModelRelLabelFigure;
 
 		/**
 		 * @generated
@@ -179,11 +181,11 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 		 */
 		private void createContents() {
 
-			fFigureMAVOBinaryModelRelLabelFigure = new WrappingLabel();
+			fFigureCustomBinaryModelRelLabelFigure = new WrappingLabel();
 
-			fFigureMAVOBinaryModelRelLabelFigure.setText("");
+			fFigureCustomBinaryModelRelLabelFigure.setText("");
 
-			this.add(fFigureMAVOBinaryModelRelLabelFigure);
+			this.add(fFigureCustomBinaryModelRelLabelFigure);
 
 			fFigureBinaryModelRelLabelFigure = new WrappingLabel();
 
@@ -238,8 +240,8 @@ public class BinaryModelRelEditPart extends ConnectionNodeEditPart implements IT
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOBinaryModelRelLabelFigure() {
-			return fFigureMAVOBinaryModelRelLabelFigure;
+		public WrappingLabel getFigureCustomBinaryModelRelLabelFigure() {
+			return fFigureCustomBinaryModelRelLabelFigure;
 		}
 
 	}

@@ -23,19 +23,20 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDModelingAssistantProvide
 /**
  * @generated
  */
-public class MIDModelingAssistantProviderOfMultiModelEditPart extends MIDModelingAssistantProvider {
+public class MIDModelingAssistantProviderOfMIDEditPart extends MIDModelingAssistantProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getTypesForPopupBar(IAdaptable host) {
 		List<IElementType> types = new ArrayList<IElementType>(5);
-		types.add(MIDElementTypes.Model_2011);
-		types.add(MIDElementTypes.Model_2012);
-		types.add(MIDElementTypes.ModelRel_2013);
-		types.add(MIDElementTypes.ModelRel_2014);
-		types.add(MIDElementTypes.Operator_2015);
+		types.add(MIDElementTypes.Model_2001);
+		types.add(MIDElementTypes.Model_2002);
+		types.add(MIDElementTypes.ModelRel_2003);
+		types.add(MIDElementTypes.ModelRel_2004);
+		types.add(MIDElementTypes.Operator_2005);
 		return types;
 	}
 

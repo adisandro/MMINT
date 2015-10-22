@@ -37,11 +37,11 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -104,7 +104,7 @@ public class MIDContextMenu extends ContributionItem {
 		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
 		for (Object object : objects) {
 			if (!(
-				object instanceof MultiModelEditPart ||
+				object instanceof MIDEditPart ||
 				object instanceof ModelEditPart ||
 				object instanceof Model2EditPart ||
 				object instanceof ModelRelEditPart ||

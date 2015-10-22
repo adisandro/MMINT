@@ -121,11 +121,11 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4002 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelAddModelEndpointCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4003 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelNewBinaryRelCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -143,11 +143,11 @@ public class ModelRelImportedSemanticEditPolicy extends ModelRel2ItemSemanticEdi
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (MIDElementTypes.ModelEndpoint_4014 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpoint_4002 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelAddModelEndpointCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (MIDElementTypes.BinaryModelRel_4015 == req.getElementType()) {
+		if (MIDElementTypes.BinaryModelRel_4003 == req.getElementType()) {
 			return getGEFWrapper(new BinaryModelRelNewBinaryRelCommand(req,
 					req.getSource(), req.getTarget()));
 		}

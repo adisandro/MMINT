@@ -54,6 +54,7 @@ import org.eclipse.swt.graphics.FontData;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ExtendibleElementSupertypeEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
@@ -63,7 +64,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.OperatorEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel10EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel11EditPart;
@@ -88,8 +88,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final boolean provides(IOperation operation) {
 		if (operation instanceof CreateViewForKindOperation) {
 			return provides((CreateViewForKindOperation) operation);
@@ -108,29 +108,29 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 */
+				if (op.getViewKind() == Node.class)
+					return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+				if (op.getViewKind() == Edge.class)
+					return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		*/
 		return true;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return MultiModelEditPart.MODEL_ID.equals(op.getSemanticHint())
+		return MIDEditPart.MODEL_ID.equals(op.getSemanticHint())
 				&& MIDVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateNodeViewOperation op) {
 		if (op.getContainerView() == null) {
 			return false;
@@ -163,7 +163,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 			else {
-				if (!MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if (!MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
 				switch (visualID) {
@@ -172,9 +172,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 					case OperatorEditPart.VISUAL_ID:
 					case Model2EditPart.VISUAL_ID:
 					case ModelRel2EditPart.VISUAL_ID:
-						if (domainElement == null
-								|| visualID != MIDVisualIDRegistry
-										.getNodeVisualID(op.getContainerView(), domainElement)) {
+						if (domainElement == null || visualID != MIDVisualIDRegistry
+							.getNodeVisualID(op.getContainerView(), domainElement)) {
 							return false; // visual id in semantic hint should match visual id for domain element
 						}
 						break;
@@ -189,15 +188,16 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		if (!MIDElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
+		if (elementTypeHint == null
+				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
 		int visualID = MIDVisualIDRegistry.getVisualID(elementTypeHint);
@@ -209,22 +209,23 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
-		diagram.setType(MultiModelEditPart.MODEL_ID);
+		diagram.setType(MIDEditPart.MODEL_ID);
 		diagram.setElement(getSemanticElement(semanticAdapter));
 		diagram.setMeasurementUnit(MeasurementUnit.PIXEL_LITERAL);
 		return diagram;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createNode(
+			IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final int visualID;
 		if (semanticHint == null) {
@@ -235,53 +236,54 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		switch (visualID) {
 			case ModelEditPart.VISUAL_ID:
-				return createModel_2011(domainElement, containerView, index, persisted, preferencesHint);
+				return createModel_2001(domainElement, containerView, index, persisted, preferencesHint);
 			case Model2EditPart.VISUAL_ID:
-				return createModel_2012(domainElement, containerView, index, persisted, preferencesHint);
+				return createModel_2002(domainElement, containerView, index, persisted, preferencesHint);
 			case ModelRelEditPart.VISUAL_ID:
-				return createModelRel_2013(domainElement, containerView, index, persisted, preferencesHint);
+				return createModelRel_2003(domainElement, containerView, index, persisted, preferencesHint);
 			case ModelRel2EditPart.VISUAL_ID:
-				return createModelRel_2014(domainElement, containerView, index, persisted, preferencesHint);
+				return createModelRel_2004(domainElement, containerView, index, persisted, preferencesHint);
 			case OperatorEditPart.VISUAL_ID:
-				return createOperator_2015(domainElement, containerView, index, persisted, preferencesHint);
+				return createOperator_2005(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createEdge(
+			IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (MIDVisualIDRegistry.getVisualID(elementTypeHint)) {
 			case ExtendibleElementSupertypeEditPart.VISUAL_ID:
-				return createExtendibleElementSupertype_4013(containerView, index, persisted, preferencesHint);
+				return createExtendibleElementSupertype_4001(containerView, index, persisted, preferencesHint);
 			case ModelEndpointEditPart.VISUAL_ID:
-				return createModelEndpoint_4014(
+				return createModelEndpoint_4002(
 					getSemanticElement(semanticAdapter),
 					containerView,
 					index,
 					persisted,
 					preferencesHint);
 			case BinaryModelRelEditPart.VISUAL_ID:
-				return createBinaryModelRel_4015(
+				return createBinaryModelRel_4003(
 					getSemanticElement(semanticAdapter),
 					containerView,
 					index,
 					persisted,
 					preferencesHint);
 			case ModelEndpoint2EditPart.VISUAL_ID:
-				return createModelEndpoint_4018(
+				return createModelEndpoint_4004(
 					getSemanticElement(semanticAdapter),
 					containerView,
 					index,
 					persisted,
 					preferencesHint);
 			case ModelEndpoint3EditPart.VISUAL_ID:
-				return createModelEndpoint_4019(
+				return createModelEndpoint_4005(
 					getSemanticElement(semanticAdapter),
 					containerView,
 					index,
@@ -293,10 +295,10 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModel_2011(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModel_2001(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
 		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -319,21 +321,20 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5011 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
-		Node label5016 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
+		Node label5001 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label5002 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModel_2012(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModel_2002(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
 		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -356,21 +357,20 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5012 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
-		Node label5017 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
+		Node label5003 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		Node label5004 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelRel_2013(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelRel_2003(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
 		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -393,21 +393,20 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5013 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
-		Node label5018 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
+		Node label5005 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
+		Node label5006 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelRel_2014(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelRel_2004(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
 		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -430,21 +429,20 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5014 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
-		Node label5019 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
+		Node label5007 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
+		Node label5008 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createOperator_2015(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createOperator_2005(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
 		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -462,20 +460,19 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5015 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
+		Node label5009 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createExtendibleElementSupertype_4013(View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createExtendibleElementSupertype_4001(
+			View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -497,9 +494,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
@@ -510,10 +506,10 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createModelEndpoint_4014(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createModelEndpoint_4002(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -535,33 +531,32 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6011 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
-		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6011 = (Location) label6011.getLayoutConstraint();
-		location6011.setX(0);
-		location6011.setY(40);
-		Node label6017 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
-		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6017 = (Location) label6017.getLayoutConstraint();
-		location6017.setX(0);
-		location6017.setY(60);
+		Node label6001 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
+		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6001 = (Location) label6001.getLayoutConstraint();
+		location6001.setX(0);
+		location6001.setY(40);
+		Node label6002 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(0);
+		location6002.setY(60);
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createBinaryModelRel_4015(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createBinaryModelRel_4003(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -583,43 +578,42 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6012 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6012 = (Location) label6012.getLayoutConstraint();
-		location6012.setX(0);
-		location6012.setY(40);
-		Node label6013 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
-		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6013 = (Location) label6013.getLayoutConstraint();
-		location6013.setX(0);
-		location6013.setY(60);
-		Node label6014 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
-		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6014 = (Location) label6014.getLayoutConstraint();
-		location6014.setX(0);
-		location6014.setY(80);
-		Node label6018 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
-		label6018.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6018 = (Location) label6018.getLayoutConstraint();
-		location6018.setX(0);
-		location6018.setY(100);
+		Node label6003 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
+		label6003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6003 = (Location) label6003.getLayoutConstraint();
+		location6003.setX(0);
+		location6003.setY(40);
+		Node label6004 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
+		label6004.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6004 = (Location) label6004.getLayoutConstraint();
+		location6004.setX(0);
+		location6004.setY(60);
+		Node label6005 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
+		label6005.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6005 = (Location) label6005.getLayoutConstraint();
+		location6005.setX(0);
+		location6005.setY(80);
+		Node label6006 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
+		label6006.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6006 = (Location) label6006.getLayoutConstraint();
+		location6006.setX(0);
+		location6006.setY(100);
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createModelEndpoint_4018(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createModelEndpoint_4004(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -641,28 +635,27 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6019 = createLabel(edge, MIDVisualIDRegistry.getType(ModelEndpointNameEditPart.VISUAL_ID));
-		label6019.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6019 = (Location) label6019.getLayoutConstraint();
-		location6019.setX(0);
-		location6019.setY(40);
+		Node label6007 = createLabel(edge, MIDVisualIDRegistry.getType(ModelEndpointNameEditPart.VISUAL_ID));
+		label6007.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6007 = (Location) label6007.getLayoutConstraint();
+		location6007.setX(0);
+		location6007.setY(40);
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createModelEndpoint_4019(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createModelEndpoint_4005(
+			EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
@@ -684,38 +677,37 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(
-				prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+				.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
 			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
 		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
 			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6020 = createLabel(edge, MIDVisualIDRegistry.getType(ModelEndpointName2EditPart.VISUAL_ID));
-		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6020 = (Location) label6020.getLayoutConstraint();
-		location6020.setX(0);
-		location6020.setY(40);
+		Node label6008 = createLabel(edge, MIDVisualIDRegistry.getType(ModelEndpointName2EditPart.VISUAL_ID));
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6008 = (Location) label6008.getLayoutConstraint();
+		location6008.setX(0);
+		location6008.setY(40);
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private void stampShortcut(View containerView, Node target) {
-		if (!MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(containerView))) {
+		if (!MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
@@ -724,8 +716,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EObject getSemanticElement(IAdaptable semanticAdapter) {
 		if (semanticAdapter == null) {
 			return null;

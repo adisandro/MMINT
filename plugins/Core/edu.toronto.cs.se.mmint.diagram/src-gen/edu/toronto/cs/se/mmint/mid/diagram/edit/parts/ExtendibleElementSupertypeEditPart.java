@@ -31,42 +31,44 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.ExtendibleElementSupert
 public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 4013;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 4001;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ExtendibleElementSupertypeEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendibleElementSupertypeItemSemanticEditPolicy());
+		installEditPolicy(
+			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
+			new ExtendibleElementSupertypeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendibleElementSupertypeSemanticEditPolicy());
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new ExtendibleElementSupertypeFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ExtendibleElementSupertypeFigure getPrimaryShape() {
 		return (ExtendibleElementSupertypeFigure) getFigure();
 	}

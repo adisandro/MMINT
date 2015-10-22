@@ -32,77 +32,78 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public abstract class MIDAbstractExpression {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IStatus status = Status.OK_STATUS;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setStatus(int severity, String message, Throwable throwable) {
 		String pluginID = MIDDiagramEditorPlugin.ID;
 		this.status = new Status(severity, pluginID, -1, (message != null) ? message : "", throwable); //$NON-NLS-1$
 		if (!this.status.isOK()) {
-			MIDDiagramEditorPlugin.getInstance()
-					.logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
+			MIDDiagramEditorPlugin
+				.getInstance()
+				.logError("Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStatus getStatus() {
 		return status;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final String myBody;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String body() {
 		return myBody;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EClassifier myContext;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EClassifier context() {
 		return myContext;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MIDAbstractExpression(String body, EClassifier context) {
 		myBody = body;
 		myContext = context;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings("rawtypes")
 	protected abstract Object doEvaluate(Object context, Map env);
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object evaluate(Object context) {
 		return evaluate(context, Collections.EMPTY_MAP);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings("rawtypes")
 	public Object evaluate(Object context, Map env) {
 		if (context().isInstance(context)) {
@@ -117,9 +118,9 @@ public abstract class MIDAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
-	 * @generated
-	 */
+	* Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	* @generated
+	*/
 	public static Object performCast(Object value, EDataType targetType) {
 		if (targetType instanceof EEnum) {
 			if (value instanceof EEnumLiteral) {

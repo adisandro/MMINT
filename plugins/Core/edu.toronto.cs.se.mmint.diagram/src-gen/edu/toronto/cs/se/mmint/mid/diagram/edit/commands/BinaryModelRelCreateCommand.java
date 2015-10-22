@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
@@ -35,23 +34,23 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 public class BinaryModelRelCreateCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject target;
 
 	/**
-	 * @generated
-	 */
-	private final MultiModel container;
+	* @generated
+	*/
+	private final edu.toronto.cs.se.mmint.mid.MID container;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public BinaryModelRelCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -60,8 +59,8 @@ public class BinaryModelRelCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -79,15 +78,15 @@ public class BinaryModelRelCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canCreateBinaryModelRel_4015(
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canCreateBinaryModelRel_4003(
 			getContainer(),
 			getSource(),
 			getTarget());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -104,8 +103,8 @@ public class BinaryModelRelCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void doConfigure(BinaryModelRel newElement, IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
@@ -121,45 +120,45 @@ public class BinaryModelRelCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Model getSource() {
 		return (Model) source;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Model getTarget() {
 		return (Model) target;
 	}
 
 	/**
-	 * @generated
-	 */
-	public MultiModel getContainer() {
+	* @generated
+	*/
+	public edu.toronto.cs.se.mmint.mid.MID getContainer() {
 		return container;
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container.
-	 * Modify with appropriate logic.
-	 * @generated
-	 */
-	private static MultiModel deduceContainer(EObject source, EObject target) {
+	* Default approach is to traverse ancestors of the source to find instance of container.
+	* Modify with appropriate logic.
+	* @generated
+	*/
+	private static edu.toronto.cs.se.mmint.mid.MID deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
 		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof MultiModel) {
-				return (MultiModel) element;
+			if (element instanceof edu.toronto.cs.se.mmint.mid.MID) {
+				return (edu.toronto.cs.se.mmint.mid.MID) element;
 			}
 		}
 		return null;

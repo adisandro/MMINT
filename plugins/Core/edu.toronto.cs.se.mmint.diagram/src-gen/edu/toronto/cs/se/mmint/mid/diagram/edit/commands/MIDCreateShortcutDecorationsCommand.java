@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 
 /**
  * @generated
@@ -34,13 +34,13 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 public class MIDCreateShortcutDecorationsCommand extends AbstractTransactionalCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private List myDescriptors;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain, View parentView,
 			List viewDescriptors) {
 		super(editingDomain, "Create Shortcuts", getWorkspaceFiles(parentView)); //$NON-NLS-1$
@@ -48,16 +48,16 @@ public class MIDCreateShortcutDecorationsCommand extends AbstractTransactionalCo
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain, View parentView,
 			CreateViewRequest.ViewDescriptor viewDescriptor) {
 		this(editingDomain, parentView, Collections.singletonList(viewDescriptor));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		for (Iterator it = myDescriptors.iterator(); it.hasNext();) {
 			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it.next();
@@ -65,7 +65,7 @@ public class MIDCreateShortcutDecorationsCommand extends AbstractTransactionalCo
 			if (view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 				shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-				shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID); //$NON-NLS-1$
+				shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID); //$NON-NLS-1$
 				view.getEAnnotations().add(shortcutAnnotation);
 			}
 		}

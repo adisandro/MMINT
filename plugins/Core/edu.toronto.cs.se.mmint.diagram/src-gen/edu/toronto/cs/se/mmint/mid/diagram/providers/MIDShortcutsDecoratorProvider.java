@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.providers;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Image;
 
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
@@ -34,25 +34,25 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDShortcutsDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final String SHORTCUTS_DECORATOR_ID = "shortcuts"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 		View view = (View) decoratorTarget.getAdapter(View.class);
-		return view != null && MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
+		return view != null && MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(view));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		View view = (View) decoratorTarget.getAdapter(View.class);
 		if (view != null) {
@@ -64,37 +64,34 @@ public class MIDShortcutsDecoratorProvider extends AbstractProvider implements I
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected class ShortcutsDecorator extends AbstractDecorator {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public ShortcutsDecorator(IDecoratorTarget decoratorTarget) {
 			super(decoratorTarget);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void activate() {
 			refresh();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void refresh() {
 			removeDecoration();
 			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
 			Image image = MIDDiagramEditorPlugin.getInstance().getBundledImage("icons/shortcut.gif"); //$NON-NLS-1$
 			if (editPart instanceof ShapeEditPart) {
-				setDecoration(getDecoratorTarget().addShapeDecoration(
-					image,
-					IDecoratorTarget.Direction.SOUTH_WEST,
-					0,
-					false));
+				setDecoration(
+					getDecoratorTarget().addShapeDecoration(image, IDecoratorTarget.Direction.SOUTH_WEST, 0, false));
 			}
 			else if (editPart instanceof ConnectionEditPart) {
 				setDecoration(getDecoratorTarget().addConnectionDecoration(image, 50, false));

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
@@ -24,11 +23,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
  * @generated
@@ -36,20 +33,20 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class MIDValidationProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static boolean constraintsActive = false;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean shouldConstraintsBePrivate() {
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
@@ -77,41 +74,41 @@ public class MIDValidationProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static boolean isInDefaultEditorContext(Object object) {
 		if (shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive
-					&& MultiModelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID((View) object));
+			return constraintsActive && MIDEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static class DefaultCtx implements IClientSelector {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public boolean selects(Object object) {
 			return isInDefaultEditorContext(object);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static class Adapter1 extends AbstractModelConstraint {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public IStatus validate(IValidationContext ctx) {
+			Model context = (Model) ctx.getTarget();
 			try {
 				return ((ExtendibleElement) ctx.getTarget()).validateInstanceInEditor(ctx);
 			}
@@ -122,8 +119,8 @@ public class MIDValidationProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static String formatElement(EObject object) {
 		return EMFCoreUtil.getQualifiedName(object, true);
 	}

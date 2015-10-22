@@ -13,8 +13,8 @@ package edu.toronto.cs.se.mmint.mid.diagram.providers;
 
 import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPartFactory;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MultiModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
 /**
@@ -23,10 +23,10 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class MIDEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDEditPartProvider() {
-		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE, MultiModelEditPart.MODEL_ID);
+		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE, MIDEditPart.MODEL_ID);
 	}
 
 }

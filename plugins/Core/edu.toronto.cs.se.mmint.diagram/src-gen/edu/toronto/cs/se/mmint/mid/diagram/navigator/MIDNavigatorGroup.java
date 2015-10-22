@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.navigator;
 
 import java.util.Collection;
@@ -20,23 +20,23 @@ import java.util.LinkedList;
 public class MIDNavigatorGroup extends MIDAbstractNavigatorItem {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private String myGroupName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private String myIcon;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Collection myChildren = new LinkedList();
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	MIDNavigatorGroup(String groupName, String icon, Object parent) {
 		super(parent);
 		myGroupName = groupName;
@@ -44,50 +44,50 @@ public class MIDNavigatorGroup extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getGroupName() {
 		return myGroupName;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getIcon() {
 		return myIcon;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getChildren() {
 		return myChildren.toArray();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addChildren(Collection children) {
 		myChildren.addAll(children);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addChild(Object child) {
 		myChildren.add(child);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean isEmpty() {
 		return myChildren.size() == 0;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorGroup) {
 			edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorGroup anotherGroup = (edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorGroup) obj;
@@ -99,8 +99,8 @@ public class MIDNavigatorGroup extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

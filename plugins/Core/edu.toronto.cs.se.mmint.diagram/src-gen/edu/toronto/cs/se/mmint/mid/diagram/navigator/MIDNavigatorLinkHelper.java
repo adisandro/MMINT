@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.navigator;
 
 import org.eclipse.core.resources.IFile;
@@ -42,8 +42,8 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class MIDNavigatorLinkHelper implements ILinkHelper {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IEditorInput getEditorInput(Diagram diagram) {
 		Resource diagramResource = diagram.eResource();
 		for (EObject nextEObject : diagramResource.getContents()) {
@@ -61,11 +61,13 @@ public class MIDNavigatorLinkHelper implements ILinkHelper {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStructuredSelection findSelection(IEditorInput anInput) {
-		IDiagramDocument document = MIDDiagramEditorPlugin.getInstance().getDocumentProvider()
-				.getDiagramDocument(anInput);
+		IDiagramDocument document = MIDDiagramEditorPlugin
+			.getInstance()
+			.getDocumentProvider()
+			.getDiagramDocument(anInput);
 		if (document == null) {
 			return StructuredSelection.EMPTY;
 		}
@@ -82,8 +84,8 @@ public class MIDNavigatorLinkHelper implements ILinkHelper {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void activateEditor(IWorkbenchPage aPage, IStructuredSelection aSelection) {
 		if (aSelection == null || aSelection.isEmpty()) {
 			return;

@@ -31,84 +31,85 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 public class MIDCreationWizard extends Wizard implements INewWizard {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IWorkbench workbench;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IStructuredSelection selection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MIDCreationWizardPage diagramModelFilePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MIDCreationWizardPage domainModelFilePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Resource diagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean openNewlyCreatedDiagramEditor = true;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IWorkbench getWorkbench() {
 		return workbench;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStructuredSelection getSelection() {
 		return selection;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final Resource getDiagram() {
 		return diagram;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final boolean isOpenNewlyCreatedDiagramEditor() {
 		return openNewlyCreatedDiagramEditor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(Messages.MIDCreationWizardTitle);
-		setDefaultPageImageDescriptor(MIDDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewMIDWizard.gif")); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(
+			MIDDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewMIDWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addPages() {
 		diagramModelFilePage = new MIDCreationWizardPage("DiagramModelFile", getSelection(), "middiag"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage.setTitle(Messages.MIDCreationWizard_DiagramModelFilePageTitle);
@@ -132,16 +133,14 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
-				diagram = MIDDiagramEditorUtil.createDiagram(
-					diagramModelFilePage.getURI(),
-					domainModelFilePage.getURI(),
-					monitor);
+				diagram = MIDDiagramEditorUtil
+					.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						MIDDiagramEditorUtil.openDiagram(diagram);

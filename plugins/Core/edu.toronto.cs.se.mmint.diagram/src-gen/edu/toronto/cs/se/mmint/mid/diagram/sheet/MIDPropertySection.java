@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
@@ -27,9 +28,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 public class MIDPropertySection extends DefaultPropertySection implements IPropertySourceProvider {
 
 	/**
-	 * Modify/unwrap selection.
-	 * @generated
-	 */
+	* Modify/unwrap selection.
+	* @generated
+	*/
 	protected Object transformSelectionGen(Object selected) {
 		selected = /*super.*/transformSelectionToDomain(selected);
 		return selected;

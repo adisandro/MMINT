@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.navigator;
 
 import java.util.ArrayList;
@@ -37,41 +37,41 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 public class MIDDomainNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private AdapterFactoryContentProvider myAdapterFctoryContentProvier;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final Object[] EMPTY_ARRAY = new Object[0];
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Viewer myViewer;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private AdapterFactoryEditingDomain myEditingDomain;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Runnable myViewerRefreshRunnable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDDomainNavigatorContentProvider() {
-		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(MIDDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
+		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
+			MIDDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
@@ -114,8 +114,8 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -127,15 +127,15 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	void unloadAllResources() {
 		for (Resource nextResource : myEditingDomain.getResourceSet().getResources()) {
 			nextResource.unload();
@@ -143,8 +143,8 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	void asyncRefresh() {
 		if (myViewer != null && !myViewer.getControl().isDisposed()) {
 			myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
@@ -152,15 +152,15 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void restoreState(IMemento aMemento) {
 	}
 
@@ -171,14 +171,14 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -196,24 +196,22 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
 		Collection result = new ArrayList();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
-				result.add(new MIDDomainNavigatorItem(
-					(EObject) objects[i],
-					parentElement,
-					myAdapterFctoryContentProvier));
+				result.add(
+					new MIDDomainNavigatorItem((EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
 			}
 		}
 		return result.toArray();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object getParent(Object element) {
 		if (element instanceof MIDAbstractNavigatorItem) {
 			MIDAbstractNavigatorItem abstractNavigatorItem = (MIDAbstractNavigatorItem) element;
@@ -223,8 +221,8 @@ public class MIDDomainNavigatorContentProvider implements ICommonContentProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

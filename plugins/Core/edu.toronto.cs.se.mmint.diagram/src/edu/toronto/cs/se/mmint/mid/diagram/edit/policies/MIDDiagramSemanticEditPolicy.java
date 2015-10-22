@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
  * @author Alessio Di Sandro
  * 
  */
-public class MIDDiagramSemanticEditPolicy extends MultiModelItemSemanticEditPolicy {
+public class MIDDiagramSemanticEditPolicy extends MIDItemSemanticEditPolicy {
 
 	/**
 	 * Gets the command to create a new element in the diagram.
@@ -38,16 +38,16 @@ public class MIDDiagramSemanticEditPolicy extends MultiModelItemSemanticEditPoli
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		if (MIDElementTypes.Model_2011 == req.getElementType()) {
+		if (MIDElementTypes.Model_2001 == req.getElementType()) {
 			return getGEFWrapper(new ModelNewModelCommand(req));
 		}
-		if (MIDElementTypes.Model_2012 == req.getElementType()) {
+		if (MIDElementTypes.Model_2002 == req.getElementType()) {
 			return getGEFWrapper(new ModelImportModelCommand(req));
 		}
-		if (MIDElementTypes.ModelRel_2013 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2003 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelNewNaryRelCommand(req));
 		}
-		if (MIDElementTypes.ModelRel_2014 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2004 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelImportNaryRelCommand(req));
 		}
 		return null;

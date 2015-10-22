@@ -66,7 +66,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Edge createModelEndpoint_4014(EObject domainElement,
+	public Edge createModelEndpoint_4002(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -135,7 +135,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Edge createModelEndpoint_4018(EObject domainElement,
+	public Edge createModelEndpoint_4004(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -196,7 +196,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Edge createModelEndpoint_4019(EObject domainElement,
+	public Edge createModelEndpoint_4005(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
@@ -257,9 +257,9 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Edge createBinaryModelRel_4015(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createBinaryModelRel_4003(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 
-		Edge edge = _createBinaryModelRel_4015(domainElement, containerView, index, persisted, preferencesHint);
+		Edge edge = _createBinaryModelRel_4003(domainElement, containerView, index, persisted, preferencesHint);
 		HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE.createHintedDiagramLinkStyle();
 		diagramFacet.setHint("Relationship");
 		edge.getStyles().add(diagramFacet);
@@ -271,7 +271,7 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 	 * Customizes label creation.
 	 */
 	@SuppressWarnings("unchecked")
-	private Edge _createBinaryModelRel_4015(EObject domainElement,
+	private Edge _createBinaryModelRel_4003(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();

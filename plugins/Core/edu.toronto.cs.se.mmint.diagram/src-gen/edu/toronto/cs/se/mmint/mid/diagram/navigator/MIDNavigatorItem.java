@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -23,8 +23,8 @@ import org.eclipse.gmf.runtime.notation.View;
 public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
@@ -40,23 +40,22 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
-		},
-			edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem.class);
+		}, edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem.class);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private View myView;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean myLeaf = false;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDNavigatorItem(View view, Object parent, boolean isLeaf) {
 		super(parent);
 		myView = view;
@@ -64,22 +63,22 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public View getView() {
 		return myView;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean isLeaf() {
 		return myLeaf;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem) {
 			return EcoreUtil.getURI(getView()).equals(
@@ -89,8 +88,8 @@ public class MIDNavigatorItem extends MIDAbstractNavigatorItem {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}

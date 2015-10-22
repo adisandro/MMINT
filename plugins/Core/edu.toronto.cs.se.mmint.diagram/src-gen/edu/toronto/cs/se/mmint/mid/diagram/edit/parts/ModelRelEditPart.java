@@ -48,43 +48,47 @@ import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 public class ModelRelEditPart extends ShapeNodeEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 2013;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 2003;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure contentPane;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure primaryShape;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelRelEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelRelItemSemanticEditPolicy());
+		installEditPolicy(
+			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
+			new ModelRelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new ModelRelOpenDiagramEditPolicy());
+		installEditPolicy(
+			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.OPEN_ROLE,
+			new ModelRelOpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelRelCreatedSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 
 		FlowLayoutEditPolicy lep = new FlowLayoutEditPolicy() {
@@ -105,50 +109,50 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure createNodeShape() {
 		return primaryShape = new ModelRelFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelRelFigure getPrimaryShape() {
 		return (ModelRelFigure) primaryShape;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel3EditPart) {
-			((WrappingLabel3EditPart) childEditPart).setLabel(getPrimaryShape().getFigureModelRelLabelFigure());
+		if (childEditPart instanceof WrappingLabel5EditPart) {
+			((WrappingLabel5EditPart) childEditPart).setLabel(getPrimaryShape().getFigureModelRelLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel12EditPart) {
-			((WrappingLabel12EditPart) childEditPart).setLabel(getPrimaryShape().getFigureMAVOModelRelLabelFigure());
+		if (childEditPart instanceof WrappingLabel6EditPart) {
+			((WrappingLabel6EditPart) childEditPart).setLabel(getPrimaryShape().getFigureCustomModelRelLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel3EditPart) {
+		if (childEditPart instanceof WrappingLabel5EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel12EditPart) {
+		if (childEditPart instanceof WrappingLabel6EditPart) {
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -157,8 +161,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -167,28 +171,28 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -199,11 +203,11 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
-	 * @generated
-	 */
+	* Default implementation treats passed figure as content pane.
+	* Respects layout one may have set for generated figure.
+	* @param nodeShape instance of generated figure class
+	* @generated
+	*/
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -214,8 +218,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -224,8 +228,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -233,8 +237,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setBackgroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setBackgroundColor(color);
@@ -242,8 +246,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -251,8 +255,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setLineType(int style) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineStyle(style);
@@ -260,15 +264,15 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() == getModel()
 				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
@@ -288,11 +292,10 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureModelRelLabelFigure;
-
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOModelRelLabelFigure;
+		private WrappingLabel fFigureCustomModelRelLabelFigure;
 
 		/**
 		 * @generated
@@ -315,11 +318,12 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(0), getMapMode().DPtoLP(60)));
-			this.setBorder(new MarginBorder(
-				getMapMode().DPtoLP(7),
-				getMapMode().DPtoLP(7),
-				getMapMode().DPtoLP(7),
-				getMapMode().DPtoLP(7)));
+			this.setBorder(
+				new MarginBorder(
+					getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7),
+					getMapMode().DPtoLP(7)));
 			createContents();
 		}
 
@@ -328,12 +332,12 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureMAVOModelRelLabelFigure = new WrappingLabel();
+			fFigureCustomModelRelLabelFigure = new WrappingLabel();
 
-			fFigureMAVOModelRelLabelFigure.setText("");
-			fFigureMAVOModelRelLabelFigure.setForegroundColor(ColorConstants.darkGray);
+			fFigureCustomModelRelLabelFigure.setText("");
+			fFigureCustomModelRelLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
-			this.add(fFigureMAVOModelRelLabelFigure);
+			this.add(fFigureCustomModelRelLabelFigure);
 
 			fFigureModelRelLabelFigure = new WrappingLabel();
 
@@ -354,8 +358,8 @@ public class ModelRelEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOModelRelLabelFigure() {
-			return fFigureMAVOModelRelLabelFigure;
+		public WrappingLabel getFigureCustomModelRelLabelFigure() {
+			return fFigureCustomModelRelLabelFigure;
 		}
 
 	}

@@ -30,23 +30,23 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelEndpoint2ReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -55,8 +55,8 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof ModelEndpoint) {
 			return false;
@@ -71,22 +71,21 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Operator && newEnd instanceof Operator)) {
 			return false;
 		}
 		ExtendibleElement target = getLink().getTarget();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4018(
-			getLink(),
-			getNewSource(),
-			target);
+		return MIDBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistModelEndpoint_4004(getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof ExtendibleElement && newEnd instanceof ExtendibleElement)) {
 			return false;
@@ -95,15 +94,14 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Operator source = (Operator) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelEndpoint_4018(
-			getLink(),
-			source,
-			getNewTarget());
+		return MIDBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistModelEndpoint_4004(getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
@@ -118,8 +116,8 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().getInputs().remove(getLink());
 		getNewSource().getInputs().add(getLink());
@@ -127,44 +125,44 @@ public class ModelEndpoint2ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTarget(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ModelEndpoint getLink() {
 		return (ModelEndpoint) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Operator getOldSource() {
 		return (Operator) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Operator getNewSource() {
 		return (Operator) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElement getOldTarget() {
 		return (ExtendibleElement) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElement getNewTarget() {
 		return (ExtendibleElement) newEnd;
 	}

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -28,53 +28,53 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 /**
  * @generated
  */
-public class MultiModelItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
+public class MIDItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	 * @generated
-	 */
-	public MultiModelItemSemanticEditPolicy() {
-		super(MIDElementTypes.MultiModel_1000);
+	* @generated
+	*/
+	public MIDItemSemanticEditPolicy() {
+		super(MIDElementTypes.MID_1000);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (MIDElementTypes.Model_2011 == req.getElementType()) {
+		if (MIDElementTypes.Model_2001 == req.getElementType()) {
 			return getGEFWrapper(new ModelCreateCommand(req));
 		}
-		if (MIDElementTypes.Model_2012 == req.getElementType()) {
+		if (MIDElementTypes.Model_2002 == req.getElementType()) {
 			return getGEFWrapper(new Model2CreateCommand(req));
 		}
-		if (MIDElementTypes.ModelRel_2013 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2003 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelCreateCommand(req));
 		}
-		if (MIDElementTypes.ModelRel_2014 == req.getElementType()) {
+		if (MIDElementTypes.ModelRel_2004 == req.getElementType()) {
 			return getGEFWrapper(new ModelRel2CreateCommand(req));
 		}
-		if (MIDElementTypes.Operator_2015 == req.getElementType()) {
+		if (MIDElementTypes.Operator_2005 == req.getElementType()) {
 			return getGEFWrapper(new OperatorCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
 			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
 		}

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.diagram.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -25,8 +25,8 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 public class MIDDomainNavigatorItem extends PlatformObject {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
@@ -49,28 +49,27 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
-		},
-			edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem.class);
+		}, edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem.class);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Object myParent;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EObject myEObject;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IPropertySourceProvider myPropertySourceProvider;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDDomainNavigatorItem(EObject eObject, Object parent, IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
@@ -78,41 +77,41 @@ public class MIDDomainNavigatorItem extends PlatformObject {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object getParent() {
 		return myParent;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EObject getEObject() {
 		return myEObject;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IPropertySourceProvider getPropertySourceProvider() {
 		return myPropertySourceProvider;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) {
 			return EcoreUtil.getURI(getEObject()).equals(
-				EcoreUtil.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) obj)
-						.getEObject()));
+				EcoreUtil
+					.getURI(((edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDDomainNavigatorItem) obj).getEObject()));
 		}
 		return super.equals(obj);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}
