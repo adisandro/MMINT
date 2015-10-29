@@ -49,6 +49,15 @@ public interface KleisliFactory extends EFactory {
 	KleisliModelRel createKleisliModelRel();
 
 	/**
+	 * Returns a new object of class '<em>Binary Kleisli Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Binary Kleisli Model Rel</em>'.
+	 * @generated
+	 */
+	BinaryKleisliModelRel createBinaryKleisliModelRel();
+
+	/**
 	 * Returns a new object of class '<em>Model Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,15 +65,6 @@ public interface KleisliFactory extends EFactory {
 	 * @generated
 	 */
 	KleisliModelEndpoint createKleisliModelEndpoint();
-
-	/**
-	 * Returns a new object of class '<em>Binary Model Rel</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Model Rel</em>'.
-	 * @generated
-	 */
-	KleisliBinaryModelRel createKleisliBinaryModelRel();
 
 	/**
 	 * Returns a new object of class '<em>Model Endpoint Reference</em>'.

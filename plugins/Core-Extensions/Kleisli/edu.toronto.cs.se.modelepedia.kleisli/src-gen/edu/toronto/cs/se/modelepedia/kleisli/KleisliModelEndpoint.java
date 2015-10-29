@@ -84,24 +84,6 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelRelTypeRequired="true"
-	 * @generated
-	 */
-	ModelEndpointReference createTypeReference(boolean isModifiable, ModelRel containerModelRelType) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelRelRequired="true"
-	 * @generated
-	 */
-	ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */

@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
 /**
@@ -34,13 +34,13 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getSourceModel <em>Source Model</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl#getTargetModel <em>Target Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.BinaryKleisliModelRelImpl#getSourceModel <em>Source Model</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.kleisli.impl.BinaryKleisliModelRelImpl#getTargetModel <em>Target Model</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements KleisliBinaryModelRel {
+public class BinaryKleisliModelRelImpl extends KleisliModelRelImpl implements BinaryKleisliModelRel {
 	/**
 	 * The cached value of the '{@link #getSourceModel() <em>Source Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected KleisliBinaryModelRelImpl() {
+	protected BinaryKleisliModelRelImpl() {
 		super();
 	}
 
@@ -75,7 +75,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return KleisliPackage.Literals.KLEISLI_BINARY_MODEL_REL;
+		return KleisliPackage.Literals.BINARY_KLEISLI_MODEL_REL;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 			sourceModel = (Model)eResolveProxy(oldSourceModel);
 			if (sourceModel != oldSourceModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
 			}
 		}
 		return sourceModel;
@@ -113,7 +113,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 		Model oldSourceModel = sourceModel;
 		sourceModel = newSourceModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 			targetModel = (Model)eResolveProxy(oldTargetModel);
 			if (targetModel != oldTargetModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
 			}
 		}
 		return targetModel;
@@ -151,7 +151,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 		Model oldTargetModel = targetModel;
 		targetModel = newTargetModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
 	}
 
 	/**
@@ -162,10 +162,10 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
 				if (resolve) return getSourceModel();
 				return basicGetSourceModel();
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
 				if (resolve) return getTargetModel();
 				return basicGetTargetModel();
 		}
@@ -180,10 +180,10 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
 				setSourceModel((Model)newValue);
 				return;
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
 				setTargetModel((Model)newValue);
 				return;
 		}
@@ -198,10 +198,10 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
 				setSourceModel((Model)null);
 				return;
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
 				setTargetModel((Model)null);
 				return;
 		}
@@ -216,9 +216,9 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL:
 				return sourceModel != null;
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL:
 				return targetModel != null;
 		}
 		return super.eIsSet(featureID);
@@ -233,8 +233,8 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == BinaryModelRel.class) {
 			switch (derivedFeatureID) {
-				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL: return RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
-				case KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL: return RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
+				case KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL: return RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL;
+				case KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL: return RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL;
 				default: return -1;
 			}
 		}
@@ -250,8 +250,8 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == BinaryModelRel.class) {
 			switch (baseFeatureID) {
-				case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL;
-				case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL: return KleisliPackage.KLEISLI_BINARY_MODEL_REL__TARGET_MODEL;
+				case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL: return KleisliPackage.BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL;
+				case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL: return KleisliPackage.BINARY_KLEISLI_MODEL_REL__TARGET_MODEL;
 				default: return -1;
 			}
 		}
@@ -267,7 +267,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == BinaryModelRel.class) {
 			switch (baseOperationID) {
-				case RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN: return KleisliPackage.KLEISLI_BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN;
+				case RelationshipPackage.BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN: return KleisliPackage.BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN;
 				default: return -1;
 			}
 		}
@@ -282,7 +282,7 @@ public class KleisliBinaryModelRelImpl extends KleisliModelRelImpl implements Kl
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN:
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN:
 				try {
 					addModelType((Model)arguments.get(0), (Boolean)arguments.get(1));
 					return null;

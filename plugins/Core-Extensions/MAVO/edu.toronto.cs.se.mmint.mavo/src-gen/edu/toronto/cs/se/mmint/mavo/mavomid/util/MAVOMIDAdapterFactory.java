@@ -24,7 +24,10 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -102,16 +105,20 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 				return createMAVOModelRelAdapter();
 			}
 			@Override
-			public Adapter caseMAVOBinaryModelRel(MAVOBinaryModelRel object) {
-				return createMAVOBinaryModelRelAdapter();
+			public Adapter caseBinaryMAVOModelRel(BinaryMAVOModelRel object) {
+				return createBinaryMAVOModelRelAdapter();
+			}
+			@Override
+			public Adapter caseMAVOModelEndpointReference(MAVOModelEndpointReference object) {
+				return createMAVOModelEndpointReferenceAdapter();
 			}
 			@Override
 			public Adapter caseMAVOMapping(MAVOMapping object) {
 				return createMAVOMappingAdapter();
 			}
 			@Override
-			public Adapter caseMAVOBinaryMapping(MAVOBinaryMapping object) {
-				return createMAVOBinaryMappingAdapter();
+			public Adapter caseBinaryMAVOMapping(BinaryMAVOMapping object) {
+				return createBinaryMAVOMappingAdapter();
 			}
 			@Override
 			public Adapter caseExtendibleElement(ExtendibleElement object) {
@@ -148,6 +155,18 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBinaryModelRel(BinaryModelRel object) {
 				return createBinaryModelRelAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementReference(ExtendibleElementReference object) {
+				return createExtendibleElementReferenceAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementEndpointReference(ExtendibleElementEndpointReference object) {
+				return createExtendibleElementEndpointReferenceAdapter();
+			}
+			@Override
+			public Adapter caseModelEndpointReference(ModelEndpointReference object) {
+				return createModelEndpointReferenceAdapter();
 			}
 			@Override
 			public Adapter caseMapping(Mapping object) {
@@ -220,16 +239,30 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel <em>MAVO Binary Model Rel</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel <em>Binary MAVO Model Rel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel
 	 * @generated
 	 */
-	public Adapter createMAVOBinaryModelRelAdapter() {
+	public Adapter createBinaryMAVOModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpointReference <em>MAVO Model Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpointReference
+	 * @generated
+	 */
+	public Adapter createMAVOModelEndpointReferenceAdapter() {
 		return null;
 	}
 
@@ -248,16 +281,16 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping <em>MAVO Binary Mapping</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping <em>Binary MAVO Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping
 	 * @generated
 	 */
-	public Adapter createMAVOBinaryMappingAdapter() {
+	public Adapter createBinaryMAVOMappingAdapter() {
 		return null;
 	}
 
@@ -342,6 +375,48 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBinaryModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference <em>Extendible Element Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference
+	 * @generated
+	 */
+	public Adapter createExtendibleElementReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference <em>Extendible Element Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference
+	 * @generated
+	 */
+	public Adapter createExtendibleElementEndpointReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference <em>Model Endpoint Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference
+	 * @generated
+	 */
+	public Adapter createModelEndpointReferenceAdapter() {
 		return null;
 	}
 

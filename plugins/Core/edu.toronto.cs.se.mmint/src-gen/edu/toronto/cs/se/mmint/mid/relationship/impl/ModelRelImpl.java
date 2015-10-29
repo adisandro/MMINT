@@ -457,7 +457,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MMINTException.mustBeType(this);
 
-		ModelRel newModelRelType = RelationshipFactory.eINSTANCE.createModelRel();
+		ModelRel newModelRelType = super.createThisEClass();
 		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
@@ -470,7 +470,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MMINTException.mustBeType(this);
 
-		BinaryModelRel newModelRelType = RelationshipFactory.eINSTANCE.createBinaryModelRel();
+		BinaryModelRel newModelRelType = super.createThisBinaryEClass();
 		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
 
 		return newModelRelType;
@@ -481,12 +481,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 */
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
-		ModelRel newModelRelType = (ModelRel) createSubtype(
-			origModelRelType.getName(),
-			origModelRelType.getConstraint().getLanguage(),
-			origModelRelType.getConstraint().getImplementation(),
-			false
-		);
+		ModelRel newModelRelType = (origModelRelType instanceof BinaryModelRel) ?
+			this.createBinarySubtype(origModelRelType.getName(), origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation(), false) :
+			(ModelRel) this.createSubtype(origModelRelType.getName(), origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation(), false);
 
 		// model type endpoints
 		MID typeMID = MultiModelRegistry.getMultiModel(newModelRelType);
@@ -648,7 +645,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MMINTException.mustBeType(this);
 
-		ModelRel newModelRel = RelationshipFactory.eINSTANCE.createModelRel();
+		ModelRel newModelRel = super.createThisEClass();
 		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModelRel;
@@ -683,7 +680,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MMINTException.mustBeType(this);
 
-		BinaryModelRel newModelRel = RelationshipFactory.eINSTANCE.createBinaryModelRel();
+		BinaryModelRel newModelRel = super.createThisBinaryEClass();
 		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModelRel;
@@ -733,7 +730,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
 
 		// create initial empty copy
-		ModelRel newModelRel = (ModelRel) createInstance(null, instanceMID);
+		ModelRel newModelRel = (origModelRel instanceof BinaryModelRel) ?
+			this.createBinaryInstance(null, instanceMID) :
+			(ModelRel) this.createInstance(null, instanceMID);
 		newModelRel.setName(newModelRelName);
 
 		// models

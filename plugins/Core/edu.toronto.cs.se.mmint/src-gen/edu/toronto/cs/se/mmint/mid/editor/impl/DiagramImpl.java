@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
@@ -70,7 +69,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
 		MMINTException.mustBeType(this);
 
-		Diagram newDiagramType = EditorFactory.eINSTANCE.createDiagram();
+		Diagram newDiagramType = super.createThisEClass();
 		addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
 		return newDiagramType;
@@ -96,10 +95,10 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				throw new MMINTException("Diagram creation canceled by user");
 			}
 		}
-		Editor newEditor = EditorFactory.eINSTANCE.createDiagram();
-		super.addInstance(newEditor, modelUri, instanceMID);
+		Diagram newDiagram = super.createThisEClass();
+		super.addInstance(newDiagram, modelUri, instanceMID);
 
-		return newEditor;
+		return newDiagram;
 	}
 
 	/**

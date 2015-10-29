@@ -48,14 +48,11 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -249,34 +246,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	public Model createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		KleisliModelRel newModelRelType = KleisliFactory.eINSTANCE.createKleisliModelRel();
-		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
-
-		return newModelRelType;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		KleisliBinaryModelRel newModelRelType = KleisliFactory.eINSTANCE.createKleisliBinaryModelRel();
-		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
-
-		return newModelRelType;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
 		ModelRel newModelRelType = super.copySubtype(origModelRelType);
@@ -359,34 +328,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			newModel.deleteInstance();
 			throw new MMINTException("Error creating directory for extended models", e);
 		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		KleisliModelRel newModelRel = KleisliFactory.eINSTANCE.createKleisliModelRel();
-		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
-
-		return newModelRel;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		KleisliBinaryModelRel newModelRel = KleisliFactory.eINSTANCE.createKleisliBinaryModelRel();
-		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
-
-		return newModelRel;
 	}
 
 	/**

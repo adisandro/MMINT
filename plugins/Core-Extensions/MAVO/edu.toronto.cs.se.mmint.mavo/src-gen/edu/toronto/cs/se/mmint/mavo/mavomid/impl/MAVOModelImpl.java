@@ -17,13 +17,11 @@ import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 
 import java.util.Collection;
@@ -271,41 +269,11 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
 	 * @generated NOT
 	 */
-	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		MAVOModel newMAVOModelType = MAVOMIDFactory.eINSTANCE.createMAVOModel();
-		super.addSubtype(newMAVOModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
-
-		return newMAVOModelType;
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	@Override
 	public Model createInstance(String newModelUri, MID instanceMID) throws MMINTException {
 
-		MMINTException.mustBeType(this);
-
-		MAVOModel newMAVOModel = MAVOMIDFactory.eINSTANCE.createMAVOModel();
-		super.addInstance(newMAVOModel, newModelUri, ModelOrigin.CREATED, instanceMID);
+		MAVOModel newMAVOModel = (MAVOModel) super.createInstance(newModelUri, instanceMID);
 		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
-
-		return newMAVOModel;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException {
-
-		MAVOModel newMAVOModel = (MAVOModel) this.createInstance(newModelUri, instanceMID);
-		if (instanceMID != null) {
-			newMAVOModel.createInstanceEditor();
-		}
 
 		return newMAVOModel;
 	}
@@ -315,24 +283,8 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	 */
 	public Model importInstance(String modelUri, MID instanceMID) throws MMINTException {
 
-		MMINTException.mustBeType(this);
-
-		MAVOModel newMAVOModel = MAVOMIDFactory.eINSTANCE.createMAVOModel();
-		super.addInstance(newMAVOModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
+		MAVOModel newMAVOModel = (MAVOModel) super.importInstance(modelUri, instanceMID);
 		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
-
-		return newMAVOModel;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException {
-
-		MAVOModel newMAVOModel = (MAVOModel) this.importInstance(modelUri, instanceMID);
-		if (instanceMID != null) {
-			newMAVOModel.createInstanceEditor();
-		}
 
 		return newMAVOModel;
 	}

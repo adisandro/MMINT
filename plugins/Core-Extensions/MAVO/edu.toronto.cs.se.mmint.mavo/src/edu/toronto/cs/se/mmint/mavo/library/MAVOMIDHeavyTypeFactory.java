@@ -58,7 +58,7 @@ public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
 	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
 		MAVOModelRel newMAVOModelRelType = (isBinary) ?
-			MAVOMIDFactory.eINSTANCE.createMAVOBinaryModelRel() :
+			MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel() :
 			MAVOMIDFactory.eINSTANCE.createMAVOModelRel();
 		super.addHeavyModelRelType(newMAVOModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
 

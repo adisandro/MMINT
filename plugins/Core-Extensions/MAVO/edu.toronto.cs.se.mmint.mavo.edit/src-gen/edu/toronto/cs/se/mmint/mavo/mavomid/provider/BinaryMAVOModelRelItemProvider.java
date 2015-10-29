@@ -9,33 +9,42 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.kleisli.provider;
+package edu.toronto.cs.se.mmint.mavo.mavomid.provider;
 
+
+import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+
+import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryModelRelItemProvider;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class KleisliBinaryModelRelItemProvider
-	extends KleisliModelRelItemProvider {
+public class BinaryMAVOModelRelItemProvider extends BinaryModelRelItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KleisliBinaryModelRelItemProvider(AdapterFactory adapterFactory) {
+	public BinaryMAVOModelRelItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,65 +59,19 @@ public class KleisliBinaryModelRelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourceModelPropertyDescriptor(object);
-			addTargetModelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Source Model feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourceModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BinaryModelRel_sourceModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryModelRel_sourceModel_feature", "_UI_BinaryModelRel_type"),
-				 RelationshipPackage.Literals.BINARY_MODEL_REL__SOURCE_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Model feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetModelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_BinaryModelRel_targetModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryModelRel_targetModel_feature", "_UI_BinaryModelRel_type"),
-				 RelationshipPackage.Literals.BINARY_MODEL_REL__TARGET_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns KleisliBinaryModelRel.gif.
+	 * This returns BinaryMAVOModelRel.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/KleisliBinaryModelRel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryMAVOModelRel"));
 	}
 
 	/**
@@ -119,11 +82,12 @@ public class KleisliBinaryModelRelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((KleisliBinaryModelRel)object).getName();
+		String label = ((BinaryMAVOModelRel)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_KleisliBinaryModelRel_type") :
-			getString("_UI_KleisliBinaryModelRel_type") + " " + label;
+			getString("_UI_BinaryMAVOModelRel_type") :
+			getString("_UI_BinaryMAVOModelRel_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -148,6 +112,37 @@ public class KleisliBinaryModelRelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MODEL__MODEL_ELEMS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOModelElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
+				 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
+				 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpointReference()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return MAVOMIDEditPlugin.INSTANCE;
 	}
 
 }

@@ -15,7 +15,7 @@ import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping;
+import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping;
@@ -38,16 +38,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl#getFormulaVariable <em>Formula Variable</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl#isMay <em>May</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl#isSet <em>Set</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl#isVar <em>Var</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOBinaryMappingImpl#getCollections <em>Collections</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl#getFormulaVariable <em>Formula Variable</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl#isMay <em>May</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl#isSet <em>Set</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl#isVar <em>Var</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl#getCollections <em>Collections</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBinaryMapping {
+public class BinaryMAVOMappingImpl extends BinaryMappingImpl implements BinaryMAVOMapping {
 	/**
 	 * The default value of the '{@link #getFormulaVariable() <em>Formula Variable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -135,7 +135,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MAVOBinaryMappingImpl() {
+	protected BinaryMAVOMappingImpl() {
 		super();
 	}
 
@@ -146,7 +146,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.MAVO_BINARY_MAPPING;
+		return MAVOMIDPackage.Literals.BINARY_MAVO_MAPPING;
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 		String oldFormulaVariable = formulaVariable;
 		formulaVariable = newFormulaVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE, oldFormulaVariable, formulaVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE, oldFormulaVariable, formulaVariable));
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 		boolean oldMay = may;
 		may = newMay;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY, oldMay, may));
+			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY, oldMay, may));
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 		boolean oldSet = set;
 		set = newSet;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_BINARY_MAPPING__SET, oldSet, set));
+			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__SET, oldSet, set));
 	}
 
 	/**
@@ -230,7 +230,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 		boolean oldVar = var;
 		var = newVar;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR, oldVar, var));
+			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR, oldVar, var));
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	 */
 	public EList<MAVOCollection> getCollections() {
 		if (collections == null) {
-			collections = new EObjectWithInverseResolvingEList.ManyInverse<MAVOCollection>(MAVOCollection.class, this, MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS, MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS);
+			collections = new EObjectWithInverseResolvingEList.ManyInverse<MAVOCollection>(MAVOCollection.class, this, MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS, MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS);
 		}
 		return collections;
 	}
@@ -254,7 +254,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCollections()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -268,7 +268,7 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
 				return ((InternalEList<?>)getCollections()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -282,15 +282,15 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
 				return getFormulaVariable();
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
 				return isMay();
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__SET:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
 				return isSet();
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
 				return isVar();
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
 				return getCollections();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -305,19 +305,19 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
 				setFormulaVariable((String)newValue);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
 				setMay((Boolean)newValue);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__SET:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
 				setSet((Boolean)newValue);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
 				setVar((Boolean)newValue);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
 				getCollections().clear();
 				getCollections().addAll((Collection<? extends MAVOCollection>)newValue);
 				return;
@@ -333,19 +333,19 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
 				setFormulaVariable(FORMULA_VARIABLE_EDEFAULT);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
 				setMay(MAY_EDEFAULT);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__SET:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
 				setSet(SET_EDEFAULT);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
 				setVar(VAR_EDEFAULT);
 				return;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
 				getCollections().clear();
 				return;
 		}
@@ -360,15 +360,15 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
 				return FORMULA_VARIABLE_EDEFAULT == null ? formulaVariable != null : !FORMULA_VARIABLE_EDEFAULT.equals(formulaVariable);
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
 				return may != MAY_EDEFAULT;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__SET:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
 				return set != SET_EDEFAULT;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
 				return var != VAR_EDEFAULT;
-			case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS:
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
 				return collections != null && !collections.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -383,16 +383,16 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == LogicElement.class) {
 			switch (derivedFeatureID) {
-				case MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE: return MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE;
+				case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE: return MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE;
 				default: return -1;
 			}
 		}
 		if (baseClass == MAVOElement.class) {
 			switch (derivedFeatureID) {
-				case MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY: return MAVOPackage.MAVO_ELEMENT__MAY;
-				case MAVOMIDPackage.MAVO_BINARY_MAPPING__SET: return MAVOPackage.MAVO_ELEMENT__SET;
-				case MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR: return MAVOPackage.MAVO_ELEMENT__VAR;
-				case MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS: return MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
+				case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY: return MAVOPackage.MAVO_ELEMENT__MAY;
+				case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET: return MAVOPackage.MAVO_ELEMENT__SET;
+				case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR: return MAVOPackage.MAVO_ELEMENT__VAR;
+				case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS: return MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
 				default: return -1;
 			}
 		}
@@ -413,16 +413,16 @@ public class MAVOBinaryMappingImpl extends BinaryMappingImpl implements MAVOBina
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == LogicElement.class) {
 			switch (baseFeatureID) {
-				case MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE: return MAVOMIDPackage.MAVO_BINARY_MAPPING__FORMULA_VARIABLE;
+				case MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE: return MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE;
 				default: return -1;
 			}
 		}
 		if (baseClass == MAVOElement.class) {
 			switch (baseFeatureID) {
-				case MAVOPackage.MAVO_ELEMENT__MAY: return MAVOMIDPackage.MAVO_BINARY_MAPPING__MAY;
-				case MAVOPackage.MAVO_ELEMENT__SET: return MAVOMIDPackage.MAVO_BINARY_MAPPING__SET;
-				case MAVOPackage.MAVO_ELEMENT__VAR: return MAVOMIDPackage.MAVO_BINARY_MAPPING__VAR;
-				case MAVOPackage.MAVO_ELEMENT__COLLECTIONS: return MAVOMIDPackage.MAVO_BINARY_MAPPING__COLLECTIONS;
+				case MAVOPackage.MAVO_ELEMENT__MAY: return MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY;
+				case MAVOPackage.MAVO_ELEMENT__SET: return MAVOMIDPackage.BINARY_MAVO_MAPPING__SET;
+				case MAVOPackage.MAVO_ELEMENT__VAR: return MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR;
+				case MAVOPackage.MAVO_ELEMENT__COLLECTIONS: return MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS;
 				default: return -1;
 			}
 		}

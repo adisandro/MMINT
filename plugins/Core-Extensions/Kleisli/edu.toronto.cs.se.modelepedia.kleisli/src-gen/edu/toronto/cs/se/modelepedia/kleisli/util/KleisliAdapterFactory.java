@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReferen
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
@@ -101,8 +101,8 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 				return createKleisliModelRelAdapter();
 			}
 			@Override
-			public Adapter caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
-				return createKleisliBinaryModelRelAdapter();
+			public Adapter caseBinaryKleisliModelRel(BinaryKleisliModelRel object) {
+				return createBinaryKleisliModelRelAdapter();
 			}
 			@Override
 			public Adapter caseKleisliModelEndpointReference(KleisliModelEndpointReference object) {
@@ -197,6 +197,20 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel <em>Binary Kleisli Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel
+	 * @generated
+	 */
+	public Adapter createBinaryKleisliModelRelAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint <em>Model Endpoint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -207,20 +221,6 @@ public class KleisliAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createKleisliModelEndpointAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel <em>Binary Model Rel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel
-	 * @generated
-	 */
-	public Adapter createKleisliBinaryModelRelAdapter() {
 		return null;
 	}
 

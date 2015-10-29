@@ -225,6 +225,60 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL___GET_RUNTIME_TYPES = MIDPackage.MODEL___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.MODEL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___VALIDATE_INSTANCE = MIDPackage.MODEL___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.MODEL___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.MODEL___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -560,6 +614,60 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.MODEL_ENDPOINT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MIDPackage.MODEL_ENDPOINT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___VALIDATE_INSTANCE = MIDPackage.MODEL_ENDPOINT___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.MODEL_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.MODEL_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -587,6 +695,24 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___GET_METATYPE = MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -596,22 +722,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING;
 
 	/**
-	 * The operation id for the '<em>Create Type Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
@@ -620,7 +737,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -629,16 +746,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Create Instance Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
+	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -647,7 +755,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
@@ -656,7 +764,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -665,7 +773,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 7;
+	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -674,7 +782,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 8;
+	int KLEISLI_MODEL_ENDPOINT_OPERATION_COUNT = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -866,6 +974,69 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___GET_RUNTIME_TYPES = RelationshipPackage.MODEL_REL___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___VALIDATE_INSTANCE = RelationshipPackage.MODEL_REL___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -873,6 +1044,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___GET_EMF_TYPE_ROOT = RelationshipPackage.MODEL_REL___GET_EMF_TYPE_ROOT;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -956,6 +1136,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___GET_SUPERTYPE = RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Create Binary Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
 	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -963,6 +1152,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Create Binary Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints And References</em>' operation.
@@ -974,31 +1172,13 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID;
 
 	/**
-	 * The operation id for the '<em>Create Subtype</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Create Binary Subtype</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -1007,7 +1187,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 3;
+	int KLEISLI_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -1016,7 +1196,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 4;
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1025,25 +1205,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Create Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>Create Binary Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
+	int KLEISLI_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1052,7 +1214,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 8;
+	int KLEISLI_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1061,7 +1223,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 9;
+	int KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1070,7 +1232,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 10;
+	int KLEISLI_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -1079,18 +1241,18 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 11;
+	int KLEISLI_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 7;
 
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl <em>Binary Model Rel</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.BinaryKleisliModelRelImpl <em>Binary Kleisli Model Rel</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliBinaryModelRel()
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.BinaryKleisliModelRelImpl
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getBinaryKleisliModelRel()
 	 * @generated
 	 */
-	int KLEISLI_BINARY_MODEL_REL = 3;
+	int BINARY_KLEISLI_MODEL_REL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1099,7 +1261,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__SUPERTYPE = KLEISLI_MODEL_REL__SUPERTYPE;
+	int BINARY_KLEISLI_MODEL_REL__SUPERTYPE = KLEISLI_MODEL_REL__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1108,7 +1270,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__URI = KLEISLI_MODEL_REL__URI;
+	int BINARY_KLEISLI_MODEL_REL__URI = KLEISLI_MODEL_REL__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1117,7 +1279,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__NAME = KLEISLI_MODEL_REL__NAME;
+	int BINARY_KLEISLI_MODEL_REL__NAME = KLEISLI_MODEL_REL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1126,7 +1288,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__LEVEL = KLEISLI_MODEL_REL__LEVEL;
+	int BINARY_KLEISLI_MODEL_REL__LEVEL = KLEISLI_MODEL_REL__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1135,7 +1297,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__METATYPE_URI = KLEISLI_MODEL_REL__METATYPE_URI;
+	int BINARY_KLEISLI_MODEL_REL__METATYPE_URI = KLEISLI_MODEL_REL__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1144,7 +1306,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__DYNAMIC = KLEISLI_MODEL_REL__DYNAMIC;
+	int BINARY_KLEISLI_MODEL_REL__DYNAMIC = KLEISLI_MODEL_REL__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1153,7 +1315,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__CONSTRAINT = KLEISLI_MODEL_REL__CONSTRAINT;
+	int BINARY_KLEISLI_MODEL_REL__CONSTRAINT = KLEISLI_MODEL_REL__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1162,7 +1324,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__ABSTRACT = KLEISLI_MODEL_REL__ABSTRACT;
+	int BINARY_KLEISLI_MODEL_REL__ABSTRACT = KLEISLI_MODEL_REL__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -1171,7 +1333,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__ORIGIN = KLEISLI_MODEL_REL__ORIGIN;
+	int BINARY_KLEISLI_MODEL_REL__ORIGIN = KLEISLI_MODEL_REL__ORIGIN;
 
 	/**
 	 * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -1180,7 +1342,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__FILE_EXTENSION = KLEISLI_MODEL_REL__FILE_EXTENSION;
+	int BINARY_KLEISLI_MODEL_REL__FILE_EXTENSION = KLEISLI_MODEL_REL__FILE_EXTENSION;
 
 	/**
 	 * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -1189,7 +1351,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__EDITORS = KLEISLI_MODEL_REL__EDITORS;
+	int BINARY_KLEISLI_MODEL_REL__EDITORS = KLEISLI_MODEL_REL__EDITORS;
 
 	/**
 	 * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -1198,7 +1360,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MODEL_ELEMS = KLEISLI_MODEL_REL__MODEL_ELEMS;
+	int BINARY_KLEISLI_MODEL_REL__MODEL_ELEMS = KLEISLI_MODEL_REL__MODEL_ELEMS;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -1207,7 +1369,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__CONVERSION_OPERATORS = KLEISLI_MODEL_REL__CONVERSION_OPERATORS;
+	int BINARY_KLEISLI_MODEL_REL__CONVERSION_OPERATORS = KLEISLI_MODEL_REL__CONVERSION_OPERATORS;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -1216,7 +1378,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINTS = KLEISLI_MODEL_REL__MODEL_ENDPOINTS;
+	int BINARY_KLEISLI_MODEL_REL__MODEL_ENDPOINTS = KLEISLI_MODEL_REL__MODEL_ENDPOINTS;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -1225,7 +1387,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MAPPINGS = KLEISLI_MODEL_REL__MAPPINGS;
+	int BINARY_KLEISLI_MODEL_REL__MAPPINGS = KLEISLI_MODEL_REL__MAPPINGS;
 
 	/**
 	 * The feature id for the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
@@ -1234,7 +1396,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = KLEISLI_MODEL_REL__MODEL_ENDPOINT_REFS;
+	int BINARY_KLEISLI_MODEL_REL__MODEL_ENDPOINT_REFS = KLEISLI_MODEL_REL__MODEL_ENDPOINT_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Mapping Refs</b></em>' containment reference list.
@@ -1243,7 +1405,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__MAPPING_REFS = KLEISLI_MODEL_REL__MAPPING_REFS;
+	int BINARY_KLEISLI_MODEL_REL__MAPPING_REFS = KLEISLI_MODEL_REL__MAPPING_REFS;
 
 	/**
 	 * The feature id for the '<em><b>Extended Uri</b></em>' attribute.
@@ -1252,7 +1414,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__EXTENDED_URI = KLEISLI_MODEL_REL__EXTENDED_URI;
+	int BINARY_KLEISLI_MODEL_REL__EXTENDED_URI = KLEISLI_MODEL_REL__EXTENDED_URI;
 
 	/**
 	 * The feature id for the '<em><b>Source Model</b></em>' reference.
@@ -1261,7 +1423,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__SOURCE_MODEL = KLEISLI_MODEL_REL_FEATURE_COUNT + 0;
+	int BINARY_KLEISLI_MODEL_REL__SOURCE_MODEL = KLEISLI_MODEL_REL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Model</b></em>' reference.
@@ -1270,16 +1432,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL__TARGET_MODEL = KLEISLI_MODEL_REL_FEATURE_COUNT + 1;
+	int BINARY_KLEISLI_MODEL_REL__TARGET_MODEL = KLEISLI_MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Binary Model Rel</em>' class.
+	 * The number of structural features of the '<em>Binary Kleisli Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_FEATURE_COUNT = KLEISLI_MODEL_REL_FEATURE_COUNT + 2;
+	int BINARY_KLEISLI_MODEL_REL_FEATURE_COUNT = KLEISLI_MODEL_REL_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1288,7 +1450,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1297,115 +1459,61 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_RUNTIME_TYPES = KLEISLI_MODEL_REL___GET_RUNTIME_TYPES;
+	int BINARY_KLEISLI_MODEL_REL___GET_RUNTIME_TYPES = KLEISLI_MODEL_REL___GET_RUNTIME_TYPES;
 
 	/**
-	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = KLEISLI_MODEL_REL___GET_EMF_TYPE_ROOT;
+	int BINARY_KLEISLI_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = KLEISLI_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
 	/**
-	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * The operation id for the '<em>Validate Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR = KLEISLI_MODEL_REL___CREATE_INSTANCE_EDITOR;
+	int BINARY_KLEISLI_MODEL_REL___VALIDATE_INSTANCE = KLEISLI_MODEL_REL___VALIDATE_INSTANCE;
 
 	/**
-	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = KLEISLI_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
-	 * The operation id for the '<em>Import Instance</em>' operation.
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___IMPORT_INSTANCE__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL = KLEISLI_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL;
 
 	/**
-	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = KLEISLI_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL = KLEISLI_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL;
 
 	/**
-	 * The operation id for the '<em>Copy Instance</em>' operation.
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = KLEISLI_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID;
-
-	/**
-	 * The operation id for the '<em>Copy Instance And Editor</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = KLEISLI_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
-
-	/**
-	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_EMF_INSTANCE_ROOT = KLEISLI_MODEL_REL___GET_EMF_INSTANCE_ROOT;
-
-	/**
-	 * The operation id for the '<em>Get Metatype</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_METATYPE = KLEISLI_MODEL_REL___GET_METATYPE;
-
-	/**
-	 * The operation id for the '<em>Get Supertype</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_SUPERTYPE = KLEISLI_MODEL_REL___GET_SUPERTYPE;
-
-	/**
-	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID;
-
-	/**
-	 * The operation id for the '<em>Create Binary Instance And Endpoints And References</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID;
+	int BINARY_KLEISLI_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING = KLEISLI_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1414,52 +1522,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
-	 * The operation id for the '<em>Create Binary Subtype</em>' operation.
+	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
-
-	/**
-	 * The operation id for the '<em>Copy Subtype</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL;
-
-	/**
-	 * The operation id for the '<em>Open Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___OPEN_TYPE = KLEISLI_MODEL_REL___OPEN_TYPE;
-
-	/**
-	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_BINARY_MODEL_REL___DELETE_TYPE = KLEISLI_MODEL_REL___DELETE_TYPE;
+	int BINARY_KLEISLI_MODEL_REL___GET_EMF_TYPE_ROOT = KLEISLI_MODEL_REL___GET_EMF_TYPE_ROOT;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1468,7 +1540,106 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Create Instance Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_EDITOR = KLEISLI_MODEL_REL___CREATE_INSTANCE_EDITOR;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Import Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___IMPORT_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___IMPORT_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = KLEISLI_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Copy Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = KLEISLI_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Copy Instance And Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = KLEISLI_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
+
+	/**
+	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___GET_EMF_INSTANCE_ROOT = KLEISLI_MODEL_REL___GET_EMF_INSTANCE_ROOT;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___GET_METATYPE = KLEISLI_MODEL_REL___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___GET_SUPERTYPE = KLEISLI_MODEL_REL___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>Create Binary Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1477,7 +1648,52 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Create Binary Instance And Endpoints And References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID;
+
+	/**
+	 * The operation id for the '<em>Copy Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL = KLEISLI_MODEL_REL___COPY_SUBTYPE__MODELREL;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___OPEN_TYPE = KLEISLI_MODEL_REL___OPEN_TYPE;
+
+	/**
+	 * The operation id for the '<em>Get Outline Resource Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___DELETE_TYPE = KLEISLI_MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1486,7 +1702,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___OPEN_INSTANCE = KLEISLI_MODEL_REL___OPEN_INSTANCE;
+	int BINARY_KLEISLI_MODEL_REL___OPEN_INSTANCE = KLEISLI_MODEL_REL___OPEN_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1495,7 +1711,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
+	int BINARY_KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = KLEISLI_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1504,7 +1720,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___DELETE_INSTANCE = KLEISLI_MODEL_REL___DELETE_INSTANCE;
+	int BINARY_KLEISLI_MODEL_REL___DELETE_INSTANCE = KLEISLI_MODEL_REL___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Add Model Type</em>' operation.
@@ -1513,17 +1729,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = KLEISLI_MODEL_REL_OPERATION_COUNT + 0;
+	int BINARY_KLEISLI_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = KLEISLI_MODEL_REL_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Binary Model Rel</em>' class.
+	 * The number of operations of the '<em>Binary Kleisli Model Rel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_BINARY_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 1;
-
+	int BINARY_KLEISLI_MODEL_REL_OPERATION_COUNT = KLEISLI_MODEL_REL_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.
@@ -1653,6 +1868,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN;
 
 	/**
+	 * The operation id for the '<em>Create Model Element Instance And Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING;
+
+	/**
 	 * The operation id for the '<em>Accept Model Element Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1772,26 +1996,6 @@ public interface KleisliPackage extends EPackage {
 	EAttribute getKleisliModelRel_ExtendedUri();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createSubtype(java.lang.String, java.lang.String, java.lang.String, boolean) <em>Create Subtype</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Subtype</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createSubtype(java.lang.String, java.lang.String, java.lang.String, boolean)
-	 * @generated
-	 */
-	EOperation getKleisliModelRel__CreateSubtype__String_String_String_boolean();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createBinarySubtype(java.lang.String, java.lang.String, java.lang.String, boolean) <em>Create Binary Subtype</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Binary Subtype</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createBinarySubtype(java.lang.String, java.lang.String, java.lang.String, boolean)
-	 * @generated
-	 */
-	EOperation getKleisliModelRel__CreateBinarySubtype__String_String_String_boolean();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#copySubtype(edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Copy Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1812,26 +2016,6 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelRel__DeleteType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
-	 * @generated
-	 */
-	EOperation getKleisliModelRel__CreateInstance__String_MID();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Binary Instance</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#createBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
-	 * @generated
-	 */
-	EOperation getKleisliModelRel__CreateBinaryInstance__String_MID();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#deleteInstance() <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1840,6 +2024,16 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getKleisliModelRel__DeleteInstance();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel <em>Binary Kleisli Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Binary Kleisli Model Rel</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel
+	 * @generated
+	 */
+	EClass getBinaryKleisliModelRel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel#openType() <em>Open Type</em>}' operation.
@@ -1914,16 +2108,6 @@ public interface KleisliPackage extends EPackage {
 	EAttribute getKleisliModelEndpoint_ExtendedTargetUri();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createTypeReference(boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Type Reference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Type Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createTypeReference(boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
-	 * @generated
-	 */
-	EOperation getKleisliModelEndpoint__CreateTypeReference__boolean_ModelRel();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1954,16 +2138,6 @@ public interface KleisliPackage extends EPackage {
 	EOperation getKleisliModelEndpoint__DeleteTypeAndReference__boolean();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance Reference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
-	 * @generated
-	 */
-	EOperation getKleisliModelEndpoint__CreateInstanceReference__ModelRel();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance And Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1992,16 +2166,6 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getKleisliModelEndpoint__DeleteInstanceAndReference__boolean();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel <em>Binary Model Rel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Model Rel</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel
-	 * @generated
-	 */
-	EClass getKleisliBinaryModelRel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference <em>Model Endpoint Reference</em>}'.
@@ -2144,22 +2308,6 @@ public interface KleisliPackage extends EPackage {
 		EAttribute KLEISLI_MODEL_REL__EXTENDED_URI = eINSTANCE.getKleisliModelRel_ExtendedUri();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = eINSTANCE.getKleisliModelRel__CreateSubtype__String_String_String_boolean();
-
-		/**
-		 * The meta object literal for the '<em><b>Create Binary Subtype</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = eINSTANCE.getKleisliModelRel__CreateBinarySubtype__String_String_String_boolean();
-
-		/**
 		 * The meta object literal for the '<em><b>Copy Subtype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2176,28 +2324,22 @@ public interface KleisliPackage extends EPackage {
 		EOperation KLEISLI_MODEL_REL___DELETE_TYPE = eINSTANCE.getKleisliModelRel__DeleteType();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID = eINSTANCE.getKleisliModelRel__CreateInstance__String_MID();
-
-		/**
-		 * The meta object literal for the '<em><b>Create Binary Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = eINSTANCE.getKleisliModelRel__CreateBinaryInstance__String_MID();
-
-		/**
 		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL_REL___DELETE_INSTANCE = eINSTANCE.getKleisliModelRel__DeleteInstance();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.BinaryKleisliModelRelImpl <em>Binary Kleisli Model Rel</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.BinaryKleisliModelRelImpl
+		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getBinaryKleisliModelRel()
+		 * @generated
+		 */
+		EClass BINARY_KLEISLI_MODEL_REL = eINSTANCE.getBinaryKleisliModelRel();
 
 		/**
 		 * The meta object literal for the '<em><b>Open Type</b></em>' operation.
@@ -2258,14 +2400,6 @@ public interface KleisliPackage extends EPackage {
 		EAttribute KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI = eINSTANCE.getKleisliModelEndpoint_ExtendedTargetUri();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateTypeReference__boolean_ModelRel();
-
-		/**
 		 * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2290,14 +2424,6 @@ public interface KleisliPackage extends EPackage {
 		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteTypeAndReference__boolean();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateInstanceReference__ModelRel();
-
-		/**
 		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2320,16 +2446,6 @@ public interface KleisliPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteInstanceAndReference__boolean();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl <em>Binary Model Rel</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliBinaryModelRelImpl
-		 * @see edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliPackageImpl#getKleisliBinaryModelRel()
-		 * @generated
-		 */
-		EClass KLEISLI_BINARY_MODEL_REL = eINSTANCE.getKleisliBinaryModelRel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.

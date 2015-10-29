@@ -16,7 +16,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -55,7 +54,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
 		MMINTException.mustBeType(this);
 
-		BinaryMappingReference newMappingTypeRef = RelationshipFactory.eINSTANCE.createBinaryMappingReference();
+		BinaryMappingReference newMappingTypeRef = super.createThisReferenceEClass();
 		super.addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
 		return newMappingTypeRef;
@@ -68,7 +67,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
 		MMINTException.mustBeInstance(this);
 
-		BinaryMappingReference newLinkRef = RelationshipFactory.eINSTANCE.createBinaryMappingReference();
+		BinaryMappingReference newLinkRef = super.createThisReferenceEClass();
 		addInstanceReference(newLinkRef, containerModelRel);
 
 		return newLinkRef;

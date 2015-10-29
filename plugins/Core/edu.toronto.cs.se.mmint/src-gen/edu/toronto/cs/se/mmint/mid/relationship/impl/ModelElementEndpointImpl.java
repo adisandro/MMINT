@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
@@ -195,7 +194,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 
 		MMINTException.mustBeType(this);
 
-		ModelElementEndpointReference newModelElemTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
+		ModelElementEndpointReference newModelElemTypeEndpointRef = super.createThisReferenceEClass();
 		super.addTypeReference(newModelElemTypeEndpointRef, modelElemTypeEndpointRef, isModifiable, false);
 		newModelElemTypeEndpointRef.setModelElemRef(targetModelElemTypeRef);
 		containerMappingTypeRef.getModelElemEndpointRefs().add(newModelElemTypeEndpointRef);
@@ -228,7 +227,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) targetModelElemTypeRef.eContainer();
 		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
 		// create the "thing" and the corresponding reference
-		ModelElementEndpoint newModelElemTypeEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
+		ModelElementEndpoint newModelElemTypeEndpoint = super.createThisEClass();
 		super.addSubtype(newModelElemTypeEndpoint, mappingType, mappingType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName);
 		MultiModelTypeFactory.addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemType, mappingType);
 		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);
@@ -323,7 +322,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 
 		MMINTException.mustBeInstance(this);
 
-		ModelElementEndpointReference newModelElemEndpointRef = RelationshipFactory.eINSTANCE.createModelElementEndpointReference();
+		ModelElementEndpointReference newModelElemEndpointRef = super.createThisReferenceEClass();
 		boolean isContainer = containerMappingRef.eContainer().eContainer() == null;
 		super.addInstanceReference(newModelElemEndpointRef, isContainer);
 		newModelElemEndpointRef.setModelElemRef(targetModelElemRef);
@@ -351,7 +350,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 			throw new MMINTException("Can't add more than 2 model element endpoints to a binary mapping");
 		}
 
-		ModelElementEndpoint newModelElemEndpoint = RelationshipFactory.eINSTANCE.createModelElementEndpoint();
+		ModelElementEndpoint newModelElemEndpoint = super.createThisEClass();
 		super.addBasicInstance(newModelElemEndpoint, null, targetModelElemRef.getObject().getName());
 		super.addInstanceEndpoint(newModelElemEndpoint, targetModelElemRef.getObject());
 		containerMappingRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);

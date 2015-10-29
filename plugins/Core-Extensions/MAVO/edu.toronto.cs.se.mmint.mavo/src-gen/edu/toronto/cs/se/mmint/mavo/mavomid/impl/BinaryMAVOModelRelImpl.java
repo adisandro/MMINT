@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
 
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 
 import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryModelRelImpl;
@@ -25,13 +25,13 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MAVOBinaryModelRelImpl extends BinaryModelRelImpl implements MAVOBinaryModelRel {
+public class BinaryMAVOModelRelImpl extends BinaryModelRelImpl implements BinaryMAVOModelRel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MAVOBinaryModelRelImpl() {
+	protected BinaryMAVOModelRelImpl() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class MAVOBinaryModelRelImpl extends BinaryModelRelImpl implements MAVOBi
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.MAVO_BINARY_MODEL_REL;
+		return MAVOMIDPackage.Literals.BINARY_MAVO_MODEL_REL;
 	}
 
 } //MAVOBinaryModelRelImpl

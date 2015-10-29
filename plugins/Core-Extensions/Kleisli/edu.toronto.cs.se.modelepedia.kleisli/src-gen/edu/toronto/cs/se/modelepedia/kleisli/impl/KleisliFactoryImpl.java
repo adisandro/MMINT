@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -71,7 +71,7 @@ public class KleisliFactoryImpl extends EFactoryImpl implements KleisliFactory {
 			case KleisliPackage.KLEISLI_MODEL: return createKleisliModel();
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT: return createKleisliModelEndpoint();
 			case KleisliPackage.KLEISLI_MODEL_REL: return createKleisliModelRel();
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL: return createKleisliBinaryModelRel();
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL: return createBinaryKleisliModelRel();
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: return createKleisliModelEndpointReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -103,9 +103,9 @@ public class KleisliFactoryImpl extends EFactoryImpl implements KleisliFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KleisliModelEndpoint createKleisliModelEndpoint() {
-		KleisliModelEndpointImpl kleisliModelEndpoint = new KleisliModelEndpointImpl();
-		return kleisliModelEndpoint;
+	public BinaryKleisliModelRel createBinaryKleisliModelRel() {
+		BinaryKleisliModelRelImpl binaryKleisliModelRel = new BinaryKleisliModelRelImpl();
+		return binaryKleisliModelRel;
 	}
 
 	/**
@@ -113,9 +113,9 @@ public class KleisliFactoryImpl extends EFactoryImpl implements KleisliFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public KleisliBinaryModelRel createKleisliBinaryModelRel() {
-		KleisliBinaryModelRelImpl kleisliBinaryModelRel = new KleisliBinaryModelRelImpl();
-		return kleisliBinaryModelRel;
+	public KleisliModelEndpoint createKleisliModelEndpoint() {
+		KleisliModelEndpointImpl kleisliModelEndpoint = new KleisliModelEndpointImpl();
+		return kleisliModelEndpoint;
 	}
 
 	/**

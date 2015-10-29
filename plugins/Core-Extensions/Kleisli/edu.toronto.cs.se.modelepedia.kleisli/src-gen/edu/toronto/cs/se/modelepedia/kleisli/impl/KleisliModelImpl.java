@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -135,7 +134,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 			}
 		}
 
-		KleisliModel kModelType = KleisliFactory.eINSTANCE.createKleisliModel();
+		KleisliModel kModelType = super.createThisEClass();
 		kModelType.setUri(kModelTypeUri);
 		kModelType.setName(origModelType.getName());
 		kModelType.setLevel(MIDLevel.TYPES);
@@ -209,7 +208,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		MMINTException.mustBeType(this);
 
 		Model origModel = containerModelEndpoint.getTarget();
-		KleisliModel kModel = KleisliFactory.eINSTANCE.createKleisliModel();
+		KleisliModel kModel = super.createThisEClass();
 		kModel.setUri(getModelExtendedUri(containerModelEndpoint));
 		kModel.setName(origModel.getName());
 		kModel.setLevel(MIDLevel.INSTANCES);

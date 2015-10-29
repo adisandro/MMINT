@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -33,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -247,7 +245,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		MMINTException.mustBeType(this);
 
-		ModelEndpointReference newModelTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
+		ModelEndpointReference newModelTypeEndpointRef = super.createThisReferenceEClass();
 		addTypeReference(newModelTypeEndpointRef, isModifiable, containerModelRelType);
 
 		return newModelTypeEndpointRef;
@@ -309,7 +307,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			}
 		}
 
-		ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpoint newModelTypeEndpoint = super.createThisEClass();
 		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
@@ -395,7 +393,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		MMINTException.mustBeInstance(this);
 
-		ModelEndpointReference newModelEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
+		ModelEndpointReference newModelEndpointRef = super.createThisReferenceEClass();
 		addInstanceReference(newModelEndpointRef, containerModelRel);
 
 		return newModelEndpointRef;
@@ -444,7 +442,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}
 
-		ModelEndpoint newModelEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpoint newModelEndpoint = super.createThisEClass();
 		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 
 		return newModelEndpointRef;
@@ -479,7 +477,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		MMINTException.mustBeType(this);
 
-		ModelEndpoint newModelEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+		ModelEndpoint newModelEndpoint = super.createThisEClass();
 		addInstance(newModelEndpoint, targetModel, containerOperator, containerFeatureName);
 
 		return newModelEndpoint;

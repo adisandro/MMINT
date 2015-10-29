@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -342,7 +341,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
 		MMINTException.mustBeType(this);
 
-		MappingReference newMappingTypeRef = RelationshipFactory.eINSTANCE.createMappingReference();
+		MappingReference newMappingTypeRef = super.createThisReferenceEClass();
 		addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
 		return newMappingTypeRef;
@@ -357,8 +356,8 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
 		// create the "thing" and the corresponding reference
 		Mapping newMappingType = (isBinary) ?
-			RelationshipFactory.eINSTANCE.createBinaryMapping() :
-			RelationshipFactory.eINSTANCE.createMapping();
+			super.createThisBinaryEClass() :
+			super.createThisEClass();
 		MID typeMID = MultiModelRegistry.getMultiModel(containerModelRelType);
 		super.addSubtype(newMappingType, containerModelRelType, containerModelRelType.getName(), newMappingTypeName);
 		MultiModelTypeFactory.addMappingType(newMappingType, this, containerModelRelType);
@@ -412,7 +411,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
 		MMINTException.mustBeInstance(this);
 
-		MappingReference newMappingRef = RelationshipFactory.eINSTANCE.createMappingReference();
+		MappingReference newMappingRef = super.createThisReferenceEClass();
 		addInstanceReference(newMappingRef, containerModelRel);
 
 		return newMappingRef;
@@ -426,8 +425,8 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		MMINTException.mustBeType(this);
 
 		Mapping newMapping = (isBinary) ?
-			RelationshipFactory.eINSTANCE.createBinaryMapping() :
-			RelationshipFactory.eINSTANCE.createMapping();
+			super.createThisBinaryEClass() :
+			super.createThisEClass();
 		super.addBasicInstance(newMapping, null, null);
 		containerModelRel.getMappings().add(newMapping);
 		MappingReference newMappingRef = newMapping.createInstanceReference(containerModelRel);

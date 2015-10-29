@@ -33,8 +33,11 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
+import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOModelRel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -131,7 +134,7 @@ public class ChangePropagation extends OperatorImpl {
 		return getModelElementReference(correspondingModelElemRef.getUri(), modelElemRefs);
 	}
 
-	private List<BinaryMappingReference> propagateTraceMappingsFromRefinements(MappingReference refinementMappingRef, MAVOBinaryModelRel traceRel, MAVOModel newPropModel, MAVOBinaryModelRel newPropTraceRel) throws Exception {
+	private List<BinaryMappingReference> propagateTraceMappingsFromRefinements(MappingReference refinementMappingRef, BinaryMAVOModelRel traceRel, MAVOModel newPropModel, BinaryMAVOModelRel newPropTraceRel) throws Exception {
 
 		ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
 		String origModelUri = origModelEndpointRef_traceRel.getTargetUri();
@@ -154,7 +157,7 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		// no propagation or rule 4 propagation
-		List<BinaryMappingReference> newPropTraceMappingRefs = new ArrayList<BinaryMappingReference>();
+		List<BinaryMappingReference> newPropTraceMappingRefs = new ArrayList<>();
 		if (origModelElemRefs_traceRel.isEmpty()) {
 			if (refinementMappingRef.getModelElemEndpointRefs().size() == 1) {
 				for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
@@ -179,7 +182,7 @@ public class ChangePropagation extends OperatorImpl {
 		for (ModelElementReference origModelElemRef_traceRel : origModelElemRefs_traceRel) {
 			for (ModelElementEndpointReference traceModelElemEndpointRef : origModelElemRef_traceRel.getModelElemEndpointRefs()) {
 				BinaryMappingReference traceMappingRef = (BinaryMappingReference) traceModelElemEndpointRef.eContainer();
-				BinaryMapping traceMapping = traceMappingRef.getObject();
+				BinaryMAVOMapping traceMapping = traceMappingRef.getObject();
 				ModelElementReference relatedModelElemRef_traceRel = traceMappingRef.getTargetModelElemRef();
 				String propModelObjUri =
 					newPropModel.getUri() +
@@ -192,7 +195,7 @@ public class ChangePropagation extends OperatorImpl {
 					BinaryMappingReference newPropTraceMappingRef = (BinaryMappingReference) traceMapping.getMetatype().createInstanceAndReference(true, newPropTraceRel);
 					traceMapping.getModelElemEndpoints().get(0).getMetatype().createInstanceAndReference(newRefinedModelElemRef_propTraceRel, newPropTraceMappingRef);
 					traceMapping.getModelElemEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModelElemRef_propTraceRel, newPropTraceMappingRef);
-					Mapping newPropTraceMapping = newPropTraceMappingRef.getObject();
+					MAVOMapping newPropTraceMapping = newPropTraceMappingRef.getObject();
 					newPropTraceMapping.setName(traceMapping.getName());
 					newPropTraceMapping.setMay(traceMapping.isMay());
 					newPropTraceMapping.setSet(traceMapping.isSet());
@@ -205,7 +208,7 @@ public class ChangePropagation extends OperatorImpl {
 		return newPropTraceMappingRefs;
 	}
 
-	private BinaryMappingReference createDanglingTraceMapping(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMINTException {
+	private BinaryMappingReference createDanglingTraceMapping(ModelElementReference traceModelElemRefA, BinaryMAVOModelRel traceRel, int indexA, int indexB) throws MMINTException {
 
 		// rule 4, 1st half
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
@@ -267,7 +270,7 @@ traceLinks:
 		for (BinaryMappingReference traceMappingRef : propTraceMappingRefs) {
 			ModelElementEndpointReference traceModelElemEndpointRefA = traceMappingRef.getModelElemEndpointRefs().get(indexA);
 			ModelElementReference modelElemRefA = traceModelElemEndpointRefA.getModelElemRef();
-			ModelElement modelElemA = modelElemRefA.getObject();
+			MAVOModelElement modelElemA = modelElemRefA.getObject();
 
 			// rule 4, 2nd half
 			if (n == 0) {
@@ -278,8 +281,8 @@ traceLinks:
 
 			ModelElementEndpointReference traceModelElemEndpointRefB = traceMappingRef.getModelElemEndpointRefs().get(indexB);
 			ModelElementReference modelElemRefB = traceModelElemEndpointRefB.getModelElemRef();
-			ModelElement modelElemB = modelElemRefB.getObject();
-			BinaryMapping traceMapping = traceMappingRef.getObject();
+			MAVOModelElement modelElemB = modelElemRefB.getObject();
+			BinaryMAVOMapping traceMapping = traceMappingRef.getObject();
 			boolean Ma = modelElemA.isMay(), Sa = modelElemA.isSet(), Va = modelElemA.isVar();
 			boolean Mab = traceMapping.isMay(), Sab = traceMapping.isSet(), Vab = traceMapping.isVar();
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
@@ -563,19 +566,19 @@ traceLinks:
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
-		MAVOBinaryModelRel refinementRel = (MAVOBinaryModelRel) inputsByName.get(IN_MODELREL1);
+		BinaryMAVOModelRel refinementRel = (BinaryMAVOModelRel) inputsByName.get(IN_MODELREL1);
 		MAVOModel origModel = (MAVOModel) refinementRel.getSourceModel();
 		MAVOModel refinedModel = (MAVOModel) refinementRel.getTargetModel();
-		MAVOBinaryModelRel traceRel = (MAVOBinaryModelRel) inputsByName.get(IN_MODELREL2);
+		BinaryMAVOModelRel traceRel = (BinaryMAVOModelRel) inputsByName.get(IN_MODELREL2);
 		MAVOModel relatedModel = (MAVOModel) traceRel.getTargetModel();
 
 		// create output model and model relationships
 		MAVOModel newPropModel = (MAVOModel) relatedModel.getMetatype().copyInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, outputMIDsByName.get(OUT_MODEL));
-		MAVOBinaryModelRel newPropRefinementRel = (MAVOBinaryModelRel) refinementRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL1));
+		BinaryMAVOModelRel newPropRefinementRel = (BinaryMAVOModelRel) refinementRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL1));
 		newPropRefinementRel.setName(OUT_MODELREL1);
 		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, newPropRefinementRel);
 		refinementRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropRefinementRel);
-		MAVOBinaryModelRel newPropTraceRel = (MAVOBinaryModelRel) traceRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL2));
+		BinaryMAVOModelRel newPropTraceRel = (BinaryMAVOModelRel) traceRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL2));
 		newPropTraceRel.setName(OUT_MODELREL2);
 		traceRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(refinedModel, newPropTraceRel);
 		traceRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropTraceRel);

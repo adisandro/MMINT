@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
 /**
@@ -292,7 +291,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 
 		MMINTException.mustBeType(this);
 
-		GenericEndpoint newGenericEndpoint = OperatorFactory.eINSTANCE.createGenericEndpoint();
+		GenericEndpoint newGenericEndpoint = super.createThisEClass();
 		addInstance(newGenericEndpoint, targetGeneric, containerOperator);
 
 		return newGenericEndpoint;

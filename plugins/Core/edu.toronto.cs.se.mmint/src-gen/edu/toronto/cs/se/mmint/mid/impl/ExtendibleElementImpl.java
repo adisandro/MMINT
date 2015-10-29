@@ -21,11 +21,14 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -622,6 +625,96 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public ExtendibleElement getMetatype() {
 		return MultiModelTypeRegistry.getType(getMetatypeUri());
+	}
+
+	/**
+	 * Searches for an EClass in a package and subpackages.
+	 * 
+	 * @param ePackage
+	 *            The package where to look for the EClass.
+	 * @param eClassName
+	 *            The EClass name.
+	 * @return The EClass if found, null otherwise.
+	 * @generated NOT
+	 */
+	private @Nullable EClass searchEPackages(@NonNull EPackage ePackage, @NonNull String eClassName) {
+
+		EClassifier referenceEClass = ePackage.getEClassifier(eClassName);
+		if (referenceEClass != null) {
+			return (EClass) referenceEClass;
+		}
+		for (EPackage eSubPackage : ePackage.getESubpackages()) {
+			referenceEClass = searchEPackages(eSubPackage, eClassName);
+			if (referenceEClass != null) {
+				return (EClass) referenceEClass;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Creates a new non-binary instance of this element's EClass, to be used as either a type or an instance in a MID.
+	 * 
+	 * @return The new non-binary instance of this element's EClass.
+	 * @throws MMINTException If the EClass that represents this element can't be found, when this element is binary.
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T extends ExtendibleElement> T createThisEClass() throws MMINTException {
+
+		EClass eClass = this.eClass();
+		if (eClass.getName().startsWith("Binary")) {
+			eClass = searchEPackages(this.eClass().getEPackage(), this.eClass().getName().replace("Binary", "").replace("Impl", ""));
+			if (eClass == null) {
+				throw new MMINTException("Non-binary EClass " + this.eClass().getName() + " not found");
+			}
+		}
+
+		return (T) eClass.getEPackage().getEFactoryInstance().create(eClass);
+	}
+
+	/**
+	 * Creates a new binary instance of this element's EClass, to be used as either a type or an instance in a MID.
+	 * 
+	 * @return The new binary instance of this element's EClass.
+	 * @throws MMINTException
+	 *             If the EClass that represents a binary version of this element can't be found, when this element is
+	 *             non-binary.
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T extends ExtendibleElement> T createThisBinaryEClass() throws MMINTException {
+
+		EClass binaryEClass = this.eClass();
+		if (!binaryEClass.getName().startsWith("Binary")) {
+			binaryEClass = searchEPackages(this.eClass().getEPackage(), "Binary" + this.eClass().getName().replace("Impl", ""));
+			if (binaryEClass == null) {
+				throw new MMINTException("Binary EClass " + this.eClass().getName() + " not found");
+			}
+		}
+
+		return (T) binaryEClass.getEPackage().getEFactoryInstance().create((EClass) binaryEClass);
+	}
+
+	/**
+	 * Creates a new instance of the EClass that represents a reference to this element, to be used as a reference to
+	 * either a type or an instance in a MID.
+	 * 
+	 * @return The new instance of this element's reference EClass.
+	 * @throws MMINTException
+	 *             If the EClass that represents a reference to this element can't be found.
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T extends ExtendibleElementReference> T createThisReferenceEClass() throws MMINTException {
+
+		EClass referenceEClass = searchEPackages(this.eClass().getEPackage(), this.eClass().getName().replace("Impl", "Reference"));
+		if (referenceEClass == null) {
+			throw new MMINTException("Reference to EClass " + this.eClass().getName() + " not found");
+		}
+
+		return (T) referenceEClass.getEPackage().getEFactoryInstance().create(referenceEClass);
 	}
 
 	/**

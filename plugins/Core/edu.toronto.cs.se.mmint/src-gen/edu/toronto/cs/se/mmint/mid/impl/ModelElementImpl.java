@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -40,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -317,7 +315,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		ModelElementReference newModelElemTypeRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+		ModelElementReference newModelElemTypeRef = super.createThisReferenceEClass();
 		super.addTypeReference(newModelElemTypeRef, modelElemTypeRef, isModifiable, false);
 		containerModelTypeEndpointRef.getModelElemRefs().add(newModelElemTypeRef);
 
@@ -336,7 +334,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
 		if (newModelElemType == null) {
 			// create the "thing"
-			newModelElemType = MIDFactory.eINSTANCE.createModelElement();
+			newModelElemType = super.createThisEClass();
 			super.addSubtype(newModelElemType, newModelElemTypeUri, newModelElemTypeName);
 			MultiModelTypeFactory.addModelElementType(newModelElemType, eInfo, containerModelTypeEndpointRef.getObject().getTarget());
 		}
@@ -392,7 +390,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeInstance(this);
 
-		ModelElementReference newModelElemRef = RelationshipFactory.eINSTANCE.createModelElementReference();
+		ModelElementReference newModelElemRef = super.createThisReferenceEClass();
 		super.addInstanceReference(newModelElemRef, false);
 		containerModelEndpointRef.getModelElemRefs().add(newModelElemRef);
 
@@ -413,7 +411,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, instanceMID);
 		}
 		if (newModelElem == null) {
-			newModelElem = MIDFactory.eINSTANCE.createModelElement();
+			newModelElem = super.createThisEClass();
 			//TODO MMINT[MAP] When input and output come from different mids, is it not correct to store the extendible map entry in the output
 			if (instanceMID == null) {
 				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName);

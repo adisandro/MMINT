@@ -47,7 +47,6 @@ import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -645,7 +644,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeType(this);
 
-		Model newModelType = MIDFactory.eINSTANCE.createModel();
+		Model newModelType = super.createThisEClass();
 		this.addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
 
 		return newModelType;
@@ -842,7 +841,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeType(this);
 
-		Model newModel = MIDFactory.eINSTANCE.createModel();
+		Model newModel = super.createThisEClass();
 		this.addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModel;
@@ -909,7 +908,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeType(this);
 
-		Model newModel = MIDFactory.eINSTANCE.createModel();
+		Model newModel = super.createThisEClass();
 		this.addInstance(newModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
 
 		return newModel;

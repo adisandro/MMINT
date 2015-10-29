@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
 import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
@@ -122,8 +122,8 @@ public class KleisliValidator extends EObjectValidator {
 				return validateKleisliModelEndpoint((KleisliModelEndpoint)value, diagnostics, context);
 			case KleisliPackage.KLEISLI_MODEL_REL:
 				return validateKleisliModelRel((KleisliModelRel)value, diagnostics, context);
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL:
-				return validateKleisliBinaryModelRel((KleisliBinaryModelRel)value, diagnostics, context);
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL:
+				return validateBinaryKleisliModelRel((BinaryKleisliModelRel)value, diagnostics, context);
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE:
 				return validateKleisliModelEndpointReference((KleisliModelEndpointReference)value, diagnostics, context);
 			default:
@@ -174,6 +174,26 @@ public class KleisliValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateBinaryKleisliModelRel(BinaryKleisliModelRel binaryKleisliModelRel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(binaryKleisliModelRel, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(binaryKleisliModelRel, diagnostics, context);
+		if (result || diagnostics != null) result &= relationshipValidator.validateBinaryModelRel_isBinaryModelRel(binaryKleisliModelRel, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateKleisliModelEndpoint(KleisliModelEndpoint kleisliModelEndpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(kleisliModelEndpoint, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(kleisliModelEndpoint, diagnostics, context);
@@ -186,26 +206,6 @@ public class KleisliValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(kleisliModelEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(kleisliModelEndpoint, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElementEndpoint_unboundedLevel(kleisliModelEndpoint, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateKleisliBinaryModelRel(KleisliBinaryModelRel kleisliBinaryModelRel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(kleisliBinaryModelRel, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(kleisliBinaryModelRel, diagnostics, context);
-		if (result || diagnostics != null) result &= relationshipValidator.validateBinaryModelRel_isBinaryModelRel(kleisliBinaryModelRel, diagnostics, context);
 		return result;
 	}
 

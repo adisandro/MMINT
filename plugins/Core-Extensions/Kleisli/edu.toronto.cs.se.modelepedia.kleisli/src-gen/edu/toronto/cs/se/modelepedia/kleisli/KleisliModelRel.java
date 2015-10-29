@@ -14,9 +14,6 @@ package edu.toronto.cs.se.modelepedia.kleisli;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -69,24 +66,6 @@ public interface KleisliModelRel extends ModelRel {
 	 * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isMetamodelExtensionRequired="true"
-	 * @generated
-	 */
-	Model createSubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isMetamodelExtensionRequired="true"
-	 * @generated
-	 */
-	BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRelTypeRequired="true"
 	 * @generated
 	 */
@@ -109,24 +88,6 @@ public interface KleisliModelRel extends ModelRel {
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceTypes() throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Kleisli version. {@inheritDoc}
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
@@ -39,10 +40,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 
@@ -230,20 +229,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createTypeReference(boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		KleisliModelEndpointReference newModelTypeEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		super.addTypeReference(newModelTypeEndpointRef, isModifiable, containerModelRelType);
-
-		return newModelTypeEndpointRef;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
 	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		MMINTException.mustBeType(this);
@@ -267,7 +252,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 		ModelEndpointReference newModelTypeEndpointRef;
 		if (isK) {
-			KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
+			KleisliModelEndpoint newModelTypeEndpoint = super.createThisEClass();
 			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 			KleisliModel kModelType;
 			try {
@@ -291,7 +276,8 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			}
 		}
 		else {
-			newModelTypeEndpointRef = super.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+			ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+			newModelTypeEndpointRef = super.addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 		}
 
 		return newModelTypeEndpointRef;
@@ -331,20 +317,6 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
-
-		MMINTException.mustBeInstance(this);
-
-		KleisliModelEndpointReference newModelEndpointRef = KleisliFactory.eINSTANCE.createKleisliModelEndpointReference();
-		super.addInstanceReference(newModelEndpointRef, containerModelRel);
-
-		return newModelEndpointRef;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
 	public ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		MMINTException.mustBeType(this);
@@ -352,7 +324,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
 		}
 
-		KleisliModelEndpoint newModelEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
+		KleisliModelEndpoint newModelEndpoint = super.createThisEClass();
 		ModelEndpointReference newModelEndpointRef = super.addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 		getExtendedTarget().kleisliCreateInstance(newModelEndpoint);
 

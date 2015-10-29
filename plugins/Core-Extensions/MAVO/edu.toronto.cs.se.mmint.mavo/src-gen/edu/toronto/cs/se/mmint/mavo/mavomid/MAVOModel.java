@@ -38,15 +38,6 @@ public interface MAVOModel extends Model, MAVORoot {
 	 * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeNameRequired="true" isMetamodelExtensionRequired="true"
-	 * @generated
-	 */
-	Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * MAVO version. {@inheritDoc}
-	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
 	 * @generated
 	 */
@@ -56,28 +47,10 @@ public interface MAVOModel extends Model, MAVORoot {
 	 * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
-	 * @generated
-	 */
-	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * MAVO version. {@inheritDoc}
-	 * <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
 	 * @generated
 	 */
 	Model importInstance(String modelUri, MID instanceMID) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * MAVO version. {@inheritDoc}
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
-	 * @generated
-	 */
-	Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->

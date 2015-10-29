@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReferen
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
@@ -116,15 +116,15 @@ public class KleisliSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case KleisliPackage.KLEISLI_BINARY_MODEL_REL: {
-				KleisliBinaryModelRel kleisliBinaryModelRel = (KleisliBinaryModelRel)theEObject;
-				T result = caseKleisliBinaryModelRel(kleisliBinaryModelRel);
-				if (result == null) result = caseKleisliModelRel(kleisliBinaryModelRel);
-				if (result == null) result = caseBinaryModelRel(kleisliBinaryModelRel);
-				if (result == null) result = caseModelRel(kleisliBinaryModelRel);
-				if (result == null) result = caseModel(kleisliBinaryModelRel);
-				if (result == null) result = caseGenericElement(kleisliBinaryModelRel);
-				if (result == null) result = caseExtendibleElement(kleisliBinaryModelRel);
+			case KleisliPackage.BINARY_KLEISLI_MODEL_REL: {
+				BinaryKleisliModelRel binaryKleisliModelRel = (BinaryKleisliModelRel)theEObject;
+				T result = caseBinaryKleisliModelRel(binaryKleisliModelRel);
+				if (result == null) result = caseKleisliModelRel(binaryKleisliModelRel);
+				if (result == null) result = caseBinaryModelRel(binaryKleisliModelRel);
+				if (result == null) result = caseModelRel(binaryKleisliModelRel);
+				if (result == null) result = caseModel(binaryKleisliModelRel);
+				if (result == null) result = caseGenericElement(binaryKleisliModelRel);
+				if (result == null) result = caseExtendibleElement(binaryKleisliModelRel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -172,6 +172,21 @@ public class KleisliSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Kleisli Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Kleisli Model Rel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryKleisliModelRel(BinaryKleisliModelRel object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -183,21 +198,6 @@ public class KleisliSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseKleisliModelEndpoint(KleisliModelEndpoint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseKleisliBinaryModelRel(KleisliBinaryModelRel object) {
 		return null;
 	}
 

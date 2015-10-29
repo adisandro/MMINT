@@ -58,13 +58,22 @@ public interface MAVOMIDFactory extends EFactory {
 	MAVOModelRel createMAVOModelRel();
 
 	/**
-	 * Returns a new object of class '<em>MAVO Binary Model Rel</em>'.
+	 * Returns a new object of class '<em>Binary MAVO Model Rel</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>MAVO Binary Model Rel</em>'.
+	 * @return a new object of class '<em>Binary MAVO Model Rel</em>'.
 	 * @generated
 	 */
-	MAVOBinaryModelRel createMAVOBinaryModelRel();
+	BinaryMAVOModelRel createBinaryMAVOModelRel();
+
+	/**
+	 * Returns a new object of class '<em>MAVO Model Endpoint Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>MAVO Model Endpoint Reference</em>'.
+	 * @generated
+	 */
+	MAVOModelEndpointReference createMAVOModelEndpointReference();
 
 	/**
 	 * Returns a new object of class '<em>MAVO Mapping</em>'.
@@ -76,13 +85,13 @@ public interface MAVOMIDFactory extends EFactory {
 	MAVOMapping createMAVOMapping();
 
 	/**
-	 * Returns a new object of class '<em>MAVO Binary Mapping</em>'.
+	 * Returns a new object of class '<em>Binary MAVO Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>MAVO Binary Mapping</em>'.
+	 * @return a new object of class '<em>Binary MAVO Mapping</em>'.
 	 * @generated
 	 */
-	MAVOBinaryMapping createMAVOBinaryMapping();
+	BinaryMAVOMapping createBinaryMAVOMapping();
 
 	/**
 	 * Returns the package supported by this factory.

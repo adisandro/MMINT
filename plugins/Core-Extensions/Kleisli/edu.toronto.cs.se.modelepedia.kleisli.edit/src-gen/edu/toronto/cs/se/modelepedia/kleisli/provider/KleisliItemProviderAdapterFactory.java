@@ -141,6 +141,29 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BinaryKleisliModelRelItemProvider binaryKleisliModelRelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBinaryKleisliModelRelAdapter() {
+		if (binaryKleisliModelRelItemProvider == null) {
+			binaryKleisliModelRelItemProvider = new BinaryKleisliModelRelItemProvider(this);
+		}
+
+		return binaryKleisliModelRelItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,29 +184,6 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 		}
 
 		return kleisliModelEndpointItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected KleisliBinaryModelRelItemProvider kleisliBinaryModelRelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createKleisliBinaryModelRelAdapter() {
-		if (kleisliBinaryModelRelItemProvider == null) {
-			kleisliBinaryModelRelItemProvider = new KleisliBinaryModelRelItemProvider(this);
-		}
-
-		return kleisliBinaryModelRelItemProvider;
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 		if (kleisliModelItemProvider != null) kleisliModelItemProvider.dispose();
 		if (kleisliModelEndpointItemProvider != null) kleisliModelEndpointItemProvider.dispose();
 		if (kleisliModelRelItemProvider != null) kleisliModelRelItemProvider.dispose();
-		if (kleisliBinaryModelRelItemProvider != null) kleisliBinaryModelRelItemProvider.dispose();
+		if (binaryKleisliModelRelItemProvider != null) binaryKleisliModelRelItemProvider.dispose();
 		if (kleisliModelEndpointReferenceItemProvider != null) kleisliModelEndpointReferenceItemProvider.dispose();
 	}
 
@@ -375,7 +375,7 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(MIDPackage.Literals.MID__MODELS,
-						 KleisliFactory.eINSTANCE.createKleisliBinaryModelRel()));
+						 KleisliFactory.eINSTANCE.createBinaryKleisliModelRel()));
 
 				return null;
 			}
@@ -476,7 +476,7 @@ public class KleisliItemProviderAdapterFactory extends KleisliAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-						 KleisliFactory.eINSTANCE.createKleisliBinaryModelRel()));
+						 KleisliFactory.eINSTANCE.createBinaryKleisliModelRel()));
 
 				return null;
 			}

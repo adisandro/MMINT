@@ -11,27 +11,13 @@
   <genPackages prefix="MAVOMID" basePackage="edu.toronto.cs.se.mmint.mavo" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="mavomid.ecore#/">
     <genClasses ecoreClass="mavomid.ecore#//MAVOModel">
-      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/createSubtype">
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createSubtype/newModelTypeName"/>
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createSubtype/constraintLanguage"/>
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createSubtype/constraintImplementation"/>
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createSubtype/isMetamodelExtension"/>
-      </genOperations>
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/createInstance">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/newModelUri"/>
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/instanceMID"/>
       </genOperations>
-      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/createInstanceAndEditor">
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstanceAndEditor/newModelUri"/>
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstanceAndEditor/instanceMID"/>
-      </genOperations>
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/importInstance">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/modelUri"/>
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/instanceMID"/>
-      </genOperations>
-      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/importInstanceAndEditor">
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstanceAndEditor/modelUri"/>
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstanceAndEditor/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/validateInstanceInEditor">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/validateInstanceInEditor/context"/>
@@ -39,8 +25,14 @@
     </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement"/>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelRel"/>
-    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpointReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference/modelObj"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference/newModelElemName"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOMapping"/>
-    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMapping"/>
   </genPackages>
 </genmodel:GenModel>

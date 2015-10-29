@@ -9,23 +9,23 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mavo.mavomid;
+package edu.toronto.cs.se.modelepedia.kleisli;
 
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>MAVO Binary Model Rel</b></em>'.
+ * A representation of the model object '<em><b>Binary Model Rel</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * MAVO version. {@inheritDoc}
+ * Kleisli version. {@inheritDoc}
  * <!-- end-model-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getMAVOBinaryModelRel()
+ * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getBinaryKleisliModelRel()
  * @model
  * @generated
  */
-public interface MAVOBinaryModelRel extends BinaryModelRel, MAVOModelRel {
-} // MAVOBinaryModelRel
+public interface BinaryKleisliModelRel extends KleisliModelRel, BinaryModelRel {
+} // KleisliBinaryModelRel

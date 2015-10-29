@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
@@ -525,7 +524,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeType(this);
 
-		Editor newEditorType = EditorFactory.eINSTANCE.createEditor();
+		Editor newEditorType = super.createThisEClass();
 		addSubtype(newEditorType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
 		return newEditorType;
@@ -586,7 +585,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		//TODO MMINT[OO] shouldn't this try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
 		MMINTException.mustBeType(this);
 
-		Editor newEditor = EditorFactory.eINSTANCE.createEditor();
+		Editor newEditor = super.createThisEClass();
 		addInstance(newEditor, modelUri, instanceMID);
 
 		return newEditor;

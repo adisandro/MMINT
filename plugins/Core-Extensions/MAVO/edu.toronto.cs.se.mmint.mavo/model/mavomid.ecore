@@ -5,29 +5,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
-    <eOperations name="createSubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
-      <eParameters name="newModelTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="constraintImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="isMetamodelExtension" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
     <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
     </eOperations>
-    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
-    </eOperations>
     <eOperations name="importInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
-      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
-    </eOperations>
-    <eOperations name="importInstanceAndEditor" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
@@ -47,17 +30,27 @@
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryModelRel #//MAVOModelRel">
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryMAVOModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryModelRel #//MAVOModelRel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOModelEndpointReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelEndpointReference">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="MAVO version. {@inheritDoc}"/>
+    </eAnnotations>
+    <eOperations name="createModelElementInstanceAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelElementReference"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+      <eParameters name="modelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="newModelElemName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/Mapping ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MAVOBinaryMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMapping #//MAVOMapping">
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryMAVOMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMapping #//MAVOMapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>

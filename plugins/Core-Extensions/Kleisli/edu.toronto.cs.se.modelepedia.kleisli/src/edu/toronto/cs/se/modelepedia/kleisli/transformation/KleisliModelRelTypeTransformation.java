@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.modelepedia.kleisli.KleisliBinaryModelRel;
+import edu.toronto.cs.se.modelepedia.kleisli.BinaryKleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation;
 
@@ -45,7 +45,7 @@ public class KleisliModelRelTypeTransformation extends ModelRelTypeTransformatio
 		throws Exception {
 
 		Map<String, Model> outputsByName = super.run(inputsByName, genericsByName, outputMIDsByName);
-		KleisliBinaryModelRel kTraceModelRel = (KleisliBinaryModelRel) outputsByName.get(OUT_MODELREL);
+		BinaryKleisliModelRel kTraceModelRel = (BinaryKleisliModelRel) outputsByName.get(OUT_MODELREL);
 		Model modelPivot = kTraceModelRel.getSourceModel();
 		kTraceModelRel.setSourceModel(kTraceModelRel.getTargetModel());
 		kTraceModelRel.setTargetModel(modelPivot);
