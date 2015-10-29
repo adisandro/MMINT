@@ -12,13 +12,18 @@
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
 
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
 
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -45,6 +50,34 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * @generated
 	 */
 	private EClass mavoModelElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mavoModelRelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mavoBinaryModelRelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mavoMappingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mavoBinaryMappingEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -188,6 +221,42 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMAVOModelRel() {
+		return mavoModelRelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMAVOBinaryModelRel() {
+		return mavoBinaryModelRelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMAVOMapping() {
+		return mavoMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMAVOBinaryMapping() {
+		return mavoBinaryMappingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MAVOMIDFactory getMAVOMIDFactory() {
 		return (MAVOMIDFactory)getEFactoryInstance();
 	}
@@ -220,6 +289,14 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		createEOperation(mavoModelEClass, MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
 
 		mavoModelElementEClass = createEClass(MAVO_MODEL_ELEMENT);
+
+		mavoModelRelEClass = createEClass(MAVO_MODEL_REL);
+
+		mavoBinaryModelRelEClass = createEClass(MAVO_BINARY_MODEL_REL);
+
+		mavoMappingEClass = createEClass(MAVO_MAPPING);
+
+		mavoBinaryMappingEClass = createEClass(MAVO_BINARY_MAPPING);
 	}
 
 	/**
@@ -248,6 +325,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		// Obtain other dependent packages
 		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
 		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
+		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -258,6 +336,13 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		mavoModelEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		mavoModelElementEClass.getESuperTypes().add(theMIDPackage.getModelElement());
 		mavoModelElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+		mavoModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
+		mavoBinaryModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
+		mavoBinaryModelRelEClass.getESuperTypes().add(this.getMAVOModelRel());
+		mavoMappingEClass.getESuperTypes().add(theRelationshipPackage.getMapping());
+		mavoMappingEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+		mavoBinaryMappingEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMapping());
+		mavoBinaryMappingEClass.getESuperTypes().add(this.getMAVOMapping());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -294,6 +379,14 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(mavoModelElementEClass, MAVOModelElement.class, "MAVOModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mavoModelRelEClass, MAVOModelRel.class, "MAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mavoBinaryModelRelEClass, MAVOBinaryModelRel.class, "MAVOBinaryModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mavoMappingEClass, MAVOMapping.class, "MAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mavoBinaryMappingEClass, MAVOBinaryMapping.class, "MAVOBinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

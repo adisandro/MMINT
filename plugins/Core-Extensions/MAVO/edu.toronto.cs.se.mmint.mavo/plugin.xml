@@ -44,6 +44,64 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http://se.cs.toronto.edu/mmint/MAVOModelRel"
+            class="edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.relationships">
+      <relationshipType>
+         <modelType>
+            <type
+                  name="MAVOModelRel"
+                  uri="http://se.cs.toronto.edu/mmint/MAVOModelRel"
+                  class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/ModelRel">
+            </superType>
+            </type>
+         </modelType>
+         <modelTypeEndpoint>
+            <type
+                  name="MAVOModelEndpoint"
+                  uri="http://se.cs.toronto.edu/mmint/MAVOModelRel-MAVOModel/MAVOModelEndpoint">
+            </type>
+            <typeEndpoint
+                  lowerBound="0"
+                  upperBound="-1"
+                  targetTypeUri="http://se.cs.toronto.edu/MAVO">
+            </typeEndpoint>
+            <modelElemType>
+                <type
+                     name="MAVOElement"
+                     uri="http://se.cs.toronto.edu/MAVO#//MAVOElement"
+                     class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
+                </type>
+            </modelElemType>
+         </modelTypeEndpoint>
+         <mappingType>
+            <type
+                  name="MAVOMapping"
+                  uri="http://se.cs.toronto.edu/mmint/MAVOModelRel/MAVOMapping"
+                  class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
+            </type>
+            <modelElemTypeEndpoint>
+               <type
+                     name="MAVOElementEndpoint"
+                     uri="http://se.cs.toronto.edu/mmint/MAVOModelRel/MAVOMapping-MAVOElement/MAVOElementEndpoint">
+               </type>
+               <typeEndpoint
+                     lowerBound="0"
+                     upperBound="-1"
+                     targetTypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement">
+               </typeEndpoint>
+            </modelElemTypeEndpoint>
+         </mappingType>
+      </relationshipType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
             uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel"
             class="edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage"/>
    </extension>
@@ -56,7 +114,7 @@
                   name="MAVORefinementRel"
                   uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
             <superType
-                  uri="http://se.cs.toronto.edu/mmint/ModelRel">
+                  uri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
             </superType>
             </type>
             <constraint
@@ -64,40 +122,6 @@
                   language="OCL">
             </constraint>
          </modelType>
-         <modelTypeEndpoint>
-            <type
-                  name="MAVOModelEndpoint"
-                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint">
-            </type>
-            <typeEndpoint
-                  lowerBound="2"
-                  upperBound="2"
-                  targetTypeUri="http://se.cs.toronto.edu/MAVO">
-            </typeEndpoint>
-            <modelElemType>
-                <type
-                     name="MAVOElement"
-                     uri="http://se.cs.toronto.edu/MAVO#//MAVOElement">
-                </type>
-            </modelElemType>
-         </modelTypeEndpoint>
-         <linkType>
-            <type
-                  name="RefinementLink"
-                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink">
-            </type>
-            <modelElemTypeEndpoint>
-               <type
-                     name="MAVOElementEndpoint"
-                     uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint">
-               </type>
-               <typeEndpoint
-                     lowerBound="0"
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement">
-               </typeEndpoint>
-            </modelElemTypeEndpoint>
-         </linkType>
       </relationshipType>
    </extension>
 

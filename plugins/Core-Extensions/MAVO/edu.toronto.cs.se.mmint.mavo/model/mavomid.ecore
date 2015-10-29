@@ -42,4 +42,24 @@
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelRel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="MAVO version. {@inheritDoc}"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOBinaryModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryModelRel #//MAVOModelRel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="MAVO version. {@inheritDoc}"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/Mapping ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="MAVO version. {@inheritDoc}"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MAVOBinaryMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMapping #//MAVOMapping">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="MAVO version. {@inheritDoc}"/>
+    </eAnnotations>
+  </eClassifiers>
 </ecore:EPackage>

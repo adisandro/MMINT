@@ -202,7 +202,7 @@ public class MultiModelConstraintChecker {
 
 	public static List<String> getAllowedMappingTypeReferences(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
 
-		List<String> linkTypeUris = new ArrayList<String>();
+		List<String> mappingTypeUris = new ArrayList<String>();
 		for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
 			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
@@ -228,15 +228,15 @@ public class MultiModelConstraintChecker {
 				isAllowed = isAllowed && isAllowedTgt;
 			}
 			if (isAllowed) {
-				linkTypeUris.add(mappingTypeRef.getUri());
+				mappingTypeUris.add(mappingTypeRef.getUri());
 			}
 		}
 		// check for overrides
-		for (String linkTypeUri : linkTypeUris) {
+		for (String mappingTypeUri : mappingTypeUris) {
 			//TODO MMINT[OVERRIDE] if one link type points to another one in this list through its override pointer, then delete it
 		}
 
-		return linkTypeUris;
+		return mappingTypeUris;
 	}
 
 	public static boolean isAllowedModelEndpoint(ModelEndpointReference modelTypeEndpointRef, Model targetModel, Map<String, Integer> cardinalityTable) {

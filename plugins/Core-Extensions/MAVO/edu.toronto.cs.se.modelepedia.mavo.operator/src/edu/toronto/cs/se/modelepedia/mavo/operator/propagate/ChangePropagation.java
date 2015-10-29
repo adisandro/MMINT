@@ -33,6 +33,8 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -129,7 +131,7 @@ public class ChangePropagation extends OperatorImpl {
 		return getModelElementReference(correspondingModelElemRef.getUri(), modelElemRefs);
 	}
 
-	private List<BinaryMappingReference> propagateTraceLinksFromRefinements(MappingReference refinementMappingRef, BinaryModelRel traceRel, Model newPropModel, BinaryModelRel newPropTraceRel) throws Exception {
+	private List<BinaryMappingReference> propagateTraceMappingsFromRefinements(MappingReference refinementMappingRef, MAVOBinaryModelRel traceRel, MAVOModel newPropModel, MAVOBinaryModelRel newPropTraceRel) throws Exception {
 
 		ModelEndpointReference origModelEndpointRef_traceRel = traceRel.getModelEndpointRefs().get(0);
 		String origModelUri = origModelEndpointRef_traceRel.getTargetUri();
@@ -156,7 +158,7 @@ public class ChangePropagation extends OperatorImpl {
 		if (origModelElemRefs_traceRel.isEmpty()) {
 			if (refinementMappingRef.getModelElemEndpointRefs().size() == 1) {
 				for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
-					BinaryMappingReference newPropTraceMappingRef = createDanglingTraceLink(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
+					BinaryMappingReference newPropTraceMappingRef = createDanglingTraceMapping(refinedModelElemRef_refinementRel, newPropTraceRel, 0, 1);
 					if (newPropTraceMappingRef != null) {
 						newPropTraceMappingRefs.add(newPropTraceMappingRef);
 					}
@@ -203,7 +205,7 @@ public class ChangePropagation extends OperatorImpl {
 		return newPropTraceMappingRefs;
 	}
 
-	private BinaryMappingReference createDanglingTraceLink(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMINTException {
+	private BinaryMappingReference createDanglingTraceMapping(ModelElementReference traceModelElemRefA, BinaryModelRel traceRel, int indexA, int indexB) throws MMINTException {
 
 		// rule 4, 1st half
 		if (!traceRel.getModelEndpoints().get(indexB).getTarget().isInc()) {
@@ -218,7 +220,7 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		BinaryMappingReference newTraceMappingRef = null;
-		for (MappingReference traceMappingTypeRef : MultiModelTypeRegistry.getLinkTypeReferences(traceRel.getMetatype())) {
+		for (MappingReference traceMappingTypeRef : MultiModelTypeRegistry.getMappingTypeReferences(traceRel.getMetatype())) {
 			if (!(traceMappingTypeRef instanceof BinaryMappingReference)) { // a trace rel type is meant to have two model types
 				continue;
 			}
@@ -244,7 +246,7 @@ public class ChangePropagation extends OperatorImpl {
 		return newTraceMappingRef;
 	}
 
-	private List<BinaryMappingReference> reduceTraceLinkUncertainty(EObject modelRootB, List<BinaryMappingReference> propTraceMappingRefs, int indexA, int indexB) throws Exception {
+	private List<BinaryMappingReference> reduceTraceMappingUncertainty(EObject modelRootB, List<BinaryMappingReference> propTraceMappingRefs, int indexA, int indexB) throws Exception {
 
 		int n = 0;
 		HashSet<String> uniqueModelElemUrisB = new HashSet<String>();
@@ -269,7 +271,7 @@ traceLinks:
 
 			// rule 4, 2nd half
 			if (n == 0) {
-				completeDanglingTraceLink(modelRootB, traceMappingRef, modelElemA.getName(), indexB);
+				completeDanglingTraceMapping(modelRootB, traceMappingRef, modelElemA.getName(), indexB);
 				again = true;
 				continue;
 			}
@@ -333,7 +335,7 @@ traceLinks:
 						}
 						boolean Mac = traceMappingRef2.getObject().isMay();
 						if (!Mac) {
-							unifyVarTraceLink(modelRootB, traceMappingRef, traceMappingRef2, indexA, indexB);
+							unifyVarTraceMapping(modelRootB, traceMappingRef, traceMappingRef2, indexA, indexB);
 							unifiedMappingRef = traceMappingRef;
 							again = true;
 							break traceLinks;
@@ -350,7 +352,7 @@ traceLinks:
 
 		// keep reducing uncertainty
 		if (again) {
-			reduceTraceLinkUncertainty(modelRootB, propTraceMappingRefs, indexA, indexB);
+			reduceTraceMappingUncertainty(modelRootB, propTraceMappingRefs, indexA, indexB);
 		}
 
 		return propTraceMappingRefs;
@@ -396,7 +398,7 @@ traceLinks:
 	}
 
 	@SuppressWarnings("unchecked")
-	private void unifyVarTraceLink(EObject modelRootB, BinaryMappingReference varTraceMappingRef, BinaryMappingReference traceMappingRef, int indexA, int indexB) throws Exception {
+	private void unifyVarTraceMapping(EObject modelRootB, BinaryMappingReference varTraceMappingRef, BinaryMappingReference traceMappingRef, int indexA, int indexB) throws Exception {
 
 		ModelElementReference varModelElemRef = varTraceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
@@ -463,7 +465,7 @@ traceLinks:
 	}
 
 	@SuppressWarnings("unchecked")
-	private void completeDanglingTraceLink(EObject modelRootB, MappingReference traceMappingRef, String modelElemName, int indexB) throws Exception {
+	private void completeDanglingTraceMapping(EObject modelRootB, MappingReference traceMappingRef, String modelElemName, int indexB) throws Exception {
 
 		ModelEndpointReference modelEndpointRef = ((BinaryModelRel) traceMappingRef.eContainer()).getModelEndpointRefs().get(indexB);
 		Model model = modelEndpointRef.getObject().getTarget();
@@ -500,7 +502,7 @@ traceLinks:
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(newModelElemRef, traceMappingRef);
 	}
 
-	private void propagateRefinementLinks(BinaryMappingReference propTraceMappingRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMINTException {
+	private void propagateRefinementMappings(BinaryMappingReference propTraceMappingRef, BinaryModelRel refinementRel, Model relatedModel, BinaryModelRel traceRel, BinaryModelRel newPropRefinementRel) throws MMINTException {
 
 		ModelElementReference propModelElemRef_propTraceRel = propTraceMappingRef.getTargetModelElemRef();
 		ModelEndpointReference propModelEndpointRef_propRefinementRel = newPropRefinementRel.getModelEndpointRefs().get(1);
@@ -561,19 +563,19 @@ traceLinks:
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
-		BinaryModelRel refinementRel = (BinaryModelRel) inputsByName.get(IN_MODELREL1);
-		Model origModel = refinementRel.getSourceModel();
-		Model refinedModel = refinementRel.getTargetModel();
-		BinaryModelRel traceRel = (BinaryModelRel) inputsByName.get(IN_MODELREL2);
-		Model relatedModel = traceRel.getTargetModel();
+		MAVOBinaryModelRel refinementRel = (MAVOBinaryModelRel) inputsByName.get(IN_MODELREL1);
+		MAVOModel origModel = (MAVOModel) refinementRel.getSourceModel();
+		MAVOModel refinedModel = (MAVOModel) refinementRel.getTargetModel();
+		MAVOBinaryModelRel traceRel = (MAVOBinaryModelRel) inputsByName.get(IN_MODELREL2);
+		MAVOModel relatedModel = (MAVOModel) traceRel.getTargetModel();
 
 		// create output model and model relationships
-		Model newPropModel = relatedModel.getMetatype().copyInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel newPropRefinementRel = refinementRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL1));
+		MAVOModel newPropModel = (MAVOModel) relatedModel.getMetatype().copyInstanceAndEditor(relatedModel, relatedModel.getName() + PROP_MODEL_SUFFIX, false, outputMIDsByName.get(OUT_MODEL));
+		MAVOBinaryModelRel newPropRefinementRel = (MAVOBinaryModelRel) refinementRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL1));
 		newPropRefinementRel.setName(OUT_MODELREL1);
 		refinementRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(relatedModel, newPropRefinementRel);
 		refinementRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropRefinementRel);
-		BinaryModelRel newPropTraceRel = traceRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL2));
+		MAVOBinaryModelRel newPropTraceRel = (MAVOBinaryModelRel) traceRel.getMetatype().createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL2));
 		newPropTraceRel.setName(OUT_MODELREL2);
 		traceRel.getModelEndpoints().get(0).getMetatype().createInstanceAndReference(refinedModel, newPropTraceRel);
 		traceRel.getModelEndpoints().get(1).getMetatype().createInstanceAndReference(newPropModel, newPropTraceRel);
@@ -581,17 +583,17 @@ traceLinks:
 		// change propagation algorithm
 		List<List<BinaryMappingReference>> propTraceMappingRefsList = new ArrayList<>();
 		for (MappingReference refinementMappingRef : refinementRel.getMappingRefs()) {
-			List<BinaryMappingReference> propTraceMappingRefs = propagateTraceLinksFromRefinements(refinementMappingRef, traceRel, newPropModel, newPropTraceRel);
+			List<BinaryMappingReference> propTraceMappingRefs = propagateTraceMappingsFromRefinements(refinementMappingRef, traceRel, newPropModel, newPropTraceRel);
 			propTraceMappingRefsList.add(propTraceMappingRefs);
 		}
 		EObject newPropModelRoot = newPropModel.getEMFInstanceRoot();
 		for (List<BinaryMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
-			reduceTraceLinkUncertainty(newPropModelRoot, propTraceMappingRefs, 0, 1);
+			reduceTraceMappingUncertainty(newPropModelRoot, propTraceMappingRefs, 0, 1);
 		}
 		MultiModelUtils.createModelFile(newPropModelRoot, newPropModel.getUri(), true);
 		for (List<BinaryMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
 			for (BinaryMappingReference propTraceMappingRef : propTraceMappingRefs) {
-				propagateRefinementLinks(propTraceMappingRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
+				propagateRefinementMappings(propTraceMappingRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);
 			}
 		}
 		//TODO MMINT[MAVO] reason about how to concretely use indexA and indexB, when the refineUncertainty becomes an independent operator

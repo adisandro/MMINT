@@ -342,10 +342,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
 		MMINTException.mustBeType(this);
 
-		MappingReference newLinkTypeRef = RelationshipFactory.eINSTANCE.createMappingReference();
-		addTypeReference(newLinkTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
+		MappingReference newMappingTypeRef = RelationshipFactory.eINSTANCE.createMappingReference();
+		addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
-		return newLinkTypeRef;
+		return newMappingTypeRef;
 	}
 
 	/**

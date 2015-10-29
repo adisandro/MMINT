@@ -105,15 +105,15 @@
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
-                  name="Link"
-                  uri="http://se.cs.toronto.edu/mmint/ModelRel/Link">
+                  name="Mapping"
+                  uri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping">
             </type>
             <modelElemTypeEndpoint>
                <type
                      name="ModelElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmint/ModelRel/Link-ModelElem/ModelElemEndpoint">
+                     uri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint">
                </type>
                <typeEndpoint
                      lowerBound="0"
@@ -121,7 +121,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 

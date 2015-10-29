@@ -38,5 +38,9 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOBinaryMapping"/>
   </genPackages>
 </genmodel:GenModel>

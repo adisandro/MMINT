@@ -16,9 +16,11 @@ import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
 public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
@@ -47,6 +49,20 @@ public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
 		super.addModelElementType(newMAVOModelElemType, eInfo, modelType);
 
 		return newMAVOModelElemType;
+	}
+
+	/**
+	 * MAVO version. {@inheritDoc}
+	 */
+	@Override
+	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+
+		MAVOModelRel newMAVOModelRelType = (isBinary) ?
+			MAVOMIDFactory.eINSTANCE.createMAVOBinaryModelRel() :
+			MAVOMIDFactory.eINSTANCE.createMAVOModelRel();
+		super.addHeavyModelRelType(newMAVOModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+
+		return newMAVOModelRelType;
 	}
 
 }

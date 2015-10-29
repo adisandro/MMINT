@@ -49,6 +49,42 @@ public interface MAVOMIDFactory extends EFactory {
 	MAVOModelElement createMAVOModelElement();
 
 	/**
+	 * Returns a new object of class '<em>MAVO Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>MAVO Model Rel</em>'.
+	 * @generated
+	 */
+	MAVOModelRel createMAVOModelRel();
+
+	/**
+	 * Returns a new object of class '<em>MAVO Binary Model Rel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>MAVO Binary Model Rel</em>'.
+	 * @generated
+	 */
+	MAVOBinaryModelRel createMAVOBinaryModelRel();
+
+	/**
+	 * Returns a new object of class '<em>MAVO Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>MAVO Mapping</em>'.
+	 * @generated
+	 */
+	MAVOMapping createMAVOMapping();
+
+	/**
+	 * Returns a new object of class '<em>MAVO Binary Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>MAVO Binary Mapping</em>'.
+	 * @generated
+	 */
+	MAVOBinaryMapping createMAVOBinaryMapping();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

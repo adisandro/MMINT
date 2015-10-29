@@ -292,11 +292,11 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		// link types
-		IConfigurationElement[] mappingTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_LINKTYPE);
-		for (IConfigurationElement linkTypeConfig : mappingTypeConfigs) {
-			binaryTypeConfigs = linkTypeConfig.getChildren(CHILD_BINARYTYPE);
+		IConfigurationElement[] mappingTypeConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MAPPINGTYPE);
+		for (IConfigurationElement mappingTypeConfig : mappingTypeConfigs) {
+			binaryTypeConfigs = mappingTypeConfig.getChildren(CHILD_BINARYTYPE);
 			isBinary = (binaryTypeConfigs.length == 0) ? false : true;
-			extensionType = new ExtensionType(linkTypeConfig, typeFactory);
+			extensionType = new ExtensionType(mappingTypeConfig, typeFactory);
 			MappingReference newMappingTypeRef;
 			try {
 				newMappingTypeRef = extensionType.getFactory().createHeavyMappingTypeAndMappingTypeReference(
@@ -326,7 +326,7 @@ public class MMINT implements MMINTConstants {
 				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
 			}
 			// model element type endpoints
-			IConfigurationElement[] modelElemTypeEndpointConfigs = linkTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
+			IConfigurationElement[] modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
 			for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
 				extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
 				IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];

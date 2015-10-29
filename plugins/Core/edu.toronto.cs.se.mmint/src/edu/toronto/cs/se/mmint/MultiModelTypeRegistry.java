@@ -160,7 +160,7 @@ public class MultiModelTypeRegistry {
 	 * @return The list of references to mapping types in the model relationship
 	 *         type.
 	 */
-	public static EList<MappingReference> getLinkTypeReferences(ModelRel modelRelType) {
+	public static EList<MappingReference> getMappingTypeReferences(ModelRel modelRelType) {
 
 		return modelRelType.getMappingRefs();
 	}
@@ -459,13 +459,13 @@ public class MultiModelTypeRegistry {
 	 */
 	public static MultiModelTreeSelectionDialog getMappingTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
 
-		List<String> linkTypeUris = null;
+		List<String> mappingTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
 			MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
-			linkTypeUris = new ArrayList<String>();
+			mappingTypeUris = new ArrayList<String>();
 
 			for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 				// binary can only inherit from root or binary
@@ -482,7 +482,7 @@ public class MultiModelTypeRegistry {
 					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
 					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
 				) {
-					linkTypeUris.add(mappingTypeRef.getUri());
+					mappingTypeUris.add(mappingTypeRef.getUri());
 				}
 			}
 		}
@@ -491,7 +491,7 @@ public class MultiModelTypeRegistry {
 		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
 			shell,
 			new MultiModelDialogLabelProvider(),
-			new NewMappingTypeReferenceDialogContentProvider(modelRelType, linkTypeUris),
+			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
 			modelRelType
 		);
 

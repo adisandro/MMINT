@@ -123,9 +123,9 @@ public interface MMINTConstants {
 	public final static String MODELRELS_CHILD_MODELTYPEENDPOINT = "modelTypeEndpoint";
 	/** The ModelRels extension point's modelTypeEndpoint's modelElemType child. */
 	public final static String MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE = "modelElemType";
-	/** The ModelRels extension point's linkType child. */
-	public final static String MODELRELS_CHILD_LINKTYPE = "linkType";
-	/** The ModelRels extension point's linkType's modelElemTypeEndpoint child. */
+	/** The ModelRels extension point's mappingType child. */
+	public final static String MODELRELS_CHILD_MAPPINGTYPE = "mappingType";
+	/** The ModelRels extension point's mappingType's modelElemTypeEndpoint child. */
 	public final static String MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT = "modelElemTypeEndpoint";
 
 	/** The Operators extension point's id. */

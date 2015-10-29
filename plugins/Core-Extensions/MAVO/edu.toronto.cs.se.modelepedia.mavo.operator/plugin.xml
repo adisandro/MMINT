@@ -76,7 +76,7 @@
 	                 name="trace">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
 	           </typeEndpoint>
             </parameter>
          </inputs>
@@ -102,7 +102,7 @@
 	                 name="propagatedTrace">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
 	           </typeEndpoint>
             </parameter>
          </outputs>

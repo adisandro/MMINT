@@ -277,7 +277,7 @@
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="ComponentDeviceLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/ComponentDeviceLink">
@@ -306,8 +306,8 @@
                      targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="UsageNodeLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel/UsageNodeLink">
@@ -337,7 +337,7 @@
                      targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 
@@ -618,7 +618,7 @@
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="ComponentDeviceLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/ComponentDeviceLink">
@@ -647,8 +647,8 @@
                      targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Device">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="UsageNodeLink"
                   uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO/UsageNodeLink">
@@ -678,7 +678,7 @@
                      targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO#//Node">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 

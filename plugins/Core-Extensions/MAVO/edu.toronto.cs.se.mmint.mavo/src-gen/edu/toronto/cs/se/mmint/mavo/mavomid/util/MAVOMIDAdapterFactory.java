@@ -22,6 +22,10 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -94,6 +98,22 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 				return createMAVOModelElementAdapter();
 			}
 			@Override
+			public Adapter caseMAVOModelRel(MAVOModelRel object) {
+				return createMAVOModelRelAdapter();
+			}
+			@Override
+			public Adapter caseMAVOBinaryModelRel(MAVOBinaryModelRel object) {
+				return createMAVOBinaryModelRelAdapter();
+			}
+			@Override
+			public Adapter caseMAVOMapping(MAVOMapping object) {
+				return createMAVOMappingAdapter();
+			}
+			@Override
+			public Adapter caseMAVOBinaryMapping(MAVOBinaryMapping object) {
+				return createMAVOBinaryMappingAdapter();
+			}
+			@Override
 			public Adapter caseExtendibleElement(ExtendibleElement object) {
 				return createExtendibleElementAdapter();
 			}
@@ -120,6 +140,22 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMAVOElement(MAVOElement object) {
 				return createMAVOElementAdapter();
+			}
+			@Override
+			public Adapter caseModelRel(ModelRel object) {
+				return createModelRelAdapter();
+			}
+			@Override
+			public Adapter caseBinaryModelRel(BinaryModelRel object) {
+				return createBinaryModelRelAdapter();
+			}
+			@Override
+			public Adapter caseMapping(Mapping object) {
+				return createMappingAdapter();
+			}
+			@Override
+			public Adapter caseBinaryMapping(BinaryMapping object) {
+				return createBinaryMappingAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -166,6 +202,62 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMAVOModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel <em>MAVO Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel
+	 * @generated
+	 */
+	public Adapter createMAVOModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel <em>MAVO Binary Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryModelRel
+	 * @generated
+	 */
+	public Adapter createMAVOBinaryModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping <em>MAVO Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping
+	 * @generated
+	 */
+	public Adapter createMAVOMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping <em>MAVO Binary Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOBinaryMapping
+	 * @generated
+	 */
+	public Adapter createMAVOBinaryMappingAdapter() {
 		return null;
 	}
 
@@ -222,6 +314,62 @@ public class MAVOMIDAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMAVOElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel <em>Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel
+	 * @generated
+	 */
+	public Adapter createModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel
+	 * @generated
+	 */
+	public Adapter createBinaryModelRelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.Mapping <em>Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.Mapping
+	 * @generated
+	 */
+	public Adapter createMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping <em>Binary Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping
+	 * @generated
+	 */
+	public Adapter createBinaryMappingAdapter() {
 		return null;
 	}
 

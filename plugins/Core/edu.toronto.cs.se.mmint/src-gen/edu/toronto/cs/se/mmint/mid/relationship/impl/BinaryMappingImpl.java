@@ -55,10 +55,10 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
 		MMINTException.mustBeType(this);
 
-		BinaryMappingReference newLinkTypeRef = RelationshipFactory.eINSTANCE.createBinaryMappingReference();
-		super.addTypeReference(newLinkTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
+		BinaryMappingReference newMappingTypeRef = RelationshipFactory.eINSTANCE.createBinaryMappingReference();
+		super.addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
-		return newLinkTypeRef;
+		return newMappingTypeRef;
 	}
 
 	/**

@@ -67,6 +67,10 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
 		switch (eClass.getClassifierID()) {
 			case MAVOMIDPackage.MAVO_MODEL: return createMAVOModel();
 			case MAVOMIDPackage.MAVO_MODEL_ELEMENT: return createMAVOModelElement();
+			case MAVOMIDPackage.MAVO_MODEL_REL: return createMAVOModelRel();
+			case MAVOMIDPackage.MAVO_BINARY_MODEL_REL: return createMAVOBinaryModelRel();
+			case MAVOMIDPackage.MAVO_MAPPING: return createMAVOMapping();
+			case MAVOMIDPackage.MAVO_BINARY_MAPPING: return createMAVOBinaryMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -90,6 +94,46 @@ public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
 	public MAVOModelElement createMAVOModelElement() {
 		MAVOModelElementImpl mavoModelElement = new MAVOModelElementImpl();
 		return mavoModelElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MAVOModelRel createMAVOModelRel() {
+		MAVOModelRelImpl mavoModelRel = new MAVOModelRelImpl();
+		return mavoModelRel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MAVOBinaryModelRel createMAVOBinaryModelRel() {
+		MAVOBinaryModelRelImpl mavoBinaryModelRel = new MAVOBinaryModelRelImpl();
+		return mavoBinaryModelRel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MAVOMapping createMAVOMapping() {
+		MAVOMappingImpl mavoMapping = new MAVOMappingImpl();
+		return mavoMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MAVOBinaryMapping createMAVOBinaryMapping() {
+		MAVOBinaryMappingImpl mavoBinaryMapping = new MAVOBinaryMappingImpl();
+		return mavoBinaryMapping;
 	}
 
 	/**

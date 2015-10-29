@@ -127,30 +127,30 @@ public class BinaryLinkReferenceNewBinaryLinkCommand extends BinaryLinkReference
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
 		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
-		String newLinkTypeName = MultiModelDiagramUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
-		BinaryMappingReference newLinkTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newLinkTypeName, true, modelRelType);
+		String newMappingTypeName = MultiModelDiagramUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
+		BinaryMappingReference newMappingTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newMappingTypeName, true, modelRelType);
 		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
 
 		String newModelElemTypeEndpointName;
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, srcModelElemTypeRef);
+		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, srcModelElemTypeRef);
 		if (modelElemTypeEndpoint == null) {
-			newLinkTypeRef.addModelElementTypeReference(srcModelElemTypeRef, true);
+			newMappingTypeRef.addModelElementTypeReference(srcModelElemTypeRef, true);
 		}
 		else {
 			newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
-			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, srcModelElemTypeRef, true, newLinkTypeRef);
+			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, srcModelElemTypeRef, true, newMappingTypeRef);
 		}
 
-		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newLinkTypeRef, tgtModelElemTypeRef);
+		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, tgtModelElemTypeRef);
 		if (modelElemTypeEndpoint == null) {
-			newLinkTypeRef.addModelElementTypeReference(tgtModelElemTypeRef, false);
+			newMappingTypeRef.addModelElementTypeReference(tgtModelElemTypeRef, false);
 		}
 		else {
 			newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
-			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newLinkTypeRef);
+			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newMappingTypeRef);
 		}
 
-		return newLinkTypeRef;
+		return newMappingTypeRef;
 	}
 
 	/**
