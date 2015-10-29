@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
@@ -24,10 +23,9 @@ public class ExtendibleElementReferenceLabelParser extends ExtendibleElementLabe
 
 	protected IAdaptable getExtendibleElementAdaptable(IAdaptable element) {
 
-		EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		ExtendibleElement referencedElement = ((ExtendibleElementReference) modelObj).getObject();
+		ExtendibleElementReference midElementRef = (ExtendibleElementReference) element.getAdapter(EObject.class);
 
-		return new ParserHintAdapter(referencedElement, "");
+		return new ParserHintAdapter(midElementRef.getObject(), "");
 	}
 
 	@Override

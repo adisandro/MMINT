@@ -296,11 +296,40 @@ public interface ExtendibleElement extends EObject {
 	 * @return A status representing the validation result.
 	 * @throws MMINTException
 	 *             If this is a type.<!-- end-user-doc -->
-	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
 	 * @generated
 	 */
 	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label. It returns null
+	 * by default and can be overridden.
+	 * 
+	 * @return The string representation. <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	String toMIDCustomPrintLabel();
+
+	/**
+	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label being edited. It
+	 * returns null by default and can be overridden.
+	 * 
+	 * @return The string representation. <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	String toMIDCustomEditLabel();
+
+	/**
+	 * <!-- begin-user-doc --> Updates this element with the string inserted in its MID custom label. It does nothing by
+	 * default and can be overridden.
+	 * 
+	 * @param newLabel
+	 *            The string inserted in the MID custom label. <!-- end-user-doc -->
+	 * @model newLabelRequired="true"
+	 * @generated
+	 */
+	void updateMIDCustomLabel(String newLabel);
 
 } // ExtendibleElement

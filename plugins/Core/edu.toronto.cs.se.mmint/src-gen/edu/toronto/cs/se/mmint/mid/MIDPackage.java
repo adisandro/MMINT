@@ -325,13 +325,40 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 5;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 6;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 7;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 8;
+
+	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 6;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -495,6 +522,33 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -667,6 +721,33 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The number of operations of the '<em>Generic Element</em>' class.
@@ -857,6 +938,33 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___TO_MID_CUSTOM_PRINT_LABEL = GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___TO_MID_CUSTOM_EDIT_LABEL = GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1194,6 +1302,33 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1454,6 +1589,33 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1941,6 +2103,36 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#toMIDCustomPrintLabel() <em>To MID Custom Print Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Print Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#toMIDCustomPrintLabel()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__ToMIDCustomPrintLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#toMIDCustomEditLabel() <em>To MID Custom Edit Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Edit Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#toMIDCustomEditLabel()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__ToMIDCustomEditLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#updateMIDCustomLabel(java.lang.String) <em>Update MID Custom Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Update MID Custom Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#updateMIDCustomLabel(java.lang.String)
+	 * @generated
+	 */
+	EOperation getExtendibleElement__UpdateMIDCustomLabel__String();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#createSubtypeUri(java.lang.String, java.lang.String) <em>Create Subtype Uri</em>}' operation.
@@ -2886,6 +3078,30 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = eINSTANCE.getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = eINSTANCE.getExtendibleElement__ToMIDCustomPrintLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Edit Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = eINSTANCE.getExtendibleElement__ToMIDCustomEditLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Update MID Custom Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = eINSTANCE.getExtendibleElement__UpdateMIDCustomLabel__String();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Subtype Uri</b></em>' operation.

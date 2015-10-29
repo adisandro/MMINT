@@ -279,6 +279,33 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.GENERIC_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.GENERIC_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.GENERIC_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -647,6 +674,33 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1037,6 +1091,33 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1369,6 +1450,33 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

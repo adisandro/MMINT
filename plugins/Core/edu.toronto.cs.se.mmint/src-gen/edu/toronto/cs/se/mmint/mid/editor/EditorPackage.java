@@ -241,6 +241,33 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,6 +510,33 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___TO_MID_CUSTOM_PRINT_LABEL = EDITOR___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___TO_MID_CUSTOM_EDIT_LABEL = EDITOR___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___UPDATE_MID_CUSTOM_LABEL__STRING = EDITOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

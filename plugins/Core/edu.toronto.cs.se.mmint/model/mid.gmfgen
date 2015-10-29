@@ -1522,7 +1522,7 @@
     <implementations
         xsi:type="gmfgen:CustomParser"
         uses="//@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.3/@labels.1/@modelFacet //@diagram/@links.1/@labels.1/@modelFacet //@diagram/@links.2/@labels.1/@modelFacet"
-        qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.CustomLabelParser"/>
+        qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.MIDCustomLabelParser"/>
     <implementations
         xsi:type="gmfgen:CustomParser"
         uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet"

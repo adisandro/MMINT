@@ -15,16 +15,15 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class ExtendibleElementEndpointReferenceLabelParser extends ExtendibleElementReferenceLabelParser {
 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		EObject modelObj = (EObject) element.getAdapter(EObject.class);
+		ExtendibleElementEndpointReference midElementEndpointRef = (ExtendibleElementEndpointReference) element.getAdapter(EObject.class);
 
-		return GMFDiagramUtils.getEndpointLabel(((ExtendibleElementEndpointReference) modelObj).getObject());
+		return super.getEndpointLabel(midElementEndpointRef.getObject());
 	}
 
 }

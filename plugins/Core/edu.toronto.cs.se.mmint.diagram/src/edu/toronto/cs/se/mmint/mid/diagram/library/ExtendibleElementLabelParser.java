@@ -11,35 +11,77 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.library;
 
-import java.util.Collections;
-
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
-public class ExtendibleElementLabelParser implements IParser {
+public class ExtendibleElementLabelParser extends MIDLabelParser {
 
-	protected IStatus updateValues(EObject modelObj, String newLabel) {
+	private final static String EXTELEM_NULLTYPE = "NOTYPE";
 
-		((ExtendibleElement) modelObj).setName(newLabel);
+	//TODO MMINT[USABILITY] Use toString() for everything and get rid of this function?
+	protected String getElementLabel(ExtendibleElement element) {
+
+		if (element instanceof Operator) {
+			return element.toString();
+		}
+		String label = (element.getName() == null) ? "" : element.getName();
+		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
+			ExtendibleElement type = element.getMetatype();
+			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
+			label += " : " + typeLabel;
+		}
+
+		return label;
+	}
+
+	protected String editElementLabel(ExtendibleElement element) {
+
+		String name = element.getName();
+		if (name == null) {
+			name = "";
+		}
+	
+		return name;
+	}
+
+	protected String getEndpointLabel(ExtendibleElementEndpoint endpoint) {
+	
+		String label = this.getElementLabel(endpoint);
+	
+		int low = endpoint.getLowerBound();
+		int up = endpoint.getUpperBound();
+		if (low == 0 && up == 1) {
+			label += " [?]";
+		}
+		else if (low == 1 && up == 1) {
+			// default
+		}
+		else if (low == 0 && up == -1) {
+			label += " [*]";
+		}
+		else if (low == 1 && up == -1) {
+			label += " [+]";
+		}
+		else {
+			String up2 = (up == -1) ? "*" : Integer.toString(up);
+			label += " [" + low + "," + up2 + "]";
+		}
+	
+		return label;
+	}
+
+	@Override
+	protected IStatus updateValues(ExtendibleElement midElement, String newLabel) {
+
+		midElement.setName(newLabel);
 
 		return Status.OK_STATUS;
 	}
@@ -47,9 +89,9 @@ public class ExtendibleElementLabelParser implements IParser {
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
 
-		EObject modelObj = (EObject) element.getAdapter(EObject.class);
+		ExtendibleElement midElement = (ExtendibleElement) element.getAdapter(EObject.class);
 
-		return GMFDiagramUtils.editElementLabel((ExtendibleElement) modelObj);
+		return this.editElementLabel(midElement);
 	}
 
 	@Override
@@ -59,43 +101,11 @@ public class ExtendibleElementLabelParser implements IParser {
 	}
 
 	@Override
-	public ICommand getParseCommand(IAdaptable element, final String newLabel, int flags) {
-
-		final EObject modelObj = (EObject) element.getAdapter(EObject.class);
-		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(modelObj);
-		if (editingDomain == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		IFile affectedFile = WorkspaceSynchronizer.getFile(modelObj.eResource());
-		return new AbstractTransactionalCommand(
-			editingDomain,
-			"Set Values",
-			affectedFile == null ? null : Collections.singletonList(affectedFile)
-		) { 
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				return new CommandResult(updateValues(modelObj, newLabel));
-			}
-		};
-	}
-
-	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		EObject modelObj = (EObject) element.getAdapter(EObject.class);
+		ExtendibleElement midElement = (ExtendibleElement) element.getAdapter(EObject.class);
 
-		return GMFDiagramUtils.getElementLabel((ExtendibleElement) modelObj);
-	}
-
-	@Override
-	public boolean isAffectingEvent(Object event, int flags) {
-
-		return true;
-	}
-
-	@Override
-	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-
-		return null;
+		return this.getElementLabel(midElement);
 	}
 
 }

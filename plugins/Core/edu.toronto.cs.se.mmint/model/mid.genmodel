@@ -54,6 +54,11 @@
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceInEditor">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceInEditor/context"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="mid.ecore#//ExtendibleElementEndpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>

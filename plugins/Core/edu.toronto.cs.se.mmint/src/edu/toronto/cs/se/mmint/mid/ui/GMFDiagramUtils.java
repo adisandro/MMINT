@@ -39,71 +39,14 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class GMFDiagramUtils {
 
-	private final static String EXTELEM_NULLTYPE = "NOTYPE";
 	/** The suffix for GMF diagrams. */
 	public static final String DIAGRAM_SUFFIX = "diag";
-
-	//TODO MMINT[USABILITY] Use toString() for everything and get rid of this function
-	public static String getElementLabel(ExtendibleElement element) {
-
-		if (element instanceof Operator) {
-			return element.toString();
-		}
-		String label = (element.getName() == null) ? "" : element.getName();
-		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
-			ExtendibleElement type = element.getMetatype();
-			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
-			label += " : " + typeLabel;
-		}
-
-		return label;
-	}
-
-	public static String getEndpointLabel(ExtendibleElementEndpoint endpoint) {
-	
-		String label = getElementLabel(endpoint);
-	
-		int low = endpoint.getLowerBound();
-		int up = endpoint.getUpperBound();
-		if (low == 0 && up == 1) {
-			label += " [?]";
-		}
-		else if (low == 1 && up == 1) {
-			// default
-		}
-		else if (low == 0 && up == -1) {
-			label += " [*]";
-		}
-		else if (low == 1 && up == -1) {
-			label += " [+]";
-		}
-		else {
-			String up2 = (up == -1) ? "*" : Integer.toString(up);
-			label += " [" + low + "," + up2 + "]";
-		}
-	
-		return label;
-	}
-
-	public static String editElementLabel(ExtendibleElement element) {
-	
-		String name = element.getName();
-		if (name == null) {
-			name = "";
-		}
-	
-		return name;
-	}
 
 	public static Diagram createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
 

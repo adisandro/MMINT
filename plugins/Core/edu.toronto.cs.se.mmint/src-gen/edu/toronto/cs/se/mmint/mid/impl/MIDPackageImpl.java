@@ -443,6 +443,33 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
+		return extendibleElementEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
+		return extendibleElementEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+		return extendibleElementEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getExtendibleElement__CreateSubtypeUri__String_String() {
 		return extendibleElementEClass.getEOperations().get(1);
 	}
@@ -1139,6 +1166,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING);
 
 		extendibleElementEndpointEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
@@ -1312,6 +1342,13 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		op = initEOperation(getExtendibleElement__ValidateInstanceInEditor__IValidationContext(), this.getIStatus(), "validateInstanceInEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getIValidationContext(), "context", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
+
+		initEOperation(getExtendibleElement__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElement__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getExtendibleElement__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(extendibleElementEndpointEClass, ExtendibleElementEndpoint.class, "ExtendibleElementEndpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpoint_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

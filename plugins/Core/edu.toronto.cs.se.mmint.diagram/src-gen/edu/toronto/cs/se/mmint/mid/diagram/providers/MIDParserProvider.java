@@ -44,7 +44,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.BinaryModelRelSourceModelEndpointLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.library.BinaryModelRelTargetModelEndpointLabelParser;
-import edu.toronto.cs.se.mmint.mid.diagram.library.CustomLabelParser;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDCustomLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementEndpointLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser;
 import edu.toronto.cs.se.mmint.mid.diagram.parsers.MessageFormatParser;
@@ -73,14 +73,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CustomLabelParser modelLabel_5002Parser;
+	private MIDCustomLabelParser modelLabel_5002Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getModelLabel_5002Parser() {
 		if (modelLabel_5002Parser == null) {
-			modelLabel_5002Parser = new CustomLabelParser();
+			modelLabel_5002Parser = new MIDCustomLabelParser();
 		}
 		return modelLabel_5002Parser;
 	}
@@ -103,14 +103,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CustomLabelParser modelLabel_5004Parser;
+	private MIDCustomLabelParser modelLabel_5004Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getModelLabel_5004Parser() {
 		if (modelLabel_5004Parser == null) {
-			modelLabel_5004Parser = new CustomLabelParser();
+			modelLabel_5004Parser = new MIDCustomLabelParser();
 		}
 		return modelLabel_5004Parser;
 	}
@@ -133,14 +133,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CustomLabelParser modelRelLabel_5006Parser;
+	private MIDCustomLabelParser modelRelLabel_5006Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getModelRelLabel_5006Parser() {
 		if (modelRelLabel_5006Parser == null) {
-			modelRelLabel_5006Parser = new CustomLabelParser();
+			modelRelLabel_5006Parser = new MIDCustomLabelParser();
 		}
 		return modelRelLabel_5006Parser;
 	}
@@ -163,14 +163,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CustomLabelParser modelRelLabel_5008Parser;
+	private MIDCustomLabelParser modelRelLabel_5008Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getModelRelLabel_5008Parser() {
 		if (modelRelLabel_5008Parser == null) {
-			modelRelLabel_5008Parser = new CustomLabelParser();
+			modelRelLabel_5008Parser = new MIDCustomLabelParser();
 		}
 		return modelRelLabel_5008Parser;
 	}
@@ -208,14 +208,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CustomLabelParser modelEndpointLabel_6002Parser;
+	private MIDCustomLabelParser modelEndpointLabel_6002Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getModelEndpointLabel_6002Parser() {
 		if (modelEndpointLabel_6002Parser == null) {
-			modelEndpointLabel_6002Parser = new CustomLabelParser();
+			modelEndpointLabel_6002Parser = new MIDCustomLabelParser();
 		}
 		return modelEndpointLabel_6002Parser;
 	}
@@ -238,14 +238,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private CustomLabelParser binaryModelRelLabel_6004Parser;
+	private MIDCustomLabelParser binaryModelRelLabel_6004Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getBinaryModelRelLabel_6004Parser() {
 		if (binaryModelRelLabel_6004Parser == null) {
-			binaryModelRelLabel_6004Parser = new CustomLabelParser();
+			binaryModelRelLabel_6004Parser = new MIDCustomLabelParser();
 		}
 		return binaryModelRelLabel_6004Parser;
 	}

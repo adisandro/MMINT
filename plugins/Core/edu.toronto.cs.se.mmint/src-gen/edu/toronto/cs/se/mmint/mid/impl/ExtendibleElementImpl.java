@@ -565,6 +565,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL:
+				return toMIDCustomPrintLabel();
+			case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL:
+				return toMIDCustomEditLabel();
+			case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING:
+				updateMIDCustomLabel((String)arguments.get(0));
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -998,6 +1005,30 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
 		MID instanceMID = MultiModelRegistry.getMultiModel(this);
 		delete(getUri(), instanceMID);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toMIDCustomPrintLabel() {
+
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toMIDCustomEditLabel() {
+
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void updateMIDCustomLabel(String newLabel) {
+
+		// do nothing
 	}
 
 } //ExtendibleElementImpl
