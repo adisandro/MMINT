@@ -720,14 +720,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementReference" eSuperTypes="#//relationship/ExtendibleElementReference">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="modelElementType"/>
-      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A reference to a model element."/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="modelElementType" value="object.oclIsKindOf(mid::ModelElement)"/>
       </eAnnotations>
       <eOperations name="getObject" lowerBound="1" eType="#//ModelElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
