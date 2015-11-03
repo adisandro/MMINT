@@ -97,6 +97,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected static final String PROPERTY_OUT_UNSATCOUNTLIFTING = "unsatCountLifting";
 	protected static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
 	protected static final String PROPERTY_OUT_SMTENCODINGVARIABLES = "smtEncodingVariables";
+	protected static final String PROPERTY_OUT_TRANSFORMEDCONSTRAINT = "transformedConstraint";
 	private static final String PROPERTY_OUT_CHAINS = "chains";
 	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
 	private static final String PROPERTY_OUT_LITERALS = "literals";
@@ -128,6 +129,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected Set<String> smtEncodingVariables;
 
 	protected boolean timeClassicalEnabled;
+	protected boolean transformedConstraintEnabled;
 	protected long timeClassical;
 	protected long timeLifting;
 	protected int ruleApplicationsClassical;
@@ -135,6 +137,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected int ruleApplicationsNotLifting;
 	protected int satCountLifting;
 	protected int unsatCountLifting;
+	protected String transformedConstraint;
 	protected Map<MAVOElement, Integer> modelObjsChains;
 	protected Map<MAVOElement, Integer> modelObjsLiterals;
 
@@ -148,6 +151,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		transformationRules = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
 		transformationRulesLifting = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
 		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		transformedConstraintEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
 	protected void writeProperties(Properties properties) {
@@ -161,6 +165,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		properties.setProperty(PROPERTY_OUT_UNSATCOUNTLIFTING, String.valueOf(unsatCountLifting));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
+		properties.setProperty(PROPERTY_OUT_TRANSFORMEDCONSTRAINT, transformedConstraint);
 		int[] chains = new int[PROPERTY_OUT_CHAINS_MAX];
 		for (int chain : modelObjsChains.values()) {
 			if (chain >= PROPERTY_OUT_CHAINS_MAX) {
@@ -212,6 +217,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		ruleApplicationsNotLifting = 0;
 		satCountLifting = 0;
 		unsatCountLifting = 0;
+		transformedConstraint = "";
 		modelObjsChains = new HashMap<MAVOElement, Integer>();
 		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
 	}

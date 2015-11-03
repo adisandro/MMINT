@@ -239,6 +239,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
+		if (transformedConstraintEnabled) {
+			transformedConstraint = smtEncoding.toString();
+		}
 
 		// output
 		EObject transformedRootModelObj = null;

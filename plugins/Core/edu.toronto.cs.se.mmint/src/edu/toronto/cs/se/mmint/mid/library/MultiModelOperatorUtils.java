@@ -154,6 +154,7 @@ public class MultiModelOperatorUtils {
 		return property;
 	}
 
+	//TODO MMINT[OPERATOR] Make version to read x.enabled with default to false
 	public static @Nullable Boolean getOptionalBoolProperty(@NonNull Properties properties, @NonNull String propertyName, @Nullable Boolean defaultValue) {
 
 		try {
