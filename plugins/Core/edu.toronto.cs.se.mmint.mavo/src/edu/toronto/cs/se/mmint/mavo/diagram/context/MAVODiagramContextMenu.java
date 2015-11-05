@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
-import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 
 /**
@@ -68,11 +67,6 @@ public class MAVODiagramContextMenu extends ContributionItem {
 
 	@Override
 	public void fill(Menu menu, int index) {
-
-		// prevent this menu from being created twice
-		if (menu.isVisible()) {
-			return;
-		}
 
 		// check selection
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getSelection();

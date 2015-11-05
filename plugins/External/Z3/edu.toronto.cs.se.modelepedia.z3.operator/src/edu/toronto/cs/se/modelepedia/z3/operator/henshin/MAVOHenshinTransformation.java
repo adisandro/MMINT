@@ -294,13 +294,15 @@ matchesN:
 		if (transformedRootModelObj == null) {
 			throw new MMINTException("Can't retrieve transformed root model object");
 		}
+		Model transformedModelType = MultiModelTypeRegistry.getType(
+			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		String transformedMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+			MultiModelUtils.replaceFileExtensionInUri(
+				MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+				transformedModelType.getFileExtension()),
 			true,
 			false);
 		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
-		Model transformedModelType = MultiModelTypeRegistry.getType(
-			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			ModelOrigin.CREATED,
