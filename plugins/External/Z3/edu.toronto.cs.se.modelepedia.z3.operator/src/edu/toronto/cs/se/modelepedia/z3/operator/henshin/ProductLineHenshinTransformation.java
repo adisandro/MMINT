@@ -183,7 +183,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
+	protected int matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
@@ -204,6 +204,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				ruleApplicationsNotLifting++;
 			}
 		}
+
+		return smtEncoding.length();
 	}
 
 	@Override

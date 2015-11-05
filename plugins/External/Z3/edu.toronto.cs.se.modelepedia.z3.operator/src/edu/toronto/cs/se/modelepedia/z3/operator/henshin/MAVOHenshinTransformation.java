@@ -212,10 +212,9 @@ matchesN:
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
+	protected int matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
-		int checkpointA = smtEncoding.length();
 		TransformationApplicabilityCondition condition;
 		while ((condition = checkApplicabilityConditions(rule, engine, graph, z3IncSolver, checkpointA)) != null) {
 			application.setRule(condition.getMatchedRule());
@@ -251,6 +250,8 @@ matchesN:
 				ruleApplicationsNotLifting++;
 			}
 		}
+
+		return checkpointA;
 	}
 
 	@Override

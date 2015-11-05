@@ -45,7 +45,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
@@ -323,7 +322,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		);
 
 		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(applicabilityCondition, Z3IncrementalBehavior.POP);
-		if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
+		if (z3ModelResult.getZ3Bool().toBoolean()) {
 			z3IncSolver.finalizePreviousPush();
 			satCountLifting++;
 			return true;
@@ -539,7 +538,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 	}
 
-	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver);
+	protected abstract int matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA);
 
 	protected void doTransformationLifting(Module module, Engine engine, EGraph graph) {
 
@@ -553,9 +552,10 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 			matchAndTransformClassical(rule, engine, graph, true);
 		}
 		// run transformation rules marked as lifted
+		int checkpointA = smtEncoding.length();
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchAndTransformLifting(rule, engine, graph, z3IncSolver);
+			checkpointA = matchAndTransformLifting(rule, engine, graph, z3IncSolver, checkpointA);
 		}
 
 		timeLifting = System.nanoTime() - startTime;
