@@ -191,7 +191,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
 			z3Model = z3IncSolver.checkSatAndGetModel(smtConcretizationConstraint, Z3IncrementalBehavior.NORMAL);
 		}
-		while (z3Model.getZ3Bool().toBoolean());
+		while (z3Model.getZ3Bool().isSAT());
 
 		return numSolutions;
 	}

@@ -77,11 +77,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 			if (smtEncodingVariables.contains(mavoModelObj.getFormulaVariable())) {
 				continue;
 			}
-			smtEncoding.append(Z3Utils.SMTLIB_CONST);
-			smtEncoding.append(mavoModelObj.getFormulaVariable());
-			smtEncoding.append(" ");
-			smtEncoding.append(Z3Utils.SMTLIB_TYPE_BOOL);
-			smtEncoding.append(Z3Utils.SMTLIB_PREDICATE_END);
+			smtEncoding.append(Z3Utils.constant(mavoModelObj.getFormulaVariable(), Z3Utils.SMTLIB_TYPE_BOOL));
 		}
 	}
 

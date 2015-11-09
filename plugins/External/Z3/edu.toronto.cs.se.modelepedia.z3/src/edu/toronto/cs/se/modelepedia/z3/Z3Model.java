@@ -32,7 +32,7 @@ public class Z3Model {
 			}
 		}
 
-		public boolean toBoolean() {
+		public boolean isSAT() {
 
 			switch(this) {
 				case SAT:
