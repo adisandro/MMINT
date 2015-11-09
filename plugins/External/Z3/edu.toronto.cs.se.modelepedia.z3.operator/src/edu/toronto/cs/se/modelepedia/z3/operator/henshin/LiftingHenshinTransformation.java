@@ -310,7 +310,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
-		z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA), Z3IncrementalBehavior.PUSH);
 		String applicabilityCondition = Z3Utils.assertion(
 			Z3Utils.equality(
 				Z3Utils.and(
@@ -320,14 +319,11 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 				Z3Utils.SMTLIB_TRUE
 			)
 		);
-
-		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(applicabilityCondition, Z3IncrementalBehavior.POP);
+		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA) + applicabilityCondition, Z3IncrementalBehavior.POP_IF_UNSAT);
 		if (z3ModelResult.getZ3Bool().isSAT()) {
-			z3IncSolver.finalizePreviousPush();
 			satCountLifting++;
 			return true;
 		}
-		z3IncSolver.revertToPreviousPush();
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		unsatCountLifting++;
 		return false;
