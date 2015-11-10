@@ -16,11 +16,11 @@ import com.microsoft.z3.Status;
 
 public class Z3Model {
 
-	public enum Z3Bool {
+	public enum Z3Result {
 
 		SAT, UNSAT, UNKNOWN;
 
-		public static Z3Bool toZ3Bool(Status z3Status) {
+		public static Z3Result toZ3Result(Status z3Status) {
 
 			switch (z3Status) {
 				case UNSATISFIABLE:
@@ -46,24 +46,24 @@ public class Z3Model {
 
 	}
 
-	private Z3Bool z3Bool;
+	private Z3Result z3Result;
 	private Model z3InternalModel;
 
-	public Z3Model(Z3Bool z3Bool, Model z3InternalModel) {
+	public Z3Model(Z3Result z3Bool, Model z3InternalModel) {
 
-		this.z3Bool = z3Bool;
+		this.z3Result = z3Bool;
 		this.z3InternalModel = z3InternalModel;
 	}
 
 	public Z3Model(Status z3Status, Model z3InternalModel) {
 
-		this.z3Bool = Z3Bool.toZ3Bool(z3Status);
+		this.z3Result = Z3Result.toZ3Result(z3Status);
 		this.z3InternalModel = z3InternalModel;
 	}
 
-	public Z3Bool getZ3Bool() {
+	public Z3Result getZ3Result() {
 
-		return z3Bool;
+		return z3Result;
 	}
 
 	public Model getZ3InternalModel() {

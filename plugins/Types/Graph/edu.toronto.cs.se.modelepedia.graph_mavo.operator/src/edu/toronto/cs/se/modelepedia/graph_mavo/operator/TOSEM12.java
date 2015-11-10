@@ -20,12 +20,14 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -41,7 +43,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
@@ -72,7 +74,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private boolean timeMAVOAllsatEnabled;
 	// state
 	private MAVOTruthValue resultMAVO;
-	private List<MAVOElement> mayModelObjs;
+	private Map<String, MAVOElement> mayModelObjs;
 	private String smtEncoding;
 	private String smtConcretizationsConstraint;
 	private Set<String> smtConcretizations;
@@ -136,7 +138,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		String smtConcretization = "";
 		Map<String, Boolean> wellFormedModelObjs = new HashMap<String, Boolean>();
-		for (MAVOElement mayModelObj : mayModelObjs) {
+		for (MAVOElement mayModelObj : mayModelObjs.values()) {
 			String mayModelObjSmtEncoding = (mayModelObj instanceof Node) ?
 				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable()) :
 				Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
@@ -366,15 +368,15 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		long startTime = System.nanoTime();
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		Z3Bool firstZ3Bool = null;
+		Z3Result firstZ3Bool = null;
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 		for (String smtConcretization : smtConcretizations) {
 			Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConcretization) + Z3Utils.assertion(smtProperty), Z3IncrementalBehavior.POP);
-			Z3Bool z3Bool = z3Model.getZ3Bool();
+			Z3Result z3Bool = z3Model.getZ3Result();
 			if (firstZ3Bool == null) { // first run only
 				firstZ3Bool = z3Bool;
 			}
-			if (z3Bool == Z3Bool.UNKNOWN || z3Bool != firstZ3Bool) { // == result never changes
+			if (z3Bool == Z3Result.UNKNOWN || z3Bool != firstZ3Bool) { // == result never changes
 				break;
 			}
 		}
@@ -393,8 +395,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 	private void optimizeBackbone(Set<String> initialZ3ModelElemFormulaVars, Set<String> currentZ3ModelElemFormulaVars, Set<String> outOfBackboneFormulaVars) {
 
-		for (MAVOElement mayModelObj : mayModelObjs) {
-			String mayModelObjFormulaVar = mayModelObj.getFormulaVariable();
+		for (String mayModelObjFormulaVar : mayModelObjs.keySet()) {
 			if (optimizeBackboneCondition(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, mayModelObjFormulaVar)) {
 				outOfBackboneFormulaVars.add(mayModelObjFormulaVar);
 			}
@@ -406,7 +407,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		long startTime = System.nanoTime();
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty));
-		if (z3Model.getZ3Bool() != Z3Bool.SAT) {
+		if (z3Model.getZ3Result() != Z3Result.SAT) {
 			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
 		}
 		Set<String> initialZ3ModelElemFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
@@ -414,14 +415,14 @@ public class TOSEM12 extends RandomOperatorImpl {
 			.collect(Collectors.toSet());
 		Set<String> currentZ3ModelElemFormulaVars;
 		Set<String> outOfBackboneFormulaVars = new HashSet<String>();
-		for (MAVOElement mayModelObj : mayModelObjs) {
+		for (MAVOElement mayModelObj : mayModelObjs.values()) {
 			String mayModelObjFormulaVar = mayModelObj.getFormulaVariable();
 			if (outOfBackboneFormulaVars.contains(mayModelObjFormulaVar)) { // optimization
 				continue;
 			}
 			String mayModelObjFormula = Z3Utils.predicate((mayModelObj instanceof Node) ? Z3Utils.SMTLIB_NODE_FUNCTION : Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObjFormulaVar);
 			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(mayModelObjFormula), Z3IncrementalBehavior.POP);
-			if (z3Model.getZ3Bool() != Z3Bool.SAT) {
+			if (z3Model.getZ3Result() != Z3Result.SAT) {
 				continue;
 			}
 			currentZ3ModelElemFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
@@ -432,7 +433,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 				continue;
 			}
 			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(mayModelObjFormula)), Z3IncrementalBehavior.POP);
-			if (z3Model.getZ3Bool() != Z3Bool.SAT) {
+			if (z3Model.getZ3Result() != Z3Result.SAT) {
 				continue;
 			}
 			currentZ3ModelElemFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
@@ -445,29 +446,23 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOBackbone = endTime - startTime;
 	}
 
-	//TODO MMINT[TOSEM] Just use Z3 reasoner's allsat
-	private void doMAVOAllsatPropertyCheck() {
+	private void doMAVOAllsatPropertyCheck(Graph rootMayModelObj) {
 
-		long startTime = System.nanoTime();
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		String smtAllsatEncoding = smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty);
-		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty));
-		while (z3Model.getZ3Bool() == Z3Bool.SAT) {
-			Set<String> z3ModelElemFormulaVars = new HashSet<String>();
-			z3ModelParser.getZ3MAVOModelObjects(z3Model).values().forEach(formulaVars -> z3ModelElemFormulaVars.addAll(formulaVars));
-			String smtConcretizationConstraint = "";
-			for (MAVOElement mayModelObj : mayModelObjs) {
-				String smtConcretizationElem = Z3Utils.predicate((mayModelObj instanceof Node) ? Z3Utils.SMTLIB_NODE_FUNCTION : Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
-				smtConcretizationConstraint += (z3ModelElemFormulaVars.contains(mayModelObj.getFormulaVariable())) ? 
-					Z3Utils.not(smtConcretizationElem) :
-					smtConcretizationElem;
-			}
-			smtAllsatEncoding += Z3Utils.assertion(smtConcretizationConstraint);
-			z3Model = z3IncSolver.checkSatAndGetModel(smtAllsatEncoding, Z3IncrementalBehavior.NORMAL);
+		Z3ReasoningEngine z3Reasoner;
+		try {
+			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			long startTime = System.nanoTime();
+			z3Reasoner.allSAT(
+				smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty),
+				z3ModelParser,
+				mayModelObjs,
+				rootMayModelObj);
+			timeMAVOAllsat = System.nanoTime() - startTime;
 		}
-		long endTime = System.nanoTime();
-
-		timeMAVOAllsat = endTime - startTime;
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Can't find or run Z3 reasoner, skipping allsat", e);
+			return;
+		}
 	}
 
 	@Override
@@ -477,10 +472,11 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		// input
 		Model randomGraphModel = inputsByName.get(IN_MODEL);
+		Graph rootMayModelObj = (Graph) randomGraphModel.getEMFInstanceRoot();
 
 		// run
 		generateSMTLIBConcretizations();
-		generateSMTLIBGroundedProperty((Graph) randomGraphModel.getEMFInstanceRoot());
+		generateSMTLIBGroundedProperty(rootMayModelObj);
 		doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
 			doClassicalPropertyCheck();
@@ -491,7 +487,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 				doMAVOBackbonePropertyCheck();
 			}
 			if (timeMAVOAllsatEnabled) {
-				doMAVOAllsatPropertyCheck();
+				doMAVOAllsatPropertyCheck(rootMayModelObj);
 			}
 			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {
 				speedupMAVOAllsatMAVOBackbone = ((double) timeMAVOAllsat) / timeMAVOBackbone;

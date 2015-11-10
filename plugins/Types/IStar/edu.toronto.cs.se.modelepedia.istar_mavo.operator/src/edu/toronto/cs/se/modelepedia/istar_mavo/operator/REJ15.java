@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
@@ -213,7 +213,7 @@ public class REJ15 extends FASE14 {
 		}
 		if (timeTargetsEnabled) {
 			Z3Model z3Model = doTargets(z3IncSolver);
-			if (targets == Z3Bool.SAT) {
+			if (targets == Z3Result.SAT) {
 				if (timeRNFEnabled) {
 					doRNF(z3IncSolver, z3Model);
 				}

@@ -144,7 +144,7 @@ public class Z3IncrementalSolver {
 			}
 			// run
 			Z3Model z3Model = runCheckSatAndGetModel(smtEncoding);
-			if (z3Model.getZ3Bool().isSAT()) {
+			if (z3Model.getZ3Result().isSAT()) {
 				switch (incBehavior) {
 					case NORMAL:
 					case POP_IF_UNSAT:
@@ -164,7 +164,7 @@ public class Z3IncrementalSolver {
 			// pop
 			if (
 				incBehavior == Z3IncrementalBehavior.POP ||
-				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && !z3Model.getZ3Bool().isSAT())
+				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && !z3Model.getZ3Result().isSAT())
 			) {
 				solver.pop();
 			}

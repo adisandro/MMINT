@@ -39,7 +39,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may alternative", e);
@@ -54,7 +54,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on var domain", e);
@@ -69,7 +69,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may model object", e);
@@ -83,7 +83,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO decision highlighting", e);
@@ -97,7 +97,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO collection highlighting", e);
@@ -111,7 +111,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO element highlighting", e);

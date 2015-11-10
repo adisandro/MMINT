@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.z3.reasoning;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,7 +47,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
@@ -84,10 +85,10 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint) {
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
-		boolean constraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
+		boolean constraintTruthValue = z3Model.getZ3Result() == Z3Result.SAT;
 		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
 		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
-		boolean notConstraintTruthValue = z3Model.getZ3Bool() == Z3Bool.SAT;
+		boolean notConstraintTruthValue = z3Model.getZ3Result() == Z3Result.SAT;
 		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
 
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
@@ -148,13 +149,11 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return true;
 	}
 
-	public int allSATWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Map<String, MAVOElement> mavoModelObjs, MAVOModel rootMavoModelObj) throws MMINTException {
+	public Set<String> allSATWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Map<String, MAVOElement> mavoModelObjs, MAVOModel rootMavoModelObj) throws MMINTException {
 
-		int numSolutions = 0;
-
+		Set<String> smtConcretizations = new HashSet<>();
 		do {
-			numSolutions++;
-			String smtConcretizationConstraint = "";
+			String smtConcretization = "";
 			Map<String, Set<String>> z3ModelObjs = z3ModelParser.getZ3MAVOModelObjects(z3Model);
 			for (Entry<String, MAVOElement> mavoModelObjEntry : mavoModelObjs.entrySet()) {
 				MAVOElement mavoModelObj = mavoModelObjEntry.getValue();
@@ -162,7 +161,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				int counterMS = 0;
 				Set<String> mergedV = null;
 				for (Set<String> formulaVars : z3ModelObjs.values()) {
-					//TODO MMINT[Z3] Understand why we don't break here, is it only because of counterMS?
+					//TODO MMINT[Z3] Understand why we don't break here, is it only to increase counterMS in the S case?
 					if (formulaVars.contains(formulaVar)) {
 						counterMS++;
 						mergedV = formulaVars;
@@ -171,11 +170,11 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				boolean isNegation;
 				if (mavoModelObj.isMay()) {
 					isNegation = (counterMS == 0);
-					smtConcretizationConstraint += Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mavoModelObj, z3ModelParser.isMayOnly(), isNegation);
+					smtConcretization += Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mavoModelObj, z3ModelParser.isMayOnly(), isNegation);
 				}
 				if (mavoModelObj.isSet() && counterMS > 0) {
 					isNegation = (counterMS > 1);
-					smtConcretizationConstraint += Z3MAVOUtils.getSMTLIBSetModelObjectConstraint(mavoModelObj, isNegation);
+					smtConcretization += Z3MAVOUtils.getSMTLIBSetModelObjectConstraint(mavoModelObj, isNegation);
 				}
 				if (mavoModelObj.isVar() && counterMS > 0) {
 					isNegation = (mergedV.size() > 1);
@@ -185,18 +184,19 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 							continue;
 						}
 					}
-					smtConcretizationConstraint += Z3MAVOUtils.getSMTLIBVarModelObjectConstraint(mavoModelObj, mergedV, isNegation);
+					smtConcretization += Z3MAVOUtils.getSMTLIBVarModelObjectConstraint(mavoModelObj, mergedV, isNegation);
 				}
 			}
-			smtConcretizationConstraint = Z3Utils.assertion(Z3Utils.not(Z3Utils.and(smtConcretizationConstraint)));
-			z3Model = z3IncSolver.checkSatAndGetModel(smtConcretizationConstraint, Z3IncrementalBehavior.NORMAL);
+			smtConcretization = Z3Utils.and(smtConcretization);
+			smtConcretizations.add(smtConcretization);
+			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConcretization)), Z3IncrementalBehavior.NORMAL);
 		}
-		while (z3Model.getZ3Bool().isSAT());
+		while (z3Model.getZ3Result().isSAT());
 
-		return numSolutions;
+		return smtConcretizations;
 	}
 
-	public int allSAT(@NonNull String smtEncoding, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Map<String, MAVOElement> mavoModelObjs, @NonNull MAVOModel rootMavoModelObj) throws MMINTException {
+	public Set<String> allSAT(@NonNull String smtEncoding, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Map<String, MAVOElement> mavoModelObjs, @NonNull MAVOModel rootMavoModelObj) throws MMINTException {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
@@ -204,15 +204,15 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, mavoModelObjs, rootMavoModelObj);
 	}
 
-	public int allSAT(@NonNull Model model) throws MMINTException {
+	public Set<String> allSAT(@NonNull Model model) throws MMINTException {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
 			z3ModelParser = generateSMTLIBEncoding(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, evaluating to 0", e);
-			return 0;
+			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, no concretizations evaluated", e);
+			return new HashSet<>();
 		}
 		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
 

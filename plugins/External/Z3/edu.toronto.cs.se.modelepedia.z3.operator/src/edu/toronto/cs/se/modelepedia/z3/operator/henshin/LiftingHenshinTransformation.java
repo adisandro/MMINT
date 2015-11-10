@@ -320,7 +320,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 			)
 		);
 		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA) + applicabilityCondition, Z3IncrementalBehavior.POP_IF_UNSAT);
-		if (z3ModelResult.getZ3Bool().isSAT()) {
+		if (z3ModelResult.getZ3Result().isSAT()) {
 			satCountLifting++;
 			return true;
 		}
