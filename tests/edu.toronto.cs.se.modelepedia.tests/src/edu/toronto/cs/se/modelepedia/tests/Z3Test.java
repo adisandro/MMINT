@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.tests;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -57,7 +58,7 @@ public class Z3Test extends MMINTTest {
 		ecore2smt.start(inputs, new BasicEList<>(), outputMIDsByName, instanceMID);
 		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
 		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
-		Set<String> concretizations = z3Reasoner.allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj), rootMavoModelObj);
+		Set<String> concretizations = z3Reasoner.allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()), rootMavoModelObj);
 		Assert.assertEquals(46, concretizations.size());
 	}
 

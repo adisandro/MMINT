@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -53,9 +54,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -99,39 +97,6 @@ public class MAVORefiner {
 		}
 
 		return modelObjsToRefine;
-	}
-
-	/**
-	 * Calculates the refinement. 
-	 * @param graph
-	 * @return
-	 * @throws MMINTException 
-	 */
-	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull String smtEncoding) throws MMINTException {
-
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		if (z3Model.getZ3Result() != Z3Result.SAT) {
-			throw new MMINTException("Refinement is UNSAT");
-		}
-		Map<String, MAVOTruthValue> refinedTruthValues = new HashMap<>();
-		// for each element, assert it and check
-		for (MAVOElement modelObj : modelObjsToRefine.values()) {
-			String formulaVar = modelObj.getFormulaVariable();
-			String smtConstraint;
-			try {
-				//TODO MMINT[MAVO] Get this from the model parser
-				smtConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(modelObj, true, false);
-			}
-			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);
-				continue;
-			}
-			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
-			refinedTruthValues.put(formulaVar, refinedTruthValue);
-		}
-
-		return refinedTruthValues;
 	}
 
 	/**
@@ -270,7 +235,7 @@ public class MAVORefiner {
 		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.getModelFile(refinedModelUri, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
-		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);
+		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, new HashSet<>(modelObjsToRefine.values()));
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
 		if (mayAlternative != null) {
 			refineMayDecision(refinedRootModelObj, mayAlternative);

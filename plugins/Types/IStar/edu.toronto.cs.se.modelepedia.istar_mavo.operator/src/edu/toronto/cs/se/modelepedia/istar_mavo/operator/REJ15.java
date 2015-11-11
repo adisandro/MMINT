@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 
@@ -103,7 +104,7 @@ public class REJ15 extends FASE14 {
 		Z3ReasoningEngine z3Reasoner;
 		try {
 			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
-			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, mavoModelObjs, istar);
+			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, new HashSet<>(mavoModelObjs.values()), istar).size();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping allSAT", e);

@@ -456,7 +456,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			z3Reasoner.allSAT(
 				smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty),
 				z3ModelParser,
-				mayModelObjs,
+				new HashSet<>(mayModelObjs.values()),
 				rootMayModelObj);
 			timeMAVOAllsat = System.nanoTime() - startTime;
 		}
