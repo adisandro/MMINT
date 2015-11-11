@@ -85,10 +85,10 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint) {
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
-		boolean constraintTruthValue = z3Model.getZ3Result() == Z3Result.SAT;
+		boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
 		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
-		boolean notConstraintTruthValue = z3Model.getZ3Result() == Z3Result.SAT;
+		boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
 
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);

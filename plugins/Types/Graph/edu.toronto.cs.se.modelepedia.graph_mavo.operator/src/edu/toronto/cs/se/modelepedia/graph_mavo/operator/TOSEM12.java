@@ -46,6 +46,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
+import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class TOSEM12 extends RandomOperatorImpl {
@@ -420,7 +421,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			if (outOfBackboneFormulaVars.contains(mayModelObjFormulaVar)) { // optimization
 				continue;
 			}
-			String mayModelObjFormula = Z3Utils.predicate((mayModelObj instanceof Node) ? Z3Utils.SMTLIB_NODE_FUNCTION : Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObjFormulaVar);
+			String mayModelObjFormula = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mayModelObj, true, false);
 			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(mayModelObjFormula), Z3IncrementalBehavior.POP);
 			if (z3Model.getZ3Result() != Z3Result.SAT) {
 				continue;

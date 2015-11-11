@@ -114,11 +114,10 @@ public class MAVORefiner {
 		if (z3Model.getZ3Result() != Z3Result.SAT) {
 			throw new MMINTException("Refinement is UNSAT");
 		}
-		Map<String, MAVOTruthValue> refinedTruthValues = new HashMap<String, MAVOTruthValue>();
+		Map<String, MAVOTruthValue> refinedTruthValues = new HashMap<>();
 		// for each element, assert it and check
-		for (Entry<String, MAVOElement> entry : modelObjsToRefine.entrySet()) {
-			String formulaVar = entry.getKey();
-			MAVOElement modelObj = entry.getValue();
+		for (MAVOElement modelObj : modelObjsToRefine.values()) {
+			String formulaVar = modelObj.getFormulaVariable();
 			String smtConstraint;
 			try {
 				//TODO MMINT[MAVO] Get this from the model parser
@@ -137,8 +136,6 @@ public class MAVORefiner {
 
 	/**
 	 * Takes a map of model elements and their new MAVOTruthValues and changes the model accordingly.
-	 * @param graph
-	 * @param refinedModel
 	 */
 	private void refineModel(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull Map<String, MAVOTruthValue> refinedTruthValues, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
@@ -271,7 +268,7 @@ public class MAVORefiner {
 		// refine
 		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.getModelFile(model.getUri(), true);
 		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.getModelFile(refinedModelUri, true);
-		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<MAVOElement, MAVOElement>();
+		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
