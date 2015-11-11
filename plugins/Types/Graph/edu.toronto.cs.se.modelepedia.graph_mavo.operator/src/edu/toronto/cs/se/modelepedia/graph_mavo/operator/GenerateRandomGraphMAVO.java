@@ -119,7 +119,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 
 	private void addMAVOElements(List<MAVOElement> mavoableModelObjs, EStructuralFeature mavoFeature, double mavoPerc) {
 
-		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<MAVOElement>(mavoableModelObjs);
+		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<>(mavoableModelObjs);
 		MAVOElement mavoModelObj;
 		int numMavo = (int) Math.round(mavoPerc * mavoableModelObjs.size());
 		for (int i = 0; i < numMavo; i++) {

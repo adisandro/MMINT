@@ -61,7 +61,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	private Z3Model z3ConstraintModel;
 	private Z3Model z3NotConstraintModel;
 
-	private @NonNull Z3MAVOModelParser generateSMTLIBEncoding(@NonNull Model model) throws Exception {
+	public @NonNull Z3MAVOModelParser generateSMTLIBEncoding(@NonNull Model model) throws Exception {
 
 		if (!(model.getEMFInstanceRoot() instanceof MAVOModel)) {
 			//TODO MMINT[Z3] Support non-mavo models (create acceleo transformation, check constraint once)

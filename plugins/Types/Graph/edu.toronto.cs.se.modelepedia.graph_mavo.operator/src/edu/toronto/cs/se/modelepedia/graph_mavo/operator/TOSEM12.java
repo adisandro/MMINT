@@ -26,9 +26,10 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
@@ -44,7 +45,6 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
@@ -64,8 +64,6 @@ public class TOSEM12 extends RandomOperatorImpl {
 	// constants
 	private static final String Z3_LANGUAGE = "SMTLIB";
 	private static final String Z3_NAME = "Z3 Solver";
-	private static final String PREVIOUS_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
-	private static final String PREVIOUS_OPERATOR2_URI = "http://se.cs.toronto.edu/modelepedia/Operator_GenerateRandomGraphMAVO";
 
 	// input
 	private int numConcretizations;
@@ -95,23 +93,27 @@ public class TOSEM12 extends RandomOperatorImpl {
 		super.readInputProperties(inputProperties);
 		numConcretizations = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS);
 		propertyId = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_PROPERTYID);
-		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeClassicalEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
-	@Override
-	public void init() throws MMINTException {
+	private MAVOModel init(Model mayModel) throws Exception {
 
 		// state
-		EcoreMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
-			(EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(EcoreMAVOToSMTLIB) getPreviousOperator();
-		GenerateRandomGraphMAVO previousOperator2 = (GenerateRandomGraphMAVO) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR2_URI);
-		resultMAVO = MAVOTruthValue.ERROR;
-		mayModelObjs = previousOperator2.getMAVOModelObjects();
-		z3ModelParser = previousOperator.getZ3MAVOModelParser();
+		MAVOModel rootMayModelObj = (MAVOModel) mayModel.getEMFInstanceRoot();
+		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
+		if (previousOperator != null) {
+			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
+			generateSMTLIBConcretizations();
+			generateSMTLIBGroundedProperty((Graph) rootMayModelObj);
+		}
+		else {
+			mayModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(mayModel);
+		}
+		z3ModelParser = ((Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner(Z3_LANGUAGE)).generateSMTLIBEncoding(mayModel);
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
+		resultMAVO = MAVOTruthValue.ERROR;
 		smtConcretizationsConstraint = "";
 		smtConcretizations = new HashSet<String>();
 		smtProperty = "";
@@ -123,6 +125,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOAllsat = -1;
 		speedupClassicalMAVO = -1;
 		speedupMAVOAllsatMAVOBackbone = -1;
+
+		return rootMayModelObj;
 	}
 
 	private void writeProperties(Properties properties) {
@@ -447,7 +451,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOBackbone = endTime - startTime;
 	}
 
-	private void doMAVOAllsatPropertyCheck(Graph rootMayModelObj) {
+	private void doMAVOAllsatPropertyCheck(MAVOModel rootMayModelObj) {
 
 		Z3ReasoningEngine z3Reasoner;
 		try {
@@ -472,12 +476,10 @@ public class TOSEM12 extends RandomOperatorImpl {
 			Map<String, MultiModel> outputMIDsByName) throws Exception {
 
 		// input
-		Model randomGraphModel = inputsByName.get(IN_MODEL);
-		Graph rootMayModelObj = (Graph) randomGraphModel.getEMFInstanceRoot();
+		Model mayModel = inputsByName.get(IN_MODEL);
+		MAVOModel rootMayModelObj = this.init(mayModel);
 
 		// run
-		generateSMTLIBConcretizations();
-		generateSMTLIBGroundedProperty(rootMayModelObj);
 		doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
 			doClassicalPropertyCheck();
@@ -501,7 +503,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		MultiModelOperatorUtils.writePropertiesFile(
 			outputProperties,
 			this,
-			randomGraphModel,
+			mayModel,
 			getInputSubdir(),
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);

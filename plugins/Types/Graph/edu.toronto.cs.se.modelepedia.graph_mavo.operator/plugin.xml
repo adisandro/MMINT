@@ -47,10 +47,10 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="random">
+	                 name="model">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
 	           </typeEndpoint>
             </parameter>
          </inputs>
