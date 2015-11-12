@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
@@ -223,12 +224,21 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 	}
 
-	public @NonNull Map<String, MAVOTruthValue> mayBackboneWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Set<MAVOElement> mayModelObjs) {
+	public @NonNull Map<String, MAVOTruthValue> mayBackboneWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @Nullable Z3MAVOModelParser z3ModelParser, @Nullable Z3Model z3Model, @NonNull Set<MAVOElement> mayModelObjs) {
 
+		Set<String> baseline = null;
+		if (z3ModelParser != null && z3Model != null) {
+			baseline = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
+				.flatMap(Set::stream)
+				.collect(Collectors.toSet());
+		}
 		Map<String, MAVOTruthValue> backboneTruthValues = new HashMap<>();
-		// for each may element, assert it and check
+		// for each may element, assert it and its negation
 		for (MAVOElement mayModelObj : mayModelObjs) {
 			String formulaVar = mayModelObj.getFormulaVariable();
+			if (backboneTruthValues.containsKey(formulaVar)) { // optimized
+				continue;
+			}
 			String smtConstraint;
 			try {
 				smtConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mayModelObj, true, false);
@@ -237,14 +247,28 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
 				continue;
 			}
+			//TODO Optimizations:
+			// 1) check for constraint
+			// 1bis) assign baseline if not done before, only if check 1 is SAT
+			// 2) get model elements, if one is not in baseline or one in baseline is not here, then that element is MAYBE
+			// 2bis) same reasoning for the current model element
+			// 3) check for not constraint, only if we can't say anything about the current model element 
+			// 4) same as 2)
 			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
+//			Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
+//			boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
+//			z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
+//			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
+//			boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
+//			z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
+//			return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
 			backboneTruthValues.put(formulaVar, backboneTruthValue);
 		}
 
 		return backboneTruthValues;
 	}
 
-	public @NonNull Map<String, MAVOTruthValue> mayBackbone(@NonNull String smtEncoding, @NonNull Set<MAVOElement> mayModelObjs) {
+	public @NonNull Map<String, MAVOTruthValue> mayBackbone(@NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser, @NonNull Set<MAVOElement> mayModelObjs) {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
@@ -252,7 +276,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return new HashMap<>();
 		}
 
-		return mayBackboneWithSolver(z3IncSolver, mayModelObjs);
+		return mayBackboneWithSolver(z3IncSolver, z3ModelParser, z3Model, mayModelObjs);
 	}
 
 	public @NonNull Map<String, MAVOTruthValue> mayBackbone(@NonNull Model model) {
@@ -263,7 +287,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				throw new MMINTException("The backbone is for may models only");
 			}
 			MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
-			return mayBackbone(z3ModelParser.getSMTLIBEncoding(), new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()));
+			return mayBackbone(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()));
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, returning 0 backbone elements", e);
@@ -295,7 +319,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		String smtEncoding = z3ModelParser.getSMTLIBEncoding() + Z3Utils.assertion(model.getConstraint().getImplementation());
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
-			return refiner.refine(model, modelDiagram, null, smtEncoding);
+			return refiner.refine(model, modelDiagram, null, smtEncoding, z3ModelParser);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Can't refine the model by constraint, aborting (some incomplete result could appear in your instance MID)", e);
@@ -345,7 +369,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
-			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding);
+			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding, null);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Can't refine the model by may alternative, aborting (some incomplete result could appear in your instance MID)", e);
@@ -369,7 +393,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
-			return refiner.refine(model, modelDiagram, null, smtEncoding);
+			return refiner.refine(model, modelDiagram, null, smtEncoding, null);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Can't refine the model by may model objects, aborting (some incomplete result could appear in your instance MID)", e);
