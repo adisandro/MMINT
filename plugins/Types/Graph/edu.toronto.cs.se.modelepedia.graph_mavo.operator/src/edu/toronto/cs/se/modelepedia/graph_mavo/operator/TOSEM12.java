@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -46,7 +44,6 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavio
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
-import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class TOSEM12 extends RandomOperatorImpl {
@@ -390,65 +387,21 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeClassical = endTime - startTime;
 	}
 
-	private boolean optimizeBackboneCondition(Set<String> initialZ3ModelElemFormulaVars, Set<String> currentZ3ModelElemFormulaVars, String mayModelObjFormulaVar) {
-
-		if (initialZ3ModelElemFormulaVars.contains(mayModelObjFormulaVar) != currentZ3ModelElemFormulaVars.contains(mayModelObjFormulaVar)) {
-			return true;
-		}
-		return false;
-	}
-
-	private void optimizeBackbone(Set<String> initialZ3ModelElemFormulaVars, Set<String> currentZ3ModelElemFormulaVars, Set<String> outOfBackboneFormulaVars) {
-
-		for (String mayModelObjFormulaVar : mayModelObjs.keySet()) {
-			if (optimizeBackboneCondition(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, mayModelObjFormulaVar)) {
-				outOfBackboneFormulaVars.add(mayModelObjFormulaVar);
-			}
-		}
-	}
-
 	private void doMAVOBackbonePropertyCheck() throws MMINTException {
 
-		long startTime = System.nanoTime();
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty));
-		if (z3Model.getZ3Result() != Z3Result.SAT) {
-			throw new MMINTException("MAVO Property checking was SAT but now backbone baseline is not.");
+		Z3ReasoningEngine z3Reasoner;
+		try {
+			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			long startTime = System.nanoTime();
+			z3Reasoner.mayBackbone(
+				smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty),
+				z3ModelParser,
+				new HashSet<>(mayModelObjs.values()));
+				timeMAVOBackbone = System.nanoTime() - startTime;
 		}
-		Set<String> initialZ3ModelElemFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
-			.flatMap(formulaVars -> formulaVars.stream())
-			.collect(Collectors.toSet());
-		Set<String> currentZ3ModelElemFormulaVars;
-		Set<String> outOfBackboneFormulaVars = new HashSet<String>();
-		for (MAVOElement mayModelObj : mayModelObjs.values()) {
-			String mayModelObjFormulaVar = mayModelObj.getFormulaVariable();
-			if (outOfBackboneFormulaVars.contains(mayModelObjFormulaVar)) { // optimization
-				continue;
-			}
-			String mayModelObjFormula = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(mayModelObj, true, false);
-			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(mayModelObjFormula), Z3IncrementalBehavior.POP);
-			if (z3Model.getZ3Result() != Z3Result.SAT) {
-				continue;
-			}
-			currentZ3ModelElemFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
-				.flatMap(formulaVars -> formulaVars.stream())
-				.collect(Collectors.toSet());
-			optimizeBackbone(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, outOfBackboneFormulaVars);
-			if (optimizeBackboneCondition(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, mayModelObjFormulaVar)) {
-				continue;
-			}
-			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(mayModelObjFormula)), Z3IncrementalBehavior.POP);
-			if (z3Model.getZ3Result() != Z3Result.SAT) {
-				continue;
-			}
-			currentZ3ModelElemFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
-				.flatMap(formulaVars -> formulaVars.stream())
-				.collect(Collectors.toSet());
-			optimizeBackbone(initialZ3ModelElemFormulaVars, currentZ3ModelElemFormulaVars, outOfBackboneFormulaVars);
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Can't find or run Z3 reasoner, skipping backbone", e);
 		}
-		long endTime = System.nanoTime();
-
-		timeMAVOBackbone = endTime - startTime;
 	}
 
 	private void doMAVOAllsatPropertyCheck(MAVOModel rootMayModelObj) {
@@ -466,7 +419,6 @@ public class TOSEM12 extends RandomOperatorImpl {
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Can't find or run Z3 reasoner, skipping allsat", e);
-			return;
 		}
 	}
 

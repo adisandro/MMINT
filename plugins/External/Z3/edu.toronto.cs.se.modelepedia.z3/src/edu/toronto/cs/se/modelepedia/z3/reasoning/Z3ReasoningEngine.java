@@ -81,11 +81,15 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return ecore2smt.getZ3MAVOModelParser();
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint) {
+	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint, boolean optimizeFalse) {
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
 		boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
+		if (!constraintTruthValue && optimizeFalse) { // skip the next check, can lose a possible MAVOTruthValue.ERROR status
+			z3NotConstraintModel = null;
+			return MAVOTruthValue.FALSE;
+		}
 		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
 		boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
@@ -98,7 +102,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 
-		return checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
+		return checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint, false);
 	}
 
 	@Override
@@ -224,14 +228,24 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 	}
 
+	private void optimizeMayBackbone(@NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Set<MAVOElement> mayModelObjs, @NonNull Set<String> baselineFormulaVars, @NonNull Map<String, MAVOTruthValue> backboneTruthValues) {
+
+		Set<String> currentFormulaVars = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
+			.flatMap(Set::stream)
+			.collect(Collectors.toSet());
+		mayModelObjs.stream()
+			.filter(mayModelObj -> !backboneTruthValues.containsKey(mayModelObj.getFormulaVariable()))
+			.filter(mayModelObj -> baselineFormulaVars.contains(mayModelObj.getFormulaVariable()) != currentFormulaVars.contains(mayModelObj.getFormulaVariable()))
+			.forEach(mayModelObj -> backboneTruthValues.put(mayModelObj.getFormulaVariable(), MAVOTruthValue.MAYBE));
+	}
+
 	public @NonNull Map<String, MAVOTruthValue> mayBackboneWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @Nullable Z3MAVOModelParser z3ModelParser, @Nullable Z3Model z3Model, @NonNull Set<MAVOElement> mayModelObjs) {
 
-		Set<String> baseline = null;
-		if (z3ModelParser != null && z3Model != null) {
-			baseline = z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
+		Set<String> baselineFormulaVars = (z3ModelParser == null) ?
+			null :
+			z3ModelParser.getZ3MAVOModelObjects(z3Model).values().stream()
 				.flatMap(Set::stream)
 				.collect(Collectors.toSet());
-		}
 		Map<String, MAVOTruthValue> backboneTruthValues = new HashMap<>();
 		// for each may element, assert it and its negation
 		for (MAVOElement mayModelObj : mayModelObjs) {
@@ -247,22 +261,14 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
 				continue;
 			}
-			//TODO Optimizations:
-			// 1) check for constraint
-			// 1bis) assign baseline if not done before, only if check 1 is SAT
-			// 2) get model elements, if one is not in baseline or one in baseline is not here, then that element is MAYBE
-			// 2bis) same reasoning for the current model element
-			// 3) check for not constraint, only if we can't say anything about the current model element 
-			// 4) same as 2)
-			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
-//			Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
-//			boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
-//			z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
-//			z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
-//			boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
-//			z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
-//			return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
+			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint, true);
 			backboneTruthValues.put(formulaVar, backboneTruthValue);
+			if (backboneTruthValue != MAVOTruthValue.FALSE && z3ModelParser != null) { // optimize
+				optimizeMayBackbone(z3ModelParser, z3ConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
+				if (backboneTruthValue == MAVOTruthValue.MAYBE) {
+					optimizeMayBackbone(z3ModelParser, z3NotConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
+				}
+			}
 		}
 
 		return backboneTruthValues;

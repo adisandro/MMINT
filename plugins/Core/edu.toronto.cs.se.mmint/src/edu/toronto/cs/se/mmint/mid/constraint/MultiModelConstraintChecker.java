@@ -86,7 +86,7 @@ public class MultiModelConstraintChecker {
 		}
 
 		public static @NonNull MAVOTruthValue toMAVOTruthValue(boolean constraintTruthValue, boolean notConstraintTruthValue) {
-	
+
 			if (constraintTruthValue == true && notConstraintTruthValue == false) {
 				return TRUE;
 			}
