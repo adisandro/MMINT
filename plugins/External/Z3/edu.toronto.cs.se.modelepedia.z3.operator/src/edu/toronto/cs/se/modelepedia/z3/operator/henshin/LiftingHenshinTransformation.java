@@ -45,7 +45,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
@@ -97,6 +96,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected static final String PROPERTY_OUT_UNSATCOUNTLIFTING = "unsatCountLifting";
 	protected static final String PROPERTY_OUT_SMTENCODINGLENGTH = "smtEncodingLength";
 	protected static final String PROPERTY_OUT_SMTENCODINGVARIABLES = "smtEncodingVariables";
+	protected static final String PROPERTY_OUT_TRANSFORMEDCONSTRAINT = "transformedConstraint";
 	private static final String PROPERTY_OUT_CHAINS = "chains";
 	private static final int PROPERTY_OUT_CHAINS_MAX = 10;
 	private static final String PROPERTY_OUT_LITERALS = "literals";
@@ -128,6 +128,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected Set<String> smtEncodingVariables;
 
 	protected boolean timeClassicalEnabled;
+	protected boolean transformedConstraintEnabled;
 	protected long timeClassical;
 	protected long timeLifting;
 	protected int ruleApplicationsClassical;
@@ -135,6 +136,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected int ruleApplicationsNotLifting;
 	protected int satCountLifting;
 	protected int unsatCountLifting;
+	protected String transformedConstraint;
 	protected Map<MAVOElement, Integer> modelObjsChains;
 	protected Map<MAVOElement, Integer> modelObjsLiterals;
 
@@ -148,6 +150,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		transformationRules = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
 		transformationRulesLifting = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
 		timeClassicalEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		transformedConstraintEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
 	protected void writeProperties(Properties properties) {
@@ -161,6 +164,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		properties.setProperty(PROPERTY_OUT_UNSATCOUNTLIFTING, String.valueOf(unsatCountLifting));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGLENGTH, String.valueOf(smtEncoding.length()));
 		properties.setProperty(PROPERTY_OUT_SMTENCODINGVARIABLES, String.valueOf(smtEncodingVariables.size()));
+		properties.setProperty(PROPERTY_OUT_TRANSFORMEDCONSTRAINT, transformedConstraint);
 		int[] chains = new int[PROPERTY_OUT_CHAINS_MAX];
 		for (int chain : modelObjsChains.values()) {
 			if (chain >= PROPERTY_OUT_CHAINS_MAX) {
@@ -212,6 +216,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		ruleApplicationsNotLifting = 0;
 		satCountLifting = 0;
 		unsatCountLifting = 0;
+		transformedConstraint = "";
 		modelObjsChains = new HashMap<MAVOElement, Integer>();
 		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
 	}
@@ -305,7 +310,6 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 		int checkpointUnsat = smtEncoding.length();
 		createZ3ApplyFormula();
-		z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA), Z3IncrementalBehavior.PUSH);
 		String applicabilityCondition = Z3Utils.assertion(
 			Z3Utils.equality(
 				Z3Utils.and(
@@ -315,14 +319,11 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 				Z3Utils.SMTLIB_TRUE
 			)
 		);
-
-		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(applicabilityCondition, Z3IncrementalBehavior.POP);
-		if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
-			z3IncSolver.finalizePreviousPush();
+		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(smtEncoding.substring(checkpointA) + applicabilityCondition, Z3IncrementalBehavior.POP_IF_UNSAT);
+		if (z3ModelResult.getZ3Result().isSAT()) {
 			satCountLifting++;
 			return true;
 		}
-		z3IncSolver.revertToPreviousPush();
 		smtEncoding.delete(checkpointUnsat, smtEncoding.length());
 		unsatCountLifting++;
 		return false;
@@ -533,7 +534,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 	}
 
-	protected abstract void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver);
+	protected abstract int matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA);
 
 	protected void doTransformationLifting(Module module, Engine engine, EGraph graph) {
 
@@ -547,9 +548,10 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 			matchAndTransformClassical(rule, engine, graph, true);
 		}
 		// run transformation rules marked as lifted
+		int checkpointA = smtEncoding.length();
 		for (String transformationRuleLifted : transformationRulesLifting) {
 			Rule rule = (Rule) module.getUnit(transformationRuleLifted);
-			matchAndTransformLifting(rule, engine, graph, z3IncSolver);
+			checkpointA = matchAndTransformLifting(rule, engine, graph, z3IncSolver, checkpointA);
 		}
 
 		timeLifting = System.nanoTime() - startTime;

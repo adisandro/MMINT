@@ -24,7 +24,7 @@ import com.microsoft.z3.Status;
 import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 
 public class Z3Solver {
 
@@ -39,18 +39,18 @@ public class Z3Solver {
 	}
 
 	// check sat, no incremental
-	public Z3Bool checkSat(String smtEncoding) {
+	public Z3Result checkSat(String smtEncoding) {
 
 		Map<String, String> config = new HashMap<String, String>();
 		try {
 			Solver solver = loadSMTLIBEncoding(config, smtEncoding);
 			Status status = solver.check();
 
-			return Z3Bool.toZ3Bool(status);
+			return Z3Result.toZ3Result(status);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result", e);
-			return Z3Bool.UNKNOWN;
+			return Z3Result.UNKNOWN;
 		}
 	}
 

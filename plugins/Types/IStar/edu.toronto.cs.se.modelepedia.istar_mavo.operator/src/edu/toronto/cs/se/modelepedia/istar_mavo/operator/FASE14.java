@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -73,7 +73,7 @@ public class FASE14 extends RE13 {
 	private Z3Model checkMAVOAnnotation(MAVOElement mavoModelObj, EStructuralFeature mavoAnnotation, String smtMavoConstraint, Z3IncrementalSolver z3IncSolver, List<MAVOElement> mavoModelObjsToRemove) {
 
 		Z3Model z3ModelResult = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtMavoConstraint)), Z3IncrementalBehavior.POP);
-		if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
+		if (z3ModelResult.getZ3Result() == Z3Result.SAT) {
 			//TODO MMINT[RNF] optimize search for other annotations in output model using the map mavoModelObjs
 
 			return null;
@@ -178,7 +178,7 @@ public class FASE14 extends RE13 {
 		doAnalysis(z3IncSolver);
 		if (timeTargetsEnabled) {
 			Z3Model z3Model = doTargets(z3IncSolver);
-			if (targets == Z3Bool.SAT) {
+			if (targets == Z3Result.SAT) {
 				doRNF(z3IncSolver, z3Model);
 			}
 		}

@@ -69,7 +69,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	private double percMay;
 	private double percSet;
 	private double percVar;
-	private List<MAVOElement> mavoModelObjs;
+	private Map<String, MAVOElement> mavoModelObjs;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -91,7 +91,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	public void init() throws MMINTException {
 
 		// state
-		mavoModelObjs = new ArrayList<MAVOElement>();
+		mavoModelObjs = new HashMap<>();
 	}
 
 	private int addMayEdges(Node mayNode, List<MAVOElement> mavoAnnotatableModelObjs) {
@@ -101,7 +101,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 			if (!edgeAsSrc.isMay()) {
 				mavoAnnotatableModelObjs.remove(edgeAsSrc);
 				edgeAsSrc.setMay(true);
-				mavoModelObjs.add(edgeAsSrc);
+				mavoModelObjs.put(edgeAsSrc.getFormulaVariable(), edgeAsSrc);
 				i++;
 			}
 		}
@@ -109,7 +109,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 			if (!edgeAsTgt.isMay()) {
 				mavoAnnotatableModelObjs.remove(edgeAsTgt);
 				edgeAsTgt.setMay(true);
-				mavoModelObjs.add(edgeAsTgt);
+				mavoModelObjs.put(edgeAsTgt.getFormulaVariable(), edgeAsTgt);
 				i++;
 			}
 		}
@@ -119,7 +119,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 
 	private void addMAVOElements(List<MAVOElement> mavoableModelObjs, EStructuralFeature mavoFeature, double mavoPerc) {
 
-		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<MAVOElement>(mavoableModelObjs);
+		List<MAVOElement> mavoAnnotatableModelObjs = new ArrayList<>(mavoableModelObjs);
 		MAVOElement mavoModelObj;
 		int numMavo = (int) Math.round(mavoPerc * mavoableModelObjs.size());
 		for (int i = 0; i < numMavo; i++) {
@@ -128,7 +128,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 			if (mavoFeature == MAVOPackage.eINSTANCE.getMAVOElement_May() && mavoModelObj instanceof Node) {
 				i += addMayEdges((Node) mavoModelObj, mavoAnnotatableModelObjs);
 			}
-			mavoModelObjs.add(mavoModelObj);
+			mavoModelObjs.put(mavoModelObj.getFormulaVariable(), mavoModelObj);
 		}
 	}
 
@@ -170,7 +170,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		}
 
 		// add mavo annotations
-		List<MAVOElement> mavoableModelObjs = new ArrayList<MAVOElement>();
+		List<MAVOElement> mavoableModelObjs = new ArrayList<>();
 		int numMavo = (int) Math.round(percMavo * randomModelObjs.size());
 		for (int i = 0; i < numMavo; i++) {
 			mavoableModelObjs.add(randomModelObjs.remove(state.nextInt(randomModelObjs.size())));
@@ -182,7 +182,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		return randomGraph;
 	}
 
-	public List<MAVOElement> getMAVOModelObjects() {
+	public Map<String, MAVOElement> getMAVOModelObjects() {
 
 		return mavoModelObjs;
 	}

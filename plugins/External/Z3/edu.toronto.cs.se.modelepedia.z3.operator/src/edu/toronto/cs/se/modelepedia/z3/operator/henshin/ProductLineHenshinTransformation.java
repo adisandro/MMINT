@@ -180,7 +180,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
+	protected int matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
 		TransformationApplicabilityCondition condition;
@@ -201,6 +201,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				ruleApplicationsNotLifting++;
 			}
 		}
+
+		return smtEncoding.length();
 	}
 
 	@Override
@@ -236,6 +238,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
+		if (transformedConstraintEnabled) {
+			transformedConstraint = smtEncoding.toString();
+		}
 
 		// output
 		EObject transformedRootModelObj = null;
@@ -248,13 +253,15 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		if (transformedRootModelObj == null) {
 			throw new MMINTException("Can't retrieve transformed root model object");
 		}
+		Model transformedModelType = MultiModelTypeRegistry.getType(
+			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		String transformedMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+			MultiModelUtils.replaceFileExtensionInUri(
+				MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+				transformedModelType.getFileExtension()),
 			true,
 			false);
 		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
-		Model transformedModelType = MultiModelTypeRegistry.getType(
-			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			outputMIDsByName.get(OUT_MODEL));

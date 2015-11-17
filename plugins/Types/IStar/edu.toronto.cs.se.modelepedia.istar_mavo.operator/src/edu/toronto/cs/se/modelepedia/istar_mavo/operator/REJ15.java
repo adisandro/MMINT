@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 
@@ -24,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
@@ -103,7 +104,7 @@ public class REJ15 extends FASE14 {
 		Z3ReasoningEngine z3Reasoner;
 		try {
 			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
-			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, mavoModelObjs, istar);
+			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, new HashSet<>(mavoModelObjs.values()), istar).size();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping allSAT", e);
@@ -213,7 +214,7 @@ public class REJ15 extends FASE14 {
 		}
 		if (timeTargetsEnabled) {
 			Z3Model z3Model = doTargets(z3IncSolver);
-			if (targets == Z3Bool.SAT) {
+			if (targets == Z3Result.SAT) {
 				if (timeRNFEnabled) {
 					doRNF(z3IncSolver, z3Model);
 				}

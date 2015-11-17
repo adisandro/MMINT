@@ -1101,6 +1101,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	public void init() throws MMINTException {
 
 		// do nothing
+		//TODO MMINT[OPERATOR] Remove: input arguments can be needed here, so leave it to the users to organize their code as they like
 	}
 
 	/**

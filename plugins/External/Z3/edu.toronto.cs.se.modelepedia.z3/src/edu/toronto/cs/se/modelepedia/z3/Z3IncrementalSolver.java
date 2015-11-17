@@ -11,11 +11,12 @@
  */
 package edu.toronto.cs.se.modelepedia.z3;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
-
+import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -30,7 +31,6 @@ import com.microsoft.z3.Symbol;
 import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 
 public class Z3IncrementalSolver {
 
@@ -38,36 +38,48 @@ public class Z3IncrementalSolver {
 
 	private Context context;
 	private Solver solver;
-	private List<Model> models;
+	private Deque<Set<Sort>> sorts;
+	private Deque<Set<FuncDecl>> decls;
 
 	private void reset() {
 
 		context = null;
 		solver = null;
-		models.clear();
+		sorts.clear();
+		decls.clear();
+	}
+
+	private boolean isValidSymbol(@NonNull String smtSymbol) {
+
+		if (smtSymbol.contains(Z3Utils.Z3_MODEL_SEPARATOR)) {
+			return false;
+		}
+		try {
+			Integer.parseInt(smtSymbol);
+			return false;
+		}
+		catch (NumberFormatException e) {
+			return true;
+		}
 	}
 
 	private @NonNull Z3Model runCheckSatAndGetModel(@NonNull String smtEncoding) throws Z3Exception {
 
 		BoolExpr expr;
-		if (!models.isEmpty()) {
-			// parse incremental encoding
-			Model model = models.get(models.size()-1);
-			Sort[] sorts = model.getSorts();
-			Symbol[] sortSymbols = new Symbol[sorts.length];
-			for (int i = 0; i < sorts.length; i++) {
-				sortSymbols[i] = sorts[i].getName();
-			}
-			FuncDecl[] decls = model.getDecls();
-			Symbol[] declSymbols = new Symbol[decls.length];
-			for (int i = 0; i < decls.length; i++) {
-				declSymbols[i] = decls[i].getName();
-			}
-			expr = context.parseSMTLIB2String(smtEncoding, sortSymbols, sorts, declSymbols, decls);
-		}
-		else {
+		if (sorts.isEmpty() || decls.isEmpty()) {
 			// parse baseline encoding
 			expr = context.parseSMTLIB2String(smtEncoding, null, null, null, null);
+		}
+		else {
+			// parse incremental encoding
+			Set<Sort> lastSorts = sorts.getLast();
+			Set<FuncDecl> lastDecls = decls.getLast();
+			expr = context.parseSMTLIB2String(
+				smtEncoding,
+				lastSorts.stream().map(Sort::getName).toArray(size -> new Symbol[size]),
+				lastSorts.toArray(new Sort[0]),
+				lastDecls.stream().map(FuncDecl::getName).toArray(size -> new Symbol[size]),
+				lastDecls.toArray(new FuncDecl[0]));
 		}
 
 		// check sat and get model
@@ -76,7 +88,22 @@ public class Z3IncrementalSolver {
 		Model returnModel = null;
 		if (status == Status.SATISFIABLE) {
 			returnModel = solver.getModel();
-			models.add(returnModel);
+			Set<Sort> returnSorts = (sorts.isEmpty()) ? new HashSet<>() : new HashSet<>(sorts.getLast());
+			Set<FuncDecl> returnDecls = (decls.isEmpty()) ? new HashSet<>() : new HashSet<>(decls.getLast());
+			for (Sort returnSort : returnModel.getSorts()) {
+				if (!isValidSymbol(returnSort.getName().toString()) || returnSorts.contains(returnSort)) {
+					continue;
+				}
+				returnSorts.add(returnSort);
+			}
+			for (FuncDecl returnDecl : returnModel.getDecls()) {
+				if (!isValidSymbol(returnDecl.getName().toString()) || returnDecls.contains(returnDecl)) {
+					continue;
+				}
+				returnDecls.add(returnDecl);
+			}
+			sorts.add(returnSorts);
+			decls.add(returnDecls);
 		}
 
 		return new Z3Model(status, returnModel);
@@ -90,7 +117,8 @@ public class Z3IncrementalSolver {
 		try {
 			context = new Context(config);
 			solver = context.mkSolver();
-			models = new ArrayList<Model>();
+			sorts = new ArrayDeque<>();
+			decls = new ArrayDeque<>();
 
 			return runCheckSatAndGetModel(smtEncoding);
 		}
@@ -104,7 +132,7 @@ public class Z3IncrementalSolver {
 	// incremental check sat and get model
 	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
 
-		if (models.isEmpty()) {
+		if (sorts.isEmpty() || decls.isEmpty()) {
 			MMINTException.print(IStatus.WARNING, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);
 			return firstCheckSatAndGetModel(smtEncoding);
 		}
@@ -115,29 +143,33 @@ public class Z3IncrementalSolver {
 				solver.push();
 			}
 			// run
-			Z3Model z3ModelResult = runCheckSatAndGetModel(smtEncoding);
-			if (z3ModelResult.getZ3Bool() == Z3Bool.SAT) {
+			Z3Model z3Model = runCheckSatAndGetModel(smtEncoding);
+			if (z3Model.getZ3Result().isSAT()) {
 				switch (incBehavior) {
-				case NORMAL:
-				case POP_IF_UNSAT:
-					models.remove(0); // keep current model
-					break;
-				case POP:
-					models.remove(models.size()-1); // keep previous model
-					break;
-				case PUSH:
-					// do nothing: keep previous and current models
+					case NORMAL:
+					case POP_IF_UNSAT:
+						// keep current model
+						sorts.removeFirst();
+						decls.removeFirst();
+						break;
+					case POP:
+						// keep previous model
+						sorts.removeLast();
+						decls.removeLast();
+						break;
+					case PUSH:
+						// do nothing: keep previous and current models
 				}
 			}
 			// pop
 			if (
 				incBehavior == Z3IncrementalBehavior.POP ||
-				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && z3ModelResult.getZ3Bool() != Z3Bool.SAT)
+				(incBehavior == Z3IncrementalBehavior.POP_IF_UNSAT && !z3Model.getZ3Result().isSAT())
 			) {
 				solver.pop();
 			}
 
-			return z3ModelResult;
+			return z3Model;
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(IStatus.WARNING, "Z3 problem, returning unknown result and resetting the solver", e);
@@ -150,7 +182,8 @@ public class Z3IncrementalSolver {
 	public void finalizePreviousPush() {
 
 		//TODO MMINT[Z3] Will break if there is a POP_IF_UNSAT with SAT result between the PUSH and this
-		models.remove(0);
+		sorts.removeFirst();
+		decls.removeFirst();
 	}
 
 	// manual pop
@@ -158,8 +191,9 @@ public class Z3IncrementalSolver {
 
 		//TODO MMINT[Z3] Will break if there is a POP_IF_UNSAT with SAT result between the PUSH and this
 		try {
+			sorts.removeLast();
+			decls.removeLast();
 			solver.pop();
-			models.remove(models.size()-1);
 		}
 		catch (Z3Exception e) {
 			MMINTException.print(IStatus.WARNING, "Z3 problem, resetting the solver", e);

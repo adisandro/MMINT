@@ -41,7 +41,7 @@ import edu.toronto.cs.se.modelepedia.istar_mavo.Intention;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 
@@ -102,7 +102,7 @@ public class RE13 extends OperatorImpl {
 	private long timeModel;
 	private long timeAnalysis;
 	protected long timeTargets;
-	protected Z3Bool targets;
+	protected Z3Result targets;
 
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -129,7 +129,7 @@ public class RE13 extends OperatorImpl {
 		timeModel = -1;
 		timeAnalysis = -1;
 		timeTargets = -1;
-		targets = Z3Bool.UNKNOWN;
+		targets = Z3Result.UNKNOWN;
 	}
 
 	protected String writeIntentionLabels(Intention intention) {
@@ -258,7 +258,7 @@ public class RE13 extends OperatorImpl {
 				}
 				labelProperty += Z3Utils.SMTLIB_PREDICATE_END;
 				Z3Model z3Model = z3IncSolver.checkSatAndGetModel(labelProperty, Z3IncrementalBehavior.POP);
-				if (z3Model.getZ3Bool() == Z3Bool.SAT) {
+				if (z3Model.getZ3Result() == Z3Result.SAT) {
 					intention.eSet(label.getModelFeature(), true);
 					getConcretizationAnalysisLabels(intentions, z3Model);
 				}
@@ -273,7 +273,7 @@ public class RE13 extends OperatorImpl {
 		long startTime = System.nanoTime();
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(targetsProperty), Z3IncrementalBehavior.NORMAL);
-		targets = z3Model.getZ3Bool();
+		targets = z3Model.getZ3Result();
 
 		timeTargets = System.nanoTime() - startTime;
 

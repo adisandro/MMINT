@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.z3.mavo;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -53,9 +54,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
-import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Bool;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -102,43 +100,7 @@ public class MAVORefiner {
 	}
 
 	/**
-	 * Calculates the refinement. 
-	 * @param graph
-	 * @return
-	 * @throws MMINTException 
-	 */
-	private @NonNull Map<String, MAVOTruthValue> runZ3SMTSolver(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull String smtEncoding) throws MMINTException {
-
-		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		Z3Model z3Model = z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		if (z3Model.getZ3Bool() != Z3Bool.SAT) {
-			throw new MMINTException("Refinement is UNSAT");
-		}
-		Map<String, MAVOTruthValue> refinedTruthValues = new HashMap<String, MAVOTruthValue>();
-		// for each element, assert it and check
-		for (Entry<String, MAVOElement> entry : modelObjsToRefine.entrySet()) {
-			String formulaVar = entry.getKey();
-			MAVOElement modelObj = entry.getValue();
-			String smtConstraint;
-			try {
-				//TODO MMINT[MAVO] Get this from the model parser
-				smtConstraint = Z3MAVOUtils.getSMTLIBMayModelObjectConstraint(modelObj, true, false);
-			}
-			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for the current mavo model object, skipping it", e);
-				continue;
-			}
-			MAVOTruthValue refinedTruthValue = reasoner.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint);
-			refinedTruthValues.put(formulaVar, refinedTruthValue);
-		}
-
-		return refinedTruthValues;
-	}
-
-	/**
 	 * Takes a map of model elements and their new MAVOTruthValues and changes the model accordingly.
-	 * @param graph
-	 * @param refinedModel
 	 */
 	private void refineModel(@NonNull Map<String, MAVOElement> modelObjsToRefine, @NonNull Map<String, MAVOTruthValue> refinedTruthValues, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
@@ -245,7 +207,7 @@ public class MAVORefiner {
 		refinedDiagram.setElement(refinedRootModelObj);
 	}
 
-	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding) throws Exception {
+	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser) throws Exception {
 
 		// create mid artifacts
 		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
@@ -267,9 +229,9 @@ public class MAVORefiner {
 		// refine
 		MAVORoot rootModelObj = (MAVORoot) MultiModelUtils.getModelFile(model.getUri(), true);
 		MAVORoot refinedRootModelObj = (MAVORoot) MultiModelUtils.getModelFile(refinedModelUri, true);
-		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<MAVOElement, MAVOElement>();
+		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
-		Map<String, MAVOTruthValue> refinedTruthValues = runZ3SMTSolver(modelObjsToRefine, smtEncoding);
+		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
 		if (mayAlternative != null) {
 			refineMayDecision(refinedRootModelObj, mayAlternative);

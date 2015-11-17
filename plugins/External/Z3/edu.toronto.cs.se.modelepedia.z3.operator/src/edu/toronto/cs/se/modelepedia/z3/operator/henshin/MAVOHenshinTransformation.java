@@ -74,11 +74,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 			if (smtEncodingVariables.contains(mavoModelObj.getFormulaVariable())) {
 				continue;
 			}
-			smtEncoding.append(Z3Utils.SMTLIB_CONST);
-			smtEncoding.append(mavoModelObj.getFormulaVariable());
-			smtEncoding.append(" ");
-			smtEncoding.append(Z3Utils.SMTLIB_TYPE_BOOL);
-			smtEncoding.append(Z3Utils.SMTLIB_PREDICATE_END);
+			smtEncoding.append(Z3Utils.constant(mavoModelObj.getFormulaVariable(), Z3Utils.SMTLIB_TYPE_BOOL));
 		}
 	}
 
@@ -209,10 +205,9 @@ matchesN:
 	}
 
 	@Override
-	protected void matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver) {
+	protected int matchAndTransformLifting(Rule rule, Engine engine, EGraph graph, Z3IncrementalSolver z3IncSolver, int checkpointA) {
 
 		RuleApplication application = new RuleApplicationImpl(engine);
-		int checkpointA = smtEncoding.length();
 		TransformationApplicabilityCondition condition;
 		while ((condition = checkApplicabilityConditions(rule, engine, graph, z3IncSolver, checkpointA)) != null) {
 			application.setRule(condition.getMatchedRule());
@@ -248,6 +243,8 @@ matchesN:
 				ruleApplicationsNotLifting++;
 			}
 		}
+
+		return checkpointA;
 	}
 
 	@Override
@@ -275,6 +272,9 @@ matchesN:
 			hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
+		if (transformedConstraintEnabled) {
+			transformedConstraint = smtEncoding.toString();
+		}
 
 		// output
 		EObject transformedRootModelObj = null;
@@ -287,13 +287,15 @@ matchesN:
 		if (transformedRootModelObj == null) {
 			throw new MMINTException("Can't retrieve transformed root model object");
 		}
+		Model transformedModelType = MultiModelTypeRegistry.getType(
+			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		String transformedMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+			MultiModelUtils.replaceFileExtensionInUri(
+				MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+				transformedModelType.getFileExtension()),
 			true,
 			false);
 		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
-		Model transformedModelType = MultiModelTypeRegistry.getType(
-			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			outputMIDsByName.get(OUT_MODEL));

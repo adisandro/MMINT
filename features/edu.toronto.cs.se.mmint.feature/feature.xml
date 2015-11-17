@@ -68,6 +68,9 @@ sets of related models.
       <import plugin="org.eclipse.xtext.xbase.lib"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.ocl.pivot"/>
+      <import feature="org.eclipse.emf.sdk"/>
+      <import feature="org.eclipse.emf.validation.sdk"/>
+      <import feature="org.eclipse.ocl.all.sdk"/>
       <import feature="org.eclipse.gmf.sdk"/>
       <import feature="org.eclipse.papyrus.sdk.feature"/>
       <import feature="org.eclipse.xtend.sdk"/>
