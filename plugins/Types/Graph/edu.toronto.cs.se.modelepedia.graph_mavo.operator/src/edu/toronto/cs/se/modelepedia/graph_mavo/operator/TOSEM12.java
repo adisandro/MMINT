@@ -18,11 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
@@ -49,7 +47,7 @@ import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 public class TOSEM12 extends RandomOperatorImpl {
 
 	// input-output
-	private final static @NonNull String IN_MODEL = "random";
+	private final static @NonNull String IN_MODEL = "model";
 	private static final String PROPERTY_IN_NUMCONCRETIZATIONS = "numConcretizations";
 	private static final String PROPERTY_IN_PROPERTYID = "propertyId";
 	private static final String PROPERTY_OUT_TIMEMAVO = "timeMAVO";
@@ -60,7 +58,6 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
 	// constants
 	private static final String Z3_LANGUAGE = "SMTLIB";
-	private static final String Z3_NAME = "Z3 Solver";
 
 	// input
 	private int numConcretizations;
@@ -69,12 +66,13 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private boolean timeMAVOBackboneEnabled;
 	private boolean timeMAVOAllsatEnabled;
 	// state
-	private MAVOTruthValue resultMAVO;
 	private Map<String, MAVOElement> mayModelObjs;
 	private String smtEncoding;
 	private String smtConcretizationsConstraint;
-	private Set<String> smtConcretizations;
 	private String smtProperty;
+	private String smtEncodingAndConcretizations;
+	private Set<String> smtConcretizations;
+	Z3ReasoningEngine z3Reasoner;
 	Z3MAVOModelParser z3ModelParser;
 	// output
 	private long timeMAVO;
@@ -88,32 +86,14 @@ public class TOSEM12 extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		numConcretizations = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS);
-		propertyId = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_PROPERTYID);
+		numConcretizations = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
+		propertyId = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
 		timeClassicalEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
 	private MAVOModel init(Model mayModel) throws Exception {
-
-		// state
-		MAVOModel rootMayModelObj = (MAVOModel) mayModel.getEMFInstanceRoot();
-		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
-		if (previousOperator != null) {
-			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
-			generateSMTLIBConcretizations();
-			generateSMTLIBGroundedProperty((Graph) rootMayModelObj);
-		}
-		else {
-			mayModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(mayModel);
-		}
-		z3ModelParser = ((Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner(Z3_LANGUAGE)).generateSMTLIBEncoding(mayModel);
-		smtEncoding = z3ModelParser.getSMTLIBEncoding();
-		resultMAVO = MAVOTruthValue.ERROR;
-		smtConcretizationsConstraint = "";
-		smtConcretizations = new HashSet<String>();
-		smtProperty = "";
 
 		// output
 		timeMAVO = -1;
@@ -122,6 +102,26 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOAllsat = -1;
 		speedupClassicalMAVO = -1;
 		speedupMAVOAllsatMAVOBackbone = -1;
+
+		// state
+		z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner(Z3_LANGUAGE);
+		z3ModelParser = z3Reasoner.generateSMTLIBEncoding(mayModel);
+		smtEncoding = z3ModelParser.getSMTLIBEncoding();
+		MAVOModel rootMayModelObj = (MAVOModel) mayModel.getEMFInstanceRoot();
+		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
+		if (previousOperator != null) {
+			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
+			generateSMTLIBGroundedProperty((Graph) rootMayModelObj);
+			generateRandomSMTLIBConcretizations();
+			smtEncodingAndConcretizations = smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint);
+		}
+		else {
+			timeMAVOAllsatEnabled = true;
+			mayModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(mayModel);
+			smtProperty = mayModel.getConstraint().getImplementation();
+			smtEncodingAndConcretizations = smtEncoding;
+			generateAllsatSMTLIBConcretizations(rootMayModelObj);
+		}
 
 		return rootMayModelObj;
 	}
@@ -136,7 +136,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE, String.valueOf(speedupMAVOAllsatMAVOBackbone));
 	}
 
-	private String generateSMTLIBConcretization() {
+	private String generateRandomSMTLIBConcretization() {
 
 		String smtConcretization = "";
 		Map<String, Boolean> wellFormedModelObjs = new HashMap<String, Boolean>();
@@ -186,7 +186,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		return smtConcretization;
 	}
 
-	private void generateSMTLIBConcretizations() throws MMINTException {
+	private void generateRandomSMTLIBConcretizations() throws MMINTException {
 
 		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
 		if (numConcretizations > maxConcretizations) {
@@ -198,17 +198,21 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		//TODO MMINT[TOSEM] add heuristics to detect large number of concretizations (when it's more efficient to generate them all and then cut some)
 		for (int i = 0; i < numConcretizations; i++) {
-			String smtConcretization = generateSMTLIBConcretization();
+			String smtConcretization = generateRandomSMTLIBConcretization();
 			if (smtConcretizations.contains(smtConcretization)) { // duplicate
 				i--;
 				continue;
 			}
-			else {
-				smtConcretizations.add(smtConcretization);
-				smtConcretizationsConstraint += smtConcretization + '\n';
-			}
+			smtConcretizations.add(smtConcretization);
+			smtConcretizationsConstraint += smtConcretization + '\n';
 		}
 		smtConcretizationsConstraint = Z3Utils.or(smtConcretizationsConstraint);
+	}
+
+	private void generateAllsatSMTLIBConcretizations(MAVOModel rootMayModelObj) {
+
+		smtConcretizations = doMAVOAllsat(rootMayModelObj);
+		smtConcretizationsConstraint = Z3Utils.or(String.join(" ", smtConcretizations));
 	}
 
 	private void groundProperty5(Node node) {
@@ -356,14 +360,13 @@ public class TOSEM12 extends RandomOperatorImpl {
 		smtProperty += '\n' + Z3Utils.SMTLIB_PREDICATE_END;
 	}
 
-	private void doMAVOPropertyCheck() {
+	private MAVOTruthValue doMAVOPropertyCheck() {
 
 		long startTime = System.nanoTime();
-		Z3ReasoningEngine z3 = (Z3ReasoningEngine) MMINT.getLanguageReasoners(Z3_LANGUAGE).get(Z3_NAME);
-		resultMAVO = z3.checkMAVOConstraint(smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint), smtProperty);
-		long endTime = System.nanoTime();
+		MAVOTruthValue resultMAVO = z3Reasoner.checkMAVOConstraint(smtEncodingAndConcretizations, smtProperty);
+		timeMAVO = System.nanoTime() - startTime;
 
-		timeMAVO = endTime - startTime;
+		return resultMAVO;
 	}
 
 	private void doClassicalPropertyCheck() {
@@ -382,44 +385,30 @@ public class TOSEM12 extends RandomOperatorImpl {
 				break;
 			}
 		}
-		long endTime = System.nanoTime();
-
-		timeClassical = endTime - startTime;
+		timeClassical = System.nanoTime() - startTime;
 	}
 
-	private void doMAVOBackbonePropertyCheck() throws MMINTException {
+	private void doMAVOBackbone() throws MMINTException {
 
-		Z3ReasoningEngine z3Reasoner;
-		try {
-			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
-			long startTime = System.nanoTime();
-			z3Reasoner.mayBackbone(
-				smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty),
-				z3ModelParser,
-				new HashSet<>(mayModelObjs.values()));
-				timeMAVOBackbone = System.nanoTime() - startTime;
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Can't find or run Z3 reasoner, skipping backbone", e);
-		}
+		long startTime = System.nanoTime();
+		z3Reasoner.mayBackbone(
+			smtEncodingAndConcretizations + Z3Utils.assertion(smtProperty),
+			z3ModelParser,
+			new HashSet<>(mayModelObjs.values()));
+		timeMAVOBackbone = System.nanoTime() - startTime;
 	}
 
-	private void doMAVOAllsatPropertyCheck(MAVOModel rootMayModelObj) {
+	private Set<String> doMAVOAllsat(MAVOModel rootMayModelObj) {
 
-		Z3ReasoningEngine z3Reasoner;
-		try {
-			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
-			long startTime = System.nanoTime();
-			z3Reasoner.allSAT(
-				smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint) + Z3Utils.assertion(smtProperty),
-				z3ModelParser,
-				new HashSet<>(mayModelObjs.values()),
-				rootMayModelObj);
-			timeMAVOAllsat = System.nanoTime() - startTime;
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Can't find or run Z3 reasoner, skipping allsat", e);
-		}
+		long startTime = System.nanoTime();
+		Set<String> smtConcretizations = z3Reasoner.allSAT(
+			smtEncodingAndConcretizations + Z3Utils.assertion(smtProperty),
+			z3ModelParser,
+			new HashSet<>(mayModelObjs.values()),
+			rootMayModelObj);
+		timeMAVOAllsat = System.nanoTime() - startTime;
+
+		return smtConcretizations;
 	}
 
 	@Override
@@ -432,17 +421,17 @@ public class TOSEM12 extends RandomOperatorImpl {
 		MAVOModel rootMayModelObj = this.init(mayModel);
 
 		// run
-		doMAVOPropertyCheck();
+		MAVOTruthValue resultMAVO = doMAVOPropertyCheck();
 		if (timeClassicalEnabled) {
 			doClassicalPropertyCheck();
 			speedupClassicalMAVO = ((double) timeClassical) / timeMAVO;
 		}
 		if (resultMAVO == MAVOTruthValue.MAYBE) {
 			if (timeMAVOBackboneEnabled) {
-				doMAVOBackbonePropertyCheck();
+				doMAVOBackbone();
 			}
-			if (timeMAVOAllsatEnabled) {
-				doMAVOAllsatPropertyCheck(rootMayModelObj);
+			if (timeMAVOAllsatEnabled && getPreviousOperator() != null) {
+				doMAVOAllsat(rootMayModelObj);
 			}
 			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {
 				speedupMAVOAllsatMAVOBackbone = ((double) timeMAVOAllsat) / timeMAVOBackbone;
