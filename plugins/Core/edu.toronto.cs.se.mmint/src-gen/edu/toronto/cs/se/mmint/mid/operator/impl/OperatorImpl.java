@@ -988,6 +988,20 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
+	public EList<Model> getOutputModels() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		EList<Model> outputModels = new BasicEList<>(this.getOutputs().stream()
+			.map(outputModelEndpoint -> outputModelEndpoint.getTarget())
+			.collect(Collectors.toList()));
+
+		return outputModels;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public Operator createInstance(MultiModel instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
