@@ -4,7 +4,7 @@
 
 [template private encodeModelIStar(istar : IStar)]
 ;Contribution Types
-	[let startIndex : Integer = istar.getMetamodelMAVOClasses()->size() + istar.getMAVOElements()->size()]
+	[let startIndex : Integer = istar.getMetamodelAndSuperMetamodelsMAVOClasses()->size() + istar.getMAVOElements()->size()]
 (define-sort ContributionType () Int)
 (declare-const MAKE ContributionType)
 (assert (= MAKE [startIndex+1/]))

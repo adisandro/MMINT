@@ -48,7 +48,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		@Override
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
-			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
+			List<IAcceleoTextGenerationListener> listeners = new ArrayList<>();
 			smtListener = new EcoreMAVOToSMTLIBListener(mavoModelObjs, isMayOnly);
 			listeners.add(smtListener);
 

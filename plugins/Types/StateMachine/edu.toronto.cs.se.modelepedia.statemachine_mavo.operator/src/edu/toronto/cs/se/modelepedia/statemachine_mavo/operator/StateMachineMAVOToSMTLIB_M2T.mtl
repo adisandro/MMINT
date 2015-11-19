@@ -1,0 +1,52 @@
+[comment encoding = UTF-8 /]
+[module StateMachineMAVOToSMTLIB_M2T('http://www.eclipse.org/emf/2002/Ecore', 'http://se.cs.toronto.edu/MAVO', 'http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO')/]
+[import edu::toronto::cs::se::modelepedia::z3::mavo::EcoreMAVOToSMTLIBUtils_M2T /]
+
+[template private encodeAnalysis(sm : StateMachine)]
+(declare-fun reachable1 (Node Node) Bool)
+(assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable1 s t) (ite
+	(exists ((s2t Edge)) (and
+		(edge s2t)
+		(or
+			(= (edgeType s2t) TRANSITION)
+			(= (edgeType s2t) TRANSITIONWITHEVENT)
+		)
+		(= (src s2t) s)
+		(= (tgt s2t) t)
+	))
+	true
+	false
+)))))
+	[for (c : Integer | Sequence{2..sm.states->size()-1})]
+(declare-fun reachable[c/] (Node Node) Bool)
+(assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable[c/] s t) (ite
+	(exists ((x Node)) (and
+		(node x)
+		(= (nodeType x) STATE)
+		(reachable[c-1/] s x)
+		(reachable[c-1/] x t)
+	))
+	true
+	false
+)))))
+	[/for]
+(declare-fun reachable (Node Node) Bool)
+(assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable s t) (ite
+	(or
+	[for (c : Integer | Sequence{1..sm.states->size()-1})]
+		(reachable[c/] s t)
+	[/for]
+	)
+	true
+	false
+)))))
+[/template]
+
+[template public encodeStateMachineMAVO(sm : StateMachine, modelName : String)]
+[comment @main/]
+[file (modelName + '.smt2', false, 'UTF-8')]
+[encodeModel(sm)/]
+[encodeMAVOConstraints(sm)/]
+[encodeAnalysis(sm)/]
+[/file]
+[/template]
