@@ -65,7 +65,6 @@ public class StateMachineMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 		}
 		List<Object> m2tArgs = new ArrayList<Object>();
 		m2tArgs.add(smModel.getName());
-		m2tArgs.add(this.isMayOnly);
 		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(smModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
