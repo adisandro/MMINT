@@ -33,13 +33,13 @@ public class MIDDiagramUtils {
 
 	public static @NonNull Map<MultiModel, List<IFile>> getMIDsInWorkspace() {
 
-		Map<MultiModel, List<IFile>> mids = new HashMap<MultiModel, List<IFile>>();
+		Map<MultiModel, List<IFile>> mids = new HashMap<>();
 		for (IEditorReference editorReference : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences()) {
 			String editorName = editorReference.getName();
 			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFDiagramUtils.DIAGRAM_SUFFIX)) {
 				MIDDiagramEditor midDiagram = (MIDDiagramEditor) editorReference.getEditor(true);
 				MultiModel mid = (MultiModel) midDiagram.getDiagram().getElement();
-				List<IFile> midFiles = new ArrayList<IFile>();
+				List<IFile> midFiles = new ArrayList<>();
 				IFile diagramFile = (IFile) midDiagram.getEditorInput().getAdapter(IFile.class);
 				if (diagramFile == null) {
 					continue;

@@ -418,6 +418,9 @@ public class ExperimentDriver extends OperatorImpl {
 		if (operatorType == null) {
 			throw new MMINTException("Operator uri " + operatorUri + " is not registered");
 		}
+		if (operatorType.getInputs().size() == 0) { // fix operator with no model input at the beginning of the experiment
+			inputModels = new BasicEList<>();
+		}
 
 		// write operator input properties
 		Properties inputProperties = new Properties();

@@ -20,7 +20,6 @@ import java.util.Properties;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -35,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory;
@@ -204,7 +204,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		}
 
 		// output
-		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(EcoreUtil.getURI(instanceMID).toPlatformString(true), lastSegmentUri);
+		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(GMFDiagramUtils.getActiveMIDDiagramIFile().getFullPath().toString(), lastSegmentUri);
 		MultiModelUtils.createModelFile(randomGraph, randomGraphModelUri, true);
 		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
 		Model randomGraphModel;
