@@ -55,7 +55,7 @@ public class Z3Test extends MMINTTest {
 		inputModels.add(model);
 		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
 		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(ecore2smt, instanceMID);
-		ecore2smt.start(inputs, new BasicEList<>(), outputMIDsByName, instanceMID);
+		ecore2smt.start(inputs, null, new BasicEList<>(), outputMIDsByName, instanceMID);
 		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
 		MAVOModel rootMavoModelObj = (MAVOModel) model.getEMFInstanceRoot();
 		Set<String> concretizations = z3Reasoner.allSAT(z3ModelParser.getSMTLIBEncoding(), z3ModelParser, new HashSet<>(MAVOUtils.getAnnotatedMAVOModelObjects(rootMavoModelObj).values()), rootMavoModelObj);

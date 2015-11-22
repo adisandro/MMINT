@@ -607,7 +607,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static List<ConversionOperator> instanceOf(ExtendibleElement element, String typeUri) {
 
-		List<ConversionOperator> conversionOperatorTypes = new ArrayList<ConversionOperator>();
+		List<ConversionOperator> conversionOperatorTypes = new ArrayList<>();
 		// static check
 		if (element.getMetatypeUri().equals(typeUri) || isSubtypeOf(element.getMetatypeUri(), typeUri)) {
 			return conversionOperatorTypes;
@@ -899,7 +899,7 @@ public class MultiModelTypeHierarchy {
 		return MMINT.cachedRuntimeTypes.get(instance);
 	}
 
-	public static void setCachedRuntimeTypes(ExtendibleElement instance, List<? extends ExtendibleElement> cachedTypes) {
+	public static void addCachedRuntimeTypes(ExtendibleElement instance, List<? extends ExtendibleElement> cachedTypes) {
 
 		MMINT.cachedRuntimeTypes.put(instance, cachedTypes);
 	}

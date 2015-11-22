@@ -212,7 +212,7 @@ public class KleisliTest extends MMINTTest {
 		transformationGeneric.setGeneric(kModelRelType);
 		transformationGenerics.add(transformationGeneric);
 		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
-		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
+		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, null, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
 		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle

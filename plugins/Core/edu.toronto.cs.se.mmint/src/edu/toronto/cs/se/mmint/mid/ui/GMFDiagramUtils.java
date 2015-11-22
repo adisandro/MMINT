@@ -207,10 +207,17 @@ public class GMFDiagramUtils {
 		return modelFile;
 	}
 
+	public static IFile getActiveMIDDiagramIFile() {
+
+		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+
+		return diagramFile;
+	}
+
 	public static List<IFile> getTransactionalCommandAffectedFiles() {
 
 		List<IFile> files = new ArrayList<IFile>();
-		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+		IFile diagramFile = getActiveMIDDiagramIFile();
 		if (diagramFile != null) {
 			files.add(diagramFile);
 			try {

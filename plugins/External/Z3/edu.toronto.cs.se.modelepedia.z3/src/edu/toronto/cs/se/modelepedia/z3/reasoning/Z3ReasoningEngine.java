@@ -75,7 +75,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
-		ecore2smt = (EcoreMAVOToSMTLIB) ecore2smt.start(inputs, new BasicEList<>(), new HashMap<>(), null);
+		ecore2smt = (EcoreMAVOToSMTLIB) ecore2smt.start(inputs, null, new BasicEList<>(), new HashMap<>(), null);
 		ecore2smt.cleanup();
 
 		return ecore2smt.getZ3MAVOModelParser();

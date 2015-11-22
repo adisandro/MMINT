@@ -17,6 +17,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 
@@ -166,6 +169,23 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
 		result.append(state);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public Operator createInstance(MultiModel instanceMID) throws MMINTException {
+
+		RandomOperator newOperator = (RandomOperator) super.createInstance(instanceMID);
+		if (this.getState() == null) {
+			newOperator.setState(new Random());
+		}
+		else {
+			newOperator.setState(this.getState());
+		}
+
+		return newOperator;
 	}
 
 } //RandomOperatorImpl

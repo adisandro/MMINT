@@ -55,7 +55,7 @@ public class CD2Java extends ConversionOperatorImpl {
 		ModelRel cd2javaRelType = MultiModelTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
 		generic.setGeneric(cd2javaRelType);
 		generics.add(generic);
-		Operator transformationOperator = transformationOperatorType.start(inputs, generics, outputMIDsByName, null);
+		Operator transformationOperator = transformationOperatorType.start(inputs, null, generics, outputMIDsByName, null);
 
 		return transformationOperator.getOutputsByName().get(ModelRelTypeTransformation.OUT_MODEL);
 	}

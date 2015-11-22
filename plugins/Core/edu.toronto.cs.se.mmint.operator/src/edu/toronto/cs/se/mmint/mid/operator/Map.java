@@ -142,6 +142,7 @@ public class Map extends OperatorImpl {
 				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
 				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.start(
 						mapperInputs,
+						null,
 						mapperGenerics,
 						mapperOutputMIDsByName,
 						mapperMID)

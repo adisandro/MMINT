@@ -36,8 +36,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
@@ -58,6 +56,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
@@ -622,6 +621,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___GET_OUTPUT_MODELS:
+				try {
+					return getOutputModels();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___CREATE_INSTANCE__MULTIMODEL:
 				try {
 					return createInstance((MultiModel)arguments.get(0));
@@ -676,9 +682,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL:
+			case OperatorPackage.OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL:
 				try {
-					return start((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (Map<String, MultiModel>)arguments.get(2), (MultiModel)arguments.get(3));
+					return start((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MultiModel>)arguments.get(3), (MultiModel)arguments.get(4));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -977,12 +983,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		Map<String, Model> outputsByName = this.getOutputs().stream()
+		return this.getOutputs().stream()
 			.collect(Collectors.toMap(
 				outputModelEndpoint -> outputModelEndpoint.getName(),
 				outputModelEndpoint -> outputModelEndpoint.getTarget()));
-
-		return outputsByName;
 	}
 
 	/**
@@ -992,11 +996,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		EList<Model> outputModels = new BasicEList<>(this.getOutputs().stream()
-			.map(outputModelEndpoint -> outputModelEndpoint.getTarget())
-			.collect(Collectors.toList()));
-
-		return outputModels;
+		return new BasicEList<>(
+			this.getOutputs().stream()
+				.map(outputModelEndpoint -> outputModelEndpoint.getTarget())
+				.collect(Collectors.toList()));
 	}
 
 	/**
@@ -1072,7 +1075,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private String getPropertiesUri(String suffix) {
 
-		IFile midDiagram = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+		IFile midDiagram = GMFDiagramUtils.getActiveMIDDiagramIFile();
 		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(midDiagram.getParent().getFullPath().toString());
 		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
 
@@ -1174,7 +1177,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			coerced = true;
 			Model convertedInputModel = input.getModel();
 			for (ConversionOperator conversion : input.getConversions()) {
-				//TODO MMINT[OPERATOR] Why don't we use start here?
+				//TODO MMINT[OPERATOR] Why do we run the operator type directly instead of using start()?
 				Properties inputProperties = conversion.getInputProperties();
 				conversion.readInputProperties(inputProperties);
 				conversion.init();
@@ -1218,7 +1221,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
+	public Operator start(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MultiModel> outputMIDsByName, MultiModel instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
@@ -1231,7 +1234,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		Map<String, GenericElement> genericsByName = createGenericsByName(generics, newOperator);
 		Map<String, Model> inputsByName = createInputsByName(inputs, true, newOperator);
 		// run operator
-		Properties inputProperties = newOperator.getInputProperties();
+		if (inputProperties == null) {
+			inputProperties = newOperator.getInputProperties();
+		}
 		newOperator.readInputProperties(inputProperties);
 		newOperator.init();
 		long startTime = System.nanoTime();

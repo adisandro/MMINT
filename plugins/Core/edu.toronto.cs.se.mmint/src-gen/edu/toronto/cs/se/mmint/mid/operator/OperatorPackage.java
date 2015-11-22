@@ -369,13 +369,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_OUTPUTS_BY_NAME = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Get Output Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_OUTPUT_MODELS = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CREATE_INSTANCE__MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int OPERATOR___CREATE_INSTANCE__MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -384,7 +393,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
+	int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -393,7 +402,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
+	int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
@@ -402,7 +411,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
+	int OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -411,7 +420,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -420,7 +429,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Init</em>' operation.
@@ -429,7 +438,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
+	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Run</em>' operation.
@@ -438,7 +447,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
+	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Start</em>' operation.
@@ -447,7 +456,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
+	int OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -456,7 +465,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -748,6 +757,15 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
 
 	/**
+	 * The operation id for the '<em>Get Output Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -826,7 +844,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL;
+	int CONVERSION_OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1163,6 +1181,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
 
 	/**
+	 * The operation id for the '<em>Get Output Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+
+	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1241,7 +1268,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL;
+	int RANDOM_OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL = OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -1820,6 +1847,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__GetOutputsByName();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputModels() <em>Get Output Models</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Output Models</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputModels()
+	 * @generated
+	 */
+	EOperation getOperator__GetOutputModels();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createInstance(edu.toronto.cs.se.mmint.mid.MultiModel) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1900,14 +1937,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__Run__Map_Map_Map();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Start</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel) <em>Start</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Start</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MultiModel)
 	 * @generated
 	 */
-	EOperation getOperator__Start__EList_EList_Map_MultiModel();
+	EOperation getOperator__Start__EList_Properties_EList_Map_MultiModel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
@@ -2312,6 +2349,14 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___GET_OUTPUTS_BY_NAME = eINSTANCE.getOperator__GetOutputsByName();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Output Models</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___GET_OUTPUT_MODELS = eINSTANCE.getOperator__GetOutputModels();
+
+		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2381,7 +2426,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___START__ELIST_ELIST_MAP_MULTIMODEL = eINSTANCE.getOperator__Start__EList_EList_Map_MultiModel();
+		EOperation OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MULTIMODEL = eINSTANCE.getOperator__Start__EList_Properties_EList_Map_MultiModel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.

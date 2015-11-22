@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -46,7 +47,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
 //TODO MMINT[OPERATOR] Create a separate feature for these generic megamodel operators
-//TODO MMINT[OPERATOR] Add operator workflows for experiments to work now that operator instances are created
 public class ExperimentDriver extends OperatorImpl {
 
 	protected class ExperimentWatchdog implements Runnable {
@@ -420,11 +420,11 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 
 		// write operator input properties
-		Properties operatorProperties = new Properties();
+		Properties inputProperties = new Properties();
 		for (int i = 0; i < varOperators.length; i++) {
 			for (int j = 0; j < varOperators[i].length; j++) {
 				if (varOperators[i][j].equals(operatorUri)) {
-					operatorProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
+					inputProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
 					break;
 				}
 			}
@@ -432,17 +432,15 @@ public class ExperimentDriver extends OperatorImpl {
 		for (int out = 0; out < outputs.length; out++) {
 			if (outputDoConfidences[out] && operatorUri.equals(outputOperators[out])) {
 				if (!outputConfidences[out]) {
-					operatorProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
+					inputProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
 				}
 				else {
-					operatorProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
+					inputProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
 				}
 			}
 		}
-
-		// figure out experiment subdirs
-		String nextSubdir = null;
 		if (operatorIndex == 0) {
+			String nextSubdir;
 			if (statisticsIndex < 0) {
 				nextSubdir = EXPERIMENT_SUBDIR + experimentIndex;
 			}
@@ -451,35 +449,28 @@ public class ExperimentDriver extends OperatorImpl {
 					EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
 					SAMPLE_SUBDIR + statisticsIndex;
 			}
-			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
-			operatorType.setInputSubdir(nextSubdir);
+			inputProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
 		}
+		inputProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
 
-		// never update the mid, it will explode
-		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
-
-//		// set state if operator needs it
-//		if (operatorType instanceof RandomOperatorImpl) {
-//			((RandomOperatorImpl) operatorType).setState(state[experimentIndex]);
-//		}
-		//TODO MMINT[EXPERIMENT] Write the actual properties file to be read by the operator in start()
-		//TODO MMINT[EXPERIMENT] Find a way to set the state in a random operator
-		//TODO MMINT[EXPERIMENT] Enable type cache
-		//TODO MMINT[EXPERIMENT] Create api to return list of output models
 		// execute, get state and add to workflow
 		EList<OperatorInput> inputs = operatorType.checkAllowedInputs(inputModels);
 		EList<OperatorGeneric> generics = operatorType.selectAllowedGenerics(inputs);
 		Map<String, MultiModel> outputMIDsByName = new HashMap<>();
-		Operator operator = operatorType.start(inputs, generics, outputMIDsByName, null);
-		if (operator instanceof RandomOperator) {
+		if (operatorType instanceof RandomOperator) { // random state passing
+			((RandomOperator) operatorType).setState(state[experimentIndex]);
+		}
+		Operator operator = operatorType.start(inputs, inputProperties, generics, outputMIDsByName, null);
+		if (operatorType instanceof RandomOperator) { // random state passing
 			state[experimentIndex] = ((RandomOperator) operator).getState();
+			((RandomOperator) operatorType).setState(null);
 		}
 		operatorWorkflow.add(operator);
 		int previousOperatorIndex = operatorWorkflow.size() - 2;
 		if (previousOperatorIndex >= 0) {
 			operator.setPreviousOperator(operatorWorkflow.get(previousOperatorIndex));
 		}
-		EList<Model> outputModels = null;//operator.getOutputModels();
+		EList<Model> outputModels = operator.getOutputModels();
 
 		return outputModels;
 	}
@@ -517,6 +508,7 @@ public class ExperimentDriver extends OperatorImpl {
 		experimentSetups = new String[numExperiments][vars.length];
 		cartesianProduct(experimentSetups);
 
+		MultiModelTypeHierarchy.clearCachedRuntimeTypes();
 		ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 		// outer cycle: vary experiment setup
 		for (int i = 0; i < numExperiments; i++) {
@@ -530,6 +522,7 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 		executor.shutdown();
 		executor.awaitTermination(24, TimeUnit.HOURS);
+		MultiModelTypeHierarchy.clearCachedRuntimeTypes();
 
 		return new HashMap<>();
 	}

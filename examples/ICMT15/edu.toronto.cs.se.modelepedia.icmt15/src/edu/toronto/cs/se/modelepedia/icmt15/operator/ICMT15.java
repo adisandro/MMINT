@@ -169,7 +169,7 @@ public class ICMT15 extends RandomOperatorImpl {
 
 	private @NonNull String generatePresenceCondition(@NonNull List<String> outputModelEncodings, int numClauses) {
 
-		Random random = getState();
+		Random random = this.getState();
 		int i = random.nextInt(outputModelEncodings.size());
 		String outputModelEncoding = outputModelEncodings.remove(i);
 		String presenceCondition = "";

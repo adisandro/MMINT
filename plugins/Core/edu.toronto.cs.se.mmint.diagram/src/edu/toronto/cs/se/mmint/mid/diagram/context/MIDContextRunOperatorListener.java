@@ -79,7 +79,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
 						outputModelTypeEndpoint -> instanceMID)
 					);
-				operatorType.start(operatorInputs, operatorGenerics, outputMIDsByName, instanceMID);
+				operatorType.start(operatorInputs, null, operatorGenerics, outputMIDsByName, instanceMID);
 				return CommandResult.newOKCommandResult();
 			}
 			catch (MultiModelDialogCancellation e) {

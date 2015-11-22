@@ -736,7 +736,7 @@ public abstract class ExtendibleElementImpl extends MAVOElementImpl implements E
 		else {
 			types.add((T) this.getMetatype());
 		}
-		MultiModelTypeHierarchy.setCachedRuntimeTypes(this, types);
+		MultiModelTypeHierarchy.addCachedRuntimeTypes(this, types);
 
 		return types;
 	}

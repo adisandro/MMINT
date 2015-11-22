@@ -48,7 +48,6 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
@@ -506,9 +505,6 @@ public class MMINT implements MMINTConstants {
 		IConfigurationElement[] outputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUTS);
 		if (outputsParamTypeConfigs.length > 0) {
 			createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-		}
-		if (newOperatorType instanceof RandomOperator) {
-			MultiModelTypeFactory.addOperatorTypeRandom((RandomOperator) newOperatorType);
 		}
 		if (newOperatorType instanceof ConversionOperator) {
 			MultiModelTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);

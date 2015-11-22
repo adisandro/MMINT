@@ -1,12 +1,9 @@
 package edu.toronto.cs.se.mmint;
 
-import java.util.Random;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 
 public class MMINTEcoreUtil extends EcoreUtil {
 
@@ -16,7 +13,7 @@ public class MMINTEcoreUtil extends EcoreUtil {
 		EObject result = copier.copy(eObject);
 		copier.copyReferences();
 
-		@SuppressWarnings("unchecked")T t = (T)result;
+		@SuppressWarnings("unchecked") T t = (T) result;
 		return t;
 	}
 
@@ -32,9 +29,6 @@ public class MMINTEcoreUtil extends EcoreUtil {
 					Operator operatorType = MultiModelTypeRegistry.getType(((Operator) eObject).getUri());
 					if (operatorType != null) {
 						Operator operatorTypeCopy = operatorType.getClass().newInstance();
-						if (operatorTypeCopy instanceof RandomOperator) {
-							((RandomOperator) operatorTypeCopy).setState(new Random());
-						}
 						return operatorTypeCopy;
 					}
 				}
