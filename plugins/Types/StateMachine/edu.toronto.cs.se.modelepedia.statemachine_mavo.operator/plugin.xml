@@ -39,4 +39,43 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ParallelComposition"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ParallelComposition"
+               class="edu.toronto.cs.se.modelepedia.statemachine_mavo.operator.ParallelComposition">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="sm1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="sm2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="composed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>
