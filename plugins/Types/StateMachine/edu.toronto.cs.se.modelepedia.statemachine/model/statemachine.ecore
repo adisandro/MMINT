@@ -15,6 +15,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractState" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitionsAsSource" upperBound="-1"
+        eType="#//Transition" eOpposite="#//Transition/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitionsAsTarget" upperBound="-1"
+        eType="#//Transition" eOpposite="#//Transition/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//AbstractState">
     <eAnnotations source="gmf.node">
@@ -53,9 +57,9 @@
       <details key="target.decoration" value="arrow"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//AbstractState"/>
+        eType="#//AbstractState" eOpposite="#//AbstractState/transitionsAsSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//AbstractState"/>
+        eType="#//AbstractState" eOpposite="#//AbstractState/transitionsAsTarget"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateAction" eSuperTypes="#//FiringElement">
     <eAnnotations source="gmf.node">

@@ -177,13 +177,31 @@ public interface StateMachinePackage extends EPackage {
 	int ABSTRACT_STATE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Transitions As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STATE__TRANSITIONS_AS_SOURCE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Transitions As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STATE__TRANSITIONS_AS_TARGET = 2;
+
+	/**
 	 * The number of structural features of the '<em>Abstract State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_STATE_FEATURE_COUNT = 1;
+	int ABSTRACT_STATE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Abstract State</em>' class.
@@ -212,6 +230,24 @@ public interface StateMachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE__NAME = ABSTRACT_STATE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Transitions As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__TRANSITIONS_AS_SOURCE = ABSTRACT_STATE__TRANSITIONS_AS_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Transitions As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__TRANSITIONS_AS_TARGET = ABSTRACT_STATE__TRANSITIONS_AS_TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Internal Actions</b></em>' containment reference list.
@@ -260,6 +296,24 @@ public interface StateMachinePackage extends EPackage {
 	int INITIAL_STATE__NAME = ABSTRACT_STATE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Transitions As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_STATE__TRANSITIONS_AS_SOURCE = ABSTRACT_STATE__TRANSITIONS_AS_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Transitions As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_STATE__TRANSITIONS_AS_TARGET = ABSTRACT_STATE__TRANSITIONS_AS_TARGET;
+
+	/**
 	 * The number of structural features of the '<em>Initial State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -295,6 +349,24 @@ public interface StateMachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int FINAL_STATE__NAME = ABSTRACT_STATE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Transitions As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__TRANSITIONS_AS_SOURCE = ABSTRACT_STATE__TRANSITIONS_AS_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Transitions As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_STATE__TRANSITIONS_AS_TARGET = ABSTRACT_STATE__TRANSITIONS_AS_TARGET;
 
 	/**
 	 * The number of structural features of the '<em>Final State</em>' class.
@@ -511,6 +583,28 @@ public interface StateMachinePackage extends EPackage {
 	EAttribute getAbstractState_Name();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getTransitionsAsSource <em>Transitions As Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Transitions As Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getTransitionsAsSource()
+	 * @see #getAbstractState()
+	 * @generated
+	 */
+	EReference getAbstractState_TransitionsAsSource();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getTransitionsAsTarget <em>Transitions As Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Transitions As Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine.AbstractState#getTransitionsAsTarget()
+	 * @see #getAbstractState()
+	 * @generated
+	 */
+	EReference getAbstractState_TransitionsAsTarget();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.statemachine.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -685,6 +779,22 @@ public interface StateMachinePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_STATE__NAME = eINSTANCE.getAbstractState_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Transitions As Source</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_STATE__TRANSITIONS_AS_SOURCE = eINSTANCE.getAbstractState_TransitionsAsSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Transitions As Target</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_STATE__TRANSITIONS_AS_TARGET = eINSTANCE.getAbstractState_TransitionsAsTarget();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.statemachine.impl.StateImpl <em>State</em>}' class.

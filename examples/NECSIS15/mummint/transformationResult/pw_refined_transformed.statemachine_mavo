@@ -13,15 +13,15 @@
     <alternatives formulaVariable="CanEmergency" description="Yes you can" mavoElements="//@transitions.5"/>
     <alternatives formulaVariable="CannotEmergency" description="No you can't" mavoElements="//@states.2/@internalActions.0"/>
   </decisions>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Unlocked" name="Unlocked"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Locked" name="Locked">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Unlocked" name="Unlocked" transitionsAsSource="//@transitions.0 //@transitions.6" transitionsAsTarget="//@transitions.1 //@transitions.3 //@transitions.7"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Locked" name="Locked" transitionsAsSource="//@transitions.5 //@transitions.7" transitionsAsTarget="//@transitions.4 //@transitions.6">
     <internalActions formulaVariable="a1" may="true" collections="//@decisions.1/@alternatives.0" trigger="entry" action="lock()"/>
     <internalActions formulaVariable="a3" may="true" collections="//@decisions.0/@alternatives.0" trigger="entry" action="done()"/>
   </states>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Moving" name="Moving">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Moving" name="Moving" transitionsAsSource="//@transitions.1 //@transitions.2 //@transitions.4" transitionsAsTarget="//@transitions.0 //@transitions.5">
     <internalActions formulaVariable="a0" may="true" collections="//@decisions.2/@alternatives.1" trigger="entry" action="move()"/>
   </states>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="SecuritySystemControlled" may="true" collections="//@decisions.0/@alternatives.2" name="SecuritySystemControlled">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="SecuritySystemControlled" may="true" collections="//@decisions.0/@alternatives.2" name="SecuritySystemControlled" transitionsAsSource="//@transitions.3" transitionsAsTarget="//@transitions.2">
     <internalActions formulaVariable="a2" may="true" collections="//@decisions.0/@alternatives.2" trigger="entry" action="done()"/>
   </states>
   <transitions formulaVariable="move" trigger="" action="" source="//@states.0" target="//@states.2"/>

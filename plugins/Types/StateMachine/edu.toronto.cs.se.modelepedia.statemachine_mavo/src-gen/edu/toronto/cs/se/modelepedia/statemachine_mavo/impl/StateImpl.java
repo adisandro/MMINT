@@ -17,6 +17,7 @@ import edu.toronto.cs.se.modelepedia.statemachine_mavo.State;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateAction;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
 
+import edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -37,11 +39,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getTransitionsAsSource <em>Transitions As Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getTransitionsAsTarget <em>Transitions As Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateImpl#getInternalActions <em>Internal Actions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,6 +68,24 @@ public class StateImpl extends MAVOElementImpl implements State {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getTransitionsAsSource() <em>Transitions As Source</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransitionsAsSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Transition> transitionsAsSource;
+	/**
+	 * The cached value of the '{@link #getTransitionsAsTarget() <em>Transitions As Target</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransitionsAsTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Transition> transitionsAsTarget;
 	/**
 	 * The cached value of the '{@link #getInternalActions() <em>Internal Actions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -119,6 +141,30 @@ public class StateImpl extends MAVOElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Transition> getTransitionsAsSource() {
+		if (transitionsAsSource == null) {
+			transitionsAsSource = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE, StateMachine_MAVOPackage.TRANSITION__SOURCE);
+		}
+		return transitionsAsSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Transition> getTransitionsAsTarget() {
+		if (transitionsAsTarget == null) {
+			transitionsAsTarget = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this, StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET, StateMachine_MAVOPackage.TRANSITION__TARGET);
+		}
+		return transitionsAsTarget;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<StateAction> getInternalActions() {
 		if (internalActions == null) {
 			internalActions = new EObjectContainmentEList<StateAction>(StateAction.class, this, StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS);
@@ -131,9 +177,30 @@ public class StateImpl extends MAVOElementImpl implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTransitionsAsSource()).basicAdd(otherEnd, msgs);
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTransitionsAsTarget()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE:
+				return ((InternalEList<?>)getTransitionsAsSource()).basicRemove(otherEnd, msgs);
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET:
+				return ((InternalEList<?>)getTransitionsAsTarget()).basicRemove(otherEnd, msgs);
 			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
 				return ((InternalEList<?>)getInternalActions()).basicRemove(otherEnd, msgs);
 		}
@@ -150,6 +217,10 @@ public class StateImpl extends MAVOElementImpl implements State {
 		switch (featureID) {
 			case StateMachine_MAVOPackage.STATE__NAME:
 				return getName();
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE:
+				return getTransitionsAsSource();
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET:
+				return getTransitionsAsTarget();
 			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
 				return getInternalActions();
 		}
@@ -167,6 +238,14 @@ public class StateImpl extends MAVOElementImpl implements State {
 		switch (featureID) {
 			case StateMachine_MAVOPackage.STATE__NAME:
 				setName((String)newValue);
+				return;
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE:
+				getTransitionsAsSource().clear();
+				getTransitionsAsSource().addAll((Collection<? extends Transition>)newValue);
+				return;
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET:
+				getTransitionsAsTarget().clear();
+				getTransitionsAsTarget().addAll((Collection<? extends Transition>)newValue);
 				return;
 			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
 				getInternalActions().clear();
@@ -187,6 +266,12 @@ public class StateImpl extends MAVOElementImpl implements State {
 			case StateMachine_MAVOPackage.STATE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE:
+				getTransitionsAsSource().clear();
+				return;
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET:
+				getTransitionsAsTarget().clear();
+				return;
 			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
 				getInternalActions().clear();
 				return;
@@ -204,6 +289,10 @@ public class StateImpl extends MAVOElementImpl implements State {
 		switch (featureID) {
 			case StateMachine_MAVOPackage.STATE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE:
+				return transitionsAsSource != null && !transitionsAsSource.isEmpty();
+			case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET:
+				return transitionsAsTarget != null && !transitionsAsTarget.isEmpty();
 			case StateMachine_MAVOPackage.STATE__INTERNAL_ACTIONS:
 				return internalActions != null && !internalActions.isEmpty();
 		}
@@ -220,6 +309,8 @@ public class StateImpl extends MAVOElementImpl implements State {
 		if (baseClass == AbstractState.class) {
 			switch (derivedFeatureID) {
 				case StateMachine_MAVOPackage.STATE__NAME: return StateMachine_MAVOPackage.ABSTRACT_STATE__NAME;
+				case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE: return StateMachine_MAVOPackage.ABSTRACT_STATE__TRANSITIONS_AS_SOURCE;
+				case StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET: return StateMachine_MAVOPackage.ABSTRACT_STATE__TRANSITIONS_AS_TARGET;
 				default: return -1;
 			}
 		}
@@ -236,6 +327,8 @@ public class StateImpl extends MAVOElementImpl implements State {
 		if (baseClass == AbstractState.class) {
 			switch (baseFeatureID) {
 				case StateMachine_MAVOPackage.ABSTRACT_STATE__NAME: return StateMachine_MAVOPackage.STATE__NAME;
+				case StateMachine_MAVOPackage.ABSTRACT_STATE__TRANSITIONS_AS_SOURCE: return StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_SOURCE;
+				case StateMachine_MAVOPackage.ABSTRACT_STATE__TRANSITIONS_AS_TARGET: return StateMachine_MAVOPackage.STATE__TRANSITIONS_AS_TARGET;
 				default: return -1;
 			}
 		}

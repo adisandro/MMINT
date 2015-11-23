@@ -59,6 +59,8 @@ public class AbstractStateItemProvider extends ItemProviderAdapter implements IE
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addTransitionsAsSourcePropertyDescriptor(object);
+			addTransitionsAsTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,6 +83,50 @@ public class AbstractStateItemProvider extends ItemProviderAdapter implements IE
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Transitions As Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTransitionsAsSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractState_transitionsAsSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractState_transitionsAsSource_feature", "_UI_AbstractState_type"),
+				 StateMachine_MAVOPackage.Literals.ABSTRACT_STATE__TRANSITIONS_AS_SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Transitions As Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTransitionsAsTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractState_transitionsAsTarget_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractState_transitionsAsTarget_feature", "_UI_AbstractState_type"),
+				 StateMachine_MAVOPackage.Literals.ABSTRACT_STATE__TRANSITIONS_AS_TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

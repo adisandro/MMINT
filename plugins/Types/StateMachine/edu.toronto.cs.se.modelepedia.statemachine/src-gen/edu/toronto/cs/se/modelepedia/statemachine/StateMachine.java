@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.StateMachine#getStates <em>States</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.StateMachine#getTransitions <em>Transitions</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getStateMachine()
  * @model

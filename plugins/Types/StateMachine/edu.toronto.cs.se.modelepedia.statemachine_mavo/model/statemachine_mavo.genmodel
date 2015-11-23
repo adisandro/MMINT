@@ -20,6 +20,8 @@
     </genClasses>
     <genClasses image="false" ecoreClass="statemachine_mavo.ecore#//AbstractState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine_mavo.ecore#//AbstractState/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//AbstractState/transitionsAsSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//AbstractState/transitionsAsTarget"/>
     </genClasses>
     <genClasses ecoreClass="statemachine_mavo.ecore#//State">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine_mavo.ecore#//State/internalActions"/>
