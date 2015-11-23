@@ -13,6 +13,8 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo.operator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -35,12 +37,21 @@ public class ParallelComposition extends OperatorImpl {
 	private final static @NonNull String IN_MODEL2 = "sm2";
 	private final static @NonNull String OUT_MODEL = "composed";
 
+	private void y(StateMachine composedSM, Transition t, State src, State tgt) {
+
+		//TODO Generate unique formula vars
+		Transition composedT = StateMachine_MAVOFactory.eINSTANCE.createTransition();
+		composedT.setTrigger(t.getTrigger());
+		composedT.setFormulaVariable(t.getFormulaVariable());
+		composedSM.getTransitions().add(composedT);
+		composedT.setSource(src);
+		composedT.setTarget(tgt);
+	}
+
 	private void x(StateMachine composedSM, StateMachine toCompose, Transition t, Map<String, State> compositionMap) {
 
 		boolean transitionFirst = true;
 		for (AbstractState s : toCompose.getStates()) {
-			Transition composedT = StateMachine_MAVOFactory.eINSTANCE.createTransition();
-			composedSM.getTransitions().add(composedT);
 			State composedStateSrc = null;
 			if (transitionFirst) {
 				String name = t.getSource().getName() + "_" + s.getName();
@@ -65,13 +76,20 @@ public class ParallelComposition extends OperatorImpl {
 				String name = s.getName() + "_" + t.getTarget().getName();
 				composedStateTgt = compositionMap.get(name);
 			}
-			composedT.setSource(composedStateSrc);
-			composedT.setTarget(composedStateTgt);
+			y(composedSM, t, composedStateSrc, composedStateTgt);
 		}
 	}
 
 	private @NonNull StateMachine compose(StateMachine sm1, StateMachine sm2) {
 
+		Map<String, Set<Transition>> triggers1 = sm1.getTransitions().stream()
+			.collect(Collectors.groupingBy(
+				Transition::getTrigger,
+				Collectors.toSet()));
+		Map<String, Set<Transition>> triggers2 = sm2.getTransitions().stream()
+			.collect(Collectors.groupingBy(
+				Transition::getTrigger,
+				Collectors.toSet()));
 		Map<String, State> compositionMap = new HashMap<>();
 		StateMachine composedSM = StateMachine_MAVOFactory.eINSTANCE.createStateMachine();
 		// create all states first
@@ -88,9 +106,24 @@ public class ParallelComposition extends OperatorImpl {
 		}
 		// create transitions
 		for (Transition t1 : sm1.getTransitions()) {
-			x(composedSM, sm2, t1, compositionMap);
+			Set<Transition> t2SameTrigger = triggers2.get(t1.getTrigger());
+			if (t2SameTrigger != null) { // sync
+				for (Transition t2 : t2SameTrigger) {
+					String name = t1.getSource().getName() + "_" + t2.getSource().getName();
+					State composedStateSrc = compositionMap.get(name);
+					name = t1.getTarget().getName() + "_" + t2.getTarget().getName();
+					State composedStateTgt = compositionMap.get(name);
+					y(composedSM, t1, composedStateSrc, composedStateTgt);
+				}
+			}
+			else {
+				x(composedSM, sm2, t1, compositionMap);
+			}
 		}
 		for (Transition t2 : sm2.getTransitions()) {
+			if (triggers1.get(t2.getTrigger()) != null) { // sync already done
+				continue;
+			}
 			x(composedSM, sm1, t2, compositionMap);
 		}
 

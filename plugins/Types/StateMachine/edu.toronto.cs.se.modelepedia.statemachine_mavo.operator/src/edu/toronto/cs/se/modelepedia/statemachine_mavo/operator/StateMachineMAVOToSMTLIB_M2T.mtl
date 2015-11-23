@@ -7,10 +7,7 @@
 (assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable1 s t) (ite
 	(exists ((s2t Edge)) (and
 		(edge s2t)
-		(or
-			(= (edgeType s2t) TRANSITION)
-			(= (edgeType s2t) TRANSITIONWITHEVENT)
-		)
+		(= (edgeType s2t) TRANSITION)
 		(= (src s2t) s)
 		(= (tgt s2t) t)
 	))
