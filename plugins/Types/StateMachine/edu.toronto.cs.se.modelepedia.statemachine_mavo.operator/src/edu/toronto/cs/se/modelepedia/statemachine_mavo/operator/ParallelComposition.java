@@ -37,94 +37,82 @@ public class ParallelComposition extends OperatorImpl {
 	private final static @NonNull String IN_MODEL2 = "sm2";
 	private final static @NonNull String OUT_MODEL = "composed";
 
-	private void y(StateMachine composedSM, Transition t, State src, State tgt) {
+	private final static @NonNull String COMPOSITION_INFIX = "_";
+
+	private void createComposedTransition(@NonNull StateMachine composedSM, @NonNull Transition transition, State composedStateSrc, State composedStateTgt) {
 
 		//TODO Generate unique formula vars
-		Transition composedT = StateMachine_MAVOFactory.eINSTANCE.createTransition();
-		composedT.setTrigger(t.getTrigger());
-		composedT.setFormulaVariable(t.getFormulaVariable());
-		composedSM.getTransitions().add(composedT);
-		composedT.setSource(src);
-		composedT.setTarget(tgt);
+		Transition composedTransition = StateMachine_MAVOFactory.eINSTANCE.createTransition();
+		composedTransition.setTrigger(transition.getTrigger());
+		composedTransition.setFormulaVariable(transition.getFormulaVariable());
+		composedSM.getTransitions().add(composedTransition);
+		composedTransition.setSource(composedStateSrc);
+		composedTransition.setTarget(composedStateTgt);
 	}
 
-	private void x(StateMachine composedSM, StateMachine toCompose, Transition t, Map<String, State> compositionMap) {
+	private void createComposedTransitions(@NonNull StateMachine composedSM, @NonNull StateMachine smToCompose, @NonNull Transition transition, @NonNull Map<String, State> composedStates, boolean transitionFirst) {
 
-		boolean transitionFirst = true;
-		for (AbstractState s : toCompose.getStates()) {
-			State composedStateSrc = null;
+		for (AbstractState stateToCompose : smToCompose.getStates()) {
+			String composedStateNameSrc, composedStateNameTgt;
 			if (transitionFirst) {
-				String name = t.getSource().getName() + "_" + s.getName();
-				composedStateSrc = compositionMap.get(name);
-				if (composedStateSrc == null) {
-					transitionFirst = !transitionFirst;
-				}
+				composedStateNameSrc = transition.getSource().getName() + COMPOSITION_INFIX + stateToCompose.getName();
+				composedStateNameTgt = transition.getTarget().getName() + COMPOSITION_INFIX + stateToCompose.getName();
 			}
-			if (!transitionFirst) {
-				String name = s.getName() + "_" + t.getSource().getName();
-				composedStateSrc = compositionMap.get(name);
+			else {
+				composedStateNameSrc = stateToCompose.getName() + COMPOSITION_INFIX + transition.getSource().getName();
+				composedStateNameTgt = stateToCompose.getName() + COMPOSITION_INFIX + transition.getTarget().getName();
 			}
-			State composedStateTgt = null;
-			if (transitionFirst) {
-				String name = t.getTarget().getName() + "_" + s.getName();
-				composedStateTgt = compositionMap.get(name);
-				if (composedStateTgt == null) {
-					transitionFirst = !transitionFirst;
-				}
-			}
-			if (!transitionFirst) {
-				String name = s.getName() + "_" + t.getTarget().getName();
-				composedStateTgt = compositionMap.get(name);
-			}
-			y(composedSM, t, composedStateSrc, composedStateTgt);
+			createComposedTransition(composedSM, transition, composedStates.get(composedStateNameSrc), composedStates.get(composedStateNameTgt));
 		}
+	}
+
+	private @NonNull Map<String, Set<Transition>> getTriggers(@NonNull StateMachine sm) {
+
+		return sm.getTransitions().stream()
+			.collect(Collectors.groupingBy(
+				Transition::getTrigger,
+				Collectors.toSet()));
 	}
 
 	private @NonNull StateMachine compose(StateMachine sm1, StateMachine sm2) {
 
-		Map<String, Set<Transition>> triggers1 = sm1.getTransitions().stream()
-			.collect(Collectors.groupingBy(
-				Transition::getTrigger,
-				Collectors.toSet()));
-		Map<String, Set<Transition>> triggers2 = sm2.getTransitions().stream()
-			.collect(Collectors.groupingBy(
-				Transition::getTrigger,
-				Collectors.toSet()));
-		Map<String, State> compositionMap = new HashMap<>();
+		Map<String, Set<Transition>> triggers1 = getTriggers(sm1);
+		Map<String, Set<Transition>> triggers2 = getTriggers(sm2);
+		Map<String, State> composedStates = new HashMap<>();
 		StateMachine composedSM = StateMachine_MAVOFactory.eINSTANCE.createStateMachine();
-		// create all states first
-		for (AbstractState s1 : sm1.getStates()) {
-			for (AbstractState s2 : sm2.getStates()) {
-				State c = StateMachine_MAVOFactory.eINSTANCE.createState();
-				String name = s1.getName() + "_" + s2.getName();
-				String formula = ((State) s1).getFormulaVariable() + "_" + ((State) s2).getFormulaVariable();
-				c.setName(name);
-				c.setFormulaVariable(formula);
-				compositionMap.put(name, c);
-				composedSM.getStates().add(c);
+		// create all states first..
+		for (AbstractState state1 : sm1.getStates()) {
+			for (AbstractState state2 : sm2.getStates()) {
+				State composedState = StateMachine_MAVOFactory.eINSTANCE.createState();
+				String composedStateName = state1.getName() + COMPOSITION_INFIX + state2.getName();
+				String composedStateFormulaVar = ((State) state1).getFormulaVariable() + COMPOSITION_INFIX + ((State) state2).getFormulaVariable();
+				composedState.setName(composedStateName);
+				composedState.setFormulaVariable(composedStateFormulaVar);
+				composedStates.put(composedStateName, composedState);
+				composedSM.getStates().add(composedState);
 			}
 		}
-		// create transitions
-		for (Transition t1 : sm1.getTransitions()) {
-			Set<Transition> t2SameTrigger = triggers2.get(t1.getTrigger());
-			if (t2SameTrigger != null) { // sync
-				for (Transition t2 : t2SameTrigger) {
-					String name = t1.getSource().getName() + "_" + t2.getSource().getName();
-					State composedStateSrc = compositionMap.get(name);
-					name = t1.getTarget().getName() + "_" + t2.getTarget().getName();
-					State composedStateTgt = compositionMap.get(name);
-					y(composedSM, t1, composedStateSrc, composedStateTgt);
+		// ..then create transitions
+		for (Transition transition1 : sm1.getTransitions()) {
+			Set<Transition> transitions2SameTrigger = triggers2.get(transition1.getTrigger());
+			if (transitions2SameTrigger != null) { // sync
+				for (Transition transition2 : transitions2SameTrigger) {
+					String composedStateName = transition1.getSource().getName() + COMPOSITION_INFIX + transition2.getSource().getName();
+					State composedStateSrc = composedStates.get(composedStateName);
+					composedStateName = transition1.getTarget().getName() + COMPOSITION_INFIX + transition2.getTarget().getName();
+					State composedStateTgt = composedStates.get(composedStateName);
+					createComposedTransition(composedSM, transition1, composedStateSrc, composedStateTgt);
 				}
 			}
 			else {
-				x(composedSM, sm2, t1, compositionMap);
+				createComposedTransitions(composedSM, sm2, transition1, composedStates, true);
 			}
 		}
-		for (Transition t2 : sm2.getTransitions()) {
-			if (triggers1.get(t2.getTrigger()) != null) { // sync already done
+		for (Transition transition2 : sm2.getTransitions()) {
+			if (triggers1.get(transition2.getTrigger()) != null) { // sync already done
 				continue;
 			}
-			x(composedSM, sm1, t2, compositionMap);
+			createComposedTransitions(composedSM, sm1, transition2, composedStates, false);
 		}
 
 		return composedSM;
