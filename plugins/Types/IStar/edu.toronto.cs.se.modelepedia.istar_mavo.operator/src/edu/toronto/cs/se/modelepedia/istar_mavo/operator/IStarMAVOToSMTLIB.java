@@ -14,24 +14,18 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.operator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
-import org.eclipse.emf.common.util.BasicMonitor;
+import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mavo.MAVOModel;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
 
@@ -70,19 +64,9 @@ public class IStarMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 	}
 
 	@Override
-	public Map<String, Model> run(
-			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+	protected List<Object> createAcceleoArguments(Model mavoModel) {
 
-		// input
-		Model istarModel = inputsByName.get(IN_MODEL);
-
-		mavoModelObjs = MAVOUtils.createFormulaVars(istarModel);
-		if (this.isMayOnly == null) {
-			this.isMayOnly = MAVOUtils.isMayOnly(mavoModelObjs);
-		}
-		List<Object> m2tArgs = new ArrayList<Object>();
-		m2tArgs.add(istarModel.getName());
+		List<Object> m2tArgs = super.createAcceleoArguments(mavoModel);
 		switch (analysisDirection) {
 		case BACKWARD:
 			m2tArgs.add(false);
@@ -92,13 +76,14 @@ public class IStarMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 			m2tArgs.add(true);
 			break;
 		}
-		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(istarModel.getUri()))).getParentFile();
-		AcceleoPreferences.switchForceDeactivationNotifications(true);
-		AcceleoPreferences.switchNotifications(false);
-		IStarMAVOToSMTLIB_M2T m2t = new IStarMAVOToSMTLIBWithListeners_M2T(istarModel.getEMFInstanceRoot(), folder, m2tArgs);
-		m2t.doGenerate(new BasicMonitor());
 
-		return new HashMap<>();
+		return m2tArgs;
+	}
+
+	@Override
+	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVOModel rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {
+
+		return new IStarMAVOToSMTLIBWithListeners_M2T(rootMavoModelObj, folder, m2tArgs);
 	}
 
 }
