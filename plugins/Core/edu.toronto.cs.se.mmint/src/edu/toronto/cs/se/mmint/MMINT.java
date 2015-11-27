@@ -829,7 +829,7 @@ public class MMINT implements MMINTConstants {
 	private static void copySubtypeTable(Map<String, Set<String>> srcTable, Map<String, Set<String>> tgtTable) {
 
 		for (Map.Entry<String, Set<String>> entry : srcTable.entrySet()) {
-			Set<String> newValue = new HashSet<String>(entry.getValue());
+			Set<String> newValue = new HashSet<>(entry.getValue());
 			tgtTable.put(entry.getKey(), newValue);
 		}
 	}
@@ -845,13 +845,13 @@ public class MMINT implements MMINTConstants {
 	private static void copyConversionTable(Map<String, Map<String, Set<List<String>>>> srcTable, Map<String, Map<String, Set<List<String>>>> tgtTable) {
 
 		for (Map.Entry<String, Map<String, Set<List<String>>>> entry : srcTable.entrySet()) {
-			Map<String, Set<List<String>>> newValue = new HashMap<String, Set<List<String>>>();
+			Map<String, Set<List<String>>> newValue = new HashMap<>();
 			tgtTable.put(entry.getKey(), newValue);
 			for (Map.Entry<String, Set<List<String>>> nestedEntry : entry.getValue().entrySet()) {
-				Set<List<String>> newNestedValue = new HashSet<List<String>>();
+				Set<List<String>> newNestedValue = new HashSet<>();
 				newValue.put(nestedEntry.getKey(), newNestedValue);
 				for (List<String> nestedNestedValue : nestedEntry.getValue()) {
-					List<String> newNestedNestedValue = new ArrayList<String>(nestedNestedValue);
+					List<String> newNestedNestedValue = new ArrayList<>(nestedNestedValue);
 					newNestedValue.add(newNestedNestedValue);
 				}
 			}

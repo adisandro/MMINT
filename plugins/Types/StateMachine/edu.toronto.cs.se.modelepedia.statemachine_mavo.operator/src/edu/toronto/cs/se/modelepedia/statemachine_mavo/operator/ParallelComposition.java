@@ -37,14 +37,14 @@ public class ParallelComposition extends OperatorImpl {
 	private final static @NonNull String IN_MODEL2 = "sm2";
 	private final static @NonNull String OUT_MODEL = "composed";
 
-	private final static @NonNull String COMPOSITION_INFIX = "_";
+	private final static @NonNull String COMPOSITION_INFIX = "-";
 
 	private void createComposedTransition(@NonNull StateMachine composedSM, @NonNull Transition transition, State composedStateSrc, State composedStateTgt) {
 
 		//TODO Generate unique formula vars
 		Transition composedTransition = StateMachine_MAVOFactory.eINSTANCE.createTransition();
 		composedTransition.setTrigger(transition.getTrigger());
-		composedTransition.setFormulaVariable(transition.getFormulaVariable());
+		composedTransition.setFormulaVariable(transition.getFormulaVariable() + "_" + composedStateSrc.getFormulaVariable() + "2" + composedStateTgt.getFormulaVariable());
 		composedSM.getTransitions().add(composedTransition);
 		composedTransition.setSource(composedStateSrc);
 		composedTransition.setTarget(composedStateTgt);

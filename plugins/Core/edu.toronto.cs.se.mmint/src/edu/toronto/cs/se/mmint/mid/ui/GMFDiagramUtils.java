@@ -171,7 +171,7 @@ public class GMFDiagramUtils {
 
 	public static @NonNull Map<String, View> getDiagramViews(@NonNull Diagram diagram) {
 
-		Map<String, View> diagramViews = new HashMap<String, View>();
+		Map<String, View> diagramViews = new HashMap<>();
 		getDiagramFormulaVariables((EList<View>) diagram.getChildren(), diagramViews);
 		getDiagramFormulaVariables((EList<View>) diagram.getEdges(), diagramViews);
 

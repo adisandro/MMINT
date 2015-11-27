@@ -503,7 +503,7 @@ public class MultiModelTypeRegistry {
 		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
 		MultiModel typeMID = MultiModelRegistry.getMultiModel(operatorType);
 		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
-		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getSubtypes(genericSuperType);
+		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getGenericSubtypes(genericSuperType);
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {

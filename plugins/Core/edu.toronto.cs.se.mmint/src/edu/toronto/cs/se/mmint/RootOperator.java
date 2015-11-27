@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint;
 
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
+// Needed because OperatorImpl can't be instantiated directly
 public class RootOperator extends OperatorImpl {
 
 }
