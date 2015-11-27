@@ -41,11 +41,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 
@@ -65,7 +65,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCheckCoherenceCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}

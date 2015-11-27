@@ -107,6 +107,8 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
+//	/** The file containing the active instance MID (i.e. the one that triggered an operation) */
+//	static IFile activeInstanceMIDFile;
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
@@ -991,6 +993,22 @@ public class MMINT implements MMINTConstants {
 
 		return INSTANCE != null;
 	}
+
+//	public static IFile getActiveInstanceMIDFile() {
+//
+//		return activeInstanceMIDFile;
+//	}
+//
+//	public static void storeActiveInstanceMIDFile() {
+//
+//		try {
+//			IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+//			activeInstanceMIDFile = diagramFile;
+//		}
+//		catch (Exception e) {
+//			MMINTException.print(IStatus.WARNING, "An instance MID is not ative and can't be stored", e);
+//		}
+//	}
 
 	/**
 	 * Constructor: initializes the settings, initializes the repository and

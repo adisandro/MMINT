@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
 
@@ -88,7 +87,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		command = new MAVODiagramOutlineContextHighlightCommand(
 			TransactionUtil.getEditingDomain(mavoElemToHighlight),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}

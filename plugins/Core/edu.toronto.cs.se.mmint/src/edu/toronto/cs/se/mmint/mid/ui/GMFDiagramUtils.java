@@ -11,13 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
@@ -38,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
@@ -207,28 +205,11 @@ public class GMFDiagramUtils {
 		return modelFile;
 	}
 
-	public static IFile getActiveMIDDiagramIFile() {
+	public static @Nullable IFile getActiveMIDDiagramIFile() {
 
 		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
 
 		return diagramFile;
-	}
-
-	public static List<IFile> getTransactionalCommandAffectedFiles() {
-
-		List<IFile> files = new ArrayList<IFile>();
-		IFile diagramFile = getActiveMIDDiagramIFile();
-		if (diagramFile != null) {
-			files.add(diagramFile);
-			try {
-				files.add(getModelIFile(diagramFile));
-			}
-			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + diagramFile.getName() + " for gmf transactional command", e);
-			}
-		}
-
-		return files;
 	}
 
 }

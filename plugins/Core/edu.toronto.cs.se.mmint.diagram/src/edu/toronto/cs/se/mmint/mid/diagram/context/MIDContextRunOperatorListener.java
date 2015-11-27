@@ -31,10 +31,10 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
@@ -57,7 +57,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextRunOperatorCommand(
 			TransactionUtil.getEditingDomain(instanceMID),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}

@@ -58,4 +58,21 @@ public class MIDDiagramUtils {
 		return mids;
 	}
 
+	public static List<IFile> getTransactionalCommandAffectedFiles() {
+
+		List<IFile> files = new ArrayList<>();
+		IFile diagramFile = GMFDiagramUtils.getActiveMIDDiagramIFile();
+		if (diagramFile != null) {
+			files.add(diagramFile);
+			try {
+				files.add(GMFDiagramUtils.getModelIFile(diagramFile));
+			}
+			catch (Exception e) {
+				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + diagramFile.getName() + " for gmf transactional command", e);
+			}
+		}
+
+		return files;
+	}
+
 }

@@ -28,8 +28,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 
 public class MIDContextCopyModelListener extends MIDContextMenuListener {
@@ -48,7 +48,7 @@ public class MIDContextCopyModelListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCopyCommand(
 			TransactionUtil.getEditingDomain(oldModel),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}

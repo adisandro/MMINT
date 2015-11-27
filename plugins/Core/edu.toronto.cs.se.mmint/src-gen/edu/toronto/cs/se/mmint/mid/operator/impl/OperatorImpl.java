@@ -1225,7 +1225,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface
+		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface (needs ui parts to be passed for GMFDiagramUtils functions to work)
 		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
 			instanceMID = null;
 		}

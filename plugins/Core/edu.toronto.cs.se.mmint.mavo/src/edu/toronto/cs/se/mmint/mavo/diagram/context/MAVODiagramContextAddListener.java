@@ -40,7 +40,7 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 
 public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 
@@ -83,7 +83,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MAVODiagramContextAddCommand(
 			TransactionUtil.getEditingDomain(mavoContainer),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}

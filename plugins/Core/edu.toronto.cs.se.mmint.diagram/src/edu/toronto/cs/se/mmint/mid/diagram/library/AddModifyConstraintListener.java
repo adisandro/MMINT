@@ -31,7 +31,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
@@ -51,7 +50,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new AddModifyConstraintCommand(
 			TransactionUtil.getEditingDomain(element),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
 		);
 		runListenerCommand(command);
 	}
