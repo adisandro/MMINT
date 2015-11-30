@@ -48,7 +48,7 @@ public class MIDContextCopyModelListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCopyCommand(
 			TransactionUtil.getEditingDomain(oldModel),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

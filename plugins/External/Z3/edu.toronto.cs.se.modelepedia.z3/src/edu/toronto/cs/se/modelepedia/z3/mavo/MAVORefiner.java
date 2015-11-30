@@ -231,8 +231,8 @@ public class MAVORefiner {
 		refinementRel.setName(MODELREL_NAME);
 
 		// refine
-		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.getModelFile(model.getUri(), true);
-		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.getModelFile(refinedModelUri, true);
+		MAVOModel rootModelObj = (MAVOModel) MultiModelUtils.readModelFile(model.getUri(), true);
+		MAVOModel refinedRootModelObj = (MAVOModel) MultiModelUtils.readModelFile(refinedModelUri, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
@@ -243,12 +243,12 @@ public class MAVORefiner {
 		populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file
-		MultiModelUtils.createModelFile(refinedRootModelObj, refinedModelUri, true);
+		MultiModelUtils.writeModelFile(refinedRootModelObj, refinedModelUri, true);
 		if (modelDiagram != null) {
-			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
+			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.readModelFile(modelDiagram.getUri(), true);
 			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
 			String refinedModelDiagramUri = MultiModelUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
-			MultiModelUtils.createModelFile(refinedDiagram, refinedModelDiagramUri, true);
+			MultiModelUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor();

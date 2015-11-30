@@ -71,7 +71,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	public void widgetSelected(SelectionEvent e) {
 
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
-		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
+		Map<MultiModel, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MultiModel instanceMID : instanceMIDs.keySet()) {
 			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID);
 			if (model != null) {
@@ -87,7 +87,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		command = new MAVODiagramOutlineContextHighlightCommand(
 			TransactionUtil.getEditingDomain(mavoElemToHighlight),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

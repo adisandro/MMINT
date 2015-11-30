@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -28,6 +29,8 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.service.prefs.BackingStoreException;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -107,8 +110,8 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
-//	/** The file containing the active instance MID (i.e. the one that triggered an operation) */
-//	static IFile activeInstanceMIDFile;
+	/** The file containing the active instance MID (i.e. the one that triggered an operation) */
+	static IFile activeInstanceMIDFile;
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
@@ -679,7 +682,7 @@ public class MMINT implements MMINTConstants {
 
 		MultiModel multiModel;
 		try {
-			multiModel = (MultiModel) MultiModelUtils.getModelFileInState(TYPEMID_FILENAME);
+			multiModel = (MultiModel) MultiModelUtils.readModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
@@ -741,6 +744,7 @@ public class MMINT implements MMINTConstants {
 		multipleInheritanceTable = new HashMap<>();
 		typeFactory = new MultiModelHeavyTypeFactory();
 		languageReasoners = new HashMap<>();
+		activeInstanceMIDFile = null;
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
@@ -869,7 +873,7 @@ public class MMINT implements MMINTConstants {
 		copySubtypeTable(subtypes, subtypesMID);
 		copyConversionTable(conversions, conversionsMID);
 		try {
-			MultiModelUtils.createModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
+			MultiModelUtils.writeModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID file", e);
@@ -884,7 +888,6 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static void syncRepository(MultiModel multiModel) {
 
-		//TODO MMINT[OO] to store operators' custom code in the mid, we would need them to be ecore-generated, but that's a burden for users
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
 		cachedTypeMID = MMINTEcoreUtil.copy(multiModel);
 		copySubtypeTable(subtypesMID, subtypes);
@@ -994,21 +997,22 @@ public class MMINT implements MMINTConstants {
 		return INSTANCE != null;
 	}
 
-//	public static IFile getActiveInstanceMIDFile() {
-//
-//		return activeInstanceMIDFile;
-//	}
-//
-//	public static void storeActiveInstanceMIDFile() {
-//
-//		try {
-//			IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-//			activeInstanceMIDFile = diagramFile;
-//		}
-//		catch (Exception e) {
-//			MMINTException.print(IStatus.WARNING, "An instance MID is not ative and can't be stored", e);
-//		}
-//	}
+	public static @Nullable IFile getActiveInstanceMIDFile() {
+
+		return activeInstanceMIDFile;
+	}
+
+	public static void storeActiveInstanceMIDFile() {
+
+		try {
+			IFile instanceMIDFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+			activeInstanceMIDFile = instanceMIDFile;
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "An instance MID is not ative and can't be stored", e);
+			activeInstanceMIDFile = null;
+		}
+	}
 
 	/**
 	 * Constructor: initializes the settings, initializes the repository and

@@ -83,7 +83,7 @@ public class MAVODiagramContextAddListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MAVODiagramContextAddCommand(
 			TransactionUtil.getEditingDomain(mavoContainer),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

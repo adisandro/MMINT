@@ -130,7 +130,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 				EPackage origRootModelTypeObj = origModelType.getEMFTypeRoot();
 				String origModelTypeUri = origRootModelTypeObj.getNsURI();
 				origRootModelTypeObj.setNsURI(origModelTypeUri + KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX);
-				MultiModelUtils.createModelFileInState(origRootModelTypeObj, kModelTypeUri);
+				MultiModelUtils.writeModelFileInState(origRootModelTypeObj, kModelTypeUri);
 				origRootModelTypeObj.setNsURI(origModelTypeUri); // restore original for packages coming from the registry
 			}
 			catch (Exception e) {
@@ -183,7 +183,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		}
 
 		try {
-			return (EPackage) MultiModelUtils.getModelFileInState(getUri());
+			return (EPackage) MultiModelUtils.readModelFileInState(getUri());
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the extended metamodel file for model type" + getUri(), e);

@@ -45,7 +45,7 @@ public class MIDContextRefineByConstraintListener extends MIDContextMenuListener
 		AbstractTransactionalCommand command = new MIDContextRefineByConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

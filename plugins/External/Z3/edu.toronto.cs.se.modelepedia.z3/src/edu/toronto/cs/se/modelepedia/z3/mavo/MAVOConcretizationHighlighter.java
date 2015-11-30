@@ -70,7 +70,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, Set<String>> z3ModelObjs) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.readModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
@@ -81,7 +81,7 @@ public class MAVOConcretizationHighlighter {
 
 		// write diagram to file
 		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MultiModelUtils.createModelFile(exampleDiagram, exampleDiagramUri, true);
+		MultiModelUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
@@ -153,7 +153,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlight(@NonNull Diagram modelDiagram, @NonNull LogicElement mavoElemToHighlight) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.getModelFile(modelDiagram.getUri(), true);
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.readModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = GMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// highlight
@@ -169,7 +169,7 @@ public class MAVOConcretizationHighlighter {
 
 		// write diagram to file
 		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MultiModelUtils.createModelFile(exampleDiagram, exampleDiagramUri, true);
+		MultiModelUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 

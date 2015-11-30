@@ -50,7 +50,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new AddModifyConstraintCommand(
 			TransactionUtil.getEditingDomain(element),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

@@ -122,7 +122,7 @@ public class HenshinTransformation extends OperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.createModelFile(transformedRootModelObj, transformedModelUri, true);
+		MultiModelUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
 		Model transformedModelType = MultiModelTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(

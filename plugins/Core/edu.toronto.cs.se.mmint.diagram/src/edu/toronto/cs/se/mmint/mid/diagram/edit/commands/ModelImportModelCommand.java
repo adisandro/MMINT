@@ -65,7 +65,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		MultiModel multiModel = (MultiModel) getElementToEdit();
 		String newModelUri = MultiModelDiagramUtils.selectModelToImport(false);
-		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.getModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
+		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.readModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
 			modelType = MultiModelTypeHierarchy.getRootModelType();
 		}

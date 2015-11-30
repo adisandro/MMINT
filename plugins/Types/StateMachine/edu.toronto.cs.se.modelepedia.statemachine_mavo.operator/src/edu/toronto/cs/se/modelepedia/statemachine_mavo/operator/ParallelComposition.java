@@ -133,7 +133,7 @@ public class ParallelComposition extends OperatorImpl {
 
 		// output
 		String composedModelUri = MultiModelUtils.replaceFileNameInUri(smModel1.getUri(), smModel1.getName() + "||" + smModel2.getName());
-		MultiModelUtils.createModelFile(composedSM, composedModelUri, true);
+		MultiModelUtils.writeModelFile(composedSM, composedModelUri, true);
 		Model composedModel = smModel1.getMetatype().createInstanceAndEditor(composedModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, composedModel);

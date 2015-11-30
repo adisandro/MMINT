@@ -298,7 +298,7 @@ matchesN:
 				transformedModelType.getFileExtension()),
 			true,
 			false);
-		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
+		MultiModelUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			ModelOrigin.CREATED,

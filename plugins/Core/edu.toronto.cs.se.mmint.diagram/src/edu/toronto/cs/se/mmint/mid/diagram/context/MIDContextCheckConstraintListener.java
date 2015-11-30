@@ -48,7 +48,7 @@ public class MIDContextCheckConstraintListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCheckConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

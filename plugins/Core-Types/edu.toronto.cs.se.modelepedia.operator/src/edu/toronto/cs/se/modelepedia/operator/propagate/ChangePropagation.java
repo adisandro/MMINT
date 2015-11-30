@@ -588,7 +588,7 @@ traceLinks:
 		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			reduceTraceLinkUncertainty(newPropModelRoot, propTraceLinkRefs, 0, 1);
 		}
-		MultiModelUtils.createModelFile(newPropModelRoot, newPropModel.getUri(), true);
+		MultiModelUtils.writeModelFile(newPropModelRoot, newPropModel.getUri(), true);
 		for (List<BinaryLinkReference> propTraceLinkRefs : propTraceLinkRefsList) {
 			for (BinaryLinkReference propTraceLinkRef : propTraceLinkRefs) {
 				propagateRefinementLinks(propTraceLinkRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);

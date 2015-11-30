@@ -76,7 +76,7 @@ public class Sum extends OperatorImpl {
 		String sumModelUri = MultiModelUtils.replaceFileNameInUri(
 			intModel1.getUri(),
 			intModel1.getName() + SUM_SEPARATOR + intModel2.getName());
-		MultiModelUtils.createModelFile(sumModelObj, sumModelUri, true);
+		MultiModelUtils.writeModelFile(sumModelObj, sumModelUri, true);
 		Model sumModel = intModel1.getMetatype().createInstanceAndEditor(
 			sumModelUri,
 			ModelOrigin.CREATED,

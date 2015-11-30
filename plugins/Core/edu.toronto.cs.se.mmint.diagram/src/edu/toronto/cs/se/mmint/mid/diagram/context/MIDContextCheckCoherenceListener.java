@@ -65,7 +65,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCheckCoherenceCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

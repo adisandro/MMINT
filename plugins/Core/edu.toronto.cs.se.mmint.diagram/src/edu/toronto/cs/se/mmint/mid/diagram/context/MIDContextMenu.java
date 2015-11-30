@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
@@ -100,9 +101,9 @@ public class MIDContextMenu extends ContributionItem {
 
 		// get model selection
 		MultiModel instanceMID = null;
-		EList<Model> selectedModels = new BasicEList<Model>();
+		EList<Model> selectedModels = new BasicEList<>();
 		ITextAwareEditPart label = null;
-		List<GraphicalEditPart> editParts = new ArrayList<GraphicalEditPart>();
+		List<GraphicalEditPart> editParts = new ArrayList<>();
 		for (Object object : objects) {
 			if (!(
 				object instanceof MultiModelEditPart ||
@@ -169,6 +170,7 @@ public class MIDContextMenu extends ContributionItem {
 		mmintItem.setText(MMINT_MENU_LABEL);
 		Menu mmintMenu = new Menu(menu);
 		mmintItem.setMenu(mmintMenu);
+		MMINT.storeActiveInstanceMIDFile();
 		// operator
 		if (doOperator) {
 			if (instanceMID == null) {

@@ -342,7 +342,7 @@ public class MAVOUtils {
 		}
 		// overwrite
 		if (modified) {
-			MultiModelUtils.createModelFile(mavoRootModelObj, mavoModel.getUri(), true);
+			MultiModelUtils.writeModelFile(mavoRootModelObj, mavoModel.getUri(), true);
 		}
 
 		return mavoModelObjs;

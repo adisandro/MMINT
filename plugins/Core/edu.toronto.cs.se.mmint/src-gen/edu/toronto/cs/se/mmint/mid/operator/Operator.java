@@ -466,7 +466,7 @@ public interface Operator extends GenericElement {
 	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
 	 *            MID means that the output model isn't added to it.
 	 * @param instanceMID
-	 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
+	 *            The Instance MID where the operator instance will run, null if the operator isn't going to be added to
 	 *            it.
 	 * @return The executed operator instance.
 	 * @throws Exception

@@ -42,7 +42,7 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 		KleisliAddModifyQueryCommand command = new KleisliAddModifyQueryCommand(
 			TransactionUtil.getEditingDomain(element),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

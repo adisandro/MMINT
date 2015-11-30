@@ -76,12 +76,12 @@ public class ExperimentDriver extends OperatorImpl {
 				if (!folder.exists(null)) {
 					folder.create(true, true, null);
 				}
-				List<Operator> operatorWorkflow = new ArrayList<>();
+				List<Operator> outerOperatorWorkflow = new ArrayList<>();
 				EList<Model> outerInputModels = new BasicEList<>();
 				outerInputModels.add(initialModel);
 				for (int op = 0; op < experimentOperators.length; op++) {
 					try {
-						outerInputModels = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerInputModels, operatorWorkflow, outputConfidences);
+						outerInputModels = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerInputModels, outerOperatorWorkflow, outputConfidences);
 					}
 					catch (Exception e) {
 						MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
@@ -109,13 +109,14 @@ public class ExperimentDriver extends OperatorImpl {
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}
+					List<Operator> innerOperatorWorkflow = new ArrayList<>(outerOperatorWorkflow);
 					EList<Model> innerInputModels = outerInputModels;
 					boolean timedOut = false;
 					// run time-bounded chain of operators
 					ExecutorService executor = Executors.newSingleThreadExecutor();
 					try {
 						executor.submit(
-							new SampleWatchdog(experimentIndex, j, innerInputModels, operatorWorkflow, outputConfidences)
+							new SampleWatchdog(experimentIndex, j, innerInputModels, innerOperatorWorkflow, outputConfidences)
 						).get(maxProcessingTime, TimeUnit.SECONDS);
 						executor.shutdown();
 					}
@@ -463,16 +464,18 @@ public class ExperimentDriver extends OperatorImpl {
 		if (operatorType instanceof RandomOperator) { // random state passing
 			((RandomOperator) operatorType).setState(state[experimentIndex]);
 		}
+		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
+			operatorType.setPreviousOperator(operatorWorkflow.get(operatorWorkflow.size()-1));
+		}
 		Operator operator = operatorType.start(inputs, inputProperties, generics, outputMIDsByName, null);
 		if (operatorType instanceof RandomOperator) { // random state passing
 			state[experimentIndex] = ((RandomOperator) operator).getState();
 			((RandomOperator) operatorType).setState(null);
 		}
-		operatorWorkflow.add(operator);
-		int previousOperatorIndex = operatorWorkflow.size() - 2;
-		if (previousOperatorIndex >= 0) {
-			operator.setPreviousOperator(operatorWorkflow.get(previousOperatorIndex));
+		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
+			operatorType.setPreviousOperator(null);
 		}
+		operatorWorkflow.add(operator);
 		EList<Model> outputModels = operator.getOutputModels();
 
 		return outputModels;

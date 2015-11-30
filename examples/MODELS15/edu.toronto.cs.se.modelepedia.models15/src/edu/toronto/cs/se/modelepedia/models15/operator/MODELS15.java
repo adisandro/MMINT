@@ -88,7 +88,7 @@ public class MODELS15 extends RandomOperatorImpl {
 			String cdModelUri = MultiModelUtils.replaceLastSegmentInUri(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
-				MultiModelUtils.createModelFile(classDiagram, cdModelUri, true);
+				MultiModelUtils.writeModelFile(classDiagram, cdModelUri, true);
 				cdModelType.createInstance(cdModelUri, ModelOrigin.CREATED, cdMID);
 			}
 			catch (Exception e) {
@@ -117,7 +117,7 @@ public class MODELS15 extends RandomOperatorImpl {
 
 		// output
 		String cdMIDModelUri = MultiModelUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
-		MultiModelUtils.createModelFile(cdMID, cdMIDModelUri, true);
+		MultiModelUtils.writeModelFile(cdMID, cdMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

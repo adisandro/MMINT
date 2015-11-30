@@ -60,7 +60,7 @@ public abstract class MMINTTest {
 
 		createTestProject();
 		MultiModel instanceMID = MIDFactory.eINSTANCE.createMultiModel();
-		MultiModelUtils.createModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
+		MultiModelUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return instanceMID;
 	}
@@ -73,7 +73,7 @@ public abstract class MMINTTest {
 		Path inputPath = Paths.get(MultiModelUtils.prependWorkspaceToUri(inputModelUri));
 		Files.copy(bundlePath, inputPath, StandardCopyOption.REPLACE_EXISTING);
 		Model inputModel =  MultiModelTypeHierarchy.getRootModelType().createInstance(inputModelUri, ModelOrigin.CREATED, instanceMID);
-		MultiModelUtils.createModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
+		MultiModelUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return inputModel;
 	}

@@ -84,7 +84,7 @@ public class Map extends OperatorImpl {
 			MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.createModelFile(outputMID, outputMIDUri, true);
+		MultiModelUtils.writeModelFile(outputMID, outputMIDUri, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
 			outputMIDUri,
 			ModelOrigin.CREATED,
@@ -98,7 +98,7 @@ public class Map extends OperatorImpl {
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
-		View gmfDiagramRoot = (View) MultiModelUtils.getModelFile(outputMIDModelDiagram.getUri(), true);
+		View gmfDiagramRoot = (View) MultiModelUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
 		//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
 		String gmfDiagramPluginId = MultiModelTypeRegistry.getTypeBundle(
 			outputMIDModelDiagram.getMetatypeUri()).getSymbolicName();
@@ -115,7 +115,7 @@ public class Map extends OperatorImpl {
 			shortcutAnnotation.getDetails().put("modelID", MultiModelEditPart.MODEL_ID);
 			gmfNode.getEAnnotations().add(shortcutAnnotation);
 		}
-		MultiModelUtils.createModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
+		MultiModelUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
 
 		return outputMIDModel;
 	}
@@ -321,7 +321,7 @@ public class Map extends OperatorImpl {
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {
-			MultiModelUtils.createModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
+			MultiModelUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
 		}
 
 		return outputsByName;

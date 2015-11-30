@@ -242,24 +242,24 @@ public class MultiModelUtils {
 	 * @throws Exception
 	 *             If the ECore model file could not be created or overwritten.
 	 */
-	public static void createModelFile(@NonNull EObject root, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static void writeModelFile(@NonNull EObject root, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
 		MultiModelTypeIntrospection.writeRoot(root, getEMFUri(fileUri, isWorkspaceRelative));
 	}
 
-	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
+	public static void writeModelFileInState(EObject root, String relativeFileUri) throws Exception {
 
-		createModelFile(root, prependStateToUri(relativeFileUri), false);
+		writeModelFile(root, prependStateToUri(relativeFileUri), false);
 	}
 
-	public static @NonNull EObject getModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static @NonNull EObject readModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
 		return MultiModelTypeIntrospection.getRoot(getEMFUri(fileUri, isWorkspaceRelative));
 	}
 
-	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
+	public static EObject readModelFileInState(String relativeFileUri) throws Exception {
 
-		return getModelFile(prependStateToUri(relativeFileUri), false);
+		return readModelFile(prependStateToUri(relativeFileUri), false);
 	}
 
 	public static void deleteModelFile(Model model) throws MMINTException {

@@ -35,7 +35,6 @@ import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
@@ -196,20 +195,13 @@ public class GMFDiagramUtils {
 		}
 	}
 
-	public static @NonNull IFile getModelIFile(@NonNull IFile diagramFile) throws Exception {
+	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
-		Diagram diagram = (Diagram) MultiModelUtils.getModelFile(diagramFile.getFullPath().toString(), true);
+		Diagram diagram = (Diagram) MultiModelUtils.readModelFile(diagramFile.getFullPath().toString(), true);
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
 		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
 		return modelFile;
-	}
-
-	public static @Nullable IFile getActiveMIDDiagramIFile() {
-
-		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-
-		return diagramFile;
 	}
 
 }

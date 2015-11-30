@@ -56,7 +56,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
@@ -1018,6 +1017,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 		super.addBasicInstance(newOperator, null, this.getName());
 		newOperator.setCommutative(false);
+		if (this.getPreviousOperator() != null) {
+			newOperator.setPreviousOperator(this.getPreviousOperator());
+		}
 		if (instanceMID != null) {
 			instanceMID.getOperators().add(newOperator);
 		}
@@ -1075,8 +1077,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private String getPropertiesUri(String suffix) {
 
-		IFile midDiagram = GMFDiagramUtils.getActiveMIDDiagramIFile();
-		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(midDiagram.getParent().getFullPath().toString());
+		IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
+		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(instanceMIDFile.getParent().getFullPath().toString());
 		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
 
 		return propertiesUri;

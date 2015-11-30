@@ -13,8 +13,6 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
@@ -32,6 +30,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -57,7 +56,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextRunOperatorCommand(
 			TransactionUtil.getEditingDomain(instanceMID),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}
@@ -74,11 +73,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MultiModel> outputMIDsByName = operatorType.getOutputs().stream()
-					.collect(Collectors.toMap(
-						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-						outputModelTypeEndpoint -> instanceMID)
-					);
+				Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(operatorType, instanceMID);
 				operatorType.start(operatorInputs, null, operatorGenerics, outputMIDsByName, instanceMID);
 				return CommandResult.newOKCommandResult();
 			}

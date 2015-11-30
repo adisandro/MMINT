@@ -31,7 +31,7 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDDiagramUtils {
 
-	public static @NonNull Map<MultiModel, List<IFile>> getMIDsInWorkspace() {
+	public static @NonNull Map<MultiModel, List<IFile>> getInstanceMIDsInWorkspace() {
 
 		Map<MultiModel, List<IFile>> mids = new HashMap<>();
 		for (IEditorReference editorReference : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences()) {
@@ -46,7 +46,7 @@ public class MIDDiagramUtils {
 				}
 				midFiles.add(diagramFile);
 				try {
-					midFiles.add(GMFDiagramUtils.getModelIFile(diagramFile));
+					midFiles.add(GMFDiagramUtils.getModelFileFromDiagramFile(diagramFile));
 				}
 				catch (Exception e) {
 					MMINTException.print(IStatus.WARNING, "Can't add model file of MID " + diagramFile.getName(), e);
@@ -58,17 +58,17 @@ public class MIDDiagramUtils {
 		return mids;
 	}
 
-	public static List<IFile> getTransactionalCommandAffectedFiles() {
+	public static List<IFile> getActiveInstanceMIDFiles() {
 
 		List<IFile> files = new ArrayList<>();
-		IFile diagramFile = GMFDiagramUtils.getActiveMIDDiagramIFile();
-		if (diagramFile != null) {
-			files.add(diagramFile);
+		IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
+		if (instanceMIDFile != null) {
+			files.add(instanceMIDFile);
 			try {
-				files.add(GMFDiagramUtils.getModelIFile(diagramFile));
+				files.add(GMFDiagramUtils.getModelFileFromDiagramFile(instanceMIDFile));
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + diagramFile.getName() + " for gmf transactional command", e);
+				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + instanceMIDFile.getName() + " for gmf transactional command", e);
 			}
 		}
 

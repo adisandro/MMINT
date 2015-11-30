@@ -282,7 +282,7 @@ public class Reduce extends OperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.createModelFile(reducedMID, reducedMIDModelUri, true);
+		MultiModelUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

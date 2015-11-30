@@ -81,7 +81,7 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MAVODiagramContextRemoveCommand(
 			TransactionUtil.getEditingDomain(mavoElemsToRemove.get(0)),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

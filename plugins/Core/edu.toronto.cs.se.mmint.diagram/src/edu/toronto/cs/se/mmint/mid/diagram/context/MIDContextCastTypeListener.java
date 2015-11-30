@@ -56,7 +56,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCastTypeCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			MIDDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}
