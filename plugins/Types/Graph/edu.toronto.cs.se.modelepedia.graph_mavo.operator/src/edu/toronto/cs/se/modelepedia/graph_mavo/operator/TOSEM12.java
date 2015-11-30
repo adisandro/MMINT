@@ -198,6 +198,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		//TODO MMINT[TOSEM] add heuristics to detect large number of concretizations (when it's more efficient to generate them all and then cut some)
 		smtConcretizations = new HashSet<>();
+		smtConcretizationsConstraint = "";
 		for (int i = 0; i < numConcretizations; i++) {
 			String smtConcretization = generateRandomSMTLIBConcretization();
 			if (smtConcretizations.contains(smtConcretization)) { // duplicate
@@ -340,7 +341,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			return;
 		}
 
-		smtProperty += Z3Utils.SMTLIB_AND;
+		smtProperty = Z3Utils.SMTLIB_AND;
 		for (Node node : nodes) {
 			smtProperty += '\n';
 			switch (propertyId) {
