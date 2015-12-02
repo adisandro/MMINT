@@ -18,8 +18,8 @@
           <useUIHarness>true</useUIHarness>
           <useUIThread>true</useUIThread>
           <product>org.eclipse.platform.ide</product>
-          <argLine>-XX:MaxPermSize=512m -Xms80m -Xmx6144m</argLine>
-          <skip>true</skip>
+          <argLine>-Xms512m -Xmx2g</argLine>
+          <skipTests>true</skipTests>
         </configuration>
       </plugin>
       <plugin>
@@ -31,7 +31,7 @@
             <extraRequirements>
               <requirement>
                 <type>eclipse-feature</type>
-                <id>edu.toronto.cs.se.mmint.feature</id>
+                <id>edu.toronto.cs.se.mummint.feature</id>
                 <versionRange>0.0.0</versionRange>
               </requirement>
               <requirement>

@@ -1,6 +1,12 @@
+sudo: false
 language: java
 jdk:
  - oraclejdk8
+env:
+ - MAVEN_OPTS='-Xmx2g'
+cache:
+ directories:
+  - $HOME/.m2
 script:
  - cd releng/edu.toronto.cs.se.modelepedia.libz3java.releng
  - mvn clean install
