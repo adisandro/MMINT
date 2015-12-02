@@ -1,0 +1,6 @@
+language: java
+script:
+ - cd releng/edu.toronto.cs.se.modelepedia.libz3java.releng
+ - mvn clean install
+ - cd releng/edu.toronto.cs.se.mmint.releng
+ - mvn clean install
