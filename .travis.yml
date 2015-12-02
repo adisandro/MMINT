@@ -1,13 +1,11 @@
-sudo: false
 language: java
 jdk:
  - oraclejdk8
-env:
- - MAVEN_OPTS='-Xmx2g'
 cache:
  directories:
   - $HOME/.m2
 script:
+ - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
  - cd releng/edu.toronto.cs.se.modelepedia.libz3java.releng
  - mvn clean install
  - cd ../edu.toronto.cs.se.mmint.releng
