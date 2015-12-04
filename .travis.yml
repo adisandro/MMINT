@@ -17,6 +17,4 @@ after_success:
  - chmod 600 releng/deploy_key
  - mv releng/deploy_key ~/.ssh/id_rsa
  - ssh adisandro@cs.toronto.edu 'rm -rf ~/public_html/mmint/updates/'
- - scp releng/edu.toronto.cs.se.mmint.install/target/repository/*.jar adisandro@cs.toronto.edu:~/public_html/mmint/updates
- - scp releng/edu.toronto.cs.se.mmint.install/target/repository/features/*.jar adisandro@cs.toronto.edu:~/public_html/mmint/updates/features
- - scp releng/edu.toronto.cs.se.mmint.install/target/repository/plugins/*.jar adisandro@cs.toronto.edu:~/public_html/mmint/updates/plugins
+ - rsync -r releng/edu.toronto.cs.se.mmint.install/target/repository/ adisandro@cs.toronto.edu:~/public_html/mmint/updates/
