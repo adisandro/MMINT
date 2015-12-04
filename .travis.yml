@@ -1,12 +1,22 @@
 language: java
 jdk:
  - oraclejdk8
+branches:
+ only: master
 cache:
  directories:
   - $HOME/.m2
+before_install:
+ - echo -e "Host cs.toronto.edu\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+ - openssl aes-256-cbc -K $encrypted_631ea21ad1d0_key -iv $encrypted_631ea21ad1d0_iv -in releng/deploy_key.enc -out releng/deploy_key -d
 script:
  - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
- - cd releng/edu.toronto.cs.se.modelepedia.libz3java.releng
- - mvn clean install
- - cd ../edu.toronto.cs.se.mmint.releng
- - mvn clean install
+ - mvn -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
+ - mvn -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+after_success:
+ - chmod 600 releng/deploy_key
+ - mv releng/deploy_key ~/.ssh/id_rsa
+ - ssh adisandro@cs.toronto.edu 'rm -rf ~/public_html/mmint/updates/'
+ - scp releng/edu.toronto.cs.se.mmint.install/target/repository/*.jar adisandro@cs.toronto.edu:~/public_html/mmint/updates
+ - scp releng/edu.toronto.cs.se.mmint.install/target/repository/features/*.jar adisandro@cs.toronto.edu:~/public_html/mmint/updates/features
+ - scp releng/edu.toronto.cs.se.mmint.install/target/repository/plugins/*.jar adisandro@cs.toronto.edu:~/public_html/mmint/updates/plugins
