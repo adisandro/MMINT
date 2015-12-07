@@ -3,40 +3,40 @@
 [import edu::toronto::cs::se::modelepedia::z3::mavo::EcoreMAVOToSMTLIBUtils_M2T /]
 
 [template private encodeAnalysis(sm : StateMachine)]
-(declare-fun reachable1 (Node Node) Bool)
-(assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable1 s t) (ite
-	(exists ((s2t Edge)) (and
-		(edge s2t)
-		(= (edgeType s2t) TRANSITION)
-		(= (src s2t) s)
-		(= (tgt s2t) t)
-	))
-	true
-	false
-)))))
-	[for (c : Integer | Sequence{2..sm.states->size()-1})]
-(declare-fun reachable[c/] (Node Node) Bool)
-(assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable[c/] s t) (ite
-	(exists ((x Node)) (and
-		(node x)
-		(= (nodeType x) STATE)
-		(reachable[c-1/] s x)
-		(reachable[c-1/] x t)
-	))
-	true
-	false
-)))))
-	[/for]
-(declare-fun reachable (Node Node) Bool)
-(assert (forall ((s Node) (t Node)) (=> (and (node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)) (= (reachable s t) (ite
-	(or
-	[for (c : Integer | Sequence{1..sm.states->size()-1})]
-		(reachable[c/] s t)
-	[/for]
+(define-fun reachable1 ((s Node) (t Node)) Bool
+	(and
+		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
+		(exists ((s2t Edge)) (and
+			(edge s2t)
+			(= (edgeType s2t) TRANSITION)
+			(= (src s2t) s)
+			(= (tgt s2t) t)
+		))
 	)
-	true
-	false
-)))))
+)
+	[for (c : Integer | Sequence{2..sm.states->size()-1})]
+(define-fun reachable[c/] ((s Node) (t Node)) Bool
+	(and
+		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
+		(exists ((x Node)) (and
+			(node x)
+			(= (nodeType x) STATE)
+			(reachable1 s x)
+			(reachable[c-1/] x t)
+		))
+	)
+)
+	[/for]
+(define-fun reachable ((s Node) (t Node)) Bool
+	(and
+		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
+		(or
+	[for (c : Integer | Sequence{1..sm.states->size()-1})]
+			(reachable[c/] s t)
+	[/for]
+		)
+	)
+)
 [/template]
 
 [template public encodeStateMachineMAVO(sm : StateMachine, modelName : String, mayOnly : Boolean)]

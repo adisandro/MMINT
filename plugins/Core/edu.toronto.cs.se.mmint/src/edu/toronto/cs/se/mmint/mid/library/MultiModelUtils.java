@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.library;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -171,7 +172,8 @@ public class MultiModelUtils {
 			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"))) {
 				String oldLine;
 				while ((oldLine = oldBuffer.readLine()) != null) {
-					newBuffer.write(oldLine.replaceAll(origText, newText));
+					//System.out.println(URLDecoder.decode(origText, "UTF-8"));
+					newBuffer.write(oldLine.replace(origText, newText));
 					newBuffer.newLine();
 				}
 			}

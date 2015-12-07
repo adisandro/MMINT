@@ -82,7 +82,14 @@ public class ParallelComposition extends OperatorImpl {
 		StateMachine composedSM = StateMachine_MAVOFactory.eINSTANCE.createStateMachine();
 		// create all states first..
 		for (AbstractState state1 : sm1.getStates()) {
+			//TODO MMINT[STATEMACHINE] Fix initial and final state not having mavo annotations
+			if (!(state1 instanceof State)) {
+				continue;
+			}
 			for (AbstractState state2 : sm2.getStates()) {
+				if (!(state2 instanceof State)) {
+					continue;
+				}
 				State composedState = StateMachine_MAVOFactory.eINSTANCE.createState();
 				String composedStateName = state1.getName() + COMPOSITION_INFIX + state2.getName();
 				String composedStateFormulaVar = ((State) state1).getFormulaVariable() + COMPOSITION_INFIX + ((State) state2).getFormulaVariable();

@@ -1045,7 +1045,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 				newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 				true);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
 		Model newModel = createMAVOInstance(newModelUri, ModelOrigin.CREATED, containerMultiModel);
