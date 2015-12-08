@@ -20,11 +20,11 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.FiringElement#getAction <em>Action</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getFiringElement()
  * @model abstract="true"

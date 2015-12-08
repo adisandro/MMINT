@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl#getAction <em>Action</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

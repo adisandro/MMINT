@@ -169,7 +169,7 @@ public class ICMT15 extends RandomOperatorImpl {
 
 	private @NonNull String generatePresenceCondition(@NonNull List<String> outputModelEncodings, int numClauses) {
 
-		Random random = getState();
+		Random random = this.getState();
 		int i = random.nextInt(outputModelEncodings.size());
 		String outputModelEncoding = outputModelEncodings.remove(i);
 		String presenceCondition = "";
@@ -245,7 +245,7 @@ public class ICMT15 extends RandomOperatorImpl {
 			) :
 			inputModel.getUri();
 		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
-		MultiModelUtils.createModelFile(outputRootModelObj, outputModelUri, true);
+		MultiModelUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
 		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, ModelOrigin.CREATED, instanceMID);
 		MultiModelUtils.createTextFile(MultiModelUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();

@@ -84,7 +84,7 @@ public class Union extends OperatorImpl {
 		String unionMIDModelUri = MultiModelUtils.replaceFileNameInUri(
 			MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 			unionMIDModelName);
-		MultiModelUtils.createModelFile(unionMID, unionMIDModelUri, true);
+		MultiModelUtils.writeModelFile(unionMID, unionMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

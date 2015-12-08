@@ -209,7 +209,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		MultiModelUtils.createModelFile(tgtRootModelObj, tgtModelUri, true);
+		MultiModelUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);

@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.library;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -177,7 +178,8 @@ public class MultiModelUtils {
 			try (BufferedWriter newBuffer = Files.newBufferedWriter(newFilePath, Charset.forName("UTF-8"))) {
 				String oldLine;
 				while ((oldLine = oldBuffer.readLine()) != null) {
-					newBuffer.write(oldLine.replaceAll(origText, newText));
+					//System.out.println(URLDecoder.decode(origText, "UTF-8"));
+					newBuffer.write(oldLine.replace(origText, newText));
 					newBuffer.newLine();
 				}
 			}
@@ -247,7 +249,7 @@ public class MultiModelUtils {
 	 * @throws Exception
 	 *             If the ECore model file could not be created or overwritten.
 	 */
-	public static void createModelFile(@NonNull EObject rootModelObj, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static void writeModelFile(@NonNull EObject rootModelObj, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
 		URI uri = MultiModelUtils.getEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -258,23 +260,12 @@ public class MultiModelUtils {
 		resource.save(options);
 	}
 
-	public static void createModelFileInState(EObject root, String relativeFileUri) throws Exception {
+	public static void writeModelFileInState(EObject root, String relativeFileUri) throws Exception {
 
-		createModelFile(root, prependStateToUri(relativeFileUri), false);
+		writeModelFile(root, prependStateToUri(relativeFileUri), false);
 	}
 
-	/**
-	 * Gets the root of an ECore model file.
-	 * 
-	 * @param fileUri
-	 *            The uri of the ECore model file.
-	 * @param isWorkspaceRelative
-	 *            True if the model uri is relative to the Eclipse workspace, false if it's absolute.
-	 * @return The root of the ECore model.
-	 * @throws Exception
-	 *             If the uri is invalid or not corresponding to an ECore model file.
-	 */
-	public static @NonNull EObject getModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
+	public static @NonNull EObject readModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
 		URI uri = MultiModelUtils.getEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet set = new ResourceSetImpl();
@@ -284,9 +275,9 @@ public class MultiModelUtils {
 		return rootModelObj;
 	}
 
-	public static EObject getModelFileInState(String relativeFileUri) throws Exception {
+	public static EObject readModelFileInState(String relativeFileUri) throws Exception {
 
-		return getModelFile(prependStateToUri(relativeFileUri), false);
+		return readModelFile(prependStateToUri(relativeFileUri), false);
 	}
 
 	public static void deleteModelFile(Model model) throws MMINTException {

@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -28,6 +29,8 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.service.prefs.BackingStoreException;
 
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -48,7 +51,6 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -108,6 +110,8 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
+	/** The file containing the active instance MID (i.e. the one that triggered an operation) */
+	static IFile activeInstanceMIDFile;
 	/**
 	 * The table to have some very poor sort of multiple inheritance,
 	 * i.e. to have UML_MAVO properly recognized.
@@ -509,9 +513,6 @@ public class MMINT implements MMINTConstants {
 		if (outputsParamTypeConfigs.length > 0) {
 			createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
-		if (newOperatorType instanceof RandomOperator) {
-			MultiModelTypeFactory.addOperatorTypeRandom((RandomOperator) newOperatorType);
-		}
 		if (newOperatorType instanceof ConversionOperator) {
 			MultiModelTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);
 		}
@@ -682,7 +683,7 @@ public class MMINT implements MMINTConstants {
 
 		MID typeMID;
 		try {
-			typeMID = (MID) MultiModelUtils.getModelFileInState(TYPEMID_FILENAME);
+			typeMID = (MID) MultiModelUtils.readModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
@@ -744,6 +745,7 @@ public class MMINT implements MMINTConstants {
 		multipleInheritanceTable = new HashMap<>();
 		typeFactory = new MultiModelHeavyTypeFactory();
 		languageReasoners = new HashMap<>();
+		activeInstanceMIDFile = null;
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
@@ -834,7 +836,7 @@ public class MMINT implements MMINTConstants {
 	private static void copySubtypeTable(Map<String, Set<String>> srcTable, Map<String, Set<String>> tgtTable) {
 
 		for (Map.Entry<String, Set<String>> entry : srcTable.entrySet()) {
-			Set<String> newValue = new HashSet<String>(entry.getValue());
+			Set<String> newValue = new HashSet<>(entry.getValue());
 			tgtTable.put(entry.getKey(), newValue);
 		}
 	}
@@ -850,13 +852,13 @@ public class MMINT implements MMINTConstants {
 	private static void copyConversionTable(Map<String, Map<String, Set<List<String>>>> srcTable, Map<String, Map<String, Set<List<String>>>> tgtTable) {
 
 		for (Map.Entry<String, Map<String, Set<List<String>>>> entry : srcTable.entrySet()) {
-			Map<String, Set<List<String>>> newValue = new HashMap<String, Set<List<String>>>();
+			Map<String, Set<List<String>>> newValue = new HashMap<>();
 			tgtTable.put(entry.getKey(), newValue);
 			for (Map.Entry<String, Set<List<String>>> nestedEntry : entry.getValue().entrySet()) {
-				Set<List<String>> newNestedValue = new HashSet<List<String>>();
+				Set<List<String>> newNestedValue = new HashSet<>();
 				newValue.put(nestedEntry.getKey(), newNestedValue);
 				for (List<String> nestedNestedValue : nestedEntry.getValue()) {
-					List<String> newNestedNestedValue = new ArrayList<String>(nestedNestedValue);
+					List<String> newNestedNestedValue = new ArrayList<>(nestedNestedValue);
 					newNestedValue.add(newNestedNestedValue);
 				}
 			}
@@ -872,7 +874,7 @@ public class MMINT implements MMINTConstants {
 		copySubtypeTable(subtypes, subtypesMID);
 		copyConversionTable(conversions, conversionsMID);
 		try {
-			MultiModelUtils.createModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
+			MultiModelUtils.writeModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID file", e);
@@ -887,7 +889,6 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static void syncRepository(MID typeMID) {
 
-		//TODO MMINT[OO] to store operators' custom code in the mid, we would need them to be ecore-generated, but that's a burden for users
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
 		cachedTypeMID = MMINTEcoreUtil.copy(typeMID);
 		copySubtypeTable(subtypesMID, subtypes);
@@ -995,6 +996,23 @@ public class MMINT implements MMINTConstants {
 	public static boolean isInitialized() {
 
 		return INSTANCE != null;
+	}
+
+	public static @Nullable IFile getActiveInstanceMIDFile() {
+
+		return activeInstanceMIDFile;
+	}
+
+	public static void storeActiveInstanceMIDFile() {
+
+		try {
+			IFile instanceMIDFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+			activeInstanceMIDFile = instanceMIDFile;
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "An instance MID is not ative and can't be stored", e);
+			activeInstanceMIDFile = null;
+		}
 	}
 
 	/**

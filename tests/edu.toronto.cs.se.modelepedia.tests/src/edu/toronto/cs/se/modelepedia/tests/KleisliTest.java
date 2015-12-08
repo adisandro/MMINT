@@ -200,7 +200,7 @@ public class KleisliTest extends MMINTTest {
 			false
 		);
 		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, instanceMID);
-		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
+		MultiModelUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
 		Operator transformationOperator = MultiModelTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI);
 		EList<Model> transformationInputModels = new BasicEList<Model>();
 		transformationInputModels.add(inputModel);
@@ -211,8 +211,8 @@ public class KleisliTest extends MMINTTest {
 		transformationGeneric.setGeneric(kModelRelType);
 		transformationGenerics.add(transformationGeneric);
 		Map<String, MID> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
-		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
-		MultiModelUtils.createModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
+		Map<String, Model> transformationOutput = transformationOperator.start(transformationInputs, null, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
+		MultiModelUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle
 		ResourceSet oracleResourceSet = new ResourceSetImpl();

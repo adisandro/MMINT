@@ -491,6 +491,7 @@
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedInput/inputsByName"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getOutputsByName"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getOutputModels"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createInstance/instanceMID"/>
         </genOperations>
@@ -515,6 +516,7 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/start">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/inputProperties"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/generics"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/outputMIDsByName"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/instanceMID"/>

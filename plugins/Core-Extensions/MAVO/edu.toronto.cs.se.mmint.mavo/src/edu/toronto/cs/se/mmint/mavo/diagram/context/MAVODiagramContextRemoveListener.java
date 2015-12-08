@@ -43,7 +43,7 @@ import edu.toronto.cs.se.mavo.SetDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.mavo.diagram.MAVODiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 
 public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 
@@ -81,7 +81,7 @@ public class MAVODiagramContextRemoveListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MAVODiagramContextRemoveCommand(
 			TransactionUtil.getEditingDomain(mavoElemsToRemove.get(0)),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
@@ -42,11 +43,6 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 
 	@Override
 	public void fill(Menu menu, int index) {
-
-		// prevent this menu from being created twice
-		if (menu.isVisible()) {
-			return;
-		}
 
 		// check selection
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getSelection();
@@ -99,6 +95,7 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 		mmintItem.setText(MIDContextMenu.MMINT_MENU_LABEL);
 		Menu mmintMenu = new Menu(menu);
 		mmintItem.setMenu(mmintMenu);
+		MMINT.storeActiveInstanceMIDFile();
 		// derivation
 		if (doDerivation) {
 			MenuItem derivationItem = new MenuItem(mmintMenu, SWT.NONE);

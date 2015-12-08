@@ -13,10 +13,10 @@
     <alternatives formulaVariable="CanRestart" description="Yes they can" mavoElements="//@transitions.6"/>
     <alternatives formulaVariable="CannotRestart" description="No they can't"/>
   </decisions>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Idle" name="Idle"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Seeding" name="Seeding"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Leeching" name="Leeching"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" collections="//@decisions.0/@alternatives.2" name="Finishing"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Idle" name="Idle" transitionsAsSource="//@transitions.0 //@transitions.7" transitionsAsTarget="//@transitions.1 //@transitions.2 //@transitions.4 //@transitions.8"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Seeding" name="Seeding" transitionsAsSource="//@transitions.6 //@transitions.8" transitionsAsTarget="//@transitions.5 //@transitions.7"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Leeching" name="Leeching" transitionsAsSource="//@transitions.1 //@transitions.2 //@transitions.3 //@transitions.5" transitionsAsTarget="//@transitions.0 //@transitions.6"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" collections="//@decisions.0/@alternatives.2" name="Finishing" transitionsAsSource="//@transitions.4" transitionsAsTarget="//@transitions.3"/>
   <transitions formulaVariable="start" trigger="" action="start()" source="//@states.0" target="//@states.2"/>
   <transitions formulaVariable="cancelLI" trigger="" action="cancel()" source="//@states.2" target="//@states.0"/>
   <transitions formulaVariable="completedLI" may="true" collections="//@decisions.0/@alternatives.1" trigger="" action="completed()" source="//@states.2" target="//@states.0"/>

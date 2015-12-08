@@ -13,10 +13,10 @@
     <alternatives formulaVariable="CanEmergency" description="Yes you can" mavoElements="//@transitions.6"/>
     <alternatives formulaVariable="CannotEmergency" description="No you can't"/>
   </decisions>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Unlocked" name="Unlocked"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Locked" name="Locked"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Moving" name="Moving"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="SecuritySystemControlled" may="true" collections="//@decisions.0/@alternatives.2" name="SecuritySystemControlled"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Unlocked" name="Unlocked" transitionsAsSource="//@transitions.0 //@transitions.7" transitionsAsTarget="//@transitions.1 //@transitions.2 //@transitions.4 //@transitions.8"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Locked" name="Locked" transitionsAsSource="//@transitions.6 //@transitions.8" transitionsAsTarget="//@transitions.5 //@transitions.7"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Moving" name="Moving" transitionsAsSource="//@transitions.1 //@transitions.2 //@transitions.3 //@transitions.5" transitionsAsTarget="//@transitions.0 //@transitions.6"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="SecuritySystemControlled" may="true" collections="//@decisions.0/@alternatives.2" name="SecuritySystemControlled" transitionsAsSource="//@transitions.4" transitionsAsTarget="//@transitions.3"/>
   <transitions formulaVariable="move" trigger="" action="move()" source="//@states.0" target="//@states.2"/>
   <transitions formulaVariable="obstacle" trigger="" action="obstacle()" source="//@states.2" target="//@states.0"/>
   <transitions formulaVariable="doneMU" may="true" collections="//@decisions.0/@alternatives.1" trigger="" action="done()" source="//@states.2" target="//@states.0"/>

@@ -30,11 +30,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDContextCastTypeListener extends MIDContextMenuListener {
 
@@ -56,7 +56,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextCastTypeCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

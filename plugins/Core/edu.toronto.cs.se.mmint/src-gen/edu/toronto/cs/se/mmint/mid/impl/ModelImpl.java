@@ -587,7 +587,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 					}
 					newEPackage.getEClassifiers().add(newRootEClass);
 					newMetamodelUri = newModelTypeName + "." + EcorePackage.eNAME;
-					MultiModelUtils.createModelFileInState(newEPackage, newMetamodelUri);
+					MultiModelUtils.writeModelFileInState(newEPackage, newMetamodelUri);
 				}
 				newModelType.setFileExtension(MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
 			}
@@ -733,7 +733,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
 			if (metamodelUri != null) { // get package from metamodel file
 				try {
-					rootModelTypeObj = (EPackage) MultiModelUtils.getModelFile(metamodelUri, false);
+					rootModelTypeObj = (EPackage) MultiModelUtils.readModelFile(metamodelUri, false);
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error accessing the metamodel file for model type" + getUri(), e);
@@ -943,7 +943,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 				newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 				true);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
 		Model newModel = createInstance(newModelUri, instanceMID);
@@ -1075,7 +1076,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		EObject rootModelObj;
 		try {
-			rootModelObj = MultiModelUtils.getModelFile(getUri(), true);
+			rootModelObj = MultiModelUtils.readModelFile(getUri(), true);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);

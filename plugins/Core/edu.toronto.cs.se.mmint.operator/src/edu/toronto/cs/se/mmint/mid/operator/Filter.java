@@ -100,7 +100,7 @@ public class Filter extends OperatorImpl {
 			MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.createModelFile(filteredMID, filteredMIDModelUri, true);
+		MultiModelUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

@@ -11,13 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.EObject;
@@ -107,30 +104,13 @@ public class GMFDiagramUtils {
 		}
 	}
 
-	public static @NonNull IFile getModelIFile(@NonNull IFile diagramFile) throws Exception {
+	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
-		Diagram diagram = (Diagram) MultiModelUtils.getModelFile(diagramFile.getFullPath().toString(), true);
+		Diagram diagram = (Diagram) MultiModelUtils.readModelFile(diagramFile.getFullPath().toString(), true);
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
 		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
 		return modelFile;
-	}
-
-	public static List<IFile> getTransactionalCommandAffectedFiles() {
-
-		List<IFile> files = new ArrayList<IFile>();
-		IFile diagramFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
-		if (diagramFile != null) {
-			files.add(diagramFile);
-			try {
-				files.add(getModelIFile(diagramFile));
-			}
-			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + diagramFile.getName() + " for gmf transactional command", e);
-			}
-		}
-
-		return files;
 	}
 
 }

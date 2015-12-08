@@ -29,17 +29,24 @@
 	objects->collect(oclAsType(MAVOElement))
 /]
 
-[query public getMetamodelMAVOClasses(mavoRoot : MAVORoot) : Sequence(EClass) =
-	mavoRoot.eClass().ePackage.eAllContents(EClass)->select(
-		not abstract and
-		eAllSuperTypes->exists(super : EClass | super.name = 'MAVOElement') and
-		eAnnotations->exists(source = 'gmf.node' or source = 'gmf.link')
-	)
+[query public getMetamodelMAVOClasses(mavoRootEClass : EClass) : Sequence(EClass) =
+	mavoRootEClass.ePackage.eAllContents(EClass)
+		->select(
+			not abstract and
+			eAllSuperTypes->exists(super : EClass | super.name = 'MAVOElement') and
+			eAnnotations->exists(source = 'gmf.node' or source = 'gmf.link'))
+/]
+
+[query public getMetamodelAndSuperMetamodelsMAVOClasses(mavoRoot : MAVORoot) : Sequence(EClass) =
+	mavoRoot.eClass().getMetamodelMAVOClasses()
+		->union(mavoRoot.eClass().eAllSuperTypes
+			->reject(super : EClass | super.name = 'MAVOModel')
+			->collect(super : EClass | super.getMetamodelMAVOClasses()))
 /]
 
 [query public getAlreadyEncodedMAVOElementsCounter(mavoRoot : MAVORoot, currentMAVOClass : EClass) : Integer =
-	mavoRoot.getMetamodelMAVOClasses()
-	->subSequence(1, mavoRoot.getMetamodelMAVOClasses()->indexOf(currentMAVOClass))
+	mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses()
+	->subSequence(1, mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses()->indexOf(currentMAVOClass))
 	->collect(eclass : EClass | mavoRoot.getObjectsOfType(eclass))
 	->size() -
 	mavoRoot.getObjectsOfType(currentMAVOClass)->size()
@@ -97,7 +104,7 @@
 (declare-fun edgeType (Edge) EdgeType)
 (declare-fun src (Edge) Node)
 (declare-fun tgt (Edge) Node)
-	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
+	[for (eclass : EClass | mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses())]
 		[let function : String = eclass.getGraphFunction()]
 (declare-const [eclass.getMAVOClassName().toUpperCase()/] [function.toUpperFirst()/]Type)
 (assert (= [eclass.getMAVOClassName().toUpperCase()/] [i/]))
@@ -105,7 +112,7 @@
 	[/for]
 
 ;Model
-	[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+	[let numTypes : Integer = mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses()->size()]
 	[for (mavoNode : MAVOElement | mavoRoot.getMAVONodes())]
 (declare-const [mavoNode.formulaVariable/] ['Node'/])
 (assert (= [mavoNode.formulaVariable/] [numTypes+i/]))
@@ -139,7 +146,7 @@
 
 [template public encodeMAVOConstraintsMayOnly(mavoRoot : MAVORoot)]
 ;Model is Complete
-	[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+	[let numTypes : Integer = mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses()->size()]
 	[let numNodes : Integer = mavoRoot.getMAVONodes()->size()]
 	[if (numNodes > 0)]
 (assert	(forall ((c Node)) (=>
@@ -201,7 +208,7 @@
 (define-sort Node () Int)
 (define-sort NodeType () Int)
 (define-sort Edge () Int)
-	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
+	[for (eclass : EClass | mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses())]
 (declare-sort [eclass.getMAVOClassName()/])
 		[let function : String = eclass.getGraphFunction()]
 (declare-fun [function/] ([function.toUpperFirst()/] [eclass.getMAVOClassName()/]) Bool)
@@ -215,7 +222,7 @@
 			[let tgtEclass : EClass = eclass.eAllReferences->any(name = tgtFeature).eReferenceType]
 (declare-fun srcType ([eclass.getMAVOClassName()/]) NodeType)
 (declare-fun tgtType ([eclass.getMAVOClassName()/]) NodeType)
-			[for (endpointEclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
+			[for (endpointEclass : EClass | mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses())]
 				[if (srcEclass.isSuperTypeOf(endpointEclass))]
 (declare-fun src ([eclass.getMAVOClassName()/]) [endpointEclass.getMAVOClassName()/])
 				[/if]
@@ -232,8 +239,8 @@
 	[/for]
 
 ;Model
-	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
-		[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+	[for (eclass : EClass | mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses())]
+		[let numTypes : Integer = mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses()->size()]
 		[let numPreviousTypes : Integer = mavoRoot.getAlreadyEncodedMAVOElementsCounter(eclass)]
 		[let function : String = eclass.getGraphFunction()]
 		[for (mavoElement : MAVOElement | mavoRoot.getObjectsOfType(eclass)->asMAVOElements())]
@@ -268,10 +275,10 @@
 
 [template public encodeMAVOConstraints(mavoRoot : MAVORoot)]
 ;Model is Complete
-	[for (eclass : EClass | mavoRoot.getMetamodelMAVOClasses())]
+	[for (eclass : EClass | mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses())]
 		[let eclassMavoElements : Sequence(MAVOElement) = mavoRoot.getObjectsOfType(eclass)->asMAVOElements()]
 		[if (eclassMavoElements->size() > 0)]
-			[let numTypes : Integer = mavoRoot.getMetamodelMAVOClasses()->size()]
+			[let numTypes : Integer = mavoRoot.getMetamodelAndSuperMetamodelsMAVOClasses()->size()]
 			[let numPreviousTypes : Integer = mavoRoot.getAlreadyEncodedMAVOElementsCounter(eclass)]
 			[let function : String = eclass.getGraphFunction()]
 (assert	(forall ((x [function.toUpperFirst()/]) (c [eclass.getMAVOClassName()/])) (=>

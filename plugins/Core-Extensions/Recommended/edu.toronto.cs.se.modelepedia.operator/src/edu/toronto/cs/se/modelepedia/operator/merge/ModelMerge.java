@@ -257,7 +257,7 @@ public class ModelMerge extends OperatorImpl {
 		traceRel2.setName(OUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
-		MultiModelUtils.createModelFile(rootMergedModelObj, mergedModelUri, true);
+		MultiModelUtils.writeModelFile(rootMergedModelObj, mergedModelUri, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 
 		// output

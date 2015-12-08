@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine_mavo;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,10 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getTransitionsAsSource <em>Transitions As Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getTransitionsAsTarget <em>Transitions As Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getAbstractState()
  * @model abstract="true"
@@ -55,5 +58,41 @@ public interface AbstractState extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Transitions As Source</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transitions As Source</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transitions As Source</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getAbstractState_TransitionsAsSource()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition#getSource
+	 * @model opposite="source"
+	 * @generated
+	 */
+	EList<Transition> getTransitionsAsSource();
+
+	/**
+	 * Returns the value of the '<em><b>Transitions As Target</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transitions As Target</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transitions As Target</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getAbstractState_TransitionsAsTarget()
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition#getTarget
+	 * @model opposite="target"
+	 * @generated
+	 */
+	EList<Transition> getTransitionsAsTarget();
 
 } // AbstractState

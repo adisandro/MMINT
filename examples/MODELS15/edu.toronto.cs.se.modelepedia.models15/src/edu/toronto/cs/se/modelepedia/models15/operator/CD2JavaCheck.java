@@ -83,7 +83,7 @@ public class CD2JavaCheck extends OperatorImpl {
 			MultiModelRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
-		MultiModelUtils.createModelFile(check, checkModelUri, true);
+		MultiModelUtils.writeModelFile(check, checkModelUri, true);
 		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, checkModel);

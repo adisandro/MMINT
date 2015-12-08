@@ -5,7 +5,7 @@
   <version>1.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>0.23.1</tycho-version>
+    <tycho-version>0.24.0</tycho-version>
     <acceleo-version>3.6.0-SNAPSHOT</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -188,6 +188,7 @@
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.edit</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.editor</module>
+  	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.operator</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.diagram</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.edit</module>

@@ -20,7 +20,6 @@ import java.util.Properties;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -204,11 +203,10 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		}
 
 		// output
-		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(EcoreUtil.getURI(instanceMID).toPlatformString(true), lastSegmentUri);
-		MultiModelUtils.createModelFile(randomGraph, randomGraphModelUri, true);
+		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
+		MultiModelUtils.writeModelFile(randomGraph, randomGraphModelUri, true);
 		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
-		Model randomGraphModel;
-		randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMID);
+		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, randomGraphModel);
 

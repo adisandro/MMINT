@@ -14,8 +14,6 @@ package edu.toronto.cs.se.mmint;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -33,7 +31,6 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -411,17 +408,6 @@ public class MultiModelTypeFactory {
 
 		newOperatorType.setCommutative(false);
 		typeMID.getOperators().add(newOperatorType);
-	}
-
-	/**
-	 * Adds additional info for a random operator type.
-	 * 
-	 * @param operatorType
-	 *            The random operator type being added.
-	 */
-	public static void addOperatorTypeRandom(RandomOperator operatorType) {
-
-		operatorType.setState(new Random());
 	}
 
 	/**

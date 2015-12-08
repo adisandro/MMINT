@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
 
@@ -72,7 +71,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	public void widgetSelected(SelectionEvent e) {
 
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
-		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
+		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MID instanceMID : instanceMIDs.keySet()) {
 			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID);
 			if (model != null) {
@@ -88,7 +87,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		command = new MAVODiagramOutlineContextHighlightCommand(
 			TransactionUtil.getEditingDomain(mavoElemToHighlight),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

@@ -218,7 +218,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			if (!resultLocation.exists()) {
 				resultLocation.create(true, true, null);
 			}
-			MultiModelUtils.createModelFile(flatModelTypeObj, flatUri, true);
+			MultiModelUtils.writeModelFile(flatModelTypeObj, flatUri, true);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);

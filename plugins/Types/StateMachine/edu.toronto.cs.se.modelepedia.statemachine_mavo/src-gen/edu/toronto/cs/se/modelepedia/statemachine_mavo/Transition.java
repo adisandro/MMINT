@@ -19,11 +19,11 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getTransition()
  * @model annotation="gmf.link label='trigger,action' label.pattern='{0}/{1}' label.icon='true' source='source' target='target' target.decoration='arrow'"
@@ -32,6 +32,7 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo;
 public interface Transition extends FiringElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getTransitionsAsSource <em>Transitions As Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -41,7 +42,8 @@ public interface Transition extends FiringElement {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(AbstractState)
 	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getTransition_Source()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getTransitionsAsSource
+	 * @model opposite="transitionsAsSource" required="true"
 	 * @generated
 	 */
 	AbstractState getSource();
@@ -58,6 +60,7 @@ public interface Transition extends FiringElement {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getTransitionsAsTarget <em>Transitions As Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -67,7 +70,8 @@ public interface Transition extends FiringElement {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(AbstractState)
 	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage#getTransition_Target()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState#getTransitionsAsTarget
+	 * @model opposite="transitionsAsTarget" required="true"
 	 * @generated
 	 */
 	AbstractState getTarget();

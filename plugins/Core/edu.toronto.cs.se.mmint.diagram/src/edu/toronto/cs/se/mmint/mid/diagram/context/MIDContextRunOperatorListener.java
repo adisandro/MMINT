@@ -13,16 +13,16 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jdt.annotation.NonNull;
@@ -31,10 +31,11 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
@@ -57,7 +58,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		AbstractTransactionalCommand command = new MIDContextRunOperatorCommand(
 			TransactionUtil.getEditingDomain(instanceMID),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}
@@ -74,12 +75,9 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MID> outputMIDsByName = operatorType.getOutputs().stream()
-					.collect(Collectors.toMap(
-						outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-						outputModelTypeEndpoint -> instanceMID)
-					);
-				operatorType.start(operatorInputs, operatorGenerics, outputMIDsByName, instanceMID);
+				Map<String, MID> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(operatorType, instanceMID);
+				operatorType.start(operatorInputs, null, operatorGenerics, outputMIDsByName, instanceMID);
+				WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
 				return CommandResult.newOKCommandResult();
 			}
 			catch (MultiModelDialogCancellation e) {

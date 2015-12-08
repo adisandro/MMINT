@@ -261,7 +261,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 				transformedModelType.getFileExtension()),
 			true,
 			false);
-		MultiModelUtils.createModelFile(transformedRootModelObj, transformedMIDModelUri, true);
+		MultiModelUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			outputMIDsByName.get(OUT_MODEL));

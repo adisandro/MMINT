@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
@@ -68,7 +67,7 @@ public class MODELS15 extends RandomOperatorImpl {
 
 		MultiModel cdMID = MIDFactory.eINSTANCE.createMultiModel();
 		Model cdModelType = MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI);
-		Random random = ((RandomOperator) getMetatype()).getState();
+		Random random = this.getState();
 		for (int i = 0; i < numClassDiagrams; i++) {
 			// create and populate class diagram
 			ClassDiagram classDiagram = ClassDiagramFactory.eINSTANCE.createClassDiagram();
@@ -89,7 +88,7 @@ public class MODELS15 extends RandomOperatorImpl {
 			String cdModelUri = MultiModelUtils.replaceLastSegmentInUri(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
-				MultiModelUtils.createModelFile(classDiagram, cdModelUri, true);
+				MultiModelUtils.writeModelFile(classDiagram, cdModelUri, true);
 				cdModelType.createInstance(cdModelUri, ModelOrigin.CREATED, cdMID);
 			}
 			catch (Exception e) {
@@ -118,7 +117,7 @@ public class MODELS15 extends RandomOperatorImpl {
 
 		// output
 		String cdMIDModelUri = MultiModelUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
-		MultiModelUtils.createModelFile(cdMID, cdMIDModelUri, true);
+		MultiModelUtils.writeModelFile(cdMID, cdMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, ModelOrigin.CREATED, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

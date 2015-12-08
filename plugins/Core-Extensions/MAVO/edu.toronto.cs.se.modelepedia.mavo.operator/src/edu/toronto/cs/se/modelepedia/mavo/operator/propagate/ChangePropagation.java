@@ -593,7 +593,7 @@ traceLinks:
 		for (List<BinaryMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
 			reduceTraceMappingUncertainty(newPropModelRoot, propTraceMappingRefs, 0, 1);
 		}
-		MultiModelUtils.createModelFile(newPropModelRoot, newPropModel.getUri(), true);
+		MultiModelUtils.writeModelFile(newPropModelRoot, newPropModel.getUri(), true);
 		for (List<BinaryMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
 			for (BinaryMappingReference propTraceMappingRef : propTraceMappingRefs) {
 				propagateRefinementMappings(propTraceMappingRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);

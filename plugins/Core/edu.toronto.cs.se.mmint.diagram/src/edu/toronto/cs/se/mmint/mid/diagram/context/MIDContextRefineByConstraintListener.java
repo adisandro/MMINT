@@ -27,7 +27,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 
 public class MIDContextRefineByConstraintListener extends MIDContextMenuListener {
 
@@ -45,7 +45,7 @@ public class MIDContextRefineByConstraintListener extends MIDContextMenuListener
 		AbstractTransactionalCommand command = new MIDContextRefineByConstraintCommand(
 			TransactionUtil.getEditingDomain(model),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

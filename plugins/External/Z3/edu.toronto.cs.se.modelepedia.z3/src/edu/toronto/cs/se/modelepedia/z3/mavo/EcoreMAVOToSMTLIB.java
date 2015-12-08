@@ -21,12 +21,14 @@ import java.util.Properties;
 
 import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
+import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -48,7 +50,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 		@Override
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
-			List<IAcceleoTextGenerationListener> listeners = new ArrayList<IAcceleoTextGenerationListener>();
+			List<IAcceleoTextGenerationListener> listeners = new ArrayList<>();
 			smtListener = new EcoreMAVOToSMTLIBListener(mavoModelObjs, isMayOnly);
 			listeners.add(smtListener);
 
@@ -69,7 +71,36 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		isMayOnly = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
+		this.isMayOnly = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
+	}
+
+	protected void init(Model mavoModel) throws Exception {
+
+		AcceleoPreferences.switchForceDeactivationNotifications(true);
+		AcceleoPreferences.switchNotifications(false);
+		mavoModelObjs = MAVOUtils.createFormulaVars(mavoModel);
+		if (this.isMayOnly == null) {
+			this.isMayOnly = MAVOUtils.isMayOnly(mavoModelObjs);
+		}
+	}
+
+	protected List<Object> createAcceleoArguments(Model mavoModel) {
+
+		List<Object> m2tArgs = new ArrayList<>();
+		m2tArgs.add(mavoModel.getName());
+		m2tArgs.add(this.isMayOnly);
+
+		return m2tArgs;
+	}
+
+	protected File createAcceleoFolder(Model mavoModel) {
+
+		return (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
+	}
+
+	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVORoot rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {
+
+		return new EcoreMAVOToSMTLIBWithListeners_M2T(rootMavoModelObj, folder, m2tArgs);
 	}
 
 	@Override
@@ -78,29 +109,20 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		//TODO MMINT[REASONING] generalize for non-mavo too
-		//TODO MMINT[REASONING] refactor common code/encoding for mayOnly and not
 		//TODO MMINT[REASONING] improve create formula vars 1) use other strings if name not present 2) check uniqueness 3) use names of src/tgt for edges
 
 		// input
 		Model mavoModel = inputsByName.get(IN_MODEL);
+		init(mavoModel);
 
-		mavoModelObjs = MAVOUtils.createFormulaVars(mavoModel);
-		if (this.isMayOnly == null) {
-			this.isMayOnly = MAVOUtils.isMayOnly(mavoModelObjs);
-		}
-		List<Object> m2tArgs = new ArrayList<Object>();
-		m2tArgs.add(mavoModel.getName());
-		m2tArgs.add(this.isMayOnly);
-		File folder = (new File(MultiModelUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
-		AcceleoPreferences.switchForceDeactivationNotifications(true);
-		AcceleoPreferences.switchNotifications(false);
-		EcoreMAVOToSMTLIB_M2T m2t = new EcoreMAVOToSMTLIBWithListeners_M2T(mavoModel.getEMFInstanceRoot(), folder, m2tArgs);
+		List<Object> m2tArgs = createAcceleoArguments(mavoModel);
+		File folder = createAcceleoFolder(mavoModel);
+		AbstractAcceleoGenerator m2t = createAcceleoGenerator((MAVORoot) mavoModel.getEMFInstanceRoot(), folder, m2tArgs);
 		m2t.doGenerate(new BasicMonitor());
 
 		return new HashMap<>();
 	}
 
-	//TODO MMINT[OPERATOR] Make cleanup() part of the api
 	public void cleanup() {
 
 		MultiModelUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);

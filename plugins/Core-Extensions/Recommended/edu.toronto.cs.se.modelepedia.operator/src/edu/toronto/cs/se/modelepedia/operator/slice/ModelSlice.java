@@ -129,7 +129,7 @@ public class ModelSlice extends OperatorImpl {
 
 		String sliceModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
-		MultiModelUtils.createModelFile(sliceRootModelObj, sliceModelUri, true);
+		MultiModelUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
 			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
 			model.getMetatype().createInstance(sliceModelUri, null);

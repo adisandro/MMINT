@@ -13,15 +13,15 @@
     <alternatives formulaVariable="CanRestart" description="Yes they can" mavoElements="//@transitions.5"/>
     <alternatives formulaVariable="CannotRestart" description="No they can't" mavoElements="//@states.2/@internalActions.0"/>
   </decisions>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Idle" name="Idle"/>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Seeding" name="Seeding">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Idle" name="Idle" transitionsAsSource="//@transitions.0 //@transitions.6" transitionsAsTarget="//@transitions.1 //@transitions.3 //@transitions.7"/>
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Seeding" name="Seeding" transitionsAsSource="//@transitions.5 //@transitions.7" transitionsAsTarget="//@transitions.4 //@transitions.6">
     <internalActions formulaVariable="a1" may="true" collections="//@decisions.1/@alternatives.0" trigger="entry" action="share()"/>
     <internalActions formulaVariable="a3" may="true" collections="//@decisions.0/@alternatives.0" trigger="entry" action="completed()"/>
   </states>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Leeching" name="Leeching">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Leeching" name="Leeching" transitionsAsSource="//@transitions.1 //@transitions.2 //@transitions.4" transitionsAsTarget="//@transitions.0 //@transitions.5">
     <internalActions formulaVariable="a0" may="true" collections="//@decisions.2/@alternatives.1" trigger="entry" action="start()"/>
   </states>
-  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" collections="//@decisions.0/@alternatives.2" name="Finishing">
+  <states xsi:type="statemachine_mavo:State" formulaVariable="Finishing" may="true" collections="//@decisions.0/@alternatives.2" name="Finishing" transitionsAsSource="//@transitions.3" transitionsAsTarget="//@transitions.2">
     <internalActions formulaVariable="a2" may="true" collections="//@decisions.0/@alternatives.2" trigger="entry" action="completed()"/>
   </states>
   <transitions formulaVariable="start" trigger="" action="" source="//@states.0" target="//@states.2"/>

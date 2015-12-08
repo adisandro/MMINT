@@ -26,7 +26,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
 
 public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
@@ -42,7 +42,7 @@ public class KleisliAddModifyQueryListener extends AddModifyConstraintListener {
 		KleisliAddModifyQueryCommand command = new KleisliAddModifyQueryCommand(
 			TransactionUtil.getEditingDomain(element),
 			menuLabel,
-			GMFDiagramUtils.getTransactionalCommandAffectedFiles()
+			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
 	}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="StateMachineMAVOToSMTLIB"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_StateMachineMAVOToSMTLIB"
+               class="edu.toronto.cs.se.modelepedia.statemachine_mavo.operator.StateMachineMAVOToSMTLIB">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB">
+            </superType>
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="mavo">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ParallelComposition"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ParallelComposition"
+               class="edu.toronto.cs.se.modelepedia.statemachine_mavo.operator.ParallelComposition">
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="sm1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="sm2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="composed">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+</plugin>

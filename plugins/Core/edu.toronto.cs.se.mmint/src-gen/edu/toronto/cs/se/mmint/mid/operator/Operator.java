@@ -331,6 +331,17 @@ public interface Operator extends GenericElement {
 	Map<String, Model> getOutputsByName() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Gets the output model instances of this operator instance, if it has been previously run.
+	 * 
+	 * @return The output model instances.
+	 * @throws MMINTException
+	 *             If this is an operator type. <!-- end-user-doc -->
+	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	EList<Model> getOutputModels() throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of
 	 * this operator type to an Instance MID.
 	 * 
@@ -447,20 +458,22 @@ public interface Operator extends GenericElement {
 	 * 
 	 * @param inputs
 	 *            A list of inputs to run the operator instance, including necessary conversions.
+	 * @param inputProperties
+	 *            The input properties, or null to read them from a file named OperatorNameIn.properties.
 	 * @param generics
 	 *            A list of generics to run the operator instance.
 	 * @param outputMIDsByName
 	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
 	 *            MID means that the output model isn't added to it.
 	 * @param instanceMID
-	 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
+	 *            The Instance MID where the operator instance will run, null if the operator isn't going to be added to
 	 *            it.
 	 * @return The executed operator instance.
 	 * @throws Exception
 	 *             If something went wrong starting the operator. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Operator start(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
+	Operator start(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
 
 } // Operator

@@ -607,7 +607,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static List<ConversionOperator> instanceOf(ExtendibleElement element, String typeUri) {
 
-		List<ConversionOperator> conversionOperatorTypes = new ArrayList<ConversionOperator>();
+		List<ConversionOperator> conversionOperatorTypes = new ArrayList<>();
 		// static check
 		if (element.getMetatypeUri().equals(typeUri) || isSubtypeOf(element.getMetatypeUri(), typeUri)) {
 			return conversionOperatorTypes;
@@ -677,7 +677,7 @@ public class MultiModelTypeHierarchy {
 	 */
 	public static <T extends ExtendibleElement> List<T> getSubtypes(T type, MID typeMID) {
 
-		List<T> subtypes = new ArrayList<T>();
+		List<T> subtypes = new ArrayList<>();
 		Map<String, Set<String>> subtypeTable = getSubtypeTable(typeMID);
 		if (subtypeTable == null) {
 			return subtypes;
@@ -730,10 +730,14 @@ public class MultiModelTypeHierarchy {
 		return getSubtypes(type, MMINT.cachedTypeMID);
 	}
 
-	public static List<GenericElement> getSubtypes(GenericElement type) {
+	public static List<GenericElement> getGenericSubtypes(GenericElement type) {
 
+		/*TODO MMINT[OPERATOR]
+		 * This should really be unified with the above one, which is easy if we assign Operator as root of all operators
+		 * (and avoid to show inheritance arrows for it in the Type MID)
+		 */
 		if (type instanceof Operator && isRootType(type)) { // wildcard to select all operators
-			List<GenericElement> allOperatorTypes = new ArrayList<GenericElement>(MultiModelTypeRegistry.getOperatorTypes());
+			List<GenericElement> allOperatorTypes = new ArrayList<>(MultiModelTypeRegistry.getOperatorTypes());
 			allOperatorTypes.remove(type);
 			return allOperatorTypes;
 		}
@@ -899,7 +903,7 @@ public class MultiModelTypeHierarchy {
 		return MMINT.cachedRuntimeTypes.get(instance);
 	}
 
-	public static void setCachedRuntimeTypes(ExtendibleElement instance, List<? extends ExtendibleElement> cachedTypes) {
+	public static void addCachedRuntimeTypes(ExtendibleElement instance, List<? extends ExtendibleElement> cachedTypes) {
 
 		MMINT.cachedRuntimeTypes.put(instance, cachedTypes);
 	}

@@ -36,11 +36,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachineImpl#getStates <em>States</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.StateMachineImpl#getTransitions <em>Transitions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -26,10 +26,13 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -37,25 +40,26 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.DistributionType;
 
 //TODO MMINT[OPERATOR] Create a separate feature for these generic megamodel operators
-//TODO MMINT[OPERATOR] Add operator workflows for experiments to work now that operator instances are created
 public class ExperimentDriver extends OperatorImpl {
 
 	protected class ExperimentWatchdog implements Runnable {
 
 		private ExperimentDriver driver;
-		private Map<String, Model> inputsByName;
+		private Model initialModel;
 		private int experimentIndex;
 		private boolean[] outputConfidences;
 
-		public ExperimentWatchdog(ExperimentDriver driver, Map<String, Model> inputsByName, int experimentIndex) {
+		public ExperimentWatchdog(ExperimentDriver driver, Model initialModel, int experimentIndex) {
 
 			this.driver = driver;
-			this.inputsByName = inputsByName;
+			this.initialModel = initialModel;
 			this.experimentIndex = experimentIndex;
 			outputConfidences = new boolean[outputs.length];
 			for (int out = 0; out < outputs.length; out++) {
@@ -68,16 +72,16 @@ public class ExperimentDriver extends OperatorImpl {
 
 			try {
 				// create experiment folder
-				Model initialModel = inputsByName.get(IN_MODEL);
 				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
 				if (!folder.exists(null)) {
 					folder.create(true, true, null);
 				}
-				List<Operator> operatorChain = new ArrayList<Operator>();
-				Map<String, Model> outerInputsByName = inputsByName;
+				List<Operator> outerOperatorWorkflow = new ArrayList<>();
+				EList<Model> outerInputModels = new BasicEList<>();
+				outerInputModels.add(initialModel);
 				for (int op = 0; op < experimentOperators.length; op++) {
 					try {
-						outerInputsByName = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerInputsByName, operatorChain, outputConfidences);
+						outerInputModels = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerInputModels, outerOperatorWorkflow, outputConfidences);
 					}
 					catch (Exception e) {
 						MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
@@ -105,13 +109,14 @@ public class ExperimentDriver extends OperatorImpl {
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}
-					Map<String, Model> innerInputsByName = outerInputsByName;
+					List<Operator> innerOperatorWorkflow = new ArrayList<>(outerOperatorWorkflow);
+					EList<Model> innerInputModels = outerInputModels;
 					boolean timedOut = false;
 					// run time-bounded chain of operators
 					ExecutorService executor = Executors.newSingleThreadExecutor();
 					try {
 						executor.submit(
-							new SampleWatchdog(experimentIndex, j, innerInputsByName, operatorChain, outputConfidences)
+							new SampleWatchdog(experimentIndex, j, innerInputModels, innerOperatorWorkflow, outputConfidences)
 						).get(maxProcessingTime, TimeUnit.SECONDS);
 						executor.shutdown();
 					}
@@ -141,11 +146,11 @@ public class ExperimentDriver extends OperatorImpl {
 						}
 					}
 					// evaluate confidence intervals
-					boolean allConfidence = true;
+					boolean allConfident = true;
 					for (int out = 0; out < outputs.length; out++) {
-						allConfidence = outputConfidences[out] && allConfidence;
+						allConfident = outputConfidences[out] && allConfident;
 					}
-					if (allConfidence) {
+					if (allConfident) {
 						break;
 					}
 				}
@@ -170,16 +175,16 @@ public class ExperimentDriver extends OperatorImpl {
 
 		private int experimentIndex;
 		private int statisticsIndex;
-		private Map<String, Model> inputsByName;
-		private List<Operator> operatorChain;
+		private EList<Model> inputModels;
+		private List<Operator> operatorWorkflow;
 		private boolean[] outputConfidences;
 
-		public SampleWatchdog(int experimentIndex, int statisticsIndex, Map<String, Model> inputsByName, List<Operator> operatorChain, boolean[] outputConfidences) {
+		public SampleWatchdog(int experimentIndex, int statisticsIndex, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) {
 
 			this.experimentIndex = experimentIndex;
 			this.statisticsIndex = statisticsIndex;
-			this.inputsByName = inputsByName;
-			this.operatorChain = operatorChain;
+			this.inputModels = inputModels;
+			this.operatorWorkflow = operatorWorkflow;
 			this.outputConfidences = outputConfidences;
 		}
 
@@ -189,7 +194,7 @@ public class ExperimentDriver extends OperatorImpl {
 			System.err.println("Running experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex);
 			for (int op = 0; op < statisticsOperators.length; op++) {
 				try {
-					inputsByName = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], inputsByName, operatorChain, outputConfidences);
+					inputModels = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], inputModels, operatorWorkflow, outputConfidences);
 				}
 				catch (Exception e) {
 					MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex + " failed", e);
@@ -402,30 +407,28 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 	}
 
-	private Map<String, Model> executeOperator(int experimentIndex, int statisticsIndex, int operatorIndex, String operatorUri, Map<String, Model> inputsByName, List<Operator> operatorChain, boolean[] outputConfidences) throws Exception {
+	private EList<Model> executeOperator(int experimentIndex, int statisticsIndex, int operatorIndex, String operatorUri, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) throws Exception {
 
 		// empty operator list
 		if (operatorUri.equals("")) {
-			return inputsByName;
+			return inputModels;
 		}
 
 		// get operator
-		Operator operator = MultiModelTypeRegistry.getType(operatorUri);
-		if (operator == null) {
+		Operator operatorType = MultiModelTypeRegistry.getType(operatorUri);
+		if (operatorType == null) {
 			throw new MMINTException("Operator uri " + operatorUri + " is not registered");
 		}
-		operatorChain.add(operator);
-		int previousOperatorIndex = operatorChain.size() - 2;
-		if (previousOperatorIndex >= 0) {
-			operator.setPreviousOperator(operatorChain.get(previousOperatorIndex));
+		if (operatorType.getInputs().size() == 0) { // fix operator with no model input at the beginning of the experiment
+			inputModels = new BasicEList<>();
 		}
 
 		// write operator input properties
-		Properties operatorProperties = new Properties();
+		Properties inputProperties = new Properties();
 		for (int i = 0; i < varOperators.length; i++) {
 			for (int j = 0; j < varOperators[i].length; j++) {
 				if (varOperators[i][j].equals(operatorUri)) {
-					operatorProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
+					inputProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
 					break;
 				}
 			}
@@ -433,16 +436,15 @@ public class ExperimentDriver extends OperatorImpl {
 		for (int out = 0; out < outputs.length; out++) {
 			if (outputDoConfidences[out] && operatorUri.equals(outputOperators[out])) {
 				if (!outputConfidences[out]) {
-					operatorProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
+					inputProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
 				}
 				else {
-					operatorProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
+					inputProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
 				}
 			}
 		}
-		// figure out experiment subdirs
-		String nextSubdir = null;
 		if (operatorIndex == 0) {
+			String nextSubdir;
 			if (statisticsIndex < 0) {
 				nextSubdir = EXPERIMENT_SUBDIR + experimentIndex;
 			}
@@ -451,39 +453,45 @@ public class ExperimentDriver extends OperatorImpl {
 					EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
 					SAMPLE_SUBDIR + statisticsIndex;
 			}
-			operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
-			operator.setInputSubdir(nextSubdir);
+			inputProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
 		}
-		// set state if operator needs it
-		if (operator instanceof RandomOperatorImpl) {
-			((RandomOperatorImpl) operator).setState(state[experimentIndex]);
-		}
-		// never update the mid, it will explode
-		operatorProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
+		inputProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
 
-		// execute and get state
-		operator.readInputProperties(operatorProperties);
-		operator.init();
-		//TODO MMINT[OPERATOR] Need to fix this and use operator workflows
-		Map<String, Model> result = operator.run(inputsByName, new HashMap<>(), new HashMap<>());
-		if (operator instanceof RandomOperatorImpl) {
-			state[experimentIndex] = ((RandomOperatorImpl) operator).getState();
+		// execute, get state and add to workflow
+		EList<OperatorInput> inputs = operatorType.checkAllowedInputs(inputModels);
+		EList<OperatorGeneric> generics = operatorType.selectAllowedGenerics(inputs);
+		Map<String, MID> outputMIDsByName = new HashMap<>();
+		if (operatorType instanceof RandomOperator) { // random state passing
+			((RandomOperator) operatorType).setState(state[experimentIndex]);
 		}
+		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
+			operatorType.setPreviousOperator(operatorWorkflow.get(operatorWorkflow.size()-1));
+		}
+		Operator operator = operatorType.start(inputs, inputProperties, generics, outputMIDsByName, null);
+		if (operatorType instanceof RandomOperator) { // random state passing
+			state[experimentIndex] = ((RandomOperator) operator).getState();
+			((RandomOperator) operatorType).setState(null);
+		}
+		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
+			operatorType.setPreviousOperator(null);
+		}
+		operatorWorkflow.add(operator);
+		EList<Model> outputModels = operator.getOutputModels();
 
-		return result;
+		return outputModels;
 	}
 
 	private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
 
 		// get output operator
-		Operator operator = MultiModelTypeRegistry.getType(outputOperators[outputIndex]);
-		if (operator == null) {
+		Operator operatorType = MultiModelTypeRegistry.getType(outputOperators[outputIndex]);
+		if (operatorType == null) {
 			throw new MMINTException("Operator uri " + outputOperators[outputIndex] + " is not registered");
 		}
 
 		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
 		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
-			operator,
+			operatorType,
 			initialModel,
 			experimentSubdir,
 			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
@@ -497,9 +505,8 @@ public class ExperimentDriver extends OperatorImpl {
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
-		long startTime = System.nanoTime();
-
 		// prepare experiment setup
+		Model initialModel = inputsByName.get(IN_MODEL);
 		state = new Random[numExperiments];
 		for (int i = 0; i < numExperiments; i++) {
 			state[i] = new Random(seed + i);
@@ -507,23 +514,21 @@ public class ExperimentDriver extends OperatorImpl {
 		experimentSetups = new String[numExperiments][vars.length];
 		cartesianProduct(experimentSetups);
 
+		MultiModelTypeHierarchy.clearCachedRuntimeTypes();
 		ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 		// outer cycle: vary experiment setup
 		for (int i = 0; i < numExperiments; i++) {
-
 			// run time-bounded chain of experiments
 			try {
-				executor.submit(new ExperimentWatchdog(this, inputsByName, i));
+				executor.submit(new ExperimentWatchdog(this, initialModel, i));
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
 			}
 		}
-
 		executor.shutdown();
-		executor.awaitTermination(36, TimeUnit.HOURS);
-		long endTime = System.nanoTime();
-		System.err.println("The whole experiment driver took " + (endTime-startTime) + " nanoseconds");
+		executor.awaitTermination(24, TimeUnit.HOURS);
+		MultiModelTypeHierarchy.clearCachedRuntimeTypes();
 
 		return new HashMap<>();
 	}

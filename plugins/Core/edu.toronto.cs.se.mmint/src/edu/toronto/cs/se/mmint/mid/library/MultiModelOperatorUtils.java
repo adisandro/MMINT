@@ -19,23 +19,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class MultiModelOperatorUtils {
@@ -254,15 +250,6 @@ public class MultiModelOperatorUtils {
 		}
 	}
 
-	public static @NonNull MID getInstanceMIDFromOperatorWithNoParameters() {
-
-		//TODO MMINT[OPERATOR] make it better integrated with Operator
-		EditPart editPart = (EditPart) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getAdapter(EditPart.class);
-		MID instanceMID = (MID) ((DiagramEditPart) editPart.getChildren().get(0)).getDiagramView().getElement();
-
-		return instanceMID;
-	}
-
 	public static @NonNull List<Model> getVarargs(@NonNull Map<String, Model> argsByName, @NonNull String argName) {
 
 		List<Model> models = new ArrayList<>();
@@ -278,12 +265,11 @@ public class MultiModelOperatorUtils {
 
 	public static @NonNull Map<String, MID> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID instanceMID) {
 
-		Map<String, MID> outputMIDsByName = new HashMap<>();
-		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
-			outputMIDsByName.put(outputModelTypeEndpoint.getName(), instanceMID);
-		}
-
-		return outputMIDsByName;
+		return operatorType.getOutputs().stream()
+			.collect(Collectors.toMap(
+				outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
+				outputModelTypeEndpoint -> instanceMID)
+			);
 	}
 
 }

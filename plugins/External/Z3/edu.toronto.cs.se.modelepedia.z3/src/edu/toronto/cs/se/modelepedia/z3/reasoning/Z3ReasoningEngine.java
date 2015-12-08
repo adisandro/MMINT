@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
@@ -71,13 +72,25 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (ecore2smt == null) {
 			throw new MMINTException("Can't find " + ECOREMAVOTOSMTLIB_OPERATOR_URI + " operator type");
 		}
+		EcoreMAVOToSMTLIB encoder = ecore2smt;
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
-		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
-		ecore2smt = (EcoreMAVOToSMTLIB) ecore2smt.start(inputs, new BasicEList<>(), new HashMap<>(), null);
-		ecore2smt.cleanup();
+		EList<OperatorInput> inputs = null;
+		for (EcoreMAVOToSMTLIB ecore2smtCustom : MultiModelTypeHierarchy.getSubtypes(ecore2smt)) { // check for custom encoders
+			//TODO MMINT[Z3] Sort by subtype level to allow most specific to run
+			inputs = ecore2smtCustom.checkAllowedInputs(inputModels);
+			if (inputs != null) {
+				encoder = ecore2smtCustom;
+				break;
+			}
+		}
+		if (inputs == null) { // use default encoder
+			inputs = ecore2smt.checkAllowedInputs(inputModels);
+		}
+		encoder = (EcoreMAVOToSMTLIB) encoder.start(inputs, null, new BasicEList<>(), new HashMap<>(), null);
+		encoder.cleanup();
 
-		return ecore2smt.getZ3MAVOModelParser();
+		return encoder.getZ3MAVOModelParser();
 	}
 
 	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint, boolean optimizeFalse) {

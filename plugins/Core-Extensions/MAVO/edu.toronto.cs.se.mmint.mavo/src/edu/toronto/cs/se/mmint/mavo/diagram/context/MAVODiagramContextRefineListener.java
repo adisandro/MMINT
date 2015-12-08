@@ -85,7 +85,7 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 	public void widgetSelected(SelectionEvent e) {
 
 		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemsToRefine.get(0), MIDLevel.INSTANCES)[0];
-		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getMIDsInWorkspace();
+		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		List<IFile> files = null;
 		for (Entry<MID, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
 			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID.getKey());

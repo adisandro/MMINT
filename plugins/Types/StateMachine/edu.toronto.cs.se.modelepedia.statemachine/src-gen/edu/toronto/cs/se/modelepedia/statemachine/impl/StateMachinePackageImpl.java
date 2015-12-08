@@ -230,6 +230,24 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAbstractState_TransitionsAsSource() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAbstractState_TransitionsAsTarget() {
+		return (EReference)abstractStateEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -335,6 +353,8 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 
 		abstractStateEClass = createEClass(ABSTRACT_STATE);
 		createEAttribute(abstractStateEClass, ABSTRACT_STATE__NAME);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__TRANSITIONS_AS_SOURCE);
+		createEReference(abstractStateEClass, ABSTRACT_STATE__TRANSITIONS_AS_TARGET);
 
 		stateEClass = createEClass(STATE);
 		createEReference(stateEClass, STATE__INTERNAL_ACTIONS);
@@ -395,6 +415,8 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 
 		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractState_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_TransitionsAsSource(), this.getTransition(), this.getTransition_Source(), "transitionsAsSource", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractState_TransitionsAsTarget(), this.getTransition(), this.getTransition_Target(), "transitionsAsTarget", null, 0, -1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getState_InternalActions(), this.getStateAction(), null, "internalActions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -404,8 +426,8 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		initEClass(finalStateEClass, FinalState.class, "FinalState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_Source(), this.getAbstractState(), null, "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Target(), this.getAbstractState(), null, "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), this.getAbstractState(), this.getAbstractState_TransitionsAsSource(), "source", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Target(), this.getAbstractState(), this.getAbstractState_TransitionsAsTarget(), "target", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateActionEClass, StateAction.class, "StateAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
