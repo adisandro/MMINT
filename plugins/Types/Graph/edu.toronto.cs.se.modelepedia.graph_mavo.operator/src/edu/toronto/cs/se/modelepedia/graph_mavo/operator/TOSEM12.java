@@ -365,7 +365,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private MAVOTruthValue doMAVOPropertyCheck() {
 
 		long startTime = System.nanoTime();
-		MAVOTruthValue resultMAVO = z3Reasoner.checkMAVOConstraint(smtEncodingAndConcretizations, smtProperty);
+		MAVOTruthValue resultMAVO = z3Reasoner.checkMAVOConstraint(smtEncodingAndConcretizations, "", smtProperty);
 		timeMAVO = System.nanoTime() - startTime;
 
 		return resultMAVO;

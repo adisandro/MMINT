@@ -111,7 +111,7 @@
 		[/let]
 	[/for]
 
-;Model
+[';Model'/]
 	[let numTypes : Integer = mavoModel.getMetamodelAndSuperMetamodelsMAVOClasses()->size()]
 	[for (mavoNode : MAVOElement | mavoModel.getMAVONodes())]
 (declare-const [mavoNode.formulaVariable/] ['Node'/])
@@ -124,7 +124,7 @@
 	[/for]
 	[/let]
 	[/let]
-;End Model
+[';End Model'/]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOElements())]
 		[let function : String = mavoElement.eClass().getGraphFunction()]
 (assert (= ([function/]Type [mavoElement.formulaVariable/]) [mavoElement.eClass().getMAVOClassName().toUpperCase()/]))
@@ -238,7 +238,7 @@
 		[/let]
 	[/for]
 
-;Model
+[';Model'/]
 	[for (eclass : EClass | mavoModel.getMetamodelAndSuperMetamodelsMAVOClasses())]
 		[let numTypes : Integer = mavoModel.getMetamodelAndSuperMetamodelsMAVOClasses()->size()]
 		[let numPreviousTypes : Integer = mavoModel.getAlreadyEncodedMAVOElementsCounter(eclass)]
@@ -251,7 +251,7 @@
 		[/let]
 		[/let]
 	[/for]
-;End Model
+[';End Model'/]
 	[for (mavoElement : MAVOElement | mavoModel.getMAVOEdges())]
 		[let srcMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeSrcFeatureName()).oclAsType(MAVOElement)]
 		[let tgtMavoElement : MAVOElement = mavoElement.eGet(mavoElement.eClass().getEdgeTgtFeatureName()).oclAsType(MAVOElement)]

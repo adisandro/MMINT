@@ -26,18 +26,21 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	private static final @NonNull String EDGE_MARKER = "Edge";
 	private static final @NonNull String MODEL_START_MARKER = ";Model";
 	private static final @NonNull String MODEL_END_MARKER = ";End Model";
-	private static final int NUM_TOKENS = 4;
+	private static final int MODEL_NUM_TOKENS = 4;
+	private static final @NonNull String MACROS_START_MARKER = ";Macros";
+	private static final @NonNull String MACROS_END_MARKER = ";End Macros";
 
 	private Map<String, MAVOElement> mavoModelObjs;
 	private boolean isMayOnly;
-	private StringBuilder textGeneration;
+	private StringBuilder smtEncoding;
 	private Map<Integer, String> smtNodes;
 	private Map<Integer, String> smtEdges;
 	private Map<Integer, String> smtCurrentElems;
-	private boolean checkTokens;
+	private boolean checkModel;
 	private String[] smtTokens;
 	private int smtTokenCounter;
-	private String smtEncoding;
+	private boolean checkMacros;
+	private StringBuilder smtMacros;
 	private String smtEncodingUri;
 	private Z3MAVOModelParser z3ModelParser;
 
@@ -45,42 +48,57 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 
 		this.mavoModelObjs = mavoModelObjs;
 		this.isMayOnly = isMayOnly;
-		textGeneration = new StringBuilder();
-		smtNodes = new HashMap<Integer, String>();
-		smtEdges = new HashMap<Integer, String>();
-		checkTokens = false;
-		smtTokens = new String[NUM_TOKENS];
-		smtTokenCounter = NUM_TOKENS;
+		smtEncoding = new StringBuilder();
+		smtNodes = new HashMap<>();
+		smtEdges = new HashMap<>();
+		checkModel = false;
+		smtTokens = new String[MODEL_NUM_TOKENS];
+		smtTokenCounter = MODEL_NUM_TOKENS;
+		checkMacros = false;
+		smtMacros = new StringBuilder();
 	}
 
 	@Override
 	public void textGenerated(AcceleoTextGenerationEvent event) {
 
-		String text = event.getText();
-		textGeneration.append(text);
+		String smtText = event.getText();
+		smtEncoding.append(smtText);
 
-		if (text.trim().endsWith(MODEL_START_MARKER)) {
-			checkTokens = true;
+		if (smtText.trim().endsWith(MODEL_START_MARKER)) {
+			checkModel = true;
 			return;
 		}
-		if (!checkTokens) {
+		else if (smtText.trim().endsWith(MACROS_START_MARKER)) {
+			checkMacros = true;
 			return;
 		}
-		if (text.trim().endsWith(MODEL_END_MARKER)) {
-			checkTokens = false;
+		if (!checkModel && !checkMacros) {
+			return;
+		}
+		if (smtText.trim().endsWith(MODEL_END_MARKER)) {
+			checkModel = false;
+			return;
+		}
+		else if (smtText.trim().endsWith(MACROS_END_MARKER)) {
+			checkMacros = false;
 			return;
 		}
 
-		if (smtTokenCounter < NUM_TOKENS) {
-			smtTokens[smtTokenCounter] = text;
-			smtTokenCounter++;
-			if (smtTokenCounter == (NUM_TOKENS)) {
-				smtCurrentElems.put(new Integer(smtTokens[NUM_TOKENS-1]), smtTokens[NUM_TOKENS-3]);
+		if (checkModel) {
+			if (smtTokenCounter < MODEL_NUM_TOKENS) {
+				smtTokens[smtTokenCounter] = smtText;
+				smtTokenCounter++;
+				if (smtTokenCounter == (MODEL_NUM_TOKENS)) {
+					smtCurrentElems.put(new Integer(smtTokens[MODEL_NUM_TOKENS-1]), smtTokens[MODEL_NUM_TOKENS-3]);
+				}
+			}
+			else if (smtText.equals(NODE_MARKER) || smtText.equals(EDGE_MARKER)) {
+				smtTokenCounter = 0;
+				smtCurrentElems = (smtText.equals(NODE_MARKER)) ? smtNodes : smtEdges;
 			}
 		}
-		else if (text.equals(NODE_MARKER) || text.equals(EDGE_MARKER)) {
-			smtTokenCounter = 0;
-			smtCurrentElems = (text.equals(NODE_MARKER)) ? smtNodes : smtEdges;
+		else if (checkMacros) {
+			smtMacros.append(smtText);
 		}
 	}
 
@@ -93,8 +111,7 @@ public class EcoreMAVOToSMTLIBListener implements IAcceleoTextGenerationListener
 	@Override
 	public void fileGenerated(AcceleoTextGenerationEvent event) {
 
-		smtEncoding = textGeneration.toString();
-		z3ModelParser = new Z3MAVOModelParser(smtEncoding, smtEncodingUri, smtNodes, smtEdges, mavoModelObjs, isMayOnly);
+		z3ModelParser = new Z3MAVOModelParser(smtEncoding.toString(), smtEncodingUri, smtNodes, smtEdges, smtMacros.toString(), mavoModelObjs, isMayOnly);
 	}
 
 	@Override

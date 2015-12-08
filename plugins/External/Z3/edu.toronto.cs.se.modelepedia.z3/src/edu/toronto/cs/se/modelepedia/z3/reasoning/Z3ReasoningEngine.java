@@ -94,32 +94,32 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return encoder.getZ3MAVOModelParser();
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtConstraint, boolean optimizeFalse) {
+	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtMacros, @NonNull String smtConstraint, boolean optimizeFalse) {
 
-		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
+		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(smtMacros + " " + Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
 		boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
 		if (!constraintTruthValue && optimizeFalse) { // skip the next check, can lose a possible MAVOTruthValue.ERROR status
 			z3NotConstraintModel = null;
 			return MAVOTruthValue.FALSE;
 		}
-		z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
+		z3Model = z3IncSolver.checkSatAndGetModel(smtMacros + " " + Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
 		boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3NotConstraintModel = (notConstraintTruthValue) ? z3Model : null;
 
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull String smtEncoding, @NonNull String smtConstraint) {
+	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull String smtEncoding, @NonNull String smtMacros, @NonNull String smtConstraint) {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 
-		return checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint, false);
+		return checkMAVOConstraintWithSolver(z3IncSolver, smtMacros, smtConstraint, false);
 	}
 
 	@Override
-	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public @NonNull MAVOTruthValue checkConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -129,7 +129,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
-		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), constraint.getImplementation());
+		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), constraint.getImplementation());
 
 		// show example if: maybe, has a diagram, user accepts
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
@@ -274,7 +274,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 				MMINTException.print(IStatus.WARNING, "Can't generate SMTLIB encoding for may model object " + formulaVar + ", skipping it", e);
 				continue;
 			}
-			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, smtConstraint, true);
+			MAVOTruthValue backboneTruthValue = this.checkMAVOConstraintWithSolver(z3IncSolver, "", smtConstraint, true);
 			backboneTruthValues.put(formulaVar, backboneTruthValue);
 			if (backboneTruthValue != MAVOTruthValue.FALSE && z3ModelParser != null) { // optimize
 				optimizeMayBackbone(z3ModelParser, z3ConstraintModel, mayModelObjs, baselineFormulaVars, backboneTruthValues);
@@ -325,7 +325,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
 			return null;
 		}
-		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), model.getConstraint().getImplementation());
+		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), model.getConstraint().getImplementation());
 
 		// refine if: maybe
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {

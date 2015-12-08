@@ -3,10 +3,11 @@
 [import edu::toronto::cs::se::modelepedia::z3::mavo::EcoreMAVOToSMTLIBUtils_M2T /]
 
 [template private encodeAnalysis(sm : StateMachine)]
-(define-fun reachable1 ((s Node) (t Node)) Bool
+[';Macros'/]
+(define-fun reachable1 ((s Int) (t Int)) Bool
 	(and
 		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
-		(exists ((s2t Edge)) (and
+		(exists ((s2t Int)) (and
 			(edge s2t)
 			(= (edgeType s2t) TRANSITION)
 			(= (src s2t) s)
@@ -15,10 +16,10 @@
 	)
 )
 	[for (c : Integer | Sequence{2..sm.states->size()-1})]
-(define-fun reachable[c/] ((s Node) (t Node)) Bool
+(define-fun reachable[c/] ((s Int) (t Int)) Bool
 	(and
 		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
-		(exists ((x Node)) (and
+		(exists ((x Int)) (and
 			(node x)
 			(= (nodeType x) STATE)
 			(reachable1 s x)
@@ -27,7 +28,7 @@
 	)
 )
 	[/for]
-(define-fun reachable ((s Node) (t Node)) Bool
+(define-fun reachable ((s Int) (t Int)) Bool
 	(and
 		(node s) (node t) (= (nodeType s) STATE) (= (nodeType t) STATE)
 		(or
@@ -37,6 +38,7 @@
 		)
 	)
 )
+[';End Macros'/]
 [/template]
 
 [template public encodeStateMachineMAVO(sm : StateMachine, modelName : String, mayOnly : Boolean)]
