@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 import com.microsoft.z3.Expr;
@@ -198,6 +197,12 @@ public class Z3MAVOModelParser {
 	public boolean isMayOnly() {
 
 		return isMayOnly;
+	}
+
+	public boolean isAnnotated() {
+
+		return mavoModelObjs.values().stream()
+			.allMatch(mavoModelObj -> mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar());
 	}
 
 }

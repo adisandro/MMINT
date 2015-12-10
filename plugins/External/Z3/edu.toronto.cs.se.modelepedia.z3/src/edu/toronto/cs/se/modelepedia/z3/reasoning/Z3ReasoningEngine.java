@@ -94,14 +94,14 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return encoder.getZ3MAVOModelParser();
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtMacros, @NonNull String smtConstraint, boolean optimizeFalse) {
+	public @NonNull MAVOTruthValue checkMAVOConstraintWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull String smtMacros, @NonNull String smtConstraint, boolean optimize) {
 
 		Z3Model z3Model = z3IncSolver.checkSatAndGetModel(smtMacros + " " + Z3Utils.assertion(smtConstraint), Z3IncrementalBehavior.POP);
 		boolean constraintTruthValue = z3Model.getZ3Result().isSAT();
 		z3ConstraintModel = (constraintTruthValue) ? z3Model : null;
-		if (!constraintTruthValue && optimizeFalse) { // skip the next check, can lose a possible MAVOTruthValue.ERROR status
+		if (optimize) { // skips the next check, either because the model has no mavo annotation, or because we don't care about losing a possible MAVOTruthValue.ERROR status
 			z3NotConstraintModel = null;
-			return MAVOTruthValue.FALSE;
+			return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue);
 		}
 		z3Model = z3IncSolver.checkSatAndGetModel(smtMacros + " " + Z3Utils.assertion(Z3Utils.not(smtConstraint)), Z3IncrementalBehavior.POP);
 		boolean notConstraintTruthValue = z3Model.getZ3Result().isSAT();
@@ -110,12 +110,12 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		return MAVOTruthValue.toMAVOTruthValue(constraintTruthValue, notConstraintTruthValue);
 	}
 
-	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull String smtEncoding, @NonNull String smtMacros, @NonNull String smtConstraint) {
+	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull String smtEncoding, @NonNull String smtMacros, @NonNull String smtConstraint, boolean optimize) {
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
 
-		return checkMAVOConstraintWithSolver(z3IncSolver, smtMacros, smtConstraint, false);
+		return checkMAVOConstraintWithSolver(z3IncSolver, smtMacros, smtConstraint, optimize);
 	}
 
 	@Override
@@ -129,7 +129,8 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, evaluating to false", e);
 			return MAVOTruthValue.FALSE;
 		}
-		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), constraint.getImplementation());
+		boolean optimize = (z3ModelParser.isAnnotated()) ? false : true;
+		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), constraint.getImplementation(), optimize);
 
 		// show example if: maybe, has a diagram, user accepts
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
@@ -325,7 +326,8 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't generate SMTLIB encoding, aborting refinement", e);
 			return null;
 		}
-		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), model.getConstraint().getImplementation());
+		boolean optimize = (z3ModelParser.isAnnotated()) ? false : true;
+		MAVOTruthValue constraintTruthValue = checkMAVOConstraint(z3ModelParser.getSMTLIBEncoding(), z3ModelParser.getSMTLIBMacros(), model.getConstraint().getImplementation(), optimize);
 
 		// refine if: maybe
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {

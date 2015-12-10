@@ -402,8 +402,7 @@ public class MAVOUtils {
 			.map(modelObj -> (MAVOElement) modelObj)
 			.collect(Collectors.toMap(
 				MAVOElement::getFormulaVariable,
-				mavoModelObj -> mavoModelObj)
-			);
+				mavoModelObj -> mavoModelObj));
 
 		return mavoModelObjs;
 	}
