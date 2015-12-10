@@ -202,7 +202,7 @@ public class Z3MAVOModelParser {
 	public boolean isAnnotated() {
 
 		return mavoModelObjs.values().stream()
-			.allMatch(mavoModelObj -> mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar());
+			.anyMatch(mavoModelObj -> mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar());
 	}
 
 }
