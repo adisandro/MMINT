@@ -43,6 +43,7 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
+import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine.MAVOCheckStrategy;
 
 public class TOSEM12 extends RandomOperatorImpl {
 
@@ -365,7 +366,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private MAVOTruthValue doMAVOPropertyCheck() {
 
 		long startTime = System.nanoTime();
-		MAVOTruthValue resultMAVO = z3Reasoner.checkMAVOConstraint(smtEncodingAndConcretizations, "", smtProperty, false);
+		MAVOTruthValue resultMAVO = z3Reasoner.checkMAVOConstraint(smtEncodingAndConcretizations, "", smtProperty, MAVOCheckStrategy.DOUBLE_CHECK);
 		timeMAVO = System.nanoTime() - startTime;
 
 		return resultMAVO;

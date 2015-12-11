@@ -219,7 +219,7 @@ public class MAVORefiner {
 			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
 		}
-		EList<Model> modelEndpoints = new BasicEList<Model>();
+		EList<Model> modelEndpoints = new BasicEList<>();
 		modelEndpoints.add(model);
 		modelEndpoints.add(refinedModel);
 		ModelRel refinementRel = modelRelType.createInstanceAndEndpointsAndReferences(
