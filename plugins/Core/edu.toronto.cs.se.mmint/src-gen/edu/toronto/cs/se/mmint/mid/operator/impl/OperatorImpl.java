@@ -1078,6 +1078,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	private String getPropertiesUri(String suffix) {
 
 		IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
+		if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
+			return null;
+		}
 		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(instanceMIDFile.getParent().getFullPath().toString());
 		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
 
