@@ -12,8 +12,8 @@
         collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New Binary Link"
-          description="Create new Binary Link">
+          title="New Binary Mapping"
+          description="Create new Binary Mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -21,8 +21,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="New Nary Link"
-          description="Create new Nary Link">
+          title="New Nary Mapping"
+          description="Create new Nary Mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -31,7 +31,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Connect Model Element"
-          description="Connect Model Element to Nary Link">
+          description="Connect Model Element to Nary Mapping">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
