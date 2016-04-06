@@ -26,34 +26,32 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDBaseIte
 /**
  * @generated
  */
-public class ExtendibleElementReferenceSupertypeRefReorientCommand extends
-		EditElementCommand {
+public class ExtendibleElementReferenceSupertypeRefReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject referenceOwner;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
-	public ExtendibleElementReferenceSupertypeRefReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	* @generated
+	*/
+	public ExtendibleElementReferenceSupertypeRefReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -62,8 +60,8 @@ public class ExtendibleElementReferenceSupertypeRefReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == referenceOwner instanceof ExtendibleElementReference) {
 			return false;
@@ -78,37 +76,33 @@ public class ExtendibleElementReferenceSupertypeRefReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof ExtendibleElementReference && newEnd instanceof ExtendibleElementReference)) {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistExtendibleElementReferenceSupertypeRef_4010(
-						getNewSource(), getOldTarget());
+				.canExistExtendibleElementReferenceSupertypeRef_4001(getNewSource(), getOldTarget());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof ExtendibleElementReference && newEnd instanceof ExtendibleElementReference)) {
 			return false;
 		}
 		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistExtendibleElementReferenceSupertypeRef_4010(
-						getOldSource(), getNewTarget());
+				.canExistExtendibleElementReferenceSupertypeRef_4001(getOldSource(), getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -120,8 +114,8 @@ public class ExtendibleElementReferenceSupertypeRefReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().setSupertypeRef(null);
 		getNewSource().setSupertypeRef(getOldTarget());
@@ -129,37 +123,37 @@ public class ExtendibleElementReferenceSupertypeRefReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().setSupertypeRef(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElementReference getOldSource() {
 		return (ExtendibleElementReference) referenceOwner;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElementReference getNewSource() {
 		return (ExtendibleElementReference) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElementReference getOldTarget() {
 		return (ExtendibleElementReference) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ExtendibleElementReference getNewTarget() {
 		return (ExtendibleElementReference) newEnd;
 	}

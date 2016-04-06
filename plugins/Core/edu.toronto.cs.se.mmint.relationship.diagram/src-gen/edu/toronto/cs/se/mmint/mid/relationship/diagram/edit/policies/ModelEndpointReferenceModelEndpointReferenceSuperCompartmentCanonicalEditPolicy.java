@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies;
 
 import java.util.ArrayList;
@@ -56,8 +56,8 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 		extends CanonicalEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -68,22 +68,22 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return RelationshipPackage.eINSTANCE
-				.getModelEndpointReference_ModelElemRefs();
+		return RelationshipPackage.eINSTANCE.getModelEndpointReference_ModelElemRefs();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings("rawtypes")
+
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
-				.getModelEndpointReferenceModelEndpointReferenceSuperCompartment_7005SemanticChildren(viewObject);
+				.getModelEndpointReferenceModelEndpointReferenceSuperCompartment_7002SemanticChildren(viewObject);
 		for (MIDNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -91,17 +91,15 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 	}
 
 	/**
-	 * @generated
-	 */
-	protected boolean isOrphaned(Collection<EObject> semanticChildren,
-			final View view) {
-		return isMyDiagramElement(view)
-				&& !semanticChildren.contains(view.getElement());
+	* @generated
+	*/
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
+		return isMyDiagramElement(view) && !semanticChildren.contains(view.getElement());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean isMyDiagramElement(View view) {
 		int visualID = MIDVisualIDRegistry.getVisualID(view);
 		return visualID == ModelElementReference2EditPart.VISUAL_ID
@@ -109,16 +107,16 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
-				.getModelEndpointReferenceModelEndpointReferenceSuperCompartment_7005SemanticChildren((View) getHost()
-						.getModel());
+				.getModelEndpointReferenceModelEndpointReferenceSuperCompartment_7002SemanticChildren(
+						(View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -133,8 +131,8 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors
-				.iterator(); descriptorsIterator.hasNext();) {
+		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator
+				.hasNext();) {
 			MIDNodeDescriptor next = descriptorsIterator.next();
 			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
@@ -164,18 +162,15 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
 		orphaned.addAll(knownViewChildren);
 		//
-		CompositeTransactionalCommand boundsCommand = new CompositeTransactionalCommand(
-				host().getEditingDomain(),
+		CompositeTransactionalCommand boundsCommand = new CompositeTransactionalCommand(host().getEditingDomain(),
 				DiagramUIMessages.SetLocationCommand_Label_Resize);
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
 		for (MIDNodeDescriptor next : childDescriptors) {
 			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
-			IAdaptable elementAdapter = new CanonicalElementAdapter(
-					next.getModelElement(), hint);
-			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
-					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
-					host().getDiagramPreferencesHint());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter,
+					Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 
 			LinkedList<View> possibleMatches = potentialViews.get(next);
@@ -189,25 +184,18 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 				// add command to copy properties
 				if (originalView instanceof Node) {
 					if (((Node) originalView).getLayoutConstraint() instanceof Bounds) {
-						Bounds b = (Bounds) ((Node) originalView)
-								.getLayoutConstraint();
-						boundsCommand.add(new SetBoundsCommand(boundsCommand
-								.getEditingDomain(), boundsCommand.getLabel(),
-								descriptor, new Rectangle(b.getX(), b.getY(), b
-										.getWidth(), b.getHeight())));
+						Bounds b = (Bounds) ((Node) originalView).getLayoutConstraint();
+						boundsCommand
+								.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(),
+										descriptor, new Rectangle(b.getX(), b.getY(), b.getWidth(), b.getHeight())));
 					} else if (((Node) originalView).getLayoutConstraint() instanceof Location) {
-						Location l = (Location) ((Node) originalView)
-								.getLayoutConstraint();
-						boundsCommand.add(new SetBoundsCommand(boundsCommand
-								.getEditingDomain(), boundsCommand.getLabel(),
-								descriptor, new Point(l.getX(), l.getY())));
+						Location l = (Location) ((Node) originalView).getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(),
+								boundsCommand.getLabel(), descriptor, new Point(l.getX(), l.getY())));
 					} else if (((Node) originalView).getLayoutConstraint() instanceof Size) {
-						Size s = (Size) ((Node) originalView)
-								.getLayoutConstraint();
-						boundsCommand.add(new SetBoundsCommand(boundsCommand
-								.getEditingDomain(), boundsCommand.getLabel(),
-								descriptor, new Dimension(s.getWidth(), s
-										.getHeight())));
+						Size s = (Size) ((Node) originalView).getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(),
+								boundsCommand.getLabel(), descriptor, new Dimension(s.getWidth(), s.getHeight())));
 					}
 				}
 			}
@@ -218,13 +206,13 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
 		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(host().getNotationView())).execute();
+			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
 			if (boundsCommand.canExecute()) {
 				executeCommand(new ICommandProxy(boundsCommand.reduce()));
 			}
 			@SuppressWarnings("unchecked")
+
 			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
 			createdViews.addAll(nl);
 		}
@@ -233,8 +221,8 @@ public class ModelEndpointReferenceModelEndpointReferenceSuperCompartmentCanonic
 		}
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-					.getEditingDomain(), createdViews, host());
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews,
+					host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 

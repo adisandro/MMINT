@@ -17,12 +17,11 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 /**
  * @generated
  */
-public class MIDIconProvider extends DefaultElementTypeIconProvider implements
-		IIconProvider {
+public class MIDIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDIconProvider() {
 		super(MIDElementTypes.TYPED_INSTANCE);
 	}

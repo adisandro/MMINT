@@ -46,9 +46,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -64,39 +64,37 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementType
 public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * @generated
-	 */
+	* Extended request data key to hold editpart visual id.
+	* @generated
+	*/
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final IElementType myElementType;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MIDBaseItemSemanticEditPolicy(IElementType elementType) {
 		myElementType = elementType;
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
-	 * 
-	 * @generated
-	 */
+	* Extended request data key to hold editpart visual id.
+	* Add visual id of edited editpart to extended data of the request
+	* so command switch can decide what kind of diagram element is being edited.
+	* It is done in those cases when it's not possible to deduce diagram
+	* element kind from domain element.
+	* 
+	* @generated
+	*/
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart()
-					.getModel();
+			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
 			if (view instanceof View) {
-				Integer id = new Integer(
-						MIDVisualIDRegistry.getVisualID((View) view));
+				Integer id = new Integer(MIDVisualIDRegistry.getVisualID((View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -104,62 +102,53 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Returns visual id from request parameters.
-	 * @generated
-	 */
+	* Returns visual id from request parameters.
+	* @generated
+	*/
 	protected int getVisualID(IEditCommandRequest request) {
 		Object id = request.getParameter(VISUAL_ID_KEY);
 		return id instanceof Integer ? ((Integer) id).intValue() : -1;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
-		semanticCommand = getEditHelperCommand(completedRequest,
-				semanticCommand);
+		semanticCommand = getEditHelperCommand(completedRequest, semanticCommand);
 		if (completedRequest instanceof DestroyRequest) {
 			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
-			return shouldProceed(destroyRequest) ? addDeleteViewCommand(
-					semanticCommand, destroyRequest) : null;
+			return shouldProceed(destroyRequest) ? addDeleteViewCommand(semanticCommand, destroyRequest) : null;
 		}
 		return semanticCommand;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Command addDeleteViewCommand(Command mainCommand,
-			DestroyRequest completedRequest) {
-		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(
-				getEditingDomain(), (View) getHost().getModel()));
-		return mainCommand == null ? deleteViewCommand : mainCommand
-				.chain(deleteViewCommand);
+	* @generated
+	*/
+	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View) getHost().getModel()));
+		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
 	/**
-	 * @generated
-	 */
-	private Command getEditHelperCommand(IEditCommandRequest request,
-			Command editPolicyCommand) {
+	* @generated
+	*/
+	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
-					.getICommand() : new CommandProxy(editPolicyCommand);
-			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND,
-					command);
+			ICommand command = editPolicyCommand instanceof ICommandProxy
+					? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE,
-				requestContextElementType);
+		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
 		request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, null);
 		request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, null);
 		if (command != null) {
 			if (!(command instanceof CompositeTransactionalCommand)) {
-				command = new CompositeTransactionalCommand(getEditingDomain(),
-						command.getLabel()).compose(command);
+				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
 			}
 			return new ICommandProxy(command);
 		}
@@ -167,18 +156,16 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IElementType getContextElementType(IEditCommandRequest request) {
-		IElementType requestContextElementType = MIDElementTypes
-				.getElementType(getVisualID(request));
-		return requestContextElementType != null ? requestContextElementType
-				: myElementType;
+		IElementType requestContextElementType = MIDElementTypes.getElementType(getVisualID(request));
+		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
 		if (req instanceof CreateRelationshipRequest) {
 			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
@@ -207,109 +194,107 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getConfigureCommand(ConfigureRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getCreateCommand(CreateElementRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getSetCommand(SetRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getEditContextCommand(GetEditContextRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getMoveCommand(MoveRequest req) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	* @generated
+	*/
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	* @generated
+	*/
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected final Command getGEFWrapper(ICommand cmd) {
 		return new ICommandProxy(cmd);
 	}
 
 	/**
-	 * Returns editing domain from the host edit part.
-	 * @generated
-	 */
+	* Returns editing domain from the host edit part.
+	* @generated
+	*/
 	protected TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
 	}
 
 	/**
-	 * Clean all shortcuts to the host element from the same diagram
-	 * @generated
-	 */
+	* Clean all shortcuts to the host element from the same diagram
+	* @generated
+	*/
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it
-				.hasNext();) {
+		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
+					|| nextView.getElement() != view.getElement()) {
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -317,14 +302,12 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static LinkConstraints getLinkConstraints() {
-		LinkConstraints cached = MIDDiagramEditorPlugin.getInstance()
-				.getLinkConstraints();
+		LinkConstraints cached = MIDDiagramEditorPlugin.getInstance().getLinkConstraints();
 		if (cached == null) {
-			MIDDiagramEditorPlugin.getInstance().setLinkConstraints(
-					cached = new LinkConstraints());
+			MIDDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
 		}
 		return cached;
 	}
@@ -335,8 +318,8 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static class LinkConstraints {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
@@ -344,8 +327,7 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateExtendibleElementReferenceSupertypeRef_4010(
-				ExtendibleElementReference source,
+		public boolean canCreateExtendibleElementReferenceSupertypeRef_4001(ExtendibleElementReference source,
 				ExtendibleElementReference target) {
 			if (source != null) {
 				if (source.getSupertypeRef() != null) {
@@ -353,126 +335,107 @@ public class MIDBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 			}
 
-			return canExistExtendibleElementReferenceSupertypeRef_4010(source,
-					target);
+			return canExistExtendibleElementReferenceSupertypeRef_4001(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelElementEndpointReference_4011(
-				LinkReference source, ModelElementReference target) {
-			return canExistModelElementEndpointReference_4011(null, source,
-					target);
+		public boolean canCreateModelElementEndpointReference_4002(MappingReference source,
+				ModelElementReference target) {
+			return canExistModelElementEndpointReference_4002(null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateBinaryLinkReference_4012(ModelRel container,
-				ModelElementReference source, ModelElementReference target) {
-			return canExistBinaryLinkReference_4012(container, null, source,
-					target);
+		public boolean canCreateBinaryMappingReference_4003(ModelRel container, ModelElementReference source,
+				ModelElementReference target) {
+			return canExistBinaryMappingReference_4003(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateBinaryLinkReference_4013(ModelRel container,
-				ModelElementReference source, ModelElementReference target) {
-			return canExistBinaryLinkReference_4013(container, null, source,
-					target);
+		public boolean canCreateBinaryMappingReference_4004(ModelRel container, ModelElementReference source,
+				ModelElementReference target) {
+			return canExistBinaryMappingReference_4004(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public boolean canCreateModelElementEndpointReference_4014(
-				LinkReference source, ModelElementReference target) {
-			return canExistModelElementEndpointReference_4014(null, source,
-					target);
+		public boolean canCreateModelElementEndpointReference_4005(MappingReference source,
+				ModelElementReference target) {
+			return canExistModelElementEndpointReference_4005(null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistExtendibleElementReferenceSupertypeRef_4010(
-				ExtendibleElementReference source,
+		* @generated
+		*/
+		public boolean canExistExtendibleElementReferenceSupertypeRef_4001(ExtendibleElementReference source,
 				ExtendibleElementReference target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistModelElementEndpointReference_4011(
-				ModelElementEndpointReference linkInstance,
-				LinkReference source, ModelElementReference target) {
+		* @generated
+		*/
+		public boolean canExistModelElementEndpointReference_4002(ModelElementEndpointReference linkInstance,
+				MappingReference source, ModelElementReference target) {
 			try {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections
-							.<String, EClassifier> singletonMap(
-									"oppositeEnd", RelationshipPackage.eINSTANCE.getModelElementReference()); //$NON-NLS-1$
-					Object sourceVal = MIDOCLFactory.getExpression(7,
-							RelationshipPackage.eINSTANCE.getLinkReference(),
-							env).evaluate(source,
-							Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
-					if (false == sourceVal instanceof Boolean
-							|| !((Boolean) sourceVal).booleanValue()) {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
+							RelationshipPackage.eINSTANCE.getModelElementReference());
+					Object sourceVal = MIDOCLFactory
+							.getExpression(7, RelationshipPackage.eINSTANCE.getMappingReference(), env)
+							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
 				}
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections
-							.<String, EClassifier> singletonMap(
-									"oppositeEnd", RelationshipPackage.eINSTANCE.getLinkReference()); //$NON-NLS-1$
-					Object targetVal = MIDOCLFactory.getExpression(
-							8,
-							RelationshipPackage.eINSTANCE
-									.getModelElementReference(), env).evaluate(
-							target,
-							Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
-					if (false == targetVal instanceof Boolean
-							|| !((Boolean) targetVal).booleanValue()) {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
+							RelationshipPackage.eINSTANCE.getMappingReference());
+					Object targetVal = MIDOCLFactory
+							.getExpression(8, RelationshipPackage.eINSTANCE.getModelElementReference(), env)
+							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
 				}
 				return true;
 			} catch (Exception e) {
-				MIDDiagramEditorPlugin.getInstance().logError(
-						"Link constraint evaluation error", e); //$NON-NLS-1$
+				MIDDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistBinaryLinkReference_4012(ModelRel container,
-				BinaryLinkReference linkInstance, ModelElementReference source,
-				ModelElementReference target) {
+		* @generated
+		*/
+		public boolean canExistBinaryMappingReference_4003(ModelRel container, BinaryMappingReference linkInstance,
+				ModelElementReference source, ModelElementReference target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistBinaryLinkReference_4013(ModelRel container,
-				BinaryLinkReference linkInstance, ModelElementReference source,
-				ModelElementReference target) {
+		* @generated
+		*/
+		public boolean canExistBinaryMappingReference_4004(ModelRel container, BinaryMappingReference linkInstance,
+				ModelElementReference source, ModelElementReference target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistModelElementEndpointReference_4014(
-				ModelElementEndpointReference linkInstance,
-				LinkReference source, ModelElementReference target) {
+		* @generated
+		*/
+		public boolean canExistModelElementEndpointReference_4005(ModelElementEndpointReference linkInstance,
+				MappingReference source, ModelElementReference target) {
 			return true;
 		}
 	}

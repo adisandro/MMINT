@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReference2EditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReferenceEditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.MappingReference2EditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference3EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
@@ -32,162 +32,150 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDModelingAss
 /**
  * @generated
  */
-public class MIDModelingAssistantProviderOfModelEndpointReferenceEditPart
-		extends MIDModelingAssistantProvider {
+public class MIDModelingAssistantProviderOfModelEndpointReferenceEditPart extends MIDModelingAssistantProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getTypesForPopupBar(IAdaptable host) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MIDElementTypes.ModelElementReference_3005);
+		types.add(MIDElementTypes.ModelElementReference_3001);
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return doGetRelTypesOnSource((ModelEndpointReferenceEditPart) sourceEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<IElementType> doGetRelTypesOnSource(
-			ModelEndpointReferenceEditPart source) {
+	* @generated
+	*/
+	public List<IElementType> doGetRelTypesOnSource(ModelEndpointReferenceEditPart source) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+		types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source,
-			IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetRelTypesOnSourceAndTarget(
-				(ModelEndpointReferenceEditPart) sourceEditPart, targetEditPart);
+
+	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		return doGetRelTypesOnSourceAndTarget((ModelEndpointReferenceEditPart) sourceEditPart, targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<IElementType> doGetRelTypesOnSourceAndTarget(
-			ModelEndpointReferenceEditPart source,
+	* @generated
+	*/
+	public List<IElementType> doGetRelTypesOnSourceAndTarget(ModelEndpointReferenceEditPart source,
 			IGraphicalEditPart targetEditPart) {
 		List<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ModelEndpointReferenceEditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
-		if (targetEditPart instanceof LinkReferenceEditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+		if (targetEditPart instanceof MappingReferenceEditPart) {
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
-		if (targetEditPart instanceof LinkReference2EditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+		if (targetEditPart instanceof MappingReference2EditPart) {
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
 		if (targetEditPart instanceof ModelEndpointReference2EditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
 		if (targetEditPart instanceof ModelElementReferenceEditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
 		if (targetEditPart instanceof ModelElementReference2EditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
 		if (targetEditPart instanceof ModelElementReference3EditPart) {
-			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+			types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getTypesForTarget(IAdaptable source,
+
+	public List<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		return doGetTypesForTarget((ModelEndpointReferenceEditPart) sourceEditPart, relationshipType);
+	}
+
+	/**
+	* @generated
+	*/
+	public List<IElementType> doGetTypesForTarget(ModelEndpointReferenceEditPart source,
 			IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetTypesForTarget(
-				(ModelEndpointReferenceEditPart) sourceEditPart,
-				relationshipType);
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> doGetTypesForTarget(
-			ModelEndpointReferenceEditPart source, IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
-		if (relationshipType == MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010) {
-			types.add(MIDElementTypes.ModelEndpointReference_2007);
-			types.add(MIDElementTypes.LinkReference_2008);
-			types.add(MIDElementTypes.LinkReference_2009);
-			types.add(MIDElementTypes.ModelEndpointReference_2010);
-			types.add(MIDElementTypes.ModelElementReference_3005);
-			types.add(MIDElementTypes.ModelElementReference_3006);
-			types.add(MIDElementTypes.ModelElementReference_3007);
+		if (relationshipType == MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001) {
+			types.add(MIDElementTypes.ModelEndpointReference_2001);
+			types.add(MIDElementTypes.MappingReference_2002);
+			types.add(MIDElementTypes.MappingReference_2003);
+			types.add(MIDElementTypes.ModelEndpointReference_2004);
+			types.add(MIDElementTypes.ModelElementReference_3001);
+			types.add(MIDElementTypes.ModelElementReference_3002);
+			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetRelTypesOnTarget((ModelEndpointReferenceEditPart) targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<IElementType> doGetRelTypesOnTarget(
-			ModelEndpointReferenceEditPart target) {
+	* @generated
+	*/
+	public List<IElementType> doGetRelTypesOnTarget(ModelEndpointReferenceEditPart target) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+		types.add(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getTypesForSource(IAdaptable target,
-			IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetTypesForSource(
-				(ModelEndpointReferenceEditPart) targetEditPart,
-				relationshipType);
+
+	public List<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		return doGetTypesForSource((ModelEndpointReferenceEditPart) targetEditPart, relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<IElementType> doGetTypesForSource(
-			ModelEndpointReferenceEditPart target, IElementType relationshipType) {
+	* @generated
+	*/
+	public List<IElementType> doGetTypesForSource(ModelEndpointReferenceEditPart target,
+			IElementType relationshipType) {
 		List<IElementType> types = new ArrayList<IElementType>();
-		if (relationshipType == MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010) {
-			types.add(MIDElementTypes.ModelEndpointReference_2007);
-			types.add(MIDElementTypes.LinkReference_2008);
-			types.add(MIDElementTypes.LinkReference_2009);
-			types.add(MIDElementTypes.ModelEndpointReference_2010);
-			types.add(MIDElementTypes.ModelElementReference_3005);
-			types.add(MIDElementTypes.ModelElementReference_3006);
-			types.add(MIDElementTypes.ModelElementReference_3007);
+		if (relationshipType == MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001) {
+			types.add(MIDElementTypes.ModelEndpointReference_2001);
+			types.add(MIDElementTypes.MappingReference_2002);
+			types.add(MIDElementTypes.MappingReference_2003);
+			types.add(MIDElementTypes.ModelEndpointReference_2004);
+			types.add(MIDElementTypes.ModelElementReference_3001);
+			types.add(MIDElementTypes.ModelElementReference_3002);
+			types.add(MIDElementTypes.ModelElementReference_3003);
 		}
 		return types;
 	}

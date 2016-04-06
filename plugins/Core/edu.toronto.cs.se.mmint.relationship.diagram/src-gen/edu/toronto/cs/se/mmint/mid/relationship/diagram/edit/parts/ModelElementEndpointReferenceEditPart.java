@@ -29,53 +29,50 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelEleme
 /**
  * @generated
  */
-public class ModelElementEndpointReferenceEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ModelElementEndpointReferenceEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 4011;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 4002;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementEndpointReferenceEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelElementEndpointReferenceItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelElementEndpointReferenceSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelElementEndpointReferenceSemanticEditPolicy());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel8EditPart) {
-			((WrappingLabel8EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureLinkReferenceModelElemEndpointRefsLabelFigure());
+		if (childEditPart instanceof WrappingLabel15EditPart) {
+			((WrappingLabel15EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureMappingReferenceModelElemEndpointRefsLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel23EditPart) {
-			((WrappingLabel23EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOModelElementEndpointReferenceLabelFigure());
+		if (childEditPart instanceof WrappingLabel16EditPart) {
+			((WrappingLabel16EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureCustomModelElementEndpointReferenceLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -84,21 +81,21 @@ public class ModelElementEndpointReferenceEditPart extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel8EditPart) {
+		if (childEditPart instanceof WrappingLabel15EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel23EditPart) {
+		if (childEditPart instanceof WrappingLabel16EditPart) {
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -107,21 +104,21 @@ public class ModelElementEndpointReferenceEditPart extends
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new ModelElementEndpointReferenceFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementEndpointReferenceFigure getPrimaryShape() {
 		return (ModelElementEndpointReferenceFigure) getFigure();
 	}
@@ -129,18 +126,16 @@ public class ModelElementEndpointReferenceEditPart extends
 	/**
 	 * @generated
 	 */
-	public class ModelElementEndpointReferenceFigure extends
-			PolylineConnectionEx {
+	public class ModelElementEndpointReferenceFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureLinkReferenceModelElemEndpointRefsLabelFigure;
-
+		private WrappingLabel fFigureMappingReferenceModelElemEndpointRefsLabelFigure;
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOModelElementEndpointReferenceLabelFigure;
+		private WrappingLabel fFigureCustomModelElementEndpointReferenceLabelFigure;
 
 		/**
 		 * @generated
@@ -158,17 +153,17 @@ public class ModelElementEndpointReferenceEditPart extends
 		 */
 		private void createContents() {
 
-			fFigureMAVOModelElementEndpointReferenceLabelFigure = new WrappingLabel();
+			fFigureCustomModelElementEndpointReferenceLabelFigure = new WrappingLabel();
 
-			fFigureMAVOModelElementEndpointReferenceLabelFigure.setText("");
+			fFigureCustomModelElementEndpointReferenceLabelFigure.setText("");
 
-			this.add(fFigureMAVOModelElementEndpointReferenceLabelFigure);
+			this.add(fFigureCustomModelElementEndpointReferenceLabelFigure);
 
-			fFigureLinkReferenceModelElemEndpointRefsLabelFigure = new WrappingLabel();
+			fFigureMappingReferenceModelElemEndpointRefsLabelFigure = new WrappingLabel();
 
-			fFigureLinkReferenceModelElemEndpointRefsLabelFigure.setText("");
+			fFigureMappingReferenceModelElemEndpointRefsLabelFigure.setText("");
 
-			this.add(fFigureLinkReferenceModelElemEndpointRefsLabelFigure);
+			this.add(fFigureMappingReferenceModelElemEndpointRefsLabelFigure);
 
 		}
 
@@ -184,15 +179,15 @@ public class ModelElementEndpointReferenceEditPart extends
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureLinkReferenceModelElemEndpointRefsLabelFigure() {
-			return fFigureLinkReferenceModelElemEndpointRefsLabelFigure;
+		public WrappingLabel getFigureMappingReferenceModelElemEndpointRefsLabelFigure() {
+			return fFigureMappingReferenceModelElemEndpointRefsLabelFigure;
 		}
 
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOModelElementEndpointReferenceLabelFigure() {
-			return fFigureMAVOModelElementEndpointReferenceLabelFigure;
+		public WrappingLabel getFigureCustomModelElementEndpointReferenceLabelFigure() {
+			return fFigureCustomModelElementEndpointReferenceLabelFigure;
 		}
 
 	}

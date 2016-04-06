@@ -23,11 +23,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry
 public class MIDEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDEditPartProvider() {
-		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE,
-				ModelRelEditPart.MODEL_ID);
+		super(new MIDEditPartFactory(), MIDVisualIDRegistry.TYPED_INSTANCE, ModelRelEditPart.MODEL_ID);
 	}
 
 }

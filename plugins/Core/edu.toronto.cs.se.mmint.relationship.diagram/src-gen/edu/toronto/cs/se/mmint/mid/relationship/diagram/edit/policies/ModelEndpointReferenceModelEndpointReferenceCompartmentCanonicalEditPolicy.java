@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies;
 
 import java.util.ArrayList;
@@ -41,12 +41,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry
 /**
  * @generated
  */
-public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEditPolicy
-		extends CanonicalEditPolicy {
+public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -57,22 +56,22 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return RelationshipPackage.eINSTANCE
-				.getModelEndpointReference_ModelElemRefs();
+		return RelationshipPackage.eINSTANCE.getModelEndpointReference_ModelElemRefs();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings("rawtypes")
+
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
-				.getModelEndpointReferenceModelEndpointReferenceCompartment_7004SemanticChildren(viewObject);
+				.getModelEndpointReferenceModelEndpointReferenceCompartment_7001SemanticChildren(viewObject);
 		for (MIDNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -80,33 +79,30 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 	}
 
 	/**
-	 * @generated
-	 */
-	protected boolean isOrphaned(Collection<EObject> semanticChildren,
-			final View view) {
-		return isMyDiagramElement(view)
-				&& !semanticChildren.contains(view.getElement());
+	* @generated
+	*/
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
+		return isMyDiagramElement(view) && !semanticChildren.contains(view.getElement());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean isMyDiagramElement(View view) {
-		return ModelElementReferenceEditPart.VISUAL_ID == MIDVisualIDRegistry
-				.getVisualID(view);
+		return ModelElementReferenceEditPart.VISUAL_ID == MIDVisualIDRegistry.getVisualID(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<MIDNodeDescriptor> childDescriptors = MIDDiagramUpdater
-				.getModelEndpointReferenceModelEndpointReferenceCompartment_7004SemanticChildren((View) getHost()
-						.getModel());
+				.getModelEndpointReferenceModelEndpointReferenceCompartment_7001SemanticChildren(
+						(View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -120,8 +116,8 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors
-				.iterator(); descriptorsIterator.hasNext();) {
+		for (Iterator<MIDNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator
+				.hasNext();) {
 			MIDNodeDescriptor next = descriptorsIterator.next();
 			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
@@ -150,11 +146,9 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 				childDescriptors.size());
 		for (MIDNodeDescriptor next : childDescriptors) {
 			String hint = MIDVisualIDRegistry.getType(next.getVisualID());
-			IAdaptable elementAdapter = new CanonicalElementAdapter(
-					next.getModelElement(), hint);
-			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
-					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
-					host().getDiagramPreferencesHint());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter,
+					Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 		}
 
@@ -163,10 +157,10 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
 		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(host().getNotationView())).execute();
+			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
 			@SuppressWarnings("unchecked")
+
 			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
 			createdViews.addAll(nl);
 		}
@@ -175,8 +169,8 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEdi
 		}
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-					.getEditingDomain(), createdViews, host());
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews,
+					host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 

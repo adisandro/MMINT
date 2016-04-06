@@ -154,32 +154,32 @@ Contributors:
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
       <page
-            id="edu.toronto.cs.se.mmint.diagram.general"
-            name="%prefpage.edu.toronto.cs.se.mmint.diagram.general"
+            id="edu.toronto.cs.se.mmint.relationship.diagram.general"
+            name="%prefpage.edu.toronto.cs.se.mmint.relationship.diagram.general"
             class="edu.toronto.cs.se.mmint.mid.relationship.diagram.preferences.DiagramGeneralPreferencePage">
       </page>
       <page
-            id="edu.toronto.cs.se.mmint.diagram.appearance"
-            name="%prefpage.edu.toronto.cs.se.mmint.diagram.appearance"
-            category="edu.toronto.cs.se.mmint.diagram.general"
+            id="edu.toronto.cs.se.mmint.relationship.diagram.appearance"
+            name="%prefpage.edu.toronto.cs.se.mmint.relationship.diagram.appearance"
+            category="edu.toronto.cs.se.mmint.relationship.diagram.general"
             class="edu.toronto.cs.se.mmint.mid.relationship.diagram.preferences.DiagramAppearancePreferencePage">
       </page>
       <page
-            id="edu.toronto.cs.se.mmint.diagram.connections"
-            name="%prefpage.edu.toronto.cs.se.mmint.diagram.connections"
-            category="edu.toronto.cs.se.mmint.diagram.general"
+            id="edu.toronto.cs.se.mmint.relationship.diagram.connections"
+            name="%prefpage.edu.toronto.cs.se.mmint.relationship.diagram.connections"
+            category="edu.toronto.cs.se.mmint.relationship.diagram.general"
             class="edu.toronto.cs.se.mmint.mid.relationship.diagram.preferences.DiagramConnectionsPreferencePage">
       </page>
       <page
-            id="edu.toronto.cs.se.mmint.diagram.printing"
-            name="%prefpage.edu.toronto.cs.se.mmint.diagram.printing"
-            category="edu.toronto.cs.se.mmint.diagram.general"
+            id="edu.toronto.cs.se.mmint.relationship.diagram.printing"
+            name="%prefpage.edu.toronto.cs.se.mmint.relationship.diagram.printing"
+            category="edu.toronto.cs.se.mmint.relationship.diagram.general"
             class="edu.toronto.cs.se.mmint.mid.relationship.diagram.preferences.DiagramPrintingPreferencePage">
       </page>
       <page
-            id="edu.toronto.cs.se.mmint.diagram.rulersAndGrid"
-            name="%prefpage.edu.toronto.cs.se.mmint.diagram.rulersAndGrid"
-            category="edu.toronto.cs.se.mmint.diagram.general"
+            id="edu.toronto.cs.se.mmint.relationship.diagram.rulersAndGrid"
+            name="%prefpage.edu.toronto.cs.se.mmint.relationship.diagram.rulersAndGrid"
+            category="edu.toronto.cs.se.mmint.relationship.diagram.general"
             class="edu.toronto.cs.se.mmint.mid.relationship.diagram.preferences.DiagramRulersAndGridPreferencePage">
       </page>
    </extension>
@@ -256,8 +256,8 @@ Contributors:
          </object>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Relationship"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007,2008,2009,2010,3005,3006,3007"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4010,4011,4012,4013,4014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,3001,3002,3003"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
       </viewProvider>
    </extension>
 
@@ -269,16 +269,16 @@ Contributors:
             <method name="getType()" value="Relationship"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2007,2008,2009,2010,3005,3006,3007"/>
+            <method name="getType()" value="2001,2002,2003,2004,3001,3002,3003"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4010,4011,4012,4013,4014"/>
+            <method name="getType()" value="4001,4002,4003,4004,4005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5012,5019,5013,5020,5014,5021,5017,5024,5011,5018,5015,5022,5016,5023"/>
+            <method name="getType()" value="5003,5004,5005,5006,5007,5008,5013,5014,5001,5002,5009,5010,5011,5012"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7004,7005"/>
+            <method name="getType()" value="7001,7002"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -294,38 +294,38 @@ Contributors:
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelEndpointReferenceEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart" id="ModelEndpointReference_2007"/>
-         <context elements="ModelEndpointReference_2007"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReferenceEditPart" id="ModelEndpointReference_2001"/>
+         <context elements="ModelEndpointReference_2001"/>
       </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfLinkReferenceEditPart">
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfMappingReferenceEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReferenceEditPart" id="LinkReference_2008"/>
-         <context elements="LinkReference_2008"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.MappingReferenceEditPart" id="MappingReference_2002"/>
+         <context elements="MappingReference_2002"/>
       </modelingAssistantProvider>
-            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfLinkReference2EditPart">
+            <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfMappingReference2EditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReference2EditPart" id="LinkReference_2009"/>
-         <context elements="LinkReference_2009"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.MappingReference2EditPart" id="MappingReference_2003"/>
+         <context elements="MappingReference_2003"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelEndpointReference2EditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReference2EditPart" id="ModelEndpointReference_2010"/>
-         <context elements="ModelEndpointReference_2010"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelEndpointReference2EditPart" id="ModelEndpointReference_2004"/>
+         <context elements="ModelEndpointReference_2004"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelElementReferenceEditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart" id="ModelElementReference_3005"/>
-         <context elements="ModelElementReference_3005"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart" id="ModelElementReference_3001"/>
+         <context elements="ModelElementReference_3001"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelElementReference2EditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart" id="ModelElementReference_3006"/>
-         <context elements="ModelElementReference_3006"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart" id="ModelElementReference_3002"/>
+         <context elements="ModelElementReference_3002"/>
       </modelingAssistantProvider>
             <modelingAssistantProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.assistants.MIDModelingAssistantProviderOfModelElementReference3EditPart">
          <Priority name="Lowest"/>
-         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference3EditPart" id="ModelElementReference_3007"/>
-         <context elements="ModelElementReference_3007"/>
+         <object class="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference3EditPart" id="ModelElementReference_3003"/>
+         <context elements="ModelElementReference_3003"/>
       </modelingAssistantProvider>
       
    </extension>
@@ -350,7 +350,7 @@ Contributors:
       <decoratorProvider class="edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDShortcutsDecoratorProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
-            <method name="getType()" value="2007,2008,2009,2010"/>
+            <method name="getType()" value="2001,2002,2003,2004"/>
          </object>
          <context decoratorTargets="generated-top-nodes"/>
       </decoratorProvider>
@@ -370,115 +370,115 @@ Contributors:
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2007"
-               name="%metatype.name.ModelEndpointReference_2007"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2001"
+               name="%metatype.name.ModelEndpointReference_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ModelEndpointReference"
                edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.ModelEndpointReferenceEditHelper">
-            <param name="semanticHint" value="2007"/>
+            <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.LinkReference_2008"
-               name="%metatype.name.LinkReference_2008"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.MappingReference_2002"
+               name="%metatype.name.MappingReference_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LinkReference"
-               edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.LinkReferenceEditHelper">
-            <param name="semanticHint" value="2008"/>
+               eclass="MappingReference"
+               edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.MappingReferenceEditHelper">
+            <param name="semanticHint" value="2002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.LinkReference_2009"
-               name="%metatype.name.LinkReference_2009"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.MappingReference_2003"
+               name="%metatype.name.MappingReference_2003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.LinkReference_2008"/>
-            <param name="semanticHint" value="2009"/>
+            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.MappingReference_2002"/>
+            <param name="semanticHint" value="2003"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2010"
-               name="%metatype.name.ModelEndpointReference_2010"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2004"
+               name="%metatype.name.ModelEndpointReference_2004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2007"/>
-            <param name="semanticHint" value="2010"/>
+            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2001"/>
+            <param name="semanticHint" value="2004"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3005"
-               name="%metatype.name.ModelElementReference_3005"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3001"
+               name="%metatype.name.ModelElementReference_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ModelElementReference"
                edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.ModelElementReferenceEditHelper">
-            <param name="semanticHint" value="3005"/>
+            <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3006"
-               name="%metatype.name.ModelElementReference_3006"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3002"
+               name="%metatype.name.ModelElementReference_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3005"/>
-            <param name="semanticHint" value="3006"/>
+            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3001"/>
+            <param name="semanticHint" value="3002"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3007"
-               name="%metatype.name.ModelElementReference_3007"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3003"
+               name="%metatype.name.ModelElementReference_3003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3005"/>
-            <param name="semanticHint" value="3007"/>
+            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3001"/>
+            <param name="semanticHint" value="3003"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ExtendibleElementReferenceSupertypeRef_4010"
-               name="%metatype.name.ExtendibleElementReferenceSupertypeRef_4010"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ExtendibleElementReferenceSupertypeRef_4001"
+               name="%metatype.name.ExtendibleElementReferenceSupertypeRef_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4010"/>
+            <param name="semanticHint" value="4001"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4011"
-               name="%metatype.name.ModelElementEndpointReference_4011"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4002"
+               name="%metatype.name.ModelElementEndpointReference_4002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ModelElementEndpointReference"
                edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.ModelElementEndpointReferenceEditHelper">
-            <param name="semanticHint" value="4011"/>
+            <param name="semanticHint" value="4002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <metamodelType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.BinaryLinkReference_4012"
-               name="%metatype.name.BinaryLinkReference_4012"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.BinaryMappingReference_4003"
+               name="%metatype.name.BinaryMappingReference_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="BinaryLinkReference"
-               edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.BinaryLinkReferenceEditHelper">
-            <param name="semanticHint" value="4012"/>
+               eclass="BinaryMappingReference"
+               edithelper="edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.helpers.BinaryMappingReferenceEditHelper">
+            <param name="semanticHint" value="4003"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.BinaryLinkReference_4013"
-               name="%metatype.name.BinaryLinkReference_4013"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.BinaryMappingReference_4004"
+               name="%metatype.name.BinaryMappingReference_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.BinaryLinkReference_4012"/>
-            <param name="semanticHint" value="4013"/>
+            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.BinaryMappingReference_4003"/>
+            <param name="semanticHint" value="4004"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://se.cs.toronto.edu/mmint/MID/Relationship">
          <specializationType
-               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4014"
-               name="%metatype.name.ModelElementEndpointReference_4014"
+               id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4005"
+               name="%metatype.name.ModelElementEndpointReference_4005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4011"/>
-            <param name="semanticHint" value="4014"/>
+            <specializes id="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4002"/>
+            <param name="semanticHint" value="4005"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -494,18 +494,18 @@ Contributors:
       </clientContext> 
       <binding context="edu.toronto.cs.se.mmint.relationship.diagram.TypeContext">
          <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelRel_1000"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2007"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.LinkReference_2008"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.LinkReference_2009"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2010"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3005"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3006"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3007"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ExtendibleElementReferenceSupertypeRef_4010"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4011"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.BinaryLinkReference_4012"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.BinaryLinkReference_4013"/>
-         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4014"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2001"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.MappingReference_2002"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.MappingReference_2003"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelEndpointReference_2004"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3001"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3002"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementReference_3003"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ExtendibleElementReferenceSupertypeRef_4001"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4002"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.BinaryMappingReference_4003"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.BinaryMappingReference_4004"/>
+         <elementType ref="edu.toronto.cs.se.mmint.relationship.diagram.ModelElementEndpointReference_4005"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

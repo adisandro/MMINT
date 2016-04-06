@@ -175,7 +175,7 @@ public class MAVOUtils {
 		}
 	}
 
-	public static void initializeMAVOModel(EObject rootModelObj, Model model) {
+	public static void initializeMAVOModel(EObject rootModelObj, MAVOModel model) {
 
 		// Ecore
 		if (rootModelObj instanceof MAVORoot) {
@@ -212,7 +212,7 @@ public class MAVOUtils {
 		mavoModelElem.setFormulaVariable(umlModelObj.getName().toLowerCase());
 	}
 
-	public static void initializeMAVOModelElement(EObject modelObj, ModelElement modelElem) {
+	public static void initializeMAVOModelElement(EObject modelObj, MAVOModelElement modelElem) {
 
 		// Ecore
 		if (modelObj instanceof MAVOElement) {
@@ -226,7 +226,8 @@ public class MAVOUtils {
 
 	public static void initializeMAVOModelElementReference(EObject modelObj, ModelElementReference modelElemRef) {
 
-		initializeMAVOModelElement(modelObj, modelElemRef.getObject());
+		//TODO MMINT[MAVO]: Introduce MAVOModelElementReference
+		initializeMAVOModelElement(modelObj, (MAVOModelElement) modelElemRef.getObject());
 	}
 
 	public static void setInc(EObject rootModelObj, boolean inc) {

@@ -37,68 +37,62 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementType
 /**
  * @generated
  */
-public class ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart
-		extends ListCompartmentEditPart {
+public class ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart extends ListCompartmentEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 7004;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 7001;
 
 	/**
-	 * @generated
-	 */
-	public ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart(
-			View view) {
+	* @generated
+	*/
+	public ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getCompartmentName() {
 		return Messages.ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart_title;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
 		result.setTitleVisibility(false);
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelEndpointReferenceModelEndpointReferenceCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicyWithCustomReparent(
-						MIDVisualIDRegistry.TYPED_INSTANCE));
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(MIDVisualIDRegistry.TYPED_INSTANCE));
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.CANONICAL_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
 				new ModelEndpointReferenceModelEndpointReferenceCompartmentCanonicalEditPolicy());
 		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -106,36 +100,28 @@ public class ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
-					.getViewAndElementDescriptor()
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
 					.getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter
-					.getAdapter(IElementType.class);
-			if (type == MIDElementTypes.ModelElementReference_3005) {
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (type == MIDElementTypes.ModelElementReference_3001) {
 				return this;
 			}
 			return getParent().getTargetEditPart(request);
 		}
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			if (RequestConstants.REQ_CONNECTION_END.equals(request.getType())) {
-				for (Object type : ((CreateUnspecifiedTypeConnectionRequest) request)
-						.getElementTypes()) {
+				for (Object type : ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes()) {
 					if (type instanceof IElementType) {
 						IElementType elementType = (IElementType) type;
-						if (elementType
-								.equals(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010)
-								|| elementType
-										.equals(MIDElementTypes.ModelElementEndpointReference_4011)
-								|| elementType
-										.equals(MIDElementTypes.BinaryLinkReference_4012)
-								|| elementType
-										.equals(MIDElementTypes.BinaryLinkReference_4013)
-								|| elementType
-										.equals(MIDElementTypes.ModelElementEndpointReference_4014))
+						if (elementType.equals(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001)
+								|| elementType.equals(MIDElementTypes.ModelElementEndpointReference_4002)
+								|| elementType.equals(MIDElementTypes.BinaryMappingReference_4003)
+								|| elementType.equals(MIDElementTypes.BinaryMappingReference_4004)
+								|| elementType.equals(MIDElementTypes.ModelElementEndpointReference_4005))
 							return super.getTargetEditPart(request);
 					}
 				}

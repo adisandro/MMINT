@@ -47,48 +47,45 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry
 public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 3007;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 3003;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure contentPane;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure primaryShape;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementReference3EditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelElementReference3ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new ModelElementReferenceSuperHighlightEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelElementReferenceSuperSemanticEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new ModelElementReferenceSuperComponentEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ModelElementReferenceSuperHighlightEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelElementReferenceSuperSemanticEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ModelElementReferenceSuperComponentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 
 		FlowLayoutEditPolicy lep = new FlowLayoutEditPolicy() {
@@ -97,8 +94,7 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 				return null;
 			}
 
-			protected Command createMoveChildCommand(EditPart child,
-					EditPart after) {
+			protected Command createMoveChildCommand(EditPart child, EditPart after) {
 				return null;
 			}
 
@@ -110,53 +106,52 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure createNodeShape() {
 		return primaryShape = new ModelElementReferenceSuperFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementReferenceSuperFigure getPrimaryShape() {
 		return (ModelElementReferenceSuperFigure) primaryShape;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
-			((WrappingLabel7EditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureModelElementReferenceSuperLabelFigure());
+		if (childEditPart instanceof WrappingLabel13EditPart) {
+			((WrappingLabel13EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureModelElementReferenceSuperLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel22EditPart) {
-			((WrappingLabel22EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOModelElementReferenceSuperLabelFigure());
+		if (childEditPart instanceof WrappingLabel14EditPart) {
+			((WrappingLabel14EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureCustomModelElementReferenceSuperLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel7EditPart) {
+		if (childEditPart instanceof WrappingLabel13EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel22EditPart) {
+		if (childEditPart instanceof WrappingLabel14EditPart) {
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -165,8 +160,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -175,28 +170,28 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -207,11 +202,11 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
-	 * @generated
-	 */
+	* Default implementation treats passed figure as content pane.
+	* Respects layout one may have set for generated figure.
+	* @param nodeShape instance of generated figure class
+	* @generated
+	*/
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -222,8 +217,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -232,8 +227,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -241,8 +236,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setBackgroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setBackgroundColor(color);
@@ -250,8 +245,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -259,8 +254,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setLineType(int style) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineStyle(style);
@@ -268,11 +263,10 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(WrappingLabel7EditPart.VISUAL_ID));
+		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
 	}
 
 	/**
@@ -284,11 +278,10 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureModelElementReferenceSuperLabelFigure;
-
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOModelElementReferenceSuperLabelFigure;
+		private WrappingLabel fFigureCustomModelElementReferenceSuperLabelFigure;
 
 		/**
 		 * @generated
@@ -309,8 +302,7 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
-					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
 			createContents();
 		}
@@ -320,19 +312,17 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureMAVOModelElementReferenceSuperLabelFigure = new WrappingLabel();
+			fFigureCustomModelElementReferenceSuperLabelFigure = new WrappingLabel();
 
-			fFigureMAVOModelElementReferenceSuperLabelFigure.setText("");
-			fFigureMAVOModelElementReferenceSuperLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureCustomModelElementReferenceSuperLabelFigure.setText("");
+			fFigureCustomModelElementReferenceSuperLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
-			this.add(fFigureMAVOModelElementReferenceSuperLabelFigure);
+			this.add(fFigureCustomModelElementReferenceSuperLabelFigure);
 
 			fFigureModelElementReferenceSuperLabelFigure = new WrappingLabel();
 
 			fFigureModelElementReferenceSuperLabelFigure.setText("");
-			fFigureModelElementReferenceSuperLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureModelElementReferenceSuperLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureModelElementReferenceSuperLabelFigure);
 
@@ -348,8 +338,8 @@ public class ModelElementReference3EditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOModelElementReferenceSuperLabelFigure() {
-			return fFigureMAVOModelElementReferenceSuperLabelFigure;
+		public WrappingLabel getFigureCustomModelElementReferenceSuperLabelFigure() {
+			return fFigureCustomModelElementReferenceSuperLabelFigure;
 		}
 
 	}

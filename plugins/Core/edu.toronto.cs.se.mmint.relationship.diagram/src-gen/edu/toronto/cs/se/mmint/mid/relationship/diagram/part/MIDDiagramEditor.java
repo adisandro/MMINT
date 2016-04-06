@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.part;
 
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorItem;
@@ -86,8 +86,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorIt
 /**
  * @generated
  */
-public class MIDDiagramEditor extends DiagramDocumentEditor implements
-		IGotoMarker {
+public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMarker {
 
 	/**
 	 * The custom outline page.
@@ -97,37 +96,37 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	private RelationshipDiagramOutlinePage outlinePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final String ID = "edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final String CONTEXT_ID = "edu.toronto.cs.se.mmint.mid.relationship.diagram.ui.diagramContext"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private LastClickPositionProvider myLastClickPositionProvider;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MIDDiagramEditor() {
 		super(true);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected String getContextID() {
 		return CONTEXT_ID;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected PaletteRoot createPaletteRootGen(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
 		new MIDPaletteFactory().fillPalette(root);
@@ -162,15 +161,15 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected PreferencesHint getPreferencesHint() {
 		return MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getContributorId() {
 		return MIDDiagramEditorPlugin.ID;
 	}
@@ -216,22 +215,20 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
 			return MIDDiagramEditorPlugin.getInstance().getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public TransactionalEditingDomain getEditingDomain() {
-		IDocument document = getEditorInput() != null ? getDocumentProvider()
-				.getDocument(getEditorInput()) : null;
+		IDocument document = getEditorInput() != null ? getDocumentProvider().getDocument(getEditorInput()) : null;
 		if (document instanceof IDiagramDocument) {
 			return ((IDiagramDocument) document).getEditingDomain();
 		}
@@ -239,28 +236,26 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput
-				|| input instanceof URIEditorInput) {
-			setDocumentProvider(MIDDiagramEditorPlugin.getInstance()
-					.getDocumentProvider());
+		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+			setDocumentProvider(MIDDiagramEditorPlugin.getInstance().getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void gotoMarker(IMarker marker) {
 		MarkerNavigationService.getInstance().gotoMarker(this, marker);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -290,10 +285,10 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 			provider.changed(getEditorInput());
 		}
 
-		MultiModel multiModel = (MultiModel) this.getDiagram().getElement()
+		MID mid = (MID) this.getDiagram().getElement()
 				.eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(multiModel)) {
-			MMINT.syncRepository(multiModel);
+		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+			MMINT.syncRepository(mid);
 			// diagram sync required
 			final String midDiagramId = "edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID";
 			for (IEditorReference editorRef : PlatformUI.getWorkbench()
@@ -307,9 +302,9 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 				if (!editor.getSite().getId().equals(midDiagramId)) {
 					continue;
 				}
-				MultiModel multiModel2 = (MultiModel) editor.getDiagram()
+				MID mid2 = (MID) editor.getDiagram()
 						.getElement();
-				if (!MultiModelConstraintChecker.isInstancesLevel(multiModel2)) {
+				if (!MultiModelConstraintChecker.isInstancesLevel(mid2)) {
 					IDocumentProvider provider2 = editor.getDocumentProvider();
 					try {
 						provider2.synchronize(editorRef.getEditorInput());
@@ -323,21 +318,20 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
-		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input)
-				.getFile() : null;
+		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input).getFile() : null;
 		if (original != null) {
 			dialog.setOriginalFile(original);
 		}
@@ -348,9 +342,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 			return;
 		}
 		if (provider.isDeleted(input) && original != null) {
-			String message = NLS.bind(
-					Messages.MIDDiagramEditor_SavingDeletedFile,
-					original.getName());
+			String message = NLS.bind(Messages.MIDDiagramEditor_SavingDeletedFile, original.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
 		}
@@ -371,15 +363,12 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 		IFile file = workspaceRoot.getFile(filePath);
 		final IEditorInput newInput = new FileEditorInput(file);
 		// Check if the editor is already open
-		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor()
-				.getEditorMatchingStrategy();
-		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage()
+		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor().getEditorMatchingStrategy();
+		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog.openWarning(shell,
-						Messages.MIDDiagramEditor_SaveAsErrorTitle,
+				MessageDialog.openWarning(shell, Messages.MIDDiagramEditor_SaveAsErrorTitle,
 						Messages.MIDDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
@@ -387,17 +376,14 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			getDocumentProvider(newInput).saveDocument(progressMonitor,
-					newInput,
+			getDocumentProvider(newInput).saveDocument(progressMonitor, newInput,
 					getDocumentProvider().getDocument(getEditorInput()), true);
 			success = true;
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell,
-						Messages.MIDDiagramEditor_SaveErrorTitle,
-						Messages.MIDDiagramEditor_SaveErrorMessage,
-						x.getStatus());
+				ErrorDialog.openError(shell, Messages.MIDDiagramEditor_SaveErrorTitle,
+						Messages.MIDDiagramEditor_SaveErrorMessage, x.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);
@@ -411,15 +397,15 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ShowInContext getShowInContext() {
 		return new ShowInContext(getEditorInput(), getNavigatorSelection());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ISelection getNavigatorSelection() {
 		IDiagramDocument document = getDiagramDocument();
 		if (document == null) {
@@ -438,35 +424,31 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(
-				this, getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
+				getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
-		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
-				provider, getDiagramGraphicalViewer());
+		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void initializeGraphicalViewerGen() {
 		super.initializeGraphicalViewer();
 		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalSelectionTransfer.getTransfer()) {
+				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
 					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer()
-								.nativeToJava(data);
+						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
 					}
 
 				});
 		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(),
-						LocalTransfer.getInstance()) {
+				new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
 
 					protected Object getJavaObject(TransferData data) {
 						return LocalTransfer.getInstance().nativeToJava(data);
@@ -491,8 +473,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void startupLastClickPositionProvider() {
 		if (myLastClickPositionProvider == null) {
 			myLastClickPositionProvider = new LastClickPositionProvider(this);
@@ -501,8 +483,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void shutDownLastClickPositionProvider() {
 		if (myLastClickPositionProvider != null) {
 			myLastClickPositionProvider.detachFromService();
@@ -512,8 +494,8 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
 	public void dispose() {
 		shutDownLastClickPositionProvider();
@@ -521,20 +503,20 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
 			super(viewer, xfer);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected List getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
 			HashSet<URI> uris = new HashSet<URI>();
@@ -545,13 +527,11 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 				for (Iterator<?> it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
 					if (nextSelectedObject instanceof MIDNavigatorItem) {
-						View view = ((MIDNavigatorItem) nextSelectedObject)
-								.getView();
+						View view = ((MIDNavigatorItem) nextSelectedObject).getView();
 						nextSelectedObject = view.getElement();
 					} else if (nextSelectedObject instanceof IAdaptable) {
 						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
-						nextSelectedObject = adaptable
-								.getAdapter(EObject.class);
+						nextSelectedObject = adaptable.getAdapter(EObject.class);
 					}
 
 					if (nextSelectedObject instanceof EObject) {
@@ -563,16 +543,15 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements
 
 			ArrayList<EObject> result = new ArrayList<EObject>(uris.size());
 			for (URI nextURI : uris) {
-				EObject modelObject = getEditingDomain().getResourceSet()
-						.getEObject(nextURI, true);
+				EObject modelObject = getEditingDomain().getResourceSet().getEObject(nextURI, true);
 				result.add(modelObject);
 			}
 			return result;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected abstract Object getJavaObject(TransferData data);
 
 	}

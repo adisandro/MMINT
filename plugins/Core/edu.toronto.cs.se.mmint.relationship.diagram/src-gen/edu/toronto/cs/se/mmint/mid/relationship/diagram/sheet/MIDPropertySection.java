@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
@@ -18,20 +19,19 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryLinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryLinkReferenceEditPart.BinaryLinkReferenceFigure;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryMappingReferenceEditPart.BinaryMappingReferenceFigure;
 
 /**
  * @generated
  */
-public class MIDPropertySection extends DefaultPropertySection implements
-		IPropertySourceProvider {
+public class MIDPropertySection extends DefaultPropertySection implements IPropertySourceProvider {
 
 	/**
-	 * Modify/unwrap selection.
-	 * @generated
-	 */
+	* Modify/unwrap selection.
+	* @generated
+	*/
 	protected Object transformSelectionGen(Object selected) {
 		selected = /*super.*/transformSelectionToDomain(selected);
 		return selected;
@@ -47,18 +47,18 @@ public class MIDPropertySection extends DefaultPropertySection implements
 			Object model = ((EditPart) selected).getModel();
 			if (model instanceof View) {
 				Object element = ((View) model).getElement();
-				if (element instanceof BinaryLinkReference
+				if (element instanceof BinaryMappingReference
 						&& selected instanceof GraphicalEditPart) {
 					IFigure figure = ((GraphicalEditPart) selected).getFigure();
-					if (figure == ((BinaryLinkReferenceFigure) figure
+					if (figure == ((BinaryMappingReferenceFigure) figure
 							.getParent())
-							.getFigureBinaryLinkReferenceSourceModelElementEndpointReferenceLabelFigure()) {
-						element = ((BinaryLinkReference) element)
+							.getFigureBinaryMappingReferenceSourceModelElementEndpointReferenceLabelFigure()) {
+						element = ((BinaryMappingReference) element)
 								.getModelElemEndpointRefs().get(0);
-					} else if (figure == ((BinaryLinkReferenceFigure) figure
+					} else if (figure == ((BinaryMappingReferenceFigure) figure
 							.getParent())
-							.getFigureBinaryLinkReferenceTargetModelElementEndpointReferenceLabelFigure()) {
-						element = ((BinaryLinkReference) element)
+							.getFigureBinaryMappingReferenceTargetModelElementEndpointReferenceLabelFigure()) {
+						element = ((BinaryMappingReference) element)
 								.getModelElemEndpointRefs().get(1);
 					}
 				}

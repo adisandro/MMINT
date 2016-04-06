@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkReferenceNewNaryLinkCommand;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.MappingReferenceNewNaryMappingCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.ModelEndpointReferenceImportModelCommand;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementTypes;
 
@@ -37,11 +37,11 @@ public class RelationshipDiagramSemanticEditPolicy extends ModelRelItemSemanticE
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		if (MIDElementTypes.ModelEndpointReference_2007 == req.getElementType()) {
+		if (MIDElementTypes.ModelEndpointReference_2001 == req.getElementType()) {
 			return getGEFWrapper(new ModelEndpointReferenceImportModelCommand(req));
 		}
-		if (MIDElementTypes.LinkReference_2008 == req.getElementType()) {
-			return getGEFWrapper(new LinkReferenceNewNaryLinkCommand(req));
+		if (MIDElementTypes.MappingReference_2002 == req.getElementType()) {
+			return getGEFWrapper(new MappingReferenceNewNaryMappingCommand(req));
 		}
 		return null;
 	}

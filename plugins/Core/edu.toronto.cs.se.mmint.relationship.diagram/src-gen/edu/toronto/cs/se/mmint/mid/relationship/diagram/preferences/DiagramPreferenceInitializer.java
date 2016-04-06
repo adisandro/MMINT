@@ -22,8 +22,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditorPlu
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 		DiagramGeneralPreferencePage.initDefaults(store);
@@ -35,8 +35,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPreferenceStore getPreferenceStore() {
 		return MIDDiagramEditorPlugin.getInstance().getPreferenceStore();
 	}

@@ -134,7 +134,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
 	 * @param modelObj
 	 *            The EMF model object to be wrapped by the new model element.
 	 * @param newModelElemName
-	 *            The name of the new model element.
+	 *            The name of the new model element, null if the name should be automatically generated.
 	 * @return The created reference to the new model element.
 	 * @throws MMINTException
 	 *             If this is a reference to a model instance endpoint, or if the uri of the new model element is

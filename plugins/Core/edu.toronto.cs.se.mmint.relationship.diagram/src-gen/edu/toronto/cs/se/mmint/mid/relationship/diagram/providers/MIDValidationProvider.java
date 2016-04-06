@@ -24,22 +24,21 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry
 public class MIDValidationProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static boolean constraintsActive = false;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean shouldConstraintsBePrivate() {
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static void runWithConstraints(
-			TransactionalEditingDomain editingDomain, Runnable operation) {
+	* @generated
+	*/
+	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
 			public void run() {
@@ -55,8 +54,7 @@ public class MIDValidationProvider {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				MIDDiagramEditorPlugin.getInstance().logError(
-						"Validation failed", e); //$NON-NLS-1$
+				MIDDiagramEditorPlugin.getInstance().logError("Validation failed", e); //$NON-NLS-1$
 			}
 		} else {
 			task.run();
@@ -64,16 +62,14 @@ public class MIDValidationProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static boolean isInDefaultEditorContext(Object object) {
 		if (shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive
-					&& ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
-							.getModelID((View) object));
+			return constraintsActive && ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}

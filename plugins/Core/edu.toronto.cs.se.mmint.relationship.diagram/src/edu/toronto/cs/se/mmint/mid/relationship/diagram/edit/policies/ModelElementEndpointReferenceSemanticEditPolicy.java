@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.LinkReferenceRemoveModelElementEndpointReferenceCommand;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.commands.MappingReferenceRemoveModelElementEndpointReferenceCommand;
 
 /**
  * The semantic edit policy for links' model element references.
@@ -37,7 +37,7 @@ public class ModelElementEndpointReferenceSemanticEditPolicy extends ModelElemen
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		return getGEFWrapper(new LinkReferenceRemoveModelElementEndpointReferenceCommand(req));
+		return getGEFWrapper(new MappingReferenceRemoveModelElementEndpointReferenceCommand(req));
 	}
 
 	@Override

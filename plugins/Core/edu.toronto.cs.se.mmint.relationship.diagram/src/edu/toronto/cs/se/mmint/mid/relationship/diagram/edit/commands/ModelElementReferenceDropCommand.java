@@ -105,11 +105,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected ModelElementReference doExecuteInstancesLevel() throws MMINTException {
 
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
-		EObject modelObj = dropObj.getModelObject();
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
-		String newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
-		ModelElementReference newModelElemRef = dropObj.getModelElementType().createInstanceAndReference(dropObj.getModelElementUri(), newModelElemName, eInfo, modelEndpointRef);
-		MAVOUtils.initializeMAVOModelElementReference(modelObj, newModelElemRef);
+		ModelElementReference newModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(dropObj.getModelObject(), null);
 
 		return newModelElemRef;
 	}
@@ -153,7 +149,6 @@ supertypes:
 		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(metamodelObj, MIDLevel.TYPES);
 		String newModelElemTypeName = MultiModelRegistry.getModelElementName(eInfo, metamodelObj, MIDLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = modelElemType.createSubtypeAndReference(modelElemTypeRef, dropObj.getModelElementUri(), newModelElemTypeName, eInfo, modelTypeEndpointRef);
-		MAVOUtils.initializeMAVOModelElementReference(metamodelObj, newModelElemTypeRef);
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelElemTypeRef;

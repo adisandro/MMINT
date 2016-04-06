@@ -19,456 +19,456 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Messages() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizard_DiagramModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizard_DiagramModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizard_DomainModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizard_DomainModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizardOpenEditorError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizardCreationError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDCreationWizardPageExtensionError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditorUtil_OpenModelResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditorUtil_OpenModelResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditorUtil_CreateDiagramProgressTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditorUtil_CreateDiagramCommandLabel;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_isModifiable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_handleElementContentChanged;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_IncorrectInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_NoDiagramInResourceError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_DiagramLoadingError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_UnsynchronizedFileSaveError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_SaveDiagramTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_SaveNextResourceTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDocumentProvider_SaveAsOperation;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_WizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_OpenModelFileDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_CreationPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_CreationPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_CreationPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_RootSelectionPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_RootSelectionPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_RootSelectionPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_InitDiagramCommand;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDNewDiagramFileWizard_IncorrectRootError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditor_SavingDeletedFile;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditor_SaveAsErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditor_SaveAsErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditor_SaveErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDDiagramEditor_SaveErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDElementChooserDialog_SelectModelElementTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ModelElementSelectionPageMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ValidateActionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String New1Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Import2Group_title;
 
 	/**
-	 * @generated
-	 */
-	public static String NewBinaryLink1CreationTool_title;
+	* @generated
+	*/
+	public static String NewBinaryMapping1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
-	public static String NewBinaryLink1CreationTool_desc;
+	* @generated
+	*/
+	public static String NewBinaryMapping1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
-	public static String NewNaryLink2CreationTool_title;
+	* @generated
+	*/
+	public static String NewNaryMapping2CreationTool_title;
 
 	/**
-	 * @generated
-	 */
-	public static String NewNaryLink2CreationTool_desc;
+	* @generated
+	*/
+	public static String NewNaryMapping2CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ConnectModelElement3CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ConnectModelElement3CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ImportModel1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ImportModel1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String CommandName_OpenDiagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_ModelRel_1000_links;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelEndpointReference_2007_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelEndpointReference_2001_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelEndpointReference_2007_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelEndpointReference_2001_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryLinkReference_4013_target;
+	* @generated
+	*/
+	public static String NavigatorGroupName_MappingReference_2002_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryLinkReference_4013_source;
+	* @generated
+	*/
+	public static String NavigatorGroupName_MappingReference_2002_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryLinkReference_4013_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_MappingReference_2003_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementEndpointReference_4011_target;
+	* @generated
+	*/
+	public static String NavigatorGroupName_MappingReference_2003_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementEndpointReference_4011_source;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelEndpointReference_2004_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryLinkReference_4012_target;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelEndpointReference_2004_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryLinkReference_4012_source;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementReference_3001_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_BinaryLinkReference_4012_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementReference_3001_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementReference_3006_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementReference_3002_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementReference_3006_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementReference_3002_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementReference_3005_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementReference_3003_incominglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementReference_3005_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementReference_3003_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_LinkReference_2008_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4001_target;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_LinkReference_2008_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4001_source;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4010_target;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementEndpointReference_4002_target;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ExtendibleElementReferenceSupertypeRef_4010_source;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementEndpointReference_4002_source;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementReference_3007_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_BinaryMappingReference_4003_target;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementReference_3007_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_BinaryMappingReference_4003_source;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelEndpointReference_2010_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_BinaryMappingReference_4003_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelEndpointReference_2010_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_BinaryMappingReference_4004_target;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_LinkReference_2009_incominglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_BinaryMappingReference_4004_source;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_LinkReference_2009_outgoinglinks;
+	* @generated
+	*/
+	public static String NavigatorGroupName_BinaryMappingReference_4004_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementEndpointReference_4014_target;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementEndpointReference_4005_target;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ModelElementEndpointReference_4014_source;
+	* @generated
+	*/
+	public static String NavigatorGroupName_ModelElementEndpointReference_4005_source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorActionProvider_OpenDiagramActionName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MessageFormatParser_InvalidInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDModelingAssistantProviderTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MIDModelingAssistantProviderMessage;
 
 	//TODO: put accessor fields manually	

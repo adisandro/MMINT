@@ -53,56 +53,52 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementType
 public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 2007;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 2001;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure contentPane;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure primaryShape;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelEndpointReferenceEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicyWithCustomReparent(
-						MIDVisualIDRegistry.TYPED_INSTANCE));
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE,
+				new CreationEditPolicyWithCustomReparent(MIDVisualIDRegistry.TYPED_INSTANCE));
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelEndpointReferenceItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,
-				new ModelEndpointReferenceComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelEndpointReferenceSemanticEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ModelEndpointReferenceComponentEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelEndpointReferenceSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+			protected org.eclipse.gef.EditPolicy createChildEditPolicy(EditPart child) {
+				org.eclipse.gef.EditPolicy result = child.getEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -121,53 +117,52 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure createNodeShape() {
 		return primaryShape = new ModelEndpointReferenceFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelEndpointReferenceFigure getPrimaryShape() {
 		return (ModelEndpointReferenceFigure) primaryShape;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabelEditPart) {
-			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureModelEndpointReferenceLabelFigure());
+			((WrappingLabelEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureModelEndpointReferenceLabelFigure());
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel16EditPart) {
-			((WrappingLabel16EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOModelEndpointReferenceLabelFigure());
+		if (childEditPart instanceof WrappingLabel2EditPart) {
+			((WrappingLabel2EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureCustomModelEndpointReferenceLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WrappingLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof WrappingLabel16EditPart) {
+		if (childEditPart instanceof WrappingLabel2EditPart) {
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -176,8 +171,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -186,28 +181,28 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -218,11 +213,11 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
-	 * @generated
-	 */
+	* Default implementation treats passed figure as content pane.
+	* Respects layout one may have set for generated figure.
+	* @param nodeShape instance of generated figure class
+	* @generated
+	*/
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -233,8 +228,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -243,8 +238,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -252,8 +247,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setBackgroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setBackgroundColor(color);
@@ -261,8 +256,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setLineWidth(int width) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineWidth(width);
@@ -270,8 +265,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setLineType(int style) {
 		if (primaryShape instanceof Shape) {
 			((Shape) primaryShape).setLineStyle(style);
@@ -279,24 +274,21 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(MIDVisualIDRegistry
-				.getType(WrappingLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
-					.getViewAndElementDescriptor()
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
 					.getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter
-					.getAdapter(IElementType.class);
-			if (type == MIDElementTypes.ModelElementReference_3005) {
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (type == MIDElementTypes.ModelElementReference_3001) {
 				return getChildBySemanticHint(MIDVisualIDRegistry
 						.getType(ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID));
 			}
@@ -305,12 +297,11 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void handleNotificationEvent(Notification event) {
 		if (event.getNotifier() == getModel()
-				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations()
-						.equals(event.getFeature())) {
+				&& EcorePackage.eINSTANCE.getEModelElement_EAnnotations().equals(event.getFeature())) {
 			handleMajorSemanticChange();
 		} else {
 			super.handleNotificationEvent(event);
@@ -326,11 +317,10 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureModelEndpointReferenceLabelFigure;
-
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOModelEndpointReferenceLabelFigure;
+		private WrappingLabel fFigureCustomModelEndpointReferenceLabelFigure;
 
 		/**
 		 * @generated
@@ -339,10 +329,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(3);
 			this.setForegroundColor(THIS_FORE);
 			this.setBackgroundColor(THIS_BACK);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(300),
-					getMapMode().DPtoLP(400)));
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7),
-					getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(300), getMapMode().DPtoLP(400)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7),
 					getMapMode().DPtoLP(7)));
 			createContents();
 		}
@@ -352,19 +340,17 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureMAVOModelEndpointReferenceLabelFigure = new WrappingLabel();
+			fFigureCustomModelEndpointReferenceLabelFigure = new WrappingLabel();
 
-			fFigureMAVOModelEndpointReferenceLabelFigure.setText("");
-			fFigureMAVOModelEndpointReferenceLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureCustomModelEndpointReferenceLabelFigure.setText("");
+			fFigureCustomModelEndpointReferenceLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
-			this.add(fFigureMAVOModelEndpointReferenceLabelFigure);
+			this.add(fFigureCustomModelEndpointReferenceLabelFigure);
 
 			fFigureModelEndpointReferenceLabelFigure = new WrappingLabel();
 
 			fFigureModelEndpointReferenceLabelFigure.setText("");
-			fFigureModelEndpointReferenceLabelFigure
-					.setForegroundColor(ColorConstants.darkGray);
+			fFigureModelEndpointReferenceLabelFigure.setForegroundColor(ColorConstants.darkGray);
 
 			this.add(fFigureModelEndpointReferenceLabelFigure);
 
@@ -380,8 +366,8 @@ public class ModelEndpointReferenceEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOModelEndpointReferenceLabelFigure() {
-			return fFigureMAVOModelEndpointReferenceLabelFigure;
+		public WrappingLabel getFigureCustomModelEndpointReferenceLabelFigure() {
+			return fFigureCustomModelEndpointReferenceLabelFigure;
 		}
 
 	}

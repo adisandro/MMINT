@@ -30,54 +30,50 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.ModelEleme
 /**
  * @generated
  */
-public class ModelElementEndpointReference2EditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ModelElementEndpointReference2EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 4014;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 4005;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementEndpointReference2EditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
 				new ModelElementEndpointReference2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ModelElementEndpointReferenceSuperSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelElementEndpointReferenceSuperSemanticEditPolicy());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel15EditPart) {
-			((WrappingLabel15EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureModelElementEndpointReferenceSuperLabelFigure());
+		if (childEditPart instanceof WrappingLabel25EditPart) {
+			((WrappingLabel25EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureModelElementEndpointReferenceSuperLabelFigure());
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel26EditPart) {
 			((WrappingLabel26EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOModelElementEndpointReferenceSuperLabelFigure());
+					.setLabel(getPrimaryShape().getFigureCustomModelElementEndpointReferenceSuperLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -86,10 +82,10 @@ public class ModelElementEndpointReference2EditPart extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof WrappingLabel15EditPart) {
+		if (childEditPart instanceof WrappingLabel25EditPart) {
 			return true;
 		}
 		if (childEditPart instanceof WrappingLabel26EditPart) {
@@ -99,8 +95,8 @@ public class ModelElementEndpointReference2EditPart extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -109,21 +105,21 @@ public class ModelElementEndpointReference2EditPart extends
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new ModelElementEndpointReferenceSuperFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementEndpointReferenceSuperFigure getPrimaryShape() {
 		return (ModelElementEndpointReferenceSuperFigure) getFigure();
 	}
@@ -131,18 +127,16 @@ public class ModelElementEndpointReference2EditPart extends
 	/**
 	 * @generated
 	 */
-	public class ModelElementEndpointReferenceSuperFigure extends
-			PolylineConnectionEx {
+	public class ModelElementEndpointReferenceSuperFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fFigureModelElementEndpointReferenceSuperLabelFigure;
-
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureMAVOModelElementEndpointReferenceSuperLabelFigure;
+		private WrappingLabel fFigureCustomModelElementEndpointReferenceSuperLabelFigure;
 
 		/**
 		 * @generated
@@ -161,12 +155,11 @@ public class ModelElementEndpointReference2EditPart extends
 		 */
 		private void createContents() {
 
-			fFigureMAVOModelElementEndpointReferenceSuperLabelFigure = new WrappingLabel();
+			fFigureCustomModelElementEndpointReferenceSuperLabelFigure = new WrappingLabel();
 
-			fFigureMAVOModelElementEndpointReferenceSuperLabelFigure
-					.setText("");
+			fFigureCustomModelElementEndpointReferenceSuperLabelFigure.setText("");
 
-			this.add(fFigureMAVOModelElementEndpointReferenceSuperLabelFigure);
+			this.add(fFigureCustomModelElementEndpointReferenceSuperLabelFigure);
 
 			fFigureModelElementEndpointReferenceSuperLabelFigure = new WrappingLabel();
 
@@ -196,8 +189,8 @@ public class ModelElementEndpointReference2EditPart extends
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureMAVOModelElementEndpointReferenceSuperLabelFigure() {
-			return fFigureMAVOModelElementEndpointReferenceSuperLabelFigure;
+		public WrappingLabel getFigureCustomModelElementEndpointReferenceSuperLabelFigure() {
+			return fFigureCustomModelElementEndpointReferenceSuperLabelFigure;
 		}
 
 	}

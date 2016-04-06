@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -25,19 +25,18 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementType
 /**
  * @generated
  */
-public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
-		MIDBaseItemSemanticEditPolicy {
+public class ModelElementEndpointReference2ItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementEndpointReference2ItemSemanticEditPolicy() {
-		super(MIDElementTypes.ModelElementEndpointReference_4014);
+		super(MIDElementTypes.ModelElementEndpointReference_4005);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return getGEFWrapper(new DestroyElementCommand(req));
 	}
@@ -48,19 +47,16 @@ public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
-				.getElementType()) {
-			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001 == req.getElementType()) {
+			return getGEFWrapper(
+					new ExtendibleElementReferenceSupertypeRefCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -68,12 +64,10 @@ public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010 == req
-				.getElementType()) {
-			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefCreateCommand(
-					req, req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001 == req.getElementType()) {
+			return getGEFWrapper(
+					new ExtendibleElementReferenceSupertypeRefCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -84,12 +78,10 @@ public class ModelElementEndpointReference2ItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefReorientCommand(
-					req));
+			return getGEFWrapper(new ExtendibleElementReferenceSupertypeRefReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

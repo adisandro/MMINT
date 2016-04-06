@@ -52,11 +52,11 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryLinkReference2EditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryLinkReferenceEditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryMappingReference2EditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ExtendibleElementReferenceSupertypeRefEditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReference2EditPart;
-import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.LinkReferenceEditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.MappingReference2EditPart;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.MappingReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReference2EditPart;
@@ -101,8 +101,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry
 public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final boolean provides(IOperation operation) {
 		if (operation instanceof CreateViewForKindOperation) {
 			return provides((CreateViewForKindOperation) operation);
@@ -119,36 +119,34 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 */
+				if (op.getViewKind() == Node.class)
+					return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+				if (op.getViewKind() == Edge.class)
+					return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		*/
 		return true;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateDiagramViewOperation op) {
 		return ModelRelEditPart.MODEL_ID.equals(op.getSemanticHint())
-				&& MIDVisualIDRegistry.getDiagramVisualID(getSemanticElement(op
-						.getSemanticAdapter())) != -1;
+				&& MIDVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateNodeViewOperation op) {
 		if (op.getContainerView() == null) {
 			return false;
 		}
-		IElementType elementType = getSemanticElementType(op
-				.getSemanticAdapter());
+		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		int visualID;
 		if (op.getSemanticHint() == null) {
@@ -158,41 +156,35 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			if (elementType != null || domainElement == null) {
 				return false;
 			}
-			visualID = MIDVisualIDRegistry.getNodeVisualID(
-					op.getContainerView(), domainElement);
+			visualID = MIDVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement);
 		} else {
 			visualID = MIDVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
-				if (!MIDElementTypes.isKnownElementType(elementType)
-						|| (!(elementType instanceof IHintedType))) {
+				if (!MIDElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
-				String elementTypeHint = ((IHintedType) elementType)
-						.getSemanticHint();
+				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
 				if (domainElement != null
-						&& visualID != MIDVisualIDRegistry.getNodeVisualID(
-								op.getContainerView(), domainElement)) {
+						&& visualID != MIDVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element type
 				}
 			} else {
-				if (!ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
-						.getModelID(op.getContainerView()))) {
+				if (!ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
 				switch (visualID) {
 				case ModelEndpointReferenceEditPart.VISUAL_ID:
-				case LinkReferenceEditPart.VISUAL_ID:
+				case MappingReferenceEditPart.VISUAL_ID:
 				case ModelElementReferenceEditPart.VISUAL_ID:
-				case LinkReference2EditPart.VISUAL_ID:
+				case MappingReference2EditPart.VISUAL_ID:
 				case ModelEndpointReference2EditPart.VISUAL_ID:
 				case ModelElementReference2EditPart.VISUAL_ID:
 				case ModelElementReference3EditPart.VISUAL_ID:
 					if (domainElement == null
-							|| visualID != MIDVisualIDRegistry.getNodeVisualID(
-									op.getContainerView(), domainElement)) {
+							|| visualID != MIDVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
@@ -201,9 +193,8 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ModelEndpointReferenceEditPart.VISUAL_ID == visualID
-				|| LinkReferenceEditPart.VISUAL_ID == visualID
-				|| LinkReference2EditPart.VISUAL_ID == visualID
+		return ModelEndpointReferenceEditPart.VISUAL_ID == visualID || MappingReferenceEditPart.VISUAL_ID == visualID
+				|| MappingReference2EditPart.VISUAL_ID == visualID
 				|| ModelEndpointReference2EditPart.VISUAL_ID == visualID
 				|| ModelElementReferenceEditPart.VISUAL_ID == visualID
 				|| ModelElementReference2EditPart.VISUAL_ID == visualID
@@ -211,36 +202,30 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean provides(CreateEdgeViewOperation op) {
-		IElementType elementType = getSemanticElementType(op
-				.getSemanticAdapter());
-		if (!MIDElementTypes.isKnownElementType(elementType)
-				|| (!(elementType instanceof IHintedType))) {
+		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
+		if (!MIDElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null
-				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op
-						.getSemanticHint()))) {
+				|| (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
 		int visualID = MIDVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		if (domainElement != null
-				&& visualID != MIDVisualIDRegistry
-						.getLinkWithClassVisualID(domainElement)) {
+		if (domainElement != null && visualID != MIDVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
 			return false; // visual id for link EClass should match visual id from element type
 		}
 		return true;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Diagram createDiagram(IAdaptable semanticAdapter,
-			String diagramKind, PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
 		diagram.setType(ModelRelEditPart.MODEL_ID);
@@ -250,73 +235,58 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createNode(IAdaptable semanticAdapter, View containerView,
-			String semanticHint, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final int visualID;
 		if (semanticHint == null) {
-			visualID = MIDVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			visualID = MIDVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
 			visualID = MIDVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
 		case ModelEndpointReferenceEditPart.VISUAL_ID:
-			return createModelEndpointReference_2007(domainElement,
-					containerView, index, persisted, preferencesHint);
-		case LinkReferenceEditPart.VISUAL_ID:
-			return createLinkReference_2008(domainElement, containerView,
-					index, persisted, preferencesHint);
-		case LinkReference2EditPart.VISUAL_ID:
-			return createLinkReference_2009(domainElement, containerView,
-					index, persisted, preferencesHint);
+			return createModelEndpointReference_2001(domainElement, containerView, index, persisted, preferencesHint);
+		case MappingReferenceEditPart.VISUAL_ID:
+			return createMappingReference_2002(domainElement, containerView, index, persisted, preferencesHint);
+		case MappingReference2EditPart.VISUAL_ID:
+			return createMappingReference_2003(domainElement, containerView, index, persisted, preferencesHint);
 		case ModelEndpointReference2EditPart.VISUAL_ID:
-			return createModelEndpointReference_2010(domainElement,
-					containerView, index, persisted, preferencesHint);
+			return createModelEndpointReference_2004(domainElement, containerView, index, persisted, preferencesHint);
 		case ModelElementReferenceEditPart.VISUAL_ID:
-			return createModelElementReference_3005(domainElement,
-					containerView, index, persisted, preferencesHint);
+			return createModelElementReference_3001(domainElement, containerView, index, persisted, preferencesHint);
 		case ModelElementReference2EditPart.VISUAL_ID:
-			return createModelElementReference_3006(domainElement,
-					containerView, index, persisted, preferencesHint);
+			return createModelElementReference_3002(domainElement, containerView, index, persisted, preferencesHint);
 		case ModelElementReference3EditPart.VISUAL_ID:
-			return createModelElementReference_3007(domainElement,
-					containerView, index, persisted, preferencesHint);
+			return createModelElementReference_3003(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView,
-			String semanticHint, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (MIDVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID:
-			return createExtendibleElementReferenceSupertypeRef_4010(
-					containerView, index, persisted, preferencesHint);
+			return createExtendibleElementReferenceSupertypeRef_4001(containerView, index, persisted, preferencesHint);
 		case ModelElementEndpointReferenceEditPart.VISUAL_ID:
-			return createModelElementEndpointReference_4011(
-					getSemanticElement(semanticAdapter), containerView, index,
+			return createModelElementEndpointReference_4002(getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
-		case BinaryLinkReferenceEditPart.VISUAL_ID:
-			return createBinaryLinkReference_4012(
-					getSemanticElement(semanticAdapter), containerView, index,
+		case BinaryMappingReferenceEditPart.VISUAL_ID:
+			return createBinaryMappingReference_4003(getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
-		case BinaryLinkReference2EditPart.VISUAL_ID:
-			return createBinaryLinkReference_4013(
-					getSemanticElement(semanticAdapter), containerView, index,
+		case BinaryMappingReference2EditPart.VISUAL_ID:
+			return createBinaryMappingReference_4004(getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
 		case ModelElementEndpointReference2EditPart.VISUAL_ID:
-			return createModelElementEndpointReference_4014(
-					getSemanticElement(semanticAdapter), containerView, index,
+			return createModelElementEndpointReference_4005(getSemanticElement(semanticAdapter), containerView, index,
 					persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
@@ -324,169 +294,130 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelEndpointReference_2007(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelEndpointReference_2001(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(ModelEndpointReferenceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5012 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
-		Node label5019 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel16EditPart.VISUAL_ID));
-		createCompartment(
-				node,
-				MIDVisualIDRegistry
-						.getType(ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID),
+		Node label5003 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label5004 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
+		createCompartment(node,
+				MIDVisualIDRegistry.getType(ModelEndpointReferenceModelEndpointReferenceCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createLinkReference_2008(EObject domainElement,
-			View containerView, int index, boolean persisted,
+	* @generated
+	*/
+	public Node createMappingReference_2002(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(LinkReferenceEditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(MappingReferenceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5013 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel2EditPart.VISUAL_ID));
-		Node label5020 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel17EditPart.VISUAL_ID));
+		Node label5005 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
+		Node label5006 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createLinkReference_2009(EObject domainElement,
-			View containerView, int index, boolean persisted,
+	* @generated
+	*/
+	public Node createMappingReference_2003(EObject domainElement, View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(LinkReference2EditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(MappingReference2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5014 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel3EditPart.VISUAL_ID));
-		Node label5021 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel18EditPart.VISUAL_ID));
+		Node label5007 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
+		Node label5008 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelEndpointReference_2010(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelEndpointReference_2004(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(ModelEndpointReference2EditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(ModelEndpointReference2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5017 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel4EditPart.VISUAL_ID));
-		Node label5024 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
-		createCompartment(
-				node,
+		Node label5013 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
+		Node label5014 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
+		createCompartment(node,
 				MIDVisualIDRegistry
 						.getType(ModelEndpointReferenceModelEndpointReferenceSuperCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
@@ -494,464 +425,355 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelElementReference_3005(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelElementReference_3001(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(ModelElementReferenceEditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(ModelElementReferenceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5011 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel5EditPart.VISUAL_ID));
-		Node label5018 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel20EditPart.VISUAL_ID));
+		Node label5001 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
+		Node label5002 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelElementReference_3006(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelElementReference_3002(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(ModelElementReference2EditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(ModelElementReference2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5015 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
-		Node label5022 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel21EditPart.VISUAL_ID));
+		Node label5009 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
+		Node label5010 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Node createModelElementReference_3007(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Node createModelElementReference_3003(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
-		node.getStyles()
-				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(MIDVisualIDRegistry
-				.getType(ModelElementReference3EditPart.VISUAL_ID));
+		node.setType(MIDVisualIDRegistry.getType(ModelElementReference3EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			nodeFontStyle.setFontName(fontData.getName());
 			nodeFontStyle.setFontHeight(fontData.getHeight());
 			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Node label5016 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
-		Node label5023 = createLabel(node,
-				MIDVisualIDRegistry.getType(WrappingLabel22EditPart.VISUAL_ID));
+		Node label5011 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
+		Node label5012 = createLabel(node, MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
 		return node;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createExtendibleElementReferenceSupertypeRef_4010(
-			View containerView, int index, boolean persisted,
+	* @generated
+	*/
+	public Edge createExtendibleElementReferenceSupertypeRef_4001(View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MIDVisualIDRegistry
-				.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
+		edge.setType(MIDVisualIDRegistry.getType(ExtendibleElementReferenceSupertypeRefEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle edgeFontStyle = (FontStyle) edge
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			edgeFontStyle.setFontName(fontData.getName());
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createModelElementEndpointReference_4011(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createModelElementEndpointReference_4002(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MIDVisualIDRegistry
-				.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
+		edge.setType(MIDVisualIDRegistry.getType(ModelElementEndpointReferenceEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle edgeFontStyle = (FontStyle) edge
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			edgeFontStyle.setFontName(fontData.getName());
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6007 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
-		label6007.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
+		Node label6001 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
+		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6001 = (Location) label6001.getLayoutConstraint();
+		location6001.setX(0);
+		location6001.setY(40);
+		Node label6002 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel16EditPart.VISUAL_ID));
+		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6002 = (Location) label6002.getLayoutConstraint();
+		location6002.setX(0);
+		location6002.setY(60);
+		return edge;
+	}
+
+	/**
+	* @generated
+	*/
+	public Edge createBinaryMappingReference_4003(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(MIDVisualIDRegistry.getType(BinaryMappingReferenceEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
+		}
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6003 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel17EditPart.VISUAL_ID));
+		label6003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6003 = (Location) label6003.getLayoutConstraint();
+		location6003.setX(0);
+		location6003.setY(40);
+		Node label6004 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel18EditPart.VISUAL_ID));
+		label6004.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6004 = (Location) label6004.getLayoutConstraint();
+		location6004.setX(0);
+		location6004.setY(60);
+		Node label6005 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel19EditPart.VISUAL_ID));
+		label6005.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6005 = (Location) label6005.getLayoutConstraint();
+		location6005.setX(0);
+		location6005.setY(80);
+		Node label6006 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel20EditPart.VISUAL_ID));
+		label6006.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6006 = (Location) label6006.getLayoutConstraint();
+		location6006.setX(0);
+		location6006.setY(100);
+		return edge;
+	}
+
+	/**
+	* @generated
+	*/
+	public Edge createBinaryMappingReference_4004(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(MIDVisualIDRegistry.getType(BinaryMappingReference2EditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (edgeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
+			edgeFontStyle.setFontName(fontData.getName());
+			edgeFontStyle.setFontHeight(fontData.getHeight());
+			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
+		}
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		if (routing != null) {
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		}
+		Node label6007 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel21EditPart.VISUAL_ID));
+		label6007.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6007 = (Location) label6007.getLayoutConstraint();
 		location6007.setX(0);
 		location6007.setY(40);
-		Node label6015 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
-		label6015.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6015 = (Location) label6015.getLayoutConstraint();
-		location6015.setX(0);
-		location6015.setY(60);
-		return edge;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Edge createBinaryLinkReference_4012(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Edge edge = NotationFactory.eINSTANCE.createEdge();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MIDVisualIDRegistry
-				.getType(BinaryLinkReferenceEditPart.VISUAL_ID));
-		edge.setElement(domainElement);
-		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle edgeFontStyle = (FontStyle) edge
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (edgeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			edgeFontStyle.setFontName(fontData.getName());
-			edgeFontStyle.setFontHeight(fontData.getHeight());
-			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
-		}
-		Node label6008 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
-		label6008.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
+		Node label6008 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel22EditPart.VISUAL_ID));
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6008 = (Location) label6008.getLayoutConstraint();
 		location6008.setX(0);
-		location6008.setY(40);
-		Node label6009 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
-		label6009.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
+		location6008.setY(60);
+		Node label6009 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel23EditPart.VISUAL_ID));
+		label6009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6009 = (Location) label6009.getLayoutConstraint();
 		location6009.setX(0);
-		location6009.setY(60);
-		Node label6010 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
-		label6010.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
+		location6009.setY(80);
+		Node label6010 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel24EditPart.VISUAL_ID));
+		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6010 = (Location) label6010.getLayoutConstraint();
 		location6010.setX(0);
-		location6010.setY(80);
-		Node label6016 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel24EditPart.VISUAL_ID));
-		label6016.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6016 = (Location) label6016.getLayoutConstraint();
-		location6016.setX(0);
-		location6016.setY(100);
+		location6010.setY(100);
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createBinaryLinkReference_4013(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	* @generated
+	*/
+	public Edge createModelElementEndpointReference_4005(EObject domainElement, View containerView, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MIDVisualIDRegistry
-				.getType(BinaryLinkReference2EditPart.VISUAL_ID));
+		edge.setType(MIDVisualIDRegistry.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle edgeFontStyle = (FontStyle) edge
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		FontStyle edgeFontStyle = (FontStyle) edge.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (edgeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
+			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
 			edgeFontStyle.setFontName(fontData.getName());
 			edgeFontStyle.setFontHeight(fontData.getHeight());
 			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
+					IPreferenceConstants.PREF_FONT_COLOR);
+			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
+		Routing routing = Routing.get(prefStore.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
+			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Node label6011 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
-		label6011.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
+		Node label6011 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel25EditPart.VISUAL_ID));
+		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6011 = (Location) label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(40);
-		Node label6012 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
+		Node label6012 = createLabel(edge, MIDVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
+		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6012 = (Location) label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(60);
-		Node label6013 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
-		label6013.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6013 = (Location) label6013.getLayoutConstraint();
-		location6013.setX(0);
-		location6013.setY(80);
-		Node label6017 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel25EditPart.VISUAL_ID));
-		label6017.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6017 = (Location) label6017.getLayoutConstraint();
-		location6017.setX(0);
-		location6017.setY(100);
 		return edge;
 	}
 
 	/**
-	 * @generated
-	 */
-	public Edge createModelElementEndpointReference_4014(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Edge edge = NotationFactory.eINSTANCE.createEdge();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(MIDVisualIDRegistry
-				.getType(ModelElementEndpointReference2EditPart.VISUAL_ID));
-		edge.setElement(domainElement);
-		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		FontStyle edgeFontStyle = (FontStyle) edge
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (edgeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			edgeFontStyle.setFontName(fontData.getName());
-			edgeFontStyle.setFontHeight(fontData.getHeight());
-			edgeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			edgeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			edgeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		Routing routing = Routing.get(prefStore
-				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge,
-					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
-					routing);
-		}
-		Node label6014 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
-		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6014 = (Location) label6014.getLayoutConstraint();
-		location6014.setX(0);
-		location6014.setY(40);
-		Node label6018 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel26EditPart.VISUAL_ID));
-		label6018.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location6018 = (Location) label6018.getLayoutConstraint();
-		location6018.setX(0);
-		location6018.setY(60);
-		return edge;
-	}
-
-	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private void stampShortcut(View containerView, Node target) {
-		if (!ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry
-				.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-					.createEAnnotation();
+		if (!ModelRelEditPart.MODEL_ID.equals(MIDVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put(
-					"modelID", ModelRelEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", ModelRelEditPart.MODEL_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
@@ -960,10 +782,9 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
-	private Node createCompartment(View owner, String hint,
-			boolean canCollapse, boolean hasTitle, boolean canSort,
+	* @generated
+	*/
+	private Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort,
 			boolean canFilter) {
 		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		//rv.setShowTitle(showTitle);
@@ -983,8 +804,7 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 			rv.getStyles().add(NotationFactory.eINSTANCE.createSortingStyle());
 		}
 		if (canFilter) {
-			rv.getStyles()
-					.add(NotationFactory.eINSTANCE.createFilteringStyle());
+			rv.getStyles().add(NotationFactory.eINSTANCE.createFilteringStyle());
 		}
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
@@ -992,16 +812,15 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EObject getSemanticElement(IAdaptable semanticAdapter) {
 		if (semanticAdapter == null) {
 			return null;
 		}
 		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
-			return EMFCoreUtil.resolve(
-					TransactionUtil.getEditingDomain(eObject), eObject);
+			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}
 		return null;
 	}

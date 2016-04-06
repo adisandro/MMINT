@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -20,19 +20,18 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.MIDElementType
 /**
  * @generated
  */
-public class ExtendibleElementReferenceSupertypeRefItemSemanticEditPolicy
-		extends MIDBaseItemSemanticEditPolicy {
+public class ExtendibleElementReferenceSupertypeRefItemSemanticEditPolicy extends MIDBaseItemSemanticEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ExtendibleElementReferenceSupertypeRefItemSemanticEditPolicy() {
-		super(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4010);
+		super(MIDElementTypes.ExtendibleElementReferenceSupertypeRef_4001);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}

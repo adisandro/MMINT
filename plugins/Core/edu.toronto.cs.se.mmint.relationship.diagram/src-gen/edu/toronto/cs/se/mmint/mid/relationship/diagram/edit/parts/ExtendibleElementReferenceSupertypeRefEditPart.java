@@ -28,49 +28,48 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.Extendible
 /**
  * @generated
  */
-public class ExtendibleElementReferenceSupertypeRefEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ExtendibleElementReferenceSupertypeRefEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
-	public static final int VISUAL_ID = 4010;
+	* @generated
+	*/
+	public static final int VISUAL_ID = 4001;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ExtendibleElementReferenceSupertypeRefEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
 				new ExtendibleElementReferenceSupertypeRefItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new ExtendibleElementReferenceSupertypeRefSemanticEditPolicy());
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new ExtendibleElementReferenceSupertypeRefFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ExtendibleElementReferenceSupertypeRefFigure getPrimaryShape() {
 		return (ExtendibleElementReferenceSupertypeRefFigure) getFigure();
 	}
@@ -78,8 +77,7 @@ public class ExtendibleElementReferenceSupertypeRefEditPart extends
 	/**
 	 * @generated
 	 */
-	public class ExtendibleElementReferenceSupertypeRefFigure extends
-			PolylineConnectionEx {
+	public class ExtendibleElementReferenceSupertypeRefFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated

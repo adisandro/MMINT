@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
-import edu.toronto.cs.se.mmint.mid.relationship.LinkReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
@@ -27,29 +27,27 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDBaseIte
 /**
  * @generated
  */
-public class ModelElementEndpointReferenceReorientCommand extends
-		EditElementCommand {
+public class ModelElementEndpointReferenceReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
-	public ModelElementEndpointReferenceReorientCommand(
-			ReorientRelationshipRequest request) {
+	* @generated
+	*/
+	public ModelElementEndpointReferenceReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -57,8 +55,8 @@ public class ModelElementEndpointReferenceReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof ModelElementEndpointReference) {
 			return false;
@@ -73,42 +71,38 @@ public class ModelElementEndpointReferenceReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof LinkReference && newEnd instanceof LinkReference)) {
+		if (!(oldEnd instanceof MappingReference && newEnd instanceof MappingReference)) {
 			return false;
 		}
 		ModelElementReference target = getLink().getModelElemRef();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistModelElementEndpointReference_4011(getLink(),
-						getNewSource(), target);
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelElementEndpointReference_4002(getLink(),
+				getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof ModelElementReference && newEnd instanceof ModelElementReference)) {
 			return false;
 		}
-		if (!(getLink().eContainer() instanceof LinkReference)) {
+		if (!(getLink().eContainer() instanceof MappingReference)) {
 			return false;
 		}
-		LinkReference source = (LinkReference) getLink().eContainer();
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistModelElementEndpointReference_4011(getLink(), source,
-						getNewTarget());
+		MappingReference source = (MappingReference) getLink().eContainer();
+		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canExistModelElementEndpointReference_4002(getLink(),
+				source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -120,8 +114,8 @@ public class ModelElementEndpointReferenceReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().getModelElemEndpointRefs().remove(getLink());
 		getNewSource().getModelElemEndpointRefs().add(getLink());
@@ -129,44 +123,44 @@ public class ModelElementEndpointReferenceReorientCommand extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setModelElemRef(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ModelElementEndpointReference getLink() {
 		return (ModelElementEndpointReference) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
-	protected LinkReference getOldSource() {
-		return (LinkReference) oldEnd;
+	* @generated
+	*/
+	protected MappingReference getOldSource() {
+		return (MappingReference) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected LinkReference getNewSource() {
-		return (LinkReference) newEnd;
+	* @generated
+	*/
+	protected MappingReference getNewSource() {
+		return (MappingReference) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ModelElementReference getOldTarget() {
 		return (ModelElementReference) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ModelElementReference getNewTarget() {
 		return (ModelElementReference) newEnd;
 	}

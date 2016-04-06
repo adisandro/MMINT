@@ -69,7 +69,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 	@Override
 	public void dragStart(DragSourceEvent event) {
 
-		List<Object> transferData = new ArrayList<Object>();
+		List<Object> transferData = new ArrayList<>();
 		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
 		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(modelRel);
 		ModelElement modelElemType = null;
@@ -98,6 +98,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 				modelObj = (EObject) selected;
 			}
 			// assign to container
+			//TODO MMINT[MODELELEMENT] Think about simplifying the accept phase and the dnd info, probably not everything is needed anymore 
 			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, modelRel.getLevel())[1];
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 				try {
