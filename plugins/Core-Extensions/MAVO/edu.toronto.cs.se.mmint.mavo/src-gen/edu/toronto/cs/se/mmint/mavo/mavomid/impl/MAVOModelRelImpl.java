@@ -11,9 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMappingReference;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel;
-
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -43,6 +48,22 @@ public class MAVOModelRelImpl extends ModelRelImpl implements MAVOModelRel {
 	@Override
 	protected EClass eStaticClass() {
 		return MAVOMIDPackage.Literals.MAVO_MODEL_REL;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
+
+		MAVOModelRel newMAVOModelRel = (MAVOModelRel) super.copyInstance(origModelRel, newModelRelName, instanceMID);
+		for (int i = 0; i < ((ModelRel) origModelRel).getMappingRefs().size(); i++) {
+			MAVOMappingReference origMAVOMappingRef = (MAVOMappingReference) ((ModelRel) origModelRel).getMappingRefs().get(i);
+			MAVOMappingReference newMAVOMappingRef = (MAVOMappingReference) ((ModelRel) newMAVOModelRel).getMappingRefs().get(i);
+			MAVOUtils.copyMAVOElement(origMAVOMappingRef.getObject(), newMAVOMappingRef.getObject());
+		}
+
+		return newMAVOModelRel;
 	}
 
 } //MAVOModelRelImpl

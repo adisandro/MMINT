@@ -36,6 +36,9 @@
       <extender
             uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
             class="edu.toronto.cs.se.mmint.mavo.mavomid.provider.MAVOMIDItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
+      <extender
+            uri="http://se.cs.toronto.edu/mmint/MID/Operator"
+            class="edu.toronto.cs.se.mmint.mavo.mavomid.provider.MAVOMIDItemProviderAdapterFactory$OperatorChildCreationExtender"/>
    </extension>
 
 </plugin>

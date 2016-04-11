@@ -11,38 +11,35 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid.impl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpoint;
-import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
+
+import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementReferenceImpl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>MAVO Model Endpoint Reference</b></em>'.
+ * An implementation of the model object '<em><b>MAVO Model Element Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class MAVOModelEndpointReferenceImpl extends ModelEndpointReferenceImpl implements MAVOModelEndpointReference {
+public class MAVOModelElementReferenceImpl extends ModelElementReferenceImpl implements MAVOModelElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MAVOModelEndpointReferenceImpl() {
+	protected MAVOModelElementReferenceImpl() {
 		super();
 	}
 
@@ -53,7 +50,7 @@ public class MAVOModelEndpointReferenceImpl extends ModelEndpointReferenceImpl i
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.MAVO_MODEL_ENDPOINT_REFERENCE;
+		return MAVOMIDPackage.Literals.MAVO_MODEL_ELEMENT_REFERENCE;
 	}
 
 	/**
@@ -61,9 +58,9 @@ public class MAVOModelEndpointReferenceImpl extends ModelEndpointReferenceImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MAVOModelEndpoint getObject() {
+	public MAVOModelElement getObject() {
 		ExtendibleElement object = super.getObject();
-		return (object == null) ? null : (MAVOModelEndpoint) object;
+		return (object == null) ? null : (MAVOModelElement) object;
 	}
 
 	/**
@@ -73,15 +70,9 @@ public class MAVOModelEndpointReferenceImpl extends ModelEndpointReferenceImpl i
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == ExtendibleElementEndpointReference.class) {
+		if (baseClass == ModelElementReference.class) {
 			switch (baseOperationID) {
-				case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
-				default: return super.eDerivedOperationID(baseOperationID, baseClass);
-			}
-		}
-		if (baseClass == ModelEndpointReference.class) {
-			switch (baseOperationID) {
-				case RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
+				case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -96,22 +87,10 @@ public class MAVOModelEndpointReferenceImpl extends ModelEndpointReferenceImpl i
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT:
+			case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT:
 				return getObject();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public ModelElementReference createModelElementInstanceAndReference(EObject modelObj, String newModelElemName) throws MMINTException {
-
-		MAVOModelElementReference newMAVOModelElemRef = (MAVOModelElementReference) super.createModelElementInstanceAndReference(modelObj, newModelElemName);
-		MAVOUtils.initializeMAVOModelElementReference(modelObj, newMAVOModelElemRef);
-
-		return newMAVOModelElemRef;
-	}
-
-} //MAVOModelEndpointReferenceImpl
+} //MAVOModelElementReferenceImpl

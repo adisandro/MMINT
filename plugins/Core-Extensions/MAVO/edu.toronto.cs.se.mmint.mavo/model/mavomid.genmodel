@@ -24,15 +24,34 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement"/>
-    <genClasses ecoreClass="mavomid.ecore#//MAVOModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelRel">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelRel/copyInstance">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/origModel"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/newModelName"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/instanceMID"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOModelRel"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpoint">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpoint/getTarget"/>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelElementReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElementReference/getObject"/>
+    </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpointReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpointReference/getObject"/>
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference/modelObj"/>
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModelEndpointReference/createModelElementInstanceAndReference/newModelElemName"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="mavomid.ecore#//MAVOMapping"/>
-    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOMappingReference">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMappingReference/getObject"/>
+    </genClasses>
+    <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMappingReference">
+      <genOperations ecoreOperation="mavomid.ecore#//BinaryMAVOMappingReference/getObject"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

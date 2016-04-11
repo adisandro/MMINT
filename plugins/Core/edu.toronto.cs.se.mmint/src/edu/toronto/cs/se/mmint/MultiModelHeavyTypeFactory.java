@@ -324,6 +324,37 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	}
 
 	/**
+	 * Adds a "heavy" mapping type and a reference to it to the repository.
+	 * 
+	 * @param newMappingType
+	 *            The new mapping type to be added.
+	 * @param newMappingTypeUri
+	 *            The uri of the new mapping type.
+	 * @param mappingTypeUri
+	 *            The uri of the supertype of the new mapping type, null if the
+	 *            root mapping type should be used as supertype.
+	 * @param newMappingTypeName
+	 *            The name of the new mapping type.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new mapping
+	 *            type.
+	 * @return The created reference to the new mapping type.
+	 * @throws MMINTException
+	 *             If the uri of the new mapping type is already registered in
+	 *             the repository.
+	 */
+	protected @NonNull MappingReference addHeavyMappingTypeAndMappingTypeReference(@NonNull Mapping newMappingType, @NonNull String newMappingTypeUri, @Nullable String mappingTypeUri, @NonNull String newMappingTypeName, @NonNull ModelRel containerModelRelType) throws MMINTException {
+
+		Mapping mappingType = getSupertype(newMappingType, newMappingTypeUri, mappingTypeUri);
+		addHeavyType(newMappingType, mappingType, newMappingTypeUri, newMappingTypeName);
+		addMappingType(newMappingType, mappingType, containerModelRelType);
+		MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
+		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
+
+		return newMappingTypeRef;
+	}
+
+	/**
 	 * Creates and adds a "heavy" model type to the repository.
 	 * 
 	 * @param extensionType
@@ -400,7 +431,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionType extensionType, boolean isBinary, @Nullable String constraintLanguage, @Nullable String constraintImplementation) throws MMINTException {
 
 		ModelRel newModelRelType;
 		if (extensionType.getNewType() == null) {
@@ -506,15 +537,15 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 *            The extension info for the new mapping type.
 	 * @param isBinary
 	 *            True if the new mapping type is binary, false otherwise.
-	 * @param modelRelType
+	 * @param containerModelRelType
 	 *            The model relationship type that will contain the new mapping
 	 *            type.
 	 * @return The created reference to the new mapping type.
 	 * @throws MMINTException
-	 *             If the uri of the new mapping type is already registered in the
-	 *             repository.
+	 *             If the uri of the new mapping type is already registered in
+	 *             the repository.
 	 */
-	public MappingReference createHeavyMappingTypeAndMappingTypeReference(ExtensionType extensionType, boolean isBinary, ModelRel modelRelType) throws MMINTException {
+	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		Mapping newMappingType;
 		if (extensionType.getNewType() == null) {
@@ -525,11 +556,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		else {
 			newMappingType = (Mapping) extensionType.getNewType();
 		}
-		Mapping mappingType = getSupertype(newMappingType, extensionType.getUri(), extensionType.getSupertypeUri());
-		addHeavyType(newMappingType, mappingType, extensionType.getUri(), extensionType.getName());
-		addMappingType(newMappingType, mappingType, modelRelType);
-		MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), modelRelType.getMappingRefs());
-		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, modelRelType);
+		MappingReference newMappingTypeRef = this.addHeavyMappingTypeAndMappingTypeReference(newMappingType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), containerModelRelType);
 
 		return newMappingTypeRef;
 	}

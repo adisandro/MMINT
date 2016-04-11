@@ -29,6 +29,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="copyInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+      <eParameters name="origModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"/>
+      <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryMAVOModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryModelRel #//MAVOModelRel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -39,6 +45,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="getTarget" lowerBound="1" eType="#//MAVOModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (MAVOModel) target;"/>
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the MAVO model target of this MAVO model endpoint."/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/Mapping ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -65,6 +77,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="getObject" lowerBound="1" eType="#//MAVOModelEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOModelEndpoint) object;"/>
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced MAVO model endpoint."/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="createModelElementInstanceAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelElementReference"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="modelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -75,10 +93,22 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="getObject" lowerBound="1" eType="#//MAVOMapping">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (MAVOMapping) object;"/>
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced MAVO mapping."/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryMAVOMappingReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMappingReference #//MAVOMappingReference">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="getObject" lowerBound="1" eType="#//BinaryMAVOMapping">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryMAVOMapping) object;"/>
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the referenced binary MAVO mapping."/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
 </ecore:EPackage>

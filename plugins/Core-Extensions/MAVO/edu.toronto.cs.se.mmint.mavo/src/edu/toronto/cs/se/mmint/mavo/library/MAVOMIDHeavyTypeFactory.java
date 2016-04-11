@@ -11,15 +11,24 @@
  */
 package edu.toronto.cs.se.mmint.mavo.library;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMappingReference;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpoint;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpointReference;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
@@ -55,7 +64,7 @@ public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
 	 * MAVO version. {@inheritDoc}
 	 */
 	@Override
-	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionType extensionType, boolean isBinary, @Nullable String constraintLanguage, @Nullable String constraintImplementation) throws MMINTException {
 
 		MAVOModelRel newMAVOModelRelType = (isBinary) ?
 			MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel() :
@@ -63,6 +72,32 @@ public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
 		super.addHeavyModelRelType(newMAVOModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
 
 		return newMAVOModelRelType;
+	}
+
+	/**
+	 * MAVO version. {@inheritDoc}
+	 */
+	@Override
+	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
+
+		MAVOModelEndpoint newMAVOModelTypeEndpoint = MAVOMIDFactory.eINSTANCE.createMAVOModelEndpoint();
+		MAVOModelEndpointReference newMAVOModelTypeEndpointRef = (MAVOModelEndpointReference) super.addHeavyModelTypeEndpointAndModelTypeEndpointReference(newMAVOModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
+
+		return newMAVOModelTypeEndpointRef;
+	}
+
+	/**
+	 * MAVO version. {@inheritDoc}
+	 */
+	@Override
+	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
+
+		MAVOMapping newMAVOMappingType = (isBinary) ?
+			MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping() :
+			MAVOMIDFactory.eINSTANCE.createMAVOMapping();
+		MAVOMappingReference newMAVOMappingTypeRef = (MAVOMappingReference) super.addHeavyMappingTypeAndMappingTypeReference(newMAVOMappingType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), containerModelRelType);
+
+		return newMAVOMappingTypeRef;
 	}
 
 }

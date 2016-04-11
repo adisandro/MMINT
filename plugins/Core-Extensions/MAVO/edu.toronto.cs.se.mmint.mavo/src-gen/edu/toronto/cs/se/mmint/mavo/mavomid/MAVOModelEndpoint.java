@@ -11,14 +11,11 @@
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>MAVO Model Rel</b></em>'.
+ * A representation of the model object '<em><b>MAVO Model Endpoint</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -26,18 +23,22 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * <!-- end-model-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getMAVOModelRel()
+ * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#getMAVOModelEndpoint()
  * @model
  * @generated
  */
-public interface MAVOModelRel extends ModelRel {
+public interface MAVOModelEndpoint extends ModelEndpoint {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
+	 * <!-- begin-model-doc -->
+	 * {@inheritDoc}<br />
+	 * Gets the MAVO model target of this MAVO model endpoint.
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement target = super.getTarget();\nreturn (target == null) ? null : (MAVOModel) target;'"
 	 * @generated
 	 */
-	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
-} // MAVOModelRel
+	MAVOModel getTarget();
+} // MAVOModelEndpoint

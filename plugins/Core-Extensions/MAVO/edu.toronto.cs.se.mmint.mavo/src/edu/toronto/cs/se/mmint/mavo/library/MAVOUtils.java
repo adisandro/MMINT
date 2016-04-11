@@ -30,13 +30,13 @@ import org.eclipse.uml2.uml.Stereotype;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 
 public class MAVOUtils {
 
@@ -212,22 +212,21 @@ public class MAVOUtils {
 		mavoModelElem.setFormulaVariable(umlModelObj.getName().toLowerCase());
 	}
 
-	public static void initializeMAVOModelElement(EObject modelObj, MAVOModelElement modelElem) {
+	public static void initializeMAVOModelElement(EObject modelObj, MAVOModelElement mavoModelElem) {
 
 		// Ecore
 		if (modelObj instanceof MAVOElement) {
-			initializeMAVOModelElement((MAVOElement) modelObj, modelElem);
+			initializeMAVOModelElement((MAVOElement) modelObj, mavoModelElem);
 		}
 		// UML
 		else if (modelObj instanceof NamedElement) {
-			initializeMAVOModelElement((NamedElement) modelObj, modelElem);
+			initializeMAVOModelElement((NamedElement) modelObj, mavoModelElem);
 		}
 	}
 
-	public static void initializeMAVOModelElementReference(EObject modelObj, ModelElementReference modelElemRef) {
+	public static void initializeMAVOModelElementReference(EObject modelObj, MAVOModelElementReference mavoModelElemRef) {
 
-		//TODO MMINT[MAVO]: Introduce MAVOModelElementReference
-		initializeMAVOModelElement(modelObj, (MAVOModelElement) modelElemRef.getObject());
+		initializeMAVOModelElement(modelObj, mavoModelElemRef.getObject());
 	}
 
 	public static void setInc(EObject rootModelObj, boolean inc) {
@@ -314,12 +313,12 @@ public class MAVOUtils {
 		}
 	}
 
-	public static void copyMAVOElement(MAVOElement oldElement, MAVOElement newElement) {
+	public static void copyMAVOElement(MAVOElement oldMAVOElement, MAVOElement newMAVOElement) {
 
-		newElement.setMay(oldElement.isMay());
-		newElement.setSet(oldElement.isSet());
-		newElement.setVar(oldElement.isVar());
-		newElement.setFormulaVariable(oldElement.getFormulaVariable());
+		newMAVOElement.setMay(oldMAVOElement.isMay());
+		newMAVOElement.setSet(oldMAVOElement.isSet());
+		newMAVOElement.setVar(oldMAVOElement.isVar());
+		newMAVOElement.setFormulaVariable(oldMAVOElement.getFormulaVariable());
 	}
 
 	public static Map<String, MAVOElement> createFormulaVars(Model mavoModel) throws Exception {

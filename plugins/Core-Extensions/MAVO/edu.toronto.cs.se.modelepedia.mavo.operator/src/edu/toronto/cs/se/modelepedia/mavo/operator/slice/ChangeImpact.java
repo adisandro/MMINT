@@ -25,14 +25,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.impl.ModelElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -66,31 +65,31 @@ public class ChangeImpact extends OperatorImpl {
 		return true;
 	}
 
-	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<ModelElementReference>> unifyTable, HashMap<String, List<ModelElementReference>> typeTable) {
+	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, Map<String, List<ModelElementReference>> unifyTable, Map<String, List<MAVOModelElementReference>> typeTable) {
 
 		// O(n) + O(m i log i), O(n) best case when m=n and i=1, O(n log n) worst case when m=1 and i=n
 		// type table
 		for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) { // O(n)
 			String modelElemTypeUri = modelElemRef.getObject().getMetatypeUri();
-			List<ModelElementReference> unifiablesFromSameType = typeTable.get(modelElemTypeUri);
+			List<MAVOModelElementReference> unifiablesFromSameType = typeTable.get(modelElemTypeUri);
 			if (unifiablesFromSameType == null) {
-				unifiablesFromSameType = new ArrayList<ModelElementReference>();
+				unifiablesFromSameType = new ArrayList<>();
 				typeTable.put(modelElemTypeUri, unifiablesFromSameType);
 			}
-			unifiablesFromSameType.add(modelElemRef);
+			unifiablesFromSameType.add((MAVOModelElementReference) modelElemRef);
 		}
 		// merge table
-		for (List<ModelElementReference> unifiablesFromSameType : typeTable.values()) { // + O(m), m<=n
+		for (List<MAVOModelElementReference> unifiablesFromSameType : typeTable.values()) { // + O(m), m<=n
 			for (ModelElementReference modelElemRef : unifiablesFromSameType) {
-				List<ModelElementReference> unifiables = new ArrayList<ModelElementReference>();
+				List<ModelElementReference> unifiables = new ArrayList<>();
 				unifyTable.put(modelElemRef.getUri(), unifiables);
 				unifiables.add(modelElemRef);
 			}
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) { // * O(i), i<=n, SUM(i_k)=n for k=0..m
-				ModelElementReference modelElemRef = unifiablesFromSameType.get(i);
+				MAVOModelElementReference modelElemRef = unifiablesFromSameType.get(i);
 				List<ModelElementReference> unifiables = unifyTable.get(modelElemRef.getUri());
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) { // * O(log i)
-					ModelElementReference modelElemRef2 = unifiablesFromSameType.get(j);
+					MAVOModelElementReference modelElemRef2 = unifiablesFromSameType.get(j);
 					List<ModelElementReference> unifiables2 = unifyTable.get(modelElemRef2.getUri());
 					if (modelElemRef.getObject().isVar() || modelElemRef2.getObject().isVar()) {
 						unifiables.add(modelElemRef2);
@@ -102,7 +101,7 @@ public class ChangeImpact extends OperatorImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, HashMap<String, List<EObject>> unifyTable, HashMap<String, List<EObject>> typeTable) throws MMINTException {
+	private void createImpactedVarTables(ModelEndpointReference modelEndpointRef, Map<String, List<EObject>> unifyTable, Map<String, List<EObject>> typeTable) throws MMINTException {
 
 		// type table
 		Model model = modelEndpointRef.getObject().getTarget();
@@ -149,7 +148,7 @@ public class ChangeImpact extends OperatorImpl {
 		//TODO smart check to reduce average complexity, if in same container in src model
 	}
 
-	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, MappingReference impactMappingRef, HashMap<String, List<EObject>> impactedUnifyTable) throws MMINTException {
+	private void addImpactedModelElementReferences(ModelElementReference origModelElemRef, ModelEndpointReference impactedModelEndpointRef, MappingReference impactMappingRef, Map<String, List<EObject>> impactedUnifyTable) throws MMINTException {
 
 		if (origModelElemRef.getModelElemEndpointRefs().isEmpty()) {
 			return;
@@ -192,10 +191,10 @@ public class ChangeImpact extends OperatorImpl {
 		BinaryModelRel traceRel = (BinaryModelRel) inputsByName.get(IN_MODELREL2);
 		Model impactedModel = traceRel.getTargetModel();
 
-		HashMap<String, List<ModelElementReference>> origUnifyTable = new HashMap<String, List<ModelElementReference>>();
-		HashMap<String, List<ModelElementReference>> origTypeTable = new HashMap<String, List<ModelElementReference>>();
-		HashMap<String, List<EObject>> impactedUnifyTable = new HashMap<String, List<EObject>>();
-		HashMap<String, List<EObject>> impactedTypeTable = new HashMap<String, List<EObject>>();
+		Map<String, List<ModelElementReference>> origUnifyTable = new HashMap<>();
+		Map<String, List<MAVOModelElementReference>> origTypeTable = new HashMap<>();
+		Map<String, List<EObject>> impactedUnifyTable = new HashMap<>();
+		Map<String, List<EObject>> impactedTypeTable = new HashMap<>();
 		//TODO MMINT[OVERRIDE] be careful when overriding is implemented
 		createOrigVarTables(traceRel.getModelEndpointRefs().get(0), origUnifyTable, origTypeTable); // O(n log n)
 		createImpactedVarTables(traceRel.getModelEndpointRefs().get(1), impactedUnifyTable, impactedTypeTable); // O(n log n)
@@ -231,8 +230,8 @@ public class ChangeImpact extends OperatorImpl {
 				// get the type it would have if it was in the trace rel
 				ModelElement diffModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject());
 				if (diffModelElemType != null) {
-					List<ModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
-					for (ModelElementReference origUnifiable : origUnifiablesFromSameType) {
+					List<MAVOModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
+					for (MAVOModelElementReference origUnifiable : origUnifiablesFromSameType) {
 						if (origUnifiable.getObject().isVar()) {
 							addImpactedModelElementReferences(origUnifiable, newImpactedModelEndpointRef, newImpactMappingRef, impactedUnifyTable);
 						}

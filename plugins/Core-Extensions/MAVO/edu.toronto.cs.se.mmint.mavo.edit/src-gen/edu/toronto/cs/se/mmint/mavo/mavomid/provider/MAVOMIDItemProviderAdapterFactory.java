@@ -19,7 +19,11 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.util.OperatorSwitch;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
@@ -197,6 +201,29 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpoint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MAVOModelEndpointItemProvider mavoModelEndpointItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMAVOModelEndpointAdapter() {
+		if (mavoModelEndpointItemProvider == null) {
+			mavoModelEndpointItemProvider = new MAVOModelEndpointItemProvider(this);
+		}
+
+		return mavoModelEndpointItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpointReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -217,6 +244,52 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 		}
 
 		return mavoModelEndpointReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMappingReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MAVOMappingReferenceItemProvider mavoMappingReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMappingReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMAVOMappingReferenceAdapter() {
+		if (mavoMappingReferenceItemProvider == null) {
+			mavoMappingReferenceItemProvider = new MAVOMappingReferenceItemProvider(this);
+		}
+
+		return mavoMappingReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BinaryMAVOMappingReferenceItemProvider binaryMAVOMappingReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBinaryMAVOMappingReferenceAdapter() {
+		if (binaryMAVOMappingReferenceItemProvider == null) {
+			binaryMAVOMappingReferenceItemProvider = new BinaryMAVOMappingReferenceItemProvider(this);
+		}
+
+		return binaryMAVOMappingReferenceItemProvider;
 	}
 
 	/**
@@ -263,6 +336,29 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 		}
 
 		return binaryMAVOMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MAVOModelElementReferenceItemProvider mavoModelElementReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMAVOModelElementReferenceAdapter() {
+		if (mavoModelElementReferenceItemProvider == null) {
+			mavoModelElementReferenceItemProvider = new MAVOModelElementReferenceItemProvider(this);
+		}
+
+		return mavoModelElementReferenceItemProvider;
 	}
 
 	/**
@@ -368,9 +464,13 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 		if (mavoModelElementItemProvider != null) mavoModelElementItemProvider.dispose();
 		if (mavoModelRelItemProvider != null) mavoModelRelItemProvider.dispose();
 		if (binaryMAVOModelRelItemProvider != null) binaryMAVOModelRelItemProvider.dispose();
-		if (mavoModelEndpointReferenceItemProvider != null) mavoModelEndpointReferenceItemProvider.dispose();
+		if (mavoModelEndpointItemProvider != null) mavoModelEndpointItemProvider.dispose();
 		if (mavoMappingItemProvider != null) mavoMappingItemProvider.dispose();
 		if (binaryMAVOMappingItemProvider != null) binaryMAVOMappingItemProvider.dispose();
+		if (mavoModelElementReferenceItemProvider != null) mavoModelElementReferenceItemProvider.dispose();
+		if (mavoModelEndpointReferenceItemProvider != null) mavoModelEndpointReferenceItemProvider.dispose();
+		if (mavoMappingReferenceItemProvider != null) mavoMappingReferenceItemProvider.dispose();
+		if (binaryMAVOMappingReferenceItemProvider != null) binaryMAVOMappingReferenceItemProvider.dispose();
 	}
 
 	/**
@@ -534,6 +634,11 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 			public Object caseModelRel(ModelRel object) {
 				newChildDescriptors.add
 					(createChildParameter
+						(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS,
+						 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpoint()));
+
+				newChildDescriptors.add
+					(createChildParameter
 						(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
 						 MAVOMIDFactory.eINSTANCE.createMAVOMapping()));
 
@@ -546,6 +651,16 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 					(createChildParameter
 						(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS,
 						 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpointReference()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
+						 MAVOMIDFactory.eINSTANCE.createMAVOMappingReference()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
+						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMappingReference()));
 
 				return null;
 			}
@@ -579,12 +694,123 @@ public class MAVOMIDItemProviderAdapterFactory extends MAVOMIDAdapterFactory imp
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+						 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpoint()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 						 MAVOMIDFactory.eINSTANCE.createMAVOMapping()));
 
 				newChildDescriptors.add
 					(createChildParameter
 						(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 						 MAVOMIDFactory.eINSTANCE.createBinaryMAVOMapping()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseModelEndpointReference(ModelEndpointReference object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(RelationshipPackage.Literals.MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS,
+						 MAVOMIDFactory.eINSTANCE.createMAVOModelElementReference()));
+
+				return null;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected CommandParameter createChildParameter(Object feature, Object child) {
+				return new CommandParameter(null, feature, child);
+			}
+
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+			ArrayList<Object> result = new ArrayList<Object>();
+			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			return result;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public ResourceLocator getResourceLocator() {
+			return MAVOMIDEditPlugin.INSTANCE;
+		}
+	}
+
+	/**
+	 * A child creation extender for the {@link OperatorPackage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class OperatorChildCreationExtender implements IChildCreationExtender {
+		/**
+		 * The switch for creating child descriptors specific to each extended class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected static class CreationSwitch extends OperatorSwitch<Object> {
+			/**
+			 * The child descriptors being populated.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected List<Object> newChildDescriptors;
+
+			/**
+			 * The domain in which to create the children.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			protected EditingDomain editingDomain;
+
+			/**
+			 * Creates the a switch for populating child descriptors in the given domain.
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+				this.newChildDescriptors = newChildDescriptors;
+				this.editingDomain = editingDomain;
+			}
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseOperator(Operator object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(OperatorPackage.Literals.OPERATOR__INPUTS,
+						 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpoint()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(OperatorPackage.Literals.OPERATOR__OUTPUTS,
+						 MAVOMIDFactory.eINSTANCE.createMAVOModelEndpoint()));
 
 				return null;
 			}

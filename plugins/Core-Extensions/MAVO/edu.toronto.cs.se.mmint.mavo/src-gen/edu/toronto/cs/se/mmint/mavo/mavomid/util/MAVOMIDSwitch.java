@@ -18,15 +18,20 @@ import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mavo.mavomid.*;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import org.eclipse.emf.ecore.EObject;
@@ -133,12 +138,12 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE: {
-				MAVOModelEndpointReference mavoModelEndpointReference = (MAVOModelEndpointReference)theEObject;
-				T result = caseMAVOModelEndpointReference(mavoModelEndpointReference);
-				if (result == null) result = caseModelEndpointReference(mavoModelEndpointReference);
-				if (result == null) result = caseExtendibleElementEndpointReference(mavoModelEndpointReference);
-				if (result == null) result = caseExtendibleElementReference(mavoModelEndpointReference);
+			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT: {
+				MAVOModelEndpoint mavoModelEndpoint = (MAVOModelEndpoint)theEObject;
+				T result = caseMAVOModelEndpoint(mavoModelEndpoint);
+				if (result == null) result = caseModelEndpoint(mavoModelEndpoint);
+				if (result == null) result = caseExtendibleElementEndpoint(mavoModelEndpoint);
+				if (result == null) result = caseExtendibleElement(mavoModelEndpoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -161,6 +166,41 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMAVOElement(binaryMAVOMapping);
 				if (result == null) result = caseExtendibleElement(binaryMAVOMapping);
 				if (result == null) result = caseLogicElement(binaryMAVOMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE: {
+				MAVOModelElementReference mavoModelElementReference = (MAVOModelElementReference)theEObject;
+				T result = caseMAVOModelElementReference(mavoModelElementReference);
+				if (result == null) result = caseModelElementReference(mavoModelElementReference);
+				if (result == null) result = caseExtendibleElementReference(mavoModelElementReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE: {
+				MAVOModelEndpointReference mavoModelEndpointReference = (MAVOModelEndpointReference)theEObject;
+				T result = caseMAVOModelEndpointReference(mavoModelEndpointReference);
+				if (result == null) result = caseModelEndpointReference(mavoModelEndpointReference);
+				if (result == null) result = caseExtendibleElementEndpointReference(mavoModelEndpointReference);
+				if (result == null) result = caseExtendibleElementReference(mavoModelEndpointReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MAVOMIDPackage.MAVO_MAPPING_REFERENCE: {
+				MAVOMappingReference mavoMappingReference = (MAVOMappingReference)theEObject;
+				T result = caseMAVOMappingReference(mavoMappingReference);
+				if (result == null) result = caseMappingReference(mavoMappingReference);
+				if (result == null) result = caseExtendibleElementReference(mavoMappingReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE: {
+				BinaryMAVOMappingReference binaryMAVOMappingReference = (BinaryMAVOMappingReference)theEObject;
+				T result = caseBinaryMAVOMappingReference(binaryMAVOMappingReference);
+				if (result == null) result = caseBinaryMappingReference(binaryMAVOMappingReference);
+				if (result == null) result = caseMAVOMappingReference(binaryMAVOMappingReference);
+				if (result == null) result = caseMappingReference(binaryMAVOMappingReference);
+				if (result == null) result = caseExtendibleElementReference(binaryMAVOMappingReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -229,6 +269,21 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model Endpoint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>MAVO Model Endpoint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMAVOModelEndpoint(MAVOModelEndpoint object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model Endpoint Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -240,6 +295,36 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMAVOModelEndpointReference(MAVOModelEndpointReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>MAVO Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>MAVO Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMAVOMappingReference(MAVOMappingReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary MAVO Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary MAVO Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryMAVOMappingReference(BinaryMAVOMappingReference object) {
 		return null;
 	}
 
@@ -270,6 +355,21 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBinaryMAVOMapping(BinaryMAVOMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>MAVO Model Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>MAVO Model Element Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMAVOModelElementReference(MAVOModelElementReference object) {
 		return null;
 	}
 
@@ -364,6 +464,36 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelEndpoint(ModelEndpoint object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -375,6 +505,21 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtendibleElementReference(ExtendibleElementReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementReference(ModelElementReference object) {
 		return null;
 	}
 
@@ -405,6 +550,36 @@ public class MAVOMIDSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelEndpointReference(ModelEndpointReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappingReference(MappingReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Mapping Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Mapping Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryMappingReference(BinaryMappingReference object) {
 		return null;
 	}
 

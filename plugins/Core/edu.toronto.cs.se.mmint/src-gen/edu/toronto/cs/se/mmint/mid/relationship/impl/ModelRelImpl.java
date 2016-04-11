@@ -54,7 +54,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
@@ -736,7 +735,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		newModelRel.setName(newModelRelName);
 
 		// models
-		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
+		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
 		for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
 			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
@@ -750,7 +749,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		// mappings
 		for (MappingReference origMappingRef : ((ModelRel) origModelRel).getMappingRefs()) {
 			MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), newModelRel);
-			MAVOUtils.copyMAVOElement(origMappingRef.getObject(), newMappingRef.getObject());
 			newMappingRef.getObject().setName(origMappingRef.getObject().getName());
 			for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
 				ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
