@@ -19,12 +19,12 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 public class ClassDiagram_MAVOEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ClassDiagram_MAVOEditPartProvider() {
-		super(
-				new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagram_MAVOEditPartFactory(),
+		super(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagram_MAVOEditPartFactory(),
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry.TYPED_INSTANCE,
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.MODEL_ID);
 	}
+
 }

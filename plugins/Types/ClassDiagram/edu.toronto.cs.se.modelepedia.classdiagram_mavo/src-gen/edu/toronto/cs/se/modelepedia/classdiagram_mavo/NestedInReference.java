@@ -20,11 +20,11 @@ import edu.toronto.cs.se.mavo.MAVOReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.NestedInReference#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getNestedInReference()
  * @model annotation="gmf.link target.decoration='square' source='source' target='target'"

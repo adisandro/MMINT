@@ -611,7 +611,7 @@ public class ClassDiagram_MAVOPackageImpl extends EPackageImpl implements ClassD
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		classDiagramEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		classDiagramEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		classEClass.getESuperTypes().add(this.getNamedElement());
 		attributeEClass.getESuperTypes().add(this.getTypedElement());
 		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());

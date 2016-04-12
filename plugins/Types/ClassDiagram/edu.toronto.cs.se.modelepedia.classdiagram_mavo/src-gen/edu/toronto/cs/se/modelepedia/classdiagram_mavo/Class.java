@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getOwnedAttributes <em>Owned Attributes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getOwnedOperations <em>Owned Operations</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsSource <em>Associations As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class#getAssociationsAsTarget <em>Associations As Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getClass_()
  * @model annotation="gmf.node label='name'"

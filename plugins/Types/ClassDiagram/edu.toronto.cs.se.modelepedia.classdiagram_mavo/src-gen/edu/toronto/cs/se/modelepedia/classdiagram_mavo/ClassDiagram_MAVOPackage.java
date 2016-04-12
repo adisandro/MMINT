@@ -84,7 +84,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__INC = MAVOPackage.MAVO_MODEL__INC;
+	int CLASS_DIAGRAM__INC = MAVOPackage.MAVO_ROOT__INC;
 
 	/**
 	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
@@ -93,7 +93,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
+	int CLASS_DIAGRAM__DECISIONS = MAVOPackage.MAVO_ROOT__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -102,7 +102,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__CLASSES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int CLASS_DIAGRAM__CLASSES = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -111,7 +111,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__DEPENDENCIES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int CLASS_DIAGRAM__DEPENDENCIES = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Associations</b></em>' containment reference list.
@@ -120,7 +120,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM__ASSOCIATIONS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int CLASS_DIAGRAM__ASSOCIATIONS = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
@@ -129,7 +129,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 3;
+	int CLASS_DIAGRAM_FEATURE_COUNT = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -138,7 +138,7 @@ public interface ClassDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int CLASS_DIAGRAM_OPERATION_COUNT = MAVOPackage.MAVO_ROOT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.

@@ -19,11 +19,11 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#isPublic <em>Public</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.TypedElement#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getTypedElement()
  * @model abstract="true"

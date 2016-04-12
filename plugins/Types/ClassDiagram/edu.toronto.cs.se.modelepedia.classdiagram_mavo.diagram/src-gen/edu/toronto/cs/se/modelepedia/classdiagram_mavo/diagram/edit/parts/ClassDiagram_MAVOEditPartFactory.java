@@ -24,8 +24,8 @@ import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAcces
 public class ClassDiagram_MAVOEditPartFactory implements EditPartFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -37,20 +37,17 @@ public class ClassDiagram_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassNameEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassNameEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassNameEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabelEditPart(
 						view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeNameEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeNameEditPart(
@@ -61,8 +58,7 @@ public class ClassDiagram_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationNameEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationNameEditPart(
@@ -81,8 +77,7 @@ public class ClassDiagram_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationNameEditPart(
@@ -109,8 +104,7 @@ public class ClassDiagram_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel7EditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.WrappingLabel7EditPart(
@@ -122,20 +116,18 @@ public class ClassDiagram_MAVOEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		return CellEditorLocatorAccess.INSTANCE
-				.getTextCellEditorLocator(source);
+	* @generated
+	*/
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 	}
 
 }

@@ -25,23 +25,23 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 public class DependencyReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DependencyReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -50,8 +50,8 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency) {
 			return false;
@@ -66,51 +66,47 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class && newEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target = getLink()
-				.getDepender();
+		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class target = getLink().getDepender();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistDependency_4004(container,
-						getLink(), getNewSource(), target);
+				.getLinkConstraints().canExistDependency_4004(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class && newEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source = getLink()
-				.getDependee();
+		edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class source = getLink().getDependee();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram container = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistDependency_4004(container,
-						getLink(), source, getNewTarget());
+				.getLinkConstraints().canExistDependency_4004(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -122,52 +118,52 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setDependee(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setDepender(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency getLink() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Dependency) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getOldSource() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getNewSource() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getOldTarget() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getNewTarget() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) newEnd;
 	}

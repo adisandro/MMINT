@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.SuperclassReferenceImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

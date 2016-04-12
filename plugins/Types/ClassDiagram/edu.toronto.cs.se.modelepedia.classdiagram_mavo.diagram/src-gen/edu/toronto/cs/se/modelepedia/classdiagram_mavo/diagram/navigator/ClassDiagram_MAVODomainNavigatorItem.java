@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -25,57 +25,51 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 public class ClassDiagram_MAVODomainNavigatorItem extends PlatformObject {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class,
-				IPropertySource.class };
-		Platform.getAdapterManager().registerAdapters(
-				new IAdapterFactory() {
+		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
-					public Object getAdapter(Object adaptableObject,
-							Class adapterType) {
-						if (adaptableObject instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem) {
-							edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem domainNavigatorItem = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem) adaptableObject;
-							EObject eObject = domainNavigatorItem.getEObject();
-							if (adapterType == EObject.class) {
-								return eObject;
-							}
-							if (adapterType == IPropertySource.class) {
-								return domainNavigatorItem
-										.getPropertySourceProvider()
-										.getPropertySource(eObject);
-							}
-						}
-
-						return null;
+			public Object getAdapter(Object adaptableObject, Class adapterType) {
+				if (adaptableObject instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem) {
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem domainNavigatorItem = (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem) adaptableObject;
+					EObject eObject = domainNavigatorItem.getEObject();
+					if (adapterType == EObject.class) {
+						return eObject;
 					}
-
-					public Class[] getAdapterList() {
-						return supportedTypes;
+					if (adapterType == IPropertySource.class) {
+						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
-				},
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem.class);
+				}
+
+				return null;
+			}
+
+			public Class[] getAdapterList() {
+				return supportedTypes;
+			}
+		}, edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem.class);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Object myParent;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EObject myEObject;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IPropertySourceProvider myPropertySourceProvider;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ClassDiagram_MAVODomainNavigatorItem(EObject eObject, Object parent,
 			IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
@@ -84,33 +78,32 @@ public class ClassDiagram_MAVODomainNavigatorItem extends PlatformObject {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object getParent() {
 		return myParent;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EObject getEObject() {
 		return myEObject;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IPropertySourceProvider getPropertySourceProvider() {
 		return myPropertySourceProvider;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean equals(Object obj) {
 		if (obj instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
+			return EcoreUtil.getURI(getEObject())
 					.equals(EcoreUtil
 							.getURI(((edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVODomainNavigatorItem) obj)
 									.getEObject()));
@@ -119,8 +112,8 @@ public class ClassDiagram_MAVODomainNavigatorItem extends PlatformObject {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}

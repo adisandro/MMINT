@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.classdiagram_mavo" modelName="ClassDiagram_MAVO"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     usedGenPackages="../../edu.toronto.cs.se.mavo/model/mavo.genmodel#//mavo" operationReflection="true">
   <foreignModel>classdiagram_mavo.ecore</foreignModel>
   <genPackages prefix="ClassDiagram_MAVO" basePackage="edu.toronto.cs.se.modelepedia"

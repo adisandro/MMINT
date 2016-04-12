@@ -15,6 +15,5 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers;
  * @generated
  */
 public class SuperclassReferenceEditHelper
-		extends
-		edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.ClassDiagram_MAVOBaseEditHelper {
+		extends edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.helpers.ClassDiagram_MAVOBaseEditHelper {
 }

@@ -20,11 +20,11 @@ import edu.toronto.cs.se.mavo.MAVOReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getSuperclassReference()
  * @model annotation="gmf.link target.decoration='closedarrow' source='source' target='target'"

@@ -1,14 +1,15 @@
+
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -22,12 +23,11 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider
-		implements ILabelProvider {
+public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getText(Object element) {
 		element = unwrap(element);
 		if (element instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.navigator.ClassDiagram_MAVONavigatorGroup) {
@@ -39,8 +39,8 @@ public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Image getImage(Object element) {
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null
@@ -49,8 +49,8 @@ public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Object unwrap(Object element) {
 		if (element instanceof IStructuredSelection) {
 			return ((IStructuredSelection) element).getFirstElement();
@@ -59,8 +59,8 @@ public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private View getView(Object element) {
 		if (element instanceof View) {
 			return (View) element;
@@ -72,8 +72,8 @@ public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IElementType getElementType(View view) {
 		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
 		while (view != null) {
@@ -84,8 +84,7 @@ public class ClassDiagram_MAVOSheetLabelProvider extends BaseLabelProvider
 			if (etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer()
-					: null;
+			view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
 		}
 		return null;
 	}

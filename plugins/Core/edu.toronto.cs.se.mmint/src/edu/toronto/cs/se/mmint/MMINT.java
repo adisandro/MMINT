@@ -122,12 +122,8 @@ public class MMINT implements MMINTConstants {
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
 	/* TODO MMINT[IN PROGRESS branch mavo_out]
-	 * - Decouple from MAVO framework: use a kleisli-like mechanism MAVORoot->Model with overridden apis, where the current MAVORoot becomes a simple MAVORoot
 	 * - Rethink mid link icons with/without MAVO
-	 * - Rename link to mapping
-	 * - Unify createInstance/Subtype() for Model and ModelRel, removing origin and isBinary
-	 * - Add createBinaryInstance/Subtype() to ModelRel
-	 * - Rename all multimodels (vars and api names) to MID
+	 * - Add createBinaryInstance/Subtype() to ModelRel and Mapping
 	 */
 	/* TODO MMINT[USABILITY]
 	 * - Default deletion to remove model file as well

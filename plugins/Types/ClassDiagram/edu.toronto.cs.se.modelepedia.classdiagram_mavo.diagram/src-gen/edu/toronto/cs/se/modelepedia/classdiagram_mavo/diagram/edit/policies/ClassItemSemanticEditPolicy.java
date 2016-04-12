@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies;
 
 import java.util.Iterator;
@@ -29,56 +29,53 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ClassItemSemanticEditPolicy
-		extends
+public class ClassItemSemanticEditPolicy extends
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ClassItemSemanticEditPolicy() {
-		super(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Class_2001);
+		super(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Class_2001);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+					.getVisualID(
+							incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+					.getVisualID(
+							incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+					.getVisualID(
+							incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						incomingLink.getElement(), false);
+					.getVisualID(
+							incomingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -87,33 +84,33 @@ public class ClassItemSemanticEditPolicy
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+					.getVisualID(
+							outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+					.getVisualID(
+							outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+					.getVisualID(
+							outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
+					.getVisualID(
+							outgoingLink) == edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
@@ -133,8 +130,8 @@ public class ClassItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View) getHost().getModel();
 		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
@@ -142,15 +139,13 @@ public class ClassItemSemanticEditPolicy
 			switch (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.getVisualID(node)) {
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassClassOwnedAttributesCompartmentEditPart.VISUAL_ID:
-				for (Iterator<?> cit = node.getChildren().iterator(); cit
-						.hasNext();) {
+				for (Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 							.getVisualID(cnode)) {
 					case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
-								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
+								new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
@@ -158,15 +153,13 @@ public class ClassItemSemanticEditPolicy
 				}
 				break;
 			case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassClassOwnedOperationsCompartmentEditPart.VISUAL_ID:
-				for (Iterator<?> cit = node.getChildren().iterator(); cit
-						.hasNext();) {
+				for (Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 							.getVisualID(cnode)) {
 					case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
-								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
+								new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
@@ -183,34 +176,36 @@ public class ClassItemSemanticEditPolicy
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
 				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.AssociationCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.NestedInReferenceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.NestedInReferenceCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.SuperclassReferenceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.SuperclassReferenceCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.DependencyCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -218,27 +213,30 @@ public class ClassItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Association_4001 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.AssociationCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.AssociationCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.NestedInReference_4002 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.NestedInReferenceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.NestedInReferenceCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.SuperclassReference_4003 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.SuperclassReferenceCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.SuperclassReferenceCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes.Dependency_4004 == req
 				.getElementType()) {
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.DependencyCreateCommand(
+							req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -249,21 +247,24 @@ public class ClassItemSemanticEditPolicy
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID:
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.AssociationReorientCommand(
-					req));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.AssociationReorientCommand(
+							req));
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID:
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.NestedInReferenceReorientCommand(
-					req));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.NestedInReferenceReorientCommand(
+							req));
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID:
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.SuperclassReferenceReorientCommand(
-					req));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.SuperclassReferenceReorientCommand(
+							req));
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.DependencyReorientCommand(
-					req));
+			return getGEFWrapper(
+					new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.commands.DependencyReorientCommand(
+							req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

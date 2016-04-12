@@ -18,10 +18,10 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.Operation#getOwner <em>Owner</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage#getOperation()
  * @model annotation="gmf.node label='name'"

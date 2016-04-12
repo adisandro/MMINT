@@ -28,97 +28,97 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 /**
  * @generated
  */
-public class ClassDiagram_MAVOCreationWizard extends Wizard implements
-		INewWizard {
+public class ClassDiagram_MAVOCreationWizard extends Wizard implements INewWizard {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IWorkbench workbench;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IStructuredSelection selection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOCreationWizardPage diagramModelFilePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOCreationWizardPage domainModelFilePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Resource diagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean openNewlyCreatedDiagramEditor = true;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IWorkbench getWorkbench() {
 		return workbench;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStructuredSelection getSelection() {
 		return selection;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final Resource getDiagram() {
 		return diagram;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final boolean isOpenNewlyCreatedDiagramEditor() {
 		return openNewlyCreatedDiagramEditor;
 	}
 
 	/**
-	 * @generated
-	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	* @generated
+	*/
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizardTitle);
-		setDefaultPageImageDescriptor(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewClassDiagram_MAVOWizard.gif")); //$NON-NLS-1$
+		setWindowTitle(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizardTitle);
+		setDefaultPageImageDescriptor(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
+						.getBundledImageDescriptor("icons/wizban/NewClassDiagram_MAVOWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addPages() {
 		diagramModelFilePage = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOCreationWizardPage(
 				"DiagramModelFile", getSelection(), "classdiagramdiag_mavo"); //$NON-NLS-1$ //$NON-NLS-2$
-		diagramModelFilePage
-				.setTitle(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DiagramModelFilePageTitle);
-		diagramModelFilePage
-				.setDescription(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DiagramModelFilePageDescription);
+		diagramModelFilePage.setTitle(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DiagramModelFilePageTitle);
+		diagramModelFilePage.setDescription(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
 		domainModelFilePage = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOCreationWizardPage(
@@ -127,43 +127,38 @@ public class ClassDiagram_MAVOCreationWizard extends Wizard implements
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length()
-							- ".classdiagramdiag_mavo".length()); //$NON-NLS-1$
-					setFileName(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorUtil
-							.getUniqueFileName(getContainerFullPath(),
-									fileName, "classdiagram_mavo")); //$NON-NLS-1$
+					fileName = fileName.substring(0, fileName.length() - ".classdiagramdiag_mavo".length()); //$NON-NLS-1$
+					setFileName(
+							edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorUtil
+									.getUniqueFileName(getContainerFullPath(), fileName, "classdiagram_mavo")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}
 		};
-		domainModelFilePage
-				.setTitle(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DomainModelFilePageTitle);
-		domainModelFilePage
-				.setDescription(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DomainModelFilePageDescription);
+		domainModelFilePage.setTitle(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DomainModelFilePageTitle);
+		domainModelFilePage.setDescription(
+				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizard_DomainModelFilePageDescription);
 		addPage(domainModelFilePage);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
 				diagram = edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorUtil
-						.createDiagram(diagramModelFilePage.getURI(),
-								domainModelFilePage.getURI(), monitor);
+						.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorUtil
 								.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog
-								.openError(
-										getContainer().getShell(),
-										edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizardOpenEditorError,
-										null, e.getStatus());
+						ErrorDialog.openError(getContainer().getShell(),
+								edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizardOpenEditorError,
+								null, e.getStatus());
 					}
 				}
 			}
@@ -174,17 +169,12 @@ public class ClassDiagram_MAVOCreationWizard extends Wizard implements
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog
-						.openError(
-								getContainer().getShell(),
-								edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizardCreationError,
-								null, ((CoreException) e.getTargetException())
-										.getStatus());
+				ErrorDialog.openError(getContainer().getShell(),
+						edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.Messages.ClassDiagram_MAVOCreationWizardCreationError,
+						null, ((CoreException) e.getTargetException()).getStatus());
 			} else {
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
-						.getInstance()
-						.logError(
-								"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+						.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

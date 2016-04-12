@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
+import edu.toronto.cs.se.mavo.provider.MAVORootItemProvider;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ClassDiagramItemProvider
-	extends MAVOModelItemProvider {
+	extends MAVORootItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

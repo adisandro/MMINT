@@ -19,406 +19,406 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Messages() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizard_DiagramModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizard_DiagramModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizard_DomainModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizard_DomainModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizardOpenEditorError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizardCreationError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOCreationWizardPageExtensionError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditorUtil_OpenModelResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditorUtil_OpenModelResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditorUtil_CreateDiagramProgressTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditorUtil_CreateDiagramCommandLabel;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_isModifiable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_handleElementContentChanged;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_IncorrectInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_NoDiagramInResourceError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_DiagramLoadingError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_UnsynchronizedFileSaveError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_SaveDiagramTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_SaveNextResourceTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODocumentProvider_SaveAsOperation;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_WizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_OpenModelFileDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_CreationPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_CreationPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_CreationPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_InitDiagramCommand;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVONewDiagramFileWizard_IncorrectRootError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditor_SavingDeletedFile;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditor_SaveAsErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditor_SaveAsErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditor_SaveErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVODiagramEditor_SaveErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOElementChooserDialog_SelectModelElementTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ModelElementSelectionPageMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ValidateActionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Objects1Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Connections2Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Attribute1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Attribute1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Class2CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Class2CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Operation3CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Operation3CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Association1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Association1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Dependency2CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Dependency2CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NestedInReference3CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NestedInReference3CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String SuperclassReference4CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String SuperclassReference4CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassClassOwnedAttributesCompartmentEditPart_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassClassOwnedOperationsCompartmentEditPart_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String CommandName_OpenDiagram;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_NestedInReference_4002_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_NestedInReference_4002_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_SuperclassReference_4003_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_SuperclassReference_4003_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Dependency_4004_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Dependency_4004_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Association_4001_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Association_4001_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Class_2001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Class_2001_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_ClassDiagram_1000_links;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
+	public static String NavigatorGroupName_Class_2001_incominglinks;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_Class_2001_outgoinglinks;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_Association_4001_target;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_Association_4001_source;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_NestedInReference_4002_target;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_NestedInReference_4002_source;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_SuperclassReference_4003_target;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_SuperclassReference_4003_source;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_Dependency_4004_target;
+
+	/**
+	* @generated
+	*/
+	public static String NavigatorGroupName_Dependency_4004_source;
+
+	/**
+	* @generated
+	*/
 	public static String NavigatorActionProvider_OpenDiagramActionName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MessageFormatParser_InvalidInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOModelingAssistantProviderTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassDiagram_MAVOModelingAssistantProviderMessage;
 
 	//TODO: put accessor fields manually	

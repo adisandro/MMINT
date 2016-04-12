@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl#getDependee <em>Dependee</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram_mavo.impl.DependencyImpl#getDepender <em>Depender</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

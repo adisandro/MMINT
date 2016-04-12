@@ -76,7 +76,7 @@ public class MAVODiagramContextMenu extends ContributionItem {
 		Object[] objects = ((StructuredSelection) selection).toArray();
 
 		// get selection
-		List<MAVOElement> mavoModelObjs = new ArrayList<MAVOElement>();
+		List<MAVOElement> mavoModelObjs = new ArrayList<>();
 		for (Object object : objects) {
 			GraphicalEditPart editPart = (GraphicalEditPart) object;
 			EObject editPartElement = ((View) editPart.getModel()).getElement();

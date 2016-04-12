@@ -31,155 +31,148 @@ import org.eclipse.swt.graphics.Image;
 public class ClassDiagram_MAVOElementTypes {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ClassDiagram_MAVOElementTypes() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Map<IElementType, ENamedElement> elements;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
 					.getInstance().getItemProvidersAdapterFactory());
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType ClassDiagram_1000 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.ClassDiagram_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType ClassDiagram_1000 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.ClassDiagram_1000"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Class_2001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Class_2001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Class_2001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Class_2001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Attribute_3001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Attribute_3001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Attribute_3001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Attribute_3001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Operation_3002 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Operation_3002"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Operation_3002 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Operation_3002"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Association_4001 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Association_4001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Association_4001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Association_4001"); //$NON-NLS-1$
+	/**
+	* @generated
+	*/
+	public static final IElementType NestedInReference_4002 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4002"); //$NON-NLS-1$
+	/**
+	* @generated
+	*/
+	public static final IElementType SuperclassReference_4003 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.SuperclassReference_4003"); //$NON-NLS-1$
+	/**
+	* @generated
+	*/
+	public static final IElementType Dependency_4004 = getElementType(
+			"edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4004"); //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType NestedInReference_4002 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.NestedInReference_4002"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType SuperclassReference_4003 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.SuperclassReference_4003"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Dependency_4004 = getElementType("edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.Dependency_4004"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(ENamedElement element) {
 		return elementTypeImages.getImage(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		return getImageDescriptor(getElement(hint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(IAdaptable hint) {
 		return getImage(getElement(hint));
 	}
 
 	/**
-	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
-	 * @generated
-	 */
+	* Returns 'type' of the ecore object associated with the hint.
+	* 
+	* @generated
+	*/
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(
-					ClassDiagram_1000,
+			elements.put(ClassDiagram_1000,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
 							.getClassDiagram());
 
-			elements.put(
-					Class_2001,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-							.getClass_());
+			elements.put(Class_2001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_());
 
-			elements.put(
-					Attribute_3001,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-							.getAttribute());
+			elements.put(Attribute_3001,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getAttribute());
 
-			elements.put(
-					Operation_3002,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-							.getOperation());
+			elements.put(Operation_3002,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getOperation());
 
-			elements.put(
-					Association_4001,
+			elements.put(Association_4001,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
 							.getAssociation());
 
-			elements.put(
-					NestedInReference_4002,
+			elements.put(NestedInReference_4002,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
 							.getNestedInReference());
 
-			elements.put(
-					SuperclassReference_4003,
+			elements.put(SuperclassReference_4003,
 					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
 							.getSuperclassReference());
 
-			elements.put(
-					Dependency_4004,
-					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-							.getDependency());
+			elements.put(Dependency_4004,
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getDependency());
 		}
 		return (ENamedElement) elements.get(type);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IElementType getElementType(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
@@ -196,8 +189,8 @@ public class ClassDiagram_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.VISUAL_ID:
@@ -221,35 +214,36 @@ public class ClassDiagram_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
-	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(
-			elementTypeImages) {
+	* @generated
+	*/
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public boolean isKnownElementType(IElementType elementType) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
 					.isKnownElementType(elementType);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
 					.getElementType(visualID);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
-		public ENamedElement getDefiningNamedElement(
-				IAdaptable elementTypeAdapter) {
+
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOElementTypes
 					.getElement(elementTypeAdapter);
 		}

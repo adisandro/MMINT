@@ -18,14 +18,13 @@ import org.eclipse.gmf.tooling.runtime.part.DefaultModelElementSelectionPage;
  * @generated
  */
 public class ModelElementSelectionPage extends DefaultModelElementSelectionPage {
+
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementSelectionPage(String pageName) {
-		super(
-				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory(),
-				pageName);
+		super(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
+				.getInstance().getItemProvidersAdapterFactory(), pageName);
 	}
 
 	/**

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -28,13 +28,13 @@ import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 public class ClassDiagram_MAVOVisualIDRegistry {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final String DEBUG_KEY = "edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram/debug/visualID"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static int getVisualID(View view) {
 		if (view instanceof Diagram) {
 			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.MODEL_ID
@@ -49,8 +49,8 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String getModelID(View view) {
 		View diagram = view.getDiagram();
 		while (view != diagram) {
@@ -64,39 +64,36 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static int getVisualID(String type) {
 		try {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(
-					Platform.getDebugOption(DEBUG_KEY))) {
+			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
 				edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorPlugin
-						.getInstance().logError(
-								"Unable to parse view type as a visualID number: "
-										+ type);
+						.getInstance().logError("Unable to parse view type as a visualID number: " + type);
 			}
 		}
 		return -1;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String getType(int visualID) {
 		return Integer.toString(visualID);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static int getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-				.getClassDiagram().isSuperTypeOf(domainElement.eClass())
+		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram()
+				.isSuperTypeOf(domainElement.eClass())
 				&& isDiagram((edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram) domainElement)) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.VISUAL_ID;
 		}
@@ -104,8 +101,8 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
@@ -113,8 +110,7 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 		String containerModelID = edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 				.getModelID(containerView);
 		if (!edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.MODEL_ID
-				.equals(containerModelID)
-				&& !"classdiagram_mavo".equals(containerModelID)) { //$NON-NLS-1$
+				.equals(containerModelID) && !"classdiagram_mavo".equals(containerModelID)) { //$NON-NLS-1$
 			return -1;
 		}
 		int containerVisualID;
@@ -131,20 +127,20 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.VISUAL_ID:
-			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getClass_().isSuperTypeOf(domainElement.eClass())) {
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getClass_()
+					.isSuperTypeOf(domainElement.eClass())) {
 				return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID;
 			}
 			break;
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassClassOwnedAttributesCompartmentEditPart.VISUAL_ID:
-			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getAttribute().isSuperTypeOf(domainElement.eClass())) {
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getAttribute()
+					.isSuperTypeOf(domainElement.eClass())) {
 				return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AttributeEditPart.VISUAL_ID;
 			}
 			break;
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassClassOwnedOperationsCompartmentEditPart.VISUAL_ID:
-			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getOperation().isSuperTypeOf(domainElement.eClass())) {
+			if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getOperation()
+					.isSuperTypeOf(domainElement.eClass())) {
 				return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID;
 			}
 			break;
@@ -153,14 +149,13 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 				.getModelID(containerView);
 		if (!edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.MODEL_ID
-				.equals(containerModelID)
-				&& !"classdiagram_mavo".equals(containerModelID)) { //$NON-NLS-1$
+				.equals(containerModelID) && !"classdiagram_mavo".equals(containerModelID)) { //$NON-NLS-1$
 			return false;
 		}
 		int containerVisualID;
@@ -249,47 +244,45 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-				.getAssociation().isSuperTypeOf(domainElement.eClass())) {
+		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getAssociation()
+				.isSuperTypeOf(domainElement.eClass())) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.AssociationEditPart.VISUAL_ID;
 		}
-		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-				.getNestedInReference().isSuperTypeOf(domainElement.eClass())) {
+		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getNestedInReference()
+				.isSuperTypeOf(domainElement.eClass())) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.NestedInReferenceEditPart.VISUAL_ID;
 		}
-		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-				.getSuperclassReference().isSuperTypeOf(domainElement.eClass())) {
+		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getSuperclassReference()
+				.isSuperTypeOf(domainElement.eClass())) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.SuperclassReferenceEditPart.VISUAL_ID;
 		}
-		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-				.getDependency().isSuperTypeOf(domainElement.eClass())) {
+		if (edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE.getDependency()
+				.isSuperTypeOf(domainElement.eClass())) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.DependencyEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
-	 * 
-	 * @generated
-	 */
-	private static boolean isDiagram(
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram element) {
+	* User can change implementation of this method to handle some specific
+	* situations not covered by default logic.
+	* 
+	* @generated
+	*/
+	private static boolean isDiagram(edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram element) {
 		return true;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static boolean checkNodeVisualID(View containerView,
-			EObject domainElement, int candidate) {
+	* @generated
+	*/
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 		if (candidate == -1) {
 			//unrecognized id is always bad
 			return false;
@@ -299,8 +292,8 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isCompartmentVisualID(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassClassOwnedAttributesCompartmentEditPart.VISUAL_ID:
@@ -313,8 +306,8 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isSemanticLeafVisualID(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassDiagramEditPart.VISUAL_ID:
@@ -329,59 +322,64 @@ public class ClassDiagram_MAVOVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public int getVisualID(View view) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.getVisualID(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String getModelID(View view) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.getModelID(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public int getNodeVisualID(View containerView, EObject domainElement) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.getNodeVisualID(containerView, domainElement);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
-		public boolean checkNodeVisualID(View containerView,
-				EObject domainElement, int candidate) {
+
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public boolean isCompartmentVisualID(int visualID) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.isCompartmentVisualID(visualID);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public boolean isSemanticLeafVisualID(int visualID) {
 			return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
 					.isSemanticLeafVisualID(visualID);

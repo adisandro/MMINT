@@ -68,7 +68,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -90,7 +90,7 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 			case ClassDiagram_MAVOPackage.CLASS_DIAGRAM: {
 				ClassDiagram classDiagram = (ClassDiagram)theEObject;
 				T result = caseClassDiagram(classDiagram);
-				if (result == null) result = caseMAVOModel(classDiagram);
+				if (result == null) result = caseMAVORoot(classDiagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -330,17 +330,17 @@ public class ClassDiagram_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Root</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Root</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMAVOModel(MAVORoot object) {
+	public T caseMAVORoot(MAVORoot object) {
 		return null;
 	}
 

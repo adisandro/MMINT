@@ -29,21 +29,21 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
 /**
  * @generated
  */
-public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser className_5005Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getClassName_5005Parser() {
 		if (className_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			className_5005Parser = parser;
@@ -52,13 +52,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser classLabel_5006Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getClassLabel_5006Parser() {
 		if (classLabel_5006Parser == null) {
 			classLabel_5006Parser = new MAVOElementLabelParser();
@@ -67,17 +67,18 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser attributeName_5001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getAttributeName_5001Parser() {
 		if (attributeName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			attributeName_5001Parser = parser;
@@ -86,13 +87,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser attributeLabel_5002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getAttributeLabel_5002Parser() {
 		if (attributeLabel_5002Parser == null) {
 			attributeLabel_5002Parser = new MAVOElementLabelParser();
@@ -101,17 +102,18 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser operationName_5003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getOperationName_5003Parser() {
 		if (operationName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			operationName_5003Parser = parser;
@@ -120,13 +122,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser operationLabel_5004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getOperationLabel_5004Parser() {
 		if (operationLabel_5004Parser == null) {
 			operationLabel_5004Parser = new MAVOElementLabelParser();
@@ -135,17 +137,18 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser associationName_6001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getAssociationName_6001Parser() {
 		if (associationName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			associationName_6001Parser = parser;
@@ -154,13 +157,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser associationLabel_6002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getAssociationLabel_6002Parser() {
 		if (associationLabel_6002Parser == null) {
 			associationLabel_6002Parser = new MAVOElementLabelParser();
@@ -169,13 +172,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser nestedInReferenceLabel_6003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getNestedInReferenceLabel_6003Parser() {
 		if (nestedInReferenceLabel_6003Parser == null) {
 			nestedInReferenceLabel_6003Parser = new MAVOElementLabelParser();
@@ -184,13 +187,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser superclassReferenceLabel_6004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getSuperclassReferenceLabel_6004Parser() {
 		if (superclassReferenceLabel_6004Parser == null) {
 			superclassReferenceLabel_6004Parser = new MAVOElementLabelParser();
@@ -199,13 +202,13 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser dependencyLabel_6005Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getDependencyLabel_6005Parser() {
 		if (dependencyLabel_6005Parser == null) {
 			dependencyLabel_6005Parser = new MAVOElementLabelParser();
@@ -214,8 +217,8 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.parts.ClassNameEditPart.VISUAL_ID:
@@ -245,35 +248,35 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * Utility method that consults ParserService
-	 * @generated
-	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	* Utility method that consults ParserService
+	* @generated
+	*/
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(vid));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
-					.getVisualID(view));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOVisualIDRegistry
+							.getVisualID(view));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -287,18 +290,18 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final IElementType elementType;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -306,8 +309,8 @@ public class ClassDiagram_MAVOParserProvider extends AbstractProvider implements
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

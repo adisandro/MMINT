@@ -29,25 +29,24 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 public class SuperclassReferenceCreateCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class container;
 
 	/**
-	 * @generated
-	 */
-	public SuperclassReferenceCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	* @generated
+	*/
+	public SuperclassReferenceCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -55,18 +54,16 @@ public class SuperclassReferenceCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null
-				&& false == source instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) {
+		if (source != null && false == source instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) {
 			return false;
 		}
-		if (target != null
-				&& false == target instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) {
+		if (target != null && false == target instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -77,18 +74,15 @@ public class SuperclassReferenceCreateCommand extends EditElementCommand {
 			return false;
 		}
 		return edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.edit.policies.ClassDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canCreateSuperclassReference_4003(
-						getContainer(), getSource(), getTarget());
+				.getLinkConstraints().canCreateSuperclassReference_4003(getContainer(), getSource(), getTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference newElement = edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory.eINSTANCE
@@ -103,70 +97,61 @@ public class SuperclassReferenceCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
-	protected void doConfigure(
-			edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	* @generated
+	*/
+	protected void doConfigure(edu.toronto.cs.se.modelepedia.classdiagram_mavo.SuperclassReference newElement,
+			IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
-				getSource());
-		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
-				getTarget());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getSource() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) source;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getTarget() {
 		return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) target;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class getContainer() {
 		return container;
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container.
-	 * Modify with appropriate logic.
-	 * @generated
-	 */
-	private static edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class deduceContainer(
-			EObject source, EObject target) {
+	* Default approach is to traverse ancestors of the source to find instance of container.
+	* Modify with appropriate logic.
+	* @generated
+	*/
+	private static edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class deduceContainer(EObject source,
+			EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) {
 				return (edu.toronto.cs.se.modelepedia.classdiagram_mavo.Class) element;
 			}

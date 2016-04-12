@@ -14,8 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.assist
 /**
  * @generated
  */
-public class ClassDiagram_MAVOModelingAssistantProviderOfAttributeEditPart
-		extends
+public class ClassDiagram_MAVOModelingAssistantProviderOfAttributeEditPart extends
 		edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.providers.ClassDiagram_MAVOModelingAssistantProvider {
 
 }
