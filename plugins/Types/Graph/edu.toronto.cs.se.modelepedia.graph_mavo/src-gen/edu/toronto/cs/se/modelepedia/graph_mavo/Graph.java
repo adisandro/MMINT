@@ -21,11 +21,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.Graph#getNodes <em>Nodes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.Graph#getEdges <em>Edges</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage#getGraph()
  * @model

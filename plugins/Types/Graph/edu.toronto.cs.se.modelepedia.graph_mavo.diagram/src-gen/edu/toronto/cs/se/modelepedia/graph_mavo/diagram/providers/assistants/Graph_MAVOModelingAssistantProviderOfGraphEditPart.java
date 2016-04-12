@@ -21,13 +21,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
  * @generated
  */
 public class Graph_MAVOModelingAssistantProviderOfGraphEditPart
-		extends
-		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOModelingAssistantProvider {
+		extends edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOModelingAssistantProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getTypesForPopupBar(IAdaptable host) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Node_2001);

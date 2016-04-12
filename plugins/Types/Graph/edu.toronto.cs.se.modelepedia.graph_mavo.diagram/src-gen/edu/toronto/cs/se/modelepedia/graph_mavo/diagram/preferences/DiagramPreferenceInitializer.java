@@ -20,28 +20,26 @@ import org.eclipse.jface.preference.IPreferenceStore;
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramGeneralPreferencePage
-				.initDefaults(store);
+		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramGeneralPreferencePage.initDefaults(store);
 		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramAppearancePreferencePage
 				.initDefaults(store);
 		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramConnectionsPreferencePage
 				.initDefaults(store);
-		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramPrintingPreferencePage
-				.initDefaults(store);
+		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramPrintingPreferencePage.initDefaults(store);
 		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.preferences.DiagramRulersAndGridPreferencePage
 				.initDefaults(store);
 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPreferenceStore getPreferenceStore() {
-		return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-				.getInstance().getPreferenceStore();
+		return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+				.getPreferenceStore();
 	}
 }

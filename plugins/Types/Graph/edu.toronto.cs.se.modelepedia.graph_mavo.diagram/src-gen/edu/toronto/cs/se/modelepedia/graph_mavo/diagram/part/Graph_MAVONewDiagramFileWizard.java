@@ -45,25 +45,25 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 public class Graph_MAVONewDiagramFileWizard extends Wizard {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private WizardNewFileCreationPage myFileCreationPage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.ModelElementSelectionPage diagramRootElementSelectionPage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private TransactionalEditingDomain myEditingDomain;
 
 	/**
-	 * @generated
-	 */
-	public Graph_MAVONewDiagramFileWizard(URI domainModelURI,
-			EObject diagramRoot, TransactionalEditingDomain editingDomain) {
+	* @generated
+	*/
+	public Graph_MAVONewDiagramFileWizard(URI domainModelURI, EObject diagramRoot,
+			TransactionalEditingDomain editingDomain) {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
@@ -71,148 +71,127 @@ public class Graph_MAVONewDiagramFileWizard extends Wizard {
 		myFileCreationPage = new WizardNewFileCreationPage(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_CreationPageName,
 				StructuredSelection.EMPTY);
-		myFileCreationPage
-				.setTitle(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_CreationPageTitle);
-		myFileCreationPage
-				.setDescription(NLS
-						.bind(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_CreationPageDescription,
-								edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID));
+		myFileCreationPage.setTitle(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_CreationPageTitle);
+		myFileCreationPage.setDescription(NLS.bind(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_CreationPageDescription,
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID));
 		IPath filePath;
-		String fileName = URI.decode(domainModelURI.trimFileExtension()
-				.lastSegment());
+		String fileName = URI.decode(domainModelURI.trimFileExtension().lastSegment());
 		if (domainModelURI.isPlatformResource()) {
-			filePath = new Path(domainModelURI.trimSegments(1)
-					.toPlatformString(true));
+			filePath = new Path(domainModelURI.trimSegments(1).toPlatformString(true));
 		} else if (domainModelURI.isFile()) {
 			filePath = new Path(domainModelURI.trimSegments(1).toFileString());
 		} else {
 			// TODO : use some default path
-			throw new IllegalArgumentException(
-					"Unsupported URI: " + domainModelURI); //$NON-NLS-1$
+			throw new IllegalArgumentException("Unsupported URI: " + domainModelURI); //$NON-NLS-1$
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
-		myFileCreationPage
-				.setFileName(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
-						.getUniqueFileName(filePath, fileName, "graphdiag_mavo")); //$NON-NLS-1$
+		myFileCreationPage.setFileName(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
+				.getUniqueFileName(filePath, fileName, "graphdiag_mavo")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageName);
-		diagramRootElementSelectionPage
-				.setTitle(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageTitle);
-		diagramRootElementSelectionPage
-				.setDescription(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageDescription);
+		diagramRootElementSelectionPage.setTitle(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageTitle);
+		diagramRootElementSelectionPage.setDescription(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
 
 		myEditingDomain = editingDomain;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addPages() {
 		addPage(myFileCreationPage);
 		addPage(diagramRootElementSelectionPage);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean performFinish() {
 		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
-		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
-				.setCharset(diagramFile);
+		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
-		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile
-				.getFullPath().toString(), true);
+		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile.getFullPath().toString(), true);
 		ResourceSet resourceSet = myEditingDomain.getResourceSet();
-		final Resource diagramResource = resourceSet
-				.createResource(diagramModelURI);
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-				myEditingDomain,
+		final Resource diagramResource = resourceSet.createResource(diagramModelURI);
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(myEditingDomain,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_InitDiagramCommand,
 				affectedFiles) {
 
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				int diagramVID = edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVOVisualIDRegistry
-						.getDiagramVisualID(diagramRootElementSelectionPage
-								.getModelElement());
+						.getDiagramVisualID(diagramRootElementSelectionPage.getModelElement());
 				if (diagramVID != edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.VISUAL_ID) {
-					return CommandResult
-							.newErrorCommandResult(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_IncorrectRootError);
+					return CommandResult.newErrorCommandResult(
+							edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_IncorrectRootError);
 				}
-				Diagram diagram = ViewService
-						.createDiagram(
-								diagramRootElementSelectionPage
-										.getModelElement(),
-								edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID,
-								edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(diagramRootElementSelectionPage.getModelElement(),
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID,
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new NullProgressMonitor(), null);
-			diagramResource
-					.save(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
-							.getSaveOptions());
+			OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
+			diagramResource.save(
+					edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil.getSaveOptions());
 			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
 					.openDiagram(diagramResource);
 		} catch (ExecutionException e) {
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Unable to create model and diagram", e); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+					.logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		} catch (IOException ex) {
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+					.logError("Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
 		} catch (PartInitException ex) {
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-					.getInstance().logError("Unable to open editor", ex); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+					.logError("Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return true;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class DiagramRootElementSelectionPage
-			extends
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.ModelElementSelectionPage {
+			extends edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.ModelElementSelectionPage {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected DiagramRootElementSelectionPage(String pageName) {
 			super(pageName);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected String getSelectionTitle() {
 			return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected boolean validatePage() {
 			if (getModelElement() == null) {
-				setErrorMessage(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
+				setErrorMessage(
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
-			boolean result = ViewService
-					.getInstance()
-					.provides(
-							new CreateDiagramViewOperation(
-									new EObjectAdapter(getModelElement()),
-									edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID,
-									edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+			boolean result = ViewService.getInstance()
+					.provides(new CreateDiagramViewOperation(new EObjectAdapter(
+							getModelElement()),
+					edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID,
+					edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null
 					: edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVONewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;

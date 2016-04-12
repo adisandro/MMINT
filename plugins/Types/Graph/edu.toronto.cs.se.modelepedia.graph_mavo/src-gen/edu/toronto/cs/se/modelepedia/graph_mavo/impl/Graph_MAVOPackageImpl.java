@@ -297,7 +297,7 @@ public class Graph_MAVOPackageImpl extends EPackageImpl implements Graph_MAVOPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		graphEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		graphEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		nodeEClass.getESuperTypes().add(this.getNamedElement());
 		edgeEClass.getESuperTypes().add(this.getNamedElement());

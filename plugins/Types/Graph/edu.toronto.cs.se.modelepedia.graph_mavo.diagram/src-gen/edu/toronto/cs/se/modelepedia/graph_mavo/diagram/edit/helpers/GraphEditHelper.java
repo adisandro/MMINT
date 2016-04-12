@@ -15,6 +15,5 @@ package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.helpers;
  * @generated
  */
 public class GraphEditHelper
-		extends
-		edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.helpers.Graph_MAVOBaseEditHelper {
+		extends edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.helpers.Graph_MAVOBaseEditHelper {
 }

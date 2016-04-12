@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator;
 
 import org.eclipse.core.resources.IFile;
@@ -39,33 +39,30 @@ import org.eclipse.ui.part.FileEditorInput;
 public class Graph_MAVONavigatorLinkHelper implements ILinkHelper {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IEditorInput getEditorInput(Diagram diagram) {
 		Resource diagramResource = diagram.eResource();
 		for (EObject nextEObject : diagramResource.getContents()) {
 			if (nextEObject == diagram) {
-				return new FileEditorInput(
-						WorkspaceSynchronizer.getFile(diagramResource));
+				return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
 			}
 			if (nextEObject instanceof Diagram) {
 				break;
 			}
 		}
 		URI uri = EcoreUtil.getURI(diagram);
-		String editorName = uri.lastSegment() + '#'
-				+ diagram.eResource().getContents().indexOf(diagram);
+		String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 		IEditorInput editorInput = new URIEditorInput(uri, editorName);
 		return editorInput;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStructuredSelection findSelection(IEditorInput anInput) {
 		IDiagramDocument document = edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-				.getInstance().getDocumentProvider()
-				.getDiagramDocument(anInput);
+				.getInstance().getDocumentProvider().getDiagramDocument(anInput);
 		if (document == null) {
 			return StructuredSelection.EMPTY;
 		}
@@ -83,14 +80,14 @@ public class Graph_MAVONavigatorLinkHelper implements ILinkHelper {
 	}
 
 	/**
-	 * @generated
-	 */
-	public void activateEditor(IWorkbenchPage aPage,
-			IStructuredSelection aSelection) {
+	* @generated
+	*/
+	public void activateEditor(IWorkbenchPage aPage, IStructuredSelection aSelection) {
 		if (aSelection == null || aSelection.isEmpty()) {
 			return;
 		}
-		if (false == aSelection.getFirstElement() instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVOAbstractNavigatorItem) {
+		if (false == aSelection
+				.getFirstElement() instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVOAbstractNavigatorItem) {
 			return;
 		}
 
@@ -100,9 +97,11 @@ public class Graph_MAVONavigatorLinkHelper implements ILinkHelper {
 		if (abstractNavigatorItem instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorItem) {
 			navigatorView = ((edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorItem) abstractNavigatorItem)
 					.getView();
-		} else if (abstractNavigatorItem instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorGroup) {
+		} else
+			if (abstractNavigatorItem instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorGroup) {
 			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorGroup navigatorGroup = (edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorGroup) abstractNavigatorItem;
-			if (navigatorGroup.getParent() instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorItem) {
+			if (navigatorGroup
+					.getParent() instanceof edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorItem) {
 				navigatorView = ((edu.toronto.cs.se.modelepedia.graph_mavo.diagram.navigator.Graph_MAVONavigatorItem) navigatorGroup
 						.getParent()).getView();
 			}
@@ -118,17 +117,13 @@ public class Graph_MAVONavigatorLinkHelper implements ILinkHelper {
 		aPage.bringToTop(editor);
 		if (editor instanceof DiagramEditor) {
 			DiagramEditor diagramEditor = (DiagramEditor) editor;
-			ResourceSet diagramEditorResourceSet = diagramEditor
-					.getEditingDomain().getResourceSet();
-			EObject selectedView = diagramEditorResourceSet.getEObject(
-					EcoreUtil.getURI(navigatorView), true);
+			ResourceSet diagramEditorResourceSet = diagramEditor.getEditingDomain().getResourceSet();
+			EObject selectedView = diagramEditorResourceSet.getEObject(EcoreUtil.getURI(navigatorView), true);
 			if (selectedView == null) {
 				return;
 			}
-			GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor
-					.getAdapter(GraphicalViewer.class);
-			EditPart selectedEditPart = (EditPart) graphicalViewer
-					.getEditPartRegistry().get(selectedView);
+			GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor.getAdapter(GraphicalViewer.class);
+			EditPart selectedEditPart = (EditPart) graphicalViewer.getEditPartRegistry().get(selectedView);
 			if (selectedEditPart != null) {
 				graphicalViewer.select(selectedEditPart);
 			}

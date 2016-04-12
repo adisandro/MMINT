@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.graph_mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
+import edu.toronto.cs.se.mavo.provider.MAVORootItemProvider;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
@@ -32,7 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class GraphItemProvider
-	extends MAVOModelItemProvider {
+	extends MAVORootItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

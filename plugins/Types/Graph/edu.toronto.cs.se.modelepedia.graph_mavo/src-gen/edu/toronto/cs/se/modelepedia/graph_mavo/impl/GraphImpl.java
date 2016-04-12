@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
+import edu.toronto.cs.se.mavo.impl.MAVORootImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage;
@@ -30,15 +30,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.GraphImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.GraphImpl#getEdges <em>Edges</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class GraphImpl extends MAVOModelImpl implements Graph {
+public class GraphImpl extends MAVORootImpl implements Graph {
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

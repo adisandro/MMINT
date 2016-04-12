@@ -24,12 +24,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
+import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
@@ -93,7 +93,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
-	private MAVOModel init(Model mayModel) throws Exception {
+	private MAVORoot init(Model mayModel) throws Exception {
 
 		// output
 		timeMAVO = -1;
@@ -107,7 +107,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner(Z3_LANGUAGE);
 		z3ModelParser = z3Reasoner.generateSMTLIBEncoding(mayModel);
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
-		MAVOModel rootMayModelObj = (MAVOModel) mayModel.getEMFInstanceRoot();
+		MAVORoot rootMayModelObj = (MAVORoot) mayModel.getEMFInstanceRoot();
 		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
 		if (previousOperator != null) {
 			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
@@ -211,7 +211,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		smtConcretizationsConstraint = Z3Utils.or(smtConcretizationsConstraint);
 	}
 
-	private void generateAllsatSMTLIBConcretizations(MAVOModel rootMayModelObj) {
+	private void generateAllsatSMTLIBConcretizations(MAVORoot rootMayModelObj) {
 
 		smtConcretizations = doMAVOAllsat(rootMayModelObj);
 		smtConcretizationsConstraint = Z3Utils.or(String.join(" ", smtConcretizations));
@@ -400,7 +400,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		timeMAVOBackbone = System.nanoTime() - startTime;
 	}
 
-	private Set<String> doMAVOAllsat(MAVOModel rootMayModelObj) {
+	private Set<String> doMAVOAllsat(MAVORoot rootMayModelObj) {
 
 		long startTime = System.nanoTime();
 		Set<String> smtConcretizations = z3Reasoner.allSAT(
@@ -416,11 +416,11 @@ public class TOSEM12 extends RandomOperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model mayModel = inputsByName.get(IN_MODEL);
-		MAVOModel rootMayModelObj = this.init(mayModel);
+		MAVORoot rootMayModelObj = this.init(mayModel);
 
 		// run
 		MAVOTruthValue resultMAVO = doMAVOPropertyCheck();

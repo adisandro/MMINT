@@ -24,8 +24,8 @@ import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAcces
 public class Graph_MAVOEditPartFactory implements EditPartFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -33,32 +33,25 @@ public class Graph_MAVOEditPartFactory implements EditPartFactory {
 					.getVisualID(view)) {
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.NodeEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.NodeEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.NodeEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.NodeNameEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.NodeNameEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.NodeNameEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabelEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabelEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.EdgeEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.EdgeEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.EdgeEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.EdgeNameEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.EdgeNameEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.EdgeNameEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabel2EditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.WrappingLabel2EditPart(view);
 
 			}
 		}
@@ -66,20 +59,18 @@ public class Graph_MAVOEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		return CellEditorLocatorAccess.INSTANCE
-				.getTextCellEditorLocator(source);
+	* @generated
+	*/
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 	}
 
 }

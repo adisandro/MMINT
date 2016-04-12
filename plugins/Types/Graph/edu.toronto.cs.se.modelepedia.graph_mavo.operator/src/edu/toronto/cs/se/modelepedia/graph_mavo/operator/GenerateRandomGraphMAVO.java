@@ -28,9 +28,8 @@ import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
@@ -142,7 +141,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		numModelObjs[1] = totModelObjs - numModelObjs[0];
 
 		// generate nodes and edges
-		List<MAVOElement> randomModelObjs = new ArrayList<MAVOElement>();
+		List<MAVOElement> randomModelObjs = new ArrayList<>();
 		Graph randomGraph = Graph_MAVOFactory.eINSTANCE.createGraph();
 		EList<Node> randomGraphNodes = randomGraph.getNodes();
 		String name;
@@ -189,10 +188,10 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// create random graph
 		Graph randomGraph = generateRandomGraph();
@@ -206,7 +205,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
 		MultiModelUtils.writeModelFile(randomGraph, randomGraphModelUri, true);
 		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
-		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, ModelOrigin.CREATED, instanceMID);
+		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, randomGraphModel);
 

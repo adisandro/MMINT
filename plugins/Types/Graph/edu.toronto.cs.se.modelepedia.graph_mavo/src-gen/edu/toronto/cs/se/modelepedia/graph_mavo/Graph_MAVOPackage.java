@@ -83,7 +83,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__INC = MAVOPackage.MAVO_MODEL__INC;
+	int GRAPH__INC = MAVOPackage.MAVO_ROOT__INC;
 
 	/**
 	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
@@ -92,7 +92,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
+	int GRAPH__DECISIONS = MAVOPackage.MAVO_ROOT__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -101,7 +101,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__NODES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int GRAPH__NODES = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
@@ -110,7 +110,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH__EDGES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int GRAPH__EDGES = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Graph</em>' class.
@@ -119,7 +119,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int GRAPH_FEATURE_COUNT = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Graph</em>' class.
@@ -128,7 +128,7 @@ public interface Graph_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPH_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int GRAPH_OPERATION_COUNT = MAVOPackage.MAVO_ROOT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.

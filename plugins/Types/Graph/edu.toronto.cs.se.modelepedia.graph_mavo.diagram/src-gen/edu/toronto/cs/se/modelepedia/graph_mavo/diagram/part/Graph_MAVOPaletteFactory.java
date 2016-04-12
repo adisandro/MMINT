@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
@@ -26,17 +27,17 @@ import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 public class Graph_MAVOPaletteFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void fillPalette(PaletteRoot paletteRoot) {
 		paletteRoot.add(createObjects1Group());
 		paletteRoot.add(createConnections2Group());
 	}
 
 	/**
-	 * Creates "Objects" palette tool group
-	 * @generated
-	 */
+	* Creates "Objects" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createObjects1Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Objects1Group_title);
@@ -46,9 +47,9 @@ public class Graph_MAVOPaletteFactory {
 	}
 
 	/**
-	 * Creates "Connections" palette tool group
-	 * @generated
-	 */
+	* Creates "Connections" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createConnections2Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Connections2Group_title);
@@ -58,34 +59,37 @@ public class Graph_MAVOPaletteFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createNode1CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Node1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Node1CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Node_2001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Node_2001));
 		entry.setId("createNode1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Node_2001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.getImageDescriptor(
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Node_2001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createEdge1CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Edge1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Edge1CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Edge_4001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Edge_4001));
 		entry.setId("createEdge1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Edge_4001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.getImageDescriptor(
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes.Edge_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
+
 }

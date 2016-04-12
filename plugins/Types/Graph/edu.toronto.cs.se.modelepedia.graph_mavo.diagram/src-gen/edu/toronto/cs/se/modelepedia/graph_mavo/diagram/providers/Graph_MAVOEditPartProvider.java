@@ -19,11 +19,10 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 public class Graph_MAVOEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Graph_MAVOEditPartProvider() {
-		super(
-				new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.Graph_MAVOEditPartFactory(),
+		super(new edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.Graph_MAVOEditPartFactory(),
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVOVisualIDRegistry.TYPED_INSTANCE,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID);
 	}

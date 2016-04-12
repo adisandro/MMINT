@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
@@ -17,13 +18,12 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 /**
  * @generated
  */
-public class Graph_MAVOPropertySection extends DefaultPropertySection implements
-		IPropertySourceProvider {
+public class Graph_MAVOPropertySection extends DefaultPropertySection implements IPropertySourceProvider {
 
 	/**
-	 * Modify/unwrap selection.
-	 * @generated
-	 */
+	* Modify/unwrap selection.
+	* @generated
+	*/
 	@Override
 	protected Object transformSelection(Object selected) {
 		selected = /*super.*/transformSelectionToDomain(selected);

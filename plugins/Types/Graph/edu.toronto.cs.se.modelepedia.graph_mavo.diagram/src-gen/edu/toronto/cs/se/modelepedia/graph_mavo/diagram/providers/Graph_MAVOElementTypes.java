@@ -31,107 +31,101 @@ import org.eclipse.swt.graphics.Image;
 public class Graph_MAVOElementTypes {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Graph_MAVOElementTypes() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Map<IElementType, ENamedElement> elements;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-					.getInstance().getItemProvidersAdapterFactory());
+			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+					.getItemProvidersAdapterFactory());
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType Graph_1000 = getElementType("edu.toronto.cs.se.modelepedia.graph_mavo.diagram.Graph_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Graph_1000 = getElementType(
+			"edu.toronto.cs.se.modelepedia.graph_mavo.diagram.Graph_1000"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Node_2001 = getElementType("edu.toronto.cs.se.modelepedia.graph_mavo.diagram.Node_2001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Node_2001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.graph_mavo.diagram.Node_2001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Edge_4001 = getElementType("edu.toronto.cs.se.modelepedia.graph_mavo.diagram.Edge_4001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Edge_4001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.graph_mavo.diagram.Edge_4001"); //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(ENamedElement element) {
 		return elementTypeImages.getImage(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		return getImageDescriptor(getElement(hint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(IAdaptable hint) {
 		return getImage(getElement(hint));
 	}
 
 	/**
-	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
-	 * @generated
-	 */
+	* Returns 'type' of the ecore object associated with the hint.
+	* 
+	* @generated
+	*/
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(
-					Graph_1000,
-					edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage.eINSTANCE
-							.getGraph());
+			elements.put(Graph_1000, edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage.eINSTANCE.getGraph());
 
-			elements.put(
-					Node_2001,
-					edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage.eINSTANCE
-							.getNode());
+			elements.put(Node_2001, edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage.eINSTANCE.getNode());
 
-			elements.put(
-					Edge_4001,
-					edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage.eINSTANCE
-							.getEdge());
+			elements.put(Edge_4001, edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage.eINSTANCE.getEdge());
 		}
 		return (ENamedElement) elements.get(type);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IElementType getElementType(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
@@ -143,8 +137,8 @@ public class Graph_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.VISUAL_ID:
@@ -158,35 +152,36 @@ public class Graph_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
-	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(
-			elementTypeImages) {
+	* @generated
+	*/
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public boolean isKnownElementType(IElementType elementType) {
 			return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes
 					.isKnownElementType(elementType);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes
 					.getElementType(visualID);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
-		public ENamedElement getDefiningNamedElement(
-				IAdaptable elementTypeAdapter) {
+
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return edu.toronto.cs.se.modelepedia.graph_mavo.diagram.providers.Graph_MAVOElementTypes
 					.getElement(elementTypeAdapter);
 		}

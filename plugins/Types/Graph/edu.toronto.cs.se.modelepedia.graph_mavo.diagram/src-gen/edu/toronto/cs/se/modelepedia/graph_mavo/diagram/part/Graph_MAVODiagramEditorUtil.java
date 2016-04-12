@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
 
 import java.io.IOException;
@@ -67,38 +67,32 @@ import org.eclipse.ui.part.FileEditorInput;
 public class Graph_MAVODiagramEditorUtil {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Map<?, ?> getSaveOptions() {
 		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
-		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
-				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return saveOptions;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static boolean openDiagram(Resource diagram)
-			throws PartInitException {
+	* @generated
+	*/
+	public static boolean openDiagram(Resource diagram) throws PartInitException {
 		String path = diagram.getURI().toPlatformString(true);
-		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot()
-				.findMember(new Path(path));
+		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
 		if (workspaceResource instanceof IFile) {
-			IWorkbenchPage page = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage();
-			return null != page
-					.openEditor(
-							new FileEditorInput((IFile) workspaceResource),
-							edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditor.ID);
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			return null != page.openEditor(new FileEditorInput((IFile) workspaceResource),
+					edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditor.ID);
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static void setCharset(IFile file) {
 		if (file == null) {
 			return;
@@ -106,20 +100,16 @@ public class Graph_MAVODiagramEditorUtil {
 		try {
 			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
 		} catch (CoreException e) {
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+					.logError("Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
 		}
 	}
 
 	/**
-	 * @generated
-	 */
-	public static String getUniqueFileName(IPath containerFullPath,
-			String fileName, String extension) {
-		return DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath,
-				fileName, extension,
+	* @generated
+	*/
+	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+		return DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension,
 				DefaultDiagramEditorUtil.EXISTS_IN_WORKSPACE);
 	}
 
@@ -131,52 +121,40 @@ public class Graph_MAVODiagramEditorUtil {
 	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
 		IDialogSettings pluginDialogSettings = edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
 				.getInstance().getDialogSettings();
-		IDialogSettings wizardDialogSettings = pluginDialogSettings
-				.getSection(settingsKey);
+		IDialogSettings wizardDialogSettings = pluginDialogSettings.getSection(settingsKey);
 		if (wizardDialogSettings == null) {
-			wizardDialogSettings = pluginDialogSettings
-					.addNewSection(settingsKey);
+			wizardDialogSettings = pluginDialogSettings.addNewSection(settingsKey);
 		}
 		wizard.setDialogSettings(wizardDialogSettings);
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
-		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x),
-				500);
+		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x), 500);
 		dialog.open();
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
-	 * @generated
-	 */
-	public static Resource createDiagram(URI diagramURI, URI modelURI,
-			IProgressMonitor progressMonitor) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
-		progressMonitor
-				.beginTask(
-						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVODiagramEditorUtil_CreateDiagramProgressTask,
-						3);
-		final Resource diagramResource = editingDomain.getResourceSet()
-				.createResource(diagramURI);
-		final Resource modelResource = editingDomain.getResourceSet()
-				.createResource(modelURI);
+	* This method should be called within a workspace modify operation since it creates resources.
+	* @generated
+	*/
+	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		progressMonitor.beginTask(
+				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVODiagramEditorUtil_CreateDiagramProgressTask,
+				3);
+		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
+		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-				editingDomain,
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
 				edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Messages.Graph_MAVODiagramEditorUtil_CreateDiagramCommandLabel,
 				Collections.EMPTY_LIST) {
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				edu.toronto.cs.se.modelepedia.graph_mavo.Graph model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService
-						.createDiagram(
-								model,
-								edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID,
-								edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(model,
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.parts.GraphEditPart.MODEL_ID,
+						edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
@@ -184,29 +162,25 @@ public class Graph_MAVODiagramEditorUtil {
 				}
 
 				try {
-					modelResource
-							.save(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
-									.getSaveOptions());
+					modelResource.save(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
+							.getSaveOptions());
 					diagramResource
 							.save(edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorUtil
 									.getSaveOptions());
 				} catch (IOException e) {
 
-					edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-							.getInstance()
-							.logError(
-									"Unable to store model and diagram resources", e); //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+							.logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
 				}
 				return CommandResult.newOKCommandResult();
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new SubProgressMonitor(progressMonitor, 1), null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new SubProgressMonitor(progressMonitor, 1),
+					null);
 		} catch (ExecutionException e) {
-			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Unable to create model and diagram", e); //$NON-NLS-1$
+			edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part.Graph_MAVODiagramEditorPlugin.getInstance()
+					.logError("Unable to create model and diagram", e); //$NON-NLS-1$
 		}
 		setCharset(WorkspaceSynchronizer.getFile(modelResource));
 		setCharset(WorkspaceSynchronizer.getFile(diagramResource));
@@ -214,33 +188,29 @@ public class Graph_MAVODiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	* Create a new instance of domain element associated with canvas.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @generated
+	*/
 	private static edu.toronto.cs.se.modelepedia.graph_mavo.Graph createInitialModel() {
-		return edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory.eINSTANCE
-				.createGraph();
+		return edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory.eINSTANCE.createGraph();
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static void attachModelToResource(
-			edu.toronto.cs.se.modelepedia.graph_mavo.Graph model,
-			Resource resource) {
+	* Store model element in the resource.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @generated
+	*/
+	private static void attachModelToResource(edu.toronto.cs.se.modelepedia.graph_mavo.Graph model, Resource resource) {
 		resource.getContents().add(model);
 	}
 
 	/**
-	 * @generated
-	 */
-	public static void selectElementsInDiagram(
-			IDiagramWorkbenchPart diagramPart, List<EditPart> editParts) {
+	* @generated
+	*/
+	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List<EditPart> editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
@@ -252,24 +222,21 @@ public class Graph_MAVODiagramEditorUtil {
 		}
 
 		if (!editParts.isEmpty()) {
-			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts
-							.get(0));
+			diagramPart.getDiagramGraphicalViewer()
+					.reveal(firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
 		}
 	}
 
 	/**
-	 * @generated
-	 */
-	private static int findElementsInDiagramByID(DiagramEditPart diagramPart,
-			EObject element, List<EditPart> editPartCollector) {
-		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart
-				.getViewer();
+	* @generated
+	*/
+	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element,
+			List<EditPart> editPartCollector) {
+		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart.getViewer();
 		final int intialNumOfEditParts = editPartCollector.size();
 
 		if (element instanceof View) { // support notation element lookup
-			EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(
-					element);
+			EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(element);
 			if (editPart != null) {
 				editPartCollector.add(editPart);
 				return 1;
@@ -278,8 +245,7 @@ public class Graph_MAVODiagramEditorUtil {
 
 		String elementID = EMFCoreUtil.getProxyID(element);
 		@SuppressWarnings("unchecked")
-		List<EditPart> associatedParts = viewer.findEditPartsForElement(
-				elementID, IGraphicalEditPart.class);
+		List<EditPart> associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
 		// perform the possible hierarchy disjoint -> take the top-most parts only
 		for (EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
@@ -296,8 +262,7 @@ public class Graph_MAVODiagramEditorUtil {
 				editPartCollector.add(associatedParts.get(0));
 			} else {
 				if (element.eContainer() != null) {
-					return findElementsInDiagramByID(diagramPart,
-							element.eContainer(), editPartCollector);
+					return findElementsInDiagramByID(diagramPart, element.eContainer(), editPartCollector);
 				}
 			}
 		}
@@ -305,62 +270,58 @@ public class Graph_MAVODiagramEditorUtil {
 	}
 
 	/**
-	 * @generated
-	 */
-	public static View findView(DiagramEditPart diagramEditPart,
-			EObject targetElement, LazyElement2ViewMap lazyElement2ViewMap) {
+	* @generated
+	*/
+	public static View findView(DiagramEditPart diagramEditPart, EObject targetElement,
+			LazyElement2ViewMap lazyElement2ViewMap) {
 		boolean hasStructuralURI = false;
 		if (targetElement.eResource() instanceof XMLResource) {
-			hasStructuralURI = ((XMLResource) targetElement.eResource())
-					.getID(targetElement) == null;
+			hasStructuralURI = ((XMLResource) targetElement.eResource()).getID(targetElement) == null;
 		}
 
 		View view = null;
 		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
-		if (hasStructuralURI
-				&& !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
+		if (hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
 			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
-		} else if (findElementsInDiagramByID(diagramEditPart, targetElement,
-				editPartHolder) > 0) {
+		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
 			EditPart editPart = editPartHolder.get(0);
-			view = editPart.getModel() instanceof View ? (View) editPart
-					.getModel() : null;
+			view = editPart.getModel() instanceof View ? (View) editPart.getModel() : null;
 		}
 
 		return (view == null) ? diagramEditPart.getDiagramView() : view;
 	}
 
 	/**
-	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
-	 * @generated
-	 */
+	* XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	* @generated
+	*/
 	public static class LazyElement2ViewMap {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Map<EObject, View> element2ViewMap;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private View scope;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Set<? extends EObject> elementSet;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public LazyElement2ViewMap(View scope, Set<? extends EObject> elements) {
 			this.scope = scope;
 			this.elementSet = elements;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap<EObject, View>();
@@ -380,17 +341,15 @@ public class Graph_MAVODiagramEditorUtil {
 		}
 
 		/**
-		 * @generated
-		 */
-		private static boolean buildElement2ViewMap(View parentView,
-				Map<EObject, View> element2ViewMap,
+		* @generated
+		*/
+		private static boolean buildElement2ViewMap(View parentView, Map<EObject, View> element2ViewMap,
 				Set<? extends EObject> elements) {
 			if (elements.size() == element2ViewMap.size()) {
 				return true;
 			}
 
-			if (parentView.isSetElement()
-					&& !element2ViewMap.containsKey(parentView.getElement())
+			if (parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement())
 					&& elements.contains(parentView.getElement())) {
 				element2ViewMap.put(parentView.getElement(), parentView);
 				if (elements.size() == element2ViewMap.size()) {
@@ -398,20 +357,14 @@ public class Graph_MAVODiagramEditorUtil {
 				}
 			}
 			boolean complete = false;
-			for (Iterator<?> it = parentView.getChildren().iterator(); it
-					.hasNext() && !complete;) {
-				complete = buildElement2ViewMap((View) it.next(),
-						element2ViewMap, elements);
+			for (Iterator<?> it = parentView.getChildren().iterator(); it.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View) it.next(), element2ViewMap, elements);
 			}
-			for (Iterator<?> it = parentView.getSourceEdges().iterator(); it
-					.hasNext() && !complete;) {
-				complete = buildElement2ViewMap((View) it.next(),
-						element2ViewMap, elements);
+			for (Iterator<?> it = parentView.getSourceEdges().iterator(); it.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View) it.next(), element2ViewMap, elements);
 			}
-			for (Iterator<?> it = parentView.getTargetEdges().iterator(); it
-					.hasNext() && !complete;) {
-				complete = buildElement2ViewMap((View) it.next(),
-						element2ViewMap, elements);
+			for (Iterator<?> it = parentView.getTargetEdges().iterator(); it.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View) it.next(), element2ViewMap, elements);
 			}
 			return complete;
 		}

@@ -19,11 +19,11 @@ package edu.toronto.cs.se.modelepedia.graph_mavo;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.Edge#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.Edge#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOPackage#getEdge()
  * @model annotation="gmf.link label='name' label.icon='true' source='source' target='target' target.decoration='arrow'"

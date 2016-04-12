@@ -33,11 +33,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.NodeImpl#getEdgesAsSource <em>Edges As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.graph_mavo.impl.NodeImpl#getEdgesAsTarget <em>Edges As Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
