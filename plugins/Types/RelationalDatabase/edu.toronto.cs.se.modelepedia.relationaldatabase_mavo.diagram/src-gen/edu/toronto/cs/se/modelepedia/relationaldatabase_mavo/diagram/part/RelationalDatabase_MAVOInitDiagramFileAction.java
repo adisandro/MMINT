@@ -32,56 +32,51 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOInitDiagramFileAction implements
-		IObjectActionDelegate {
+public class RelationalDatabase_MAVOInitDiagramFileAction implements IObjectActionDelegate {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IWorkbenchPart targetPart;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private URI domainModelURI;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		this.targetPart = targetPart;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void selectionChanged(IAction action, ISelection selection) {
 		domainModelURI = null;
 		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false
-				|| selection.isEmpty()) {
+		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
 			return;
 		}
-		IFile file = (IFile) ((IStructuredSelection) selection)
-				.getFirstElement();
-		domainModelURI = URI.createPlatformResourceURI(file.getFullPath()
-				.toString(), true);
+		IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
+		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 		action.setEnabled(true);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Shell getShell() {
 		return targetPart.getSite().getShell();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {
@@ -89,22 +84,19 @@ public class RelationalDatabase_MAVOInitDiagramFileAction implements
 			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+					.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog
-					.openError(
-							getShell(),
-							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.InitDiagramFile_ResourceErrorDialogTitle,
-							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.InitDiagramFile_ResourceErrorDialogMessage);
+			MessageDialog.openError(getShell(),
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.InitDiagramFile_ResourceErrorDialogTitle,
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
 		Wizard wizard = new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONewDiagramFileWizard(
 				domainModelURI, diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS
-				.bind(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.InitDiagramFile_WizardTitle,
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID));
+		wizard.setWindowTitle(NLS.bind(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.InitDiagramFile_WizardTitle,
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID));
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorUtil
 				.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}

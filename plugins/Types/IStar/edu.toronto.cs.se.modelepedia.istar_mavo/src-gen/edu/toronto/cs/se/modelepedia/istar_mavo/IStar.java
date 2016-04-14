@@ -21,11 +21,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IStar#getActors <em>Actors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IStar#getDependums <em>Dependums</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIStar()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyDependums'"

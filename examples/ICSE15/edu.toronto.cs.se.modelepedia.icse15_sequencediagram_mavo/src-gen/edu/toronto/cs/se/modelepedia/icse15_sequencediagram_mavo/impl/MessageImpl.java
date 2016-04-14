@@ -35,12 +35,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.MessageImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.MessageImpl#getSourceLifeline <em>Source Lifeline</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.MessageImpl#getTargetLifeline <em>Target Lifeline</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -17,15 +17,13 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 /**
  * @generated
  */
-public class StateMachine_MAVOIconProvider extends
-		DefaultElementTypeIconProvider implements IIconProvider {
+public class StateMachine_MAVOIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public StateMachine_MAVOIconProvider() {
-		super(
-				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.TYPED_INSTANCE);
+		super(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes.TYPED_INSTANCE);
 	}
 
 }

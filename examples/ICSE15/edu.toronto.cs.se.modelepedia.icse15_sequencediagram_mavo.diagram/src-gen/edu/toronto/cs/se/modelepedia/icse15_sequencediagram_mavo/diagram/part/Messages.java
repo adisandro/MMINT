@@ -19,426 +19,426 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Messages() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizard_DiagramModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizard_DiagramModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizard_DomainModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizard_DomainModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizardOpenEditorError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizardCreationError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOCreationWizardPageExtensionError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditorUtil_OpenModelResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditorUtil_OpenModelResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditorUtil_CreateDiagramProgressTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditorUtil_CreateDiagramCommandLabel;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_isModifiable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_handleElementContentChanged;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_IncorrectInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_NoDiagramInResourceError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_DiagramLoadingError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_UnsynchronizedFileSaveError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_SaveDiagramTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_SaveNextResourceTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODocumentProvider_SaveAsOperation;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_WizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_OpenModelFileDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_CreationPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_CreationPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_CreationPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_RootSelectionPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_RootSelectionPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_RootSelectionPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_InitDiagramCommand;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVONewDiagramFileWizard_IncorrectRootError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditor_SavingDeletedFile;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditor_SaveAsErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditor_SaveAsErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditor_SaveErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVODiagramEditor_SaveErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOElementChooserDialog_SelectModelElementTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ModelElementSelectionPageMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ValidateActionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Objects1Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Connections2Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Class1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Class1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Lifeline2CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Lifeline2CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Message3CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Message3CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Operation4CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Operation4CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassReference1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassReference1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String OperationReference2CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String OperationReference2CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String SourceLifelineReference3CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String SourceLifelineReference3CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String TargetLifelineReference4CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String TargetLifelineReference4CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ClassClassOperationsCompartmentEditPart_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String CommandName_OpenDiagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_SequenceDiagram_1000_links;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Lifeline_2001_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Lifeline_2001_incominglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Class_2002_incominglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Message_2003_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Operation_3001_incominglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_ClassReference_4001_target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_ClassReference_4001_source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_OperationReference_4002_target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_OperationReference_4002_source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_SourceLifelineReference_4003_target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_SourceLifelineReference_4003_source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_TargetLifelineReference_4004_target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_TargetLifelineReference_4004_source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorActionProvider_OpenDiagramActionName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MessageFormatParser_InvalidInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOModelingAssistantProviderTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ICSE15_SequenceDiagram_MAVOModelingAssistantProviderMessage;
 
 	//TODO: put accessor fields manually	

@@ -20,10 +20,9 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -68,11 +67,11 @@ public class CD2JavaCheck extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		ModelRel modelRel = (ModelRel) inputsByName.get(IN_MODELREL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_INT);
+		MID instanceMID = outputMIDsByName.get(OUT_INT);
 
 		// check classes connected by the rel
 		Int check = check(modelRel);
@@ -84,7 +83,7 @@ public class CD2JavaCheck extends OperatorImpl {
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
 		MultiModelUtils.writeModelFile(check, checkModelUri, true);
-		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, ModelOrigin.CREATED, instanceMID);
+		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, checkModel);
 

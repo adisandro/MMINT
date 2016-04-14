@@ -23,22 +23,22 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
  * @generated
  */
 public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
-		extends
-		edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOModelingAssistantProvider {
+		extends edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOModelingAssistantProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetRelTypesOnSource((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) sourceEditPart);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		return doGetRelTypesOnSource(
+				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) sourceEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnSource(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart source) {
 		List<IElementType> types = new ArrayList<IElementType>(5);
@@ -51,23 +51,21 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source,
-			IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+
+	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetRelTypesOnSourceAndTarget(
 				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) sourceEditPart,
 				targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnSourceAndTarget(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart source,
 			IGraphicalEditPart targetEditPart) {
@@ -97,123 +95,155 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getTypesForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+
+	public List<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return doGetTypesForTarget(
 				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) sourceEditPart,
 				relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetTypesForTarget(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart source,
 			IElementType relationshipType) {
@@ -227,7 +257,8 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_3002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004);
-		} else if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002) {
+		} else
+			if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002) {
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_2001);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_2003);
@@ -245,7 +276,8 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_3002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004);
-		} else if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004) {
+		} else
+			if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004) {
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_2001);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_2003);
@@ -269,18 +301,19 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetRelTypesOnTarget((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) targetEditPart);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		return doGetRelTypesOnTarget(
+				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnTarget(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart target) {
 		List<IElementType> types = new ArrayList<IElementType>(5);
@@ -293,21 +326,20 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getTypesForSource(IAdaptable target,
-			IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+
+	public List<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetTypesForSource(
 				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) targetEditPart,
 				relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetTypesForSource(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart target,
 			IElementType relationshipType) {
@@ -321,7 +353,8 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_3002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004);
-		} else if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002) {
+		} else
+			if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002) {
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_2001);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_2003);
@@ -339,7 +372,8 @@ public class IStar_MAVOModelingAssistantProviderOfSoftGoalEditPart
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_3002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_3003);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Goal_3004);
-		} else if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004) {
+		} else
+			if (relationshipType == edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004) {
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.SoftGoal_2001);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Task_2002);
 			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Resource_2003);

@@ -19,11 +19,10 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 public class StateMachine_MAVOEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public StateMachine_MAVOEditPartProvider() {
-		super(
-				new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachine_MAVOEditPartFactory(),
+		super(new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachine_MAVOEditPartFactory(),
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry.TYPED_INSTANCE,
 				edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.MODEL_ID);
 	}

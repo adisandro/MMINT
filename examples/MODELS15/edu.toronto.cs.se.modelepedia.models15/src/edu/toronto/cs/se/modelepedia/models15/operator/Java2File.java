@@ -23,9 +23,8 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
@@ -38,7 +37,7 @@ public class Java2File extends OperatorImpl {
 	// constants
 	private final static @NonNull String JAVA_FILE_SUFFIX = "java";
 
-	private @NonNull Model print(@NonNull Model javaModel, @NonNull MultiModel instanceMID) throws Exception {
+	private @NonNull Model print(@NonNull Model javaModel, @NonNull MID instanceMID) throws Exception {
 
 		// run acceleo
 		String fileModelUri = MultiModelUtils.getUniqueUri(
@@ -55,7 +54,7 @@ public class Java2File extends OperatorImpl {
 
 		// create file model
 		Model fileModelType = MultiModelTypeRegistry.getType(FilePackage.eNS_URI);
-		Model fileModel = fileModelType.createInstance(fileModelUri, ModelOrigin.CREATED, instanceMID);
+		Model fileModel = fileModelType.createInstance(fileModelUri, instanceMID);
 
 		return fileModel;
 	}
@@ -63,11 +62,11 @@ public class Java2File extends OperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model javaModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_FILE);
+		MID instanceMID = outputMIDsByName.get(OUT_FILE);
 
 		// print to file
 		Model fileModel = print(javaModel, instanceMID);

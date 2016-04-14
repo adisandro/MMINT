@@ -326,7 +326,7 @@ public class MMINT implements MMINTConstants {
 				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
 			}
 			// model element type endpoints
-			IConfigurationElement[] modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MODELRELS_LINKTYPE_CHILD_MODELELEMTYPEENDPOINT);
+			IConfigurationElement[] modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MODELRELS_MAPPINGTYPE_CHILD_MODELELEMTYPEENDPOINT);
 			for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
 				extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
 				IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];

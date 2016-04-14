@@ -29,21 +29,21 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
-		implements IParserProvider {
+public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser lifelineName_5001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getLifelineName_5001Parser() {
 		if (lifelineName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			lifelineName_5001Parser = parser;
@@ -52,13 +52,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser lifelineLabel_5002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getLifelineLabel_5002Parser() {
 		if (lifelineLabel_5002Parser == null) {
 			lifelineLabel_5002Parser = new MAVOElementLabelParser();
@@ -67,17 +67,18 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser className_5005Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getClassName_5005Parser() {
 		if (className_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			className_5005Parser = parser;
@@ -86,13 +87,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser classLabel_5006Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getClassLabel_5006Parser() {
 		if (classLabel_5006Parser == null) {
 			classLabel_5006Parser = new MAVOElementLabelParser();
@@ -101,17 +102,18 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser messageName_5007Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getMessageName_5007Parser() {
 		if (messageName_5007Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			messageName_5007Parser = parser;
@@ -120,13 +122,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser messageLabel_5008Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getMessageLabel_5008Parser() {
 		if (messageLabel_5008Parser == null) {
 			messageLabel_5008Parser = new MAVOElementLabelParser();
@@ -135,17 +137,18 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser operationName_5003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getOperationName_5003Parser() {
 		if (operationName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			operationName_5003Parser = parser;
@@ -154,13 +157,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser operationLabel_5004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getOperationLabel_5004Parser() {
 		if (operationLabel_5004Parser == null) {
 			operationLabel_5004Parser = new MAVOElementLabelParser();
@@ -169,13 +172,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser classReferenceLabel_6001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getClassReferenceLabel_6001Parser() {
 		if (classReferenceLabel_6001Parser == null) {
 			classReferenceLabel_6001Parser = new MAVOElementLabelParser();
@@ -184,13 +187,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser operationReferenceLabel_6002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getOperationReferenceLabel_6002Parser() {
 		if (operationReferenceLabel_6002Parser == null) {
 			operationReferenceLabel_6002Parser = new MAVOElementLabelParser();
@@ -199,13 +202,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser sourceLifelineReferenceLabel_6003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getSourceLifelineReferenceLabel_6003Parser() {
 		if (sourceLifelineReferenceLabel_6003Parser == null) {
 			sourceLifelineReferenceLabel_6003Parser = new MAVOElementLabelParser();
@@ -214,13 +217,13 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser targetLifelineReferenceLabel_6004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTargetLifelineReferenceLabel_6004Parser() {
 		if (targetLifelineReferenceLabel_6004Parser == null) {
 			targetLifelineReferenceLabel_6004Parser = new MAVOElementLabelParser();
@@ -229,8 +232,8 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.LifelineNameEditPart.VISUAL_ID:
@@ -262,35 +265,35 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * Utility method that consults ParserService
-	 * @generated
-	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	* Utility method that consults ParserService
+	* @generated
+	*/
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
-					.getVisualID(vid));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
+							.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
-					.getVisualID(view));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
+							.getVisualID(view));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -304,18 +307,18 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final IElementType elementType;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -323,8 +326,8 @@ public class ICSE15_SequenceDiagram_MAVOParserProvider extends AbstractProvider
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

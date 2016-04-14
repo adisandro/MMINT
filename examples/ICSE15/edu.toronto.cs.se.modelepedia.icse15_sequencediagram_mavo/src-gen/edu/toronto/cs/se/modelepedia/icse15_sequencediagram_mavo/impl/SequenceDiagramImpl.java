@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
-
+import edu.toronto.cs.se.mavo.impl.MAVORootImpl;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message;
@@ -36,16 +35,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getLifelines <em>Lifelines</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.SequenceDiagramImpl#getMessages <em>Messages</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SequenceDiagramImpl extends MAVOModelImpl implements SequenceDiagram {
+public class SequenceDiagramImpl extends MAVORootImpl implements SequenceDiagram {
 	/**
 	 * The cached value of the '{@link #getLifelines() <em>Lifelines</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

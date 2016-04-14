@@ -13,5 +13,6 @@ Export-Package: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  edu.toronto.cs.se.mavo,
- edu.toronto.cs.se.mmint
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.mavo
 Bundle-ActivationPolicy: lazy

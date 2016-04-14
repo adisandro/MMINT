@@ -26,47 +26,44 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class TargetLifelineReferenceEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class TargetLifelineReferenceEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final int VISUAL_ID = 4004;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public TargetLifelineReferenceEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.policies.TargetLifelineReferenceItemSemanticEditPolicy());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.WrappingLabel8EditPart) {
 			((edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.WrappingLabel8EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOTargetLifelineReferenceLabelFigure());
+					.setLabel(getPrimaryShape().getFigureMAVOTargetLifelineReferenceLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -75,8 +72,8 @@ public class TargetLifelineReferenceEditPart extends ConnectionNodeEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.WrappingLabel8EditPart) {
 			return true;
@@ -85,8 +82,8 @@ public class TargetLifelineReferenceEditPart extends ConnectionNodeEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -95,21 +92,21 @@ public class TargetLifelineReferenceEditPart extends ConnectionNodeEditPart
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new TargetLifelineReferenceFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public TargetLifelineReferenceFigure getPrimaryShape() {
 		return (TargetLifelineReferenceFigure) getFigure();
 	}
@@ -142,8 +139,7 @@ public class TargetLifelineReferenceEditPart extends ConnectionNodeEditPart
 
 			fFigureMAVOTargetLifelineReferenceLabelFigure.setText("");
 			fFigureMAVOTargetLifelineReferenceLabelFigure
-					.setMaximumSize(new Dimension(getMapMode().DPtoLP(10000),
-							getMapMode().DPtoLP(50)));
+					.setMaximumSize(new Dimension(getMapMode().DPtoLP(10000), getMapMode().DPtoLP(50)));
 
 			this.add(fFigureMAVOTargetLifelineReferenceLabelFigure);
 

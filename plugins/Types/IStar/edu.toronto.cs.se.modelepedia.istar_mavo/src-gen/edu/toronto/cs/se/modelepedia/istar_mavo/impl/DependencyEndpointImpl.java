@@ -34,12 +34,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getDependenciesAsDepender <em>Dependencies As Depender</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl#getDependenciesAsDependee <em>Dependencies As Dependee</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

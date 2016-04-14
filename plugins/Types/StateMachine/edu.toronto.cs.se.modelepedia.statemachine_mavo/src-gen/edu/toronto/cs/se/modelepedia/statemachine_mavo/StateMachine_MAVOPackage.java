@@ -84,7 +84,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__INC = MAVOPackage.MAVO_MODEL__INC;
+	int STATE_MACHINE__INC = MAVOPackage.MAVO_ROOT__INC;
 
 	/**
 	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
@@ -93,7 +93,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
+	int STATE_MACHINE__DECISIONS = MAVOPackage.MAVO_ROOT__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -102,7 +102,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__STATES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int STATE_MACHINE__STATES = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Transitions</b></em>' containment reference list.
@@ -111,7 +111,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE__TRANSITIONS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int STATE_MACHINE__TRANSITIONS = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>State Machine</em>' class.
@@ -120,7 +120,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int STATE_MACHINE_FEATURE_COUNT = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>State Machine</em>' class.
@@ -129,7 +129,7 @@ public interface StateMachine_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int STATE_MACHINE_OPERATION_COUNT = MAVOPackage.MAVO_ROOT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.statemachine_mavo.impl.FiringElementImpl <em>Firing Element</em>}' class.

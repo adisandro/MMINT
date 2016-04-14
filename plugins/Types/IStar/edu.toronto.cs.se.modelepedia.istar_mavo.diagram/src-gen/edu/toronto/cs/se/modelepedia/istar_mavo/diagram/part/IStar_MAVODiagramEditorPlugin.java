@@ -38,67 +38,65 @@ import edu.toronto.cs.se.mavo.provider.MAVOItemProviderAdapterFactory;
 public class IStar_MAVODiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final String ID = "edu.toronto.cs.se.modelepedia.istar_mavo.diagram"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private LogHelper myLogHelper;
 
 	/**
-	 * @generated
-	 */
-	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(
-			ID);
+	* @generated
+	*/
+	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IStar_MAVODiagramEditorPlugin instance;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ComposedAdapterFactory adapterFactory;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODocumentProvider documentProvider;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies.IStar_MAVOBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.ElementInitializers initializers;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStar_MAVODiagramEditorPlugin() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
 		myLogHelper = new LogHelper(this);
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT,
-				getPreferenceStore());
+		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -109,15 +107,15 @@ public class IStar_MAVODiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static IStar_MAVODiagramEditorPlugin getInstance() {
 		return instance;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ComposedAdapterFactory createAdapterFactory() {
 		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
@@ -125,32 +123,29 @@ public class IStar_MAVODiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
-		factories
-				.add(new edu.toronto.cs.se.modelepedia.istar_mavo.provider.IStar_MAVOItemProviderAdapterFactory());
+		factories.add(new edu.toronto.cs.se.modelepedia.istar_mavo.provider.IStar_MAVOItemProviderAdapterFactory());
 		factories.add(new MAVOItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public AdapterFactory getItemProvidersAdapterFactory() {
 		return adapterFactory;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory
-				.adapt(item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
 		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(
-					labelProvider.getImage(item));
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -179,8 +174,8 @@ public class IStar_MAVODiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p
-					.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0),
+					p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -213,8 +208,8 @@ public class IStar_MAVODiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODocumentProvider getDocumentProvider() {
 		if (documentProvider == null) {
 			documentProvider = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODocumentProvider();
@@ -223,67 +218,68 @@ public class IStar_MAVODiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies.IStar_MAVOBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
 		return linkConstraints;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setLinkConstraints(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies.IStar_MAVOBaseItemSemanticEditPolicy.LinkConstraints lc) {
 		this.linkConstraints = lc;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.ElementInitializers getElementInitializers() {
 		return initializers;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setElementInitializers(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.ElementInitializers i) {
 		this.initializers = i;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void logError(String error) {
 		getLogHelper().logError(error, null);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void logError(String error, Throwable throwable) {
 		getLogHelper().logError(error, throwable);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void logInfo(String message) {
 		getLogHelper().logInfo(message, null);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void logInfo(String message, Throwable throwable) {
 		getLogHelper().logInfo(message, throwable);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public LogHelper getLogHelper() {
 		return myLogHelper;
 	}
+
 }

@@ -19,9 +19,8 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
@@ -44,11 +43,11 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model windowModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// convert
 		Window window = (Window) windowModel.getEMFInstanceRoot();
@@ -63,7 +62,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 		newPetrinetModelUri = MultiModelUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
 		MultiModelUtils.writeModelFile(newPetrinet, newPetrinetModelUri, true);
 		Model petrinetModelType = MultiModelTypeRegistry.getType(PetriNetPackage.eNS_URI);
-		newPetrinetModel = petrinetModelType.createMAVOInstanceAndEditor(newPetrinetModelUri, ModelOrigin.CREATED, instanceMID);
+		newPetrinetModel = petrinetModelType.createInstanceAndEditor(newPetrinetModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, newPetrinetModel);
 

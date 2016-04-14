@@ -15,6 +15,5 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers;
  * @generated
  */
 public class StateMachineEditHelper
-		extends
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.StateMachine_MAVOBaseEditHelper {
+		extends edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.helpers.StateMachine_MAVOBaseEditHelper {
 }

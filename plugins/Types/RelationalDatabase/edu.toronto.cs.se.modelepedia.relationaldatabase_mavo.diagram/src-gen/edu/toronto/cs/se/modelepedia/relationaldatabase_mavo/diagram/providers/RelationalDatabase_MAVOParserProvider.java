@@ -29,21 +29,21 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
-		implements IParserProvider {
+public class RelationalDatabase_MAVOParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser tableName_5005Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTableName_5005Parser() {
 		if (tableName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			tableName_5005Parser = parser;
@@ -52,13 +52,13 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser tableLabel_5006Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTableLabel_5006Parser() {
 		if (tableLabel_5006Parser == null) {
 			tableLabel_5006Parser = new MAVOElementLabelParser();
@@ -67,17 +67,18 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser columnName_5001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getColumnName_5001Parser() {
 		if (columnName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			columnName_5001Parser = parser;
@@ -86,13 +87,13 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser columnLabel_5002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getColumnLabel_5002Parser() {
 		if (columnLabel_5002Parser == null) {
 			columnLabel_5002Parser = new MAVOElementLabelParser();
@@ -101,17 +102,18 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser foreignKeyName_5003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getForeignKeyName_5003Parser() {
 		if (foreignKeyName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
+							.getNamedElement_Name() };
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			foreignKeyName_5003Parser = parser;
@@ -120,13 +122,13 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser foreignKeyLabel_5004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getForeignKeyLabel_5004Parser() {
 		if (foreignKeyLabel_5004Parser == null) {
 			foreignKeyLabel_5004Parser = new MAVOElementLabelParser();
@@ -135,13 +137,13 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser tableColumnReferenceLabel_6001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTableColumnReferenceLabel_6001Parser() {
 		if (tableColumnReferenceLabel_6001Parser == null) {
 			tableColumnReferenceLabel_6001Parser = new MAVOElementLabelParser();
@@ -150,13 +152,13 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser foreignColumnReferenceLabel_6002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getForeignColumnReferenceLabel_6002Parser() {
 		if (foreignColumnReferenceLabel_6002Parser == null) {
 			foreignColumnReferenceLabel_6002Parser = new MAVOElementLabelParser();
@@ -165,8 +167,8 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableNameEditPart.VISUAL_ID:
@@ -190,35 +192,35 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * Utility method that consults ParserService
-	 * @generated
-	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	* Utility method that consults ParserService
+	* @generated
+	*/
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-					.getVisualID(vid));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+							.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-					.getVisualID(view));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+							.getVisualID(view));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -232,18 +234,18 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final IElementType elementType;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -251,8 +253,8 @@ public class RelationalDatabase_MAVOParserProvider extends AbstractProvider
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

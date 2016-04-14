@@ -37,12 +37,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.TableImpl#getColumns <em>Columns</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.TableImpl#getPrimaryKey <em>Primary Key</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.TableImpl#getForeignKeys <em>Foreign Keys</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

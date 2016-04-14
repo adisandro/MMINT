@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
 public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
 				.getInstance().getPreferenceStore());

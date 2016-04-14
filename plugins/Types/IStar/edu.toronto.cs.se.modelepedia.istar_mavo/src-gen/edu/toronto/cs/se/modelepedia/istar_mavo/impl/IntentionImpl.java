@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isFullySatisfied <em>Fully Satisfied</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#isPartiallySatisfied <em>Partially Satisfied</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#getDependerLinks <em>Depender Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionImpl#getDependeeLinks <em>Dependee Links</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

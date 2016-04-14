@@ -19,12 +19,12 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 public class IStar_MAVOEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStar_MAVOEditPartProvider() {
-		super(
-				new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStar_MAVOEditPartFactory(),
+		super(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStar_MAVOEditPartFactory(),
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.TYPED_INSTANCE,
 				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.MODEL_ID);
 	}
+
 }

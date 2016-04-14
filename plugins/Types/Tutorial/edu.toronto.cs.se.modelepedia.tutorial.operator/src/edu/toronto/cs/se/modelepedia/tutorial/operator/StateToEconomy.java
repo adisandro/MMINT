@@ -18,8 +18,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.ATLConversion;
 import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage;
 
@@ -32,11 +32,11 @@ public class StateToEconomy extends ATLConversion {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		inputModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// transform
 		init(EconomyPackage.eNAME);

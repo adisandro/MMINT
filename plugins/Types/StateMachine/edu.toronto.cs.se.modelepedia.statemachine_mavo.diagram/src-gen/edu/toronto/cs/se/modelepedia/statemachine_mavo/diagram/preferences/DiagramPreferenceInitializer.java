@@ -20,8 +20,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.preferences.DiagramGeneralPreferencePage
@@ -38,8 +38,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPreferenceStore getPreferenceStore() {
 		return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
 				.getInstance().getPreferenceStore();

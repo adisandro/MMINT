@@ -29,50 +29,42 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOCreateShortcutDecorationsCommand extends
-		AbstractTransactionalCommand {
+public class RelationalDatabase_MAVOCreateShortcutDecorationsCommand extends AbstractTransactionalCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private List myDescriptors;
 
 	/**
-	 * @generated
-	 */
-	public RelationalDatabase_MAVOCreateShortcutDecorationsCommand(
-			TransactionalEditingDomain editingDomain, View parentView,
-			List viewDescriptors) {
+	* @generated
+	*/
+	public RelationalDatabase_MAVOCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain,
+			View parentView, List viewDescriptors) {
 		super(editingDomain, "Create Shortcuts", getWorkspaceFiles(parentView)); //$NON-NLS-1$
 		myDescriptors = viewDescriptors;
 	}
 
 	/**
-	 * @generated
-	 */
-	public RelationalDatabase_MAVOCreateShortcutDecorationsCommand(
-			TransactionalEditingDomain editingDomain, View parentView,
-			CreateViewRequest.ViewDescriptor viewDescriptor) {
-		this(editingDomain, parentView, Collections
-				.singletonList(viewDescriptor));
+	* @generated
+	*/
+	public RelationalDatabase_MAVOCreateShortcutDecorationsCommand(TransactionalEditingDomain editingDomain,
+			View parentView, CreateViewRequest.ViewDescriptor viewDescriptor) {
+		this(editingDomain, parentView, Collections.singletonList(viewDescriptor));
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		for (Iterator it = myDescriptors.iterator(); it.hasNext();) {
-			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it
-					.next();
+			CreateViewRequest.ViewDescriptor nextDescriptor = (CreateViewRequest.ViewDescriptor) it.next();
 			View view = (View) nextDescriptor.getAdapter(View.class);
 			if (view != null && view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-						.createEAnnotation();
+				EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 				shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-				shortcutAnnotation
-						.getDetails()
-						.put("modelID", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID); //$NON-NLS-1$
+				shortcutAnnotation.getDetails().put("modelID", //$NON-NLS-1$
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID);
 				view.getEAnnotations().add(shortcutAnnotation);
 			}
 		}

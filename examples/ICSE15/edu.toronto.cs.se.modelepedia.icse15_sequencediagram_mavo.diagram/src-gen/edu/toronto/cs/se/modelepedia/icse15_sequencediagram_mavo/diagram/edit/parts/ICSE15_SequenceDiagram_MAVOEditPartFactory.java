@@ -21,12 +21,11 @@ import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAcces
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOEditPartFactory implements
-		EditPartFactory {
+public class ICSE15_SequenceDiagram_MAVOEditPartFactory implements EditPartFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -127,20 +126,18 @@ public class ICSE15_SequenceDiagram_MAVOEditPartFactory implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		return CellEditorLocatorAccess.INSTANCE
-				.getTextCellEditorLocator(source);
+	* @generated
+	*/
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 	}
 
 }

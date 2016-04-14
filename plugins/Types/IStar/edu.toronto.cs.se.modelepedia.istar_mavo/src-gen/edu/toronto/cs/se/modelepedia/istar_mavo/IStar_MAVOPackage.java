@@ -85,7 +85,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__INC = MAVOPackage.MAVO_MODEL__INC;
+	int ISTAR__INC = MAVOPackage.MAVO_ROOT__INC;
 
 	/**
 	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
@@ -94,7 +94,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
+	int ISTAR__DECISIONS = MAVOPackage.MAVO_ROOT__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -103,7 +103,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__ACTORS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int ISTAR__ACTORS = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dependums</b></em>' containment reference list.
@@ -112,7 +112,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR__DEPENDUMS = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int ISTAR__DEPENDUMS = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>IStar</em>' class.
@@ -121,7 +121,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 2;
+	int ISTAR_FEATURE_COUNT = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>IStar</em>' class.
@@ -130,7 +130,7 @@ public interface IStar_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ISTAR_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int ISTAR_OPERATION_COUNT = MAVOPackage.MAVO_ROOT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependencyEndpointImpl <em>Dependency Endpoint</em>}' class.

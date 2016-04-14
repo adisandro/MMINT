@@ -114,7 +114,7 @@
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="ActorClassLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink">
@@ -142,8 +142,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="ResourceClassLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink">
@@ -171,8 +171,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="TaskOperationLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink">
@@ -200,8 +200,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Operation">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="GoalDependumDependencyLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink">
@@ -230,8 +230,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="ResourceDependumDependencyLink"
                   uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink">
@@ -260,7 +260,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO#//Dependency">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 

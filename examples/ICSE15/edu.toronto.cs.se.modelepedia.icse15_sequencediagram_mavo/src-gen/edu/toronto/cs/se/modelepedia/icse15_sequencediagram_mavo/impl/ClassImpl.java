@@ -34,11 +34,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl#getLifelines <em>Lifelines</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

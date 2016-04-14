@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part;
 
 import java.util.Collection;
@@ -30,16 +30,15 @@ import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isShortcutOrphaned(View view) {
-		return !view.isSetElement() || view.getElement() == null
-				|| view.getElement().eIsProxy();
+		return !view.isSetElement() || view.getElement() == null || view.getElement().eIsProxy();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor> getSemanticChildren(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
@@ -53,8 +52,8 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor> getSequenceDiagram_1000SemanticChildren(
 			View view) {
 		if (!view.isSetElement()) {
@@ -63,39 +62,39 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram modelElement = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram) view
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getLifelines().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getLifelines().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline childElement = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.LifelineEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getClasses().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getClasses().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class childElement = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
-		for (Iterator<?> it = modelElement.getMessages().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getMessages().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message childElement = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.MessageEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
@@ -103,8 +102,8 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor> getClassClassOperationsCompartment_7001SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -117,15 +116,15 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class modelElement = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class) containerView
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOperations().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getOperations().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation childElement = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
@@ -133,8 +132,8 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getContainedLinks(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
@@ -162,8 +161,8 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getIncomingLinks(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
@@ -189,8 +188,8 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getOutgoingLinks(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry
@@ -307,10 +306,8 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_SourceLifelineReference_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_TargetLifelineReference_4004(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_SourceLifelineReference_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_TargetLifelineReference_4004(modelElement, crossReferences));
 		return result;
 	}
 
@@ -324,8 +321,7 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ClassReference_4001(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ClassReference_4001(modelElement, crossReferences));
 		return result;
 	}
 
@@ -347,8 +343,7 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_OperationReference_4002(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_OperationReference_4002(modelElement, crossReferences));
 		return result;
 	}
 
@@ -459,13 +454,12 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_ClassReference_4001(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getClass_().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getClass_().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference) {
 				continue;
@@ -475,28 +469,24 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_OperationReference_4002(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getOperation().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getOperation().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference) {
 				continue;
@@ -506,28 +496,24 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_SourceLifelineReference_4003(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getSourceLifeline().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getSourceLifeline().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference) {
 				continue;
@@ -537,28 +523,24 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SourceLifelineReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SourceLifelineReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_TargetLifelineReference_4004(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getTargetLifeline().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getTargetLifeline().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) {
 				continue;
@@ -568,16 +550,13 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.TargetLifelineReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.TargetLifelineReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -589,12 +568,13 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getClassReference_Target()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference) {
+			if (setting
+					.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getClassReference_Target()
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference link = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference) setting
@@ -603,14 +583,12 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					target,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, target, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -622,12 +600,13 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getOperationReference_Target()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference) {
+			if (setting
+					.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getOperationReference_Target()
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference link = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference) setting
@@ -636,14 +615,12 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					target,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, target, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -655,12 +632,13 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getSourceLifelineReference_Target()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference) {
+			if (setting
+					.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getSourceLifelineReference_Target()
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference link = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference) setting
@@ -669,14 +647,12 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					target,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SourceLifelineReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, target, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SourceLifelineReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -688,12 +664,13 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
-					.getTargetLifelineReference_Target()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) {
+			if (setting
+					.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
+							.getTargetLifelineReference_Target()
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference link = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) setting
@@ -702,29 +679,26 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					target,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.TargetLifelineReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, target, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.TargetLifelineReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_ClassReference_4001(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline source) {
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline) {
 				container = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline) element;
 			}
@@ -733,8 +707,7 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getClass_().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getClass_().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference) {
 				continue;
@@ -744,34 +717,30 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline src = link
-					.getSource();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline src = link.getSource();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassReferenceEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ClassReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_OperationReference_4002(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message source) {
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) {
 				container = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) element;
 			}
@@ -780,8 +749,7 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getOperation().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getOperation().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference) {
 				continue;
@@ -791,34 +759,30 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationReferenceEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.OperationReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_SourceLifelineReference_4003(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message source) {
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) {
 				container = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) element;
 			}
@@ -827,8 +791,7 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getSourceLifeline().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getSourceLifeline().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference) {
 				continue;
@@ -838,34 +801,30 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SourceLifelineReferenceEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SourceLifelineReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_TargetLifelineReference_4004(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message source) {
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) {
 				container = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) element;
 			}
@@ -874,8 +833,7 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getTargetLifeline().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getTargetLifeline().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) {
 				continue;
@@ -885,65 +843,62 @@ public class ICSE15_SequenceDiagram_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link
-					.getSource();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message src = link.getSource();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004,
-					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.TargetLifelineReferenceEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004,
+							edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.TargetLifelineReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVONodeDescriptor> getSemanticChildren(
 				View view) {
-			return ICSE15_SequenceDiagram_MAVODiagramUpdater
-					.getSemanticChildren(view);
+			return ICSE15_SequenceDiagram_MAVODiagramUpdater.getSemanticChildren(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getContainedLinks(
 				View view) {
-			return ICSE15_SequenceDiagram_MAVODiagramUpdater
-					.getContainedLinks(view);
+			return ICSE15_SequenceDiagram_MAVODiagramUpdater.getContainedLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getIncomingLinks(
 				View view) {
-			return ICSE15_SequenceDiagram_MAVODiagramUpdater
-					.getIncomingLinks(view);
+			return ICSE15_SequenceDiagram_MAVODiagramUpdater.getIncomingLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOLinkDescriptor> getOutgoingLinks(
 				View view) {
-			return ICSE15_SequenceDiagram_MAVODiagramUpdater
-					.getOutgoingLinks(view);
+			return ICSE15_SequenceDiagram_MAVODiagramUpdater.getOutgoingLinks(view);
 		}
 	};
 

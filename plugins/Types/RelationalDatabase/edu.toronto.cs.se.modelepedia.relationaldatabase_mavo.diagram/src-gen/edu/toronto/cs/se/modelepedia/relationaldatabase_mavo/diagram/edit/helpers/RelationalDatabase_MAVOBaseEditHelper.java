@@ -16,7 +16,6 @@ import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOBaseEditHelper extends
-		GeneratedEditHelperBase {
+public class RelationalDatabase_MAVOBaseEditHelper extends GeneratedEditHelperBase {
 
 }

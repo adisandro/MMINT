@@ -7,8 +7,9 @@ Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.eclipse.jdt.annotation;resolution:=optional,
+ org.eclipse.emf.validation,
  org.eclipse.acceleo.engine,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.primitive,

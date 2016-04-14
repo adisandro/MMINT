@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
 public class DiagramPrintingPreferencePage extends PrintingPreferencePage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DiagramPrintingPreferencePage() {
 		setPreferenceStore(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
 				.getInstance().getPreferenceStore());

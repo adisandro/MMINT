@@ -31,145 +31,145 @@ import org.eclipse.swt.graphics.Image;
 public class ICSE15_SequenceDiagram_MAVOElementTypes {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ICSE15_SequenceDiagram_MAVOElementTypes() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Map<IElementType, ENamedElement> elements;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
 					.getInstance().getItemProvidersAdapterFactory());
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType SequenceDiagram_1000 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.SequenceDiagram_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType SequenceDiagram_1000 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.SequenceDiagram_1000"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Lifeline_2001 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Lifeline_2001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Lifeline_2001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Lifeline_2001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Class_2002 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Class_2002"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Class_2002 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Class_2002"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Message_2003 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Message_2003"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Message_2003 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Message_2003"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Operation_3001 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Operation_3001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Operation_3001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.Operation_3001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType ClassReference_4001 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.ClassReference_4001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType ClassReference_4001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.ClassReference_4001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType OperationReference_4002 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.OperationReference_4002"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType OperationReference_4002 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.OperationReference_4002"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType SourceLifelineReference_4003 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.SourceLifelineReference_4003"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType SourceLifelineReference_4003 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.SourceLifelineReference_4003"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType TargetLifelineReference_4004 = getElementType("edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.TargetLifelineReference_4004"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType TargetLifelineReference_4004 = getElementType(
+			"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.TargetLifelineReference_4004"); //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(ENamedElement element) {
 		return elementTypeImages.getImage(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		return getImageDescriptor(getElement(hint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(IAdaptable hint) {
 		return getImage(getElement(hint));
 	}
 
 	/**
-	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
-	 * @generated
-	 */
+	* Returns 'type' of the ecore object associated with the hint.
+	* 
+	* @generated
+	*/
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(
-					SequenceDiagram_1000,
+			elements.put(SequenceDiagram_1000,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getSequenceDiagram());
 
-			elements.put(
-					Lifeline_2001,
+			elements.put(Lifeline_2001,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getLifeline());
 
-			elements.put(
-					Class_2002,
+			elements.put(Class_2002,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getClass_());
 
-			elements.put(
-					Message_2003,
+			elements.put(Message_2003,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getMessage());
 
-			elements.put(
-					Operation_3001,
+			elements.put(Operation_3001,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getOperation());
 
-			elements.put(
-					ClassReference_4001,
+			elements.put(ClassReference_4001,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getClassReference());
 
-			elements.put(
-					OperationReference_4002,
+			elements.put(OperationReference_4002,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getOperationReference());
 
-			elements.put(
-					SourceLifelineReference_4003,
+			elements.put(SourceLifelineReference_4003,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getSourceLifelineReference());
 
-			elements.put(
-					TargetLifelineReference_4004,
+			elements.put(TargetLifelineReference_4004,
 					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage.eINSTANCE
 							.getTargetLifelineReference());
 		}
@@ -177,15 +177,15 @@ public class ICSE15_SequenceDiagram_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IElementType getElementType(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
@@ -203,8 +203,8 @@ public class ICSE15_SequenceDiagram_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SequenceDiagramEditPart.VISUAL_ID:
@@ -230,35 +230,36 @@ public class ICSE15_SequenceDiagram_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
-	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(
-			elementTypeImages) {
+	* @generated
+	*/
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public boolean isKnownElementType(IElementType elementType) {
 			return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
 					.isKnownElementType(elementType);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
 					.getElementType(visualID);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
-		public ENamedElement getDefiningNamedElement(
-				IAdaptable elementTypeAdapter) {
+
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
 					.getElement(elementTypeAdapter);
 		}

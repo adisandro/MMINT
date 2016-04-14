@@ -17,15 +17,13 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOIconProvider extends
-		DefaultElementTypeIconProvider implements IIconProvider {
+public class ICSE15_SequenceDiagram_MAVOIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ICSE15_SequenceDiagram_MAVOIconProvider() {
-		super(
-				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TYPED_INSTANCE);
+		super(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TYPED_INSTANCE);
 	}
 
 }

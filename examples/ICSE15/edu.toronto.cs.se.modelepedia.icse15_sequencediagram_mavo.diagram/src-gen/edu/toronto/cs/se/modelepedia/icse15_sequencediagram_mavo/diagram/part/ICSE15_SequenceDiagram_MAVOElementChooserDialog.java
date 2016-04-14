@@ -22,95 +22,93 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOElementChooserDialog extends
-		DefaultElementChooserDialog {
+public class ICSE15_SequenceDiagram_MAVOElementChooserDialog extends DefaultElementChooserDialog {
 
 	/**
-	 * @generated
-	 */
-	public ICSE15_SequenceDiagram_MAVOElementChooserDialog(Shell parentShell,
-			View view) {
+	* @generated
+	*/
+	public ICSE15_SequenceDiagram_MAVOElementChooserDialog(Shell parentShell, View view) {
 		this(parentShell, view, false);
 	}
 
 	/**
-	 * @generated
-	 */
-	public ICSE15_SequenceDiagram_MAVOElementChooserDialog(Shell parentShell,
-			View view, boolean allowMultiSelection) {
-		super(parentShell, view,
-				new ICSE15_SequenceDiagram_MAVOElementChooserDialogContextImpl(
-						allowMultiSelection));
+	* @generated
+	*/
+	public ICSE15_SequenceDiagram_MAVOElementChooserDialog(Shell parentShell, View view, boolean allowMultiSelection) {
+		super(parentShell, view, new ICSE15_SequenceDiagram_MAVOElementChooserDialogContextImpl(allowMultiSelection));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class ICSE15_SequenceDiagram_MAVOElementChooserDialogContextImpl
 			implements DefaultElementChooserDialog.Context {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private static final String[] FILE_EXTENSIONS = new String[] { "icse15_sequencediagram_mavo" };
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final boolean myAllowMultiSelection;
 
 		/**
-		 * @generated
-		 */
-		private ICSE15_SequenceDiagram_MAVOElementChooserDialogContextImpl(
-				boolean allowMultiSelection) {
+		* @generated
+		*/
+		private ICSE15_SequenceDiagram_MAVOElementChooserDialogContextImpl(boolean allowMultiSelection) {
 			myAllowMultiSelection = allowMultiSelection;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public AdapterFactory getAdapterFactory() {
 			return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
 					.getInstance().getItemProvidersAdapterFactory();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public PreferencesHint getPreferenceHint() {
 			return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String[] getFileExtesions() {
 			return FILE_EXTENSIONS.clone();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String getDialogTitle() {
 			return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.ICSE15_SequenceDiagram_MAVOElementChooserDialog_SelectModelElementTitle;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
 		public ITreeContentProvider getTreeContentProvider() {
 			return new BaseWorkbenchContentProvider();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public boolean allowMultiSelection() {
 			return myAllowMultiSelection;
 		}

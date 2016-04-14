@@ -15,6 +15,5 @@ package edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers;
  * @generated
  */
 public class ContributionEditHelper
-		extends
-		edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.IStar_MAVOBaseEditHelper {
+		extends edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.helpers.IStar_MAVOBaseEditHelper {
 }

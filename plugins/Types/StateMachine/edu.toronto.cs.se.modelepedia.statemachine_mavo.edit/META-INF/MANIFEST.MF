@@ -10,8 +10,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: edu.toronto.cs.se.modelepedia.statemachine_mavo.provider
 Require-Bundle: org.eclipse.core.runtime,
- edu.toronto.cs.se.modelepedia.statemachine_mavo,
  org.eclipse.emf.edit,
  edu.toronto.cs.se.mavo,
- edu.toronto.cs.se.mavo.edit
+ edu.toronto.cs.se.mavo.edit,
+ edu.toronto.cs.se.modelepedia.statemachine_mavo
 Bundle-ActivationPolicy: lazy

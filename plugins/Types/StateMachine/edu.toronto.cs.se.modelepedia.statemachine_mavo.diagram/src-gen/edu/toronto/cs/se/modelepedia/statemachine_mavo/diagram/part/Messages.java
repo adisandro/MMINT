@@ -19,371 +19,371 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Messages() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizard_DiagramModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizard_DiagramModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizard_DomainModelFilePageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizard_DomainModelFilePageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizardOpenEditorError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizardCreationError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOCreationWizardPageExtensionError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditorUtil_OpenModelResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditorUtil_OpenModelResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditorUtil_CreateDiagramProgressTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditorUtil_CreateDiagramCommandLabel;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_isModifiable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_handleElementContentChanged;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_IncorrectInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_NoDiagramInResourceError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_DiagramLoadingError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_UnsynchronizedFileSaveError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_SaveDiagramTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_SaveNextResourceTask;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODocumentProvider_SaveAsOperation;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_ResourceErrorDialogMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_WizardTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitDiagramFile_OpenModelFileDialogTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_CreationPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_CreationPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_CreationPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_RootSelectionPageName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_RootSelectionPageTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_RootSelectionPageDescription;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_InitDiagramCommand;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVONewDiagramFileWizard_IncorrectRootError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditor_SavingDeletedFile;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditor_SaveAsErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditor_SaveAsErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditor_SaveErrorTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVODiagramEditor_SaveErrorMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOElementChooserDialog_SelectModelElementTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ModelElementSelectionPageMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String ValidateActionMessage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Objects1Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Connections2Group_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String FinalState1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String FinalState1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitialState2CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String InitialState2CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String State3CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String State3CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateAction4CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateAction4CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Transition1CreationTool_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String Transition1CreationTool_desc;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateStateInternalActionsCompartmentEditPart_title;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String CommandName_OpenDiagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_StateMachine_1000_links;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_State_2001_incominglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_State_2001_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_InitialState_2002_incominglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_InitialState_2002_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_FinalState_2003_incominglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_FinalState_2003_outgoinglinks;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Transition_4001_target;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorGroupName_Transition_4001_source;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String NavigatorActionProvider_OpenDiagramActionName;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String MessageFormatParser_InvalidInputError;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOModelingAssistantProviderTitle;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static String StateMachine_MAVOModelingAssistantProviderMessage;
 
 	//TODO: put accessor fields manually	

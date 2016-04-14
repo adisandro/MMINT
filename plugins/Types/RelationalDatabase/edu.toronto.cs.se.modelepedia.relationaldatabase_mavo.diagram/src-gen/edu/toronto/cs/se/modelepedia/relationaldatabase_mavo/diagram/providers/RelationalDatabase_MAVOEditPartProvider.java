@@ -16,16 +16,15 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOEditPartProvider extends
-		DefaultEditPartProvider {
+public class RelationalDatabase_MAVOEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public RelationalDatabase_MAVOEditPartProvider() {
-		super(
-				new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabase_MAVOEditPartFactory(),
+		super(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabase_MAVOEditPartFactory(),
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry.TYPED_INSTANCE,
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID);
 	}
+
 }

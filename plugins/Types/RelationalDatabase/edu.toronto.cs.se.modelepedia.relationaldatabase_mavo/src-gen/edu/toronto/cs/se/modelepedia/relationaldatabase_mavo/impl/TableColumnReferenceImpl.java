@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.TableColumnReferenceImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.TableColumnReferenceImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

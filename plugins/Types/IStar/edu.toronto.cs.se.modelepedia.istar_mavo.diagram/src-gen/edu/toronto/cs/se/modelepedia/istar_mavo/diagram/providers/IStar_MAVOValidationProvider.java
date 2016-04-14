@@ -20,22 +20,21 @@ import org.eclipse.gmf.runtime.notation.View;
 public class IStar_MAVOValidationProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static boolean constraintsActive = false;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean shouldConstraintsBePrivate() {
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static void runWithConstraints(
-			TransactionalEditingDomain editingDomain, Runnable operation) {
+	* @generated
+	*/
+	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
 			public void run() {
@@ -51,8 +50,8 @@ public class IStar_MAVOValidationProvider {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
-						.getInstance().logError("Validation failed", e); //$NON-NLS-1$
+				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin.getInstance()
+						.logError("Validation failed", e); //$NON-NLS-1$
 			}
 		} else {
 			task.run();
@@ -60,8 +59,8 @@ public class IStar_MAVOValidationProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static boolean isInDefaultEditorContext(Object object) {
 		if (shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;

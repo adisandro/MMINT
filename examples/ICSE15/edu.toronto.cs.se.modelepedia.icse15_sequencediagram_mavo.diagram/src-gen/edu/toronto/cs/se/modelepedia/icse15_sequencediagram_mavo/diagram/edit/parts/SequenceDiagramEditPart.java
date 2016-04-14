@@ -34,75 +34,58 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicy
 public class SequenceDiagramEditPart extends DiagramEditPart {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final static String MODEL_ID = "ICSE15_SequenceDiagram_MAVO"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final int VISUAL_ID = 1000;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public SequenceDiagramEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.policies.SequenceDiagramItemSemanticEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.CANONICAL_ROLE,
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.policies.SequenceDiagramCanonicalEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicyWithCustomReparent(
-						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry.TYPED_INSTANCE));
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DiagramDragDropEditPolicy() {
-					public Command getDropObjectsCommand(
-							DropObjectsRequest dropRequest) {
-						ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>();
-						for (Iterator<?> it = dropRequest.getObjects()
-								.iterator(); it.hasNext();) {
-							Object nextObject = it.next();
-							if (false == nextObject instanceof EObject) {
-								continue;
-							}
-							viewDescriptors
-									.add(new CreateViewRequest.ViewDescriptor(
-											new EObjectAdapter(
-													(EObject) nextObject),
-											Node.class, null,
-											getDiagramPreferencesHint()));
-						}
-						return createShortcutsCommand(dropRequest,
-								viewDescriptors);
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicyWithCustomReparent(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry.TYPED_INSTANCE));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy() {
+			public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
+				ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>();
+				for (Iterator<?> it = dropRequest.getObjects().iterator(); it.hasNext();) {
+					Object nextObject = it.next();
+					if (false == nextObject instanceof EObject) {
+						continue;
 					}
+					viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter((EObject) nextObject),
+							Node.class, null, getDiagramPreferencesHint()));
+				}
+				return createShortcutsCommand(dropRequest, viewDescriptors);
+			}
 
-					private Command createShortcutsCommand(
-							DropObjectsRequest dropRequest,
-							List<CreateViewRequest.ViewDescriptor> viewDescriptors) {
-						Command command = createViewsAndArrangeCommand(
-								dropRequest, viewDescriptors);
-						if (command != null) {
-							return command
-									.chain(new ICommandProxy(
-											new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.commands.ICSE15_SequenceDiagram_MAVOCreateShortcutDecorationsCommand(
-													getEditingDomain(),
-													(View) getModel(),
-													viewDescriptors)));
-						}
-						return null;
-					}
-				});
+			private Command createShortcutsCommand(DropObjectsRequest dropRequest,
+					List<CreateViewRequest.ViewDescriptor> viewDescriptors) {
+				Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
+				if (command != null) {
+					return command.chain(new ICommandProxy(
+							new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.commands.ICSE15_SequenceDiagram_MAVOCreateShortcutDecorationsCommand(
+									getEditingDomain(), (View) getModel(), viewDescriptors)));
+				}
+				return null;
+			}
+		});
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

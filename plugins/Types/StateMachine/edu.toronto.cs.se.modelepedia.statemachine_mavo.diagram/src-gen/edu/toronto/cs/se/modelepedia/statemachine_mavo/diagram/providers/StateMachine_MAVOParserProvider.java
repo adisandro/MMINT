@@ -29,21 +29,21 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
 /**
  * @generated
  */
-public class StateMachine_MAVOParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class StateMachine_MAVOParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser stateName_5003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getStateName_5003Parser() {
 		if (stateName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-					.getAbstractState_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
+							.getAbstractState_Name() };
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			stateName_5003Parser = parser;
@@ -52,13 +52,13 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser stateLabel_5004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getStateLabel_5004Parser() {
 		if (stateLabel_5004Parser == null) {
 			stateLabel_5004Parser = new MAVOElementLabelParser();
@@ -67,13 +67,13 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser stateActionTriggerAction_5001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getStateActionTriggerAction_5001Parser() {
 		if (stateActionTriggerAction_5001Parser == null) {
 			EAttribute[] features = new EAttribute[] {
@@ -92,13 +92,13 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser stateActionLabel_5002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getStateActionLabel_5002Parser() {
 		if (stateActionLabel_5002Parser == null) {
 			stateActionLabel_5002Parser = new MAVOElementLabelParser();
@@ -107,13 +107,13 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser transitionTriggerAction_6001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTransitionTriggerAction_6001Parser() {
 		if (transitionTriggerAction_6001Parser == null) {
 			EAttribute[] features = new EAttribute[] {
@@ -132,13 +132,13 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser transitionLabel_6002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTransitionLabel_6002Parser() {
 		if (transitionLabel_6002Parser == null) {
 			transitionLabel_6002Parser = new MAVOElementLabelParser();
@@ -147,8 +147,8 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart.VISUAL_ID:
@@ -168,35 +168,35 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * Utility method that consults ParserService
-	 * @generated
-	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	* Utility method that consults ParserService
+	* @generated
+	*/
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-					.getVisualID(vid));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
+							.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
-					.getVisualID(view));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVOVisualIDRegistry
+							.getVisualID(view));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -210,18 +210,18 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final IElementType elementType;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -229,8 +229,8 @@ public class StateMachine_MAVOParserProvider extends AbstractProvider implements
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

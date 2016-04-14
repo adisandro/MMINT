@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
@@ -26,17 +27,17 @@ import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 public class RelationalDatabase_MAVOPaletteFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void fillPalette(PaletteRoot paletteRoot) {
 		paletteRoot.add(createObjects1Group());
 		paletteRoot.add(createConnections2Group());
 	}
 
 	/**
-	 * Creates "Objects" palette tool group
-	 * @generated
-	 */
+	* Creates "Objects" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createObjects1Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.Objects1Group_title);
@@ -48,9 +49,9 @@ public class RelationalDatabase_MAVOPaletteFactory {
 	}
 
 	/**
-	 * Creates "Connections" palette tool group
-	 * @generated
-	 */
+	* Creates "Connections" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createConnections2Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.Connections2Group_title);
@@ -61,82 +62,93 @@ public class RelationalDatabase_MAVOPaletteFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createColumn1CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.Column1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.Column1CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001));
 		entry.setId("createColumn1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createForeignKey2CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.ForeignKey2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.ForeignKey2CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002));
 		entry.setId("createForeignKey2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createTable3CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.Table3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.Table3CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001));
 		entry.setId("createTable3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createForeignColumnReference1CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.ForeignColumnReference1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.ForeignColumnReference1CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002));
 		entry.setId("createForeignColumnReference1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createTableColumnReference2CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.TableColumnReference2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.TableColumnReference2CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001));
 		entry.setId("createTableColumnReference2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
+
 }

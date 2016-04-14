@@ -21,15 +21,14 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ElementInitializers getInstance() {
 		ElementInitializers cached = edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
 				.getInstance().getElementInitializers();
 		if (cached == null) {
 			edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
-					.getInstance().setElementInitializers(
-							cached = new ElementInitializers());
+					.getInstance().setElementInitializers(cached = new ElementInitializers());
 		}
 		return cached;
 	}

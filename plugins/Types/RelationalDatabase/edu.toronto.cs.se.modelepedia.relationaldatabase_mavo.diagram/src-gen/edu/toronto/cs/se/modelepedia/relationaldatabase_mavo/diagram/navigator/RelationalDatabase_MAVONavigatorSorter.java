@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator;
 
 import org.eclipse.jface.viewers.ViewerSorter;
@@ -19,18 +19,18 @@ import org.eclipse.jface.viewers.ViewerSorter;
 public class RelationalDatabase_MAVONavigatorSorter extends ViewerSorter {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final int GROUP_CATEGORY = 7004;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final int SHORTCUTS_CATEGORY = 7003;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public int category(Object element) {
 		if (element instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorItem) {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorItem item = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorItem) element;

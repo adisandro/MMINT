@@ -131,8 +131,8 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 				return createTargetLifelineReferenceAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(MAVORoot object) {
-				return createMAVOModelAdapter();
+			public Adapter caseMAVORoot(MAVORoot object) {
+				return createMAVORootAdapter();
 			}
 			@Override
 			public Adapter caseLogicElement(LogicElement object) {
@@ -307,7 +307,7 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -316,7 +316,7 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	 * @see edu.toronto.cs.se.mavo.MAVORoot
 	 * @generated
 	 */
-	public Adapter createMAVOModelAdapter() {
+	public Adapter createMAVORootAdapter() {
 		return null;
 	}
 

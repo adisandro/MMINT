@@ -22,95 +22,93 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOElementChooserDialog extends
-		DefaultElementChooserDialog {
+public class RelationalDatabase_MAVOElementChooserDialog extends DefaultElementChooserDialog {
 
 	/**
-	 * @generated
-	 */
-	public RelationalDatabase_MAVOElementChooserDialog(Shell parentShell,
-			View view) {
+	* @generated
+	*/
+	public RelationalDatabase_MAVOElementChooserDialog(Shell parentShell, View view) {
 		this(parentShell, view, false);
 	}
 
 	/**
-	 * @generated
-	 */
-	public RelationalDatabase_MAVOElementChooserDialog(Shell parentShell,
-			View view, boolean allowMultiSelection) {
-		super(parentShell, view,
-				new RelationalDatabase_MAVOElementChooserDialogContextImpl(
-						allowMultiSelection));
+	* @generated
+	*/
+	public RelationalDatabase_MAVOElementChooserDialog(Shell parentShell, View view, boolean allowMultiSelection) {
+		super(parentShell, view, new RelationalDatabase_MAVOElementChooserDialogContextImpl(allowMultiSelection));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class RelationalDatabase_MAVOElementChooserDialogContextImpl
 			implements DefaultElementChooserDialog.Context {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private static final String[] FILE_EXTENSIONS = new String[] { "relationaldatabase_mavo" };
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final boolean myAllowMultiSelection;
 
 		/**
-		 * @generated
-		 */
-		private RelationalDatabase_MAVOElementChooserDialogContextImpl(
-				boolean allowMultiSelection) {
+		* @generated
+		*/
+		private RelationalDatabase_MAVOElementChooserDialogContextImpl(boolean allowMultiSelection) {
 			myAllowMultiSelection = allowMultiSelection;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public AdapterFactory getAdapterFactory() {
 			return edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
 					.getInstance().getItemProvidersAdapterFactory();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public PreferencesHint getPreferenceHint() {
 			return edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String[] getFileExtesions() {
 			return FILE_EXTENSIONS.clone();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String getDialogTitle() {
 			return edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.RelationalDatabase_MAVOElementChooserDialog_SelectModelElementTitle;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
 		public ITreeContentProvider getTreeContentProvider() {
 			return new BaseWorkbenchContentProvider();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public boolean allowMultiSelection() {
 			return myAllowMultiSelection;
 		}

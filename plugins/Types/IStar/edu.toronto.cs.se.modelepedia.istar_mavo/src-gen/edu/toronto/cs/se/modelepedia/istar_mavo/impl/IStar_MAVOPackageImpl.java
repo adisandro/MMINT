@@ -720,7 +720,7 @@ public class IStar_MAVOPackageImpl extends EPackageImpl implements IStar_MAVOPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		iStarEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		iStarEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		actorEClass.getESuperTypes().add(this.getDependencyEndpoint());
 		intentionEClass.getESuperTypes().add(this.getDependencyEndpoint());
 		taskEClass.getESuperTypes().add(this.getIntention());

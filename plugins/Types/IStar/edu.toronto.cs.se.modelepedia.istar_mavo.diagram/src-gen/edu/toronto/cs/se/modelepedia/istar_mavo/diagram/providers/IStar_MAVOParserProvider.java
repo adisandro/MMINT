@@ -29,21 +29,20 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOElementLabelParser;
 /**
  * @generated
  */
-public class IStar_MAVOParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class IStar_MAVOParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser softGoalName_5001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getSoftGoalName_5001Parser() {
 		if (softGoalName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			softGoalName_5001Parser = parser;
@@ -52,13 +51,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser softGoalLabel_5002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getSoftGoalLabel_5002Parser() {
 		if (softGoalLabel_5002Parser == null) {
 			softGoalLabel_5002Parser = new MAVOElementLabelParser();
@@ -67,17 +66,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser taskName_5003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTaskName_5003Parser() {
 		if (taskName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			taskName_5003Parser = parser;
@@ -86,13 +85,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser taskLabel_5004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTaskLabel_5004Parser() {
 		if (taskLabel_5004Parser == null) {
 			taskLabel_5004Parser = new MAVOElementLabelParser();
@@ -101,17 +100,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser resourceName_5005Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getResourceName_5005Parser() {
 		if (resourceName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			resourceName_5005Parser = parser;
@@ -120,13 +119,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser resourceLabel_5006Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getResourceLabel_5006Parser() {
 		if (resourceLabel_5006Parser == null) {
 			resourceLabel_5006Parser = new MAVOElementLabelParser();
@@ -135,17 +134,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser goalName_5007Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getGoalName_5007Parser() {
 		if (goalName_5007Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			goalName_5007Parser = parser;
@@ -154,13 +153,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser goalLabel_5008Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getGoalLabel_5008Parser() {
 		if (goalLabel_5008Parser == null) {
 			goalLabel_5008Parser = new MAVOElementLabelParser();
@@ -169,17 +168,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser actorName_5017Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getActorName_5017Parser() {
 		if (actorName_5017Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			actorName_5017Parser = parser;
@@ -188,13 +187,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser actorLabel_5018Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getActorLabel_5018Parser() {
 		if (actorLabel_5018Parser == null) {
 			actorLabel_5018Parser = new MAVOElementLabelParser();
@@ -203,17 +202,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser softGoalName_5009Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getSoftGoalName_5009Parser() {
 		if (softGoalName_5009Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			softGoalName_5009Parser = parser;
@@ -222,13 +221,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser softGoalLabel_5010Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getSoftGoalLabel_5010Parser() {
 		if (softGoalLabel_5010Parser == null) {
 			softGoalLabel_5010Parser = new MAVOElementLabelParser();
@@ -237,17 +236,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser taskName_5011Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTaskName_5011Parser() {
 		if (taskName_5011Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			taskName_5011Parser = parser;
@@ -256,13 +255,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser taskLabel_5012Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getTaskLabel_5012Parser() {
 		if (taskLabel_5012Parser == null) {
 			taskLabel_5012Parser = new MAVOElementLabelParser();
@@ -271,17 +270,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser resourceName_5013Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getResourceName_5013Parser() {
 		if (resourceName_5013Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			resourceName_5013Parser = parser;
@@ -290,13 +289,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser resourceLabel_5014Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getResourceLabel_5014Parser() {
 		if (resourceLabel_5014Parser == null) {
 			resourceLabel_5014Parser = new MAVOElementLabelParser();
@@ -305,17 +304,17 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser goalName_5015Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getGoalName_5015Parser() {
 		if (goalName_5015Parser == null) {
-			EAttribute[] features = new EAttribute[] { edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-					.getDependencyEndpoint_Name() };
+			EAttribute[] features = new EAttribute[] {
+					edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getDependencyEndpoint_Name() };
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser parser = new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.parsers.MessageFormatParser(
 					features);
 			goalName_5015Parser = parser;
@@ -324,13 +323,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser goalLabel_5016Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getGoalLabel_5016Parser() {
 		if (goalLabel_5016Parser == null) {
 			goalLabel_5016Parser = new MAVOElementLabelParser();
@@ -339,13 +338,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser meansEndLabel_6001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getMeansEndLabel_6001Parser() {
 		if (meansEndLabel_6001Parser == null) {
 			meansEndLabel_6001Parser = new MAVOElementLabelParser();
@@ -354,13 +353,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser decompositionLabel_6002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getDecompositionLabel_6002Parser() {
 		if (decompositionLabel_6002Parser == null) {
 			decompositionLabel_6002Parser = new MAVOElementLabelParser();
@@ -369,13 +368,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser contributionLabel_6003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getContributionLabel_6003Parser() {
 		if (contributionLabel_6003Parser == null) {
 			contributionLabel_6003Parser = new MAVOElementLabelParser();
@@ -384,13 +383,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser dependerLinkLabel_6004Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getDependerLinkLabel_6004Parser() {
 		if (dependerLinkLabel_6004Parser == null) {
 			dependerLinkLabel_6004Parser = new MAVOElementLabelParser();
@@ -399,13 +398,13 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MAVOElementLabelParser dependeeLinkLabel_6005Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getDependeeLinkLabel_6005Parser() {
 		if (dependeeLinkLabel_6005Parser == null) {
 			dependeeLinkLabel_6005Parser = new MAVOElementLabelParser();
@@ -414,8 +413,8 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalNameEditPart.VISUAL_ID:
@@ -469,35 +468,33 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * Utility method that consults ParserService
-	 * @generated
-	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	* Utility method that consults ParserService
+	* @generated
+	*/
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
-					.getVisualID(vid));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
-					.getVisualID(view));
+			return getParser(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.getVisualID(view));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -511,18 +508,18 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final IElementType elementType;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -530,8 +527,8 @@ public class IStar_MAVOParserProvider extends AbstractProvider implements
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

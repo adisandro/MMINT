@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part;
 
 import java.util.Collection;
@@ -30,16 +30,15 @@ import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 public class RelationalDatabase_MAVODiagramUpdater {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isShortcutOrphaned(View view) {
-		return !view.isSetElement() || view.getElement() == null
-				|| view.getElement().eIsProxy();
+		return !view.isSetElement() || view.getElement() == null || view.getElement().eIsProxy();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> getSemanticChildren(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
@@ -55,8 +54,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> getRelationalDatabase_1000SemanticChildren(
 			View view) {
 		if (!view.isSetElement()) {
@@ -71,8 +70,9 @@ public class RelationalDatabase_MAVODiagramUpdater {
 			int visualID = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
@@ -80,8 +80,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> getTableTableColumnsCompartment_7001SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -94,15 +94,15 @@ public class RelationalDatabase_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table modelElement = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table) containerView
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getColumns().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getColumns().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column childElement = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
@@ -110,8 +110,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> getTableTableForeignKeysCompartment_7002SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -124,15 +124,15 @@ public class RelationalDatabase_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table modelElement = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table) containerView
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getForeignKeys().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getForeignKeys().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey childElement = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart.VISUAL_ID) {
-				result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor(
-						childElement, visualID));
+				result.add(
+						new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor(
+								childElement, visualID));
 				continue;
 			}
 		}
@@ -140,8 +140,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getContainedLinks(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
@@ -163,8 +163,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getIncomingLinks(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
@@ -184,8 +184,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getOutgoingLinks(
 			View view) {
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
@@ -275,10 +275,8 @@ public class RelationalDatabase_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_TableColumnReference_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ForeignColumnReference_4002(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_TableColumnReference_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ForeignColumnReference_4002(modelElement, crossReferences));
 		return result;
 	}
 
@@ -352,13 +350,12 @@ public class RelationalDatabase_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_TableColumnReference_4001(
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getTableColumn().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getTableColumn().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.TableColumnReference) {
 				continue;
@@ -368,28 +365,24 @@ public class RelationalDatabase_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_ForeignColumnReference_4002(
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getForeignColumn().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getForeignColumn().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference) {
 				continue;
@@ -399,16 +392,13 @@ public class RelationalDatabase_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -420,12 +410,13 @@ public class RelationalDatabase_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
-					.getTableColumnReference_Target()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.TableColumnReference) {
+			if (setting
+					.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
+							.getTableColumnReference_Target()
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.TableColumnReference) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.TableColumnReference link = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.TableColumnReference) setting
@@ -434,14 +425,12 @@ public class RelationalDatabase_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
-					src,
-					target,
-					link,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
+							src, target, link,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -453,12 +442,13 @@ public class RelationalDatabase_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
-					.getForeignColumnReference_Target()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference) {
+			if (setting
+					.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage.eINSTANCE
+							.getForeignColumnReference_Target()
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference link = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference) setting
@@ -467,29 +457,26 @@ public class RelationalDatabase_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link
-					.getSource();
-			result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
-					src,
-					target,
-					link,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link.getSource();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
+							src, target, link,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_TableColumnReference_4001(
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey source) {
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey) {
 				container = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey) element;
 			}
@@ -498,8 +485,7 @@ public class RelationalDatabase_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getTableColumn().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getTableColumn().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.TableColumnReference) {
 				continue;
@@ -509,34 +495,30 @@ public class RelationalDatabase_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link
-					.getSource();
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link.getSource();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_ForeignColumnReference_4002(
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey source) {
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey) {
 				container = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey) element;
 			}
@@ -545,8 +527,7 @@ public class RelationalDatabase_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getForeignColumn().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getForeignColumn().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignColumnReference) {
 				continue;
@@ -556,60 +537,59 @@ public class RelationalDatabase_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link
-					.getTarget();
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link
-					.getSource();
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Column dst = link.getTarget();
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey src = link.getSource();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
-					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor(
+							src, dst, link,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
+							edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVONodeDescriptor> getSemanticChildren(
 				View view) {
-			return RelationalDatabase_MAVODiagramUpdater
-					.getSemanticChildren(view);
+			return RelationalDatabase_MAVODiagramUpdater.getSemanticChildren(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getContainedLinks(
 				View view) {
-			return RelationalDatabase_MAVODiagramUpdater
-					.getContainedLinks(view);
+			return RelationalDatabase_MAVODiagramUpdater.getContainedLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getIncomingLinks(
 				View view) {
 			return RelationalDatabase_MAVODiagramUpdater.getIncomingLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOLinkDescriptor> getOutgoingLinks(
 				View view) {
 			return RelationalDatabase_MAVODiagramUpdater.getOutgoingLinks(view);

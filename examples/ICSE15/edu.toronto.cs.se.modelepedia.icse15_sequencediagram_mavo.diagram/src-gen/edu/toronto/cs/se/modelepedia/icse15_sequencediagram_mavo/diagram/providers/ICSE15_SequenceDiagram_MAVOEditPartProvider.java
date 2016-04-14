@@ -16,15 +16,13 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOEditPartProvider extends
-		DefaultEditPartProvider {
+public class ICSE15_SequenceDiagram_MAVOEditPartProvider extends DefaultEditPartProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ICSE15_SequenceDiagram_MAVOEditPartProvider() {
-		super(
-				new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ICSE15_SequenceDiagram_MAVOEditPartFactory(),
+		super(new edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.ICSE15_SequenceDiagram_MAVOEditPartFactory(),
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOVisualIDRegistry.TYPED_INSTANCE,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.parts.SequenceDiagramEditPart.MODEL_ID);
 	}

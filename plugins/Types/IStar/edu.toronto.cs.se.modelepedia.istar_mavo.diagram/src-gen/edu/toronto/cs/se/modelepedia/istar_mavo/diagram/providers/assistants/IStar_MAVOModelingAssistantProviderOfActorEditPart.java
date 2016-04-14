@@ -23,22 +23,22 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
  * @generated
  */
 public class IStar_MAVOModelingAssistantProviderOfActorEditPart
-		extends
-		edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOModelingAssistantProvider {
+		extends edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOModelingAssistantProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetRelTypesOnSource((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) sourceEditPart);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		return doGetRelTypesOnSource(
+				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) sourceEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnSource(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart source) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
@@ -47,70 +47,75 @@ public class IStar_MAVOModelingAssistantProviderOfActorEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source,
-			IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+
+	public List<IElementType> getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetRelTypesOnSourceAndTarget(
 				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) sourceEditPart,
 				targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnSourceAndTarget(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart source,
 			IGraphicalEditPart targetEditPart) {
 		List<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ResourceEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.GoalEditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Task2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Resource2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		if (targetEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.Goal2EditPart) {
-			types.add(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
+			types.add(
+					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004);
 		}
 		return types;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getTypesForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+
+	public List<IElementType> getTypesForTarget(IAdaptable source, IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		return doGetTypesForTarget(
 				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) sourceEditPart,
 				relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetTypesForTarget(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart source,
 			IElementType relationshipType) {
@@ -129,18 +134,19 @@ public class IStar_MAVOModelingAssistantProviderOfActorEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
+
 	public List<IElementType> getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return doGetRelTypesOnTarget((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) targetEditPart);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+		return doGetRelTypesOnTarget(
+				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) targetEditPart);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetRelTypesOnTarget(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart target) {
 		List<IElementType> types = new ArrayList<IElementType>(1);
@@ -149,21 +155,20 @@ public class IStar_MAVOModelingAssistantProviderOfActorEditPart
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
-	public List<IElementType> getTypesForSource(IAdaptable target,
-			IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+
+	public List<IElementType> getTypesForSource(IAdaptable target, IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		return doGetTypesForSource(
 				(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart) targetEditPart,
 				relationshipType);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public List<IElementType> doGetTypesForSource(
 			edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorEditPart target,
 			IElementType relationshipType) {

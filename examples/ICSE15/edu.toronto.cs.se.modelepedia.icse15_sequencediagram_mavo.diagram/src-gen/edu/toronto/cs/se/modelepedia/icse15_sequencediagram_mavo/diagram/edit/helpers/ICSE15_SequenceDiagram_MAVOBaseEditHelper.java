@@ -16,7 +16,6 @@ import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOBaseEditHelper extends
-		GeneratedEditHelperBase {
+public class ICSE15_SequenceDiagram_MAVOBaseEditHelper extends GeneratedEditHelperBase {
 
 }

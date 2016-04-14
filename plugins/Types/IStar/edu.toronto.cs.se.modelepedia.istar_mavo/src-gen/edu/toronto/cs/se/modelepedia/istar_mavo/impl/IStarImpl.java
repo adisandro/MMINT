@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
+import edu.toronto.cs.se.mavo.impl.MAVORootImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -32,15 +32,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStarImpl#getActors <em>Actors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IStarImpl#getDependums <em>Dependums</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class IStarImpl extends MAVOModelImpl implements IStar {
+public class IStarImpl extends MAVORootImpl implements IStar {
 	/**
 	 * The cached value of the '{@link #getActors() <em>Actors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

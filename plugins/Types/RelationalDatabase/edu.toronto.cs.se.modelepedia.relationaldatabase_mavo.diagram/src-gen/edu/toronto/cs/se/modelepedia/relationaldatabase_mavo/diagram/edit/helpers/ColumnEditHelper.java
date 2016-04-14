@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.helpe
 /**
  * @generated
  */
-public class ColumnEditHelper
-		extends
+public class ColumnEditHelper extends
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.helpers.RelationalDatabase_MAVOBaseEditHelper {
 }

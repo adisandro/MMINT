@@ -22,7 +22,7 @@ import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mavo.MAVOModel;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
@@ -81,7 +81,7 @@ public class IStarMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 	}
 
 	@Override
-	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVOModel rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {
+	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVORoot rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {
 
 		return new IStarMAVOToSMTLIBWithListeners_M2T(rootMavoModelObj, folder, m2tArgs);
 	}

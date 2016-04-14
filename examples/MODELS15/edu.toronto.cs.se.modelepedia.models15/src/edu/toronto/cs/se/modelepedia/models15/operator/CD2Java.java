@@ -21,10 +21,9 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -42,13 +41,13 @@ public class CD2Java extends ConversionOperatorImpl {
 	private final static @NonNull String MODELRELTYPETRANSFORMATION_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation";
 	private final static @NonNull String CD2JAVA_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/CD2Java";
 
-	private @NonNull Model convert(@NonNull Model cdModel, @Nullable MultiModel instanceMID) throws Exception {
+	private @NonNull Model convert(@NonNull Model cdModel, @Nullable MID instanceMID) throws Exception {
 
 		Operator transformationOperatorType = MultiModelTypeRegistry.getType(MODELRELTYPETRANSFORMATION_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(cdModel);
 		EList<OperatorInput> inputs = transformationOperatorType.checkAllowedInputs(inputModels);
-		Map<String, MultiModel> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
+		Map<String, MID> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));
@@ -63,11 +62,11 @@ public class CD2Java extends ConversionOperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model cdModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// run model rel type transformation
 		Model javaModel = convert(cdModel, instanceMID);

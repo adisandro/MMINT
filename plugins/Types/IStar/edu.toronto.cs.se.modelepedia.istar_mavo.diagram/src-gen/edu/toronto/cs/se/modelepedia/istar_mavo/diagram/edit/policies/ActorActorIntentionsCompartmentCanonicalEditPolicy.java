@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies;
 
 import java.util.ArrayList;
@@ -35,12 +35,11 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -51,17 +50,17 @@ public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
-				.getActor_Intentions();
+		return edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE.getActor_Intentions();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings("rawtypes")
+
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
@@ -74,17 +73,15 @@ public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
-	protected boolean isOrphaned(Collection<EObject> semanticChildren,
-			final View view) {
-		return isMyDiagramElement(view)
-				&& !semanticChildren.contains(view.getElement());
+	* @generated
+	*/
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
+		return isMyDiagramElement(view) && !semanticChildren.contains(view.getElement());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean isMyDiagramElement(View view) {
 		int visualID = edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
 				.getVisualID(view);
@@ -99,16 +96,15 @@ public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> childDescriptors = edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramUpdater
-				.getActorActorIntentionsCompartment_7001SemanticChildren((View) getHost()
-						.getModel());
+				.getActorActorIntentionsCompartment_7001SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -155,11 +151,9 @@ public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
 		for (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor next : childDescriptors) {
 			String hint = edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
 					.getType(next.getVisualID());
-			IAdaptable elementAdapter = new CanonicalElementAdapter(
-					next.getModelElement(), hint);
-			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
-					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
-					host().getDiagramPreferencesHint());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter,
+					Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 		}
 
@@ -168,10 +162,10 @@ public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
 		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(host().getNotationView())).execute();
+			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
 			@SuppressWarnings("unchecked")
+
 			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
 			createdViews.addAll(nl);
 		}
@@ -180,8 +174,8 @@ public class ActorActorIntentionsCompartmentCanonicalEditPolicy extends
 		}
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-					.getEditingDomain(), createdViews, host());
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews,
+					host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 

@@ -20,12 +20,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey#getTableColumn <em>Table Column</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey#getForeignColumn <em>Foreign Column</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.ForeignKey#getTable <em>Table</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage#getForeignKey()
  * @model annotation="gmf.node label='name'"

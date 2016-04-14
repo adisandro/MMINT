@@ -17,14 +17,13 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOIconProvider extends
-		DefaultElementTypeIconProvider implements IIconProvider {
+public class RelationalDatabase_MAVOIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public RelationalDatabase_MAVOIconProvider() {
-		super(
-				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TYPED_INSTANCE);
+		super(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TYPED_INSTANCE);
 	}
+
 }

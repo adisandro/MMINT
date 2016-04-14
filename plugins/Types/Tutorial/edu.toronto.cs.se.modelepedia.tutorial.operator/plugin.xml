@@ -47,7 +47,7 @@
                </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="RegionBorder"
                   uri="http://se.cs.toronto.edu/modelepedia/Border/RegionBorder">
@@ -63,7 +63,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 
@@ -117,7 +117,7 @@
                </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="DeployedLink"
                   uri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink">
@@ -145,7 +145,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 
@@ -198,7 +198,7 @@
                </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="HasLink"
                   uri="http://se.cs.toronto.edu/modelepedia/Has/HasLink">
@@ -227,7 +227,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/Economy#//Gold">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 

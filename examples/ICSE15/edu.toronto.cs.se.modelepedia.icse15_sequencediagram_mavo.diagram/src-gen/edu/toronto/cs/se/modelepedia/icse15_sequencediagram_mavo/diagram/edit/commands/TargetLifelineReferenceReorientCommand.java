@@ -25,25 +25,24 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 public class TargetLifelineReferenceReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
-	public TargetLifelineReferenceReorientCommand(
-			ReorientRelationshipRequest request) {
+	* @generated
+	*/
+	public TargetLifelineReferenceReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -51,8 +50,8 @@ public class TargetLifelineReferenceReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) {
 			return false;
@@ -67,51 +66,49 @@ public class TargetLifelineReferenceReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message && newEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline target = getLink()
-				.getTarget();
+		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline target = getLink().getTarget();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.policies.ICSE15_SequenceDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistTargetLifelineReference_4004(
-						container, getLink(), getNewSource(), target);
+				.getLinkConstraints()
+				.canExistTargetLifelineReference_4004(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline && newEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message source = getLink()
-				.getSource();
+		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message source = getLink().getSource();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message container = (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.policies.ICSE15_SequenceDiagram_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistTargetLifelineReference_4004(
-						container, getLink(), source, getNewTarget());
+				.getLinkConstraints()
+				.canExistTargetLifelineReference_4004(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -123,52 +120,52 @@ public class TargetLifelineReferenceReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setSource(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTarget(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference getLink() {
 		return (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message getOldSource() {
 		return (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message getNewSource() {
 		return (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline getOldTarget() {
 		return (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline getNewTarget() {
 		return (edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline) newEnd;
 	}

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isFullySatisfied <em>Fully Satisfied</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#isPartiallySatisfied <em>Partially Satisfied</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getDependerLinks <em>Depender Links</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Intention#getDependeeLinks <em>Dependee Links</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntention()
  * @model abstract="true"

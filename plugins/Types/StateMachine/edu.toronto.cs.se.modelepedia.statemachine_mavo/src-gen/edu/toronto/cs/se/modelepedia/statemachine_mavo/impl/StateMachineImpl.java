@@ -11,8 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
-
+import edu.toronto.cs.se.mavo.impl.MAVORootImpl;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
@@ -44,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class StateMachineImpl extends MAVOModelImpl implements StateMachine {
+public class StateMachineImpl extends MAVORootImpl implements StateMachine {
 	/**
 	 * The cached value of the '{@link #getStates() <em>States</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

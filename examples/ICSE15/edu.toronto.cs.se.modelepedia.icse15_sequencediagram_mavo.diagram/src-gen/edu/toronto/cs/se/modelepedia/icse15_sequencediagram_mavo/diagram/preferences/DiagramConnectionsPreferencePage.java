@@ -19,10 +19,11 @@ import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
 public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DiagramConnectionsPreferencePage() {
-		setPreferenceStore(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
-				.getInstance().getPreferenceStore());
+		setPreferenceStore(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
+						.getInstance().getPreferenceStore());
 	}
 }

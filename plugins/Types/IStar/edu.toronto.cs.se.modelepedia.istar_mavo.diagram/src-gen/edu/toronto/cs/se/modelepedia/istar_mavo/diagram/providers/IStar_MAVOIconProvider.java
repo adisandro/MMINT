@@ -17,14 +17,13 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 /**
  * @generated
  */
-public class IStar_MAVOIconProvider extends DefaultElementTypeIconProvider
-		implements IIconProvider {
+public class IStar_MAVOIconProvider extends DefaultElementTypeIconProvider implements IIconProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStar_MAVOIconProvider() {
-		super(
-				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.TYPED_INSTANCE);
+		super(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.TYPED_INSTANCE);
 	}
+
 }

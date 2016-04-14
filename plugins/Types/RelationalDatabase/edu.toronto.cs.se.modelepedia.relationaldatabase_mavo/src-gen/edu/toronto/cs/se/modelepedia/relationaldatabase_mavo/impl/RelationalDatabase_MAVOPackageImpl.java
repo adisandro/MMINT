@@ -445,7 +445,7 @@ public class RelationalDatabase_MAVOPackageImpl extends EPackageImpl implements 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		relationalDatabaseEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		relationalDatabaseEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		tableEClass.getESuperTypes().add(this.getNamedElement());
 		columnEClass.getESuperTypes().add(this.getNamedElement());

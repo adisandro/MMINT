@@ -24,8 +24,8 @@ import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAcces
 public class RelationalDatabase_MAVOEditPartFactory implements EditPartFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -37,8 +37,7 @@ public class RelationalDatabase_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableNameEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableNameEditPart(
@@ -102,20 +101,18 @@ public class RelationalDatabase_MAVOEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		return CellEditorLocatorAccess.INSTANCE
-				.getTextCellEditorLocator(source);
+	* @generated
+	*/
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 	}
 
 }

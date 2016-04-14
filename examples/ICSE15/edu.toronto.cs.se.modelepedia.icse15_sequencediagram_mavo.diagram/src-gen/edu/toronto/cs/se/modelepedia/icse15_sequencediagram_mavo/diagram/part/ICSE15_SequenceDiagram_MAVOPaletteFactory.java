@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
@@ -26,17 +27,17 @@ import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 public class ICSE15_SequenceDiagram_MAVOPaletteFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void fillPalette(PaletteRoot paletteRoot) {
 		paletteRoot.add(createObjects1Group());
 		paletteRoot.add(createConnections2Group());
 	}
 
 	/**
-	 * Creates "Objects" palette tool group
-	 * @generated
-	 */
+	* Creates "Objects" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createObjects1Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Objects1Group_title);
@@ -49,9 +50,9 @@ public class ICSE15_SequenceDiagram_MAVOPaletteFactory {
 	}
 
 	/**
-	 * Creates "Connections" palette tool group
-	 * @generated
-	 */
+	* Creates "Connections" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createConnections2Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Connections2Group_title);
@@ -64,129 +65,145 @@ public class ICSE15_SequenceDiagram_MAVOPaletteFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createClass1CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Class1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Class1CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Class_2002));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Class_2002));
 		entry.setId("createClass1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Class_2002));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Class_2002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createLifeline2CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Lifeline2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Lifeline2CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Lifeline_2001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Lifeline_2001));
 		entry.setId("createLifeline2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Lifeline_2001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Lifeline_2001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createMessage3CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Message3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Message3CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Message_2003));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Message_2003));
 		entry.setId("createMessage3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Message_2003));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Message_2003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createOperation4CreationTool() {
 		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Operation4CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.Operation4CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Operation_3001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Operation_3001));
 		entry.setId("createOperation4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Operation_3001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.Operation_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createClassReference1CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.ClassReference1CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.ClassReference1CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001));
 		entry.setId("createClassReference1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.ClassReference_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createOperationReference2CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.OperationReference2CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.OperationReference2CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002));
 		entry.setId("createOperationReference2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.OperationReference_4002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createSourceLifelineReference3CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.SourceLifelineReference3CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.SourceLifelineReference3CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003));
 		entry.setId("createSourceLifelineReference3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.SourceLifelineReference_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createTargetLifelineReference4CreationTool() {
 		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.TargetLifelineReference4CreationTool_title,
 				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.TargetLifelineReference4CreationTool_desc,
-				Collections
-						.singletonList(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004));
+				Collections.singletonList(
+						edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004));
 		entry.setId("createTargetLifelineReference4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
-				.getImageDescriptor(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004));
+		entry.setSmallIcon(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes
+						.getImageDescriptor(
+								edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers.ICSE15_SequenceDiagram_MAVOElementTypes.TargetLifelineReference_4004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

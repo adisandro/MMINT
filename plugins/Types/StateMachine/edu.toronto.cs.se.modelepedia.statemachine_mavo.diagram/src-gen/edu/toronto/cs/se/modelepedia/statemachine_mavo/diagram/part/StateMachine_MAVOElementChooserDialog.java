@@ -22,94 +22,93 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 /**
  * @generated
  */
-public class StateMachine_MAVOElementChooserDialog extends
-		DefaultElementChooserDialog {
+public class StateMachine_MAVOElementChooserDialog extends DefaultElementChooserDialog {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public StateMachine_MAVOElementChooserDialog(Shell parentShell, View view) {
 		this(parentShell, view, false);
 	}
 
 	/**
-	 * @generated
-	 */
-	public StateMachine_MAVOElementChooserDialog(Shell parentShell, View view,
-			boolean allowMultiSelection) {
-		super(parentShell, view,
-				new StateMachine_MAVOElementChooserDialogContextImpl(
-						allowMultiSelection));
+	* @generated
+	*/
+	public StateMachine_MAVOElementChooserDialog(Shell parentShell, View view, boolean allowMultiSelection) {
+		super(parentShell, view, new StateMachine_MAVOElementChooserDialogContextImpl(allowMultiSelection));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class StateMachine_MAVOElementChooserDialogContextImpl
 			implements DefaultElementChooserDialog.Context {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private static final String[] FILE_EXTENSIONS = new String[] { "statemachine_mavo" };
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final boolean myAllowMultiSelection;
 
 		/**
-		 * @generated
-		 */
-		private StateMachine_MAVOElementChooserDialogContextImpl(
-				boolean allowMultiSelection) {
+		* @generated
+		*/
+		private StateMachine_MAVOElementChooserDialogContextImpl(boolean allowMultiSelection) {
 			myAllowMultiSelection = allowMultiSelection;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public AdapterFactory getAdapterFactory() {
 			return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
 					.getInstance().getItemProvidersAdapterFactory();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public PreferencesHint getPreferenceHint() {
 			return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String[] getFileExtesions() {
 			return FILE_EXTENSIONS.clone();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String getDialogTitle() {
 			return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.Messages.StateMachine_MAVOElementChooserDialog_SelectModelElementTitle;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
 		public ITreeContentProvider getTreeContentProvider() {
 			return new BaseWorkbenchContentProvider();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public boolean allowMultiSelection() {
 			return myAllowMultiSelection;
 		}

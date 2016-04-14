@@ -31,134 +31,131 @@ import org.eclipse.swt.graphics.Image;
 public class StateMachine_MAVOElementTypes {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private StateMachine_MAVOElementTypes() {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Map<IElementType, ENamedElement> elements;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
 			edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
 					.getInstance().getItemProvidersAdapterFactory());
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType StateMachine_1000 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateMachine_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType StateMachine_1000 = getElementType(
+			"edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateMachine_1000"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType State_2001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType State_2001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.State_2001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType InitialState_2002 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2002"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType InitialState_2002 = getElementType(
+			"edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.InitialState_2002"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType FinalState_2003 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2003"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType FinalState_2003 = getElementType(
+			"edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.FinalState_2003"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType StateAction_3001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateAction_3001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType StateAction_3001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.StateAction_3001"); //$NON-NLS-1$
 	/**
-	 * @generated
-	 */
-	public static final IElementType Transition_4001 = getElementType("edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.Transition_4001"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Transition_4001 = getElementType(
+			"edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.Transition_4001"); //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(ENamedElement element) {
 		return elementTypeImages.getImage(element);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		return getImageDescriptor(getElement(hint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static Image getImage(IAdaptable hint) {
 		return getImage(getElement(hint));
 	}
 
 	/**
-	 * Returns 'type' of the ecore object associated with the hint.
-	 * 
-	 * @generated
-	 */
+	* Returns 'type' of the ecore object associated with the hint.
+	* 
+	* @generated
+	*/
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(
-					StateMachine_1000,
+			elements.put(StateMachine_1000,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
 							.getStateMachine());
 
-			elements.put(
-					State_2001,
-					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-							.getState());
+			elements.put(State_2001,
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE.getState());
 
-			elements.put(
-					InitialState_2002,
+			elements.put(InitialState_2002,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
 							.getInitialState());
 
-			elements.put(
-					FinalState_2003,
-					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-							.getFinalState());
+			elements.put(FinalState_2003,
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE.getFinalState());
 
-			elements.put(
-					StateAction_3001,
+			elements.put(StateAction_3001,
 					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
 							.getStateAction());
 
-			elements.put(
-					Transition_4001,
-					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE
-							.getTransition());
+			elements.put(Transition_4001,
+					edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage.eINSTANCE.getTransition());
 		}
 		return (ENamedElement) elements.get(type);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static IElementType getElementType(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
@@ -173,8 +170,8 @@ public class StateMachine_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateMachineEditPart.VISUAL_ID:
@@ -194,35 +191,36 @@ public class StateMachine_MAVOElementTypes {
 	}
 
 	/**
-	 * @generated
-	 */
-	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(
-			elementTypeImages) {
+	* @generated
+	*/
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public boolean isKnownElementType(IElementType elementType) {
 			return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
 					.isKnownElementType(elementType);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public IElementType getElementTypeForVisualId(int visualID) {
 			return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
 					.getElementType(visualID);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
-		public ENamedElement getDefiningNamedElement(
-				IAdaptable elementTypeAdapter) {
+
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
 			return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOElementTypes
 					.getElement(elementTypeAdapter);
 		}

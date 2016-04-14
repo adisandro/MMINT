@@ -25,23 +25,23 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 public class TransitionReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public TransitionReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -50,8 +50,8 @@ public class TransitionReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition) {
 			return false;
@@ -66,51 +66,47 @@ public class TransitionReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState && newEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState target = getLink()
-				.getTarget();
+		edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState target = getLink().getTarget();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine container = (edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.policies.StateMachine_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistTransition_4001(container,
-						getLink(), getNewSource(), target);
+				.getLinkConstraints().canExistTransition_4001(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState && newEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState source = getLink()
-				.getSource();
+		edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState source = getLink().getSource();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine container = (edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.policies.StateMachine_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistTransition_4001(container,
-						getLink(), source, getNewTarget());
+				.getLinkConstraints().canExistTransition_4001(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -122,52 +118,52 @@ public class TransitionReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setSource(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTarget(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition getLink() {
 		return (edu.toronto.cs.se.modelepedia.statemachine_mavo.Transition) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState getOldSource() {
 		return (edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState getNewSource() {
 		return (edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState getOldTarget() {
 		return (edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState getNewTarget() {
 		return (edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState) newEnd;
 	}

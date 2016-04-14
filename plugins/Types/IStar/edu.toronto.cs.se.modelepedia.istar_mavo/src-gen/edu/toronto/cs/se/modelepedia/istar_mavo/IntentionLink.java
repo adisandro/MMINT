@@ -20,12 +20,12 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getSrc <em>Src</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.IntentionLink#getTgt <em>Tgt</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getIntentionLink()
  * @model abstract="true"

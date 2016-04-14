@@ -19,10 +19,10 @@ package edu.toronto.cs.se.modelepedia.istar_mavo;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.Contribution#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getContribution()
  * @model annotation="gmf.link target.decoration='arrow'"

@@ -19,10 +19,11 @@ import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
 public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DiagramAppearancePreferencePage() {
-		setPreferenceStore(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-				.getInstance().getPreferenceStore());
+		setPreferenceStore(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
+						.getInstance().getPreferenceStore());
 	}
 }

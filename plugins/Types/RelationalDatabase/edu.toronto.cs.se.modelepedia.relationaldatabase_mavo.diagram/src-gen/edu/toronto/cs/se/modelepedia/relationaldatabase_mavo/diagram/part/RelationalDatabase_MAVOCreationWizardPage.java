@@ -22,19 +22,18 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVOCreationWizardPage extends
-		WizardNewFileCreationPage {
+public class RelationalDatabase_MAVOCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final String fileExtension;
 
 	/**
-	 * @generated
-	 */
-	public RelationalDatabase_MAVOCreationWizardPage(String pageName,
-			IStructuredSelection selection, String fileExtension) {
+	* @generated
+	*/
+	public RelationalDatabase_MAVOCreationWizardPage(String pageName, IStructuredSelection selection,
+			String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -49,15 +48,15 @@ public class RelationalDatabase_MAVOCreationWizardPage extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public URI getURI() {
 		return URI.createPlatformResourceURI(getFilePath().toString(), false);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPath getFilePath() {
 		IPath path = getContainerFullPath();
 		if (path == null) {
@@ -71,29 +70,28 @@ public class RelationalDatabase_MAVOCreationWizardPage extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorUtil
-				.getUniqueFileName(getContainerFullPath(), getFileName(),
-						getExtension()));
+		setFileName(
+				edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorUtil
+						.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null
-				&& !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS
-					.bind(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.RelationalDatabase_MAVOCreationWizardPageExtensionError,
-							extension));
+		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS.bind(
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.Messages.RelationalDatabase_MAVOCreationWizardPageExtensionError,
+					extension));
 			return false;
 		}
 		return true;

@@ -406,7 +406,7 @@ public class StateMachine_MAVOPackageImpl extends EPackageImpl implements StateM
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		stateMachineEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		stateMachineEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		firingElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		stateEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		stateEClass.getESuperTypes().add(this.getAbstractState());

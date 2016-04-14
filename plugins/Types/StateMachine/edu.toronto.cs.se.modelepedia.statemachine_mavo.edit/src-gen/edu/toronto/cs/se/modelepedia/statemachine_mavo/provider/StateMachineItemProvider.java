@@ -12,8 +12,7 @@
 package edu.toronto.cs.se.modelepedia.statemachine_mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
-
+import edu.toronto.cs.se.mavo.provider.MAVORootItemProvider;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.StateMachine_MAVOPackage;
@@ -37,7 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateMachineItemProvider extends MAVOModelItemProvider {
+public class StateMachineItemProvider extends MAVORootItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

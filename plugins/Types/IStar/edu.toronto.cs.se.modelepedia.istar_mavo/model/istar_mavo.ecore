@@ -7,7 +7,7 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="IStar" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOModel">
+  <eClassifiers xsi:type="ecore:EClass" name="IStar" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVORoot">
     <eAnnotations source="gmf.diagram"/>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="onlyDependums"/>

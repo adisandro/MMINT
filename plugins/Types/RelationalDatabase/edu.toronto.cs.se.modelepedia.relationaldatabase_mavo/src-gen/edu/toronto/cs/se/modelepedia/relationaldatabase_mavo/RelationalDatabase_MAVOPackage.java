@@ -83,7 +83,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE__INC = MAVOPackage.MAVO_MODEL__INC;
+	int RELATIONAL_DATABASE__INC = MAVOPackage.MAVO_ROOT__INC;
 
 	/**
 	 * The feature id for the '<em><b>Decisions</b></em>' containment reference list.
@@ -92,7 +92,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE__DECISIONS = MAVOPackage.MAVO_MODEL__DECISIONS;
+	int RELATIONAL_DATABASE__DECISIONS = MAVOPackage.MAVO_ROOT__DECISIONS;
 
 	/**
 	 * The feature id for the '<em><b>Tables</b></em>' containment reference list.
@@ -101,7 +101,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE__TABLES = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 0;
+	int RELATIONAL_DATABASE__TABLES = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Relational Database</em>' class.
@@ -110,7 +110,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE_FEATURE_COUNT = MAVOPackage.MAVO_MODEL_FEATURE_COUNT + 1;
+	int RELATIONAL_DATABASE_FEATURE_COUNT = MAVOPackage.MAVO_ROOT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Relational Database</em>' class.
@@ -119,7 +119,7 @@ public interface RelationalDatabase_MAVOPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_DATABASE_OPERATION_COUNT = MAVOPackage.MAVO_MODEL_OPERATION_COUNT + 0;
+	int RELATIONAL_DATABASE_OPERATION_COUNT = MAVOPackage.MAVO_ROOT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.NamedElementImpl <em>Named Element</em>}' class.

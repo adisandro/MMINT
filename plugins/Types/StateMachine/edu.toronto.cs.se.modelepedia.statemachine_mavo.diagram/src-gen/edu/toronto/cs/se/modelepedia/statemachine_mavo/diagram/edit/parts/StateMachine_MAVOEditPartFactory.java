@@ -24,8 +24,8 @@ import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAcces
 public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
@@ -37,12 +37,10 @@ public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateNameEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabelEditPart(
@@ -53,12 +51,10 @@ public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.FinalStateEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.StateActionTriggerActionEditPart(
@@ -73,8 +69,7 @@ public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 						view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart.VISUAL_ID:
-				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart(
-						view);
+				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionEditPart(view);
 
 			case edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart.VISUAL_ID:
 				return new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.TransitionTriggerActionEditPart(
@@ -90,20 +85,18 @@ public class StateMachine_MAVOEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
 		// Handle creation of unrecognized child node EditParts here
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		return CellEditorLocatorAccess.INSTANCE
-				.getTextCellEditorLocator(source);
+	* @generated
+	*/
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 	}
 
 }

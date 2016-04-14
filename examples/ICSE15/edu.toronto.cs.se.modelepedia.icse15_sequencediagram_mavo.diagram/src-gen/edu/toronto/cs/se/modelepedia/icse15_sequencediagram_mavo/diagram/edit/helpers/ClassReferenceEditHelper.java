@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.h
 /**
  * @generated
  */
-public class ClassReferenceEditHelper
-		extends
+public class ClassReferenceEditHelper extends
 		edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.edit.helpers.ICSE15_SequenceDiagram_MAVOBaseEditHelper {
 }

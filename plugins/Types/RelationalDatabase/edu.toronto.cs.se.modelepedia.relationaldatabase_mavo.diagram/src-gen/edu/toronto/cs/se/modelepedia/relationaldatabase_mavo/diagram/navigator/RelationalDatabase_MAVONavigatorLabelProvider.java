@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -31,31 +31,30 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
 /**
  * @generated
  */
-public class RelationalDatabase_MAVONavigatorLabelProvider extends
-		LabelProvider implements ICommonLabelProvider, ITreePathLabelProvider {
+public class RelationalDatabase_MAVONavigatorLabelProvider extends LabelProvider
+		implements ICommonLabelProvider, ITreePathLabelProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	static {
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-				.getInstance()
-				.getImageRegistry()
+				.getInstance().getImageRegistry()
 				.put("Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-				.getInstance()
-				.getImageRegistry()
+				.getInstance().getImageRegistry()
 				.put("Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void updateLabel(ViewerLabel label, TreePath elementPath) {
 		Object element = elementPath.getLastSegment();
 		if (element instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorItem
-				&& !isOwnView(((edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorItem) element)
-						.getView())) {
+				&& !isOwnView(
+						((edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorItem) element)
+								.getView())) {
 			return;
 		}
 		label.setText(getText(element));
@@ -63,8 +62,8 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Image getImage(Object element) {
 		if (element instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorGroup) {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorGroup group = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorGroup) element;
@@ -92,42 +91,44 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Image getImage(View view) {
 		switch (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
 				.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?RelationalDatabase", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.RelationalDatabase_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?RelationalDatabase", //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.RelationalDatabase_1000);
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Table", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001); //$NON-NLS-1$
+			return getImage("Navigator?TopLevelNode?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Table", //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001);
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Column", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?Column", //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001);
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignKey", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002); //$NON-NLS-1$
+			return getImage("Navigator?Node?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignKey", //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002);
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableColumnReferenceEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?TableColumnReference", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?TableColumnReference", //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001);
 		case edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignColumnReferenceEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignColumnReference", edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002); //$NON-NLS-1$
+					"Navigator?Link?http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO?ForeignColumnReference", //$NON-NLS-1$
+					edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002);
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Image getImage(String key, IElementType elementType) {
 		ImageRegistry imageRegistry = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
 				.getInstance().getImageRegistry();
 		Image image = imageRegistry.get(key);
-		if (image == null
-				&& elementType != null
+		if (image == null && elementType != null
 				&& edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
 						.isKnownElementType(elementType)) {
 			image = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes
@@ -143,8 +144,8 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getText(Object element) {
 		if (element instanceof edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorGroup) {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorGroup group = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.navigator.RelationalDatabase_MAVONavigatorGroup) element;
@@ -171,8 +172,8 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getText(View view) {
 		if (view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
@@ -196,118 +197,8 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 	}
 
 	/**
-	 * @generated
-	 */
-	private String getTableColumnReference_4001Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 6001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getTable_2001Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5005); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getForeignKey_3002Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5003); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getColumn_3001Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5001); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getForeignColumnReference_4002Text(View view) {
-		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
-				.getParser(
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
-						view.getElement() != null ? view.getElement() : view,
-						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
-								.getType(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 6002); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private String getRelationalDatabase_1000Text(View view) {
 		edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase domainModelElement = (edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase) view
 				.getElement();
@@ -315,55 +206,158 @@ public class RelationalDatabase_MAVONavigatorLabelProvider extends
 			return String.valueOf(domainModelElement.isInc());
 		} else {
 			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
+					.getInstance().logError("No domain element for view with visualID = " + 1000); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
+	private String getTable_2001Text(View view) {
+		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
+				.getParser(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Table_2001,
+						view.getElement() != null ? view.getElement() : view,
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+								.getType(
+										edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.TableNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
+					.getInstance().logError("Parser was not found for label " + 5005); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	* @generated
+	*/
+	private String getColumn_3001Text(View view) {
+		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
+				.getParser(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.Column_3001,
+						view.getElement() != null ? view.getElement() : view,
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+								.getType(
+										edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ColumnNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
+					.getInstance().logError("Parser was not found for label " + 5001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	* @generated
+	*/
+	private String getForeignKey_3002Text(View view) {
+		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
+				.getParser(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignKey_3002,
+						view.getElement() != null ? view.getElement() : view,
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+								.getType(
+										edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.ForeignKeyNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
+					.getInstance().logError("Parser was not found for label " + 5003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	* @generated
+	*/
+	private String getTableColumnReference_4001Text(View view) {
+		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
+				.getParser(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.TableColumnReference_4001,
+						view.getElement() != null ? view.getElement() : view,
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+								.getType(
+										edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.WrappingLabel4EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
+					.getInstance().logError("Parser was not found for label " + 6001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	* @generated
+	*/
+	private String getForeignColumnReference_4002Text(View view) {
+		IParser parser = edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOParserProvider
+				.getParser(
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.providers.RelationalDatabase_MAVOElementTypes.ForeignColumnReference_4002,
+						view.getElement() != null ? view.getElement() : view,
+						edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry
+								.getType(
+										edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.WrappingLabel5EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVODiagramEditorPlugin
+					.getInstance().logError("Parser was not found for label " + 6002); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	* @generated
+	*/
 	private String getUnknownElementText(View view) {
 		return "<UnknownElement Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$  //$NON-NLS-2$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private String getUnresolvedDomainElementProxyText(View view) {
 		return "<Unresolved domain element Visual_ID = " + view.getType() + ">"; //$NON-NLS-1$  //$NON-NLS-2$
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getDescription(Object anElement) {
 		return null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean isOwnView(View view) {
 		return edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.edit.parts.RelationalDatabaseEditPart.MODEL_ID
 				.equals(edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram.part.RelationalDatabase_MAVOVisualIDRegistry

@@ -20,12 +20,12 @@ import edu.toronto.cs.se.mavo.MAVOElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependum <em>Dependum</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink#getDependee <em>Dependee</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage#getDependeeLink()
  * @model annotation="gmf.link target.decoration='arrow' source='dependum' target='dependee'"

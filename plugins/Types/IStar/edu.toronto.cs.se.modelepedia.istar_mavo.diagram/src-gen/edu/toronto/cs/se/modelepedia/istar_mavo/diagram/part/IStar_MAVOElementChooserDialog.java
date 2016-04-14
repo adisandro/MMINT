@@ -25,89 +25,89 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 public class IStar_MAVOElementChooserDialog extends DefaultElementChooserDialog {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStar_MAVOElementChooserDialog(Shell parentShell, View view) {
 		this(parentShell, view, false);
 	}
 
 	/**
-	 * @generated
-	 */
-	public IStar_MAVOElementChooserDialog(Shell parentShell, View view,
-			boolean allowMultiSelection) {
-		super(parentShell, view, new IStar_MAVOElementChooserDialogContextImpl(
-				allowMultiSelection));
+	* @generated
+	*/
+	public IStar_MAVOElementChooserDialog(Shell parentShell, View view, boolean allowMultiSelection) {
+		super(parentShell, view, new IStar_MAVOElementChooserDialogContextImpl(allowMultiSelection));
 	}
 
 	/**
-	 * @generated
-	 */
-	private static class IStar_MAVOElementChooserDialogContextImpl implements
-			DefaultElementChooserDialog.Context {
+	* @generated
+	*/
+	private static class IStar_MAVOElementChooserDialogContextImpl implements DefaultElementChooserDialog.Context {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private static final String[] FILE_EXTENSIONS = new String[] { "istar_mavo" };
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final boolean myAllowMultiSelection;
 
 		/**
-		 * @generated
-		 */
-		private IStar_MAVOElementChooserDialogContextImpl(
-				boolean allowMultiSelection) {
+		* @generated
+		*/
+		private IStar_MAVOElementChooserDialogContextImpl(boolean allowMultiSelection) {
 			myAllowMultiSelection = allowMultiSelection;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public AdapterFactory getAdapterFactory() {
-			return edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
-					.getInstance().getItemProvidersAdapterFactory();
+			return edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin.getInstance()
+					.getItemProvidersAdapterFactory();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public PreferencesHint getPreferenceHint() {
 			return edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String[] getFileExtesions() {
 			return FILE_EXTENSIONS.clone();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public String getDialogTitle() {
 			return edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.IStar_MAVOElementChooserDialog_SelectModelElementTitle;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
 		public ITreeContentProvider getTreeContentProvider() {
 			return new BaseWorkbenchContentProvider();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public boolean allowMultiSelection() {
 			return myAllowMultiSelection;
 		}

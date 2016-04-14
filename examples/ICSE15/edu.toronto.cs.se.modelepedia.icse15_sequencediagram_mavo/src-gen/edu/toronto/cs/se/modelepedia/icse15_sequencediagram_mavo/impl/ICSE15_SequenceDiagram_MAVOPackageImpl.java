@@ -553,7 +553,7 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		sequenceDiagramEClass.getESuperTypes().add(theMAVOPackage.getMAVOModel());
+		sequenceDiagramEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
 		namedElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
 		lifelineEClass.getESuperTypes().add(this.getNamedElement());
 		classEClass.getESuperTypes().add(this.getNamedElement());

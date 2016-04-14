@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage;
 public class DiagramRulersAndGridPreferencePage extends RulerGridPreferencePage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DiagramRulersAndGridPreferencePage() {
 		setPreferenceStore(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
 				.getInstance().getPreferenceStore());

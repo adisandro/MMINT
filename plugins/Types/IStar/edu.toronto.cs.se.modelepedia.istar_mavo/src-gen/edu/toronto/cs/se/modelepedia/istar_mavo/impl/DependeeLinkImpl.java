@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl#getDependum <em>Dependum</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.DependeeLinkImpl#getDependee <em>Dependee</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,12 +23,11 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
@@ -63,9 +62,9 @@ public class MODELS15 extends RandomOperatorImpl {
 		numClassNames = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSNAMES);
 	}
 
-	private @NonNull MultiModel createClassDiagrams(String instanceMIDUri) {
+	private @NonNull MID createClassDiagrams(String instanceMIDUri) {
 
-		MultiModel cdMID = MIDFactory.eINSTANCE.createMultiModel();
+		MID cdMID = MIDFactory.eINSTANCE.createMID();
 		Model cdModelType = MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI);
 		Random random = this.getState();
 		for (int i = 0; i < numClassDiagrams; i++) {
@@ -89,7 +88,7 @@ public class MODELS15 extends RandomOperatorImpl {
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
 				MultiModelUtils.writeModelFile(classDiagram, cdModelUri, true);
-				cdModelType.createInstance(cdModelUri, ModelOrigin.CREATED, cdMID);
+				cdModelType.createInstance(cdModelUri, cdMID);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't generate class diagram number " + i + " , skipping it", e);
@@ -102,10 +101,10 @@ public class MODELS15 extends RandomOperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MID);
+		MID instanceMID = outputMIDsByName.get(OUT_MID);
 		// check constraints
 		if (numClassesPerClassDiagram > numClassNames) {
 			throw new MMINTException("numClassNames must be >= numClassesPerClassDiagram");
@@ -113,13 +112,13 @@ public class MODELS15 extends RandomOperatorImpl {
 
 		// create random class diagrams in a mid
 		String instanceMIDUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		MultiModel cdMID = createClassDiagrams(instanceMIDUri);
+		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output
 		String cdMIDModelUri = MultiModelUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
 		MultiModelUtils.writeModelFile(cdMID, cdMIDModelUri, true);
 		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
-		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, ModelOrigin.CREATED, instanceMID);
+		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, cdMIDModel);
 

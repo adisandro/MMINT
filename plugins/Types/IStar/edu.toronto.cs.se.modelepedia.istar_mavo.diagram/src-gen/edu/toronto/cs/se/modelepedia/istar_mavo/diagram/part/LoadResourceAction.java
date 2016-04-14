@@ -20,8 +20,8 @@ import org.eclipse.gmf.tooling.runtime.actions.DefaultLoadResourceAction;
  */
 public class LoadResourceAction extends DefaultLoadResourceAction {
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		return super.execute(event);
 	}

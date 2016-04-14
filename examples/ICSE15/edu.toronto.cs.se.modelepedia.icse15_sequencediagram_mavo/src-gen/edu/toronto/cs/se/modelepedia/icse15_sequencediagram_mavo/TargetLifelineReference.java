@@ -20,11 +20,11 @@ import edu.toronto.cs.se.mavo.MAVOReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getTargetLifelineReference()
  * @model annotation="gmf.link source='source' target='target' target.decoration='arrow' label.icon='true'"

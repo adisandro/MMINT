@@ -22,19 +22,18 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 /**
  * @generated
  */
-public class ICSE15_SequenceDiagram_MAVOCreationWizardPage extends
-		WizardNewFileCreationPage {
+public class ICSE15_SequenceDiagram_MAVOCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final String fileExtension;
 
 	/**
-	 * @generated
-	 */
-	public ICSE15_SequenceDiagram_MAVOCreationWizardPage(String pageName,
-			IStructuredSelection selection, String fileExtension) {
+	* @generated
+	*/
+	public ICSE15_SequenceDiagram_MAVOCreationWizardPage(String pageName, IStructuredSelection selection,
+			String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -49,15 +48,15 @@ public class ICSE15_SequenceDiagram_MAVOCreationWizardPage extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public URI getURI() {
 		return URI.createPlatformResourceURI(getFilePath().toString(), false);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPath getFilePath() {
 		IPath path = getContainerFullPath();
 		if (path == null) {
@@ -71,29 +70,28 @@ public class ICSE15_SequenceDiagram_MAVOCreationWizardPage extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorUtil
-				.getUniqueFileName(getContainerFullPath(), getFileName(),
-						getExtension()));
+		setFileName(
+				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorUtil
+						.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null
-				&& !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS
-					.bind(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.ICSE15_SequenceDiagram_MAVOCreationWizardPageExtensionError,
-							extension));
+		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS.bind(
+					edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.Messages.ICSE15_SequenceDiagram_MAVOCreationWizardPageExtensionError,
+					extension));
 			return false;
 		}
 		return true;

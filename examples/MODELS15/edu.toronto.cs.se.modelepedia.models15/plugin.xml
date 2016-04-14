@@ -134,7 +134,7 @@
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="ClassDiagram2RelationalDatabase"
                   uri="http://se.cs.toronto.edu/modelepedia/CD2DB/ClassDiagram2RelationalDatabase">
@@ -161,8 +161,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase#//RelationalDatabase">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="Class2Table"
                   uri="http://se.cs.toronto.edu/modelepedia/CD2DB/Class2Table">
@@ -189,8 +189,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase#//Table">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="name2name"
                   uri="http://se.cs.toronto.edu/modelepedia/CD2DB/name2name">
@@ -217,7 +217,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase#//NamedElement/name">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 
@@ -315,7 +315,7 @@
                 </type>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <type
                   name="ClassDiagram2Package"
                   uri="http://se.cs.toronto.edu/modelepedia/CD2Java/ClassDiagram2Package">
@@ -342,8 +342,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/MODELS15_Java#//Package">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="Class2Class"
                   uri="http://se.cs.toronto.edu/modelepedia/CD2Java/Class2Class">
@@ -370,8 +370,8 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/MODELS15_Java#//Class">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
-         <linkType>
+         </mappingType>
+         <mappingType>
             <type
                   name="name2name"
                   uri="http://se.cs.toronto.edu/modelepedia/CD2Java/name2name">
@@ -398,7 +398,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/modelepedia/MODELS15_Java#//NamedElement/name">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 

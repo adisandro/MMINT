@@ -14,8 +14,7 @@ package edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.assist
 /**
  * @generated
  */
-public class StateMachine_MAVOModelingAssistantProviderOfStateActionEditPart
-		extends
+public class StateMachine_MAVOModelingAssistantProviderOfStateActionEditPart extends
 		edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.providers.StateMachine_MAVOModelingAssistantProvider {
 
 }

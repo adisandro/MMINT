@@ -12,8 +12,7 @@
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.provider;
 
 
-import edu.toronto.cs.se.mavo.provider.MAVOModelItemProvider;
-
+import edu.toronto.cs.se.mavo.provider.MAVORootItemProvider;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;
@@ -37,7 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SequenceDiagramItemProvider extends MAVOModelItemProvider {
+public class SequenceDiagramItemProvider extends MAVORootItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

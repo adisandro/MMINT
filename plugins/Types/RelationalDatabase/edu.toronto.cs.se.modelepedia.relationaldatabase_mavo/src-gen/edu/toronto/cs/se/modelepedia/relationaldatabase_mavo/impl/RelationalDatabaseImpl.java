@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl;
 
-import edu.toronto.cs.se.mavo.impl.MAVOModelImpl;
+import edu.toronto.cs.se.mavo.impl.MAVORootImpl;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.RelationalDatabase_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.Table;
@@ -31,14 +31,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl.RelationalDatabaseImpl#getTables <em>Tables</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class RelationalDatabaseImpl extends MAVOModelImpl implements RelationalDatabase {
+public class RelationalDatabaseImpl extends MAVORootImpl implements RelationalDatabase {
 	/**
 	 * The cached value of the '{@link #getTables() <em>Tables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -26,47 +26,44 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class TransitionEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final int VISUAL_ID = 4001;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public TransitionEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.policies.TransitionItemSemanticEditPolicy());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart) {
 			((edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVOTransitionLabelFigure());
+					.setLabel(getPrimaryShape().getFigureMAVOTransitionLabelFigure());
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -75,8 +72,8 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.edit.parts.WrappingLabel3EditPart) {
 			return true;
@@ -85,8 +82,8 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -95,21 +92,21 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new TransitionFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public TransitionFigure getPrimaryShape() {
 		return (TransitionFigure) getFigure();
 	}
@@ -141,8 +138,8 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 			fFigureMAVOTransitionLabelFigure = new WrappingLabel();
 
 			fFigureMAVOTransitionLabelFigure.setText("");
-			fFigureMAVOTransitionLabelFigure.setMaximumSize(new Dimension(
-					getMapMode().DPtoLP(10000), getMapMode().DPtoLP(50)));
+			fFigureMAVOTransitionLabelFigure
+					.setMaximumSize(new Dimension(getMapMode().DPtoLP(10000), getMapMode().DPtoLP(50)));
 
 			this.add(fFigureMAVOTransitionLabelFigure);
 

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part;
 
 import java.util.Collection;
@@ -30,20 +30,18 @@ import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 public class IStar_MAVODiagramUpdater {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static boolean isShortcutOrphaned(View view) {
-		return !view.isSetElement() || view.getElement() == null
-				|| view.getElement().eIsProxy();
+		return !view.isSetElement() || view.getElement() == null || view.getElement().eIsProxy();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> getSemanticChildren(
 			View view) {
-		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
-				.getVisualID(view)) {
+		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.VISUAL_ID:
 			return getIStar_1000SemanticChildren(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ActorActorIntentionsCompartmentEditPart.VISUAL_ID:
@@ -53,8 +51,8 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> getIStar_1000SemanticChildren(
 			View view) {
 		if (!view.isSetElement()) {
@@ -63,8 +61,7 @@ public class IStar_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.istar_mavo.IStar modelElement = (edu.toronto.cs.se.modelepedia.istar_mavo.IStar) view
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getDependums().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getDependums().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention childElement = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
@@ -105,8 +102,8 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> getActorActorIntentionsCompartment_7001SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -119,8 +116,7 @@ public class IStar_MAVODiagramUpdater {
 		edu.toronto.cs.se.modelepedia.istar_mavo.Actor modelElement = (edu.toronto.cs.se.modelepedia.istar_mavo.Actor) containerView
 				.getElement();
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor>();
-		for (Iterator<?> it = modelElement.getIntentions().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getIntentions().iterator(); it.hasNext();) {
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention childElement = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) it
 					.next();
 			int visualID = edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
@@ -150,12 +146,11 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedLinks(
 			View view) {
-		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
-				.getVisualID(view)) {
+		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.IStarEditPart.VISUAL_ID:
 			return getIStar_1000ContainedLinks(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart.VISUAL_ID:
@@ -191,12 +186,11 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getIncomingLinks(
 			View view) {
-		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
-				.getVisualID(view)) {
+		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart.VISUAL_ID:
 			return getSoftGoal_2001IncomingLinks(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID:
@@ -230,12 +224,11 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingLinks(
 			View view) {
-		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry
-				.getVisualID(view)) {
+		switch (edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOVisualIDRegistry.getVisualID(view)) {
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.SoftGoalEditPart.VISUAL_ID:
 			return getSoftGoal_2001OutgoingLinks(view);
 		case edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.TaskEditPart.VISUAL_ID:
@@ -462,16 +455,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -485,16 +473,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -508,16 +491,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -531,16 +509,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -554,8 +527,7 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -569,16 +541,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -592,16 +559,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -615,16 +577,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -638,16 +595,11 @@ public class IStar_MAVODiagramUpdater {
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(
-				modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(
-				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_MeansEnd_4001(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Decomposition_4002(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Contribution_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependerLink_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_DependeeLink_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -872,13 +824,12 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_MeansEnd_4001(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd) {
 				continue;
@@ -888,28 +839,23 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getTgt();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001,
-					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID));
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getTgt();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
+			result.add(
+					new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst, link,
+							edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001,
+							edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_Decomposition_4002(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) {
 				continue;
@@ -919,13 +865,9 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getTgt();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getTgt();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID));
@@ -934,13 +876,12 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_Contribution_4003(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Contribution) {
 				continue;
@@ -950,13 +891,9 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getTgt();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getTgt();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ContributionEditPart.VISUAL_ID));
@@ -965,13 +902,12 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_DependerLink_4004(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getDependerLinks().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getDependerLinks().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink) {
 				continue;
@@ -981,13 +917,9 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getDependum();
-			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint src = link
-					.getDepender();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getDependum();
+			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint src = link.getDepender();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependerLinkEditPart.VISUAL_ID));
@@ -996,13 +928,12 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedTypeModelFacetLinks_DependeeLink_4005(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention container) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getDependeeLinks().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getDependeeLinks().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink) {
 				continue;
@@ -1012,13 +943,9 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint dst = link
-					.getDependee();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getDependum();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint dst = link.getDependee();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getDependum();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID));
@@ -1033,8 +960,7 @@ public class IStar_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
 					.getIntentionLink_Tgt()
@@ -1047,11 +973,8 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					target,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, target,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID));
@@ -1066,12 +989,12 @@ public class IStar_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
 					.getIntentionLink_Tgt()
-					|| false == setting.getEObject() instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) {
+					|| false == setting
+							.getEObject() instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) {
 				continue;
 			}
 			edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition link = (edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) setting
@@ -1080,11 +1003,8 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					target,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, target,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID));
@@ -1099,8 +1019,7 @@ public class IStar_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
 					.getIntentionLink_Tgt()
@@ -1113,11 +1032,8 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					target,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, target,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ContributionEditPart.VISUAL_ID));
@@ -1132,8 +1048,7 @@ public class IStar_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
 					.getDependerLink_Dependum()
@@ -1146,11 +1061,8 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint src = link
-					.getDepender();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					target,
+			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint src = link.getDepender();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, target,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependerLinkEditPart.VISUAL_ID));
@@ -1165,8 +1077,7 @@ public class IStar_MAVODiagramUpdater {
 			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences
-				.get(target);
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage.eINSTANCE
 					.getDependeeLink_Dependee()
@@ -1179,11 +1090,8 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getDependum();
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					target,
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getDependum();
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, target,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID));
@@ -1192,16 +1100,15 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_MeansEnd_4001(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention source) {
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention) {
 				container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) element;
 			}
@@ -1210,8 +1117,7 @@ public class IStar_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.MeansEnd) {
 				continue;
@@ -1221,34 +1127,29 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getTgt();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getTgt();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
-					link,
-					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001,
-					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID));
+			result.add(
+					new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst, link,
+							edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.MeansEnd_4001,
+							edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.MeansEndEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_Decomposition_4002(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention source) {
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention) {
 				container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) element;
 			}
@@ -1257,8 +1158,7 @@ public class IStar_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) {
 				continue;
@@ -1268,16 +1168,12 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getTgt();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getTgt();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Decomposition_4002,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DecompositionEditPart.VISUAL_ID));
@@ -1286,16 +1182,15 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_Contribution_4003(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention source) {
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention) {
 				container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) element;
 			}
@@ -1304,8 +1199,7 @@ public class IStar_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getLinksAsSrc().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Contribution) {
 				continue;
@@ -1315,16 +1209,12 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getTgt();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getSrc();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getTgt();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getSrc();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.Contribution_4003,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.ContributionEditPart.VISUAL_ID));
@@ -1333,16 +1223,15 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_DependerLink_4004(
 			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint source) {
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention) {
 				container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) element;
 			}
@@ -1351,8 +1240,7 @@ public class IStar_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getDependerLinks().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getDependerLinks().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.DependerLink) {
 				continue;
@@ -1362,16 +1250,12 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link
-					.getDependum();
-			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint src = link
-					.getDepender();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention dst = link.getDependum();
+			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint src = link.getDepender();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependerLink_4004,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependerLinkEditPart.VISUAL_ID));
@@ -1380,16 +1264,15 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static Collection<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingTypeModelFacetLinks_DependeeLink_4005(
 			edu.toronto.cs.se.modelepedia.istar_mavo.Intention source) {
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null && container == null; element = element
-				.eContainer()) {
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
 			if (element instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention) {
 				container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) element;
 			}
@@ -1398,8 +1281,7 @@ public class IStar_MAVODiagramUpdater {
 			return Collections.emptyList();
 		}
 		LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> result = new LinkedList<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor>();
-		for (Iterator<?> links = container.getDependeeLinks().iterator(); links
-				.hasNext();) {
+		for (Iterator<?> links = container.getDependeeLinks().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof edu.toronto.cs.se.modelepedia.istar_mavo.DependeeLink) {
 				continue;
@@ -1409,16 +1291,12 @@ public class IStar_MAVODiagramUpdater {
 					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
-			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint dst = link
-					.getDependee();
-			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link
-					.getDependum();
+			edu.toronto.cs.se.modelepedia.istar_mavo.DependencyEndpoint dst = link.getDependee();
+			edu.toronto.cs.se.modelepedia.istar_mavo.Intention src = link.getDependum();
 			if (src != source) {
 				continue;
 			}
-			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(
-					src,
-					dst,
+			result.add(new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor(src, dst,
 					link,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers.IStar_MAVOElementTypes.DependeeLink_4005,
 					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.DependeeLinkEditPart.VISUAL_ID));
@@ -1427,40 +1305,44 @@ public class IStar_MAVODiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final DiagramUpdater TYPED_INSTANCE = new DiagramUpdater() {
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVONodeDescriptor> getSemanticChildren(
 				View view) {
 			return IStar_MAVODiagramUpdater.getSemanticChildren(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getContainedLinks(
 				View view) {
 			return IStar_MAVODiagramUpdater.getContainedLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getIncomingLinks(
 				View view) {
 			return IStar_MAVODiagramUpdater.getIncomingLinks(view);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		@Override
+
 		public List<edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVOLinkDescriptor> getOutgoingLinks(
 				View view) {
 			return IStar_MAVODiagramUpdater.getOutgoingLinks(view);

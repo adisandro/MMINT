@@ -25,23 +25,23 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 public class DecompositionReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DecompositionReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -50,8 +50,8 @@ public class DecompositionReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) {
 			return false;
@@ -66,51 +66,47 @@ public class DecompositionReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention && newEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.istar_mavo.Intention target = getLink()
-				.getTgt();
+		edu.toronto.cs.se.modelepedia.istar_mavo.Intention target = getLink().getTgt();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies.IStar_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistDecomposition_4002(container,
-						getLink(), getNewSource(), target);
+				.getLinkConstraints().canExistDecomposition_4002(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention && newEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention)) {
+		if (!(oldEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention
+				&& newEnd instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention)) {
 			return false;
 		}
-		edu.toronto.cs.se.modelepedia.istar_mavo.Intention source = getLink()
-				.getSrc();
+		edu.toronto.cs.se.modelepedia.istar_mavo.Intention source = getLink().getSrc();
 		if (!(getLink().eContainer() instanceof edu.toronto.cs.se.modelepedia.istar_mavo.Intention)) {
 			return false;
 		}
 		edu.toronto.cs.se.modelepedia.istar_mavo.Intention container = (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) getLink()
 				.eContainer();
 		return edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies.IStar_MAVOBaseItemSemanticEditPolicy
-				.getLinkConstraints().canExistDecomposition_4002(container,
-						getLink(), source, getNewTarget());
+				.getLinkConstraints().canExistDecomposition_4002(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -122,52 +118,52 @@ public class DecompositionReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setSrc(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTgt(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition getLink() {
 		return (edu.toronto.cs.se.modelepedia.istar_mavo.Decomposition) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.istar_mavo.Intention getOldSource() {
 		return (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.istar_mavo.Intention getNewSource() {
 		return (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.istar_mavo.Intention getOldTarget() {
 		return (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected edu.toronto.cs.se.modelepedia.istar_mavo.Intention getNewTarget() {
 		return (edu.toronto.cs.se.modelepedia.istar_mavo.Intention) newEnd;
 	}

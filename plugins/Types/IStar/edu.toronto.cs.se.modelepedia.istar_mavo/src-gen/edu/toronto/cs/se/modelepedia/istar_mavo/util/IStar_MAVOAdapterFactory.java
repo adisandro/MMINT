@@ -134,8 +134,8 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 				return createDependeeLinkAdapter();
 			}
 			@Override
-			public Adapter caseMAVOModel(MAVORoot object) {
-				return createMAVOModelAdapter();
+			public Adapter caseMAVORoot(MAVORoot object) {
+				return createMAVORootAdapter();
 			}
 			@Override
 			public Adapter caseLogicElement(LogicElement object) {
@@ -362,7 +362,7 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mavo.MAVORoot <em>Root</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -371,7 +371,7 @@ public class IStar_MAVOAdapterFactory extends AdapterFactoryImpl {
 	 * @see edu.toronto.cs.se.mavo.MAVORoot
 	 * @generated
 	 */
-	public Adapter createMAVOModelAdapter() {
+	public Adapter createMAVORootAdapter() {
 		return null;
 	}
 

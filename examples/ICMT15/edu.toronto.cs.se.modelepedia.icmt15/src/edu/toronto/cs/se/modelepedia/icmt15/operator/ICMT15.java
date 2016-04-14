@@ -30,9 +30,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.MultiModel;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
@@ -200,11 +199,11 @@ public class ICMT15 extends RandomOperatorImpl {
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MultiModel> outputMIDsByName) throws Exception {
+			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
 		Model inputModel = inputsByName.get(IN_MODEL);
-		MultiModel instanceMID = outputMIDsByName.get(OUT_MODEL);
+		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// generate output model
 		EObject inputRootModelObj = inputModel.getEMFInstanceRoot();
@@ -246,7 +245,7 @@ public class ICMT15 extends RandomOperatorImpl {
 			inputModel.getUri();
 		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
 		MultiModelUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
-		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, ModelOrigin.CREATED, instanceMID);
+		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, instanceMID);
 		MultiModelUtils.createTextFile(MultiModelUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, outputModel);

@@ -20,13 +20,11 @@ import org.eclipse.gmf.tooling.runtime.part.DefaultModelElementSelectionPage;
 public class ModelElementSelectionPage extends DefaultModelElementSelectionPage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public ModelElementSelectionPage(String pageName) {
-		super(
-				edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory(),
-				pageName);
+		super(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorPlugin
+				.getInstance().getItemProvidersAdapterFactory(), pageName);
 	}
 
 	/**

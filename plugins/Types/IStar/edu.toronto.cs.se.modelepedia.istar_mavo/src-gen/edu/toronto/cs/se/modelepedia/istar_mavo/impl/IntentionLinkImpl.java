@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl#getSrc <em>Src</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.istar_mavo.impl.IntentionLinkImpl#getTgt <em>Tgt</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

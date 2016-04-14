@@ -26,46 +26,44 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class DependerLinkEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class DependerLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final int VISUAL_ID = 4004;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DependerLinkEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.policies.DependerLinkItemSemanticEditPolicy());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel13EditPart) {
 			((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel13EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureMAVODependerLinkLabelFigure());
+					.setLabel(getPrimaryShape().getFigureMAVODependerLinkLabelFigure());
+			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -74,8 +72,8 @@ public class DependerLinkEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof edu.toronto.cs.se.modelepedia.istar_mavo.diagram.edit.parts.WrappingLabel13EditPart) {
 			return true;
@@ -84,8 +82,8 @@ public class DependerLinkEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -94,21 +92,21 @@ public class DependerLinkEditPart extends ConnectionNodeEditPart implements
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new DependerLinkFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DependerLinkFigure getPrimaryShape() {
 		return (DependerLinkFigure) getFigure();
 	}
@@ -140,8 +138,8 @@ public class DependerLinkEditPart extends ConnectionNodeEditPart implements
 			fFigureMAVODependerLinkLabelFigure = new WrappingLabel();
 
 			fFigureMAVODependerLinkLabelFigure.setText("");
-			fFigureMAVODependerLinkLabelFigure.setMaximumSize(new Dimension(
-					getMapMode().DPtoLP(10000), getMapMode().DPtoLP(50)));
+			fFigureMAVODependerLinkLabelFigure
+					.setMaximumSize(new Dimension(getMapMode().DPtoLP(10000), getMapMode().DPtoLP(50)));
 
 			this.add(fFigureMAVODependerLinkLabelFigure);
 

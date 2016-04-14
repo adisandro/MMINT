@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *    Alessio Di Sandro - Implementation.
- */
+* Copyright (c) 2012-2015 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -39,18 +39,18 @@ import org.eclipse.ui.part.FileEditorInput;
 public class IStar_MAVONavigatorActionProvider extends CommonActionProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean myContribute;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private OpenDiagramAction myOpenDiagramAction;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(ICommonActionExtensionSite aSite) {
 		super.init(aSite);
 		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
@@ -62,61 +62,58 @@ public class IStar_MAVONavigatorActionProvider extends CommonActionProvider {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private void makeActions(ICommonViewerWorkbenchSite viewerSite) {
 		myOpenDiagramAction = new OpenDiagramAction(viewerSite);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void fillActionBars(IActionBars actionBars) {
 		if (!myContribute) {
 			return;
 		}
-		IStructuredSelection selection = (IStructuredSelection) getContext()
-				.getSelection();
+		IStructuredSelection selection = (IStructuredSelection) getContext().getSelection();
 		myOpenDiagramAction.selectionChanged(selection);
 		if (myOpenDiagramAction.isEnabled()) {
-			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
-					myOpenDiagramAction);
+			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, myOpenDiagramAction);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void fillContextMenu(IMenuManager menu) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class OpenDiagramAction extends Action {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private Diagram myDiagram;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private ICommonViewerWorkbenchSite myViewerSite;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public OpenDiagramAction(ICommonViewerWorkbenchSite viewerSite) {
-			super(
-					edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.NavigatorActionProvider_OpenDiagramActionName);
+			super(edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.Messages.NavigatorActionProvider_OpenDiagramActionName);
 			myViewerSite = viewerSite;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public final void selectionChanged(IStructuredSelection selection) {
 			myDiagram = null;
 			if (selection.size() == 1) {
@@ -125,8 +122,7 @@ public class IStar_MAVONavigatorActionProvider extends CommonActionProvider {
 					selectedElement = ((edu.toronto.cs.se.modelepedia.istar_mavo.diagram.navigator.IStar_MAVONavigatorItem) selectedElement)
 							.getView();
 				} else if (selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable) selectedElement)
-							.getAdapter(View.class);
+					selectedElement = ((IAdaptable) selectedElement).getAdapter(View.class);
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
@@ -141,8 +137,8 @@ public class IStar_MAVONavigatorActionProvider extends CommonActionProvider {
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void run() {
 			if (myDiagram == null || myDiagram.eResource() == null) {
 				return;
@@ -151,33 +147,29 @@ public class IStar_MAVONavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = getEditorInput(myDiagram);
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
-				page.openEditor(
-						editorInput,
+				page.openEditor(editorInput,
 						edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditor.ID);
 			} catch (PartInitException e) {
-				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin
-						.getInstance().logError(
-								"Exception while openning diagram", e); //$NON-NLS-1$
+				edu.toronto.cs.se.modelepedia.istar_mavo.diagram.part.IStar_MAVODiagramEditorPlugin.getInstance()
+						.logError("Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private static IEditorInput getEditorInput(Diagram diagram) {
 			Resource diagramResource = diagram.eResource();
 			for (EObject nextEObject : diagramResource.getContents()) {
 				if (nextEObject == diagram) {
-					return new FileEditorInput(
-							WorkspaceSynchronizer.getFile(diagramResource));
+					return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
 				}
 				if (nextEObject instanceof Diagram) {
 					break;
 				}
 			}
 			URI uri = EcoreUtil.getURI(diagram);
-			String editorName = uri.lastSegment() + '#'
-					+ diagram.eResource().getContents().indexOf(diagram);
+			String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}
