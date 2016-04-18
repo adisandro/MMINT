@@ -29,7 +29,7 @@
 	                 name="uml">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+	                 targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML">
 	           </typeEndpoint>
             </parameter>
          </inputs>

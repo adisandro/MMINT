@@ -74,7 +74,7 @@
             </type>
          </modelType>
          <binaryType
-               sourceTypeUri="http://www.eclipse.org/uml2/4.0.0/UML"
+               sourceTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
                targetTypeUri="http://se.cs.toronto.edu/modelepedia/Java">
          </binaryType>
          <modelTypeEndpoint>
@@ -83,7 +83,7 @@
                   uri="http://se.cs.toronto.edu/modelepedia/PreserveComponentInterfaces-UML/UMLEndpoint">
             </type>
             <typeEndpoint
-                  targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+                  targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML">
             </typeEndpoint>
          </modelTypeEndpoint>
          <modelTypeEndpoint>
@@ -112,7 +112,7 @@
 	                 name="uml">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://www.eclipse.org/uml2/4.0.0/UML">
+	                 targetTypeUri="http://www.eclipse.org/uml2/5.0.0/UML">
 	           </typeEndpoint>
             </parameter>
          </inputs>

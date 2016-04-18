@@ -415,8 +415,7 @@ public class MMINT implements MMINTConstants {
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
 			if (targetModelType == null) {
-				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
-				continue;
+				throw new MMINTException("Target model type " + targetModelTypeUri + " can't be found");
 			}
 			ModelEndpoint newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
 				extensionType,
@@ -459,8 +458,7 @@ public class MMINT implements MMINTConstants {
 			String targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			GenericElement targetGenericType = MultiModelTypeRegistry.getType(targetGenericTypeUri);
 			if (targetGenericType == null) {
-				MMINTException.print(IStatus.WARNING, "Target generic type " + targetGenericTypeUri + " can't be found, skipping it", null);
-				continue;
+				throw new MMINTException("Target generic type " + targetGenericTypeUri + " can't be found");
 			}
 			GenericEndpoint newGenericTypeEndpoint = extensionType.getFactory().createHeavyGenericTypeEndpoint(
 				extensionType,

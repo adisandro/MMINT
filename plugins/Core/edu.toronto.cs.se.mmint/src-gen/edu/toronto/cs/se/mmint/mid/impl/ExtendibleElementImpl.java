@@ -709,7 +709,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	@SuppressWarnings("unchecked")
 	protected <T extends ExtendibleElementReference> T createThisReferenceEClass() throws MMINTException {
 
-		EClass referenceEClass = searchEPackages(this.eClass().getEPackage(), this.eClass().getName().replace("Impl", "Reference"));
+		EClass referenceEClass = searchEPackages(this.eClass().getEPackage(), this.eClass().getName().replace("Impl", "") + "Reference");
 		if (referenceEClass == null) {
 			throw new MMINTException("Reference to EClass " + this.eClass().getName() + " not found");
 		}
