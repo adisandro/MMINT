@@ -138,7 +138,7 @@ public class ParallelComposition extends OperatorImpl {
 		StateMachine composedSM = compose((StateMachine) smModel1.getEMFInstanceRoot(), (StateMachine) smModel2.getEMFInstanceRoot());
 
 		// output
-		String composedModelUri = MultiModelUtils.replaceFileNameInUri(smModel1.getUri(), smModel1.getName() + "||" + smModel2.getName());
+		String composedModelUri = MultiModelUtils.replaceFileNameInUri(smModel1.getUri(), smModel1.getName() + "+" + smModel2.getName());
 		MultiModelUtils.writeModelFile(composedSM, composedModelUri, true);
 		Model composedModel = smModel1.getMetatype().createInstanceAndEditor(composedModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

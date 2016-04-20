@@ -112,7 +112,7 @@ public class Z3IncrementalSolver {
 	// first check sat and get model as baseline
 	public @NonNull Z3Model firstCheckSatAndGetModel(@NonNull String smtEncoding) {
 
-		Map<String, String> config = new HashMap<String, String>();
+		Map<String, String> config = new HashMap<>();
 		config.put("model", "true");
 		try {
 			context = new Context(config);

@@ -15,10 +15,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
-
 import com.microsoft.z3.Expr;
 import com.microsoft.z3.FuncDecl;
 import com.microsoft.z3.FuncInterp;
@@ -39,18 +37,20 @@ public class Z3MAVOModelParser {
 	private Map<Integer, String> smtEncodingNodes;
 	private Map<Integer, String> smtEncodingEdges;
 	private Map<Integer, String> smtEncodingElems;
+	private String smtMacros;
 	private Map<String, MAVOElement> mavoModelObjs;
 	private boolean isMayOnly;
 
-	public Z3MAVOModelParser(@NonNull String smtEncoding, @NonNull String smtEncodingUri, @NonNull Map<Integer, String> smtEncodingNodes, @NonNull Map<Integer, String> smtEncodingEdges, @NonNull Map<String, MAVOElement> mavoModelObjs, boolean isMayOnly) {
+	public Z3MAVOModelParser(@NonNull String smtEncoding, @NonNull String smtEncodingUri, @NonNull Map<Integer, String> smtEncodingNodes, @NonNull Map<Integer, String> smtEncodingEdges, @NonNull String smtMacros, @NonNull Map<String, MAVOElement> mavoModelObjs, boolean isMayOnly) {
 
 		this.smtEncoding = smtEncoding;
 		this.smtEncodingUri = smtEncodingUri;
 		this.smtEncodingNodes = smtEncodingNodes;
 		this.smtEncodingEdges = smtEncodingEdges;
-		smtEncodingElems = new HashMap<Integer, String>();
+		smtEncodingElems = new HashMap<>();
 		smtEncodingElems.putAll(smtEncodingNodes);
 		smtEncodingElems.putAll(smtEncodingEdges);
+		this.smtMacros = smtMacros;
 		this.mavoModelObjs = mavoModelObjs;
 		this.isMayOnly = isMayOnly;
 	}
@@ -63,6 +63,11 @@ public class Z3MAVOModelParser {
 	public @NonNull String getSMTLIBEncodingUri() {
 
 		return smtEncodingUri;
+	}
+
+	public @NonNull String getSMTLIBMacros() {
+
+		return smtMacros;
 	}
 
 	private @NonNull Map<String, Set<String>> getZ3MAVOModelObjs(@NonNull Model z3InternalModel, @NonNull String z3FunctionName, @NonNull Map<Integer, String> smtEncodingCurrentElems) {
@@ -192,6 +197,12 @@ public class Z3MAVOModelParser {
 	public boolean isMayOnly() {
 
 		return isMayOnly;
+	}
+
+	public boolean isAnnotated() {
+
+		return mavoModelObjs.values().stream()
+			.anyMatch(mavoModelObj -> mavoModelObj.isMay() || mavoModelObj.isSet() || mavoModelObj.isVar());
 	}
 
 }
