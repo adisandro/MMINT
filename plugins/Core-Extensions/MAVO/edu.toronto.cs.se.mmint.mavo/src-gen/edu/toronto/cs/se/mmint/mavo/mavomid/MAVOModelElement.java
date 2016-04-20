@@ -29,4 +29,31 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
  * @generated
  */
 public interface MAVOModelElement extends ModelElement, MAVOElement {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	String toMIDCustomPrintLabel();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	String toMIDCustomEditLabel();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model newLabelRequired="true"
+	 * @generated
+	 */
+	void updateMIDCustomLabel(String newLabel);
 } // MAVOModelElement

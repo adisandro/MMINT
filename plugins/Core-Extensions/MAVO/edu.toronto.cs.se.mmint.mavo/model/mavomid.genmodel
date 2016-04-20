@@ -22,8 +22,19 @@
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/validateInstanceInEditor">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/validateInstanceInEditor/context"/>
       </genOperations>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
     </genClasses>
-    <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOModelElement">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElement/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElement/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElement/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModelElement/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelRel">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModelRel/copyInstance">
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModelRel/copyInstance/origModel"/>
@@ -35,7 +46,13 @@
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelEndpoint">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModelEndpoint/getTarget"/>
     </genClasses>
-    <genClasses ecoreClass="mavomid.ecore#//MAVOMapping"/>
+    <genClasses ecoreClass="mavomid.ecore#//MAVOMapping">
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMapping/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMapping/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mavomid.ecore#//MAVOMapping/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOMapping/updateMIDCustomLabel/newLabel"/>
+      </genOperations>
+    </genClasses>
     <genClasses ecoreClass="mavomid.ecore#//BinaryMAVOMapping"/>
     <genClasses ecoreClass="mavomid.ecore#//MAVOModelElementReference">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModelElementReference/getObject"/>

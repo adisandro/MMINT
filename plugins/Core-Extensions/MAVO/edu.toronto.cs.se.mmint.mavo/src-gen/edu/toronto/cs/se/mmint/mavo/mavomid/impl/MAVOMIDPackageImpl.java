@@ -225,8 +225,62 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMAVOModel__ToMIDCustomPrintLabel() {
+		return mavoModelEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOModel__ToMIDCustomEditLabel() {
+		return mavoModelEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOModel__UpdateMIDCustomLabel__String() {
+		return mavoModelEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMAVOModelElement() {
 		return mavoModelElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOModelElement__ToMIDCustomPrintLabel() {
+		return mavoModelElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOModelElement__ToMIDCustomEditLabel() {
+		return mavoModelElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOModelElement__UpdateMIDCustomLabel__String() {
+		return mavoModelElementEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -351,6 +405,33 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMAVOMapping__ToMIDCustomPrintLabel() {
+		return mavoMappingEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOMapping__ToMIDCustomEditLabel() {
+		return mavoMappingEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMAVOMapping__UpdateMIDCustomLabel__String() {
+		return mavoMappingEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBinaryMAVOMapping() {
 		return binaryMAVOMappingEClass;
 	}
@@ -405,8 +486,14 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__STRING_MID);
 		createEOperation(mavoModelEClass, MAVO_MODEL___IMPORT_INSTANCE__STRING_MID);
 		createEOperation(mavoModelEClass, MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
+		createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL);
+		createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_EDIT_LABEL);
+		createEOperation(mavoModelEClass, MAVO_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING);
 
 		mavoModelElementEClass = createEClass(MAVO_MODEL_ELEMENT);
+		createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL);
+		createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL);
+		createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING);
 
 		mavoModelRelEClass = createEClass(MAVO_MODEL_REL);
 		createEOperation(mavoModelRelEClass, MAVO_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID);
@@ -417,6 +504,9 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		createEOperation(mavoModelEndpointEClass, MAVO_MODEL_ENDPOINT___GET_TARGET);
 
 		mavoMappingEClass = createEClass(MAVO_MAPPING);
+		createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL);
+		createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL);
+		createEOperation(mavoMappingEClass, MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING);
 
 		binaryMAVOMappingEClass = createEClass(BINARY_MAVO_MAPPING);
 
@@ -502,7 +592,21 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		addEParameter(op, theMIDPackage.getIValidationContext(), "context", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
+		initEOperation(getMAVOModel__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getMAVOModel__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getMAVOModel__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(mavoModelElementEClass, MAVOModelElement.class, "MAVOModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getMAVOModelElement__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getMAVOModelElement__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getMAVOModelElement__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(mavoModelRelEClass, MAVOModelRel.class, "MAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -519,6 +623,13 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		initEOperation(getMAVOModelEndpoint__GetTarget(), this.getMAVOModel(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(mavoMappingEClass, MAVOMapping.class, "MAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEOperation(getMAVOMapping__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getMAVOMapping__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getMAVOMapping__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(binaryMAVOMappingEClass, BinaryMAVOMapping.class, "BinaryMAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
+import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
 
@@ -443,6 +444,30 @@ public class MAVOModelElementImpl extends ModelElementImpl implements MAVOModelE
 		result.append(var);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toMIDCustomPrintLabel() {
+
+		return MAVOUtils.getMAVOElementLabel(this, true);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toMIDCustomEditLabel() {
+
+		return MAVOUtils.getMAVOElementLabel(this, false);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void updateMIDCustomLabel(String newLabel) {
+
+		MAVOUtils.setMAVOElementLabel(this, newLabel);
 	}
 
 } //MAVOModelElementImpl

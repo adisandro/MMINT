@@ -35,6 +35,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 
+//TODO MMINT[MAVO] Unify with MAVOMID cases + write javadoc
 public class MAVOElementLabelParser implements IParser {
 
 	private IStatus updateValues(EObject modelObj, String newLabel) {

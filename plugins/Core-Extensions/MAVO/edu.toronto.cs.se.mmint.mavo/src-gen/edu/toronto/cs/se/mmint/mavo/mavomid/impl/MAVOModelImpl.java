@@ -320,4 +320,28 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 		return status;
 	}
 
+	/**
+	 * @generated NOT
+	 */
+	public String toMIDCustomPrintLabel() {
+
+		return MAVOUtils.getMAVORootLabel(this, true);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public String toMIDCustomEditLabel() {
+
+		return MAVOUtils.getMAVORootLabel(this, false);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void updateMIDCustomLabel(String newLabel) {
+
+		MAVOUtils.setMAVORootLabel(this, newLabel);
+	}
+
 } //MAVOModelImpl

@@ -258,33 +258,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL___VALIDATE_INSTANCE = MIDPackage.MODEL___VALIDATE_INSTANCE;
 
 	/**
-	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.MODEL___TO_MID_CUSTOM_PRINT_LABEL;
-
-	/**
-	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.MODEL___TO_MID_CUSTOM_EDIT_LABEL;
-
-	/**
-	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL___UPDATE_MID_CUSTOM_LABEL__STRING;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -438,13 +411,40 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.MODEL_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.MODEL_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>MAVO Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 3;
+	int MAVO_MODEL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementImpl <em>MAVO Model Element</em>}' class.
@@ -628,33 +628,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
-	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL;
-
-	/**
-	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL;
-
-	/**
-	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -745,13 +718,40 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = MIDPackage.MODEL_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = MIDPackage.MODEL_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>MAVO Model Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ELEMENT_OPERATION_COUNT = MIDPackage.MODEL_ELEMENT_OPERATION_COUNT + 0;
+	int MAVO_MODEL_ELEMENT_OPERATION_COUNT = MIDPackage.MODEL_ELEMENT_OPERATION_COUNT + 3;
 
 
 	/**
@@ -2229,33 +2229,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
-	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.MAPPING___TO_MID_CUSTOM_PRINT_LABEL;
-
-	/**
-	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.MAPPING___TO_MID_CUSTOM_EDIT_LABEL;
-
-	/**
-	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2337,13 +2310,40 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING___DELETE_INSTANCE = RelationshipPackage.MAPPING___DELETE_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.MAPPING_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.MAPPING_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.MAPPING_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>MAVO Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MAPPING_OPERATION_COUNT = RelationshipPackage.MAPPING_OPERATION_COUNT + 0;
+	int MAVO_MAPPING_OPERATION_COUNT = RelationshipPackage.MAPPING_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl <em>Binary MAVO Mapping</em>}' class.
@@ -2536,33 +2536,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
-	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.BINARY_MAPPING___TO_MID_CUSTOM_PRINT_LABEL;
-
-	/**
-	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.BINARY_MAPPING___TO_MID_CUSTOM_EDIT_LABEL;
-
-	/**
-	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.BINARY_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING;
-
-	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2644,13 +2617,40 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
 
 	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Binary MAVO Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MAPPING_OPERATION_COUNT = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 0;
+	int BINARY_MAVO_MAPPING_OPERATION_COUNT = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementReferenceImpl <em>MAVO Model Element Reference</em>}' class.
@@ -3261,6 +3261,36 @@ public interface MAVOMIDPackage extends EPackage {
 	EOperation getMAVOModel__ValidateInstanceInEditor__IValidationContext();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#toMIDCustomPrintLabel() <em>To MID Custom Print Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Print Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#toMIDCustomPrintLabel()
+	 * @generated
+	 */
+	EOperation getMAVOModel__ToMIDCustomPrintLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#toMIDCustomEditLabel() <em>To MID Custom Edit Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Edit Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#toMIDCustomEditLabel()
+	 * @generated
+	 */
+	EOperation getMAVOModel__ToMIDCustomEditLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#updateMIDCustomLabel(java.lang.String) <em>Update MID Custom Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Update MID Custom Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#updateMIDCustomLabel(java.lang.String)
+	 * @generated
+	 */
+	EOperation getMAVOModel__UpdateMIDCustomLabel__String();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement <em>MAVO Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3269,6 +3299,36 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMAVOModelElement();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement#toMIDCustomPrintLabel() <em>To MID Custom Print Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Print Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement#toMIDCustomPrintLabel()
+	 * @generated
+	 */
+	EOperation getMAVOModelElement__ToMIDCustomPrintLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement#toMIDCustomEditLabel() <em>To MID Custom Edit Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Edit Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement#toMIDCustomEditLabel()
+	 * @generated
+	 */
+	EOperation getMAVOModelElement__ToMIDCustomEditLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement#updateMIDCustomLabel(java.lang.String) <em>Update MID Custom Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Update MID Custom Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement#updateMIDCustomLabel(java.lang.String)
+	 * @generated
+	 */
+	EOperation getMAVOModelElement__UpdateMIDCustomLabel__String();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelRel <em>MAVO Model Rel</em>}'.
@@ -3401,6 +3461,36 @@ public interface MAVOMIDPackage extends EPackage {
 	EClass getMAVOMapping();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping#toMIDCustomPrintLabel() <em>To MID Custom Print Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Print Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping#toMIDCustomPrintLabel()
+	 * @generated
+	 */
+	EOperation getMAVOMapping__ToMIDCustomPrintLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping#toMIDCustomEditLabel() <em>To MID Custom Edit Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>To MID Custom Edit Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping#toMIDCustomEditLabel()
+	 * @generated
+	 */
+	EOperation getMAVOMapping__ToMIDCustomEditLabel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping#updateMIDCustomLabel(java.lang.String) <em>Update MID Custom Label</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Update MID Custom Label</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping#updateMIDCustomLabel(java.lang.String)
+	 * @generated
+	 */
+	EOperation getMAVOMapping__UpdateMIDCustomLabel__String();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping <em>Binary MAVO Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3488,6 +3578,30 @@ public interface MAVOMIDPackage extends EPackage {
 		EOperation MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = eINSTANCE.getMAVOModel__ValidateInstanceInEditor__IValidationContext();
 
 		/**
+		 * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL = eINSTANCE.getMAVOModel__ToMIDCustomPrintLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Edit Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL___TO_MID_CUSTOM_EDIT_LABEL = eINSTANCE.getMAVOModel__ToMIDCustomEditLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Update MID Custom Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING = eINSTANCE.getMAVOModel__UpdateMIDCustomLabel__String();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelElementImpl <em>MAVO Model Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3496,6 +3610,30 @@ public interface MAVOMIDPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MAVO_MODEL_ELEMENT = eINSTANCE.getMAVOModelElement();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = eINSTANCE.getMAVOModelElement__ToMIDCustomPrintLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Edit Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = eINSTANCE.getMAVOModelElement__ToMIDCustomEditLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Update MID Custom Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = eINSTANCE.getMAVOModelElement__UpdateMIDCustomLabel__String();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.MAVOModelRelImpl <em>MAVO Model Rel</em>}' class.
@@ -3614,6 +3752,30 @@ public interface MAVOMIDPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MAVO_MAPPING = eINSTANCE.getMAVOMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = eINSTANCE.getMAVOMapping__ToMIDCustomPrintLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>To MID Custom Edit Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = eINSTANCE.getMAVOMapping__ToMIDCustomEditLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Update MID Custom Label</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = eINSTANCE.getMAVOMapping__UpdateMIDCustomLabel__String();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.impl.BinaryMAVOMappingImpl <em>Binary MAVO Mapping</em>}' class.

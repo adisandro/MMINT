@@ -19,11 +19,21 @@
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="context" lowerBound="1" eType="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//IValidationContext"/>
     </eOperations>
+    <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="updateMIDCustomLabel">
+      <eParameters name="newLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOModelElement" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelElement ../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="updateMIDCustomLabel">
+      <eParameters name="newLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MAVOModelRel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelRel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -56,6 +66,11 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
+    <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="updateMIDCustomLabel">
+      <eParameters name="newLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryMAVOMapping" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/BinaryMapping #//MAVOMapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

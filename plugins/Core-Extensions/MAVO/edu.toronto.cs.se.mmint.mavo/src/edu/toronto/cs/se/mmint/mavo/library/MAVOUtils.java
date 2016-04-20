@@ -55,6 +55,20 @@ public class MAVOUtils {
 	}
 	private static final String NAME_FEATURE = "name";
 
+	public static String getMAVORootLabel(MAVORoot rootMavoModelObj, boolean withParenthesis) {
+
+		String label = "";
+
+		if (rootMavoModelObj.isInc()) {
+			label =
+				(withParenthesis ? "(" : "") +
+				(rootMavoModelObj.isInc() ? "Inc" : "") +
+				(withParenthesis ? ")" : "");
+		}
+
+		return label;
+	}
+
 	public static String getMAVOElementLabel(MAVOElement mavoModelObj, boolean withParenthesis) {
 
 		String label = "";
@@ -76,8 +90,20 @@ public class MAVOUtils {
 		return label;
 	}
 
-	public static void setMAVOElementLabel(MAVOElement mavoElement, String newLabel) {
-		
+	public static void setMAVORootLabel(MAVORoot rootMavoModelObj, String newLabel) {
+
+		// I-Inc are the only allowable combinations (plus empty string)
+		if (newLabel.trim().equals("I") || newLabel.trim().equals("Inc")) {
+			rootMavoModelObj.setInc(true);
+		}
+		else if (newLabel.trim().equals("")) {
+			rootMavoModelObj.setInc(false);
+		}
+	}
+
+	public static void setMAVOElementLabel(MAVOElement mavoModelObj, String newLabel) {
+
+		// M-S-V are the only allowable chars (plus empty string), and they can't appear more than once
 		boolean isMay = false, isSet = false, isVar = false;
 		for (char c : newLabel.replace(" ", "").toUpperCase().toCharArray()) {
 			switch (c) {
@@ -103,9 +129,9 @@ public class MAVOUtils {
 					return;
 			}
 		}
-		mavoElement.setMay(isMay);
-		mavoElement.setSet(isSet);
-		mavoElement.setVar(isVar);
+		mavoModelObj.setMay(isMay);
+		mavoModelObj.setSet(isSet);
+		mavoModelObj.setVar(isVar);
 	}
 
 	public static boolean isMAVOModel(EObject rootModelObj) {

@@ -61,4 +61,31 @@ public interface MAVOModel extends Model, MAVORoot {
 	 */
 	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	String toMIDCustomPrintLabel();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	String toMIDCustomEditLabel();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * MAVO version. {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @model newLabelRequired="true"
+	 * @generated
+	 */
+	void updateMIDCustomLabel(String newLabel);
+
 } // MAVOModel
