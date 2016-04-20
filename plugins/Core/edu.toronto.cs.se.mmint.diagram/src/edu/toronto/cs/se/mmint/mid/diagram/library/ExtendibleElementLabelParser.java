@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
-public class ExtendibleElementLabelParser extends MIDLabelParser {
+public class ExtendibleElementLabelParser extends MIDDiagramLabelParser {
 
 	private final static String EXTELEM_NULLTYPE = "NOTYPE";
 

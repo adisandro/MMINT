@@ -23,7 +23,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDCustomLabelParser;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel10EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel11EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel12EditPart;
@@ -54,6 +53,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.BinaryMappingRef
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.BinaryMappingReferenceTargetModelElementEndpointReferenceLabelParser;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.ExtendibleElementEndpointReferenceLabelParser;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.ExtendibleElementReferenceLabelParser;
+import edu.toronto.cs.se.mmint.mid.relationship.diagram.library.RelationshipDiagramCustomLabelParser;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
 
 /**
@@ -79,14 +79,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelEndpointReferenceLabel_5004Parser;
+	private RelationshipDiagramCustomLabelParser modelEndpointReferenceLabel_5004Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelEndpointReferenceLabel_5004Parser() {
 		if (modelEndpointReferenceLabel_5004Parser == null) {
-			modelEndpointReferenceLabel_5004Parser = new MIDCustomLabelParser();
+			modelEndpointReferenceLabel_5004Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelEndpointReferenceLabel_5004Parser;
 	}
@@ -109,14 +109,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser mappingReferenceLabel_5006Parser;
+	private RelationshipDiagramCustomLabelParser mappingReferenceLabel_5006Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getMappingReferenceLabel_5006Parser() {
 		if (mappingReferenceLabel_5006Parser == null) {
-			mappingReferenceLabel_5006Parser = new MIDCustomLabelParser();
+			mappingReferenceLabel_5006Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return mappingReferenceLabel_5006Parser;
 	}
@@ -139,14 +139,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser mappingReferenceLabel_5008Parser;
+	private RelationshipDiagramCustomLabelParser mappingReferenceLabel_5008Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getMappingReferenceLabel_5008Parser() {
 		if (mappingReferenceLabel_5008Parser == null) {
-			mappingReferenceLabel_5008Parser = new MIDCustomLabelParser();
+			mappingReferenceLabel_5008Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return mappingReferenceLabel_5008Parser;
 	}
@@ -169,14 +169,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelEndpointReferenceLabel_5014Parser;
+	private RelationshipDiagramCustomLabelParser modelEndpointReferenceLabel_5014Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelEndpointReferenceLabel_5014Parser() {
 		if (modelEndpointReferenceLabel_5014Parser == null) {
-			modelEndpointReferenceLabel_5014Parser = new MIDCustomLabelParser();
+			modelEndpointReferenceLabel_5014Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelEndpointReferenceLabel_5014Parser;
 	}
@@ -199,14 +199,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelElementReferenceLabel_5002Parser;
+	private RelationshipDiagramCustomLabelParser modelElementReferenceLabel_5002Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelElementReferenceLabel_5002Parser() {
 		if (modelElementReferenceLabel_5002Parser == null) {
-			modelElementReferenceLabel_5002Parser = new MIDCustomLabelParser();
+			modelElementReferenceLabel_5002Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelElementReferenceLabel_5002Parser;
 	}
@@ -229,14 +229,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelElementReferenceLabel_5010Parser;
+	private RelationshipDiagramCustomLabelParser modelElementReferenceLabel_5010Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelElementReferenceLabel_5010Parser() {
 		if (modelElementReferenceLabel_5010Parser == null) {
-			modelElementReferenceLabel_5010Parser = new MIDCustomLabelParser();
+			modelElementReferenceLabel_5010Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelElementReferenceLabel_5010Parser;
 	}
@@ -259,14 +259,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelElementReferenceLabel_5012Parser;
+	private RelationshipDiagramCustomLabelParser modelElementReferenceLabel_5012Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelElementReferenceLabel_5012Parser() {
 		if (modelElementReferenceLabel_5012Parser == null) {
-			modelElementReferenceLabel_5012Parser = new MIDCustomLabelParser();
+			modelElementReferenceLabel_5012Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelElementReferenceLabel_5012Parser;
 	}
@@ -289,14 +289,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelElementEndpointReferenceLabel_6002Parser;
+	private RelationshipDiagramCustomLabelParser modelElementEndpointReferenceLabel_6002Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelElementEndpointReferenceLabel_6002Parser() {
 		if (modelElementEndpointReferenceLabel_6002Parser == null) {
-			modelElementEndpointReferenceLabel_6002Parser = new MIDCustomLabelParser();
+			modelElementEndpointReferenceLabel_6002Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelElementEndpointReferenceLabel_6002Parser;
 	}
@@ -319,14 +319,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser binaryMappingReferenceLabel_6004Parser;
+	private RelationshipDiagramCustomLabelParser binaryMappingReferenceLabel_6004Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getBinaryMappingReferenceLabel_6004Parser() {
 		if (binaryMappingReferenceLabel_6004Parser == null) {
-			binaryMappingReferenceLabel_6004Parser = new MIDCustomLabelParser();
+			binaryMappingReferenceLabel_6004Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return binaryMappingReferenceLabel_6004Parser;
 	}
@@ -379,14 +379,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser binaryMappingReferenceLabel_6008Parser;
+	private RelationshipDiagramCustomLabelParser binaryMappingReferenceLabel_6008Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getBinaryMappingReferenceLabel_6008Parser() {
 		if (binaryMappingReferenceLabel_6008Parser == null) {
-			binaryMappingReferenceLabel_6008Parser = new MIDCustomLabelParser();
+			binaryMappingReferenceLabel_6008Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return binaryMappingReferenceLabel_6008Parser;
 	}
@@ -439,14 +439,14 @@ public class MIDParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	* @generated
 	*/
-	private MIDCustomLabelParser modelElementEndpointReferenceLabel_6012Parser;
+	private RelationshipDiagramCustomLabelParser modelElementEndpointReferenceLabel_6012Parser;
 
 	/**
 	* @generated
 	*/
 	private IParser getModelElementEndpointReferenceLabel_6012Parser() {
 		if (modelElementEndpointReferenceLabel_6012Parser == null) {
-			modelElementEndpointReferenceLabel_6012Parser = new MIDCustomLabelParser();
+			modelElementEndpointReferenceLabel_6012Parser = new RelationshipDiagramCustomLabelParser();
 		}
 		return modelElementEndpointReferenceLabel_6012Parser;
 	}

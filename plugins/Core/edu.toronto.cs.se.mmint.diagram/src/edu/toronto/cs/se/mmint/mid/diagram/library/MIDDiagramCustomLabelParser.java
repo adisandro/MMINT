@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
-public class MIDCustomLabelParser extends MIDLabelParser {
+public class MIDDiagramCustomLabelParser extends MIDDiagramLabelParser {
 
 	@Override
 	protected IStatus updateValues(ExtendibleElement midElement, String newLabel) {

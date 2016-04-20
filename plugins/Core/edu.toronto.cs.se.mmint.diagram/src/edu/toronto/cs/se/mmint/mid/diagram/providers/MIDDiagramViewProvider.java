@@ -42,12 +42,12 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointName2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpointNameEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel10EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel11EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel12EditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel13EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel14EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel15EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel6EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel7EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel8EditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel9EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDViewProvider;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -111,21 +111,21 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
-		Node label6011 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel6EditPart.VISUAL_ID));
-		label6011.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6001 = createLabel(edge,
+				MIDVisualIDRegistry.getType(WrappingLabel10EditPart.VISUAL_ID));
+		label6001.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6011 = (Location) label6011.getLayoutConstraint();
-		location6011.setX(0);
-		location6011.setY(40);
+		Location location6001 = (Location) label6001.getLayoutConstraint();
+		location6001.setX(0);
+		location6001.setY(40);
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
-			Node label6017 = createLabel(edge,
-					MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
-			label6017.setLayoutConstraint(NotationFactory.eINSTANCE
+			Node label6002 = createLabel(edge,
+					MIDVisualIDRegistry.getType(WrappingLabel11EditPart.VISUAL_ID));
+			label6002.setLayoutConstraint(NotationFactory.eINSTANCE
 					.createLocation());
-			Location location6017 = (Location) label6017.getLayoutConstraint();
-			location6017.setX(0);
-			location6017.setY(60);
+			Location location6002 = (Location) label6002.getLayoutConstraint();
+			location6002.setX(0);
+			location6002.setY(60);
 		}
 		return edge;
 	}
@@ -180,14 +180,14 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED))) {
 			return edge;
 		}
-		Node label6019 = createLabel(edge,
+		Node label6007 = createLabel(edge,
 				MIDVisualIDRegistry
 						.getType(ModelEndpointNameEditPart.VISUAL_ID));
-		label6019.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6007.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6019 = (Location) label6019.getLayoutConstraint();
-		location6019.setX(0);
-		location6019.setY(40);
+		Location location6007 = (Location) label6007.getLayoutConstraint();
+		location6007.setX(0);
+		location6007.setY(40);
 		return edge;
 	}
 
@@ -241,14 +241,14 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED))) {
 			return edge;
 		}
-		Node label6020 = createLabel(edge,
+		Node label6008 = createLabel(edge,
 				MIDVisualIDRegistry
 						.getType(ModelEndpointName2EditPart.VISUAL_ID));
-		label6020.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6020 = (Location) label6020.getLayoutConstraint();
-		location6020.setX(0);
-		location6020.setY(40);
+		Location location6008 = (Location) label6008.getLayoutConstraint();
+		location6008.setX(0);
+		location6008.setY(40);
 		return edge;
 	}
 
@@ -316,39 +316,39 @@ public class MIDDiagramViewProvider extends MIDViewProvider {
 		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELS_ENABLED))) {
 			return edge;
 		}
-		Node label6012 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel7EditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6003 = createLabel(edge,
+				MIDVisualIDRegistry.getType(WrappingLabel12EditPart.VISUAL_ID));
+		label6003.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6012 = (Location) label6012.getLayoutConstraint();
-		location6012.setX(0);
-		location6012.setY(40);
+		Location location6003 = (Location) label6003.getLayoutConstraint();
+		location6003.setX(0);
+		location6003.setY(40);
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_ICONS_ENABLED))) {
-			Node label6013 = createLabel(edge,
-					MIDVisualIDRegistry.getType(WrappingLabel8EditPart.VISUAL_ID));
-			label6013.setLayoutConstraint(NotationFactory.eINSTANCE
+			Node label6004 = createLabel(edge,
+					MIDVisualIDRegistry.getType(WrappingLabel13EditPart.VISUAL_ID));
+			label6004.setLayoutConstraint(NotationFactory.eINSTANCE
 					.createLocation());
-			Location location6013 = (Location) label6013.getLayoutConstraint();
-			location6013.setX(0);
-			location6013.setY(60);
+			Location location6004 = (Location) label6004.getLayoutConstraint();
+			location6004.setX(0);
+			location6004.setY(60);
 		}
 		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED))) {
 			return edge;
 		}
-		Node label6014 = createLabel(edge,
-				MIDVisualIDRegistry.getType(WrappingLabel9EditPart.VISUAL_ID));
-		label6014.setLayoutConstraint(NotationFactory.eINSTANCE
+		Node label6005 = createLabel(edge,
+				MIDVisualIDRegistry.getType(WrappingLabel14EditPart.VISUAL_ID));
+		label6005.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6014 = (Location) label6014.getLayoutConstraint();
-		location6014.setX(0);
-		location6014.setY(80);
-		Node label6018 = createLabel(edge,
+		Location location6005 = (Location) label6005.getLayoutConstraint();
+		location6005.setX(0);
+		location6005.setY(80);
+		Node label6006 = createLabel(edge,
 				MIDVisualIDRegistry.getType(WrappingLabel15EditPart.VISUAL_ID));
-		label6018.setLayoutConstraint(NotationFactory.eINSTANCE
+		label6006.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location6018 = (Location) label6018.getLayoutConstraint();
-		location6018.setX(0);
-		location6018.setY(100);
+		Location location6006 = (Location) label6006.getLayoutConstraint();
+		location6006.setX(0);
+		location6006.setY(100);
 		return edge;
 	}
 

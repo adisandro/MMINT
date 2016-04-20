@@ -1105,7 +1105,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public String toMIDCustomPrintLabel() {
 
-		return null;
+		return "";
 	}
 
 	/**
@@ -1113,7 +1113,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public String toMIDCustomEditLabel() {
 
-		return null;
+		return "";
 	}
 
 	/**

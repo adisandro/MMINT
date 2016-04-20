@@ -31,7 +31,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
-public abstract class MIDLabelParser implements IParser {
+public abstract class MIDDiagramLabelParser implements IParser {
 
 	protected abstract IStatus updateValues(ExtendibleElement midElement, String newLabel);
 

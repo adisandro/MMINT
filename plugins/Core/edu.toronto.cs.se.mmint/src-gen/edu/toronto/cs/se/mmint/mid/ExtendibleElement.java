@@ -302,8 +302,8 @@ public interface ExtendibleElement extends EObject {
 	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label. It returns null
-	 * by default and can be overridden.
+	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label. It returns an
+	 * empty string by default and can be overridden.
 	 * 
 	 * @return The string representation. <!-- end-user-doc -->
 	 * @model required="true"
@@ -313,7 +313,7 @@ public interface ExtendibleElement extends EObject {
 
 	/**
 	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label being edited. It
-	 * returns null by default and can be overridden.
+	 * returns an empty string by default and can be overridden.
 	 * 
 	 * @return The string representation. <!-- end-user-doc -->
 	 * @model required="true"
