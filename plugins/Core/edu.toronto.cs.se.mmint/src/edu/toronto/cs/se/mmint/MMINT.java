@@ -123,7 +123,7 @@ public class MMINT implements MMINTConstants {
 
 	/* TODO MMINT[IN PROGRESS branch mavo_out]
 	 * - Rethink mid link icons with/without MAVO
-	 * - Add createBinaryInstance/Subtype() to ModelRel and Mapping
+	 * - Add createBinaryInstance/Subtype() to Mapping
 	 */
 	/* TODO MMINT[USABILITY]
 	 * - Default deletion to remove model file as well

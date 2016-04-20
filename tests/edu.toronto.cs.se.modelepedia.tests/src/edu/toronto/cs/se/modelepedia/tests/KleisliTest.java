@@ -65,7 +65,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 
-//TODO MMINT[JENKINS] Run test as part of the build
+//TODO MMINT[TRAVIS] Run test as part of the build
 public class KleisliTest extends MMINTTest {
 
 	private final static String TESTS_BUNDLE_MODEL_DIR= "model/kleisli";
