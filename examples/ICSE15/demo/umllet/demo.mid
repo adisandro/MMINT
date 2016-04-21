@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/ICSE15/demo/umllet/Paste.execute().icse15_sequencediagram_mavo" name="Paste.execute()" metatypeUri="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="icse15_sequencediagram_mavo" editors="//@editors.0"/>
   <editors xsi:type="editor:Diagram" uri="/ICSE15/demo/umllet/Paste.execute().icse15_sequencediagramdiag_mavo" name="ICSE15_SequenceDiagram_MAVO diagram for model /ICSE15/demo/umllet/Paste.execute().icse15_sequencediagram_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ICSE15_SequenceDiagram_MAVO" dynamic="true" modelUri="/ICSE15/demo/umllet/Paste.execute().icse15_sequencediagram_mavo" id="edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVODiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.part.ICSE15_SequenceDiagram_MAVOCreationWizardID">
     <fileExtensions>icse15_sequencediagramdiag_mavo</fileExtensions>
   </editors>
   <extendibleTable key="/ICSE15/demo/umllet/Paste.execute().icse15_sequencediagram_mavo" value="//@models.0"/>
-</mid:MultiModel>
+</mid:MID>

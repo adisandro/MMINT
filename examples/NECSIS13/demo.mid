@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/NECSIS13/uncertainty/uncertainty.mid" name="uncertainty" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
   <models uri="/NECSIS13/modelmanagement/modelmanagement.mid" name="modelmanagement" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.1"/>
   <editors xsi:type="editor:Diagram" uri="/NECSIS13/uncertainty/uncertainty.middiag" name="MID diagram for model /NECSIS13/uncertainty/uncertainty.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/NECSIS13/uncertainty/uncertainty.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MidDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MidCreationWizardID">
@@ -10,4 +10,4 @@
   </editors>
   <extendibleTable key="/NECSIS13/uncertainty/uncertainty.mid" value="//@models.0"/>
   <extendibleTable key="/NECSIS13/modelmanagement/modelmanagement.mid" value="//@models.1"/>
-</mid:MultiModel>
+</mid:MID>

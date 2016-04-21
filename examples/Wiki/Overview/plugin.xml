@@ -73,15 +73,15 @@
                 </extendibleType>
             </modelElemType>
          </modelTypeEndpoint>
-         <linkType>
+         <mappingType>
             <extendibleType
-                  name="Link"
-                  uri="http://se.cs.toronto.edu/mmint/ModelRel/Link">
+                  name="Mapping"
+                  uri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping">
             </extendibleType>
             <modelElemTypeEndpoint>
                <extendibleType
                      name="ModelElemEndpoint"
-                     uri="http://se.cs.toronto.edu/mmint/ModelRel/Link-ModelElem/ModelElemEndpoint">
+                     uri="http://se.cs.toronto.edu/mmint/ModelRel/Mapping-ModelElem/ModelElemEndpoint">
                </extendibleType>
                <typeEndpoint
                      lowerBound="0"
@@ -89,7 +89,7 @@
                      targetTypeUri="http://se.cs.toronto.edu/mmint/Model/ModelElem">
                </typeEndpoint>
             </modelElemTypeEndpoint>
-         </linkType>
+         </mappingType>
       </relationshipType>
    </extension>
 

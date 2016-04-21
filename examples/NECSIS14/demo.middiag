@@ -11,7 +11,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lUIr9PAYEeOORKsjIX6r9A" x="198" y="73"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_mINl8eXgEeO1DbqEAWqHsQ"/>
-    <element xmi:type="mid:MultiModel" href="demo.mid#/"/>
+    <element xmi:type="mid:MID" href="demo.mid#/"/>
   </notation:Diagram>
   <notation:Diagram xmi:id="_bh6AUOqbEeONS-tob9uT7w" type="Relationship" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_bh6AUeqbEeONS-tob9uT7w"/>

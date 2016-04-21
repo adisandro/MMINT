@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/NECSIS15/megamodels/ACC.classdiagram" name="ACC" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.0"/>
   <models uri="/NECSIS15/megamodels/Engine.classdiagram" name="Engine" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.1"/>
   <models uri="/NECSIS15/megamodels/Infotainment.classdiagram" name="Infotainment" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" fileExtension="classdiagram" editors="//@editors.2"/>
@@ -93,4 +93,4 @@
   <extendibleTable key="/NECSIS15/megamodels/Infotainment.statemachine" value="//@models.6"/>
   <extendibleTable key="/NECSIS15/megamodels/PowerWindow.statemachine" value="//@models.7"/>
   <extendibleTable key="/NECSIS15/megamodels/Architecture.uml" value="//@models.12"/>
-</mid:MultiModel>
+</mid:MID>

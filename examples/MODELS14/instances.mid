@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/MODELS14/oceania.xmi" name="oceania" metatypeUri="http://se.cs.toronto.edu/modelepedia/FederalState" dynamic="true" origin="CREATED" fileExtension="xmi" editors="//@editors.0"/>
   <models uri="/MODELS14/eastasia.state" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/State" dynamic="true" origin="CREATED" fileExtension="state" editors="//@editors.1">
     <modelElems uri="/MODELS14/eastasia.state#//@regions.0_AS_http://se.cs.toronto.edu/modelepedia/State#//Region" name="[regions->] Region NorthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/State#//Region" dynamic="true">
@@ -40,76 +40,76 @@
   <models xsi:type="relationship:BinaryModelRel" uri="" name="d" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.3" targetModel="//@models.1">
     <modelEndpoints uri="" name="eastasiaArmy" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed-Army/ArmyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@linkRefs.0/@modelElemEndpointRefs.0 //@models.5/@linkRefs.0/@modelElemEndpointRefs.1">
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.5/@mappingRefs.0/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="[units->] Unit U1" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
       <modelElemEndpoints uri="" name="[regions->] Region NorthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@linkRefs.1/@modelElemEndpointRefs.0 //@models.5/@linkRefs.1/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.5/@mappingRefs.1/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="[units->] Unit U2" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.1"/>
       <modelElemEndpoints uri="" name="[regions->] Region NorthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@linkRefs.2/@modelElemEndpointRefs.0 //@models.5/@linkRefs.2/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink" dynamic="true" modelElemEndpointRefs="//@models.5/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.5/@mappingRefs.2/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="[units->] Unit U3" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Unit/UnitEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.2"/>
       <modelElemEndpoints uri="" name="[regions->] Region SouthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/Deployed/DeployedLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
-    </links>
+    </mappings>
     <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.0" modifiable="true">
-      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.5/@linkRefs.0/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.5/@linkRefs.1/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.5/@linkRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.2/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.1" modifiable="true">
-      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.5/@linkRefs.0/@modelElemEndpointRefs.1 //@models.5/@linkRefs.1/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.5/@linkRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.0/@modelElemEndpointRefs.1 //@models.5/@mappingRefs.1/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.5/@mappingRefs.2/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.5/@links.0" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0">
-      <modelElemEndpointRefs referencedObject="//@models.5/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0"/>
-      <modelElemEndpointRefs referencedObject="//@models.5/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.5/@links.1" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0">
-      <modelElemEndpointRefs referencedObject="//@models.5/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.1"/>
-      <modelElemEndpointRefs referencedObject="//@models.5/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.5/@links.2" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.1">
-      <modelElemEndpointRefs referencedObject="//@models.5/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.2"/>
-      <modelElemEndpointRefs referencedObject="//@models.5/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.1"/>
-    </linkRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.5/@mappings.0" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.5/@mappings.1" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.5/@mappings.2" modifiable="true" sourceModelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.1">
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.5/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.5/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </mappingRefs>
   </models>
   <models xsi:type="relationship:BinaryModelRel" uri="" name="h" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.1" targetModel="//@models.4">
     <modelEndpoints uri="" name="eastasia" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-State/StateEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <modelEndpoints uri="" name="eastasiaEcon" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has-Economy/EconomyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0 //@models.6/@linkRefs.0/@modelElemEndpointRefs.1">
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.0/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="[regions->] Region NorthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
       <modelElemEndpoints uri="" name="[gold->] Gold" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Gold/GoldEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4/@modelElems.0"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.0 //@models.6/@linkRefs.1/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.1/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="[regions->] Region NorthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
       <modelElemEndpoints uri="" name="[gold->] Gold" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Gold/GoldEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4/@modelElems.1"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.0 //@models.6/@linkRefs.2/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.2/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="[regions->] Region SouthRegion" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Region/RegionEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
       <modelElemEndpoints uri="" name="[gold->] Gold" metatypeUri="http://se.cs.toronto.edu/modelepedia/Has/HasLink-Gold/GoldEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4/@modelElems.2"/>
-    </links>
+    </mappings>
     <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.0" modifiable="true">
-      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0 //@models.6/@linkRefs.1/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.2/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.1" modifiable="true">
-      <modelElemRefs referencedObject="//@models.4/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.4/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.4/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.4/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.4/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.1/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.4/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.2/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.6/@links.0" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.6/@links.1" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.1">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.1"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.6/@links.2" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.2">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.1"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.2"/>
-    </linkRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.6/@mappings.0" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.6/@mappings.1" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.1">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.6/@mappings.2" modifiable="true" sourceModelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.2">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </mappingRefs>
   </models>
   <editors uri="/MODELS14/oceania.xmi" name="Ecore Reflective tree for model /MODELS14/oceania.xmi" metatypeUri="http://se.cs.toronto.edu/modelepedia/FederalState/Ecore Reflective tree" dynamic="true" modelUri="/MODELS14/oceania.xmi" id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
     <fileExtensions>xmi</fileExtensions>
@@ -135,4 +135,4 @@
   <extendibleTable key="/MODELS14/eastasia.economy#//@gold.0_AS_http://se.cs.toronto.edu/modelepedia/Economy#//Gold" value="//@models.4/@modelElems.0"/>
   <extendibleTable key="/MODELS14/eastasia.economy#//@gold.1_AS_http://se.cs.toronto.edu/modelepedia/Economy#//Gold" value="//@models.4/@modelElems.1"/>
   <extendibleTable key="/MODELS14/eastasia.economy#//@gold.2_AS_http://se.cs.toronto.edu/modelepedia/Economy#//Gold" value="//@models.4/@modelElems.2"/>
-</mid:MultiModel>
+</mid:MID>

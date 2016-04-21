@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
   <models uri="/REJ12/MeetingScheduler/orig.istar_mavo" name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" inc="true" fileExtension="istar_mavo" editors="//@editors.0">
     <modelElems uri="/REJ12/MeetingScheduler/orig.istar_mavo#//@actors.0_AS_http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor" name="Actor Meeting Initiator" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO#//Actor" dynamic="true">
       <eInfo className="Actor" featureName="actors" relatedClassName="IStar"/>
@@ -181,179 +181,179 @@
   <models xsi:type="relationship:BinaryModelRel" uri="" name="trace" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.1">
     <modelEndpoints uri="" name="orig" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-IStar_MAVO/IStarEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="related" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel-ClassDiagram_MAVO/ClassDiagramEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0 //@models.2/@linkRefs.0/@modelElemEndpointRefs.1">
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace1" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.0/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Meeting Initiator" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.0"/>
       <modelElemEndpoints uri="" name="Class MeetingInitiator" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.0"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0 //@models.2/@linkRefs.1/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.1/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Organize Meeting" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.1"/>
       <modelElemEndpoints uri="" name="Operation OrganizeMeeting()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.1"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" set="true" uri="" name="trace3" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0 //@models.2/@linkRefs.2/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" set="true" uri="" name="trace3" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.2/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Ways To Organize Meeting" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
       <modelElemEndpoints uri="" name="Operation WaysToOrganizeMeeting()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.2"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace4" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0 //@models.2/@linkRefs.3/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace4" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.3/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Let Scheduler Schedule Meeting" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.3"/>
       <modelElemEndpoints uri="" name="Operation UseSchedulerToOrganizeMeeting()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.3"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" var="true" uri="" name="trace5" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0 //@models.2/@linkRefs.4/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" var="true" uri="" name="trace5" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.4/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Date Determiner" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.4"/>
       <modelElemEndpoints uri="" name="Class DateDeterminer" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.4"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace6" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.0 //@models.2/@linkRefs.5/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace6" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.5/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Determine Meeting Date" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.5"/>
       <modelElemEndpoints uri="" name="Operation DetermineMeetingDate()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.5"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace7" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.0 //@models.2/@linkRefs.6/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace7" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.6/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Meeting Scheduler" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.6"/>
       <modelElemEndpoints uri="" name="Class MeetingScheduler" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.6"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace8" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.0 //@models.2/@linkRefs.7/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace8" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.7/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Schedule Meeting" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.7"/>
       <modelElemEndpoints uri="" name="Operation ScheduleMeeting()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.7"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace9" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.0 //@models.2/@linkRefs.8/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace9" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.8/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Meeting Participant" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Actor/ActorEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.8"/>
       <modelElemEndpoints uri="" name="Class MeetingParticipant" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ActorClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.8"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace10" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.0 //@models.2/@linkRefs.9/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace10" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.9/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Operation ParticipateInMeeting()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.9"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace11" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.10/@modelElemEndpointRefs.0 //@models.2/@linkRefs.10/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace11" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.10/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Attend Meeting" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.10"/>
       <modelElemEndpoints uri="" name="Operation AttendMeeting()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.10"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" may="true" set="true" uri="" name="trace12" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.11/@modelElemEndpointRefs.0 //@models.2/@linkRefs.11/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" may="true" set="true" uri="" name="trace12" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.11/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Provide Details" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.11"/>
       <modelElemEndpoints uri="" name="Operation ProvideDetails()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.11"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" may="true" uri="" name="trace13" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.12/@modelElemEndpointRefs.0 //@models.2/@linkRefs.12/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" may="true" uri="" name="trace13" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.12/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Decide Convenient Dates" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Task/TaskEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.12"/>
       <modelElemEndpoints uri="" name="Operation DecideConvenientDates()" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/TaskOperationLink-Operation/OperationEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.12"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" may="true" set="true" uri="" name="trace14" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.13/@modelElemEndpointRefs.0 //@models.2/@linkRefs.13/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" may="true" set="true" uri="" name="trace14" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.13/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Goal Dependencies" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-GoalDependum/GoalDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.13"/>
       <modelElemEndpoints uri="" name="Dependency true" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.13"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" uri="" name="trace15" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.14/@modelElemEndpointRefs.0 //@models.2/@linkRefs.14/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" uri="" name="trace15" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.14/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Goal Meeting Be Scheduled" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-GoalDependum/GoalDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.14"/>
       <modelElemEndpoints uri="" name="Dependency false" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/GoalDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.14"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" set="true" uri="" name="trace16" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.15/@modelElemEndpointRefs.0 //@models.2/@linkRefs.15/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" set="true" uri="" name="trace16" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.15/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Details" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-ResourceDependum/ResourceDependumEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.15"/>
       <modelElemEndpoints uri="" name="Dependency false" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceDependumDependencyLink-Dependency/DependencyEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.15"/>
-    </links>
-    <links xsi:type="relationship:BinaryLink" set="true" uri="" name="trace17" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@linkRefs.16/@modelElemEndpointRefs.0 //@models.2/@linkRefs.16/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings xsi:type="relationship:BinaryMapping" set="true" uri="" name="trace17" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink" dynamic="true" modelElemEndpointRefs="//@models.2/@mappingRefs.16/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.16/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Resource Details" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Resource/ResourceEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.15"/>
       <modelElemEndpoints uri="" name="Class Details" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStarCDRel/ResourceClassLink-Class/ClassEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1/@modelElems.16"/>
-    </links>
+    </mappings>
     <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.0" modifiable="true">
-      <modelElemRefs referencedObject="//@models.0/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.10/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.11/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.12/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.13/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.14/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.15/@modelElemEndpointRefs.0 //@models.2/@linkRefs.16/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.0 //@models.2/@mappingRefs.16/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.2/@modelEndpoints.1" modifiable="true">
-      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.0/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.1/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.2/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.3/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.4/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.5/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.6/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.7/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.8/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.9/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.10/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.11/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.12/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.13/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.14/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.15/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.1/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.2/@linkRefs.16/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.1/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.3/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.4/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.5/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.6/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.7/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.8/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.9/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.10/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.11/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.12/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.13/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.14/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.15/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.1/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.2/@mappingRefs.16/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.5" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.6" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.7" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.8" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.9" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.10" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.11" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.11/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.12" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.13" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.14" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.15" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15"/>
-    </linkRefs>
-    <linkRefs xsi:type="relationship:BinaryLinkReference" referencedObject="//@models.2/@links.16" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16">
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15"/>
-      <modelElemEndpointRefs referencedObject="//@models.2/@links.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16"/>
-    </linkRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.0" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.1" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.2" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.3" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.4" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.5" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.6" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.6"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.7" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.7"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.7"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.8" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.8"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.8"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.9" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.9"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.10" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.10"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.10"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.11" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.11"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.11/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.11"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.12" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.12"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.12"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.13" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.13"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.13"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.14" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.14"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.14"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.15" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.15"/>
+    </mappingRefs>
+    <mappingRefs xsi:type="relationship:BinaryMappingReference" referencedObject="//@models.2/@mappings.16" modifiable="true" sourceModelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15" targetModelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16">
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.0/@modelElemRefs.15"/>
+      <modelElemEndpointRefs referencedObject="//@models.2/@mappings.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.16"/>
+    </mappingRefs>
   </models>
   <models uri="/REJ12/MeetingScheduler/refined.istar_mavo" name="refined" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" inc="true" fileExtension="istar_mavo" editors="//@editors.2">
     <modelElems uri="/REJ12/MeetingScheduler/refined.istar_mavo#//@actors.1_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="Actor Meeting Scheduler" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
@@ -456,258 +456,258 @@
   <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.0" targetModel="//@models.3">
     <modelEndpoints uri="" name="orig" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0 //@models.4/@linkRefs.0/@modelElemEndpointRefs.1 //@models.4/@linkRefs.0/@modelElemEndpointRefs.2">
+    <mappings uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.0/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.0/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Actor Date Determiner" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.16"/>
       <modelElemEndpoints uri="" name="Actor Meeting Scheduler" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.17"/>
       <modelElemEndpoints uri="" name="Actor Meeting Scheduler" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.0"/>
-    </links>
-    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0">
+    </mappings>
+    <mappings uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.1/@modelElemEndpointRefs.0">
       <modelElemEndpoints uri="" name="Task Book Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.1"/>
-    </links>
-    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0 //@models.4/@linkRefs.2/@modelElemEndpointRefs.1 //@models.4/@linkRefs.2/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.2/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.2/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Depender Link Schedule Meeting 2 Details" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.18"/>
       <modelElemEndpoints uri="" name="Depender Link Schedule Meeting 2 Dates" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.2"/>
       <modelElemEndpoints uri="" name="Depender Link Schedule Meeting 2 Location" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.3"/>
-    </links>
-    <links uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.0 //@models.4/@linkRefs.3/@modelElemEndpointRefs.1 //@models.4/@linkRefs.3/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.3/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.3/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Dependee Link Details 2 Provide Details" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.19"/>
       <modelElemEndpoints uri="" name="Dependee Link Dates 2 Provide Dates" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.4"/>
       <modelElemEndpoints uri="" name="Dependee Link Location 2 Provide Location" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.5"/>
-    </links>
-    <links uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.0 //@models.4/@linkRefs.4/@modelElemEndpointRefs.1 //@models.4/@linkRefs.4/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.4/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.4/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Resource Details" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.20"/>
       <modelElemEndpoints uri="" name="Resource Dates" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.6"/>
       <modelElemEndpoints uri="" name="Resource Location" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.7"/>
-    </links>
-    <links uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.0 //@models.4/@linkRefs.5/@modelElemEndpointRefs.1 //@models.4/@linkRefs.5/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.5/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.5/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.5/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Goal Convenient Meeting Date" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.21"/>
       <modelElemEndpoints uri="" name="Goal Agreeable Meeting Date" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.22"/>
       <modelElemEndpoints uri="" name="Goal Agreeable Meeting Date" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.8"/>
-    </links>
-    <links uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.0">
+    </mappings>
+    <mappings uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.6/@modelElemEndpointRefs.0">
       <modelElemEndpoints uri="" name="Task Decide Convenient Dates" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.23"/>
-    </links>
-    <links uri="" name="refine8" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.7/@modelElemEndpointRefs.0 //@models.4/@linkRefs.7/@modelElemEndpointRefs.1 //@models.4/@linkRefs.7/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine8" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.7/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.7/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.7/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Task Provide Details" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.24"/>
       <modelElemEndpoints uri="" name="Task Provide Dates" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.9"/>
       <modelElemEndpoints uri="" name="Task Provide Location" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.10"/>
-    </links>
-    <links uri="" name="refine9" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.8/@modelElemEndpointRefs.0 //@models.4/@linkRefs.8/@modelElemEndpointRefs.1 //@models.4/@linkRefs.8/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine9" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.8/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.8/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.8/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Decomposition Low Effort MP 2 Provide Details" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.25"/>
       <modelElemEndpoints uri="" name="Decomposition Low Effort MP 2 Provide Dates" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.11"/>
       <modelElemEndpoints uri="" name="Decomposition Low Effort MP 2 Provide Location" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.12"/>
-    </links>
-    <links uri="" name="refine10" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.9/@modelElemEndpointRefs.0 //@models.4/@linkRefs.9/@modelElemEndpointRefs.1 //@models.4/@linkRefs.9/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine10" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.9/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.9/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.9/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Decomposition Provide Details 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.26"/>
       <modelElemEndpoints uri="" name="Decomposition Provide Dates 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.13"/>
       <modelElemEndpoints uri="" name="Decomposition Provide Location 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.14"/>
-    </links>
-    <links uri="" name="refine11" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.10/@modelElemEndpointRefs.0 //@models.4/@linkRefs.10/@modelElemEndpointRefs.1 //@models.4/@linkRefs.10/@modelElemEndpointRefs.2">
+    </mappings>
+    <mappings uri="" name="refine11" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.10/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.10/@modelElemEndpointRefs.1 //@models.4/@mappingRefs.10/@modelElemEndpointRefs.2">
       <modelElemEndpoints uri="" name="Decomposition Convenient Meeting Date 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.27"/>
       <modelElemEndpoints uri="" name="Decomposition Agreeable Meeting Date 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.28"/>
       <modelElemEndpoints uri="" name="Decomposition Agreeable Meeting Date 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.15"/>
-    </links>
-    <links uri="" name="refine12" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.11/@modelElemEndpointRefs.0">
+    </mappings>
+    <mappings uri="" name="refine12" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.11/@modelElemEndpointRefs.0">
       <modelElemEndpoints uri="" name="Means End Decide Convenient Dates 2 Convenient Meeting Date" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.29"/>
-    </links>
-    <links uri="" name="match1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.12/@modelElemEndpointRefs.0 //@models.4/@linkRefs.12/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.12/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.12/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Meeting Initiator" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.30"/>
       <modelElemEndpoints uri="" name="Actor Meeting Initiator" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.16"/>
-    </links>
-    <links uri="" name="match2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.13/@modelElemEndpointRefs.0 //@models.4/@linkRefs.13/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.13/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.13/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Organize Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.31"/>
       <modelElemEndpoints uri="" name="Task Organize Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.17"/>
-    </links>
-    <links uri="" name="match3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.14/@modelElemEndpointRefs.0 //@models.4/@linkRefs.14/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.14/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.14/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Ways To Organize Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.32"/>
       <modelElemEndpoints uri="" name="Task Ways To Organize Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.18"/>
-    </links>
-    <links uri="" name="match4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.15/@modelElemEndpointRefs.0 //@models.4/@linkRefs.15/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.15/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.15/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Let Scheduler Schedule Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.33"/>
       <modelElemEndpoints uri="" name="Task Let Scheduler Schedule Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.19"/>
-    </links>
-    <links uri="" name="match5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.16/@modelElemEndpointRefs.0 //@models.4/@linkRefs.16/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.16/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.16/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Determine Meeting Date" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.34"/>
       <modelElemEndpoints uri="" name="Task Determine Meeting Date" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.20"/>
-    </links>
-    <links uri="" name="match6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.17/@modelElemEndpointRefs.0 //@models.4/@linkRefs.17/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.17/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.17/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Schedule Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.21"/>
       <modelElemEndpoints uri="" name="Task Schedule Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.35"/>
-    </links>
-    <links uri="" name="match7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.18/@modelElemEndpointRefs.0 //@models.4/@linkRefs.18/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.18/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.18/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Actor Meeting Participant" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.36"/>
       <modelElemEndpoints uri="" name="Actor Meeting Participant" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.22"/>
-    </links>
-    <links uri="" name="match8" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.19/@modelElemEndpointRefs.0 //@models.4/@linkRefs.19/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match8" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.19/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.19/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.37"/>
       <modelElemEndpoints uri="" name="Task Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.23"/>
-    </links>
-    <links uri="" name="match9" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.20/@modelElemEndpointRefs.0 //@models.4/@linkRefs.20/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match9" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.20/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.20/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Attend Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.38"/>
       <modelElemEndpoints uri="" name="Task Attend Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.24"/>
-    </links>
-    <links uri="" name="match10" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.21/@modelElemEndpointRefs.0 //@models.4/@linkRefs.21/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match10" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.21/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.21/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Goal Dependencies" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.39"/>
       <modelElemEndpoints uri="" name="Goal Dependencies" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.25"/>
-    </links>
-    <links uri="" name="match11" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@linkRefs.22/@modelElemEndpointRefs.0 //@models.4/@linkRefs.22/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="match11" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.4/@mappingRefs.22/@modelElemEndpointRefs.0 //@models.4/@mappingRefs.22/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Goal Meeting Be Scheduled" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.40"/>
       <modelElemEndpoints uri="" name="Goal Meeting Be Scheduled" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.26"/>
-    </links>
+    </mappings>
     <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true">
-      <modelElemRefs referencedObject="//@models.0/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.17" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.19" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.20" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.21" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.22" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.23" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.6/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.24" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.7/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.25" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.8/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.26" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.9/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.27" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.10/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.28" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.10/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.29" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.11/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.30" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.12/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.31" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.13/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.32" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.14/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.33" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.15/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.34" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.16/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.35" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.17/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.36" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.18/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.37" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.19/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.38" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.20/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.39" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.21/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.0/@modelElems.40" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.22/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.17" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.19" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.20" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.4/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.21" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.22" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.5/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.23" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.6/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.24" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.7/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.25" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.8/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.26" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.9/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.27" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.10/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.28" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.10/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.29" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.11/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.30" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.12/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.31" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.13/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.32" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.14/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.33" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.15/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.34" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.16/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.35" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.17/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.36" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.18/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.37" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.19/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.38" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.20/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.39" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.21/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.40" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.22/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.1" modifiable="true">
-      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.0/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.1/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.2/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.3/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.4/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.5/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.7/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.7/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.8/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.8/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.9/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.9/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.10/@modelElemEndpointRefs.2"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.12/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.17" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.13/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.14/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.19" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.15/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.20" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.16/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.21" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.17/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.22" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.18/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.23" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.19/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.24" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.20/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.25" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.21/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.26" modifiable="true" modelElemEndpointRefs="//@models.4/@linkRefs.22/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.0/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.2/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.3/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.3/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.4/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.7" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.4/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.8" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.5/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.9" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.7/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.10" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.7/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.11" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.8/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.12" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.8/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.13" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.9/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.14" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.9/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.15" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.10/@modelElemEndpointRefs.2"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.16" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.12/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.17" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.13/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.14/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.19" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.15/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.20" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.16/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.21" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.17/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.22" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.18/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.23" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.19/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.24" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.20/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.25" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.21/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.26" modifiable="true" modelElemEndpointRefs="//@models.4/@mappingRefs.22/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs referencedObject="//@models.4/@links.0" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.0"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.1"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.0/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.0"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.1" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.1"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.2" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.2"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.2"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.2/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.3"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.3" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.3"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.4"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.3/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.5"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.4" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.4"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.6"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.4/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.7"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.5" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.5"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.6"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.5/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.8"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.6" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.7"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.7" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.8"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.9"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.7/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.10"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.8" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.9"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.11"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.8/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.12"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.9" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.10"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.13"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.9/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.14"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.10" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.11"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.12"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.10/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.15"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.11" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.13"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.12" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.14"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.16"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.13" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.15"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.17"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.14" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.16"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.18"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.15" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.17"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.19"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.16" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.18"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.20"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.17" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.17/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.21"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.17/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.19"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.18" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.18/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.20"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.18/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.22"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.19" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.19/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.21"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.19/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.23"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.20" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.20/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.22"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.20/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.24"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.21" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.21/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.23"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.21/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.25"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.4/@links.22" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.22/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.24"/>
-      <modelElemEndpointRefs referencedObject="//@models.4/@links.22/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.26"/>
-    </linkRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.0/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.1" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.2" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.2/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.3/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.4" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.4/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.7"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.5" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.5/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.8"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.6" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.7"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.7" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.7/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.8"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.7/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.7/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.10"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.8" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.8/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.9"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.8/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.11"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.8/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.12"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.9" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.9/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.10"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.9/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.13"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.9/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.14"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.10" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.10/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.11"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.10/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.12"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.10/@modelElemEndpoints.2" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.15"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.11" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.11/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.13"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.12" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.12/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.14"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.12/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.16"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.13" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.13/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.15"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.13/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.17"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.14" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.14/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.16"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.14/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.18"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.15" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.15/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.17"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.15/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.19"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.16" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.16/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.18"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.16/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.20"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.17" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.17/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.21"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.17/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.19"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.18" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.18/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.20"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.18/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.22"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.19" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.19/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.21"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.19/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.23"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.20" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.20/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.22"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.20/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.24"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.21" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.21/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.23"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.21/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.25"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.4/@mappings.22" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.22/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.0/@modelElemRefs.24"/>
+      <modelElemEndpointRefs referencedObject="//@models.4/@mappings.22/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.4/@modelEndpointRefs.1/@modelElemRefs.26"/>
+    </mappingRefs>
   </models>
   <models uri="/REJ12/MeetingScheduler/refined2.istar_mavo" name="refined2" metatypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO" dynamic="true" inc="true" fileExtension="istar_mavo" editors="//@editors.3">
     <modelElems uri="/REJ12/MeetingScheduler/refined2.istar_mavo#//@actors.0/@intentions.1_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" name="Task Organize Meeting Manually" metatypeUri="http://se.cs.toronto.edu/MAVO#//MAVOElement" dynamic="true">
@@ -735,80 +735,80 @@
   <models xsi:type="relationship:BinaryModelRel" uri="" name="refinement2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.3" targetModel="//@models.5">
     <modelEndpoints uri="" name="refined" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <modelEndpoints uri="" name="refined2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel-MAVO/MAVOModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
-    <links uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0 //@models.6/@linkRefs.0/@modelElemEndpointRefs.1">
+    <mappings uri="" name="refine1" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.0/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Task Ways To Organize Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.18"/>
       <modelElemEndpoints uri="" name="Task Organize Meeting Manually" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.0"/>
-    </links>
-    <links uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.0 //@models.6/@linkRefs.1/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="refine2" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.1/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.1/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Means End Ways To Organize Meeting 2 Meeting Be Scheduled MI" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.27"/>
       <modelElemEndpoints uri="" name="Means End Organize Meeting Manually 2 Meeting Be Scheduled MI" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.1"/>
-    </links>
-    <links uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.0 //@models.6/@linkRefs.2/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="refine3" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.2/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.2/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Contribution Ways To Organize Meeting 2 Quick" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.28"/>
       <modelElemEndpoints uri="" name="Contribution Organize Meeting Manually 2 Quick" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.2"/>
-    </links>
-    <links uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.3/@modelElemEndpointRefs.0 //@models.6/@linkRefs.3/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="refine4" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.3/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Contribution Ways To Organize Meeting 2 Low Effort MI" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.29"/>
       <modelElemEndpoints uri="" name="Contribution Organize Meeting Manually 2 Low Effort MI" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.3"/>
-    </links>
-    <links uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.4/@modelElemEndpointRefs.0 //@models.6/@linkRefs.4/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="refine5" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.4/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Goal Dependencies" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.25"/>
       <modelElemEndpoints uri="" name="Goal Dependencies" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.4"/>
-    </links>
-    <links uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.5/@modelElemEndpointRefs.0 //@models.6/@linkRefs.5/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="refine6" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.5/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.5/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Depender Link Organize Meeting 2 Dependencies" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.30"/>
       <modelElemEndpoints uri="" name="Depender Link Organize Meeting 2 Dependencies" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.5"/>
-    </links>
-    <links uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@linkRefs.6/@modelElemEndpointRefs.0 //@models.6/@linkRefs.6/@modelElemEndpointRefs.1">
+    </mappings>
+    <mappings uri="" name="refine7" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink" dynamic="true" modelElemEndpointRefs="//@models.6/@mappingRefs.6/@modelElemEndpointRefs.0 //@models.6/@mappingRefs.6/@modelElemEndpointRefs.1">
       <modelElemEndpoints uri="" name="Dependee Link Dependencies 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3/@modelElems.31"/>
       <modelElemEndpoints uri="" name="Dependee Link Dependencies 2 Participate In Meeting" metatypeUri="http://se.cs.toronto.edu/mmint/MAVORefinementRel/RefinementLink-MAVOElement/MAVOElementEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5/@modelElems.6"/>
-    </links>
+    </mappings>
     <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.0" modifiable="true">
-      <modelElemRefs referencedObject="//@models.3/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.27" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.28" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.29" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.3/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.25" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.4/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.30" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.5/@modelElemEndpointRefs.0"/>
-      <modelElemRefs referencedObject="//@models.3/@modelElems.31" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.6/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.18" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.27" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.1/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.28" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.29" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.25" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.4/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.30" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.5/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.3/@modelElems.31" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.6/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.6/@modelEndpoints.1" modifiable="true">
-      <modelElemRefs referencedObject="//@models.5/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.0/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.5/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.1/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.5/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.2/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.5/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.3/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.5/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.4/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.5/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.5/@modelElemEndpointRefs.1"/>
-      <modelElemRefs referencedObject="//@models.5/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.6/@linkRefs.6/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.0/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.1/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.3/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.4/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.5" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.5/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.5/@modelElems.6" modifiable="true" modelElemEndpointRefs="//@models.6/@mappingRefs.6/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
-    <linkRefs referencedObject="//@models.6/@links.0" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.6/@links.1" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.1"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.1"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.6/@links.2" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.2"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.2"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.6/@links.3" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.3"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.3"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.6/@links.4" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.4"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.4"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.6/@links.5" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.5"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.5"/>
-    </linkRefs>
-    <linkRefs referencedObject="//@models.6/@links.6" modifiable="true">
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.6"/>
-      <modelElemEndpointRefs referencedObject="//@models.6/@links.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.6"/>
-    </linkRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.0" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.0"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.0/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.0"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.1" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.1/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.1"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.1/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.1"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.2" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.2"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.4" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.4"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.5" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.5/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.5"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.5/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.5"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.6/@mappings.6" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.6/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.0/@modelElemRefs.6"/>
+      <modelElemEndpointRefs referencedObject="//@models.6/@mappings.6/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.6/@modelEndpointRefs.1/@modelElemRefs.6"/>
+    </mappingRefs>
   </models>
   <editors uri="/REJ12/MeetingScheduler/orig.istar_mavo" name="IStar_MAVO tree for model /REJ12/MeetingScheduler/orig.istar_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_IStar_MAVO" dynamic="true" modelUri="/REJ12/MeetingScheduler/orig.istar_mavo" id="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorID" wizardId="edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOModelWizardID">
     <fileExtensions>istar_mavo</fileExtensions>
@@ -923,4 +923,4 @@
   <extendibleTable key="/REJ12/MeetingScheduler/refined.istar_mavo#//@dependums.0/@dependeeLinks.0_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.3/@modelElems.31"/>
   <extendibleTable key="/REJ12/MeetingScheduler/refined2.istar_mavo#//@dependums.0/@dependerLinks.0_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.5/@modelElems.5"/>
   <extendibleTable key="/REJ12/MeetingScheduler/refined2.istar_mavo#//@dependums.0/@dependeeLinks.0_AS_http://se.cs.toronto.edu/MAVO#//MAVOElement" value="//@models.5/@modelElems.6"/>
-</mid:MultiModel>
+</mid:MID>

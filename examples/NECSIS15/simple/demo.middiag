@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_M29MoFjCEeWbP-ciGv4X9A" type="MID" name="demo.middiag" measurementUnit="Pixel">
   <styles xmi:type="notation:DiagramStyle" xmi:id="_M29MoVjCEeWbP-ciGv4X9A"/>
-  <element xmi:type="mid:MultiModel" href="demo.mid#/"/>
+  <element xmi:type="mid:MID" href="demo.mid#/"/>
 </notation:Diagram>

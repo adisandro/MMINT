@@ -19,5 +19,5 @@
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JdKDxC0lEeOXwaBpNHH2uA" x="288" y="37"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_HPvJ8S0lEeOXwaBpNHH2uA"/>
-  <element xmi:type="mid:MultiModel" href="analysis.mid#/"/>
+  <element xmi:type="mid:MID" href="analysis.mid#/"/>
 </notation:Diagram>

@@ -38,7 +38,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yRnSVKxQEeKTjusz_49gvQ" x="840" y="24"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_WqragXrXEeKvbK2mG0FePA"/>
-    <element xmi:type="mid:MultiModel" href="propagation.mid#/"/>
+    <element xmi:type="mid:MID" href="propagation.mid#/"/>
     <edges xmi:type="notation:Edge" xmi:id="_yRsK0KxQEeKTjusz_49gvQ" type="4015" source="_yRmEMKxQEeKTjusz_49gvQ" target="_yRmrQqxQEeKTjusz_49gvQ">
       <children xmi:type="notation:DecorationNode" xmi:id="_yRsK1KxQEeKTjusz_49gvQ" type="6012">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_yRsK1axQEeKTjusz_49gvQ" x="-6" y="-81"/>

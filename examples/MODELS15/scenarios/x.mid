@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MultiModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/MODELS15/scenarios/cd1.classdiagram" name="cd1" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.0"/>
   <models uri="/MODELS15/scenarios/cd2.classdiagram" name="cd2" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.1"/>
   <models uri="/MODELS15/scenarios/cd3.classdiagram" name="cd3" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.2"/>
@@ -20,4 +20,4 @@
   <extendibleTable key="/MODELS15/scenarios/cd2.classdiagram" value="//@models.1"/>
   <extendibleTable key="/MODELS15/scenarios/cd3.classdiagram" value="//@models.2"/>
   <extendibleTable key="/MODELS15/scenarios/cd4.classdiagram" value="//@models.3"/>
-</mid:MultiModel>
+</mid:MID>

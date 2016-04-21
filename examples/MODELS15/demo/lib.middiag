@@ -82,7 +82,7 @@
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XnMipA-xEeWKnOyxwhe5qw" x="360" y="480"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_PSvE4Q67EeWbx-tYpU1nnQ"/>
-  <element xmi:type="mid:MultiModel" href="lib.mid#/"/>
+  <element xmi:type="mid:MID" href="lib.mid#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_NcHrMA-wEeWKnOyxwhe5qw" type="4015" source="_HQZCQA6_EeWbx-tYpU1nnQ" target="_DM9IgA-wEeWKnOyxwhe5qw">
     <children xmi:type="notation:DecorationNode" xmi:id="_NcISQA-wEeWKnOyxwhe5qw" type="6012">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_NcI5UA-wEeWKnOyxwhe5qw" x="-2" y="1"/>
