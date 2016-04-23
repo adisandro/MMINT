@@ -26,9 +26,9 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
    </requires>
 
    <plugin

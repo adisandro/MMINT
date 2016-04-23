@@ -62,12 +62,8 @@ sets of related models.
       <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
-      <import plugin="org.eclipse.gmf.codegen"/>
-      <import plugin="org.eclipse.gmf.codegen.xtend"/>
-      <import plugin="org.eclipse.xtext.xbase.lib"/>
-      <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.ocl.pivot"/>
+      <import plugin="org.eclipse.swt"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>

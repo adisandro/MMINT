@@ -47,7 +47,6 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.modelepedia.petrinet"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
    </requires>
 
    <plugin

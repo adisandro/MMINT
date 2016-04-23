@@ -48,10 +48,11 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mmint.edit"/>
       <import plugin="edu.toronto.cs.se.mavo"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.mavo.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
    </requires>
 
    <plugin

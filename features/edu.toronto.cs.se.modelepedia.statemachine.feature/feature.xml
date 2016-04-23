@@ -47,11 +47,13 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="edu.toronto.cs.se.mavo"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.printing"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.printing.render"/>
       <import plugin="edu.toronto.cs.se.mavo.edit"/>
-      <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
+      <import plugin="org.eclipse.acceleo.engine"/>
+      <import plugin="edu.toronto.cs.se.modelepedia.z3"/>
    </requires>
 
    <plugin

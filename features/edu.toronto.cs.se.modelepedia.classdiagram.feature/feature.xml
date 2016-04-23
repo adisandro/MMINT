@@ -26,7 +26,9 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mavo.edit"/>
       <import plugin="edu.toronto.cs.se.mmint.edit"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
@@ -57,9 +59,8 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.henshin.trace"/>
       <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="edu.toronto.cs.se.modelepedia.z3"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
-      <import plugin="edu.toronto.cs.se.mavo.edit"/>
       <import plugin="edu.toronto.cs.se.modelepedia.z3.operator"/>
+      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
       <import feature="org.eclipse.m2m.atl.sdk"/>
    </requires>
 

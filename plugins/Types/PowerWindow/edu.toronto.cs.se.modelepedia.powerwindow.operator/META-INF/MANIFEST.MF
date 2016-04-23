@@ -7,7 +7,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.petrinet,
  edu.toronto.cs.se.modelepedia.powerwindow

@@ -23,14 +23,12 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.ocl.examples.pivot"/>
       <import plugin="fr.inria.atlanmod.emftocsp"/>
       <import plugin="fr.inria.atlanmod.emftocsp.eclipsecs"/>
       <import plugin="fr.inria.atlanmod.emftocsp.eclipsecs.libs"/>
       <import plugin="fr.inria.atlanmod.emftocsp.emf"/>
       <import plugin="fr.inria.atlanmod.emftocsp.emftoecl"/>
       <import plugin="fr.inria.atlanmod.emftocsp.ui.main"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.modelepedia.ocl"/>
       <import feature="fr.inria.atlanmod.emftocsp.tool.feature"/>
