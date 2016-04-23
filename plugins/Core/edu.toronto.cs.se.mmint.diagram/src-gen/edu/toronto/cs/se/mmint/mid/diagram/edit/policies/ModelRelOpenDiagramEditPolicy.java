@@ -45,7 +45,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
@@ -256,7 +256,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 					diagram = intializeNewDiagram();
 				}
 				ModelRel modelRel = (ModelRel) diagram.getElement();
-				if (MultiModelConstraintChecker.isInstancesLevel(modelRel)) {
+				if (MIDConstraintChecker.isInstancesLevel(modelRel)) {
 					doExecuteInstancesLevel(modelRel);
 				}
 				else {

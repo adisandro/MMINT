@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference;
@@ -47,10 +47,10 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -96,7 +96,7 @@ public class ChangePropagation extends OperatorImpl {
 	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMINTException {
 
 		//TODO MMINT[OO] does this have a meaning somewhere else?
-		MID instanceMID = MultiModelRegistry.getMultiModel(modelElemRef);
+		MID instanceMID = MIDRegistry.getMultiModel(modelElemRef);
 		instanceMID.getExtendibleTable().removeKey(modelElemRef.getUri());
 		modelElemRef.deleteInstanceReference();
 		ModelElement modelElem = modelElemRef.getObject();
@@ -187,7 +187,7 @@ public class ChangePropagation extends OperatorImpl {
 				String propModelObjUri =
 					newPropModel.getUri() +
 					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
-				EObject propModelObj = MultiModelTypeIntrospection.getPointer(propModelObjUri);
+				EObject propModelObj = MIDTypeIntrospection.getPointer(propModelObjUri);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = propModelEndpointRef_propTraceRel.createModelElementInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName());
 				// create new propagated trace links
@@ -214,7 +214,7 @@ public class ChangePropagation extends OperatorImpl {
 		if (!((MAVOModelEndpoint) traceRel.getModelEndpoints().get(indexB)).getTarget().isInc()) {
 			return null;
 		}
-		ModelElement traceModelElemTypeA = MultiModelConstraintChecker.getAllowedModelElementType(
+		ModelElement traceModelElemTypeA = MIDConstraintChecker.getAllowedModelElementType(
 			traceRel.getModelEndpointRefs().get(indexA),
 			traceModelElemRefA.getObject().getEMFInstanceObject()
 		);
@@ -223,7 +223,7 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		BinaryMAVOMappingReference newTraceMappingRef = null;
-		for (MappingReference traceMappingTypeRef : MultiModelTypeRegistry.getMappingTypeReferences(traceRel.getMetatype())) {
+		for (MappingReference traceMappingTypeRef : MIDTypeRegistry.getMappingTypeReferences(traceRel.getMetatype())) {
 			if (!(traceMappingTypeRef instanceof BinaryMappingReference)) { // a trace rel type is meant to have two model types
 				continue;
 			}
@@ -288,7 +288,7 @@ traceLinks:
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
-			EObject modelObjB = MultiModelTypeIntrospection.getPointer(
+			EObject modelObjB = MIDTypeIntrospection.getPointer(
 				modelRootB.eResource(),
 				getModelEObjectUri(modelElemB.getUri())
 			);
@@ -363,7 +363,7 @@ traceLinks:
 
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
 
-		EMap<String, ExtendibleElement> extendibleTable = MultiModelRegistry.getMultiModel(modelElemRef).getExtendibleTable();
+		EMap<String, ExtendibleElement> extendibleTable = MIDRegistry.getMultiModel(modelElemRef).getExtendibleTable();
 		String unifiedModelElemUri = getModelEObjectUri(unifiedModelElemRef.getUri());
 		String modelElemUri = getModelEObjectUri(modelElemRef.getUri());
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
@@ -406,8 +406,8 @@ traceLinks:
 		ModelElementReference varModelElemRef = varTraceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		// get var object and other object from same resource
-		EObject varModelObj = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
-		EObject modelObj = MultiModelTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
+		EObject varModelObj = MIDTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
+		EObject modelObj = MIDTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
 		// unify contents
 		for (EObject varModelObjContent : varModelObj.eContents()) {
 			EStructuralFeature varModelObjContainingFeature = varModelObjContent.eContainingFeature();
@@ -475,7 +475,7 @@ traceLinks:
 		EFactory modelTypeFactory = model.getMetatype().getEMFTypeRoot().getEFactoryInstance();
 		ModelElementEndpointReference modelElemTypeEndpointRef = traceMappingRef.getObject().getMetatype().getModelElemEndpointRefs().get(indexB);
 		ModelElement modelElemType = modelElemTypeEndpointRef.getModelElemRef().getObject();
-		String modelElemTypeUri = MultiModelRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), MIDLevel.TYPES)[1];
+		String modelElemTypeUri = MIDRegistry.getModelAndModelElementUris(modelElemType.getEMFTypeObject(), MIDLevel.TYPES)[1];
 
 		EObject[] result = null;
 		for (EReference containment : modelRootB.eClass().getEAllContainments()) {
@@ -593,7 +593,7 @@ traceLinks:
 		for (List<BinaryMAVOMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
 			reduceTraceMappingUncertainty(newPropModelRoot, propTraceMappingRefs, 0, 1);
 		}
-		MultiModelUtils.writeModelFile(newPropModelRoot, newPropModel.getUri(), true);
+		MIDUtils.writeModelFile(newPropModelRoot, newPropModel.getUri(), true);
 		for (List<BinaryMAVOMappingReference> propTraceMappingRefs : propTraceMappingRefsList) {
 			for (BinaryMappingReference propTraceMappingRef : propTraceMappingRefs) {
 				propagateRefinementMappings(propTraceMappingRef, refinementRel, relatedModel, traceRel, newPropRefinementRel);

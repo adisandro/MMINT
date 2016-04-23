@@ -37,13 +37,13 @@ import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
@@ -257,19 +257,19 @@ matchesN:
 		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
-		String fullUri = MultiModelUtils.prependWorkspaceToUri(MultiModelUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
+		String fullUri = MIDUtils.prependWorkspaceToUri(MIDUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(fullUri);
 		Module hModule = hResourceSet.getModule(transformationModule, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(origModel.getUri())));
 		if (timeClassicalEnabled) {
 			doTransformationClassical(hModule, hEngine, hGraph);
 			hResourceSet = new HenshinResourceSet(fullUri);
 			hModule = hResourceSet.getModule(transformationModule, false);
 			hEngine = new EngineImpl();
 			hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-			hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(origModel.getUri())));
+			hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(origModel.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
 		if (transformedConstraintEnabled) {
@@ -287,19 +287,19 @@ matchesN:
 		if (transformedRootModelObj == null) {
 			throw new MMINTException("Can't retrieve transformed root model object");
 		}
-		Model transformedModelType = MultiModelTypeRegistry.getType(
+		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
-		String transformedMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.replaceFileExtensionInUri(
-				MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedMIDModelUri = MIDUtils.getUniqueUri(
+			MIDUtils.replaceFileExtensionInUri(
+				MIDUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 				transformedModelType.getFileExtension()),
 			true,
 			false);
-		MultiModelUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
+		MIDUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
 			origModel,
 			transformedModel,
@@ -310,12 +310,12 @@ matchesN:
 		outputsByName.put(OUT_MODELREL, traceRel);
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MultiModelOperatorUtils.writePropertiesFile(
+		MIDOperatorUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			origModel,
 			getInputSubdir(),
-			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return outputsByName;

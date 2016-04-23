@@ -21,10 +21,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -55,7 +55,7 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -70,7 +70,7 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -82,8 +82,8 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MultiModelTypeHierarchy.isRootType(((MappingReference) getElementToDestroy()).getObject())
+				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
+				!MIDTypeHierarchy.isRootType(((MappingReference) getElementToDestroy()).getObject())
 			);
 	}
 
@@ -95,14 +95,14 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 	protected void doExecuteTypesLevel() throws MMINTException {
 
 		((MappingReference) getElementToDestroy()).deleteTypeAndReference();
-		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel((ModelRel) getElementToEdit()));
+		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel((ModelRel) getElementToEdit()));
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
+			if (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
 				doExecuteInstancesLevel();
 			}
 			else {

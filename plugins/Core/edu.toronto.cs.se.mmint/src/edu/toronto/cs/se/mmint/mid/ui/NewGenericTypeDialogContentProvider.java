@@ -18,7 +18,7 @@ import java.util.Set;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 
@@ -66,7 +66,7 @@ public class NewGenericTypeDialogContentProvider implements ITreeContentProvider
 
 		if (parentElement instanceof MID) {
 			List<GenericElement> genericTypes = new ArrayList<>();
-			for (GenericElement genericType : MultiModelTypeRegistry.getGenericTypes()) {
+			for (GenericElement genericType : MIDTypeRegistry.getGenericTypes()) {
 				if (!filteredGenericTypes.contains(genericType)) {
 					continue;
 				}
@@ -98,7 +98,7 @@ public class NewGenericTypeDialogContentProvider implements ITreeContentProvider
 	public boolean hasChildren(Object element) {
 
 		if (element instanceof MID) {
-			return !MultiModelTypeRegistry.getGenericTypes().isEmpty();
+			return !MIDTypeRegistry.getGenericTypes().isEmpty();
 		}
 
 		return false;

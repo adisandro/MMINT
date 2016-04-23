@@ -30,8 +30,8 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -42,9 +42,9 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -78,12 +78,12 @@ public class Map extends OperatorImpl {
 
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
 
-		String baseOutputUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		String outputMIDUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
+		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
+		String outputMIDUri = MIDUtils.getUniqueUri(
+			MIDUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.writeModelFile(outputMID, outputMIDUri, true);
+		MIDUtils.writeModelFile(outputMID, outputMIDUri, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
 			outputMIDUri,
 			instanceMID);
@@ -96,9 +96,9 @@ public class Map extends OperatorImpl {
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
-		View gmfDiagramRoot = (View) MultiModelUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
+		View gmfDiagramRoot = (View) MIDUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
 		//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
-		String gmfDiagramPluginId = MultiModelTypeRegistry.getTypeBundle(
+		String gmfDiagramPluginId = MIDTypeRegistry.getTypeBundle(
 			outputMIDModelDiagram.getMetatypeUri()).getSymbolicName();
 		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
@@ -113,7 +113,7 @@ public class Map extends OperatorImpl {
 			shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID);
 			gmfNode.getEAnnotations().add(shortcutAnnotation);
 		}
-		MultiModelUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
+		MIDUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
 
 		return outputMIDModel;
 	}
@@ -178,7 +178,7 @@ public class Map extends OperatorImpl {
 						}
 						Set<MID> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
 							.stream()
-							.map(modelEndpoint -> MultiModelRegistry.getMultiModel(modelEndpoint.getTarget()))
+							.map(modelEndpoint -> MIDRegistry.getMultiModel(modelEndpoint.getTarget()))
 							.collect(Collectors.toSet());
 						Set<MID> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
 							mapperOutput.getKey(),
@@ -196,9 +196,9 @@ public class Map extends OperatorImpl {
 			}
 		}
 		// store output MIDs
-		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
-		Model midrelModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
-		String baseOutputUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
+		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 		java.util.Map<String, Model> outputsByName = new HashMap<>();
 		int i = 0;
 		// pass 1: no midrels
@@ -222,9 +222,9 @@ public class Map extends OperatorImpl {
 			outputsByName.put(OUT_MIDS + i, outputMIDModel);
 			i++;
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
-				String midrelMIDUri = MultiModelRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
-				Model midrelMIDModel = MultiModelRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
-				ModelRel midrelRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+				String midrelMIDUri = MIDRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
+				Model midrelMIDModel = MIDRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
+				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 					null,
 					outputMIDModel,
 					midrelMIDModel,
@@ -301,7 +301,7 @@ public class Map extends OperatorImpl {
 			java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MIDS);
+		List<Model> inputMIDModels = MIDOperatorUtils.getVarargs(inputsByName, IN_MIDS);
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MID instanceMID = outputMIDsByName.get(OUT_MIDS);
 		EList<MID> inputMIDs = new BasicEList<>();
@@ -315,7 +315,7 @@ public class Map extends OperatorImpl {
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {
-			MultiModelUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
+			MIDUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
 		}
 
 		return outputsByName;

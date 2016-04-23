@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -73,10 +73,10 @@ public class ModelRelMerge extends OperatorImpl {
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-			List<ModelEndpointReference> newModelEndpointRefs = MultiModelTypeHierarchy.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
+			List<ModelEndpointReference> newModelEndpointRefs = MIDTypeHierarchy.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
 			ModelEndpointReference newModelEndpointRef;
 			if (newModelEndpointRefs.isEmpty()) {
-				Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
+				Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
 				newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, mergedModelRel);
 			}
 			else {
@@ -84,7 +84,7 @@ public class ModelRelMerge extends OperatorImpl {
 			}
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-				ModelElementReference newModelElemRef = MultiModelTypeHierarchy.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
+				ModelElementReference newModelElemRef = MIDTypeHierarchy.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
 				if (newModelElemRef == null) {
 					EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
 					newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
@@ -116,7 +116,7 @@ public class ModelRelMerge extends OperatorImpl {
 		@NonNull Model model1, @NonNull Model model2, @NonNull MID instanceMID)
 		throws MMINTException {
 
-		ModelRel mergedRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
 			model1,
 			model2,

@@ -18,16 +18,16 @@ import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -232,9 +232,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	protected void addTypeReference(ModelEndpointReference newModelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) {
 
 		ModelEndpointReference modelTypeEndpointRef = (getSupertype() != null) ? // may be root
-			MultiModelTypeHierarchy.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
+			MIDTypeHierarchy.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
 			null;
-		MultiModelTypeFactory.addTypeReference(newModelTypeEndpointRef, this, modelTypeEndpointRef, isModifiable, false);
+		MIDTypeFactory.addTypeReference(newModelTypeEndpointRef, this, modelTypeEndpointRef, isModifiable, false);
 		containerModelRelType.getModelEndpointRefs().add(newModelTypeEndpointRef);
 	}
 
@@ -278,13 +278,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
-		MID typeMID = MultiModelRegistry.getMultiModel(containerModelRelType);
+		MID typeMID = MIDRegistry.getMultiModel(containerModelRelType);
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
-		MultiModelTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
+		MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
 		ModelEndpointReference newModelTypeEndpointRef = newModelTypeEndpoint.createTypeReference(true, containerModelRelType);
 		// create references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, typeMID)) {
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, typeMID)) {
 			newModelTypeEndpoint.createTypeReference(false, modelRelSubtype);
 		}
 
@@ -302,7 +302,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			if (containerModelRelType.getModelEndpoints().size() == 2) {
 				throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
 			}
-			if (MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
+			if (MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
 				throw new MMINTException("Invalid overriding of this model type endpoint");
 			}
 		}
@@ -321,13 +321,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		MMINTException.mustBeType(this);
 		ModelRel containerModelRelType = (ModelRel) oldModelTypeEndpoint.eContainer();
 		if (containerModelRelType instanceof BinaryModelRel) {
-			if (MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
+			if (MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
 				throw new MMINTException("Invalid overriding of this model type endpoint");
 			}
 		}
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(containerModelRelType);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
+		MID instanceMID = MIDRegistry.getMultiModel(containerModelRelType);
+		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
@@ -337,15 +337,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 		oldModelTypeEndpoint.setTarget(targetModelType);
 		if (modelTypeEndpointRef != null) {
-			ModelEndpointReference oldModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MIDTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelTypeEndpointRef);
 		}
 		// modify references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(containerModelRelType, instanceMID)) {
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, instanceMID)) {
 			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
 				null :
-				MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelEndpointReference oldModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
+				MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MIDTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelSubtypeEndpointRef);
 		}
 	}
@@ -357,15 +357,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		// delete the "thing" and the corresponding reference
 		ModelRel modelRelType = (ModelRel) eContainer();
 		deleteType(isFullDelete);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
 		modelTypeEndpointRef.deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
+			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
 			modelSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 	}
@@ -467,7 +467,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		super.addBasicInstance(newModelEndpoint, null, this.getName());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
-		MultiModelUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
+		MIDUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
 	}
 
 	/**

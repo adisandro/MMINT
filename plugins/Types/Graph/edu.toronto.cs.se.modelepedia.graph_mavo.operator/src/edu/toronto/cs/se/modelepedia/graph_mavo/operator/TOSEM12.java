@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
@@ -87,11 +87,11 @@ public class TOSEM12 extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		numConcretizations = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
-		propertyId = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
-		timeClassicalEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
-		timeMAVOBackboneEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
-		timeMAVOAllsatEnabled = MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		numConcretizations = MIDOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
+		propertyId = MIDOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
+		timeClassicalEnabled = MIDOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		timeMAVOBackboneEnabled = MIDOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		timeMAVOAllsatEnabled = MIDOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
 	private MAVORoot init(Model mayModel) throws Exception {
@@ -444,12 +444,12 @@ public class TOSEM12 extends RandomOperatorImpl {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MultiModelOperatorUtils.writePropertiesFile(
+		MIDOperatorUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			mayModel,
 			getInputSubdir(),
-			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return new HashMap<>();

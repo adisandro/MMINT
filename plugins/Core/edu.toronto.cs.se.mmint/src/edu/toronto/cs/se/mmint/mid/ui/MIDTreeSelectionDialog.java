@@ -16,12 +16,12 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
-public class MultiModelTreeSelectionDialog extends ElementTreeSelectionDialog {
+public class MIDTreeSelectionDialog extends ElementTreeSelectionDialog {
 
 	ITreeContentProvider contentProvider;
 	Object input;
 
-	public MultiModelTreeSelectionDialog(Shell parent, ILabelProvider labelProvider, ITreeContentProvider contentProvider, Object input) {
+	public MIDTreeSelectionDialog(Shell parent, ILabelProvider labelProvider, ITreeContentProvider contentProvider, Object input) {
 
 		super(parent, labelProvider, contentProvider);
 		this.contentProvider = contentProvider;

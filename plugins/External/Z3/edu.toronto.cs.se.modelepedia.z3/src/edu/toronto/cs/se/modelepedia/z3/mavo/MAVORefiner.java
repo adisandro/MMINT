@@ -36,17 +36,17 @@ import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -82,11 +82,11 @@ public class MAVORefiner {
 			if (!(modelObj instanceof MAVOElement) || !((MAVOElement) modelObj).isMay()) {
 				continue;
 			}
-			String modelObjUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String modelObjUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
 			String refinedModelObjUri = refinedModelUri + modelObjUri.substring(modelObjUri.lastIndexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			MAVOElement refinedModelObj;
 			try {
-				refinedModelObj = (MAVOElement) MultiModelTypeIntrospection.getPointer(refinedResource, refinedModelObjUri);
+				refinedModelObj = (MAVOElement) MIDTypeIntrospection.getPointer(refinedResource, refinedModelObjUri);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
@@ -210,14 +210,14 @@ public class MAVORefiner {
 	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser) throws Exception {
 
 		// create mid artifacts
-		String refinedModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
-		MultiModelUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
-		MID instanceMID = MultiModelRegistry.getMultiModel(model);
+		String refinedModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
+		MIDUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
+		MID instanceMID = MIDRegistry.getMultiModel(model);
 		Model refinedModel = model.getMetatype().createInstance(refinedModelUri, instanceMID);
-		ModelRel modelRelType = MultiModelTypeRegistry.getType(MODELRELTYPE_URI);
+		ModelRel modelRelType = MIDTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
 			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
-			modelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+			modelRelType = MIDTypeHierarchy.getRootModelRelType();
 		}
 		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpointsAndReferences(
 			null,
@@ -227,8 +227,8 @@ public class MAVORefiner {
 		refinementRel.setName(MODELREL_NAME);
 
 		// refine
-		MAVORoot rootModelObj = (MAVORoot) MultiModelUtils.readModelFile(model.getUri(), true);
-		MAVORoot refinedRootModelObj = (MAVORoot) MultiModelUtils.readModelFile(refinedModelUri, true);
+		MAVORoot rootModelObj = (MAVORoot) MIDUtils.readModelFile(model.getUri(), true);
+		MAVORoot refinedRootModelObj = (MAVORoot) MIDUtils.readModelFile(refinedModelUri, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
@@ -239,12 +239,12 @@ public class MAVORefiner {
 		populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file
-		MultiModelUtils.writeModelFile(refinedRootModelObj, refinedModelUri, true);
+		MIDUtils.writeModelFile(refinedRootModelObj, refinedModelUri, true);
 		if (modelDiagram != null) {
-			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.readModelFile(modelDiagram.getUri(), true);
+			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MIDUtils.readModelFile(modelDiagram.getUri(), true);
 			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
-			String refinedModelDiagramUri = MultiModelUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
-			MultiModelUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
+			String refinedModelDiagramUri = MIDUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
+			MIDUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor();

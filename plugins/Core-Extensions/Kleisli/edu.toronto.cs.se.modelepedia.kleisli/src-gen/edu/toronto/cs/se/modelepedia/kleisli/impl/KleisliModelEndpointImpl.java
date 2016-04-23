@@ -27,18 +27,18 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -236,18 +236,18 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			if (containerModelRelType.getModelEndpoints().size() == 2) {
 				throw new MMINTException("Can't add more than 2 model type endpoints to a binary model relationship type");
 			}
-			if (MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
+			if (MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
 				throw new MMINTException("Invalid overriding of this model type endpoint");
 			}
 		}
 
 		boolean isK =
-			MultiModelUtils.isFileOrDirectoryInState(
+			MIDUtils.isFileOrDirectoryInState(
 				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
 			);
 		boolean extendMetamodel = false;
 		if (!isK && MMINT.isInitialized() && !Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED))) {
-			extendMetamodel = MultiModelDiagramUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
+			extendMetamodel = MIDDialogUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isK = extendMetamodel;
 		}
 		ModelEndpointReference newModelTypeEndpointRef;
@@ -263,9 +263,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				throw new MMINTException("Error creating extended model type");
 			}
 			if (extendMetamodel) {
-				URI kUri = URI.createFileURI(MultiModelUtils.prependStateToUri(kModelType.getUri()));
+				URI kUri = URI.createFileURI(MIDUtils.prependStateToUri(kModelType.getUri()));
 				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
+				Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
 					activePage.openEditor(new URIEditorInput(kUri), ecoreEditorType.getId());

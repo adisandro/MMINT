@@ -21,16 +21,16 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
@@ -56,16 +56,16 @@ public class MODELS15 extends RandomOperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		numClassDiagrams = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSDIAGRAMS);
-		numClassesPerClassDiagram = MultiModelOperatorUtils.getIntProperty(
+		numClassDiagrams = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSDIAGRAMS);
+		numClassesPerClassDiagram = MIDOperatorUtils.getIntProperty(
 			inputProperties, PROPERTY_IN_NUMCLASSESPERCLASSDIAGRAM);
-		numClassNames = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSNAMES);
+		numClassNames = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSNAMES);
 	}
 
 	private @NonNull MID createClassDiagrams(String instanceMIDUri) {
 
 		MID cdMID = MIDFactory.eINSTANCE.createMID();
-		Model cdModelType = MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI);
+		Model cdModelType = MIDTypeRegistry.getType(ClassDiagramPackage.eNS_URI);
 		Random random = this.getState();
 		for (int i = 0; i < numClassDiagrams; i++) {
 			// create and populate class diagram
@@ -84,10 +84,10 @@ public class MODELS15 extends RandomOperatorImpl {
 				cdClasses.put(className, clazz);
 			}
 			// write class diagram to file and create model
-			String cdModelUri = MultiModelUtils.replaceLastSegmentInUri(
+			String cdModelUri = MIDUtils.replaceLastSegmentInUri(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
-				MultiModelUtils.writeModelFile(classDiagram, cdModelUri, true);
+				MIDUtils.writeModelFile(classDiagram, cdModelUri, true);
 				cdModelType.createInstance(cdModelUri, cdMID);
 			}
 			catch (Exception e) {
@@ -111,13 +111,13 @@ public class MODELS15 extends RandomOperatorImpl {
 		}
 
 		// create random class diagrams in a mid
-		String instanceMIDUri = MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
+		String instanceMIDUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output
-		String cdMIDModelUri = MultiModelUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
-		MultiModelUtils.writeModelFile(cdMID, cdMIDModelUri, true);
-		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
+		String cdMIDModelUri = MIDUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
+		MIDUtils.writeModelFile(cdMID, cdMIDModelUri, true);
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, cdMIDModel);

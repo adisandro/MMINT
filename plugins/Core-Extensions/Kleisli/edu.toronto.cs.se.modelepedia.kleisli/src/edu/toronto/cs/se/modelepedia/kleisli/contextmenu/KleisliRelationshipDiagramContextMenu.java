@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -68,7 +68,7 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 				EMFInfo eInfo = modelElemRef.getObject().getEInfo();
 				if (
 					!(((ModelEndpointReference) modelElemRef.eContainer()).getObject() instanceof KleisliModelEndpoint) ||
-					MultiModelConstraintChecker.isInstancesLevel(modelElemRef) || ( // only types
+					MIDConstraintChecker.isInstancesLevel(modelElemRef) || ( // only types
 						!eInfo.getClassName().startsWith("_") && ( // only derived classes
 							eInfo.getFeatureName() == null ||
 							!eInfo.getFeatureName().startsWith("_")

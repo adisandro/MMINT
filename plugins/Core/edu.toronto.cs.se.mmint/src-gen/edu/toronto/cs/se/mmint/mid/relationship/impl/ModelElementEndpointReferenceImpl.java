@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -323,7 +323,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		MappingReference mappingTypeRef = (MappingReference) this.eContainer();
 		ModelRel modelRelType = (ModelRel) mappingTypeRef.eContainer();
 		// delete the "thing" and the corresponding reference
@@ -333,13 +333,13 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 		}
 		deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container's container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MultiModelTypeHierarchy.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
-			ModelElementEndpointReference modelElemSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
+			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
+			ModelElementEndpointReference modelElemSubtypeEndpointRef = MIDTypeHierarchy.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
 			modelElemSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 		// delete references of the "thing" in subtypes of the container
-		for (Mapping mappingSubtype : MultiModelTypeHierarchy.getSubtypes(mappingTypeRef.getObject(), typeMID)) {
+		for (Mapping mappingSubtype : MIDTypeHierarchy.getSubtypes(mappingTypeRef.getObject(), typeMID)) {
 			if (isFullDelete) {
 				mappingSubtype.getModelElemEndpointRefs().remove(this);
 			}

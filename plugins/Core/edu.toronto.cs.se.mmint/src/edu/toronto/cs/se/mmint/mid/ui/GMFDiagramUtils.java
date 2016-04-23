@@ -37,8 +37,8 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 
 public class GMFDiagramUtils {
 
@@ -48,16 +48,16 @@ public class GMFDiagramUtils {
 	public static Diagram createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
 
 		ResourceSet domainResourceSet = new ResourceSetImpl();
-		Resource modelResource = domainResourceSet.getResource(MultiModelUtils.getEMFUri(modelUri, isWorkspaceRelative), true);
+		Resource modelResource = domainResourceSet.getResource(MIDUtils.getEMFUri(modelUri, isWorkspaceRelative), true);
 		ResourceSet diagramResourceSet = new ResourceSetImpl();
-		Resource diagramResource =	diagramResourceSet.createResource(MultiModelUtils.getEMFUri(diagramUri, isWorkspaceRelative));
+		Resource diagramResource =	diagramResourceSet.createResource(MIDUtils.getEMFUri(diagramUri, isWorkspaceRelative));
 		EObject rootModelObj = (EObject) modelResource.getContents().get(0);
 		Diagram diagram = ViewService.createDiagram(
 			rootModelObj,
 			diagramKind,
 			new PreferencesHint(diagramPluginId)
 		);
-		diagram.setName(MultiModelUtils.getLastSegmentFromUri(diagramUri));
+		diagram.setName(MIDUtils.getLastSegmentFromUri(diagramUri));
 		diagramResource.getContents().add(diagram);
 		Map<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
@@ -70,7 +70,7 @@ public class GMFDiagramUtils {
 	public static void openGMFDiagram(String diagramUri, String diagramId, boolean isWorkspaceRelative) throws Exception {
 
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-			new URIEditorInput(MultiModelUtils.getEMFUri(diagramUri, isWorkspaceRelative)),
+			new URIEditorInput(MIDUtils.getEMFUri(diagramUri, isWorkspaceRelative)),
 			diagramId
 		);
 	}
@@ -106,8 +106,8 @@ public class GMFDiagramUtils {
 
 	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
-		Diagram diagram = (Diagram) MultiModelUtils.readModelFile(diagramFile.getFullPath().toString(), true);
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
+		Diagram diagram = (Diagram) MIDUtils.readModelFile(diagramFile.getFullPath().toString(), true);
+		String modelUri = MIDRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
 		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
 		return modelFile;

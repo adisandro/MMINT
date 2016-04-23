@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 /**
@@ -63,7 +63,7 @@ public class OperatorsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
-				Operator operatorType = MultiModelTypeRegistry.getType(uri);
+				Operator operatorType = MIDTypeRegistry.getType(uri);
 				if (operatorType != null) {
 					try {
 						operatorType.deleteType();

@@ -46,7 +46,7 @@ import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 
-public class MultiModelUtils {
+public class MIDUtils {
 
 	public static @NonNull URI getEMFUri(@NonNull String uri, boolean isWorkspaceRelative) {
 
@@ -251,7 +251,7 @@ public class MultiModelUtils {
 	 */
 	public static void writeModelFile(@NonNull EObject rootModelObj, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		URI uri = MultiModelUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		URI uri = MIDUtils.getEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(rootModelObj);
@@ -267,7 +267,7 @@ public class MultiModelUtils {
 
 	public static @NonNull EObject readModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		URI uri = MultiModelUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		URI uri = MIDUtils.getEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(uri, true);
 		EObject rootModelObj = resource.getContents().get(0);

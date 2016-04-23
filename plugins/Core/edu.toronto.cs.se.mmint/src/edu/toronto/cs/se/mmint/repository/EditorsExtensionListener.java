@@ -17,8 +17,8 @@ import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 /**
@@ -43,7 +43,7 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 			for (IConfigurationElement config : configs) {
 				try {
 					Editor editorType = MMINT.createEditorType(config);
-					MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+					MIDHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 				}
 				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
@@ -65,7 +65,7 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
-				Editor editorType = MultiModelTypeRegistry.getType(uri);
+				Editor editorType = MIDTypeRegistry.getType(uri);
 				if (editorType != null) {
 					try {
 						editorType.deleteType();

@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMappingReference;
@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
-public class MAVOMIDHeavyTypeFactory extends MultiModelHeavyTypeFactory {
+public class MAVOMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
 	/**
 	 * MAVO version. {@inheritDoc}

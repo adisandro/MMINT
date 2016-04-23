@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -118,7 +118,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	 * @generated
 	 */
 	public GenericElement getTarget() {
-		GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());
+		GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());
 		return target;
 	}
 

@@ -23,13 +23,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to add a model to a model relationship.
@@ -65,32 +65,32 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MultiModelConstraintChecker.isInstancesLevel(getSource());
+		boolean instance = MIDConstraintChecker.isInstancesLevel(getSource());
 
 		return
 			super.canExecute() && ((
 				instance &&
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getSource(), null, (Model) getTarget())) != null
+				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getSource(), null, (Model) getTarget())) != null
 			) || (
 				!instance &&
-				!MultiModelTypeHierarchy.isRootType(getSource()) &&
-				(getTarget() == null || !MultiModelTypeHierarchy.isRootType(getTarget()))
+				!MIDTypeHierarchy.isRootType(getSource()) &&
+				(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget()))
 			));
 	}
 
-	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstanceAndReference((Model) getTarget(), getSource());
 
 		return newModelEndpointRef.getObject();
 	}
 
-	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		Model tgtModelType = (Model) getTarget();
-		String newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), tgtModelType);
+		String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
+		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), tgtModelType);
 		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, tgtModelType, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
@@ -115,7 +115,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelEndpoint newElement = (MultiModelConstraintChecker.isInstancesLevel(getSource())) ?
+			ModelEndpoint newElement = (MIDConstraintChecker.isInstancesLevel(getSource())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
@@ -126,7 +126,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

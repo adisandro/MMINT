@@ -32,11 +32,11 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
@@ -44,7 +44,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -124,13 +124,13 @@ public class MIDContextMenu extends ContributionItem {
 				doModelepedia = false;
 				doCoherence = false;
 				doRefineByConstraint = false;
-				if (MultiModelConstraintChecker.isInstancesLevel((MID) editPartElement)) { // instances only
+				if (MIDConstraintChecker.isInstancesLevel((MID) editPartElement)) { // instances only
 					instanceMID = (MID) editPartElement;
 				}
 			}
 			else {
 				Model model = (Model) editPartElement;
-				if (!MultiModelConstraintChecker.isInstancesLevel(model)) { // instances only
+				if (!MIDConstraintChecker.isInstancesLevel(model)) { // instances only
 					doOperator = false;
 					doCast = false;
 					doCheckConstraint = false;
@@ -173,12 +173,12 @@ public class MIDContextMenu extends ContributionItem {
 		// operator
 		if (doOperator) {
 			if (instanceMID == null) {
-				instanceMID = MultiModelRegistry.getMultiModel(selectedModels.get(0));
+				instanceMID = MIDRegistry.getMultiModel(selectedModels.get(0));
 			}
-			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			List<Operator> executableOperators = new ArrayList<>();
 			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
-			for (Operator operatorType : MultiModelTypeRegistry.getOperatorTypes()) {
+			for (Operator operatorType : MIDTypeRegistry.getOperatorTypes()) {
 				try {
 					EList<OperatorInput> executableOperatorInputs = operatorType.checkAllowedInputs(selectedModels);
 					if (executableOperatorInputs == null) {
@@ -191,7 +191,7 @@ public class MIDContextMenu extends ContributionItem {
 					continue;
 				}
 			}
-			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
@@ -217,7 +217,7 @@ public class MIDContextMenu extends ContributionItem {
 		// cast
 		if (doCast) {
 			// polymorphism
-			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			EList<Model> runtimeModelTypes = new BasicEList<>();
 			try {
 				runtimeModelTypes.addAll(selectedModels.get(0).getRuntimeTypes());
@@ -225,7 +225,7 @@ public class MIDContextMenu extends ContributionItem {
 			catch (MMINTException e) {
 				// do nothing
 			}
-			MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (runtimeModelTypes.size() > 1) {
 				MenuItem castItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				castItem.setText(MMINT_MENU_CAST_LABEL);
@@ -248,7 +248,7 @@ public class MIDContextMenu extends ContributionItem {
 		}
 		// coherence
 		if (doCoherence) {
-			Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = MultiModelTypeHierarchy.getMultiplePathConversions(selectedModels.get(0).getMetatypeUri());
+			Map<Model, Set<List<ConversionOperator>>> multiplePathConversions = MIDTypeHierarchy.getMultiplePathConversions(selectedModels.get(0).getMetatypeUri());
 			if (!multiplePathConversions.isEmpty()) {
 				MenuItem coherenceItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				coherenceItem.setText(MMINT_MENU_COHERENCE_LABEL);
@@ -298,7 +298,7 @@ public class MIDContextMenu extends ContributionItem {
 		// modelepedia
 		if (doModelepedia) {
 			Model model = selectedModels.get(0);
-			if (MultiModelConstraintChecker.isInstancesLevel(model)) {
+			if (MIDConstraintChecker.isInstancesLevel(model)) {
 				model = model.getMetatype();
 			}
 			MenuItem modelepediaItem = new MenuItem(mmintMenu, SWT.CASCADE);

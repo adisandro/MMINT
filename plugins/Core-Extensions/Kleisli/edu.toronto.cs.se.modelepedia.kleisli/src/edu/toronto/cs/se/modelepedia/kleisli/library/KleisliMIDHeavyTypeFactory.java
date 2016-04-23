@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.kleisli.library;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -33,7 +33,7 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class KleisliMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactory {
+public class KleisliMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
 	/**
 	 * Creates a Kleisli copy of a "heavy" model type to be used as the extended

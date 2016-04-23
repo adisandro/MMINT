@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditor;
 
@@ -52,8 +52,8 @@ public class ModelEndpointReferenceDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy().eContainer()) ||
-				MultiModelConstraintChecker.isAllowedModelType((ModelRel) getElementToDestroy().eContainer())
+				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy().eContainer()) ||
+				MIDConstraintChecker.isAllowedModelType((ModelRel) getElementToDestroy().eContainer())
 			);
 	}
 

@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
 /**
@@ -39,7 +39,7 @@ public class ExtensionType {
 	/** The uri of the supertype of the extension type. */
 	private String supertypeUri;
 	/** The factory of the extension type. */
-	private MultiModelHeavyTypeFactory factory;
+	private MIDHeavyTypeFactory factory;
 	/** The custom type for the extension type. */
 	private ExtendibleElement newType;
 
@@ -71,7 +71,7 @@ public class ExtensionType {
 	 * @param defaultFactory
 	 *            The default "heavy" type factory.
 	 */
-	public ExtensionType(@NonNull IConfigurationElement extensionConfig, @NonNull MultiModelHeavyTypeFactory defaultFactory) {
+	public ExtensionType(@NonNull IConfigurationElement extensionConfig, @NonNull MIDHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig);
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0];
@@ -82,8 +82,8 @@ public class ExtensionType {
 		else {
 			try {
 				Object object = typeConfig.createExecutableExtension(MMINTConstants.TYPE_ATTR_CLASS);
-				if (object instanceof MultiModelHeavyTypeFactory) {
-					factory = (MultiModelHeavyTypeFactory) object;
+				if (object instanceof MIDHeavyTypeFactory) {
+					factory = (MIDHeavyTypeFactory) object;
 					newType = null;
 				}
 				else {
@@ -109,7 +109,7 @@ public class ExtensionType {
 	 * @param defaultFactory
 	 *            The default "heavy" type factory.
 	 */
-	public ExtensionType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable, MultiModelHeavyTypeFactory defaultFactory) {
+	public ExtensionType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable, MIDHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig, defaultFactory);
 		IConfigurationElement[] supertypeConfigs = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0].getChildren(MMINTConstants.TYPE_CHILD_SUPERTYPE);
@@ -171,7 +171,7 @@ public class ExtensionType {
 	 * 
 	 * @return The factory of the extension type.
 	 */
-	public @Nullable MultiModelHeavyTypeFactory getFactory() {
+	public @Nullable MIDHeavyTypeFactory getFactory() {
 
 		return factory;
 	}

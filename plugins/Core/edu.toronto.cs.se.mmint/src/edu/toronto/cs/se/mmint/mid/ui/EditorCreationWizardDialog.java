@@ -18,7 +18,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 
 /**
  * A wizard dialog to create a new editor.
@@ -37,9 +37,9 @@ public class EditorCreationWizardDialog extends WizardDialog {
 		if (filePage.getNextPage() != null && filePage.getNextPage() instanceof WizardNewFileCreationPage) {
 			WizardNewFileCreationPage nextPage = (WizardNewFileCreationPage) filePage.getNextPage();
 			nextPage.setFileName(
-				MultiModelUtils.replaceFileNameInUri(
+				MIDUtils.replaceFileNameInUri(
 					nextPage.getFileName(),
-					MultiModelUtils.getFileNameFromUri(filePage.getFileName())
+					MIDUtils.getFileNameFromUri(filePage.getFileName())
 				)
 			);
 			filePage = nextPage;

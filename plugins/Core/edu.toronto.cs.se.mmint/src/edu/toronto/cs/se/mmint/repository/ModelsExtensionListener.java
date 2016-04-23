@@ -17,8 +17,8 @@ import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.Model;
 
 /**
@@ -43,7 +43,7 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 			for (IConfigurationElement config : configs) {
 				try {
 					Model modelType = MMINT.createModelType(config);
-					MultiModelHeavyTypeFactory.createHeavyModelTypeEditors(modelType);
+					MIDHeavyTypeFactory.createHeavyModelTypeEditors(modelType);
 				}
 				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Model type can't be created in " + config.getContributor().getName(), e);
@@ -65,7 +65,7 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
-				Model modelType = MultiModelTypeRegistry.getType(uri);
+				Model modelType = MIDTypeRegistry.getType(uri);
 				if (modelType != null) {
 					try {
 						modelType.deleteType();

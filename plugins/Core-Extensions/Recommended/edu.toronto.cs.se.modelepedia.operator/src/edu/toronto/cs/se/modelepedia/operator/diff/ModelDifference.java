@@ -23,13 +23,13 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -66,7 +66,7 @@ public class ModelDifference extends OperatorImpl {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFInstanceRoot(), true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
 			if (modelElemRefTable.get(modelElemUri) == null) {
 				diffModelEObjects.add(modelObj);
 			}
@@ -103,13 +103,13 @@ public class ModelDifference extends OperatorImpl {
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
 
 		// create diff model relationship
-		ModelRel rootModelRelType = MultiModelTypeHierarchy.getRootModelRelType();
+		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
 		BinaryModelRel diffModelRel = rootModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
 		diffModelRel.setName(MODELREL_NAME);
 
-		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
-		Mapping rootMappingType = MultiModelTypeHierarchy.getRootMappingType();
-		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
+		ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
+		Mapping rootMappingType = MIDTypeHierarchy.getRootMappingType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MIDTypeHierarchy.getRootModelElementTypeEndpoint();
 		// create src model endpoint with deleted elements
 		createModelEndpointReference(rootModelTypeEndpoint, rootMappingType, rootModelElemTypeEndpoint, diffModelRel, matchRel.getModelEndpointRefs().get(0), DELETED_ELEMENT_LINK_NAME);
 		// create tgt model endpoint with added elements

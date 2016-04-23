@@ -21,9 +21,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -53,7 +53,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -67,7 +67,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,8 +84,8 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit()) ||
-				!MultiModelTypeHierarchy.isRootType((ModelRel) getElementToDestroy())
+				MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit()) ||
+				!MIDTypeHierarchy.isRootType((ModelRel) getElementToDestroy())
 			);
 	}
 
@@ -115,7 +115,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit())) {
+			if (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) {
 				doExecuteInstancesLevel();
 			}
 			else {

@@ -20,9 +20,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 
 /**
  * The command to import an existing model relationship.
@@ -53,13 +53,13 @@ public class ModelRelImportNaryRelCommand extends ModelRel2CreateCommand {
 
 		return
 			super.canExecute() &&
-			MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit());
+			MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit());
 	}
 
 	protected ModelRel doExecuteInstancesLevel() throws Exception {
 
 		MID instanceMID = (MID) getElementToEdit();
-		String newModelRelUri = MultiModelDiagramUtils.selectModelToImport(true);
+		String newModelRelUri = MIDDialogUtils.selectModelToImport(true);
 		ModelRel newModelRel = null;
 		//TODO MMINT[MODELREL] MultiModelInstanceFactory.copyModelRel(multiModel, newModelRelUri);
 

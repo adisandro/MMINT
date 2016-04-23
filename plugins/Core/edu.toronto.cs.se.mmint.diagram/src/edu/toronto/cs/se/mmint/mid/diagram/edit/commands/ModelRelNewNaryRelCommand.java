@@ -21,10 +21,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to create a model relationship.
@@ -52,7 +52,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -66,7 +66,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,21 +84,21 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToCreate(null, null);
+		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(null, null);
 		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, instanceMID);
 
 		return newModelRel;
 	}
 
-	protected ModelRel doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected ModelRel doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID typeMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MultiModelDiagramUtils.selectModelRelTypeToExtend(typeMID, null, null);
-		String newModelRelTypeName = MultiModelDiagramUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
-		String[] constraint = MultiModelDiagramUtils.getConstraintInput("Create new light model relationship type", null);
+		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToExtend(typeMID, null, null);
+		String newModelRelTypeName = MIDDialogUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
+		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model relationship type", null);
 		ModelRel newModelRelType = (ModelRel) modelRelType.createSubtype(newModelRelTypeName, constraint[0], constraint[1], false);
 		MMINT.createTypeHierarchy(typeMID);
 
@@ -120,7 +120,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelRel newElement = (MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
+			ModelRel newElement = (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
@@ -131,7 +131,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

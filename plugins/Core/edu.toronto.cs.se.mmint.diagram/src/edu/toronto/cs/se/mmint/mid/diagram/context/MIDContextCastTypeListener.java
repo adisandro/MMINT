@@ -28,7 +28,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -80,7 +80,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 						ModelElement modelElem = modelElemRef.getObject();
 						ModelElement modelElemType;
 						try {
-							modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject());
+							modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject());
 						}
 						catch (MMINTException e) {
 							MMINTException.print(IStatus.WARNING, "Can't get model object, skipping model element cast", e);
@@ -92,7 +92,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 					}
 				}
 				for (Mapping mapping : ((ModelRel) model).getMappings()) {
-					Mapping mappingType = MultiModelConstraintChecker.getAllowedMappingType(mapping);
+					Mapping mappingType = MIDConstraintChecker.getAllowedMappingType(mapping);
 					if (mappingType != null) {
 						mapping.setMetatypeUri(mappingType.getUri());
 					}

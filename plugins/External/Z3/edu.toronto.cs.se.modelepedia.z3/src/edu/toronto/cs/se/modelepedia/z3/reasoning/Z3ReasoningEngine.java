@@ -32,18 +32,18 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -73,7 +73,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			//TODO MMINT[Z3] Support non-mavo models (create acceleo transformation, check constraint once)
 			throw new MMINTException("Model " + model.getName() + " is not a MAVO model");
 		}
-		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
+		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		if (ecore2smt == null) {
 			throw new MMINTException("Can't find " + ECOREMAVOTOSMTLIB_OPERATOR_URI + " operator type");
 		}
@@ -81,7 +81,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = null;
-		for (EcoreMAVOToSMTLIB ecore2smtCustom : MultiModelTypeHierarchy.getSubtypes(ecore2smt)) { // check for custom encoders
+		for (EcoreMAVOToSMTLIB ecore2smtCustom : MIDTypeHierarchy.getSubtypes(ecore2smt)) { // check for custom encoders
 			//TODO MMINT[Z3] Sort by subtype level to allow most specific to run
 			inputs = ecore2smtCustom.checkAllowedInputs(inputModels);
 			if (inputs != null) {
@@ -148,12 +148,12 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (constraintTruthValue != MAVOTruthValue.MAYBE) {
 			return constraintTruthValue;
 		}
-		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
 		if (modelDiagram == null) {
 			return constraintTruthValue;
 		}
 		//TODO MMINT[MAVO] This needs to be skipped when in a cycle (e.g. looking for all valid super/sub types)
-		if (!MultiModelDiagramUtils.getBooleanInput(
+		if (!MIDDialogUtils.getBooleanInput(
 			"Concretization highlighter",
 			"The result is MAYBE, do you want to see a concretization that violates the constraint?"
 		)) {
@@ -355,7 +355,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 
 		// refine
-		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
 		String smtEncoding = z3ModelParser.getSMTLIBEncoding() + Z3Utils.assertion(model.getConstraint().getImplementation());
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
@@ -406,7 +406,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 
 		// refine
-		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, mayAlternative, smtEncoding, null);
@@ -430,7 +430,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		}
 
 		// refine
-		Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+		Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
 		MAVORefiner refiner = new MAVORefiner(this);
 		try {
 			return refiner.refine(model, modelDiagram, null, smtEncoding, null);

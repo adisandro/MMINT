@@ -48,13 +48,13 @@ import com.parctechnologies.eclipse.CompoundTerm;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
@@ -165,7 +165,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 		String oclConsistencyConstraint = (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) ?
 			oclConstraint.substring(oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR) + 1, oclConstraint.length()) :
 			oclConstraint;
-		while (!MultiModelTypeHierarchy.isRootType(modelType)) {
+		while (!MIDTypeHierarchy.isRootType(modelType)) {
 			ExtendibleElementConstraint constraint = modelType.getConstraint();
 			if (constraint != null && constraint.getLanguage().equals("OCL") && constraint.getImplementation() != null && !constraint.getImplementation().equals("")) {
 				oclConsistencyConstraint += " and ";
@@ -177,7 +177,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 		}
 		// a constraint on model rel must be consistent with endpoints
 		if (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-			return checkConstraintConsistency(MultiModelTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
+			return checkConstraintConsistency(MIDTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
 		}
 		// flatten hierarchy and add constraint as annotation into the metamodel
 		ResourceSet flatResourceSet = new ResourceSetImpl();
@@ -189,16 +189,16 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 		EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		newEAnnotation.setSource(EcorePackage.eNS_URI);
 		EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
-		newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
+		newEAnnotationDetails.put(MIDTypeFactory.ECORE_VALIDATION_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
 		flatModelTypeObj.getEAnnotations().add(newEAnnotation);
 		EClass modelTypeRootObj = (EClass) flatModelTypeObj.getEClassifiers().get(0);
 		newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		newEAnnotation.setSource(EcorePackage.eNS_URI);
 		newEAnnotationDetails = newEAnnotation.getDetails();
-		newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_CONSTRAINTS, ECORE_PIVOT_CONSISTENCYCONSTRAINT);
+		newEAnnotationDetails.put(MIDTypeFactory.ECORE_VALIDATION_CONSTRAINTS, ECORE_PIVOT_CONSISTENCYCONSTRAINT);
 		modelTypeRootObj.getEAnnotations().add(newEAnnotation);
 		newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		newEAnnotation.setSource(MultiModelTypeFactory.ECORE_PIVOT_URI);
+		newEAnnotation.setSource(MIDTypeFactory.ECORE_PIVOT_URI);
 		newEAnnotationDetails = newEAnnotation.getDetails();
 		newEAnnotationDetails.put(ECORE_PIVOT_CONSISTENCYCONSTRAINT, oclConsistencyConstraint);
 		modelTypeRootObj.getEAnnotations().add(newEAnnotation);
@@ -218,7 +218,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			if (!resultLocation.exists()) {
 				resultLocation.create(true, true, null);
 			}
-			MultiModelUtils.writeModelFile(flatModelTypeObj, flatUri, true);
+			MIDUtils.writeModelFile(flatModelTypeObj, flatUri, true);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);

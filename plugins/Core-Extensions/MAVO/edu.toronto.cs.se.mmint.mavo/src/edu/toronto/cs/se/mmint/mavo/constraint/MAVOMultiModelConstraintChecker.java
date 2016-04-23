@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 
 public class MAVOMultiModelConstraintChecker {
@@ -35,7 +35,7 @@ public class MAVOMultiModelConstraintChecker {
 	public static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
 
 		//TODO MMINT[MAVO] Register reasoners as mavo reasoner
-		return (IMAVOReasoningEngine) MultiModelConstraintChecker.getReasoner(constraintLanguage);
+		return (IMAVOReasoningEngine) MIDConstraintChecker.getReasoner(constraintLanguage);
 	}
 
 	public static @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull ExtendibleElement element, @Nullable ExtendibleElementConstraint constraint) {

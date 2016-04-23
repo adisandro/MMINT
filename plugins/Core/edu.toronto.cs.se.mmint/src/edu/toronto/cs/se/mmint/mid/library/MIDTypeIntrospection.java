@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTypeIntrospection {
+public class MIDTypeIntrospection {
 
 	public static EObject getPointer(Resource resource, URI emfUri) throws Exception {
 

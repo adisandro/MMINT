@@ -19,14 +19,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to change a model element reference of a binary mapping link.
@@ -61,8 +61,8 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				!MultiModelTypeHierarchy.isRootType(getLink().getObject())
+				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!MIDTypeHierarchy.isRootType(getLink().getObject())
 			);
 	}
 
@@ -75,15 +75,15 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = MultiModelConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
 
 		return
 			super.canReorientSource() && ((
 				instance &&
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(0), getNewSource())) != null
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(0), getNewSource())) != null
 			) || (
 				!instance &&
-				MultiModelConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), getNewSource(), null)
+				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), getNewSource(), null)
 			));
 	}
 
@@ -96,28 +96,28 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = MultiModelConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
 
 		return
 			super.canReorientTarget() && ((
 				instance &&
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(1), getNewTarget())) != null
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(1), getNewTarget())) != null
 			) || (
 				!instance &&
-				MultiModelConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), null, getNewTarget())
+				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), null, getNewTarget())
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
 
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
 			containerMappingRef.getModelElemEndpointRefs().get(0) :
 			containerMappingRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
 	}
 
-	protected void doExecuteTypesLevel(BinaryMappingReference containerMappingTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteTypesLevel(BinaryMappingReference containerMappingTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
 
 		boolean wasOverriding = false;
 		ModelElementEndpointReference oldModelElemTypeEndpointRef = null;
@@ -137,7 +137,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 			}
 		}
 
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerMappingTypeRef, targetModelElemTypeRef);
+		ModelElementEndpoint modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(containerMappingTypeRef, targetModelElemTypeRef);
 		if (modelElemTypeEndpoint == null) {
 			if (wasOverriding) { // was overriding, becomes non-overriding
 				oldModelElemTypeEndpointRef.deleteTypeAndReference(true);
@@ -152,7 +152,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
-				String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
+				String newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
 				if (isBinarySrc && containerMappingTypeRef.getModelElemEndpointRefs().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelElementEndpointReference tgtModelElemTypeEndpointRef = containerMappingTypeRef.getModelElemEndpointRefs().get(0);
 					tgtModelElemTypeEndpointRef.deleteTypeAndReference(true);
@@ -178,7 +178,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel(getLink(), getNewSource(), true);
 			}
 			else {
@@ -187,7 +187,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -207,7 +207,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
 			}
 			else {
@@ -216,7 +216,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

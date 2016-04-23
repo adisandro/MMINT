@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -61,7 +61,7 @@ public class ModelMatch extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		matchAttribute = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
+		matchAttribute = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class ModelMatch extends OperatorImpl {
 
 		Object modelObjAttr;
 		try {
-			modelObjAttr = MultiModelUtils.getModelObjFeature(modelObj, matchAttribute);
+			modelObjAttr = MIDUtils.getModelObjFeature(modelObj, matchAttribute);
 			if (modelObjAttr != null && modelObjAttr instanceof String) {
 				Set<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
 				if (modelObjs == null) {
@@ -105,8 +105,8 @@ public class ModelMatch extends OperatorImpl {
 
 	protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
-		Mapping rootMappingType = MultiModelTypeHierarchy.getRootMappingType();
-		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
+		Mapping rootMappingType = MIDTypeHierarchy.getRootMappingType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MIDTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
 			Set<EObject> modelObjs = entry.getValue();
 			if (modelObjs.size() < 2) {
@@ -130,11 +130,11 @@ public class ModelMatch extends OperatorImpl {
 
 		// create model relationship among models
 		ModelRel matchRel = (models.size() == 2) ?
-			MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstance(null, instanceMID) :
-			(ModelRel) MultiModelTypeHierarchy.getRootModelRelType().createInstance(null, instanceMID);
+			MIDTypeHierarchy.getRootModelRelType().createBinaryInstance(null, instanceMID) :
+			(ModelRel) MIDTypeHierarchy.getRootModelRelType().createInstance(null, instanceMID);
 		matchRel.setName(MODELREL_NAME);
 		// loop through selected models
-		ModelEndpoint rootModelTypeEndpoint = MultiModelTypeHierarchy.getRootModelTypeEndpoint();
+		ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
 		Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();
 		Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
 		for (Model model : models) {

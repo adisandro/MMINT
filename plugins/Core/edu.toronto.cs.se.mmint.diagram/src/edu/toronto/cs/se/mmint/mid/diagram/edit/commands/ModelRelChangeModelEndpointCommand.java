@@ -19,14 +19,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to change a model of a mapping reference.
@@ -60,8 +60,8 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				!MultiModelTypeHierarchy.isRootType(getLink())
+				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!MIDTypeHierarchy.isRootType(getLink())
 			);
 	}
 
@@ -76,8 +76,8 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		return
 			super.canReorientSource() && (
-				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getNewSource(), null, getLink().getTarget())) != null
+				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getNewSource(), null, getLink().getTarget())) != null
 			);
 	}
 
@@ -91,14 +91,14 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		return
 			super.canReorientTarget() && (
-				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints((ModelRel) getLink().eContainer(), getLink(), (Model) getNewTarget())) != null
+				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints((ModelRel) getLink().eContainer(), getLink(), (Model) getNewTarget())) != null
 			);
 	}
 
-	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
 			modelTypeEndpointRef.getObject().createInstanceAndReference(model, modelRel);
@@ -110,7 +110,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 	protected void doExecuteTypesLevel(ModelRel modelRelType, Model modelType, boolean isFullDelete) throws MMINTException {
 
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
+		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
 		if (isFullDelete) {
 			getLink().deleteTypeAndReference(isFullDelete);
 			modelTypeEndpoint.createSubtypeAndReference(getLink().getName(), modelType, false, modelRelType);
@@ -132,7 +132,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel(getNewSource(), getLink().getTarget(), true);
 			}
 			else {
@@ -141,7 +141,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -161,7 +161,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
 			}
 			else {
@@ -170,7 +170,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

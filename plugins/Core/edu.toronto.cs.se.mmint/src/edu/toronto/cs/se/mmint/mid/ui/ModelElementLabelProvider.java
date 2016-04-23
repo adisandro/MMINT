@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 
 public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
@@ -40,7 +40,7 @@ public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 			if (object instanceof AttributeValueWrapperItemProvider) {
 				object = new PrimitiveEObjectWrapper((AttributeValueWrapperItemProvider) object);
 			}
-			EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo((EObject) object, MIDLevel.INSTANCES);
+			EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo((EObject) object, MIDLevel.INSTANCES);
 			text = eInfo.toInstanceString();
 			if (object instanceof PrimitiveEObjectWrapper) {
 				text = text.replace(MMINT.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER, ((PrimitiveEObjectWrapper) object).getValue().toString());

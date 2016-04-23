@@ -29,17 +29,17 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -88,13 +88,13 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 			}
 			// find containment based on model element types first, then fallback to first one available
-			String srcModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MIDLevel.TYPES)[1];
-			ModelElementReference srcModelElemTypeContainment = MultiModelTypeHierarchy.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
+			String srcModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MIDLevel.TYPES)[1];
+			ModelElementReference srcModelElemTypeContainment = MIDTypeHierarchy.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
 			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
-				if (MultiModelConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
-					String tgtModelElemTypeContainmentUri = MultiModelRegistry.getModelAndModelElementUris(containment, MIDLevel.TYPES)[1];
-					ModelElementReference tgtModelElemTypeContainment = MultiModelTypeHierarchy.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
+				if (MIDConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
+					String tgtModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(containment, MIDLevel.TYPES)[1];
+					ModelElementReference tgtModelElemTypeContainment = MIDTypeHierarchy.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
 					if (
 						tgtModelElemTypeContainment == null ||
 						srcModelElemTypeContainment.getModelElemEndpointRefs().get(0).eContainer() != tgtModelElemTypeContainment.getModelElemEndpointRefs().get(0).eContainer()
@@ -140,19 +140,19 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 						if (tgtRefModelObj == null) {
 							continue;
 						}
-						MultiModelUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
+						MIDUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
 				}
 				else {
 					EObject srcRefModelObj = (EObject) value;
 					EObject tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
 					if (tgtRefModelObj != null) {
-						MultiModelUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
+						MIDUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
 				}
 			}
 			else { // srcFeature instanceof EAttribute
-				MultiModelUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, value);
+				MIDUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, value);
 				primitiveSrcModelObjs.add(new PrimitiveEObjectWrapper(srcModelObj, srcFeature, value));
 				primitiveTgtModelObjs.add(new PrimitiveEObjectWrapper(tgtModelObj, tgtFeature, value));
 			}
@@ -172,11 +172,11 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		// first pass: get model objects to be transformed
 		while (srcModelObjsIter.hasNext()) {
 			EObject srcModelObj = srcModelObjsIter.next();
-			ModelElement srcModelElemType = MultiModelConstraintChecker.getAllowedModelElementType(traceModelRel.getModelEndpointRefs().get(0), srcModelObj);
+			ModelElement srcModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceModelRel.getModelEndpointRefs().get(0), srcModelObj);
 			if (srcModelElemType == null) {
 				continue;
 			}
-			ModelElementReference srcModelElemTypeRef = MultiModelTypeHierarchy.getReference(srcModelElemType.getUri(), srcModelTypeEndpointRef.getModelElemRefs());
+			ModelElementReference srcModelElemTypeRef = MIDTypeHierarchy.getReference(srcModelElemType.getUri(), srcModelTypeEndpointRef.getModelElemRefs());
 			ModelElementReference tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
@@ -196,7 +196,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				EMFInfo srcModelElemTypeEInfo = srcModelElemTypeRef.getObject().getEInfo();
 				if (
 					srcModelElemTypeEInfo.getFeatureName() == null ||
-					!MultiModelConstraintChecker.instanceofEMFClass(srcModelObj, srcModelElemTypeEInfo.getClassName())
+					!MIDConstraintChecker.instanceofEMFClass(srcModelObj, srcModelElemTypeEInfo.getClassName())
 				) {
 					continue;
 				}
@@ -209,14 +209,14 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		MultiModelUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
+		MIDUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
 			targetModelElemRefs.add(srcModelElemRef);
 			ModelElementReference tgtModelElemRef = traceModelRel.getModelEndpointRefs().get(1).createModelElementInstanceAndReference(tgtModelObjEntry.getValue(), null);
 			targetModelElemRefs.add(tgtModelElemRef);
-			Mapping mappingType = MultiModelTypeRegistry.getType(MultiModelConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
+			Mapping mappingType = MIDTypeRegistry.getType(MIDConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
 			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
 			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
@@ -233,14 +233,14 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
-			MultiModelConstraintChecker.isAllowedModelEndpoint(traceModelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())
+			MIDConstraintChecker.isAllowedModelEndpoint(traceModelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())
 		) ?
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.replaceFileExtensionInUri(
-				MultiModelUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
+		tgtModelUri = MIDUtils.getUniqueUri(
+			MIDUtils.replaceFileExtensionInUri(
+				MIDUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);
@@ -275,9 +275,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		Model srcModel = inputs.get(0).getModel();
 		// check 2: allowed source model
 		if (
-			!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
+			!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
 				modelRelType instanceof BinaryModelRel || // mandatory direction
-				!MultiModelConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
 			)
 		) {
 			return false;

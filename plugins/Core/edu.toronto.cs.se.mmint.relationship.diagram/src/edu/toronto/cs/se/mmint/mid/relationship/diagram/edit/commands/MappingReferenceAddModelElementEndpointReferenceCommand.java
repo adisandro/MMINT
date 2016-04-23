@@ -23,13 +23,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to add a model element reference to a link.
@@ -65,32 +65,32 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MultiModelConstraintChecker.isInstancesLevel(getSource());
+		boolean instance = MIDConstraintChecker.isInstancesLevel(getSource());
 
 		return
 			super.canExecute() && ((
 				instance &&
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), null, getTarget())) != null
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), null, getTarget())) != null
 			) || (
 				!instance &&
-				!MultiModelTypeHierarchy.isRootType(getSource().getObject()) &&
-				(getTarget() == null || !MultiModelTypeHierarchy.isRootType(getTarget().getObject()))
+				!MIDTypeHierarchy.isRootType(getSource().getObject()) &&
+				(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget().getObject()))
 			));
 	}
 
-	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
 		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), getSource());
 
 		return newModelElemEndpointRef;
 	}
 
-	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelElementReference tgtModelElemTypeRef = getTarget();
-		String newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), tgtModelElemTypeRef);
+		String newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+		ModelElementEndpoint modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), tgtModelElemTypeRef);
 		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
@@ -104,7 +104,7 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelElementEndpointReference newElement = (MultiModelConstraintChecker.isInstancesLevel(getSource())) ?
+			ModelElementEndpointReference newElement = (MIDConstraintChecker.isInstancesLevel(getSource())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
@@ -115,7 +115,7 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

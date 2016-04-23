@@ -44,9 +44,9 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -93,7 +93,7 @@ public class MMINT implements MMINTConstants {
 	/** The singleton instance. */
 	static final MMINT INSTANCE = new MMINT();
 	/** The default "heavy" type factory. */
-	static MultiModelHeavyTypeFactory typeFactory;
+	static MIDHeavyTypeFactory typeFactory;
 	/** The Type MID in memory. */
 	static MID cachedTypeMID;
 	/**	The table for subtyping in the repository. */
@@ -233,9 +233,9 @@ public class MMINT implements MMINTConstants {
 		String srcModelTypeUri = null, tgtModelTypeUri = null;
 		if (isBinary) {
 			srcModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
-			((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(srcModelTypeUri), true);
+			((BinaryModelRel) newModelRelType).addModelType(MIDTypeRegistry.<Model>getType(srcModelTypeUri), true);
 			tgtModelTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
-			((BinaryModelRel) newModelRelType).addModelType(MultiModelTypeRegistry.<Model>getType(tgtModelTypeUri), false);
+			((BinaryModelRel) newModelRelType).addModelType(MIDTypeRegistry.<Model>getType(tgtModelTypeUri), false);
 		}
 		// model type endpoints
 		IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
@@ -243,7 +243,7 @@ public class MMINT implements MMINTConstants {
 			extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
 			IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
 			if (targetModelType == null) {
 				MMINTException.print(IStatus.WARNING, "Target model type " + targetModelTypeUri + " can't be found, skipping it", null);
 				continue;
@@ -259,7 +259,7 @@ public class MMINT implements MMINTConstants {
 			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
 			String upperBoundString = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
 			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
-			MultiModelTypeFactory.addTypeEndpointCardinality(
+			MIDTypeFactory.addTypeEndpointCardinality(
 				newModelTypeEndpointRef.getObject(),
 				lowerBound,
 				upperBound
@@ -269,10 +269,10 @@ public class MMINT implements MMINTConstants {
 			IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
 			for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
 				extensionType = new ExtensionType(modelElemTypeConfig, typeFactory);
-				ModelElement newModelElemType = MultiModelTypeRegistry.getType(extensionType.getUri());
+				ModelElement newModelElemType = MIDTypeRegistry.getType(extensionType.getUri());
 				if (newModelElemType == null) { // create new model element type
-					EObject modelElemTypeObj = MultiModelTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
-					EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelElemTypeObj, MIDLevel.TYPES);
+					EObject modelElemTypeObj = MIDTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
+					EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(modelElemTypeObj, MIDLevel.TYPES);
 					try {
 						newModelElemType = extensionType.getFactory().createHeavyModelElementType(
 							extensionType,
@@ -287,7 +287,7 @@ public class MMINT implements MMINTConstants {
 				}
 				ModelElementReference modelElemTypeRef = (extensionType.getSupertypeUri() == null) ?
 					null :
-					MultiModelTypeHierarchy.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
+					MIDTypeHierarchy.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
 				newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
 			}
 		}
@@ -313,17 +313,17 @@ public class MMINT implements MMINTConstants {
 			String srcModelElemTypeUri = null, tgtModelElemTypeUri = null;
 			if (isBinary) {
 				srcModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
-				ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(
-					((Model) MultiModelTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
+				ModelEndpointReference containerModelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(
+					((Model) MIDTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
 					newModelRelType.getModelEndpointRefs()
 				).get(0);
-				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
 				tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
-				containerModelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(
-					((Model) MultiModelTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
+				containerModelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(
+					((Model) MIDTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
 					newModelRelType.getModelEndpointRefs()
 				).get(0);
-				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MultiModelTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
 			}
 			// model element type endpoints
 			IConfigurationElement[] modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MODELRELS_MAPPINGTYPE_CHILD_MODELELEMTYPEENDPOINT);
@@ -331,14 +331,14 @@ public class MMINT implements MMINTConstants {
 				extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
 				IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 				String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-				ModelElement modelElemType = MultiModelTypeRegistry.getType(targetModelElemTypeUri);
+				ModelElement modelElemType = MIDTypeRegistry.getType(targetModelElemTypeUri);
 				if (modelElemType == null) {
 					MMINTException.print(IStatus.WARNING, "Target model element type " + targetModelElemTypeUri + " can't be found, skipping it", null);
 					continue;
 				}
 				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
-				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
-				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
+				ModelElementReference newModelElemTypeRef = MIDTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 				boolean isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
 				ModelElementEndpointReference newModelElemTypeEndpointRef = extensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 					extensionType,
@@ -350,7 +350,7 @@ public class MMINT implements MMINTConstants {
 				int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
 				String upperBoundString = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
 				int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
-				MultiModelTypeFactory.addTypeEndpointCardinality(
+				MIDTypeFactory.addTypeEndpointCardinality(
 					newModelElemTypeEndpointRef.getObject(),
 					lowerBound,
 					upperBound
@@ -413,7 +413,7 @@ public class MMINT implements MMINTConstants {
 			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
 			IConfigurationElement modelTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-			Model targetModelType = MultiModelTypeRegistry.getType(targetModelTypeUri);
+			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
 			if (targetModelType == null) {
 				throw new MMINTException("Target model type " + targetModelTypeUri + " can't be found");
 			}
@@ -431,7 +431,7 @@ public class MMINT implements MMINTConstants {
 				MMINTException.print(IStatus.WARNING, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
 				upperBound = 1;
 			}
-			MultiModelTypeFactory.addTypeEndpointCardinality(
+			MIDTypeFactory.addTypeEndpointCardinality(
 				newModelTypeEndpoint,
 				lowerBound,
 				upperBound
@@ -456,7 +456,7 @@ public class MMINT implements MMINTConstants {
 			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
 			IConfigurationElement genericTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
-			GenericElement targetGenericType = MultiModelTypeRegistry.getType(targetGenericTypeUri);
+			GenericElement targetGenericType = MIDTypeRegistry.getType(targetGenericTypeUri);
 			if (targetGenericType == null) {
 				throw new MMINTException("Target generic type " + targetGenericTypeUri + " can't be found");
 			}
@@ -469,7 +469,7 @@ public class MMINT implements MMINTConstants {
 			int lowerBound = (lowerBoundString == null) ? 1 : Integer.parseInt(lowerBoundString);
 			String upperBoundString = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_UPPERBOUND);
 			int upperBound = (upperBoundString == null) ? 1 : Integer.parseInt(upperBoundString);
-			MultiModelTypeFactory.addTypeEndpointCardinality(
+			MIDTypeFactory.addTypeEndpointCardinality(
 				newGenericTypeEndpoint,
 				lowerBound,
 				upperBound
@@ -508,7 +508,7 @@ public class MMINT implements MMINTConstants {
 			createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
 		if (newOperatorType instanceof ConversionOperator) {
-			MultiModelTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);
+			MIDTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);
 		}
 
 		return newOperatorType;
@@ -596,9 +596,9 @@ public class MMINT implements MMINTConstants {
 		for (ExtendibleElement type : typeMID.getExtendibleTable().values()) {
 			createSubtypeHierarchy(type, type, subtypeTable);
 		}
-		for (Model modelType : MultiModelRegistry.getModels(typeMID)) {
+		for (Model modelType : MIDRegistry.getModels(typeMID)) {
 			createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelType.getUri()));
-			for (Model modelSubtype : MultiModelTypeHierarchy.getSubtypes(modelType, typeMID)) {
+			for (Model modelSubtype : MIDTypeHierarchy.getSubtypes(modelType, typeMID)) {
 				createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelSubtype.getUri()));
 			}
 		}
@@ -640,7 +640,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	private Model createDynamicModelType(Model dynamicModelType) {
 
-		Model modelType = MultiModelTypeRegistry.getType(dynamicModelType.getSupertype().getUri());
+		Model modelType = MIDTypeRegistry.getType(dynamicModelType.getSupertype().getUri());
 		if (modelType == null && dynamicModelType.getSupertype().isDynamic()) {
 			modelType = createDynamicModelType(dynamicModelType.getSupertype());
 		}
@@ -658,7 +658,7 @@ public class MMINT implements MMINTConstants {
 					dynamicModelType.getName(),
 					dynamicModelType.getConstraint().getLanguage(),
 					dynamicModelType.getConstraint().getImplementation(),
-					(MultiModelTypeRegistry.getExtendedMetamodelUri(dynamicModelType) != null)
+					(MIDTypeRegistry.getExtendedMetamodelUri(dynamicModelType) != null)
 				);
 			}
 		}
@@ -677,7 +677,7 @@ public class MMINT implements MMINTConstants {
 
 		MID typeMID;
 		try {
-			typeMID = (MID) MultiModelUtils.readModelFileInState(TYPEMID_FILENAME);
+			typeMID = (MID) MIDUtils.readModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
@@ -686,19 +686,19 @@ public class MMINT implements MMINTConstants {
 
 		// do model types first
 		//TODO MMINT[MISC] this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		for (Model dynamicModelType : MultiModelRegistry.getModels(typeMID)) {
+		for (Model dynamicModelType : MIDRegistry.getModels(typeMID)) {
 			if (
 				!(dynamicModelType instanceof ModelRel) &&
 				dynamicModelType.isDynamic() &&
-				MultiModelTypeRegistry.getType(dynamicModelType.getUri()) == null
+				MIDTypeRegistry.getType(dynamicModelType.getUri()) == null
 			) {
 				createDynamicModelType(dynamicModelType);
 			}
 		}
-		for (ModelRel dynamicModelRelType : MultiModelRegistry.getModelRels(typeMID)) {
+		for (ModelRel dynamicModelRelType : MIDRegistry.getModelRels(typeMID)) {
 			if (
 				dynamicModelRelType.isDynamic() &&
-				MultiModelTypeRegistry.getType(dynamicModelRelType.getUri()) == null
+				MIDTypeRegistry.getType(dynamicModelRelType.getUri()) == null
 			) {
 				createDynamicModelType(dynamicModelRelType);
 			}
@@ -737,7 +737,7 @@ public class MMINT implements MMINTConstants {
 		cachedTypeMID.setLevel(MIDLevel.TYPES);
 		bundleTable = new HashMap<>();
 		multipleInheritanceTable = new HashMap<>();
-		typeFactory = new MultiModelHeavyTypeFactory();
+		typeFactory = new MIDHeavyTypeFactory();
 		languageReasoners = new HashMap<>();
 		activeInstanceMIDFile = null;
 		IConfigurationElement[] configs;
@@ -746,7 +746,7 @@ public class MMINT implements MMINTConstants {
 
 		// model types
 		configs = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_MODEL_URI);
+		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_MODEL_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
@@ -759,7 +759,7 @@ public class MMINT implements MMINTConstants {
 		}
 		// model relationship types
 		configs = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
+		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
@@ -772,13 +772,13 @@ public class MMINT implements MMINTConstants {
 		}
 		// editor types
 		configs = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_EDITOR_URI);
+		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_EDITOR_URI);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
 				Editor editorType = createEditorType(config);
 				bundleTable.put(editorType.getUri(), config.getContributor().getName());
-				MultiModelHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+				MIDHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
@@ -786,7 +786,7 @@ public class MMINT implements MMINTConstants {
 		}
 		// operator types
 		configs = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
-		extensionsIter = MultiModelTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
+		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
@@ -868,7 +868,7 @@ public class MMINT implements MMINTConstants {
 		copySubtypeTable(subtypes, subtypesMID);
 		copyConversionTable(conversions, conversionsMID);
 		try {
-			MultiModelUtils.writeModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
+			MIDUtils.writeModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID file", e);

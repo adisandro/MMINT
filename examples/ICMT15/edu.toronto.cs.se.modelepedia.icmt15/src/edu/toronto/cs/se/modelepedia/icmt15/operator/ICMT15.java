@@ -32,8 +32,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -73,13 +73,13 @@ public class ICMT15 extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		modelMultiplier = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELMULTIPLIER);
-		variablesMultiplier = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_VARIABLESMULTIPLIER);
-		idAttribute = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		constraint = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT);
-		variables = MultiModelOperatorUtils.getStringPropertyList(inputProperties, PROPERTY_IN_VARIABLES);
-		clausesToVariablesRatio = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_CLAUSESTOVARIABLESRATIO);
-		presenceConditionsToModelSizeRatio = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO);
+		modelMultiplier = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELMULTIPLIER);
+		variablesMultiplier = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_VARIABLESMULTIPLIER);
+		idAttribute = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		constraint = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT);
+		variables = MIDOperatorUtils.getStringPropertyList(inputProperties, PROPERTY_IN_VARIABLES);
+		clausesToVariablesRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_CLAUSESTOVARIABLESRATIO);
+		presenceConditionsToModelSizeRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		return
 			modelObj.eClass().getName() +
 			CSV_SEPARATOR +
-			MultiModelUtils.getModelObjFeature(modelObj, idAttribute) +
+			MIDUtils.getModelObjFeature(modelObj, idAttribute) +
 			CSV_SEPARATOR;
 	}
 
@@ -153,10 +153,10 @@ public class ICMT15 extends RandomOperatorImpl {
 			EObject modelObjCopy = iter.next();
 			String id = null, newId = null;
 			try {
-				id = (String) MultiModelUtils.getModelObjFeature(modelObjCopy, idAttribute);
+				id = (String) MIDUtils.getModelObjFeature(modelObjCopy, idAttribute);
 				if (id != null) {
 					newId = id + sliceIdSuffix;
-					MultiModelUtils.setModelObjFeature(modelObjCopy, idAttribute, newId);
+					MIDUtils.setModelObjFeature(modelObjCopy, idAttribute, newId);
 				}
 			}
 			catch (MMINTException e) {
@@ -214,9 +214,9 @@ public class ICMT15 extends RandomOperatorImpl {
 			changeCopyIds(inputRootModelObjCopy, "_" + i);
 			for (EReference containmentFeature : inputRootModelObjCopy.eClass().getEAllContainments()) {
 				@SuppressWarnings("unchecked")
-				EList<EObject> inputModelObjsCopy = (EList<EObject>) MultiModelUtils.getModelObjFeature(inputRootModelObjCopy, containmentFeature.getName());
+				EList<EObject> inputModelObjsCopy = (EList<EObject>) MIDUtils.getModelObjFeature(inputRootModelObjCopy, containmentFeature.getName());
 				@SuppressWarnings("unchecked")
-				EList<EObject> outputModelObjs = (EList<EObject>) MultiModelUtils.getModelObjFeature(outputRootModelObj, containmentFeature.getName());
+				EList<EObject> outputModelObjs = (EList<EObject>) MIDUtils.getModelObjFeature(outputRootModelObj, containmentFeature.getName());
 				outputModelObjs.addAll(inputModelObjsCopy);
 			}
 		}
@@ -238,15 +238,15 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		// output
 		String uri = (getInputSubdir() != null) ?
-			MultiModelUtils.replaceLastSegmentInUri(
+			MIDUtils.replaceLastSegmentInUri(
 				inputModel.getUri(),
-				getInputSubdir() + MMINT.URI_SEPARATOR + MultiModelUtils.getLastSegmentFromUri(inputModel.getUri())
+				getInputSubdir() + MMINT.URI_SEPARATOR + MIDUtils.getLastSegmentFromUri(inputModel.getUri())
 			) :
 			inputModel.getUri();
-		String outputModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
-		MultiModelUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
+		String outputModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
+		MIDUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
 		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, instanceMID);
-		MultiModelUtils.createTextFile(MultiModelUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
+		MIDUtils.createTextFile(MIDUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, outputModel);
 

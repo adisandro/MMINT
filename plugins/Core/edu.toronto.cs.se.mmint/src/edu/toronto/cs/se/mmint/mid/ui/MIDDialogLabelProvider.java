@@ -27,11 +27,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelDialogLabelProvider implements ILabelProvider {
+public class MIDDialogLabelProvider implements ILabelProvider {
 
 	private AdapterFactoryLabelProvider labelProvider;
 
-	public MultiModelDialogLabelProvider() {
+	public MIDDialogLabelProvider() {
 
 		ComposedAdapterFactory adapterFactory = GMFDiagramUtils.getAdapterFactory();
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);

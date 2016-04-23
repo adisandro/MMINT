@@ -18,7 +18,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 
@@ -40,7 +40,7 @@ public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 			if (!(umlModelObj instanceof Component)) {
 				continue;
 			}
-			ModelElementReference modelElemRef = MultiModelRegistry.getModelElementReference(deplRel.getModelEndpointRefs().get(0), umlModelObj);
+			ModelElementReference modelElemRef = MIDRegistry.getModelElementReference(deplRel.getModelEndpointRefs().get(0), umlModelObj);
 			if (modelElemRef == null || modelElemRef.getModelElemEndpointRefs().isEmpty()) {
 				return false;
 			}

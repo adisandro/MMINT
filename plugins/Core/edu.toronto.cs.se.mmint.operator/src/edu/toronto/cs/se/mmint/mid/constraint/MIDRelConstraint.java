@@ -15,7 +15,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class MIDRelConstraint implements IJavaModelConstraint {
@@ -25,13 +25,13 @@ public class MIDRelConstraint implements IJavaModelConstraint {
 
 		try {
 			MID instanceMID = (MID) model.getEMFInstanceRoot();
-			if (MultiModelRegistry.getOperators(instanceMID).size() > 0) {
+			if (MIDRegistry.getOperators(instanceMID).size() > 0) {
 				return false;
 			}
-			if (MultiModelRegistry.getModelRels(instanceMID).size() == 0) {
+			if (MIDRegistry.getModelRels(instanceMID).size() == 0) {
 				return false;
 			}
-			for (Model instanceMIDModel : MultiModelRegistry.getModels(instanceMID)) {
+			for (Model instanceMIDModel : MIDRegistry.getModels(instanceMID)) {
 				if (!(instanceMIDModel instanceof ModelRel)) {
 					return false;
 				}

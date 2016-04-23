@@ -31,13 +31,13 @@ import org.eclipse.emf.henshin.trace.Trace;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
@@ -59,19 +59,19 @@ public class HenshinTransformation extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		henshinFileName = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
+		henshinFileName = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
 	}
 
 	private EObject transform(Model originalModel) throws MMINTException {
 
 		// init
-		String originalModelDirectoryUri = MultiModelUtils.prependWorkspaceToUri(
-			MultiModelUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
+		String originalModelDirectoryUri = MIDUtils.prependWorkspaceToUri(
+			MIDUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(originalModelDirectoryUri);
 		Module hModule = hResourceSet.getModule(henshinFileName, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MultiModelUtils.getLastSegmentFromUri(
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(
 			originalModel.getUri())));
 		// apply rules
 		for (Unit hUnit : hModule.getUnits()) {
@@ -115,17 +115,17 @@ public class HenshinTransformation extends OperatorImpl {
 		EObject transformedRootModelObj = transform(origModel);
 
 		// output
-		String transformedModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedModelUri = MIDUtils.getUniqueUri(
+			MIDUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
-		Model transformedModelType = MultiModelTypeRegistry.getType(
+		MIDUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
+		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedModelUri,
 			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
 			origModel,
 			transformedModel,

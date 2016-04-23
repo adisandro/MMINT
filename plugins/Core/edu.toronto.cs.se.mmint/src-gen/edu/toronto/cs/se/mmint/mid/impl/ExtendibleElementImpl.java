@@ -32,9 +32,9 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -42,8 +42,8 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -609,7 +609,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	public String toString() {
 
 		String label = (getName() == null) ? "" : getName();
-		if (MultiModelConstraintChecker.isInstancesLevel(this)) {
+		if (MIDConstraintChecker.isInstancesLevel(this)) {
 			ExtendibleElement type = getMetatype();
 			String typeLabel = (type == null) ? "NOTYPE" : type.getName();
 			label += " : " + typeLabel;
@@ -624,7 +624,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public ExtendibleElement getMetatype() {
-		return MultiModelTypeRegistry.getType(getMetatypeUri());
+		return MIDTypeRegistry.getType(getMetatypeUri());
 	}
 
 	/**
@@ -786,18 +786,18 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 			for (T filteredSubtype : filteredSubtypes) {
 				if (
 					metamodelUri.equals(filteredSubtype.getUri()) ||
-					MultiModelTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), metamodelUri) ||
-					MultiModelTypeHierarchy.isSubtypeOf(metamodelUri, filteredSubtype.getUri())
+					MIDTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), metamodelUri) ||
+					MIDTypeHierarchy.isSubtypeOf(metamodelUri, filteredSubtype.getUri())
 				) {
 					metamodelSubtypes.add(filteredSubtype);
 				}
 				else { // try multiple inheritance
 					//TODO MMINT[MID] this is too tailored for UML_MAVO
-					for (String multipleInheritanceUri : MultiModelTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
+					for (String multipleInheritanceUri : MIDTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
 						if (
 							multipleInheritanceUri.equals(filteredSubtype.getUri()) ||
-							MultiModelTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), multipleInheritanceUri) ||
-							MultiModelTypeHierarchy.isSubtypeOf(multipleInheritanceUri, filteredSubtype.getUri())
+							MIDTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), multipleInheritanceUri) ||
+							MIDTypeHierarchy.isSubtypeOf(multipleInheritanceUri, filteredSubtype.getUri())
 						) {
 							metamodelSubtypes.add(filteredSubtype);
 						}
@@ -820,7 +820,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	private <T extends ExtendibleElement> void getRuntimeTypes(T type, List<T> types) {
 
 		// no need to validate root type
-		if (MultiModelTypeHierarchy.isRootType(type)) {
+		if (MIDTypeHierarchy.isRootType(type)) {
 			types.add(type);
 			// first stop condition: model relationship or mapping, without endpoints
 			if (this instanceof ModelRel && ((ModelRel) this).getModelEndpoints().isEmpty()) {
@@ -849,7 +849,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		}
 
 		// recurse for each subtype
-		List<T> subtypes = this.filterSubtypes(type, MultiModelTypeHierarchy.getSubtypes(type));
+		List<T> subtypes = this.filterSubtypes(type, MIDTypeHierarchy.getSubtypes(type));
 		for (T subtype : subtypes) {
 			this.getRuntimeTypes(subtype, types);
 		}
@@ -863,7 +863,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 
 		MMINTException.mustBeInstance(this);
 
-		List<T> cachedTypes = (List<T>) MultiModelTypeHierarchy.getCachedRuntimeTypes(this);
+		List<T> cachedTypes = (List<T>) MIDTypeHierarchy.getCachedRuntimeTypes(this);
 		if (cachedTypes != null) {
 			return new BasicEList<T>(cachedTypes);
 		}
@@ -871,13 +871,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		EList<T> types = new BasicEList<>();
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED))) {
 			// start from root
-			T rootType = MultiModelTypeRegistry.getType(MultiModelTypeHierarchy.getRootTypeUri(this));
+			T rootType = MIDTypeRegistry.getType(MIDTypeHierarchy.getRootTypeUri(this));
 			this.getRuntimeTypes(rootType, types);
 		}
 		else {
 			types.add((T) this.getMetatype());
 		}
-		MultiModelTypeHierarchy.addCachedRuntimeTypes(this, types);
+		MIDTypeHierarchy.addCachedRuntimeTypes(this, types);
 
 		return types;
 	}
@@ -912,8 +912,8 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
-		MultiModelTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
+		MID typeMID = MIDRegistry.getMultiModel(this);
+		MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
 		newType.setDynamic(true);
 	}
 
@@ -970,7 +970,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void deleteType() throws MMINTException {
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		this.delete(getUri(), typeMID);
 	}
 
@@ -1096,7 +1096,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void deleteInstance() throws MMINTException {
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MIDRegistry.getMultiModel(this);
 		delete(getUri(), instanceMID);
 	}
 

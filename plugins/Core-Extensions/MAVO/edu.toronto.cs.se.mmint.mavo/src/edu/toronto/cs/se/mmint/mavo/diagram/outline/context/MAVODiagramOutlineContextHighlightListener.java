@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 
 public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
 
@@ -70,10 +70,10 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
+		String modelUri = MIDRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MID instanceMID : instanceMIDs.keySet()) {
-			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID);
+			model = MIDRegistry.getExtendibleElement(modelUri, instanceMID);
 			if (model != null) {
 				break;
 			}
@@ -102,7 +102,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			Diagram modelDiagram = MultiModelRegistry.getModelDiagram(model);
+			Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
 			if (mavoElemToHighlight instanceof MAVODecision) {
 				MAVOMultiModelConstraintChecker.highlightMAVODecision(modelDiagram, (MAVODecision) mavoElemToHighlight);
 			}

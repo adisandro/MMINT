@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 public class ExtendibleElementLabelParser extends MIDDiagramLabelParser {
@@ -33,7 +33,7 @@ public class ExtendibleElementLabelParser extends MIDDiagramLabelParser {
 			return element.toString();
 		}
 		String label = (element.getName() == null) ? "" : element.getName();
-		if (MultiModelConstraintChecker.isInstancesLevel(element)) {
+		if (MIDConstraintChecker.isInstancesLevel(element)) {
 			ExtendibleElement type = element.getMetatype();
 			String typeLabel = (type == null) ? EXTELEM_NULLTYPE : type.getName();
 			label += " : " + typeLabel;

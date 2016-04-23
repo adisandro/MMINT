@@ -15,7 +15,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 
 public class MIDOperConstraint implements IJavaModelConstraint {
 
@@ -24,10 +24,10 @@ public class MIDOperConstraint implements IJavaModelConstraint {
 
 		try {
 			MID instanceMID = (MID) model.getEMFInstanceRoot();
-			if (MultiModelRegistry.getModels(instanceMID).size() > 0) {
+			if (MIDRegistry.getModels(instanceMID).size() > 0) {
 				return false;
 			}
-			if (MultiModelRegistry.getOperators(instanceMID).size() == 0) {
+			if (MIDRegistry.getOperators(instanceMID).size() == 0) {
 				return false;
 			}
 			return true;

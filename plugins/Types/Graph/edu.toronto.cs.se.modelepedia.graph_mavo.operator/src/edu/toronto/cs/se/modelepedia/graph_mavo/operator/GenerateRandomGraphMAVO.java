@@ -24,14 +24,14 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
@@ -73,16 +73,16 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		maxModelObjs = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
-		minModelObjs = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
+		maxModelObjs = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
+		minModelObjs = MIDOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
 		if (minModelObjs > maxModelObjs) {
 			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
 		}
-		edgesToNodesRatio = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
-		percMavo = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAVO);
-		percMay = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
-		percSet = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCSET);
-		percVar = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
+		edgesToNodesRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
+		percMavo = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAVO);
+		percMay = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
+		percSet = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCSET);
+		percVar = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
 	}
 
 	@Override
@@ -202,9 +202,9 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		}
 
 		// output
-		String randomGraphModelUri = MultiModelUtils.replaceLastSegmentInUri(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
-		MultiModelUtils.writeModelFile(randomGraph, randomGraphModelUri, true);
-		Model graphModelType = MultiModelTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
+		String randomGraphModelUri = MIDUtils.replaceLastSegmentInUri(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
+		MIDUtils.writeModelFile(randomGraph, randomGraphModelUri, true);
+		Model graphModelType = MIDTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
 		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, randomGraphModel);

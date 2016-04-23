@@ -31,9 +31,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -41,9 +41,9 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -425,7 +425,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	protected void addSubtype(ModelRel newModelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation) throws MMINTException {
 
 		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
-		MultiModelTypeFactory.addModelRelType(newModelRelType, this);
+		MIDTypeFactory.addModelRelType(newModelRelType, this);
 	}
 
 	/**
@@ -485,69 +485,69 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			(ModelRel) this.createSubtype(origModelRelType.getName(), origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation(), false);
 
 		// model type endpoints
-		MID typeMID = MultiModelRegistry.getMultiModel(newModelRelType);
+		MID typeMID = MIDRegistry.getMultiModel(newModelRelType);
 		if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
-			Model newSrcModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), typeMID);
+			Model newSrcModelType = MIDRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), typeMID);
 			((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
-			Model newTgtModelType = MultiModelRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), typeMID);
+			Model newTgtModelType = MIDRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), typeMID);
 			((BinaryModelRel) newModelRelType).addModelType(newTgtModelType, false);
 		}
-		Iterator<ModelEndpoint> origModelTypeEndpointIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
+		Iterator<ModelEndpoint> origModelTypeEndpointIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
 		while (origModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
-			Model newModelType = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), typeMID);
-			ModelEndpoint modelTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), typeMID);
+			Model newModelType = MIDRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), typeMID);
+			ModelEndpoint modelTypeEndpoint = MIDRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), typeMID);
 			boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
 				true :
 				false;
 			modelTypeEndpoint.createSubtypeAndReference(origModelTypeEndpoint.getName(), newModelType, isBinarySrc, newModelRelType);
 		}
 		// model element types
-		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
+		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
 		while (origModelTypeEndpointRefIter.hasNext()) {
 			ModelEndpointReference origModelTypeEndpointRef = origModelTypeEndpointRefIter.next();
-			ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(origModelTypeEndpointRef, newModelRelType.getModelEndpointRefs());
-			Iterator<ModelElementReference> origModelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
+			ModelEndpointReference newModelTypeEndpointRef = MIDTypeHierarchy.getReference(origModelTypeEndpointRef, newModelRelType.getModelEndpointRefs());
+			Iterator<ModelElementReference> origModelElemTypeRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelTypeEndpointRef.getModelElemRefs());
 			while (origModelElemTypeRefIter.hasNext()) {
 				ModelElementReference origModelElemTypeRef = origModelElemTypeRefIter.next();
 				if (!origModelElemTypeRef.isModifiable()) { // already copied by createSubtype()
 					continue;
 				}
-				ModelElement modelElemType = MultiModelRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), typeMID);
+				ModelElement modelElemType = MIDRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), typeMID);
 				ModelEndpointReference newModelTypeEndpointRefSuper = null;
 				ModelElementReference modelElemTypeRef = null;
 				if (origModelElemTypeRef.getSupertypeRef() != null) {
-					newModelTypeEndpointRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.getSupertypeRef().eContainer(), newModelRelType.getModelEndpointRefs());
-					modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
+					newModelTypeEndpointRefSuper = MIDTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.getSupertypeRef().eContainer(), newModelRelType.getModelEndpointRefs());
+					modelElemTypeRef = MIDTypeHierarchy.getReference(modelElemType.getUri(), newModelTypeEndpointRefSuper.getModelElemRefs());
 				}
 				modelElemType.createSubtypeAndReference(modelElemTypeRef, origModelElemTypeRef.getUri(), origModelElemTypeRef.getObject().getName(), origModelElemTypeRef.getObject().getEInfo(), newModelTypeEndpointRef);
 			}
 		}
 		// mapping types
-		Iterator<Mapping> origMappingTypeIter = MultiModelTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getMappings());
+		Iterator<Mapping> origMappingTypeIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getMappings());
 		while (origMappingTypeIter.hasNext()) {
 			Mapping origMappingType = origMappingTypeIter.next();
-			MappingReference origMappingTypeRef = MultiModelTypeHierarchy.getReference(origMappingType.getUri(), origModelRelType.getMappingRefs());
-			Mapping mappingType = MultiModelRegistry.getExtendibleElement(origMappingType.getSupertype().getUri(), typeMID);
-			MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(origMappingType.getSupertype().getUri(), newModelRelType.getMappingRefs());
+			MappingReference origMappingTypeRef = MIDTypeHierarchy.getReference(origMappingType.getUri(), origModelRelType.getMappingRefs());
+			Mapping mappingType = MIDRegistry.getExtendibleElement(origMappingType.getSupertype().getUri(), typeMID);
+			MappingReference mappingTypeRef = MIDTypeHierarchy.getReference(origMappingType.getSupertype().getUri(), newModelRelType.getMappingRefs());
 			MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, origMappingType.getName(), (origMappingType instanceof BinaryMapping), newModelRelType);
 			if (origMappingTypeRef instanceof BinaryMappingReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
 				ModelElementReference origSrcModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
-				ModelEndpointReference containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newSrcModelElemTypeRef = MultiModelTypeHierarchy.getReference(origSrcModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference containerModelTypeEndpointRef = MIDTypeHierarchy.getReference(((ModelEndpointReference) origSrcModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newSrcModelElemTypeRef = MIDTypeHierarchy.getReference(origSrcModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
 				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(newSrcModelElemTypeRef, true);
 				ModelElementReference origTgtModelElemTypeRef = ((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef();
-				containerModelTypeEndpointRef = MultiModelTypeHierarchy.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newTgtModelElemTypeRef = MultiModelTypeHierarchy.getReference(origTgtModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
+				containerModelTypeEndpointRef = MIDTypeHierarchy.getReference(((ModelEndpointReference) origTgtModelElemTypeRef.eContainer()), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newTgtModelElemTypeRef = MIDTypeHierarchy.getReference(origTgtModelElemTypeRef, containerModelTypeEndpointRef.getModelElemRefs());
 				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(newTgtModelElemTypeRef, false);
 			}
-			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(origMappingTypeRef.getModelElemEndpointRefs());
+			Iterator<ModelElementEndpointReference> origModelElemTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origMappingTypeRef.getModelElemEndpointRefs());
 			while (origModelElemTypeEndpointRefIter.hasNext()) {
 				ModelElementEndpointReference origModelElemTypeEndpointRef = origModelElemTypeEndpointRefIter.next();
 				ModelElementReference origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
-				ModelEndpointReference newModelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
-				ModelElementEndpoint modelElemTypeEndpoint = MultiModelRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), typeMID);
+				ModelEndpointReference newModelTypeEndpointRef = MIDTypeHierarchy.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newModelElemTypeRef = MIDTypeHierarchy.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
+				ModelElementEndpoint modelElemTypeEndpoint = MIDRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), typeMID);
 				boolean isBinarySrc = ((origMappingTypeRef instanceof BinaryMappingReference) && (((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
 					true :
 					false;
@@ -566,7 +566,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
 			super.delete(modelTypeEndpoint.getUri(), typeMID);
@@ -664,8 +664,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		ModelRel newModelRel = (ModelRel) createInstance(newModelRelUri, instanceMID);
 		// create model rel endpoints
 		for (Model targetModel : endpointModels) {
-			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
-			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
+			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
+			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
 			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
 		}
 
@@ -699,8 +699,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		endpointModels.add(endpointTargetModel);
 		// create model rel endpoints
 		for (Model targetModel : endpointModels) {
-			String modelTypeEndpointUri = MultiModelConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
-			ModelEndpoint modelTypeEndpoint = MultiModelTypeRegistry.getType(modelTypeEndpointUri);
+			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
+			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
 			modelTypeEndpoint.createInstanceAndReference(targetModel, newModelRel);
 		}
 
@@ -737,7 +737,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
 		for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
-			Model newModel = MultiModelRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
+			Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
@@ -768,7 +768,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeInstance(this);
 		MMINTException.mustBeType(type);
 
-		boolean validates = MultiModelConstraintChecker.areAllowedModelEndpoints(this, (ModelRel) type);
+		boolean validates = MIDConstraintChecker.areAllowedModelEndpoints(this, (ModelRel) type);
 		if (!validates) {
 			return false;
 		}

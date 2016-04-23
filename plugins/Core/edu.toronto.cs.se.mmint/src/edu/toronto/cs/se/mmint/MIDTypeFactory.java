@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -47,7 +47,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTypeFactory {
+public class MIDTypeFactory {
 
 	public final static String ECORE_PIVOT_URI = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
 	public final static String ECORE_INVOCATION_DELEGATE = "invocationDelegates";
@@ -201,10 +201,10 @@ public class MultiModelTypeFactory {
 
 		List<MappingReference> skipMappingRefs = new ArrayList<>();
 		// copy model type references
-		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
+		Iterator<ModelEndpointReference> modelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getModelEndpointRefs());
 		while (modelTypeEndpointRefIter.hasNext()) {
 			ModelEndpointReference modelTypeEndpointRefSuper = modelTypeEndpointRefIter.next();
-			if (MultiModelTypeHierarchy.isRootType(modelTypeEndpointRefSuper.getObject().getTarget())) { // don't copy model type endpoints to the root model type
+			if (MIDTypeHierarchy.isRootType(modelTypeEndpointRefSuper.getObject().getTarget())) { // don't copy model type endpoints to the root model type
 				for (ModelElementReference modelElemTypeRefSuper : modelTypeEndpointRefSuper.getModelElemRefs()) {
 					for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : modelElemTypeRefSuper.getModelElemEndpointRefs()) {
 						skipMappingRefs.add((MappingReference) modelElemTypeEndpointRefSuper.eContainer());
@@ -214,36 +214,36 @@ public class MultiModelTypeFactory {
 			}
 			ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpointRefSuper.getObject().createTypeReference(false, newModelRelType);
 			// copy model element type references
-			Iterator<ModelElementReference> modelElemTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
+			Iterator<ModelElementReference> modelElemTypeRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
 			while (modelElemTypeRefIter.hasNext()) {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeRefIter.next();
-				ModelElementReference modelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
+				ModelElementReference modelElemTypeRef = MIDTypeHierarchy.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
 				modelElemTypeRefSuper.getObject().createTypeReference(modelElemTypeRef, false, newModelTypeEndpointRef);
 			}
 		}
 		// copy link type references
-		Iterator<MappingReference> mappingTypeRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getMappingRefs());
+		Iterator<MappingReference> mappingTypeRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(modelRelType.getMappingRefs());
 		while (mappingTypeRefIter.hasNext()) {
 			MappingReference mappingTypeRefSuper = mappingTypeRefIter.next();
 			if (skipMappingRefs.contains(mappingTypeRefSuper)) { // don't copy link types using model element types from the root model type
 				continue;
 			}
-			MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(mappingTypeRefSuper.getSupertypeRef(), newModelRelType.getMappingRefs());
+			MappingReference mappingTypeRef = MIDTypeHierarchy.getReference(mappingTypeRefSuper.getSupertypeRef(), newModelRelType.getMappingRefs());
 			MappingReference newMappingTypeRef = mappingTypeRefSuper.getObject().createTypeReference(mappingTypeRef, false, newModelRelType);
 			// connect it to model element type references (takes care of binary too)
-			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MultiModelTypeHierarchy.getTypeRefHierarchyIterator(mappingTypeRefSuper.getModelElemEndpointRefs());
+			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(mappingTypeRefSuper.getModelElemEndpointRefs());
 			while (modelElemTypeEndpointRefIter.hasNext()) {
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper = modelElemTypeEndpointRefIter.next();
 				ModelElementEndpointReference modelElemTypeEndpointRef = null;
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper2 = modelElemTypeEndpointRefSuper.getSupertypeRef();
 				if (modelElemTypeEndpointRefSuper2 != null) {
 					MappingReference mappingTypeRefSuper2 = (MappingReference) modelElemTypeEndpointRefSuper2.eContainer();
-					MappingReference mappingTypeRef2 = MultiModelTypeHierarchy.getReference(mappingTypeRefSuper2, newModelRelType.getMappingRefs());
-					modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpointRefSuper2, mappingTypeRef2.getModelElemEndpointRefs());
+					MappingReference mappingTypeRef2 = MIDTypeHierarchy.getReference(mappingTypeRefSuper2, newModelRelType.getMappingRefs());
+					modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpointRefSuper2, mappingTypeRef2.getModelElemEndpointRefs());
 				}
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeEndpointRefSuper.getModelElemRef();
-				ModelEndpointReference modelTypeEndpointRef = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newModelElemTypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newModelElemTypeRef = MIDTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
 				modelElemTypeEndpointRefSuper.getObject().createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newMappingTypeRef);
 			}
 		}
@@ -298,7 +298,7 @@ public class MultiModelTypeFactory {
 	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
-		MultiModelUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
+		MIDUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
 	}
 
 	/**

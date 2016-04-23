@@ -20,14 +20,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to create a model.
@@ -55,7 +55,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -69,7 +69,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -87,29 +87,29 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return super.canExecute();
 	}
 
-	protected Model doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		Editor newEditor = MultiModelDiagramUtils.selectModelTypeToCreate(instanceMID);
-		Model modelType = MultiModelTypeRegistry.getType(newEditor.getMetatype().getModelUri());
+		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(instanceMID);
+		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
 		newModel.getEditors().add(newEditor);
 
 		return newModel;
 	}
 
-	protected Model doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected Model doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID typeMID = (MID) getElementToEdit();
-		Model modelType = MultiModelDiagramUtils.selectModelTypeToExtend(typeMID);
-		String newModelTypeName = MultiModelDiagramUtils.getStringInput("Create new light model type", "Insert new model type name", null);
-		String[] constraint = MultiModelDiagramUtils.getConstraintInput("Create new light model type", null);
-		if (!MultiModelConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
+		Model modelType = MIDDialogUtils.selectModelTypeToExtend(typeMID);
+		String newModelTypeName = MIDDialogUtils.getStringInput("Create new light model type", "Insert new model type name", null);
+		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model type", null);
+		if (!MIDConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
 			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 		}
-		boolean isMetamodelExtension = (MultiModelTypeHierarchy.isRootType(modelType)) ?
+		boolean isMetamodelExtension = (MIDTypeHierarchy.isRootType(modelType)) ?
 			true :
-			MultiModelDiagramUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
+			MIDDialogUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
 		Model newModelType = modelType.createSubtype(newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
 		MMINT.createTypeHierarchy(typeMID);
 
@@ -132,7 +132,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Model newElement = (MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
+			Model newElement = (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
@@ -143,7 +143,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

@@ -25,16 +25,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelTypeIntrospection;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -330,23 +330,23 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
-		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
-		ModelElement newModelElemType = MultiModelRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
+		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		ModelElement newModelElemType = MIDRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = super.createThisEClass();
 			super.addSubtype(newModelElemType, newModelElemTypeUri, newModelElemTypeName);
-			MultiModelTypeFactory.addModelElementType(newModelElemType, eInfo, containerModelTypeEndpointRef.getObject().getTarget());
+			MIDTypeFactory.addModelElementType(newModelElemType, eInfo, containerModelTypeEndpointRef.getObject().getTarget());
 		}
 		// create the reference of the "thing"
 		ModelElementReference newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference containerModelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
+			ModelEndpointReference containerModelSubtypeEndpointRef = MIDTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference modelElemSubtypeRef = null;
 			if (modelElemTypeRef != null) {
-				ModelEndpointReference modelSubtypeRefSuper = MultiModelTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
-				modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
+				ModelEndpointReference modelSubtypeRefSuper = MIDTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
+				modelElemSubtypeRef = MIDTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
 			}
 			newModelElemType.createTypeReference(modelElemSubtypeRef, false, containerModelSubtypeEndpointRef);
 		}
@@ -374,7 +374,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		ENamedElement modelTypeObj;
 		try {
-			modelTypeObj = (ENamedElement) MultiModelTypeIntrospection.getPointer(((Model) eContainer()).getEMFTypeRoot().eResource(), getUri());
+			modelTypeObj = (ENamedElement) MIDTypeIntrospection.getPointer(((Model) eContainer()).getEMFTypeRoot().eResource(), getUri());
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing metamodel file", e);
@@ -404,11 +404,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(containerModelEndpointRef);
+		MID instanceMID = MIDRegistry.getMultiModel(containerModelEndpointRef);
 		ModelElement newModelElem = null;
 		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
 			newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
-			newModelElem = MultiModelRegistry.getExtendibleElement(newModelElemUri, instanceMID);
+			newModelElem = MIDRegistry.getExtendibleElement(newModelElemUri, instanceMID);
 		}
 		if (newModelElem == null) {
 			newModelElem = super.createThisEClass();
@@ -448,13 +448,13 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
 		int lastSegmentIndex = modelElemUri.lastIndexOf(MMINT.URI_SEPARATOR);
 		String lastSegment = modelElemUri.substring(lastSegmentIndex + 1, modelElemUri.length());
-		boolean isPrimitive = !lastSegment.startsWith(MultiModelRegistry.ECORE_EREFERENCE_URI_PREFIX);
+		boolean isPrimitive = !lastSegment.startsWith(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX);
 		if (isPrimitive) {
 			modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
 		}
 		EObject modelObj;
 		try {
-			modelObj = MultiModelTypeIntrospection.getPointer(modelElemUri);
+			modelObj = MIDTypeIntrospection.getPointer(modelElemUri);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model element" + getUri(), e);

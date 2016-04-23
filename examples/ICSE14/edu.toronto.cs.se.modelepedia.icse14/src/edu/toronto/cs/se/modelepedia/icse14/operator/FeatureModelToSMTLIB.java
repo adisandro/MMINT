@@ -24,8 +24,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation;
 import splar.core.constraints.CNFClause;
@@ -96,7 +96,7 @@ public class FeatureModelToSMTLIB {
 		outputProperties.setProperty(LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES, cnfVariables.toString());
 		outputProperties.store(
 			new FileOutputStream(
-				MultiModelUtils.replaceFileExtensionInUri(featureModelPath, MultiModelOperatorUtils.PROPERTIES_SUFFIX.substring(1))
+				MIDUtils.replaceFileExtensionInUri(featureModelPath, MIDOperatorUtils.PROPERTIES_SUFFIX.substring(1))
 			), null
 		);
 	}

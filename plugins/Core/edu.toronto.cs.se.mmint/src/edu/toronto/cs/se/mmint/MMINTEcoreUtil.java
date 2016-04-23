@@ -37,7 +37,7 @@ public class MMINTEcoreUtil extends EcoreUtil {
 
 			if (eObject instanceof Operator) {
 				try {
-					Operator operatorType = MultiModelTypeRegistry.getType(((Operator) eObject).getUri());
+					Operator operatorType = MIDTypeRegistry.getType(((Operator) eObject).getUri());
 					if (operatorType != null) {
 						Operator operatorTypeCopy = operatorType.getClass().newInstance();
 						return operatorTypeCopy;

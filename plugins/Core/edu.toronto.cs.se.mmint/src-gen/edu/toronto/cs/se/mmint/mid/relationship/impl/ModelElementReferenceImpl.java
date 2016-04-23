@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -256,7 +256,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
-		MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
 		// delete the corresponding reference
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) this.eContainer();
 		List<BinaryMappingReference> delMappingTypeRefs = new ArrayList<>();
@@ -283,9 +283,9 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		}
 		deleteTypeReference(this, modelTypeEndpointRef);
 		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MultiModelTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference modelElemSubtypeRef = MultiModelTypeHierarchy.getReference(this, modelSubtypeEndpointRef.getModelElemRefs());
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
+			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference modelElemSubtypeRef = MIDTypeHierarchy.getReference(this, modelSubtypeEndpointRef.getModelElemRefs());
 			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
 				deleteTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
 			}

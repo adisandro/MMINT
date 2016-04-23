@@ -27,11 +27,11 @@ import com.microsoft.z3.FuncInterp.Entry;
 import com.microsoft.z3.Z3Exception;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
@@ -108,9 +108,9 @@ public class RE13 extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeModelEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeTargetsEnabled = MultiModelOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		targetsProperty = MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
+		timeModelEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeTargetsEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		targetsProperty = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class RE13 extends OperatorImpl {
 		intentions = new HashMap<String, Intention>();
 		initialIntentions = new HashSet<String>();
 		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
-			(IStarMAVOToSMTLIB) MultiModelTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+			(IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
 			(IStarMAVOToSMTLIB) getPreviousOperator();
 		z3ModelParser = previousOperator.getZ3MAVOModelParser();
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
@@ -334,12 +334,12 @@ public class RE13 extends OperatorImpl {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MultiModelOperatorUtils.writePropertiesFile(
+		MIDOperatorUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			istarModel,
 			null,
-			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return new HashMap<>();

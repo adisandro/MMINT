@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -55,7 +55,7 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 	public boolean canExecute() {
 
 		ModelRel owner = (ModelRel) getElementToEdit();
-		if (!MultiModelConstraintChecker.isInstancesLevel(owner)) {
+		if (!MIDConstraintChecker.isInstancesLevel(owner)) {
 			return false;
 		}
 		if (owner instanceof BinaryModelRel) {

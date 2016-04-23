@@ -13,7 +13,7 @@ package edu.toronto.cs.se.mmint.mid.library;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
@@ -37,12 +37,12 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 				// modelName is ok
 			}
 		}
-		convertedModelUri = MultiModelUtils.replaceLastSegmentInUri(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
+		convertedModelUri = MIDUtils.replaceLastSegmentInUri(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
 	}
 
 	protected void createConvertedModel(String convertedModelTypeUri, MID instanceMID) throws MMINTException {
 
-		Model convertedModelType = MultiModelTypeRegistry.getType(convertedModelTypeUri);
+		Model convertedModelType = MIDTypeRegistry.getType(convertedModelTypeUri);
 		convertedModel = convertedModelType.createInstanceAndEditor(convertedModelUri, instanceMID);
 	}
 
@@ -51,7 +51,7 @@ public abstract class ATLConversion extends ConversionOperatorImpl {
 
 		inputModel = null;
 		if (convertedModel != null) {
-			MultiModelUtils.deleteModelFile(convertedModel);
+			MIDUtils.deleteModelFile(convertedModel);
 			convertedModel = null;
 		}
 	}

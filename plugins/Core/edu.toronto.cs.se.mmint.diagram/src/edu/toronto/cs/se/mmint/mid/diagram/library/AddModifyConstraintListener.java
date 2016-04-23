@@ -30,9 +30,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 public class AddModifyConstraintListener extends MIDContextMenuListener {
 
@@ -76,9 +76,9 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}
-				String[] newConstraint = MultiModelDiagramUtils.getConstraintInput(menuLabel, constraint.getLanguage() + MultiModelDiagramUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
-				if (!MultiModelConstraintChecker.isInstancesLevel(element)) {
-					if (!MultiModelConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
+				String[] newConstraint = MIDDialogUtils.getConstraintInput(menuLabel, constraint.getLanguage() + MIDDialogUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
+				if (!MIDConstraintChecker.isInstancesLevel(element)) {
+					if (!MIDConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 					}
 				}
@@ -90,7 +90,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 
 				return CommandResult.newOKCommandResult(constraint);
 			}
-			catch (MultiModelDialogCancellation e) {
+			catch (MIDDialogCancellation e) {
 				return CommandResult.newCancelledCommandResult();
 			}
 			catch (MMINTException e) {

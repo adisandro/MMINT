@@ -24,15 +24,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -257,18 +257,18 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
+		MID typeMID = MIDRegistry.getMultiModel(this);
+		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0];
 		String modelElemTypeUri = uris[1];
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
-			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
+			!MIDTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
 		) {
 			return false;
 		}
 		// filter duplicates
-		if (MultiModelTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
+		if (MIDTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
 			return false;
 		}
 		//TODO MMINT[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
@@ -300,19 +300,19 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		MMINTException.mustBeInstance(this);
 
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
+		String[] uris = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
 		String modelUri = uris[0];
 		String modelElemUri = uris[1];
 		if (!modelUri.equals(getTargetUri())) { // different model
 			return null;
 		}
 		// filter unallowed model element types
-		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(this, modelObj);
+		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
 		if (modelElemType == null) {
 			return null;
 		}
 		// filter duplicates
-		if (MultiModelTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+		if (MIDTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 
@@ -326,11 +326,11 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		MMINTException.mustBeInstance(this);
 
-		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(this, modelObj);
-		String newModelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
-		EMFInfo eInfo = MultiModelRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
+		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
+		String newModelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+		EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
 		if (newModelElemName == null) {
-			newModelElemName = MultiModelRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
+			newModelElemName = MIDRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);
 		}
 		ModelElementReference newModelElemRef = modelElemType.createInstanceAndReference(newModelElemUri, newModelElemName, eInfo, this);
 

@@ -32,11 +32,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
@@ -75,12 +75,12 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MID> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(operatorType, instanceMID);
+				Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(operatorType, instanceMID);
 				operatorType.start(operatorInputs, null, operatorGenerics, outputMIDsByName, instanceMID);
 				WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
 				return CommandResult.newOKCommandResult();
 			}
-			catch (MultiModelDialogCancellation e) {
+			catch (MIDDialogCancellation e) {
 				return CommandResult.newCancelledCommandResult();
 			}
 			catch (Exception e) {

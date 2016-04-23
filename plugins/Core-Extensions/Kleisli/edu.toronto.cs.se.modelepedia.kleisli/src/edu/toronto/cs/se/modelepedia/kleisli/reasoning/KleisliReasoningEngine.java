@@ -31,8 +31,8 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
@@ -104,11 +104,11 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 				if (mapIndex != null && unionIndex != null) {
 					modelObjReferrer = queryMap.get(mapIndex).get(unionIndex).get(modelObjReferrer);
 				}
-				if (modelObjReferrer == null || !MultiModelConstraintChecker.instanceofEMFClass(modelObjReferrer, kModelElemTypeEInfo.getClassName())) {
+				if (modelObjReferrer == null || !MIDConstraintChecker.instanceofEMFClass(modelObjReferrer, kModelElemTypeEInfo.getClassName())) {
 					continue;
 				}
 				try {
-					MultiModelUtils.setModelObjFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
+					MIDUtils.setModelObjFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
 				}
 				catch (MMINTException e) {
 					MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
@@ -124,12 +124,12 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 		TreeIterator<EObject> kModelObjIter = kRootModelObj.eAllContents();
 		while (kModelObjIter.hasNext()) {
 			EObject kModelObj = kModelObjIter.next();
-			if (!MultiModelConstraintChecker.instanceofEMFClass(kModelObj, kModelElemTypeEInfo.getClassName())) {
+			if (!MIDConstraintChecker.instanceofEMFClass(kModelObj, kModelElemTypeEInfo.getClassName())) {
 				continue;
 			}
 			Object kModelObjAttr = oclReasoner.evaluateQuery(kModelObj, kQuery);
 			try {
-				MultiModelUtils.setModelObjFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
+				MIDUtils.setModelObjFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);

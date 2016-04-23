@@ -35,10 +35,10 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -51,8 +51,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogLabelProvider;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelTreeSelectionDialog;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
+import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingTypeReferenceDialogContentProvider;
@@ -70,7 +70,7 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelTypeRegistry {
+public class MIDTypeRegistry {
 
 	/**
 	 * Gets a type from the repository.
@@ -82,7 +82,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static <T extends ExtendibleElement> @Nullable T getType(@NonNull String typeUri) {
 
-		return MultiModelRegistry.getExtendibleElement(typeUri, MMINT.cachedTypeMID);
+		return MIDRegistry.getExtendibleElement(typeUri, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static List<Operator> getOperatorTypes() {
 
-		return MultiModelRegistry.getOperators(MMINT.cachedTypeMID);
+		return MIDRegistry.getOperators(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Model> getModelTypes() {
 
-		return MultiModelRegistry.getModels(MMINT.cachedTypeMID);
+		return MIDRegistry.getModels(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<Editor> getEditorTypes() {
 
-		return MultiModelRegistry.getEditors(MMINT.cachedTypeMID);
+		return MIDRegistry.getEditors(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class MultiModelTypeRegistry {
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
 
-		return MultiModelRegistry.getModelRels(MMINT.cachedTypeMID);
+		return MIDRegistry.getModelRels(MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -216,12 +216,12 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @return The tree dialog to create a new model.
 	 */
-	public static MultiModelTreeSelectionDialog getModelCreationDialog() {
+	public static MIDTreeSelectionDialog getModelCreationDialog() {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
 			MMINT.cachedTypeMID
 		);
@@ -236,10 +236,10 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @return The tree dialog to import an existing model.
 	 */
-	public static MultiModelTreeSelectionDialog getModelImportDialog() {
+	public static MIDTreeSelectionDialog getModelImportDialog() {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
@@ -265,13 +265,13 @@ public class MultiModelTypeRegistry {
 	 *            binary.
 	 * @return The tree dialog to create a new model relationship.
 	 */
-	public static MultiModelTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
+	public static MIDTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
-			new NewModelRelDialogContentProvider(MultiModelConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
+			new MIDDialogLabelProvider(),
+			new NewModelRelDialogContentProvider(MIDConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
 			MMINT.cachedTypeMID
 		);
 
@@ -290,12 +290,12 @@ public class MultiModelTypeRegistry {
 	 *            null if all are allowed.
 	 * @return The tree dialog to create a new model endpoint.
 	 */
-	public static MultiModelTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
+	public static MIDTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
 			modelRel.getMetatype()
 		);
@@ -311,12 +311,12 @@ public class MultiModelTypeRegistry {
 	 *            The Type MID.
 	 * @return The tree dialog to create a new "light" model type.
 	 */
-	public static MultiModelTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
+	public static MIDTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewModelTypeDialogContentProvider(),
 			typeMID
 		);
@@ -341,7 +341,7 @@ public class MultiModelTypeRegistry {
 	 * 
 	 * @return The tree dialog to create a new "light" model relationship type.
 	 */
-	public static MultiModelTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MID typeMID) {
+	public static MIDTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MID typeMID) {
 
 		List<String> modelRelTypeUris = null;
 
@@ -350,9 +350,9 @@ public class MultiModelTypeRegistry {
 			String newTgtUri = newTgtModelType.getUri();
 			modelRelTypeUris = new ArrayList<String>();
 
-			for (ModelRel modelRelType : MultiModelRegistry.getModelRels(typeMID)) {
+			for (ModelRel modelRelType : MIDRegistry.getModelRels(typeMID)) {
 				// binary can only inherit from root or binary
-				if (MultiModelTypeHierarchy.isRootType(modelRelType)) {
+				if (MIDTypeHierarchy.isRootType(modelRelType)) {
 					modelRelTypeUris.add(modelRelType.getUri());
 					continue;
 				}
@@ -364,9 +364,9 @@ public class MultiModelTypeRegistry {
 				// new model rel type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
 				) {
 					modelRelTypeUris.add(modelRelType.getUri());
 				}
@@ -374,9 +374,9 @@ public class MultiModelTypeRegistry {
 		}
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
 			typeMID
 		);
@@ -401,14 +401,14 @@ public class MultiModelTypeRegistry {
 	 *            created.
 	 * @return The tree dialog to create a new mapping.
 	 */
-	public static MultiModelTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
+	public static MIDTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
 
 		ModelRel modelRelType = modelRel.getMetatype();
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
-			new NewMappingReferenceDialogContentProvider(MultiModelConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
+			new MIDDialogLabelProvider(),
+			new NewMappingReferenceDialogContentProvider(MIDConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
 			modelRelType
 		);
 
@@ -427,13 +427,13 @@ public class MultiModelTypeRegistry {
 	 *            can be null if all are allowed.
 	 * @return The tree dialog to create a new model element endpoint.
 	 */
-	public static MultiModelTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
+	public static MIDTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
 
 		Mapping mappingType = mappingRef.getObject().getMetatype();
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
 			mappingType
 		);
@@ -457,12 +457,12 @@ public class MultiModelTypeRegistry {
 	 *            The model relationship type that contains the mapping types.
 	 * @return The tree dialog to create a new "light" mapping type.
 	 */
-	public static MultiModelTreeSelectionDialog getMappingTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
+	public static MIDTreeSelectionDialog getMappingTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
 
 		List<String> mappingTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
-			MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
+			MID typeMID = MIDRegistry.getMultiModel(modelRelType);
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
 			mappingTypeUris = new ArrayList<String>();
@@ -478,9 +478,9 @@ public class MultiModelTypeRegistry {
 				// new link type with same endpoints or overriding one or two endpoints
 				if (
 					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
-					(MultiModelTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MultiModelTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
 				) {
 					mappingTypeUris.add(mappingTypeRef.getUri());
 				}
@@ -488,9 +488,9 @@ public class MultiModelTypeRegistry {
 		}
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
 			modelRelType
 		);
@@ -498,12 +498,12 @@ public class MultiModelTypeRegistry {
 		return dialog;
 	}
 
-	public static MultiModelTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
+	public static MIDTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
 		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
-		MID typeMID = MultiModelRegistry.getMultiModel(operatorType);
+		MID typeMID = MIDRegistry.getMultiModel(operatorType);
 		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
-		List<GenericElement> genericTypes = MultiModelTypeHierarchy.getGenericSubtypes(genericSuperType);
+		List<GenericElement> genericTypes = MIDTypeHierarchy.getGenericSubtypes(genericSuperType);
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {
@@ -523,9 +523,9 @@ public class MultiModelTypeRegistry {
 		}
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MultiModelTreeSelectionDialog dialog = new MultiModelTreeSelectionDialog(
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
-			new MultiModelDialogLabelProvider(),
+			new MIDDialogLabelProvider(),
 			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
 			typeMID
 		);
@@ -566,8 +566,8 @@ public class MultiModelTypeRegistry {
 		}
 		String metamodelUri = modelType.getName() + "." + EcorePackage.eNAME;
 
-		return (MultiModelUtils.isFileOrDirectoryInState(metamodelUri)) ?
-			MultiModelUtils.prependStateToUri(metamodelUri) :
+		return (MIDUtils.isFileOrDirectoryInState(metamodelUri)) ?
+			MIDUtils.prependStateToUri(metamodelUri) :
 			null;
 	}
 

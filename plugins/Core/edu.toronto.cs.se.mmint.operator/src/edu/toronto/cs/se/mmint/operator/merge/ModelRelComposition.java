@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -73,7 +73,7 @@ public class ModelRelComposition extends OperatorImpl {
 
 		// TODO MMINT[USABILITY] Modify apis to simplify the creation of models and model rels (e.g. incorporate
 		// createModelFile, add model element creation to link creation)
-		ModelRel composedRel = MultiModelTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel composedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
 			null,
 			model1,
 			model2,
@@ -120,7 +120,7 @@ public class ModelRelComposition extends OperatorImpl {
 						targetModelElemRefs.add(modelElem2.createInstanceReference(composedModelEndpointRef2));
 					}
 					// create the composed mapping
-					MappingReference composedMappingRef = MultiModelTypeHierarchy.getRootMappingType()
+					MappingReference composedMappingRef = MIDTypeHierarchy.getRootMappingType()
 						.createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
 					composedMappingRef.getObject().setName(
 						mapping1.getName() + COMPOSITION_SEPARATOR + mappingRef2.getObject().getName());

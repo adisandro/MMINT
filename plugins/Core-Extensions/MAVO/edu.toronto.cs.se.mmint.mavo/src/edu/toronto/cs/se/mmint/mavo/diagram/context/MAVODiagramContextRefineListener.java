@@ -41,7 +41,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 
 public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 
@@ -84,11 +84,11 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		String modelUri = MultiModelRegistry.getModelAndModelElementUris(mavoElemsToRefine.get(0), MIDLevel.INSTANCES)[0];
+		String modelUri = MIDRegistry.getModelAndModelElementUris(mavoElemsToRefine.get(0), MIDLevel.INSTANCES)[0];
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		List<IFile> files = null;
 		for (Entry<MID, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
-			model = MultiModelRegistry.getExtendibleElement(modelUri, instanceMID.getKey());
+			model = MIDRegistry.getExtendibleElement(modelUri, instanceMID.getKey());
 			if (model != null) {
 				files = instanceMID.getValue();
 				break;

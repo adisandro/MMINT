@@ -20,9 +20,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -54,8 +54,8 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MultiModelTypeHierarchy.isRootType((ModelEndpoint) getElementToDestroy())
+				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
+				!MIDTypeHierarchy.isRootType((ModelEndpoint) getElementToDestroy())
 			);
 	}
 
@@ -85,7 +85,7 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
+			if (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
 				doExecuteInstancesLevel();
 			}
 			else {

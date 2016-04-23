@@ -17,9 +17,9 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -71,8 +71,8 @@ public class NewMappingTypeReferenceDialogContentProvider implements ITreeConten
 			List<MappingReference> mappingTypeRefs = new ArrayList<>();
 			// add root link ref first
 			//TODO MMINT[MODELREL] this won't work for standalone model relationship types (will it ever be a use case?)
-			MID typeMID = MultiModelRegistry.getMultiModel(modelRelType);
-			ModelRel rootModelRelType = MultiModelRegistry.getExtendibleElement(MultiModelTypeHierarchy.getRootTypeUri(modelRelType), typeMID);
+			MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+			ModelRel rootModelRelType = MIDRegistry.getExtendibleElement(MIDTypeHierarchy.getRootTypeUri(modelRelType), typeMID);
 			MappingReference rootMappingTypeRef = rootModelRelType.getMappingRefs().get(0);
 			mappingTypeRefs.add(rootMappingTypeRef);
 			for (MappingReference mappingTypeRef : ((ModelRel) parentElement).getMappingRefs()) {

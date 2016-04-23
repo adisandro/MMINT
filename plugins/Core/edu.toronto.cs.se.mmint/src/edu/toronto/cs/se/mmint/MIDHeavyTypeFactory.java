@@ -52,7 +52,7 @@ import edu.toronto.cs.se.mmint.repository.ExtensionType;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
+public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Gets the supertype of a new type from the repository.
@@ -68,12 +68,12 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	protected static @Nullable <T extends ExtendibleElement> T getSupertype(@NonNull T newType, @NonNull String newTypeUri, @Nullable String typeUri) {
 
 		T type = null;
-		String rootUri = MultiModelTypeHierarchy.getRootTypeUri(newType);
+		String rootUri = MIDTypeHierarchy.getRootTypeUri(newType);
 		if (typeUri == null && !newTypeUri.equals(rootUri)) {
 			typeUri = rootUri;
 		}
 		if (typeUri != null) {
-			type = MultiModelTypeRegistry.getType(typeUri);
+			type = MIDTypeRegistry.getType(typeUri);
 		}
 
 		return type;
@@ -178,7 +178,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
 		String modelPackageName = (modelType == null) ?
-			MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION : // root model type
+			MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION : // root model type
 			modelPackage.getName();
 		newModelType.setFileExtension(modelPackageName);
 		// possibly register file extension to load resources
@@ -348,7 +348,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		Mapping mappingType = getSupertype(newMappingType, newMappingTypeUri, mappingTypeUri);
 		addHeavyType(newMappingType, mappingType, newMappingTypeUri, newMappingTypeName);
 		addMappingType(newMappingType, mappingType, containerModelRelType);
-		MappingReference mappingTypeRef = MultiModelTypeHierarchy.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
+		MappingReference mappingTypeRef = MIDTypeHierarchy.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
 		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
 
 		return newMappingTypeRef;
@@ -594,16 +594,16 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 		addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemTypeRef.getObject(), containerMappingType);
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		if (modelElemTypeEndpoint != null) { // may be root
-			MappingReference newMappingTypeRefSuper = MultiModelTypeHierarchy.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
+			MappingReference newMappingTypeRefSuper = MIDTypeHierarchy.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
 			if (newMappingTypeRefSuper != null) {
-				modelElemTypeEndpointRef = MultiModelTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
+				modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
 			}
 		}
 		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);
 		addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, containerMappingType);
 		// copy from supertype
 		Mapping mappingTypeSuper = containerMappingType.getSupertype();
-		if (mappingTypeSuper != null && !MultiModelTypeHierarchy.isRootType(mappingTypeSuper)) {
+		if (mappingTypeSuper != null && !MIDTypeHierarchy.isRootType(mappingTypeSuper)) {
 			for (ModelElementEndpointReference modelElemTypeEndpointRefSuper : mappingTypeSuper.getModelElemEndpointRefs()) {
 				addModelElementTypeEndpointReference(modelElemTypeEndpointRefSuper, containerMappingType);
 			}
@@ -678,7 +678,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 */
 	public static void addHeavyModelTypeEditor(Editor editorType, String modelTypeUri) {
 
-		Model modelType = MultiModelTypeRegistry.getType(modelTypeUri);
+		Model modelType = MIDTypeRegistry.getType(modelTypeUri);
 		if (modelType != null) {
 			addModelTypeEditor(editorType, modelType);
 			editorType.getFileExtensions().add(modelType.getFileExtension());
@@ -693,7 +693,7 @@ public class MultiModelHeavyTypeFactory extends MultiModelTypeFactory {
 	 */
 	public static void createHeavyModelTypeEditors(Model modelType) {
 
-		for (Editor editorType : MultiModelTypeRegistry.getEditorTypes()) {
+		for (Editor editorType : MIDTypeRegistry.getEditorTypes()) {
 			if (editorType.getModelUri().equals(modelType.getUri())) {
 				addModelTypeEditor(editorType, modelType);
 				editorType.getFileExtensions().add(modelType.getFileExtension());

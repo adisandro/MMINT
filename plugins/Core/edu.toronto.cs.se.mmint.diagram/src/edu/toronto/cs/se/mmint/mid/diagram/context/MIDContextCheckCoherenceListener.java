@@ -42,7 +42,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -82,7 +82,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 
 			try {
 				// create results for each conversion path
-				MID instanceMID = MultiModelRegistry.getMultiModel(model);
+				MID instanceMID = MIDRegistry.getMultiModel(model);
 				List<Model> coherentModels = new ArrayList<Model>(), coherentModels2 = new ArrayList<Model>();
 				for (List<ConversionOperator> conversionPath : conversionPaths) {
 					Model inputModel = model;

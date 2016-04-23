@@ -27,16 +27,16 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -73,7 +73,7 @@ public class Reduce extends OperatorImpl {
 
 		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MID> accumulatorOutputMIDsByName = MultiModelOperatorUtils
+		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorUtils
 			.createSimpleOutputMIDsByName(accumulatorOperatorType, reducedMID);
 		EList<MID> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
@@ -81,12 +81,12 @@ public class Reduce extends OperatorImpl {
 		Map<String, Model> accumulatorOutputsByName = null;
 		EList<OperatorInput> accumulatorInputs;
 		// preparation for composition operator
-		Operator compositionOperatorType = MultiModelTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-		Map<String, MID> compositionOutputMIDsByName = MultiModelOperatorUtils
+		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
+		Map<String, MID> compositionOutputMIDsByName = MIDOperatorUtils
 			.createSimpleOutputMIDsByName(compositionOperatorType, reducedMID);
 		// preparation for merge operator
-		Operator mergeOperatorType = MultiModelTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-		Map<String, MID> mergeOutputMIDsByName = MultiModelOperatorUtils
+		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
+		Map<String, MID> mergeOutputMIDsByName = MIDOperatorUtils
 			.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
 		// reduce loop
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
@@ -132,7 +132,7 @@ public class Reduce extends OperatorImpl {
 				}
 				// get all model rels attached to input models that are not inputs themselves
 				//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
-				Set<ModelRel> connectedModelRels = MultiModelRegistry.getModelRels(reducedMID).stream()
+				Set<ModelRel> connectedModelRels = MIDRegistry.getModelRels(reducedMID).stream()
 					.filter(modelRel -> !accumulatorInputModelRels.contains(modelRel))
 					.filter(modelRel -> !Collections.disjoint(
 						accumulatorInputModels,
@@ -247,9 +247,9 @@ public class Reduce extends OperatorImpl {
 				continue;
 			}
 			for (Editor accumulatorOutputEditorToDelete : accumulatorOutputModelToDelete.getEditors()) {
-				MultiModelUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
+				MIDUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
 			}
-			MultiModelUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
+			MIDUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
 		}
 
 		return reducedMID;
@@ -277,12 +277,12 @@ public class Reduce extends OperatorImpl {
 		}
 
 		// output
-		String reducedMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
+		String reducedMIDModelUri = MIDUtils.getUniqueUri(
+			MIDUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
-		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
+		MIDUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);

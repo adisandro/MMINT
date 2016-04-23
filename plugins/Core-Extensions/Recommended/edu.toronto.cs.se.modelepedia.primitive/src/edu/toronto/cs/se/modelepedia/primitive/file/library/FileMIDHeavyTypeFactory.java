@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.primitive.file.library;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.repository.ExtensionType;
 import edu.toronto.cs.se.modelepedia.primitive.file.FileFactory;
@@ -23,7 +23,7 @@ import edu.toronto.cs.se.modelepedia.primitive.file.FileFactory;
  * @author Alessio Di Sandro
  * 
  */
-public class FileMultiModelHeavyTypeFactory extends MultiModelHeavyTypeFactory {
+public class FileMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
 	/**
 	 * File version. {@inheritDoc}

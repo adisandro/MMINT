@@ -30,12 +30,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -50,32 +50,32 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class MultiModelDiagramUtils {
+public class MIDDialogUtils {
 
 	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
 
-	protected static Object openDialog(MultiModelTreeSelectionDialog dialog, String title, String message) throws MultiModelDialogCancellation {
+	protected static Object openDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
 
 		dialog.setTitle(title);
 		dialog.setMessage(message);
 		dialog.setAllowMultiple(false);
 		if (dialog.open() == Window.CANCEL) {
-			throw new MultiModelDialogCancellation();
+			throw new MIDDialogCancellation();
 		}
 		Object selection = dialog.getFirstResult();
 		if (selection == null) { // dialog opened and nothing selected
-			throw new MultiModelDialogCancellation();
+			throw new MIDDialogCancellation();
 		}
 
 		return selection;
 	}
 
-	protected static Object openSelectionDialog(MultiModelTreeSelectionDialog dialog, String title, String message) throws MultiModelDialogCancellation {
+	protected static Object openSelectionDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
 
 		return openDialog(dialog, title, message);
 	}
 
-	protected static Object openSelectionDialogWithDefault(MultiModelTreeSelectionDialog dialog, String title, String message) throws MultiModelDialogCancellation {
+	protected static Object openSelectionDialogWithDefault(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
 
 		Object selection = dialog.getUniqueResult();
 		if (selection == null) { // more than one choice possible, open the dialog
@@ -92,15 +92,15 @@ public class MultiModelDiagramUtils {
 	 * @param typeMID
 	 *            The Type MID.
 	 * @return The editor for the created model.
-	 * @throws MultiModelDialogCancellation, MMINTException
+	 * @throws MIDDialogCancellation, MMINTException
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static Editor selectModelTypeToCreate(MID typeMID) throws MultiModelDialogCancellation, MMINTException {
+	public static Editor selectModelTypeToCreate(MID typeMID) throws MIDDialogCancellation, MMINTException {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelCreationDialog();
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelCreationDialog();
 		Editor editorType = (Editor) openSelectionDialog(dialog, "Create new model", "Choose editor to create model");
 		IStructuredSelection multiModelContainer;
-		String multiModelContainerUri = MultiModelUtils.replaceLastSegmentInUri(typeMID.eResource().getURI().toPlatformString(true), "");
+		String multiModelContainerUri = MIDUtils.replaceLastSegmentInUri(typeMID.eResource().getURI().toPlatformString(true), "");
 		try {
 			multiModelContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
@@ -115,7 +115,7 @@ public class MultiModelDiagramUtils {
 		}
 		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(multiModelContainer);
 		if (wizDialog == null) {
-			throw new MultiModelDialogCancellation();
+			throw new MIDDialogCancellation();
 		}
 
 		return editorType.createInstance(wizDialog.getCreatedModelUri(), typeMID);
@@ -128,12 +128,12 @@ public class MultiModelDiagramUtils {
 	 *            True to allow the selection of relationship files only, false
 	 *            to allow all registered model files.
 	 * @return The uri of the imported model.
-	 * @throws MultiModelDialogCancellation
+	 * @throws MIDDialogCancellation
 	 *             If the model import was not completed for any reason.
 	 */
-	public static String selectModelToImport(boolean relOnly) throws MultiModelDialogCancellation {
+	public static String selectModelToImport(boolean relOnly) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelImportDialog();
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelImportDialog();
 		String title = "Import model";
 		String message = "Choose model to import";
 		IFile modelFile = (IFile) openSelectionDialog(dialog, title, message);
@@ -141,18 +141,18 @@ public class MultiModelDiagramUtils {
 		return modelFile.getFullPath().toString();
 	}
 
-	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MultiModelDialogCancellation {
+	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
 		String title = "Create new model endpoint";
 		String message = "Choose " + modelEndpointId + "model type endpoint role";
 
 		return (ModelEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MultiModelDialogCancellation {
+	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
 		String title = "Create new model relationship";
 		String message = "Choose model relationship type";
 
@@ -164,12 +164,12 @@ public class MultiModelDiagramUtils {
 	 * model types.
 	 * 
 	 * @return The choosen model type.
-	 * @throws MultiModelDialogCancellation
+	 * @throws MIDDialogCancellation
 	 *             If the selection was not completed for any reason.
 	 */
-	public static Model selectModelTypeToExtend(MID typeMID) throws MultiModelDialogCancellation {
+	public static Model selectModelTypeToExtend(MID typeMID) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelTypeCreationDialog(typeMID);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelTypeCreationDialog(typeMID);
 		String title = "Create new light model type";
 		String message = "Choose model supertype";
 
@@ -181,48 +181,48 @@ public class MultiModelDiagramUtils {
 	 * registered model relationship types.
 	 * 
 	 * @return The choosen model relationship type.
-	 * @throws MultiModelDialogCancellation
+	 * @throws MIDDialogCancellation
 	 *             If the selection was not completed for any reason.
 	 */
-	public static ModelRel selectModelRelTypeToExtend(MID typeMID, Model srcModelType, Model tgtModelType) throws MultiModelDialogCancellation {
+	public static ModelRel selectModelRelTypeToExtend(MID typeMID, Model srcModelType, Model tgtModelType) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, typeMID);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, typeMID);
 		String title = "Create new light model relationship type";
 		String message = "Choose model relationship supertype";
 
 		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static MappingReference selectMappingTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MultiModelDialogCancellation {
+	public static MappingReference selectMappingTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getMappingReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
 		String title = "Create new link";
 		String message = "Choose link type";
 
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MultiModelDialogCancellation {
+	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
 		String title = "Create new light link type";
 		String message = "Choose link supertype";
 	
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) throws MultiModelDialogCancellation {
+	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getModelElementEndpointCreationDialog(mappingRef, modelElemTypeEndpointUris);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelElementEndpointCreationDialog(mappingRef, modelElemTypeEndpointUris);
 		String title = "Create new model endpoint";
 		String message = "Choose model type endpoint role";
 	
 		return (ModelElementEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static GenericElement selectGenericTypeToCreate(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) throws MultiModelDialogCancellation {
+	public static GenericElement selectGenericTypeToCreate(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) throws MIDDialogCancellation {
 
-		MultiModelTreeSelectionDialog dialog = MultiModelTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
 		String title = "Run generic operator";
 		String message = "Choose generic type <" + genericSuperTypeEndpoint.getName() + ">";
 	
@@ -245,23 +245,23 @@ public class MultiModelDiagramUtils {
 	 *            The dialog message.
 	 * @param dialogInitial TODO
 	 * @return The text input from the user.
-	 * @throws MultiModelDialogCancellation
+	 * @throws MIDDialogCancellation
 	 *             If the text input was not completed for any reason.
 	 */
-	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MultiModelDialogCancellation {
+	public static String getStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MIDDialogCancellation {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null);
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MultiModelDialogCancellation();
+			throw new MIDDialogCancellation();
 		}
 
 		return dialog.getValue();
 	}
 
 	//TODO MMINT[MISC] merge with getStringInput()
-	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MultiModelDialogCancellation {
+	public static String getBigStringInput(String dialogTitle, String dialogMessage, String dialogInitial) throws MIDDialogCancellation {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		InputDialog dialog = new InputDialog(shell, dialogTitle, dialogMessage, dialogInitial, null) {
@@ -279,13 +279,13 @@ public class MultiModelDiagramUtils {
 		};
 
 		if (dialog.open() == Window.CANCEL) {
-			throw new MultiModelDialogCancellation();
+			throw new MIDDialogCancellation();
 		}
 
 		return dialog.getValue();
 	}
 
-	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MultiModelDialogCancellation {
+	public static String[] getConstraintInput(String dialogTitle, String dialogInitial) throws MIDDialogCancellation {
 
 		String text = getBigStringInput(dialogTitle, "Insert new constraint in the format \"language: constraint\"", dialogInitial);
 		String[] constraint = new String[2];

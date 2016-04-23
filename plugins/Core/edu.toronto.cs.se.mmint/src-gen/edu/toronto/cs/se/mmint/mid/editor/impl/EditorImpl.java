@@ -31,9 +31,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -41,8 +41,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 
 /**
@@ -508,9 +508,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	protected void addSubtype(Editor newEditorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		super.addSubtype(newEditorType, this, newEditorTypeFragmentUri, newEditorTypeName);
-		MultiModelTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, typeMID);
+		MIDTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, typeMID);
 
 		for (String fileExtension : getFileExtensions()) {
 			newEditorType.getFileExtensions().add(fileExtension);
@@ -537,14 +537,14 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		super.deleteType();
-		Model modelType = MultiModelRegistry.getExtendibleElement(getModelUri(), typeMID);
+		Model modelType = MIDRegistry.getExtendibleElement(getModelUri(), typeMID);
 		if (modelType != null) {
 			modelType.getEditors().remove(this);
 		}
 		typeMID.getEditors().remove(this);
-		for (Editor editorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
+		for (Editor editorSubtype : MIDTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			editorSubtype.deleteType();
 		}
 	}
@@ -566,7 +566,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	protected void addInstance(Editor newEditor, String modelUri, MID instanceMID) {
 
 		String newEditorName = getName() + " for model " + modelUri;
-		String newEditorUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+		String newEditorUri = MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
 		super.addBasicInstance(newEditor, newEditorUri, newEditorName);
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(getId());
@@ -604,7 +604,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	protected IWorkbenchWizard getInstanceWizard(IStructuredSelection initialSelection) throws MMINTException {
 
-		Model modelType = MultiModelTypeRegistry.<Model>getType(getModelUri());
+		Model modelType = MIDTypeRegistry.<Model>getType(getModelUri());
 		IWorkbenchWizard wizard;
 		if (getWizardId() == null) {
 			EClass rootEClass = (EClass) modelType.getEMFTypeRoot().getEClassifiers().get(0);
@@ -643,7 +643,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
 			wizDialog = (EditorCreationWizardDialog)
-				MultiModelTypeRegistry.getTypeBundle(getUri()).
+				MIDTypeRegistry.getTypeBundle(getUri()).
 				loadClass(wizardDialogClassName).
 				getConstructor(Shell.class, IWizard.class).
 				newInstance(shell, wizard);
@@ -687,7 +687,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MIDRegistry.getMultiModel(this);
 		instanceMID.getEditors().remove(this);
 		// no need to removeExtendibleElement
 	}

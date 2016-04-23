@@ -33,7 +33,7 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MAVOConcretizationHighlighter {
@@ -71,7 +71,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, Set<String>> z3ModelObjs) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.readModelFile(modelDiagram.getUri(), true);
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MIDUtils.readModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
@@ -81,8 +81,8 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MultiModelUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
+		String exampleDiagramUri = MIDUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		MIDUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
@@ -154,7 +154,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlight(@NonNull Diagram modelDiagram, @NonNull LogicElement mavoElemToHighlight) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MultiModelUtils.readModelFile(modelDiagram.getUri(), true);
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MIDUtils.readModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// highlight
@@ -169,8 +169,8 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = MultiModelUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MultiModelUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
+		String exampleDiagramUri = MIDUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		MIDUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 

@@ -30,7 +30,7 @@
             <type
                   name="KleisliModelRel"
                   uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel"
-                  class="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMultiModelHeavyTypeFactory"
+                  class="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMIDHeavyTypeFactory"
                   isAbstract="true">
             </type>
             <constraint
@@ -42,7 +42,7 @@
             <type
                   name="KleisliModelEndpoint"
                   uri="http://se.cs.toronto.edu/modelepedia/KleisliModelRel-Model/KleisliModelEndpoint"
-                  class="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMultiModelHeavyTypeFactory">
+                  class="edu.toronto.cs.se.modelepedia.kleisli.library.KleisliMIDHeavyTypeFactory">
             </type>
             <typeEndpoint
                   lowerBound="0"

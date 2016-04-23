@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
-public class MultiModelOperatorUtils {
+public class MIDOperatorUtils {
 
 	public static final String INPUT_PROPERTIES_SUFFIX = "In";
 	public static final String OUTPUT_PROPERTIES_SUFFIX = "Out";
@@ -54,7 +54,7 @@ public class MultiModelOperatorUtils {
 	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(projectUri);
+		String propertiesUri = MIDUtils.prependWorkspaceToUri(projectUri);
 		if (subdirName != null) {
 			File dir = new File(propertiesUri + subdirName);
 			if (!readonly && !dir.exists()) {

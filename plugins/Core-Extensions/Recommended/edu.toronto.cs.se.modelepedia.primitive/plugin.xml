@@ -65,7 +65,7 @@
          <type
                name="File"
                uri="http://se.cs.toronto.edu/modelepedia/File"
-               class="edu.toronto.cs.se.modelepedia.primitive.file.library.FileMultiModelHeavyTypeFactory">
+               class="edu.toronto.cs.se.modelepedia.primitive.file.library.FileMIDHeavyTypeFactory">
          </type>
       </modelType>
    </extension>

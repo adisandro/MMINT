@@ -17,11 +17,11 @@ import java.util.Map;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
@@ -43,14 +43,14 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// transform using atl
-		String newCdModelUri = MultiModelUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
+		String newCdModelUri = MIDUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
 		UMLToClassDiagramMAVO_M2M atl = new UMLToClassDiagramMAVO_M2M();
 		atl.loadModels(umlModel.getUri());
 		atl.doUMLToClassDiagramMAVO_M2M(new NullProgressMonitor());
 		atl.saveModels(newCdModelUri);
 
 		// output
-		Model cdModelType = MultiModelTypeRegistry.getType(ClassDiagram_MAVOPackage.eNS_URI);
+		Model cdModelType = MIDTypeRegistry.getType(ClassDiagram_MAVOPackage.eNS_URI);
 		newCdModel = cdModelType.createInstanceAndEditor(newCdModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, newCdModel);
@@ -62,7 +62,7 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 	public void cleanup() throws Exception {
 
 		if (newCdModel != null) {
-			MultiModelUtils.deleteModelFile(newCdModel);
+			MIDUtils.deleteModelFile(newCdModel);
 			newCdModel = null;
 		}
 	}

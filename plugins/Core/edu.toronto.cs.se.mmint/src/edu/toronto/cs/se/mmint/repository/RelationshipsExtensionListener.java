@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -63,7 +63,7 @@ public class RelationshipsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
-				ModelRel modelRelType = MultiModelTypeRegistry.getType(uri);
+				ModelRel modelRelType = MIDTypeRegistry.getType(uri);
 				if (modelRelType != null) {
 					try {
 						modelRelType.deleteType();

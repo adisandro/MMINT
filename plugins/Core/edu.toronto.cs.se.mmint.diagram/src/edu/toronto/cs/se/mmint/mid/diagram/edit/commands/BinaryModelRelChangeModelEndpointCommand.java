@@ -19,14 +19,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to change a model of a binary model relationship.
@@ -60,8 +60,8 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				!MultiModelTypeHierarchy.isRootType(getLink())
+				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!MIDTypeHierarchy.isRootType(getLink())
 			);
 	}
 
@@ -73,15 +73,15 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = MultiModelConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
 
 		return
 			super.canReorientSource() && ((
 				instance &&
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(0), getNewSource())) != null
+				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(0), getNewSource())) != null
 			) || (
 				!instance &&
-				MultiModelConstraintChecker.isAllowedModelTypeEndpoint(getLink(), getNewSource(), null)
+				MIDConstraintChecker.isAllowedModelTypeEndpoint(getLink(), getNewSource(), null)
 			));
 	}
 
@@ -93,28 +93,28 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = MultiModelConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
 
 		return
 			super.canReorientTarget() && ((
 				instance &&
-				(modelTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(1), getNewTarget())) != null
+				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(1), getNewTarget())) != null
 			) || (
 				!instance &&
-				MultiModelConstraintChecker.isAllowedModelTypeEndpoint(getLink(), null, getNewTarget())
+				MIDConstraintChecker.isAllowedModelTypeEndpoint(getLink(), null, getNewTarget())
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryModelRel containerModelRel, Model targetModel, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(BinaryModelRel containerModelRel, Model targetModel, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
 
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
 			containerModelRel.getModelEndpoints().get(0) :
 			containerModelRel.getModelEndpoints().get(1);
-		ModelEndpointReference modelTypeEndpointRef = MultiModelDiagramUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
 		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, targetModel);
 	}
 
-	protected void doExecuteTypesLevel(BinaryModelRel containerModelRelType, Model targetModelType, boolean isBinarySrc) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteTypesLevel(BinaryModelRel containerModelRelType, Model targetModelType, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
 
 		boolean wasOverriding = false;
 		ModelEndpoint oldModelTypeEndpoint = null;
@@ -134,7 +134,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			}
 		}
 
-		ModelEndpoint modelTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType);
+		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType);
 		if (modelTypeEndpoint == null) {
 			if (wasOverriding) { // was overriding, becomes non-overriding
 				oldModelTypeEndpoint.deleteTypeAndReference(true);
@@ -149,7 +149,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
-				String newModelTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
+				String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
 				if (isBinarySrc && containerModelRelType.getModelEndpoints().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelEndpoint tgtModelTypeEndpoint = containerModelRelType.getModelEndpoints().get(0);
 					tgtModelTypeEndpoint.deleteTypeAndReference(true);
@@ -175,7 +175,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel(getLink(), getNewSource(), true);
 			}
 			else {
@@ -184,7 +184,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -204,7 +204,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
 			}
 			else {
@@ -213,7 +213,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

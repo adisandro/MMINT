@@ -20,8 +20,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 
@@ -43,8 +43,8 @@ public class MappingReferenceRemoveModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit()) ||
-				!MultiModelTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject())
+				MIDConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit()) ||
+				!MIDTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject())
 			);
 	}
 
@@ -63,7 +63,7 @@ public class MappingReferenceRemoveModelElementEndpointReferenceCommand extends 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit())) {
+			if (MIDConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit())) {
 				doExecuteInstancesLevel();
 			}
 			else {

@@ -42,9 +42,9 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeFactory;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -52,11 +52,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -559,14 +559,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	protected void addSubtype(Model newModelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		super.addSubtype(newModelType, this, null, newModelTypeName);
-		MultiModelTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, typeMID);
+		MIDTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, typeMID);
 		newModelType.setOrigin(ModelOrigin.CREATED);
 
 		if (isMetamodelExtension) {
 			try {
-				String newMetamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(newModelType);
+				String newMetamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(newModelType);
 				if (newMetamodelUri == null) { // create new metamodel file
 					EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
 					newEPackage.setName(newModelTypeName.toLowerCase());
@@ -575,21 +575,21 @@ public class ModelImpl extends GenericElementImpl implements Model {
 					EAnnotation newEAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 					newEAnnotation.setSource(EcorePackage.eNS_URI);
 					EMap<String, String> newEAnnotationDetails = newEAnnotation.getDetails();
-					newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_INVOCATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
-					newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_SETTING_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
-					newEAnnotationDetails.put(MultiModelTypeFactory.ECORE_VALIDATION_DELEGATE, MultiModelTypeFactory.ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(MIDTypeFactory.ECORE_INVOCATION_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(MIDTypeFactory.ECORE_SETTING_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
+					newEAnnotationDetails.put(MIDTypeFactory.ECORE_VALIDATION_DELEGATE, MIDTypeFactory.ECORE_PIVOT_URI);
 					newEPackage.getEAnnotations().add(newEAnnotation);
 					EClass newRootEClass = EcoreFactory.eINSTANCE.createEClass();
 					newRootEClass.setName(newModelTypeName);
-					if (!MultiModelTypeHierarchy.isRootType(this)) {
+					if (!MIDTypeHierarchy.isRootType(this)) {
 						EClass rootEClass = (EClass) getEMFTypeRoot().getEClassifiers().get(0);
 						newRootEClass.getESuperTypes().add(rootEClass);
 					}
 					newEPackage.getEClassifiers().add(newRootEClass);
 					newMetamodelUri = newModelTypeName + "." + EcorePackage.eNAME;
-					MultiModelUtils.writeModelFileInState(newEPackage, newMetamodelUri);
+					MIDUtils.writeModelFileInState(newEPackage, newMetamodelUri);
 				}
-				newModelType.setFileExtension(MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
+				newModelType.setFileExtension(MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Error creating extended metamodel file, fallback to no extension", e);
@@ -623,16 +623,16 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				//TODO MMINT[EDITOR] a new editor is created instead of attaching existing ones
 				//TODO MMINT[EDITOR] because I couldn't find a way then from an editor to understand which model was being created
 				Editor newEditorType = editorType.createSubtype(newEditorTypeFragmentUri, newEditorTypeName, newModelTypeUri, editorId, wizardId, wizardDialogClassName);
-				MultiModelTypeFactory.addModelTypeEditor(newEditorType, newModelType);
+				MIDTypeFactory.addModelTypeEditor(newEditorType, newModelType);
 				if (isMetamodelExtension) { // reflective editor only
 					newEditorType.getFileExtensions().clear();
-					newEditorType.getFileExtensions().add(MultiModelTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
+					newEditorType.getFileExtensions().add(MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
 					break;
 				}
 			}
 			catch (MMINTException e) {
 				// models created through this editor will have the supermodel as static type
-				MultiModelTypeFactory.addModelTypeEditor(editorType, newModelType);
+				MIDTypeFactory.addModelTypeEditor(editorType, newModelType);
 			}
 		}
 	}
@@ -657,7 +657,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
 			super.delete(modelElemType.getUri(), typeMID);
@@ -668,13 +668,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		super.deleteType();
 		typeMID.getModels().remove(this);
-		String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
+		String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
-			MultiModelUtils.deleteFile(metamodelUri, false);
+			MIDUtils.deleteFile(metamodelUri, false);
 		}
 		// delete operator types that use this model type
 		List<Operator> delOperatorTypes = new ArrayList<>();
-		for (Operator operatorType : MultiModelRegistry.getOperators(typeMID)) {
+		for (Operator operatorType : MIDRegistry.getOperators(typeMID)) {
 			for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
 				if (inputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
 					delOperatorTypes.add(operatorType);
@@ -692,7 +692,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		// delete model relationship types that use this model type
 		List<ModelRel> delModelRelTypes = new ArrayList<>();
 		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<>();
-		for (ModelRel modelRelType : MultiModelRegistry.getModelRels(typeMID)) {
+		for (ModelRel modelRelType : MIDRegistry.getModelRels(typeMID)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {
@@ -713,7 +713,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			modelRelType.deleteType();
 		}
 		// delete the subtypes of the "thing"
-		for (Model modelSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
+		for (Model modelSubtype : MIDTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			modelSubtype.deleteType();
 		}
 	}
@@ -730,10 +730,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			rootModelTypeObj = EPackage.Registry.INSTANCE.getEPackage(getUri());
 		}
 		else {
-			String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(this);
+			String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
 			if (metamodelUri != null) { // get package from metamodel file
 				try {
-					rootModelTypeObj = (EPackage) MultiModelUtils.readModelFile(metamodelUri, false);
+					rootModelTypeObj = (EPackage) MIDUtils.readModelFile(metamodelUri, false);
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error accessing the metamodel file for model type" + getUri(), e);
@@ -759,14 +759,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		//TODO MMINT[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
 		while (true) {
 			if (modelType.isDynamic()) {
-				String metamodelUri = MultiModelTypeRegistry.getExtendedMetamodelUri(modelType);
+				String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(modelType);
 				if (metamodelUri != null) { // get metamodel file from mmint state area
 					metamodelUris.add(URI.createFileURI(metamodelUri));
 					break;
 				}
 			}
 			else { // get metamodel files from bundle
-				Bundle bundle = MultiModelTypeRegistry.getTypeBundle(modelType.getUri());
+				Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
 				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
 				while (metamodels.hasMoreElements()) {
 					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
@@ -779,7 +779,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		// open editors
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		Model ecoreModelType = MultiModelTypeRegistry.getType(EcorePackage.eNS_URI);
+		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (URI metamodelUri : metamodelUris) {
 			activePage.openEditor(new URIEditorInput(metamodelUri), ecoreEditorType.getId());
@@ -818,8 +818,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		String newModelName = null;
 		String fileExtension = MMINT.EMPTY_MODEL_FILE_EXTENSION;
 		if (externalElement) {
-			newModelName = MultiModelUtils.getFileNameFromUri(newModelUri);
-			fileExtension = MultiModelUtils.getFileExtensionFromUri(newModelUri);
+			newModelName = MIDUtils.getFileNameFromUri(newModelUri);
+			fileExtension = MIDUtils.getFileExtensionFromUri(newModelUri);
 		}
 		if (basicElement) {
 			super.addBasicInstance(newModel, newModelUri, newModelName);
@@ -854,11 +854,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MIDRegistry.getMultiModel(this);
 		Editor newEditor = null;
 		//TODO MMINT[EDITOR] prioritize editors list instead of running twice?
 		// all diagrams are tried..
-		for (Editor diagramType : MultiModelTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
+		for (Editor diagramType : MIDTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
 			if (!(diagramType instanceof Diagram)) {
 				continue;
 			}
@@ -872,7 +872,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		// ..or first editor is used
 		if (newEditor == null) {
-			for (Editor editorType : MultiModelTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
+			for (Editor editorType : MIDTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
 				if (editorType instanceof Diagram) {
 					continue;
 				}
@@ -935,9 +935,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		// copy model
-		String newModelUri = MultiModelUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
+		String newModelUri = MIDUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
 		try {
-			MultiModelUtils.copyTextFileAndReplaceText(
+			MIDUtils.copyTextFileAndReplaceText(
 				origModel.getUri(),
 				newModelUri,
 				origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
@@ -965,9 +965,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 					continue;
 				}
 				try {
-					MultiModelUtils.copyTextFileAndReplaceText(
+					MIDUtils.copyTextFileAndReplaceText(
 						oldEditor.getUri(),
-						MultiModelUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
+						MIDUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
 						origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 						newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 						true);
@@ -992,7 +992,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeInstance(this);
 		MMINTException.mustBeType(type);
 
-		return MultiModelConstraintChecker.checkConstraint(this, type.getConstraint());
+		return MIDConstraintChecker.checkConstraint(this, type.getConstraint());
 	}
 
 	/**
@@ -1003,7 +1003,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		boolean validates = MultiModelConstraintChecker.checkConstraint(this, this.getConstraint());
+		boolean validates = MIDConstraintChecker.checkConstraint(this, this.getConstraint());
 
 		return validates && this.validateInstanceType(this.getMetatype());
 	}
@@ -1015,7 +1015,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MIDRegistry.getMultiModel(this);
 		for (ModelElement modelElem : getModelElems()) {
 			super.delete(modelElem.getUri(), instanceMID);
 		}
@@ -1027,7 +1027,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		// delete operators that use this model type
 		List<Operator> delOperators = new ArrayList<>();
-		for (Operator operator : MultiModelRegistry.getOperators(instanceMID)) {
+		for (Operator operator : MIDRegistry.getOperators(instanceMID)) {
 			for (ModelEndpoint inputModelEndpoint : operator.getInputs()) {
 				if (inputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
 					delOperators.add(operator);
@@ -1045,7 +1045,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		// delete model relationships that use this model
 		List<ModelRel> delModelRels = new ArrayList<>();
 		List<ModelEndpoint> delModelEndpoints = new ArrayList<>();
-		for (ModelRel modelRel : MultiModelRegistry.getModelRels(instanceMID)) {
+		for (ModelRel modelRel : MIDRegistry.getModelRels(instanceMID)) {
 			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 				if (modelEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRel instanceof BinaryModelRel) {
@@ -1076,7 +1076,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		EObject rootModelObj;
 		try {
-			rootModelObj = MultiModelUtils.readModelFile(getUri(), true);
+			rootModelObj = MIDUtils.readModelFile(getUri(), true);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);

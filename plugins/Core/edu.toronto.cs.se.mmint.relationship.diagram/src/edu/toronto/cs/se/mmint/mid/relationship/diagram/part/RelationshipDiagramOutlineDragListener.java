@@ -29,8 +29,8 @@ import org.eclipse.swt.dnd.DragSourceEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -71,7 +71,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 
 		List<Object> transferData = new ArrayList<>();
 		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-		boolean isInstancesLevel = MultiModelConstraintChecker.isInstancesLevel(modelRel);
+		boolean isInstancesLevel = MIDConstraintChecker.isInstancesLevel(modelRel);
 		ModelElement modelElemType = null;
 
 		// filtering
@@ -99,7 +99,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 			}
 			// assign to container
 			//TODO MMINT[MODELELEMENT] Think about simplifying the accept phase and the dnd info, probably not everything is needed anymore 
-			String modelElemUri = MultiModelRegistry.getModelAndModelElementUris(modelObj, modelRel.getLevel())[1];
+			String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, modelRel.getLevel())[1];
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 				try {
 					if (isInstancesLevel) {

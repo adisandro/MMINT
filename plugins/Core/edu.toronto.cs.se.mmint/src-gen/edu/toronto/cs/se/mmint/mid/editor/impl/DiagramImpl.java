@@ -24,13 +24,13 @@ import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -83,7 +83,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 		MMINTException.mustBeType(this);
 
 		// check if diagram file already exists in model directory
-		if (!MultiModelUtils.isFileOrDirectory(MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
+		if (!MIDUtils.isFileOrDirectory(MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
 			// try to build a new diagram through its wizard, inited with the existing model file
 			IStructuredSelection modelFile = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFile(
@@ -114,13 +114,13 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			if (initialSelection.getFirstElement() instanceof IFile) {
 				String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
-				String diagramUri = MultiModelUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+				String diagramUri = MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
 				Diagram superDiagramType = this;
-				while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MultiModelTypeHierarchy.getRootEditorType()) {
+				while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
 					superDiagramType = (Diagram) superDiagramType.getSupertype();
 				}
-				String diagramKind = MultiModelTypeRegistry.getType(superDiagramType.getModelUri()).getName();
-				String diagramPluginId = MultiModelTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
+				String diagramKind = MIDTypeRegistry.getType(superDiagramType.getModelUri()).getName();
+				String diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);

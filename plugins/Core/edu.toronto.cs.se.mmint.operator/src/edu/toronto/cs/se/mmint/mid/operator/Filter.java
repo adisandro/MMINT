@@ -20,15 +20,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -60,19 +60,19 @@ public class Filter extends OperatorImpl {
 
 		MID filteredMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		Set<Model> modelsToDelete = new HashSet<>();
-		for (Model model : MultiModelRegistry.getModels(filteredMID)) {
+		for (Model model : MIDRegistry.getModels(filteredMID)) {
 			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
 			if ((model instanceof ModelRel) != (filterModelType instanceof ModelRel)) {
 				continue;
 			}
 			// check constraint
-			if (MultiModelTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MultiModelConstraintChecker.checkConstraint(model, filterModelType.getConstraint())) {
+			if (MIDTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MIDConstraintChecker.checkConstraint(model, filterModelType.getConstraint())) {
 				continue;
 			}
 			modelsToDelete.add(model);
 		}
 		for (Model modelToDelete : modelsToDelete) {
-			if (MultiModelRegistry.getMultiModel(modelToDelete) == null) {
+			if (MIDRegistry.getMultiModel(modelToDelete) == null) {
 				// already deleted as side effect of another deletion e.g. model delete that triggers model rel delete
 				continue;
 			}
@@ -96,12 +96,12 @@ public class Filter extends OperatorImpl {
 		MID filteredMID = filter(inputMIDModel, filterModelType);
 
 		// output
-		String filteredMIDModelUri = MultiModelUtils.getUniqueUri(
-			MultiModelUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
+		String filteredMIDModelUri = MIDUtils.getUniqueUri(
+			MIDUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
 			true,
 			false);
-		MultiModelUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
-		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
+		MIDUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, filteredMIDModel);

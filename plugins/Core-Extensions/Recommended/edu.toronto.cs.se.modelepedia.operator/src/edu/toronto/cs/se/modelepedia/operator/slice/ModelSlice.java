@@ -27,8 +27,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class ModelSlice extends OperatorImpl {
@@ -53,11 +53,11 @@ public class ModelSlice extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		idAttribute = MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		sliceIds = MultiModelOperatorUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
+		idAttribute = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		sliceIds = MIDOperatorUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
 		boundariesIds = new HashMap<>();
 		for (String sliceId : sliceIds) {
-			boundariesIds.put(sliceId, MultiModelOperatorUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
+			boundariesIds.put(sliceId, MIDOperatorUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
 		}
 	}
 
@@ -74,7 +74,7 @@ public class ModelSlice extends OperatorImpl {
 		}
 		String id = null;
 		try {
-			id = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
+			id = (String) MIDUtils.getModelObjFeature(sliceModelObj, idAttribute);
 		}
 		catch (MMINTException e) {
 			// ignore and continue
@@ -98,7 +98,7 @@ public class ModelSlice extends OperatorImpl {
 		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
 			String sliceId = null;
 			try {
-				sliceId = (String) MultiModelUtils.getModelObjFeature(sliceModelObj, idAttribute);
+				sliceId = (String) MIDUtils.getModelObjFeature(sliceModelObj, idAttribute);
 			}
 			catch (Exception e) {
 				// ignore and continue
@@ -127,9 +127,9 @@ public class ModelSlice extends OperatorImpl {
 		// input
 		Model model = inputsByName.get(IN_MODEL);
 
-		String sliceModelUri = MultiModelUtils.getUniqueUri(MultiModelUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
+		String sliceModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
-		MultiModelUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
+		MIDUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
 			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
 			model.getMetatype().createInstance(sliceModelUri, null);

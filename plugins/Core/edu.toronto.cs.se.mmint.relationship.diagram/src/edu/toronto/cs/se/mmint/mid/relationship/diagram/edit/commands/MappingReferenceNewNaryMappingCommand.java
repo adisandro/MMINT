@@ -20,15 +20,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to create a link.
@@ -57,7 +57,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -72,7 +72,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -89,31 +89,31 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MultiModelTypeHierarchy.isRootType((ModelRel) getElementToEdit())
+				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
+				!MIDTypeHierarchy.isRootType((ModelRel) getElementToEdit())
 			);
 	}
 
-	protected MappingReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected MappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToCreate(modelRel, null, null);
+		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, null, null);
 		MappingReference newMappingRef = mappingTypeRef.getObject().createInstanceAndReference(false, modelRel);
 
 		return newMappingRef;
 	}
 
-	protected MappingReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected MappingReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
-		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, null, null);
+		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToExtend(modelRelType, null, null);
 		Mapping mappingType = mappingTypeRef.getObject();
-		if (MultiModelTypeHierarchy.getRootTypeUri(mappingType).equals(mappingType.getUri())) {
+		if (MIDTypeHierarchy.getRootTypeUri(mappingType).equals(mappingType.getUri())) {
 			mappingTypeRef = null; // the link reference to the root is never shown
 		}
-		String newMappingTypeName = MultiModelDiagramUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", null);
+		String newMappingTypeName = MIDDialogUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", null);
 		MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, newMappingTypeName, false, modelRelType);
-		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
+		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel(modelRelType));
 
 		return newMappingTypeRef;
 	}
@@ -133,7 +133,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			MappingReference newElement = (MultiModelConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) ?
+			MappingReference newElement = (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
@@ -144,7 +144,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

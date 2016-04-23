@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -43,15 +43,15 @@ public class CD2Java extends ConversionOperatorImpl {
 
 	private @NonNull Model convert(@NonNull Model cdModel, @Nullable MID instanceMID) throws Exception {
 
-		Operator transformationOperatorType = MultiModelTypeRegistry.getType(MODELRELTYPETRANSFORMATION_OPERATOR_URI);
+		Operator transformationOperatorType = MIDTypeRegistry.getType(MODELRELTYPETRANSFORMATION_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(cdModel);
 		EList<OperatorInput> inputs = transformationOperatorType.checkAllowedInputs(inputModels);
-		Map<String, MID> outputMIDsByName = MultiModelOperatorUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));
-		ModelRel cd2javaRelType = MultiModelTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
+		ModelRel cd2javaRelType = MIDTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
 		generic.setGeneric(cd2javaRelType);
 		generics.add(generic);
 		Operator transformationOperator = transformationOperatorType.start(inputs, null, generics, outputMIDsByName, null);

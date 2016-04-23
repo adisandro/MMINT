@@ -78,7 +78,7 @@ import org.eclipse.ui.part.ShowInContext;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem;
 
 /**
@@ -131,7 +131,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
 		MID typeMID = (MID) this.getDiagram().getElement();
-		if (!MultiModelConstraintChecker.isInstancesLevel(typeMID)) {
+		if (!MIDConstraintChecker.isInstancesLevel(typeMID)) {
 			for (Object paletteContainer : root.getChildren()) {
 				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
 					if (paletteEntry instanceof ToolEntry
@@ -249,7 +249,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		}
 
 		MID mid1 = (MID) this.getDiagram().getElement();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid1)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid1)) {
 			MMINT.syncRepository(mid1);
 			// diagram sync required
 			final String relDiagramId = "edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID";
@@ -264,7 +264,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 					continue;
 				}
 				MID mid2 = (MID) editor.getDiagram().getElement().eContainer();
-				if (!MultiModelConstraintChecker.isInstancesLevel(mid2)) {
+				if (!MIDConstraintChecker.isInstancesLevel(mid2)) {
 					IDocumentProvider provider2 = editor.getDocumentProvider();
 					try {
 						provider2.synchronize(editorRef.getEditorInput());

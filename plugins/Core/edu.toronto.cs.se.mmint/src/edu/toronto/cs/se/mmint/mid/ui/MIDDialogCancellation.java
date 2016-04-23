@@ -13,9 +13,9 @@ package edu.toronto.cs.se.mmint.mid.ui;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 
-public class MultiModelDialogCancellation extends MMINTException {
+public class MIDDialogCancellation extends MMINTException {
 
-	public MultiModelDialogCancellation() {
+	public MIDDialogCancellation() {
 
 		super("Dialog cancelled");
 	}

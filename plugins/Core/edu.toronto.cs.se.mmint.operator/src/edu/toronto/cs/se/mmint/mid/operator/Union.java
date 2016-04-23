@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -46,9 +46,9 @@ public class Union extends OperatorImpl {
 		// models only at first pass
 		for (Model inputMIDModel : inputMIDModels) {
 			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
-			for (Model model : MultiModelRegistry.getModels(inputMID)) {
+			for (Model model : MIDRegistry.getModels(inputMID)) {
 				if (model instanceof ModelRel
-						|| MultiModelRegistry.getExtendibleElement(model.getUri(), unionMID) != null) {
+						|| MIDRegistry.getExtendibleElement(model.getUri(), unionMID) != null) {
 					continue;
 				}
 				model.getMetatype().createInstanceAndEditor(model.getUri(), unionMID);
@@ -57,7 +57,7 @@ public class Union extends OperatorImpl {
 		// model rels at second pass
 		for (Model inputMIDModel : inputMIDModels) {
 			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
-			for (ModelRel rel : MultiModelRegistry.getModelRels(inputMID)) {
+			for (ModelRel rel : MIDRegistry.getModelRels(inputMID)) {
 				rel.getMetatype().copyInstance(rel, rel.getName(), unionMID);
 			}
 		}
@@ -71,7 +71,7 @@ public class Union extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MIDS);
+		List<Model> inputMIDModels = MIDOperatorUtils.getVarargs(inputsByName, IN_MIDS);
 		MID instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// create union of input mids
@@ -81,11 +81,11 @@ public class Union extends OperatorImpl {
 		String unionMIDModelName = inputMIDModels.stream()
 			.map(Model::getName)
 			.collect(Collectors.joining(UNION_SEPARATOR));
-		String unionMIDModelUri = MultiModelUtils.replaceFileNameInUri(
-			MultiModelRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
+		String unionMIDModelUri = MIDUtils.replaceFileNameInUri(
+			MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 			unionMIDModelName);
-		MultiModelUtils.writeModelFile(unionMID, unionMIDModelUri, true);
-		Model midModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI);
+		MIDUtils.writeModelFile(unionMID, unionMIDModelUri, true);
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, unionMIDModel);

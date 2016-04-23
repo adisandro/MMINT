@@ -18,13 +18,13 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
@@ -46,7 +46,7 @@ public class CD2JavaCheck extends OperatorImpl {
 
 		int cdIndex, javaIndex;
 		Model modelType = modelRel.getModelEndpoints().get(0).getTarget().getMetatype();
-		if (modelType == MultiModelTypeRegistry.getType(ClassDiagramPackage.eNS_URI)) {
+		if (modelType == MIDTypeRegistry.getType(ClassDiagramPackage.eNS_URI)) {
 			cdIndex = 0;
 			javaIndex = 1;
 		}
@@ -77,12 +77,12 @@ public class CD2JavaCheck extends OperatorImpl {
 		Int check = check(modelRel);
 
 		// output
-		Model intModelType = MultiModelTypeRegistry.getType(IntPackage.eNS_URI);
-		String checkModelUri = MultiModelUtils.replaceLastSegmentInUri(
-			MultiModelRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
+		Model intModelType = MIDTypeRegistry.getType(IntPackage.eNS_URI);
+		String checkModelUri = MIDUtils.replaceLastSegmentInUri(
+			MIDRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
-		MultiModelUtils.writeModelFile(check, checkModelUri, true);
+		MIDUtils.writeModelFile(check, checkModelUri, true);
 		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, checkModel);

@@ -25,7 +25,7 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.ui.ModelElementLabelProvider;
@@ -94,7 +94,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		//TODO MMINT[MODELREL] with two rel types open on the same metamodels, only one will show them
 		ResourceSet resourceSet;
 		try {
-			resourceSet = (MultiModelConstraintChecker.isInstancesLevel(modelRel)) ?
+			resourceSet = (MIDConstraintChecker.isInstancesLevel(modelRel)) ?
 				modelRel.getOutlineResourceInstances() :
 				modelRel.getOutlineResourceTypes();
 		}

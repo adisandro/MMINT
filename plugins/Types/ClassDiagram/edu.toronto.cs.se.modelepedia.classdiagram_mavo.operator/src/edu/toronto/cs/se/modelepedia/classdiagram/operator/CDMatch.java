@@ -17,8 +17,8 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -33,8 +33,8 @@ public class CDMatch extends ModelMatch {
 	@Override
 	protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
-		Mapping rootMappingType = MultiModelTypeHierarchy.getRootMappingType();
-		ModelElementEndpoint rootModelElemTypeEndpoint = MultiModelTypeHierarchy.getRootModelElementTypeEndpoint();
+		Mapping rootMappingType = MIDTypeHierarchy.getRootMappingType();
+		ModelElementEndpoint rootModelElemTypeEndpoint = MIDTypeHierarchy.getRootModelElementTypeEndpoint();
 		for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
 			Set<EObject> modelObjs = entry.getValue();
 			if (modelObjs.size() < 2) {
@@ -44,9 +44,9 @@ public class CDMatch extends ModelMatch {
 			boolean associations = modelObjs.stream().allMatch(modelObj -> modelObj instanceof Association);
 			if (associations) {
 				Association association = (Association) modelObjs.iterator().next();
-				String srcAttr = (String) MultiModelUtils.getModelObjFeature(association.getSource(), matchAttribute);
+				String srcAttr = (String) MIDUtils.getModelObjFeature(association.getSource(), matchAttribute);
 				Set<EObject> srcMatch = modelObjAttrs.get(srcAttr);
-				String tgtAttr = (String) MultiModelUtils.getModelObjFeature(association.getTarget(), matchAttribute);
+				String tgtAttr = (String) MIDUtils.getModelObjFeature(association.getTarget(), matchAttribute);
 				Set<EObject> tgtMatch = modelObjAttrs.get(tgtAttr);
 				boolean endpointsCheck =
 					modelObjs.stream()

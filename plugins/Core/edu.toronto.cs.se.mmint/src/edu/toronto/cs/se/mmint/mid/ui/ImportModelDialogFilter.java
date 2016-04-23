@@ -15,7 +15,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 
 public class ImportModelDialogFilter extends ViewerFilter {
 
@@ -30,7 +30,7 @@ public class ImportModelDialogFilter extends ViewerFilter {
 			return true;
 		}
 
-		return MultiModelTypeRegistry.getModelTypeFileExtensions().contains(((IFile) element).getFileExtension());
+		return MIDTypeRegistry.getModelTypeFileExtensions().contains(((IFile) element).getFileExtension());
 	}
 
 }

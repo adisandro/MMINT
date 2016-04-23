@@ -24,18 +24,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to create a binary link.
@@ -69,7 +69,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getContainer().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,7 +84,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getContainer().eContainer();
-		if (!MultiModelConstraintChecker.isInstancesLevel(mid)) {
+		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -101,52 +101,52 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel(getContainer()) ||
-				!MultiModelTypeHierarchy.isRootType(getContainer())
+				MIDConstraintChecker.isInstancesLevel(getContainer()) ||
+				!MIDTypeHierarchy.isRootType(getContainer())
 			);
 	}
 
-	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRel = getContainer();
-		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
+		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
 		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingTypeRef.getObject().createInstanceAndReference(true, modelRel);
 
-		List<String> modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		List<String> modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newMappingRef);
-		modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getTarget());
-		modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getTarget());
+		modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newMappingRef);
 
 		return newMappingRef;
 	}
 
-	protected BinaryMappingReference doExecuteTypesLevel() throws MMINTException, MultiModelDialogCancellation {
+	protected BinaryMappingReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
-		MappingReference mappingTypeRef = MultiModelDiagramUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
-		String newMappingTypeName = MultiModelDiagramUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
+		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
+		String newMappingTypeName = MIDDialogUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
 		BinaryMappingReference newMappingTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newMappingTypeName, true, modelRelType);
-		MMINT.createTypeHierarchy(MultiModelRegistry.getMultiModel(modelRelType));
+		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel(modelRelType));
 
 		String newModelElemTypeEndpointName;
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, srcModelElemTypeRef);
+		ModelElementEndpoint modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, srcModelElemTypeRef);
 		if (modelElemTypeEndpoint == null) {
 			newMappingTypeRef.addModelElementTypeReference(srcModelElemTypeRef, true);
 		}
 		else {
-			newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
+			newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
 			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, srcModelElemTypeRef, true, newMappingTypeRef);
 		}
 
-		modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, tgtModelElemTypeRef);
+		modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, tgtModelElemTypeRef);
 		if (modelElemTypeEndpoint == null) {
 			newMappingTypeRef.addModelElementTypeReference(tgtModelElemTypeRef, false);
 		}
 		else {
-			newModelElemTypeEndpointName = MultiModelDiagramUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+			newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
 			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newMappingTypeRef);
 		}
 
@@ -171,7 +171,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 		try {
-			BinaryMappingReference newElement = MultiModelConstraintChecker.isInstancesLevel(getContainer()) ?
+			BinaryMappingReference newElement = MIDConstraintChecker.isInstancesLevel(getContainer()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);
@@ -182,7 +182,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

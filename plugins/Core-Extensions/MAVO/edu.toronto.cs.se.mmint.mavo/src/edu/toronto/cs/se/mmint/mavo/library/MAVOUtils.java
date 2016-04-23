@@ -36,7 +36,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 
 public class MAVOUtils {
 
@@ -370,7 +370,7 @@ public class MAVOUtils {
 		}
 		// overwrite
 		if (modified) {
-			MultiModelUtils.writeModelFile(mavoRootModelObj, mavoModel.getUri(), true);
+			MIDUtils.writeModelFile(mavoRootModelObj, mavoModel.getUri(), true);
 		}
 
 		return mavoModelObjs;

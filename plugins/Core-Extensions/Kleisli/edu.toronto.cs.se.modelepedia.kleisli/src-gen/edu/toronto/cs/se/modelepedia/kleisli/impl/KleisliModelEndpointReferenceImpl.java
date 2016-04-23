@@ -17,12 +17,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
@@ -115,18 +115,18 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
+		MID typeMID = MIDRegistry.getMultiModel(this);
+		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0].replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
 		String modelElemTypeUri = uris[1];
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
-			!MultiModelTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
+			!MIDTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
 		) {
 			return false;
 		}
 		// filter duplicates
-		if (MultiModelTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
+		if (MIDTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
 			return false;
 		}
 		//TODO MMINT[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
@@ -142,19 +142,19 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 
 		MMINTException.mustBeInstance(this);
 
-		String[] uris = MultiModelRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
+		String[] uris = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
 		String modelUri = uris[0];
 		String modelElemUri = uris[1];
 		if (!modelUri.equals(getExtendedTargetUri())) { // different extended model
 			return null;
 		}
 		// filter unallowed model element types
-		ModelElement modelElemType = MultiModelConstraintChecker.getAllowedModelElementType(this, modelObj);
+		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
 		if (modelElemType == null) {
 			return null;
 		}
 		// filter duplicates
-		if (MultiModelTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+		if (MIDTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

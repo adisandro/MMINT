@@ -38,7 +38,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -46,9 +46,9 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -56,7 +56,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
@@ -739,7 +739,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		// delete the "thing"
 		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
 		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
@@ -747,7 +747,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		super.deleteType();
 		typeMID.getOperators().remove(this);
 		// delete the subtypes of the "thing"
-		for (Operator operatorSubtype : MultiModelTypeHierarchy.getDirectSubtypes(this, typeMID)) {
+		for (Operator operatorSubtype : MIDTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			operatorSubtype.deleteType();
 		}
 	}
@@ -834,7 +834,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private @Nullable OperatorInput checkAllowedInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
 
-		List<ConversionOperator> conversions = MultiModelTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
+		List<ConversionOperator> conversions = MIDTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
 		if (conversions == null) {
 			return null;
 		}
@@ -872,7 +872,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
-			for (Model inputModel : MultiModelRegistry.getModels(inputMID)) {
+			for (Model inputModel : MIDRegistry.getModels(inputMID)) {
 				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModel);
 				if (operatorInput == null) {
 					continue;
@@ -1034,7 +1034,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MultiModelRegistry.getMultiModel(this);
+		MID instanceMID = MIDRegistry.getMultiModel(this);
 		instanceMID.getOperators().remove(this);
 	}
 
@@ -1047,7 +1047,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
-			GenericElement genericType = MultiModelDiagramUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+			GenericElement genericType = MIDDialogUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
 			OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 			generic.setGenericSuperTypeEndpoint(genericSuperTypeEndpoint);
 			generic.setGeneric(genericType);
@@ -1081,8 +1081,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
 			return null;
 		}
-		String propertiesUri = MultiModelUtils.prependWorkspaceToUri(instanceMIDFile.getParent().getFullPath().toString());
-		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MultiModelOperatorUtils.PROPERTIES_SUFFIX;
+		String propertiesUri = MIDUtils.prependWorkspaceToUri(instanceMIDFile.getParent().getFullPath().toString());
+		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorUtils.PROPERTIES_SUFFIX;
 
 		return propertiesUri;
 	}
@@ -1092,7 +1092,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Properties getInputProperties() {
 
-		String propertiesUri =  getPropertiesUri(MultiModelOperatorUtils.INPUT_PROPERTIES_SUFFIX);
+		String propertiesUri =  getPropertiesUri(MIDOperatorUtils.INPUT_PROPERTIES_SUFFIX);
 		Properties inputProperties = new Properties();
 		try {
 			inputProperties.load(new FileInputStream(propertiesUri));
@@ -1110,10 +1110,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		setUpdateMID(
-			MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, true)
+			MIDOperatorUtils.getOptionalBoolProperty(inputProperties, MIDOperatorUtils.PROPERTY_IN_UPDATEMID, true)
 		);
 		setInputSubdir(
-			MultiModelOperatorUtils.getOptionalStringProperty(inputProperties, MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, null)
+			MIDOperatorUtils.getOptionalStringProperty(inputProperties, MIDOperatorUtils.PROPERTY_IN_SUBDIR, null)
 		);
 	}
 
@@ -1255,7 +1255,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
 			List<Model> outputModels;
 			if (outputModelTypeEndpoint.getUpperBound() == -1) {
-				outputModels = MultiModelOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
+				outputModels = MIDOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
 			}
 			else {
 				outputModels = new ArrayList<>();

@@ -19,14 +19,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to import an existing model.
@@ -57,16 +57,16 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		return
 			super.canExecute() &&
-			MultiModelConstraintChecker.isInstancesLevel((MID) getElementToEdit());
+			MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit());
 	}
 
-	protected Model doExecuteInstancesLevel() throws Exception, MultiModelDialogCancellation {
+	protected Model doExecuteInstancesLevel() throws Exception, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		String newModelUri = MultiModelDiagramUtils.selectModelToImport(false);
-		Model modelType = MultiModelTypeRegistry.getType(MultiModelUtils.readModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
+		String newModelUri = MIDDialogUtils.selectModelToImport(false);
+		Model modelType = MIDTypeRegistry.getType(MIDUtils.readModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
-			modelType = MultiModelTypeHierarchy.getRootModelType();
+			modelType = MIDTypeHierarchy.getRootModelType();
 		}
 		Model newModel = modelType.importInstanceAndEditor(newModelUri, instanceMID);
 
@@ -98,7 +98,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 		catch (ExecutionException ee) {
 			throw ee;
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (Exception e) {

@@ -32,13 +32,13 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -72,7 +72,7 @@ public class ExperimentDriver extends OperatorImpl {
 
 			try {
 				// create experiment folder
-				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
+				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MIDUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
 				if (!folder.exists(null)) {
 					folder.create(true, true, null);
 				}
@@ -85,12 +85,12 @@ public class ExperimentDriver extends OperatorImpl {
 					}
 					catch (Exception e) {
 						MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
-						MultiModelOperatorUtils.writePropertiesFile(
+						MIDOperatorUtils.writePropertiesFile(
 							writeProperties(null, experimentIndex),
 							driver,
 							initialModel,
 							EXPERIMENT_SUBDIR + experimentIndex,
-							MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+							MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 						);
 						return;
 					}
@@ -105,7 +105,7 @@ public class ExperimentDriver extends OperatorImpl {
 				int j;
 				for (j = 0; j < maxSamples; j++) {
 					// create sample folder
-					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MultiModelUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(MIDUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}
@@ -156,12 +156,12 @@ public class ExperimentDriver extends OperatorImpl {
 				}
 	
 				// save output
-				MultiModelOperatorUtils.writePropertiesFile(
+				MIDOperatorUtils.writePropertiesFile(
 					writeProperties(experiment, experimentIndex),
 					driver,
 					initialModel,
 					EXPERIMENT_SUBDIR + experimentIndex,
-					MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+					MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 				);
 				writeGnuplotFile(driver, initialModel, experiment, experimentIndex, varX);
 			}
@@ -252,7 +252,7 @@ public class ExperimentDriver extends OperatorImpl {
 	public static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
 	private static final String EXPERIMENT_SUBDIR = "experiment";
 	private static final String SAMPLE_SUBDIR = "sample";
-	private static final String GNUPLOT_SUFFIX = MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";
+	private static final String GNUPLOT_SUFFIX = MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";
 
 	// experiment setup parameters
 	private String[] vars;
@@ -285,12 +285,12 @@ public class ExperimentDriver extends OperatorImpl {
 
 	private @NonNull String[] getArrayStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		String property = MultiModelOperatorUtils.getStringProperty(properties, propertyName);
+		String property = MIDOperatorUtils.getStringProperty(properties, propertyName);
 		if (property.startsWith("[") && property.endsWith("]")) {
 			return property.substring(1, property.length()-1).split("\\],\\[");
 		}
 		else {
-			return MultiModelOperatorUtils.getStringProperties(properties, propertyName);
+			return MIDOperatorUtils.getStringProperties(properties, propertyName);
 		}
 	}
 
@@ -298,51 +298,51 @@ public class ExperimentDriver extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		// outer cycle parameters: vary experiment setup
-		vars = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_VARIABLES);
+		vars = MIDOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_VARIABLES);
 		varValues = new String[vars.length][];
 		numExperiments = 1;
 		for (int i = 0; i < vars.length; i++) {
 			varValues[i] = getArrayStringProperties(inputProperties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
 			numExperiments *= varValues[i].length;
-			if (MultiModelOperatorUtils.getOptionalBoolProperty(inputProperties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
+			if (MIDOperatorUtils.getOptionalBoolProperty(inputProperties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
 				varX = i;
 			}
 		}
 
 		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
-		skipWarmupSamples = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_SKIPWARMUPSAMPLES);
-		minSamples = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
-		maxSamples = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
-		distribution = DistributionType.valueOf(MultiModelOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_DISTRIBUTIONTYPE));
-		requestedConfidence = MultiModelOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_REQUESTEDCONFIDENCE);
+		seed = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
+		skipWarmupSamples = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_SKIPWARMUPSAMPLES);
+		minSamples = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
+		maxSamples = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
+		distribution = DistributionType.valueOf(MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_DISTRIBUTIONTYPE));
+		requestedConfidence = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
 		// operators
-		experimentOperators = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
-		statisticsOperators = MultiModelOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_STATISTICSOPERATORS);
+		experimentOperators = MIDOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
+		statisticsOperators = MIDOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_STATISTICSOPERATORS);
 		varOperators = new String[vars.length][];
 		for (int i = 0; i < vars.length; i++) {
-			varOperators[i] = MultiModelOperatorUtils.getStringProperties(inputProperties, vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+			varOperators[i] = MIDOperatorUtils.getStringProperties(inputProperties, vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
 		}
 
 		// outputs
-		outputs = MultiModelOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT);
+		outputs = MIDOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT);
 		outputOperators = new String[outputs.length];
 		outputDefaults = new double[outputs.length];
 		outputMins = new double[outputs.length];
 		outputMaxs = new double[outputs.length];
 		outputDoConfidences = new boolean[outputs.length];
 		for (int i = 0; i < outputs.length; i++) {
-			outputOperators[i] = MultiModelOperatorUtils.getStringProperty(inputProperties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
-			outputDefaults[i] = MultiModelOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
-			outputMins[i] = MultiModelOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
-			outputMaxs[i] = MultiModelOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
-			outputDoConfidences[i] = MultiModelOperatorUtils.getBoolProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
+			outputOperators[i] = MIDOperatorUtils.getStringProperty(inputProperties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+			outputDefaults[i] = MIDOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
+			outputMins[i] = MIDOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
+			outputMaxs[i] = MIDOperatorUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
+			outputDoConfidences[i] = MIDOperatorUtils.getBoolProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
 		}
 
 		// efficiency
-		maxProcessingTime = MultiModelOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
-		numThreads = MultiModelOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
+		maxProcessingTime = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
+		numThreads = MIDOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
 	}
 
 	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex) {
@@ -387,7 +387,7 @@ public class ExperimentDriver extends OperatorImpl {
 
 		// write output
 		try {
-			MultiModelOperatorUtils.writeTextFile(driver, initialModel, EXPERIMENT_SUBDIR + experimentIndex, GNUPLOT_SUFFIX, gnuplotBuilder);
+			MIDOperatorUtils.writeTextFile(driver, initialModel, EXPERIMENT_SUBDIR + experimentIndex, GNUPLOT_SUFFIX, gnuplotBuilder);
 		}
 		catch (IOException e) {
 			MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", gnuplot output failed", e);
@@ -415,7 +415,7 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 
 		// get operator
-		Operator operatorType = MultiModelTypeRegistry.getType(operatorUri);
+		Operator operatorType = MIDTypeRegistry.getType(operatorUri);
 		if (operatorType == null) {
 			throw new MMINTException("Operator uri " + operatorUri + " is not registered");
 		}
@@ -436,10 +436,10 @@ public class ExperimentDriver extends OperatorImpl {
 		for (int out = 0; out < outputs.length; out++) {
 			if (outputDoConfidences[out] && operatorUri.equals(outputOperators[out])) {
 				if (!outputConfidences[out]) {
-					inputProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
+					inputProperties.setProperty(outputs[out]+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
 				}
 				else {
-					inputProperties.setProperty(outputs[out]+MultiModelOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
+					inputProperties.setProperty(outputs[out]+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
 				}
 			}
 		}
@@ -453,9 +453,9 @@ public class ExperimentDriver extends OperatorImpl {
 					EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
 					SAMPLE_SUBDIR + statisticsIndex;
 			}
-			inputProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
+			inputProperties.setProperty(MIDOperatorUtils.PROPERTY_IN_SUBDIR, nextSubdir);
 		}
-		inputProperties.setProperty(MultiModelOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
+		inputProperties.setProperty(MIDOperatorUtils.PROPERTY_IN_UPDATEMID, "false");
 
 		// execute, get state and add to workflow
 		EList<OperatorInput> inputs = operatorType.checkAllowedInputs(inputModels);
@@ -484,20 +484,20 @@ public class ExperimentDriver extends OperatorImpl {
 	private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
 
 		// get output operator
-		Operator operatorType = MultiModelTypeRegistry.getType(outputOperators[outputIndex]);
+		Operator operatorType = MIDTypeRegistry.getType(outputOperators[outputIndex]);
 		if (operatorType == null) {
 			throw new MMINTException("Operator uri " + outputOperators[outputIndex] + " is not registered");
 		}
 
 		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
-		Properties resultProperties = MultiModelOperatorUtils.getPropertiesFile(
+		Properties resultProperties = MIDOperatorUtils.getPropertiesFile(
 			operatorType,
 			initialModel,
 			experimentSubdir,
-			MultiModelOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
-		return MultiModelOperatorUtils.getDoubleProperty(resultProperties, outputs[outputIndex]);
+		return MIDOperatorUtils.getDoubleProperty(resultProperties, outputs[outputIndex]);
 	}
 
 	@Override
@@ -514,7 +514,7 @@ public class ExperimentDriver extends OperatorImpl {
 		experimentSetups = new String[numExperiments][vars.length];
 		cartesianProduct(experimentSetups);
 
-		MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+		MIDTypeHierarchy.clearCachedRuntimeTypes();
 		ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 		// outer cycle: vary experiment setup
 		for (int i = 0; i < numExperiments; i++) {
@@ -528,7 +528,7 @@ public class ExperimentDriver extends OperatorImpl {
 		}
 		executor.shutdown();
 		executor.awaitTermination(24, TimeUnit.HOURS);
-		MultiModelTypeHierarchy.clearCachedRuntimeTypes();
+		MIDTypeHierarchy.clearCachedRuntimeTypes();
 
 		return new HashMap<>();
 	}

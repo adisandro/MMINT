@@ -19,14 +19,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.constraint.MultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MultiModelDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
  * The command to change a model element reference of a link.
@@ -61,8 +61,8 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canExecute() && (
-				MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				!MultiModelTypeHierarchy.isRootType(getLink().getObject())
+				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!MIDTypeHierarchy.isRootType(getLink().getObject())
 			);
 	}
 
@@ -76,8 +76,8 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canReorientSource() && (
-				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), null, getLink().getModelElemRef())) != null
+				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), null, getLink().getModelElemRef())) != null
 			);
 	}
 
@@ -92,14 +92,14 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canReorientTarget() && (
-				!MultiModelConstraintChecker.isInstancesLevel(getLink()) ||
-				(modelElemTypeEndpointUris = MultiModelConstraintChecker.getAllowedModelElementEndpointReferences((MappingReference) getLink().eContainer(), getLink(), getNewTarget())) != null
+				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences((MappingReference) getLink().eContainer(), getLink(), getNewTarget())) != null
 			);
 	}
 
-	protected void doExecuteInstancesLevel(MappingReference mappingRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MultiModelDialogCancellation {
+	protected void doExecuteInstancesLevel(MappingReference mappingRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = MultiModelDiagramUtils.selectModelElementTypeEndpointToCreate(mappingRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(mappingRef, modelElemTypeEndpointUris);
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
 			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, mappingRef);
@@ -111,7 +111,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 	protected void doExecuteTypesLevel(MappingReference mappingTypeRef, ModelElementReference modelElemTypeRef, boolean isFullDelete) throws MMINTException {
 
-		ModelElementEndpoint modelElemTypeEndpoint = MultiModelTypeHierarchy.getOverriddenModelElementTypeEndpoint(mappingTypeRef, modelElemTypeRef);
+		ModelElementEndpoint modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(mappingTypeRef, modelElemTypeRef);
 		if (isFullDelete) {
 			getLink().deleteTypeAndReference(isFullDelete);
 			modelElemTypeEndpoint.createSubtypeAndReference(getLink().getObject().getName(), modelElemTypeRef, false, mappingTypeRef);
@@ -126,7 +126,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel(getNewSource(), getLink().getModelElemRef(), true);
 			}
 			else {
@@ -135,7 +135,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {
@@ -148,7 +148,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MultiModelConstraintChecker.isInstancesLevel(getLink())) {
+			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
 				doExecuteInstancesLevel((MappingReference) getLink().eContainer(), getNewTarget(), false);
 			}
 			else {
@@ -157,7 +157,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 			return CommandResult.newOKCommandResult(getLink());
 		}
-		catch (MultiModelDialogCancellation e) {
+		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
 		catch (MMINTException e) {

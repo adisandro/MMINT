@@ -17,11 +17,11 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetFactory;
@@ -58,10 +58,10 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 		}
 
 		// output
-		String newPetrinetModelUri = MultiModelUtils.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
-		newPetrinetModelUri = MultiModelUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
-		MultiModelUtils.writeModelFile(newPetrinet, newPetrinetModelUri, true);
-		Model petrinetModelType = MultiModelTypeRegistry.getType(PetriNetPackage.eNS_URI);
+		String newPetrinetModelUri = MIDUtils.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
+		newPetrinetModelUri = MIDUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
+		MIDUtils.writeModelFile(newPetrinet, newPetrinetModelUri, true);
+		Model petrinetModelType = MIDTypeRegistry.getType(PetriNetPackage.eNS_URI);
 		newPetrinetModel = petrinetModelType.createInstanceAndEditor(newPetrinetModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, newPetrinetModel);
@@ -73,7 +73,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 	public void cleanup() throws Exception {
 
 		if (newPetrinetModel != null) {
-			MultiModelUtils.deleteModelFile(newPetrinetModel);
+			MIDUtils.deleteModelFile(newPetrinetModel);
 			newPetrinetModel = null;
 		}
 	}

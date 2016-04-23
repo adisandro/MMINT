@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeRegistry;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -33,7 +33,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			((Model) constraint.eContainer()).getUri();
 		try {
 			IJavaModelConstraint javaConstraint = (IJavaModelConstraint)
-				MultiModelTypeRegistry.getTypeBundle(modelTypeUri).
+				MIDTypeRegistry.getTypeBundle(modelTypeUri).
 				loadClass(javaClassName).
 				getConstructor().
 				newInstance();

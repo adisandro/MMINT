@@ -12,10 +12,10 @@
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MultiModelTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -255,20 +255,20 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MultiModelRegistry.getMultiModel(this);
+		MID typeMID = MIDRegistry.getMultiModel(this);
 		ModelRel modelRelType = (ModelRel) eContainer();
 		// delete the "thing" and the corresponding reference
 		getObject().deleteType();
 		deleteTypeReference();
 		// delete references of the "thing" in subtypes of the container
-		for (ModelRel modelRelSubtype : MultiModelTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MultiModelTypeHierarchy.getReference(this, modelRelSubtype.getMappingRefs());
+		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
+			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(this, modelRelSubtype.getMappingRefs());
 			mappingSubtypeRef.deleteTypeReference();
 		}
 		// delete the subtypes of the "thing"
-		for (Mapping mappingSubtype : MultiModelTypeHierarchy.getDirectSubtypes(getObject(), typeMID)) {
+		for (Mapping mappingSubtype : MIDTypeHierarchy.getDirectSubtypes(getObject(), typeMID)) {
 			ModelRel modelRelTypeOrSubtype = (ModelRel) mappingSubtype.eContainer();
-			MappingReference mappingSubtypeRef = MultiModelTypeHierarchy.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
+			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
 			mappingSubtypeRef.deleteTypeAndReference();
 		}
 	}

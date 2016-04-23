@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MultiModelUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.AbstractState;
 import edu.toronto.cs.se.modelepedia.statemachine_mavo.State;
@@ -138,8 +138,8 @@ public class ParallelComposition extends OperatorImpl {
 		StateMachine composedSM = compose((StateMachine) smModel1.getEMFInstanceRoot(), (StateMachine) smModel2.getEMFInstanceRoot());
 
 		// output
-		String composedModelUri = MultiModelUtils.replaceFileNameInUri(smModel1.getUri(), smModel1.getName() + "+" + smModel2.getName());
-		MultiModelUtils.writeModelFile(composedSM, composedModelUri, true);
+		String composedModelUri = MIDUtils.replaceFileNameInUri(smModel1.getUri(), smModel1.getName() + "+" + smModel2.getName());
+		MIDUtils.writeModelFile(composedSM, composedModelUri, true);
 		Model composedModel = smModel1.getMetatype().createInstanceAndEditor(composedModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, composedModel);
