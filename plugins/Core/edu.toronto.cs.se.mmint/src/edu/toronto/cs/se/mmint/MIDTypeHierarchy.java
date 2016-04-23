@@ -65,7 +65,7 @@ public class MIDTypeHierarchy {
 	private static class ExtensionHierarchyComparator implements Comparator<IConfigurationElement> {
 
 		/** The map from a uri to its supertype uri within the hierarchy of extensions. */
-		private HashMap<String, String> extensionUris;
+		private Map<String, String> extensionUris;
 		/** The name of the xml child to be used in the extensions. */
 		private String childName;
 		/** The root uri in the hierarchy. */
@@ -82,7 +82,7 @@ public class MIDTypeHierarchy {
 		 * @param rootUri
 		 *            The root uri in the hierarchy.
 		 */
-		public ExtensionHierarchyComparator(HashMap<String, String> extensionUris, String childName, String rootUri) {
+		public ExtensionHierarchyComparator(Map<String, String> extensionUris, String childName, String rootUri) {
 
 			this.extensionUris = extensionUris;
 			this.childName = childName;
@@ -237,7 +237,7 @@ public class MIDTypeHierarchy {
 	 */
 	public static Iterator<IConfigurationElement> getExtensionHierarchyIterator(IConfigurationElement[] extensions, String childName, String rootUri) {
 
-		HashMap<String, String> extensionUris = new HashMap<String, String>();
+		Map<String, String> extensionUris = new HashMap<>();
 		for (IConfigurationElement extension : extensions) {
 			if (childName != null) {
 				extension = extension.getChildren(childName)[0];
@@ -245,7 +245,7 @@ public class MIDTypeHierarchy {
 			ExtensionType type = new ExtensionType(extension);
 			extensionUris.put(type.getUri(), type.getSupertypeUri());
 		}
-		TreeSet<IConfigurationElement> hierarchy = new TreeSet<IConfigurationElement>(
+		TreeSet<IConfigurationElement> hierarchy = new TreeSet<>(
 			new ExtensionHierarchyComparator(extensionUris, childName, rootUri)
 		);
 		for (IConfigurationElement extension : extensions) {

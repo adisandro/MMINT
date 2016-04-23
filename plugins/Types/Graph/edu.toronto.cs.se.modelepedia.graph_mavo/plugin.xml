@@ -28,7 +28,8 @@
       <modelType>
          <type
                name="Graph_MAVO"
-               uri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO">
+               uri="http://se.cs.toronto.edu/modelepedia/Graph_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
             </superType>

@@ -112,7 +112,8 @@
          <modelType>
             <type
                   name="MAVORefinementRel"
-                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel">
+                  uri="http://se.cs.toronto.edu/mmint/MAVORefinementRel"
+                  class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
             <superType
                   uri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
             </superType>

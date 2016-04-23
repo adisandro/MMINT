@@ -355,6 +355,7 @@
          <type
                name="UML_MAVO"
                uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory"
                isAbstract="true">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
@@ -407,6 +408,7 @@
          <type
                name="UMLClassDiagram_MAVO"
                uri="http://www.eclipse.org/uml2/5.0.0/UMLClassDiagram_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory"
                isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
@@ -460,6 +462,7 @@
          <type
                name="UMLComponentDiagram_MAVO"
                uri="http://www.eclipse.org/uml2/5.0.0/UMLComponentDiagram_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory"
                isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
@@ -513,6 +516,7 @@
          <type
                name="UMLDeploymentDiagram_MAVO"
                uri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory"
                isAbstract="true">
             <superType
                   uri="http://www.eclipse.org/uml2/5.0.0/UML_MAVO">
@@ -566,7 +570,11 @@
          <modelType>
             <type
                   name="UMLComponentDeploymentRel_MAVO"
-                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO">
+                  uri="http://se.cs.toronto.edu/modelepedia/UMLComponentDeploymentRel_MAVO"
+                  class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
+               <superType
+                     uri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
+               </superType>
             </type>
          </modelType>
          <binaryType

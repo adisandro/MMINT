@@ -28,7 +28,8 @@
       <modelType>
          <type
                name="StateMachine_MAVO"
-               uri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO">
+               uri="http://se.cs.toronto.edu/modelepedia/StateMachine_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
             </superType>

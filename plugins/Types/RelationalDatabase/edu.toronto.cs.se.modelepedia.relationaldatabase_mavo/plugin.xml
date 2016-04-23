@@ -27,7 +27,8 @@
       <modelType>
          <type
                name="RelationalDatabase_MAVO"
-               uri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO">
+               uri="http://se.cs.toronto.edu/modelepedia/RelationalDatabase_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
             </superType>

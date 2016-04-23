@@ -27,7 +27,8 @@
       <modelType>
          <type
                name="IStar_MAVO"
-               uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO">
+               uri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO"
+               class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
             <superType
                   uri="http://se.cs.toronto.edu/MAVO">
             </superType>
@@ -47,8 +48,12 @@
          <modelType>
             <type
                   name="IStarCDRel"
-                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel">
+                  uri="http://se.cs.toronto.edu/modelepedia/IStarCDRel"
+                  class="edu.toronto.cs.se.mmint.mavo.library.MAVOMIDHeavyTypeFactory">
             </type>
+               <superType
+                     uri="http://se.cs.toronto.edu/mmint/MAVOModelRel">
+               </superType>
          </modelType>
          <binaryType
                sourceTypeUri="http://se.cs.toronto.edu/modelepedia/IStar_MAVO"
