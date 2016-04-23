@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_S3z1oKhlEeKXC-ayX60m7A" type="MID" name="analysis.middiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_UJQPYKhlEeKXC-ayX60m7A" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_UJQPZahlEeKXC-ayX60m7A" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_UJQ2cKhlEeKXC-ayX60m7A" type="5017"/>
+  <children xmi:type="notation:Node" xmi:id="_UJQPYKhlEeKXC-ayX60m7A" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_UJQPZahlEeKXC-ayX60m7A" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_UJQ2cKhlEeKXC-ayX60m7A" type="5004"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_UJQPYahlEeKXC-ayX60m7A"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_UJQPYqhlEeKXC-ayX60m7A" fontName="Ubuntu"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_UJQPY6hlEeKXC-ayX60m7A" hint="Mid"/>
     <element xmi:type="mid:Model" href="analysis.mid#//@models.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UJQPZKhlEeKXC-ayX60m7A" x="57" y="32"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_VSJxIKhlEeKXC-ayX60m7A" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_VSKYMKhlEeKXC-ayX60m7A" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_VSKYMahlEeKXC-ayX60m7A" type="5017"/>
+  <children xmi:type="notation:Node" xmi:id="_VSJxIKhlEeKXC-ayX60m7A" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_VSKYMKhlEeKXC-ayX60m7A" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VSKYMahlEeKXC-ayX60m7A" type="5004"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_VSJxIahlEeKXC-ayX60m7A"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_VSJxIqhlEeKXC-ayX60m7A" fontName="Ubuntu"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_VSJxI6hlEeKXC-ayX60m7A" hint="Mid"/>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_ubwqgCe0EeOAX7dUr6Au-g" type="MID" name="analysis.middiag" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_unQ00C0jEeOXwaBpNHH2uA" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_unSC8C0jEeOXwaBpNHH2uA" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_unSqAC0jEeOXwaBpNHH2uA" type="5017"/>
+  <children xmi:type="notation:Node" xmi:id="_unQ00C0jEeOXwaBpNHH2uA" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_unSC8C0jEeOXwaBpNHH2uA" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_unSqAC0jEeOXwaBpNHH2uA" type="5004"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_unQ00S0jEeOXwaBpNHH2uA"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_unQ00i0jEeOXwaBpNHH2uA" fontName="Cantarell" fontHeight="10"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_unQ00y0jEeOXwaBpNHH2uA" hint="Mid"/>
     <element xmi:type="mid:Model" href="analysis.mid#//@models.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_unQ01C0jEeOXwaBpNHH2uA" x="64" y="34"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_vp7LsC0jEeOXwaBpNHH2uA" type="2012">
-    <children xmi:type="notation:DecorationNode" xmi:id="_vp7ywS0jEeOXwaBpNHH2uA" type="5012"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_vp7ywi0jEeOXwaBpNHH2uA" type="5017"/>
+  <children xmi:type="notation:Node" xmi:id="_vp7LsC0jEeOXwaBpNHH2uA" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_vp7ywS0jEeOXwaBpNHH2uA" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_vp7ywi0jEeOXwaBpNHH2uA" type="5004"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_vp7LsS0jEeOXwaBpNHH2uA"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_vp7Lsi0jEeOXwaBpNHH2uA" fontName="Cantarell" fontHeight="10"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vp7Lsy0jEeOXwaBpNHH2uA" hint="Mid"/>
