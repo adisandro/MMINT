@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_71kkINPJEeKmd_K2d4qF7A" name="model">
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_71kkINPJEeKmd_K2d4qF7A" name="model">
   <packagedElement xmi:type="uml:Device" xmi:id="_Cm68INPKEeKmd_K2d4qF7A" clientDependency="_H8XW0NPKEeKmd_K2d4qF7A" name="ECU1"/>
   <packagedElement xmi:type="uml:Device" xmi:id="_DaREoNPKEeKmd_K2d4qF7A" clientDependency="_LgngsNPKEeKmd_K2d4qF7A" name="ECU2"/>
   <packagedElement xmi:type="uml:Node" xmi:id="_ED2NINPKEeKmd_K2d4qF7A" name="Bus1"/>

@@ -32,7 +32,7 @@
     <modelEndpointRefs referencedObject="//@models.11/@modelEndpoints.0" modifiable="true"/>
     <modelEndpointRefs referencedObject="//@models.11/@modelEndpoints.1" modifiable="true"/>
   </models>
-  <models uri="/MODELS15/demo/Architecture.uml" name="Architecture" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UMLDeploymentDiagram" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.8"/>
+  <models uri="/MODELS15/demo/Architecture.uml" name="Architecture" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UMLDeploymentDiagram" dynamic="true" origin="CREATED" fileExtension="uml" editors="//@editors.8"/>
   <models xsi:type="relationship:BinaryModelRel" uri="" name="depl" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="" sourceModel="//@models.4" targetModel="//@models.12">
     <modelEndpoints uri="" name="ACC" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <modelEndpoints uri="" name="Architecture" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.12"/>
@@ -81,7 +81,7 @@
   <editors xsi:type="editor:Diagram" uri="/MODELS15/demo/PowerWindow.statemachinediag" name="StateMachine diagram for model /MODELS15/demo/PowerWindow.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_StateMachine" dynamic="true" modelUri="/MODELS15/demo/PowerWindow.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.statemachine.diagram.part.StateMachineCreationWizardID">
     <fileExtensions>statemachinediag</fileExtensions>
   </editors>
-  <editors xsi:type="editor:Diagram" uri="/MODELS15/demo/Architecture.di" name="UML diagram for model /MODELS15/demo/Architecture.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_diagram" dynamic="true" modelUri="/MODELS15/demo/Architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
+  <editors xsi:type="editor:Diagram" uri="/MODELS15/demo/Architecture.di" name="UML diagram for model /MODELS15/demo/Architecture.uml" metatypeUri="http://www.eclipse.org/uml2/5.0.0/UML_diagram" dynamic="true" modelUri="/MODELS15/demo/Architecture.uml" id="org.eclipse.papyrus.infra.core.papyrusEditor" wizardId="org.eclipse.papyrus.uml.diagram.wizards.createmodel">
     <fileExtensions>di</fileExtensions>
   </editors>
   <extendibleTable key="/MODELS15/demo/ACC.classdiagram" value="//@models.0"/>

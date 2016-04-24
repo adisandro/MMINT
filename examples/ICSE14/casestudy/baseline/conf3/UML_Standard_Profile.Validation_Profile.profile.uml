@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DSLCustomization="http:///schemas/DSLCustomization/_i1aHcBSlEeOzZZ_D57lDQA/0" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_i1JBsBSlEeOzZZ_D57lDQA/0" xmlns:ValidationProfile="http:///schemas/ValidationProfile/_i0tj4BSlEeOzZZ_D57lDQA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/DSLCustomization/_i1aHcBSlEeOzZZ_D57lDQA/0 UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_i1qmaRSlEeOzZZ_D57lDQA http:///schemas/MagicDrawProfile/_i1JBsBSlEeOzZZ_D57lDQA/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_i1njXRSlEeOzZZ_D57lDQA http:///schemas/ValidationProfile/_i0tj4BSlEeOzZZ_D57lDQA/0 #_i1fnAhSlEeOzZZ_D57lDQA">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DSLCustomization="http:///schemas/DSLCustomization/_i1aHcBSlEeOzZZ_D57lDQA/0" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_i1JBsBSlEeOzZZ_D57lDQA/0" xmlns:ValidationProfile="http:///schemas/ValidationProfile/_i0tj4BSlEeOzZZ_D57lDQA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/DSLCustomization/_i1aHcBSlEeOzZZ_D57lDQA/0 UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_i1qmaRSlEeOzZZ_D57lDQA http:///schemas/MagicDrawProfile/_i1JBsBSlEeOzZZ_D57lDQA/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_i1njXRSlEeOzZZ_D57lDQA http:///schemas/ValidationProfile/_i0tj4BSlEeOzZZ_D57lDQA/0 #_i1fnAhSlEeOzZZ_D57lDQA">
   <uml:Profile xmi:id="_11_5_f720368_1159529670215_231387_1" name="Validation Profile" metamodelReference="_16_8beta_62a020a_1256807644323_422516_344">
     <eAnnotations xmi:id="_i1fnARSlEeOzZZ_D57lDQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <contents xmi:type="ecore:EPackage" xmi:id="_i1fnAhSlEeOzZZ_D57lDQA" name="ValidationProfile" nsURI="http:///schemas/ValidationProfile/_i0tj4BSlEeOzZZ_D57lDQA/0" nsPrefix="ValidationProfile">
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_i1fnAxSlEeOzZZ_D57lDQA" name="validationSuite">
           <eAnnotations xmi:id="_i1fnBBSlEeOzZZ_D57lDQA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_11_5_f720368_1159529725637_145757_40"/>
           <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_i1fnBRSlEeOzZZ_D57lDQA" name="base_Package" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
           </eStructuralFeatures>
         </eClassifiers>
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_i1fnBxSlEeOzZZ_D57lDQA" name="validationRule" eSuperTypes="_i1fnFhSlEeOzZZ_D57lDQA">
@@ -14,7 +14,7 @@
           <eAnnotations xmi:id="_i1fnCRSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnChSlEeOzZZ_D57lDQA" name="base_Constraint" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnCxSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnGBSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Constraint"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Constraint"/>
             </contents>
           </eAnnotations>
           <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_i1fnDRSlEeOzZZ_D57lDQA" name="abbreviation" ordered="false">
@@ -31,7 +31,7 @@
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_i1fnFhSlEeOzZZ_D57lDQA" name="invariant">
           <eAnnotations xmi:id="_i1fnFxSlEeOzZZ_D57lDQA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_12_0EAPbeta_f720368_1161678251667_475427_98"/>
           <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_i1fnGBSlEeOzZZ_D57lDQA" name="base_Constraint" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Constraint"/>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Constraint"/>
           </eStructuralFeatures>
         </eClassifiers>
         <eClassifiers xmi:type="ecore:EEnum" xmi:id="_i1fnGhSlEeOzZZ_D57lDQA" name="SeverityKind">
@@ -45,7 +45,7 @@
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_i1fnIRSlEeOzZZ_D57lDQA" name="imaged">
           <eAnnotations xmi:id="_i1fnIhSlEeOzZZ_D57lDQA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_11_5_f720368_1159529845058_620718_150"/>
           <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_i1fnIxSlEeOzZZ_D57lDQA" name="base_EnumerationLiteral" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//EnumerationLiteral"/>
           </eStructuralFeatures>
           <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_i1fnJRSlEeOzZZ_D57lDQA" name="highlightColor" ordered="false">
             <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -56,7 +56,7 @@
           <eAnnotations xmi:id="_i1fnKRSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnKhSlEeOzZZ_D57lDQA" name="base_EnumerationLiteral" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnKxSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnIxSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//EnumerationLiteral"/>
             </contents>
           </eAnnotations>
         </eClassifiers>
@@ -65,7 +65,7 @@
           <eAnnotations xmi:id="_i1fnMBSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnMRSlEeOzZZ_D57lDQA" name="base_EnumerationLiteral" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnMhSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnIxSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//EnumerationLiteral"/>
             </contents>
           </eAnnotations>
         </eClassifiers>
@@ -74,7 +74,7 @@
           <eAnnotations xmi:id="_i1fnNxSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnOBSlEeOzZZ_D57lDQA" name="base_EnumerationLiteral" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnORSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnIxSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//EnumerationLiteral"/>
             </contents>
           </eAnnotations>
         </eClassifiers>
@@ -83,7 +83,7 @@
           <eAnnotations xmi:id="_i1fnPhSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnPxSlEeOzZZ_D57lDQA" name="base_EnumerationLiteral" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnQBSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnIxSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//EnumerationLiteral"/>
             </contents>
           </eAnnotations>
         </eClassifiers>
@@ -92,14 +92,14 @@
           <eAnnotations xmi:id="_i1fnRRSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnRhSlEeOzZZ_D57lDQA" name="base_EnumerationLiteral" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnRxSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnIxSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//EnumerationLiteral"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//EnumerationLiteral"/>
             </contents>
           </eAnnotations>
         </eClassifiers>
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_i1fnShSlEeOzZZ_D57lDQA" name="definition">
           <eAnnotations xmi:id="_i1fnSxSlEeOzZZ_D57lDQA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_12_0EAPbeta_f720368_1161678548917_246112_174"/>
           <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_i1fnTBSlEeOzZZ_D57lDQA" name="base_Constraint" ordered="false" lowerBound="1">
-            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Constraint"/>
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Constraint"/>
           </eStructuralFeatures>
         </eClassifiers>
         <eClassifiers xmi:type="ecore:EClass" xmi:id="_i1fnThSlEeOzZZ_D57lDQA" name="activeValidationSuite" eSuperTypes="_i1fnAxSlEeOzZZ_D57lDQA">
@@ -107,7 +107,7 @@
           <eAnnotations xmi:id="_i1fnUBSlEeOzZZ_D57lDQA" source="duplicates">
             <contents xmi:type="ecore:EReference" xmi:id="_i1fnURSlEeOzZZ_D57lDQA" name="base_Package" ordered="false" lowerBound="1">
               <eAnnotations xmi:id="_i1fnUhSlEeOzZZ_D57lDQA" source="redefines" references="_i1fnBRSlEeOzZZ_D57lDQA"/>
-              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
+              <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
             </contents>
           </eAnnotations>
         </eClassifiers>
