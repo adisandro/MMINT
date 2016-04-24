@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_tiEk0HreEeKvbK2mG0FePA" type="MID" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_tiEk0HreEeKvbK2mG0FePA" type="MID" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_dp6wAAnpEeaCnpoxqLbJgg" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_dp6wBQnpEeaCnpoxqLbJgg" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_dp6wBgnpEeaCnpoxqLbJgg" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_dp6wAQnpEeaCnpoxqLbJgg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_dp6wAgnpEeaCnpoxqLbJgg" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_dp6wAwnpEeaCnpoxqLbJgg" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dp6wBAnpEeaCnpoxqLbJgg" y="12"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_dp6wBwnpEeaCnpoxqLbJgg" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_dp6wDAnpEeaCnpoxqLbJgg" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_dp6wDQnpEeaCnpoxqLbJgg" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_dp6wCAnpEeaCnpoxqLbJgg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_dp6wCQnpEeaCnpoxqLbJgg" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_dp6wCgnpEeaCnpoxqLbJgg" hint="Mid"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dp6wCwnpEeaCnpoxqLbJgg" x="247" y="12"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_tiEk0XreEeKvbK2mG0FePA"/>
   <element xmi:type="mid:MID" href="analysis.mid#/"/>
 </notation:Diagram>

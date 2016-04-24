@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_vNRHYI-PEeKkP5pfIqu-pQ" type="MID" name="lifting.middiag" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_vNRHYI-PEeKkP5pfIqu-pQ" type="MID" name="lifting.middiag" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_uENisI-REeKkP5pfIqu-pQ" type="2002">
     <children xmi:type="notation:DecorationNode" xmi:id="_uENitY-REeKkP5pfIqu-pQ" type="5003"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_uENito-REeKkP5pfIqu-pQ" type="5004"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_uENisY-REeKkP5pfIqu-pQ"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_uENiso-REeKkP5pfIqu-pQ" fontName="Ubuntu"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_uENis4-REeKkP5pfIqu-pQ" hint="Mid"/>
-    <element xmi:type="mid:Model" href="lifting.mid#//@models.0"/>
+    <element xmi:type="mavomid:MAVOModel" href="lifting.mid#//@models.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uENitI-REeKkP5pfIqu-pQ" x="108" y="55"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_vNRHYY-PEeKkP5pfIqu-pQ"/>

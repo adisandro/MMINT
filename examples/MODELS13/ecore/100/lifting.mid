@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/MODELS13/ecore/100/ecore.classdiagram_mavo" name="ecore" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" fileExtension="classdiagram_mavo" editors="//@editors.0"/>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models xsi:type="mavomid:MAVOModel" uri="/MODELS13/ecore/100/ecore.classdiagram_mavo" name="ecore" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" fileExtension="classdiagram_mavo" editors="//@editors.0"/>
   <editors xsi:type="editor:Diagram" uri="/MODELS13/ecore/100/ecore.classdiagramdiag_mavo" name="ClassDiagram_MAVO diagram for model /MODELS13/ecore/100/ecore.classdiagram_mavo" metatypeUri="http://se.cs.toronto.edu/modelepedia/Diagram_ClassDiagram_MAVO" dynamic="true" modelUri="/MODELS13/ecore/100/ecore.classdiagram_mavo" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVODiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram.part.ClassDiagram_MAVOCreationWizardID"/>
   <extendibleTable key="/MODELS13/ecore/100/ecore.classdiagram_mavo" value="//@models.0"/>
 </mid:MID>

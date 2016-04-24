@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_f_0qABr-EeOrAMSJAcRL7w" type="MID" name="lifting.middiag" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_f_0qABr-EeOrAMSJAcRL7w" type="MID" name="lifting.middiag" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_h9sr8Br-EeOrAMSJAcRL7w" type="2002">
     <children xmi:type="notation:DecorationNode" xmi:id="_h9sr9Rr-EeOrAMSJAcRL7w" type="5003"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_h9sr9hr-EeOrAMSJAcRL7w" type="5004"/>
@@ -7,7 +7,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_h9sr8hr-EeOrAMSJAcRL7w" fontName="Cantarell" fontHeight="10"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_h9sr8xr-EeOrAMSJAcRL7w" hint="Mid"/>
     <element xmi:type="mid:Model" href="lifting.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h9sr9Br-EeOrAMSJAcRL7w" x="132" y="121"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h9sr9Br-EeOrAMSJAcRL7w" x="120" y="121"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_of9fEBr-EeOrAMSJAcRL7w" type="2001">
     <children xmi:type="notation:DecorationNode" xmi:id="_of9fFRr-EeOrAMSJAcRL7w" type="5001"/>
@@ -15,7 +15,7 @@
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_of9fERr-EeOrAMSJAcRL7w"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_of9fEhr-EeOrAMSJAcRL7w" fontName="Cantarell" fontHeight="10"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_of9fExr-EeOrAMSJAcRL7w" hint="Mid"/>
-    <element xmi:type="mid:Model" href="lifting.mid#//@models.1"/>
+    <element xmi:type="mavomid:MAVOModel" href="lifting.mid#//@models.1"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_of9fFBr-EeOrAMSJAcRL7w" x="96" y="276"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_f_0qARr-EeOrAMSJAcRL7w"/>

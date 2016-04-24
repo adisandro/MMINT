@@ -210,9 +210,10 @@ public class MMINT implements MMINTConstants {
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) throws Exception {
 
 		IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-		ExtensionType extensionType = new ExtensionType(modelTypeConfig, typeFactory);
-		if (extensionType.getUri() == null) {
-			throw new MMINTException("Model relationship type " + extensionType.getName() + " must have a uri");
+		ExtensionType modelRelExtensionType = new ExtensionType(modelTypeConfig, typeFactory);
+		ExtensionType extensionType;
+		if (modelRelExtensionType.getUri() == null) {
+			throw new MMINTException("Model relationship type " + modelRelExtensionType.getName() + " must have a uri");
 		}
 		IConfigurationElement[] binaryTypeConfigs = extensionConfig.getChildren(CHILD_BINARYTYPE);
 		boolean isBinary = (binaryTypeConfigs.length == 0) ? false : true;
@@ -223,8 +224,8 @@ public class MMINT implements MMINTConstants {
 		String constraintImplementation = (constraintConfig.length == 0) ?
 			null :
 			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
-		ModelRel newModelRelType = extensionType.getFactory().createHeavyModelRelType(
-			extensionType,
+		ModelRel newModelRelType = modelRelExtensionType.getFactory().createHeavyModelRelType(
+			modelRelExtensionType,
 			isBinary,
 			constraintLanguage,
 			constraintImplementation
@@ -249,7 +250,7 @@ public class MMINT implements MMINTConstants {
 				continue;
 			}
 			boolean isBinarySrc = (isBinary && srcModelTypeUri.equals(targetModelTypeUri));
-			ModelEndpointReference newModelTypeEndpointRef = extensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
+			ModelEndpointReference newModelTypeEndpointRef = modelRelExtensionType.getFactory().createHeavyModelTypeEndpointAndModelTypeEndpointReference(
 				extensionType,
 				targetModelType,
 				isBinarySrc,
@@ -274,7 +275,7 @@ public class MMINT implements MMINTConstants {
 					EObject modelElemTypeObj = MIDTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
 					EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(modelElemTypeObj, MIDLevel.TYPES);
 					try {
-						newModelElemType = extensionType.getFactory().createHeavyModelElementType(
+						newModelElemType = modelRelExtensionType.getFactory().createHeavyModelElementType(
 							extensionType,
 							eInfo,
 							targetModelType
@@ -299,7 +300,7 @@ public class MMINT implements MMINTConstants {
 			extensionType = new ExtensionType(mappingTypeConfig, typeFactory);
 			MappingReference newMappingTypeRef;
 			try {
-				newMappingTypeRef = extensionType.getFactory().createHeavyMappingTypeAndMappingTypeReference(
+				newMappingTypeRef = modelRelExtensionType.getFactory().createHeavyMappingTypeAndMappingTypeReference(
 					extensionType,
 					isBinary,
 					newModelRelType
@@ -340,7 +341,7 @@ public class MMINT implements MMINTConstants {
 				ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
 				ModelElementReference newModelElemTypeRef = MIDTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 				boolean isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
-				ModelElementEndpointReference newModelElemTypeEndpointRef = extensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
+				ModelElementEndpointReference newModelElemTypeEndpointRef = modelRelExtensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 					extensionType,
 					newModelElemTypeRef,
 					isBinarySrc,

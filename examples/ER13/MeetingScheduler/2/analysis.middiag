@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_bi1o4KhhEeKXC-ayX60m7A" type="MID" name="analysis.middiag" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_bi1o4KhhEeKXC-ayX60m7A" type="MID" name="analysis.middiag" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_cpnqwKhhEeKXC-ayX60m7A" type="2002">
     <children xmi:type="notation:DecorationNode" xmi:id="_cpoR0KhhEeKXC-ayX60m7A" type="5003"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_cpoR0ahhEeKXC-ayX60m7A" type="5004"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_cpnqwahhEeKXC-ayX60m7A"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_cpnqwqhhEeKXC-ayX60m7A" fontName="Ubuntu"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_cpnqw6hhEeKXC-ayX60m7A" hint="Mid"/>
-    <element xmi:type="mid:Model" href="analysis.mid#//@models.0"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cpnqxKhhEeKXC-ayX60m7A" x="47" y="28"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_dhr7MKhhEeKXC-ayX60m7A" type="2002">
@@ -15,7 +15,7 @@
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_dhr7MahhEeKXC-ayX60m7A"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_dhr7MqhhEeKXC-ayX60m7A" fontName="Ubuntu"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_dhr7M6hhEeKXC-ayX60m7A" hint="Mid"/>
-    <element xmi:type="mid:Model" href="analysis.mid#//@models.1"/>
+    <element xmi:type="mavomid:MAVOModel" href="analysis.mid#//@models.1"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dhr7NKhhEeKXC-ayX60m7A" x="245" y="31"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_bi1o4ahhEeKXC-ayX60m7A"/>

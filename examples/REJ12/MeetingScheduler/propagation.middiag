@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
   <notation:Diagram xmi:id="_S-DXwHrXEeKvbK2mG0FePA" type="MID" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_nXyegKxPEeK0XKK1o9QtwQ" type="2002">
       <children xmi:type="notation:DecorationNode" xmi:id="_nXyehaxPEeK0XKK1o9QtwQ" type="5003"/>
@@ -7,7 +7,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_nXyegaxPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nXyegqxPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nXyeg6xPEeK0XKK1o9QtwQ" hint="Mid"/>
-      <element xmi:type="mid:Model" href="propagation.mid#//@models.0"/>
+      <element xmi:type="mavomid:MAVOModel" href="propagation.mid#//@models.0"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nXyehKxPEeK0XKK1o9QtwQ" y="36"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_nXyeh6xPEeK0XKK1o9QtwQ" type="2002">
@@ -16,7 +16,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_nXyeiKxPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nXyeiaxPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nXyeiqxPEeK0XKK1o9QtwQ" hint="Mid"/>
-      <element xmi:type="mid:Model" href="propagation.mid#//@models.1"/>
+      <element xmi:type="mavomid:MAVOModel" href="propagation.mid#//@models.1"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nXyei6xPEeK0XKK1o9QtwQ" x="-36" y="288"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_nXzFkaxPEeK0XKK1o9QtwQ" type="2002">
@@ -25,7 +25,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_nXzFkqxPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nXzFk6xPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nXzFlKxPEeK0XKK1o9QtwQ" hint="Mid"/>
-      <element xmi:type="mid:Model" href="propagation.mid#//@models.3"/>
+      <element xmi:type="mavomid:MAVOModel" href="propagation.mid#//@models.3"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nXzFlaxPEeK0XKK1o9QtwQ" x="396" y="36"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_nXzFmKxPEeK0XKK1o9QtwQ" type="2002">
@@ -34,7 +34,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_nXzFmaxPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nXzFmqxPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nXzFm6xPEeK0XKK1o9QtwQ" hint="Mid"/>
-      <element xmi:type="mid:Model" href="propagation.mid#//@models.5"/>
+      <element xmi:type="mavomid:MAVOModel" href="propagation.mid#//@models.5"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nXzFnKxPEeK0XKK1o9QtwQ" x="816" y="36"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_S-DXwXrXEeKvbK2mG0FePA"/>
@@ -55,7 +55,7 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_nX2I4axPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nX2I4qxPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nX2I7KxPEeK0XKK1o9QtwQ" diagramLink="_nlFToKxPEeK0XKK1o9QtwQ" hint="Relationship"/>
-      <element xmi:type="relationship:BinaryModelRel" href="propagation.mid#//@models.2"/>
+      <element xmi:type="mavomid:BinaryMAVOModelRel" href="propagation.mid#//@models.2"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nX2I46xPEeK0XKK1o9QtwQ" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nX7ocqxPEeK0XKK1o9QtwQ" id="(0.5298507462686567,0.88)"/>
     </edges>
@@ -75,7 +75,7 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_nX3XAaxPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nX3XAqxPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nX3XDKxPEeK0XKK1o9QtwQ" diagramLink="_s4-PIKxPEeK0XKK1o9QtwQ" hint="Relationship"/>
-      <element xmi:type="relationship:BinaryModelRel" href="propagation.mid#//@models.4"/>
+      <element xmi:type="mavomid:BinaryMAVOModelRel" href="propagation.mid#//@models.4"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nX3XA6xPEeK0XKK1o9QtwQ" points="[0, 0, -96, 60]$[96, -60, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nX8PgKxPEeK0XKK1o9QtwQ" id="(0.8507462686567164,0.46)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nX8PgaxPEeK0XKK1o9QtwQ" id="(0.08496732026143791,0.6)"/>
@@ -96,7 +96,7 @@
       <styles xmi:type="notation:RoutingStyle" xmi:id="_nX3-EaxPEeK0XKK1o9QtwQ"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_nX3-EqxPEeK0XKK1o9QtwQ" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_nX4lIqxPEeK0XKK1o9QtwQ" diagramLink="_toWdoKxPEeK0XKK1o9QtwQ" hint="Relationship"/>
-      <element xmi:type="relationship:BinaryModelRel" href="propagation.mid#//@models.6"/>
+      <element xmi:type="mavomid:BinaryMAVOModelRel" href="propagation.mid#//@models.6"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nX3-E6xPEeK0XKK1o9QtwQ" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nX7ocKxPEeK0XKK1o9QtwQ" id="(0.869281045751634,0.5)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nX7ocaxPEeK0XKK1o9QtwQ" id="(0.0125,0.52)"/>
@@ -104,14 +104,14 @@
   </notation:Diagram>
   <notation:Diagram xmi:id="_nlFToKxPEeK0XKK1o9QtwQ" type="Relationship" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_nlFToaxPEeK0XKK1o9QtwQ"/>
-    <element xmi:type="relationship:BinaryModelRel" href="propagation.mid#//@models.2"/>
+    <element xmi:type="mavomid:BinaryMAVOModelRel" href="propagation.mid#//@models.2"/>
   </notation:Diagram>
   <notation:Diagram xmi:id="_s4-PIKxPEeK0XKK1o9QtwQ" type="Relationship" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_s4-PIaxPEeK0XKK1o9QtwQ"/>
-    <element xmi:type="relationship:BinaryModelRel" href="propagation.mid#//@models.4"/>
+    <element xmi:type="mavomid:BinaryMAVOModelRel" href="propagation.mid#//@models.4"/>
   </notation:Diagram>
   <notation:Diagram xmi:id="_toWdoKxPEeK0XKK1o9QtwQ" type="Relationship" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_toWdoaxPEeK0XKK1o9QtwQ"/>
-    <element xmi:type="relationship:BinaryModelRel" href="propagation.mid#//@models.6"/>
+    <element xmi:type="mavomid:BinaryMAVOModelRel" href="propagation.mid#//@models.6"/>
   </notation:Diagram>
 </xmi:XMI>

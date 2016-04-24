@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/ICSE14/casestudy/baseline/conf3/bCMS-SPL-PC-Conf3.uml" name="bCMS-SPL-PC-Conf3" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML" dynamic="true" fileExtension="uml" editors="//@editors.0"/>
-  <models uri="/ICSE14/casestudy/baseline/conf3/bCMS-SPL-PC-Conf3.classdiagram_mavo" name="bCMS-SPL-PC-Conf3" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="classdiagram_mavo" editors="//@editors.1"/>
+  <models xsi:type="mavomid:MAVOModel" uri="/ICSE14/casestudy/baseline/conf3/bCMS-SPL-PC-Conf3.classdiagram_mavo" name="bCMS-SPL-PC-Conf3" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="classdiagram_mavo" editors="//@editors.1"/>
   <editors uri="/ICSE14/casestudy/baseline/conf3/bCMS-SPL-PC-Conf3.uml" name="UML tree for model /ICSE14/casestudy/baseline/conf3/bCMS-SPL-PC-Conf3.uml" metatypeUri="http://www.eclipse.org/uml2/4.0.0/UML_tree" dynamic="true" modelUri="/ICSE14/casestudy/baseline/conf3/bCMS-SPL-PC-Conf3.uml" id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID" wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
     <fileExtensions>uml</fileExtensions>
   </editors>

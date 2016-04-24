@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jQjWMGuAEeS0XrwwRdF7LQ" type="MID" name="demo.middiag" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jQjWMGuAEeS0XrwwRdF7LQ" type="MID" name="demo.middiag" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_tv9UUGuAEeS0XrwwRdF7LQ" type="2001">
     <children xmi:type="notation:DecorationNode" xmi:id="_tv-icGuAEeS0XrwwRdF7LQ" type="5001"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_tv-icWuAEeS0XrwwRdF7LQ" type="5002"/>
     <styles xmi:type="notation:DescriptionStyle" xmi:id="_tv9UUWuAEeS0XrwwRdF7LQ"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_tv9UUmuAEeS0XrwwRdF7LQ" fontName="Cantarell" fontHeight="12"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_tv9UU2uAEeS0XrwwRdF7LQ" hint="Mid"/>
-    <element xmi:type="mid:Model" href="demo.mid#//@models.0"/>
+    <element xmi:type="mavomid:MAVOModel" href="demo.mid#//@models.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tv9UVGuAEeS0XrwwRdF7LQ" x="72" y="36" height="73"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_jQj9QGuAEeS0XrwwRdF7LQ"/>
