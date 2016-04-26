@@ -150,7 +150,8 @@ public class MAVORefiner {
 
 		ModelEndpointReference modelEndpointRef = refinementRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference refinedModelEndpointRef = refinementRel.getModelEndpointRefs().get(1);
-		Mapping refinementMappingType = refinementRel.getMetatype().getMappings().get(0);
+		// TODO MMINT[MODELREL] It should really be simple to get this with inheritance (MAVORefinementRel has 0 mappings, but the supertype has them)
+		Mapping refinementMappingType = refinementRel.getMetatype().getMappingRefs().get(0).getObject();
 		for (Entry<MAVOElement, MAVOElement> refinementEntry : refinementMap.entrySet()) {
 			MAVOElement refinedModelObj = refinementEntry.getKey();
 			MAVOElement modelObj = refinementEntry.getValue();
@@ -160,7 +161,7 @@ public class MAVORefiner {
 			}
 			boolean isBinary = false;
 			String linkName = DELETED_LINK_NAME;
-			EList<ModelElementReference> modelElemRefs = new BasicEList<ModelElementReference>();
+			EList<ModelElementReference> modelElemRefs = new BasicEList<>();
 			try {
 				modelElemRefs.add(modelEndpointRef.createModelElementInstanceAndReference(modelObj, null));
 				if (refinedModelObj != null) {
