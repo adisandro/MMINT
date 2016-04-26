@@ -14,6 +14,6 @@ script:
 after_success:
  - chmod 600 releng/deploy_key
  - mv releng/deploy_key ~/.ssh/id_rsa
- - if [ $TRAVIS_BRANCH = master ]; then DIR=release; else DIR=$TRAVIS_BRANCH; fi
+ - if [ $TRAVIS_BRANCH = master ]; then export DIR=release; else export DIR=$TRAVIS_BRANCH; fi
  - ssh adisandro@cs.toronto.edu 'rm -rf ~/public_html/mmint/$DIR/'
  - rsync -r releng/edu.toronto.cs.se.mmint.install/target/repository/ adisandro@cs.toronto.edu:~/public_html/mmint/$DIR/

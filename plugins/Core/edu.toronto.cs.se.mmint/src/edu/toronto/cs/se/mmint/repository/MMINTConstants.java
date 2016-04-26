@@ -51,9 +51,9 @@ public interface MMINTConstants {
 	/** The uri of the root model element type. */
 	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + "ModelElement";
 	/** The uri of the root link type. */
-	public final static String ROOT_MAPPING_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link";
+	public final static String ROOT_MAPPING_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Mapping";
 	/** The uri of the root model element type endpoint. */
-	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Link" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Mapping" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
 	/** The uri of the root operator type. */
 	public final static String ROOT_OPERATOR_URI = ROOT_URI + URI_SEPARATOR + "Operator";
 	/** The uri of the root editor type. */
