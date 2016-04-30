@@ -263,37 +263,7 @@ public class RelationshipValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(modelElementReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(modelElementReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExtendibleElementReference_oneObject(modelElementReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateModelElementReference_modelElementType(modelElementReference, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the modelElementType constraint of '<em>Model Element Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String MODEL_ELEMENT_REFERENCE__MODEL_ELEMENT_TYPE__EEXPRESSION = "object.oclIsKindOf(mid::ModelElement)";
-
-	/**
-	 * Validates the modelElementType constraint of '<em>Model Element Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModelElementReference_modelElementType(ModelElementReference modelElementReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(RelationshipPackage.Literals.MODEL_ELEMENT_REFERENCE,
-				 modelElementReference,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "modelElementType",
-				 MODEL_ELEMENT_REFERENCE__MODEL_ELEMENT_TYPE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**

@@ -23,8 +23,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -43,7 +41,7 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -58,7 +56,7 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -70,7 +68,7 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
+				((ModelRel) getElementToEdit()).isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(((BinaryMappingReference) getElementToDestroy()).getObject())
 			);
 	}
@@ -83,14 +81,14 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 	protected void doExecuteTypesLevel() throws MMINTException {
 
 		((BinaryMappingReference) getElementToDestroy()).deleteTypeAndReference();
-		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel((ModelRel) getElementToEdit()));
+		MMINT.createTypeHierarchy(((ModelRel) getElementToEdit()).getMIDContainer());
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
+			if (((ModelRel) getElementToEdit()).isInstancesLevel()) {
 				doExecuteInstancesLevel();
 			}
 			else {

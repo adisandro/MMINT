@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -54,7 +53,7 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
+				((ModelRel) getElementToEdit()).isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType((ModelEndpoint) getElementToDestroy())
 			);
 	}
@@ -85,7 +84,7 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
+			if (((ModelRel) getElementToEdit()).isInstancesLevel()) {
 				doExecuteInstancesLevel();
 			}
 			else {

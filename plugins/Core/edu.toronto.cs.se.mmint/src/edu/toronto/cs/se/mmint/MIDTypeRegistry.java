@@ -462,7 +462,7 @@ public class MIDTypeRegistry {
 		List<String> mappingTypeUris = null;
 
 		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
-			MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+			MID typeMID = modelRelType.getMIDContainer();
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
 			mappingTypeUris = new ArrayList<String>();
@@ -501,7 +501,7 @@ public class MIDTypeRegistry {
 	public static MIDTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
 		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(operatorType);
+		MID typeMID = operatorType.getMIDContainer();
 		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
 		List<GenericElement> genericTypes = MIDTypeHierarchy.getGenericSubtypes(genericSuperType);
 		genericTypes.add(0, genericSuperType);

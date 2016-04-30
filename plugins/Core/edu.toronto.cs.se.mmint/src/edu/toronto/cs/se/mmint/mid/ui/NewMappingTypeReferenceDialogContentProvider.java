@@ -71,7 +71,7 @@ public class NewMappingTypeReferenceDialogContentProvider implements ITreeConten
 			List<MappingReference> mappingTypeRefs = new ArrayList<>();
 			// add root link ref first
 			//TODO MMINT[MODELREL] this won't work for standalone model relationship types (will it ever be a use case?)
-			MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+			MID typeMID = modelRelType.getMIDContainer();
 			ModelRel rootModelRelType = MIDRegistry.getExtendibleElement(MIDTypeHierarchy.getRootTypeUri(modelRelType), typeMID);
 			MappingReference rootMappingTypeRef = rootModelRelType.getMappingRefs().get(0);
 			mappingTypeRefs.add(rootMappingTypeRef);

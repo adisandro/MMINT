@@ -39,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -58,46 +57,9 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
  */
 public class MIDConstraintChecker {
 
-	/**
-	 * Checks if an extendible element is a TYPES element or an INSTANCES
-	 * element.
-	 * 
-	 * @param element
-	 *            The extendible element to be checked.
-	 * @return True for INSTANCES level, false for TYPES level.
-	 */
-	public static boolean isInstancesLevel(ExtendibleElement element) {
-
-		if (element.getLevel() == MIDLevel.TYPES) {
-			return false;
-		}
-		return true;
-	}
-
-	public static boolean isInstancesLevel(ExtendibleElementReference elementRef) {
-
-		return isInstancesLevel(elementRef.getObject());
-	}
-
-	/**
-	 * Checks if a MID is a Type MID
-	 * or an Instance MID.
-	 * 
-	 * @param mid
-	 *            The MID to be checked.
-	 * @return True for INSTANCES level, false for TYPES level.
-	 */
-	public static boolean isInstancesLevel(MID mid) {
-
-		if (mid.getLevel() == MIDLevel.TYPES) {
-			return false;
-		}
-		return true;
-	}
-
 	public static boolean isAllowedModelType(ModelRel modelRelType) {
 
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 		List<ModelRel> modelRelSubtypes = MIDTypeHierarchy.getSubtypes(modelRelType, typeMID);
 
 		return (modelRelSubtypes.isEmpty()) ? true : false;
@@ -112,7 +74,7 @@ public class MIDConstraintChecker {
 		ModelRel modelRelTypeSuper = (ModelRel) modelRelType.getSupertype();
 		// checks that the new model type is the same of the super model rel type or is overriding it
 		if (!MIDTypeHierarchy.isRootType(modelRelTypeSuper)) {
-			MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+			MID typeMID = modelRelType.getMIDContainer();
 			if (newSrcModelType != null) {
 				String srcUri = modelRelTypeSuper.getModelEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelType.getUri();
@@ -141,7 +103,7 @@ public class MIDConstraintChecker {
 		Mapping mappingTypeSuper = mappingTypeRef.getObject().getSupertype();
 		// checks that the new model element type is the same of the super link type or is overriding it
 		if (!MIDTypeHierarchy.isRootType(mappingTypeSuper)) {
-			MID typeMID = MIDRegistry.getMultiModel(mappingTypeRef);
+			MID typeMID = mappingTypeRef.getMIDContainer();
 			if (newSrcModelElemTypeRef != null) {
 				String srcUri = mappingTypeSuper.getModelElemEndpoints().get(0).getTargetUri();
 				String newSrcUri = newSrcModelElemTypeRef.getUri();

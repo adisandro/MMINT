@@ -249,7 +249,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
 		ModelRel newModelRelType = super.copySubtype(origModelRelType);
-		MID typeMID = MIDRegistry.getMultiModel(newModelRelType);
+		MID typeMID = newModelRelType.getMIDContainer();
 		ExtendibleElementConstraint newConstraint, origConstraint;
 		ModelElement newModelElemType;
 		for (ModelEndpointReference origModelTypeEndpointRef : origModelRelType.getModelEndpointRefs()) {

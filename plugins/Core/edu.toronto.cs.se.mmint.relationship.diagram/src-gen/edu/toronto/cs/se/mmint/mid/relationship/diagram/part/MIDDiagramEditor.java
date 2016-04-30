@@ -79,7 +79,6 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.navigator.MIDNavigatorItem;
 
@@ -140,18 +139,17 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
 		ModelRel modelRel = (ModelRel) this.getDiagram().getElement();
-		if (!MIDConstraintChecker.isInstancesLevel(modelRel)) {
+		if (!modelRel.isInstancesLevel()) {
 			for (Object paletteContainer : root.getChildren()) {
 				for (Object paletteEntry : ((PaletteContainer) paletteContainer)
 						.getChildren()) {
 					if (paletteEntry instanceof ToolEntry
 							&& !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {
 						((ToolEntry) paletteEntry)
-								.setLabel(((ToolEntry) paletteEntry).getLabel()
-										+ " Type");
+								.setLabel(((ToolEntry) paletteEntry).getLabel() + " " + modelRel.getLevel().toString().charAt(0) + modelRel.getLevel().toString().toLowerCase().substring(1));
 						((ToolEntry) paletteEntry)
 								.setDescription(((ToolEntry) paletteEntry)
-										.getDescription() + " Type");
+										.getDescription() + " " + modelRel.getLevel().toString().charAt(0) + modelRel.getLevel().toString().toLowerCase().substring(1));
 					}
 				}
 			}
@@ -287,7 +285,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 
 		MID mid = (MID) this.getDiagram().getElement()
 				.eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.syncRepository(mid);
 			// diagram sync required
 			final String midDiagramId = "edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID";
@@ -304,7 +302,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 				}
 				MID mid2 = (MID) editor.getDiagram()
 						.getElement();
-				if (!MIDConstraintChecker.isInstancesLevel(mid2)) {
+				if (mid2.isTypesLevel()) {
 					IDocumentProvider provider2 = editor.getDocumentProvider();
 					try {
 						provider2.synchronize(editorRef.getEditorInput());

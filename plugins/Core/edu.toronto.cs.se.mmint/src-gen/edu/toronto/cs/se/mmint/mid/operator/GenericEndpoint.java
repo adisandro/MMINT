@@ -87,7 +87,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 * Gets the generic target of this generic endpoint.
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());\nreturn target;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());\nreturn target;'"
 	 * @generated
 	 */
 	GenericElement getTarget();

@@ -22,8 +22,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -57,7 +55,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -72,7 +70,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -89,7 +87,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
+				((ModelRel) getElementToEdit()).isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType((ModelRel) getElementToEdit())
 			);
 	}
@@ -113,7 +111,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 		}
 		String newMappingTypeName = MIDDialogUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", null);
 		MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, newMappingTypeName, false, modelRelType);
-		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel(modelRelType));
+		MMINT.createTypeHierarchy(modelRelType.getMIDContainer());
 
 		return newMappingTypeRef;
 	}
@@ -133,7 +131,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			MappingReference newElement = (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) ?
+			MappingReference newElement = (((ModelRel) getElementToEdit()).isInstancesLevel()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

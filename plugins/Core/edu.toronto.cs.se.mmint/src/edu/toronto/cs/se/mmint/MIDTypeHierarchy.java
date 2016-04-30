@@ -851,7 +851,7 @@ public class MIDTypeHierarchy {
 	public static ModelEndpoint getOverriddenModelTypeEndpoint(ModelRel modelRelType, Model targetModelType) {
 
 		boolean isBinary = (modelRelType instanceof BinaryModelRel);
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 		modelRelType = (ModelRel) modelRelType.getSupertype();
 		while (!isRootType(modelRelType)) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
@@ -876,7 +876,7 @@ public class MIDTypeHierarchy {
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(MappingReference mappingTypeRef, ModelElementReference targetModelElemTypeRef) {
 
 		boolean isBinary = (mappingTypeRef instanceof BinaryMappingReference);
-		MID typeMID = MIDRegistry.getMultiModel(mappingTypeRef);
+		MID typeMID = mappingTypeRef.getMIDContainer();
 		Mapping mappingType = mappingTypeRef.getObject().getSupertype();
 		while (!isRootType(mappingType)) {
 			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {

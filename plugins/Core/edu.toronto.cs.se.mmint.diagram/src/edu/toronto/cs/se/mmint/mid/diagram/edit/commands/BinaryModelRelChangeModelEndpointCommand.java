@@ -60,7 +60,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				getLink().isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(getLink())
 			);
 	}
@@ -73,7 +73,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = getLink().isInstancesLevel();
 
 		return
 			super.canReorientSource() && ((
@@ -93,7 +93,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = getLink().isInstancesLevel();
 
 		return
 			super.canReorientTarget() && ((
@@ -175,7 +175,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel(getLink(), getNewSource(), true);
 			}
 			else {
@@ -204,7 +204,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
 			}
 			else {

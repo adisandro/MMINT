@@ -20,7 +20,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -358,7 +357,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		Mapping newMappingType = (isBinary) ?
 			super.createThisBinaryEClass() :
 			super.createThisEClass();
-		MID typeMID = MIDRegistry.getMultiModel(containerModelRelType);
+		MID typeMID = containerModelRelType.getMIDContainer();
 		super.addSubtype(newMappingType, containerModelRelType, containerModelRelType.getName(), newMappingTypeName);
 		MIDTypeFactory.addMappingType(newMappingType, this, containerModelRelType);
 		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);

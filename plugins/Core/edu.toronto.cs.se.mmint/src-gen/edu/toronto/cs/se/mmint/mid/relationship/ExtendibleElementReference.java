@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.relationship;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,5 +173,46 @@ public interface ExtendibleElementReference extends EObject {
 	 * @generated
 	 */
 	String getUri();
+
+	/**
+	 * <!-- begin-user-doc --> Returns the MID container.
+	 * 
+	 * @return The MID container, or null if this references an element that is not contained in a MID.
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().getMIDContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a reference to a type.
+	 * 
+	 * @return True if this is a reference to a type, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isTypesLevel();'"
+	 * @generated
+	 */
+	boolean isTypesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a reference to an instance.
+	 * 
+	 * @return True if this is a reference to an instance, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isInstancesLevel();'"
+	 * @generated
+	 */
+	boolean isInstancesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a reference to a workflow element.
+	 * 
+	 * @return True if this is a reference to a workflow element, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isWorkflowsLevel();'"
+	 * @generated
+	 */
+	boolean isWorkflowsLevel();
 
 } // ExtendibleElementReference

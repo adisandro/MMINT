@@ -178,7 +178,7 @@ public class Map extends OperatorImpl {
 						}
 						Set<MID> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
 							.stream()
-							.map(modelEndpoint -> MIDRegistry.getMultiModel(modelEndpoint.getTarget()))
+							.map(modelEndpoint -> modelEndpoint.getTarget().getMIDContainer())
 							.collect(Collectors.toSet());
 						Set<MID> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
 							mapperOutput.getKey(),

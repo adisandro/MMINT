@@ -122,16 +122,34 @@ public interface ExtendibleElement extends EObject {
 	void setName(String value);
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The static metatype (types: always null; instances: an extendible element from the types).
-	 * <!-- end-model-doc -->
+	 * <!-- begin-user-doc --> Returns the static metatype: always null for types, a type for instances and workflows.
+	 * 
+	 * @return The static metatype. <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return MultiModelTypeRegistry.getType(getMetatypeUri());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return MIDTypeRegistry.getType(getMetatypeUri());'"
 	 * @generated
 	 */
 	ExtendibleElement getMetatype();
+
+	/**
+	 * <!-- begin-user-doc --> Returns the MID container.
+	 * 
+	 * @return The MID container, or null if this element is not contained in a MID. <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MID mid = null;\nif (this instanceof Model || this instanceof ModelRel || this instanceof Editor || this instanceof Operator) {\n\tmid = (MID) this.eContainer();\n}\nelse if (this instanceof ModelElement || this instanceof Mapping || this instanceof ModelEndpoint) {\n\tmid = (MID) this.eContainer().eContainer();\n}\nelse if (this instanceof ModelElementEndpoint) {\n\tmid = (MID) this.eContainer().eContainer().eContainer();\n}\nreturn mid;'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a type.
+	 * 
+	 * @return True if this is a type, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.TYPES;'"
+	 * @generated
+	 */
+	boolean isTypesLevel();
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
@@ -253,6 +271,16 @@ public interface ExtendibleElement extends EObject {
 	String createSubtypeUri(String newTypeFragmentUri, String newTypeName);
 
 	/**
+	 * <!-- begin-user-doc --> Checks whether this is an instance.
+	 * 
+	 * @return True if this is an instance, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.INSTANCES;'"
+	 * @generated
+	 */
+	boolean isInstancesLevel();
+
+	/**
 	 * <!-- begin-user-doc --> Gets the list of polymorphic runtime types for this instance.
 	 * 
 	 * @return The list of runtime types.
@@ -300,6 +328,16 @@ public interface ExtendibleElement extends EObject {
 	 * @generated
 	 */
 	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a workflow element.
+	 * 
+	 * @return True if this is a workflow element, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.WORKFLOWS;'"
+	 * @generated
+	 */
+	boolean isWorkflowsLevel();
 
 	/**
 	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label. It returns an

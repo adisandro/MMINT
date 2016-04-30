@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -67,8 +66,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -82,8 +81,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -115,7 +114,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) getElementToEdit();
 		EObject metamodelObj = dropObj.getModelObject();
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 
 		// navigate metamodel hierarchy
 		//TODO MMINT[MODELELEMENT] could this be in the drag part?
@@ -169,7 +168,7 @@ supertypes:
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelElementReference newElement = (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer())) ?
+			ModelElementReference newElement = (((ModelRel) getElementToEdit().eContainer()).isInstancesLevel()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

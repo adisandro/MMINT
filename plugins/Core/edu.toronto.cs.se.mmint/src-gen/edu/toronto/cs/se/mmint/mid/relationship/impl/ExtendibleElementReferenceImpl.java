@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -20,8 +21,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -303,6 +306,42 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return this.getObject().getMIDContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTypesLevel() {
+		return this.getObject().isTypesLevel();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInstancesLevel() {
+		return this.getObject().isInstancesLevel();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isWorkflowsLevel() {
+		return this.getObject().isWorkflowsLevel();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -409,6 +448,26 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 				return URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL:
+				return isTypesLevel();
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL:
+				return isInstancesLevel();
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL:
+				return isWorkflowsLevel();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

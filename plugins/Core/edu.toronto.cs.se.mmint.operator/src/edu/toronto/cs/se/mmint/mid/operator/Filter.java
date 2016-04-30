@@ -72,7 +72,7 @@ public class Filter extends OperatorImpl {
 			modelsToDelete.add(model);
 		}
 		for (Model modelToDelete : modelsToDelete) {
-			if (MIDRegistry.getMultiModel(modelToDelete) == null) {
+			if (modelToDelete.getMIDContainer() == null) {
 				// already deleted as side effect of another deletion e.g. model delete that triggers model rel delete
 				continue;
 			}

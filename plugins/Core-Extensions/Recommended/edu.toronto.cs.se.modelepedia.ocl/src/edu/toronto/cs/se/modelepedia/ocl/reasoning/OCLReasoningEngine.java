@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
@@ -38,7 +37,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
 		//TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
-		boolean isInstancesLevel = MIDConstraintChecker.isInstancesLevel(model);
+		boolean isInstancesLevel = model.isInstancesLevel();
 		EObject modelObj = null;
 		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
 			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));

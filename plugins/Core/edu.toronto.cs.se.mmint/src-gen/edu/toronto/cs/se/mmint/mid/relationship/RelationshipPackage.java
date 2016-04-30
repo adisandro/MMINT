@@ -282,6 +282,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_MID_CONTAINER = MIDPackage.MODEL___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___IS_TYPES_LEVEL = MIDPackage.MODEL___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,6 +307,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___IS_INSTANCES_LEVEL = MIDPackage.MODEL___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -325,6 +352,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -750,6 +786,24 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL_FEATURE_COUNT = MODEL_REL_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_MID_CONTAINER = MODEL_REL___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___IS_TYPES_LEVEL = MODEL_REL___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -757,6 +811,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___IS_INSTANCES_LEVEL = MODEL_REL___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -793,6 +856,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL = MODEL_REL___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1110,13 +1182,49 @@ public interface RelationshipPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT = 6;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER = 0;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL = 1;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = 2;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = 3;
+
+	/**
 	 * The number of operations of the '<em>Extendible Element Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT = 0;
+	int EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -1189,6 +1297,42 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
@@ -1297,6 +1441,42 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
@@ -1444,6 +1624,42 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1589,6 +1805,24 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1596,6 +1830,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1632,6 +1875,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1851,6 +2103,24 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MAPPING_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___GET_MID_CONTAINER = MAPPING___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___IS_TYPES_LEVEL = MAPPING___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1858,6 +2128,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___IS_INSTANCES_LEVEL = MAPPING___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1894,6 +2173,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___IS_WORKFLOWS_LEVEL = MAPPING___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2131,6 +2419,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2138,6 +2444,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -2174,6 +2489,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2384,6 +2708,42 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2547,6 +2907,42 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE___GET_MID_CONTAINER = MAPPING_REFERENCE___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE___IS_TYPES_LEVEL = MAPPING_REFERENCE___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE___IS_INSTANCES_LEVEL = MAPPING_REFERENCE___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Get Supertype Ref</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2708,6 +3104,42 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
@@ -3583,6 +4015,46 @@ public interface RelationshipPackage extends EPackage {
 	EAttribute getExtendibleElementReference_Uri();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getMIDContainer() <em>Get MID Container</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get MID Container</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getMIDContainer()
+	 * @generated
+	 */
+	EOperation getExtendibleElementReference__GetMIDContainer();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isTypesLevel() <em>Is Types Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Types Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isTypesLevel()
+	 * @generated
+	 */
+	EOperation getExtendibleElementReference__IsTypesLevel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isInstancesLevel() <em>Is Instances Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Instances Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isInstancesLevel()
+	 * @generated
+	 */
+	EOperation getExtendibleElementReference__IsInstancesLevel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isWorkflowsLevel() <em>Is Workflows Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Workflows Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isWorkflowsLevel()
+	 * @generated
+	 */
+	EOperation getExtendibleElementReference__IsWorkflowsLevel();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference <em>Extendible Element Endpoint Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4376,6 +4848,38 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDIBLE_ELEMENT_REFERENCE__URI = eINSTANCE.getExtendibleElementReference_Uri();
+
+		/**
+		 * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER = eINSTANCE.getExtendibleElementReference__GetMIDContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL = eINSTANCE.getExtendibleElementReference__IsTypesLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = eINSTANCE.getExtendibleElementReference__IsInstancesLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Workflows Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = eINSTANCE.getExtendibleElementReference__IsWorkflowsLevel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementEndpointReferenceImpl <em>Extendible Element Endpoint Reference</em>}' class.

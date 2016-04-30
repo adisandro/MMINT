@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -53,7 +52,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -67,7 +66,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,7 +83,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit()) ||
+				((MID) getElementToEdit()).isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType((ModelRel) getElementToDestroy())
 			);
 	}
@@ -115,7 +114,7 @@ public class ModelRelDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) {
+			if (((MID) getElementToEdit()).isInstancesLevel()) {
 				doExecuteInstancesLevel();
 			}
 			else {

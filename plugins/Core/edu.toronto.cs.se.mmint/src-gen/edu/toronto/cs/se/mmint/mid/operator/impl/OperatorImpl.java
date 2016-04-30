@@ -739,7 +739,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		// delete the "thing"
 		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
 		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
@@ -1034,7 +1034,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
+		MID instanceMID = this.getMIDContainer();
 		instanceMID.getOperators().remove(this);
 	}
 

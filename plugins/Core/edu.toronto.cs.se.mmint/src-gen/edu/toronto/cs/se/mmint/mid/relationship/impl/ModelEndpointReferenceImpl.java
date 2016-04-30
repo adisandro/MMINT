@@ -257,7 +257,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0];
 		String modelElemTypeUri = uris[1];

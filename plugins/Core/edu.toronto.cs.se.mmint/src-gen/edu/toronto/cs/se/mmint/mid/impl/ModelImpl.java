@@ -559,7 +559,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	protected void addSubtype(Model newModelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		super.addSubtype(newModelType, this, null, newModelTypeName);
 		MIDTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, typeMID);
 		newModelType.setOrigin(ModelOrigin.CREATED);
@@ -657,7 +657,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		// delete the "thing"
 		for (ModelElement modelElemType : getModelElems()) {
 			super.delete(modelElemType.getUri(), typeMID);
@@ -854,7 +854,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
+		MID instanceMID = this.getMIDContainer();
 		Editor newEditor = null;
 		//TODO MMINT[EDITOR] prioritize editors list instead of running twice?
 		// all diagrams are tried..
@@ -1015,7 +1015,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
+		MID instanceMID = this.getMIDContainer();
 		for (ModelElement modelElem : getModelElems()) {
 			super.delete(modelElem.getUri(), instanceMID);
 		}

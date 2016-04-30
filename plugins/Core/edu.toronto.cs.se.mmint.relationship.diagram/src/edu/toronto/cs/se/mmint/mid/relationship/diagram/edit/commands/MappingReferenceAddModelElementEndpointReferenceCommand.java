@@ -65,7 +65,7 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getSource());
+		boolean instance = getSource().isInstancesLevel();
 
 		return
 			super.canExecute() && ((
@@ -104,7 +104,7 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelElementEndpointReference newElement = (MIDConstraintChecker.isInstancesLevel(getSource())) ?
+			ModelElementEndpointReference newElement = (getSource().isInstancesLevel()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

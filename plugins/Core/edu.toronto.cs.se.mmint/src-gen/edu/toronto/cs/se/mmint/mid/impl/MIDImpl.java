@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -211,6 +212,33 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isTypesLevel() {
+		return this.getLevel() == MIDLevel.TYPES;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInstancesLevel() {
+		return this.getLevel() == MIDLevel.INSTANCES;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isWorkflowsLevel() {
+		return this.getLevel() == MIDLevel.WORKFLOWS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -327,6 +355,24 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 				return level != LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MIDPackage.MID___IS_TYPES_LEVEL:
+				return isTypesLevel();
+			case MIDPackage.MID___IS_INSTANCES_LEVEL:
+				return isInstancesLevel();
+			case MIDPackage.MID___IS_WORKFLOWS_LEVEL:
+				return isWorkflowsLevel();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

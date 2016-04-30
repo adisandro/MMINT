@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -52,7 +51,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -66,7 +65,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -120,7 +119,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelRel newElement = (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
+			ModelRel newElement = (((MID) getElementToEdit()).isInstancesLevel()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

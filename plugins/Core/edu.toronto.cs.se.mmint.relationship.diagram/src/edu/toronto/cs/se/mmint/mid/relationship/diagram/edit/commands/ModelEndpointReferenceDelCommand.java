@@ -52,7 +52,7 @@ public class ModelEndpointReferenceDelCommand extends DestroyElementCommand {
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToDestroy().eContainer()) ||
+				((ModelRel) getElementToDestroy().eContainer()).isInstancesLevel() ||
 				MIDConstraintChecker.isAllowedModelType((ModelRel) getElementToDestroy().eContainer())
 			);
 	}

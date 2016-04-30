@@ -213,7 +213,7 @@ public class MAVORefiner {
 		// create mid artifacts
 		String refinedModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
 		MIDUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
-		MID instanceMID = MIDRegistry.getMultiModel(model);
+		MID instanceMID = model.getMIDContainer();
 		Model refinedModel = model.getMetatype().createInstance(refinedModelUri, instanceMID);
 		ModelRel modelRelType = MIDTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {

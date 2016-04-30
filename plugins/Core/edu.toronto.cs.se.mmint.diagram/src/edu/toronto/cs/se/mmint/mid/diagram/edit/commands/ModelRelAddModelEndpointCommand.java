@@ -65,7 +65,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getSource());
+		boolean instance = getSource().isInstancesLevel();
 
 		return
 			super.canExecute() && ((
@@ -115,7 +115,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelEndpoint newElement = (MIDConstraintChecker.isInstancesLevel(getSource())) ?
+			ModelEndpoint newElement = (getSource().isInstancesLevel()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

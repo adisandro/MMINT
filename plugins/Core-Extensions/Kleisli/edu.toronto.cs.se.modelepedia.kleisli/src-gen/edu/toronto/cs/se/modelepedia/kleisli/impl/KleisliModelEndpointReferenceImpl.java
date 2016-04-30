@@ -115,7 +115,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0].replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
 		String modelElemTypeUri = uris[1];

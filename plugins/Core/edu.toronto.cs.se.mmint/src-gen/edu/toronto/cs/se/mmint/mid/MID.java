@@ -134,4 +134,34 @@ public interface MID extends EObject {
 	 */
 	void setLevel(MIDLevel value);
 
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a Type MID.
+	 * 
+	 * @return True if this is a Type MID, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.TYPES;'"
+	 * @generated
+	 */
+	boolean isTypesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is an Instance MID.
+	 * 
+	 * @return True if this is an Instance MID, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.INSTANCES;'"
+	 * @generated
+	 */
+	boolean isInstancesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a Workflow MID.
+	 * 
+	 * @return True if this is a Workflow MID, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.WORKFLOWS;'"
+	 * @generated
+	 */
+	boolean isWorkflowsLevel();
+
 } // MID

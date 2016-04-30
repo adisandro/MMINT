@@ -77,7 +77,7 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 					constraint.setImplementation("");
 				}
 				String[] newConstraint = MIDDialogUtils.getConstraintInput(menuLabel, constraint.getLanguage() + MIDDialogUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
-				if (!MIDConstraintChecker.isInstancesLevel(element)) {
+				if (!element.isInstancesLevel()) {
 					if (!MIDConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 					}

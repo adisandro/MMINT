@@ -96,7 +96,7 @@ public class ChangePropagation extends OperatorImpl {
 	private void removeModelElementAndModelElementReference(ModelElementReference modelElemRef) throws MMINTException {
 
 		//TODO MMINT[OO] does this have a meaning somewhere else?
-		MID instanceMID = MIDRegistry.getMultiModel(modelElemRef);
+		MID instanceMID = modelElemRef.getMIDContainer();
 		instanceMID.getExtendibleTable().removeKey(modelElemRef.getUri());
 		modelElemRef.deleteInstanceReference();
 		ModelElement modelElem = modelElemRef.getObject();
@@ -363,7 +363,7 @@ traceLinks:
 
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
 
-		EMap<String, ExtendibleElement> extendibleTable = MIDRegistry.getMultiModel(modelElemRef).getExtendibleTable();
+		EMap<String, ExtendibleElement> extendibleTable = modelElemRef.getMIDContainer().getExtendibleTable();
 		String unifiedModelElemUri = getModelEObjectUri(unifiedModelElemRef.getUri());
 		String modelElemUri = getModelEObjectUri(modelElemRef.getUri());
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();

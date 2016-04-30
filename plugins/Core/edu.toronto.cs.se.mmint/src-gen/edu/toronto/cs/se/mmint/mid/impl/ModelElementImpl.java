@@ -330,7 +330,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 		ModelElement newModelElemType = MIDRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
 		if (newModelElemType == null) {
 			// create the "thing"
@@ -404,7 +404,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(containerModelEndpointRef);
+		MID instanceMID = containerModelEndpointRef.getMIDContainer();
 		ModelElement newModelElem = null;
 		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
 			newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();

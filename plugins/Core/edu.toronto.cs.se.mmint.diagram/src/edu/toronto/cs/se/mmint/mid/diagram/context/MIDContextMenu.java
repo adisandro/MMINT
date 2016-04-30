@@ -36,7 +36,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
@@ -44,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -124,13 +122,13 @@ public class MIDContextMenu extends ContributionItem {
 				doModelepedia = false;
 				doCoherence = false;
 				doRefineByConstraint = false;
-				if (MIDConstraintChecker.isInstancesLevel((MID) editPartElement)) { // instances only
+				if (((MID) editPartElement).isInstancesLevel()) { // instances only
 					instanceMID = (MID) editPartElement;
 				}
 			}
 			else {
 				Model model = (Model) editPartElement;
-				if (!MIDConstraintChecker.isInstancesLevel(model)) { // instances only
+				if (!model.isInstancesLevel()) { // instances only
 					doOperator = false;
 					doCast = false;
 					doCheckConstraint = false;
@@ -173,7 +171,7 @@ public class MIDContextMenu extends ContributionItem {
 		// operator
 		if (doOperator) {
 			if (instanceMID == null) {
-				instanceMID = MIDRegistry.getMultiModel(selectedModels.get(0));
+				instanceMID = selectedModels.get(0).getMIDContainer();
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			List<Operator> executableOperators = new ArrayList<>();
@@ -298,7 +296,7 @@ public class MIDContextMenu extends ContributionItem {
 		// modelepedia
 		if (doModelepedia) {
 			Model model = selectedModels.get(0);
-			if (MIDConstraintChecker.isInstancesLevel(model)) {
+			if (model.isInstancesLevel()) {
 				model = model.getMetatype();
 			}
 			MenuItem modelepediaItem = new MenuItem(mmintMenu, SWT.CASCADE);

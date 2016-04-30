@@ -12,6 +12,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//MIDLevel">
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/INSTANCES"/>
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/TYPES"/>
+      <genEnumLiterals ecoreEnumLiteral="mid.ecore#//MIDLevel/WORKFLOWS"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mid.ecore#//ModelOrigin">
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/IMPORTED"/>
@@ -26,6 +27,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/operators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/extendibleTable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MID/level"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>
@@ -40,10 +44,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMetatype"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMIDContainer"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isTypesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/createSubtypeUri">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeFragmentUri"/>
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeName"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isInstancesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
       </genOperations>
@@ -54,6 +61,7 @@
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceInEditor">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceInEditor/context"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isWorkflowsLevel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomPrintLabel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomEditLabel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateMIDCustomLabel">
@@ -261,6 +269,10 @@
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/supertypeRef"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/modifiable"/>
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/uri"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isTypesLevel"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isInstancesLevel"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isWorkflowsLevel"/>
       </genClasses>
       <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementEndpointReference">
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementEndpointReference/targetUri"/>

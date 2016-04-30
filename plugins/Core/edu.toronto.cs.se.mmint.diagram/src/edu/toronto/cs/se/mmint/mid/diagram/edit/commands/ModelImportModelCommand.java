@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -57,7 +56,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		return
 			super.canExecute() &&
-			MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit());
+			((MID) getElementToEdit()).isInstancesLevel();
 	}
 
 	protected Model doExecuteInstancesLevel() throws Exception, MIDDialogCancellation {

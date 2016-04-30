@@ -485,7 +485,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			(ModelRel) this.createSubtype(origModelRelType.getName(), origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation(), false);
 
 		// model type endpoints
-		MID typeMID = MIDRegistry.getMultiModel(newModelRelType);
+		MID typeMID = newModelRelType.getMIDContainer();
 		if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
 			Model newSrcModelType = MIDRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), typeMID);
 			((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
@@ -566,7 +566,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		// delete the "thing"
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
 			super.delete(modelTypeEndpoint.getUri(), typeMID);

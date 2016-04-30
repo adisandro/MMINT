@@ -40,14 +40,10 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
-import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -188,41 +184,6 @@ public class MIDRegistry {
 		}
 
 		return name;
-	}
-
-	/**
-	 * Gets the multimodel that contains an extendible element.
-	 * 
-	 * @param element
-	 *            The element contained in the multimodel.
-	 * @return The multimodel that contains the element.
-	 */
-	public static @Nullable MID getMultiModel(@NonNull ExtendibleElement element) {
-
-		MID mid = null;
-		if (element instanceof Model || element instanceof ModelRel || element instanceof Editor || element instanceof Operator) {
-			mid = (MID) element.eContainer();
-		}
-		else if (element instanceof ModelElement || element instanceof Mapping || element instanceof ModelEndpoint) {
-			mid = (MID) element.eContainer().eContainer();
-		}
-		else if (element instanceof ModelElementEndpoint) {
-			mid = (MID) element.eContainer().eContainer().eContainer();
-		}
-
-		return mid;
-	}
-
-	/**
-	 * Gets the multimodel that contains a reference to an extendible element.
-	 * 
-	 * @param elementRef
-	 *            The reference to the element contained in the multimodel.
-	 * @return The multimodel that contains the reference to the element.
-	 */
-	public static MID getMultiModel(ExtendibleElementReference elementRef) {
-
-		return getMultiModel(elementRef.getObject());
 	}
 
 	/**

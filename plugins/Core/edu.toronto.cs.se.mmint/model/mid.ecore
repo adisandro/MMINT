@@ -10,6 +10,21 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The model management root."/>
     </eAnnotations>
+    <eOperations name="isTypesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == MIDLevel.TYPES;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isInstancesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == MIDLevel.INSTANCES;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isWorkflowsLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
         eType="#//Model" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -64,13 +79,27 @@
     </eAnnotations>
     <eOperations name="getMetatype" lowerBound="1" eType="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The static metatype (types: always null; instances: an extendible element from the types)."/>
         <details key="body" value="return MIDTypeRegistry.getType(getMetatypeUri());"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getMIDContainer" eType="#//MID">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="MID mid = null;&#xA;if (this instanceof Model || this instanceof ModelRel || this instanceof Editor || this instanceof Operator) {&#xA;&#x9;mid = (MID) this.eContainer();&#xA;}&#xA;else if (this instanceof ModelElement || this instanceof Mapping || this instanceof ModelEndpoint) {&#xA;&#x9;mid = (MID) this.eContainer().eContainer();&#xA;}&#xA;else if (this instanceof ModelElementEndpoint) {&#xA;&#x9;mid = (MID) this.eContainer().eContainer().eContainer();&#xA;}&#xA;return mid;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isTypesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == MIDLevel.TYPES;"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="createSubtypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eParameters name="newTypeFragmentUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="newTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="isInstancesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == MIDLevel.INSTANCES;"/>
+      </eAnnotations>
     </eOperations>
     <eOperations name="getRuntimeTypes" upperBound="-1" eExceptions="#//MMINTException">
       <eGenericType eTypeParameter="#//ExtendibleElement/getRuntimeTypes/T"/>
@@ -87,6 +116,11 @@
     <eOperations name="validateInstanceInEditor" lowerBound="1" eType="#//IStatus"
         eExceptions="#//MMINTException">
       <eParameters name="context" lowerBound="1" eType="#//IValidationContext"/>
+    </eOperations>
+    <eOperations name="isWorkflowsLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
+      </eAnnotations>
     </eOperations>
     <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -133,16 +167,21 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MIDLevel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The metalevels for a MID element."/>
+      <details key="documentation" value="The levels for a MID."/>
     </eAnnotations>
     <eLiterals name="INSTANCES">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The instances metalevel."/>
+        <details key="documentation" value="The instances level, where models are defined."/>
       </eAnnotations>
     </eLiterals>
     <eLiterals name="TYPES" value="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The types metalevel."/>
+        <details key="documentation" value="The types level, where metamodels are defined."/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="WORKFLOWS" value="2" literal="WORKFLOWS">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The workflows level, where non-instantiated models are defined."/>
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
@@ -604,6 +643,26 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="oneObject" value="referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"/>
       </eAnnotations>
+      <eOperations name="getMIDContainer" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return this.getObject().getMIDContainer();"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="isTypesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return this.getObject().isTypesLevel();"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="isInstancesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return this.getObject().isInstancesLevel();"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="isWorkflowsLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return this.getObject().isWorkflowsLevel();"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedObject" eType="#//ExtendibleElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The referenced element, when owned by some other entity."/>

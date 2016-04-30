@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -225,7 +224,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		ModelElement targetModelElemType = targetModelElemTypeRef.getObject();
 		ModelRel modelRelType = (ModelRel) containerMappingTypeRef.eContainer();
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) targetModelElemTypeRef.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 		// create the "thing" and the corresponding reference
 		ModelElementEndpoint newModelElemTypeEndpoint = super.createThisEClass();
 		super.addSubtype(newModelElemTypeEndpoint, mappingType, mappingType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelElemTypeRef.getObject().getName(), newModelElemTypeEndpointName);
@@ -273,7 +272,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		ModelElement newModelElemType = targetModelElemTypeRef.getObject();
 		ModelRel modelRelType = (ModelRel) containerMappingTypeRef.eContainer();
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) targetModelElemTypeRef.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(containerMappingTypeRef);
+		MID typeMID = containerMappingTypeRef.getMIDContainer();
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelElemTypeEndpoint, mappingType, mappingType.getName() + MMINT.ENDPOINT_SEPARATOR + newModelElemType.getName(), newModelElemTypeEndpointName);
 		if (containerMappingTypeRef instanceof BinaryMappingReference) {

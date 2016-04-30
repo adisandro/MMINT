@@ -937,6 +937,42 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getExtendibleElementReference__GetMIDContainer() {
+		return extendibleElementReferenceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementReference__IsTypesLevel() {
+		return extendibleElementReferenceEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementReference__IsInstancesLevel() {
+		return extendibleElementReferenceEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementReference__IsWorkflowsLevel() {
+		return extendibleElementReferenceEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExtendibleElementEndpointReference() {
 		return extendibleElementEndpointReferenceEClass;
 	}
@@ -1088,6 +1124,10 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF);
 		createEAttribute(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE);
 		createEAttribute(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__URI);
+		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER);
+		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL);
+		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL);
+		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL);
 
 		extendibleElementEndpointReferenceEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE);
 		createEAttribute(extendibleElementEndpointReferenceEClass, EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI);
@@ -1274,6 +1314,14 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEReference(getExtendibleElementReference_SupertypeRef(), this.getExtendibleElementReference(), null, "supertypeRef", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementReference_Modifiable(), ecorePackage.getEBoolean(), "modifiable", null, 1, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementReference_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getExtendibleElementReference__GetMIDContainer(), theMIDPackage.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElementReference__IsTypesLevel(), ecorePackage.getEBoolean(), "isTypesLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElementReference__IsInstancesLevel(), ecorePackage.getEBoolean(), "isInstancesLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElementReference__IsWorkflowsLevel(), ecorePackage.getEBoolean(), "isWorkflowsLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(extendibleElementEndpointReferenceEClass, ExtendibleElementEndpointReference.class, "ExtendibleElementEndpointReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementEndpointReference_TargetUri(), ecorePackage.getEString(), "targetUri", null, 1, 1, ExtendibleElementEndpointReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -1511,12 +1559,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 			 "constraints", "modelEndpointType"
 		   });	
 		addAnnotation
-		  (modelElementReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "modelElementType"
-		   });	
-		addAnnotation
 		  (binaryMappingEClass, 
 		   source, 
 		   new String[] {
@@ -1585,12 +1627,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "modelEndpointType", "object.oclIsKindOf(mid::ModelEndpoint)"
-		   });	
-		addAnnotation
-		  (modelElementReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "modelElementType", "object.oclIsKindOf(mid::ModelElement)"
 		   });	
 		addAnnotation
 		  (binaryMappingEClass, 

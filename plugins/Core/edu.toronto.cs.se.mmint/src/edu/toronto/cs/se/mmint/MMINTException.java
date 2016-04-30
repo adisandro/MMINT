@@ -16,7 +16,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
@@ -84,26 +83,38 @@ public class MMINTException extends Exception {
 
 	public static void mustBeType(ExtendibleElement type) throws MMINTException {
 
-		if (MIDConstraintChecker.isInstancesLevel(type)) {
-			throw new MMINTException("Can't execute operation at the TYPES level on element at the INSTANCES level");
+		if (!type.isTypesLevel()) {
+			throw new MMINTException("Can't execute operation at the TYPES level on element at the " + type.getLevel() + " level");
 		}
 	}
 
 	public static void mustBeType(ExtendibleElementReference typeRef) throws MMINTException {
 
-		mustBeType(typeRef.getObject());
+		MMINTException.mustBeType(typeRef.getObject());
 	}
 
 	public static void mustBeInstance(ExtendibleElement instance) throws MMINTException {
 
-		if (!MIDConstraintChecker.isInstancesLevel(instance)) {
-			throw new MMINTException("Can't execute operation at the INSTANCES level on element at the TYPES level");
+		if (!instance.isInstancesLevel()) {
+			throw new MMINTException("Can't execute operation at the INSTANCES level on element at the " + instance.getLevel() + " level");
 		}
 	}
 
 	public static void mustBeInstance(ExtendibleElementReference instanceRef) throws MMINTException {
 
-		mustBeInstance(instanceRef.getObject());
+		MMINTException.mustBeInstance(instanceRef.getObject());
+	}
+
+	public static void mustBeWorkflow(ExtendibleElement workflowElem) throws MMINTException {
+
+		if (!workflowElem.isWorkflowsLevel()) {
+			throw new MMINTException("Can't execute operation at the WORKFLOWS level on element at the " + workflowElem.getLevel() + " level");
+		}
+	}
+
+	public static void mustBeWorkflow(ExtendibleElementReference workflowElemRef) throws MMINTException {
+
+		MMINTException.mustBeWorkflow(workflowElemRef.getObject());
 	}
 
 }

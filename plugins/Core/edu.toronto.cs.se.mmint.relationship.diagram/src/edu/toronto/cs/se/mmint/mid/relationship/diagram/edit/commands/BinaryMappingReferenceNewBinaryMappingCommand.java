@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -69,7 +68,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getContainer().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,7 +83,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getContainer().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -101,7 +100,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getContainer()) ||
+				getContainer().isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(getContainer())
 			);
 	}
@@ -129,7 +128,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
 		String newMappingTypeName = MIDDialogUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
 		BinaryMappingReference newMappingTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newMappingTypeName, true, modelRelType);
-		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel(modelRelType));
+		MMINT.createTypeHierarchy(modelRelType.getMIDContainer());
 
 		String newModelElemTypeEndpointName;
 		ModelElementEndpoint modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(newMappingTypeRef, srcModelElemTypeRef);
@@ -171,7 +170,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 		try {
-			BinaryMappingReference newElement = MIDConstraintChecker.isInstancesLevel(getContainer()) ?
+			BinaryMappingReference newElement = getContainer().isInstancesLevel() ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

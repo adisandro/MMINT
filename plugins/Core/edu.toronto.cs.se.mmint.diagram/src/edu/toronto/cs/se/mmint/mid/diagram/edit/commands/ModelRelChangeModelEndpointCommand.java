@@ -60,7 +60,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				getLink().isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(getLink())
 			);
 	}
@@ -76,7 +76,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		return
 			super.canReorientSource() && (
-				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!getLink().isInstancesLevel() ||
 				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getNewSource(), null, getLink().getTarget())) != null
 			);
 	}
@@ -91,7 +91,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		return
 			super.canReorientTarget() && (
-				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!getLink().isInstancesLevel() ||
 				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints((ModelRel) getLink().eContainer(), getLink(), (Model) getNewTarget())) != null
 			);
 	}
@@ -132,7 +132,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel(getNewSource(), getLink().getTarget(), true);
 			}
 			else {
@@ -161,7 +161,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
 			}
 			else {

@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -278,7 +277,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(containerModelRelType);
+		MID typeMID = containerModelRelType.getMIDContainer();
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
@@ -326,7 +325,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			}
 		}
 
-		MID instanceMID = MIDRegistry.getMultiModel(containerModelRelType);
+		MID instanceMID = containerModelRelType.getMIDContainer();
 		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		oldModelTypeEndpoint.deleteTypeAndReference(false);
 		// modify the "thing" and the corresponding reference
@@ -357,7 +356,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		// delete the "thing" and the corresponding reference
 		ModelRel modelRelType = (ModelRel) eContainer();
 		deleteType(isFullDelete);

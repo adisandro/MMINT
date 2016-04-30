@@ -41,9 +41,10 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -538,8 +539,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		switch (operationID) {
 			case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE:
 				return getMetatype();
+			case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL:
+				return isTypesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
 				return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL:
+				return isInstancesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES:
 				try {
 					return getRuntimeTypes();
@@ -568,6 +575,8 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL:
+				return isWorkflowsLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL:
 				return toMIDCustomPrintLabel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL:
@@ -609,7 +618,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	public String toString() {
 
 		String label = (getName() == null) ? "" : getName();
-		if (MIDConstraintChecker.isInstancesLevel(this)) {
+		if (!this.isTypesLevel()) {
 			ExtendibleElement type = getMetatype();
 			String typeLabel = (type == null) ? "NOTYPE" : type.getName();
 			label += " : " + typeLabel;
@@ -625,6 +634,34 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public ExtendibleElement getMetatype() {
 		return MIDTypeRegistry.getType(getMetatypeUri());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MID getMIDContainer() {
+		MID mid = null;
+		if (this instanceof Model || this instanceof ModelRel || this instanceof Editor || this instanceof Operator) {
+			mid = (MID) this.eContainer();
+		}
+		else if (this instanceof ModelElement || this instanceof Mapping || this instanceof ModelEndpoint) {
+			mid = (MID) this.eContainer().eContainer();
+		}
+		else if (this instanceof ModelElementEndpoint) {
+			mid = (MID) this.eContainer().eContainer().eContainer();
+		}
+		return mid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTypesLevel() {
+		return this.getLevel() == MIDLevel.TYPES;
 	}
 
 	/**
@@ -746,6 +783,15 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 			baseUri + MMINT.URI_SEPARATOR + newTypeFragmentUri + MMINT.URI_SEPARATOR + newTypeName;
 
 		return newTypeUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInstancesLevel() {
+		return this.getLevel() == MIDLevel.INSTANCES;
 	}
 
 	/**
@@ -912,7 +958,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
 		newType.setDynamic(true);
 	}
@@ -970,7 +1016,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void deleteType() throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		this.delete(getUri(), typeMID);
 	}
 
@@ -1088,6 +1134,15 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isWorkflowsLevel() {
+		return this.getLevel() == MIDLevel.WORKFLOWS;
+	}
+
+	/**
 	 * Deletes this instance from the Instance MID that contains it.
 	 * 
 	 * @throws MMINTException
@@ -1096,7 +1151,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void deleteInstance() throws MMINTException {
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
+		MID instanceMID = this.getMIDContainer();
 		delete(getUri(), instanceMID);
 	}
 

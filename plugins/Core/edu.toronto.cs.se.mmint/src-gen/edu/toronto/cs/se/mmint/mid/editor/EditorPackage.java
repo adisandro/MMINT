@@ -196,6 +196,24 @@ public interface EditorPackage extends EPackage {
 	int EDITOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,6 +221,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDITOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -239,6 +266,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -467,6 +503,24 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM_FEATURE_COUNT = EDITOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___GET_MID_CONTAINER = EDITOR___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___IS_TYPES_LEVEL = EDITOR___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,6 +528,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___CREATE_SUBTYPE_URI__STRING_STRING = EDITOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___IS_INSTANCES_LEVEL = EDITOR___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -510,6 +573,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___IS_WORKFLOWS_LEVEL = EDITOR___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.

@@ -21,7 +21,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 
@@ -43,7 +42,7 @@ public class MappingReferenceRemoveModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit()) ||
+				((MappingReference) getElementToEdit()).isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject())
 			);
 	}
@@ -63,7 +62,7 @@ public class MappingReferenceRemoveModelElementEndpointReferenceCommand extends 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((MappingReference) getElementToEdit())) {
+			if (((MappingReference) getElementToEdit()).isInstancesLevel()) {
 				doExecuteInstancesLevel();
 			}
 			else {

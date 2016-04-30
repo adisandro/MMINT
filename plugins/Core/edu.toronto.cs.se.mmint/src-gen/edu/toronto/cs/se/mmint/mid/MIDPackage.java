@@ -134,13 +134,40 @@ public interface MIDPackage extends EPackage {
 	int MID_FEATURE_COUNT = 5;
 
 	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MID___IS_TYPES_LEVEL = 0;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MID___IS_INSTANCES_LEVEL = 1;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MID___IS_WORKFLOWS_LEVEL = 2;
+
+	/**
 	 * The number of operations of the '<em>MID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MID_OPERATION_COUNT = 0;
+	int MID_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -280,13 +307,40 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___GET_METATYPE = 0;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___GET_MID_CONTAINER = 1;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL = 2;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = 1;
+	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = 3;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL = 4;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -295,7 +349,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 2;
+	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 5;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -304,7 +358,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 3;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 6;
 
 	/**
 	 * The operation id for the '<em>Validate Instance</em>' operation.
@@ -313,7 +367,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 4;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 7;
 
 	/**
 	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -322,7 +376,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 5;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 8;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = 9;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -331,7 +394,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 6;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 10;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -340,7 +403,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 7;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 11;
 
 	/**
 	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -349,7 +412,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 8;
+	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 12;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -358,7 +421,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 9;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -479,6 +542,24 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -486,6 +567,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -522,6 +612,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -678,6 +777,24 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT___GET_METATYPE = EXTENDIBLE_ELEMENT___GET_METATYPE;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -685,6 +802,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -721,6 +847,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -895,6 +1030,24 @@ public interface MIDPackage extends EPackage {
 	int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_MID_CONTAINER = GENERIC_ELEMENT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___IS_TYPES_LEVEL = GENERIC_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -902,6 +1055,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___IS_INSTANCES_LEVEL = GENERIC_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -938,6 +1100,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___IS_WORKFLOWS_LEVEL = GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1257,6 +1428,24 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1264,6 +1453,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1300,6 +1498,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1546,6 +1753,24 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_ENDPOINT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1553,6 +1778,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1589,6 +1823,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1934,6 +2177,36 @@ public interface MIDPackage extends EPackage {
 	EAttribute getMID_Level();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#isTypesLevel() <em>Is Types Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Types Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.MID#isTypesLevel()
+	 * @generated
+	 */
+	EOperation getMID__IsTypesLevel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#isInstancesLevel() <em>Is Instances Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Instances Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.MID#isInstancesLevel()
+	 * @generated
+	 */
+	EOperation getMID__IsInstancesLevel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#isWorkflowsLevel() <em>Is Workflows Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Workflows Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.MID#isWorkflowsLevel()
+	 * @generated
+	 */
+	EOperation getMID__IsWorkflowsLevel();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2065,6 +2338,26 @@ public interface MIDPackage extends EPackage {
 	EOperation getExtendibleElement__GetMetatype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMIDContainer() <em>Get MID Container</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get MID Container</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#getMIDContainer()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__GetMIDContainer();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#isTypesLevel() <em>Is Types Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Types Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#isTypesLevel()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__IsTypesLevel();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getRuntimeTypes() <em>Get Runtime Types</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2105,6 +2398,16 @@ public interface MIDPackage extends EPackage {
 	EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#isWorkflowsLevel() <em>Is Workflows Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Workflows Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#isWorkflowsLevel()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__IsWorkflowsLevel();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#toMIDCustomPrintLabel() <em>To MID Custom Print Label</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2143,6 +2446,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElement__CreateSubtypeUri__String_String();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#isInstancesLevel() <em>Is Instances Level</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Instances Level</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#isInstancesLevel()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__IsInstancesLevel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint <em>Extendible Element Endpoint</em>}'.
@@ -2948,6 +3261,30 @@ public interface MIDPackage extends EPackage {
 		EAttribute MID__LEVEL = eINSTANCE.getMID_Level();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MID___IS_TYPES_LEVEL = eINSTANCE.getMID__IsTypesLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MID___IS_INSTANCES_LEVEL = eINSTANCE.getMID__IsInstancesLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Workflows Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MID___IS_WORKFLOWS_LEVEL = eINSTANCE.getMID__IsWorkflowsLevel();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3048,6 +3385,22 @@ public interface MIDPackage extends EPackage {
 		EOperation EXTENDIBLE_ELEMENT___GET_METATYPE = eINSTANCE.getExtendibleElement__GetMetatype();
 
 		/**
+		 * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___GET_MID_CONTAINER = eINSTANCE.getExtendibleElement__GetMIDContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL = eINSTANCE.getExtendibleElement__IsTypesLevel();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Runtime Types</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3080,6 +3433,14 @@ public interface MIDPackage extends EPackage {
 		EOperation EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = eINSTANCE.getExtendibleElement__ValidateInstanceInEditor__IValidationContext();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Workflows Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = eINSTANCE.getExtendibleElement__IsWorkflowsLevel();
+
+		/**
 		 * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3110,6 +3471,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = eINSTANCE.getExtendibleElement__CreateSubtypeUri__String_String();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL = eINSTANCE.getExtendibleElement__IsInstancesLevel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.

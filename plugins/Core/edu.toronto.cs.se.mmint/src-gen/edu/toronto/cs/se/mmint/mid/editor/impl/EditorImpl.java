@@ -508,7 +508,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	protected void addSubtype(Editor newEditorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		super.addSubtype(newEditorType, this, newEditorTypeFragmentUri, newEditorTypeName);
 		MIDTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, typeMID);
 
@@ -537,7 +537,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		super.deleteType();
 		Model modelType = MIDRegistry.getExtendibleElement(getModelUri(), typeMID);
 		if (modelType != null) {
@@ -687,7 +687,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
+		MID instanceMID = this.getMIDContainer();
 		instanceMID.getEditors().remove(this);
 		// no need to removeExtendibleElement
 	}

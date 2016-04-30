@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
 
 /**
@@ -75,7 +74,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
 		try {
 			Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
-			if (MIDConstraintChecker.isInstancesLevel(model)) {
+			if (model.isInstancesLevel()) {
 				doExecuteInstancesLevel(model);
 			}
 			else {

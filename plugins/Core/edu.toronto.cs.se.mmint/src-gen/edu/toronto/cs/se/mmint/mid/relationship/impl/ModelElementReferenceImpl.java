@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -256,7 +255,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 		// delete the corresponding reference
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) this.eContainer();
 		List<BinaryMappingReference> delMappingTypeRefs = new ArrayList<>();

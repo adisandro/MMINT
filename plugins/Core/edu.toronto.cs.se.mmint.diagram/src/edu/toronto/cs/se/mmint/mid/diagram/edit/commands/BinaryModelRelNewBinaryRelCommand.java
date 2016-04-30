@@ -65,7 +65,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = getContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -79,7 +79,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = getContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (!mid.isInstancesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -96,7 +96,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((MID) getContainer()) || (
+				((MID) getContainer()).isInstancesLevel() || (
 					!MIDTypeHierarchy.isRootType(getSource()) &&
 					(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget()))
 				)
@@ -169,7 +169,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 		try {
-			BinaryModelRel newElement = (MIDConstraintChecker.isInstancesLevel(getContainer())) ?
+			BinaryModelRel newElement = (getContainer().isInstancesLevel()) ?
 				doExecuteInstancesLevel() :
 				doExecuteTypesLevel();
 			doConfigure(newElement, monitor, info);

@@ -61,7 +61,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				getLink().isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(getLink().getObject())
 			);
 	}
@@ -76,7 +76,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canReorientSource() && (
-				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!getLink().isInstancesLevel() ||
 				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), null, getLink().getModelElemRef())) != null
 			);
 	}
@@ -92,7 +92,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 		return
 			super.canReorientTarget() && (
-				!MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				!getLink().isInstancesLevel() ||
 				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences((MappingReference) getLink().eContainer(), getLink(), getNewTarget())) != null
 			);
 	}
@@ -126,7 +126,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel(getNewSource(), getLink().getModelElemRef(), true);
 			}
 			else {
@@ -148,7 +148,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel((MappingReference) getLink().eContainer(), getNewTarget(), false);
 			}
 			else {

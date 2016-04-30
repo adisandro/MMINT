@@ -61,7 +61,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 
 		return
 			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getLink()) ||
+				getLink().isInstancesLevel() ||
 				!MIDTypeHierarchy.isRootType(getLink().getObject())
 			);
 	}
@@ -75,7 +75,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = getLink().isInstancesLevel();
 
 		return
 			super.canReorientSource() && ((
@@ -96,7 +96,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
+		boolean instance = getLink().isInstancesLevel();
 
 		return
 			super.canReorientTarget() && ((
@@ -178,7 +178,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel(getLink(), getNewSource(), true);
 			}
 			else {
@@ -207,7 +207,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
+			if (getLink().isInstancesLevel()) {
 				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
 			}
 			else {
