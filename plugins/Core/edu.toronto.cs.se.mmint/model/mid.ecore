@@ -65,7 +65,7 @@
     <eOperations name="getMetatype" lowerBound="1" eType="#//ExtendibleElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The static metatype (types: always null; instances: an extendible element from the types)."/>
-        <details key="body" value="return MultiModelTypeRegistry.getType(getMetatypeUri());"/>
+        <details key="body" value="return MIDTypeRegistry.getType(getMetatypeUri());"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="createSubtypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -1265,7 +1265,7 @@
       <eOperations name="getTarget" lowerBound="1" eType="#//GenericElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the generic target of this generic endpoint."/>
-          <details key="body" value="GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());&#xA;return target;"/>
+          <details key="body" value="GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());&#xA;return target;"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="setTarget" lowerBound="1">
