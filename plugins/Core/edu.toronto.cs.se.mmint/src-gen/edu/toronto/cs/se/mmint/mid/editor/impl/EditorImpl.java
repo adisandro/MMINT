@@ -550,7 +550,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		MMINTException.mustBeType(this);
 
 		MID typeMID = this.getMIDContainer();
-		super.deleteType();
+		super.delete();
 		Model modelType = MIDRegistry.getExtendibleElement(getModelUri(), typeMID);
 		if (modelType != null) {
 			modelType.getEditors().remove(this);
@@ -699,9 +699,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = this.getMIDContainer();
-		instanceMID.getEditors().remove(this);
-		// no need to removeExtendibleElement
+		this.getMIDContainer().getEditors().remove(this);
+		// no need to super.delete()
 	}
 
 } //EditorImpl

@@ -756,7 +756,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
 		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
 		getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), typeMID));
-		super.deleteType();
+		super.delete();
 		typeMID.getOperators().remove(this);
 		// delete the subtypes of the "thing"
 		for (Operator operatorSubtype : MIDTypeHierarchy.getDirectSubtypes(this, typeMID)) {

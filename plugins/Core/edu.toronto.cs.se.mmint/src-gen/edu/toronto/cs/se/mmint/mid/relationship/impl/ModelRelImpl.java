@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -44,6 +45,7 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -634,6 +636,49 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Adds a model relationship instance of this model relationship type to an Instance MID, or simply adds additional
+	 * info to the model relationship instance.
+	 * 
+	 * @param newModelRel
+	 *            The new model relationship to be added.
+	 * @param newModelRelUri
+	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
+	 *            e.g. a a standalone model relationship is in its own file, a plain model relationship is not.
+	 * @param origin
+	 *            The origin of the new model relationship.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model relationship isn't going to be added to one.
+	 * @throws MMINTException
+	 *             If the uri of the new model relationship is already registered in the Instance MID.
+	 * @generated NOT
+	 */
+	@Override
+	protected void addInstance(Model newModelRel, String newModelRelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
+
+		boolean isFile = newModelRelUri != null;
+		boolean updateMID = instanceMID != null;
+		boolean isBasic = !updateMID || !isFile;
+
+		String newModelRelName = null;
+		String fileExtension = MMINT.EMPTY_MODEL_FILE_EXTENSION;
+		if (isFile) {
+			newModelRelName = MIDUtils.getFileNameFromUri(newModelRelUri);
+			fileExtension = MIDUtils.getFileExtensionFromUri(newModelRelUri);
+		}
+		if (isBasic) {
+			super.addBasicInstance(newModelRel, newModelRelUri, newModelRelName);
+		}
+		else {
+			super.addInstance(newModelRel, newModelRelUri, newModelRelName, instanceMID);
+		}
+		if (updateMID) {
+			instanceMID.getModels().add(newModelRel);
+		}
+		newModelRel.setOrigin(origin);
+		newModelRel.setFileExtension(fileExtension);
+	}
+
+	/**
 	 * Creates and possibly adds a model relationship
 	 * instance of this model relationship type to an Instance MID.
 	 * 
@@ -658,7 +703,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		ModelRel newModelRel = super.createThisEClass();
-		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
+		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModelRel;
 	}
@@ -674,7 +719,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		}
 
 		// create model rel
-		ModelRel newModelRel = (ModelRel) createInstance(newModelRelUri, instanceMID);
+		ModelRel newModelRel = (ModelRel) this.createInstance(newModelRelUri, instanceMID);
 		// create model rel endpoints
 		for (Model targetModel : endpointModels) {
 			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, targetModel).get(0);
@@ -693,7 +738,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRel = super.createThisBinaryEClass();
-		super.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
+		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
 
 		return newModelRel;
 	}
@@ -706,7 +751,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		// create model rel
-		BinaryModelRel newModelRel = createBinaryInstance(newModelRelUri, instanceMID);
+		BinaryModelRel newModelRel = this.createBinaryInstance(newModelRelUri, instanceMID);
 		EList<Model> endpointModels = new BasicEList<>();
 		endpointModels.add(endpointSourceModel);
 		endpointModels.add(endpointTargetModel);

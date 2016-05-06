@@ -812,6 +812,24 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getModel__CreateWorkflowInstance__String_MID() {
+		return modelEClass.getEOperations().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__DeleteWorkflowInstance() {
+		return modelEClass.getEOperations().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExtendibleElementConstraint() {
 		return extendibleElementConstraintEClass;
 	}
@@ -1298,6 +1316,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
 		createEOperation(modelEClass, MODEL___GET_EMF_INSTANCE_ROOT);
 		createEOperation(modelEClass, MODEL___OPEN_INSTANCE);
+		createEOperation(modelEClass, MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID);
+		createEOperation(modelEClass, MODEL___DELETE_WORKFLOW_INSTANCE);
 
 		extendibleElementConstraintEClass = createEClass(EXTENDIBLE_ELEMENT_CONSTRAINT);
 		createEAttribute(extendibleElementConstraintEClass, EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION);
@@ -1547,6 +1567,14 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		op = initEOperation(getModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theOperatorPackage.getException());
+
+		op = initEOperation(getModel__CreateWorkflowInstance__String_MID(), this.getModel(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newWorkflowModelId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModel__DeleteWorkflowInstance(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
 
 		initEClass(extendibleElementConstraintEClass, ExtendibleElementConstraint.class, "ExtendibleElementConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtendibleElementConstraint_Implementation(), ecorePackage.getEString(), "implementation", null, 1, 1, ExtendibleElementConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

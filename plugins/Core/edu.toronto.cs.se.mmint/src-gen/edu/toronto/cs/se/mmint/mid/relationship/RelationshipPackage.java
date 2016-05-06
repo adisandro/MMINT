@@ -489,6 +489,24 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___OPEN_INSTANCE = MIDPackage.MODEL___OPEN_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID = MIDPackage.MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_WORKFLOW_INSTANCE = MIDPackage.MODEL___DELETE_WORKFLOW_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -991,6 +1009,24 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID = MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___DELETE_WORKFLOW_INSTANCE = MODEL_REL___DELETE_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.

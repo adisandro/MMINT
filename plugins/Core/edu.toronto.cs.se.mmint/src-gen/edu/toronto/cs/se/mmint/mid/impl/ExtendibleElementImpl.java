@@ -979,14 +979,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * Deletes an extendible element from a MID.
+	 * Deletes an element from a MID.
 	 * 
 	 * @param uri
-	 *            The uri of the extendible element to delete.
+	 *            The uri of the element to delete.
 	 * @param mid
-	 *            The MID that contains the extendible element.
-	 * @return The deleted extendible element, null if its uri was not
-	 *         registered in the MID.
+	 *            The MID that contains the element.
+	 * @return The deleted element, null if its uri was not registered in the MID.
 	 * @generated NOT
 	 */
 	protected ExtendibleElement delete(String uri, MID mid) {
@@ -995,16 +994,15 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * Deletes this type from the Type MID.
+	 * Deletes this element from the MID that contains it.
 	 * 
 	 * @throws MMINTException
 	 *             Never thrown.
 	 * @generated NOT
 	 */
-	protected void deleteType() throws MMINTException {
+	protected void delete() throws MMINTException {
 
-		MID typeMID = this.getMIDContainer();
-		this.delete(getUri(), typeMID);
+		this.delete(this.getUri(), this.getMIDContainer());
 	}
 
 	/**
@@ -1014,9 +1012,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * @param newInstance
 	 *            The new instance to be added.
 	 * @param newInstanceUri
-	 *            The uri of the new instance.
+	 *            The uri of the new instance, null to use an empty uri.
 	 * @param newInstanceName
-	 *            The name of the new instance.
+	 *            The name of the new instance, null to use an empty name.
 	 * @generated NOT
 	 */
 	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName) {
@@ -1127,19 +1125,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public boolean isWorkflowsLevel() {
 		return this.getLevel() == MIDLevel.WORKFLOWS;
-	}
-
-	/**
-	 * Deletes this instance from the Instance MID that contains it.
-	 * 
-	 * @throws MMINTException
-	 *             Never thrown.
-	 * @generated NOT
-	 */
-	protected void deleteInstance() throws MMINTException {
-
-		MID instanceMID = this.getMIDContainer();
-		delete(getUri(), instanceMID);
 	}
 
 	/**

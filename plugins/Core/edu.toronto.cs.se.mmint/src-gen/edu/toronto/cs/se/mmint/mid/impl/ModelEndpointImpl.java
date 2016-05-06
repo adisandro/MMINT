@@ -220,7 +220,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected void deleteType(boolean isFullDelete) throws MMINTException {
 
-		super.deleteType();
+		super.delete();
 		if (isFullDelete) {
 			ModelRel modelRelType = (ModelRel) eContainer();
 			modelRelType.getModelEndpoints().remove(this);

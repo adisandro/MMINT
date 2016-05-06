@@ -525,6 +525,21 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID:
+				try {
+					return createWorkflowInstance((String)arguments.get(0), (MID)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL___DELETE_WORKFLOW_INSTANCE:
+				try {
+					deleteWorkflowInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -678,7 +693,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		for (Editor delEditorType : delEditorTypes) {
 			delEditorType.deleteType();
 		}
-		super.deleteType();
+		super.delete();
 		typeMID.getModels().remove(this);
 		String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
@@ -801,45 +816,30 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
-	 * Adds a model instance of this model type to an Instance MID, or simply
-	 * adds additional info to the model instance.
+	 * Adds a model instance of this model type to an Instance MID, or simply adds additional info to the model
+	 * instance.
 	 * 
 	 * @param newModel
 	 *            The new model to be added.
 	 * @param newModelUri
-	 *            The uri of the new model, null if the new model is not in a
-	 *            separate file; e.g. a model and a standalone model
-	 *            relationship are in their own files, a plain model
-	 *            relationship is not.
+	 *            The uri of the new model.
 	 * @param origin
 	 *            The origin of the new model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
+	 *            An Instance MID, null if the model isn't going to be added to one.
 	 * @throws MMINTException
-	 *             If the uri of the new model is already registered in the
-	 *             Instance MID.
+	 *             If the uri of the new model is already registered in the Instance MID.
 	 * @generated NOT
 	 */
 	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
 
-		boolean externalElement = newModelUri != null;
-		boolean updateMID = instanceMID != null;
-		boolean basicElement = !updateMID || !externalElement;
-
-		String newModelName = null;
-		String fileExtension = MMINT.EMPTY_MODEL_FILE_EXTENSION;
-		if (externalElement) {
-			newModelName = MIDUtils.getFileNameFromUri(newModelUri);
-			fileExtension = MIDUtils.getFileExtensionFromUri(newModelUri);
-		}
-		if (basicElement) {
+		String newModelName = MIDUtils.getFileNameFromUri(newModelUri);
+		String fileExtension = MIDUtils.getFileExtensionFromUri(newModelUri);
+		if (instanceMID == null) {
 			super.addBasicInstance(newModel, newModelUri, newModelName);
 		}
 		else {
 			super.addInstance(newModel, newModelUri, newModelName, instanceMID);
-		}
-		if (updateMID) {
 			instanceMID.getModels().add(newModel);
 		}
 		newModel.setOrigin(origin);
@@ -1028,16 +1028,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeInstance(this);
 
 		MID instanceMID = this.getMIDContainer();
+		// delete model elements
 		for (ModelElement modelElem : getModelElems()) {
 			super.delete(modelElem.getUri(), instanceMID);
 		}
-		super.deleteInstance();
-		instanceMID.getModels().remove(this);
-		// delete editors for this model
+		// delete editors
 		for (Editor editor : getEditors()) {
 			editor.deleteInstance();
 		}
-		// delete operators that use this model type
+		super.delete();
+		instanceMID.getModels().remove(this);
+		// delete operators that use this model
 		List<Operator> delOperators = new ArrayList<>();
 		for (Operator operator : MIDRegistry.getOperators(instanceMID)) {
 			for (ModelEndpoint inputModelEndpoint : operator.getInputs()) {
@@ -1111,6 +1112,45 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			),
 			editor.getId()
 		);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void addWorkflowInstance(Model newWorkflowModel, String newWorkflowModelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
+
+		//TODO MMINT[WORKFLOW] Review all javadoc to account for new mid level
+		String newWorkflowModelName = newWorkflowModelId;
+		String fileExtension = this.getFileExtension();
+		super.addInstance(newWorkflowModel, newWorkflowModelId, newWorkflowModelName, workflowMID);
+		workflowMID.getModels().add(newWorkflowModel);
+		newWorkflowModel.setOrigin(origin);
+		newWorkflowModel.setFileExtension(fileExtension);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Model createWorkflowInstance(String newWorkflowModelId, MID workflowMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Model newWorkflowModel = super.createThisEClass();
+		this.addWorkflowInstance(newWorkflowModel, newWorkflowModelId, ModelOrigin.CREATED, workflowMID);
+
+		return newWorkflowModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteWorkflowInstance() throws MMINTException {
+
+		MMINTException.mustBeWorkflow(this);
+
+		MID workflowMID = this.getMIDContainer();
+		super.delete();
+		workflowMID.getModels().remove(this);
 	}
 
 } //ModelImpl

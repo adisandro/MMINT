@@ -240,11 +240,10 @@ public interface Model extends GenericElement {
 	 * @param newModelUri
 	 *            The uri of the new model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
+	 *            An Instance MID, null if the model isn't going to be contained in one.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the new model
+	 *             If this is not a model type, or if the uri of the new model
 	 *             instance is already registered in the Instance MID.
 	 *             <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
@@ -378,7 +377,7 @@ public interface Model extends GenericElement {
 	 * that contains it.
 	 * 
 	 * @throws MMINTException
-	 *             If this is a model type. <!-- end-user-doc -->
+	 *             If this is not a model instance. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
@@ -402,5 +401,33 @@ public interface Model extends GenericElement {
 	 * @generated
 	 */
 	void openInstance() throws Exception;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to a Workflow MID.
+	 * 
+	 * @param newWorkflowModelId
+	 *            The id of the new model.
+	 * @param workflowMID
+	 *            A Workflow MID, null if the model isn't going to be contained in one.
+	 * @return The created model.
+	 * @throws MMINTException
+	 *             If this is not a model type, or if the id of the new model instance is already registered in the
+	 *             Workflow MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newWorkflowModelIdRequired="true"
+	 *        workflowMIDRequired="true"
+	 * @generated
+	 */
+	Model createWorkflowInstance(String newWorkflowModelId, MID workflowMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Deletes this model instance from the Workflow MID
+	 * that contains it.
+	 * 
+	 * @throws MMINTException
+	 *             If this is not a model instance in a workflow. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	void deleteWorkflowInstance() throws MMINTException;
 
 } // Model

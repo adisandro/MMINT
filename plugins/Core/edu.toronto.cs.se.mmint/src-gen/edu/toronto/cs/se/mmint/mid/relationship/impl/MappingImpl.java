@@ -391,7 +391,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
 		MMINTException.mustBeType(this);
 
-		super.deleteType();
+		super.delete();
 		for (ModelElementEndpoint modelElemTypeEndpoint : getModelElemEndpoints()) {
 			modelElemTypeEndpoint.deleteType(false);
 		}

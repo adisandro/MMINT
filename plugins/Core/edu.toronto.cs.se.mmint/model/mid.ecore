@@ -301,6 +301,11 @@
     <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="#//MMINTException"/>
     <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
+    <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
+      <eParameters name="newWorkflowModelId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+    </eOperations>
+    <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="origin" lowerBound="1"
         eType="#//ModelOrigin">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

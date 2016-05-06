@@ -1282,13 +1282,31 @@ public interface MIDPackage extends EPackage {
 	int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 17;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___DELETE_WORKFLOW_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 18;
+
+	/**
 	 * The number of operations of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 17;
+	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -2767,6 +2785,26 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__OpenInstance();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createWorkflowInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#createWorkflowInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModel__CreateWorkflowInstance__String_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#deleteWorkflowInstance() <em>Delete Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.Model#deleteWorkflowInstance()
+	 * @generated
+	 */
+	EOperation getModel__DeleteWorkflowInstance();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3753,6 +3791,22 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL___OPEN_INSTANCE = eINSTANCE.getModel__OpenInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = eINSTANCE.getModel__CreateWorkflowInstance__String_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getModel__DeleteWorkflowInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.

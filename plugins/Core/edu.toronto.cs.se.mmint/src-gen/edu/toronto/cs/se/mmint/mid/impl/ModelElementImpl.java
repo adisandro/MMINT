@@ -373,7 +373,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		super.deleteType();
+		super.delete();
 		//TODO MMINT[OO] might need to implement full removal
 	}
 
@@ -446,7 +446,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeInstance(this);
 
-		super.deleteInstance();
+		super.delete();
 		//TODO MMINT[OO] might need to implement full removal
 	}
 

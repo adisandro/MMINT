@@ -125,6 +125,11 @@
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/createWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/newWorkflowModelId"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/workflowMID"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteWorkflowInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ExtendibleElementConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementConstraint/implementation"/>

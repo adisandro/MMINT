@@ -320,7 +320,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 
 		MMINTException.mustBeType(this);
 
-		super.deleteType();
+		super.delete();
 		if (isFullDelete) {
 			((Mapping) this.eContainer()).getModelElemEndpoints().remove(this);
 		}
