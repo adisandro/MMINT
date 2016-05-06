@@ -205,6 +205,15 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -323,6 +332,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -330,6 +340,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			switch (baseOperationID) {
 				case MIDPackage.MODEL___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
 				case MIDPackage.MODEL___GET_SUPERTYPE: return RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
+				case MIDPackage.MODEL___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -349,6 +360,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return getMetatype();
 			case RelationshipPackage.MODEL_REL___GET_SUPERTYPE:
 				return getSupertype();
+			case RelationshipPackage.MODEL_REL___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
 				try {
 					return createBinarySubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));

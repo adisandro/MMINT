@@ -151,6 +151,15 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -228,6 +237,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ELEMENT___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -246,6 +256,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				return getMetatype();
 			case MIDPackage.MODEL_ELEMENT___GET_SUPERTYPE:
 				return getSupertype();
+			case MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case MIDPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
 				try {
 					return createTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (ModelEndpointReference)arguments.get(2));

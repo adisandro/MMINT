@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -94,6 +95,15 @@ public interface Mapping extends ExtendibleElement {
 	 * @generated
 	 */
 	Mapping getSupertype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a reference to this mapping type to

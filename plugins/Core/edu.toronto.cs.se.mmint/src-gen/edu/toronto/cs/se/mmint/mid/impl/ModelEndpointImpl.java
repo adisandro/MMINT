@@ -74,6 +74,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Model getTarget() {
 		ExtendibleElement target = super.getTarget();
 		return (target == null) ? null : (Model) target;
@@ -99,6 +108,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -120,12 +130,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
-				return getSupertype();
-			case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
-				return getTarget();
 			case MIDPackage.MODEL_ENDPOINT___GET_METATYPE:
 				return getMetatype();
+			case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
+				return getSupertype();
+			case MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
+				return getTarget();
 			case MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
 				try {
 					return createTypeReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));

@@ -293,6 +293,15 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -398,6 +407,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return EditorPackage.EDITOR___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return EditorPackage.EDITOR___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -416,6 +426,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return getMetatype();
 			case EditorPackage.EDITOR___GET_SUPERTYPE:
 				return getSupertype();
+			case EditorPackage.EDITOR___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case EditorPackage.EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING:
 				try {
 					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (String)arguments.get(3), (String)arguments.get(4), (String)arguments.get(5));

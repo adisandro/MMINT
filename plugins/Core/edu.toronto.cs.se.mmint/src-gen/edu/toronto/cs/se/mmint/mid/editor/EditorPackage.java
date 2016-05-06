@@ -196,15 +196,6 @@ public interface EditorPackage extends EPackage {
 	int EDITOR_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Get MID Container</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDITOR___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER;
-
-	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,13 +313,22 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___GET_SUPERTYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -337,7 +337,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
+	int EDITOR___DELETE_TYPE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -346,7 +346,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___CREATE_INSTANCE__STRING_MID = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 4;
+	int EDITOR___CREATE_INSTANCE__STRING_MID = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -355,7 +355,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+	int EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -364,7 +364,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR___DELETE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 6;
+	int EDITOR___DELETE_INSTANCE = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Editor</em>' class.
@@ -373,7 +373,7 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDITOR_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 7;
+	int EDITOR_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -503,15 +503,6 @@ public interface EditorPackage extends EPackage {
 	int DIAGRAM_FEATURE_COUNT = EDITOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Get MID Container</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIAGRAM___GET_MID_CONTAINER = EDITOR___GET_MID_CONTAINER;
-
-	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -627,6 +618,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___GET_SUPERTYPE = EDITOR___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___GET_MID_CONTAINER = EDITOR___GET_MID_CONTAINER;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -788,6 +788,16 @@ public interface EditorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEditor__GetSupertype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#getMIDContainer() <em>Get MID Container</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get MID Container</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.editor.Editor#getMIDContainer()
+	 * @generated
+	 */
+	EOperation getEditor__GetMIDContainer();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#createSubtype(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String) <em>Create Subtype</em>}' operation.
@@ -989,6 +999,14 @@ public interface EditorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EDITOR___GET_SUPERTYPE = eINSTANCE.getEditor__GetSupertype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EDITOR___GET_MID_CONTAINER = eINSTANCE.getEditor__GetMIDContainer();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.

@@ -146,6 +146,15 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -236,6 +245,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MAPPING___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MAPPING___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -255,6 +265,8 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 				return getMetatype();
 			case RelationshipPackage.MAPPING___GET_SUPERTYPE:
 				return getSupertype();
+			case RelationshipPackage.MAPPING___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case RelationshipPackage.MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL:
 				try {
 					return createTypeReference((MappingReference)arguments.get(0), (Boolean)arguments.get(1), (ModelRel)arguments.get(2));

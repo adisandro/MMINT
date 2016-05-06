@@ -130,6 +130,15 @@ public interface ModelRel extends Model {
 	Model getSupertype();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a binary subtype of this model relationship type to the Type MID.
 	 * 
 	 * @param newModelRelTypeName

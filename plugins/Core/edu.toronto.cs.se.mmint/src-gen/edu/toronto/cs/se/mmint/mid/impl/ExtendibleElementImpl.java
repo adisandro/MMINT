@@ -41,10 +41,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -642,17 +639,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public MID getMIDContainer() {
-		MID mid = null;
-		if (this instanceof Model || this instanceof ModelRel || this instanceof Editor || this instanceof Operator) {
-			mid = (MID) this.eContainer();
-		}
-		else if (this instanceof ModelElement || this instanceof Mapping || this instanceof ModelEndpoint) {
-			mid = (MID) this.eContainer().eContainer();
-		}
-		else if (this instanceof ModelElementEndpoint) {
-			mid = (MID) this.eContainer().eContainer().eContainer();
-		}
-		return mid;
+		return null;
 	}
 
 	/**

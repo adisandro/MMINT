@@ -402,6 +402,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -558,6 +567,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.OPERATOR___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return OperatorPackage.OPERATOR___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -577,6 +587,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return getMetatype();
 			case OperatorPackage.OPERATOR___GET_SUPERTYPE:
 				return getSupertype();
+			case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case OperatorPackage.OPERATOR___DELETE_TYPE:
 				try {
 					deleteType();

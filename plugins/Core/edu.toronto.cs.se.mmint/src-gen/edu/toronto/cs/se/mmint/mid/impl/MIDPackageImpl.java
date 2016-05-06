@@ -677,7 +677,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateSubtype__String_String_String_boolean() {
+	public EOperation getModel__GetMIDContainer() {
 		return modelEClass.getEOperations().get(2);
 	}
 
@@ -686,7 +686,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__DeleteType() {
+	public EOperation getModel__CreateSubtype__String_String_String_boolean() {
 		return modelEClass.getEOperations().get(3);
 	}
 
@@ -695,7 +695,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__GetEMFTypeRoot() {
+	public EOperation getModel__DeleteType() {
 		return modelEClass.getEOperations().get(4);
 	}
 
@@ -704,88 +704,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateInstance__String_MID() {
-		return modelEClass.getEOperations().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__CreateInstanceEditor() {
-		return modelEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__CreateInstanceAndEditor__String_MID() {
-		return modelEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__ImportInstance__String_MID() {
-		return modelEClass.getEOperations().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__ImportInstanceAndEditor__String_MID() {
-		return modelEClass.getEOperations().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__CopyInstance__Model_String_MID() {
-		return modelEClass.getEOperations().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__CopyInstanceAndEditor__Model_String_boolean_MID() {
-		return modelEClass.getEOperations().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__DeleteInstance() {
-		return modelEClass.getEOperations().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__GetEMFInstanceRoot() {
-		return modelEClass.getEOperations().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModel__OpenType() {
+	public EOperation getModel__GetEMFTypeRoot() {
 		return modelEClass.getEOperations().get(5);
 	}
 
@@ -794,8 +713,98 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__OpenInstance() {
+	public EOperation getModel__CreateInstance__String_MID() {
+		return modelEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__CreateInstanceEditor() {
+		return modelEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__CreateInstanceAndEditor__String_MID() {
+		return modelEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__ImportInstance__String_MID() {
+		return modelEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__ImportInstanceAndEditor__String_MID() {
+		return modelEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__CopyInstance__Model_String_MID() {
+		return modelEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__CopyInstanceAndEditor__Model_String_boolean_MID() {
+		return modelEClass.getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__DeleteInstance() {
+		return modelEClass.getEOperations().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__GetEMFInstanceRoot() {
 		return modelEClass.getEOperations().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__OpenType() {
+		return modelEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModel__OpenInstance() {
+		return modelEClass.getEOperations().get(16);
 	}
 
 	/**
@@ -866,7 +875,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference() {
+	public EOperation getModelElement__GetMIDContainer() {
 		return modelElementEClass.getEOperations().get(2);
 	}
 
@@ -875,7 +884,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_EMFInfo_ModelEndpointReference() {
+	public EOperation getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(3);
 	}
 
@@ -884,7 +893,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__DeleteType() {
+	public EOperation getModelElement__CreateSubtypeAndReference__ModelElementReference_String_String_EMFInfo_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(4);
 	}
 
@@ -893,7 +902,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__GetEMFTypeObject() {
+	public EOperation getModelElement__DeleteType() {
 		return modelElementEClass.getEOperations().get(5);
 	}
 
@@ -902,7 +911,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__CreateInstanceReference__ModelEndpointReference() {
+	public EOperation getModelElement__GetEMFTypeObject() {
 		return modelElementEClass.getEOperations().get(6);
 	}
 
@@ -911,7 +920,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference() {
+	public EOperation getModelElement__CreateInstanceReference__ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(7);
 	}
 
@@ -920,7 +929,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__DeleteInstance() {
+	public EOperation getModelElement__CreateInstanceAndReference__String_String_EMFInfo_ModelEndpointReference() {
 		return modelElementEClass.getEOperations().get(8);
 	}
 
@@ -929,8 +938,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelElement__GetEMFInstanceObject() {
+	public EOperation getModelElement__DeleteInstance() {
 		return modelElementEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelElement__GetEMFInstanceObject() {
+		return modelElementEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -948,15 +966,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EOperation getModelEndpoint__GetSupertype() {
-		return modelEndpointEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getModelEndpoint__GetTarget() {
 		return modelEndpointEClass.getEOperations().get(1);
 	}
 
@@ -965,7 +974,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__GetMetatype() {
+	public EOperation getModelEndpoint__GetMIDContainer() {
 		return modelEndpointEClass.getEOperations().get(2);
 	}
 
@@ -974,7 +983,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateTypeReference__boolean_ModelRel() {
+	public EOperation getModelEndpoint__GetTarget() {
 		return modelEndpointEClass.getEOperations().get(3);
 	}
 
@@ -983,7 +992,16 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel() {
+	public EOperation getModelEndpoint__GetMetatype() {
+		return modelEndpointEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__CreateTypeReference__boolean_ModelRel() {
 		return modelEndpointEClass.getEOperations().get(4);
 	}
 
@@ -992,7 +1010,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model() {
+	public EOperation getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel() {
 		return modelEndpointEClass.getEOperations().get(5);
 	}
 
@@ -1001,7 +1019,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__DeleteTypeAndReference__boolean() {
+	public EOperation getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model() {
 		return modelEndpointEClass.getEOperations().get(6);
 	}
 
@@ -1010,7 +1028,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateInstanceReference__ModelRel() {
+	public EOperation getModelEndpoint__DeleteTypeAndReference__boolean() {
 		return modelEndpointEClass.getEOperations().get(7);
 	}
 
@@ -1019,7 +1037,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateInstanceAndReference__Model_ModelRel() {
+	public EOperation getModelEndpoint__CreateInstanceReference__ModelRel() {
 		return modelEndpointEClass.getEOperations().get(8);
 	}
 
@@ -1028,7 +1046,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateInstance__Model_Operator_String() {
+	public EOperation getModelEndpoint__CreateInstanceAndReference__Model_ModelRel() {
 		return modelEndpointEClass.getEOperations().get(9);
 	}
 
@@ -1037,7 +1055,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
+	public EOperation getModelEndpoint__CreateInstance__Model_Operator_String() {
 		return modelEndpointEClass.getEOperations().get(10);
 	}
 
@@ -1046,8 +1064,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__DeleteInstanceAndReference__boolean() {
+	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
 		return modelEndpointEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__DeleteInstanceAndReference__boolean() {
+		return modelEndpointEClass.getEOperations().get(12);
 	}
 
 	/**
@@ -1256,6 +1283,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
 		createEOperation(modelEClass, MODEL___GET_METATYPE);
 		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
+		createEOperation(modelEClass, MODEL___GET_MID_CONTAINER);
 		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
 		createEOperation(modelEClass, MODEL___DELETE_TYPE);
 		createEOperation(modelEClass, MODEL___GET_EMF_TYPE_ROOT);
@@ -1279,6 +1307,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEReference(modelElementEClass, MODEL_ELEMENT__EINFO);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_METATYPE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_SUPERTYPE);
+		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_MID_CONTAINER);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE);
 		createEOperation(modelElementEClass, MODEL_ELEMENT___DELETE_TYPE);
@@ -1289,9 +1318,10 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelElementEClass, MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT);
 
 		modelEndpointEClass = createEClass(MODEL_ENDPOINT);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_SUPERTYPE);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_TARGET);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_METATYPE);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_SUPERTYPE);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_MID_CONTAINER);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_TARGET);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL);
@@ -1455,6 +1485,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEOperation(getModel__GetSupertype(), this.getModel(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getModel__GetMIDContainer(), this.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getModel__CreateSubtype__String_String_String_boolean(), this.getModel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1527,6 +1559,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEOperation(getModelElement__GetSupertype(), this.getModelElement(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getModelElement__GetMIDContainer(), this.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getModelElement__CreateTypeReference__ModelElementReference_boolean_ModelEndpointReference(), theRelationshipPackage.getModelElementReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelElementReference(), "modelElemTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1566,11 +1600,13 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEClass(modelEndpointEClass, ModelEndpoint.class, "ModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEOperation(getModelEndpoint__GetMetatype(), this.getModelEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEOperation(getModelEndpoint__GetSupertype(), this.getModelEndpoint(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelEndpoint__GetTarget(), this.getModel(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelEndpoint__GetMIDContainer(), this.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getModelEndpoint__GetMetatype(), this.getModelEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getModelEndpoint__GetTarget(), this.getModel(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getModelEndpoint__CreateTypeReference__boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);

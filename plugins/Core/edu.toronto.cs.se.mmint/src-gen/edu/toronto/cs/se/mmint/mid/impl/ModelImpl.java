@@ -272,6 +272,15 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -393,6 +402,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -411,6 +421,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				return getMetatype();
 			case MIDPackage.MODEL___GET_SUPERTYPE:
 				return getSupertype();
+			case MIDPackage.MODEL___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
 				try {
 					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));

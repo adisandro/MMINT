@@ -48,6 +48,15 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * {@inheritDoc}<br />
 	 * Gets the model target of this model endpoint.

@@ -84,7 +84,7 @@
     </eOperations>
     <eOperations name="getMIDContainer" eType="#//MID">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="MID mid = null;&#xA;if (this instanceof Model || this instanceof ModelRel || this instanceof Editor || this instanceof Operator) {&#xA;&#x9;mid = (MID) this.eContainer();&#xA;}&#xA;else if (this instanceof ModelElement || this instanceof Mapping || this instanceof ModelEndpoint) {&#xA;&#x9;mid = (MID) this.eContainer().eContainer();&#xA;}&#xA;else if (this instanceof ModelElementEndpoint) {&#xA;&#x9;mid = (MID) this.eContainer().eContainer().eContainer();&#xA;}&#xA;return mid;"/>
+        <details key="body" value="return null;"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isTypesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -253,6 +253,11 @@
         <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="getMIDContainer" eType="#//MID">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return (MID) this.eContainer();"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="createSubtype" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="constraintLanguage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -375,6 +380,11 @@
         <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElement) supertype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="getMIDContainer" eType="#//MID">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return (MID) this.eContainer().eContainer();"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/ModelElementReference"
         eExceptions="#//MMINTException">
       <eParameters name="modelElemTypeRef" eType="#//relationship/ModelElementReference"/>
@@ -417,22 +427,27 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The model endpoint for a model relationship."/>
     </eAnnotations>
+    <eOperations name="getMetatype" lowerBound="1" eType="#//ModelEndpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model type endpoint of this model instance endpoint."/>
+        <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="getSupertype" eType="#//ModelEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model supertype endpoint of this model type endpoint."/>
         <details key="body" value="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelEndpoint) supertype;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="getMIDContainer" eType="#//MID">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return (MID) this.eContainer().eContainer();"/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="getTarget" lowerBound="1" eType="#//Model">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model target of this model endpoint."/>
         <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (Model) target;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getMetatype" lowerBound="1" eType="#//ModelEndpoint">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model type endpoint of this model instance endpoint."/>
-        <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
@@ -544,6 +559,11 @@
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model relationship supertype of this model relationship type."/>
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getMIDContainer" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (MID) this.eContainer();"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="createBinarySubtype" lowerBound="1" eType="#//relationship/BinaryModelRel"
@@ -819,6 +839,11 @@
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Mapping) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getMIDContainer" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (MID) this.eContainer().eContainer();"/>
+        </eAnnotations>
+      </eOperations>
       <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/MappingReference"
           eExceptions="#//MMINTException">
         <eParameters name="mappingTypeRef" eType="#//relationship/MappingReference"/>
@@ -886,22 +911,27 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The model element endpoint for a mapping."/>
       </eAnnotations>
+      <eOperations name="getMetatype" lowerBound="1" eType="#//relationship/ModelElementEndpoint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element type endpoint of this model element instance endpoint."/>
+          <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElementEndpoint) metatype;"/>
+        </eAnnotations>
+      </eOperations>
       <eOperations name="getSupertype" eType="#//relationship/ModelElementEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element supertype endpoint of this model element type endpoint."/>
           <details key="body" value="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElementEndpoint) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getMIDContainer" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (MID) this.eContainer().eContainer().eContainer();"/>
+        </eAnnotations>
+      </eOperations>
       <eOperations name="getTarget" lowerBound="1" eType="#//ModelElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element target of this model element endpoint."/>
           <details key="body" value="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (ModelElement) target;"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getMetatype" lowerBound="1" eType="#//relationship/ModelElementEndpoint">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the model element type endpoint of this model element instance endpoint."/>
-          <details key="body" value="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElementEndpoint) metatype;"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/ModelElementEndpointReference"
@@ -1065,6 +1095,11 @@
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Editor) supertype;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getMIDContainer" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (MID) this.eContainer();"/>
+        </eAnnotations>
+      </eOperations>
       <eOperations name="createSubtype" lowerBound="1" eType="#//editor/Editor" eExceptions="#//MMINTException">
         <eParameters name="newEditorTypeFragmentUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="newEditorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1157,6 +1192,11 @@
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="{@inheritDoc}&lt;br />&#xA;Gets the operator supertype of this operator type."/>
           <details key="body" value="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Operator) supertype;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getMIDContainer" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (MID) this.eContainer();"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>

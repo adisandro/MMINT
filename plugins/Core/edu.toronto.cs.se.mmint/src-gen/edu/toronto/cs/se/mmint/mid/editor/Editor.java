@@ -186,6 +186,15 @@ public interface Editor extends ExtendibleElement {
 	Editor getSupertype();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this editor type to
 	 * the Type MID.
 	 * 

@@ -136,7 +136,7 @@ public interface ExtendibleElement extends EObject {
 	 * 
 	 * @return The MID container, or null if this element is not contained in a MID. <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MID mid = null;\nif (this instanceof Model || this instanceof ModelRel || this instanceof Editor || this instanceof Operator) {\n\tmid = (MID) this.eContainer();\n}\nelse if (this instanceof ModelElement || this instanceof Mapping || this instanceof ModelEndpoint) {\n\tmid = (MID) this.eContainer().eContainer();\n}\nelse if (this instanceof ModelElementEndpoint) {\n\tmid = (MID) this.eContainer().eContainer().eContainer();\n}\nreturn mid;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return null;'"
 	 * @generated
 	 */
 	MID getMIDContainer();

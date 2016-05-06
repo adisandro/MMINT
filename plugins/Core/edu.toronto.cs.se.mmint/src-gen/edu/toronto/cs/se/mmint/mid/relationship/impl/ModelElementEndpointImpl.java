@@ -78,6 +78,15 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelElement getTarget() {
 		ExtendibleElement target = super.getTarget();
 		return (target == null) ? null : (ModelElement) target;
@@ -103,6 +112,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -124,12 +134,14 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE:
-				return getSupertype();
-			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_TARGET:
-				return getTarget();
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE:
 				return getMetatype();
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE:
+				return getSupertype();
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_TARGET:
+				return getTarget();
 			case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_MAPPINGREFERENCE:
 				try {
 					return createTypeReference((ModelElementEndpointReference)arguments.get(0), (ModelElementReference)arguments.get(1), (Boolean)arguments.get(2), (Boolean)arguments.get(3), (MappingReference)arguments.get(4));
