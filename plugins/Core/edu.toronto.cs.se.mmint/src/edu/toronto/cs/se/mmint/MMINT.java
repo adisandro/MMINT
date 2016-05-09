@@ -137,7 +137,7 @@ public class MMINT implements MMINTConstants {
 	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
 	 * - Review and unify all multimodel apis (e.g. add possibility to pass name)
 	 * - Review stuff done in megamodel operators and create more helper apis (e.g. createInstance() + createModelFile())
-	 * - Separate file apis from MultiModelUtils to MultiModelFileUtils
+	 * - Separate file apis from MIDUtils to MIDFileUtils
 	 * - Add documentation ->
 	 *   a) Prerequisite: review apis for mid construction and destruction
 	 *   b) Take every api function

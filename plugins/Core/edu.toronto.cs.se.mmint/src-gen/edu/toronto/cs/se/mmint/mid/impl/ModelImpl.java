@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
@@ -1029,54 +1030,28 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MID instanceMID = this.getMIDContainer();
 		// delete model elements
-		for (ModelElement modelElem : getModelElems()) {
+		for (ModelElement modelElem : this.getModelElems()) {
 			super.delete(modelElem.getUri(), instanceMID);
 		}
 		// delete editors
-		for (Editor editor : getEditors()) {
+		for (Editor editor : this.getEditors()) {
 			editor.deleteInstance();
 		}
 		super.delete();
 		instanceMID.getModels().remove(this);
 		// delete operators that use this model
-		List<Operator> delOperators = new ArrayList<>();
-		for (Operator operator : MIDRegistry.getOperators(instanceMID)) {
-			for (ModelEndpoint inputModelEndpoint : operator.getInputs()) {
-				if (inputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
-					delOperators.add(operator);
-				}
-			}
-			for (ModelEndpoint outputModelEndpoint : operator.getOutputs()) {
-				if (outputModelEndpoint.getTargetUri().equals(getUri()) && !delOperators.contains(operator)) {
-					delOperators.add(operator);
-				}
-			}
-		}
-		for (Operator operatorType : delOperators) {
-			operatorType.deleteInstance();
+		Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, instanceMID);
+		for (Operator delOperator : delOperators) {
+			delOperator.deleteInstance();
 		}
 		// delete model relationships that use this model
-		List<ModelRel> delModelRels = new ArrayList<>();
-		List<ModelEndpoint> delModelEndpoints = new ArrayList<>();
-		for (ModelRel modelRel : MIDRegistry.getModelRels(instanceMID)) {
-			for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-				if (modelEndpoint.getTargetUri().equals(getUri())) {
-					if (modelRel instanceof BinaryModelRel) {
-						if (!delModelRels.contains(modelRel)) {
-							delModelRels.add(modelRel);
-						}
-					}
-					else {
-						delModelEndpoints.add(modelEndpoint);
-					}
-				}
-			}
+		Set<BinaryModelRel> delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, instanceMID);
+		for (BinaryModelRel delModelRel : delModelRels) {
+			delModelRel.deleteInstance();
 		}
-		for (ModelEndpoint modelEndpoint : delModelEndpoints) {
-			modelEndpoint.deleteInstanceAndReference(true);
-		}
-		for (ModelRel modelRel : delModelRels) {
-			modelRel.deleteInstance();
+		Set<ModelEndpoint> delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, instanceMID);
+		for (ModelEndpoint delModelEndpoint : delModelEndpoints) {
+			delModelEndpoint.deleteInstanceAndReference(true);
 		}
 	}
 
@@ -1151,6 +1126,20 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MID workflowMID = this.getMIDContainer();
 		super.delete();
 		workflowMID.getModels().remove(this);
+		// delete operators that use this model
+		Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, workflowMID);
+		for (Operator delOperator : delOperators) {
+			//delOperator.deleteWorkflowInstance();
+		}
+		// delete model relationships that use this model
+		Set<BinaryModelRel> delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, workflowMID);
+		for (BinaryModelRel delModelRel : delModelRels) {
+			delModelRel.deleteWorkflowInstance();
+		}
+		Set<ModelEndpoint> delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, workflowMID);
+		for (ModelEndpoint delModelEndpoint : delModelEndpoints) {
+			//delModelEndpoint.deleteWorkflowInstanceAndReference(true);
+		}
 	}
 
 } //ModelImpl

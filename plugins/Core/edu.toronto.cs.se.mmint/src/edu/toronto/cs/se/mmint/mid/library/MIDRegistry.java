@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmint.mid.library;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -40,10 +42,12 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -288,6 +292,36 @@ public class MIDRegistry {
 		}
 
 		return modelDiagram;
+	}
+
+	public static Set<Operator> getInputOutputOperators(Model model, MID mid) {
+
+		return MIDRegistry.getOperators(mid).stream()
+			.filter(operator ->
+				operator.getInputs().stream()
+					.anyMatch(input -> input.getTarget() == model) ||
+				operator.getOutputs().stream()
+					.anyMatch(output -> output.getTarget() == model))
+			.collect(Collectors.toSet());
+	}
+
+	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
+
+		return MIDRegistry.getModelRels(mid).stream()
+			.filter(modelRel -> modelRel instanceof BinaryModelRel)
+			.filter(modelRel -> modelRel.getModelEndpoints().stream()
+				.anyMatch(endpoint -> endpoint.getTarget() == model))
+			.map(modelRel -> (BinaryModelRel) modelRel)
+			.collect(Collectors.toSet());
+	}
+
+	public static Set<ModelEndpoint> getConnectedNaryModelRelEndpoints(Model model, MID mid) {
+
+		return MIDRegistry.getModelRels(mid).stream()
+			.filter(modelRel -> !(modelRel instanceof BinaryModelRel))
+			.flatMap(modelRel -> modelRel.getModelEndpoints().stream())
+			.filter(endpoint -> endpoint.getTarget() == model)
+			.collect(Collectors.toSet());
 	}
 
 }
