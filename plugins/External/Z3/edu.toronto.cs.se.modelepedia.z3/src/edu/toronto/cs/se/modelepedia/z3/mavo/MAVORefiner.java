@@ -220,7 +220,7 @@ public class MAVORefiner {
 			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MIDTypeHierarchy.getRootModelRelType();
 		}
-		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpoints(
 			null,
 			model, 
 			refinedModel,

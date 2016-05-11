@@ -413,11 +413,10 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, or if the id of the new model instance is already registered in the
 	 *             Workflow MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newWorkflowModelIdRequired="true"
-	 *        workflowMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelIdRequired="true"
 	 * @generated
 	 */
-	Model createWorkflowInstance(String newWorkflowModelId, MID workflowMID) throws MMINTException;
+	Model createWorkflowInstance(String newModelId, MID workflowMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance from the Workflow MID

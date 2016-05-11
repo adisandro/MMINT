@@ -471,6 +471,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MIDPackage.MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
 
 	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_INSTANCE = MIDPackage.MODEL___DELETE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -570,13 +579,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___DELETE_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
-	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
+	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -588,13 +597,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 8;
 
 	/**
-	 * The operation id for the '<em>Create Binary Instance And Endpoints And References</em>' operation.
+	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -606,13 +615,31 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MIDPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___DELETE_INSTANCE = MIDPackage.MODEL_OPERATION_COUNT + 11;
+	int MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 11;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Binary Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 12;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Binary Instance And Endpoints</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 13;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -621,7 +648,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 12;
+	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -993,6 +1020,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
 
 	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___DELETE_INSTANCE = MODEL_REL___DELETE_INSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1092,13 +1128,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___DELETE_TYPE = MODEL_REL___DELETE_TYPE;
 
 	/**
-	 * The operation id for the '<em>Create Instance And Endpoints And References</em>' operation.
+	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID;
+	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1110,13 +1146,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
 
 	/**
-	 * The operation id for the '<em>Create Binary Instance And Endpoints And References</em>' operation.
+	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID;
+	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1128,13 +1164,31 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
 	/**
-	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___DELETE_INSTANCE = MODEL_REL___DELETE_INSTANCE;
+	int BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Binary Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Binary Instance And Endpoints</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Add Model Type</em>' operation.
@@ -3346,14 +3400,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__DeleteType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Endpoints And References</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Endpoints</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance And Endpoints And References</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpointsAndReferences(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
+	 * @return the meta object for the '<em>Create Instance And Endpoints</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModelRel__CreateInstanceAndEndpointsAndReferences__String_EList_MID();
+	EOperation getModelRel__CreateInstanceAndEndpoints__String_EList_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance</em>}' operation.
@@ -3366,24 +3420,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CreateBinaryInstance__String_MID();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpointsAndReferences(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance And Endpoints And References</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpoints(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance And Endpoints</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Binary Instance And Endpoints And References</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpointsAndReferences(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID)
+	 * @return the meta object for the '<em>Create Binary Instance And Endpoints</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpoints(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModelRel__CreateBinaryInstanceAndEndpointsAndReferences__String_Model_Model_MID();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#deleteInstance() <em>Delete Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#deleteInstance()
-	 * @generated
-	 */
-	EOperation getModelRel__DeleteInstance();
+	EOperation getModelRel__CreateBinaryInstanceAndEndpoints__String_Model_Model_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getOutlineResourceTypes() <em>Get Outline Resource Types</em>}' operation.
@@ -3404,6 +3448,36 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelRel__GetOutlineResourceInstances();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createWorkflowInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance And Endpoints</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance And Endpoints</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createWorkflowInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateWorkflowInstanceAndEndpoints__String_EList_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createWorkflowBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Binary Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Binary Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createWorkflowBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateWorkflowBinaryInstance__String_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createWorkflowBinaryInstanceAndEndpoints(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Binary Instance And Endpoints</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Binary Instance And Endpoints</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createWorkflowBinaryInstanceAndEndpoints(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateWorkflowBinaryInstanceAndEndpoints__String_Model_Model_MID();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel <em>Binary Model Rel</em>}'.
@@ -4346,12 +4420,12 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_REL___DELETE_TYPE = eINSTANCE.getModelRel__DeleteType();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Instance And Endpoints And References</b></em>' operation.
+		 * The meta object literal for the '<em><b>Create Instance And Endpoints</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_ELIST_MID = eINSTANCE.getModelRel__CreateInstanceAndEndpointsAndReferences__String_EList_MID();
+		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = eINSTANCE.getModelRel__CreateInstanceAndEndpoints__String_EList_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Binary Instance</b></em>' operation.
@@ -4362,20 +4436,12 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = eINSTANCE.getModelRel__CreateBinaryInstance__String_MID();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Binary Instance And Endpoints And References</b></em>' operation.
+		 * The meta object literal for the '<em><b>Create Binary Instance And Endpoints</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS_AND_REFERENCES__STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateBinaryInstanceAndEndpointsAndReferences__String_Model_Model_MID();
-
-		/**
-		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL_REL___DELETE_INSTANCE = eINSTANCE.getModelRel__DeleteInstance();
+		EOperation MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateBinaryInstanceAndEndpoints__String_Model_Model_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.
@@ -4392,6 +4458,30 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = eINSTANCE.getModelRel__GetOutlineResourceInstances();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance And Endpoints</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = eINSTANCE.getModelRel__CreateWorkflowInstanceAndEndpoints__String_EList_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Binary Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = eINSTANCE.getModelRel__CreateWorkflowBinaryInstance__String_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Binary Instance And Endpoints</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateWorkflowBinaryInstanceAndEndpoints__String_Model_Model_MID();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.

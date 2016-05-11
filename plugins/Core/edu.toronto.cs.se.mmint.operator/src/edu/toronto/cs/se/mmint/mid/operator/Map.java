@@ -224,7 +224,7 @@ public class Map extends OperatorImpl {
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
 				String midrelMIDUri = MIDRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
 				Model midrelMIDModel = MIDRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
-				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 					null,
 					outputMIDModel,
 					midrelMIDModel,

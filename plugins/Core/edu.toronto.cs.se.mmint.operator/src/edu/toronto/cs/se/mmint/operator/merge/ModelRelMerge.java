@@ -116,7 +116,7 @@ public class ModelRelMerge extends OperatorImpl {
 		@NonNull Model model1, @NonNull Model model2, @NonNull MID instanceMID)
 		throws MMINTException {
 
-		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model1,
 			model2,

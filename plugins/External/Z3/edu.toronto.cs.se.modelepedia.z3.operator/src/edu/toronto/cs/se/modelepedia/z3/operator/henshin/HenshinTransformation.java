@@ -125,7 +125,7 @@ public class HenshinTransformation extends OperatorImpl {
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedModelUri,
 			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			origModel,
 			transformedModel,

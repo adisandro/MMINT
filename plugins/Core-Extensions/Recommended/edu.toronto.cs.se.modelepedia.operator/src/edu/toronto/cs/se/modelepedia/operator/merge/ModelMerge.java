@@ -243,13 +243,13 @@ public class ModelMerge extends OperatorImpl {
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());
 		Model mergedModel = model1.getMetatype().createInstance(mergedModelUri, mergedModelMID);
-		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model1,
 			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL1));
 		traceRel1.setName(OUT_MODELREL1);
-		BinaryModelRel traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model2,
 			mergedModel,

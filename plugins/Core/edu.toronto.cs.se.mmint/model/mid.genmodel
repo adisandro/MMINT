@@ -126,7 +126,7 @@
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createWorkflowInstance">
-        <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/newWorkflowModelId"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/newModelId"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/workflowMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteWorkflowInstance"/>
@@ -241,23 +241,37 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteType"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/newModelRelUri"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/endpointModels"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpointsAndReferences/instanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/endpointModels"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstance">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/newModelRelUri"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/instanceMID"/>
         </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpointsAndReferences">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpointsAndReferences/newModelRelUri"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpointsAndReferences/endpointSourceModel"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpointsAndReferences/endpointTargetModel"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpointsAndReferences/instanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointSourceModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointTargetModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceInstances"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints/newModelRelId"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints/endpointModels"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowInstanceAndEndpoints/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstance">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstance/newModelRelId"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstance/workflowMID"/>
+        </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints">
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/newModelRelId"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/endpointSourceModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/endpointTargetModel"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createWorkflowBinaryInstanceAndEndpoints/workflowMID"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryModelRel">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

@@ -1092,28 +1092,26 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	protected void addWorkflowInstance(Model newWorkflowModel, String newWorkflowModelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
+	protected void addWorkflowInstance(Model newModel, String newModelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
 
-		//TODO MMINT[WORKFLOW] Review all javadoc to account for new mid level
-		String newWorkflowModelName = newWorkflowModelId;
-		String fileExtension = this.getFileExtension();
-		super.addInstance(newWorkflowModel, newWorkflowModelId, newWorkflowModelName, workflowMID);
-		workflowMID.getModels().add(newWorkflowModel);
-		newWorkflowModel.setOrigin(origin);
-		newWorkflowModel.setFileExtension(fileExtension);
+		//TODO MMINT[WORKFLOW] Review all javadoc to account for new mid level + create javadoc for workflow apis
+		super.addInstance(newModel, newModelId, newModelId, workflowMID);
+		workflowMID.getModels().add(newModel);
+		newModel.setOrigin(origin);
+		newModel.setFileExtension(this.getFileExtension());
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public Model createWorkflowInstance(String newWorkflowModelId, MID workflowMID) throws MMINTException {
+	public Model createWorkflowInstance(String newModelId, MID workflowMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
-		Model newWorkflowModel = super.createThisEClass();
-		this.addWorkflowInstance(newWorkflowModel, newWorkflowModelId, ModelOrigin.CREATED, workflowMID);
+		Model newModel = super.createThisEClass();
+		this.addWorkflowInstance(newModel, newModelId, ModelOrigin.CREATED, workflowMID);
 
-		return newWorkflowModel;
+		return newModel;
 	}
 
 	/**

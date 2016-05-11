@@ -1569,8 +1569,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEException(op, theOperatorPackage.getException());
 
 		op = initEOperation(getModel__CreateWorkflowInstance__String_MID(), this.getModel(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newWorkflowModelId", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getMID(), "workflowMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
 		op = initEOperation(getModel__DeleteWorkflowInstance(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);

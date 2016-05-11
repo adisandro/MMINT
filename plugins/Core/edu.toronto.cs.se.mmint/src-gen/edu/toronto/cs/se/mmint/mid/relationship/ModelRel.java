@@ -220,7 +220,7 @@ public interface ModelRel extends Model {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true" endpointModelsMany="true"
 	 * @generated
 	 */
-	ModelRel createInstanceAndEndpointsAndReferences(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
+	ModelRel createInstanceAndEndpoints(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a binary model relationship instance of this model relationship
@@ -260,18 +260,7 @@ public interface ModelRel extends Model {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
 	 * @generated
 	 */
-	BinaryModelRel createBinaryInstanceAndEndpointsAndReferences(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Deletes this model relationship instance from the
-	 * Instance MID that contains it.
-	 * 
-	 * @throws MMINTException
-	 *             If this is a model relationship type. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void deleteInstance() throws MMINTException;
+	BinaryModelRel createBinaryInstanceAndEndpoints(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the model instance resources to be used in
@@ -283,5 +272,29 @@ public interface ModelRel extends Model {
 	 * @generated
 	 */
 	ResourceSet getOutlineResourceInstances() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true" endpointModelsRequired="true" endpointModelsMany="true"
+	 * @generated
+	 */
+	ModelRel createWorkflowInstanceAndEndpoints(String newModelRelId, EList<Model> endpointModels, MID workflowMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true"
+	 * @generated
+	 */
+	BinaryModelRel createWorkflowBinaryInstance(String newModelRelId, MID workflowMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
+	 * @generated
+	 */
+	BinaryModelRel createWorkflowBinaryInstanceAndEndpoints(String newModelRelId, Model endpointSourceModel, Model endpointTargetModel, MID workflowMID) throws MMINTException;
 
 } // ModelRel

@@ -73,7 +73,7 @@ public class ModelRelComposition extends OperatorImpl {
 
 		// TODO MMINT[USABILITY] Modify apis to simplify the creation of models and model rels (e.g. incorporate
 		// createModelFile, add model element creation to link creation)
-		ModelRel composedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel composedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model1,
 			model2,

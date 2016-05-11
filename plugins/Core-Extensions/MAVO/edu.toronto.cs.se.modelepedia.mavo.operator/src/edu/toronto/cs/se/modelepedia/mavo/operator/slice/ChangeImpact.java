@@ -201,7 +201,7 @@ public class ChangeImpact extends OperatorImpl {
 
 		// create output model relationship
 		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
-		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpoints(
 			null,
 			diffRel,
 			impactedModel,

@@ -265,7 +265,7 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			origModel,
 			transformedModel,
