@@ -505,7 +505,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
 				true :
 				false;
-			modelTypeEndpoint.createSubtypeAndReference(origModelTypeEndpoint.getName(), newModelType, isBinarySrc, newModelRelType);
+			modelTypeEndpoint.createSubtype(origModelTypeEndpoint.getName(), newModelType, isBinarySrc, newModelRelType);
 		}
 		// model element types
 		Iterator<ModelEndpointReference> origModelTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(origModelRelType.getModelEndpointRefs());
@@ -684,7 +684,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		for (Model endpointModel : endpointModels) {
 			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstanceAndReference(endpointModel, newModelRel);
+			modelTypeEndpoint.createInstance(endpointModel, newModelRel);
 		}
 
 		return newModelRel;
@@ -719,7 +719,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		for (Model endpointModel : endpointModels) {
 			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstanceAndReference(endpointModel, newModelRel);
+			modelTypeEndpoint.createInstance(endpointModel, newModelRel);
 		}
 
 		return newModelRel;
@@ -756,7 +756,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
 		for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
 			Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
-			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, newModelRel);
+			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
 				EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
@@ -867,7 +867,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		for (Model endpointModel : endpointModels) {
 			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newWorkflowModelRel, null, endpointModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstanceAndReference(endpointModel, newWorkflowModelRel);
+			modelTypeEndpoint.createWorkflowInstance(endpointModel, newWorkflowModelRel);
 		}
 
 		return newWorkflowModelRel;
@@ -902,7 +902,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		for (Model endpointModel : endpointModels) {
 			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
 			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstanceAndReference(endpointModel, newModelRel);
+			modelTypeEndpoint.createWorkflowInstance(endpointModel, newModelRel);
 		}
 
 		return newModelRel;

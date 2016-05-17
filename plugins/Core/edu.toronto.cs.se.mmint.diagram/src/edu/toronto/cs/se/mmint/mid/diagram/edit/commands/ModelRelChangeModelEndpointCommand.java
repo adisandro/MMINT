@@ -100,11 +100,11 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
-			getLink().deleteInstanceAndReference(isFullDelete);
-			modelTypeEndpointRef.getObject().createInstanceAndReference(model, modelRel);
+			getLink().deleteInstance(isFullDelete);
+			modelTypeEndpointRef.getObject().createInstance(model, modelRel);
 		}
 		else {
-			modelTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), model);
+			modelTypeEndpointRef.getObject().replaceInstance(getLink(), model);
 		}
 	}
 
@@ -112,11 +112,11 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(modelRelType, modelType);
 		if (isFullDelete) {
-			getLink().deleteTypeAndReference(isFullDelete);
-			modelTypeEndpoint.createSubtypeAndReference(getLink().getName(), modelType, false, modelRelType);
+			getLink().deleteType(isFullDelete);
+			modelTypeEndpoint.createSubtype(getLink().getName(), modelType, false, modelRelType);
 		}
 		else {
-			modelTypeEndpoint.replaceSubtypeAndReference(getLink(), getLink().getName(), modelType);
+			modelTypeEndpoint.replaceSubtype(getLink(), getLink().getName(), modelType);
 		}
 		// no need to init type hierarchy, no need for undo/redo
 	}

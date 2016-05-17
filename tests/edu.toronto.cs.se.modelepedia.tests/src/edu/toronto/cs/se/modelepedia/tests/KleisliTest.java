@@ -157,10 +157,10 @@ public class KleisliTest extends MMINTTest {
 		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, null, null, false);
 		MMINT.createTypeHierarchy();
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
-		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtypeAndReference(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
+		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtype(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
 		URL kTgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(MIDUtils.prependStateToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
-		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtypeAndReference(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
+		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtype(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
 		// model element types and link types
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
 		EPackage kTgtMetamodelRootObj = ((KleisliModelEndpoint) kTgtModelTypeEndpointRef.getObject()).getExtendedTarget().getEMFTypeRoot();

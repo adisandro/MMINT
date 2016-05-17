@@ -460,26 +460,26 @@
       <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="createSubtypeAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+    <eOperations name="createSubtype" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMINTException">
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="targetModelType" lowerBound="1" eType="#//Model"/>
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="replaceSubtypeAndReference" eExceptions="#//MMINTException">
+    <eOperations name="replaceSubtype" eExceptions="#//MMINTException">
       <eParameters name="oldModelTypeEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="targetModelType" lowerBound="1" eType="#//Model"/>
     </eOperations>
-    <eOperations name="deleteTypeAndReference" eExceptions="#//MMINTException">
+    <eOperations name="deleteType" eExceptions="#//MMINTException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
     <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMINTException">
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="createInstanceAndReference" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+    <eOperations name="createInstance" lowerBound="1" eType="#//relationship/ModelEndpointReference"
         eExceptions="#//MMINTException">
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
@@ -489,11 +489,23 @@
       <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
       <eParameters name="containerFeatureName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="replaceInstanceAndReference" eExceptions="#//MMINTException">
+    <eOperations name="replaceInstance" eExceptions="#//MMINTException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
     </eOperations>
-    <eOperations name="deleteInstanceAndReference" eExceptions="#//MMINTException">
+    <eOperations name="deleteInstance" eExceptions="#//MMINTException">
+      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+        eExceptions="#//MMINTException">
+      <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
+    </eOperations>
+    <eOperations name="replaceWorkflowInstance" eExceptions="#//MMINTException">
+      <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
+      <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+    </eOperations>
+    <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
   </eClassifiers>

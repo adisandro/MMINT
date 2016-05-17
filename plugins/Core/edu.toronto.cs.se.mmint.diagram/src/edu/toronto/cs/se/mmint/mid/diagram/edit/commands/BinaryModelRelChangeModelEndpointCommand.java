@@ -111,7 +111,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			containerModelRel.getModelEndpoints().get(0) :
 			containerModelRel.getModelEndpoints().get(1);
 		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
-		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, targetModel);
+		modelTypeEndpointRef.getObject().replaceInstance(oldModelEndpoint, targetModel);
 	}
 
 	protected void doExecuteTypesLevel(BinaryModelRel containerModelRelType, Model targetModelType, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
@@ -137,7 +137,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType);
 		if (modelTypeEndpoint == null) {
 			if (wasOverriding) { // was overriding, becomes non-overriding
-				oldModelTypeEndpoint.deleteTypeAndReference(true);
+				oldModelTypeEndpoint.deleteType(true);
 			}
 			// was overriding, becomes non-overriding
 			// was non-overriding, remains non-overriding
@@ -145,19 +145,19 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		}
 		else {
 			if (wasOverriding) { // was overriding, remains overriding
-				modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), targetModelType);
+				modelTypeEndpoint.replaceSubtype(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), targetModelType);
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
 				String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
 				if (isBinarySrc && containerModelRelType.getModelEndpoints().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelEndpoint tgtModelTypeEndpoint = containerModelRelType.getModelEndpoints().get(0);
-					tgtModelTypeEndpoint.deleteTypeAndReference(true);
-					modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, true, containerModelRelType);
-					tgtModelTypeEndpoint.getSupertype().createSubtypeAndReference(tgtModelTypeEndpoint.getName(), tgtModelTypeEndpoint.getTarget(), false, containerModelRelType);
+					tgtModelTypeEndpoint.deleteType(true);
+					modelTypeEndpoint.createSubtype(newModelTypeEndpointName, targetModelType, true, containerModelRelType);
+					tgtModelTypeEndpoint.getSupertype().createSubtype(tgtModelTypeEndpoint.getName(), tgtModelTypeEndpoint.getTarget(), false, containerModelRelType);
 				}
 				else {
-					modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+					modelTypeEndpoint.createSubtype(newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 				}
 			}
 		}

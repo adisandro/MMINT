@@ -229,7 +229,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createSubtype(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if (containerModelRelType instanceof BinaryModelRel) {
@@ -259,7 +259,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				kModelType = getExtendedTarget().kleisliCreateType(newModelTypeEndpoint);
 			}
 			catch (MMINTException e) {
-				newModelTypeEndpoint.deleteTypeAndReference(true);
+				newModelTypeEndpoint.deleteType(true);
 				throw new MMINTException("Error creating extended model type");
 			}
 			if (extendMetamodel) {
@@ -287,9 +287,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
+	public void replaceSubtype(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
 
-		super.replaceSubtypeAndReference(oldModelTypeEndpoint, newModelTypeEndpointName, targetModelType);
+		super.replaceSubtype(oldModelTypeEndpoint, newModelTypeEndpointName, targetModelType);
 
 		// keep choice of kleisli model type endpoint, there is no mixing problem like for instances
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
@@ -297,7 +297,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				getExtendedTarget().kleisliCreateType((KleisliModelEndpoint) oldModelTypeEndpoint);
 			}
 			catch (MMINTException e) {
-				oldModelTypeEndpoint.deleteTypeAndReference(true);
+				oldModelTypeEndpoint.deleteType(true);
 				throw new MMINTException("Error creating extended model type");
 			}
 		}
@@ -307,9 +307,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteTypeAndReference(boolean isFullDelete) throws MMINTException {
+	public void deleteType(boolean isFullDelete) throws MMINTException {
 
-		super.deleteTypeAndReference(isFullDelete);
+		super.deleteType(isFullDelete);
 		getExtendedTarget().deleteType();
 	}
 
@@ -317,7 +317,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	public ModelEndpointReference createInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
@@ -335,13 +335,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+	public void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
 
 		// can't transform non-kleisli into kleisli
 		if (!(oldModelEndpoint instanceof KleisliModelEndpoint)) {
 			throw new MMINTException("Can't replace a native model endpoint with a Kleisli one");
 		}
-		super.replaceInstanceAndReference(oldModelEndpoint, targetModel);
+		super.replaceInstance(oldModelEndpoint, targetModel);
 		getExtendedTarget().kleisliCreateInstance((KleisliModelEndpoint) oldModelEndpoint);
 	}
 
@@ -349,9 +349,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException {
+	public void deleteInstance(boolean isFullDelete) throws MMINTException {
 
-		super.deleteInstanceAndReference(isFullDelete);
+		super.deleteInstance(isFullDelete);
 		getExtendedTarget().deleteInstance();
 	}
 

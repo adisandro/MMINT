@@ -111,10 +111,10 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		List<String> modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
-		modelTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newModelRel);
+		modelTypeEndpointRef.getObject().createInstance(getSource(), newModelRel);
 		modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getTarget());
 		modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
-		modelTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newModelRel);
+		modelTypeEndpointRef.getObject().createInstance(getTarget(), newModelRel);
 
 		return newModelRel;
 	}
@@ -136,7 +136,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 		else {
 			newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
-			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, srcModelType, true, newModelRelType);
+			modelTypeEndpoint.createSubtype(newModelTypeEndpointName, srcModelType, true, newModelRelType);
 		}
 
 		modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(newModelRelType, tgtModelType);
@@ -145,7 +145,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		}
 		else {
 			newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
-			modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, tgtModelType, false, newModelRelType);
+			modelTypeEndpoint.createSubtype(newModelTypeEndpointName, tgtModelType, false, newModelRelType);
 		}
 
 		return newModelRelType;

@@ -139,7 +139,7 @@ public class ModelMatch extends OperatorImpl {
 		Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
 		for (Model model : models) {
 			// create model endpoint
-			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, matchRel);
+			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstance(model, matchRel);
 			// look for identical names in the models
 			matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
 		}

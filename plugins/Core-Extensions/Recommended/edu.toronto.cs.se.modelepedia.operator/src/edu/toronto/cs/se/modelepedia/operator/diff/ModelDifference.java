@@ -80,7 +80,7 @@ public class ModelDifference extends OperatorImpl {
 		Model model = modelEndpointRef.getObject().getTarget();
 		HashMap<String, ModelElementReference> modelElemRefTable = createModelElementReferenceTable(modelEndpointRef);
 		List<EObject> diffModelObjs = getDiffModelObjects(model, modelElemRefTable);
-		ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, diffModelRel);
+		ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstance(model, diffModelRel);
 		for (EObject modelObj : diffModelObjs) {
 			// create unary link
 			MappingReference diffMappingRef = rootMappingType.createInstanceAndReference(false, diffModelRel);

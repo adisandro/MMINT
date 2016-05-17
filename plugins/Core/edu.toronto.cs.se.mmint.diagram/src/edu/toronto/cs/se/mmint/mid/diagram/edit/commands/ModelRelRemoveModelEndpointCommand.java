@@ -60,12 +60,12 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 
 	protected void doExecuteInstancesLevel() throws MMINTException {
 
-		((ModelEndpoint) getElementToDestroy()).deleteInstanceAndReference(true);
+		((ModelEndpoint) getElementToDestroy()).deleteInstance(true);
 	}
 
 	protected void doExecuteTypesLevel() throws MMINTException {
 
-		((ModelEndpoint) getElementToDestroy()).deleteTypeAndReference(true);
+		((ModelEndpoint) getElementToDestroy()).deleteType(true);
 		// no need to init type hierarchy, no need for undo/redo
 	}
 

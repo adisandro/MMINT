@@ -735,7 +735,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			}
 		}
 		for (ModelEndpoint modelTypeEndpoint : delModelTypeEndpoints) {
-			modelTypeEndpoint.deleteTypeAndReference(true);
+			modelTypeEndpoint.deleteType(true);
 		}
 		for (ModelRel modelRelType : delModelRelTypes) {
 			modelRelType.deleteType();
@@ -1051,7 +1051,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		Set<ModelEndpoint> delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, instanceMID);
 		for (ModelEndpoint delModelEndpoint : delModelEndpoints) {
-			delModelEndpoint.deleteInstanceAndReference(true);
+			delModelEndpoint.deleteInstance(true);
 		}
 	}
 
@@ -1094,7 +1094,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	protected void addWorkflowInstance(Model newModel, String newModelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
 
-		//TODO MMINT[WORKFLOW] Review all javadoc to account for new mid level + create javadoc for workflow apis
+		//TODO MMINT[WORKFLOW] Review all javadoc to account for new mid level + create javadoc for workflow apis + describe references better after removing wording from api (e.g. modelrel vs operator)
 		super.addInstance(newModel, newModelId, newModelId, workflowMID);
 		workflowMID.getModels().add(newModel);
 		newModel.setOrigin(origin);

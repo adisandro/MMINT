@@ -175,38 +175,49 @@
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtypeAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/newModelTypeEndpointName"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/targetModelType"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/isBinarySrc"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtypeAndReference/containerModelRelType"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createSubtype">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/newModelTypeEndpointName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/targetModelType"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/isBinarySrc"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createSubtype/containerModelRelType"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/oldModelTypeEndpoint"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/newModelTypeEndpointName"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtypeAndReference/targetModelType"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceSubtype">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtype/oldModelTypeEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtype/newModelTypeEndpointName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceSubtype/targetModelType"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteTypeAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteTypeAndReference/isFullDelete"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteType">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteType/isFullDelete"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceReference/containerModelRel"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstanceAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/targetModel"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstanceAndReference/containerModelRel"/>
-      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstance">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/targetModel"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/containerOperator"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/containerFeatureName"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance/containerModelRel"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstanceAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/oldModelEndpoint"/>
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstanceAndReference/targetModel"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createInstance.1">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance.1/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance.1/containerOperator"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createInstance.1/containerFeatureName"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstanceAndReference">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstanceAndReference/isFullDelete"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstance/oldModelEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceInstance/targetModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteInstance/isFullDelete"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance/targetModel"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createWorkflowInstance/containerModelRel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/replaceWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceWorkflowInstance/oldModelEndpoint"/>
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceWorkflowInstance/targetModel"/>
+      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteWorkflowInstance">
+        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteWorkflowInstance/isFullDelete"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EMFInfo">

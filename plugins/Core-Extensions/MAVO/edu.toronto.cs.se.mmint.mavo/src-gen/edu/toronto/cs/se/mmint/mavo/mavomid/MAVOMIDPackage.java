@@ -2207,31 +2207,31 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL;
 
 	/**
-	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
+	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL;
+	int MAVO_MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL;
 
 	/**
-	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
+	 * The operation id for the '<em>Replace Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL;
+	int MAVO_MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL;
 
 	/**
-	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
+	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN;
+	int MAVO_MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = MIDPackage.MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -2243,13 +2243,13 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL;
 
 	/**
-	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL;
+	int MAVO_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -2261,22 +2261,31 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING;
 
 	/**
-	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Replace Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL;
+	int MAVO_MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL;
 
 	/**
-	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN;
+	int MAVO_MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL;
 
 	/**
 	 * The operation id for the '<em>Get Target</em>' operation.

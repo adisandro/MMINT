@@ -1915,31 +1915,31 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
+	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+	int MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
+	 * The operation id for the '<em>Replace Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
+	int MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
-	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
+	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
+	int MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -1951,13 +1951,13 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 8;
 
 	/**
-	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
+	int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -1969,22 +1969,49 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 10;
 
 	/**
-	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Replace Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
+	int MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 11;
 
 	/**
-	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Delete Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 12;
+	int MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 12;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 13;
+
+	/**
+	 * The operation id for the '<em>Replace Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 14;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -1993,7 +2020,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 13;
+	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 16;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
@@ -3028,34 +3055,34 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelEndpoint__CreateTypeReference__boolean_ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtype(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @return the meta object for the '<em>Create Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createSubtype(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
+	EOperation getModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceSubtype(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Replace Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model)
+	 * @return the meta object for the '<em>Replace Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceSubtype(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model();
+	EOperation getModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteTypeAndReference(boolean) <em>Delete Type And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteType(boolean) <em>Delete Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Type And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteTypeAndReference(boolean)
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteType(boolean)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__DeleteTypeAndReference__boolean();
+	EOperation getModelEndpoint__DeleteType__boolean();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance Reference</em>}' operation.
@@ -3068,14 +3095,14 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelEndpoint__CreateInstanceReference__ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__CreateInstanceAndReference__Model_ModelRel();
+	EOperation getModelEndpoint__CreateInstance__Model_ModelRel();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.operator.Operator, java.lang.String) <em>Create Instance</em>}' operation.
@@ -3088,24 +3115,54 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelEndpoint__CreateInstance__Model_Operator_String();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Replace Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model)
+	 * @return the meta object for the '<em>Replace Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model();
+	EOperation getModelEndpoint__ReplaceInstance__ModelEndpoint_Model();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteInstanceAndReference(boolean) <em>Delete Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteInstance(boolean) <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteInstanceAndReference(boolean)
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteInstance(boolean)
 	 * @generated
 	 */
-	EOperation getModelEndpoint__DeleteInstanceAndReference__boolean();
+	EOperation getModelEndpoint__DeleteInstance__boolean();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__CreateWorkflowInstance__Model_ModelRel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceWorkflowInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Replace Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceWorkflowInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteWorkflowInstance(boolean) <em>Delete Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteWorkflowInstance(boolean)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__DeleteWorkflowInstance__boolean();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.EMFInfo <em>EMF Info</em>}'.
@@ -3991,28 +4048,28 @@ public interface MIDPackage extends EPackage {
 		EOperation MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateTypeReference__boolean_ModelRel();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
+		EOperation MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel();
 
 		/**
-		 * The meta object literal for the '<em><b>Replace Subtype And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Replace Subtype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = eINSTANCE.getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model();
+		EOperation MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = eINSTANCE.getModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteTypeAndReference__boolean();
+		EOperation MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteType__boolean();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
@@ -4023,12 +4080,12 @@ public interface MIDPackage extends EPackage {
 		EOperation MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getModelEndpoint__CreateInstanceReference__ModelRel();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateInstanceAndReference__Model_ModelRel();
+		EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateInstance__Model_ModelRel();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -4039,20 +4096,44 @@ public interface MIDPackage extends EPackage {
 		EOperation MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = eINSTANCE.getModelEndpoint__CreateInstance__Model_Operator_String();
 
 		/**
-		 * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Replace Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = eINSTANCE.getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model();
+		EOperation MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = eINSTANCE.getModelEndpoint__ReplaceInstance__ModelEndpoint_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteInstanceAndReference__boolean();
+		EOperation MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteInstance__boolean();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Replace Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = eINSTANCE.getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteWorkflowInstance__boolean();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.

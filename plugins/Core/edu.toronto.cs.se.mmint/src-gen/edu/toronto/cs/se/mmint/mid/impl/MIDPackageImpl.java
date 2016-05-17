@@ -1028,7 +1028,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel() {
+	public EOperation getModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel() {
 		return modelEndpointEClass.getEOperations().get(5);
 	}
 
@@ -1037,7 +1037,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model() {
+	public EOperation getModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model() {
 		return modelEndpointEClass.getEOperations().get(6);
 	}
 
@@ -1046,7 +1046,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__DeleteTypeAndReference__boolean() {
+	public EOperation getModelEndpoint__DeleteType__boolean() {
 		return modelEndpointEClass.getEOperations().get(7);
 	}
 
@@ -1064,7 +1064,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__CreateInstanceAndReference__Model_ModelRel() {
+	public EOperation getModelEndpoint__CreateInstance__Model_ModelRel() {
 		return modelEndpointEClass.getEOperations().get(9);
 	}
 
@@ -1082,7 +1082,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model() {
+	public EOperation getModelEndpoint__ReplaceInstance__ModelEndpoint_Model() {
 		return modelEndpointEClass.getEOperations().get(11);
 	}
 
@@ -1091,8 +1091,35 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__DeleteInstanceAndReference__boolean() {
+	public EOperation getModelEndpoint__DeleteInstance__boolean() {
 		return modelEndpointEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__CreateWorkflowInstance__Model_ModelRel() {
+		return modelEndpointEClass.getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model() {
+		return modelEndpointEClass.getEOperations().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelEndpoint__DeleteWorkflowInstance__boolean() {
+		return modelEndpointEClass.getEOperations().get(15);
 	}
 
 	/**
@@ -1343,14 +1370,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_MID_CONTAINER);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___GET_TARGET);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELREL);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN);
 
 		emfInfoEClass = createEClass(EMF_INFO);
 		createEAttribute(emfInfoEClass, EMF_INFO__CLASS_NAME);
@@ -1641,20 +1671,20 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtypeAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "targetModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isBinarySrc", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model(), null, "replaceSubtypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model(), null, "replaceSubtype", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelEndpoint(), "oldModelTypeEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeEndpointName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "targetModelType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__DeleteTypeAndReference__boolean(), null, "deleteTypeAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__DeleteType__boolean(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
@@ -1662,7 +1692,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__CreateInstanceAndReference__Model_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__CreateInstance__Model_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
@@ -1673,12 +1703,26 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEParameter(op, ecorePackage.getEString(), "containerFeatureName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model(), null, "replaceInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__ReplaceInstance__ModelEndpoint_Model(), null, "replaceInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModelEndpoint(), "oldModelEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__DeleteInstanceAndReference__boolean(), null, "deleteInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__DeleteInstance__boolean(), null, "deleteInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModelEndpoint__CreateWorkflowInstance__Model_ModelRel(), theRelationshipPackage.getModelEndpointReference(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRelationshipPackage.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model(), null, "replaceWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModelEndpoint(), "oldModelEndpoint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
+		op = initEOperation(getModelEndpoint__DeleteWorkflowInstance__boolean(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 

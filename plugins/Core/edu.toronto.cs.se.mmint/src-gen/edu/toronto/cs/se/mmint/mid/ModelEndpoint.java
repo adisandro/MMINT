@@ -125,7 +125,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createSubtype(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Replaces an old subtype of this model type
@@ -147,7 +147,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true"
 	 * @generated
 	 */
-	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException;
+	void replaceSubtype(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model type endpoint and all
@@ -161,7 +161,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
 	 * @generated
 	 */
-	void deleteTypeAndReference(boolean isFullDelete) throws MMINTException;
+	void deleteType(boolean isFullDelete) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a reference to this model
@@ -193,7 +193,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpointReference createInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint to an Instance MID
@@ -228,7 +228,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
 	 * @generated
 	 */
-	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
+	void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance endpoint and the
@@ -244,6 +244,30 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
 	 * @generated
 	 */
-	void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException;
+	void deleteInstance(boolean isFullDelete) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
+	 * @generated
+	 */
+	ModelEndpointReference createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
+	 * @generated
+	 */
+	void replaceWorkflowInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
+	 * @generated
+	 */
+	void deleteWorkflowInstance(boolean isFullDelete) throws MMINTException;
 
 } // ModelEndpoint

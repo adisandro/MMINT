@@ -812,58 +812,67 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_OPERATOR_STRING;
 
 	/**
-	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL;
 
 	/**
-	 * The operation id for the '<em>Replace Subtype And Reference</em>' operation.
+	 * The operation id for the '<em>Create Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Delete Type And Reference</em>' operation.
+	 * The operation id for the '<em>Replace Subtype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
+	int KLEISLI_MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Replace Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Create Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
+	int KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Delete Instance And Reference</em>' operation.
+	 * The operation id for the '<em>Replace Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = MIDPackage.MODEL_ENDPOINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -2396,64 +2405,64 @@ public interface KleisliPackage extends EPackage {
 	EAttribute getKleisliModelEndpoint_ExtendedTargetUri();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtype(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtypeAndReference(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @return the meta object for the '<em>Create Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createSubtype(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
+	EOperation getKleisliModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Subtype And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceSubtype(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Replace Subtype And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceSubtypeAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model)
+	 * @return the meta object for the '<em>Replace Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceSubtype(edu.toronto.cs.se.mmint.mid.ModelEndpoint, java.lang.String, edu.toronto.cs.se.mmint.mid.Model)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model();
+	EOperation getKleisliModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteTypeAndReference(boolean) <em>Delete Type And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteType(boolean) <em>Delete Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Type And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteTypeAndReference(boolean)
+	 * @return the meta object for the '<em>Delete Type</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteType(boolean)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__DeleteTypeAndReference__boolean();
+	EOperation getKleisliModelEndpoint__DeleteType__boolean();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstanceAndReference(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
+	 * @return the meta object for the '<em>Create Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#createInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__CreateInstanceAndReference__Model_ModelRel();
+	EOperation getKleisliModelEndpoint__CreateInstance__Model_ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Replace Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceInstanceAndReference(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model)
+	 * @return the meta object for the '<em>Replace Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#replaceInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model();
+	EOperation getKleisliModelEndpoint__ReplaceInstance__ModelEndpoint_Model();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteInstanceAndReference(boolean) <em>Delete Instance And Reference</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteInstance(boolean) <em>Delete Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Instance And Reference</em>' operation.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteInstanceAndReference(boolean)
+	 * @return the meta object for the '<em>Delete Instance</em>' operation.
+	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint#deleteInstance(boolean)
 	 * @generated
 	 */
-	EOperation getKleisliModelEndpoint__DeleteInstanceAndReference__boolean();
+	EOperation getKleisliModelEndpoint__DeleteInstance__boolean();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference <em>Model Endpoint Reference</em>}'.
@@ -2688,52 +2697,52 @@ public interface KleisliPackage extends EPackage {
 		EAttribute KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI = eINSTANCE.getKleisliModelEndpoint_ExtendedTargetUri();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateSubtypeAndReference__String_Model_boolean_ModelRel();
+		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateSubtype__String_Model_boolean_ModelRel();
 
 		/**
-		 * The meta object literal for the '<em><b>Replace Subtype And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Replace Subtype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL = eINSTANCE.getKleisliModelEndpoint__ReplaceSubtypeAndReference__ModelEndpoint_String_Model();
+		EOperation KLEISLI_MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL = eINSTANCE.getKleisliModelEndpoint__ReplaceSubtype__ModelEndpoint_String_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteTypeAndReference__boolean();
+		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteType__boolean();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateInstanceAndReference__Model_ModelRel();
+		EOperation KLEISLI_MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL = eINSTANCE.getKleisliModelEndpoint__CreateInstance__Model_ModelRel();
 
 		/**
-		 * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Replace Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL = eINSTANCE.getKleisliModelEndpoint__ReplaceInstanceAndReference__ModelEndpoint_Model();
+		EOperation KLEISLI_MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL = eINSTANCE.getKleisliModelEndpoint__ReplaceInstance__ModelEndpoint_Model();
 
 		/**
-		 * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
+		 * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteInstanceAndReference__boolean();
+		EOperation KLEISLI_MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN = eINSTANCE.getKleisliModelEndpoint__DeleteInstance__boolean();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.kleisli.impl.KleisliModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.
