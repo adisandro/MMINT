@@ -45,6 +45,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMIDContainer"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isLevel">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/isLevel/midLevel"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isTypesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/createSubtypeUri">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeFragmentUri"/>

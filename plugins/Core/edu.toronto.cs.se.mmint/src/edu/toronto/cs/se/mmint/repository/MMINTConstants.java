@@ -34,8 +34,8 @@ public interface MMINTConstants {
 	public final static String BINARY_MODELREL_MAPPING_SEPARATOR = "_To_";
 	//TODO MMINT[MODELELEMENT] refine everywhere used when introducing additional model element level
 	public final static String ROLE_SEPARATOR = "_AS_";
-	/** The empty uri. */
-	public final static String EMPTY_URI = "";
+	/** The empty uri/id. */
+	public final static String EMPTY_ID = "";
 	/** The empty name. */
 	public final static String EMPTY_NAME = "";
 	/** The empty file extension for a model. */

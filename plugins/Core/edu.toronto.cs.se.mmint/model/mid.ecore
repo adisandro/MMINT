@@ -87,9 +87,15 @@
         <details key="body" value="return null;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="isLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getLevel() == midLevel;"/>
+      </eAnnotations>
+      <eParameters name="midLevel" lowerBound="1" eType="#//MIDLevel"/>
+    </eOperations>
     <eOperations name="isTypesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return this.getLevel() == MIDLevel.TYPES;"/>
+        <details key="body" value="return this.isLevel(MIDLevel.TYPES);"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="createSubtypeUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -98,7 +104,7 @@
     </eOperations>
     <eOperations name="isInstancesLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return this.getLevel() == MIDLevel.INSTANCES;"/>
+        <details key="body" value="return this.isLevel(MIDLevel.INSTANCES);"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="getRuntimeTypes" upperBound="-1" eExceptions="#//MMINTException">
@@ -119,7 +125,7 @@
     </eOperations>
     <eOperations name="isWorkflowsLevel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
+        <details key="body" value="return this.isLevel(MIDLevel.WORKFLOWS);"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -496,7 +502,7 @@
     <eOperations name="deleteInstance" eExceptions="#//MMINTException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//relationship/ModelEndpointReference"
+    <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//ModelEndpoint"
         eExceptions="#//MMINTException">
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>

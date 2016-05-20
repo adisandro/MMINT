@@ -1094,8 +1094,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	protected void addWorkflowInstance(Model newModel, String newModelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
 
-		//TODO MMINT[WORKFLOW] Review all javadoc to account for new mid level + create javadoc for workflow apis + describe references better after removing wording from api (e.g. modelrel vs operator)
-		super.addInstance(newModel, newModelId, newModelId, workflowMID);
+		/*TODO MMINT[WORKFLOW]
+		 * Review all javadoc to account for new mid level
+		 * Create javadoc for workflow apis
+		 * Describe references better after removing wording from api (e.g. modelrel vs operator)
+		 * Unify base functionality (e.g. add+addInstance+addWInstance)
+		 * Remove ExtElem different addInstance?
+		 */
+		super.addWorkflowInstance(newModel, newModelId, newModelId, workflowMID);
 		workflowMID.getModels().add(newModel);
 		newModel.setOrigin(origin);
 		newModel.setFileExtension(this.getFileExtension());

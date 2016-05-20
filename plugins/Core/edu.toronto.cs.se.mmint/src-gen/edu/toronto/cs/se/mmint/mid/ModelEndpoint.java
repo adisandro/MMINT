@@ -252,7 +252,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpoint createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -428,6 +428,25 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
+
+		super.addBasicInstance(newModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
+		super.addInstanceEndpoint(newModelEndpoint, targetModel);
+		containerModelRel.getModelEndpoints().add(newModelEndpoint);
+		if (containerModelRel instanceof BinaryModelRel) {
+			boolean isBinarySrc = containerModelRel.getModelEndpoints().size() == 1;
+			if (isBinarySrc) {
+				((BinaryModelRel) containerModelRel).setSourceModel(targetModel);
+			}
+			else {
+				((BinaryModelRel) containerModelRel).setTargetModel(targetModel);
+			}
+		}
+	}
+
+	/**
 	 * Adds a model instance endpoint and a reference to it to an Instance MID (variant for model relationships).
 	 * 
 	 * @param newModelEndpoint
@@ -443,18 +462,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected ModelEndpointReference addInstanceAndReference(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
-		super.addBasicInstance(newModelEndpoint, null, targetModel.getName());
-		super.addInstanceEndpoint(newModelEndpoint, targetModel);
-		containerModelRel.getModelEndpoints().add(newModelEndpoint);
-		if (containerModelRel instanceof BinaryModelRel) {
-			boolean isBinarySrc = containerModelRel.getModelEndpoints().size() == 1;
-			if (isBinarySrc) {
-				((BinaryModelRel) containerModelRel).setSourceModel(targetModel);
-			}
-			else {
-				((BinaryModelRel) containerModelRel).setTargetModel(targetModel);
-			}
-		}
+		this.addInstance(newModelEndpoint, targetModel, containerModelRel);
 		ModelEndpointReference modelEndpointRef = newModelEndpoint.createInstanceReference(containerModelRel);
 
 		return modelEndpointRef;
@@ -574,7 +582,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	public ModelEndpoint createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
@@ -582,9 +590,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 
 		ModelEndpoint newModelEndpoint = super.createThisEClass();
-		ModelEndpointReference newModelEndpointRef = this.addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
+		this.addInstance(newModelEndpoint, targetModel, containerModelRel);
 
-		return newModelEndpointRef;
+		return newModelEndpoint;
 	}
 
 	/**

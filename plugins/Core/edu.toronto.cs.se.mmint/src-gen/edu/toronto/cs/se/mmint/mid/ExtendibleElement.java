@@ -142,11 +142,20 @@ public interface ExtendibleElement extends EObject {
 	MID getMIDContainer();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" midLevelRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == midLevel;'"
+	 * @generated
+	 */
+	boolean isLevel(MIDLevel midLevel);
+
+	/**
 	 * <!-- begin-user-doc --> Checks whether this is a type.
 	 * 
 	 * @return True if this is a type, false otherwise. <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.TYPES;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.TYPES);'"
 	 * @generated
 	 */
 	boolean isTypesLevel();
@@ -275,7 +284,7 @@ public interface ExtendibleElement extends EObject {
 	 * 
 	 * @return True if this is an instance, false otherwise. <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.INSTANCES;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.INSTANCES);'"
 	 * @generated
 	 */
 	boolean isInstancesLevel();
@@ -334,7 +343,7 @@ public interface ExtendibleElement extends EObject {
 	 * 
 	 * @return True if this is a workflow element, false otherwise. <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.WORKFLOWS;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.WORKFLOWS);'"
 	 * @generated
 	 */
 	boolean isWorkflowsLevel();

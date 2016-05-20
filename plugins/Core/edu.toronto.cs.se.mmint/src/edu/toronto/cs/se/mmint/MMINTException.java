@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
@@ -115,6 +116,18 @@ public class MMINTException extends Exception {
 	public static void mustBeWorkflow(ExtendibleElementReference workflowElemRef) throws MMINTException {
 
 		MMINTException.mustBeWorkflow(workflowElemRef.getObject());
+	}
+
+	public static void mustBeLevel(ExtendibleElement elem, MIDLevel midLevel) throws MMINTException {
+
+		if (!elem.isLevel(midLevel)) {
+			throw new MMINTException("Can't execute operation at the " + midLevel + " level on element at the " + elem.getLevel() + " level");
+		}
+	}
+
+	public static void mustBeLevel(ExtendibleElementReference elemRef, MIDLevel midLevel) throws MMINTException {
+
+		MMINTException.mustBeLevel(elemRef.getObject(), midLevel);
 	}
 
 }

@@ -538,6 +538,8 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				return getMetatype();
 			case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER:
 				return getMIDContainer();
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL:
+				return isLevel((MIDLevel)arguments.get(0));
 			case MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL:
 				return isTypesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
@@ -647,8 +649,17 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isLevel(final MIDLevel midLevel) {
+		return this.getLevel() == midLevel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isTypesLevel() {
-		return this.getLevel() == MIDLevel.TYPES;
+		return this.isLevel(MIDLevel.TYPES);
 	}
 
 	/**
@@ -778,7 +789,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public boolean isInstancesLevel() {
-		return this.getLevel() == MIDLevel.INSTANCES;
+		return this.isLevel(MIDLevel.INSTANCES);
 	}
 
 	/**
@@ -1006,6 +1017,40 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel) {
+
+		if (newInstanceId == null) {
+			newInstanceId = MMINT.EMPTY_ID;
+		}
+		newInstance.setUri(newInstanceId);
+		if (newInstanceName == null) {
+			newInstanceName = MMINT.EMPTY_NAME;
+		}
+		newInstance.setName(newInstanceName);
+		newInstance.setLevel(midLevel);
+		newInstance.setDynamic(true);
+		newInstance.setSupertype(null);
+		newInstance.setMetatypeUri(this.getUri());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void addInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel, MID instanceMID) throws MMINTException {
+
+		if (instanceMID.getExtendibleTable().containsKey(newInstanceId)) {
+			String level = midLevel.toString();
+			String midType = level.charAt(0) + level.toLowerCase().substring(1, level.length()-1);
+			throw new MMINTException("An instance with id " + newInstanceId + " is already present in this " + midType + " MID");
+		}
+		instanceMID.getExtendibleTable().put(newInstanceId, newInstance);
+
+		this.addBasicInstance(newInstance, newInstanceId, newInstanceName, midLevel);
+	}
+
+	/**
 	 * Adds an instance of this type to an Instance MID without registering its
 	 * uri.
 	 * 
@@ -1019,18 +1064,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName) {
 
-		if (newInstanceUri == null) {
-			newInstanceUri = MMINT.EMPTY_URI;
-		}
-		newInstance.setUri(newInstanceUri);
-		if (newInstanceName == null) {
-			newInstanceName = MMINT.EMPTY_NAME;
-		}
-		newInstance.setName(newInstanceName);
-		newInstance.setLevel(MIDLevel.INSTANCES);
-		newInstance.setDynamic(true);
-		newInstance.setSupertype(null);
-		newInstance.setMetatypeUri(getUri());
+		this.addBasicInstance(newInstance, newInstanceUri, newInstanceName, MIDLevel.INSTANCES);
 	}
 
 	/**
@@ -1051,12 +1085,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MID instanceMID) throws MMINTException {
 
-		if (instanceMID.getExtendibleTable().containsKey(newInstanceUri)) {
-			throw new MMINTException("An instance with uri " + newInstanceUri + " is already present in this Instance MID");
-		}
-		instanceMID.getExtendibleTable().put(newInstanceUri, newInstance);
-
-		addBasicInstance(newInstance, newInstanceUri, newInstanceName);
+		this.addInstance(newInstance, newInstanceUri, newInstanceName, MIDLevel.INSTANCES, instanceMID);
 	}
 
 	/**
@@ -1124,7 +1153,23 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public boolean isWorkflowsLevel() {
-		return this.getLevel() == MIDLevel.WORKFLOWS;
+		return this.isLevel(MIDLevel.WORKFLOWS);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void addBasicWorkflowInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName) {
+
+		this.addBasicInstance(newInstance, newInstanceId, newInstanceName, MIDLevel.WORKFLOWS);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void addWorkflowInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MID workflowMID) throws MMINTException {
+
+		this.addInstance(newInstance, newInstanceId, newInstanceName, MIDLevel.WORKFLOWS, workflowMID);
 	}
 
 	/**
