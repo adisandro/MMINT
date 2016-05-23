@@ -511,9 +511,7 @@
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
     </eOperations>
-    <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException">
-      <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eOperations>
+    <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="MMINTException" instanceClassName="edu.toronto.cs.se.mmint.MMINTException">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -2065,7 +2065,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
+	int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -3219,14 +3219,14 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelEndpoint__ReplaceWorkflowInstance__ModelEndpoint_Model();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteWorkflowInstance(boolean) <em>Delete Workflow Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteWorkflowInstance() <em>Delete Workflow Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Delete Workflow Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteWorkflowInstance(boolean)
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#deleteWorkflowInstance()
 	 * @generated
 	 */
-	EOperation getModelEndpoint__DeleteWorkflowInstance__boolean();
+	EOperation getModelEndpoint__DeleteWorkflowInstance();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.EMFInfo <em>EMF Info</em>}'.
@@ -4205,7 +4205,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN = eINSTANCE.getModelEndpoint__DeleteWorkflowInstance__boolean();
+		EOperation MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getModelEndpoint__DeleteWorkflowInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.

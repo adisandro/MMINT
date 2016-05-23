@@ -221,9 +221,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN:
+			case MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE:
 				try {
-					deleteWorkflowInstance((Boolean)arguments.get(0));
+					deleteWorkflowInstance();
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -430,7 +430,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) {
 
 		super.addBasicInstance(newModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
@@ -522,20 +522,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+	protected void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) {
 
-		MMINTException.mustBeType(this);
-		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
-			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
-		}
-		EObject container = oldModelEndpoint.eContainer();
-		if (container instanceof Operator) {
-			throw new MMINTException("Can't use this api with operators");
-		}
-
-		ModelRel containerModelRel = (ModelRel) container;
-		oldModelEndpoint.deleteInstance(false);
-		super.addBasicInstance(oldModelEndpoint, null, targetModel.getName());
+		super.addBasicInstance(oldModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
 		if (containerModelRel instanceof BinaryModelRel) {
 			boolean isBinarySrc = ((BinaryModelRel) containerModelRel).getSourceModel() == oldModelEndpoint.getTarget();
 			if (isBinarySrc) {
@@ -551,15 +540,42 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void deleteInstance(boolean isFullDelete) throws MMINTException {
+	protected void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
-		MMINTException.mustBeInstance(this);
-		EObject container = this.eContainer();
+		oldModelEndpoint.deleteInstance(false);
+		this.replaceInstance(oldModelEndpoint, targetModel, containerModelRel);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
+			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
+		}
+		EObject container = oldModelEndpoint.eContainer();
 		if (container instanceof Operator) {
 			throw new MMINTException("Can't use this api with operators");
 		}
 
-		ModelRel containerModelRel = (ModelRel) container;
+		this.replaceInstanceAndReference(oldModelEndpoint, targetModel, (ModelRel) container);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void deleteInstance(ModelRel containerModelRel) {
+
+		containerModelRel.getModelEndpoints().remove(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void deleteInstanceAndReference(boolean isFullDelete, ModelRel containerModelRel) throws MMINTException {
+
 		ModelEndpointReference modelEndpointRef = null;
 		for (ModelEndpointReference modelEndpointRef2 : containerModelRel.getModelEndpointRefs()) {
 			if (modelEndpointRef2.getObject() == this) {
@@ -574,9 +590,23 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			modelEndpointRef.getModelElemRefs().get(0).deleteInstanceReference();
 		}
 		if (isFullDelete) {
-			containerModelRel.getModelEndpoints().remove(this);
 			containerModelRel.getModelEndpointRefs().remove(modelEndpointRef);
+			this.deleteInstance(containerModelRel);
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstance(boolean isFullDelete) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+		EObject container = this.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.deleteInstanceAndReference(isFullDelete, (ModelRel) container);
 	}
 
 	/**
@@ -600,15 +630,30 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	public void replaceWorkflowInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
 
-		//TODO MMINT[WORKFLOW] Need to delete operators attached (normal instances too?)
+		MMINTException.mustBeType(this);
+		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
+			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
+		}
+		EObject container = oldModelEndpoint.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.replaceInstance(oldModelEndpoint, targetModel, (ModelRel) container);
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public void deleteWorkflowInstance(boolean isFullDelete) throws MMINTException {
+	public void deleteWorkflowInstance() throws MMINTException {
 
-		
+		MMINTException.mustBeWorkflow(this);
+		EObject container = this.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.deleteInstance((ModelRel) container);
 	}
 
 } //ModelEndpointImpl

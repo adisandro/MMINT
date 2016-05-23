@@ -265,9 +265,9 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	void deleteWorkflowInstance(boolean isFullDelete) throws MMINTException;
+	void deleteWorkflowInstance() throws MMINTException;
 
 } // ModelEndpoint

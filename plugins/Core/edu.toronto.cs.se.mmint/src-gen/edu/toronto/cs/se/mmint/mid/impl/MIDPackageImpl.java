@@ -1127,7 +1127,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelEndpoint__DeleteWorkflowInstance__boolean() {
+	public EOperation getModelEndpoint__DeleteWorkflowInstance() {
 		return modelEndpointEClass.getEOperations().get(15);
 	}
 
@@ -1390,7 +1390,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL);
 		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL);
-		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE__BOOLEAN);
+		createEOperation(modelEndpointEClass, MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE);
 
 		emfInfoEClass = createEClass(EMF_INFO);
 		createEAttribute(emfInfoEClass, EMF_INFO__CLASS_NAME);
@@ -1735,8 +1735,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEParameter(op, this.getModel(), "targetModel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
-		op = initEOperation(getModelEndpoint__DeleteWorkflowInstance__boolean(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelEndpoint__DeleteWorkflowInstance(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 
 		initEClass(emfInfoEClass, EMFInfo.class, "EMFInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

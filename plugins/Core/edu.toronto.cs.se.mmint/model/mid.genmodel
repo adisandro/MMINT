@@ -219,9 +219,7 @@
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceWorkflowInstance/oldModelEndpoint"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/replaceWorkflowInstance/targetModel"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteWorkflowInstance">
-        <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/deleteWorkflowInstance/isFullDelete"/>
-      </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/deleteWorkflowInstance"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EMFInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EMFInfo/className"/>
