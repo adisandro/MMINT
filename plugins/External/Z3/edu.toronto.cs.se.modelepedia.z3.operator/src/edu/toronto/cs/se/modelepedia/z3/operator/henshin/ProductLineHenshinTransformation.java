@@ -217,10 +217,11 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		// input
 		Model origModel = inputsByName.get(IN_MODEL);
+		super.init();
 		// function declarations at step 0 for fN-fC-fD (phis) +
 		// function definition at every step for fY (phi apply, algorithm line 2) +
 		// function definition at every step for fX (phi P, external constraint)
-		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
+		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
 		String fullUri = MIDUtils.prependWorkspaceToUri(MIDUtils.replaceLastSegmentInUri(origModel.getUri(), ""));

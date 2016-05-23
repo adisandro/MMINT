@@ -431,17 +431,6 @@ public interface Operator extends GenericElement {
 	void readInputProperties(Properties inputProperties) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Initializes the state and output variables of this operator instance. Used by
-	 * {@link #start(EList, Map, MID)}, may be overridden.
-	 * 
-	 * @throws MMINTException
-	 *             If the operator variables can't be initialized. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void init() throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Runs this operator instance. Used by {@link #start(EList, Map, MID)}, this
 	 * function contains the logic of the operator and must be overridden.
 	 * 
@@ -484,5 +473,21 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	Operator start(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	Operator createWorkflowInstance(MID workflowMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	void deleteWorkflowInstance() throws MMINTException;
 
 } // Operator

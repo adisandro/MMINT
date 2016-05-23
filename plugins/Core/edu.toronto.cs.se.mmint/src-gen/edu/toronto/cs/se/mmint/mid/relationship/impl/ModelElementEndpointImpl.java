@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
@@ -362,7 +363,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		}
 
 		ModelElementEndpoint newModelElemEndpoint = super.createThisEClass();
-		super.addBasicInstance(newModelElemEndpoint, null, targetModelElemRef.getObject().getName());
+		super.addBasicInstance(newModelElemEndpoint, null, targetModelElemRef.getObject().getName(), MIDLevel.INSTANCES);
 		super.addInstanceEndpoint(newModelElemEndpoint, targetModelElemRef.getObject());
 		containerMappingRef.getObject().getModelElemEndpoints().add(newModelElemEndpoint);
 		ModelElementEndpointReference modelElemEndpointRef = newModelElemEndpoint.createInstanceReference(targetModelElemRef, containerMappingRef);
@@ -381,7 +382,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		MappingReference containerMappingRef = (MappingReference) oldModelElemEndpointRef.eContainer();
 		oldModelElemEndpointRef.deleteInstanceAndReference(false);
 		ModelElementEndpoint oldModelElemEndpoint = oldModelElemEndpointRef.getObject();
-		super.addBasicInstance(oldModelElemEndpoint, null, null);
+		super.addBasicInstance(oldModelElemEndpoint, null, null, MIDLevel.INSTANCES);
 		if (containerMappingRef instanceof BinaryMappingReference) {
 			boolean isBinarySrc = ((BinaryMappingReference) containerMappingRef).getSourceModelElemRef() == oldModelElemEndpointRef.getModelElemRef();
 			if (isBinarySrc) {

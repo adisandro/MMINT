@@ -213,6 +213,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING:
+				try {
+					return createWorkflowInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL:
 				try {
 					replaceWorkflowInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
@@ -501,7 +508,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
 
-		super.addBasicInstance(newModelEndpoint, null, this.getName());
+		super.addBasicInstance(newModelEndpoint, null, this.getName(), containerOperator.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
 		MIDUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
 	}
@@ -621,6 +628,19 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		ModelEndpoint newModelEndpoint = super.createThisEClass();
 		this.addInstance(newModelEndpoint, targetModel, containerModelRel);
+
+		return newModelEndpoint;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelEndpoint createWorkflowInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ModelEndpoint newModelEndpoint = super.createThisEClass();
+		this.addInstance(newModelEndpoint, targetModel, containerOperator, containerFeatureName);
 
 		return newModelEndpoint;
 	}

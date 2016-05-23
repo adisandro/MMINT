@@ -1017,6 +1017,16 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * Adds an instance of this type to an Instance or Workflow MID without registering its id.
+	 * 
+	 * @param newInstance
+	 *            The new instance to be added.
+	 * @param newInstanceId
+	 *            The id of the new instance, null to use an empty id.
+	 * @param newInstanceName
+	 *            The name of the new instance, null to use an empty name.
+	 * @param midLevel
+	 *            The kind of MID the instance is added to (Instance or Workflow).
 	 * @generated NOT
 	 */
 	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel) {
@@ -1036,10 +1046,23 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * Adds an instance of this type to an Instance or Workflow MID.
+	 * 
+	 * @param newInstance
+	 *            The new instance to be added.
+	 * @param newInstanceId
+	 *            The id of the new instance.
+	 * @param newInstanceName
+	 *            The name of the new instance.
+	 * @param instanceMID
+	 *            An Instance or Workflow MID.
+	 * @throws MMINTException
+	 *             If the id of the new instance is already registered in the MID.
 	 * @generated NOT
 	 */
-	protected void addInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel, MID instanceMID) throws MMINTException {
+	protected void addInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MID instanceMID) throws MMINTException {
 
+		MIDLevel midLevel = instanceMID.getLevel();
 		if (instanceMID.getExtendibleTable().containsKey(newInstanceId)) {
 			String level = midLevel.toString();
 			String midType = level.charAt(0) + level.toLowerCase().substring(1, level.length()-1);
@@ -1048,44 +1071,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		instanceMID.getExtendibleTable().put(newInstanceId, newInstance);
 
 		this.addBasicInstance(newInstance, newInstanceId, newInstanceName, midLevel);
-	}
-
-	/**
-	 * Adds an instance of this type to an Instance MID without registering its
-	 * uri.
-	 * 
-	 * @param newInstance
-	 *            The new instance to be added.
-	 * @param newInstanceUri
-	 *            The uri of the new instance, null to use an empty uri.
-	 * @param newInstanceName
-	 *            The name of the new instance, null to use an empty name.
-	 * @generated NOT
-	 */
-	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName) {
-
-		this.addBasicInstance(newInstance, newInstanceUri, newInstanceName, MIDLevel.INSTANCES);
-	}
-
-	/**
-	 * Adds an instance of this type to an Instance MID.
-	 * 
-	 * @param newInstance
-	 *            The new instance to be added.
-	 * @param newInstanceUri
-	 *            The uri of the new instance.
-	 * @param newInstanceName
-	 *            The name of the new instance.
-	 * @param instanceMID
-	 *            An Instance MID.
-	 * @throws MMINTException
-	 *             If the uri of the new instance is already registered in the
-	 *             Instance MID.
-	 * @generated NOT
-	 */
-	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MID instanceMID) throws MMINTException {
-
-		this.addInstance(newInstance, newInstanceUri, newInstanceName, MIDLevel.INSTANCES, instanceMID);
 	}
 
 	/**
@@ -1154,22 +1139,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public boolean isWorkflowsLevel() {
 		return this.isLevel(MIDLevel.WORKFLOWS);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void addBasicWorkflowInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName) {
-
-		this.addBasicInstance(newInstance, newInstanceId, newInstanceName, MIDLevel.WORKFLOWS);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected void addWorkflowInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MID workflowMID) throws MMINTException {
-
-		this.addInstance(newInstance, newInstanceId, newInstanceName, MIDLevel.WORKFLOWS, workflowMID);
 	}
 
 	/**

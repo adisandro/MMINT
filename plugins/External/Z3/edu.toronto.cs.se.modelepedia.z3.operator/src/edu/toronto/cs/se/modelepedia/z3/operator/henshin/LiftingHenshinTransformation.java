@@ -195,18 +195,17 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		}
 	}
 
-	@Override
-	public void init() throws MMINTException {
+	protected void init() {
 
 		//state
-		modelObjsNBar = new ArrayList<Set<MAVOElement>>();
-		modelObjsC = new HashSet<MAVOElement>();
-		modelObjsD = new HashSet<MAVOElement>();
-		modelObjsA = new HashSet<MAVOElement>();
-		modelObjsCDN = new HashSet<MAVOElement>();
+		modelObjsNBar = new ArrayList<>();
+		modelObjsC = new HashSet<>();
+		modelObjsD = new HashSet<>();
+		modelObjsA = new HashSet<>();
+		modelObjsCDN = new HashSet<>();
 		modelObjACounter = 0;
 		smtEncoding = new StringBuilder();
-		smtEncodingVariables = new HashSet<String>();
+		smtEncodingVariables = new HashSet<>();
 
 		// output
 		timeClassical = -1;
@@ -217,8 +216,8 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 		satCountLifting = 0;
 		unsatCountLifting = 0;
 		transformedConstraint = "";
-		modelObjsChains = new HashMap<MAVOElement, Integer>();
-		modelObjsLiterals = new HashMap<MAVOElement, Integer>();
+		modelObjsChains = new HashMap<>();
+		modelObjsLiterals = new HashMap<>();
 	}
 
 	protected void initSMTEncoding(String preamble, String postamble) {

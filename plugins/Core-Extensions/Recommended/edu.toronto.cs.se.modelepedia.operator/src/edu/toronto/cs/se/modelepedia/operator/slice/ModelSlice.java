@@ -61,8 +61,7 @@ public class ModelSlice extends OperatorImpl {
 		}
 	}
 
-	@Override
-	public void init() {
+	private void init() {
 
 		sliceModelObjs = new HashSet<>();
 	}
@@ -126,6 +125,7 @@ public class ModelSlice extends OperatorImpl {
 
 		// input
 		Model model = inputsByName.get(IN_MODEL);
+		this.init();
 
 		String sliceModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());

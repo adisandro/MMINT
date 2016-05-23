@@ -254,7 +254,8 @@ matchesN:
 
 		// input
 		Model origModel = inputsByName.get(IN_MODEL);
-		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
+		super.init();
+		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
 		String fullUri = MIDUtils.prependWorkspaceToUri(MIDUtils.replaceLastSegmentInUri(origModel.getUri(), ""));

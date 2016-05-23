@@ -117,13 +117,13 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	}
 
 	@Override
-	public void init() throws MMINTException {
+	protected void init() {
 
 		super.init();
 
 		// state
-		modelObjsBucketA = new ArrayList<MAVOElement>();
-		modelObjsChainsA = new ArrayList<Integer>();
+		modelObjsBucketA = new ArrayList<>();
+		modelObjsChainsA = new ArrayList<>();
 	}
 
 	private void transformMatch() {
@@ -207,7 +207,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 
 		// input
 		inputModel = inputsByName.get(IN_MODEL);
-		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
+		this.init();
+		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding.toString());

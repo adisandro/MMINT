@@ -64,8 +64,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	protected EObject tgtRootModelObj;
 	protected String tgtModelUri;
 
-	@Override
-	public void init() throws MMINTException {
+	private void init() {
 
 		// state
 		tgtRootModelObj = null;
@@ -230,6 +229,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		// input
 		ModelRel traceModelRelType = (ModelRel) genericsByName.get(GENERIC_MODELRELTYPE);
 		Model srcModel = inputsByName.get(IN_MODEL);
+		this.init();
 
 		int srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||

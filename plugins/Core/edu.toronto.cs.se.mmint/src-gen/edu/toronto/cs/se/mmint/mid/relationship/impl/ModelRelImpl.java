@@ -37,6 +37,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -656,7 +657,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			fileExtension = MIDUtils.getFileExtensionFromUri(newModelRelUri);
 		}
 		if (isBasic) {
-			super.addBasicInstance(newModelRel, newModelRelUri, newModelRelName);
+			super.addBasicInstance(newModelRel, newModelRelUri, newModelRelName, MIDLevel.INSTANCES);
 		}
 		else {
 			super.addInstance(newModelRel, newModelRelUri, newModelRelName, instanceMID);

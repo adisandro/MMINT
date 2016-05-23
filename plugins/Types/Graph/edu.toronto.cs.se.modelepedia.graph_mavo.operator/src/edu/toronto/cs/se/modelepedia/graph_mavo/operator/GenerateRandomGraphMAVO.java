@@ -85,8 +85,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		percVar = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
 	}
 
-	@Override
-	public void init() throws MMINTException {
+	private void init() {
 
 		// state
 		mavoModelObjs = new HashMap<>();
@@ -192,6 +191,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 
 		// input
 		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
+		this.init();
 
 		// create random graph
 		Graph randomGraph = generateRandomGraph();

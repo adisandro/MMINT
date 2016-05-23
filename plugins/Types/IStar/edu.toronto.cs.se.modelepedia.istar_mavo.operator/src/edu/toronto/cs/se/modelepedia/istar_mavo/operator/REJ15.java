@@ -61,7 +61,7 @@ public class REJ15 extends FASE14 {
 	}
 
 	@Override
-	public void init() throws MMINTException {
+	protected void init() {
 
 		super.init();
 
@@ -205,6 +205,7 @@ public class REJ15 extends FASE14 {
 
 		// input
 		Model istarModel = inputsByName.get(IN_MODEL);
+		this.init();
 
 		// run
 		collectAnalysisModelObjects(istarModel);

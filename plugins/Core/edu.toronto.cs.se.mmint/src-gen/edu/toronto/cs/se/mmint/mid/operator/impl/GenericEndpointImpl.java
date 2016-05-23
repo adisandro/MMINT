@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -279,7 +280,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	 */
 	protected void addInstance(GenericEndpoint newGenericEndpoint, GenericElement targetGenericType, Operator containerOperator) {
 
-		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName());
+		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName(), MIDLevel.INSTANCES);
 		super.addInstanceEndpoint(newGenericEndpoint, targetGenericType);
 		containerOperator.getGenerics().add(newGenericEndpoint);
 	}

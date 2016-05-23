@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -426,7 +427,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 			newModelElem = super.createThisEClass();
 			//TODO MMINT[MAP] When input and output come from different mids, is it not correct to store the extendible map entry in the output
 			if (instanceMID == null) {
-				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName);
+				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName, MIDLevel.INSTANCES);
 			}
 			else {
 				super.addInstance(newModelElem, newModelElemUri, newModelElemName, instanceMID);

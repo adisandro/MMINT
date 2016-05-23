@@ -507,6 +507,12 @@
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
     </eOperations>
+    <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//ModelEndpoint"
+        eExceptions="#//MMINTException">
+      <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
+      <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
+      <eParameters name="containerFeatureName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="replaceWorkflowInstance" eExceptions="#//MMINTException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="#//Model"/>
@@ -1289,7 +1295,6 @@
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">
         <eParameters name="inputProperties" lowerBound="1" eType="#//operator/Properties"/>
       </eOperations>
-      <eOperations name="init" eExceptions="#//MMINTException"/>
       <eOperations name="run" lowerBound="1" eExceptions="#//operator/Exception">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
           <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1326,6 +1331,11 @@
         </eParameters>
         <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
       </eOperations>
+      <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
+          eExceptions="#//MMINTException">
+        <eParameters name="workflowMID" eType="#//MID"/>
+      </eOperations>
+      <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -2050,13 +2050,22 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 13;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 14;
+
+	/**
 	 * The operation id for the '<em>Replace Workflow Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 14;
+	int MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -2065,7 +2074,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 15;
+	int MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 16;
 
 	/**
 	 * The number of operations of the '<em>Model Endpoint</em>' class.
@@ -2074,7 +2083,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 16;
+	int MODEL_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 17;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EMFInfoImpl <em>EMF Info</em>}' class.
@@ -3209,6 +3218,16 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelEndpoint__CreateWorkflowInstance__Model_ModelRel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.operator.Operator, java.lang.String) <em>Create Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ModelEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.operator.Operator, java.lang.String)
+	 * @generated
+	 */
+	EOperation getModelEndpoint__CreateWorkflowInstance__Model_Operator_String();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelEndpoint#replaceWorkflowInstance(edu.toronto.cs.se.mmint.mid.ModelEndpoint, edu.toronto.cs.se.mmint.mid.Model) <em>Replace Workflow Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4190,6 +4209,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_ModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = eINSTANCE.getModelEndpoint__CreateWorkflowInstance__Model_Operator_String();
 
 		/**
 		 * The meta object literal for the '<em><b>Replace Workflow Instance</b></em>' operation.

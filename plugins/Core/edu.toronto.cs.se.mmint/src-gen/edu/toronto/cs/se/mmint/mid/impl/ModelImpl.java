@@ -48,6 +48,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -837,10 +838,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		String newModelName = MIDUtils.getFileNameFromUri(newModelUri);
 		String fileExtension = MIDUtils.getFileExtensionFromUri(newModelUri);
 		if (instanceMID == null) {
-			super.addBasicInstance(newModel, newModelUri, newModelName);
+			super.addBasicInstance(newModel, newModelUri, newModelName, MIDLevel.INSTANCES);
 		}
 		else {
-			super.addInstance(newModel, newModelUri, newModelName, instanceMID);
+			super.addInstance(newModel, newModelUri, newModelName,instanceMID);
 			instanceMID.getModels().add(newModel);
 		}
 		newModel.setOrigin(origin);
@@ -1101,7 +1102,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		 * Unify base functionality (e.g. add+addInstance+addWInstance)
 		 * Remove ExtElem different addInstance?
 		 */
-		super.addWorkflowInstance(newModel, newModelId, newModelId, workflowMID);
+		super.addInstance(newModel, newModelId, newModelId, workflowMID);
 		workflowMID.getModels().add(newModel);
 		newModel.setOrigin(origin);
 		newModel.setFileExtension(this.getFileExtension());
@@ -1142,7 +1143,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		Set<ModelEndpoint> delModelEndpoints = MIDRegistry.getConnectedNaryModelRelEndpoints(this, workflowMID);
 		for (ModelEndpoint delModelEndpoint : delModelEndpoints) {
-			//delModelEndpoint.deleteWorkflowInstanceAndReference(true);
+			delModelEndpoint.deleteWorkflowInstance();
 		}
 	}
 

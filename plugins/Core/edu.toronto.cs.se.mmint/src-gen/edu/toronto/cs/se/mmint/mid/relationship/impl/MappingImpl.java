@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
@@ -438,7 +439,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		Mapping newMapping = (isBinary) ?
 			super.createThisBinaryEClass() :
 			super.createThisEClass();
-		super.addBasicInstance(newMapping, null, null);
+		super.addBasicInstance(newMapping, null, null, MIDLevel.INSTANCES);
 		containerModelRel.getMappings().add(newMapping);
 		MappingReference newMappingRef = newMapping.createInstanceReference(containerModelRel);
 

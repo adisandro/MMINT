@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -678,14 +679,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___INIT:
-				try {
-					init();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
 				try {
 					return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
@@ -696,6 +689,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID:
 				try {
 					return start((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID:
+				try {
+					return createWorkflowInstance((MID)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE:
+				try {
+					deleteWorkflowInstance();
+					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -1016,6 +1024,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
+	protected void addInstance(Operator newOperator, MIDLevel midLevel, MID instanceMID) {
+
+		super.addBasicInstance(newOperator, null, this.getName(), midLevel);
+		newOperator.setCommutative(false);
+		if (instanceMID != null) {
+			instanceMID.getOperators().add(newOperator);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public Operator createInstance(MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
@@ -1027,16 +1047,20 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		catch (Exception e) {
 			throw new MMINTException("Can't invoke constructor");
 		}
-		super.addBasicInstance(newOperator, null, this.getName());
-		newOperator.setCommutative(false);
 		if (this.getPreviousOperator() != null) {
 			newOperator.setPreviousOperator(this.getPreviousOperator());
 		}
-		if (instanceMID != null) {
-			instanceMID.getOperators().add(newOperator);
-		}
+		this.addInstance(newOperator, MIDLevel.INSTANCES, instanceMID);
 
 		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void deleteInstance(MID instanceMID) {
+
+		instanceMID.getOperators().remove(this);
 	}
 
 	/**
@@ -1046,8 +1070,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = this.getMIDContainer();
-		instanceMID.getOperators().remove(this);
+		this.deleteInstance(this.getMIDContainer());
 	}
 
 	/**
@@ -1132,15 +1155,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public void init() throws MMINTException {
-
-		// do nothing
-		//TODO MMINT[OPERATOR] Remove: input arguments can be needed here, so leave it to the users to organize their code as they like
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
@@ -1197,7 +1211,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				//TODO MMINT[OPERATOR] Why do we run the operator type directly instead of using start()?
 				Properties inputProperties = conversion.getInputProperties();
 				conversion.readInputProperties(inputProperties);
-				conversion.init();
 				Map<String, Model> conversionInputsByName = new HashMap<>();
 				conversionInputsByName.put(conversion.getInputs().get(0).getName(), convertedInputModel);
 				Map<String, MID> conversionOutputMIDsByName = new HashMap<>();
@@ -1252,14 +1265,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 		Operator newOperator = this.createInstance(instanceMID);
 		// generics, inputs and conversions
-		Map<String, GenericElement> genericsByName = createGenericsByName(generics, newOperator);
-		Map<String, Model> inputsByName = createInputsByName(inputs, true, newOperator);
+		Map<String, GenericElement> genericsByName = this.createGenericsByName(generics, newOperator);
+		Map<String, Model> inputsByName = this.createInputsByName(inputs, true, newOperator);
 		// run operator
 		if (inputProperties == null) {
 			inputProperties = newOperator.getInputProperties();
 		}
 		newOperator.readInputProperties(inputProperties);
-		newOperator.init();
 		long startTime = System.nanoTime();
 		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
 		newOperator.setExecutionTime(System.nanoTime()-startTime);
@@ -1292,6 +1304,29 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator createWorkflowInstance(MID workflowMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Operator newOperator = OperatorFactory.eINSTANCE.createOperator();
+		this.addInstance(newOperator, MIDLevel.WORKFLOWS, workflowMID);
+
+		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteWorkflowInstance() throws MMINTException {
+
+		MMINTException.mustBeWorkflow(this);
+
+		this.deleteInstance(this.getMIDContainer());
 	}
 
 } //OperatorImpl

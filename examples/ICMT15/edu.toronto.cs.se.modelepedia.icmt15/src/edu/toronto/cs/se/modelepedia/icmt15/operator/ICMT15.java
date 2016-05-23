@@ -82,8 +82,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		presenceConditionsToModelSizeRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO);
 	}
 
-	@Override
-	public void init() {
+	private void init() {
 
 		// output
 		outputConstraint = "";
@@ -204,6 +203,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		// input
 		Model inputModel = inputsByName.get(IN_MODEL);
 		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
+		this.init();
 
 		// generate output model
 		EObject inputRootModelObj = inputModel.getEMFInstanceRoot();

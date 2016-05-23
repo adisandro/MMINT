@@ -113,8 +113,7 @@ public class RE13 extends OperatorImpl {
 		targetsProperty = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
-	@Override
-	public void init() throws MMINTException {
+	protected void init() {
 
 		// state
 		istar = null;
@@ -322,6 +321,7 @@ public class RE13 extends OperatorImpl {
 
 		// input
 		Model istarModel = inputsByName.get(IN_MODEL);
+		this.init();
 
 		// run solver
 		collectAnalysisModelObjects(istarModel);

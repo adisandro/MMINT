@@ -52,7 +52,7 @@ public class FASE14 extends RE13 {
 	protected long timeRNF;
 
 	@Override
-	public void init() throws MMINTException {
+	protected void init() {
 
 		super.init();
 
@@ -171,6 +171,7 @@ public class FASE14 extends RE13 {
 
 		// input
 		Model istarModel = inputsByName.get(IN_MODEL);
+		this.init();
 
 		// run
 		collectAnalysisModelObjects(istarModel);
