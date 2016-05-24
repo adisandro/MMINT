@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -315,17 +317,17 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
+	protected void addInstance(@NonNull Model newModelRel, @Nullable String newModelRelId, @NonNull String newModelRelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
-		super.addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
-		String baseModelRelExtendedUri = MIDUtils.replaceLastSegmentInUri(MIDRegistry.getModelAndModelElementUris(newModel, MIDLevel.INSTANCES)[0], getName());
+		super.addInstance(newModelRel, newModelRelId, newModelRelName, origin, fileExtension, midLevel, instanceMID);
+		String baseModelRelExtendedUri = MIDUtils.replaceLastSegmentInUri(MIDRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
 		String modelRelExtendedUri = MIDUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
-		((KleisliModelRel) newModel).setExtendedUri(modelRelExtendedUri);
+		((KleisliModelRel) newModelRel).setExtendedUri(modelRelExtendedUri);
 		try {
 			MIDUtils.createDirectory(modelRelExtendedUri, true);
 		}
 		catch (Exception e) {
-			newModel.deleteInstance();
+			newModelRel.deleteInstance();
 			throw new MMINTException("Error creating directory for extended models", e);
 		}
 	}

@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -411,11 +412,10 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param newModelEndpointRef
 	 *            The new reference to this model endpoint to be added.
 	 * @param containerModelRel
-	 *            The model relationship that will contain the new reference to
-	 *            the model endpoint.
+	 *            The model relationship that will contain the new reference to the model endpoint.
 	 * @generated NOT
 	 */
-	protected void addInstanceReference(ModelEndpointReference newModelEndpointRef, ModelRel containerModelRel) {
+	protected void addInstanceReference(@NonNull ModelEndpointReference newModelEndpointRef, @NonNull ModelRel containerModelRel) {
 
 		super.addInstanceReference(newModelEndpointRef, false);
 		containerModelRel.getModelEndpointRefs().add(newModelEndpointRef);
@@ -435,9 +435,18 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
+	 * Adds a model instance endpoint of this model type endpoint to an Instance or Workflow MID (variant for model
+	 * relationships).
+	 * 
+	 * @param newModelEndpoint
+	 *            The new model endpoint to be added.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model endpoint.
 	 * @generated NOT
 	 */
-	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) {
+	protected void addInstance(@NonNull ModelEndpoint newModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) {
 
 		super.addBasicInstance(newModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
@@ -454,20 +463,21 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
-	 * Adds a model instance endpoint and a reference to it to an Instance MID (variant for model relationships).
+	 * Adds a model instance endpoint of this model type endpoint and a reference to it to an Instance MID (variant for
+	 * model relationships).
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
-	 * @param modelRel
+	 * @param containerModelRel
 	 *            The model relationship that will contain the new model endpoint.
 	 * @return The created reference to the new model endpoint.
 	 * @throws MMINTException
-	 *             If the new model endpoint is a model type endpoint.
+	 *             If the new model endpoint is not a model instance endpoint.
 	 * @generated NOT
 	 */
-	protected ModelEndpointReference addInstanceAndReference(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	protected ModelEndpointReference addInstanceAndReference(@NonNull ModelEndpoint newModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) throws MMINTException {
 
 		this.addInstance(newModelEndpoint, targetModel, containerModelRel);
 		ModelEndpointReference modelEndpointRef = newModelEndpoint.createInstanceReference(containerModelRel);
@@ -492,7 +502,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
-	 * Adds a model instance endpoint to an Instance MID (variant for operators).
+	 * Adds a model instance endpoint of this model type endpoint to an Instance MID (variant for operators).
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.
@@ -501,12 +511,12 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param containerOperator
 	 *            The operator that will contain the new model endpoint.
 	 * @param containerFeatureName
-	 *            The name of the feature in the operator that will contain the new model endpoint.
+	 *            The name of the feature in the operator that will contain the new model endpoint (input or output).
 	 * @throws MMINTException
 	 *             If the feature name is not found in the container operator.
 	 * @generated NOT
 	 */
-	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
+	protected void addInstance(@NonNull ModelEndpoint newModelEndpoint, @NonNull Model targetModel, @NonNull Operator containerOperator, @NonNull String containerFeatureName) throws MMINTException {
 
 		super.addBasicInstance(newModelEndpoint, null, this.getName(), containerOperator.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
@@ -527,9 +537,17 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
+	 * Replaces an old model instance endpoint with a new one of this type in an Instance or Workflow MID.
+	 * 
+	 * @param oldModelEndpoint
+	 *            The old model endpoint to be replaced.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model endpoint.
 	 * @generated NOT
 	 */
-	protected void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) {
+	protected void replaceInstance(@NonNull ModelEndpoint oldModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) {
 
 		super.addBasicInstance(oldModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
 		if (containerModelRel instanceof BinaryModelRel) {
@@ -545,9 +563,19 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
+	 * Replaces an old model instance endpoint and the reference to it with new ones of this type in an Instance MID.
+	 * 
+	 * @param oldModelEndpoint
+	 *            The old model endpoint to be replaced.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model endpoint.
+	 * @throws MMINTException
+	 *             If the old model endpoint is not an instance.
 	 * @generated NOT
 	 */
-	protected void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	protected void replaceInstanceAndReference(@NonNull ModelEndpoint oldModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) throws MMINTException {
 
 		oldModelEndpoint.deleteInstance(false);
 		this.replaceInstance(oldModelEndpoint, targetModel, containerModelRel);
@@ -571,17 +599,29 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
+	 * Deletes this model instance endpoint from the Instance or Workflow MID that contains it.
+	 * 
+	 * @param containerModelRel
+	 *            The model relationship that contains the model endpoint.
 	 * @generated NOT
 	 */
-	protected void deleteInstance(ModelRel containerModelRel) {
+	protected void deleteInstance(@NonNull ModelRel containerModelRel) {
 
 		containerModelRel.getModelEndpoints().remove(this);
 	}
 
 	/**
+	 * Deletes this model instance endpoint and the reference to it from the Instance MID that contains them.
+	 * 
+	 * @param isFullDelete
+	 *            True if this model endpoint is going to be fully deleted, false if it is going to be replaced later.
+	 * @param containerModelRel
+	 *            The model relationship that contains the model endpoint.
+	 * @throws MMINTException
+	 *             If there is no reference to this model endpoint.
 	 * @generated NOT
 	 */
-	protected void deleteInstanceAndReference(boolean isFullDelete, ModelRel containerModelRel) throws MMINTException {
+	protected void deleteInstanceAndReference(boolean isFullDelete, @NonNull ModelRel containerModelRel) throws MMINTException {
 
 		ModelEndpointReference modelEndpointRef = null;
 		for (ModelEndpointReference modelEndpointRef2 : containerModelRel.getModelEndpointRefs()) {

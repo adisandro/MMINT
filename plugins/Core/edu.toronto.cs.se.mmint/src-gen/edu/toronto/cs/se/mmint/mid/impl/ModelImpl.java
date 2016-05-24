@@ -38,6 +38,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
@@ -565,25 +567,22 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
-	 * Adds a subtype of this model type to the Type MID, together with an
-	 * editor type for it.
+	 * Adds a subtype of this model type to the Type MID, together with an editor type for it.
 	 * 
 	 * @param newModelType
 	 *            The new model type to be added.
 	 * @param newModelTypeName
 	 *            The name of the new model type.
 	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model type, null if no constraint is associated.
+	 *            The constraint language of the constraint associated with the new model type, null if no constraint is
+	 *            associated.
 	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model type, null if no constraint is associated.
+	 *            The constraint implementation of the constraint associated with the new model type, null if no
+	 *            constraint is associated.
 	 * @param isMetamodelExtension
-	 *            True if the new model type is extending the supertype's
-	 *            metamodel, false otherwise.
+	 *            True if the new model type is extending the supertype's metamodel, false otherwise.
 	 * @throws MMINTException
-	 *             If the uri of the new model type is already registered in the
-	 *             Type MID.
+	 *             If the uri of the new model type is already registered in the Type MID.
 	 * @generated NOT
 	 */
 	protected void addSubtype(Model newModelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
@@ -818,30 +817,35 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
-	 * Adds a model instance of this model type to an Instance MID, or simply adds additional info to the model
-	 * instance.
+	 * Adds a model instance of this model type to an Instance or Workflow MID, or simply adds additional info to the
+	 * model instance.
 	 * 
 	 * @param newModel
 	 *            The new model to be added.
-	 * @param newModelUri
-	 *            The uri of the new model.
+	 * @param newModelId
+	 *            The id of the new model.
+	 * @param newModelName
+	 *            The name of the new model.
 	 * @param origin
 	 *            The origin of the new model.
+	 * @param fileExtension
+	 *            The file extension of the new model.
+	 * @param midLevel
+	 *            The kind of MID (Instance or Workflow) that could contain the new model, regardless of whether it is
+	 *            or isn't going to be contained in one.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to one.
+	 *            An Instance or Workflow MID, null if the model isn't going to be contained in one.
 	 * @throws MMINTException
-	 *             If the uri of the new model is already registered in the Instance MID.
+	 *             If the id of the new model is already registered in the MID.
 	 * @generated NOT
 	 */
-	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
+	protected void addInstance(@NonNull Model newModel, @NonNull String newModelId, @NonNull String newModelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
-		String newModelName = MIDUtils.getFileNameFromUri(newModelUri);
-		String fileExtension = MIDUtils.getFileExtensionFromUri(newModelUri);
 		if (instanceMID == null) {
-			super.addBasicInstance(newModel, newModelUri, newModelName, MIDLevel.INSTANCES);
+			super.addBasicInstance(newModel, newModelId, newModelName, midLevel);
 		}
 		else {
-			super.addInstance(newModel, newModelUri, newModelName,instanceMID);
+			super.addInstance(newModel, newModelId, newModelName, instanceMID);
 			instanceMID.getModels().add(newModel);
 		}
 		newModel.setOrigin(origin);
@@ -856,7 +860,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		Model newModel = super.createThisEClass();
-		this.addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
+		this.addInstance(
+			newModel,
+			newModelUri,
+			MIDUtils.getFileNameFromUri(newModelUri),
+			ModelOrigin.CREATED,
+			MIDUtils.getFileExtensionFromUri(newModelUri),
+			MIDLevel.INSTANCES,
+			instanceMID);
 
 		return newModel;
 	}
@@ -923,7 +934,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		Model newModel = super.createThisEClass();
-		this.addInstance(newModel, modelUri, ModelOrigin.IMPORTED, instanceMID);
+		this.addInstance(
+			newModel,
+			modelUri,
+			MIDUtils.getFileNameFromUri(modelUri),
+			ModelOrigin.IMPORTED,
+			MIDUtils.getFileExtensionFromUri(modelUri),
+			MIDLevel.INSTANCES,
+			instanceMID);
 
 		return newModel;
 	}
@@ -1093,30 +1111,19 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	protected void addWorkflowInstance(Model newModel, String newModelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
-
-		/*TODO MMINT[WORKFLOW]
-		 * Review all javadoc to account for new mid level
-		 * Create javadoc for workflow apis
-		 * Describe references better after removing wording from api (e.g. modelrel vs operator)
-		 * Unify base functionality (e.g. add+addInstance+addWInstance)
-		 * Remove ExtElem different addInstance?
-		 */
-		super.addInstance(newModel, newModelId, newModelId, workflowMID);
-		workflowMID.getModels().add(newModel);
-		newModel.setOrigin(origin);
-		newModel.setFileExtension(this.getFileExtension());
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public Model createWorkflowInstance(String newModelId, MID workflowMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		Model newModel = super.createThisEClass();
-		this.addWorkflowInstance(newModel, newModelId, ModelOrigin.CREATED, workflowMID);
+		this.addInstance(
+			newModel,
+			newModelId,
+			newModelId,
+			ModelOrigin.CREATED,
+			this.getFileExtension(),
+			MIDLevel.WORKFLOWS,
+			workflowMID);
 
 		return newModel;
 	}
@@ -1134,7 +1141,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		// delete operators that use this model
 		Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, workflowMID);
 		for (Operator delOperator : delOperators) {
-			//delOperator.deleteWorkflowInstance();
+			delOperator.deleteWorkflowInstance();
 		}
 		// delete model relationships that use this model
 		Set<BinaryModelRel> delModelRels = MIDRegistry.getConnectedBinaryModelRels(this, workflowMID);

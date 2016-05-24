@@ -142,8 +142,11 @@ public interface ExtendibleElement extends EObject {
 	MID getMIDContainer();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Checks whether this element is at the specified MID level.
+	 * 
+	 * @param midLevel
+	 *            The MID level to check against.
+	 * @return True if this element is at the specified MID level, false otherwise. <!-- end-user-doc -->
 	 * @model required="true" midLevelRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == midLevel;'"
 	 * @generated
@@ -307,7 +310,7 @@ public interface ExtendibleElement extends EObject {
 	 *            The type to be validated against.
 	 * @return True if the validation is successful, false otherwise.
 	 * @throws MMINTException
-	 *             If this is a type, or if the type to be validated aganst is an instance.<!-- end-user-doc -->
+	 *             If this is not an instance, or if the type to be validated aganst is not a type.<!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
 	 * @generated
 	 */
@@ -318,7 +321,7 @@ public interface ExtendibleElement extends EObject {
 	 * 
 	 * @return True if the validation is successful, false otherwise.
 	 * @throws MMINTException
-	 *             If this is a type.<!-- end-user-doc -->
+	 *             If this is not an instance.<!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
@@ -332,7 +335,7 @@ public interface ExtendibleElement extends EObject {
 	 *            The editor context of the validation.
 	 * @return A status representing the validation result.
 	 * @throws MMINTException
-	 *             If this is a type.<!-- end-user-doc -->
+	 *             If this is not an instance.<!-- end-user-doc -->
 	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
 	 * @generated
 	 */

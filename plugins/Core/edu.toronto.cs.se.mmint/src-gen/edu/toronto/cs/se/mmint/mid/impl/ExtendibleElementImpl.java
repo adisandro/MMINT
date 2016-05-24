@@ -627,8 +627,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ExtendibleElement getMetatype() {
@@ -636,8 +634,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MID getMIDContainer() {
@@ -645,8 +641,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isLevel(final MIDLevel midLevel) {
@@ -654,8 +648,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isTypesLevel() {
@@ -784,8 +776,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isInstancesLevel() {
@@ -1017,16 +1007,17 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * Adds an instance of this type to an Instance or Workflow MID without registering its id.
+	 * Adds additional info to an instance of this type, without it being contained in an Instance or Workflow MID.
 	 * 
 	 * @param newInstance
-	 *            The new instance to be added.
+	 *            The new instance.
 	 * @param newInstanceId
 	 *            The id of the new instance, null to use an empty id.
 	 * @param newInstanceName
 	 *            The name of the new instance, null to use an empty name.
 	 * @param midLevel
-	 *            The kind of MID the instance is added to (Instance or Workflow).
+	 *            The kind of MID (Instance or Workflow) that would contain the new instance if it were to be contained
+	 *            in one.
 	 * @generated NOT
 	 */
 	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel) {
@@ -1133,8 +1124,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isWorkflowsLevel() {

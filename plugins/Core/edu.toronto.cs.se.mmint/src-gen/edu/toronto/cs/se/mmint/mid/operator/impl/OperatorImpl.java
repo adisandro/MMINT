@@ -1022,9 +1022,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Adds an operator instance of this operator type to an Instance or Workflow MID.
+	 * 
+	 * @param newOperator
+	 *            The new operator to be added.
+	 * @param midLevel
+	 *            The kind of MID (Instance or Workflow) that could contain the new operator, regardless of whether it
+	 *            is or isn't going to be contained in one.
+	 * @param instanceMID
+	 *            An Instance or Workflow MID, null if the operator isn't going to be contained in one.
 	 * @generated NOT
 	 */
-	protected void addInstance(Operator newOperator, MIDLevel midLevel, MID instanceMID) {
+	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, MID instanceMID) {
 
 		super.addBasicInstance(newOperator, null, this.getName(), midLevel);
 		newOperator.setCommutative(false);
@@ -1056,6 +1065,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Deletes this operator instance from an Instance or Workflow MID.
+	 * 
 	 * @generated NOT
 	 */
 	protected void deleteInstance(MID instanceMID) {
@@ -1110,7 +1121,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @return The uri of the properties file.
 	 * @generated NOT
 	 */
-	private String getPropertiesUri(String suffix) {
+	private String getPropertiesUri(@NonNull String suffix) {
 
 		IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
 		if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
@@ -1176,7 +1187,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *             If something went wrong running the conversions.
 	 * @generated NOT
 	 */
-	private Map<String, Model> createInputsByName(EList<OperatorInput> inputs, boolean runConversions, Operator newOperator) throws Exception {
+	private Map<String, Model> createInputsByName(@NonNull EList<OperatorInput> inputs, boolean runConversions, @Nullable Operator newOperator) throws Exception {
 
 		//TODO MMINT[OPERATOR] This is used for two purposes, just to create the map and to populate an operator: split
 		boolean coerced = false;
@@ -1239,7 +1250,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *             If any generic type is an instance instead.
 	 * @generated NOT
 	 */
-	private Map<String, GenericElement> createGenericsByName(EList<OperatorGeneric> generics, Operator newOperator) throws MMINTException {
+	private Map<String, GenericElement> createGenericsByName(@NonNull EList<OperatorGeneric> generics, @NonNull Operator newOperator) throws MMINTException {
 
 		Map<String, GenericElement> genericsByName = new HashMap<>();
 		for (OperatorGeneric generic : generics) {

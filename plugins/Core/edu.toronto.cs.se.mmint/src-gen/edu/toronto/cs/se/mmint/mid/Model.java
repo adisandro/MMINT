@@ -177,28 +177,23 @@ public interface Model extends GenericElement {
 	MID getMIDContainer();
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a subtype of this model type to
-	 * the Type MID.
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this model type to the Type MID.
 	 * 
 	 * @param newModelTypeName
 	 *            The name of the new model type.
 	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model type, null if no constraint is associated.
+	 *            The constraint language of the constraint associated with the new model type, null if no constraint is
+	 *            associated.
 	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model type, null if no constraint is associated.
+	 *            The constraint implementation of the constraint associated with the new model type, null if no
+	 *            constraint is associated.
 	 * @param isMetamodelExtension
-	 *            True if the new model type is extending the supertype's
-	 *            metamodel, false otherwise.
+	 *            True if the new model type is extending the supertype's metamodel, false otherwise.
 	 * @return The created model type.
 	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the new model
-	 *             type is already registered in the Type MID. <!-- end-user-doc
-	 *             -->
-	 * @model required="true"
-	 *        exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        newModelTypeNameRequired="true"
+	 *             If this is not a model type, or if the uri of the new model type is already registered in the Type
+	 *             MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeNameRequired="true"
 	 *        isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
@@ -208,7 +203,7 @@ public interface Model extends GenericElement {
 	 * <!-- begin-user-doc --> Deletes this model type from the Type MID.
 	 * 
 	 * @throws MMINTException
-	 *             If this is a model instance. <!-- end-user-doc -->
+	 *             If this is not a model type. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
@@ -218,8 +213,7 @@ public interface Model extends GenericElement {
 	 * <!-- begin-user-doc --> Gets the EMF package root of this model type.
 	 * 
 	 * @throws MMINTException
-	 *             If this is a model instance, or if the metamodel file can't
-	 *             be accessed. <!-- end-user-doc -->
+	 *             If this is not a model type, or if the metamodel file can't be accessed. <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
@@ -227,15 +221,16 @@ public interface Model extends GenericElement {
 
 	/**
 	 * <!-- begin-user-doc --> Opens the editor associated with this model type.
-	 * @throws Exception If this is a model instance, or if the editor can't be opened.<!-- end-user-doc -->
+	 * 
+	 * @throws Exception
+	 *             If this is not a model type, or if the editor can't be opened.<!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
 	 * @generated
 	 */
 	void openType() throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of
-	 * this model type to an Instance MID.
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to an Instance MID.
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
@@ -243,138 +238,124 @@ public interface Model extends GenericElement {
 	 *            An Instance MID, null if the model isn't going to be contained in one.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is not a model type, or if the uri of the new model
-	 *             instance is already registered in the Instance MID.
-	 *             <!-- end-user-doc -->
+	 *             If this is not a model type, or if the uri of the new model instance is already registered in the
+	 *             Instance MID. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
 	 * @generated
 	 */
 	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model
-	 * instance.
+	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model instance.
 	 * 
 	 * @throws MMINTException
-	 *             If this is a model type, or if there are no editor types
-	 *             registered for this model instance's type.
-	 *             <!-- end-user-doc -->
+	 *             If this is not a model instance, or if there are no editor types registered for this model instance's
+	 *             type. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	Editor createInstanceEditor() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model
-	 * type to an Instance MID, together with an editor for it.
+	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to an Instance MID,
+	 * together with an editor for it.
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it and the editor is not going to be created.
+	 *            An Instance MID, null if the model isn't going to be added to it and the editor is not going to be
+	 *            created.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is a model instance, if the uri of the new model
-	 *             instance is already registered in the Instance MID, or if
-	 *             there are no editor types registered for this model type.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, if the uri of the new model instance is already registered in the
+	 *             Instance MID, or if there are no editor types registered for this model type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
+	 *        instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Imports and possibly adds an already existing model instance of
-	 * this model type to an Instance MID.
+	 * <!-- begin-user-doc --> Imports and possibly adds an already existing model instance of this model type to an
+	 * Instance MID.
 	 * 
 	 * @param modelUri
 	 *            The uri of the model to import.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
+	 *            An Instance MID, null if the model isn't going to be added to it.
 	 * @return The imported model.
 	 * @throws MMINTException
-	 *             If this is a model instance, or if the uri of the imported model
-	 *             instance is already registered in the Instance MID.
-	 *             <!-- end-user-doc -->
+	 *             If this is not a model type, or if the uri of the imported model instance is already registered in
+	 *             the Instance MID. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
 	 * @generated
 	 */
 	Model importInstance(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Imports and possibly adds a model instance of this model
-	 * type to an Instance MID, together with an editor for it.
+	 * <!-- begin-user-doc --> Imports and possibly adds a model instance of this model type to an Instance MID,
+	 * together with an editor for it.
 	 * 
 	 * @param modelUri
 	 *            The uri of the model to import.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it and the editor is not going to be created.
+	 *            An Instance MID, null if the model isn't going to be added to it and the editor is not going to be
+	 *            created.
 	 * @return The imported model.
 	 * @throws MMINTException
-	 *             If this is a model instance, if the uri of the imported model
-	 *             instance is already registered in the Instance MID, or if
-	 *             there are no editor types registered for this model type.
-	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, if the uri of the imported model instance is already registered in the
+	 *             Instance MID, or if there are no editor types registered for this model type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
+	 *        instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
-	 * type to an Instance MID, copying its structure from another model
-	 * instance.
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID, copying its
+	 * structure from another model instance.
 	 * 
 	 * @param origModel
 	 *            The original model instance to be copied into the new one.
 	 * @param newModelName
 	 *            The name of the new model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
+	 *            An Instance MID, null if the model isn't going to be added to it.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is a model instance, if the model file can't be
-	 *             copied, if the uri of the new model instance is already
-	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, if the model file can't be copied, if the uri of the new model instance
+	 *             is already registered in the Instance MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
+	 *        newModelNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model
-	 * type to an Instance MID, together with an editor for it, copying its
-	 * structure from another model instance and
-	 * possibly all diagrams for it.
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID, together with an
+	 * editor for it, copying its structure from another model instance and possibly all diagrams for it.
 	 * 
 	 * @param origModel
 	 *            The original model instance to be copied into the new one.
 	 * @param newModelName
 	 *            The name of the new model.
 	 * @param copyDiagram
-	 *            True if the diagrams for the original model should be copied,
-	 *            false otherwise.
+	 *            True if the diagrams for the original model should be copied, false otherwise.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to
-	 *            it.
+	 *            An Instance MID, null if the model isn't going to be added to it.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is a model instance, if the model file can't be
-	 *             copied, if the uri of the new model instance is already
-	 *             registered in the Instance MID, or if there are no editor
-	 *             types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, if the model file can't be copied, if the uri of the new model instance
+	 *             is already registered in the Instance MID, or if there are no editor types registered for this model
+	 *             type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
+	 *        newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID
-	 * that contains it.
+	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID that contains it.
 	 * 
 	 * @throws MMINTException
 	 *             If this is not a model instance. <!-- end-user-doc -->
@@ -387,8 +368,7 @@ public interface Model extends GenericElement {
 	 * <!-- begin-user-doc --> Gets the EMF object root of this model.
 	 * 
 	 * @throws MMINTException
-	 *             If this is a model type, or if the model file can't be
-	 *             accessed. <!-- end-user-doc -->
+	 *             If this is not a model instance, or if the model file can't be accessed. <!-- end-user-doc -->
 	 * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
@@ -396,7 +376,9 @@ public interface Model extends GenericElement {
 
 	/**
 	 * <!-- begin-user-doc --> Opens the editor associated with this model instance.
-	 * @throws Exception If this is a model type, or if the editor can't be opened.<!-- end-user-doc -->
+	 * 
+	 * @throws Exception
+	 *             If this is not a model instance, or if the editor can't be opened.<!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
 	 * @generated
 	 */
@@ -405,7 +387,7 @@ public interface Model extends GenericElement {
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to a Workflow MID.
 	 * 
-	 * @param newWorkflowModelId
+	 * @param newModelId
 	 *            The id of the new model.
 	 * @param workflowMID
 	 *            A Workflow MID, null if the model isn't going to be contained in one.
@@ -419,8 +401,7 @@ public interface Model extends GenericElement {
 	Model createWorkflowInstance(String newModelId, MID workflowMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Deletes this model instance from the Workflow MID
-	 * that contains it.
+	 * <!-- begin-user-doc --> Deletes this model instance from the Workflow MID that contains it.
 	 * 
 	 * @throws MMINTException
 	 *             If this is not a model instance in a workflow. <!-- end-user-doc -->

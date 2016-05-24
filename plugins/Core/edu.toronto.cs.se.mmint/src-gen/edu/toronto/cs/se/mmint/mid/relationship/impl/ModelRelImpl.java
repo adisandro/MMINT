@@ -30,6 +30,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -626,47 +629,70 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 	}
 
+
 	/**
-	 * Adds a model relationship instance of this model relationship type to an Instance MID, or simply adds additional
-	 * info to the model relationship instance.
+	 * Adds a model relationship instance of this model relationship type to an Instance or Workflow MID, or simply adds
+	 * additional info to the model relationship instance.
 	 * 
 	 * @param newModelRel
 	 *            The new model relationship to be added.
-	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
-	 *            e.g. a a standalone model relationship is in its own file, a plain model relationship is not.
+	 * @param newModelRelId
+	 *            The id of the new model relationship, null if the new model relationship is not in a separate file;
+	 *            e.g. a standalone model relationship is in its own file, a simple model relationship is not.
+	 * @param newModelRelName
+	 *            The name of the new model relationship.
 	 * @param origin
 	 *            The origin of the new model relationship.
+	 * @param fileExtension
+	 *            The file extension of the new model relationship.
+	 * @param midLevel
+	 *            The kind of MID (Instance or Workflow) that could contain the new model relationship, regardless of
+	 *            whether it is or isn't going to be contained in one.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model relationship isn't going to be added to one.
+	 *            An Instance or Workflow MID, null if the model relationship isn't going to be contained in one.
 	 * @throws MMINTException
-	 *             If the uri of the new model relationship is already registered in the Instance MID.
+	 *             If the id of the new model relationship is already registered in the MID.
 	 * @generated NOT
 	 */
 	@Override
-	protected void addInstance(Model newModelRel, String newModelRelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
+	protected void addInstance(@NonNull Model newModelRel, @Nullable String newModelRelId, @NonNull String newModelRelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
-		boolean isFile = newModelRelUri != null;
+		boolean isFile = newModelRelId != null;
 		boolean updateMID = instanceMID != null;
 		boolean isBasic = !updateMID || !isFile;
 
-		String newModelRelName = null;
-		String fileExtension = MMINT.EMPTY_MODEL_FILE_EXTENSION;
-		if (isFile) {
-			newModelRelName = MIDUtils.getFileNameFromUri(newModelRelUri);
-			fileExtension = MIDUtils.getFileExtensionFromUri(newModelRelUri);
-		}
 		if (isBasic) {
-			super.addBasicInstance(newModelRel, newModelRelUri, newModelRelName, MIDLevel.INSTANCES);
+			super.addBasicInstance(newModelRel, newModelRelId, newModelRelName, midLevel);
 		}
 		else {
-			super.addInstance(newModelRel, newModelRelUri, newModelRelName, instanceMID);
+			super.addInstance(newModelRel, newModelRelId, newModelRelName, instanceMID);
 		}
 		if (updateMID) {
 			instanceMID.getModels().add(newModelRel);
 		}
 		newModelRel.setOrigin(origin);
 		newModelRel.setFileExtension(fileExtension);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ModelRel newModelRel = super.createThisEClass();
+		this.addInstance(
+			newModelRel,
+			newModelRelUri,
+			(newModelRelUri == null) ? null : MIDUtils.getFileNameFromUri(newModelRelUri),
+			ModelOrigin.CREATED,
+			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : MIDUtils.getFileExtensionFromUri(newModelRelUri),
+			MIDLevel.INSTANCES,
+			instanceMID);
+
+		return newModelRel;
 	}
 
 	/**
@@ -699,7 +725,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRel = super.createThisBinaryEClass();
-		this.addInstance(newModelRel, newModelRelUri, ModelOrigin.CREATED, instanceMID);
+		this.addInstance(
+			newModelRel,
+			newModelRelUri,
+			(newModelRelUri == null) ? null : MIDUtils.getFileNameFromUri(newModelRelUri),
+			ModelOrigin.CREATED,
+			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : MIDUtils.getFileExtensionFromUri(newModelRelUri),
+			MIDLevel.INSTANCES,
+			instanceMID);
 
 		return newModelRel;
 	}
@@ -727,21 +760,17 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
-	 * Creates and adds a model relationship instance of
-	 * this model relationship type to an Instance MID, copying its structure
-	 * from another model relationship instance (including any MAVO flags).
+	 * Creates and adds a model relationship instance of this model relationship type to an Instance MID, copying its
+	 * structure from another model relationship instance.
 	 * 
 	 * @param origModelRel
-	 *            The original model relationship instance to be copied into the
-	 *            new one.
+	 *            The original model relationship instance to be copied into the new one.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model relationship isn't going to
-	 *            be added to it.
+	 *            An Instance MID, null if the model relationship isn't going to be contained in one.
 	 * @return The created model relationship.
 	 * @throws MMINTException
-	 *             If this is a model relationship instance, or if the uri of
-	 *             the new model relationship is already registered in the
-	 *             Instance MID.
+	 *             If this is not a model relationship type, or if the uri of the new model relationship is already
+	 *             registered in the Instance MID.
 	 * @generated NOT
 	 */
 	@Override
@@ -845,11 +874,21 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	@Override
-	protected void addWorkflowInstance(Model newModelRel, String newModelRelId, ModelOrigin origin, MID workflowMID) throws MMINTException {
+	public Model createWorkflowInstance(String newModelRelId, MID workflowMID) throws MMINTException {
 
-		super.addWorkflowInstance(newModelRel, newModelRelId, origin, workflowMID);
-		newModelRel.setFileExtension(MMINT.EMPTY_MODEL_FILE_EXTENSION);
+		MMINTException.mustBeType(this);
+
+		ModelRel newModelRel = super.createThisEClass();
+		super.addInstance(
+			newModelRel,
+			newModelRelId,
+			newModelRelId,
+			ModelOrigin.CREATED,
+			MMINT.EMPTY_MODEL_FILE_EXTENSION,
+			MIDLevel.WORKFLOWS,
+			workflowMID);
+
+		return newModelRel;
 	}
 
 	/**
@@ -882,7 +921,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRel = super.createThisBinaryEClass();
-		this.addWorkflowInstance(newModelRel, newModelRelId, ModelOrigin.CREATED, workflowMID);
+		super.addInstance(
+			newModelRel,
+			newModelRelId,
+			newModelRelId,
+			ModelOrigin.CREATED,
+			MMINT.EMPTY_MODEL_FILE_EXTENSION,
+			MIDLevel.WORKFLOWS,
+			workflowMID);
 
 		return newModelRel;
 	}
