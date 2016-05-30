@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -132,7 +131,7 @@ public class Reduce extends OperatorImpl {
 				}
 				// get all model rels attached to input models that are not inputs themselves
 				//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
-				Set<ModelRel> connectedModelRels = MIDRegistry.getModelRels(reducedMID).stream()
+				Set<ModelRel> connectedModelRels = reducedMID.getModelRels().stream()
 					.filter(modelRel -> !accumulatorInputModelRels.contains(modelRel))
 					.filter(modelRel -> !Collections.disjoint(
 						accumulatorInputModels,

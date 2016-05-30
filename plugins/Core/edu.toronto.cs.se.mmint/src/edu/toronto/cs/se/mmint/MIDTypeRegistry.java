@@ -92,7 +92,7 @@ public class MIDTypeRegistry {
 	 */
 	public static List<Operator> getOperatorTypes() {
 
-		return MIDRegistry.getOperators(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getOperators();
 	}
 
 	/**
@@ -100,9 +100,9 @@ public class MIDTypeRegistry {
 	 * 
 	 * @return The list of model types in the repository.
 	 */
-	public static EList<Model> getModelTypes() {
+	public static List<Model> getModelTypes() {
 
-		return MIDRegistry.getModels(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getModels();
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class MIDTypeRegistry {
 	 */
 	public static EList<Editor> getEditorTypes() {
 
-		return MIDRegistry.getEditors(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getEditors();
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class MIDTypeRegistry {
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
 
-		return MIDRegistry.getModelRels(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getModelRels();
 	}
 
 	/**
@@ -350,7 +350,7 @@ public class MIDTypeRegistry {
 			String newTgtUri = newTgtModelType.getUri();
 			modelRelTypeUris = new ArrayList<String>();
 
-			for (ModelRel modelRelType : MIDRegistry.getModelRels(typeMID)) {
+			for (ModelRel modelRelType : typeMID.getModelRels()) {
 				// binary can only inherit from root or binary
 				if (MIDTypeHierarchy.isRootType(modelRelType)) {
 					modelRelTypeUris.add(modelRelType.getUri());

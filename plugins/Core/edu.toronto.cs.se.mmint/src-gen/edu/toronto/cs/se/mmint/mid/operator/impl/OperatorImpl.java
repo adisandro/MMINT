@@ -48,7 +48,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -892,7 +891,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
-			for (Model inputModel : MIDRegistry.getModels(inputMID)) {
+			for (Model inputModel : inputMID.getModels()) {
 				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModel);
 				if (operatorInput == null) {
 					continue;

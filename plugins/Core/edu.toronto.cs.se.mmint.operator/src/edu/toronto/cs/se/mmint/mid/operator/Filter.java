@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -60,7 +59,7 @@ public class Filter extends OperatorImpl {
 
 		MID filteredMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		Set<Model> modelsToDelete = new HashSet<>();
-		for (Model model : MIDRegistry.getModels(filteredMID)) {
+		for (Model model : filteredMID.getModels()) {
 			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
 			if ((model instanceof ModelRel) != (filterModelType instanceof ModelRel)) {
 				continue;

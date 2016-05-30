@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -163,5 +164,16 @@ public interface MID extends EObject {
 	 * @generated
 	 */
 	boolean isWorkflowsLevel();
+
+	/**
+	 * <!-- begin-user-doc -->Gets the model rels contained in this MID.
+	 * 
+	 * @return The model rels contained in this MID. <!-- end-user-doc -->
+	 * @model kind="operation" annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelRel> modelRels =
+	 *        new BasicEList<>();\nfor (Model model : mid.getModels()) {\n\tif (model instanceof ModelRel)
+	 *        {\n\t\tmodelRels.add((ModelRel) model);\n\t}\n}\nreturn modelRels;'"
+	 * @generated
+	 */
+	EList<ModelRel> getModelRels();
 
 } // MID

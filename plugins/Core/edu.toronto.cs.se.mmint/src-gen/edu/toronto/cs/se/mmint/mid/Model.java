@@ -193,8 +193,7 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, or if the uri of the new model type is already registered in the Type
 	 *             MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeNameRequired="true"
-	 *        isMetamodelExtensionRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeNameRequired="true" isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
 	Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
@@ -269,8 +268,7 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, if the uri of the new model instance is already registered in the
 	 *             Instance MID, or if there are no editor types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
-	 *        instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
@@ -305,8 +303,7 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, if the uri of the imported model instance is already registered in the
 	 *             Instance MID, or if there are no editor types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
-	 *        instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException;
@@ -325,8 +322,7 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, if the model file can't be copied, if the uri of the new model instance
 	 *             is already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
-	 *        newModelNameRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
@@ -348,8 +344,7 @@ public interface Model extends GenericElement {
 	 *             If this is not a model type, if the model file can't be copied, if the uri of the new model instance
 	 *             is already registered in the Instance MID, or if there are no editor types registered for this model
 	 *             type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
-	 *        newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException;

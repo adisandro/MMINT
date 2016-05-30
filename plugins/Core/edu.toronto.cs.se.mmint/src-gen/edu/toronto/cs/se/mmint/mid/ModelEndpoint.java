@@ -91,8 +91,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @return The created reference to the model type endpoint.
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true"
-	 *        containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createTypeReference(boolean isModifiable, ModelRel containerModelRelType) throws MMINTException;
@@ -116,9 +115,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *             already 2 model type endpoints, if the container model relationship type is binary and there would be
 	 *             an invalid overriding of this model type endpoint, or if the uri of the new model type endpoint is
 	 *             already registered in the Type MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true"
-	 *        containerModelRelTypeRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createSubtype(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
@@ -137,8 +134,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 *             If this is not a model type endpoint, if the container model relationship type is binary and there
 	 *             would be an invalid overriding of this model type endpoint, or if the uri of the new model type
 	 *             endpoint is already registered in the Type MID. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true"
-	 *        newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true"
 	 * @generated
 	 */
 	void replaceSubtype(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException;
@@ -181,8 +177,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint, or if the container model relationship is binary and has
 	 *             already 2 model endpoints. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true"
-	 *        containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
 	ModelEndpointReference createInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
@@ -201,8 +196,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint, or if the feature name is not found in the container operator.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true"
-	 *        containerOperatorRequired="true" containerFeatureNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerOperatorRequired="true" containerFeatureNameRequired="true"
 	 * @generated
 	 */
 	ModelEndpoint createInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException;
@@ -218,8 +212,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint, if a user-defined model endpoint is being replaced with a
 	 *             native one, or if the old model endpoint is contained in an operator. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true"
-	 *        targetModelRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
 	 * @generated
 	 */
 	void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
@@ -250,8 +243,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint, or if the container model relationship is binary and has
 	 *             already 2 model endpoints. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true"
-	 *        containerModelRelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
 	ModelEndpoint createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
@@ -270,8 +262,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint, or if the feature name is not found in the container operator.
 	 *             <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true"
-	 *        containerOperatorRequired="true" containerFeatureNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerOperatorRequired="true" containerFeatureNameRequired="true"
 	 * @generated
 	 */
 	ModelEndpoint createWorkflowInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException;
@@ -287,8 +278,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 	 * @throws MMINTException
 	 *             If this is not a model type endpoint, if a user-defined model endpoint is being replaced with a
 	 *             native one, or if the old model endpoint is contained in an operator. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true"
-	 *        targetModelRequired="true"
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
 	 * @generated
 	 */
 	void replaceWorkflowInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;

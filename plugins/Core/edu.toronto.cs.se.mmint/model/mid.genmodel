@@ -30,6 +30,7 @@
       <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/getModelRels"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>

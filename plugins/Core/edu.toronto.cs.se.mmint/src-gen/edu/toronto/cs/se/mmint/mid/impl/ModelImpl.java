@@ -702,7 +702,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		// delete operator types that use this model type
 		List<Operator> delOperatorTypes = new ArrayList<>();
-		for (Operator operatorType : MIDRegistry.getOperators(typeMID)) {
+		for (Operator operatorType : typeMID.getOperators()) {
 			for (ModelEndpoint inputModelTypeEndpoint : operatorType.getInputs()) {
 				if (inputModelTypeEndpoint.getTargetUri().equals(getUri()) && !delOperatorTypes.contains(operatorType)) {
 					delOperatorTypes.add(operatorType);
@@ -720,7 +720,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		// delete model relationship types that use this model type
 		List<ModelRel> delModelRelTypes = new ArrayList<>();
 		List<ModelEndpoint> delModelTypeEndpoints = new ArrayList<>();
-		for (ModelRel modelRelType : MIDRegistry.getModelRels(typeMID)) {
+		for (ModelRel modelRelType : typeMID.getModelRels()) {
 			for (ModelEndpoint modelTypeEndpoint : modelRelType.getModelEndpoints()) {
 				if (modelTypeEndpoint.getTargetUri().equals(getUri())) {
 					if (modelRelType instanceof BinaryModelRel) {

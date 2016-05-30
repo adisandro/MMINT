@@ -55,7 +55,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -69,7 +69,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,7 +84,28 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return super.canExecute();
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && (
+			!mid.isWorkflowsLevel() ||
+			mid.getOperators().isEmpty()
+		);
+	}
+
+	protected Model doExecuteWorkflowsLevel() throws MMINTException {
+
+		/*TODO MMINT[WORKFLOW]
+		 * Create id generator
+		 * Connect id with label change
+		 * Delete various MIDRegistry.getModels(), etc.
+		 * Add MID.getModelRels()
+		 * Fix this the proper way (undo-redo types only, canExecute, doExecuteWorkflowsLevel, proper switch)
+		 */
+		MID workflowMID = (MID) getElementToEdit();
+		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(workflowMID);
+		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
+		Model newModel = modelType.createWorkflowInstance("TODO", workflowMID);
+
+		return newModel;
 	}
 
 	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
@@ -132,9 +153,20 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Model newElement = (((MID) getElementToEdit()).isInstancesLevel()) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			Model newElement;
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					newElement = doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					newElement = doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

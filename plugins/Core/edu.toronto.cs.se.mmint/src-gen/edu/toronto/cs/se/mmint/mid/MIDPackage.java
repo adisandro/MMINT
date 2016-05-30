@@ -161,13 +161,22 @@ public interface MIDPackage extends EPackage {
 	int MID___IS_WORKFLOWS_LEVEL = 2;
 
 	/**
+	 * The operation id for the '<em>Get Model Rels</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MID___GET_MODEL_RELS = 3;
+
+	/**
 	 * The number of operations of the '<em>MID</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MID_OPERATION_COUNT = 3;
+	int MID_OPERATION_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -2315,6 +2324,16 @@ public interface MIDPackage extends EPackage {
 	EOperation getMID__IsWorkflowsLevel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#getModelRels() <em>Get Model Rels</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Model Rels</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getModelRels()
+	 * @generated
+	 */
+	EOperation getMID__GetModelRels();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To Extendible Element Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3491,6 +3510,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MID___IS_WORKFLOWS_LEVEL = eINSTANCE.getMID__IsWorkflowsLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Model Rels</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MID___GET_MODEL_RELS = eINSTANCE.getMID__GetModelRels();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.

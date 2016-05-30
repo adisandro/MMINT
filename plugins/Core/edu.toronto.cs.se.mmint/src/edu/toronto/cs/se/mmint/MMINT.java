@@ -597,7 +597,7 @@ public class MMINT implements MMINTConstants {
 		for (ExtendibleElement type : typeMID.getExtendibleTable().values()) {
 			createSubtypeHierarchy(type, type, subtypeTable);
 		}
-		for (Model modelType : MIDRegistry.getModels(typeMID)) {
+		for (Model modelType : typeMID.getModels()) {
 			createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelType.getUri()));
 			for (Model modelSubtype : MIDTypeHierarchy.getSubtypes(modelType, typeMID)) {
 				createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelSubtype.getUri()));
@@ -687,7 +687,7 @@ public class MMINT implements MMINTConstants {
 
 		// do model types first
 		//TODO MMINT[MISC] this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		for (Model dynamicModelType : MIDRegistry.getModels(typeMID)) {
+		for (Model dynamicModelType : typeMID.getModels()) {
 			if (
 				!(dynamicModelType instanceof ModelRel) &&
 				dynamicModelType.isDynamic() &&
@@ -696,7 +696,7 @@ public class MMINT implements MMINTConstants {
 				createDynamicModelType(dynamicModelType);
 			}
 		}
-		for (ModelRel dynamicModelRelType : MIDRegistry.getModelRels(typeMID)) {
+		for (ModelRel dynamicModelRelType : typeMID.getModelRels()) {
 			if (
 				dynamicModelRelType.isDynamic() &&
 				MIDTypeRegistry.getType(dynamicModelRelType.getUri()) == null

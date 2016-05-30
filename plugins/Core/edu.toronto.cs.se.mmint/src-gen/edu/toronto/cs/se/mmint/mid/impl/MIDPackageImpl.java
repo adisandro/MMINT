@@ -326,6 +326,15 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMID__GetModelRels() {
+		return midEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEStringToExtendibleElementMap() {
 		return eStringToExtendibleElementMapEClass;
 	}
@@ -1303,6 +1312,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(midEClass, MID___IS_TYPES_LEVEL);
 		createEOperation(midEClass, MID___IS_INSTANCES_LEVEL);
 		createEOperation(midEClass, MID___IS_WORKFLOWS_LEVEL);
+		createEOperation(midEClass, MID___GET_MODEL_RELS);
 
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
 		createEAttribute(eStringToExtendibleElementMapEClass, ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY);
@@ -1480,6 +1490,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEOperation(getMID__IsInstancesLevel(), ecorePackage.getEBoolean(), "isInstancesLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getMID__IsWorkflowsLevel(), ecorePackage.getEBoolean(), "isWorkflowsLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getMID__GetModelRels(), theRelationshipPackage.getModelRel(), "getModelRels", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToExtendibleElementMap_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

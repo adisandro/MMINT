@@ -25,6 +25,11 @@
         <details key="body" value="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="getModelRels" upperBound="-1" eType="#//relationship/ModelRel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;ModelRel> modelRels = new BasicEList&lt;>();&#xA;for (Model model : this.getModels()) {&#xA;&#x9;if (model instanceof ModelRel) {&#xA;&#x9;&#x9;modelRels.add((ModelRel) model);&#xA;&#x9;}&#xA;}&#xA;return modelRels;"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1"
         eType="#//Model" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

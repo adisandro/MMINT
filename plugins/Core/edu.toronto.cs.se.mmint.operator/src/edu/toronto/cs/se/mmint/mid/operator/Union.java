@@ -46,7 +46,7 @@ public class Union extends OperatorImpl {
 		// models only at first pass
 		for (Model inputMIDModel : inputMIDModels) {
 			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
-			for (Model model : MIDRegistry.getModels(inputMID)) {
+			for (Model model : inputMID.getModels()) {
 				if (model instanceof ModelRel
 						|| MIDRegistry.getExtendibleElement(model.getUri(), unionMID) != null) {
 					continue;
@@ -57,7 +57,7 @@ public class Union extends OperatorImpl {
 		// model rels at second pass
 		for (Model inputMIDModel : inputMIDModels) {
 			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
-			for (ModelRel rel : MIDRegistry.getModelRels(inputMID)) {
+			for (ModelRel rel : inputMID.getModelRels()) {
 				rel.getMetatype().copyInstance(rel, rel.getName(), unionMID);
 			}
 		}

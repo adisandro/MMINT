@@ -21,12 +21,13 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -239,6 +240,21 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ModelRel> getModelRels() {
+		EList<ModelRel> modelRels = new BasicEList<>();
+		for (Model model : this.getModels()) {
+			if (model instanceof ModelRel) {
+				modelRels.add((ModelRel) model);
+			}
+		}
+		return modelRels;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -371,6 +387,8 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 				return isInstancesLevel();
 			case MIDPackage.MID___IS_WORKFLOWS_LEVEL:
 				return isWorkflowsLevel();
+			case MIDPackage.MID___GET_MODEL_RELS:
+				return getModelRels();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -155,8 +155,7 @@ public interface ModelRel extends Model {
 	 * @throws MMINTException
 	 *             If this is a not model relationship type, or if the uri of the new model relationship type is already
 	 *             registered in the Type MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true"
-	 *        isMetamodelExtensionRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
 	BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
@@ -252,8 +251,7 @@ public interface ModelRel extends Model {
 	 * @throws MMINTException
 	 *             If this is not a model relationship type, or if the uri of the new model relationship is already
 	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true"
-	 *        endpointTargetModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
 	 * @generated
 	 */
 	BinaryModelRel createBinaryInstanceAndEndpoints(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
@@ -283,8 +281,7 @@ public interface ModelRel extends Model {
 	 * @throws MMINTException
 	 *             If this is not a model relationship type, if no endpoint models are specified, or if the id of the
 	 *             new model relationship is already registered in the Workflow MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true"
-	 *        endpointModelsRequired="true" endpointModelsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true" endpointModelsRequired="true" endpointModelsMany="true"
 	 * @generated
 	 */
 	ModelRel createWorkflowInstanceAndEndpoints(String newModelRelId, EList<Model> endpointModels, MID workflowMID) throws MMINTException;
@@ -322,8 +319,7 @@ public interface ModelRel extends Model {
 	 * @throws MMINTException
 	 *             If this is not a model relationship type, or if the id of the new model relationship is already
 	 *             registered in the Workflow MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true"
-	 *        endpointSourceModelRequired="true" endpointTargetModelRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelIdRequired="true" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
 	 * @generated
 	 */
 	BinaryModelRel createWorkflowBinaryInstanceAndEndpoints(String newModelRelId, Model endpointSourceModel, Model endpointTargetModel, MID workflowMID) throws MMINTException;

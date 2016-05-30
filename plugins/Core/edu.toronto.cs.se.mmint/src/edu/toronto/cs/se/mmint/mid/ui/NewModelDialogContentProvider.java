@@ -65,7 +65,7 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof MID) {
-			List<Model> modelTypes = new ArrayList<Model>();
+			List<Model> modelTypes = new ArrayList<>();
 			for (Model modelType : ((MID) parentElement).getModels()) {
 				if (modelType instanceof ModelRel || modelType.isAbstract()) {
 					continue;

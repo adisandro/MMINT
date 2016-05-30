@@ -16,8 +16,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -50,7 +48,6 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 /**
@@ -224,63 +221,6 @@ public class MIDRegistry {
 		return MIDTypeHierarchy.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}
 
-	/**
-	 * Gets the models in a MID.
-	 * 
-	 * @param mid
-	 *            The MID that contains the models.
-	 * @return The list of models.
-	 */
-	public static EList<Model> getModels(MID mid) {
-
-		return mid.getModels();
-	}
-
-	/**
-	 * Gets the model relationships in a MID.
-	 * 
-	 * @param mid
-	 *            The MID that contains the model relationships.
-	 * @return The list of model relationships.
-	 */
-	public static EList<ModelRel> getModelRels(MID mid) {
-
-		EList<ModelRel> modelRels = new BasicEList<ModelRel>();
-		for (Model model : getModels(mid)) {
-			if (model instanceof ModelRel) {
-				modelRels.add((ModelRel) model);
-			}
-		}
-
-		return modelRels;
-	}
-
-	/**
-	 * Gets the list of registered operators in a MID.
-	 * 
-	 * @param mid
-	 *            The MID.
-	 * 
-	 * @return The list of registered operators.
-	 */
-	public static EList<Operator> getOperators(MID mid) {
-	
-		return mid.getOperators();
-	}
-
-	/**
-	 * Gets the list of registered editors in a MID.
-	 * 
-	 * @param mid
-	 *            The MID.
-	 * 
-	 * @return The list of registered editors.
-	 */
-	public static EList<Editor> getEditors(MID mid) {
-	
-		return mid.getEditors();
-	}
-
 	public static @Nullable Diagram getModelDiagram(@NonNull Model model) {
 
 		Diagram modelDiagram = null;
@@ -296,7 +236,7 @@ public class MIDRegistry {
 
 	public static Set<Operator> getInputOutputOperators(Model model, MID mid) {
 
-		return MIDRegistry.getOperators(mid).stream()
+		return mid.getOperators().stream()
 			.filter(operator ->
 				operator.getInputs().stream()
 					.anyMatch(input -> input.getTarget() == model) ||
@@ -307,7 +247,7 @@ public class MIDRegistry {
 
 	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
 
-		return MIDRegistry.getModelRels(mid).stream()
+		return mid.getModelRels().stream()
 			.filter(modelRel -> modelRel instanceof BinaryModelRel)
 			.filter(modelRel -> modelRel.getModelEndpoints().stream()
 				.anyMatch(endpoint -> endpoint.getTarget() == model))
@@ -317,7 +257,7 @@ public class MIDRegistry {
 
 	public static Set<ModelEndpoint> getConnectedNaryModelRelEndpoints(Model model, MID mid) {
 
-		return MIDRegistry.getModelRels(mid).stream()
+		return mid.getModelRels().stream()
 			.filter(modelRel -> !(modelRel instanceof BinaryModelRel))
 			.flatMap(modelRel -> modelRel.getModelEndpoints().stream())
 			.filter(endpoint -> endpoint.getTarget() == model)

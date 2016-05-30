@@ -89,36 +89,36 @@ public class MIDDialogUtils {
 	 * Shows a tree dialog to create a model choosing from the registered model
 	 * types, and executes its wizard.
 	 * 
-	 * @param typeMID
-	 *            The Type MID.
+	 * @param instanceMID
+	 *            The Instance MID.
 	 * @return The editor for the created model.
 	 * @throws MIDDialogCancellation, MMINTException
 	 *             If the model creation was not completed for any reason.
 	 */
-	public static Editor selectModelTypeToCreate(MID typeMID) throws MIDDialogCancellation, MMINTException {
+	public static Editor selectModelTypeToCreate(MID instanceMID) throws MIDDialogCancellation, MMINTException {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelCreationDialog();
 		Editor editorType = (Editor) openSelectionDialog(dialog, "Create new model", "Choose editor to create model");
-		IStructuredSelection multiModelContainer;
-		String multiModelContainerUri = MIDUtils.replaceLastSegmentInUri(typeMID.eResource().getURI().toPlatformString(true), "");
+		IStructuredSelection midContainer;
+		String midContainerUri = MIDUtils.replaceLastSegmentInUri(instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
-			multiModelContainer = new StructuredSelection(
+			midContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
-					new Path(multiModelContainerUri)
+					new Path(midContainerUri)
 				)
 			);
 		}
 		catch (Exception e) {
-			multiModelContainer = new StructuredSelection(
-				ResourcesPlugin.getWorkspace().getRoot().getProject(multiModelContainerUri)
+			midContainer = new StructuredSelection(
+				ResourcesPlugin.getWorkspace().getRoot().getProject(midContainerUri)
 			);
 		}
-		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(multiModelContainer);
+		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(midContainer);
 		if (wizDialog == null) {
 			throw new MIDDialogCancellation();
 		}
 
-		return editorType.createInstance(wizDialog.getCreatedModelUri(), typeMID);
+		return editorType.createInstance(wizDialog.getCreatedModelUri(), instanceMID);
 	}
 
 	/**
