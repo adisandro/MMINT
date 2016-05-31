@@ -58,11 +58,12 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				getLink().isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType(getLink())
-			);
+		ModelEndpoint modelEndpoint = getLink();
+		return super.canExecute() && (
+			modelEndpoint.isInstancesLevel() ||
+			(modelEndpoint.isWorkflowsLevel() && modelEndpoint.getMIDContainer().getOperators().isEmpty()) ||
+			!MIDTypeHierarchy.isRootType(modelEndpoint)
+		);
 	}
 
 	/**
@@ -74,11 +75,11 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	@Override
 	protected boolean canReorientSource() {
 
-		return
-			super.canReorientSource() && (
-				!getLink().isInstancesLevel() ||
-				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getNewSource(), null, getLink().getTarget())) != null
-			);
+		ModelEndpoint modelEndpoint = getLink();
+		return super.canReorientSource() && (
+			modelEndpoint.isTypesLevel() ||
+			(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getNewSource(), null, modelEndpoint.getTarget())) != null
+		);
 	}
 
 	/**
@@ -89,23 +90,11 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	@Override
 	protected boolean canReorientTarget() {
 
-		return
-			super.canReorientTarget() && (
-				!getLink().isInstancesLevel() ||
-				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints((ModelRel) getLink().eContainer(), getLink(), (Model) getNewTarget())) != null
-			);
-	}
-
-	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
-
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
-		if (isFullDelete) {
-			getLink().deleteInstance(isFullDelete);
-			modelTypeEndpointRef.getObject().createInstance(model, modelRel);
-		}
-		else {
-			modelTypeEndpointRef.getObject().replaceInstance(getLink(), model);
-		}
+		ModelEndpoint modelEndpoint = getLink();
+		return super.canReorientTarget() && (
+			modelEndpoint.isTypesLevel() ||
+			(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints((ModelRel) modelEndpoint.eContainer(), modelEndpoint, (Model) getNewTarget())) != null
+		);
 	}
 
 	protected void doExecuteTypesLevel(ModelRel modelRelType, Model modelType, boolean isFullDelete) throws MMINTException {
@@ -121,6 +110,30 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
+	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		if (isFullDelete) {
+			getLink().deleteInstance(isFullDelete);
+			modelTypeEndpointRef.getObject().createInstance(model, modelRel);
+		}
+		else {
+			modelTypeEndpointRef.getObject().replaceInstance(getLink(), model);
+		}
+	}
+
+	protected void doExecuteWorkflowsLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		if (isFullDelete) {
+			getLink().deleteWorkflowInstance();
+			modelTypeEndpointRef.getObject().createWorkflowInstance(model, modelRel);
+		}
+		else {
+			modelTypeEndpointRef.getObject().replaceWorkflowInstance(getLink(), model);
+		}
+	}
+
 	/**
 	 * Changes the source model of a model relationship.
 	 * 
@@ -132,11 +145,18 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (getLink().isInstancesLevel()) {
-				doExecuteInstancesLevel(getNewSource(), getLink().getTarget(), true);
-			}
-			else {
-				doExecuteTypesLevel(getNewSource(), getLink().getTarget(), true);
+			switch (getLink().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getNewSource(), getLink().getTarget(), true);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getNewSource(), getLink().getTarget(), true);
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel(getNewSource(), getLink().getTarget(), true);
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
@@ -161,11 +181,18 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (getLink().isInstancesLevel()) {
-				doExecuteInstancesLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
-			}
-			else {
-				doExecuteTypesLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
+			switch (getLink().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel((ModelRel) getLink().eContainer(), (Model) getNewTarget(), false);
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());

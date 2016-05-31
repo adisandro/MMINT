@@ -51,7 +51,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -66,7 +66,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -96,6 +96,11 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		((Operator) getElementToDestroy()).deleteInstance();
 	}
 
+	protected void doExecuteWorkflowsLevel() throws MMINTException {
+
+		((Operator) getElementToDestroy()).deleteWorkflowInstance();
+	}
+
 	/**
 	 * Deletes an operator.
 	 * 
@@ -111,11 +116,18 @@ public class OperatorDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (((MID) getElementToEdit()).isInstancesLevel()) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 	
 			return super.doExecuteWithResult(monitor, info);

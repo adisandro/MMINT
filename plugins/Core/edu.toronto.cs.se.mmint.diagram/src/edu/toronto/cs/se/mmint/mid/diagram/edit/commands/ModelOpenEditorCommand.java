@@ -47,14 +47,14 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 		editorFacet = linkStyle;
 	}
 
-	protected void doExecuteInstancesLevel(Model model) throws Exception {
-
-		model.openInstance();
-	}
-
 	protected void doExecuteTypesLevel(Model modelType) throws Exception {
 
 		modelType.openType();
+	}
+
+	protected void doExecuteInstancesLevel(Model model) throws Exception {
+
+		model.openInstance();
 	}
 
 	/**
@@ -74,11 +74,18 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
 		try {
 			Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
-			if (model.isInstancesLevel()) {
-				doExecuteInstancesLevel(model);
-			}
-			else {
-				doExecuteTypesLevel(model);
+			switch (model.getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(model);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(model);
+					break;
+				case WORKFLOWS:
+					// do nothing
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult();

@@ -59,11 +59,11 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				getLink().isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType(getLink().getObject())
-			);
+		BinaryMappingReference mappingRef = getLink();
+		return super.canExecute() && (
+			mappingRef.isInstancesLevel() ||
+			(mappingRef.isTypesLevel() && !MIDTypeHierarchy.isRootType(mappingRef.getObject()))
+		);
 	}
 
 	/**
@@ -75,15 +75,14 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = getLink().isInstancesLevel();
-
+		BinaryMappingReference mappingRef = getLink();
 		return
 			super.canReorientSource() && ((
-				instance &&
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(0), getNewSource())) != null
+				mappingRef.isInstancesLevel() &&
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(mappingRef, mappingRef.getModelElemEndpointRefs().get(0), getNewSource())) != null
 			) || (
-				!instance &&
-				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), getNewSource(), null)
+				mappingRef.isTypesLevel() &&
+				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(mappingRef, getNewSource(), null)
 			));
 	}
 
@@ -96,15 +95,14 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = getLink().isInstancesLevel();
-
+		BinaryMappingReference mappingRef = getLink();
 		return
 			super.canReorientTarget() && ((
-				instance &&
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(1), getNewTarget())) != null
+				mappingRef.isInstancesLevel() &&
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(mappingRef, mappingRef.getModelElemEndpointRefs().get(1), getNewTarget())) != null
 			) || (
-				!instance &&
-				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), null, getNewTarget())
+				mappingRef.isTypesLevel() &&
+				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(mappingRef, null, getNewTarget())
 			));
 	}
 
@@ -178,11 +176,17 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (getLink().isInstancesLevel()) {
-				doExecuteInstancesLevel(getLink(), getNewSource(), true);
-			}
-			else {
-				doExecuteTypesLevel(getLink(), getNewSource(), true);
+			switch (getLink().getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getLink(), getNewSource(), true);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getLink(), getNewSource(), true);
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());

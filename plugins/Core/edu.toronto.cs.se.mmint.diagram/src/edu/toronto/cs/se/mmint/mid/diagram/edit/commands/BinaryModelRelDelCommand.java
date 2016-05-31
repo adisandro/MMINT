@@ -52,7 +52,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -67,7 +67,7 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -83,11 +83,18 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				((MID) getElementToEdit()).isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType((BinaryModelRel) getElementToDestroy())
-			);
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && (
+			mid.isInstancesLevel() ||
+			(mid.isWorkflowsLevel() && mid.getOperators().isEmpty()) ||
+			!MIDTypeHierarchy.isRootType((BinaryModelRel) getElementToDestroy())
+		);
+	}
+
+	protected void doExecuteTypesLevel() throws MMINTException {
+
+		((BinaryModelRel) getElementToDestroy()).deleteType();
+		MMINT.createTypeHierarchy((MID) getElementToEdit());
 	}
 
 	protected void doExecuteInstancesLevel() throws MMINTException {
@@ -95,10 +102,9 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 		((BinaryModelRel) getElementToDestroy()).deleteInstance();
 	}
 
-	protected void doExecuteTypesLevel() throws MMINTException {
+	protected void doExecuteWorkflowsLevel() throws MMINTException {
 
-		((BinaryModelRel) getElementToDestroy()).deleteType();
-		MMINT.createTypeHierarchy((MID) getElementToEdit());
+		((BinaryModelRel) getElementToDestroy()).deleteWorkflowInstance();
 	}
 
 	/**
@@ -116,11 +122,18 @@ public class BinaryModelRelDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (((MID) getElementToEdit()).isInstancesLevel()) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return super.doExecuteWithResult(monitor, info);

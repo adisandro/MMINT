@@ -51,7 +51,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -65,7 +65,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -80,16 +80,11 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return super.canExecute();
-	}
-
-	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
-		MID instanceMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(null, null);
-		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, instanceMID);
-
-		return newModelRel;
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && (
+			!mid.isWorkflowsLevel() ||
+			mid.getOperators().isEmpty()
+		);
 	}
 
 	protected ModelRel doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
@@ -102,6 +97,24 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelRelType;
+	}
+
+	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		MID instanceMID = (MID) getElementToEdit();
+		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(null, null);
+		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, instanceMID);
+
+		return newModelRel;
+	}
+
+	protected ModelRel doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
+
+		MID workflowMID = (MID) getElementToEdit();
+		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(null, null);
+		ModelRel newModelRel = (ModelRel) modelRelType.createWorkflowInstance("TODO", workflowMID);
+
+		return newModelRel;
 	}
 
 	/**
@@ -119,9 +132,20 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelRel newElement = (((MID) getElementToEdit()).isInstancesLevel()) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			ModelRel newElement;
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					newElement = this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

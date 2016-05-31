@@ -91,34 +91,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		);
 	}
 
-	protected Model doExecuteWorkflowsLevel() throws MMINTException {
-
-		/*TODO MMINT[WORKFLOW]
-		 * Create id generator
-		 * Connect id with label change
-		 * Delete various MIDRegistry.getModels(), etc.
-		 * Add MID.getModelRels()
-		 * Fix this the proper way (undo-redo types only, canExecute, doExecuteWorkflowsLevel, proper switch)
-		 */
-		MID workflowMID = (MID) getElementToEdit();
-		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(workflowMID);
-		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
-		Model newModel = modelType.createWorkflowInstance("TODO", workflowMID);
-
-		return newModel;
-	}
-
-	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
-		MID instanceMID = (MID) getElementToEdit();
-		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(instanceMID);
-		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
-		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
-		newModel.getEditors().add(newEditor);
-
-		return newModel;
-	}
-
 	protected Model doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID typeMID = (MID) getElementToEdit();
@@ -135,6 +107,34 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelType;
+	}
+
+	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		MID instanceMID = (MID) getElementToEdit();
+		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(instanceMID);
+		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
+		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
+		newModel.getEditors().add(newEditor);
+
+		return newModel;
+	}
+
+	protected Model doExecuteWorkflowsLevel() throws MMINTException {
+
+		/*TODO MMINT[WORKFLOW]
+		 * Create id generator
+		 * Connect id with label change
+		 * Delete various MIDRegistry.getModels(), etc.
+		 * Add MID.getModelRels()
+		 * Fix this the proper way (undo-redo types only, canExecute, doExecuteWorkflowsLevel, proper switch)
+		 */
+		MID workflowMID = (MID) getElementToEdit();
+		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(workflowMID);
+		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
+		Model newModel = modelType.createWorkflowInstance("TODO", workflowMID);
+
+		return newModel;
 	}
 
 	/**
@@ -156,13 +156,13 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 			Model newElement;
 			switch (((MID) getElementToEdit()).getLevel()) {
 				case TYPES:
-					newElement = doExecuteTypesLevel();
+					newElement = this.doExecuteTypesLevel();
 					break;
 				case INSTANCES:
-					newElement = doExecuteInstancesLevel();
+					newElement = this.doExecuteInstancesLevel();
 					break;
 				case WORKFLOWS:
-					newElement = doExecuteWorkflowsLevel();
+					newElement = this.doExecuteWorkflowsLevel();
 					break;
 				default:
 					throw new MMINTException("The MID level is missing");

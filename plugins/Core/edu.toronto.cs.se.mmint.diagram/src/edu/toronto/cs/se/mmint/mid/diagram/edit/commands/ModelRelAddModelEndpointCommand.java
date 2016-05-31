@@ -28,6 +28,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
@@ -65,25 +66,18 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = getSource().isInstancesLevel();
-
-		return
-			super.canExecute() && ((
-				instance &&
+		ModelRel modelRel = getSource();
+		return super.canExecute() && (((
+					modelRel.isInstancesLevel() ||
+					(modelRel.isWorkflowsLevel() && modelRel.getMIDContainer().getOperators().isEmpty())
+				) &&
 				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getSource(), null, (Model) getTarget())) != null
 			) || (
-				!instance &&
+				modelRel.isTypesLevel() &&
 				!MIDTypeHierarchy.isRootType(getSource()) &&
 				(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget()))
-			));
-	}
-
-	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
-		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstance((Model) getTarget(), getSource());
-
-		return newModelEndpointRef.getObject();
+			)
+		);
 	}
 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
@@ -95,6 +89,22 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 		// no need to init type hierarchy, no need for undo/redo
 
 		return newModelTypeEndpointRef.getObject();
+	}
+
+	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstance((Model) getTarget(), getSource());
+
+		return newModelEndpointRef.getObject();
+	}
+
+	protected ModelEndpoint doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpoint newModelEndpoint = modelTypeEndpointRef.getObject().createWorkflowInstance((Model) getTarget(), getSource());
+
+		return newModelEndpoint;
 	}
 
 	/**
@@ -115,9 +125,20 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelEndpoint newElement = (getSource().isInstancesLevel()) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			ModelEndpoint newElement;
+			switch (getSource().getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					newElement = this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 
