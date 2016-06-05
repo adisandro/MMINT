@@ -86,6 +86,49 @@ public class MIDDialogUtils {
 	}
 
 	/**
+	 * Shows a tree dialog to select a model type choosing from the registered
+	 * model types.
+	 * 
+	 * @return The choosen model type.
+	 * @throws MIDDialogCancellation
+	 *             If the selection was not completed for any reason.
+	 */
+	public static Model selectModelTypeToExtend(MID typeMID) throws MIDDialogCancellation {
+
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelTypeCreationDialog(typeMID);
+		String title = "Create new light model type";
+		String message = "Choose model supertype";
+
+		return (Model) openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	/**
+	 * Shows a tree dialog to select a model relationship type choosing from the
+	 * registered model relationship types.
+	 * 
+	 * @return The choosen model relationship type.
+	 * @throws MIDDialogCancellation
+	 *             If the selection was not completed for any reason.
+	 */
+	public static ModelRel selectModelRelTypeToExtend(MID typeMID, Model srcModelType, Model tgtModelType) throws MIDDialogCancellation {
+
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, typeMID);
+		String title = "Create new light model relationship type";
+		String message = "Choose model relationship supertype";
+
+		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
+
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
+		String title = "Create new light link type";
+		String message = "Choose link supertype";
+	
+		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	/**
 	 * Shows a tree dialog to create a model choosing from the registered model
 	 * types, and executes its wizard.
 	 * 
@@ -98,7 +141,9 @@ public class MIDDialogUtils {
 	public static Editor selectModelTypeToCreate(MID instanceMID) throws MIDDialogCancellation, MMINTException {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelCreationDialog();
-		Editor editorType = (Editor) openSelectionDialog(dialog, "Create new model", "Choose editor to create model");
+		String title = "Create new model";
+		String message = "Choose editor to create model";
+		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
 		String midContainerUri = MIDUtils.replaceLastSegmentInUri(instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
@@ -141,15 +186,6 @@ public class MIDDialogUtils {
 		return modelFile.getFullPath().toString();
 	}
 
-	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MIDDialogCancellation {
-
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
-		String title = "Create new model endpoint";
-		String message = "Choose " + modelEndpointId + "model type endpoint role";
-
-		return (ModelEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
-	}
-
 	public static ModelRel selectModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MIDDialogCancellation {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelCreationDialog(srcModel, tgtModel);
@@ -159,38 +195,13 @@ public class MIDDialogUtils {
 		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	/**
-	 * Shows a tree dialog to select a model type choosing from the registered
-	 * model types.
-	 * 
-	 * @return The choosen model type.
-	 * @throws MIDDialogCancellation
-	 *             If the selection was not completed for any reason.
-	 */
-	public static Model selectModelTypeToExtend(MID typeMID) throws MIDDialogCancellation {
+	public static ModelEndpointReference selectModelTypeEndpointToCreate(ModelRel modelRel, List<String> modelTypeEndpointUris, String modelEndpointId) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelTypeCreationDialog(typeMID);
-		String title = "Create new light model type";
-		String message = "Choose model supertype";
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelEndpointCreationDialog(modelRel, modelTypeEndpointUris);
+		String title = "Create new model endpoint";
+		String message = "Choose " + modelEndpointId + "model type endpoint role";
 
-		return (Model) openSelectionDialogWithDefault(dialog, title, message);
-	}
-
-	/**
-	 * Shows a tree dialog to select a model relationship type choosing from the
-	 * registered model relationship types.
-	 * 
-	 * @return The choosen model relationship type.
-	 * @throws MIDDialogCancellation
-	 *             If the selection was not completed for any reason.
-	 */
-	public static ModelRel selectModelRelTypeToExtend(MID typeMID, Model srcModelType, Model tgtModelType) throws MIDDialogCancellation {
-
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelRelTypeCreationDialog(srcModelType, tgtModelType, typeMID);
-		String title = "Create new light model relationship type";
-		String message = "Choose model relationship supertype";
-
-		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
+		return (ModelEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static MappingReference selectMappingTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
@@ -199,15 +210,6 @@ public class MIDDialogUtils {
 		String title = "Create new link";
 		String message = "Choose link type";
 
-		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
-	}
-
-	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
-
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
-		String title = "Create new light link type";
-		String message = "Choose link supertype";
-	
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -227,6 +229,24 @@ public class MIDDialogUtils {
 		String message = "Choose generic type <" + genericSuperTypeEndpoint.getName() + ">";
 	
 		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	public static Model selectWorkflowModelTypeToCreate(MID workflowMID) throws MIDDialogCancellation, MMINTException {
+
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getWorkflowModelCreationDialog();
+		String title = "Create new initial workflow model";
+		String message = "Choose model type";
+
+		return (Model) openSelectionDialog(dialog, title, message);
+	}
+
+	public static ModelRel selectWorkflowModelRelTypeToCreate(Model srcModel, Model tgtModel) throws MIDDialogCancellation {
+
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getWorkflowModelRelCreationDialog(srcModel, tgtModel);
+		String title = "Create new initial workflow model relationship";
+		String message = "Choose model relationship type";
+
+		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static boolean getBooleanInput(String dialogTitle, String dialogMessage) {

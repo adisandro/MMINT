@@ -106,15 +106,6 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 			));
 	}
 
-	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
-
-		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
-			containerMappingRef.getModelElemEndpointRefs().get(0) :
-			containerMappingRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
-	}
-
 	protected void doExecuteTypesLevel(BinaryMappingReference containerMappingTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
 
 		boolean wasOverriding = false;
@@ -165,6 +156,15 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
+	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
+
+		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
+			containerMappingRef.getModelElemEndpointRefs().get(0) :
+			containerMappingRef.getModelElemEndpointRefs().get(1);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
+	}
+
 	/**
 	 * Changes the source model element reference of a binary link.
 	 * 
@@ -211,11 +211,17 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (getLink().isInstancesLevel()) {
-				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
-			}
-			else {
-				doExecuteTypesLevel(getLink(), getNewTarget(), false);
+			switch (getLink().getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getLink(), getNewTarget(), false);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getLink(), getNewTarget(), false);
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());

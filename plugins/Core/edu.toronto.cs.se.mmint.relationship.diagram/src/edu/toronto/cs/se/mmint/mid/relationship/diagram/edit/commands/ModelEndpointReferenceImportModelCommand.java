@@ -53,14 +53,14 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 	@Override
 	public boolean canExecute() {
 
-		ModelRel owner = (ModelRel) getElementToEdit();
-		if (!owner.isInstancesLevel()) {
+		ModelRel modelRel = (ModelRel) getElementToEdit();
+		if (!modelRel.isInstancesLevel()) {
 			return false;
 		}
-		if (owner instanceof BinaryModelRel) {
+		if (modelRel instanceof BinaryModelRel) {
 			// a binary relationship which is not standalone can be only modified through the mid diagram
 			// a binary relationship which is standalone must have at most 2 models
-			if (owner.eContainer() != null || owner.getModelEndpoints().size() >= 2) {
+			if (modelRel.getMIDContainer() != null || modelRel.getModelEndpoints().size() >= 2) {
 				return false;
 			}
 		}
@@ -122,7 +122,18 @@ public class ModelEndpointReferenceImportModelCommand extends ModelEndpointRefer
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelEndpointReference newElement = doExecuteInstancesLevel();
+			ModelEndpointReference newElement;
+			switch (((ModelRel) getElementToEdit()).getLevel()) {
+				case TYPES:
+					throw new MMINTException("The TYPES level is not allowed");
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

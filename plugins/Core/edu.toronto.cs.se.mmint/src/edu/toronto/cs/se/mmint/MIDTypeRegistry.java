@@ -63,6 +63,7 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelEndpointDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
+import edu.toronto.cs.se.mmint.mid.ui.NewWorkflowModelDialogContentProvider;
 
 /**
  * The registry for querying the types.
@@ -211,99 +212,6 @@ public class MIDTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog that shows all model types in the repository and their
-	 * editor types, in order to create a new model.
-	 * 
-	 * @return The tree dialog to create a new model.
-	 */
-	public static MIDTreeSelectionDialog getModelCreationDialog() {
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
-			MMINT.cachedTypeMID
-		);
-		dialog.setValidator(new NewModelDialogSelectionValidator());
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all model files in the workspace, in order
-	 * to import an existing model.
-	 * 
-	 * @return The tree dialog to import an existing model.
-	 */
-	public static MIDTreeSelectionDialog getModelImportDialog() {
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new WorkbenchLabelProvider(),
-			new BaseWorkbenchContentProvider(),
-			ResourcesPlugin.getWorkspace().getRoot()
-		);
-		dialog.addFilter(new ImportModelDialogFilter());
-		dialog.setValidator(new ImportModelDialogSelectionValidator());
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all model relationship types in the
-	 * repository, in order to create a new model relationship.
-	 * 
-	 * @param targetSrcModel
-	 *            The model that is going to be the target of the source model
-	 *            endpoint, null if the model relationship to be created is not
-	 *            binary.
-	 * @param targetTgtModel
-	 *            The model that is going to be the target of the target model
-	 *            endpoint, null if the model relationship to be created is not
-	 *            binary.
-	 * @return The tree dialog to create a new model relationship.
-	 */
-	public static MIDTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelRelDialogContentProvider(MIDConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
-			MMINT.cachedTypeMID
-		);
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all model type endpoints in a model
-	 * relationship type, in order to create a new model endpoint.
-	 * 
-	 * @param modelRel
-	 *            The model relationship that will contain the model endpoint to
-	 *            be created.
-	 * @param modelTypeEndpointUris
-	 *            The list of allowed uris of the model type endpoints, can be
-	 *            null if all are allowed.
-	 * @return The tree dialog to create a new model endpoint.
-	 */
-	public static MIDTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
-			modelRel.getMetatype()
-		);
-
-		return dialog;
-	}
-
-	/**
 	 * Gets a tree dialog that shows all model types in the Type MID, in order
 	 * to create a new "light" model type.
 	 * 
@@ -379,63 +287,6 @@ public class MIDTypeRegistry {
 			new MIDDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
 			typeMID
-		);
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all mapping types in a model relationship
-	 * type, in order to create a new mapping and a reference to it.
-	 * 
-	 * @param targetSrcModelElemRef
-	 *            The reference to the model element that is going to be the
-	 *            target of the source model element endpoint, null if the mapping
-	 *            to be created is not binary.
-	 * @param targetTgtModelElemRef
-	 *            The reference to the model element that is going to be the
-	 *            target of the target model element endpoint, null if the mapping
-	 *            to be created is not binary.
-	 * @param modelRel
-	 *            The model relationship that will contain the mapping to be
-	 *            created.
-	 * @return The tree dialog to create a new mapping.
-	 */
-	public static MIDTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
-
-		ModelRel modelRelType = modelRel.getMetatype();
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewMappingReferenceDialogContentProvider(MIDConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
-			modelRelType
-		);
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all model element type endpoints in a mapping
-	 * type, in order to create a new model element endpoint.
-	 * 
-	 * @param mappingRef
-	 *            The reference to the mapping that will contain the model element
-	 *            endpoint to be created.
-	 * @param modelElemTypeEndpointUris
-	 *            The list of allowed uris of the model element type endpoints,
-	 *            can be null if all are allowed.
-	 * @return The tree dialog to create a new model element endpoint.
-	 */
-	public static MIDTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
-
-		Mapping mappingType = mappingRef.getObject().getMetatype();
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
-			mappingType
 		);
 
 		return dialog;
@@ -531,6 +382,174 @@ public class MIDTypeRegistry {
 		);
 
 		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model types in the repository and their
+	 * editor types, in order to create a new model.
+	 * 
+	 * @return The tree dialog to create a new model.
+	 */
+	public static MIDTreeSelectionDialog getModelCreationDialog() {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
+			MMINT.cachedTypeMID
+		);
+		dialog.setValidator(new NewModelDialogSelectionValidator());
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model files in the workspace, in order
+	 * to import an existing model.
+	 * 
+	 * @return The tree dialog to import an existing model.
+	 */
+	public static MIDTreeSelectionDialog getModelImportDialog() {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new WorkbenchLabelProvider(),
+			new BaseWorkbenchContentProvider(),
+			ResourcesPlugin.getWorkspace().getRoot()
+		);
+		dialog.addFilter(new ImportModelDialogFilter());
+		dialog.setValidator(new ImportModelDialogSelectionValidator());
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model relationship types in the
+	 * repository, in order to create a new model relationship.
+	 * 
+	 * @param targetSrcModel
+	 *            The model that is going to be the target of the source model
+	 *            endpoint, null if the model relationship to be created is not
+	 *            binary.
+	 * @param targetTgtModel
+	 *            The model that is going to be the target of the target model
+	 *            endpoint, null if the model relationship to be created is not
+	 *            binary.
+	 * @return The tree dialog to create a new model relationship.
+	 */
+	public static MIDTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewModelRelDialogContentProvider(MIDConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
+			MMINT.cachedTypeMID
+		);
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model type endpoints in a model
+	 * relationship type, in order to create a new model endpoint.
+	 * 
+	 * @param modelRel
+	 *            The model relationship that will contain the model endpoint to
+	 *            be created.
+	 * @param modelTypeEndpointUris
+	 *            The list of allowed uris of the model type endpoints, can be
+	 *            null if all are allowed.
+	 * @return The tree dialog to create a new model endpoint.
+	 */
+	public static MIDTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
+			modelRel.getMetatype()
+		);
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all mapping types in a model relationship
+	 * type, in order to create a new mapping and a reference to it.
+	 * 
+	 * @param targetSrcModelElemRef
+	 *            The reference to the model element that is going to be the
+	 *            target of the source model element endpoint, null if the mapping
+	 *            to be created is not binary.
+	 * @param targetTgtModelElemRef
+	 *            The reference to the model element that is going to be the
+	 *            target of the target model element endpoint, null if the mapping
+	 *            to be created is not binary.
+	 * @param modelRel
+	 *            The model relationship that will contain the mapping to be
+	 *            created.
+	 * @return The tree dialog to create a new mapping.
+	 */
+	public static MIDTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
+
+		ModelRel modelRelType = modelRel.getMetatype();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewMappingReferenceDialogContentProvider(MIDConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
+			modelRelType
+		);
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model element type endpoints in a mapping
+	 * type, in order to create a new model element endpoint.
+	 * 
+	 * @param mappingRef
+	 *            The reference to the mapping that will contain the model element
+	 *            endpoint to be created.
+	 * @param modelElemTypeEndpointUris
+	 *            The list of allowed uris of the model element type endpoints,
+	 *            can be null if all are allowed.
+	 * @return The tree dialog to create a new model element endpoint.
+	 */
+	public static MIDTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
+
+		Mapping mappingType = mappingRef.getObject().getMetatype();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
+			mappingType
+		);
+
+		return dialog;
+	}
+
+	public static MIDTreeSelectionDialog getWorkflowModelCreationDialog() {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewWorkflowModelDialogContentProvider(MMINT.cachedTypeMID),
+			MMINT.cachedTypeMID
+		);
+
+		return dialog;
+	}
+
+	public static MIDTreeSelectionDialog getWorkflowModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
+
+		return MIDTypeRegistry.getModelRelCreationDialog(targetSrcModel, targetTgtModel);
 	}
 
 	/**

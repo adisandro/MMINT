@@ -40,16 +40,11 @@ public class MappingReferenceRemoveModelElementEndpointReferenceCommand extends 
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				((MappingReference) getElementToEdit()).isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject())
-			);
-	}
-
-	protected void doExecuteInstancesLevel() throws MMINTException {
-
-		((ModelElementEndpointReference) getElementToDestroy()).deleteInstanceAndReference(true);
+		MappingReference mappingRef = (MappingReference) getElementToEdit();
+		return super.canExecute() && (
+			mappingRef.isInstancesLevel() ||
+			(mappingRef.isTypesLevel() && !MIDTypeHierarchy.isRootType(((ModelElementEndpointReference) getElementToDestroy()).getObject()))
+		);
 	}
 
 	protected void doExecuteTypesLevel() throws MMINTException {
@@ -58,15 +53,26 @@ public class MappingReferenceRemoveModelElementEndpointReferenceCommand extends 
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		((ModelElementEndpointReference) getElementToDestroy()).deleteInstanceAndReference(true);
+	}
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (((MappingReference) getElementToEdit()).isInstancesLevel()) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((MappingReference) getElementToEdit()).getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return super.doExecuteWithResult(monitor, info);

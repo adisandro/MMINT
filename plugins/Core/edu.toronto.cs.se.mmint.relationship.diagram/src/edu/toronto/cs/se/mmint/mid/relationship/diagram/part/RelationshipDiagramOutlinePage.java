@@ -93,9 +93,18 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		//TODO MMINT[MODELREL] with two rel types open on the same metamodels, only one will show them
 		ResourceSet resourceSet;
 		try {
-			resourceSet = (modelRel.isInstancesLevel()) ?
-				modelRel.getOutlineResourceInstances() :
-				modelRel.getOutlineResourceTypes();
+			switch (modelRel.getLevel()) {
+				case TYPES:
+					resourceSet = modelRel.getOutlineResourceTypes();
+					break;
+				case INSTANCES:
+					resourceSet = modelRel.getOutlineResourceInstances();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 		}
 		catch (MMINTException e) {
 			resourceSet = new ResourceSetImpl();

@@ -52,8 +52,8 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = (MID) getElementToEdit().eContainer();
-		if (!mid.isInstancesLevel()) {
+		MID mid = ((ModelRel) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -67,8 +67,8 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = (MID) getElementToEdit().eContainer();
-		if (!mid.isInstancesLevel()) {
+		MID mid = ((ModelRel) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -78,16 +78,11 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				((ModelRel) getElementToEdit()).isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType(((MappingReference) getElementToDestroy()).getObject())
-			);
-	}
-
-	protected void doExecuteInstancesLevel() throws MMINTException {
-
-		((MappingReference) getElementToDestroy()).deleteInstanceAndReference();
+		ModelRel modelRel = (ModelRel) getElementToEdit();
+		return super.canExecute() && (
+			modelRel.isInstancesLevel() ||
+			(modelRel.isTypesLevel() && !MIDTypeHierarchy.isRootType(((MappingReference) getElementToDestroy()).getObject()))
+		);
 	}
 
 	protected void doExecuteTypesLevel() throws MMINTException {
@@ -96,15 +91,26 @@ public class MappingReferenceDelCommand extends DestroyElementCommand {
 		MMINT.createTypeHierarchy(((ModelRel) getElementToEdit()).getMIDContainer());
 	}
 
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		((MappingReference) getElementToDestroy()).deleteInstanceAndReference();
+	}
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (((ModelRel) getElementToEdit()).isInstancesLevel()) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((ModelRel) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 	
 			return super.doExecuteWithResult(monitor, info);

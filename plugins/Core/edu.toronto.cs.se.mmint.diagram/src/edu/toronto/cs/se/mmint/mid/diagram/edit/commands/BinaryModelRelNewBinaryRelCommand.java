@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -157,8 +158,9 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID workflowMID = getContainer();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(getSource(), getTarget());
-		BinaryModelRel newModelRel = modelRelType.createWorkflowBinaryInstance("TODO", workflowMID);
+		ModelRel modelRelType = MIDDialogUtils.selectWorkflowModelRelTypeToCreate(getSource(), getTarget());
+		String newModelRelId = MIDRegistry.getNextWorkflowID(workflowMID);
+		BinaryModelRel newModelRel = modelRelType.createWorkflowBinaryInstance(newModelRelId, workflowMID);
 
 		List<String> modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");

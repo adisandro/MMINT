@@ -54,8 +54,8 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = (MID) getElementToEdit().eContainer();
-		if (!mid.isInstancesLevel()) {
+		MID mid = ((ModelRel) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -69,8 +69,8 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = (MID) getElementToEdit().eContainer();
-		if (!mid.isInstancesLevel()) {
+		MID mid = ((ModelRel) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -85,20 +85,11 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				((ModelRel) getElementToEdit()).isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType((ModelRel) getElementToEdit())
-			);
-	}
-
-	protected MappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, null, null);
-		MappingReference newMappingRef = mappingTypeRef.getObject().createInstanceAndReference(false, modelRel);
-
-		return newMappingRef;
+		return super.canExecute() && (
+			modelRel.isInstancesLevel() ||
+			(modelRel.isTypesLevel() && !MIDTypeHierarchy.isRootType((ModelRel) getElementToEdit()))
+		);
 	}
 
 	protected MappingReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
@@ -116,6 +107,15 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 		return newMappingTypeRef;
 	}
 
+	protected MappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelRel modelRel = (ModelRel) getElementToEdit();
+		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, null, null);
+		MappingReference newMappingRef = mappingTypeRef.getObject().createInstanceAndReference(false, modelRel);
+
+		return newMappingRef;
+	}
+
 	/**
 	 * Creates a new link.
 	 * 
@@ -131,9 +131,19 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			MappingReference newElement = (((ModelRel) getElementToEdit()).isInstancesLevel()) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			MappingReference newElement;
+			switch (((ModelRel) getElementToEdit()).getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 	

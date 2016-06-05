@@ -26,6 +26,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
@@ -123,16 +124,15 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/*TODO MMINT[WORKFLOW]
-		 * Create id generator
 		 * Connect id with label change
-		 * Delete various MIDRegistry.getModels(), etc.
-		 * Add MID.getModelRels()
-		 * Fix this the proper way (undo-redo types only, canExecute, doExecuteWorkflowsLevel, proper switch)
+		 * Create operator start api + connect it with right menu click
+		 * Add a way to create a workflow MID
+		 * Double-check what should happen when an operator is deleted, here and in the instances
 		 */
 		MID workflowMID = (MID) getElementToEdit();
-		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(workflowMID);
-		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
-		Model newModel = modelType.createWorkflowInstance("TODO", workflowMID);
+		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);
+		String newModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+		Model newModel = modelType.createWorkflowInstance(newModelId, workflowMID);
 
 		return newModel;
 	}

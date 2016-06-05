@@ -67,7 +67,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -82,7 +82,7 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -99,14 +99,6 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	public boolean canExecute() {
 
 		return super.canExecute();
-	}
-
-	protected ModelElementReference doExecuteInstancesLevel() throws MMINTException {
-
-		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
-		ModelElementReference newModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(dropObj.getModelObject(), null);
-
-		return newModelElemRef;
 	}
 
 	protected ModelElementReference doExecuteTypesLevel() throws MMINTException {
@@ -153,6 +145,14 @@ supertypes:
 		return newModelElemTypeRef;
 	}
 
+	protected ModelElementReference doExecuteInstancesLevel() throws MMINTException {
+
+		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
+		ModelElementReference newModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(dropObj.getModelObject(), null);
+
+		return newModelElemRef;
+	}
+
 	/**
 	 * Creates a new model element reference from a dropped object.
 	 * 
@@ -168,9 +168,19 @@ supertypes:
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelElementReference newElement = (((ModelRel) getElementToEdit().eContainer()).isInstancesLevel()) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			ModelElementReference newElement;
+			switch (((ModelEndpointReference) getElementToEdit()).getObject().getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -65,25 +66,15 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = getSource().isInstancesLevel();
-
-		return
-			super.canExecute() && ((
-				instance &&
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), null, getTarget())) != null
-			) || (
-				!instance &&
-				!MIDTypeHierarchy.isRootType(getSource().getObject()) &&
-				(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget().getObject()))
-			));
-	}
-
-	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
-		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), getSource());
-
-		return newModelElemEndpointRef;
+		MappingReference mappingRef = getSource();
+		return super.canExecute() && ((
+			mappingRef.isInstancesLevel() &&
+			(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getSource(), null, getTarget())) != null
+		) || (
+			mappingRef.isTypesLevel() &&
+			!MIDTypeHierarchy.isRootType(getSource().getObject()) &&
+			(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget().getObject()))
+		));
 	}
 
 	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
@@ -97,6 +88,14 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 		return newModelElemTypeEndpointRef;
 	}
 
+	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
+		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), getSource());
+
+		return newModelElemEndpointRef;
+	}
+
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -104,9 +103,19 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelElementEndpointReference newElement = (getSource().isInstancesLevel()) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			ModelElementEndpointReference newElement;
+			switch (getSource().getObject().getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

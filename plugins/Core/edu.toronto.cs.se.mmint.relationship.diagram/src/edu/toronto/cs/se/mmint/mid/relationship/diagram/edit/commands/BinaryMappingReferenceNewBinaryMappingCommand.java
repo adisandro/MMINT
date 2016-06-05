@@ -67,8 +67,8 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = (MID) getContainer().eContainer();
-		if (!mid.isInstancesLevel()) {
+		MID mid = ((ModelRel) getContainer()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -82,8 +82,8 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = (MID) getContainer().eContainer();
-		if (!mid.isInstancesLevel()) {
+		MID mid = ((ModelRel) getContainer()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -98,27 +98,11 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				getContainer().isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType(getContainer())
-			);
-	}
-
-	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
 		ModelRel modelRel = getContainer();
-		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
-		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingTypeRef.getObject().createInstanceAndReference(true, modelRel);
-
-		List<String> modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newMappingRef);
-		modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getTarget());
-		modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newMappingRef);
-
-		return newMappingRef;
+		return super.canExecute() && (
+			modelRel.isInstancesLevel() ||
+			(modelRel.isTypesLevel() && !MIDTypeHierarchy.isRootType(getContainer()))
+		);
 	}
 
 	protected BinaryMappingReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
@@ -152,6 +136,22 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 		return newMappingTypeRef;
 	}
 
+	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelRel modelRel = getContainer();
+		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
+		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingTypeRef.getObject().createInstanceAndReference(true, modelRel);
+
+		List<String> modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newMappingRef);
+		modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getTarget());
+		modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newMappingRef);
+
+		return newMappingRef;
+	}
+
 	/**
 	 * Creates a new binary link.
 	 * 
@@ -170,9 +170,19 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 			throw new ExecutionException("Invalid arguments in create link command");
 		}
 		try {
-			BinaryMappingReference newElement = getContainer().isInstancesLevel() ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			BinaryMappingReference newElement;
+			switch (getContainer().getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

@@ -52,7 +52,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -67,7 +67,7 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
-		if (!mid.isInstancesLevel()) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -80,26 +80,32 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		return super.canExecute();
 	}
 
-	protected void doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws MMINTException {
-
-		((ModelElementReference) getElementToDestroy()).deleteInstanceReference();
-	}
-
-	protected void doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws MMINTException {
+	protected void doExecuteTypesLevel() throws MMINTException {
 
 		((ModelElementReference) getElementToDestroy()).deleteTypeReference();
 		MMINT.createTypeHierarchy(((ModelEndpointReference) getElementToEdit()).getMIDContainer());
+	}
+
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		((ModelElementReference) getElementToDestroy()).deleteInstanceReference();
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (((ModelEndpointReference) getElementToEdit()).isInstancesLevel()) {
-				doExecuteInstancesLevel(monitor, info);
-			}
-			else {
-				doExecuteTypesLevel(monitor, info);
+			switch (((ModelEndpointReference) getElementToEdit()).getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return super.doExecuteWithResult(monitor, info);

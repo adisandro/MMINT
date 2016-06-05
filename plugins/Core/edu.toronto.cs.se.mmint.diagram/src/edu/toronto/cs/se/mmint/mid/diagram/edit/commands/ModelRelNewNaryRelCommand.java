@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -111,8 +112,9 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID workflowMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(null, null);
-		ModelRel newModelRel = (ModelRel) modelRelType.createWorkflowInstance("TODO", workflowMID);
+		ModelRel modelRelType = MIDDialogUtils.selectWorkflowModelRelTypeToCreate(null, null);
+		String newModelRelId = MIDRegistry.getNextWorkflowID(workflowMID);
+		ModelRel newModelRel = (ModelRel) modelRelType.createWorkflowInstance(newModelRelId, workflowMID);
 
 		return newModelRel;
 	}

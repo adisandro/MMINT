@@ -59,11 +59,11 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				getLink().isInstancesLevel() ||
-				!MIDTypeHierarchy.isRootType(getLink().getObject())
-			);
+		ModelElementEndpointReference modelElemEndpointRef = getLink();
+		return super.canExecute() && (
+			modelElemEndpointRef.isInstancesLevel() ||
+			(modelElemEndpointRef.isTypesLevel() && !MIDTypeHierarchy.isRootType(getLink().getObject()))
+		);
 	}
 
 	/**
@@ -74,11 +74,11 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	@Override
 	protected boolean canReorientSource() {
 
-		return
-			super.canReorientSource() && (
-				!getLink().isInstancesLevel() ||
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), null, getLink().getModelElemRef())) != null
-			);
+		ModelElementEndpointReference modelElemEndpointRef = getLink();
+		return super.canReorientSource() && (
+			modelElemEndpointRef.isTypesLevel() ||
+			(modelElemEndpointRef.isInstancesLevel() && (modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getNewSource(), null, getLink().getModelElemRef())) != null)
+		);
 	}
 
 	/**
@@ -90,23 +90,11 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 	@Override
 	protected boolean canReorientTarget() {
 
-		return
-			super.canReorientTarget() && (
-				!getLink().isInstancesLevel() ||
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences((MappingReference) getLink().eContainer(), getLink(), getNewTarget())) != null
-			);
-	}
-
-	protected void doExecuteInstancesLevel(MappingReference mappingRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
-
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(mappingRef, modelElemTypeEndpointUris);
-		if (isFullDelete) {
-			getLink().deleteInstanceAndReference(isFullDelete);
-			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, mappingRef);
-		}
-		else {
-			modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), modelElemRef);
-		}
+		ModelElementEndpointReference modelElemEndpointRef = getLink();
+		return super.canReorientTarget() && (
+			modelElemEndpointRef.isTypesLevel() ||
+			(modelElemEndpointRef.isInstancesLevel() && (modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences((MappingReference) getLink().eContainer(), getLink(), getNewTarget())) != null)
+		);
 	}
 
 	protected void doExecuteTypesLevel(MappingReference mappingTypeRef, ModelElementReference modelElemTypeRef, boolean isFullDelete) throws MMINTException {
@@ -122,15 +110,33 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
+	protected void doExecuteInstancesLevel(MappingReference mappingRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
+
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(mappingRef, modelElemTypeEndpointUris);
+		if (isFullDelete) {
+			getLink().deleteInstanceAndReference(isFullDelete);
+			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, mappingRef);
+		}
+		else {
+			modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(getLink(), modelElemRef);
+		}
+	}
+
 	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (getLink().isInstancesLevel()) {
-				doExecuteInstancesLevel(getNewSource(), getLink().getModelElemRef(), true);
-			}
-			else {
-				doExecuteTypesLevel(getNewSource(), getLink().getModelElemRef(), true);
+			switch (getLink().getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getNewSource(), getLink().getModelElemRef(), true);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getNewSource(), getLink().getModelElemRef(), true);
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());

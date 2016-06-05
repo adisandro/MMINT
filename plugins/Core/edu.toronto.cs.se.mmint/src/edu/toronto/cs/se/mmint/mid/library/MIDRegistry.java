@@ -14,8 +14,8 @@ package edu.toronto.cs.se.mmint.mid.library;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -262,6 +262,17 @@ public class MIDRegistry {
 			.flatMap(modelRel -> modelRel.getModelEndpoints().stream())
 			.filter(endpoint -> endpoint.getTarget() == model)
 			.collect(Collectors.toSet());
+	}
+
+	public static String getNextWorkflowID(MID workflowMID) {
+
+		final String WORKFLOW_ID_PREFIX = "w";
+		TreeSet<String> x = new TreeSet<>(workflowMID.getExtendibleTable().keySet());
+		String lastID = x.floor(WORKFLOW_ID_PREFIX + "9999");
+		int numID = (lastID == null || !lastID.startsWith(WORKFLOW_ID_PREFIX)) ? -1 : Integer.parseInt(lastID.substring(1));
+		String nextID = WORKFLOW_ID_PREFIX + (numID + 1);
+
+		return nextID;
 	}
 
 }
