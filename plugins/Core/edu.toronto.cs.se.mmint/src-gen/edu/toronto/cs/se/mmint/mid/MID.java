@@ -169,9 +169,8 @@ public interface MID extends EObject {
 	 * <!-- begin-user-doc -->Gets the model rels contained in this MID.
 	 * 
 	 * @return The model rels contained in this MID. <!-- end-user-doc -->
-	 * @model kind="operation" annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelRel> modelRels =
-	 *        new BasicEList<>();\nfor (Model model : mid.getModels()) {\n\tif (model instanceof ModelRel)
-	 *        {\n\t\tmodelRels.add((ModelRel) model);\n\t}\n}\nreturn modelRels;'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelRel> modelRels = new BasicEList<>();\nfor (Model model : this.getModels()) {\n\tif (model instanceof ModelRel) {\n\t\tmodelRels.add((ModelRel) model);\n\t}\n}\nreturn modelRels;'"
 	 * @generated
 	 */
 	EList<ModelRel> getModelRels();

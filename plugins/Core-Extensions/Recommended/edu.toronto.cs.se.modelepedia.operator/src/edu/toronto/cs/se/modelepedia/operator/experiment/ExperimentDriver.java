@@ -467,7 +467,7 @@ public class ExperimentDriver extends OperatorImpl {
 		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
 			operatorType.setPreviousOperator(operatorWorkflow.get(operatorWorkflow.size()-1));
 		}
-		Operator operator = operatorType.start(inputs, inputProperties, generics, outputMIDsByName, null);
+		Operator operator = operatorType.startInstance(inputs, inputProperties, generics, outputMIDsByName, null);
 		if (operatorType instanceof RandomOperator) { // random state passing
 			state[experimentIndex] = ((RandomOperator) operator).getState();
 			((RandomOperator) operatorType).setState(null);

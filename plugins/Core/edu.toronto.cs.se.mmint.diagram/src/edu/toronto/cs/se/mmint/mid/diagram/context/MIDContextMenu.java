@@ -47,6 +47,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 /**
  * The handler for the dynamic construction of a context menu for all
@@ -85,19 +86,19 @@ public class MIDContextMenu extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doAddConstraint = true, doCheckConstraint = true, doRefineByConstraint = true, doCopy = true, doModelepedia = true, doCoherence = true;
+		boolean doAddConstraint = true, doCast = true, doCheckConstraint = true, doCoherence = true, doCopy = true, doModelepedia = true, doOperator = true, doRefineByConstraint = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
+			doAddConstraint = false;
 			doCast = false;
 			doCheckConstraint = false;
-			doCopy = false;
-			doAddConstraint = false;
-			doModelepedia = false;
 			doCoherence = false;
+			doCopy = false;
+			doModelepedia = false;
 			doRefineByConstraint = false;
 		}
 
 		// get model selection
-		MID instanceMID = null;
+		MID mid = null;
 		EList<Model> selectedModels = new BasicEList<>();
 		ITextAwareEditPart label = null;
 		List<GraphicalEditPart> editParts = new ArrayList<>();
@@ -115,31 +116,37 @@ public class MIDContextMenu extends ContributionItem {
 			GraphicalEditPart editPart = (GraphicalEditPart) object;
 			EObject editPartElement = ((View) editPart.getModel()).getElement();
 			if (editPartElement instanceof MID) {
+				doAddConstraint = false;
 				doCast = false;
 				doCheckConstraint = false;
-				doCopy = false;
-				doAddConstraint = false;
-				doModelepedia = false;
 				doCoherence = false;
+				doCopy = false;
+				doModelepedia = false;
 				doRefineByConstraint = false;
 				if (((MID) editPartElement).isInstancesLevel()) { // instances only
-					instanceMID = (MID) editPartElement;
+					mid = (MID) editPartElement;
 				}
 			}
 			else {
 				Model model = (Model) editPartElement;
-				if (!model.isInstancesLevel()) { // instances only
-					doOperator = false;
+				// filter actions based on the MID level
+				if (model.isTypesLevel() || model.isWorkflowsLevel()) {
 					doCast = false;
 					doCheckConstraint = false;
-					doCopy = false;
 					doCoherence = false;
+					doCopy = false;
 					doRefineByConstraint = false;
+				}
+				if (model.isTypesLevel()) {
+					doOperator = false;
+				}
+				if (model.isWorkflowsLevel()) {
+					doAddConstraint = false;
 				}
 				if (model instanceof ModelRel) { // actions that don't work on model relationships
 					doCopy = false;
 				}
-				if (doOperator || doCast || doCheckConstraint || doCopy || doAddConstraint || doModelepedia || doCoherence || doRefineByConstraint) {
+				if (doAddConstraint || doCast || doCheckConstraint || doCoherence || doCopy || doModelepedia || doOperator || doRefineByConstraint) {
 					selectedModels.add(model);
 				}
 				if (doCast) {
@@ -158,7 +165,7 @@ public class MIDContextMenu extends ContributionItem {
 				return;
 			}
 		}
-		if (instanceMID == null && selectedModels.isEmpty()) { // no relevant edit parts selected
+		if (mid == null && selectedModels.isEmpty()) { // no relevant edit parts selected
 			return;
 		}
 
@@ -170,10 +177,15 @@ public class MIDContextMenu extends ContributionItem {
 		MMINT.storeActiveInstanceMIDFile();
 		// operator
 		if (doOperator) {
-			if (instanceMID == null) {
-				instanceMID = selectedModels.get(0).getMIDContainer();
+			if (mid == null) {
+				mid = selectedModels.get(0).getMIDContainer();
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
+			String polyPreference = null;
+			if (mid.isWorkflowsLevel()) { // disable polymorphism at the workflow level
+				polyPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED);
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, "false");
+			}
 			List<Operator> executableOperators = new ArrayList<>();
 			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
 			for (Operator operatorType : MIDTypeRegistry.getOperatorTypes()) {
@@ -188,6 +200,9 @@ public class MIDContextMenu extends ContributionItem {
 				catch (MMINTException e) {
 					continue;
 				}
+			}
+			if (polyPreference != null) { // restore polymorphism preference
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, polyPreference);
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {
@@ -206,7 +221,7 @@ public class MIDContextMenu extends ContributionItem {
 							MMINT_MENU_OPERATOR_LABEL,
 							executableOperator,
 							executableOperatorsInputs.get(i),
-							instanceMID
+							mid
 						)
 					);
 				}

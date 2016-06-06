@@ -437,7 +437,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Start__EList_Properties_EList_Map_MID() {
+	public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
 		return operatorEClass.getEOperations().get(17);
 	}
 
@@ -457,6 +457,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 */
 	public EOperation getOperator__DeleteWorkflowInstance() {
 		return operatorEClass.getEOperations().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+		return operatorEClass.getEOperations().get(20);
 	}
 
 	/**
@@ -720,9 +729,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_INPUT_PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___RUN__MAP_MAP_MAP);
-		createEOperation(operatorEClass, OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID);
+		createEOperation(operatorEClass, OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID);
 		createEOperation(operatorEClass, OPERATOR___CREATE_WORKFLOW_INSTANCE__MID);
 		createEOperation(operatorEClass, OPERATOR___DELETE_WORKFLOW_INSTANCE);
+		createEOperation(operatorEClass, OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -901,7 +911,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		op = initEOperation(getOperator__Start__EList_Properties_EList_Map_MID(), this.getOperator(), "start", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__StartInstance__EList_Properties_EList_Map_MID(), this.getOperator(), "startInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getProperties(), "inputProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -920,6 +930,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		op = initEOperation(getOperator__DeleteWorkflowInstance(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__StartWorkflowInstance__EList_EList_MID(), this.getOperator(), "startWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -138,7 +138,7 @@ public class Map extends OperatorImpl {
 		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
 			try {
 				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
-				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.start(
+				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.startInstance(
 						mapperInputs,
 						null,
 						mapperGenerics,

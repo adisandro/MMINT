@@ -92,7 +92,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (inputs == null) { // use default encoder
 			inputs = ecore2smt.checkAllowedInputs(inputModels);
 		}
-		encoder = (EcoreMAVOToSMTLIB) encoder.start(inputs, null, new BasicEList<>(), new HashMap<>(), null);
+		encoder = (EcoreMAVOToSMTLIB) encoder.startInstance(inputs, null, new BasicEList<>(), new HashMap<>(), null);
 		encoder.cleanup();
 
 		return encoder.getZ3MAVOModelParser();

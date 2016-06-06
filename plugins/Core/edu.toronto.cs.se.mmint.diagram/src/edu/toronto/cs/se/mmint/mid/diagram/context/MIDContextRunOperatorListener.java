@@ -42,21 +42,21 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	private Operator operatorType;
 	private EList<OperatorInput> operatorInputs;
-	private MID instanceMID;
+	private MID mid;
 
-	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull Operator operatorType, @NonNull EList<OperatorInput> operatorInputs, @NonNull MID instanceMID) {
+	public MIDContextRunOperatorListener(@NonNull String menuLabel, @NonNull Operator operatorType, @NonNull EList<OperatorInput> operatorInputs, @NonNull MID mid) {
 
 		super(menuLabel);
 		this.operatorType = operatorType;
 		this.operatorInputs = operatorInputs;
-		this.instanceMID = instanceMID;
+		this.mid = mid;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
 		AbstractTransactionalCommand command = new MIDContextRunOperatorCommand(
-			TransactionUtil.getEditingDomain(instanceMID),
+			TransactionUtil.getEditingDomain(mid),
 			menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
@@ -75,9 +75,20 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(operatorType, instanceMID);
-				operatorType.start(operatorInputs, null, operatorGenerics, outputMIDsByName, instanceMID);
-				WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
+				Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(operatorType, mid);
+				switch (mid.getLevel()) {
+					case TYPES:
+						throw new MMINTException("The TYPES level is not allowed");
+					case INSTANCES:
+						operatorType.startInstance(operatorInputs, null, operatorGenerics, outputMIDsByName, mid);
+						WorkspaceSynchronizer.getFile(mid.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
+						break;
+					case WORKFLOWS:
+						operatorType.startWorkflowInstance(operatorInputs, operatorGenerics, mid);
+						break;
+					default:
+						throw new MMINTException("The MID level is missing");
+				}
 				return CommandResult.newOKCommandResult();
 			}
 			catch (MIDDialogCancellation e) {

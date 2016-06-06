@@ -470,7 +470,7 @@ public interface Operator extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Operator start(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
+	Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to a Workflow MID.
@@ -494,5 +494,13 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	void deleteWorkflowInstance() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" genericsMany="true" workflowMIDRequired="true"
+	 * @generated
+	 */
+	Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws Exception;
 
 } // Operator

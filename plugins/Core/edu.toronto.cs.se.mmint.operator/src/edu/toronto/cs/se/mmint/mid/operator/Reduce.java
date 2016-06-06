@@ -142,7 +142,7 @@ public class Reduce extends OperatorImpl {
 				// run the ACCUMULATOR operator
 				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
 					accumulatorInputs);
-				accumulatorOutputsByName = accumulatorOperatorType.start(
+				accumulatorOutputsByName = accumulatorOperatorType.startInstance(
 						accumulatorInputs,
 						null,
 						accumulatorGenerics,
@@ -169,7 +169,7 @@ public class Reduce extends OperatorImpl {
 							if (compositionInputs == null) {
 								continue;
 							}
-							Map<String, Model> compositionOutputsByName = compositionOperatorType.start(
+							Map<String, Model> compositionOutputsByName = compositionOperatorType.startInstance(
 									compositionInputs,
 									null,
 									new BasicEList<>(),
@@ -203,7 +203,7 @@ public class Reduce extends OperatorImpl {
 							if (mergeInputs == null) {
 								continue;
 							}
-							mergeOperatorType.start(mergeInputs, null, new BasicEList<>(), mergeOutputMIDsByName, null);
+							mergeOperatorType.startInstance(mergeInputs, null, new BasicEList<>(), mergeOutputMIDsByName, null);
 							composedModelRelsToDelete.add(composedModelRel1);
 							composedModelRelsToDelete.add(composedModelRel2);
 						}

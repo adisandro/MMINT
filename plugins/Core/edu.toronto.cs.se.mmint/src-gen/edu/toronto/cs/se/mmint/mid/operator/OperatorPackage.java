@@ -495,13 +495,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
-	 * The operation id for the '<em>Start</em>' operation.
+	 * The operation id for the '<em>Start Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
+	int OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -522,13 +522,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
 	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
+
+	/**
 	 * The number of operations of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -946,13 +955,13 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
 
 	/**
-	 * The operation id for the '<em>Start</em>' operation.
+	 * The operation id for the '<em>Start Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID;
+	int CONVERSION_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -971,6 +980,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1433,13 +1451,13 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
 
 	/**
-	 * The operation id for the '<em>Start</em>' operation.
+	 * The operation id for the '<em>Start Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID;
+	int RANDOM_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1458,6 +1476,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -2180,14 +2207,14 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__Run__Map_Map_Map();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Start</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startInstance(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Start Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Start</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
+	 * @return the meta object for the '<em>Start Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#startInstance(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getOperator__Start__EList_Properties_EList_Map_MID();
+	EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance</em>}' operation.
@@ -2208,6 +2235,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__DeleteWorkflowInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Start Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getOperator__StartWorkflowInstance__EList_EList_MID();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
@@ -2684,12 +2721,12 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___RUN__MAP_MAP_MAP = eINSTANCE.getOperator__Run__Map_Map_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Start</b></em>' operation.
+		 * The meta object literal for the '<em><b>Start Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = eINSTANCE.getOperator__Start__EList_Properties_EList_Map_MID();
+		EOperation OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = eINSTANCE.getOperator__StartInstance__EList_Properties_EList_Map_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
@@ -2706,6 +2743,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getOperator__DeleteWorkflowInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = eINSTANCE.getOperator__StartWorkflowInstance__EList_EList_MID();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.

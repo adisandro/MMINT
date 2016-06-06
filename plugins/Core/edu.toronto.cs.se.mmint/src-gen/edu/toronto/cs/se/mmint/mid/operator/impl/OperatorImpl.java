@@ -48,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -685,9 +686,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID:
+			case OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID:
 				try {
-					return start((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+					return startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -703,6 +704,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				try {
 					deleteWorkflowInstance();
 					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID:
+				try {
+					return startWorkflowInstance((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -1265,7 +1273,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Operator start(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
+	public Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
@@ -1337,6 +1345,30 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeWorkflow(this);
 
 		this.deleteInstance(this.getMIDContainer());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		Operator newOperator = this.createInstance(workflowMID);
+		// inputs
+		//TODO MMINT[WORKFLOW] May need generics to create the name
+		Map<String, Model> inputsByName = this.createInputsByName(inputs, false, newOperator);
+		// outputs
+		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
+			outputModelTypeEndpoint.createInstance(
+				outputModel,
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+		}
+
+		return newOperator;
 	}
 
 } //OperatorImpl

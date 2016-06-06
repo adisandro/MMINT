@@ -570,17 +570,22 @@
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/genericsByName"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/run/outputMIDsByName"/>
         </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/start">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/inputs"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/inputProperties"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/generics"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/outputMIDsByName"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/start/instanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/startInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/inputProperties"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/outputMIDsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createWorkflowInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstance/workflowMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteWorkflowInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/startWorkflowInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/workflowMID"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
         <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperator/deleteType"/>

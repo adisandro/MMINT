@@ -125,7 +125,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/*TODO MMINT[WORKFLOW]
 		 * Connect id with label change
-		 * Create operator start api + connect it with right menu click
+		 * Document and double-check operator start api
 		 * Add a way to create a workflow MID
 		 * Double-check what should happen when an operator is deleted, here and in the instances
 		 */
