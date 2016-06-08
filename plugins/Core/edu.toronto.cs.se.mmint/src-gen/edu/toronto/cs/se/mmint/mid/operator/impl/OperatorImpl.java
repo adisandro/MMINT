@@ -383,35 +383,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getMetatype() {
-		ExtendibleElement metatype = super.getMetatype();
-		return (metatype == null) ? null : (Operator) metatype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operator getSupertype() {
-		ExtendibleElement supertype = super.getSupertype();
-		return (supertype == null) ? null : (Operator) supertype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MID getMIDContainer() {
-		return (MID) this.eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -757,6 +728,35 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operator getMetatype() {
+		ExtendibleElement metatype = super.getMetatype();
+		return (metatype == null) ? null : (Operator) metatype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operator getSupertype() {
+		ExtendibleElement supertype = super.getSupertype();
+		return (supertype == null) ? null : (Operator) supertype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
 	}
 
 	/**
@@ -1348,21 +1348,43 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * @throws MMINTException 
 	 * @generated NOT
 	 */
-	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws Exception {
+	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
-		Operator newOperator = this.createInstance(workflowMID);
-		// inputs
-		//TODO MMINT[WORKFLOW] May need generics to create the name
-		Map<String, Model> inputsByName = this.createInputsByName(inputs, false, newOperator);
+		Set<String> inputNames = new HashSet<>();
+		Operator newOperator = this.createWorkflowInstance(workflowMID);
+		// generics and inputs
+		for (OperatorGeneric generic : generics) {
+			GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
+			GenericElement genericType = generic.getGeneric();
+			genericSuperTypeEndpoint.createWorkflowInstance(genericType, newOperator);
+		}
+		for (OperatorInput input : inputs) {
+			ModelEndpoint modelEndpoint = input.getModelTypeEndpoint().createWorkflowInstance(
+				input.getModel(),
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+			String inputName = input.getModelTypeEndpoint().getName();
+			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
+				int i = 0;
+				while (inputNames.contains(inputName + i) != false) {
+					i++;
+				}
+				inputName += i;
+				modelEndpoint.setName(inputName);
+			}
+			inputNames.add(inputName);
+		}
 		// outputs
+		//TODO MMINT[WORKFLOW] Vararg output support?
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
 			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
 			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
-			outputModelTypeEndpoint.createInstance(
+			outputModelTypeEndpoint.createWorkflowInstance(
 				outputModel,
 				newOperator,
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());

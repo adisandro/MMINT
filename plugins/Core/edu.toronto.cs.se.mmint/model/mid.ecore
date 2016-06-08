@@ -1343,7 +1343,7 @@
       </eOperations>
       <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
       <eOperations name="startWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
-          eExceptions="#//operator/Exception">
+          eExceptions="#//MMINTException">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
         <eParameters name="generics" upperBound="-1" eType="#//operator/OperatorGeneric"/>
         <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
@@ -1441,6 +1441,11 @@
         </eAnnotations>
       </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//operator/GenericEndpoint"
+          eExceptions="#//MMINTException">
+        <eParameters name="targetGeneric" lowerBound="1" eType="#//GenericElement"/>
+        <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>
+      </eOperations>
+      <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//operator/GenericEndpoint"
           eExceptions="#//MMINTException">
         <eParameters name="targetGeneric" lowerBound="1" eType="#//GenericElement"/>
         <eParameters name="containerOperator" lowerBound="1" eType="#//operator/Operator"/>

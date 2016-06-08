@@ -449,8 +449,8 @@ public interface Operator extends GenericElement {
 
 	/**
 	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models,
-	 * creates an operator instance, invokes {@link #readInputProperties(Properties)}, {@link #init()},
-	 * {@link #run(Map, Map, Map)}, records the execution time.
+	 * creates an operator instance, invokes {@link #readInputProperties(Properties)}, {@link #run(Map, Map, Map)},
+	 * records the execution time.
 	 * 
 	 * @param inputs
 	 *            A list of inputs to run the operator instance, including necessary conversions.
@@ -466,7 +466,8 @@ public interface Operator extends GenericElement {
 	 *            it.
 	 * @return The executed operator instance.
 	 * @throws Exception
-	 *             If something went wrong starting the operator. <!-- end-user-doc -->
+	 *             If this is not an operator type, or if something went wrong starting the operator.
+	 *             <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
@@ -496,11 +497,21 @@ public interface Operator extends GenericElement {
 	void deleteWorkflowInstance() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" genericsMany="true" workflowMIDRequired="true"
+	 * <!-- begin-user-doc --> Creates an instance of this operator type in a workflow, connects it to its inputs and
+	 * creates its outputs.
+	 * 
+	 * @param inputs
+	 *            A list of inputs to create the operator instance.
+	 * @param generics
+	 *            A list of generics to create the operator instance.
+	 * @param workflowMID
+	 *            A Workflow, null if the operator isn't going to be contained in one.
+	 * @return The created operator instance.
+	 * @throws MMINTException
+	 *             If this is not an operator type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true" genericsMany="true" workflowMIDRequired="true"
 	 * @generated
 	 */
-	Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws Exception;
+	Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException;
 
 } // Operator

@@ -502,7 +502,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
-	 * Adds a model instance endpoint of this model type endpoint to an Instance MID (variant for operators).
+	 * Adds a model instance endpoint of this model type endpoint to an Instance or Workflow MID (variant for operators).
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.

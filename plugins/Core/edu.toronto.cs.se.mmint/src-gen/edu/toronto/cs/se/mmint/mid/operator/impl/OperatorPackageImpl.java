@@ -581,6 +581,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator() {
+		return genericEndpointEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOperatorInput() {
 		return operatorInputEClass;
 	}
@@ -748,6 +757,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_METATYPE);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR);
+		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR);
 
 		operatorInputEClass = createEClass(OPERATOR_INPUT);
 		createEReference(operatorInputEClass, OPERATOR_INPUT__MODEL);
@@ -935,7 +945,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, this.getException());
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -961,6 +971,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEOperation(getGenericEndpoint__GetMetatype(), this.getGenericEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getGenericEndpoint__CreateInstance__GenericElement_Operator(), this.getGenericEndpoint(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getGenericElement(), "targetGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperator(), "containerOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator(), this.getGenericEndpoint(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getGenericElement(), "targetGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperator(), "containerOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());

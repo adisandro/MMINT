@@ -1785,13 +1785,22 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Generic Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.
@@ -2369,6 +2378,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getGenericEndpoint__CreateInstance__GenericElement_Operator();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.GenericElement, edu.toronto.cs.se.mmint.mid.operator.Operator) <em>Create Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.GenericElement, edu.toronto.cs.se.mmint.mid.operator.Operator)
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput <em>Input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2853,6 +2872,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateInstance__GenericElement_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.

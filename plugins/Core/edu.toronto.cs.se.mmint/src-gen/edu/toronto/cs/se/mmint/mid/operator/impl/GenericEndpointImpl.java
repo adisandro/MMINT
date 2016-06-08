@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -189,6 +188,13 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR:
+				try {
+					return createWorkflowInstance((GenericElement)arguments.get(0), (Operator)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -268,7 +274,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	}
 
 	/**
-	 * Adds a generic instance endpoint of this generic type endpoint to an Instance MID.
+	 * Adds a generic instance endpoint of this generic type endpoint to an Instance or Workflow MID.
 	 * 
 	 * @param newGenericEndpoint
 	 *            The new generic instance endpoint to be added.
@@ -280,7 +286,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	 */
 	protected void addInstance(GenericEndpoint newGenericEndpoint, GenericElement targetGenericType, Operator containerOperator) {
 
-		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName(), MIDLevel.INSTANCES);
+		super.addBasicInstance(newGenericEndpoint, null, targetGenericType.getName(), containerOperator.getLevel());
 		super.addInstanceEndpoint(newGenericEndpoint, targetGenericType);
 		containerOperator.getGenerics().add(newGenericEndpoint);
 	}
@@ -293,7 +299,20 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 		MMINTException.mustBeType(this);
 
 		GenericEndpoint newGenericEndpoint = super.createThisEClass();
-		addInstance(newGenericEndpoint, targetGeneric, containerOperator);
+		this.addInstance(newGenericEndpoint, targetGeneric, containerOperator);
+
+		return newGenericEndpoint;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public GenericEndpoint createWorkflowInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		GenericEndpoint newGenericEndpoint = super.createThisEClass();
+		this.addInstance(newGenericEndpoint, targetGeneric, containerOperator);
 
 		return newGenericEndpoint;
 	}

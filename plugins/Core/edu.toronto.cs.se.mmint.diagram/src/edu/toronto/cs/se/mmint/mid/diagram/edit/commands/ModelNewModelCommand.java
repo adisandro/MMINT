@@ -125,9 +125,15 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/*TODO MMINT[WORKFLOW]
 		 * Connect id with label change
-		 * Document and double-check operator start api
-		 * Add a way to create a workflow MID
-		 * Double-check what should happen when an operator is deleted, here and in the instances
+		 * Double-check what should happen when an operator is deleted, workflow and instances
+		 * Add a way to create a workflow MID + think about the need for a MIDWorkflow model type
+		 * Add a way to create an operator out of a workflow MID:
+		 * * add operator gmf creation menu, policies and commands (maybe remove import model rel)
+		 * * add operator createSubtype api
+		 * * select mid workflow file
+		 * * copy it to the type repository and compute i/o
+		 * * add persistence between restarts
+		 * Add execution engine
 		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);
