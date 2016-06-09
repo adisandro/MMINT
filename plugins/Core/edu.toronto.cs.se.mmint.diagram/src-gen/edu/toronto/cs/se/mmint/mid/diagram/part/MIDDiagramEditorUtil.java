@@ -63,7 +63,6 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 
 /**
@@ -193,19 +192,8 @@ public class MIDDiagramEditorUtil {
 	* <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static MID createInitialModelGen() {
-		return MIDFactory.eINSTANCE.createMID();
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	private static MID createInitialModel() {
-
-		MID instanceMID = createInitialModelGen();
-		instanceMID.setLevel(MIDLevel.INSTANCES);
-
-		return instanceMID;
+		return MIDFactory.eINSTANCE.createMID();
 	}
 
 	/**

@@ -134,6 +134,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		 * * copy it to the type repository and compute i/o
 		 * * add persistence between restarts
 		 * Add execution engine
+		 * Big problem: when you "run" workflow operators and create model rels, nobody is connecting them to models
 		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);

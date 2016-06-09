@@ -724,12 +724,20 @@ Contributors:
             id="edu.toronto.cs.se.mmint"
             name="%MMINT.newWizardCat"/>
   	  <wizard
-  	     name="%MMINT.newWizardName"
+  	     name="%MMINT.newWizardNameInstance"
   	     icon="icons/obj16/MIDDiagramFile.gif"
   	     category="edu.toronto.cs.se.mmint"
   	     class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizard"
   	     id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
-  	  	 <description>%MMINT.newWizardDesc</description>  
+  	  	 <description>%MMINT.newWizardDescInstance</description>  
+      </wizard>
+  	  <wizard
+  	     name="%MMINT.newWizardNameWorkflow"
+  	     icon="icons/obj16/MIDDiagramFile.gif"
+  	     category="edu.toronto.cs.se.mmint"
+  	     class="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizard"
+  	     id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+  	  	 <description>%MMINT.newWizardDescWorkflow</description>  
       </wizard>
    </extension>
 
