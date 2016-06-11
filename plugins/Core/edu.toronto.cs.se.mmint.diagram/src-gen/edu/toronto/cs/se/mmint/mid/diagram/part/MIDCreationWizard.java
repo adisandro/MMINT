@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -27,7 +26,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 
 /**
@@ -190,17 +188,13 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
-				diagram = MIDDiagramEditorUtil
-					.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
-				if (diagram != null) { // initialize MID level
-					MID mid = (MID) ((Diagram) diagram.getContents().get(0)).getElement();
-					MIDLevel midLevel = MIDLevel.INSTANCES;
-					IWizardPage initialPage = diagramModelFilePage.getPreviousPage();
-					if (initialPage != null && initialPage.getDescription().contains("workflow")) {
-						midLevel = MIDLevel.WORKFLOWS;
-					}
-					mid.setLevel(midLevel);
+				MIDLevel midLevel = MIDLevel.INSTANCES;
+				IWizardPage initialPage = diagramModelFilePage.getPreviousPage();
+				if (initialPage != null && initialPage.getDescription().contains("workflow")) {
+					midLevel = MIDLevel.WORKFLOWS;
 				}
+				diagram = MIDDiagramEditorUtil
+					.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor, midLevel);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						MIDDiagramEditorUtil.openDiagram(diagram);

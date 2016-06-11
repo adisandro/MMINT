@@ -125,7 +125,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/*TODO MMINT[WORKFLOW]
 		 * Connect id with label change
-		 * Add a way to create a workflow MID + think about the need for a MIDWorkflow model type
+		 * Think about the need for a MIDWorkflow model type
 		 * Add a way to create an operator out of a workflow MID:
 		 * * add operator gmf creation menu, policies and commands (maybe remove import model rel)
 		 * * add operator createSubtype api

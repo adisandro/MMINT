@@ -63,6 +63,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 
 /**
@@ -151,6 +152,58 @@ public class MIDDiagramEditorUtil {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
 				MID model = createInitialModel();
+				attachModelToResource(model, modelResource);
+
+				Diagram diagram = ViewService
+					.createDiagram(model, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				if (diagram != null) {
+					diagramResource.getContents().add(diagram);
+					diagram.setName(diagramName);
+					diagram.setElement(model);
+				}
+
+				try {
+					modelResource.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
+					diagramResource
+						.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
+				}
+				catch (IOException e) {
+
+					MIDDiagramEditorPlugin.getInstance().logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
+				}
+				return CommandResult.newOKCommandResult();
+			}
+		};
+		try {
+			OperationHistoryFactory
+				.getOperationHistory()
+				.execute(command, new SubProgressMonitor(progressMonitor, 1), null);
+		}
+		catch (ExecutionException e) {
+			MIDDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
+		}
+		setCharset(WorkspaceSynchronizer.getFile(modelResource));
+		setCharset(WorkspaceSynchronizer.getFile(diagramResource));
+		return diagramResource;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor, MIDLevel midLevel) {
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		progressMonitor.beginTask(Messages.MIDDiagramEditorUtil_CreateDiagramProgressTask, 3);
+		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
+		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
+		final String diagramName = diagramURI.lastSegment();
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
+			editingDomain,
+			Messages.MIDDiagramEditorUtil_CreateDiagramCommandLabel,
+			Collections.EMPTY_LIST) {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
+				MID model = createInitialModel();
+				model.setLevel(midLevel);
 				attachModelToResource(model, modelResource);
 
 				Diagram diagram = ViewService
