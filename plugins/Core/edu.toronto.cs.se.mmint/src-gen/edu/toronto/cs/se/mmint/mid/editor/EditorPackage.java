@@ -277,6 +277,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -591,6 +600,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___IS_WORKFLOWS_LEVEL = EDITOR___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EDITOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.

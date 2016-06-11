@@ -39,6 +39,9 @@ public class MIDDiagramUtils {
 			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFDiagramUtils.DIAGRAM_SUFFIX)) {
 				MIDDiagramEditor midDiagram = (MIDDiagramEditor) editorReference.getEditor(true);
 				MID mid = (MID) midDiagram.getDiagram().getElement();
+				if (!mid.isInstancesLevel()) {
+					continue;
+				}
 				List<IFile> midFiles = new ArrayList<>();
 				IFile diagramFile = (IFile) midDiagram.getEditorInput().getAdapter(IFile.class);
 				if (diagramFile == null) {

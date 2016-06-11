@@ -363,6 +363,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -919,6 +928,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL = MODEL_REL___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1994,6 +2012,15 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2299,6 +2326,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___IS_WORKFLOWS_LEVEL = MAPPING___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2624,6 +2660,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.

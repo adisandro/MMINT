@@ -297,11 +297,24 @@ public interface ExtendibleElement extends EObject {
 	 * 
 	 * @return The list of runtime types.
 	 * @throws MMINTException
-	 *             If this is a type. <!-- end-user-doc -->
+	 *             If this is not an instance. <!-- end-user-doc -->
 	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Updates the id of this instance in the Workflow MID that contains it.
+	 * 
+	 * @param newInstanceId
+	 *            The new id of this instance.
+	 * @throws MMINTException
+	 *             If this is not an instance in a workflow, or if the new id is already registered in the Workflow MID.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newInstanceIdRequired="true"
+	 * @generated
+	 */
+	void updateWorkflowInstanceId(String newInstanceId) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Validates this instance against a type.

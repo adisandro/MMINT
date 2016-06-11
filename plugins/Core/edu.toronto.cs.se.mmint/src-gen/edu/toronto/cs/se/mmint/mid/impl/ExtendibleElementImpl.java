@@ -576,6 +576,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				}
 			case MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL:
 				return isWorkflowsLevel();
+			case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING:
+				try {
+					updateWorkflowInstanceId((String)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL:
 				return toMIDCustomPrintLabel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL:
@@ -982,16 +990,16 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	/**
 	 * Deletes an element from a MID.
 	 * 
-	 * @param uri
-	 *            The uri of the element to delete.
+	 * @param id
+	 *            The id of the element to delete.
 	 * @param mid
 	 *            The MID that contains the element.
-	 * @return The deleted element, null if its uri was not registered in the MID.
+	 * @return The deleted element, null if its id was not registered in the MID.
 	 * @generated NOT
 	 */
-	protected ExtendibleElement delete(String uri, MID mid) {
+	protected ExtendibleElement delete(String id, MID mid) {
 
-		return mid.getExtendibleTable().removeKey(uri);
+		return mid.getExtendibleTable().removeKey(id);
 	}
 
 	/**
@@ -1128,6 +1136,19 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public boolean isWorkflowsLevel() {
 		return this.isLevel(MIDLevel.WORKFLOWS);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void updateWorkflowInstanceId(String newInstanceId) throws MMINTException {
+
+		MMINTException.mustBeWorkflow(this);
+
+		MID workflowMID = this.getMIDContainer();
+		String oldInstanceId = this.getUri();
+		((ExtendibleElementImpl) this.getMetatype()).addInstance(this, newInstanceId, this.getName(), workflowMID);
+		this.delete(oldInstanceId, workflowMID);
 	}
 
 	/**

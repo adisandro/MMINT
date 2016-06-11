@@ -133,6 +133,9 @@
         <details key="body" value="return this.isLevel(MIDLevel.WORKFLOWS);"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="updateWorkflowInstanceId" eExceptions="#//MMINTException">
+      <eParameters name="newInstanceId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="toMIDCustomPrintLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="toMIDCustomEditLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="updateMIDCustomLabel">

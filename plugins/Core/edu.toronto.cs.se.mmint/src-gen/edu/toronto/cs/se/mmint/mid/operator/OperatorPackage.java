@@ -315,6 +315,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___IS_WORKFLOWS_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -782,6 +791,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1271,6 +1289,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1711,6 +1738,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.

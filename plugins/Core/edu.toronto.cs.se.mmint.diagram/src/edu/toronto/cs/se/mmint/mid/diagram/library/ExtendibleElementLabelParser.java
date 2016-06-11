@@ -17,6 +17,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
+
+import edu.toronto.cs.se.mmint.MMINTActivator;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -80,6 +83,15 @@ public class ExtendibleElementLabelParser extends MIDDiagramLabelParser {
 	@Override
 	protected IStatus updateValues(ExtendibleElement midElement, String newLabel) {
 
+		if (midElement.isWorkflowsLevel()) {
+			try {
+				midElement.updateWorkflowInstanceId(newLabel);
+			}
+			catch (MMINTException e) {
+				MMINTException.print(IStatus.ERROR, "Error updating the label", e);
+				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Error updating the label");
+			}
+		}
 		midElement.setName(newLabel);
 
 		return Status.OK_STATUS;

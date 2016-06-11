@@ -406,13 +406,22 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = 10;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = 11;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 11;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 12;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -421,7 +430,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 12;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 13;
 
 	/**
 	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -430,7 +439,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 13;
+	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 14;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -439,7 +448,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 14;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -648,6 +657,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -892,6 +910,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1145,6 +1172,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___IS_WORKFLOWS_LEVEL = GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1572,6 +1608,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1904,6 +1949,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2543,6 +2597,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElement__IsWorkflowsLevel();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#updateWorkflowInstanceId(java.lang.String) <em>Update Workflow Instance Id</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Update Workflow Instance Id</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#updateWorkflowInstanceId(java.lang.String)
+	 * @generated
+	 */
+	EOperation getExtendibleElement__UpdateWorkflowInstanceId__String();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#toMIDCustomPrintLabel() <em>To MID Custom Print Label</em>}' operation.
@@ -3682,6 +3746,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = eINSTANCE.getExtendibleElement__IsWorkflowsLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Workflow Instance Id</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = eINSTANCE.getExtendibleElement__UpdateWorkflowInstanceId__String();
 
 		/**
 		 * The meta object literal for the '<em><b>To MID Custom Print Label</b></em>' operation.

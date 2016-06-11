@@ -124,7 +124,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/*TODO MMINT[WORKFLOW]
-		 * Connect id with label change
 		 * Think about the need for a MIDWorkflow model type
 		 * Add a way to create an operator out of a workflow MID:
 		 * * add operator gmf creation menu, policies and commands (maybe remove import model rel)

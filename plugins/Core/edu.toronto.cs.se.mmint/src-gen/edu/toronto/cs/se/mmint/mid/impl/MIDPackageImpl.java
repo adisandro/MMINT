@@ -515,7 +515,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
+	public EOperation getExtendibleElement__UpdateWorkflowInstanceId__String() {
 		return extendibleElementEClass.getEOperations().get(11);
 	}
 
@@ -524,7 +524,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
+	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
 		return extendibleElementEClass.getEOperations().get(12);
 	}
 
@@ -533,8 +533,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
 		return extendibleElementEClass.getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+		return extendibleElementEClass.getEOperations().get(14);
 	}
 
 	/**
@@ -1337,6 +1346,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING);
@@ -1541,6 +1551,10 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEException(op, this.getMMINTException());
 
 		initEOperation(getExtendibleElement__IsWorkflowsLevel(), ecorePackage.getEBoolean(), "isWorkflowsLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getExtendibleElement__UpdateWorkflowInstanceId__String(), null, "updateWorkflowInstanceId", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newInstanceId", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
 
 		initEOperation(getExtendibleElement__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 

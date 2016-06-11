@@ -66,6 +66,9 @@
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceInEditor/context"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isWorkflowsLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateWorkflowInstanceId">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/updateWorkflowInstanceId/newInstanceId"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomPrintLabel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/toMIDCustomEditLabel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateMIDCustomLabel">
