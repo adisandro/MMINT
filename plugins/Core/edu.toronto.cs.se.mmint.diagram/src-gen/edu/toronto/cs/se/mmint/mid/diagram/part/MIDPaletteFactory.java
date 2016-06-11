@@ -47,6 +47,7 @@ public class MIDPaletteFactory {
 		paletteContainer.add(createNewBinaryRel2CreationTool());
 		paletteContainer.add(createNewNaryRel3CreationTool());
 		paletteContainer.add(createConnectModel4CreationTool());
+		paletteContainer.add(createNewOperator5CreationTool());
 		return paletteContainer;
 	}
 
@@ -114,6 +115,20 @@ public class MIDPaletteFactory {
 			Collections.singletonList(MIDElementTypes.ModelEndpoint_4002));
 		entry.setId("createConnectModel4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.ModelEndpoint_4002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	* @generated
+	*/
+	private ToolEntry createNewOperator5CreationTool() {
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.NewOperator5CreationTool_title,
+			Messages.NewOperator5CreationTool_desc,
+			Collections.singletonList(MIDElementTypes.Operator_2005));
+		entry.setId("createNewOperator5CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(MIDElementTypes.getImageDescriptor(MIDElementTypes.Operator_2005));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

@@ -777,23 +777,28 @@
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="New Model"
-            description="Create new Model"
+            description="Create a new Model"
             genNodes="//@diagram/@topLevelNodes.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="New Binary Rel"
-            description="Create new Binary Relationship"
+            description="Create a new Binary Relationship"
             genLinks="//@diagram/@links.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="New Nary Rel"
-            description="Create new Nary Relationship"
+            description="Create a new Nary Relationship"
             genNodes="//@diagram/@topLevelNodes.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Connect Model"
-            description="Connect Model to Nary Relationship"
+            description="Connect an existing Model to an Nary Relationship"
             genLinks="//@diagram/@links.1"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="New Operator"
+            description="Create a new Operator"
+            genNodes="//@diagram/@topLevelNodes.4"/>
       </groups>
       <groups
           title="Import"
@@ -801,12 +806,12 @@
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Import Model"
-            description="Import existing Model"
+            description="Import an existing Model"
             genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Import Nary Rel"
-            description="Import existing Nary Relationship"
+            description="Import an existing Nary Relationship"
             genNodes="//@diagram/@topLevelNodes.3"/>
       </groups>
     </palette>
@@ -1521,11 +1526,11 @@
         uses="//@diagram/@links.3/@labels.0/@modelFacet //@diagram/@links.4/@labels.0/@modelFacet"/>
     <implementations
         xsi:type="gmfgen:CustomParser"
-        uses="//@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.3/@labels.1/@modelFacet //@diagram/@links.1/@labels.1/@modelFacet //@diagram/@links.2/@labels.1/@modelFacet"
+        uses="//@diagram/@links.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.1/@labels.1/@modelFacet //@diagram/@topLevelNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.2/@labels.1/@modelFacet //@diagram/@topLevelNodes.3/@labels.1/@modelFacet //@diagram/@links.1/@labels.1/@modelFacet"
         qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramCustomLabelParser"/>
     <implementations
         xsi:type="gmfgen:CustomParser"
-        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet"
+        uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@links.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet"
         qualifiedName="edu.toronto.cs.se.mmint.mid.diagram.library.ExtendibleElementLabelParser"/>
     <implementations
         xsi:type="gmfgen:CustomParser"

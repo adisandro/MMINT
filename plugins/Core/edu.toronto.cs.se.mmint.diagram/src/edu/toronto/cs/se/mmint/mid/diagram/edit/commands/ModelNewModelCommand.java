@@ -125,8 +125,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/*TODO MMINT[WORKFLOW]
 		 * Think about the need for a MIDWorkflow model type
-		 * Add a way to create an operator out of a workflow MID:
-		 * * add operator gmf creation menu, policies and commands (maybe remove import model rel)
+		 * Add a way to create an operator out of a workflow MID in its create command:
+		 * * tweak palette to show meaningful buttons
 		 * * add operator createSubtype api
 		 * * select mid workflow file
 		 * * copy it to the type repository and compute i/o

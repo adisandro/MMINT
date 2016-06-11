@@ -190,7 +190,8 @@ public class MIDDiagramEditorUtil {
 	/**
 	 * @generated NOT
 	 */
-	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor, MIDLevel midLevel) {
+	public static Resource createDiagram(
+			URI diagramURI, URI modelURI, IProgressMonitor progressMonitor, MIDLevel midLevel) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		progressMonitor.beginTask(Messages.MIDDiagramEditorUtil_CreateDiagramProgressTask, 3);
 		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
@@ -243,9 +244,9 @@ public class MIDDiagramEditorUtil {
 	* Create a new instance of domain element associated with canvas.
 	* <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static MID createInitialModel() {
+	* @generated
+	*/
+	private static edu.toronto.cs.se.mmint.mid.MID createInitialModel() {
 		return MIDFactory.eINSTANCE.createMID();
 	}
 
@@ -253,9 +254,9 @@ public class MIDDiagramEditorUtil {
 	* Store model element in the resource.
 	* <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static void attachModelToResource(MID model, Resource resource) {
+	* @generated
+	*/
+	private static void attachModelToResource(edu.toronto.cs.se.mmint.mid.MID model, Resource resource) {
 		resource.getContents().add(model);
 	}
 

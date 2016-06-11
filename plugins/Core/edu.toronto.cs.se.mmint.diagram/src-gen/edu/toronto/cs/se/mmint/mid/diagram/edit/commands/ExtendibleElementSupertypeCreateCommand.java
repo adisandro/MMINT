@@ -63,9 +63,9 @@ public class ExtendibleElementSupertypeCreateCommand extends EditElementCommand 
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canCreateExtendibleElementSupertype_4001(
-			getSource(),
-			getTarget());
+		return MIDBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canCreateExtendibleElementSupertype_4001(getSource(), getTarget());
 	}
 
 	/**

@@ -224,7 +224,7 @@ public class MIDNavigatorContentProvider implements ICommonContentProvider {
 		/*
 		* Due to plugin.xml restrictions this code will be called only for views representing
 		* shortcuts to this diagram elements created on other diagrams. 
-		 */
+		*/
 		if (parentElement instanceof IAdaptable) {
 			View view = (View) ((IAdaptable) parentElement).getAdapter(View.class);
 			if (view != null) {

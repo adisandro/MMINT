@@ -609,12 +609,13 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 						}
 						catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(
-								IStatus.ERROR,
-								MIDDiagramEditorPlugin.ID,
-								EditorStatusCodes.RESOURCE_FAILURE,
-								e.getLocalizedMessage(),
-								null));
+							throw new CoreException(
+								new Status(
+									IStatus.ERROR,
+									MIDDiagramEditorPlugin.ID,
+									EditorStatusCodes.RESOURCE_FAILURE,
+									e.getLocalizedMessage(),
+									null));
 						}
 					}
 					monitor.worked(1);
@@ -643,25 +644,27 @@ public class MIDDocumentProvider extends AbstractDocumentProvider implements IDi
 			}
 			else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(
-					IStatus.ERROR,
-					MIDDiagramEditorPlugin.ID,
-					0,
-					NLS.bind(
-						Messages.MIDDocumentProvider_IncorrectInputError,
-						new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
-								"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
-					null));
+				throw new CoreException(
+					new Status(
+						IStatus.ERROR,
+						MIDDiagramEditorPlugin.ID,
+						0,
+						NLS.bind(
+							Messages.MIDDocumentProvider_IncorrectInputError,
+							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
+									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
+						null));
 			}
 			if (false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(
-					IStatus.ERROR,
-					MIDDiagramEditorPlugin.ID,
-					0,
-					"Incorrect document used: " + document //$NON-NLS-1$
-							+ " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", //$NON-NLS-1$
-					null));
+				throw new CoreException(
+					new Status(
+						IStatus.ERROR,
+						MIDDiagramEditorPlugin.ID,
+						0,
+						"Incorrect document used: " + document //$NON-NLS-1$
+								+ " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", //$NON-NLS-1$
+						null));
 			}
 			IDiagramDocument diagramDocument = (IDiagramDocument) document;
 			final Resource newResource = diagramDocument

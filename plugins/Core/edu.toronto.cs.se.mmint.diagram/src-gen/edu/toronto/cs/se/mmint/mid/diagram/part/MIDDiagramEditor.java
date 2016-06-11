@@ -133,11 +133,14 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		if (!mid.isInstancesLevel()) {
 			for (Object paletteContainer : root.getChildren()) {
 				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
-					if (paletteEntry instanceof ToolEntry
-							&& !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {
-						((ToolEntry) paletteEntry).setLabel(((ToolEntry) paletteEntry).getLabel() + " " + mid.getLevel().toString().charAt(0) + mid.getLevel().toString().toLowerCase().substring(1));
-						((ToolEntry) paletteEntry)
-								.setDescription(((ToolEntry) paletteEntry).getDescription() + " " + mid.getLevel().toString().charAt(0) + mid.getLevel().toString().toLowerCase().substring(1));
+					if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry
+							|| paletteEntry instanceof PaletteToolEntry)) {
+						((ToolEntry) paletteEntry).setLabel(
+							((ToolEntry) paletteEntry).getLabel() + " " + mid.getLevel().toString().charAt(0)
+									+ mid.getLevel().toString().toLowerCase().substring(1));
+						((ToolEntry) paletteEntry).setDescription(
+							((ToolEntry) paletteEntry).getDescription() + " " + mid.getLevel().toString().charAt(0)
+									+ mid.getLevel().toString().toLowerCase().substring(1));
 					}
 				}
 			}
@@ -252,8 +255,11 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 			MMINT.syncRepository(mid1);
 			// diagram sync required
 			final String relDiagramId = "edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID";
-			for (IEditorReference editorRef : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.getEditorReferences()) {
+			for (IEditorReference editorRef : PlatformUI
+				.getWorkbench()
+				.getActiveWorkbenchWindow()
+				.getActivePage()
+				.getEditorReferences()) {
 				IEditorPart editorPart = editorRef.getEditor(false);
 				if (!(editorPart instanceof DiagramDocumentEditor)) {
 					continue;
