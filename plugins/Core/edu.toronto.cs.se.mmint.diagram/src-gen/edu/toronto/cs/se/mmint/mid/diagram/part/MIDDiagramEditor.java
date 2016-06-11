@@ -130,18 +130,31 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
 		MID mid = (MID) this.getDiagram().getElement();
-		if (!mid.isInstancesLevel()) {
-			for (Object paletteContainer : root.getChildren()) {
-				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
-					if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry
-							|| paletteEntry instanceof PaletteToolEntry)) {
-						((ToolEntry) paletteEntry).setLabel(
-							((ToolEntry) paletteEntry).getLabel() + " " + mid.getLevel().toString().charAt(0)
-									+ mid.getLevel().toString().toLowerCase().substring(1));
-						((ToolEntry) paletteEntry).setDescription(
-							((ToolEntry) paletteEntry).getDescription() + " " + mid.getLevel().toString().charAt(0)
-									+ mid.getLevel().toString().toLowerCase().substring(1));
+		for (Object paletteContainer : root.getChildren()) {
+			for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
+				if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry
+						|| paletteEntry instanceof PaletteToolEntry)) {
+					ToolEntry toolEntry = (ToolEntry) paletteEntry;
+					String label = toolEntry.getLabel();
+					String description = toolEntry.getDescription();
+					switch (mid.getLevel()) {
+						case TYPES:
+							label += " Type";
+							description += " Type";
+							break;
+						case INSTANCES:
+							// do nothing
+							break;
+						case WORKFLOWS:
+							int lastWordIndex = label.lastIndexOf(" ");
+							label = label.substring(0, lastWordIndex) + " Workflow " + label.substring(lastWordIndex + 1);
+							lastWordIndex = description.lastIndexOf(" ");
+							description = description.substring(0, lastWordIndex) + " Workflow " + description.substring(lastWordIndex);
+							break;
+						default:
 					}
+					toolEntry.setLabel(label);
+					toolEntry.setDescription(description);
 				}
 			}
 		}
