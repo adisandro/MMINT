@@ -1041,6 +1041,19 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
+	 * Deletes this model instance from an Instance or Workflow MID.
+	 * 
+	 * @param instanceMID
+	 *            The Instance or Workflow MID that contains the operator.
+	 * 
+	 * @generated NOT
+	 */
+	protected void deleteInstance(MID instanceMID) {
+
+		instanceMID.getModels().remove(this);
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public void deleteInstance() throws MMINTException {
@@ -1057,7 +1070,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			editor.deleteInstance();
 		}
 		super.delete();
-		instanceMID.getModels().remove(this);
+		this.deleteInstance(instanceMID);
 		// delete operators that use this model
 		Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, instanceMID);
 		for (Operator delOperator : delOperators) {
@@ -1137,6 +1150,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MID workflowMID = this.getMIDContainer();
 		super.delete();
+		this.deleteInstance(workflowMID);
 		workflowMID.getModels().remove(this);
 		// delete operators that use this model
 		Set<Operator> delOperators = MIDRegistry.getInputOutputOperators(this, workflowMID);

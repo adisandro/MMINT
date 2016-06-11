@@ -1074,6 +1074,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * Deletes this operator instance from an Instance or Workflow MID.
 	 * 
+	 * @param instanceMID
+	 *            The Instance or Workflow MID that contains the operator.
+	 * 
 	 * @generated NOT
 	 */
 	protected void deleteInstance(MID instanceMID) {
@@ -1345,6 +1348,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeWorkflow(this);
 
 		this.deleteInstance(this.getMIDContainer());
+		for (ModelEndpoint modelEndpoint : this.getOutputs()) {
+			modelEndpoint.getTarget().deleteWorkflowInstance();
+		}
 	}
 
 	/**
