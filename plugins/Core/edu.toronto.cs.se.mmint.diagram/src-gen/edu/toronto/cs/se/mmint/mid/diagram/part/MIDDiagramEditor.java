@@ -129,34 +129,53 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
+
 		MID mid = (MID) this.getDiagram().getElement();
 		for (Object paletteContainer : root.getChildren()) {
+			List<ToolEntry> paletteEntriesToDel = new ArrayList<>();
 			for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
 				if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry
 						|| paletteEntry instanceof PaletteToolEntry)) {
 					ToolEntry toolEntry = (ToolEntry) paletteEntry;
 					String label = toolEntry.getLabel();
 					String description = toolEntry.getDescription();
-					switch (mid.getLevel()) {
+					//TODO MMINT[MODELREL] Re-enable once support is implemented
+					if (label.contains("Import Nary")) {
+						paletteEntriesToDel.add(toolEntry);
+						continue;
+					}
+					switch (mid.getLevel()) { // Customize the palette labels and entries for each MID level
 						case TYPES:
+							if (label.contains("Import")) {
+								paletteEntriesToDel.add(toolEntry);
+								break;
+							}
 							label += " Type";
 							description += " Type";
 							break;
 						case INSTANCES:
-							// do nothing
+							if (label.contains("Operator")) {
+								paletteEntriesToDel.add(toolEntry);
+							}
 							break;
 						case WORKFLOWS:
+							if (label.contains("Operator") || label.contains("Import")) {
+								paletteEntriesToDel.add(toolEntry);
+								break;
+							}
 							int lastWordIndex = label.lastIndexOf(" ");
 							label = label.substring(0, lastWordIndex) + " Workflow " + label.substring(lastWordIndex + 1);
 							lastWordIndex = description.lastIndexOf(" ");
 							description = description.substring(0, lastWordIndex) + " Workflow " + description.substring(lastWordIndex);
 							break;
 						default:
+							// should never happen
 					}
 					toolEntry.setLabel(label);
 					toolEntry.setDescription(description);
 				}
 			}
+			((PaletteContainer) paletteContainer).getChildren().removeAll(paletteEntriesToDel);
 		}
 
 		return root;
