@@ -830,6 +830,11 @@ public class MIDTypeHierarchy {
 		return MIDTypeRegistry.getType(MMINT.ROOT_MODELELEMENDPOINT_URI);
 	}
 
+	public static Operator getRootOperatorType() {
+
+		return MIDTypeRegistry.getType(MMINT.ROOT_OPERATOR_URI);
+	}
+
 	public static Editor getRootEditorType() {
 
 		return MIDTypeRegistry.getType(MMINT.ROOT_EDITOR_URI);

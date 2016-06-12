@@ -311,7 +311,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteType() {
+	public EOperation getOperator__CreateSubtype__String_String() {
 		return operatorEClass.getEOperations().get(3);
 	}
 
@@ -320,7 +320,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindAllowedInputs__EList() {
+	public EOperation getOperator__DeleteType() {
 		return operatorEClass.getEOperations().get(4);
 	}
 
@@ -329,7 +329,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindFirstAllowedInput__EList() {
+	public EOperation getOperator__FindAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(5);
 	}
 
@@ -338,7 +338,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CheckAllowedInputs__EList() {
+	public EOperation getOperator__FindFirstAllowedInput__EList() {
 		return operatorEClass.getEOperations().get(6);
 	}
 
@@ -347,7 +347,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsAllowedInput__Map() {
+	public EOperation getOperator__CheckAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(7);
 	}
 
@@ -356,7 +356,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetOutputsByName() {
+	public EOperation getOperator__IsAllowedInput__Map() {
 		return operatorEClass.getEOperations().get(8);
 	}
 
@@ -365,7 +365,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetOutputModels() {
+	public EOperation getOperator__GetOutputsByName() {
 		return operatorEClass.getEOperations().get(9);
 	}
 
@@ -374,7 +374,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateInstance__MID() {
+	public EOperation getOperator__GetOutputModels() {
 		return operatorEClass.getEOperations().get(10);
 	}
 
@@ -383,7 +383,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteInstance() {
+	public EOperation getOperator__CreateInstance__MID() {
 		return operatorEClass.getEOperations().get(11);
 	}
 
@@ -392,7 +392,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__SelectAllowedGenerics__EList() {
+	public EOperation getOperator__DeleteInstance() {
 		return operatorEClass.getEOperations().get(12);
 	}
 
@@ -401,7 +401,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList() {
+	public EOperation getOperator__SelectAllowedGenerics__EList() {
 		return operatorEClass.getEOperations().get(13);
 	}
 
@@ -410,7 +410,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetInputProperties() {
+	public EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList() {
 		return operatorEClass.getEOperations().get(14);
 	}
 
@@ -419,7 +419,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__ReadInputProperties__Properties() {
+	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(15);
 	}
 
@@ -428,7 +428,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Run__Map_Map_Map() {
+	public EOperation getOperator__ReadInputProperties__Properties() {
 		return operatorEClass.getEOperations().get(16);
 	}
 
@@ -437,7 +437,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
+	public EOperation getOperator__Run__Map_Map_Map() {
 		return operatorEClass.getEOperations().get(17);
 	}
 
@@ -446,7 +446,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateWorkflowInstance__MID() {
+	public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
 		return operatorEClass.getEOperations().get(18);
 	}
 
@@ -455,7 +455,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteWorkflowInstance() {
+	public EOperation getOperator__CreateWorkflowInstance__MID() {
 		return operatorEClass.getEOperations().get(19);
 	}
 
@@ -464,8 +464,17 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+	public EOperation getOperator__DeleteWorkflowInstance() {
 		return operatorEClass.getEOperations().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+		return operatorEClass.getEOperations().get(21);
 	}
 
 	/**
@@ -724,6 +733,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_MID_CONTAINER);
+		createEOperation(operatorEClass, OPERATOR___CREATE_SUBTYPE__STRING_STRING);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 		createEOperation(operatorEClass, OPERATOR___FIND_ALLOWED_INPUTS__ELIST);
 		createEOperation(operatorEClass, OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST);
@@ -829,7 +839,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEOperation(getOperator__GetMIDContainer(), theMIDPackage.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getOperator__CreateSubtype__String_String(), this.getOperator(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newOperatorTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "workflowMIDUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__FindAllowedInputs__EList(), null, "findAllowedInputs", 1, 1, IS_UNIQUE, IS_ORDERED);

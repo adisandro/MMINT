@@ -125,13 +125,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/*TODO MMINT[WORKFLOW]
 		 * Think about the need for a MIDWorkflow model type
-		 * Add a way to create an operator out of a workflow MID in its create command:
-		 * * tweak palette to show meaningful buttons
-		 * * add operator createSubtype api
-		 * * select mid workflow file
-		 * * copy it to the type repository and compute i/o
-		 * * add persistence between restarts
-		 * Add execution engine
+		 * Check if create type hierarchy is needed when creating operator, as well as undo-redo
+		 * Check if something special needs to be done at startup for persistence of workflow operator
+		 * Add execution engine and WorkflowOperator class (implement createSubtype(), createEndpointSubtype(), deleteType(), openType(), run() there)
 		 * Big problem: when you "run" workflow operators and create model rels, nobody is connecting them to models
 		 */
 		MID workflowMID = (MID) getElementToEdit();

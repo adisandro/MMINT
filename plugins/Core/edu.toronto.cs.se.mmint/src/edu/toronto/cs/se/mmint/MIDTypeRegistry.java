@@ -63,6 +63,8 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelEndpointDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
+import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewWorkflowModelDialogContentProvider;
 
 /**
@@ -349,6 +351,21 @@ public class MIDTypeRegistry {
 		return dialog;
 	}
 
+	public static MIDTreeSelectionDialog getOperatorTypeCreationDialog(MID typeMID) {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new WorkbenchLabelProvider(),
+			new BaseWorkbenchContentProvider(),
+			ResourcesPlugin.getWorkspace().getRoot()
+		);
+		dialog.addFilter(new NewOperatorTypeDialogFilter());
+		dialog.setValidator(new NewOperatorTypeDialogSelectionValidator());
+
+		return dialog;
+	}
+
 	public static MIDTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
 
 		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
@@ -583,7 +600,7 @@ public class MIDTypeRegistry {
 		if (!modelType.isDynamic()) {
 			return null;
 		}
-		String metamodelUri = modelType.getName() + "." + EcorePackage.eNAME;
+		String metamodelUri = modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
 		return (MIDUtils.isFileOrDirectoryInState(metamodelUri)) ?
 			MIDUtils.prependStateToUri(metamodelUri) :

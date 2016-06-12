@@ -258,6 +258,14 @@ public interface Operator extends GenericElement {
 	MID getMIDContainer();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorTypeNameRequired="true" workflowMIDUriRequired="true"
+	 * @generated
+	 */
+	Operator createSubtype(String newOperatorTypeName, String workflowMIDUri) throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Deletes this operator type from the Type MID.
 	 * 
 	 * @throws MMINTException

@@ -404,7 +404,7 @@ public class MIDTypeFactory {
 	 * @param typeMID
 	 *            The Type MID.
 	 */
-	protected static void addOperatorType(Operator newOperatorType, MID typeMID) {
+	public static void addOperatorType(Operator newOperatorType, MID typeMID) {
 
 		newOperatorType.setCommutative(false);
 		typeMID.getOperators().add(newOperatorType);

@@ -38,10 +38,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -561,6 +563,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return getSupertype();
 			case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
 				return getMIDContainer();
+			case OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING:
+				try {
+					return createSubtype((String)arguments.get(0), (String)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___DELETE_TYPE:
 				try {
 					deleteType();
@@ -757,6 +766,49 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public MID getMIDContainer() {
 		return (MID) this.eContainer();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String workflowMIDUri) throws MMINTException {
+
+		MID typeMID = this.getMIDContainer();
+		super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
+		try {
+			MID workflowMID = (MID) MIDUtils.readModelFile(workflowMIDUri, true);
+			MIDUtils.writeModelFileInState(workflowMID, newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME);
+			MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
+			for (Model workflowModel : workflowMID.getModels()) {
+				boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
+				boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
+				if (isInput || isOutput) {
+					ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+					Model modelType = MIDRegistry.getExtendibleElement(workflowModel.getMetatypeUri(), typeMID);
+					String containerFeatureName = (isInput) ?
+						OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
+						OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
+					MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, containerFeatureName);
+				}
+			}
+		}
+		catch (Exception e) {
+			super.delete(newOperatorType.getUri(), typeMID);
+			throw new MMINTException("Error copying the Workflow MID", e);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator createSubtype(String newOperatorTypeName, String workflowMIDUri) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Operator newOperatorType = super.createThisEClass();
+		this.addSubtype(newOperatorType, newOperatorTypeName, workflowMIDUri);
+
+		return newOperatorType;
 	}
 
 	/**

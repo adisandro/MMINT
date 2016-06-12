@@ -19,22 +19,21 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 
 import edu.toronto.cs.se.mmint.MMINTActivator;
 
-public class ImportModelDialogSelectionValidator implements ISelectionStatusValidator {
+public class NewOperatorTypeDialogSelectionValidator implements ISelectionStatusValidator {
 
 	/**
-	 * {@inheritDoc} The selection of a project or folder is not allowed, only
-	 * files.
+	 * {@inheritDoc} The selection of a project or folder is not allowed, only files.
 	 */
 	@Override
 	public IStatus validate(Object[] selection) {
 
 		for (Object object : selection) {
 			if (object instanceof IFolder || object instanceof IProject) {
-				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a model file");
+				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a Workflow MID file");
 			}
 		}
 
-		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "Model file selected");
+		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "Workflow MID file selected");
 	}
 
 }

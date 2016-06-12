@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.library;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -234,15 +235,31 @@ public class MIDRegistry {
 		return modelDiagram;
 	}
 
-	public static Set<Operator> getInputOutputOperators(Model model, MID mid) {
+	public static Set<Operator> getInputOperators(Model model, MID mid) {
 
 		return mid.getOperators().stream()
 			.filter(operator ->
 				operator.getInputs().stream()
-					.anyMatch(input -> input.getTarget() == model) ||
+					.anyMatch(input -> input.getTarget() == model))
+			.collect(Collectors.toSet());
+	}
+
+	public static Set<Operator> getOutputOperators(Model model, MID mid) {
+
+		return mid.getOperators().stream()
+			.filter(operator ->
 				operator.getOutputs().stream()
 					.anyMatch(output -> output.getTarget() == model))
 			.collect(Collectors.toSet());
+	}
+
+	public static Set<Operator> getInputOutputOperators(Model model, MID mid) {
+
+		Set<Operator> ioOperators = new HashSet<>();
+		ioOperators.addAll(MIDRegistry.getInputOperators(model, mid));
+		ioOperators.addAll(MIDRegistry.getOutputOperators(model, mid));
+
+		return ioOperators;
 	}
 
 	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {

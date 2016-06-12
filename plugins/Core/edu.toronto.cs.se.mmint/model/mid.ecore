@@ -1251,6 +1251,11 @@
           <details key="body" value="return (MID) this.eContainer();"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="createSubtype" lowerBound="1" eType="#//operator/Operator"
+          eExceptions="#//MMINTException">
+        <eParameters name="newOperatorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="workflowMIDUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="findAllowedInputs" lowerBound="1" eExceptions="#//MMINTException">
         <eGenericType eClassifier="#//operator/Set">

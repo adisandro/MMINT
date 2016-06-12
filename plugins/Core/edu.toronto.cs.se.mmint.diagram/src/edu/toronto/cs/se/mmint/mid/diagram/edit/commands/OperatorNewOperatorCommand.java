@@ -18,11 +18,13 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 
 public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 
@@ -41,8 +43,12 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 	protected Operator doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID typeMID = (MID) getElementToEdit();
-		Operator newOperator = null;
-		MMINT.createTypeHierarchy(typeMID);
+		String workflowMIDUri = MIDDialogUtils.selectWorkflowMIDToCreateOperatorType(typeMID);
+		String newOperatorTypeName = MIDDialogUtils.getStringInput(
+			"Create new operator type from workflow",
+			"Insert new operator type name",
+			MIDUtils.getFileNameFromUri(workflowMIDUri));
+		Operator newOperator = MIDTypeHierarchy.getRootOperatorType().createSubtype(newOperatorTypeName, workflowMIDUri);
 
 		return newOperator;
 	}

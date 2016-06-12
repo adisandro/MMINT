@@ -54,20 +54,19 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() &&
-			((MID) getElementToEdit()).isInstancesLevel();
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && mid.isInstancesLevel();
 	}
 
 	protected Model doExecuteInstancesLevel() throws Exception, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		String newModelUri = MIDDialogUtils.selectModelToImport(false);
-		Model modelType = MIDTypeRegistry.getType(MIDUtils.readModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
+		String modelUri = MIDDialogUtils.selectModelToImport(false);
+		Model modelType = MIDTypeRegistry.getType(MIDUtils.readModelFile(modelUri, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
 			modelType = MIDTypeHierarchy.getRootModelType();
 		}
-		Model newModel = modelType.importInstanceAndEditor(newModelUri, instanceMID);
+		Model newModel = modelType.importInstanceAndEditor(modelUri, instanceMID);
 
 		return newModel;
 	}

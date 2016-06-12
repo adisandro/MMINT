@@ -925,6 +925,17 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * TODO MMINT[MODELELEMENT] unify with the other
+	 * @generated NOT
+	 */
+	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
+
+		MID typeMID = this.getMIDContainer();
+		MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
+		newType.setDynamic(true);
+	}
+
+	/**
 	 * Adds a subtype of this type to the Type MID.
 	 * 
 	 * @param newType
@@ -945,18 +956,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	protected void addSubtype(ExtendibleElement newType, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) throws MMINTException {
 
 		String newTypeUri = baseType.createSubtypeUri(newTypeFragmentUri, newTypeName);
-		addSubtype(newType, newTypeUri, newTypeName);
-	}
-
-	/**
-	 * TODO MMINT[MODELELEMENT] unify with the other
-	 * @generated NOT
-	 */
-	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
-
-		MID typeMID = this.getMIDContainer();
-		MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
-		newType.setDynamic(true);
+		this.addSubtype(newType, newTypeUri, newTypeName);
 	}
 
 	/**

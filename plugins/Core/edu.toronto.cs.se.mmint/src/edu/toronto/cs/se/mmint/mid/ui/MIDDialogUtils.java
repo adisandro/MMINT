@@ -128,6 +128,16 @@ public class MIDDialogUtils {
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
+	public static String selectWorkflowMIDToCreateOperatorType(MID typeMID) throws MIDDialogCancellation {
+
+		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getOperatorTypeCreationDialog(typeMID);
+		String title = "Create new operator type from workflow";
+		String message = "Choose Workflow MID";
+		IFile workflowMIDFile = (IFile) openSelectionDialog(dialog, title, message);
+
+		return workflowMIDFile.getFullPath().toString();
+	}
+
 	/**
 	 * Shows a tree dialog to create a model choosing from the registered model
 	 * types, and executes its wizard.
