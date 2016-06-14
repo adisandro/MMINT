@@ -38,6 +38,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.RootOperator;
 import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -785,6 +786,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				if (isInput || isOutput) {
 					ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
 					Model modelType = MIDRegistry.getExtendibleElement(workflowModel.getMetatypeUri(), typeMID);
+					MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
+					newModelTypeEndpoint.setDynamic(true);
 					String containerFeatureName = (isInput) ?
 						OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
 						OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
@@ -805,7 +808,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		Operator newOperatorType = super.createThisEClass();
+		Operator newOperatorType = new RootOperator();
 		this.addSubtype(newOperatorType, newOperatorTypeName, workflowMIDUri);
 
 		return newOperatorType;
