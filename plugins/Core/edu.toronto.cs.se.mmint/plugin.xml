@@ -141,7 +141,7 @@
          <type
                name="Operator"
                uri="http://se.cs.toronto.edu/mmint/Operator"
-               class="edu.toronto.cs.se.mmint.RootOperator"
+               class="edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl"
                isAbstract="true">
          </type>
       </operatorType>

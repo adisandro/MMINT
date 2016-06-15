@@ -31,9 +31,9 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected ConversionOperatorImpl() {
+	public ConversionOperatorImpl() {
 		super();
 	}
 

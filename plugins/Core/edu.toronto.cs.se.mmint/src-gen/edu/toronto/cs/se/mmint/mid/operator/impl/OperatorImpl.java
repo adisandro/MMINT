@@ -38,7 +38,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.RootOperator;
 import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -207,9 +206,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected OperatorImpl() {
+	public OperatorImpl() {
 		super();
 	}
 
@@ -808,7 +807,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		Operator newOperatorType = new RootOperator();
+		Operator newOperatorType = super.createThisEClass();
 		this.addSubtype(newOperatorType, newOperatorTypeName, workflowMIDUri);
 
 		return newOperatorType;
