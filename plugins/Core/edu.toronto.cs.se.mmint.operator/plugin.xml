@@ -17,6 +17,63 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http://se.cs.toronto.edu/mmint/MIDWorkflow"
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="MIDWorkflow"
+               uri="http://se.cs.toronto.edu/mmint/MIDWorkflow">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID">
+            </superType>
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.mid.constraint.MIDWorkflowConstraint"
+               language="JAVA">
+         </constraint>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDWorkflow"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
+         <type
+               name="MIDWorkflow tree"
+               uri="http://se.cs.toronto.edu/mmint/MIDWorkflow_tree">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_tree">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/mmint/MIDWorkflow"
+            id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID"
+            isDiagram="true"
+            wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+         <type
+               name="MIDWorkflow diagram"
+               uri="http://se.cs.toronto.edu/mmint/MIDWorkflow_diagram">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/MID_diagram">
+            </superType>
+         </type>
+      </editorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
             uri="http://se.cs.toronto.edu/mmint/MIDRel"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>

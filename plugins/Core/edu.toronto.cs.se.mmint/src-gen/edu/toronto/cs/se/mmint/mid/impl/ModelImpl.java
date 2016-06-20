@@ -1096,7 +1096,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		EObject rootModelObj;
 		try {
-			rootModelObj = MIDUtils.readModelFile(getUri(), true);
+			rootModelObj = MIDUtils.readModelFile(this.getUri(), true);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);

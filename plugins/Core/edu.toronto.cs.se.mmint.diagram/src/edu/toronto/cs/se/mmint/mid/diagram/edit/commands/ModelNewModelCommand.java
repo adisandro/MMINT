@@ -124,7 +124,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Think about the need for a MIDWorkflow model type
 		 * - Check if create type hierarchy is needed when creating operator, as well as undo-redo
 		 * - Check if something special needs to be done at startup for persistence of workflow operator
 		 * - Add execution engine and WorkflowOperator class (implement createSubtype(), createEndpointSubtype(), deleteType(), openType(), run() there)
