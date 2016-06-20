@@ -606,8 +606,7 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Creates the necessary structures to support the type hierarchy for the
-	 * repository.
+	 * Creates the necessary structures to support the type hierarchy of the repository.
 	 */
 	public static void createTypeHierarchy() {
 
@@ -615,11 +614,10 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Creates the necessary structures to support the type hierarchy for the
-	 * Type MID.
+	 * Creates the necessary structures to support the type hierarchy of the Type MID.
 	 * 
 	 * @param typeMID
-	 *            The multimodel root of the Type MID.
+	 *            The Type MID.
 	 */
 	public static void createTypeHierarchy(MID typeMID) {
 
@@ -635,46 +633,49 @@ public class MMINT implements MMINTConstants {
 	 * Creates and adds a model type to the repository from a dynamic ("light")
 	 * model type created at runtime before the last shutdown.
 	 * 
-	 * @param dynamicModelType
+	 * @param dynamicType
 	 *            The dynamic model type from the last shutdown.
 	 * @return The created model type, null if the model type can't be created.
 	 */
-	private Model createDynamicModelType(Model dynamicModelType) {
+	private ExtendibleElement createDynamicType(ExtendibleElement dynamicType) {
 
-		Model modelType = MIDTypeRegistry.getType(dynamicModelType.getSupertype().getUri());
-		if (modelType == null && dynamicModelType.getSupertype().isDynamic()) {
-			modelType = createDynamicModelType(dynamicModelType.getSupertype());
+		ExtendibleElement type = MIDTypeRegistry.getType(dynamicType.getSupertype().getUri());
+		if (type == null && dynamicType.getSupertype().isDynamic()) {
+			type = createDynamicType(dynamicType.getSupertype());
 		}
-		if (modelType == null) {
+		if (type == null) {
 			return null;
 		}
 
-		Model newModelType = null;
+		ExtendibleElement newType = null;
 		try {
-			if (dynamicModelType instanceof ModelRel) {
-				newModelType = ((ModelRel) modelType).copySubtype((ModelRel) dynamicModelType);
+			if (dynamicType instanceof ModelRel) {
+				newType = ((ModelRel) type).copySubtype((ModelRel) dynamicType);
 			}
-			else {
-				newModelType = modelType.createSubtype(
-					dynamicModelType.getName(),
-					dynamicModelType.getConstraint().getLanguage(),
-					dynamicModelType.getConstraint().getImplementation(),
-					(MIDTypeRegistry.getExtendedMetamodelUri(dynamicModelType) != null)
+			else if (dynamicType instanceof Model) {
+				newType = ((Model) type).createSubtype(
+					dynamicType.getName(),
+					dynamicType.getConstraint().getLanguage(),
+					dynamicType.getConstraint().getImplementation(),
+					(MIDTypeRegistry.getExtendedMetamodelUri((Model) dynamicType) != null)
 				);
+			}
+			else if (dynamicType instanceof Operator) {//TODO needs WorkflowOperator
+				newType = ((Operator) type).createSubtype(dynamicType.getName(), "");
 			}
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Dynamic type " + dynamicModelType.getName() + " can't be recreated", e);
+			MMINTException.print(IStatus.WARNING, "Dynamic type " + dynamicType.getName() + " can't be recreated", e);
 		}
 
-		return newModelType;
+		return newType;
 	}
 
 	/**
-	 * Creates and adds model types to the repository from all the dynamic
-	 * ("light") model types created at runtime before the last shutdown.
+	 * Creates and adds types to the repository from all the dynamic ("light") types created at runtime before the last
+	 * shutdown.
 	 */
-	private void createDynamicModelTypes() {
+	private void createDynamicTypes() {
 
 		MID typeMID;
 		try {
@@ -687,23 +688,19 @@ public class MMINT implements MMINTConstants {
 
 		// do model types first
 		//TODO MMINT[MISC] this probably explains the todo in type hierarchy (are type and type ref iterators really needed, or are the lists already ordered by construction?)
-		for (Model dynamicModelType : typeMID.getModels()) {
-			if (
-				!(dynamicModelType instanceof ModelRel) &&
-				dynamicModelType.isDynamic() &&
-				MIDTypeRegistry.getType(dynamicModelType.getUri()) == null
-			) {
-				createDynamicModelType(dynamicModelType);
-			}
-		}
-		for (ModelRel dynamicModelRelType : typeMID.getModelRels()) {
-			if (
-				dynamicModelRelType.isDynamic() &&
-				MIDTypeRegistry.getType(dynamicModelRelType.getUri()) == null
-			) {
-				createDynamicModelType(dynamicModelRelType);
-			}
-		}
+		typeMID.getModels().stream()
+			.filter(modelType -> !(modelType instanceof ModelRel))
+			.filter(modelType -> modelType.isDynamic())
+			.filter(modelType -> MIDTypeRegistry.getType(modelType.getUri()) == null)
+			.forEach(dynamicModelType -> this.createDynamicType(dynamicModelType));
+		typeMID.getModelRels().stream()
+			.filter(modelRelType -> modelRelType.isDynamic())
+			.filter(modelRelType -> MIDTypeRegistry.getType(modelRelType.getUri()) == null)
+			.forEach(dynamicModelRelType -> this.createDynamicType(dynamicModelRelType));
+		typeMID.getOperators().stream()
+			.filter(operatorType -> operatorType.isDynamic())
+			.filter(operatorType -> MIDTypeRegistry.getType(operatorType.getUri()) == null)
+			.forEach(dynamicOperatorType -> this.createDynamicType(dynamicOperatorType));
 	}
 
 	public static IReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
@@ -727,7 +724,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Initializes the repository from the registered extensions and the dynamic
 	 * types created at runtime before the last shutdown, then stores it in the
-	 * type MID file.
+	 * Type MID file.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
@@ -798,7 +795,7 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		// dynamic types from last shutdown
-		createDynamicModelTypes();
+		createDynamicTypes();
 		// reasoners
 		configs = registry.getConfigurationElementsFor(REASONERS_EXT_POINT);
 		for (int i = 0; i < configs.length; i++) {

@@ -34,6 +34,36 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 		super(req);
 	}
 
+    /**
+     * Overrides superclass to re-initialize diagram type hierarchy.
+     */
+	@Override
+	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+		IStatus status = super.doUndo(monitor, info);
+		MID mid = (MID) getElementToEdit();
+		if (mid.isTypesLevel()) {
+			MMINT.createTypeHierarchy(mid);
+		}
+
+		return status;
+    }
+
+    /**
+     * Overrides superclass to re-initialize diagram type hierarchy.
+     */
+	@Override
+	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+		IStatus status = super.doRedo(monitor, info);
+		MID mid = (MID) getElementToEdit();
+		if (mid.isTypesLevel()) {
+			MMINT.createTypeHierarchy(mid);
+		}
+
+		return status;
+    }
+
 	@Override
 	public boolean canExecute() {
 
@@ -51,6 +81,7 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 			MIDUtils.getFileNameFromUri(workflowMIDUri));
 		Operator newOperator = MIDRegistry.<Operator>getExtendibleElement(MMINT.ROOT_OPERATOR_URI, typeMID)
 			.createSubtype(newOperatorTypeName, workflowMIDUri);
+		MMINT.createTypeHierarchy(typeMID);
 
 		return newOperator;
 	}
