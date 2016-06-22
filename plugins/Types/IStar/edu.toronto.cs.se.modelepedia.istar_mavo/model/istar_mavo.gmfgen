@@ -920,7 +920,7 @@
   </diagram>
   <plugin
       provider="Software Engineering Group, University of Toronto"
-      version="2.0.0"
+      version="2.0.1"
       printingEnabled="true">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
