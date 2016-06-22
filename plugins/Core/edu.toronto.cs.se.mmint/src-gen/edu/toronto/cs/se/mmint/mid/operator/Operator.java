@@ -258,12 +258,21 @@ public interface Operator extends GenericElement {
 	MID getMIDContainer();
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorTypeNameRequired="true" workflowMIDUriRequired="true"
+	 * <!-- begin-user-doc --> Creates and adds a subtype of this operator type to the Type MID.
+	 * 
+	 * @param newOperatorTypeName
+	 *            The name of the new operator type.
+	 * @param implementationUri
+	 *            The uri of the new operator's implementation.
+	 * @return The created operator type.
+	 * @throws MMINTException
+	 *             If this is not an operator type, or if the uri of the new operator type is already registered in the
+	 *             Type MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorTypeNameRequired="true"
+	 *        implementationUriRequired="true"
 	 * @generated
 	 */
-	Operator createSubtype(String newOperatorTypeName, String workflowMIDUri) throws MMINTException;
+	Operator createSubtype(String newOperatorTypeName, String implementationUri) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this operator type from the Type MID.
@@ -445,7 +454,7 @@ public interface Operator extends GenericElement {
 	 * @param genericsByName
 	 *            The generic types, identified by their metatype name.
 	 * @param outputMIDsByName
-	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
+	 *            The instance MIDs where the output models are created, identified by the output name. A null Instance
 	 *            MID means that the output model isn't added to it.
 	 * @return The output model instances, identified by their name.
 	 * @throws Exception

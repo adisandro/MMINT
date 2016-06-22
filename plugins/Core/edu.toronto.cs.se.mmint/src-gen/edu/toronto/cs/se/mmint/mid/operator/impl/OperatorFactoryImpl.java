@@ -76,6 +76,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
+			case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
 			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
 			case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
 			case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
@@ -154,6 +155,16 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public RandomOperator createRandomOperator() {
 		RandomOperatorImpl randomOperator = new RandomOperatorImpl();
 		return randomOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowOperator createWorkflowOperator() {
+		WorkflowOperatorImpl workflowOperator = new WorkflowOperatorImpl();
+		return workflowOperator;
 	}
 
 	/**

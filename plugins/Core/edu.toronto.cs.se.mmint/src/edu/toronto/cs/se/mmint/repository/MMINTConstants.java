@@ -11,6 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.repository;
 
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+
 /**
  * The list of all MMINT constants.
  * 
@@ -43,19 +50,20 @@ public interface MMINTConstants {
 	/** The base root uri. */
 	public final static String ROOT_URI = "http://se.cs.toronto.edu/mmint";
 	/** The uri of the root model type. */
-	public final static String ROOT_MODEL_URI = ROOT_URI + URI_SEPARATOR + "Model";
+	public final static String ROOT_MODEL_URI = ROOT_URI + URI_SEPARATOR + Model.class.getSimpleName();
 	/** The uri of the root model relationship type. */
-	public final static String ROOT_MODELREL_URI = ROOT_URI + URI_SEPARATOR + "ModelRel";
+	public final static String ROOT_MODELREL_URI = ROOT_URI + URI_SEPARATOR + ModelRel.class.getSimpleName();
 	/** The uri of the root model type endpoint. */
-	public final static String ROOT_MODELENDPOINT_URI = ROOT_URI + URI_SEPARATOR + "ModelRel" + ENDPOINT_SEPARATOR + "Model" + URI_SEPARATOR + "ModelEndpoint";
+	public final static String ROOT_MODELENDPOINT_URI = ROOT_MODELREL_URI + ENDPOINT_SEPARATOR + Model.class.getSimpleName() + URI_SEPARATOR + ModelEndpoint.class.getSimpleName();
 	/** The uri of the root model element type. */
-	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + "ModelElement";
+	public final static String ROOT_MODELELEM_URI = ROOT_MODEL_URI + ECORE_MODEL_URI_SEPARATOR + URI_SEPARATOR + ModelElement.class.getSimpleName();
 	/** The uri of the root link type. */
-	public final static String ROOT_MAPPING_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Mapping";
+	public final static String ROOT_MAPPING_URI = ROOT_MODELREL_URI + URI_SEPARATOR + Mapping.class.getSimpleName();
 	/** The uri of the root model element type endpoint. */
-	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MODELREL_URI + URI_SEPARATOR + "Mapping" + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
+	//TODO MMINT[MISC] Migrate to use class names
+	public final static String ROOT_MODELELEMENDPOINT_URI = ROOT_MAPPING_URI + ENDPOINT_SEPARATOR + "ModelElem" + URI_SEPARATOR + "ModelElemEndpoint";
 	/** The uri of the root operator type. */
-	public final static String ROOT_OPERATOR_URI = ROOT_URI + URI_SEPARATOR + "Operator";
+	public final static String ROOT_OPERATOR_URI = ROOT_URI + URI_SEPARATOR + Operator.class.getSimpleName();
 	/** The uri of the root editor type. */
 	public final static String ROOT_EDITOR_URI = ROOT_MODEL_URI + EDITOR_SEPARATOR + "tree";
 	/** The name of the root editor type. */

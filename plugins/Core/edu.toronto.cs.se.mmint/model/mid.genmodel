@@ -261,7 +261,6 @@
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/copySubtype/origModelRelType"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelUri"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/endpointModels"/>
@@ -381,16 +380,7 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/deleteInstance"/>
       </genClasses>
-      <genClasses ecoreClass="mid.ecore#//relationship/BinaryMapping">
-        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMapping/createTypeReference">
-          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMapping/createTypeReference/mappingTypeRef"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMapping/createTypeReference/isModifiable"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMapping/createTypeReference/containerModelRelType"/>
-        </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMapping/createInstanceReference">
-          <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMapping/createInstanceReference/containerModelRel"/>
-        </genOperations>
-      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//relationship/BinaryMapping"/>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpoint">
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getSupertype"/>
@@ -539,7 +529,7 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createSubtype">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/newOperatorTypeName"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/workflowMIDUri"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationUri"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
@@ -600,6 +590,10 @@
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/RandomOperator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperator/state"/>
+      </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/WorkflowOperator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/WorkflowOperator/workflowMIDUri"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getWorkflowMID"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>

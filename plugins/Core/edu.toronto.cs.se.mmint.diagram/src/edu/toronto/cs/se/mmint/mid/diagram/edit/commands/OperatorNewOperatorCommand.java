@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 
@@ -73,13 +74,14 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 
 	protected Operator doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
+		//TODO MMINT[MISC] Support undo/redo with workflow mid file
 		MID typeMID = (MID) getElementToEdit();
 		String workflowMIDUri = MIDDialogUtils.selectWorkflowMIDToCreateOperatorType(typeMID);
 		String newOperatorTypeName = MIDDialogUtils.getStringInput(
 			"Create new operator type from workflow",
 			"Insert new operator type name",
 			MIDUtils.getFileNameFromUri(workflowMIDUri));
-		Operator newOperator = MIDRegistry.<Operator>getExtendibleElement(MMINT.ROOT_OPERATOR_URI, typeMID)
+		Operator newOperator = MIDRegistry.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR + WorkflowOperator.class.getSimpleName(), typeMID)
 			.createSubtype(newOperatorTypeName, workflowMIDUri);
 		MMINT.createTypeHierarchy(typeMID);
 

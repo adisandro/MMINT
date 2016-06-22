@@ -595,7 +595,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		if (isMetamodelExtension) {
 			try {
 				String newMetamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(newModelType);
-				if (newMetamodelUri == null) { // create new metamodel file
+				if (newMetamodelUri == null) { // create new metamodel file, else we're just recreating this subtype at startup
 					EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
 					newEPackage.setName(newModelTypeName.toLowerCase());
 					newEPackage.setNsPrefix(newModelTypeName.toLowerCase());

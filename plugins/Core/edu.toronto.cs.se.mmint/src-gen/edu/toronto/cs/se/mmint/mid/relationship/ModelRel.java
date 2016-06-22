@@ -176,16 +176,6 @@ public interface ModelRel extends Model {
 	ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Deletes this model relationship type from the Type MID.
-	 * 
-	 * @throws MMINTException
-	 *             If this is not a model relationship type. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void deleteType() throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Gets the model type resources to be used in the Relationship diagram outline for this
 	 * model relationship type.
 	 * 

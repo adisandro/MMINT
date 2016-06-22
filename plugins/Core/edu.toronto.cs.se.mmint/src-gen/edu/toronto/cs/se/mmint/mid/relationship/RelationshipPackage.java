@@ -408,6 +408,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___DELETE_TYPE = MIDPackage.MODEL___DELETE_TYPE;
+
+	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -588,22 +597,13 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MIDPackage.MODEL_OPERATION_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_REL___DELETE_TYPE = MIDPackage.MODEL_OPERATION_COUNT + 6;
-
-	/**
 	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -612,7 +612,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -621,7 +621,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 9;
+	int MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -630,7 +630,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MIDPackage.MODEL_OPERATION_COUNT + 10;
+	int MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MIDPackage.MODEL_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.
@@ -639,7 +639,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 11;
+	int MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Binary Instance</em>' operation.
@@ -648,7 +648,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 12;
+	int MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Binary Instance And Endpoints</em>' operation.
@@ -657,7 +657,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 13;
+	int MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Model Rel</em>' class.
@@ -666,7 +666,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 14;
+	int MODEL_REL_OPERATION_COUNT = MIDPackage.MODEL_OPERATION_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -975,6 +975,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
 
 	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___DELETE_TYPE = MODEL_REL___DELETE_TYPE;
+
+	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1153,15 +1162,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MODEL_REL___DELETE_TYPE = MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
@@ -2391,6 +2391,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MAPPING___GET_MID_CONTAINER = MAPPING___GET_MID_CONTAINER;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2407,6 +2416,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___DELETE_TYPE = MAPPING___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -2436,31 +2454,13 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MAPPING___DELETE_INSTANCE = MAPPING___DELETE_INSTANCE;
 
 	/**
-	 * The operation id for the '<em>Create Type Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = MAPPING_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Create Instance Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = MAPPING_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Binary Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAPPING_OPERATION_COUNT = MAPPING_OPERATION_COUNT + 2;
+	int BINARY_MAPPING_OPERATION_COUNT = MAPPING_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointImpl <em>Model Element Endpoint</em>}' class.
@@ -3480,16 +3480,6 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CopySubtype__ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#deleteType() <em>Delete Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Delete Type</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#deleteType()
-	 * @generated
-	 */
-	EOperation getModelRel__DeleteType();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Endpoints</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3894,26 +3884,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBinaryMapping();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping#createTypeReference(edu.toronto.cs.se.mmint.mid.relationship.MappingReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Type Reference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Type Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping#createTypeReference(edu.toronto.cs.se.mmint.mid.relationship.MappingReference, boolean, edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
-	 * @generated
-	 */
-	EOperation getBinaryMapping__CreateTypeReference__MappingReference_boolean_ModelRel();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Create Instance Reference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance Reference</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping#createInstanceReference(edu.toronto.cs.se.mmint.mid.relationship.ModelRel)
-	 * @generated
-	 */
-	EOperation getBinaryMapping__CreateInstanceReference__ModelRel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint <em>Model Element Endpoint</em>}'.
@@ -4502,14 +4472,6 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_REL___COPY_SUBTYPE__MODELREL = eINSTANCE.getModelRel__CopySubtype__ModelRel();
 
 		/**
-		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL_REL___DELETE_TYPE = eINSTANCE.getModelRel__DeleteType();
-
-		/**
 		 * The meta object literal for the '<em><b>Create Instance And Endpoints</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4838,22 +4800,6 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BINARY_MAPPING = eINSTANCE.getBinaryMapping();
-
-		/**
-		 * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = eINSTANCE.getBinaryMapping__CreateTypeReference__MappingReference_boolean_ModelRel();
-
-		/**
-		 * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getBinaryMapping__CreateInstanceReference__ModelRel();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointImpl <em>Model Element Endpoint</em>}' class.

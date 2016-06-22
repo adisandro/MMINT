@@ -38,12 +38,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -769,46 +767,32 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Adds a subtype of this operator type to the Type MID.
+	 * 
+	 * @param newOperatorType
+	 *            The new operator type to be added.
+	 * @param newOperatorTypeName
+	 *            The name of the new operator type.
+	 * @param implementationUri
+	 *            The uri of the new operator's implementation (a Java class inheriting from this class).
+	 * @throws MMINTException
+	 *             If the uri of the new operator type is already registered in the Type MID.
 	 * @generated NOT
 	 */
-	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String workflowMIDUri) throws MMINTException {
+	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String implementationUri) throws MMINTException {
 
-		MID typeMID = this.getMIDContainer();
-		super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
-		try {
-			MID workflowMID = (MID) MIDUtils.readModelFile(workflowMIDUri, true);
-			MIDUtils.writeModelFileInState(workflowMID, newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME);
-			MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
-			for (Model workflowModel : workflowMID.getModels()) {
-				boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
-				boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
-				if (isInput || isOutput) {
-					ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
-					Model modelType = MIDRegistry.getExtendibleElement(workflowModel.getMetatypeUri(), typeMID);
-					MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
-					newModelTypeEndpoint.setDynamic(true);
-					String containerFeatureName = (isInput) ?
-						OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
-						OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
-					MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, containerFeatureName);
-				}
-			}
-		}
-		catch (Exception e) {
-			super.delete(newOperatorType.getUri(), typeMID);
-			throw new MMINTException("Error copying the Workflow MID", e);
-		}
+		//TODO MMINT[OPERATOR] Implement a simple way to run a java class pointed by implementationUri
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public Operator createSubtype(String newOperatorTypeName, String workflowMIDUri) throws MMINTException {
+	public Operator createSubtype(String newOperatorTypeName, String implementationUri) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		Operator newOperatorType = super.createThisEClass();
-		this.addSubtype(newOperatorType, newOperatorTypeName, workflowMIDUri);
+		this.addSubtype(newOperatorType, newOperatorTypeName, implementationUri);
 
 		return newOperatorType;
 	}

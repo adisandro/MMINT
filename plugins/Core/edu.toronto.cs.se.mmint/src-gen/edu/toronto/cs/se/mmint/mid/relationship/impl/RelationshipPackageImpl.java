@@ -307,7 +307,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__DeleteType() {
+	public EOperation getModelRel__CreateInstanceAndEndpoints__String_EList_MID() {
 		return modelRelEClass.getEOperations().get(6);
 	}
 
@@ -316,7 +316,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CreateInstanceAndEndpoints__String_EList_MID() {
+	public EOperation getModelRel__CreateBinaryInstance__String_MID() {
 		return modelRelEClass.getEOperations().get(7);
 	}
 
@@ -325,17 +325,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelRel__CreateBinaryInstance__String_MID() {
-		return modelRelEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getModelRel__CreateBinaryInstanceAndEndpoints__String_Model_Model_MID() {
-		return modelRelEClass.getEOperations().get(9);
+		return modelRelEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -353,7 +344,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	public EOperation getModelRel__GetOutlineResourceInstances() {
-		return modelRelEClass.getEOperations().get(10);
+		return modelRelEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -362,7 +353,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	public EOperation getModelRel__CreateWorkflowInstanceAndEndpoints__String_EList_MID() {
-		return modelRelEClass.getEOperations().get(11);
+		return modelRelEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -371,7 +362,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	public EOperation getModelRel__CreateWorkflowBinaryInstance__String_MID() {
-		return modelRelEClass.getEOperations().get(12);
+		return modelRelEClass.getEOperations().get(11);
 	}
 
 	/**
@@ -380,7 +371,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * @generated
 	 */
 	public EOperation getModelRel__CreateWorkflowBinaryInstanceAndEndpoints__String_Model_Model_MID() {
-		return modelRelEClass.getEOperations().get(13);
+		return modelRelEClass.getEOperations().get(12);
 	}
 
 	/**
@@ -669,24 +660,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 */
 	public EClass getBinaryMapping() {
 		return binaryMappingEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getBinaryMapping__CreateTypeReference__MappingReference_boolean_ModelRel() {
-		return binaryMappingEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getBinaryMapping__CreateInstanceReference__ModelRel() {
-		return binaryMappingEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1151,7 +1124,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
 		createEOperation(modelRelEClass, MODEL_REL___COPY_SUBTYPE__MODELREL);
 		createEOperation(modelRelEClass, MODEL_REL___GET_OUTLINE_RESOURCE_TYPES);
-		createEOperation(modelRelEClass, MODEL_REL___DELETE_TYPE);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID);
 		createEOperation(modelRelEClass, MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID);
@@ -1213,8 +1185,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		createEOperation(mappingEClass, MAPPING___DELETE_INSTANCE);
 
 		binaryMappingEClass = createEClass(BINARY_MAPPING);
-		createEOperation(binaryMappingEClass, BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL);
-		createEOperation(binaryMappingEClass, BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL);
 
 		modelElementEndpointEClass = createEClass(MODEL_ELEMENT_ENDPOINT);
 		createEOperation(modelElementEndpointEClass, MODEL_ELEMENT_ENDPOINT___GET_METATYPE);
@@ -1321,9 +1291,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__GetOutlineResourceTypes(), ecorePackage.getEResourceSet(), "getOutlineResourceTypes", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getModelRel__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getModelRel__CreateInstanceAndEndpoints__String_EList_MID(), this.getModelRel(), "createInstanceAndEndpoints", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1478,16 +1445,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(binaryMappingEClass, BinaryMapping.class, "BinaryMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getBinaryMapping__CreateTypeReference__MappingReference_boolean_ModelRel(), this.getMappingReference(), "createTypeReference", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getMappingReference(), "mappingTypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "isModifiable", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelRel(), "containerModelRelType", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getBinaryMapping__CreateInstanceReference__ModelRel(), this.getMappingReference(), "createInstanceReference", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getModelRel(), "containerModelRel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(modelElementEndpointEClass, ModelElementEndpoint.class, "ModelElementEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

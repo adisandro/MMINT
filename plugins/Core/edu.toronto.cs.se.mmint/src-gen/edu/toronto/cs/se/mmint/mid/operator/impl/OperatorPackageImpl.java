@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.operator.util.OperatorValidator;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
@@ -67,6 +68,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass randomOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowOperatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -527,6 +535,33 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getWorkflowOperator() {
+		return workflowOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getWorkflowOperator_WorkflowMIDUri() {
+		return (EAttribute)workflowOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getWorkflowOperator__GetWorkflowMID() {
+		return workflowOperatorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGenericEndpoint() {
 		return genericEndpointEClass;
 	}
@@ -760,6 +795,10 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		randomOperatorEClass = createEClass(RANDOM_OPERATOR);
 		createEAttribute(randomOperatorEClass, RANDOM_OPERATOR__STATE);
 
+		workflowOperatorEClass = createEClass(WORKFLOW_OPERATOR);
+		createEAttribute(workflowOperatorEClass, WORKFLOW_OPERATOR__WORKFLOW_MID_URI);
+		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_WORKFLOW_MID);
+
 		genericEndpointEClass = createEClass(GENERIC_ENDPOINT);
 		createEAttribute(genericEndpointEClass, GENERIC_ENDPOINT__METATARGET_URI);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_SUPERTYPE);
@@ -820,6 +859,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		operatorEClass.getESuperTypes().add(theMIDPackage.getGenericElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
 		randomOperatorEClass.getESuperTypes().add(this.getOperator());
+		workflowOperatorEClass.getESuperTypes().add(this.getOperator());
 		genericEndpointEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementEndpoint());
 
 		// Initialize classes, features, and operations; add parameters
@@ -841,7 +881,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		EOperation op = initEOperation(getOperator__CreateSubtype__String_String(), this.getOperator(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newOperatorTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "workflowMIDUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "implementationUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -972,6 +1012,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEClass(randomOperatorEClass, RandomOperator.class, "RandomOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomOperator_State(), this.getRandom(), "state", null, 1, 1, RandomOperator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowOperatorEClass, WorkflowOperator.class, "WorkflowOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowOperator_WorkflowMIDUri(), ecorePackage.getEString(), "workflowMIDUri", null, 1, 1, WorkflowOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getWorkflowOperator__GetWorkflowMID(), theMIDPackage.getMID(), "getWorkflowMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(genericEndpointEClass, GenericEndpoint.class, "GenericEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenericEndpoint_MetatargetUri(), ecorePackage.getEString(), "metatargetUri", null, 1, 1, GenericEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

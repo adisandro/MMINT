@@ -614,7 +614,6 @@
       </eOperations>
       <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMINTException"/>
-      <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="createInstanceAndEndpoints" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">
         <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -948,16 +947,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="isBinaryMapping" value="modelElemEndpoints->size() = 2"/>
       </eAnnotations>
-      <eOperations name="createTypeReference" lowerBound="1" eType="#//relationship/MappingReference"
-          eExceptions="#//MMINTException">
-        <eParameters name="mappingTypeRef" eType="#//relationship/MappingReference"/>
-        <eParameters name="isModifiable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-        <eParameters name="containerModelRelType" lowerBound="1" eType="#//relationship/ModelRel"/>
-      </eOperations>
-      <eOperations name="createInstanceReference" lowerBound="1" eType="#//relationship/MappingReference"
-          eExceptions="#//MMINTException">
-        <eParameters name="containerModelRel" lowerBound="1" eType="#//relationship/ModelRel"/>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1254,7 +1243,7 @@
       <eOperations name="createSubtype" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="newOperatorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="workflowMIDUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="implementationUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="findAllowedInputs" lowerBound="1" eExceptions="#//MMINTException">
@@ -1412,12 +1401,27 @@
       <eOperations name="cleanup" eExceptions="#//operator/Exception"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomOperator" eSuperTypes="#//operator/Operator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A (pseudo) random operator type or a (pseudo) random operator instance, has a pseudorandom number generator to support its execution."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1"
           eType="#//operator/Random" transient="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The random variable."/>
         </eAnnotations>
       </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowOperator" eSuperTypes="#//operator/Operator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A workflow operator type or a workflow operator instance, executes a Workflow MID."/>
+      </eAnnotations>
+      <eOperations name="getWorkflowMID" eType="#//MID">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="try {&#xA;&#x9;return (MID) MIDUtils.readModelFileInState(this.getWorkflowMIDUri());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="workflowMIDUri" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

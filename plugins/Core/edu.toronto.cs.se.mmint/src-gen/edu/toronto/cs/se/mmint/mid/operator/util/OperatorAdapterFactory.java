@@ -95,6 +95,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createRandomOperatorAdapter();
 			}
 			@Override
+			public Adapter caseWorkflowOperator(WorkflowOperator object) {
+				return createWorkflowOperatorAdapter();
+			}
+			@Override
 			public Adapter caseGenericEndpoint(GenericEndpoint object) {
 				return createGenericEndpointAdapter();
 			}
@@ -177,6 +181,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRandomOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator <em>Workflow Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator
+	 * @generated
+	 */
+	public Adapter createWorkflowOperatorAdapter() {
 		return null;
 	}
 

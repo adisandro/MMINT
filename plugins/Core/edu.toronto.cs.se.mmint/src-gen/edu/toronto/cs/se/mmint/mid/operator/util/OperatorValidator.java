@@ -116,6 +116,8 @@ public class OperatorValidator extends EObjectValidator {
 				return validateConversionOperator((ConversionOperator)value, diagnostics, context);
 			case OperatorPackage.RANDOM_OPERATOR:
 				return validateRandomOperator((RandomOperator)value, diagnostics, context);
+			case OperatorPackage.WORKFLOW_OPERATOR:
+				return validateWorkflowOperator((WorkflowOperator)value, diagnostics, context);
 			case OperatorPackage.GENERIC_ENDPOINT:
 				return validateGenericEndpoint((GenericEndpoint)value, diagnostics, context);
 			case OperatorPackage.OPERATOR_INPUT:
@@ -219,6 +221,25 @@ public class OperatorValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(randomOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(randomOperator, diagnostics, context);
 		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(randomOperator, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWorkflowOperator(WorkflowOperator workflowOperator, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(workflowOperator, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(workflowOperator, diagnostics, context);
+		if (result || diagnostics != null) result &= midValidator.validateExtendibleElement_typeLevel(workflowOperator, diagnostics, context);
 		return result;
 	}
 

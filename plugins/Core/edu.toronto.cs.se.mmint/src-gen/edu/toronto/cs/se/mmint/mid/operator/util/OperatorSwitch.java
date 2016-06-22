@@ -108,6 +108,15 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperatorPackage.WORKFLOW_OPERATOR: {
+				WorkflowOperator workflowOperator = (WorkflowOperator)theEObject;
+				T result = caseWorkflowOperator(workflowOperator);
+				if (result == null) result = caseOperator(workflowOperator);
+				if (result == null) result = caseGenericElement(workflowOperator);
+				if (result == null) result = caseExtendibleElement(workflowOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OperatorPackage.GENERIC_ENDPOINT: {
 				GenericEndpoint genericEndpoint = (GenericEndpoint)theEObject;
 				T result = caseGenericEndpoint(genericEndpoint);
@@ -174,6 +183,21 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRandomOperator(RandomOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowOperator(WorkflowOperator object) {
 		return null;
 	}
 

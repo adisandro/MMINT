@@ -48,8 +48,21 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 	}
 
 	/**
+	 * Creates and adds a reference to this binary mapping type to the Type MID.
+	 * 
+	 * @param mappingTypeRef
+	 *            The reference to the supertype of the mapping type, null if such reference doesn't exist in the model
+	 *            relationship type container.
+	 * @param isModifiable
+	 *            True if the new reference will allow modifications of the referenced mapping type, false otherwise.
+	 * @param containerModelRelType
+	 *            The model relationship type that will contain the new reference to the mapping type.
+	 * @return The created reference to the binary mapping type.
+	 * @throws MMINTException
+	 *             If this is a mapping instance.
 	 * @generated NOT
 	 */
+	@Override
 	public MappingReference createTypeReference(MappingReference mappingTypeRef, boolean isModifiable, ModelRel containerModelRelType) throws MMINTException {
 
 		MMINTException.mustBeType(this);
@@ -61,8 +74,16 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 	}
 
 	/**
+	 * Creates and adds a reference to this binary mapping instance to an Instance MID.
+	 * 
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new reference to the mapping.
+	 * @return The created reference to the binary mapping.
+	 * @throws MMINTException
+	 *             If this is a mapping type.
 	 * @generated NOT
 	 */
+	@Override
 	public MappingReference createInstanceReference(ModelRel containerModelRel) throws MMINTException {
 
 		MMINTException.mustBeInstance(this);

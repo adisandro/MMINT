@@ -568,6 +568,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Deletes this model relationship type from the Type MID.
+	 * 
+	 * @throws MMINTException
+	 *             If this is not a model relationship type.
 	 * @generated NOT
 	 */
 	@Override

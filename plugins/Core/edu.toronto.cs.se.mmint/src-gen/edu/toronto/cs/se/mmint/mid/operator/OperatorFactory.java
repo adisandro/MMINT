@@ -58,6 +58,15 @@ public interface OperatorFactory extends EFactory {
 	RandomOperator createRandomOperator();
 
 	/**
+	 * Returns a new object of class '<em>Workflow Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Workflow Operator</em>'.
+	 * @generated
+	 */
+	WorkflowOperator createWorkflowOperator();
+
+	/**
 	 * Returns a new object of class '<em>Generic Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -51,6 +51,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -660,8 +661,8 @@ public class MMINT implements MMINTConstants {
 					(MIDTypeRegistry.getExtendedMetamodelUri((Model) dynamicType) != null)
 				);
 			}
-			else if (dynamicType instanceof Operator) {//TODO needs WorkflowOperator
-				newType = ((Operator) type).createSubtype(dynamicType.getName(), "");
+			else if (dynamicType instanceof WorkflowOperator) {
+				newType = ((Operator) type).createSubtype(dynamicType.getName(), ((WorkflowOperator) dynamicType).getWorkflowMIDUri());
 			}
 		}
 		catch (MMINTException e) {

@@ -354,7 +354,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		MMINTException.mustBeType(this);
 
 		MappingReference newMappingTypeRef = super.createThisReferenceEClass();
-		addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
+		this.addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
 		return newMappingTypeRef;
 	}
@@ -424,7 +424,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		MMINTException.mustBeInstance(this);
 
 		MappingReference newMappingRef = super.createThisReferenceEClass();
-		addInstanceReference(newMappingRef, containerModelRel);
+		this.addInstanceReference(newMappingRef, containerModelRel);
 
 		return newMappingRef;
 	}
