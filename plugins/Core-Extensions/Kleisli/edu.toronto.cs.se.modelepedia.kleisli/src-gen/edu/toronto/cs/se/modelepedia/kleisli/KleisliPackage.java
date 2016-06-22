@@ -207,6 +207,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___IS_LEVEL__MIDLEVEL = MIDPackage.MODEL___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,6 +286,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -614,15 +632,6 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT__TARGET = MIDPackage.MODEL_ENDPOINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT__TARGET_URI = MIDPackage.MODEL_ENDPOINT__TARGET_URI;
-
-	/**
 	 * The feature id for the '<em><b>Extended Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -648,6 +657,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT_FEATURE_COUNT = MIDPackage.MODEL_ENDPOINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___IS_LEVEL__MIDLEVEL = MIDPackage.MODEL_ENDPOINT___IS_LEVEL__MIDLEVEL;
 
 	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
@@ -722,6 +740,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -747,6 +774,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___GET_TARGET_URI = MIDPackage.MODEL_ENDPOINT___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -819,6 +855,33 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING;
+
+	/**
+	 * The operation id for the '<em>Replace Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1055,6 +1118,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___IS_LEVEL__MIDLEVEL = RelationshipPackage.MODEL_REL___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1125,6 +1197,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___IS_WORKFLOWS_LEVEL = RelationshipPackage.MODEL_REL___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1624,6 +1705,15 @@ public interface KleisliPackage extends EPackage {
 	int BINARY_KLEISLI_MODEL_REL_FEATURE_COUNT = KLEISLI_MODEL_REL_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___IS_LEVEL__MIDLEVEL = KLEISLI_MODEL_REL___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1694,6 +1784,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_KLEISLI_MODEL_REL___IS_WORKFLOWS_LEVEL = KLEISLI_MODEL_REL___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = KLEISLI_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2030,15 +2129,6 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT_REFERENCE__OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2055,24 +2145,6 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE__MODIFIABLE = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODIFIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT_REFERENCE__URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__URI;
-
-	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int KLEISLI_MODEL_ENDPOINT_REFERENCE__TARGET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__TARGET_URI;
 
 	/**
 	 * The feature id for the '<em><b>Model Elem Refs</b></em>' containment reference list.
@@ -2100,6 +2172,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___GET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2136,6 +2217,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.

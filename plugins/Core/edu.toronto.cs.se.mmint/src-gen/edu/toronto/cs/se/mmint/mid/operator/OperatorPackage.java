@@ -2155,15 +2155,6 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
-
-	/**
 	 * The feature id for the '<em><b>Metatarget Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2306,6 +2297,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.

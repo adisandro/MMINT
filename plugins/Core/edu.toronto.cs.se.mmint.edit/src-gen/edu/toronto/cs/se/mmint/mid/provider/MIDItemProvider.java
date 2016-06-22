@@ -245,6 +245,11 @@ public class MIDItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(MIDPackage.Literals.MID__OPERATORS,
+				 OperatorFactory.eINSTANCE.createWorkflowOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(MIDPackage.Literals.MID__EXTENDIBLE_TABLE,
 				 MIDFactory.eINSTANCE.create(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP)));
 	}

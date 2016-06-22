@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -36,10 +35,8 @@ import java.lang.reflect.InvocationTargetException;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getReferencedObject <em>Referenced Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getContainedObject <em>Contained Object</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getObject <em>Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getSupertypeRef <em>Supertype Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#isModifiable <em>Modifiable</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl#getUri <em>Uri</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,16 +61,6 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 	 * @ordered
 	 */
 	protected ExtendibleElement containedObject;
-
-	/**
-	 * The cached setting delegate for the '{@link #getObject() <em>Object</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getObject()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OBJECT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT).getSettingDelegate();
 
 	/**
 	 * The cached value of the '{@link #getSupertypeRef() <em>Supertype Ref</em>}' reference.
@@ -104,16 +91,6 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 	 * @ordered
 	 */
 	protected boolean modifiable = MODIFIABLE_EDEFAULT;
-
-	/**
-	 * The cached setting delegate for the '{@link #getUri() <em>Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__URI).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,16 +198,9 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 	 * @generated
 	 */
 	public ExtendibleElement getObject() {
-		return (ExtendibleElement)OBJECT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendibleElement basicGetObject() {
-		return (ExtendibleElement)OBJECT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		return (this.getContainedObject() == null) ?
+			this.getReferencedObject() :
+			this.getContainedObject();
 	}
 
 	/**
@@ -298,7 +268,8 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 	 * @generated
 	 */
 	public String getUri() {
-		return (String)URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		ExtendibleElement object = this.getObject();
+		return (object == null) ? null : object.getUri();
 	}
 
 	/**
@@ -364,16 +335,11 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 				return basicGetReferencedObject();
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
 				return getContainedObject();
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT:
-				if (resolve) return getObject();
-				return basicGetObject();
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF:
 				if (resolve) return getSupertypeRef();
 				return basicGetSupertypeRef();
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE:
 				return isModifiable();
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__URI:
-				return getUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -438,14 +404,10 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 				return referencedObject != null;
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
 				return containedObject != null;
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT:
-				return OBJECT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF:
 				return supertypeRef != null;
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE:
 				return modifiable != MODIFIABLE_EDEFAULT;
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__URI:
-				return URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -458,6 +420,10 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_URI:
+				return getUri();
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT:
+				return getObject();
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER:
 				return getMIDContainer();
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL:

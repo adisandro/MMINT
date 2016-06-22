@@ -551,22 +551,13 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT__TARGET = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Extendible Element Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 4;
+	int EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT = EXTENDIBLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -713,13 +704,22 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Extendible Element Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 2;
+	int EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT = EXTENDIBLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl <em>Generic Element</em>}' class.
@@ -1852,15 +1852,6 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ENDPOINT__TARGET = EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT__TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
-
-	/**
 	 * The number of structural features of the '<em>Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1985,6 +1976,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___GET_TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2702,17 +2702,6 @@ public interface MIDPackage extends EPackage {
 	EReference getExtendibleElementEndpoint_Target();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTargetUri <em>Target Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Target Uri</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTargetUri()
-	 * @see #getExtendibleElementEndpoint()
-	 * @generated
-	 */
-	EAttribute getExtendibleElementEndpoint_TargetUri();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getMetatype() <em>Get Metatype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2731,6 +2720,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElementEndpoint__GetSupertype();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTargetUri() <em>Get Target Uri</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Target Uri</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTargetUri()
+	 * @generated
+	 */
+	EOperation getExtendibleElementEndpoint__GetTargetUri();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.Model <em>Model</em>}'.
@@ -3830,14 +3829,6 @@ public interface MIDPackage extends EPackage {
 		EReference EXTENDIBLE_ELEMENT_ENDPOINT__TARGET = eINSTANCE.getExtendibleElementEndpoint_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI = eINSTANCE.getExtendibleElementEndpoint_TargetUri();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3852,6 +3843,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE = eINSTANCE.getExtendibleElementEndpoint__GetSupertype();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Target Uri</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI = eINSTANCE.getExtendibleElementEndpoint__GetTargetUri();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl <em>Model</em>}' class.

@@ -31,10 +31,8 @@ import edu.toronto.cs.se.mmint.mid.MID;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getReferencedObject <em>Referenced Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getContainedObject <em>Contained Object</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getObject <em>Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getSupertypeRef <em>Supertype Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isModifiable <em>Modifiable</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getUri <em>Uri</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference()
@@ -95,16 +93,13 @@ public interface ExtendibleElementReference extends EObject {
 	void setContainedObject(ExtendibleElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Object</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The referenced element. It can be owned by some other entity or by this reference itself, but not both.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Object</em>' reference.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_Object()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if containedObject.oclIsUndefined() then referencedObject else containedObject endif'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this.getContainedObject() == null) ?\n\tthis.getReferencedObject() :\n\tthis.getContainedObject();'"
 	 * @generated
 	 */
 	ExtendibleElement getObject();
@@ -160,16 +155,13 @@ public interface ExtendibleElementReference extends EObject {
 	void setModifiable(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The uri of the referenced element.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_Uri()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if object.oclIsUndefined() then null else object.uri endif'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = this.getObject();\nreturn (object == null) ? null : object.getUri();'"
 	 * @generated
 	 */
 	String getUri();

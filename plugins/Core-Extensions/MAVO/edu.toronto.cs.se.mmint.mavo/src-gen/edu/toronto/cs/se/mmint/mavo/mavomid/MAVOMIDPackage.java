@@ -222,6 +222,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_FEATURE_COUNT = MIDPackage.MODEL_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___IS_LEVEL__MIDLEVEL = MIDPackage.MODEL___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -283,6 +292,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.MODEL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -637,6 +655,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT_FEATURE_COUNT = MIDPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___IS_LEVEL__MIDLEVEL = MIDPackage.MODEL_ELEMENT___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,6 +734,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ELEMENT___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL_ELEMENT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.MODEL_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1017,6 +1053,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_REL___IS_LEVEL__MIDLEVEL = RelationshipPackage.MODEL_REL___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1089,6 +1134,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_REL___IS_WORKFLOWS_LEVEL = RelationshipPackage.MODEL_REL___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1123,6 +1177,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1294,15 +1357,6 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
@@ -1576,6 +1630,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MODEL_REL_FEATURE_COUNT = RelationshipPackage.BINARY_MODEL_REL_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MODEL_REL___IS_LEVEL__MIDLEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1648,6 +1711,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MODEL_REL___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1682,6 +1754,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1853,15 +1934,6 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
-
-	/**
-	 * The operation id for the '<em>Delete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MODEL_REL___DELETE_TYPE = RelationshipPackage.BINARY_MODEL_REL___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
@@ -2054,15 +2126,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT__TARGET = MIDPackage.MODEL_ENDPOINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ENDPOINT__TARGET_URI = MIDPackage.MODEL_ENDPOINT__TARGET_URI;
-
-	/**
 	 * The number of structural features of the '<em>MAVO Model Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2070,6 +2133,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ENDPOINT_FEATURE_COUNT = MIDPackage.MODEL_ENDPOINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___IS_LEVEL__MIDLEVEL = MIDPackage.MODEL_ENDPOINT___IS_LEVEL__MIDLEVEL;
 
 	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
@@ -2144,6 +2216,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.MODEL_ENDPOINT___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.MODEL_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2169,6 +2250,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.MODEL_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___GET_TARGET_URI = MIDPackage.MODEL_ENDPOINT___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2286,6 +2376,33 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL = MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING;
+
+	/**
+	 * The operation id for the '<em>Replace Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL = MIDPackage.MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE = MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Target</em>' operation.
@@ -2481,6 +2598,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING_FEATURE_COUNT = RelationshipPackage.MAPPING_FEATURE_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING___IS_LEVEL__MIDLEVEL = RelationshipPackage.MAPPING___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2551,6 +2677,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MAPPING___IS_WORKFLOWS_LEVEL = RelationshipPackage.MAPPING___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2824,6 +2959,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MAPPING_FEATURE_COUNT = RelationshipPackage.BINARY_MAPPING_FEATURE_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___IS_LEVEL__MIDLEVEL = RelationshipPackage.BINARY_MAPPING___IS_LEVEL__MIDLEVEL;
+
+	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2896,6 +3040,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MAPPING___IS_WORKFLOWS_LEVEL = RelationshipPackage.BINARY_MAPPING___IS_WORKFLOWS_LEVEL;
 
 	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2923,6 +3076,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MAPPING___GET_MID_CONTAINER = RelationshipPackage.BINARY_MAPPING___GET_MID_CONTAINER;
 
 	/**
+	 * The operation id for the '<em>Create Type Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype And Reference</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2939,6 +3101,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MAPPING___DELETE_TYPE = RelationshipPackage.BINARY_MAPPING___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Create Instance Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -2966,24 +3137,6 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MAPPING___DELETE_INSTANCE = RelationshipPackage.BINARY_MAPPING___DELETE_INSTANCE;
-
-	/**
-	 * The operation id for the '<em>Create Type Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
-
-	/**
-	 * The operation id for the '<em>Create Instance Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -3050,15 +3203,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ELEMENT_REFERENCE__OBJECT = RelationshipPackage.MODEL_ELEMENT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3077,15 +3221,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ELEMENT_REFERENCE__MODIFIABLE = RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ELEMENT_REFERENCE__URI = RelationshipPackage.MODEL_ELEMENT_REFERENCE__URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3102,6 +3237,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = RelationshipPackage.MODEL_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT_REFERENCE___GET_URI = RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3203,15 +3347,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ENDPOINT_REFERENCE__OBJECT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3230,24 +3365,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_ENDPOINT_REFERENCE__MODIFIABLE = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ENDPOINT_REFERENCE__URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__URI;
-
-	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MODEL_ENDPOINT_REFERENCE__TARGET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE__TARGET_URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3264,6 +3381,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = RelationshipPackage.MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT_REFERENCE___GET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3300,6 +3426,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI = RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -3383,15 +3518,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.MAPPING_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MAPPING_REFERENCE__OBJECT = RelationshipPackage.MAPPING_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3410,15 +3536,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING_REFERENCE__MODIFIABLE = RelationshipPackage.MAPPING_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAVO_MAPPING_REFERENCE__URI = RelationshipPackage.MAPPING_REFERENCE__URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3435,6 +3552,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MAPPING_REFERENCE_FEATURE_COUNT = RelationshipPackage.MAPPING_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING_REFERENCE___GET_URI = RelationshipPackage.MAPPING_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3554,15 +3680,6 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MAPPING_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING_REFERENCE__OBJECT = RelationshipPackage.BINARY_MAPPING_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3579,15 +3696,6 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MAPPING_REFERENCE__MODIFIABLE = RelationshipPackage.BINARY_MAPPING_REFERENCE__MODIFIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAVO_MAPPING_REFERENCE__URI = RelationshipPackage.BINARY_MAPPING_REFERENCE__URI;
 
 	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
@@ -3624,6 +3732,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MAPPING_REFERENCE_FEATURE_COUNT = RelationshipPackage.BINARY_MAPPING_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING_REFERENCE___GET_URI = RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.

@@ -79,9 +79,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/upperBound"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElementEndpoint/target"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/targetUri"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getMetatype"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getSupertype"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getTargetUri"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
@@ -307,20 +307,20 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/referencedObject"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/containedObject"/>
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/object"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/supertypeRef"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/modifiable"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/uri"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getUri"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getObject"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getMIDContainer"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isTypesLevel"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isInstancesLevel"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isWorkflowsLevel"/>
       </genClasses>
       <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementEndpointReference">
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementEndpointReference/targetUri"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getObject"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getTargetUri"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelEndpointReference">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelEndpointReference/modelElemRefs"/>

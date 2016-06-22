@@ -919,7 +919,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendibleElementReference_Object() {
+	public EReference getExtendibleElementReference_SupertypeRef() {
 		return (EReference)extendibleElementReferenceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -928,17 +928,8 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtendibleElementReference_SupertypeRef() {
-		return (EReference)extendibleElementReferenceEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getExtendibleElementReference_Modifiable() {
-		return (EAttribute)extendibleElementReferenceEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)extendibleElementReferenceEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -946,16 +937,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendibleElementReference_Uri() {
-		return (EAttribute)extendibleElementReferenceEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExtendibleElementReference__GetMIDContainer() {
+	public EOperation getExtendibleElementReference__GetUri() {
 		return extendibleElementReferenceEClass.getEOperations().get(0);
 	}
 
@@ -964,7 +946,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElementReference__IsTypesLevel() {
+	public EOperation getExtendibleElementReference__GetObject() {
 		return extendibleElementReferenceEClass.getEOperations().get(1);
 	}
 
@@ -973,7 +955,7 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElementReference__IsInstancesLevel() {
+	public EOperation getExtendibleElementReference__GetMIDContainer() {
 		return extendibleElementReferenceEClass.getEOperations().get(2);
 	}
 
@@ -982,8 +964,26 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElementReference__IsWorkflowsLevel() {
+	public EOperation getExtendibleElementReference__IsTypesLevel() {
 		return extendibleElementReferenceEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementReference__IsInstancesLevel() {
+		return extendibleElementReferenceEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementReference__IsWorkflowsLevel() {
+		return extendibleElementReferenceEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -993,15 +993,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 */
 	public EClass getExtendibleElementEndpointReference() {
 		return extendibleElementEndpointReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getExtendibleElementEndpointReference_TargetUri() {
-		return (EAttribute)extendibleElementEndpointReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1020,6 +1011,15 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 	 */
 	public EOperation getExtendibleElementEndpointReference__GetSupertypeRef() {
 		return extendibleElementEndpointReferenceEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementEndpointReference__GetTargetUri() {
+		return extendibleElementEndpointReferenceEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -1140,19 +1140,19 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		extendibleElementReferenceEClass = createEClass(EXTENDIBLE_ELEMENT_REFERENCE);
 		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT);
 		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT);
-		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__OBJECT);
 		createEReference(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF);
 		createEAttribute(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE);
-		createEAttribute(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE__URI);
+		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___GET_URI);
+		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT);
 		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER);
 		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL);
 		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL);
 		createEOperation(extendibleElementReferenceEClass, EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL);
 
 		extendibleElementEndpointReferenceEClass = createEClass(EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE);
-		createEAttribute(extendibleElementEndpointReferenceEClass, EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI);
 		createEOperation(extendibleElementEndpointReferenceEClass, EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT);
 		createEOperation(extendibleElementEndpointReferenceEClass, EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF);
+		createEOperation(extendibleElementEndpointReferenceEClass, EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI);
 
 		modelEndpointReferenceEClass = createEClass(MODEL_ENDPOINT_REFERENCE);
 		createEReference(modelEndpointReferenceEClass, MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS);
@@ -1344,10 +1344,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEClass(extendibleElementReferenceEClass, ExtendibleElementReference.class, "ExtendibleElementReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExtendibleElementReference_ReferencedObject(), theMIDPackage.getExtendibleElement(), null, "referencedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElementReference_ContainedObject(), theMIDPackage.getExtendibleElement(), null, "containedObject", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtendibleElementReference_Object(), theMIDPackage.getExtendibleElement(), null, "object", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElementReference_SupertypeRef(), this.getExtendibleElementReference(), null, "supertypeRef", null, 0, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementReference_Modifiable(), ecorePackage.getEBoolean(), "modifiable", null, 1, 1, ExtendibleElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExtendibleElementReference_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, ExtendibleElementReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getExtendibleElementReference__GetUri(), ecorePackage.getEString(), "getUri", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElementReference__GetObject(), theMIDPackage.getExtendibleElement(), "getObject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getExtendibleElementReference__GetMIDContainer(), theMIDPackage.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1358,11 +1360,12 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		initEOperation(getExtendibleElementReference__IsWorkflowsLevel(), ecorePackage.getEBoolean(), "isWorkflowsLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(extendibleElementEndpointReferenceEClass, ExtendibleElementEndpointReference.class, "ExtendibleElementEndpointReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExtendibleElementEndpointReference_TargetUri(), ecorePackage.getEString(), "targetUri", null, 1, 1, ExtendibleElementEndpointReference.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getExtendibleElementEndpointReference__GetObject(), theMIDPackage.getExtendibleElementEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getExtendibleElementEndpointReference__GetSupertypeRef(), this.getExtendibleElementEndpointReference(), "getSupertypeRef", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElementEndpointReference__GetTargetUri(), ecorePackage.getEString(), "getTargetUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelEndpointReferenceEClass, ModelEndpointReference.class, "ModelEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelEndpointReference_ModelElemRefs(), this.getModelElementReference(), null, "modelElemRefs", null, 0, -1, ModelEndpointReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1631,24 +1634,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		   source, 
 		   new String[] {
 			 "oneObject", "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"
-		   });	
-		addAnnotation
-		  (getExtendibleElementReference_Object(), 
-		   source, 
-		   new String[] {
-			 "derivation", "if containedObject.oclIsUndefined() then referencedObject else containedObject endif"
-		   });	
-		addAnnotation
-		  (getExtendibleElementReference_Uri(), 
-		   source, 
-		   new String[] {
-			 "derivation", "if object.oclIsUndefined() then null else object.uri endif"
-		   });	
-		addAnnotation
-		  (getExtendibleElementEndpointReference_TargetUri(), 
-		   source, 
-		   new String[] {
-			 "derivation", "object.oclAsType(mid::ExtendibleElementEndpoint).targetUri"
 		   });	
 		addAnnotation
 		  (modelEndpointReferenceEClass, 

@@ -19,6 +19,7 @@ import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpoint;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
@@ -73,6 +74,12 @@ public class MAVOModelEndpointReferenceImpl extends ModelEndpointReferenceImpl i
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElementReference.class) {
+			switch (baseOperationID) {
+				case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == ExtendibleElementEndpointReference.class) {
 			switch (baseOperationID) {
 				case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT;

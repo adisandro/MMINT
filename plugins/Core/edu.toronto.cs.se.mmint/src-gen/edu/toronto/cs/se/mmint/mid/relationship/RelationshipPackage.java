@@ -1263,22 +1263,13 @@ public interface RelationshipPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE__OBJECT = 2;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF = 3;
+	int EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF = 2;
 
 	/**
 	 * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -1287,16 +1278,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE__URI = 5;
+	int EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Extendible Element Reference</em>' class.
@@ -1305,7 +1287,25 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT = 6;
+	int EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT = 4;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_REFERENCE___GET_URI = 0;
+
+	/**
+	 * The operation id for the '<em>Get Object</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT = 1;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1314,7 +1314,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER = 0;
+	int EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER = 2;
 
 	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1323,7 +1323,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL = 1;
+	int EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL = 3;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1332,7 +1332,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = 2;
+	int EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = 4;
 
 	/**
 	 * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1341,7 +1341,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = 3;
+	int EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = 5;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element Reference</em>' class.
@@ -1350,7 +1350,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT = 4;
+	int EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -1371,15 +1371,6 @@ public interface RelationshipPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1398,31 +1389,22 @@ public interface RelationshipPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__URI = EXTENDIBLE_ELEMENT_REFERENCE__URI;
-
-	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Extendible Element Endpoint Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1479,13 +1461,22 @@ public interface RelationshipPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Extendible Element Endpoint Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+	int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -1506,15 +1497,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1533,24 +1515,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ENDPOINT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT_REFERENCE__URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__URI;
-
-	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ENDPOINT_REFERENCE__TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1567,6 +1531,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1603,6 +1576,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
@@ -1696,15 +1678,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1723,15 +1696,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_REFERENCE__URI = EXTENDIBLE_ELEMENT_REFERENCE__URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1748,6 +1712,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2563,15 +2536,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT__TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
-
-	/**
 	 * The number of structural features of the '<em>Model Element Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2696,6 +2660,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___GET_TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2834,15 +2807,6 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2861,15 +2825,6 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_REFERENCE__URI = EXTENDIBLE_ELEMENT_REFERENCE__URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2886,6 +2841,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3015,15 +2979,6 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT = MAPPING_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAPPING_REFERENCE__OBJECT = MAPPING_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3040,15 +2995,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING_REFERENCE__MODIFIABLE = MAPPING_REFERENCE__MODIFIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_MAPPING_REFERENCE__URI = MAPPING_REFERENCE__URI;
 
 	/**
 	 * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
@@ -3085,6 +3031,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING_REFERENCE___GET_URI = MAPPING_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3223,15 +3178,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT_REFERENCE__OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3250,24 +3196,6 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT_REFERENCE__URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__URI;
-
-	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI;
-
-	/**
 	 * The feature id for the '<em><b>Model Elem Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3284,6 +3212,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3320,6 +3257,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Object</em>' operation.
@@ -4171,17 +4117,6 @@ public interface RelationshipPackage extends EPackage {
 	EReference getExtendibleElementReference_ContainedObject();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getObject <em>Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Object</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getObject()
-	 * @see #getExtendibleElementReference()
-	 * @generated
-	 */
-	EReference getExtendibleElementReference_Object();
-
-	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getSupertypeRef <em>Supertype Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4204,15 +4139,24 @@ public interface RelationshipPackage extends EPackage {
 	EAttribute getExtendibleElementReference_Modifiable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getUri <em>Uri</em>}'.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getUri() <em>Get Uri</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Uri</em>'.
+	 * @return the meta object for the '<em>Get Uri</em>' operation.
 	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getUri()
-	 * @see #getExtendibleElementReference()
 	 * @generated
 	 */
-	EAttribute getExtendibleElementReference_Uri();
+	EOperation getExtendibleElementReference__GetUri();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getObject() <em>Get Object</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Object</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getObject()
+	 * @generated
+	 */
+	EOperation getExtendibleElementReference__GetObject();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getMIDContainer() <em>Get MID Container</em>}' operation.
@@ -4265,17 +4209,6 @@ public interface RelationshipPackage extends EPackage {
 	EClass getExtendibleElementEndpointReference();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getTargetUri <em>Target Uri</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Target Uri</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getTargetUri()
-	 * @see #getExtendibleElementEndpointReference()
-	 * @generated
-	 */
-	EAttribute getExtendibleElementEndpointReference_TargetUri();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getObject() <em>Get Object</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4294,6 +4227,16 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElementEndpointReference__GetSupertypeRef();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getTargetUri() <em>Get Target Uri</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Target Uri</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getTargetUri()
+	 * @generated
+	 */
+	EOperation getExtendibleElementEndpointReference__GetTargetUri();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference <em>Model Element Endpoint Reference</em>}'.
@@ -5034,14 +4977,6 @@ public interface RelationshipPackage extends EPackage {
 		EReference EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT = eINSTANCE.getExtendibleElementReference_ContainedObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTENDIBLE_ELEMENT_REFERENCE__OBJECT = eINSTANCE.getExtendibleElementReference_Object();
-
-		/**
 		 * The meta object literal for the '<em><b>Supertype Ref</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5058,12 +4993,20 @@ public interface RelationshipPackage extends EPackage {
 		EAttribute EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE = eINSTANCE.getExtendibleElementReference_Modifiable();
 
 		/**
-		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Get Uri</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDIBLE_ELEMENT_REFERENCE__URI = eINSTANCE.getExtendibleElementReference_Uri();
+		EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_URI = eINSTANCE.getExtendibleElementReference__GetUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Object</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT = eINSTANCE.getExtendibleElementReference__GetObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -5108,14 +5051,6 @@ public interface RelationshipPackage extends EPackage {
 		EClass EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE = eINSTANCE.getExtendibleElementEndpointReference();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI = eINSTANCE.getExtendibleElementEndpointReference_TargetUri();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Object</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5130,6 +5065,14 @@ public interface RelationshipPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getExtendibleElementEndpointReference__GetSupertypeRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Target Uri</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = eINSTANCE.getExtendibleElementEndpointReference__GetTargetUri();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointReferenceImpl <em>Model Element Endpoint Reference</em>}' class.

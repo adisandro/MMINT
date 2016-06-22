@@ -9,35 +9,37 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.provider;
+package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExtendibleElementEndpointItemProvider
-	extends ExtendibleElementItemProvider {
+public class WorkflowOperatorItemProvider extends OperatorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtendibleElementEndpointItemProvider(AdapterFactory adapterFactory) {
+	public WorkflowOperatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -52,77 +54,42 @@ public class ExtendibleElementEndpointItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLowerBoundPropertyDescriptor(object);
-			addUpperBoundPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			addWorkflowMIDUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Lower Bound feature.
+	 * This adds a property descriptor for the Workflow MID Uri feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLowerBoundPropertyDescriptor(Object object) {
+	protected void addWorkflowMIDUriPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ExtendibleElementEndpoint_lowerBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_lowerBound_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND,
+				 getString("_UI_WorkflowOperator_workflowMIDUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowOperator_workflowMIDUri_feature", "_UI_WorkflowOperator_type"),
+				 OperatorPackage.Literals.WORKFLOW_OPERATOR__WORKFLOW_MID_URI,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Upper Bound feature.
+	 * This returns WorkflowOperator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElementEndpoint_upperBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_upperBound_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElementEndpoint_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_target_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkflowOperator"));
 	}
 
 	/**
@@ -133,11 +100,12 @@ public class ExtendibleElementEndpointItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ExtendibleElementEndpoint)object).getName();
+		String label = ((WorkflowOperator)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ExtendibleElementEndpoint_type") :
-			getString("_UI_ExtendibleElementEndpoint_type") + " " + label;
+			getString("_UI_WorkflowOperator_type") :
+			getString("_UI_WorkflowOperator_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -150,9 +118,8 @@ public class ExtendibleElementEndpointItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ExtendibleElementEndpoint.class)) {
-			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
-			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
+		switch (notification.getFeatureID(WorkflowOperator.class)) {
+			case OperatorPackage.WORKFLOW_OPERATOR__WORKFLOW_MID_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -169,6 +136,29 @@ public class ExtendibleElementEndpointItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
+			childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

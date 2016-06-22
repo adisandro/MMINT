@@ -268,8 +268,7 @@ public interface Operator extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not an operator type, or if the uri of the new operator type is already registered in the
 	 *             Type MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorTypeNameRequired="true"
-	 *        implementationUriRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorTypeNameRequired="true" implementationUriRequired="true"
 	 * @generated
 	 */
 	Operator createSubtype(String newOperatorTypeName, String implementationUri) throws MMINTException;

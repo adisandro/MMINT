@@ -22,12 +22,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
  * A reference to an extendible element endpoint.
  * <!-- end-model-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference#getTargetUri <em>Target Uri</em>}</li>
- * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementEndpointReference()
  * @model abstract="true"
@@ -35,16 +29,13 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
  */
 public interface ExtendibleElementEndpointReference extends ExtendibleElementReference {
 	/**
-	 * Returns the value of the '<em><b>Target Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The uri of the referenced endpoint's target.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementEndpointReference_TargetUri()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(mid::ExtendibleElementEndpoint).targetUri'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = this.getObject();\nreturn (object == null) ? null : object.getTargetUri();'"
 	 * @generated
 	 */
 	String getTargetUri();

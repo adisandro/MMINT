@@ -605,15 +605,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExtendibleElementEndpoint_TargetUri() {
-		return (EAttribute)extendibleElementEndpointEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getExtendibleElementEndpoint__GetMetatype() {
 		return extendibleElementEndpointEClass.getEOperations().get(0);
 	}
@@ -625,6 +616,15 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 */
 	public EOperation getExtendibleElementEndpoint__GetSupertype() {
 		return extendibleElementEndpointEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElementEndpoint__GetTargetUri() {
+		return extendibleElementEndpointEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -1355,9 +1355,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND);
 		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND);
 		createEReference(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__TARGET);
-		createEAttribute(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI);
 		createEOperation(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE);
 		createEOperation(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE);
+		createEOperation(extendibleElementEndpointEClass, EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI);
 
 		modelEClass = createEClass(MODEL);
 		createEAttribute(modelEClass, MODEL__ORIGIN);
@@ -1567,11 +1567,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEAttribute(getExtendibleElementEndpoint_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtendibleElementEndpoint_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtendibleElementEndpoint_Target(), this.getExtendibleElement(), null, "target", null, 1, 1, ExtendibleElementEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getExtendibleElementEndpoint_TargetUri(), ecorePackage.getEString(), "targetUri", null, 1, 1, ExtendibleElementEndpoint.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getExtendibleElementEndpoint__GetMetatype(), this.getExtendibleElementEndpoint(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getExtendibleElementEndpoint__GetSupertype(), this.getExtendibleElementEndpoint(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getExtendibleElementEndpoint__GetTargetUri(), ecorePackage.getEString(), "getTargetUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModel_Origin(), this.getModelOrigin(), "origin", null, 1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1861,12 +1862,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		   source, 
 		   new String[] {
 			 "unboundedLevel", "target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"
-		   });	
-		addAnnotation
-		  (getExtendibleElementEndpoint_TargetUri(), 
-		   source, 
-		   new String[] {
-			 "derivation", "target.uri"
 		   });
 	}
 

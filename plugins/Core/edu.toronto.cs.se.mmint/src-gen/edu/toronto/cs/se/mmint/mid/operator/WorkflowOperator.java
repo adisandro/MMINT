@@ -62,9 +62,8 @@ public interface WorkflowOperator extends Operator {
 
 	/**
 	 * <!-- begin-user-doc --> Gets the Workflow MID that implements this operator. <!-- end-user-doc -->
-	 * 
-	 * @model kind="operation" annotation="http://www.eclipse.org/emf/2002/GenModel body='try {\n\treturn (MID)
-	 *        MIDUtils.readModelFileInState(this.getWorkflowMIDUri());\n}\ncatch (Exception e) {\n\treturn null;\n}'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='try {\n\treturn (MID) MIDUtils.readModelFileInState(this.getWorkflowMIDUri());\n}\ncatch (Exception e) {\n\treturn null;\n}'"
 	 * @generated
 	 */
 	MID getWorkflowMID();
