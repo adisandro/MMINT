@@ -419,8 +419,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MID instanceMID = containerModelEndpointRef.getMIDContainer();
 		ModelElement newModelElem = null;
+		newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
 		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
-			newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
 			newModelElem = MIDRegistry.getExtendibleElement(newModelElemUri, instanceMID);
 		}
 		if (newModelElem == null) {

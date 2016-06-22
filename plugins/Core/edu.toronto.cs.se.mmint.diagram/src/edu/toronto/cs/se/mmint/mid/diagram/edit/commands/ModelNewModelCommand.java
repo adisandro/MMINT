@@ -125,7 +125,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Fix workflow operator run to remap inputsByName: need inputs in order, i.e. the endpoint order in the workflow operator
 		 * - Add proper handling of endpoints through apis for operator subtypes
 		 * - Big problem: when you "run" workflow operators and create model rels, nobody is connecting them to models
 		 * - Add more complex workflows (fork and join, loops)

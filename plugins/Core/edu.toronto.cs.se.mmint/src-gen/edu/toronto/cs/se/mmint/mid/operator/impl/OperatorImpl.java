@@ -1235,7 +1235,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *             If something went wrong running the conversions.
 	 * @generated NOT
 	 */
-	private Map<String, Model> createInputsByName(@NonNull EList<OperatorInput> inputs, boolean runConversions, @Nullable Operator newOperator) throws Exception {
+	protected Map<String, Model> createInputsByName(@NonNull EList<OperatorInput> inputs, boolean runConversions, @Nullable Operator newOperator) throws Exception {
 
 		//TODO MMINT[OPERATOR] This is used for two purposes, just to create the map and to populate an operator: split
 		boolean coerced = false;
