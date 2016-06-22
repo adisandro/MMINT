@@ -125,13 +125,17 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Add execution engine and WorkflowOperator class (implement createEndpointSubtype(), openType(), run())
+		 * - Fix workflow operator run to remap inputsByName: need inputs in order, i.e. the endpoint order in the workflow operator
+		 * - Add proper handling of endpoints through apis for operator subtypes
 		 * - Big problem: when you "run" workflow operators and create model rels, nobody is connecting them to models
+		 * - Add more complex workflows (fork and join, loops)
+		 * - Need a cleanup() function in each operator if we don't want leftovers, or need to derive it from the outputs somehow
 		 */
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
 		 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for all root types I'd say)
 		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
 		 * - Review hierarchy tables and apis to support operators
+		 * - Add double click on operators to open the implementation
 		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);

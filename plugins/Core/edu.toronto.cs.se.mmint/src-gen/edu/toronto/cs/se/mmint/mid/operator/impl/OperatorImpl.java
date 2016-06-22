@@ -999,7 +999,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			// check 2: type or substitutable types
 			while (i < inputModels.size()) {
-				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModels.get(i));
+				OperatorInput operatorInput = this.checkAllowedInput(inputModelTypeEndpoint, inputModels.get(i));
 				if (operatorInput == null) {
 					return null;
 				}
@@ -1017,7 +1017,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		// check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
 		Map<String, Model> inputsByName = null;
 		try {
-			inputsByName = createInputsByName(inputs, false, null);
+			inputsByName = this.createInputsByName(inputs, false, null);
 		}
 		catch (Exception e) {
 			// never happens
@@ -1267,7 +1267,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			coerced = true;
 			Model convertedInputModel = input.getModel();
 			for (ConversionOperator conversion : input.getConversions()) {
-				//TODO MMINT[OPERATOR] Why do we run the operator type directly instead of using start()?
+				//TODO MMINT[WORKFLOW] Implement this as a simplified workflow?
 				Properties inputProperties = conversion.getInputProperties();
 				conversion.readInputProperties(inputProperties);
 				Map<String, Model> conversionInputsByName = new HashMap<>();

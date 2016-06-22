@@ -21,8 +21,10 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
@@ -30,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -217,6 +220,15 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+
+		return "[workflow] " + super.toString();
+	}
+
+	/**
 	 * Adds a subtype of this workflow operator type to the Type MID.
 	 * 
 	 * @param newOperatorType
@@ -312,9 +324,24 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		MMINTException.mustBeInstance(this);
 
-		Map<String, Model> outputsByName = new HashMap<>();
+		MID workflowMID = this.getWorkflowMID();
+		// the order of operator creation in the workflow is also the order of execution
+		for (int i = 0; i < workflowMID.getOperators().size(); i++) {
+			Operator workflowOperator = workflowMID.getOperators().get(i);
+			Operator executableOperator = workflowOperator.getMetatype().createInstance(null);
+			Map<String, GenericElement> workflowGenericsByName = new HashMap<>();
+			for (GenericEndpoint generic : workflowOperator.getGenerics()) {
+				workflowGenericsByName.put(generic.getMetatype().getName(), generic.getTarget());
+			}
+			Map<String, MID> workflowOutputMIDsByName = (i == (workflowMID.getOperators().size() - 1)) ?
+				outputMIDsByName :
+				MIDOperatorUtils.createSimpleOutputMIDsByName(workflowOperator.getMetatype(), null);
+			Properties inputProperties = executableOperator.getInputProperties();
+			executableOperator.readInputProperties(inputProperties);
+			inputsByName = executableOperator.run(inputsByName, workflowGenericsByName, workflowOutputMIDsByName);
+		}
 
-		return outputsByName;
+		return inputsByName;
 	}
 
 } //WorkflowOperatorImpl
