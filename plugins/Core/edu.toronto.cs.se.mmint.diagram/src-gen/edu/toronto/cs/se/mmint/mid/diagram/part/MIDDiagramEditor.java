@@ -163,10 +163,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 								paletteEntriesToDel.add(toolEntry);
 								break;
 							}
-							int lastWordIndex = label.lastIndexOf(" ");
-							label = label.substring(0, lastWordIndex) + " Workflow " + label.substring(lastWordIndex + 1);
-							lastWordIndex = description.lastIndexOf(" ");
-							description = description.substring(0, lastWordIndex) + " Workflow " + description.substring(lastWordIndex);
+							description = description + " in the Workflow";
 							break;
 						default:
 							// should never happen

@@ -59,7 +59,8 @@ import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 public class MIDContextMenu extends ContributionItem {
 
 	public static final String MMINT_MENU_LABEL = "MMINT";
-	private static final String MMINT_MENU_OPERATOR_LABEL = "Run Operator";
+	private static final String MMINT_MENU_OPERATOR_LABEL_INSTANCES = "Run Operator";
+	private static final String MMINT_MENU_OPERATOR_LABEL_WORKFLOWS = "Add Operator";
 	private static final String MMINT_MENU_CAST_LABEL = "Cast Type";
 	private static final String MMINT_MENU_COHERENCE_LABEL = "Check Runtime Coherence";
 	private static final String MMINT_MENU_ADDCONSTRAINT_LABEL = "Add/Modify Constraint";
@@ -100,7 +101,7 @@ public class MIDContextMenu extends ContributionItem {
 		// get model selection
 		MID mid = null;
 		EList<Model> selectedModels = new BasicEList<>();
-		ITextAwareEditPart label = null;
+		ITextAwareEditPart editPartLabel = null;
 		List<GraphicalEditPart> editParts = new ArrayList<>();
 		for (Object object : objects) {
 			if (!(
@@ -152,7 +153,7 @@ public class MIDContextMenu extends ContributionItem {
 				if (doCast) {
 					for (Object child : editPart.getChildren()) {
 						if (child instanceof ITextAwareEditPart) {
-							label = (ITextAwareEditPart) child;
+							editPartLabel = (ITextAwareEditPart) child;
 							break;
 						}
 					}
@@ -207,7 +208,10 @@ public class MIDContextMenu extends ContributionItem {
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
-				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
+				String menuLabel = (mid.isInstancesLevel()) ?
+					MMINT_MENU_OPERATOR_LABEL_INSTANCES :
+					MMINT_MENU_OPERATOR_LABEL_WORKFLOWS;
+				operatorItem.setText(menuLabel);
 				Menu operatorMenu = new Menu(mmintMenu);
 				operatorItem.setMenu(operatorMenu);
 				for (int i = 0; i < executableOperators.size(); i++) {
@@ -218,7 +222,7 @@ public class MIDContextMenu extends ContributionItem {
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
 						new MIDContextRunOperatorListener(
-							MMINT_MENU_OPERATOR_LABEL,
+							menuLabel,
 							executableOperator,
 							executableOperatorsInputs.get(i),
 							mid
@@ -254,7 +258,7 @@ public class MIDContextMenu extends ContributionItem {
 					String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
 					castSubitem.setText(text);
 					castSubitem.addSelectionListener(
-						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, selectedModels.get(0), runtimeModelType, label)
+						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, selectedModels.get(0), runtimeModelType, editPartLabel)
 					);
 				}
 			}
