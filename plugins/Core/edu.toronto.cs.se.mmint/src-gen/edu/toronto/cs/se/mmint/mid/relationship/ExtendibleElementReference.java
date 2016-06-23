@@ -37,8 +37,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='oneObject'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot oneObject='referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()'"
  * @generated
  */
 public interface ExtendibleElementReference extends EObject {

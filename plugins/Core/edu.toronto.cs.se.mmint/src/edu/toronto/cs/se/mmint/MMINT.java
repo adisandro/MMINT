@@ -129,6 +129,7 @@ public class MMINT implements MMINTConstants {
 	/* TODO MMINT[USABILITY]
 	 * - Default deletion to remove model file as well
 	 * - Change uris into ids
+	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
 	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults in extension points as much as possible

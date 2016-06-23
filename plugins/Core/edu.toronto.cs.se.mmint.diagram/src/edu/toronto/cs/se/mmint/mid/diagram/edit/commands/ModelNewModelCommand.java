@@ -135,6 +135,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
 		 * - Review hierarchy tables and apis to support operators
 		 * - Add double click on operators to open the implementation
+		 * - Rethink ConversionOperator to be a simple workflow
+		 * - Rewrite ExperimentDriver to be a workflow
 		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);

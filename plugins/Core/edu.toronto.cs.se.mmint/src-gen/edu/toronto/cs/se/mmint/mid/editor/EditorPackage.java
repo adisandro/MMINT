@@ -931,7 +931,7 @@ public interface EditorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>IStructured Selection</em>'.
 	 * @see org.eclipse.jface.viewers.IStructuredSelection
-	 * @model instanceClass="org.eclipse.jface.viewers.IStructuredSelection"
+	 * @model instanceClass="org.eclipse.jface.viewers.IStructuredSelection" serializeable="false"
 	 * @generated
 	 */
 	EDataType getIStructuredSelection();
@@ -942,7 +942,7 @@ public interface EditorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Creation Wizard Dialog</em>'.
 	 * @see edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog
-	 * @model instanceClass="edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog"
+	 * @model instanceClass="edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog" serializeable="false"
 	 * @generated
 	 */
 	EDataType getEditorCreationWizardDialog();

@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.mmint.mid.MIDFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface MIDPackage extends EPackage {
@@ -3450,7 +3449,7 @@ public interface MIDPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>MMINT Exception</em>'.
 	 * @see edu.toronto.cs.se.mmint.MMINTException
-	 * @model instanceClass="edu.toronto.cs.se.mmint.MMINTException"
+	 * @model instanceClass="edu.toronto.cs.se.mmint.MMINTException" serializeable="false"
 	 * @generated
 	 */
 	EDataType getMMINTException();
@@ -3461,7 +3460,7 @@ public interface MIDPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>IStatus</em>'.
 	 * @see org.eclipse.core.runtime.IStatus
-	 * @model instanceClass="org.eclipse.core.runtime.IStatus"
+	 * @model instanceClass="org.eclipse.core.runtime.IStatus" serializeable="false"
 	 * @generated
 	 */
 	EDataType getIStatus();
@@ -3472,7 +3471,7 @@ public interface MIDPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>IValidation Context</em>'.
 	 * @see org.eclipse.emf.validation.IValidationContext
-	 * @model instanceClass="org.eclipse.emf.validation.IValidationContext"
+	 * @model instanceClass="org.eclipse.emf.validation.IValidationContext" serializeable="false"
 	 * @generated
 	 */
 	EDataType getIValidationContext();

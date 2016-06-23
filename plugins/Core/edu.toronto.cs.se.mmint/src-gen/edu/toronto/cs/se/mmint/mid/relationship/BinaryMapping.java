@@ -22,8 +22,7 @@ package edu.toronto.cs.se.mmint.mid.relationship;
  *
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryMapping()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryMapping'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryMapping='modelElemEndpoints->size() = 2'"
+ * @model
  * @generated
  */
 public interface BinaryMapping extends Mapping {

@@ -463,8 +463,8 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEException(op, theMIDPackage.getMMINTException());
 
 		// Initialize data types
-		initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(editorCreationWizardDialogEDataType, EditorCreationWizardDialog.class, "EditorCreationWizardDialog", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(editorCreationWizardDialogEDataType, EditorCreationWizardDialog.class, "EditorCreationWizardDialog", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //EditorPackageImpl

@@ -31,8 +31,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryMappingReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryMappingRef binaryMappingType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryMappingRef='modelElemEndpointRefs->size() = 2' binaryMappingType='object.oclIsKindOf(BinaryMapping)'"
+ * @model
  * @generated
  */
 public interface BinaryMappingReference extends MappingReference {

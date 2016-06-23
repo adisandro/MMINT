@@ -42,6 +42,9 @@ public interface WorkflowOperator extends Operator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The uri of the Workflow MID.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Workflow MID Uri</em>' attribute.
 	 * @see #setWorkflowMIDUri(String)
 	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getWorkflowOperator_WorkflowMIDUri()

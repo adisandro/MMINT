@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
@@ -29,7 +28,6 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
-import edu.toronto.cs.se.modelepedia.kleisli.util.KleisliValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,15 +125,6 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 
 		// Initialize created meta-data
 		theKleisliPackage.initializePackageContents();
-
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theKleisliPackage, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
-					 return KleisliValidator.INSTANCE;
-				 }
-			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theKleisliPackage.freeze();
@@ -620,34 +609,8 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });	
-		addAnnotation
-		  (kleisliModelEndpointReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "kleisliModelEndpoint"
-		   });
 	}
 
 	/**
@@ -663,12 +626,6 @@ public class KleisliPackageImpl extends EPackageImpl implements KleisliPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "extendedTarget.uri"
-		   });	
-		addAnnotation
-		  (kleisliModelEndpointReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "kleisliModelEndpoint", "object.oclIsKindOf(kleisli::KleisliModelEndpoint)"
 		   });	
 		addAnnotation
 		  (getKleisliModelEndpointReference_ExtendedTargetUri(), 

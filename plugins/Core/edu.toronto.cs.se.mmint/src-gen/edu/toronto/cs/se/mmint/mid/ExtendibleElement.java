@@ -42,7 +42,6 @@ import org.eclipse.emf.validation.IValidationContext;
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
  * @generated
  */
 public interface ExtendibleElement extends EObject {

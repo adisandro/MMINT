@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.validation.IValidationContext;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -45,7 +44,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
-import edu.toronto.cs.se.mmint.mid.util.MIDValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -221,15 +219,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		theRelationshipPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
-
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theMIDPackage, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
-					 return MIDValidator.INSTANCE;
-				 }
-			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theMIDPackage.freeze();
@@ -1805,64 +1794,12 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEEnumLiteral(modelOriginEEnum, ModelOrigin.CREATED);
 
 		// Initialize data types
-		initEDataType(mmintExceptionEDataType, MMINTException.class, "MMINTException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(iStatusEDataType, IStatus.class, "IStatus", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(iValidationContextEDataType, IValidationContext.class, "IValidationContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(mmintExceptionEDataType, MMINTException.class, "MMINTException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iStatusEDataType, IStatus.class, "IStatus", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iValidationContextEDataType, IValidationContext.class, "IValidationContext", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });	
-		addAnnotation
-		  (extendibleElementEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "typeLevel"
-		   });	
-		addAnnotation
-		  (extendibleElementEndpointEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "unboundedLevel"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
-		addAnnotation
-		  (extendibleElementEndpointEClass, 
-		   source, 
-		   new String[] {
-			 "unboundedLevel", "target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)"
-		   });
 	}
 
 } //MIDPackageImpl

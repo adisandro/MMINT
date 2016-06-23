@@ -12,9 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import edu.toronto.cs.se.mmint.mid.operator.*;
-import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -95,12 +93,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 		switch (eDataType.getClassifierID()) {
 			case OperatorPackage.RANDOM:
 				return createRandomFromString(eDataType, initialValue);
-			case OperatorPackage.EXCEPTION:
-				return createExceptionFromString(eDataType, initialValue);
-			case OperatorPackage.PROPERTIES:
-				return createPropertiesFromString(eDataType, initialValue);
-			case OperatorPackage.SET:
-				return createSetFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -116,12 +108,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 		switch (eDataType.getClassifierID()) {
 			case OperatorPackage.RANDOM:
 				return convertRandomToString(eDataType, instanceValue);
-			case OperatorPackage.EXCEPTION:
-				return convertExceptionToString(eDataType, instanceValue);
-			case OperatorPackage.PROPERTIES:
-				return convertPropertiesToString(eDataType, instanceValue);
-			case OperatorPackage.SET:
-				return convertSetToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -213,60 +199,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 */
 	public String convertRandomToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Exception createExceptionFromString(EDataType eDataType, String initialValue) {
-		return (Exception)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Properties createPropertiesFromString(EDataType eDataType, String initialValue) {
-		return (Properties)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPropertiesToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Set<?> createSetFromString(EDataType eDataType, String initialValue) {
-		return (Set<?>)super.createFromString(initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSetToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
 	}
 
 	/**

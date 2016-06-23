@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -38,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -193,15 +191,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		theMIDPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
 		theOperatorPackage.initializePackageContents();
-
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theRelationshipPackage, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
-					 return RelationshipValidator.INSTANCE;
-				 }
-			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theRelationshipPackage.freeze();
@@ -1547,125 +1536,6 @@ public class RelationshipPackageImpl extends EPackageImpl implements Relationshi
 		op = initEOperation(getModelElementEndpointReference__DeleteInstanceAndReference__boolean(), null, "deleteInstanceAndReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isFullDelete", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });	
-		addAnnotation
-		  (binaryModelRelEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "isBinaryModelRel"
-		   });	
-		addAnnotation
-		  (extendibleElementReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "oneObject"
-		   });	
-		addAnnotation
-		  (modelEndpointReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "modelEndpointType"
-		   });	
-		addAnnotation
-		  (binaryMappingEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "isBinaryMapping"
-		   });	
-		addAnnotation
-		  (mappingReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "mappingType"
-		   });	
-		addAnnotation
-		  (binaryMappingReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "isBinaryMappingRef binaryMappingType"
-		   });	
-		addAnnotation
-		  (modelElementEndpointReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "modelElemEndpointType"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
-		addAnnotation
-		  (binaryModelRelEClass, 
-		   source, 
-		   new String[] {
-			 "isBinaryModelRel", "modelEndpoints->size() = 2"
-		   });	
-		addAnnotation
-		  (extendibleElementReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "oneObject", "referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()"
-		   });	
-		addAnnotation
-		  (modelEndpointReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "modelEndpointType", "object.oclIsKindOf(mid::ModelEndpoint)"
-		   });	
-		addAnnotation
-		  (binaryMappingEClass, 
-		   source, 
-		   new String[] {
-			 "isBinaryMapping", "modelElemEndpoints->size() = 2"
-		   });	
-		addAnnotation
-		  (mappingReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "mappingType", "object.oclIsKindOf(Mapping)"
-		   });	
-		addAnnotation
-		  (binaryMappingReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "isBinaryMappingRef", "modelElemEndpointRefs->size() = 2",
-			 "binaryMappingType", "object.oclIsKindOf(BinaryMapping)"
-		   });	
-		addAnnotation
-		  (modelElementEndpointReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "modelElemEndpointType", "object.oclIsKindOf(ModelElementEndpoint)"
-		   });
 	}
 
 } //RelationshipPackageImpl

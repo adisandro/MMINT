@@ -34,7 +34,6 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface OperatorPackage extends EPackage {
@@ -3088,7 +3087,7 @@ public interface OperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Exception</em>'.
 	 * @see java.lang.Exception
-	 * @model instanceClass="java.lang.Exception"
+	 * @model instanceClass="java.lang.Exception" serializeable="false"
 	 * @generated
 	 */
 	EDataType getException();
@@ -3099,7 +3098,7 @@ public interface OperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Properties</em>'.
 	 * @see java.util.Properties
-	 * @model instanceClass="java.util.Properties"
+	 * @model instanceClass="java.util.Properties" serializeable="false"
 	 * @generated
 	 */
 	EDataType getProperties();
@@ -3110,7 +3109,7 @@ public interface OperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Set</em>'.
 	 * @see java.util.Set
-	 * @model instanceClass="java.util.Set" typeParameters="E"
+	 * @model instanceClass="java.util.Set" serializeable="false" typeParameters="E"
 	 * @generated
 	 */
 	EDataType getSet();
