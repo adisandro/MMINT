@@ -2471,6 +2471,162 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_GENERIC_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl <em>Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
+	 * @generated
+	 */
+	int OPERATOR_CONSTRAINT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT__IMPLEMENTATION = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT__LANGUAGE = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT__RULES = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl <em>Constraint Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
+	 * @generated
+	 */
+	int OPERATOR_CONSTRAINT_RULE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Output Model Rel</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Binary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE__IS_BINARY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Enpoint Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Constraint Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Constraint Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl <em>Constraint Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
+	 * @generated
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER__PARAMETER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Endpoint Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX = 1;
+
+	/**
+	 * The number of structural features of the '<em>Constraint Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Constraint Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '<em>Random</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2478,7 +2634,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 7;
+	int RANDOM = 10;
 
 
 	/**
@@ -2489,7 +2645,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 8;
+	int EXCEPTION = 11;
 
 
 	/**
@@ -2500,7 +2656,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
 	 * @generated
 	 */
-	int PROPERTIES = 9;
+	int PROPERTIES = 12;
 
 
 	/**
@@ -2511,7 +2667,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getSet()
 	 * @generated
 	 */
-	int SET = 10;
+	int SET = 13;
 
 
 	/**
@@ -3071,6 +3227,102 @@ public interface OperatorPackage extends EPackage {
 	EReference getOperatorGeneric_GenericSuperTypeEndpoint();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint
+	 * @generated
+	 */
+	EClass getOperatorConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint#getRules()
+	 * @see #getOperatorConstraint()
+	 * @generated
+	 */
+	EReference getOperatorConstraint_Rules();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule <em>Constraint Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint Rule</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule
+	 * @generated
+	 */
+	EClass getOperatorConstraintRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel <em>Output Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Output Model Rel</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel()
+	 * @see #getOperatorConstraintRule()
+	 * @generated
+	 */
+	EReference getOperatorConstraintRule_OutputModelRel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#isIsBinary <em>Is Binary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Binary</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#isIsBinary()
+	 * @see #getOperatorConstraintRule()
+	 * @generated
+	 */
+	EAttribute getOperatorConstraintRule_IsBinary();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEnpointModels <em>Enpoint Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Enpoint Models</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEnpointModels()
+	 * @see #getOperatorConstraintRule()
+	 * @generated
+	 */
+	EReference getOperatorConstraintRule_EnpointModels();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter <em>Constraint Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint Parameter</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter
+	 * @generated
+	 */
+	EClass getOperatorConstraintParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parameter</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameter()
+	 * @see #getOperatorConstraintParameter()
+	 * @generated
+	 */
+	EReference getOperatorConstraintParameter_Parameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex <em>Endpoint Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Endpoint Index</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex()
+	 * @see #getOperatorConstraintParameter()
+	 * @generated
+	 */
+	EAttribute getOperatorConstraintParameter_EndpointIndex();
+
+	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3582,6 +3834,84 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT = eINSTANCE.getOperatorGeneric_GenericSuperTypeEndpoint();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl <em>Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
+		 * @generated
+		 */
+		EClass OPERATOR_CONSTRAINT = eINSTANCE.getOperatorConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT__RULES = eINSTANCE.getOperatorConstraint_Rules();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl <em>Constraint Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
+		 * @generated
+		 */
+		EClass OPERATOR_CONSTRAINT_RULE = eINSTANCE.getOperatorConstraintRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Output Model Rel</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL = eINSTANCE.getOperatorConstraintRule_OutputModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Binary</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR_CONSTRAINT_RULE__IS_BINARY = eINSTANCE.getOperatorConstraintRule_IsBinary();
+
+		/**
+		 * The meta object literal for the '<em><b>Enpoint Models</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS = eINSTANCE.getOperatorConstraintRule_EnpointModels();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl <em>Constraint Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
+		 * @generated
+		 */
+		EClass OPERATOR_CONSTRAINT_PARAMETER = eINSTANCE.getOperatorConstraintParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT_PARAMETER__PARAMETER = eINSTANCE.getOperatorConstraintParameter_Parameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Endpoint Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX = eINSTANCE.getOperatorConstraintParameter_EndpointIndex();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

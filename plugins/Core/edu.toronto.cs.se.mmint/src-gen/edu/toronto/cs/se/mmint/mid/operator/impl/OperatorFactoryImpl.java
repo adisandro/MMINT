@@ -78,6 +78,9 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
 			case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
 			case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
+			case OperatorPackage.OPERATOR_CONSTRAINT: return createOperatorConstraint();
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE: return createOperatorConstraintRule();
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER: return createOperatorConstraintParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -181,6 +184,36 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	public OperatorGeneric createOperatorGeneric() {
 		OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
 		return operatorGeneric;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorConstraint createOperatorConstraint() {
+		OperatorConstraintImpl operatorConstraint = new OperatorConstraintImpl();
+		return operatorConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorConstraintRule createOperatorConstraintRule() {
+		OperatorConstraintRuleImpl operatorConstraintRule = new OperatorConstraintRuleImpl();
+		return operatorConstraintRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorConstraintParameter createOperatorConstraintParameter() {
+		OperatorConstraintParameterImpl operatorConstraintParameter = new OperatorConstraintParameterImpl();
+		return operatorConstraintParameter;
 	}
 
 	/**

@@ -30,6 +30,9 @@ import edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -94,6 +97,27 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass operatorGenericEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operatorConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operatorConstraintRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operatorConstraintParameterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -686,6 +710,87 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOperatorConstraint() {
+		return operatorConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraint_Rules() {
+		return (EReference)operatorConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperatorConstraintRule() {
+		return operatorConstraintRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraintRule_OutputModelRel() {
+		return (EReference)operatorConstraintRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperatorConstraintRule_IsBinary() {
+		return (EAttribute)operatorConstraintRuleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraintRule_EnpointModels() {
+		return (EReference)operatorConstraintRuleEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperatorConstraintParameter() {
+		return operatorConstraintParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraintParameter_Parameter() {
+		return (EReference)operatorConstraintParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperatorConstraintParameter_EndpointIndex() {
+		return (EAttribute)operatorConstraintParameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getRandom() {
 		return randomEDataType;
 	}
@@ -806,6 +911,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEReference(operatorGenericEClass, OPERATOR_GENERIC__GENERIC);
 		createEReference(operatorGenericEClass, OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT);
 
+		operatorConstraintEClass = createEClass(OPERATOR_CONSTRAINT);
+		createEReference(operatorConstraintEClass, OPERATOR_CONSTRAINT__RULES);
+
+		operatorConstraintRuleEClass = createEClass(OPERATOR_CONSTRAINT_RULE);
+		createEReference(operatorConstraintRuleEClass, OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL);
+		createEAttribute(operatorConstraintRuleEClass, OPERATOR_CONSTRAINT_RULE__IS_BINARY);
+		createEReference(operatorConstraintRuleEClass, OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS);
+
+		operatorConstraintParameterEClass = createEClass(OPERATOR_CONSTRAINT_PARAMETER);
+		createEReference(operatorConstraintParameterEClass, OPERATOR_CONSTRAINT_PARAMETER__PARAMETER);
+		createEAttribute(operatorConstraintParameterEClass, OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX);
+
 		// Create data types
 		randomEDataType = createEDataType(RANDOM);
 		exceptionEDataType = createEDataType(EXCEPTION);
@@ -838,6 +955,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		// Obtain other dependent packages
 		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
+		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 
 		// Create type parameters
 		addETypeParameter(setEDataType, "E");
@@ -850,6 +968,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		randomOperatorEClass.getESuperTypes().add(this.getOperator());
 		workflowOperatorEClass.getESuperTypes().add(this.getOperator());
 		genericEndpointEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementEndpoint());
+		operatorConstraintEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1037,6 +1156,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEClass(operatorGenericEClass, OperatorGeneric.class, "OperatorGeneric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperatorGeneric_Generic(), theMIDPackage.getGenericElement(), null, "generic", null, 1, 1, OperatorGeneric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperatorGeneric_GenericSuperTypeEndpoint(), this.getGenericEndpoint(), null, "genericSuperTypeEndpoint", null, 1, 1, OperatorGeneric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operatorConstraintEClass, OperatorConstraint.class, "OperatorConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperatorConstraint_Rules(), this.getOperatorConstraintRule(), null, "rules", null, 1, -1, OperatorConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operatorConstraintRuleEClass, OperatorConstraintRule.class, "OperatorConstraintRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperatorConstraintRule_OutputModelRel(), this.getOperatorConstraintParameter(), null, "outputModelRel", null, 1, 1, OperatorConstraintRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperatorConstraintRule_IsBinary(), ecorePackage.getEBoolean(), "isBinary", null, 1, 1, OperatorConstraintRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperatorConstraintRule_EnpointModels(), this.getOperatorConstraintParameter(), null, "enpointModels", null, 1, -1, OperatorConstraintRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operatorConstraintParameterEClass, OperatorConstraintParameter.class, "OperatorConstraintParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperatorConstraintParameter_Parameter(), theRelationshipPackage.getModelEndpointReference(), null, "parameter", null, 1, 1, OperatorConstraintParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperatorConstraintParameter_EndpointIndex(), ecorePackage.getEInt(), "endpointIndex", null, 0, 1, OperatorConstraintParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
