@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -27,28 +28,27 @@ import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
 
 public class Sum extends OperatorImpl {
 
+	public static class InputConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			Model intModel1 = inputsByName.get(IN_INT1);
+			Model intModel2 = inputsByName.get(IN_INT2);
+			if (intModel1 == intModel2) {
+				return false;
+			}
+
+			return true;
+		}
+	}
+
 	// input-output
 	private final static @NonNull String IN_INT1 = "int1";
 	private final static @NonNull String IN_INT2 = "int2";
 	private final static @NonNull String OUT_INT = "sum";
 	// constants
 	private final static @NonNull String SUM_SEPARATOR = "+";
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		Model intModel1 = inputsByName.get(IN_INT1);
-		Model intModel2 = inputsByName.get(IN_INT2);
-		if (intModel1 == intModel2) {
-			return false;
-		}
-
-		return true;
-	}
 
 	private @NonNull Int sum(@NonNull Model intModel1, @NonNull Model intModel2) throws MMINTException {
 

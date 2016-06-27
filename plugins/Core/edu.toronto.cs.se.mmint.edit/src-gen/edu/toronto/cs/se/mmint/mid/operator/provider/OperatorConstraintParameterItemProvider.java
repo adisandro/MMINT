@@ -71,26 +71,26 @@ public class OperatorConstraintParameterItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addParameterPropertyDescriptor(object);
+			addParameterRefPropertyDescriptor(object);
 			addEndpointIndexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Parameter feature.
+	 * This adds a property descriptor for the Parameter Ref feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParameterPropertyDescriptor(Object object) {
+	protected void addParameterRefPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_OperatorConstraintParameter_parameter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorConstraintParameter_parameter_feature", "_UI_OperatorConstraintParameter_type"),
-				 OperatorPackage.Literals.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER,
+				 getString("_UI_OperatorConstraintParameter_parameterRef_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorConstraintParameter_parameterRef_feature", "_UI_OperatorConstraintParameter_type"),
+				 OperatorPackage.Literals.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF,
 				 true,
 				 false,
 				 true,

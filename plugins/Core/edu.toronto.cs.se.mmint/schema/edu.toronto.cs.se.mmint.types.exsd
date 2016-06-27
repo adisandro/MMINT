@@ -47,6 +47,40 @@
       </complexType>
    </element>
 
+   <element name="constraint">
+      <annotation>
+         <documentation>
+            A model type constraint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" use="required">
+            <annotation>
+               <documentation>
+                  The constraint language (OCL | JAVA | SMTLIB).
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="OCL">
+                  </enumeration>
+                  <enumeration value="JAVA">
+                  </enumeration>
+                  <enumeration value="SMTLIB">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="implementation" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The constraint implementation (an OCL constraint, the fully qualified name of a JAVA class, or an SMTLIB assertion).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <element name="type">
       <annotation>
          <documentation>

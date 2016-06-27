@@ -99,7 +99,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		Model modelType = MIDDialogUtils.selectModelTypeToExtend(typeMID);
 		String newModelTypeName = MIDDialogUtils.getStringInput("Create new light model type", "Insert new model type name", null);
 		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model type", null);
-		if (!MIDConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
+		if (!MIDConstraintChecker.checkModelConstraintConsistency(modelType, constraint[0], constraint[1])) {
 			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 		}
 		boolean isMetamodelExtension = (MIDTypeHierarchy.isRootType(modelType)) ?
@@ -125,8 +125,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
+		 * - Use operator constraint in workflows + review operator constraint heavy apis
+		 * - Differentiate between input and output constraints
 		 * - Add proper handling of endpoints through apis for operator subtypes
-		 * - Big problem: when you "run" workflow operators and create model rels, nobody is connecting them to models
 		 * - Add more complex workflows (fork and join, loops)
 		 * - Need a cleanup() function in each operator if we don't want leftovers, or need to derive it from the outputs somehow
 		 */

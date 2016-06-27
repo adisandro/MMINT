@@ -15,7 +15,7 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
@@ -298,7 +298,7 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 		MMINTException.mustBeInstance(this);
 
 		//TODO MMINT[MAVO] Extend this to the type level
-		MAVOTruthValue validates = MAVOMultiModelConstraintChecker.checkMAVOConstraint(this, this.getConstraint());
+		MAVOTruthValue validates = MAVOMIDConstraintChecker.checkMAVOModelConstraint(this, this.getConstraint());
 		IStatus status;
 		if (validates == MAVOTruthValue.TRUE) {
 			status = context.createSuccessStatus();

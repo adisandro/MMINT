@@ -28,6 +28,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -49,6 +50,25 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 // e.g. there is no direct link from a model to all its connected model rels
 public class ModelMerge extends OperatorImpl {
 
+	public static class InputConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
+			if (matchRel.getModelEndpoints().size() != 2) {
+				return false;
+			}
+			Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
+			Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
+			if (model1.getMetatype() != model2.getMetatype()) {
+				return false;
+			}
+
+			return true;
+		}
+	}
+
 	// input-output
 	private final static @NonNull String IN_MODELREL = "match";
 	private final static @NonNull String OUT_MODEL = "merged";
@@ -57,26 +77,6 @@ public class ModelMerge extends OperatorImpl {
 	// constants
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
 	private static final @NonNull String MERGED_SEPARATOR = "+";
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
-		if (matchRel.getModelEndpoints().size() != 2) {
-			return false;
-		}
-		Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
-		Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
-		if (model1.getMetatype() != model2.getMetatype()) {
-			return false;
-		}
-
-		return true;
-	}
 
 	// TODO MMINT[OPERATOR] Make this an api
 	private @NonNull Set<ModelElementReference> getConnected(@NonNull ModelElementReference modelElemRef) {

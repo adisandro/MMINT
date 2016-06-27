@@ -18,7 +18,7 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -103,7 +103,7 @@ public class REJ15 extends FASE14 {
 
 		Z3ReasoningEngine z3Reasoner;
 		try {
-			z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, new HashSet<>(mavoModelObjs.values()), istar).size();
 		}
 		catch (MMINTException e) {

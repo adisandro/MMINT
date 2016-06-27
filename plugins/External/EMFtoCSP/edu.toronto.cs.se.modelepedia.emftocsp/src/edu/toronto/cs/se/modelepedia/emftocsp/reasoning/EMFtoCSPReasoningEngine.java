@@ -148,7 +148,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(Model modelType, String oclConstraint) {
+	public boolean checkModelConstraintConsistency(Model modelType, String oclConstraint) {
 
 		EPackage modelTypeObj;
 		try {
@@ -177,7 +177,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 		}
 		// a constraint on model rel must be consistent with endpoints
 		if (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-			return checkConstraintConsistency(MIDTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
+			return checkModelConstraintConsistency(MIDTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
 		}
 		// flatten hierarchy and add constraint as annotation into the metamodel
 		ResourceSet flatResourceSet = new ResourceSetImpl();

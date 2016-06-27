@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -50,6 +51,8 @@ import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -130,6 +133,7 @@ public class MMINT implements MMINTConstants {
 	 * - Default deletion to remove model file as well
 	 * - Change uris into ids
 	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
+	 * - Similarly, there should be a ModelRelModelEndpoint and an OperatorModelEndpoint
 	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults in extension points as much as possible
@@ -161,6 +165,20 @@ public class MMINT implements MMINTConstants {
 	 * - ExtendibleElementReference.containedObject is completely useless
 	 */
 
+	private static void createTypeConstraint(IConfigurationElement extensionConfig, ExtendibleElement constrainedType, MIDHeavyTypeFactory typeFactory) {
+
+		IConfigurationElement[] constraintConfig = extensionConfig.getChildren(CHILD_CONSTRAINT);
+		String constraintLanguage = (constraintConfig.length == 0) ?
+			null :
+			constraintConfig[0].getAttribute(CONSTRAINT_ATTR_LANGUAGE);
+		String constraintImplementation = (constraintConfig.length == 0) ?
+			null :
+			constraintConfig[0].getAttribute(CONSTRAINT_ATTR_IMPLEMENTATION);
+		if (constraintLanguage != null && constraintImplementation != null) {
+			typeFactory.createHeavyTypeConstraint(constraintLanguage, constraintImplementation, constrainedType);
+		}
+	}
+
 	/**
 	 * Creates and adds a model type to the repository from a registered
 	 * edu.toronto.cs.se.mmint.models extension. Requires the model type package
@@ -179,18 +197,8 @@ public class MMINT implements MMINTConstants {
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Model type " + extensionType.getName() + " must have a uri");
 		}
-		IConfigurationElement[] constraintConfig = extensionConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
-		String constraintLanguage = (constraintConfig.length == 0) ?
-			null :
-			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
-		String constraintImplementation = (constraintConfig.length == 0) ?
-			null :
-			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
-		Model newModelType = extensionType.getFactory().createHeavyModelType(
-			extensionType,
-			constraintLanguage,
-			constraintImplementation
-		);
+		Model newModelType = extensionType.getFactory().createHeavyModelType(extensionType);
+		createTypeConstraint(extensionConfig, newModelType, extensionType.getFactory());
 
 		return newModelType;
 	}
@@ -219,19 +227,11 @@ public class MMINT implements MMINTConstants {
 		}
 		IConfigurationElement[] binaryTypeConfigs = extensionConfig.getChildren(CHILD_BINARYTYPE);
 		boolean isBinary = (binaryTypeConfigs.length == 0) ? false : true;
-		IConfigurationElement[] constraintConfig = modelTypeConfig.getChildren(MODELS_MODELTYPE_CHILD_CONSTRAINT);
-		String constraintLanguage = (constraintConfig.length == 0) ?
-			null :
-			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_LANGUAGE);
-		String constraintImplementation = (constraintConfig.length == 0) ?
-			null :
-			constraintConfig[0].getAttribute(MODELS_MODELTYPE_CONSTRAINT_ATTR_IMPLEMENTATION);
 		ModelRel newModelRelType = modelRelExtensionType.getFactory().createHeavyModelRelType(
 			modelRelExtensionType,
-			isBinary,
-			constraintLanguage,
-			constraintImplementation
+			isBinary
 		);
+		createTypeConstraint(modelTypeConfig, newModelRelType, modelRelExtensionType.getFactory());
 		// binary model rel type
 		String srcModelTypeUri = null, tgtModelTypeUri = null;
 		if (isBinary) {
@@ -439,6 +439,35 @@ public class MMINT implements MMINTConstants {
 				lowerBound,
 				upperBound
 			);
+			IConfigurationElement[] endpointConstraintConfigs = paramTypeConfig.getChildren(CHILD_ENDPOINTCONSTRAINT);
+			if (endpointConstraintConfigs.length != 0 && targetModelType instanceof ModelRel) {
+				OperatorConstraint constraint = (OperatorConstraint) containerOperatorType.getConstraint();
+				if (constraint == null) { // create empty constraint first
+					constraint = (OperatorConstraint) typeFactory.createHeavyTypeConstraint("JAVA", "", containerOperatorType);
+				}
+				OperatorConstraintRule constraintRule = typeFactory.createHeavyOperatorTypeConstraintRule(constraint, newModelTypeEndpoint);
+				for (IConfigurationElement endpointConstraintConfig : endpointConstraintConfigs) {
+					String parameterName = endpointConstraintConfig.getAttribute(ENDPOINTCONSTRAINT_ATTR_PARAMETERNAME);
+					String endpointIndex = endpointConstraintConfig.getAttribute(ENDPOINTCONSTRAINT_ATTR_ENDPOINTINDEX);
+					ModelEndpoint ruleModelTypeEndpoint;
+					int ruleEndpointIndex;
+					try {
+						ruleModelTypeEndpoint = Stream.concat(containerOperatorType.getInputs().stream(), containerOperatorType.getOutputs().stream())
+							.filter(inputModelTypeEndpoint -> inputModelTypeEndpoint.getName().equals(parameterName))
+							.findFirst()
+							.get();
+						ruleEndpointIndex = (endpointIndex == null) ? -1 : Integer.valueOf(endpointIndex);
+					}
+					catch (Exception e) {
+						throw new MMINTException("Bad operator constraint format", e);
+					}
+					typeFactory.createHeavyOperatorTypeConstraintRuleEndpoint(
+						constraintRule,
+						ruleModelTypeEndpoint,
+						ruleEndpointIndex,
+						OperatorPackage.eINSTANCE.getOperatorConstraintRule_EndpointModels().getName());
+				}
+			}
 		}
 	}
 
@@ -498,6 +527,7 @@ public class MMINT implements MMINTConstants {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
 		}
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
+		createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
 		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
 		if (genericsParamTypeConfigs.length > 0) {
 			createOperatorTypeGenerics(genericsParamTypeConfigs[0], newOperatorType);
@@ -790,7 +820,8 @@ public class MMINT implements MMINTConstants {
 		while (extensionsIter.hasNext()) {
 			config = extensionsIter.next();
 			try {
-				createOperatorType(config);
+				Operator operatorType = createOperatorType(config);
+				bundleTable.put(operatorType.getUri(), config.getContributor().getName());
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);

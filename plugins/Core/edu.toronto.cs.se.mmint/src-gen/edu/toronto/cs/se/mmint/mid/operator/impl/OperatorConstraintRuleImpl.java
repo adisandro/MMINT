@@ -40,8 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl#getOutputModelRel <em>Output Model Rel</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl#isIsBinary <em>Is Binary</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl#getEnpointModels <em>Enpoint Models</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl#getEndpointModels <em>Endpoint Models</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,34 +57,14 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 	protected OperatorConstraintParameter outputModelRel;
 
 	/**
-	 * The default value of the '{@link #isIsBinary() <em>Is Binary</em>}' attribute.
+	 * The cached value of the '{@link #getEndpointModels() <em>Endpoint Models</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsBinary()
+	 * @see #getEndpointModels()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_BINARY_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsBinary() <em>Is Binary</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsBinary()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isBinary = IS_BINARY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getEnpointModels() <em>Enpoint Models</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEnpointModels()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<OperatorConstraintParameter> enpointModels;
+	protected EList<OperatorConstraintParameter> endpointModels;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,32 +133,11 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsBinary() {
-		return isBinary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsBinary(boolean newIsBinary) {
-		boolean oldIsBinary = isBinary;
-		isBinary = newIsBinary;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR_CONSTRAINT_RULE__IS_BINARY, oldIsBinary, isBinary));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<OperatorConstraintParameter> getEnpointModels() {
-		if (enpointModels == null) {
-			enpointModels = new EObjectContainmentEList<OperatorConstraintParameter>(OperatorConstraintParameter.class, this, OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS);
+	public EList<OperatorConstraintParameter> getEndpointModels() {
+		if (endpointModels == null) {
+			endpointModels = new EObjectContainmentEList<OperatorConstraintParameter>(OperatorConstraintParameter.class, this, OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS);
 		}
-		return enpointModels;
+		return endpointModels;
 	}
 
 	/**
@@ -192,8 +150,8 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL:
 				return basicSetOutputModelRel(null, msgs);
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS:
-				return ((InternalEList<?>)getEnpointModels()).basicRemove(otherEnd, msgs);
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS:
+				return ((InternalEList<?>)getEndpointModels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -208,10 +166,8 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL:
 				return getOutputModelRel();
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__IS_BINARY:
-				return isIsBinary();
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS:
-				return getEnpointModels();
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS:
+				return getEndpointModels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,12 +184,9 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL:
 				setOutputModelRel((OperatorConstraintParameter)newValue);
 				return;
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__IS_BINARY:
-				setIsBinary((Boolean)newValue);
-				return;
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS:
-				getEnpointModels().clear();
-				getEnpointModels().addAll((Collection<? extends OperatorConstraintParameter>)newValue);
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS:
+				getEndpointModels().clear();
+				getEndpointModels().addAll((Collection<? extends OperatorConstraintParameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -250,11 +203,8 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL:
 				setOutputModelRel((OperatorConstraintParameter)null);
 				return;
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__IS_BINARY:
-				setIsBinary(IS_BINARY_EDEFAULT);
-				return;
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS:
-				getEnpointModels().clear();
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS:
+				getEndpointModels().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -270,28 +220,10 @@ public class OperatorConstraintRuleImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL:
 				return outputModelRel != null;
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__IS_BINARY:
-				return isBinary != IS_BINARY_EDEFAULT;
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS:
-				return enpointModels != null && !enpointModels.isEmpty();
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS:
+				return endpointModels != null && !endpointModels.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isBinary: ");
-		result.append(isBinary);
-		result.append(')');
-		return result.toString();
 	}
 
 } //OperatorConstraintRuleImpl

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -40,6 +41,21 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelMatch extends OperatorImpl {
+
+	public static class InputConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			Model srcModel = inputsByName.get(IN_MODEL1);
+			Model tgtModel = inputsByName.get(IN_MODEL2);
+			if (srcModel == tgtModel) {
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 	// input-output
 	private final static @NonNull String IN_MODEL1 = "model1";
@@ -62,22 +78,6 @@ public class ModelMatch extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		matchAttribute = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
-	}
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		Model srcModel = inputsByName.get(IN_MODEL1);
-		Model tgtModel = inputsByName.get(IN_MODEL2);
-		if (srcModel == tgtModel) {
-			return false;
-		}
-
-		return true;
 	}
 
 	private void matchModelObjAttributes(EObject modelObj, ModelEndpointReference modelEndpointRef, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) {

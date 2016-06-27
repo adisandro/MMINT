@@ -71,12 +71,12 @@ public class KleisliMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	 * Kleisli version. {@inheritDoc}
 	 */
 	@Override
-	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary) throws MMINTException {
 
 		KleisliModelRel newModelRelType = (isBinary) ?
 			KleisliFactory.eINSTANCE.createBinaryKleisliModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
-		super.addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		super.addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newModelRelType;
 	}

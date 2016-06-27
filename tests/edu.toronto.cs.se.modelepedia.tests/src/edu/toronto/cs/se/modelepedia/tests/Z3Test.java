@@ -24,7 +24,7 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -49,7 +49,7 @@ public class Z3Test extends MMINTTest {
 		Bundle testBundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		MID instanceMID = createInstanceMID();
 		Model model = addInputModel(instanceMID, testBundle, "model/z3", "ecore.classdiagram_mavo");
-		Z3ReasoningEngine z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+		Z3ReasoningEngine z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(Z3ReasoningEngine.ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<Model>();
 		inputModels.add(model);

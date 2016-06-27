@@ -37,6 +37,8 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -478,18 +480,17 @@ mappingTypes:
 	}
 
 	/**
-	 * Checks if a constraint is satisfied on an extendible element (only models
-	 * are currently evaluated).
+	 * Checks if a constraint is satisfied on a model.
 	 * 
-	 * @param element
-	 *            The extendible element.
+	 * @param model
+	 *            The model.
 	 * @param constraint
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkConstraint(ExtendibleElement element, ExtendibleElementConstraint constraint) {
+	public static boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint) {
 
-		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
 		IReasoningEngine reasoner;
@@ -497,21 +498,39 @@ mappingTypes:
 			reasoner = getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping constraint check", e);
+			MMINTException.print(IStatus.WARNING, "Skipping model constraint check", e);
 			return false;
 		}
 		MIDLevel constraintLevel;
-		if (!element.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
+		if (!model.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
 			constraintLevel = MIDLevel.TYPES;
 		}
 		else {
 			constraintLevel = MIDLevel.INSTANCES;
 		}
 
-		return reasoner.checkConstraint((Model) element, constraint, constraintLevel);
+		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
 	}
 
-	public static boolean checkConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {
+	public static boolean checkOperatorConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
+
+		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return true;
+		}
+		IReasoningEngine reasoner;
+		try {
+			reasoner = getReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping operator constraint check", e);
+			return false;
+		}
+
+		return reasoner.checkOperatorConstraint(inputsByName, constraint);
+	}
+
+	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {
 
 		if (!(type instanceof Model) || constraintImplementation.equals("")) {
 			return true;
@@ -525,11 +544,11 @@ mappingTypes:
 			return true;
 		}
 
-		return reasoner.checkConstraintConsistency((Model) type, constraintImplementation);
+		return reasoner.checkModelConstraintConsistency((Model) type, constraintImplementation);
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineByConstraint(@NonNull Model model) {
+	public static @Nullable Model refineModelByConstraint(@NonNull Model model) {
 
 		if (model.getConstraint() == null) {
 			return null;
@@ -545,7 +564,7 @@ mappingTypes:
 		}
 
 		//TODO MMINT[MU-MMINT] Should copy the model constraint to the new model? option to do it or not?
-		return reasoner.refineByConstraint(model);
+		return reasoner.refineModelByConstraint(model);
 	}
 
 }

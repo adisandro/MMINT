@@ -27,15 +27,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -74,31 +71,8 @@ public class OperatorConstraintRuleItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsBinaryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Is Binary feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIsBinaryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OperatorConstraintRule_isBinary_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OperatorConstraintRule_isBinary_feature", "_UI_OperatorConstraintRule_type"),
-				 OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__IS_BINARY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -114,7 +88,7 @@ public class OperatorConstraintRuleItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS);
+			childrenFeatures.add(OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS);
 		}
 		return childrenFeatures;
 	}
@@ -151,8 +125,7 @@ public class OperatorConstraintRuleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		OperatorConstraintRule operatorConstraintRule = (OperatorConstraintRule)object;
-		return getString("_UI_OperatorConstraintRule_type") + " " + operatorConstraintRule.isIsBinary();
+		return getString("_UI_OperatorConstraintRule_type");
 	}
 	
 
@@ -168,11 +141,8 @@ public class OperatorConstraintRuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OperatorConstraintRule.class)) {
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__IS_BINARY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL:
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS:
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -197,7 +167,7 @@ public class OperatorConstraintRuleItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS,
+				(OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS,
 				 OperatorFactory.eINSTANCE.createOperatorConstraintParameter()));
 	}
 
@@ -214,7 +184,7 @@ public class OperatorConstraintRuleItemProvider
 
 		boolean qualify =
 			childFeature == OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL ||
-			childFeature == OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__ENPOINT_MODELS;
+			childFeature == OperatorPackage.Literals.OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS;
 
 		if (qualify) {
 			return getString

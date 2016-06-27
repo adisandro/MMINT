@@ -12,8 +12,6 @@
 package edu.toronto.cs.se.mmint.mavo.library;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDFactory;
@@ -38,10 +36,10 @@ public class MAVOMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	 * MAVO version. {@inheritDoc}
 	 */
 	@Override
-	public Model createHeavyModelType(ExtensionType extensionType, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public Model createHeavyModelType(ExtensionType extensionType) throws MMINTException {
 
 		MAVOModel newMAVOModelType = MAVOMIDFactory.eINSTANCE.createMAVOModel();
-		super.addHeavyModelType(newMAVOModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		super.addHeavyModelType(newMAVOModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newMAVOModelType;
 	}
@@ -64,12 +62,12 @@ public class MAVOMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	 * MAVO version. {@inheritDoc}
 	 */
 	@Override
-	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionType extensionType, boolean isBinary, @Nullable String constraintLanguage, @Nullable String constraintImplementation) throws MMINTException {
+	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionType extensionType, boolean isBinary) throws MMINTException {
 
 		MAVOModelRel newMAVOModelRelType = (isBinary) ?
 			MAVOMIDFactory.eINSTANCE.createBinaryMAVOModelRel() :
 			MAVOMIDFactory.eINSTANCE.createMAVOModelRel();
-		super.addHeavyModelRelType(newMAVOModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		super.addHeavyModelRelType(newMAVOModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newMAVOModelRelType;
 	}

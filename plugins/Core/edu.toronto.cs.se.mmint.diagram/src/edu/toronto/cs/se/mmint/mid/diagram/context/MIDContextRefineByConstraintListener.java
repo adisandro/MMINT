@@ -60,7 +60,7 @@ public class MIDContextRefineByConstraintListener extends MIDContextMenuListener
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-			MIDConstraintChecker.refineByConstraint(model);
+			MIDConstraintChecker.refineModelByConstraint(model);
 
 			return CommandResult.newOKCommandResult();
 		}

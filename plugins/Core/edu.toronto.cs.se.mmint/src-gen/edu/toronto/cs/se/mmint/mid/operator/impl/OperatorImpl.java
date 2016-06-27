@@ -46,6 +46,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -597,13 +598,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___IS_ALLOWED_INPUT__MAP:
-				try {
-					return isAllowedInput((Map<String, Model>)arguments.get(0));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME:
 				try {
 					return getOutputsByName();
@@ -849,7 +843,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			try {
 				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
-				if (this.isAllowedInput(inputsByName)) {
+				if (MIDConstraintChecker.checkOperatorConstraint(this, inputsByName)) {
 					boolean commutative = false;
 					if (this.isCommutative()) {
 						Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
@@ -1022,22 +1016,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		catch (Exception e) {
 			// never happens
 		}
-		if (!this.isAllowedInput(inputsByName)) {
+		if (!MIDConstraintChecker.checkOperatorConstraint(this, inputsByName)) {
 			//TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
 			return null;
 		}
 
 		return inputs;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		return true;
 	}
 
 	/**

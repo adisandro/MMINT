@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -37,35 +38,34 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelComposition extends OperatorImpl {
 
+	public static class InputConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
+				return false;
+			}
+			Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+			Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+			Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+			Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+			if (model11 != model21 && model11 != model22 && model12 != model21 && model12 != model22) {
+				return false;
+			}
+
+			return true;
+		}
+	}
+
 	// input-output
 	private final static @NonNull String IN_MODELREL1 = "rel1";
 	private final static @NonNull String IN_MODELREL2 = "rel2";
 	private final static @NonNull String OUT_MODELREL = "composition";
 	// constants
 	private final static @NonNull String COMPOSITION_SEPARATOR = "+";
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
-			return false;
-		}
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
-		if (model11 != model21 && model11 != model22 && model12 != model21 && model12 != model22) {
-			return false;
-		}
-
-		return true;
-	}
 
 	private @NonNull ModelRel compose(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MID instanceMID)

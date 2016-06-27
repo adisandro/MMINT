@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -32,7 +33,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl#getParameterRef <em>Parameter Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl#getEndpointIndex <em>Endpoint Index</em>}</li>
  * </ul>
  *
@@ -40,14 +41,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Container implements OperatorConstraintParameter {
 	/**
-	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+	 * The cached value of the '{@link #getParameterRef() <em>Parameter Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameter()
+	 * @see #getParameterRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelEndpointReference parameter;
+	protected ModelEndpointReference parameterRef;
 
 	/**
 	 * The default value of the '{@link #getEndpointIndex() <em>Endpoint Index</em>}' attribute.
@@ -93,16 +94,23 @@ public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelEndpointReference getParameter() {
-		if (parameter != null && parameter.eIsProxy()) {
-			InternalEObject oldParameter = (InternalEObject)parameter;
-			parameter = (ModelEndpointReference)eResolveProxy(oldParameter);
-			if (parameter != oldParameter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER, oldParameter, parameter));
-			}
+	public ModelEndpointReference getParameterRef() {
+		return parameterRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetParameterRef(ModelEndpointReference newParameterRef, NotificationChain msgs) {
+		ModelEndpointReference oldParameterRef = parameterRef;
+		parameterRef = newParameterRef;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF, oldParameterRef, newParameterRef);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return parameter;
+		return msgs;
 	}
 
 	/**
@@ -110,20 +118,18 @@ public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelEndpointReference basicGetParameter() {
-		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParameter(ModelEndpointReference newParameter) {
-		ModelEndpointReference oldParameter = parameter;
-		parameter = newParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER, oldParameter, parameter));
+	public void setParameterRef(ModelEndpointReference newParameterRef) {
+		if (newParameterRef != parameterRef) {
+			NotificationChain msgs = null;
+			if (parameterRef != null)
+				msgs = ((InternalEObject)parameterRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF, null, msgs);
+			if (newParameterRef != null)
+				msgs = ((InternalEObject)newParameterRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF, null, msgs);
+			msgs = basicSetParameterRef(newParameterRef, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF, newParameterRef, newParameterRef));
 	}
 
 	/**
@@ -153,11 +159,24 @@ public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF:
+				return basicSetParameterRef(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER:
-				if (resolve) return getParameter();
-				return basicGetParameter();
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF:
+				return getParameterRef();
 			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX:
 				return getEndpointIndex();
 		}
@@ -172,8 +191,8 @@ public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER:
-				setParameter((ModelEndpointReference)newValue);
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF:
+				setParameterRef((ModelEndpointReference)newValue);
 				return;
 			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX:
 				setEndpointIndex((Integer)newValue);
@@ -190,8 +209,8 @@ public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER:
-				setParameter((ModelEndpointReference)null);
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF:
+				setParameterRef((ModelEndpointReference)null);
 				return;
 			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX:
 				setEndpointIndex(ENDPOINT_INDEX_EDEFAULT);
@@ -208,8 +227,8 @@ public class OperatorConstraintParameterImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER:
-				return parameter != null;
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF:
+				return parameterRef != null;
 			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX:
 				return endpointIndex != ENDPOINT_INDEX_EDEFAULT;
 		}

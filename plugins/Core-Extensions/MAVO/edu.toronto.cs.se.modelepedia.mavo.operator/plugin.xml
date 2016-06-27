@@ -23,6 +23,10 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangeImpact"
                class="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact$InputConstraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type
@@ -62,6 +66,10 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ChangePropagation"
                class="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation$InputConstraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type

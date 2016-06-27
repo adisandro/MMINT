@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 
+import java.util.Map;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -25,6 +27,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
@@ -67,7 +70,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {
@@ -84,13 +87,19 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
+	public boolean checkOperatorConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		return true;
 	}
 
 	@Override
-	public @Nullable Model refineByConstraint(@NonNull Model model) {
+	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
+
+		return true;
+	}
+
+	@Override
+	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
 
 		return null;
 	}

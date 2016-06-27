@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameterRef <em>Parameter Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex <em>Endpoint Index</em>}</li>
  * </ul>
  *
@@ -38,29 +38,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface OperatorConstraintParameter extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Parameter Ref</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The reference to an input or output parameter of an operator.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Parameter</em>' reference.
-	 * @see #setParameter(ModelEndpointReference)
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorConstraintParameter_Parameter()
-	 * @model required="true"
+	 * @return the value of the '<em>Parameter Ref</em>' containment reference.
+	 * @see #setParameterRef(ModelEndpointReference)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorConstraintParameter_ParameterRef()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ModelEndpointReference getParameter();
+	ModelEndpointReference getParameterRef();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameter <em>Parameter</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameterRef <em>Parameter Ref</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameter</em>' reference.
-	 * @see #getParameter()
+	 * @param value the new value of the '<em>Parameter Ref</em>' containment reference.
+	 * @see #getParameterRef()
 	 * @generated
 	 */
-	void setParameter(ModelEndpointReference value);
+	void setParameterRef(ModelEndpointReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Endpoint Index</b></em>' attribute.

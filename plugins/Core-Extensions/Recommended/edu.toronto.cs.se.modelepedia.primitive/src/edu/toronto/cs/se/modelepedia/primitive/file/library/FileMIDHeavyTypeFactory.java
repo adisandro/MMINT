@@ -29,10 +29,10 @@ public class FileMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	 * File version. {@inheritDoc}
 	 */
 	@Override
-	public Model createHeavyModelType(ExtensionType extensionType, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public Model createHeavyModelType(ExtensionType extensionType) throws MMINTException {
 
 		Model newModelType = FileFactory.eINSTANCE.createFileModel();
-		super.addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		super.addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newModelType;
 	}

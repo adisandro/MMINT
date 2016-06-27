@@ -29,8 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel <em>Output Model Rel</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#isIsBinary <em>Is Binary</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEnpointModels <em>Enpoint Models</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEndpointModels <em>Endpoint Models</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorConstraintRule()
@@ -64,43 +63,18 @@ public interface OperatorConstraintRule extends EObject {
 	void setOutputModelRel(OperatorConstraintParameter value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Binary</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * True if the output model relationship is binary, false otherwise.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Binary</em>' attribute.
-	 * @see #setIsBinary(boolean)
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorConstraintRule_IsBinary()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isIsBinary();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#isIsBinary <em>Is Binary</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Binary</em>' attribute.
-	 * @see #isIsBinary()
-	 * @generated
-	 */
-	void setIsBinary(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Enpoint Models</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Endpoint Models</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A list of references to other inputs/outputs of the operator that are the endpoints of the output model relationship.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Enpoint Models</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorConstraintRule_EnpointModels()
+	 * @return the value of the '<em>Endpoint Models</em>' containment reference list.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorConstraintRule_EndpointModels()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<OperatorConstraintParameter> getEnpointModels();
+	EList<OperatorConstraintParameter> getEndpointModels();
 
 } // OperatorConstraintRule

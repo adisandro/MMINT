@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mavo.MAVOElement;
@@ -105,7 +105,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 		speedupMAVOAllsatMAVOBackbone = -1;
 
 		// state
-		z3Reasoner = (Z3ReasoningEngine) MAVOMultiModelConstraintChecker.getMAVOReasoner(Z3_LANGUAGE);
+		z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner(Z3_LANGUAGE);
 		z3ModelParser = z3Reasoner.generateSMTLIBEncoding(mayModel);
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		MAVORoot rootMayModelObj = (MAVORoot) mayModel.getEMFInstanceRoot();

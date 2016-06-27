@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
@@ -138,19 +139,25 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		return true;
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
+	public boolean checkOperatorConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		return true;
 	}
 
 	@Override
-	public @Nullable Model refineByConstraint(@NonNull Model model) {
+	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
+
+		return true;
+	}
+
+	@Override
+	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
 
 		return null;
 	}

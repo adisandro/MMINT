@@ -329,22 +329,6 @@ public interface Operator extends GenericElement {
 	EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Checks if the input models, already individually validated as actual parameters, are
-	 * allowed by this operator type. This is meant to check that the input models as a whole are valid, and must be
-	 * overridden if there are cases when formal parameter compliance alone ({@link #checkAllowedInputs(EList)}) is not
-	 * enough.
-	 * 
-	 * @param inputsByName
-	 *            The input model instances, identified by their formal parameter name.
-	 * @return True if the input models are allowed, false otherwise.
-	 * @throws MMINTException
-	 *             If this is not an operator type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsByNameRequired="true"
-	 * @generated
-	 */
-	boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Gets the output model instances of this operator instance, if it has been previously run.
 	 * 
 	 * @return The output model instances, identified by their formal parameter name.

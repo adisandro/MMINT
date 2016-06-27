@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
@@ -31,6 +30,9 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -144,29 +146,22 @@ public class MIDTypeFactory {
 		newTypeRef.setSupertypeRef(typeRef);
 	}
 
+	public static void addTypeConstraint(@NonNull ExtendibleElementConstraint newTypeConstraint, @NonNull String constraintLanguage, @NonNull String constraintImplementation, @NonNull ExtendibleElement constrainedType) {
+
+		newTypeConstraint.setLanguage(constraintLanguage);
+		newTypeConstraint.setImplementation(constraintImplementation);
+		constrainedType.setConstraint(newTypeConstraint);
+	}
+
 	/**
 	 * Adds a model type to the Type MID.
 	 * 
 	 * @param newModelType
 	 *            The new model type to be added.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model type, null if no constraint is associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model type, null if no constraint is associated.
 	 * @param typeMID
 	 *            The Type MID.
 	 */
-	public static void addModelType(Model newModelType, String constraintLanguage, String constraintImplementation, MID typeMID) {
-
-		ExtendibleElementConstraint modelConstraint = null;
-		if (constraintLanguage != null) {
-			modelConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
-			modelConstraint.setLanguage(constraintLanguage);
-			modelConstraint.setImplementation(constraintImplementation);
-		}
-		newModelType.setConstraint(modelConstraint);
+	public static void addModelType(@NonNull Model newModelType, @NonNull MID typeMID) {
 
 		typeMID.getModels().add(newModelType);
 	}
@@ -419,6 +414,18 @@ public class MIDTypeFactory {
 	public static void addOperatorTypeConversion(ConversionOperator operatorType) {
 
 		operatorType.getInputs().get(0).getTarget().getConversionOperators().add(operatorType);
+	}
+
+	public static void addOperatorTypeConstraintRuleEndpoint(OperatorConstraintParameter constraintParam, OperatorConstraintRule constraintRule, ModelEndpointReference modelTypeEndpointRef, int endpointIndex, String ruleFeatureName) throws MMINTException {
+
+		constraintParam.setParameterRef(modelTypeEndpointRef);
+		constraintParam.setEndpointIndex(endpointIndex);
+		MIDUtils.setModelObjFeature(constraintRule, ruleFeatureName, constraintParam);
+	}
+
+	public static void addOperatorTypeConstraintRule(OperatorConstraintRule constraintRule, OperatorConstraint constraint, ModelEndpoint modelRelTypeEndpoint) throws MMINTException {
+
+		constraint.getRules().add(constraintRule);
 	}
 
 }

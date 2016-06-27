@@ -65,7 +65,7 @@ public class Filter extends OperatorImpl {
 				continue;
 			}
 			// check constraint
-			if (MIDTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MIDConstraintChecker.checkConstraint(model, filterModelType.getConstraint())) {
+			if (MIDTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MIDConstraintChecker.checkModelConstraint(model, filterModelType.getConstraint())) {
 				continue;
 			}
 			modelsToDelete.add(model);

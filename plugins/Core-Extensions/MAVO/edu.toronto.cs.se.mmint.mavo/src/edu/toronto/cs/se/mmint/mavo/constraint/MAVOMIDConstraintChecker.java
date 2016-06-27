@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 
-public class MAVOMultiModelConstraintChecker {
+public class MAVOMIDConstraintChecker {
 
 	public static @NonNull IMAVOReasoningEngine getMAVOReasoner(@NonNull String constraintLanguage) throws MMINTException {
 
@@ -38,9 +38,9 @@ public class MAVOMultiModelConstraintChecker {
 		return (IMAVOReasoningEngine) MIDConstraintChecker.getReasoner(constraintLanguage);
 	}
 
-	public static @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull ExtendibleElement element, @Nullable ExtendibleElementConstraint constraint) {
+	public static @NonNull MAVOTruthValue checkMAVOModelConstraint(@NonNull Model model, @Nullable ExtendibleElementConstraint constraint) {
 
-		if (!(element instanceof Model) || constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return MAVOTruthValue.TRUE;
 		}
 		IMAVOReasoningEngine reasoner;
@@ -52,66 +52,66 @@ public class MAVOMultiModelConstraintChecker {
 			return MAVOTruthValue.FALSE;
 		}
 		MIDLevel constraintLevel;
-		if (!element.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
+		if (!model.getUri().equals(((ExtendibleElement) constraint.eContainer()).getUri())) {
 			constraintLevel = MIDLevel.TYPES;
 		}
 		else {
 			constraintLevel = MIDLevel.INSTANCES;
 		}
 
-		return reasoner.checkMAVOConstraint((Model) element, constraint, constraintLevel);
+		return reasoner.checkMAVOModelConstraint(model, constraint, constraintLevel);
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
+	public static @Nullable Model refineModelByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may alternative", e);
 			return null;
 		}
 
-		return reasoner.refineByMayAlternative(model, mayAlternative);
+		return reasoner.refineModelByMayAlternative(model, mayAlternative);
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
+	public static @Nullable Model refineModelByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on var domain", e);
 			return null;
 		}
 
-		return reasoner.refineByVarDomain(model, varDomain, mergedModelObj, varModelObjs);
+		return reasoner.refineModelByVarDomain(model, varDomain, mergedModelObj, varModelObjs);
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
+	public static @Nullable Model refineModelByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may model object", e);
 			return null;
 		}
 
-		return reasoner.refineByMayModelObjects(model, mayModelObjs);
+		return reasoner.refineModelByMayModelObjects(model, mayModelObjs);
 	}
 
 	public static void highlightMAVODecision(@NonNull Diagram modelDiagram, @NonNull MAVODecision mavoDecision) {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO decision highlighting", e);
@@ -125,7 +125,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO collection highlighting", e);
@@ -139,7 +139,7 @@ public class MAVOMultiModelConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMultiModelConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO element highlighting", e);

@@ -194,6 +194,10 @@
                uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition"
                class="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition$InputConstraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type
@@ -220,6 +224,14 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="rel1"
+                     endpointIndex="0">
+               </endpointConstraint>
+               <endpointConstraint
+                     parameterName="rel2"
+                     endpointIndex="1">
+               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -233,6 +245,10 @@
                uri="http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge"
                class="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge$InputConstraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type
@@ -259,6 +275,14 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="rel1"
+                     endpointIndex="0">
+               </endpointConstraint>
+               <endpointConstraint
+                     parameterName="rel1"
+                     endpointIndex="1">
+               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>

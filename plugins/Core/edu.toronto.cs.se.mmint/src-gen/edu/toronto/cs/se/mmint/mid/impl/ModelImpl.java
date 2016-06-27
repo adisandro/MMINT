@@ -49,7 +49,9 @@ import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -589,8 +591,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MID typeMID = this.getMIDContainer();
 		super.addSubtype(newModelType, this, null, newModelTypeName);
-		MIDTypeFactory.addModelType(newModelType, constraintLanguage, constraintImplementation, typeMID);
+		MIDTypeFactory.addModelType(newModelType, typeMID);
 		newModelType.setOrigin(ModelOrigin.CREATED);
+		if (constraintLanguage != null && constraintImplementation != null) {
+			ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+			MIDTypeFactory.addTypeConstraint(newTypeConstraint, constraintLanguage, constraintImplementation, newModelType);
+		}
 
 		if (isMetamodelExtension) {
 			try {
@@ -1024,7 +1030,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeInstance(this);
 		MMINTException.mustBeType(type);
 
-		return MIDConstraintChecker.checkConstraint(this, type.getConstraint());
+		return MIDConstraintChecker.checkModelConstraint(this, type.getConstraint());
 	}
 
 	/**
@@ -1035,7 +1041,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		boolean validates = MIDConstraintChecker.checkConstraint(this, this.getConstraint());
+		boolean validates = MIDConstraintChecker.checkModelConstraint(this, this.getConstraint());
 
 		return validates && this.validateInstanceType(this.getMetatype());
 	}
