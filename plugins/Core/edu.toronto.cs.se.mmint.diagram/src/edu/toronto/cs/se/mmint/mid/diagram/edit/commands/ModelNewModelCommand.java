@@ -125,7 +125,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Use operator constraint in workflows + review operator constraint heavy apis
+		 * - Review operator constraint heavy apis
 		 * - Differentiate between input and output constraints
 		 * - Add proper handling of endpoints through apis for operator subtypes
 		 * - Add more complex workflows (fork and join, loops)

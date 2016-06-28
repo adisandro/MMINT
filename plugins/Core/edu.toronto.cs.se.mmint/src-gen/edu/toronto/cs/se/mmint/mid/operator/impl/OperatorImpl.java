@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
@@ -39,6 +40,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -54,10 +56,14 @@ import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
@@ -1416,6 +1422,34 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				outputModel,
 				newOperator,
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+		}
+		OperatorConstraint constraint = (OperatorConstraint) this.getConstraint();
+		if (constraint != null) { // create output model rel endpoints after all outputs are created
+			for (OperatorConstraintRule rule : constraint.getRules()) {
+				ModelEndpoint outputModelRelTypeEndpoint = rule.getOutputModelRel().getParameterRef().getObject();
+				//TODO MMINT[WORKFLOW] Simply do the following when proper operator endpoint types are used
+				//newOperator.getOutputs().stream().filter(outputModelEndpoint -> outputModelEndpoint.getMetatype() == outputModelRelTypeEndpoint);
+				ModelRel outputModelRel = (ModelRel) newOperator.getOutputs().stream()
+					.filter(outputModelEndpoint -> outputModelEndpoint.getName().equals(outputModelRelTypeEndpoint.getName()))
+					.findFirst()
+					.get()
+					.getTarget();
+				for (OperatorConstraintParameter param : rule.getEndpointModels()) {
+					ModelEndpoint operatorModelTypeEndpoint = param.getParameterRef().getObject();
+					//TODO MMINT[WORKFLOW] Make it a function?
+					Model endpointModel = Stream.concat(newOperator.getInputs().stream(), newOperator.getOutputs().stream())
+						.filter(modelEndpoint -> modelEndpoint.getName().equals(operatorModelTypeEndpoint.getName()))
+						.findFirst()
+						.get()
+						.getTarget();
+					if (param.getEndpointIndex() >= 0 && endpointModel instanceof ModelRel) {
+						endpointModel = ((ModelRel) endpointModel).getModelEndpoints().get(param.getEndpointIndex()).getTarget();
+					}
+					String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+					ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
+					modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+				}
+			}
 		}
 
 		return newOperator;
