@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -46,7 +46,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ChangeImpact extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorConstraint {
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {

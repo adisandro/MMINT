@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
@@ -63,7 +63,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
 public class ChangePropagation extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorConstraint {
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {

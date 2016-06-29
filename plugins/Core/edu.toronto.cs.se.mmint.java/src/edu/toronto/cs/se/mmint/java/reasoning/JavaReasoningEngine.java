@@ -51,12 +51,12 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		String javaClassName = constraint.getImplementation();
 		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
 		try {
-			IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint)
+			IJavaOperatorInputConstraint javaConstraint = (IJavaOperatorInputConstraint)
 				MIDTypeRegistry.getTypeBundle(operatorTypeUri).
 				loadClass(javaClassName).
 				getConstructor().

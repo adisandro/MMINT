@@ -512,7 +512,7 @@ mappingTypes:
 		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
 	}
 
-	public static boolean checkOperatorConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
+	public static boolean checkOperatorInputConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
 
 		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
@@ -523,11 +523,11 @@ mappingTypes:
 			reasoner = getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Skipping operator constraint check", e);
+			MMINTException.print(IStatus.WARNING, "Skipping operator input constraint check", e);
 			return false;
 		}
 
-		return reasoner.checkOperatorConstraint(inputsByName, constraint);
+		return reasoner.checkOperatorInputConstraint(inputsByName, constraint);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {

@@ -181,7 +181,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		return true;
 	}

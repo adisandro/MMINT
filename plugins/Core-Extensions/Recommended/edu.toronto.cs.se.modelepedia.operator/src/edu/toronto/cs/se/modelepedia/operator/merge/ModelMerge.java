@@ -28,7 +28,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -50,7 +50,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 // e.g. there is no direct link from a model to all its connected model rels
 public class ModelMerge extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorConstraint {
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {

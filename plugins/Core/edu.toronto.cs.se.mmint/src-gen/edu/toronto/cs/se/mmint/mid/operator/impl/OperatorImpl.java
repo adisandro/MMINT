@@ -849,7 +849,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			try {
 				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
-				if (MIDConstraintChecker.checkOperatorConstraint(this, inputsByName)) {
+				if (MIDConstraintChecker.checkOperatorInputConstraint(this, inputsByName)) {
 					boolean commutative = false;
 					if (this.isCommutative()) {
 						Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
@@ -1022,7 +1022,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		catch (Exception e) {
 			// never happens
 		}
-		if (!MIDConstraintChecker.checkOperatorConstraint(this, inputsByName)) {
+		if (!MIDConstraintChecker.checkOperatorInputConstraint(this, inputsByName)) {
 			//TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
 			return null;
 		}

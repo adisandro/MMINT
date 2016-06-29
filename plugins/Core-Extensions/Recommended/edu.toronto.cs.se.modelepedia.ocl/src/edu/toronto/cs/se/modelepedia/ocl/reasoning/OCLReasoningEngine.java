@@ -87,7 +87,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		return true;
 	}

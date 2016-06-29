@@ -25,7 +25,7 @@ public interface IReasoningEngine {
 
 	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel);
 
-	public boolean checkOperatorConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint);
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint);
 	
 	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint);
 

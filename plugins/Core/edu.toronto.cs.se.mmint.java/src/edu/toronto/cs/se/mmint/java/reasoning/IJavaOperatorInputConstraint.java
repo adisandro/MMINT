@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.mid.Model;
 
-public interface IJavaOperatorConstraint {
+public interface IJavaOperatorInputConstraint {
 
 	/**
 	 * Checks if the input models, already individually validated as actual parameters, are allowed by an operator type.
