@@ -1376,8 +1376,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeWorkflow(this);
 
 		this.deleteInstance(this.getMIDContainer());
-		for (ModelEndpoint modelEndpoint : this.getOutputs()) {
-			modelEndpoint.getTarget().deleteWorkflowInstance();
+		for (ModelEndpoint outputModelEndpoint : this.getOutputs()) {
+			Model outputModel = outputModelEndpoint.getTarget();
+			if (outputModel.getMIDContainer() == null) { // already deleted
+				continue;
+			}
+			outputModel.deleteWorkflowInstance();
 		}
 	}
 

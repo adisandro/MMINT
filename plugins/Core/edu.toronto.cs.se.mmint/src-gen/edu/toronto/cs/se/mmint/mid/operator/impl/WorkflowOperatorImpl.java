@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -324,44 +323,42 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		MMINTException.mustBeInstance(this);
 
 		MID workflowMID = this.getWorkflowMID();
-		// the order of operator creation in the workflow is also the order of execution
-		for (int i = 0; i < workflowMID.getOperators().size(); i++) {
-			Operator workflowOperator = workflowMID.getOperators().get(i);
+		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
+		Map<String, Model> outputsByName = new HashMap<>();
+		// the order of operator creation in the workflow is a safe order of execution too
+		for (Operator workflowOperator : workflowMID.getOperators()) {
 			Map<String, Model> workflowInputsByName = new HashMap<>();
 			for (ModelEndpoint inputModelEndpoint : workflowOperator.getInputs()) {
 				workflowInputsByName.put(
 					inputModelEndpoint.getName(),
-					inputsByName.get(inputModelEndpoint.getTargetUri()));
+					allModelsByName.get(inputModelEndpoint.getTargetUri()));
 			}
 			Operator newOperator = workflowOperator.getMetatype().createInstance(null);
 			Map<String, GenericElement> workflowGenericsByName = new HashMap<>();
 			for (GenericEndpoint workflowGeneric : workflowOperator.getGenerics()) {
 				workflowGenericsByName.put(workflowGeneric.getMetatype().getName(), workflowGeneric.getTarget());
 			}
-			Map<String, MID> workflowOutputMIDsByName;
-			if (i == (workflowMID.getOperators().size() - 1)) {
-				workflowOutputMIDsByName = new HashMap<>();
-				for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
-					workflowOutputMIDsByName.put(
-						outputModelEndpoint.getName(),
-						outputMIDsByName.get(outputModelEndpoint.getTargetUri()));
+			Map<String, MID> workflowOutputMIDsByName = new HashMap<>();
+			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
+				MID outputMID = null;
+				if (MIDRegistry.getInputOperators(outputModelEndpoint.getTarget(), workflowMID).isEmpty()) {
+					outputMID = outputMIDsByName.get(outputModelEndpoint.getTargetUri());
 				}
-			}
-			else {
-				workflowOutputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(workflowOperator.getMetatype(), null);
+				workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID);
 			}
 			Properties inputProperties = newOperator.getInputProperties();
 			newOperator.readInputProperties(inputProperties);
-			Map<String, Model> outputsByName = newOperator.run(workflowInputsByName, workflowGenericsByName, workflowOutputMIDsByName);
-			inputsByName.clear();
+			Map<String, Model> workflowOutputsByName = newOperator.run(workflowInputsByName, workflowGenericsByName, workflowOutputMIDsByName);
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
-				inputsByName.put(
-					outputModelEndpoint.getTargetUri(),
-					outputsByName.get(outputModelEndpoint.getName()));
+				Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
+				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
+				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != null) {
+					outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
+				}
 			}
 		}
 
-		return inputsByName;
+		return outputsByName;
 	}
 
 } //WorkflowOperatorImpl

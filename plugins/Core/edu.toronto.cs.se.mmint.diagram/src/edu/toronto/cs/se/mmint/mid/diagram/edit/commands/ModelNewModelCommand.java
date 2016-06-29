@@ -128,7 +128,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		 * - Review operator constraint heavy apis
 		 * - Differentiate between input and output constraints
 		 * - Add proper handling of endpoints through apis for operator subtypes
-		 * - Add more complex workflows (fork and join, loops)
 		 * - Need a cleanup() function in each operator if we don't want leftovers, or need to derive it from the outputs somehow
 		 */
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
