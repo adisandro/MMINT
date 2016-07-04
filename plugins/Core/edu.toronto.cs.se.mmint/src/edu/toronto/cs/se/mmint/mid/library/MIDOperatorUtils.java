@@ -250,17 +250,27 @@ public class MIDOperatorUtils {
 		}
 	}
 
-	public static @NonNull List<Model> getVarargs(@NonNull Map<String, Model> argsByName, @NonNull String argName) {
+	public static @NonNull List<Model> getVarargs(@NonNull Map<String, Model> modelsByName, @NonNull String argName) {
 
 		List<Model> models = new ArrayList<>();
 		int i = 0;
 		Model model;
-		while ((model = argsByName.get(argName + i)) != null) {
+		while ((model = modelsByName.get(argName + i)) != null) {
 			models.add(model);
 			i++;
 		}
 
 		return models;
+	}
+
+	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String argName) {
+
+		Map<String, Model> modelsByName = new HashMap<>();
+		for (int i = 0; i < models.size(); i++) {
+			modelsByName.put(argName + i, models.get(i));
+		}
+
+		return modelsByName;
 	}
 
 	public static @NonNull Map<String, MID> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID instanceMID) {

@@ -125,16 +125,19 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Review operator constraint heavy apis
-		 * - Differentiate between input and output constraints
+		 * - Make Map<> work with workflows (support varargs)
+		 * - Add intermediate results to output if an output rel points to them or if you just want them
+		 * - Store workflow intermediate results into a mid (+ review the various MIDOper, MIDRel)
+		 * - Review operator constraint heavy apis and fix light apis to use a separate constraint api
+		 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
 		 * - Add proper handling of endpoints through apis for operator subtypes
-		 * - Need a cleanup() function in each operator if we don't want leftovers, or need to derive it from the outputs somehow
+		 * - Add conditional (If) operator
 		 */
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
+		 * - Add double click to operator in mid diagram: openType() api opens implementation or workflow mid, openInstance() api opens mid with workflow traceability execution
 		 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for all root types I'd say)
 		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
 		 * - Review hierarchy tables and apis to support operators
-		 * - Add double click on operators to open the implementation
 		 * - Rethink ConversionOperator to be a simple workflow
 		 * - Rewrite ExperimentDriver to be a workflow
 		 */

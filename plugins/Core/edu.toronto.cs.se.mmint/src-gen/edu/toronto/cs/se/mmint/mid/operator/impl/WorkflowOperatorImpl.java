@@ -322,6 +322,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		MMINTException.mustBeInstance(this);
 
+		//TODO MMINT[WORKFLOW] Store the traceMID through workflowMIDUri, delete file on delete instance, make getter api for types/instances, read operators enabled preference
+		//MID traceMID = MIDFactory.eINSTANCE.createMID();
 		MID workflowMID = this.getWorkflowMID();
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
 		Map<String, Model> outputsByName = new HashMap<>();

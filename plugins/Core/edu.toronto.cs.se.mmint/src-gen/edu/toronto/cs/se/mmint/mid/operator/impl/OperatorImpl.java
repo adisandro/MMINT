@@ -1418,14 +1418,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			inputNames.add(inputName);
 		}
 		// outputs
-		//TODO MMINT[WORKFLOW] Vararg output support?
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
 			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
 			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
-			outputModelTypeEndpoint.createWorkflowInstance(
+			ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createWorkflowInstance(
 				outputModel,
 				newOperator,
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+			//TODO MMINT[WORKFLOW] Proper vararg output support? But how, only the specific operator knows
+			if (outputModelTypeEndpoint.getUpperBound() == -1) {
+				outputModelEndpoint.setName(outputModelEndpoint.getName() + 0);
+			}
 		}
 		OperatorConstraint constraint = (OperatorConstraint) this.getConstraint();
 		if (constraint != null) { // create output model rel endpoints after all outputs are created

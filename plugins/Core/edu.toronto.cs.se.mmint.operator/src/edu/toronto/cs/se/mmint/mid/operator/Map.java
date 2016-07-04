@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -198,9 +198,7 @@ public class Map extends OperatorImpl {
 		// store output MIDs
 		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
-		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		java.util.Map<String, Model> outputsByName = new HashMap<>();
-		int i = 0;
+		List<Model> outputMIDModels = new ArrayList<>();
 		// pass 1: no midrels
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
@@ -208,8 +206,7 @@ public class Map extends OperatorImpl {
 				continue;
 			}
 			Model outputMIDModel = createOutputMIDModel(outputMIDByName.getKey(), outputMIDByName.getValue(), midModelType, instanceMID);
-			outputsByName.put(OUT_MIDS + i, outputMIDModel);
-			i++;
+			outputMIDModels.add(outputMIDModel);
 		}
 		// pass 2: midrels only
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
@@ -219,8 +216,7 @@ public class Map extends OperatorImpl {
 			}
 			String outputName = outputMIDByName.getKey();
 			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMIDByName.getValue(), midrelModelType, instanceMID, midrelShortcutsByOutputName);
-			outputsByName.put(OUT_MIDS + i, outputMIDModel);
-			i++;
+			outputMIDModels.add(outputMIDModel);
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
 				String midrelMIDUri = MIDRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
 				Model midrelMIDModel = MIDRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
@@ -232,7 +228,9 @@ public class Map extends OperatorImpl {
 				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
+		java.util.Map<String, Model> outputsByName = MIDOperatorUtils.setVarargs(outputMIDModels, OUT_MIDS);
 		// create midoper
+//		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 //		if (operatorMID != null) {
 //			Model midoperModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDOPER_MODELTYPE_URI_SUFFIX);
 //			String operatorMIDUri = MultiModelUtils.getUniqueUri(
