@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -1334,12 +1335,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				outputModels = new ArrayList<>();
 				outputModels.add(outputsByName.get(outputModelTypeEndpoint.getName()));
 			}
-			for (Model outputModel : outputModels) {
-				outputModelTypeEndpoint.createInstance(
-					outputModel,
+			for (int i = 0; i < outputModels.size(); i++) {
+				ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createInstance(
+					outputModels.get(i),
 					newOperator,
 					OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
 				);
+				if (outputModelTypeEndpoint.getUpperBound() == -1) {
+					outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
+				}
 			}
 		}
 		// clean up conversions
@@ -1386,7 +1390,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
-	 * @throws MMINTException 
 	 * @generated NOT
 	 */
 	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
@@ -1419,16 +1422,25 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 		// outputs
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+			if (outputModelTypeEndpoint.getUpperBound() == -1) {
+				try {
+					if (this.getClass().getMethod("startWorkflowInstance", EList.class, EList.class, MID.class).getDeclaringClass() == OperatorImpl.class) {
+						throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and must override startWorkflowInstance()");
+					}
+				}
+				catch (NoSuchMethodException | SecurityException e) {
+					MMINTException.print(IStatus.WARNING, this.getClass().getSimpleName() + " has a variable number of outputs and startWorkflowInstance() can't be reflected, skipping outputs", e);
+				}
+				finally {
+					break;
+				}
+			}
 			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
 			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
-			ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createWorkflowInstance(
+			outputModelTypeEndpoint.createWorkflowInstance(
 				outputModel,
 				newOperator,
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-			//TODO MMINT[WORKFLOW] Proper vararg output support? But how, only the specific operator knows
-			if (outputModelTypeEndpoint.getUpperBound() == -1) {
-				outputModelEndpoint.setName(outputModelEndpoint.getName() + 0);
-			}
 		}
 		OperatorConstraint constraint = (OperatorConstraint) this.getConstraint();
 		if (constraint != null) { // create output model rel endpoints after all outputs are created

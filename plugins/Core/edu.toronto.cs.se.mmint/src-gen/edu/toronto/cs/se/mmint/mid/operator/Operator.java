@@ -498,7 +498,7 @@ public interface Operator extends GenericElement {
 
 	/**
 	 * <!-- begin-user-doc --> Creates an instance of this operator type in a workflow, connects it to its inputs and
-	 * creates its outputs.
+	 * creates its outputs. This api must be overridden by operator types with a variable number of outputs.
 	 * 
 	 * @param inputs
 	 *            A list of inputs to create the operator instance.
@@ -508,8 +508,10 @@ public interface Operator extends GenericElement {
 	 *            A Workflow, null if the operator isn't going to be contained in one.
 	 * @return The created operator instance.
 	 * @throws MMINTException
-	 *             If this is not an operator type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true" genericsMany="true" workflowMIDRequired="true"
+	 *             If this is not an operator type, or if this operator type has a variable number of outputs and
+	 *             doesn't override this api. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
+	 *        genericsMany="true" workflowMIDRequired="true"
 	 * @generated
 	 */
 	Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException;

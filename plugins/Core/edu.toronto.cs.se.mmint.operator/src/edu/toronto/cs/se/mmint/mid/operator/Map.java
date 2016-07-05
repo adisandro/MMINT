@@ -76,6 +76,29 @@ public class Map extends OperatorImpl {
 		return true;
 	}
 
+	@Override
+	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
+
+		Operator newOperator = super.startWorkflowInstance(inputs, generics, workflowMID);
+		// create the vararg mapped mids
+		Operator mapperOperatorType = (Operator) generics.get(0).getGeneric();
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
+		for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
+			Model outputModelType = (mapperOperatorType.getOutputs().get(i).getTarget() instanceof ModelRel) ?
+				midrelModelType : midModelType;
+			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+			Model outputModel = outputModelType.createWorkflowInstance(outputModelId, workflowMID);
+			ModelEndpoint outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
+				outputModel,
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+			outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
+		}
+
+		return newOperator;
+	}
+
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
 
 		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];

@@ -125,7 +125,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Make Map<> work with workflows (support varargs)
 		 * - Add intermediate results to output if an output rel points to them or if you just want them
 		 * - Store workflow intermediate results into a mid (+ review the various MIDOper, MIDRel)
 		 * - Review operator constraint heavy apis and fix light apis to use a separate constraint api
@@ -134,6 +133,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		 * - Add conditional (If) operator
 		 */
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
+		 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
 		 * - Add double click to operator in mid diagram: openType() api opens implementation or workflow mid, openInstance() api opens mid with workflow traceability execution
 		 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for all root types I'd say)
 		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
