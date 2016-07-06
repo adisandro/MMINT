@@ -18,6 +18,11 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PlatformUI;
@@ -26,7 +31,11 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDDiagramUtils {
@@ -76,6 +85,20 @@ public class MIDDiagramUtils {
 		}
 
 		return files;
+	}
+
+	public static void addModelShortcut(MIDDiagramViewProvider gmfViewProvider, View gmfDiagramRoot, Model model) throws Exception {
+
+		Node gmfNode = gmfViewProvider.createModel_2002(
+			model,
+			gmfDiagramRoot,
+			-1,
+			true,
+			new PreferencesHint(MIDDiagramEditorPlugin.ID));
+		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		shortcutAnnotation.setSource("Shortcut");
+		shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID);
+		gmfNode.getEAnnotations().add(shortcutAnnotation);
 	}
 
 }

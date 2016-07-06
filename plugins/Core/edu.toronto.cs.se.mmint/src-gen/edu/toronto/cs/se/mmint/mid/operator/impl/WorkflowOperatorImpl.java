@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -40,6 +41,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -280,14 +282,20 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		try {
 			MID workflowMID;
 			String newWorkflowMIDUri;
-			if (MIDUtils.isFileOrDirectoryInState(workflowMIDUri)) { // make a copy of the Workflow MID file..
+			if (MIDUtils.isFileOrDirectoryInState(workflowMIDUri)) { // just recreating this subtype at startup
 				workflowMID = (MID) MIDUtils.readModelFileInState(workflowMIDUri);
 				newWorkflowMIDUri = workflowMIDUri;
 			}
-			else { // ..or we're just recreating this subtype at startup
+			else { // make a copy of the Workflow MID files
 				workflowMID = (MID) MIDUtils.readModelFile(workflowMIDUri, true);
 				newWorkflowMIDUri = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 				MIDUtils.writeModelFileInState(workflowMID, newWorkflowMIDUri);
+				MIDUtils.copyTextFileAndReplaceText(
+					MIDUtils.prependWorkspaceToUri(workflowMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX),
+					MIDUtils.prependStateToUri(newWorkflowMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX),
+					MIDUtils.getLastSegmentFromUri(workflowMIDUri),
+					newWorkflowMIDUri,
+					false);
 			}
 			((WorkflowOperator) newOperatorType).setMidUri(newWorkflowMIDUri);
 			MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
@@ -319,6 +327,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		super.deleteType();
 		MIDUtils.deleteFileInState(this.getMidUri());
+		MIDUtils.deleteFileInState(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX);
 	}
 
 	/**
@@ -340,6 +349,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			try {
 				MIDUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
 				((WorkflowOperator) newOperator).setMidUri(operatorInstanceMIDUri);
+				//TODO Create diagram as well, without having to depend on mmint.diagram plugin
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this workflow operator's intermediate results, skipping it", e);
@@ -355,6 +365,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		super.deleteInstance();
 		MIDUtils.deleteFile(this.getMidUri(), true);
+		MIDUtils.deleteFile(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
 	}
 
 	/**
@@ -380,9 +391,16 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		MMINTException.mustBeInstance(this);
 
+		// workflowMID is executed, intermediate results are stored in instanceMID, outputs in outputMIDsByName
 		MID workflowMID = ((WorkflowOperator) this.getMetatype()).getWorkflowMID();
 		MID instanceMID = this.getInstanceMID();
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
+		// create shortcuts to input models
+		String instanceMIDUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
+		View instanceMIDDiagramRoot = (View) MIDUtils.readModelFile(instanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
+		if (instanceMID != null) {
+			//TODO create shortcuts to input models, without having to depend on mmint.diagram plugin
+		}
 		Map<String, Model> outputsByName = new HashMap<>();
 		// the order of operator creation in the workflow is a safe order of execution too
 		for (Operator workflowOperator : workflowMID.getOperators()) {
@@ -392,6 +410,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 					inputModelEndpoint.getName(),
 					allModelsByName.get(inputModelEndpoint.getTargetUri()));
 			}
+			//TODO I need to start the operator now, not just run, using the instanceMID
 			Operator newOperator = workflowOperator.getMetatype().createInstance(null);
 			Map<String, GenericElement> workflowGenericsByName = new HashMap<>();
 			for (GenericEndpoint workflowGeneric : workflowOperator.getGenerics()) {
@@ -413,8 +432,14 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
 				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != null) {
 					outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
+					//TODO include output model rel endpoints in output models
+					//TODO Create shortcuts to output models
 				}
 			}
+		}
+		if (instanceMID != null) {
+			MIDUtils.writeModelFile(instanceMID, instanceMIDUri, true);
+			//TODO write diagram as well
 		}
 
 		return outputsByName;

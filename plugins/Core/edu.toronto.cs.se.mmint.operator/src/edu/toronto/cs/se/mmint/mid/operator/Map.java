@@ -22,10 +22,6 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINT;
@@ -39,7 +35,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
@@ -120,21 +116,9 @@ public class Map extends OperatorImpl {
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
 		View gmfDiagramRoot = (View) MIDUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
-		//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
-		String gmfDiagramPluginId = MIDTypeRegistry.getTypeBundle(
-			outputMIDModelDiagram.getMetatypeUri()).getSymbolicName();
 		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
-			Node gmfNode = gmfViewProvider.createModel_2002(
-				midrelShortcut,
-				gmfDiagramRoot,
-				-1,
-				true,
-				new PreferencesHint(gmfDiagramPluginId));
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			shortcutAnnotation.setSource("Shortcut");
-			shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID);
-			gmfNode.getEAnnotations().add(shortcutAnnotation);
+			MIDDiagramUtils.addModelShortcut(gmfViewProvider, gmfDiagramRoot, midrelShortcut);
 		}
 		MIDUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
 

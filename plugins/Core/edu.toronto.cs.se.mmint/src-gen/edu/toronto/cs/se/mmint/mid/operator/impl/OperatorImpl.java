@@ -1431,9 +1431,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (NoSuchMethodException | SecurityException e) {
 					MMINTException.print(IStatus.WARNING, this.getClass().getSimpleName() + " has a variable number of outputs and startWorkflowInstance() can't be reflected, skipping outputs", e);
 				}
-				finally {
-					break;
-				}
+				break;
 			}
 			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
 			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
