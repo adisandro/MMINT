@@ -1069,7 +1069,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *            An Instance or Workflow MID, null if the operator isn't going to be contained in one.
 	 * @generated NOT
 	 */
-	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, MID instanceMID) {
+	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
 
 		super.addBasicInstance(newOperator, null, this.getName(), midLevel);
 		newOperator.setCommutative(false);

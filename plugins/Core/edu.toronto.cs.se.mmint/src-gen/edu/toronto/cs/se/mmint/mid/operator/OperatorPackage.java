@@ -1676,13 +1676,13 @@ public interface OperatorPackage extends EPackage {
 	int WORKFLOW_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
 
 	/**
-	 * The feature id for the '<em><b>Workflow MID Uri</b></em>' attribute.
+	 * The feature id for the '<em><b>Mid Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__WORKFLOW_MID_URI = OPERATOR_FEATURE_COUNT + 0;
+	int WORKFLOW_OPERATOR__MID_URI = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Operator</em>' class.
@@ -2009,13 +2009,22 @@ public interface OperatorPackage extends EPackage {
 	int WORKFLOW_OPERATOR___GET_WORKFLOW_MID = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Instance MID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_INSTANCE_MID = OPERATOR_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Workflow Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 1;
+	int WORKFLOW_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
@@ -2995,15 +3004,15 @@ public interface OperatorPackage extends EPackage {
 	EClass getWorkflowOperator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMIDUri <em>Workflow MID Uri</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri <em>Mid Uri</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workflow MID Uri</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMIDUri()
+	 * @return the meta object for the attribute '<em>Mid Uri</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri()
 	 * @see #getWorkflowOperator()
 	 * @generated
 	 */
-	EAttribute getWorkflowOperator_WorkflowMIDUri();
+	EAttribute getWorkflowOperator_MidUri();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMID() <em>Get Workflow MID</em>}' operation.
@@ -3014,6 +3023,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getWorkflowOperator__GetWorkflowMID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getInstanceMID() <em>Get Instance MID</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Instance MID</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getInstanceMID()
+	 * @generated
+	 */
+	EOperation getWorkflowOperator__GetInstanceMID();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint <em>Generic Endpoint</em>}'.
@@ -3620,12 +3639,12 @@ public interface OperatorPackage extends EPackage {
 		EClass WORKFLOW_OPERATOR = eINSTANCE.getWorkflowOperator();
 
 		/**
-		 * The meta object literal for the '<em><b>Workflow MID Uri</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Mid Uri</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WORKFLOW_OPERATOR__WORKFLOW_MID_URI = eINSTANCE.getWorkflowOperator_WorkflowMIDUri();
+		EAttribute WORKFLOW_OPERATOR__MID_URI = eINSTANCE.getWorkflowOperator_MidUri();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Workflow MID</b></em>' operation.
@@ -3634,6 +3653,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation WORKFLOW_OPERATOR___GET_WORKFLOW_MID = eINSTANCE.getWorkflowOperator__GetWorkflowMID();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Instance MID</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation WORKFLOW_OPERATOR___GET_INSTANCE_MID = eINSTANCE.getWorkflowOperator__GetInstanceMID();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.

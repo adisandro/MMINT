@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 
 /**
@@ -26,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMIDUri <em>Workflow MID Uri</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri <em>Mid Uri</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getWorkflowOperator()
@@ -35,40 +36,53 @@ import edu.toronto.cs.se.mmint.mid.MID;
  */
 public interface WorkflowOperator extends Operator {
 	/**
-	 * Returns the value of the '<em><b>Workflow MID Uri</b></em>' attribute.
+	 * Returns the value of the '<em><b>Mid Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Workflow MID Uri</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The uri of the Workflow MID.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Workflow MID Uri</em>' attribute.
-	 * @see #setWorkflowMIDUri(String)
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getWorkflowOperator_WorkflowMIDUri()
+	 * @return the value of the '<em>Mid Uri</em>' attribute.
+	 * @see #setMidUri(String)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getWorkflowOperator_MidUri()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getWorkflowMIDUri();
+	String getMidUri();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMIDUri <em>Workflow MID Uri</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri <em>Mid Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Workflow MID Uri</em>' attribute.
-	 * @see #getWorkflowMIDUri()
+	 * @param value the new value of the '<em>Mid Uri</em>' attribute.
+	 * @see #getMidUri()
 	 * @generated
 	 */
-	void setWorkflowMIDUri(String value);
+	void setMidUri(String value);
 
 	/**
-	 * <!-- begin-user-doc --> Gets the Workflow MID that implements this operator. <!-- end-user-doc -->
-	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='try {\n\treturn (MID) MIDUtils.readModelFileInState(this.getWorkflowMIDUri());\n}\ncatch (Exception e) {\n\treturn null;\n}'"
+	 * <!-- begin-user-doc --> Gets the Workflow MID that implements this operator type.
+	 * 
+	 * @throws MMINTException
+	 *             If this is not an operator type.<!-- end-user-doc -->
+	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MMINTException.mustBeType(this);\n\ntry {\n\treturn (MID) MIDUtils.readModelFileInState(this.getMidUri());\n}\ncatch (Exception e) {\n\treturn null;\n}'"
 	 * @generated
 	 */
-	MID getWorkflowMID();
+	MID getWorkflowMID() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Gets the Instance MID containing the intermediate artifacts created by this operator
+	 * instance.
+	 * 
+	 * @throws MMINTException
+	 *             If this is not an operator instance.<!-- end-user-doc -->
+	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MMINTException.mustBeInstance(this);\n\ntry
+	 *        {\n\treturn (MID) MIDUtils.readModelFile(this.getMidUri(), true);\n}\ncatch (Exception e) {\n\treturn
+	 *        null;\n}'"
+	 * @generated
+	 */
+	MID getInstanceMID() throws MMINTException;
 
 } // WorkflowOperator

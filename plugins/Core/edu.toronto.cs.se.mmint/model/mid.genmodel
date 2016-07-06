@@ -589,8 +589,9 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperator/state"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/WorkflowOperator">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/WorkflowOperator/workflowMIDUri"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/WorkflowOperator/midUri"/>
         <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getWorkflowMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getInstanceMID"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>

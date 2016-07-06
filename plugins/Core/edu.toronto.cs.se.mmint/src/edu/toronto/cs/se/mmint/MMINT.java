@@ -161,7 +161,7 @@ public class MMINT implements MMINTConstants {
 	 * - Support standalone model rels (in their own file)
 	 * - Can operators detect input/output by code inspection rather than plugin.xml?
 	 * - Replace Pivot constraints and derivation in mid.ecore with java
-	 * - Refactor functions in mid.ecore like getMetatype() using generics
+	 * - Refactor functions in mid.ecore like getMetatype() using generics (and rename that to getType())
 	 * - ExtendibleElementReference.containedObject is completely useless
 	 */
 
@@ -693,7 +693,7 @@ public class MMINT implements MMINTConstants {
 				);
 			}
 			else if (dynamicType instanceof WorkflowOperator) {
-				newType = ((Operator) type).createSubtype(dynamicType.getName(), ((WorkflowOperator) dynamicType).getWorkflowMIDUri());
+				newType = ((Operator) type).createSubtype(dynamicType.getName(), ((WorkflowOperator) dynamicType).getMidUri());
 			}
 		}
 		catch (MMINTException e) {

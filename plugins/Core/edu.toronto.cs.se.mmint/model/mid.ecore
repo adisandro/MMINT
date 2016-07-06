@@ -1339,12 +1339,17 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A workflow operator type or a workflow operator instance, executes a Workflow MID."/>
       </eAnnotations>
-      <eOperations name="getWorkflowMID" eType="#//MID">
+      <eOperations name="getWorkflowMID" eType="#//MID" eExceptions="#//MMINTException">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="try {&#xA;&#x9;return (MID) MIDUtils.readModelFileInState(this.getWorkflowMIDUri());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
+          <details key="body" value="MMINTException.mustBeType(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) MIDUtils.readModelFileInState(this.getMidUri());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
         </eAnnotations>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="workflowMIDUri" lowerBound="1"
+      <eOperations name="getInstanceMID" eType="#//MID" eExceptions="#//MMINTException">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="MMINTException.mustBeInstance(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) MIDUtils.readModelFile(this.getMidUri(), true);&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="midUri" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The uri of the Workflow MID."/>

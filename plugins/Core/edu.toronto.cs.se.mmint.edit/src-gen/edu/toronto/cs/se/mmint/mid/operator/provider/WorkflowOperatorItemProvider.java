@@ -54,25 +54,25 @@ public class WorkflowOperatorItemProvider extends OperatorItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addWorkflowMIDUriPropertyDescriptor(object);
+			addMidUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Workflow MID Uri feature.
+	 * This adds a property descriptor for the Mid Uri feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addWorkflowMIDUriPropertyDescriptor(Object object) {
+	protected void addMidUriPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_WorkflowOperator_workflowMIDUri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowOperator_workflowMIDUri_feature", "_UI_WorkflowOperator_type"),
-				 OperatorPackage.Literals.WORKFLOW_OPERATOR__WORKFLOW_MID_URI,
+				 getString("_UI_WorkflowOperator_midUri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowOperator_midUri_feature", "_UI_WorkflowOperator_type"),
+				 OperatorPackage.Literals.WORKFLOW_OPERATOR__MID_URI,
 				 true,
 				 false,
 				 false,
@@ -119,7 +119,7 @@ public class WorkflowOperatorItemProvider extends OperatorItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(WorkflowOperator.class)) {
-			case OperatorPackage.WORKFLOW_OPERATOR__WORKFLOW_MID_URI:
+			case OperatorPackage.WORKFLOW_OPERATOR__MID_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -510,8 +510,7 @@ public interface Operator extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not an operator type, or if this operator type has a variable number of outputs and
 	 *             doesn't override this api. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
-	 *        genericsMany="true" workflowMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true" genericsMany="true" workflowMIDRequired="true"
 	 * @generated
 	 */
 	Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException;

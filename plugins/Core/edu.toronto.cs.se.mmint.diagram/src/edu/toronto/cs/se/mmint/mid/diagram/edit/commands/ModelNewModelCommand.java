@@ -126,7 +126,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/* TODO MMINT[WORKFLOW]
 		 * - Add intermediate results to output if an output rel points to them or if you just want them
-		 * - Store workflow intermediate results into a mid (+ review the various MIDOper, MIDRel)
+		 * - Store workflow intermediate results into a mid, and decide whether to do it always or only with operators enabled (+ review the various MIDOper, MIDRel)
 		 * - Review operator constraint heavy apis and fix light apis to use a separate constraint api
 		 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
 		 * - Add proper handling of endpoints through apis for operator subtypes
