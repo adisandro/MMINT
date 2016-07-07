@@ -397,7 +397,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
 		// create shortcuts to input models
 		String instanceMIDUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		View instanceMIDDiagramRoot = (View) MIDUtils.readModelFile(instanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
+		//TODO enable when ready View instanceMIDDiagramRoot = (View) MIDUtils.readModelFile(instanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
 		if (instanceMID != null) {
 			//TODO create shortcuts to input models, without having to depend on mmint.diagram plugin
 		}
