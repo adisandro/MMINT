@@ -18,9 +18,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
@@ -35,7 +32,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MIDDiagramUtils {
@@ -87,18 +83,9 @@ public class MIDDiagramUtils {
 		return files;
 	}
 
-	public static void addModelShortcut(MIDDiagramViewProvider gmfViewProvider, View gmfDiagramRoot, Model model) throws Exception {
+	public static Node createModelShortcut(Model model, View gmfDiagramRoot) throws Exception {
 
-		Node gmfNode = gmfViewProvider.createModel_2002(
-			model,
-			gmfDiagramRoot,
-			-1,
-			true,
-			new PreferencesHint(MIDDiagramEditorPlugin.ID));
-		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		shortcutAnnotation.setSource("Shortcut");
-		shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID);
-		gmfNode.getEAnnotations().add(shortcutAnnotation);
+		return GMFDiagramUtils.createGMFNodeShortcut(model, gmfDiagramRoot, MIDDiagramEditorPlugin.ID, MIDEditPart.MODEL_ID);
 	}
 
 }

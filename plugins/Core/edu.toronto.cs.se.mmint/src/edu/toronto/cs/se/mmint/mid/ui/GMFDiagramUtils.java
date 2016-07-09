@@ -17,7 +17,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -27,14 +29,16 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -111,6 +115,26 @@ public class GMFDiagramUtils {
 		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
 		return modelFile;
+	}
+
+	public static Node createGMFNode(EObject modelObj, View gmfContainer, String diagramPluginId) {
+
+		IElementType gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
+		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
+		Node gmfNode = ViewService.createNode(gmfContainer, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
+
+		return gmfNode;
+	}
+
+	public static Node createGMFNodeShortcut(EObject modelObj, View gmfContainer, String diagramPluginId, String shortcutId) {
+
+		Node gmfNode = GMFDiagramUtils.createGMFNode(modelObj, gmfContainer, diagramPluginId);
+		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		shortcutAnnotation.setSource("Shortcut");
+		shortcutAnnotation.getDetails().put("modelID", shortcutId);
+		gmfNode.getEAnnotations().add(shortcutAnnotation);
+
+		return gmfNode;
 	}
 
 }

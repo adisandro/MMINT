@@ -36,7 +36,6 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -116,9 +115,8 @@ public class Map extends OperatorImpl {
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
 		View gmfDiagramRoot = (View) MIDUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
-		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
-			MIDDiagramUtils.addModelShortcut(gmfViewProvider, gmfDiagramRoot, midrelShortcut);
+			MIDDiagramUtils.createModelShortcut(midrelShortcut, gmfDiagramRoot);
 		}
 		MIDUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
 

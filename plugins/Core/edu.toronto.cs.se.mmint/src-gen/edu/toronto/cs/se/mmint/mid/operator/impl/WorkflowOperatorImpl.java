@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import edu.toronto.cs.se.mmint.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -21,6 +22,8 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -346,10 +349,20 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 				false);
 			MID operatorInstanceMID = MIDFactory.eINSTANCE.createMID();
 			operatorInstanceMID.setLevel(MIDLevel.INSTANCES);
+			Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+			Editor midDiagramType = midModelType.getEditors().stream()
+				.filter(editor -> editor instanceof Diagram)
+				.findFirst()
+				.get();
 			try {
 				MIDUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
 				((WorkflowOperator) newOperator).setMidUri(operatorInstanceMIDUri);
-				//TODO Create diagram as well, without having to depend on mmint.diagram plugin
+				GMFDiagramUtils.createGMFDiagram(
+					operatorInstanceMIDUri,
+					operatorInstanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX,
+					midModelType.getName(),
+					MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName(),
+					true);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this workflow operator's intermediate results, skipping it", e);
@@ -396,10 +409,19 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		MID instanceMID = this.getInstanceMID();
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
 		// create shortcuts to input models
-		String instanceMIDUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		//TODO enable when ready View instanceMIDDiagramRoot = (View) MIDUtils.readModelFile(instanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
+		String instanceMIDUri = this.getMidUri();
+		String instanceMIDDiagramUri = instanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
+		View instanceMIDDiagramRoot = (View) MIDUtils.readModelFile(instanceMIDDiagramUri, true);
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Editor midDiagramType = midModelType.getEditors().stream()
+			.filter(editor -> editor instanceof Diagram)
+			.findFirst()
+			.get();
+		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName();
 		if (instanceMID != null) {
-			//TODO create shortcuts to input models, without having to depend on mmint.diagram plugin
+			for (Model inputModel : inputsByName.values()) {
+				GMFDiagramUtils.createGMFNodeShortcut(inputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
+			}
 		}
 		Map<String, Model> outputsByName = new HashMap<>();
 		// the order of operator creation in the workflow is a safe order of execution too
@@ -410,7 +432,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 					inputModelEndpoint.getName(),
 					allModelsByName.get(inputModelEndpoint.getTargetUri()));
 			}
-			//TODO I need to start the operator now, not just run, using the instanceMID
+			//TODO I need to start the operator now to create the intermediate operator instances, not just run, using the instanceMID
 			Operator newOperator = workflowOperator.getMetatype().createInstance(null);
 			Map<String, GenericElement> workflowGenericsByName = new HashMap<>();
 			for (GenericEndpoint workflowGeneric : workflowOperator.getGenerics()) {
@@ -439,7 +461,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		}
 		if (instanceMID != null) {
 			MIDUtils.writeModelFile(instanceMID, instanceMIDUri, true);
-			//TODO write diagram as well
+			MIDUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramUri, true);
 		}
 
 		return outputsByName;
