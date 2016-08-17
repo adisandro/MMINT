@@ -28,6 +28,9 @@ import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
@@ -35,10 +38,10 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -423,39 +426,48 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 				GMFDiagramUtils.createGMFNodeShortcut(inputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
 			}
 		}
-		Map<String, Model> outputsByName = new HashMap<>();
 		// the order of operator creation in the workflow is a safe order of execution too
+		Map<String, Model> outputsByName = new HashMap<>();
 		for (Operator workflowOperator : workflowMID.getOperators()) {
-			Map<String, Model> workflowInputsByName = new HashMap<>();
+			EList<OperatorInput> workflowInputs = new BasicEList<>();
 			for (ModelEndpoint inputModelEndpoint : workflowOperator.getInputs()) {
-				workflowInputsByName.put(
-					inputModelEndpoint.getName(),
-					allModelsByName.get(inputModelEndpoint.getTargetUri()));
+				OperatorInput workflowInput = OperatorFactory.eINSTANCE.createOperatorInput();
+				workflowInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
+				workflowInput.setModel(allModelsByName.get(inputModelEndpoint.getTargetUri()));
+				workflowInputs.add(workflowInput);
 			}
-			//TODO I need to start the operator now to create the intermediate operator instances, not just run, using the instanceMID
-			Operator newOperator = workflowOperator.getMetatype().createInstance(null);
-			Map<String, GenericElement> workflowGenericsByName = new HashMap<>();
-			for (GenericEndpoint workflowGeneric : workflowOperator.getGenerics()) {
-				workflowGenericsByName.put(workflowGeneric.getMetatype().getName(), workflowGeneric.getTarget());
+			EList<OperatorGeneric> workflowGenerics = new BasicEList<>();
+			for (GenericEndpoint workflowGenericEndpoint : workflowOperator.getGenerics()) {
+				OperatorGeneric workflowGeneric = OperatorFactory.eINSTANCE.createOperatorGeneric();
+				workflowGeneric.setGenericSuperTypeEndpoint(workflowGenericEndpoint.getMetatype());
+				workflowGeneric.setGeneric(workflowGenericEndpoint.getTarget());
+				workflowGenerics.add(workflowGeneric);
 			}
 			Map<String, MID> workflowOutputMIDsByName = new HashMap<>();
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
 				MID outputMID = instanceMID;
-				if (MIDRegistry.getInputOperators(outputModelEndpoint.getTarget(), workflowMID).isEmpty()) {
+				if (MIDRegistry.getInputOperators(outputModelEndpoint.getTarget(), workflowMID).isEmpty()) { // final outputs
 					outputMID = outputMIDsByName.get(outputModelEndpoint.getTargetUri());
 				}
 				workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID);
 			}
-			Properties inputProperties = newOperator.getInputProperties();
-			newOperator.readInputProperties(inputProperties);
-			Map<String, Model> workflowOutputsByName = newOperator.run(workflowInputsByName, workflowGenericsByName, workflowOutputMIDsByName);
+			Map<String, Model> workflowOutputsByName = workflowOperator.getMetatype().startInstance(
+					workflowInputs,
+					null,
+					workflowGenerics,
+					workflowOutputMIDsByName,
+					instanceMID)
+				.getOutputsByName();
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
 				Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
 				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
-				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != null) {
+				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != instanceMID) { // final outputs
 					outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
+					// create shortcuts to output models
+					if (instanceMID != null) {
+						GMFDiagramUtils.createGMFNodeShortcut(outputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
+					}
 					//TODO include output model rel endpoints in output models
-					//TODO Create shortcuts to output models
 				}
 			}
 		}

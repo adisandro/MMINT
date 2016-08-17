@@ -125,12 +125,13 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Add intermediate results to output if an output rel points to them or if you just want them
-		 * - Store workflow intermediate results into a mid, and decide whether to do it always or only with operators enabled (+ review the various MIDOper, MIDRel)
+		 * - Add intermediate results to output if an output rel points to them
+		 * - Decide whether to store workflow intermediate results always or only with operators enabled (+ review the various MIDOper, MIDRel)
 		 * - Review operator constraint heavy apis and fix light apis to use a separate constraint api
 		 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
 		 * - Add proper handling of endpoints through apis for operator subtypes
 		 * - Add conditional (If) operator
+		 * - Support conversions in workflows?
 		 */
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
 		 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
