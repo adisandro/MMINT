@@ -49,6 +49,12 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="original">
+               </endpointConstraint>
+               <endpointConstraint
+                     parameterName="transformed">
+               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -88,6 +94,12 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="original">
+               </endpointConstraint>
+               <endpointConstraint
+                     parameterName="transformed">
+               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -127,6 +139,12 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="original">
+               </endpointConstraint>
+               <endpointConstraint
+                     parameterName="transformed">
+               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>

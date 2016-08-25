@@ -33,11 +33,13 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
@@ -305,19 +307,34 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			}
 			((WorkflowOperator) newOperatorType).setMidUri(newWorkflowMIDUri);
 			MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
-			for (Model workflowModel : workflowMID.getModels()) {
-				boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
-				boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
-				if (isInput || isOutput) {
-					ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
-					Model modelType = MIDRegistry.getExtendibleElement(workflowModel.getMetatypeUri(), typeMID);
-					MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
-					newModelTypeEndpoint.setDynamic(true);
-					String containerFeatureName = (isInput) ?
-						OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
-						OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
-					MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, containerFeatureName);
+			Map<Model, String> inoutWorkflowModels = new HashMap<>();
+			for (Model workflowModel : workflowMID.getModels()) { // first pass: identify inputs and outputs
+				boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty(); // no operator generated this model
+				if (isInput) {
+					inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+					continue; // an input can't be output too
 				}
+				boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty(); // no operator has this model as input
+				if (isOutput) {
+					inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+					if (workflowModel instanceof ModelRel) { // an output model rel needs its endpoint models as output too
+						for (ModelEndpoint outModelEndpoint : ((ModelRel) workflowModel).getModelEndpoints()) {
+							Model outModel = outModelEndpoint.getTarget();
+							if (inoutWorkflowModels.containsKey(outModel)) {
+								continue;
+							}
+							inoutWorkflowModels.put(outModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+						}
+					}
+				}
+			}
+			for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) { // second pass: create endpoints for operator type
+				Model workflowModel = inoutWorkflowModel.getKey();
+				ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+				Model modelType = MIDRegistry.getExtendibleElement(workflowModel.getMetatypeUri(), typeMID);
+				MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
+				newModelTypeEndpoint.setDynamic(true);
+				MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());
 			}
 		}
 		catch (Exception e) {
@@ -445,10 +462,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			}
 			Map<String, MID> workflowOutputMIDsByName = new HashMap<>();
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
-				MID outputMID = instanceMID;
-				if (MIDRegistry.getInputOperators(outputModelEndpoint.getTarget(), workflowMID).isEmpty()) { // final outputs
-					outputMID = outputMIDsByName.get(outputModelEndpoint.getTargetUri());
-				}
+				MID outputMID = outputMIDsByName.getOrDefault(outputModelEndpoint.getTargetUri(), instanceMID);
 				workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID);
 			}
 			Map<String, Model> workflowOutputsByName = workflowOperator.getMetatype().startInstance(
@@ -463,11 +477,16 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
 				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != instanceMID) { // final outputs
 					outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
-					// create shortcuts to output models
+					// create shortcuts to output models, or make a copy of output model rels
 					if (instanceMID != null) {
-						GMFDiagramUtils.createGMFNodeShortcut(outputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
+						if (outputModel instanceof ModelRel) {
+							((ModelRel) outputModel).getMetatype().copyInstance(outputModel, outputModel.getName(), instanceMID);
+						}
+						else {
+							GMFDiagramUtils.createGMFNodeShortcut(outputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
+							instanceMID.getExtendibleTable().put(outputModel.getUri(), outputModel);
+						}
 					}
-					//TODO include output model rel endpoints in output models
 				}
 			}
 		}

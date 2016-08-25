@@ -125,7 +125,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
 		/* TODO MMINT[WORKFLOW]
-		 * - Add intermediate results to output if an output rel points to them
+		 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
 		 * - Decide whether to store workflow intermediate results always or only with operators enabled (+ review the various MIDOper, MIDRel)
 		 * - Review operator constraint heavy apis and fix light apis to use a separate constraint api
 		 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators

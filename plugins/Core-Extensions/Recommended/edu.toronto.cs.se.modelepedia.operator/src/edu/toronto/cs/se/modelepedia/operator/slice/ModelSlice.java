@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class ModelSlice extends OperatorImpl {
 
-
 	// input-output
 	private final static @NonNull String IN_MODEL = "model";
 	private final static @NonNull String OUT_MODEL = "slice";
@@ -128,7 +127,7 @@ public class ModelSlice extends OperatorImpl {
 		this.init();
 
 		String sliceModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
-		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
+		EObject sliceRootModelObj = this.slice(model.getEMFInstanceRoot());
 		MIDUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
 			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
