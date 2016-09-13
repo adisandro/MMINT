@@ -114,7 +114,8 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToExtend(typeMID, srcModelType, tgtModelType);
 		String newModelRelTypeName = MIDDialogUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelType.getName());
 		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light binary model relationship type", null);
-		BinaryModelRel newModelRelType = modelRelType.createBinarySubtype(newModelRelTypeName, constraint[0], constraint[1], false);
+		BinaryModelRel newModelRelType = modelRelType.createBinarySubtype(newModelRelTypeName, false);
+		newModelRelType.addTypeConstraint(constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(typeMID);
 
 		String newModelTypeEndpointName;

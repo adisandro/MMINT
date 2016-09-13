@@ -49,9 +49,7 @@ import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -429,9 +427,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				return getSupertype();
 			case MIDPackage.MODEL___GET_MID_CONTAINER:
 				return getMIDContainer();
-			case MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
+			case MIDPackage.MODEL___CREATE_SUBTYPE__STRING_BOOLEAN:
 				try {
-					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
+					return createSubtype((String)arguments.get(0), (Boolean)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -575,28 +573,18 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 *            The new model type to be added.
 	 * @param newModelTypeName
 	 *            The name of the new model type.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the new model type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated with the new model type, null if no
-	 *            constraint is associated.
 	 * @param isMetamodelExtension
 	 *            True if the new model type is extending the supertype's metamodel, false otherwise.
 	 * @throws MMINTException
 	 *             If the uri of the new model type is already registered in the Type MID.
 	 * @generated NOT
 	 */
-	protected void addSubtype(Model newModelType, String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+	protected void addSubtype(Model newModelType, String newModelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
 		MID typeMID = this.getMIDContainer();
 		super.addSubtype(newModelType, this, null, newModelTypeName);
 		MIDTypeFactory.addModelType(newModelType, typeMID);
 		newModelType.setOrigin(ModelOrigin.CREATED);
-		if (constraintLanguage != null && constraintImplementation != null) {
-			ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
-			MIDTypeFactory.addTypeConstraint(newTypeConstraint, constraintLanguage, constraintImplementation, newModelType);
-		}
 
 		if (isMetamodelExtension) {
 			try {
@@ -674,12 +662,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+	public Model createSubtype(String newModelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		Model newModelType = super.createThisEClass();
-		this.addSubtype(newModelType, newModelTypeName, constraintLanguage, constraintImplementation, isMetamodelExtension);
+		this.addSubtype(newModelType, newModelTypeName, isMetamodelExtension);
 
 		return newModelType;
 	}

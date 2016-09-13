@@ -94,7 +94,8 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToExtend(typeMID, null, null);
 		String newModelRelTypeName = MIDDialogUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
 		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model relationship type", null);
-		ModelRel newModelRelType = (ModelRel) modelRelType.createSubtype(newModelRelTypeName, constraint[0], constraint[1], false);
+		ModelRel newModelRelType = (ModelRel) modelRelType.createSubtype(newModelRelTypeName, false);
+		newModelRelType.addTypeConstraint(constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelRelType;

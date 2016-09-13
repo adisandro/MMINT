@@ -249,6 +249,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -336,7 +345,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int MAVO_MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -680,6 +689,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.MODEL_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1080,6 +1098,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1176,7 +1203,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1338,7 +1365,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int MAVO_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -1657,6 +1684,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int BINARY_MAVO_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1753,7 +1789,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_MAVO_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1915,7 +1951,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -2160,6 +2196,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -2625,6 +2670,15 @@ public interface MAVOMIDPackage extends EPackage {
 	int MAVO_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2984,6 +3038,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.

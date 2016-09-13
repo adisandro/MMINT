@@ -233,6 +233,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -356,7 +365,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int KLEISLI_MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -683,6 +692,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1144,6 +1162,15 @@ public interface KleisliPackage extends EPackage {
 	int KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1240,7 +1267,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1375,7 +1402,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
@@ -1731,6 +1758,15 @@ public interface KleisliPackage extends EPackage {
 	int BINARY_KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = KLEISLI_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = KLEISLI_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1827,7 +1863,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1962,7 +1998,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = KLEISLI_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Endpoints</em>' operation.

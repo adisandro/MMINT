@@ -228,9 +228,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	protected void addSubtype(Model newModelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+	protected void addSubtype(Model newModelRelType, String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
-		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
+		super.addSubtype(newModelRelType, newModelRelTypeName, false);
 		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri((KleisliModelRel) newModelRelType);
 		((KleisliModelRel) newModelRelType).setExtendedUri(newModelRelTypeExtendedUri);
 		if (!MIDUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri)) {

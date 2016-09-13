@@ -282,6 +282,18 @@ public interface ExtendibleElement extends EObject {
 	String createSubtypeUri(String newTypeFragmentUri, String newTypeName);
 
 	/**
+	 * <!-- begin-user-doc --> Adds a constraint to this type.
+	 * 
+	 * @param language
+	 *            The constraint language, null for an empty constraint.
+	 * @param implementation
+	 *            The constraint language, null for an empty constraint. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" languageRequired="true" implementationRequired="true"
+	 * @generated
+	 */
+	void addTypeConstraint(String language, String implementation) throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Checks whether this is an instance.
 	 * 
 	 * @return True if this is an instance, false otherwise. <!-- end-user-doc -->

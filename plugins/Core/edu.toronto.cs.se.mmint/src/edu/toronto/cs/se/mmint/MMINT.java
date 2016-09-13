@@ -527,18 +527,18 @@ public class MMINT implements MMINTConstants {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
 		}
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
-		createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
+		MMINT.createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
 		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
 		if (genericsParamTypeConfigs.length > 0) {
-			createOperatorTypeGenerics(genericsParamTypeConfigs[0], newOperatorType);
+			MMINT.createOperatorTypeGenerics(genericsParamTypeConfigs[0], newOperatorType);
 		}
 		IConfigurationElement[] inputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_INPUTS);
 		if (inputsParamTypeConfigs.length > 0) {
-			createOperatorTypeParameters(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+			MMINT.createOperatorTypeParameters(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
 		}
 		IConfigurationElement[] outputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_OUTPUTS);
 		if (outputsParamTypeConfigs.length > 0) {
-			createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+			MMINT.createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
 		if (newOperatorType instanceof ConversionOperator) {
 			MIDTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);
@@ -687,10 +687,9 @@ public class MMINT implements MMINTConstants {
 			else if (dynamicType instanceof Model) {
 				newType = ((Model) type).createSubtype(
 					dynamicType.getName(),
-					dynamicType.getConstraint().getLanguage(),
-					dynamicType.getConstraint().getImplementation(),
 					(MIDTypeRegistry.getExtendedMetamodelUri((Model) dynamicType) != null)
 				);
+				newType.addTypeConstraint(dynamicType.getConstraint().getLanguage(), dynamicType.getConstraint().getImplementation());
 			}
 			else if (dynamicType instanceof WorkflowOperator) {
 				newType = ((Operator) type).createSubtype(dynamicType.getName(), ((WorkflowOperator) dynamicType).getMidUri());

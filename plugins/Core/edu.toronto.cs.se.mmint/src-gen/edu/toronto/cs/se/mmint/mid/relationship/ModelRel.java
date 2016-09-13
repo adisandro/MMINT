@@ -143,12 +143,6 @@ public interface ModelRel extends Model {
 	 * 
 	 * @param newModelRelTypeName
 	 *            The name of the new model relationship type.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the new model relationship type, null if no
-	 *            constraint is associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated with the new model relationship type, null
-	 *            if no constraint is associated.
 	 * @param isMetamodelExtension
 	 *            Not used.
 	 * @return The created binary model relationship type.
@@ -158,7 +152,7 @@ public interface ModelRel extends Model {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelTypeNameRequired="true" isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
-	BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
+	BinaryModelRel createBinarySubtype(String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a subtype of this model relationship type to the Type MID, copying its

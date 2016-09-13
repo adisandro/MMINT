@@ -368,9 +368,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				return getSupertype();
 			case RelationshipPackage.MODEL_REL___GET_MID_CONTAINER:
 				return getMIDContainer();
-			case RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN:
+			case RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN:
 				try {
-					return createBinarySubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (Boolean)arguments.get(3));
+					return createBinarySubtype((String)arguments.get(0), (Boolean)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -449,14 +449,6 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 *            The new model relationship type to be added.
 	 * @param newModelRelTypeName
 	 *            The name of the new model relationship type.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model relationship type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model relationship type, null if no constraint is
-	 *            associated.
 	 * @param isMetamodelExtension
 	 *            Not used.
 	 * @throws MMINTException
@@ -465,21 +457,21 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
-	protected void addSubtype(Model newModelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+	protected void addSubtype(Model newModelRelType, String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
-		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
+		super.addSubtype(newModelRelType, newModelRelTypeName, false);
 		MIDTypeFactory.addModelRelType((ModelRel) newModelRelType, this);
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public BinaryModelRel createBinarySubtype(String newModelRelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException {
+	public BinaryModelRel createBinarySubtype(String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRelType = super.createThisBinaryEClass();
-		this.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation, false);
+		this.addSubtype(newModelRelType, newModelRelTypeName, false);
 
 		return newModelRelType;
 	}
@@ -490,8 +482,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
 		ModelRel newModelRelType = (origModelRelType instanceof BinaryModelRel) ?
-			this.createBinarySubtype(origModelRelType.getName(), origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation(), false) :
-			(ModelRel) this.createSubtype(origModelRelType.getName(), origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation(), false);
+			this.createBinarySubtype(origModelRelType.getName(), false) :
+			(ModelRel) this.createSubtype(origModelRelType.getName(), false);
+		newModelRelType.addTypeConstraint(origModelRelType.getConstraint().getLanguage(), origModelRelType.getConstraint().getImplementation());
 
 		// model type endpoints
 		MID typeMID = newModelRelType.getMIDContainer();

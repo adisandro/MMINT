@@ -260,6 +260,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -736,6 +745,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1234,6 +1252,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1721,6 +1748,15 @@ public interface OperatorPackage extends EPackage {
 	int WORKFLOW_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2179,6 +2215,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.

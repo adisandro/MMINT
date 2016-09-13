@@ -105,7 +105,8 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		boolean isMetamodelExtension = (MIDTypeHierarchy.isRootType(modelType)) ?
 			true :
 			MIDDialogUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
-		Model newModelType = modelType.createSubtype(newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
+		Model newModelType = modelType.createSubtype(newModelTypeName, isMetamodelExtension);
+		newModelType.addTypeConstraint(constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelType;
@@ -126,8 +127,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		/* TODO MMINT[WORKFLOW]
 		 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
-		 * - Decide whether to store workflow intermediate results always or only with operators enabled (+ review the various MIDOper, MIDRel)
-		 * - Review operator constraint heavy apis and fix light apis to use a separate constraint api
+		 * - Review operator constraint heavy apis
 		 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
 		 * - Add proper handling of endpoints through apis for operator subtypes
 		 * - Add conditional (If) operator
@@ -141,6 +141,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		 * - Review hierarchy tables and apis to support operators
 		 * - Rethink ConversionOperator to be a simple workflow
 		 * - Rewrite ExperimentDriver to be a workflow
+		 * - Review and rationalize MIDOper and MIDRel
 		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);

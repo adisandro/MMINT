@@ -351,13 +351,22 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = 4;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = 5;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL = 5;
+	int EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL = 6;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -366,7 +375,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 6;
+	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 7;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -375,7 +384,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 7;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 8;
 
 	/**
 	 * The operation id for the '<em>Validate Instance</em>' operation.
@@ -384,7 +393,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 8;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 9;
 
 	/**
 	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -393,7 +402,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 9;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 10;
 
 	/**
 	 * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -402,7 +411,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = 10;
+	int EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = 11;
 
 	/**
 	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -411,7 +420,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = 11;
+	int EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = 12;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -420,7 +429,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 12;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 13;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -429,7 +438,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 13;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 14;
 
 	/**
 	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -438,7 +447,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 14;
+	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 15;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -447,7 +456,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 15;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -593,6 +602,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -857,6 +875,15 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1119,6 +1146,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL___CREATE_SUBTYPE_URI__STRING_STRING = GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING = GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1242,7 +1278,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = GENERIC_ELEMENT_OPERATION_COUNT + 3;
+	int MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = GENERIC_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1551,6 +1587,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1885,6 +1930,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -2648,6 +2702,16 @@ public interface MIDPackage extends EPackage {
 	EOperation getExtendibleElement__CreateSubtypeUri__String_String();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#addTypeConstraint(java.lang.String, java.lang.String) <em>Add Type Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Type Constraint</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#addTypeConstraint(java.lang.String, java.lang.String)
+	 * @generated
+	 */
+	EOperation getExtendibleElement__AddTypeConstraint__String_String();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#isInstancesLevel() <em>Is Instances Level</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2826,14 +2890,14 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__GetMIDContainer();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createSubtype(java.lang.String, java.lang.String, java.lang.String, boolean) <em>Create Subtype</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createSubtype(java.lang.String, boolean) <em>Create Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Subtype</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createSubtype(java.lang.String, java.lang.String, java.lang.String, boolean)
+	 * @see edu.toronto.cs.se.mmint.mid.Model#createSubtype(java.lang.String, boolean)
 	 * @generated
 	 */
-	EOperation getModel__CreateSubtype__String_String_String_boolean();
+	EOperation getModel__CreateSubtype__String_boolean();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#deleteType() <em>Delete Type</em>}' operation.
@@ -3786,6 +3850,14 @@ public interface MIDPackage extends EPackage {
 		EOperation EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING = eINSTANCE.getExtendibleElement__CreateSubtypeUri__String_String();
 
 		/**
+		 * The meta object literal for the '<em><b>Add Type Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING = eINSTANCE.getExtendibleElement__AddTypeConstraint__String_String();
+
+		/**
 		 * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3931,7 +4003,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = eINSTANCE.getModel__CreateSubtype__String_String_String_boolean();
+		EOperation MODEL___CREATE_SUBTYPE__STRING_BOOLEAN = eINSTANCE.getModel__CreateSubtype__String_boolean();
 
 		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.

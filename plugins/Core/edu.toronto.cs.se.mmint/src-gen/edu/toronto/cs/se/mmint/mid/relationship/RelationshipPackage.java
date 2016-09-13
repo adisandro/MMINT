@@ -308,6 +308,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.MODEL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.MODEL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -404,7 +413,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = MIDPackage.MODEL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -575,7 +584,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MIDPackage.MODEL_OPERATION_COUNT + 3;
+	int MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = MIDPackage.MODEL_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -875,6 +884,15 @@ public interface RelationshipPackage extends EPackage {
 	int BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -971,7 +989,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MODEL_REL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1142,7 +1160,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN;
+	int BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -1930,6 +1948,15 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2244,6 +2271,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -2569,6 +2605,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -3405,14 +3450,14 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__GetMIDContainer();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinarySubtype(java.lang.String, java.lang.String, java.lang.String, boolean) <em>Create Binary Subtype</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinarySubtype(java.lang.String, boolean) <em>Create Binary Subtype</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Binary Subtype</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinarySubtype(java.lang.String, java.lang.String, java.lang.String, boolean)
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinarySubtype(java.lang.String, boolean)
 	 * @generated
 	 */
-	EOperation getModelRel__CreateBinarySubtype__String_String_String_boolean();
+	EOperation getModelRel__CreateBinarySubtype__String_boolean();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#copySubtype(edu.toronto.cs.se.mmint.mid.relationship.ModelRel) <em>Copy Subtype</em>}' operation.
@@ -4403,7 +4448,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_STRING_STRING_BOOLEAN = eINSTANCE.getModelRel__CreateBinarySubtype__String_String_String_boolean();
+		EOperation MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = eINSTANCE.getModelRel__CreateBinarySubtype__String_boolean();
 
 		/**
 		 * The meta object literal for the '<em><b>Copy Subtype</b></em>' operation.

@@ -143,18 +143,18 @@ public class KleisliTest extends MMINTTest {
 		Bundle testBundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		// model types
 		Model rootModelType = MIDTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
-		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, null, null, true);
+		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL srcMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(MIDUtils.prependStateToUri(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
-		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, null, null, true);
+		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL tgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, TGT_METAMODEL_NAME, false).nextElement();
 		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(MIDUtils.prependStateToUri(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 
 		// model rel type
 		KleisliModelRel kRootModelRelType = MIDTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
-		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, null, null, false);
+		KleisliModelRel kModelRelType = (KleisliModelRel) kRootModelRelType.createSubtype(MODELRELTYPE_NAME, false);
 		MMINT.createTypeHierarchy();
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
 		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtype(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);

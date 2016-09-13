@@ -26,10 +26,6 @@
   <genPackages prefix="File" basePackage="edu.toronto.cs.se.modelepedia.primitive"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="file.ecore#/">
     <genClasses ecoreClass="file.ecore#//FileModel">
-      <genOperations ecoreOperation="file.ecore#//FileModel/createInstance">
-        <genParameters ecoreParameter="file.ecore#//FileModel/createInstance/newModelUri"/>
-        <genParameters ecoreParameter="file.ecore#//FileModel/createInstance/instanceMID"/>
-      </genOperations>
       <genOperations ecoreOperation="file.ecore#//FileModel/openInstance"/>
     </genClasses>
   </genPackages>

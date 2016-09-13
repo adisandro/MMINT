@@ -460,15 +460,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * @generated
 	 */
 	public EOperation getExtendibleElement__GetRuntimeTypes() {
-		return extendibleElementEClass.getEOperations().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExtendibleElement__ValidateInstanceType__ExtendibleElement() {
 		return extendibleElementEClass.getEOperations().get(7);
 	}
 
@@ -477,7 +468,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ValidateInstance() {
+	public EOperation getExtendibleElement__ValidateInstanceType__ExtendibleElement() {
 		return extendibleElementEClass.getEOperations().get(8);
 	}
 
@@ -486,7 +477,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext() {
+	public EOperation getExtendibleElement__ValidateInstance() {
 		return extendibleElementEClass.getEOperations().get(9);
 	}
 
@@ -495,7 +486,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__IsWorkflowsLevel() {
+	public EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext() {
 		return extendibleElementEClass.getEOperations().get(10);
 	}
 
@@ -504,7 +495,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__UpdateWorkflowInstanceId__String() {
+	public EOperation getExtendibleElement__IsWorkflowsLevel() {
 		return extendibleElementEClass.getEOperations().get(11);
 	}
 
@@ -513,7 +504,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
+	public EOperation getExtendibleElement__UpdateWorkflowInstanceId__String() {
 		return extendibleElementEClass.getEOperations().get(12);
 	}
 
@@ -522,7 +513,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
+	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
 		return extendibleElementEClass.getEOperations().get(13);
 	}
 
@@ -531,8 +522,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
 		return extendibleElementEClass.getEOperations().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+		return extendibleElementEClass.getEOperations().get(15);
 	}
 
 	/**
@@ -549,8 +549,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__IsInstancesLevel() {
+	public EOperation getExtendibleElement__AddTypeConstraint__String_String() {
 		return extendibleElementEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__IsInstancesLevel() {
+		return extendibleElementEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -702,7 +711,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModel__CreateSubtype__String_String_String_boolean() {
+	public EOperation getModel__CreateSubtype__String_boolean() {
 		return modelEClass.getEOperations().get(3);
 	}
 
@@ -1329,6 +1338,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT);
@@ -1357,7 +1367,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(modelEClass, MODEL___GET_METATYPE);
 		createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
 		createEOperation(modelEClass, MODEL___GET_MID_CONTAINER);
-		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_STRING_STRING_BOOLEAN);
+		createEOperation(modelEClass, MODEL___CREATE_SUBTYPE__STRING_BOOLEAN);
 		createEOperation(modelEClass, MODEL___DELETE_TYPE);
 		createEOperation(modelEClass, MODEL___GET_EMF_TYPE_ROOT);
 		createEOperation(modelEClass, MODEL___OPEN_TYPE);
@@ -1518,6 +1528,11 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEParameter(op, ecorePackage.getEString(), "newTypeFragmentUri", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getExtendibleElement__AddTypeConstraint__String_String(), null, "addTypeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "language", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "implementation", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
+
 		initEOperation(getExtendibleElement__IsInstancesLevel(), ecorePackage.getEBoolean(), "isInstancesLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getExtendibleElement__GetRuntimeTypes(), null, "getRuntimeTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -1576,10 +1591,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEOperation(getModel__GetMIDContainer(), this.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getModel__CreateSubtype__String_String_String_boolean(), this.getModel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModel__CreateSubtype__String_boolean(), this.getModel(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newModelTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "constraintLanguage", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "constraintImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "isMetamodelExtension", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getMMINTException());
 

@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -544,6 +545,14 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				return isTypesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
 				return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
+			case MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING:
+				try {
+					addTypeConstraint((String)arguments.get(0), (String)arguments.get(1));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL:
 				return isInstancesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES:
@@ -781,6 +790,17 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 			baseUri + MMINT.URI_SEPARATOR + newTypeFragmentUri + MMINT.URI_SEPARATOR + newTypeName;
 
 		return newTypeUri;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void addTypeConstraint(String language, String implementation) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+		MIDTypeFactory.addTypeConstraint(newTypeConstraint, language, implementation, this);
 	}
 
 	/**

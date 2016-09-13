@@ -54,6 +54,10 @@
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeFragmentUri"/>
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeName"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/addTypeConstraint">
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/addTypeConstraint/language"/>
+        <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/addTypeConstraint/implementation"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isInstancesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
@@ -94,8 +98,6 @@
       <genOperations ecoreOperation="mid.ecore#//Model/getMIDContainer"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createSubtype">
         <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/newModelTypeName"/>
-        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/constraintLanguage"/>
-        <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/constraintImplementation"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/isMetamodelExtension"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteType"/>
@@ -253,8 +255,6 @@
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMIDContainer"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinarySubtype">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/newModelRelTypeName"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/constraintLanguage"/>
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/constraintImplementation"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/isMetamodelExtension"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/copySubtype">

@@ -146,10 +146,10 @@ public class MIDTypeFactory {
 		newTypeRef.setSupertypeRef(typeRef);
 	}
 
-	public static void addTypeConstraint(@NonNull ExtendibleElementConstraint newTypeConstraint, @NonNull String constraintLanguage, @NonNull String constraintImplementation, @NonNull ExtendibleElement constrainedType) {
+	public static void addTypeConstraint(@NonNull ExtendibleElementConstraint newTypeConstraint, @NonNull String language, @NonNull String implementation, @NonNull ExtendibleElement constrainedType) {
 
-		newTypeConstraint.setLanguage(constraintLanguage);
-		newTypeConstraint.setImplementation(constraintImplementation);
+		newTypeConstraint.setLanguage(language);
+		newTypeConstraint.setImplementation(implementation);
 		constrainedType.setConstraint(newTypeConstraint);
 	}
 

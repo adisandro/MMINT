@@ -181,12 +181,6 @@ public interface Model extends GenericElement {
 	 * 
 	 * @param newModelTypeName
 	 *            The name of the new model type.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the new model type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated with the new model type, null if no
-	 *            constraint is associated.
 	 * @param isMetamodelExtension
 	 *            True if the new model type is extending the supertype's metamodel, false otherwise.
 	 * @return The created model type.
@@ -196,7 +190,7 @@ public interface Model extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeNameRequired="true" isMetamodelExtensionRequired="true"
 	 * @generated
 	 */
-	Model createSubtype(String newModelTypeName, String constraintLanguage, String constraintImplementation, boolean isMetamodelExtension) throws MMINTException;
+	Model createSubtype(String newModelTypeName, boolean isMetamodelExtension) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model type from the Type MID.

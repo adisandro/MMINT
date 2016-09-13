@@ -360,33 +360,35 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
 
 		super.addInstance(newOperator, midLevel, instanceMID);
-		if (instanceMID != null) {
-			String operatorInstanceMIDUri = MIDUtils.getUniqueUri(
-				MIDUtils.replaceFileNameInUri(
-					MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
-					newOperator.getName()),
-				true,
-				false);
-			MID operatorInstanceMID = MIDFactory.eINSTANCE.createMID();
-			operatorInstanceMID.setLevel(MIDLevel.INSTANCES);
-			Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
-			Editor midDiagramType = midModelType.getEditors().stream()
-				.filter(editor -> editor instanceof Diagram)
-				.findFirst()
-				.get();
-			try {
-				MIDUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
-				((WorkflowOperator) newOperator).setMidUri(operatorInstanceMIDUri);
-				GMFDiagramUtils.createGMFDiagram(
-					operatorInstanceMIDUri,
-					operatorInstanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX,
-					midModelType.getName(),
-					MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName(),
-					true);
-			}
-			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this workflow operator's intermediate results, skipping it", e);
-			}
+		if (instanceMID == null) {
+			return;
+		}
+
+		String operatorInstanceMIDUri = MIDUtils.getUniqueUri(
+			MIDUtils.replaceFileNameInUri(
+				MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
+				newOperator.getName()),
+			true,
+			false);
+		MID operatorInstanceMID = MIDFactory.eINSTANCE.createMID();
+		operatorInstanceMID.setLevel(MIDLevel.INSTANCES);
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Editor midDiagramType = midModelType.getEditors().stream()
+			.filter(editor -> editor instanceof Diagram)
+			.findFirst()
+			.get();
+		try {
+			MIDUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
+			((WorkflowOperator) newOperator).setMidUri(operatorInstanceMIDUri);
+			GMFDiagramUtils.createGMFDiagram(
+				operatorInstanceMIDUri,
+				operatorInstanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX,
+				midModelType.getName(),
+				MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName(),
+				true);
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this workflow operator's intermediate results, skipping it", e);
 		}
 	}
 
