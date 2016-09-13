@@ -446,6 +446,11 @@ public class MIDViewProvider extends AbstractProvider implements IViewProvider {
 		Node node = NotationFactory.eINSTANCE.createNode();
 		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		{
+			HintedDiagramLinkStyle diagramFacet = NotationFactory.eINSTANCE.createHintedDiagramLinkStyle();
+			diagramFacet.setHint("Mid"); //$NON-NLS-1$
+			node.getStyles().add(diagramFacet);
+		}
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(MIDVisualIDRegistry.getType(OperatorEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);

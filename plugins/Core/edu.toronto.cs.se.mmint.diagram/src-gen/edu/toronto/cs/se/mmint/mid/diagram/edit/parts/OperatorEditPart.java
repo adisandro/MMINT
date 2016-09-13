@@ -37,6 +37,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorItemSemanticEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorOpenDiagramEditPolicy;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorOpenEditorEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.OperatorSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 
@@ -74,7 +76,9 @@ public class OperatorEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperatorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OperatorOpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OperatorSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OperatorOpenEditorEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

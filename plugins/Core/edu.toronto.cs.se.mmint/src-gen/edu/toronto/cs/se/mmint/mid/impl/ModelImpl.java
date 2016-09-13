@@ -789,7 +789,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			}
 			else { // get metamodel files from bundle
 				Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
-				Enumeration<URL> metamodels = bundle.findEntries("/", "*." + EcorePackage.eNAME, true);
+				Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
 				while (metamodels.hasMoreElements()) {
 					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
 				}

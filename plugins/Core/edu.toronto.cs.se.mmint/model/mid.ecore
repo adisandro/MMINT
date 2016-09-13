@@ -1185,6 +1185,7 @@
         <eParameters name="implementationUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
+      <eOperations name="openType" eExceptions="#//operator/Exception"/>
       <eOperations name="findAllowedInputs" lowerBound="1" eExceptions="#//MMINTException">
         <eGenericType eClassifier="#//operator/Set">
           <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
@@ -1264,6 +1265,7 @@
         </eParameters>
         <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
       </eOperations>
+      <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
       <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="workflowMID" eType="#//MID"/>

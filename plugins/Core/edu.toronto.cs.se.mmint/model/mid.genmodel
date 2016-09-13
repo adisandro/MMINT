@@ -532,6 +532,7 @@
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationUri"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/openType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
         </genOperations>
@@ -571,6 +572,7 @@
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/outputMIDsByName"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/startInstance/instanceMID"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/openInstance"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createWorkflowInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstance/workflowMID"/>
         </genOperations>

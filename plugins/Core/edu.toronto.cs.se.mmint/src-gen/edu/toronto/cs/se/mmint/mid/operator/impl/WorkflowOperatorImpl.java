@@ -45,7 +45,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -357,6 +356,15 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	 * @generated NOT
 	 */
 	@Override
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
 	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
 
 		super.addInstance(newOperator, midLevel, instanceMID);
@@ -498,6 +506,22 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		}
 
 		return outputsByName;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void openInstance() throws Exception {
+
+		MMINTException.mustBeInstance(this);
+
+		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Editor midDiagramType = midModelType.getEditors().stream()
+			.filter(editor -> editor instanceof Diagram)
+			.findFirst()
+			.get();
+		GMFDiagramUtils.openGMFDiagram(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, midDiagramType.getId(), true);
 	}
 
 } //WorkflowOperatorImpl

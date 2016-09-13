@@ -107,7 +107,8 @@
   <nodes>
     <containmentFeature
         href="mid.ecore#//MID/operators"/>
-    <ownedChild>
+    <ownedChild
+        relatedDiagrams="//@diagram">
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
       <labelMappings>

@@ -13,8 +13,10 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,12 +27,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -38,6 +43,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
+
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -584,6 +593,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___OPEN_TYPE:
+				try {
+					openType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST:
 				try {
 					return findAllowedInputs((EList<MID>)arguments.get(0));
@@ -668,6 +685,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID:
 				try {
 					return startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___OPEN_INSTANCE:
+				try {
+					openInstance();
+					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -816,6 +841,29 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		for (Operator operatorSubtype : MIDTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			operatorSubtype.deleteType();
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		// get java source file from bundle
+		Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
+		String javaFileName = this.getClass().getSimpleName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + "java";
+		Enumeration<URL> javaFiles = bundle.findEntries("/", javaFileName, true);
+		if (!javaFiles.hasMoreElements()) {
+			return;
+		}
+
+		// open editor
+		URI javaFileUri = URI.createURI(FileLocator.toFileURL(javaFiles.nextElement()).toString());
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		activePage.openEditor(
+			new URIEditorInput(javaFileUri),
+			PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(javaFileName).getId());
 	}
 
 	/**
@@ -1357,6 +1405,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openInstance() throws Exception {
+
+		MMINTException.mustBeInstance(this);
+
+		this.getMetatype().openType();
 	}
 
 	/**

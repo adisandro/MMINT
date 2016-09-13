@@ -284,6 +284,16 @@ public interface Operator extends GenericElement {
 	void deleteType() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Opens the java implementation of this operator type.
+	 * 
+	 * @throws Exception
+	 *             If this is not an operator type, or if the java editor can't be opened. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 * @generated
+	 */
+	void openType() throws Exception;
+
+	/**
 	 * <!-- begin-user-doc --> Finds all inputs that can be used to run this operator type.
 	 * 
 	 * @param inputMIDs
@@ -472,6 +482,16 @@ public interface Operator extends GenericElement {
 	 * @generated
 	 */
 	Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
+
+	/**
+	 * <!-- begin-user-doc --> Opens the java implementation of this operator instance.
+	 * 
+	 * @throws Exception
+	 *             If this is not an operator instance, or if the java editor can't be opened. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 * @generated
+	 */
+	void openInstance() throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to a Workflow MID.

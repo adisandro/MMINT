@@ -136,6 +136,9 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
 		 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
 		 * - Add double click to operator in mid diagram: openType() api opens implementation or workflow mid, openInstance() api opens mid with workflow traceability execution
+		 * -- Finish implementation (how to test with gtk errors?)
+		 * -- Use openGMFDiagram api everywhere
+		 * -- Check workflow level
 		 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for all root types I'd say)
 		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
 		 * - Review hierarchy tables and apis to support operators

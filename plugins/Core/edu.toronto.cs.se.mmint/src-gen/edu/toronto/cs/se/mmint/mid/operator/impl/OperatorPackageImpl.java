@@ -350,7 +350,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindAllowedInputs__EList() {
+	public EOperation getOperator__OpenType() {
 		return operatorEClass.getEOperations().get(5);
 	}
 
@@ -359,7 +359,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindFirstAllowedInput__EList() {
+	public EOperation getOperator__FindAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(6);
 	}
 
@@ -368,7 +368,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CheckAllowedInputs__EList() {
+	public EOperation getOperator__FindFirstAllowedInput__EList() {
 		return operatorEClass.getEOperations().get(7);
 	}
 
@@ -377,7 +377,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetOutputsByName() {
+	public EOperation getOperator__CheckAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(8);
 	}
 
@@ -386,7 +386,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetOutputModels() {
+	public EOperation getOperator__GetOutputsByName() {
 		return operatorEClass.getEOperations().get(9);
 	}
 
@@ -395,7 +395,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateInstance__MID() {
+	public EOperation getOperator__GetOutputModels() {
 		return operatorEClass.getEOperations().get(10);
 	}
 
@@ -404,7 +404,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteInstance() {
+	public EOperation getOperator__CreateInstance__MID() {
 		return operatorEClass.getEOperations().get(11);
 	}
 
@@ -413,7 +413,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__SelectAllowedGenerics__EList() {
+	public EOperation getOperator__DeleteInstance() {
 		return operatorEClass.getEOperations().get(12);
 	}
 
@@ -422,7 +422,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList() {
+	public EOperation getOperator__SelectAllowedGenerics__EList() {
 		return operatorEClass.getEOperations().get(13);
 	}
 
@@ -431,7 +431,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetInputProperties() {
+	public EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList() {
 		return operatorEClass.getEOperations().get(14);
 	}
 
@@ -440,7 +440,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__ReadInputProperties__Properties() {
+	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(15);
 	}
 
@@ -449,7 +449,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Run__Map_Map_Map() {
+	public EOperation getOperator__ReadInputProperties__Properties() {
 		return operatorEClass.getEOperations().get(16);
 	}
 
@@ -458,7 +458,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
+	public EOperation getOperator__Run__Map_Map_Map() {
 		return operatorEClass.getEOperations().get(17);
 	}
 
@@ -467,7 +467,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateWorkflowInstance__MID() {
+	public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
 		return operatorEClass.getEOperations().get(18);
 	}
 
@@ -476,7 +476,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteWorkflowInstance() {
+	public EOperation getOperator__OpenInstance() {
 		return operatorEClass.getEOperations().get(19);
 	}
 
@@ -485,8 +485,26 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+	public EOperation getOperator__CreateWorkflowInstance__MID() {
 		return operatorEClass.getEOperations().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__DeleteWorkflowInstance() {
+		return operatorEClass.getEOperations().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+		return operatorEClass.getEOperations().get(22);
 	}
 
 	/**
@@ -855,6 +873,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___GET_MID_CONTAINER);
 		createEOperation(operatorEClass, OPERATOR___CREATE_SUBTYPE__STRING_STRING);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
+		createEOperation(operatorEClass, OPERATOR___OPEN_TYPE);
 		createEOperation(operatorEClass, OPERATOR___FIND_ALLOWED_INPUTS__ELIST);
 		createEOperation(operatorEClass, OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST);
 		createEOperation(operatorEClass, OPERATOR___CHECK_ALLOWED_INPUTS__ELIST);
@@ -868,6 +887,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___RUN__MAP_MAP_MAP);
 		createEOperation(operatorEClass, OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID);
+		createEOperation(operatorEClass, OPERATOR___OPEN_INSTANCE);
 		createEOperation(operatorEClass, OPERATOR___CREATE_WORKFLOW_INSTANCE__MID);
 		createEOperation(operatorEClass, OPERATOR___DELETE_WORKFLOW_INSTANCE);
 		createEOperation(operatorEClass, OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID);
@@ -985,6 +1005,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
+		op = initEOperation(getOperator__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
 		op = initEOperation(getOperator__FindAllowedInputs__EList(), null, "findAllowedInputs", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
@@ -1076,6 +1099,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "outputMIDsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		op = initEOperation(getOperator__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
 		op = initEOperation(getOperator__CreateWorkflowInstance__MID(), this.getOperator(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);

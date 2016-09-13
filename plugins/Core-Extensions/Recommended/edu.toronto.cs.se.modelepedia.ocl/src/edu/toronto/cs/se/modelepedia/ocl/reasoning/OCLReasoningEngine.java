@@ -107,9 +107,9 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	public boolean checkConstraint(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
+			OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
 			return ocl.check(modelObj, expression);
 		}
@@ -125,9 +125,9 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	public Object evaluateQuery(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
+			OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 			ExpressionInOCL expression = helper.createQuery(oclConstraint);
 			Object evaluation = ocl.evaluate(modelObj, expression);
 			if (evaluation instanceof CollectionValue.Accumulator) {
