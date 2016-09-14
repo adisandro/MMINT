@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
@@ -100,7 +99,7 @@ public class Filter extends OperatorImpl {
 			true,
 			false);
 		MIDUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, filteredMIDModel);

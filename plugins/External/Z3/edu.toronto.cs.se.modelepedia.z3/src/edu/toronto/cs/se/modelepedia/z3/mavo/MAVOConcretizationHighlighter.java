@@ -83,7 +83,7 @@ public class MAVOConcretizationHighlighter {
 		// write diagram to file
 		String exampleDiagramUri = MIDUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		MIDUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
-		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
+		MIDUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
 	private void highlightMAVODecision(@NonNull Map<String, View> diagramViews, @NonNull MAVODecision mavoDecision) {
@@ -171,7 +171,7 @@ public class MAVOConcretizationHighlighter {
 		// write diagram to file
 		String exampleDiagramUri = MIDUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		MIDUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
-		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
+		MIDUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
 }

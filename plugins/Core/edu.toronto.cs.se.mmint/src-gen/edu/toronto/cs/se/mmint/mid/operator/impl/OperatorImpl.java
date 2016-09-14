@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -43,7 +42,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
@@ -719,6 +717,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE:
+				try {
+					openWorkflowInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -860,9 +866,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		// open editor
 		URI javaFileUri = URI.createURI(FileLocator.toFileURL(javaFiles.nextElement()).toString());
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		activePage.openEditor(
-			new URIEditorInput(javaFileUri),
+		MIDUtils.openEclipseEditor(
+			javaFileUri,
 			PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(javaFileName).getId());
 	}
 
@@ -1408,13 +1413,25 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Opens the java implementation of the metatype of this operator instance.
+	 * 
+	 * @throws Exception
+	 *             If the java editor can't be opened.
+	 * @generated NOT
+	 */
+	protected void openInstanceMetatype() throws Exception {
+
+		this.getMetatype().openType();
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public void openInstance() throws Exception {
 
 		MMINTException.mustBeInstance(this);
 
-		this.getMetatype().openType();
+		this.openInstanceMetatype();
 	}
 
 	/**
@@ -1528,6 +1545,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openWorkflowInstance() throws Exception {
+
+		MMINTException.mustBeWorkflow(this);
+
+		this.openInstanceMetatype();
 	}
 
 } //OperatorImpl

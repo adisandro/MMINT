@@ -14,16 +14,11 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -264,12 +259,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				throw new MMINTException("Error creating extended model type");
 			}
 			if (extendMetamodel) {
-				URI kUri = URI.createFileURI(MIDUtils.prependStateToUri(kModelType.getUri()));
-				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
-					activePage.openEditor(new URIEditorInput(kUri), ecoreEditorType.getId());
+					MIDUtils.openEclipseEditor(
+						MIDUtils.prependStateToUri(kModelType.getUri()),
+						ecoreEditorType.getId(),
+						false);
 				}
 				catch (PartInitException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);

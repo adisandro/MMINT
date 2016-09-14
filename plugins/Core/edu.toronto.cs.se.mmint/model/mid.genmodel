@@ -582,6 +582,7 @@
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/generics"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/workflowMID"/>
         </genOperations>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/openWorkflowInstance"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/ConversionOperator">
         <genOperations ecoreOperation="mid.ecore#//operator/ConversionOperator/deleteType"/>

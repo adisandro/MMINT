@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
@@ -281,7 +280,7 @@ public class Reduce extends OperatorImpl {
 			true,
 			false);
 		MIDUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);

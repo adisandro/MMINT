@@ -512,6 +512,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getOperator__OpenWorkflowInstance() {
+		return operatorEClass.getEOperations().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConversionOperator() {
 		return conversionOperatorEClass;
 	}
@@ -891,6 +900,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___CREATE_WORKFLOW_INSTANCE__MID);
 		createEOperation(operatorEClass, OPERATOR___DELETE_WORKFLOW_INSTANCE);
 		createEOperation(operatorEClass, OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID);
+		createEOperation(operatorEClass, OPERATOR___OPEN_WORKFLOW_INSTANCE);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -1116,6 +1126,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__OpenWorkflowInstance(), null, "openWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
 
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

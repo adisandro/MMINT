@@ -77,7 +77,7 @@ public class Map extends OperatorImpl {
 		Operator newOperator = super.startWorkflowInstance(inputs, generics, workflowMID);
 		// create the vararg mapped mids
 		Operator mapperOperatorType = (Operator) generics.get(0).getGeneric();
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
 			Model outputModelType = (mapperOperatorType.getOutputs().get(i).getTarget() instanceof ModelRel) ?
@@ -201,7 +201,7 @@ public class Map extends OperatorImpl {
 			}
 		}
 		// store output MIDs
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		List<Model> outputMIDModels = new ArrayList<>();
 		// pass 1: no midrels

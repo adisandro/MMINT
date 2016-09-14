@@ -535,4 +535,15 @@ public interface Operator extends GenericElement {
 	 */
 	Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException;
 
+	/**
+	 * <!-- begin-user-doc --> Opens the java implementation of this operator instance.
+	 * 
+	 * @throws Exception
+	 *             If this is not an operator instance in a workflow, or if the java editor can't be opened. <!--
+	 *             end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 * @generated
+	 */
+	void openWorkflowInstance() throws Exception;
+
 } // Operator

@@ -125,7 +125,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
 					if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
-						GMFDiagramUtils.openGMFDiagram(diagramUri, getId(), true);
+						MIDUtils.openEclipseEditor(diagramUri, getId(), true);
 					}
 				}
 				catch (Exception e) {

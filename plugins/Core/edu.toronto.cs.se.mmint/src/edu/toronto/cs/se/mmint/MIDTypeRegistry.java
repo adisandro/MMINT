@@ -14,10 +14,12 @@ package edu.toronto.cs.se.mmint;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -33,9 +35,11 @@ import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
@@ -605,6 +609,29 @@ public class MIDTypeRegistry {
 		return (MIDUtils.isFileOrDirectoryInState(metamodelUri)) ?
 			MIDUtils.prependStateToUri(metamodelUri) :
 			null;
+	}
+
+	public static @Nullable Model getMIDModelType() {
+
+		return MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+	}
+
+	public static @Nullable Diagram getMIDDiagramType() {
+
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
+		Diagram midDiagramType;
+		try {
+			midDiagramType = (Diagram) midModelType.getEditors().stream()
+				.filter(editor -> editor instanceof Diagram)
+				.findFirst()
+				.get();
+		}
+		catch (NoSuchElementException e) {
+			MMINTException.print(IStatus.WARNING, "No diagram registered for MID model type, returning null", e);
+			midDiagramType = null;
+		}
+
+		return (Diagram) midDiagramType;
 	}
 
 }

@@ -29,6 +29,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -39,6 +40,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
@@ -383,6 +386,25 @@ public class MIDUtils {
 			}
 			modelObj.eSet(feature, value);
 		}
+	}
+
+	public static void openEclipseEditor(@NonNull URI fileUri, @NonNull String editorId) throws PartInitException {
+
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+			new URIEditorInput(fileUri),
+			editorId
+		);
+	}
+
+	public static void openEclipseEditor(@NonNull String fileUri, @NonNull String editorId, boolean isWorkspaceRelative) throws PartInitException {
+
+		URI uri = MIDUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		MIDUtils.openEclipseEditor(uri, editorId);
+	}
+
+	public static void openEclipseEditorInState(@NonNull String fileUri, @NonNull String editorId) throws PartInitException {
+
+		MIDUtils.openEclipseEditor(prependStateToUri(fileUri), editorId, false);
 	}
 
 }

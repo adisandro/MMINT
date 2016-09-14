@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
@@ -40,8 +39,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -800,11 +797,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 
 		// open editors
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (URI metamodelUri : metamodelUris) {
-			activePage.openEditor(new URIEditorInput(metamodelUri), ecoreEditorType.getId());
+			MIDUtils.openEclipseEditor(metamodelUri, ecoreEditorType.getId());
 			//TODO MMINT[ECORE] Try to open ecore diagram
 			//String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
 		}
@@ -1107,12 +1103,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeInstance(this);
 
 		Editor editor = this.getEditors().get(0);
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-			new URIEditorInput(
-				URI.createPlatformResourceURI(editor.getUri(), true)
-			),
-			editor.getId()
-		);
+		MIDUtils.openEclipseEditor(editor.getUri(), editor.getId(), true);
 	}
 
 	/**

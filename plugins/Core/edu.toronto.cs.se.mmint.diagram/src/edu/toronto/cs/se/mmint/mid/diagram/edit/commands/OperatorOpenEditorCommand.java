@@ -57,6 +57,11 @@ public class OperatorOpenEditorCommand extends AbstractTransactionalCommand {
 		operator.openInstance();
 	}
 
+	protected void doExecuteWorkflowsLevel(Operator operator) throws Exception {
+
+		operator.openInstance();
+	}
+
 	/**
 	 * Opens the editor associated with a model.
 	 * 
@@ -82,7 +87,7 @@ public class OperatorOpenEditorCommand extends AbstractTransactionalCommand {
 					this.doExecuteInstancesLevel(operator);
 					break;
 				case WORKFLOWS:
-					// do nothing
+					this.doExecuteWorkflowsLevel(operator);
 					break;
 				default:
 					throw new MMINTException("The MID level is missing");

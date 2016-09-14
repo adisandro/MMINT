@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -38,7 +37,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ui.PlatformUI;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -69,14 +68,6 @@ public class GMFDiagramUtils {
 		diagramResource.save(saveOptions);
 
 		return diagram;
-	}
-
-	public static void openGMFDiagram(String diagramUri, String diagramId, boolean isWorkspaceRelative) throws Exception {
-
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-			new URIEditorInput(MIDUtils.getEMFUri(diagramUri, isWorkspaceRelative)),
-			diagramId
-		);
 	}
 
 	public static ComposedAdapterFactory getAdapterFactory() {

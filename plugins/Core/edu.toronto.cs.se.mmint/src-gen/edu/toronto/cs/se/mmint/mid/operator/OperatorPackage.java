@@ -566,13 +566,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
 
 	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___OPEN_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
+
+	/**
 	 * The number of operations of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 24;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -1060,6 +1069,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1594,6 +1612,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
 	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
+
+	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2106,6 +2133,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORKFLOW_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Get Workflow MID</em>' operation.
@@ -3080,6 +3116,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__StartWorkflowInstance__EList_EList_MID();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#openWorkflowInstance() <em>Open Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Open Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#openWorkflowInstance()
+	 * @generated
+	 */
+	EOperation getOperator__OpenWorkflowInstance();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3736,6 +3782,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = eINSTANCE.getOperator__StartWorkflowInstance__EList_EList_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___OPEN_WORKFLOW_INSTANCE = eINSTANCE.getOperator__OpenWorkflowInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.

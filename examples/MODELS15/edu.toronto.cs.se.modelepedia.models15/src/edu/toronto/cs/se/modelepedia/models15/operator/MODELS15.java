@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -117,7 +116,7 @@ public class MODELS15 extends RandomOperatorImpl {
 		// output
 		String cdMIDModelUri = MIDUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
 		MIDUtils.writeModelFile(cdMID, cdMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, cdMIDModel);

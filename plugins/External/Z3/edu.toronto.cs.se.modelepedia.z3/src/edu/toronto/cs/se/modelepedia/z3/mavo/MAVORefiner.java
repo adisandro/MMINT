@@ -53,7 +53,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -246,7 +245,7 @@ public class MAVORefiner {
 			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
 			String refinedModelDiagramUri = MIDUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
 			MIDUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
-			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
+			MIDUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor();
 

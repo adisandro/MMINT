@@ -18,8 +18,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -31,10 +29,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -371,7 +366,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		super.openType();
 
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
@@ -386,11 +380,11 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				String kModelTypeDiagramUri = (MIDUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX)) ?
 					MIDUtils.prependStateToUri(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX):
 					null;
-				URI kUri = (kModelTypeDiagramUri == null) ? URI.createFileURI(kModelTypeUri) : URI.createFileURI(kModelTypeDiagramUri);
+				String kUri = (kModelTypeDiagramUri == null) ? kModelTypeUri : kModelTypeDiagramUri;
 				//TODO MMINT[ECORE] Try to open ecore diagram
 				String editorId = (kModelTypeDiagramUri == null) ? ecoreEditorType.getId() : ecoreEditorType.getId();
 				try {
-					activePage.openEditor(new URIEditorInput(kUri), editorId);
+					MIDUtils.openEclipseEditor(kUri, editorId, false);
 				}
 				catch (PartInitException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);

@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 
 public class MMINTOpenTypeMIDMenu extends AbstractHandler {
@@ -40,7 +41,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 			createTypeMIDDiagram();
 		}
 		try {
-			GMFDiagramUtils.openGMFDiagram(midDiagramUri, MIDDiagramEditor.ID, false);
+			MIDUtils.openEclipseEditor(midDiagramUri, MIDDiagramEditor.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error opening Type MID diagram", e);

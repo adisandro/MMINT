@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -85,7 +84,7 @@ public class Union extends OperatorImpl {
 			MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 			unionMIDModelName);
 		MIDUtils.writeModelFile(unionMID, unionMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, unionMIDModel);
