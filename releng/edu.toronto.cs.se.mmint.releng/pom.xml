@@ -11,7 +11,7 @@
   </properties>
   <repositories>
     <repository>
-  	  <id>Mars</id>
+  	  <id>Neon</id>
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/releases/neon</url>
     </repository>
