@@ -54,7 +54,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
@@ -218,7 +218,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			if (!resultLocation.exists()) {
 				resultLocation.create(true, true, null);
 			}
-			MIDUtils.writeModelFile(flatModelTypeObj, flatUri, true);
+			FileUtils.writeModelFile(flatModelTypeObj, flatUri, true);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);

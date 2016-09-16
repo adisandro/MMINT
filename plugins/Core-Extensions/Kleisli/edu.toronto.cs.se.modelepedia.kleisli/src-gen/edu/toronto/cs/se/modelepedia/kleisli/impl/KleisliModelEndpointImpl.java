@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -238,7 +238,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		boolean isK =
-			MIDUtils.isFileOrDirectoryInState(
+			FileUtils.isFileOrDirectoryInState(
 				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
 			);
 		boolean extendMetamodel = false;
@@ -262,8 +262,8 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
-					MIDUtils.openEclipseEditor(
-						MIDUtils.prependStateToUri(kModelType.getUri()),
+					FileUtils.openEclipseEditor(
+						FileUtils.prependStatePathToUri(kModelType.getUri()),
 						ecoreEditorType.getId(),
 						false);
 				}

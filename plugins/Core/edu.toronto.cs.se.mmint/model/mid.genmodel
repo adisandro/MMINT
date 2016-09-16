@@ -132,6 +132,7 @@
         <genParameters ecoreParameter="mid.ecore#//Model/copyInstanceAndEditor/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/deleteInstanceAndFile"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createWorkflowInstance">

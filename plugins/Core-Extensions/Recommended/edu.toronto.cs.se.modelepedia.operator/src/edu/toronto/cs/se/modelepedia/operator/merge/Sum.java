@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
@@ -72,10 +72,10 @@ public class Sum extends OperatorImpl {
 		Int sumModelObj = sum(intModel1, intModel2);
 
 		// output
-		String sumModelUri = MIDUtils.replaceFileNameInUri(
+		String sumModelUri = FileUtils.replaceFileNameInUri(
 			intModel1.getUri(),
 			intModel1.getName() + SUM_SEPARATOR + intModel2.getName());
-		MIDUtils.writeModelFile(sumModelObj, sumModelUri, true);
+		FileUtils.writeModelFile(sumModelObj, sumModelUri, true);
 		Model sumModel = intModel1.getMetatype().createInstanceAndEditor(sumModelUri, outputMIDsByName.get(OUT_INT));
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, sumModel);

@@ -57,7 +57,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -511,6 +511,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE:
+				try {
+					deleteInstanceAndFile();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT:
 				try {
 					return getEMFInstanceRoot();
@@ -606,7 +614,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 					}
 					newEPackage.getEClassifiers().add(newRootEClass);
 					newMetamodelUri = newModelTypeName + "." + EcorePackage.eNAME;
-					MIDUtils.writeModelFileInState(newEPackage, newMetamodelUri);
+					FileUtils.writeModelFileInState(newEPackage, newMetamodelUri);
 				}
 				newModelType.setFileExtension(MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION);
 			}
@@ -689,7 +697,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		typeMID.getModels().remove(this);
 		String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
 		if (metamodelUri != null) {
-			MIDUtils.deleteFile(metamodelUri, false);
+			FileUtils.deleteFile(metamodelUri, false);
 		}
 		// delete operator types that use this model type
 		List<Operator> delOperatorTypes = new ArrayList<>();
@@ -752,7 +760,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
 			if (metamodelUri != null) { // get package from metamodel file
 				try {
-					rootModelTypeObj = (EPackage) MIDUtils.readModelFile(metamodelUri, false);
+					rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, false);
 				}
 				catch (Exception e) {
 					throw new MMINTException("Error accessing the metamodel file for model type" + getUri(), e);
@@ -800,7 +808,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (URI metamodelUri : metamodelUris) {
-			MIDUtils.openEclipseEditor(metamodelUri, ecoreEditorType.getId());
+			FileUtils.openEclipseEditor(metamodelUri, ecoreEditorType.getId());
 			//TODO MMINT[ECORE] Try to open ecore diagram
 			//String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
 		}
@@ -853,9 +861,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		this.addInstance(
 			newModel,
 			newModelUri,
-			MIDUtils.getFileNameFromUri(newModelUri),
+			FileUtils.getFileNameFromUri(newModelUri),
 			ModelOrigin.CREATED,
-			MIDUtils.getFileExtensionFromUri(newModelUri),
+			FileUtils.getFileExtensionFromUri(newModelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -927,9 +935,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		this.addInstance(
 			newModel,
 			modelUri,
-			MIDUtils.getFileNameFromUri(modelUri),
+			FileUtils.getFileNameFromUri(modelUri),
 			ModelOrigin.IMPORTED,
-			MIDUtils.getFileExtensionFromUri(modelUri),
+			FileUtils.getFileExtensionFromUri(modelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -957,9 +965,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		// copy model
-		String newModelUri = MIDUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
+		String newModelUri = FileUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
 		try {
-			MIDUtils.copyTextFileAndReplaceText(
+			FileUtils.copyTextFileAndReplaceText(
 				origModel.getUri(),
 				newModelUri,
 				origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
@@ -987,9 +995,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 					continue;
 				}
 				try {
-					MIDUtils.copyTextFileAndReplaceText(
+					FileUtils.copyTextFileAndReplaceText(
 						oldEditor.getUri(),
-						MIDUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
+						FileUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
 						origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 						newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 						true);
@@ -1080,13 +1088,26 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
+	public void deleteInstanceAndFile() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		for (Editor editor : this.getEditors()) {
+			FileUtils.deleteFile(editor.getUri(), true);
+		}
+		this.deleteInstance();
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public EObject getEMFInstanceRoot() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
 
 		EObject rootModelObj;
 		try {
-			rootModelObj = MIDUtils.readModelFile(this.getUri(), true);
+			rootModelObj = FileUtils.readModelFile(this.getUri(), true);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);
@@ -1103,7 +1124,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeInstance(this);
 
 		Editor editor = this.getEditors().get(0);
-		MIDUtils.openEclipseEditor(editor.getUri(), editor.getId(), true);
+		FileUtils.openEclipseEditor(editor.getUri(), editor.getId(), true);
 	}
 
 	/**

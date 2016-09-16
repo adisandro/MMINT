@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -44,9 +44,9 @@ public class CDMatch extends ModelMatch {
 			boolean associations = modelObjs.stream().allMatch(modelObj -> modelObj instanceof Association);
 			if (associations) {
 				Association association = (Association) modelObjs.iterator().next();
-				String srcAttr = (String) MIDUtils.getModelObjFeature(association.getSource(), matchAttribute);
+				String srcAttr = (String) FileUtils.getModelObjFeature(association.getSource(), matchAttribute);
 				Set<EObject> srcMatch = modelObjAttrs.get(srcAttr);
-				String tgtAttr = (String) MIDUtils.getModelObjFeature(association.getTarget(), matchAttribute);
+				String tgtAttr = (String) FileUtils.getModelObjFeature(association.getTarget(), matchAttribute);
 				Set<EObject> tgtMatch = modelObjAttrs.get(tgtAttr);
 				boolean endpointsCheck =
 					modelObjs.stream()

@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -520,7 +520,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		super.addBasicInstance(newModelEndpoint, null, this.getName(), containerOperator.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
-		MIDUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
+		FileUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
 	}
 
 	/**

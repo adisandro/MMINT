@@ -296,6 +296,7 @@
       <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
+    <eOperations name="deleteInstanceAndFile" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         eExceptions="#//MMINTException"/>
     <eOperations name="openInstance" eExceptions="#//operator/Exception"/>

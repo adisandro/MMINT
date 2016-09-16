@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -97,11 +97,11 @@ public class Map extends OperatorImpl {
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
 
 		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		String outputMIDUri = MIDUtils.getUniqueUri(
-			MIDUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
+		String outputMIDUri = FileUtils.getUniqueUri(
+			FileUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(outputMID, outputMIDUri, true);
+		FileUtils.writeModelFile(outputMID, outputMIDUri, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
 			outputMIDUri,
 			instanceMID);
@@ -114,11 +114,11 @@ public class Map extends OperatorImpl {
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
-		View gmfDiagramRoot = (View) MIDUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
+		View gmfDiagramRoot = (View) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
 		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
 			MIDDiagramUtils.createModelShortcut(midrelShortcut, gmfDiagramRoot);
 		}
-		MIDUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
+		FileUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
 
 		return outputMIDModel;
 	}
@@ -318,7 +318,7 @@ public class Map extends OperatorImpl {
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {
-			MIDUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
+			FileUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
 		}
 
 		return outputsByName;

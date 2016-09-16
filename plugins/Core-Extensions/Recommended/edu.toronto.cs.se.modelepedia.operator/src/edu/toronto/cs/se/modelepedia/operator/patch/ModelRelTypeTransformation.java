@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -139,19 +139,19 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 						if (tgtRefModelObj == null) {
 							continue;
 						}
-						MIDUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
+						FileUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
 				}
 				else {
 					EObject srcRefModelObj = (EObject) value;
 					EObject tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
 					if (tgtRefModelObj != null) {
-						MIDUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
+						FileUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
 				}
 			}
 			else { // srcFeature instanceof EAttribute
-				MIDUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, value);
+				FileUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, value);
 				primitiveSrcModelObjs.add(new PrimitiveEObjectWrapper(srcModelObj, srcFeature, value));
 				primitiveTgtModelObjs.add(new PrimitiveEObjectWrapper(tgtModelObj, tgtFeature, value));
 			}
@@ -208,7 +208,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		MIDUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
+		FileUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
@@ -238,9 +238,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.replaceFileExtensionInUri(
-				MIDUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
+		tgtModelUri = FileUtils.getUniqueUri(
+			FileUtils.replaceFileExtensionInUri(
+				FileUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);

@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
@@ -293,7 +293,7 @@ public class MIDTypeFactory {
 	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
-		MIDUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
+		FileUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
 	}
 
 	/**
@@ -420,7 +420,7 @@ public class MIDTypeFactory {
 
 		constraintParam.setParameterRef(modelTypeEndpointRef);
 		constraintParam.setEndpointIndex(endpointIndex);
-		MIDUtils.setModelObjFeature(constraintRule, ruleFeatureName, constraintParam);
+		FileUtils.setModelObjFeature(constraintRule, ruleFeatureName, constraintParam);
 	}
 
 	public static void addOperatorTypeConstraintRule(OperatorConstraintRule constraintRule, OperatorConstraint constraint, ModelEndpoint modelRelTypeEndpoint) throws MMINTException {

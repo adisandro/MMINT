@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 
 public abstract class UMLModelConstraint implements IJavaModelConstraint {
 
@@ -28,9 +28,9 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 
 	protected boolean validate(Model model, String modelTypeName) {
 
-		String notationFileUri = MIDUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
+		String notationFileUri = FileUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
-			Diagram diagram = (Diagram) MIDUtils.readModelFile(notationFileUri, true);
+			Diagram diagram = (Diagram) FileUtils.readModelFile(notationFileUri, true);
 			return diagram.getType().equals(modelTypeName);
 		}
 		catch (Exception e) {

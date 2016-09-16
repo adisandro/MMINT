@@ -42,7 +42,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -606,8 +606,8 @@ public class MIDTypeRegistry {
 		}
 		String metamodelUri = modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
-		return (MIDUtils.isFileOrDirectoryInState(metamodelUri)) ?
-			MIDUtils.prependStateToUri(metamodelUri) :
+		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
+			FileUtils.prependStatePathToUri(metamodelUri) :
 			null;
 	}
 

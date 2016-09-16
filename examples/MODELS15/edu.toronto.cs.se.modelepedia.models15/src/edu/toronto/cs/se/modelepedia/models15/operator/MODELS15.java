@@ -29,7 +29,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
@@ -83,10 +83,10 @@ public class MODELS15 extends RandomOperatorImpl {
 				cdClasses.put(className, clazz);
 			}
 			// write class diagram to file and create model
-			String cdModelUri = MIDUtils.replaceLastSegmentInUri(
+			String cdModelUri = FileUtils.replaceLastSegmentInUri(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
-				MIDUtils.writeModelFile(classDiagram, cdModelUri, true);
+				FileUtils.writeModelFile(classDiagram, cdModelUri, true);
 				cdModelType.createInstance(cdModelUri, cdMID);
 			}
 			catch (Exception e) {
@@ -114,8 +114,8 @@ public class MODELS15 extends RandomOperatorImpl {
 		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output
-		String cdMIDModelUri = MIDUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
-		MIDUtils.writeModelFile(cdMID, cdMIDModelUri, true);
+		String cdMIDModelUri = FileUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
+		FileUtils.writeModelFile(cdMID, cdMIDModelUri, true);
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

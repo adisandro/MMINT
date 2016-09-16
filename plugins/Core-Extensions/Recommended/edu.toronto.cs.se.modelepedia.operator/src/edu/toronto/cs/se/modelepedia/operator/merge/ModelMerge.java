@@ -37,7 +37,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -125,10 +125,10 @@ public class ModelMerge extends OperatorImpl {
 					modelElem2.getUri().substring(0, modelElem2.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
 					mergedModelObj);
 				try { // change merged attribute
-					Object modelObjAttr1 = MIDUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
-					Object modelObjAttr2 = MIDUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr1 = FileUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr2 = FileUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
 					if (!modelObjAttr1.equals(modelObjAttr2)) {
-						MIDUtils.setModelObjFeature(
+						FileUtils.setModelObjFeature(
 							mergedModelObj,
 							MERGED_MODELOBJECT_ATTRIBUTE,
 							modelObjAttr1 + MERGED_SEPARATOR + modelObjAttr2);
@@ -138,7 +138,7 @@ public class ModelMerge extends OperatorImpl {
 					// no attribute to be merged
 				}
 			}
-			MIDUtils.setModelObjFeature(
+			FileUtils.setModelObjFeature(
 				rootMergedModelObj,
 				modelObj1.eContainingFeature().getName(),
 				mergedModelObj);
@@ -172,7 +172,7 @@ public class ModelMerge extends OperatorImpl {
 			}
 			else {
 				mergedModelObj = EcoreUtil.copy(modelObj2);
-				MIDUtils.setModelObjFeature(
+				FileUtils.setModelObjFeature(
 					rootMergedModelObj,
 					modelObj2.eContainingFeature().getName(),
 					mergedModelObj);
@@ -205,7 +205,7 @@ public class ModelMerge extends OperatorImpl {
 				if (modelObjReference.isContainment()) {
 					continue;
 				}
-				Object modelObjReferenceValue = MIDUtils.getModelObjFeature(modelObj, modelObjReference.getName());
+				Object modelObjReferenceValue = FileUtils.getModelObjFeature(modelObj, modelObjReference.getName());
 				if (modelObjReferenceValue == null || modelObjReferenceValue instanceof EObjectWithInverseResolvingEList<?>) {
 					continue;
 				}
@@ -218,7 +218,7 @@ public class ModelMerge extends OperatorImpl {
 					modelObjValues.add((EObject) modelObjReferenceValue);
 				}
 				for (EObject modelObjValue : modelObjValues) {
-					MIDUtils.setModelObjFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
+					FileUtils.setModelObjFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
 				}
 			}
 		}
@@ -238,7 +238,7 @@ public class ModelMerge extends OperatorImpl {
 
 		// create merged model and trace relationships as placeholders
 		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
-		String mergedModelUri = MIDUtils.replaceLastSegmentInUri(
+		String mergedModelUri = FileUtils.replaceLastSegmentInUri(
 			MIDRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());
@@ -257,7 +257,7 @@ public class ModelMerge extends OperatorImpl {
 		traceRel2.setName(OUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
-		MIDUtils.writeModelFile(rootMergedModelObj, mergedModelUri, true);
+		FileUtils.writeModelFile(rootMergedModelObj, mergedModelUri, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 
 		// output

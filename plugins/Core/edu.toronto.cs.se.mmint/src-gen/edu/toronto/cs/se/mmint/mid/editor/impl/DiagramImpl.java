@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
 import edu.toronto.cs.se.mmint.repository.MMINTConstants;
@@ -83,7 +83,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 		MMINTException.mustBeType(this);
 
 		// check if diagram file already exists in model directory
-		if (!MIDUtils.isFileOrDirectory(MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
+		if (!FileUtils.isFileOrDirectory(FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
 			// try to build a new diagram through its wizard, inited with the existing model file
 			IStructuredSelection modelFile = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFile(
@@ -114,7 +114,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			if (initialSelection.getFirstElement() instanceof IFile) {
 				String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
-				String diagramUri = MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+				String diagramUri = FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
 				Diagram superDiagramType = this;
 				while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
 					superDiagramType = (Diagram) superDiagramType.getSupertype();
@@ -125,7 +125,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				try {
 					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
 					if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
-						MIDUtils.openEclipseEditor(diagramUri, getId(), true);
+						FileUtils.openEclipseEditor(diagramUri, getId(), true);
 					}
 				}
 				catch (Exception e) {

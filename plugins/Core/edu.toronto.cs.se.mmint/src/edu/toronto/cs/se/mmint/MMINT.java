@@ -47,7 +47,7 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -710,7 +710,7 @@ public class MMINT implements MMINTConstants {
 
 		MID typeMID;
 		try {
-			typeMID = (MID) MIDUtils.readModelFileInState(TYPEMID_FILENAME);
+			typeMID = (MID) FileUtils.readModelFileInState(TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "No previous Type MID found, skipping dynamic types", e);
@@ -898,7 +898,7 @@ public class MMINT implements MMINTConstants {
 		copySubtypeTable(subtypes, subtypesMID);
 		copyConversionTable(conversions, conversionsMID);
 		try {
-			MIDUtils.writeModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
+			FileUtils.writeModelFileInState(cachedTypeMID, TYPEMID_FILENAME);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID file", e);

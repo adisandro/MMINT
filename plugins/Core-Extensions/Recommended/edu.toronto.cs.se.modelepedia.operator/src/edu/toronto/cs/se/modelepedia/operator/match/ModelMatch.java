@@ -31,7 +31,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -84,7 +84,7 @@ public class ModelMatch extends OperatorImpl {
 
 		Object modelObjAttr;
 		try {
-			modelObjAttr = MIDUtils.getModelObjFeature(modelObj, matchAttribute);
+			modelObjAttr = FileUtils.getModelObjFeature(modelObj, matchAttribute);
 			if (modelObjAttr != null && modelObjAttr instanceof String) {
 				Set<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
 				if (modelObjs == null) {

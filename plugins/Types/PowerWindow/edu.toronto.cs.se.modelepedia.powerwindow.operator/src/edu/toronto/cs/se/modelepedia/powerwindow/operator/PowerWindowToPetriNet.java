@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNet;
 import edu.toronto.cs.se.modelepedia.petrinet.PetriNetFactory;
@@ -58,9 +58,9 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 		}
 
 		// output
-		String newPetrinetModelUri = MIDUtils.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
-		newPetrinetModelUri = MIDUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
-		MIDUtils.writeModelFile(newPetrinet, newPetrinetModelUri, true);
+		String newPetrinetModelUri = FileUtils.replaceFileExtensionInUri(windowModel.getUri(), PetriNetPackage.eNAME);
+		newPetrinetModelUri = FileUtils.addFileNameSuffixInUri(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
+		FileUtils.writeModelFile(newPetrinet, newPetrinetModelUri, true);
 		Model petrinetModelType = MIDTypeRegistry.getType(PetriNetPackage.eNS_URI);
 		newPetrinetModel = petrinetModelType.createInstanceAndEditor(newPetrinetModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
@@ -73,7 +73,7 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 	public void cleanup() throws Exception {
 
 		if (newPetrinetModel != null) {
-			MIDUtils.deleteModelFile(newPetrinetModel);
+			newPetrinetModel.deleteInstanceAndFile();
 			newPetrinetModel = null;
 		}
 	}

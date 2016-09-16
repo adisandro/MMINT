@@ -40,7 +40,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -83,8 +83,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 
 		featureModelName = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_FEATUREMODELNAME);
 		Properties constraintProperties = new Properties();
-		String constraintPropertiesFile = MIDUtils.prependWorkspaceToUri(
-			MIDUtils.replaceLastSegmentInUri(
+		String constraintPropertiesFile = FileUtils.prependWorkspacePathToUri(
+			FileUtils.replaceLastSegmentInUri(
 				inputModel.getUri(),
 				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MIDOperatorUtils.PROPERTIES_SUFFIX
 			)

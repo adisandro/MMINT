@@ -37,7 +37,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 
@@ -65,13 +65,13 @@ public class HenshinTransformation extends OperatorImpl {
 	private EObject transform(Model originalModel) throws MMINTException {
 
 		// init
-		String originalModelDirectoryUri = MIDUtils.prependWorkspaceToUri(
-			MIDUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
+		String originalModelDirectoryUri = FileUtils.prependWorkspacePathToUri(
+			FileUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(originalModelDirectoryUri);
 		Module hModule = hResourceSet.getModule(henshinFileName, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(
 			originalModel.getUri())));
 		// apply rules
 		for (Unit hUnit : hModule.getUnits()) {
@@ -115,11 +115,11 @@ public class HenshinTransformation extends OperatorImpl {
 		EObject transformedRootModelObj = transform(origModel);
 
 		// output
-		String transformedModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedModelUri = FileUtils.getUniqueUri(
+			FileUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
+		FileUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(

@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class ModelSlice extends OperatorImpl {
@@ -72,7 +72,7 @@ public class ModelSlice extends OperatorImpl {
 		}
 		String id = null;
 		try {
-			id = (String) MIDUtils.getModelObjFeature(sliceModelObj, idAttribute);
+			id = (String) FileUtils.getModelObjFeature(sliceModelObj, idAttribute);
 		}
 		catch (MMINTException e) {
 			// ignore and continue
@@ -96,7 +96,7 @@ public class ModelSlice extends OperatorImpl {
 		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
 			String sliceId = null;
 			try {
-				sliceId = (String) MIDUtils.getModelObjFeature(sliceModelObj, idAttribute);
+				sliceId = (String) FileUtils.getModelObjFeature(sliceModelObj, idAttribute);
 			}
 			catch (Exception e) {
 				// ignore and continue
@@ -126,9 +126,9 @@ public class ModelSlice extends OperatorImpl {
 		Model model = inputsByName.get(IN_MODEL);
 		this.init();
 
-		String sliceModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
+		String sliceModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = this.slice(model.getEMFInstanceRoot());
-		MIDUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
+		FileUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
 			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
 			model.getMetatype().createInstance(sliceModelUri, null);

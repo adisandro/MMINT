@@ -17,7 +17,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.swt.widgets.Shell;
 
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 
 public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
@@ -29,7 +29,7 @@ public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 
 		NewModelFilePage filePage = (NewModelFilePage) page;
 		createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-		createdModelUri = MIDUtils.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
+		createdModelUri = FileUtils.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
 	}
 
 	/**

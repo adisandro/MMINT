@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -94,11 +94,11 @@ public class Filter extends OperatorImpl {
 		MID filteredMID = filter(inputMIDModel, filterModelType);
 
 		// output
-		String filteredMIDModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
+		String filteredMIDModelUri = FileUtils.getUniqueUri(
+			FileUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
+		FileUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

@@ -33,7 +33,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -104,7 +104,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		return
 			modelObj.eClass().getName() +
 			CSV_SEPARATOR +
-			MIDUtils.getModelObjFeature(modelObj, idAttribute) +
+			FileUtils.getModelObjFeature(modelObj, idAttribute) +
 			CSV_SEPARATOR;
 	}
 
@@ -152,10 +152,10 @@ public class ICMT15 extends RandomOperatorImpl {
 			EObject modelObjCopy = iter.next();
 			String id = null, newId = null;
 			try {
-				id = (String) MIDUtils.getModelObjFeature(modelObjCopy, idAttribute);
+				id = (String) FileUtils.getModelObjFeature(modelObjCopy, idAttribute);
 				if (id != null) {
 					newId = id + sliceIdSuffix;
-					MIDUtils.setModelObjFeature(modelObjCopy, idAttribute, newId);
+					FileUtils.setModelObjFeature(modelObjCopy, idAttribute, newId);
 				}
 			}
 			catch (MMINTException e) {
@@ -214,9 +214,9 @@ public class ICMT15 extends RandomOperatorImpl {
 			changeCopyIds(inputRootModelObjCopy, "_" + i);
 			for (EReference containmentFeature : inputRootModelObjCopy.eClass().getEAllContainments()) {
 				@SuppressWarnings("unchecked")
-				EList<EObject> inputModelObjsCopy = (EList<EObject>) MIDUtils.getModelObjFeature(inputRootModelObjCopy, containmentFeature.getName());
+				EList<EObject> inputModelObjsCopy = (EList<EObject>) FileUtils.getModelObjFeature(inputRootModelObjCopy, containmentFeature.getName());
 				@SuppressWarnings("unchecked")
-				EList<EObject> outputModelObjs = (EList<EObject>) MIDUtils.getModelObjFeature(outputRootModelObj, containmentFeature.getName());
+				EList<EObject> outputModelObjs = (EList<EObject>) FileUtils.getModelObjFeature(outputRootModelObj, containmentFeature.getName());
 				outputModelObjs.addAll(inputModelObjsCopy);
 			}
 		}
@@ -238,15 +238,15 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		// output
 		String uri = (getInputSubdir() != null) ?
-			MIDUtils.replaceLastSegmentInUri(
+			FileUtils.replaceLastSegmentInUri(
 				inputModel.getUri(),
-				getInputSubdir() + MMINT.URI_SEPARATOR + MIDUtils.getLastSegmentFromUri(inputModel.getUri())
+				getInputSubdir() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromUri(inputModel.getUri())
 			) :
 			inputModel.getUri();
-		String outputModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
-		MIDUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
+		String outputModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
+		FileUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
 		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, instanceMID);
-		MIDUtils.createTextFile(MIDUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
+		FileUtils.createTextFile(FileUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, outputModel);
 

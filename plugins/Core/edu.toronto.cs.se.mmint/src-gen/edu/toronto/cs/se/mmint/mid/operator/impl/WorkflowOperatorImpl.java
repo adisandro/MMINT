@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
@@ -134,7 +134,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		MMINTException.mustBeType(this);
 		
 		try {
-			return (MID) MIDUtils.readModelFileInState(this.getMidUri());
+			return (MID) FileUtils.readModelFileInState(this.getMidUri());
 		}
 		catch (Exception e) {
 			return null;
@@ -150,7 +150,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		MMINTException.mustBeInstance(this);
 		
 		try {
-			return (MID) MIDUtils.readModelFile(this.getMidUri(), true);
+			return (MID) FileUtils.readModelFile(this.getMidUri(), true);
 		}
 		catch (Exception e) {
 			return null;
@@ -288,18 +288,18 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		try {
 			MID workflowMID;
 			String newWorkflowMIDUri;
-			if (MIDUtils.isFileOrDirectoryInState(workflowMIDUri)) { // just recreating this subtype at startup
-				workflowMID = (MID) MIDUtils.readModelFileInState(workflowMIDUri);
+			if (FileUtils.isFileOrDirectoryInState(workflowMIDUri)) { // just recreating this subtype at startup
+				workflowMID = (MID) FileUtils.readModelFileInState(workflowMIDUri);
 				newWorkflowMIDUri = workflowMIDUri;
 			}
 			else { // make a copy of the Workflow MID files
-				workflowMID = (MID) MIDUtils.readModelFile(workflowMIDUri, true);
+				workflowMID = (MID) FileUtils.readModelFile(workflowMIDUri, true);
 				newWorkflowMIDUri = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
-				MIDUtils.writeModelFileInState(workflowMID, newWorkflowMIDUri);
-				MIDUtils.copyTextFileAndReplaceText(
-					MIDUtils.prependWorkspaceToUri(workflowMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX),
-					MIDUtils.prependStateToUri(newWorkflowMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX),
-					MIDUtils.getLastSegmentFromUri(workflowMIDUri),
+				FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDUri);
+				FileUtils.copyTextFileAndReplaceText(
+					FileUtils.prependWorkspacePathToUri(workflowMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX),
+					FileUtils.prependStatePathToUri(newWorkflowMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX),
+					FileUtils.getLastSegmentFromUri(workflowMIDUri),
 					newWorkflowMIDUri,
 					false);
 			}
@@ -347,8 +347,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	public void deleteType() throws MMINTException {
 
 		super.deleteType();
-		MIDUtils.deleteFileInState(this.getMidUri());
-		MIDUtils.deleteFileInState(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX);
+		FileUtils.deleteFileInState(this.getMidUri());
+		FileUtils.deleteFileInState(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX);
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		MMINTException.mustBeType(this);
 
 		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-		MIDUtils.openEclipseEditorInState(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
+		FileUtils.openEclipseEditorInState(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
 	}
 
 	/**
@@ -378,8 +378,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			return;
 		}
 
-		String operatorInstanceMIDUri = MIDUtils.getUniqueUri(
-			MIDUtils.replaceFileNameInUri(
+		String operatorInstanceMIDUri = FileUtils.getUniqueUri(
+			FileUtils.replaceFileNameInUri(
 				MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 				newOperator.getName()),
 			true,
@@ -389,7 +389,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
 		try {
-			MIDUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
+			FileUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
 			((WorkflowOperator) newOperator).setMidUri(operatorInstanceMIDUri);
 			GMFDiagramUtils.createGMFDiagram(
 				operatorInstanceMIDUri,
@@ -410,8 +410,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	public void deleteInstance() throws MMINTException {
 
 		super.deleteInstance();
-		MIDUtils.deleteFile(this.getMidUri(), true);
-		MIDUtils.deleteFile(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
+		FileUtils.deleteFile(this.getMidUri(), true);
+		FileUtils.deleteFile(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, true);
 	}
 
 	/**
@@ -444,7 +444,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		// create shortcuts to input models
 		String instanceMIDUri = this.getMidUri();
 		String instanceMIDDiagramUri = instanceMIDUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
-		View instanceMIDDiagramRoot = (View) MIDUtils.readModelFile(instanceMIDDiagramUri, true);
+		View instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramUri, true);
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName();
@@ -501,8 +501,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			}
 		}
 		if (instanceMID != null) {
-			MIDUtils.writeModelFile(instanceMID, instanceMIDUri, true);
-			MIDUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramUri, true);
+			FileUtils.writeModelFile(instanceMID, instanceMIDUri, true);
+			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramUri, true);
 		}
 
 		return outputsByName;
@@ -520,9 +520,9 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		MMINTException.mustBeInstance(this);
 
-		if (MIDUtils.isFile(this.getMidUri(), true)) {
+		if (FileUtils.isFile(this.getMidUri(), true)) {
 			Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-			MIDUtils.openEclipseEditor(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, midDiagramType.getId(), true);
+			FileUtils.openEclipseEditor(this.getMidUri() + GMFDiagramUtils.DIAGRAM_SUFFIX, midDiagramType.getId(), true);
 		}
 	}
 

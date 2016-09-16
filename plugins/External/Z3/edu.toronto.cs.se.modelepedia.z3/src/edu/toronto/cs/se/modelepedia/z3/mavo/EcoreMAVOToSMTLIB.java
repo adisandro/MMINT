@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class EcoreMAVOToSMTLIB extends OperatorImpl {
@@ -95,7 +95,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	protected File createAcceleoFolder(Model mavoModel) {
 
-		return (new File(MIDUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
+		return (new File(FileUtils.prependWorkspacePathToUri(mavoModel.getUri()))).getParentFile();
 	}
 
 	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVORoot rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {
@@ -125,7 +125,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	public void cleanup() {
 
-		MIDUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);
+		FileUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);
 	}
 
 	public @NonNull Z3MAVOModelParser getZ3MAVOModelParser() {

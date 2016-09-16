@@ -43,7 +43,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 
 /**
@@ -579,7 +579,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	protected void addInstance(Editor newEditor, String modelUri, MID instanceMID) {
 
 		String newEditorName = getName() + " for model " + modelUri;
-		String newEditorUri = MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+		String newEditorUri = FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
 		super.addBasicInstance(newEditor, newEditorUri, newEditorName, MIDLevel.INSTANCES);
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(getId());

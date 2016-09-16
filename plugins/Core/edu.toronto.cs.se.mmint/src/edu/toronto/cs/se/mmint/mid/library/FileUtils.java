@@ -46,9 +46,8 @@ import org.eclipse.ui.PlatformUI;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.Model;
 
-public class MIDUtils {
+public class FileUtils {
 
 	public static @NonNull URI getEMFUri(@NonNull String uri, boolean isWorkspaceRelative) {
 
@@ -134,7 +133,7 @@ public class MIDUtils {
 		return uniqueUri;
 	}
 
-	public static String prependWorkspaceToUri(String uri) {
+	public static String prependWorkspacePathToUri(String uri) {
 
 		String absoluteUri;
 		String projectName = getFirstSegmentFromUri(uri);
@@ -147,7 +146,7 @@ public class MIDUtils {
 		return absoluteUri;
 	}
 
-	public static @NonNull String prependStateToUri(@NonNull String uri) {
+	public static @NonNull String prependStatePathToUri(@NonNull String uri) {
 
 		return MMINTActivator.getDefault().getStateLocation().toOSString() + IPath.SEPARATOR + uri;
 	}
@@ -155,7 +154,7 @@ public class MIDUtils {
 	public static void createTextFile(String fileUri, String text, boolean isWorkspaceRelative) throws Exception {
 
 		if (isWorkspaceRelative) {
-			fileUri = prependWorkspaceToUri(fileUri);
+			fileUri = prependWorkspacePathToUri(fileUri);
 		}
 		Path filePath = Paths.get(fileUri);
 		try (BufferedWriter writer = Files.newBufferedWriter(filePath, Charset.forName("UTF-8"))) {
@@ -165,14 +164,14 @@ public class MIDUtils {
 
 	public static void createTextFileInState(String text, String relativeFileUri) throws Exception {
 
-		createTextFile(prependStateToUri(relativeFileUri), text, false);
+		createTextFile(prependStatePathToUri(relativeFileUri), text, false);
 	}
 
 	public static void copyTextFileAndReplaceText(String origFileUri, String newFileUri, String origText, String newText, boolean isWorkspaceRelative) throws Exception {
 
 		if (isWorkspaceRelative) {
-			origFileUri = prependWorkspaceToUri(origFileUri);
-			newFileUri = prependWorkspaceToUri(newFileUri);
+			origFileUri = prependWorkspacePathToUri(origFileUri);
+			newFileUri = prependWorkspacePathToUri(newFileUri);
 		}
 		Path oldFilePath = Paths.get(origFileUri);
 		Path newFilePath = Paths.get(newFileUri);
@@ -190,13 +189,13 @@ public class MIDUtils {
 
 	public static void copyTextFileAndReplaceTextInState(String origRelativeFileUri, String newRelativeFileUri, String origText, String newText) throws Exception {
 
-		copyTextFileAndReplaceText(prependStateToUri(origRelativeFileUri), prependStateToUri(newRelativeFileUri), origText, newText, false);
+		copyTextFileAndReplaceText(prependStatePathToUri(origRelativeFileUri), prependStatePathToUri(newRelativeFileUri), origText, newText, false);
 	}
 
 	private static @NonNull Path getPath(@NonNull String uri, boolean isWorkspaceRelative) {
 
 		if (isWorkspaceRelative) {
-			uri = prependWorkspaceToUri(uri);
+			uri = prependWorkspacePathToUri(uri);
 		}
 		Path path = Paths.get(uri);
 
@@ -226,17 +225,17 @@ public class MIDUtils {
 
 	public static boolean isFileInState(@NonNull String relativeUri) {
 
-		return isFile(prependStateToUri(relativeUri), false);
+		return isFile(prependStatePathToUri(relativeUri), false);
 	}
 
 	public static boolean isDirectoryInState(@NonNull String relativeUri) {
 
-		return isDirectory(prependStateToUri(relativeUri), false);
+		return isDirectory(prependStatePathToUri(relativeUri), false);
 	}
 
 	public static boolean isFileOrDirectoryInState(@NonNull String relativeUri) {
 
-		return isFileOrDirectory(prependStateToUri(relativeUri), false);
+		return isFileOrDirectory(prependStatePathToUri(relativeUri), false);
 	}
 
 	/**
@@ -253,7 +252,7 @@ public class MIDUtils {
 	 */
 	public static void writeModelFile(@NonNull EObject rootModelObj, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		URI uri = MIDUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		URI uri = FileUtils.getEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(rootModelObj);
@@ -262,14 +261,14 @@ public class MIDUtils {
 		resource.save(options);
 	}
 
-	public static void writeModelFileInState(EObject root, String relativeFileUri) throws Exception {
+	public static void writeModelFileInState(@NonNull EObject rootModelObj, @NonNull String relativeFileUri) throws Exception {
 
-		writeModelFile(root, prependStateToUri(relativeFileUri), false);
+		writeModelFile(rootModelObj, prependStatePathToUri(relativeFileUri), false);
 	}
 
 	public static @NonNull EObject readModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		URI uri = MIDUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		URI uri = FileUtils.getEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(uri, true);
 		EObject rootModelObj = resource.getContents().get(0);
@@ -277,21 +276,15 @@ public class MIDUtils {
 		return rootModelObj;
 	}
 
-	public static EObject readModelFileInState(String relativeFileUri) throws Exception {
+	public static @NonNull EObject readModelFileInState(@NonNull String relativeFileUri) throws Exception {
 
-		return readModelFile(prependStateToUri(relativeFileUri), false);
-	}
-
-	public static void deleteModelFile(Model model) throws MMINTException {
-	
-		model.deleteInstance();
-		deleteFile(model.getUri(), true);
+		return readModelFile(prependStatePathToUri(relativeFileUri), false);
 	}
 
 	public static void deleteFile(String fileUri, boolean isWorkspaceRelative) {
 
 		if (isWorkspaceRelative) {
-			fileUri = prependWorkspaceToUri(fileUri);
+			fileUri = prependWorkspacePathToUri(fileUri);
 		}
 		Path filePath = Paths.get(fileUri);
 		try {
@@ -304,13 +297,13 @@ public class MIDUtils {
 
 	public static void deleteFileInState(String relativeFileUri) {
 
-		deleteFile(prependStateToUri(relativeFileUri), false);
+		deleteFile(prependStatePathToUri(relativeFileUri), false);
 	}
 
 	public static void createDirectory(String directoryUri, boolean isWorkspaceRelative) throws Exception {
 
 		if (isWorkspaceRelative) {
-			directoryUri = prependWorkspaceToUri(directoryUri);
+			directoryUri = prependWorkspacePathToUri(directoryUri);
 		}
 		Path directoryPath = Paths.get(directoryUri);
 		Files.createDirectory(directoryPath);
@@ -318,13 +311,13 @@ public class MIDUtils {
 
 	public static void createDirectoryInState(String relativeDirectoryUri) throws Exception {
 
-		createDirectory(prependStateToUri(relativeDirectoryUri), false);
+		createDirectory(prependStatePathToUri(relativeDirectoryUri), false);
 	}
 
 	public static void deleteDirectory(String directoryUri, boolean isWorkspaceRelative) {
 
 		if (isWorkspaceRelative) {
-			directoryUri = prependWorkspaceToUri(directoryUri);
+			directoryUri = prependWorkspacePathToUri(directoryUri);
 		}
 		Path directoryPath = Paths.get(directoryUri);
 		try {
@@ -353,7 +346,7 @@ public class MIDUtils {
 
 	public static void deleteDirectoryInState(String relativeDirectoryUri) {
 
-		deleteDirectory(prependStateToUri(relativeDirectoryUri), false);
+		deleteDirectory(prependStatePathToUri(relativeDirectoryUri), false);
 	}
 
 	public static @Nullable Object getModelObjFeature(@NonNull EObject modelObj, @NonNull String featureName) throws MMINTException {
@@ -398,13 +391,13 @@ public class MIDUtils {
 
 	public static void openEclipseEditor(@NonNull String fileUri, @NonNull String editorId, boolean isWorkspaceRelative) throws PartInitException {
 
-		URI uri = MIDUtils.getEMFUri(fileUri, isWorkspaceRelative);
-		MIDUtils.openEclipseEditor(uri, editorId);
+		URI uri = FileUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		FileUtils.openEclipseEditor(uri, editorId);
 	}
 
 	public static void openEclipseEditorInState(@NonNull String fileUri, @NonNull String editorId) throws PartInitException {
 
-		MIDUtils.openEclipseEditor(prependStateToUri(fileUri), editorId, false);
+		FileUtils.openEclipseEditor(prependStatePathToUri(fileUri), editorId, false);
 	}
 
 }

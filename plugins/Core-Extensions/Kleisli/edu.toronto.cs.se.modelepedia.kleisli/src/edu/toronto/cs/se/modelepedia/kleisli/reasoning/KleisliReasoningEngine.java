@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
@@ -109,7 +109,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 					continue;
 				}
 				try {
-					MIDUtils.setModelObjFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
+					FileUtils.setModelObjFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
 				}
 				catch (MMINTException e) {
 					MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
@@ -130,7 +130,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			}
 			Object kModelObjAttr = oclReasoner.evaluateQuery(kModelObj, kQuery);
 			try {
-				MIDUtils.setModelObjFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
+				FileUtils.setModelObjFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);

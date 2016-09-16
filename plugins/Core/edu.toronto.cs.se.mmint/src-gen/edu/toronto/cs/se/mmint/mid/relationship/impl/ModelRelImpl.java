@@ -49,7 +49,7 @@ import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -683,9 +683,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		this.addInstance(
 			newModelRel,
 			newModelRelUri,
-			(newModelRelUri == null) ? null : MIDUtils.getFileNameFromUri(newModelRelUri),
+			(newModelRelUri == null) ? null : FileUtils.getFileNameFromUri(newModelRelUri),
 			ModelOrigin.CREATED,
-			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : MIDUtils.getFileExtensionFromUri(newModelRelUri),
+			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromUri(newModelRelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -725,9 +725,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		this.addInstance(
 			newModelRel,
 			newModelRelUri,
-			(newModelRelUri == null) ? null : MIDUtils.getFileNameFromUri(newModelRelUri),
+			(newModelRelUri == null) ? null : FileUtils.getFileNameFromUri(newModelRelUri),
 			ModelOrigin.CREATED,
-			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : MIDUtils.getFileExtensionFromUri(newModelRelUri),
+			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromUri(newModelRelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 

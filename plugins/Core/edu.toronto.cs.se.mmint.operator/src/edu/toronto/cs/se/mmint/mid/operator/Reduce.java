@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -245,9 +245,9 @@ public class Reduce extends OperatorImpl {
 				continue;
 			}
 			for (Editor accumulatorOutputEditorToDelete : accumulatorOutputModelToDelete.getEditors()) {
-				MIDUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
+				FileUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
 			}
-			MIDUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
+			FileUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
 		}
 
 		return reducedMID;
@@ -275,11 +275,11 @@ public class Reduce extends OperatorImpl {
 		}
 
 		// output
-		String reducedMIDModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
+		String reducedMIDModelUri = FileUtils.getUniqueUri(
+			FileUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
+		FileUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();

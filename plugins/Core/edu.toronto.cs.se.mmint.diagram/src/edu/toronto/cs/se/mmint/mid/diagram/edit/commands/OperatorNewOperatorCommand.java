@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
@@ -80,7 +80,7 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 		String newOperatorTypeName = MIDDialogUtils.getStringInput(
 			"Create new operator type from workflow",
 			"Insert new operator type name",
-			MIDUtils.getFileNameFromUri(workflowMIDUri));
+			FileUtils.getFileNameFromUri(workflowMIDUri));
 		Operator newOperator = MIDRegistry.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR + WorkflowOperator.class.getSimpleName(), typeMID)
 			.createSubtype(newOperatorTypeName, workflowMIDUri);
 		MMINT.createTypeHierarchy(typeMID);

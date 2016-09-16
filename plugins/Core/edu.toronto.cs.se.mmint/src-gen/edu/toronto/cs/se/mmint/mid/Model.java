@@ -354,6 +354,17 @@ public interface Model extends GenericElement {
 	void deleteInstance() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID that contains it and from the file
+	 * system.
+	 * 
+	 * @throws MMINTException
+	 *             If this is not a model instance. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	void deleteInstanceAndFile() throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Gets the EMF object root of this model.
 	 * 
 	 * @throws MMINTException

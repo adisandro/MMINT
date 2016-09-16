@@ -136,12 +136,14 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
 		 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
 		 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for all root types I'd say)
+		 * - Convert all ocl constraints in gmfmap to java
 		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
 		 * - Review hierarchy tables and apis to support operators
 		 * - Rethink ConversionOperator to be a simple workflow
 		 * - Rewrite ExperimentDriver to be a workflow
 		 * - Review and rationalize MIDOper and MIDRel
 		 * - Refactor libraries into meaningful classes (e.g. MIDUtils into FileUtils)
+		 * - Try to unify libz3java if library load problems are fixed (z3java vs libz3java)
 		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);

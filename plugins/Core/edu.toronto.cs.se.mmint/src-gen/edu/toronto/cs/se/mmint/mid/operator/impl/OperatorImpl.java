@@ -60,7 +60,7 @@ import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -866,7 +866,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		// open editor
 		URI javaFileUri = URI.createURI(FileLocator.toFileURL(javaFiles.nextElement()).toString());
-		MIDUtils.openEclipseEditor(
+		FileUtils.openEclipseEditor(
 			javaFileUri,
 			PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(javaFileName).getId());
 	}
@@ -1219,7 +1219,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
 			return null;
 		}
-		String propertiesUri = MIDUtils.prependWorkspaceToUri(instanceMIDFile.getParent().getFullPath().toString());
+		String propertiesUri = FileUtils.prependWorkspacePathToUri(instanceMIDFile.getParent().getFullPath().toString());
 		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorUtils.PROPERTIES_SUFFIX;
 
 		return propertiesUri;

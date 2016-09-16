@@ -17,7 +17,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 
 public class NewOperatorTypeDialogFilter extends ViewerFilter {
 
@@ -35,7 +35,7 @@ public class NewOperatorTypeDialogFilter extends ViewerFilter {
 			return false;
 		}
 		try {
-			MID mid = (MID) MIDUtils.readModelFile(file.getFullPath().toString(), true);
+			MID mid = (MID) FileUtils.readModelFile(file.getFullPath().toString(), true);
 			return mid.isWorkflowsLevel();
 		}
 		catch (Exception e) {
