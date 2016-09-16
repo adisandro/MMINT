@@ -38,7 +38,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -70,6 +69,7 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewWorkflowModelDialogContentProvider;
+import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
 
 /**
  * The registry for querying the types.

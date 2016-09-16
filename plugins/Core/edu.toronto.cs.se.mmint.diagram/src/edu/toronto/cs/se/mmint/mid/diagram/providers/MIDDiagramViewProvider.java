@@ -36,6 +36,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
@@ -50,7 +51,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel14EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.WrappingLabel15EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDVisualIDRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDViewProvider;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class MIDDiagramViewProvider extends MIDViewProvider {
 

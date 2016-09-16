@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.repository;
+package edu.toronto.cs.se.mmint.extensions;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
 /**
@@ -28,7 +29,7 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
  * @author Alessio Di Sandro
  * 
  */
-public class ExtensionType {
+public class ExtensionPointType {
 
 	/** The uri of the extension type. */
 	private String uri;
@@ -50,7 +51,7 @@ public class ExtensionType {
 	 * @param extensionConfig
 	 *            The extension configuration.
 	 */
-	public ExtensionType(@NonNull IConfigurationElement extensionConfig) {
+	public ExtensionPointType(@NonNull IConfigurationElement extensionConfig) {
 
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0];
 		uri = typeConfig.getAttribute(MMINTConstants.TYPE_ATTR_URI);
@@ -71,7 +72,7 @@ public class ExtensionType {
 	 * @param defaultFactory
 	 *            The default "heavy" type factory.
 	 */
-	public ExtensionType(@NonNull IConfigurationElement extensionConfig, @NonNull MIDHeavyTypeFactory defaultFactory) {
+	public ExtensionPointType(@NonNull IConfigurationElement extensionConfig, @NonNull MIDHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig);
 		IConfigurationElement typeConfig = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0];
@@ -109,7 +110,7 @@ public class ExtensionType {
 	 * @param defaultFactory
 	 *            The default "heavy" type factory.
 	 */
-	public ExtensionType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable, MIDHeavyTypeFactory defaultFactory) {
+	public ExtensionPointType(IConfigurationElement extensionConfig, Map<String, Set<String>> multipleInheritanceTable, MIDHeavyTypeFactory defaultFactory) {
 
 		this(extensionConfig, defaultFactory);
 		IConfigurationElement[] supertypeConfigs = extensionConfig.getChildren(MMINTConstants.CHILD_TYPE)[0].getChildren(MMINTConstants.TYPE_CHILD_SUPERTYPE);

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -48,7 +49,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
 /**
  * The factory to create/modify/remove "heavy" types, i.e. types from
@@ -376,7 +376,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	public Model createHeavyModelType(@NonNull ExtensionType extensionType) throws MMINTException {
+	public Model createHeavyModelType(@NonNull ExtensionPointType extensionType) throws MMINTException {
 
 		Model newModelType = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModel() :
@@ -400,7 +400,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new model element type is already
 	 *             registered in the repository.
 	 */
-	public ModelElement createHeavyModelElementType(ExtensionType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
+	public ModelElement createHeavyModelElementType(ExtensionPointType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
 
 		ModelElement newModelElemType = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelElement() :
@@ -427,7 +427,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionType extensionType, boolean isBinary) throws MMINTException {
+	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
 
 		ModelRel newModelRelType;
 		if (extensionType.getNewType() == null) {
@@ -460,7 +460,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new model type endpoint is already registered in the repository.
 	 */
-	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
+	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionPointType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
@@ -485,7 +485,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new model type endpoint is already registered in the Type MID.
 	 */
-	public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
+	public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionPointType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
@@ -512,7 +512,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new generic type endpoint is already registered in the Type MID.
 	 */
-	public @NonNull GenericEndpoint createHeavyGenericTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
+	public @NonNull GenericEndpoint createHeavyGenericTypeEndpoint(@NonNull ExtensionPointType extensionType, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
 
 		GenericEndpoint newGenericTypeEndpoint = (extensionType.getNewType() == null) ?
 			OperatorFactory.eINSTANCE.createGenericEndpoint() :
@@ -541,7 +541,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new mapping type is already registered in
 	 *             the repository.
 	 */
-	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
+	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionPointType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		Mapping newMappingType;
 		if (extensionType.getNewType() == null) {
@@ -578,7 +578,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new model element type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
+	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionPointType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
 
 		ModelElementEndpoint newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
 			RelationshipFactory.eINSTANCE.createModelElementEndpoint() :
@@ -629,7 +629,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new editor type is already registered in
 	 *             the repository.
 	 */
-	public Editor createHeavyEditorType(ExtensionType extensionType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, boolean isDiagram) throws MMINTException {
+	public Editor createHeavyEditorType(ExtensionPointType extensionType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, boolean isDiagram) throws MMINTException {
 
 		Editor newEditorType;
 		if (extensionType.getNewType() == null) {
@@ -708,7 +708,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             the new operator type is already registered in the
 	 *             repository.
 	 */
-	public @NonNull Operator createHeavyOperatorType(@NonNull ExtensionType extensionType) throws MMINTException {
+	public @NonNull Operator createHeavyOperatorType(@NonNull ExtensionPointType extensionType) throws MMINTException {
 
 		if (extensionType.getNewType() == null) {
 			throw new MMINTException("Missing operator implementation for " + extensionType.getName());

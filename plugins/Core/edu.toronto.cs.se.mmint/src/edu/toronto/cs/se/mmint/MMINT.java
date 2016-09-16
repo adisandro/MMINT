@@ -34,6 +34,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.service.prefs.BackingStoreException;
 
+import edu.toronto.cs.se.mmint.extensions.EditorExtensionPointListener;
+import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
+import edu.toronto.cs.se.mmint.extensions.ModelExtensionPointListener;
+import edu.toronto.cs.se.mmint.extensions.ModelRelExtensionPointListener;
+import edu.toronto.cs.se.mmint.extensions.OperatorExtensionPointListener;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -63,12 +68,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
-import edu.toronto.cs.se.mmint.repository.EditorsExtensionListener;
-import edu.toronto.cs.se.mmint.repository.ExtensionType;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
-import edu.toronto.cs.se.mmint.repository.ModelsExtensionListener;
-import edu.toronto.cs.se.mmint.repository.OperatorsExtensionListener;
-import edu.toronto.cs.se.mmint.repository.RelationshipsExtensionListener;
 
 /**
  * Model Management is the management of collections of related models. It
@@ -193,7 +192,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Model createModelType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		ExtensionType extensionType = new ExtensionType(extensionConfig, multipleInheritanceTable, typeFactory);
+		ExtensionPointType extensionType = new ExtensionPointType(extensionConfig, multipleInheritanceTable, typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Model type " + extensionType.getName() + " must have a uri");
 		}
@@ -220,8 +219,8 @@ public class MMINT implements MMINTConstants {
 	public static ModelRel createModelRelType(IConfigurationElement extensionConfig) throws Exception {
 
 		IConfigurationElement modelTypeConfig = extensionConfig.getChildren(MODELS_CHILD_MODELTYPE)[0];
-		ExtensionType modelRelExtensionType = new ExtensionType(modelTypeConfig, typeFactory);
-		ExtensionType extensionType;
+		ExtensionPointType modelRelExtensionType = new ExtensionPointType(modelTypeConfig, typeFactory);
+		ExtensionPointType extensionType;
 		if (modelRelExtensionType.getUri() == null) {
 			throw new MMINTException("Model relationship type " + modelRelExtensionType.getName() + " must have a uri");
 		}
@@ -243,7 +242,7 @@ public class MMINT implements MMINTConstants {
 		// model type endpoints
 		IConfigurationElement[] modelTypeEndpointConfigs = extensionConfig.getChildren(MODELRELS_CHILD_MODELTYPEENDPOINT);
 		for (IConfigurationElement modelTypeEndpointConfig : modelTypeEndpointConfigs) {
-			extensionType = new ExtensionType(modelTypeEndpointConfig, typeFactory);
+			extensionType = new ExtensionPointType(modelTypeEndpointConfig, typeFactory);
 			IConfigurationElement modelTypeEndpointSubconfig = modelTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
@@ -271,7 +270,7 @@ public class MMINT implements MMINTConstants {
 			// model element types
 			IConfigurationElement[] modelElemTypeConfigs = modelTypeEndpointConfig.getChildren(MODELRELS_MODELTYPEENDPOINT_CHILD_MODELELEMTYPE);
 			for (IConfigurationElement modelElemTypeConfig : modelElemTypeConfigs) {
-				extensionType = new ExtensionType(modelElemTypeConfig, typeFactory);
+				extensionType = new ExtensionPointType(modelElemTypeConfig, typeFactory);
 				ModelElement newModelElemType = MIDTypeRegistry.getType(extensionType.getUri());
 				if (newModelElemType == null) { // create new model element type
 					EObject modelElemTypeObj = MIDTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
@@ -299,7 +298,7 @@ public class MMINT implements MMINTConstants {
 		for (IConfigurationElement mappingTypeConfig : mappingTypeConfigs) {
 			binaryTypeConfigs = mappingTypeConfig.getChildren(CHILD_BINARYTYPE);
 			isBinary = (binaryTypeConfigs.length == 0) ? false : true;
-			extensionType = new ExtensionType(mappingTypeConfig, typeFactory);
+			extensionType = new ExtensionPointType(mappingTypeConfig, typeFactory);
 			MappingReference newMappingTypeRef;
 			try {
 				newMappingTypeRef = modelRelExtensionType.getFactory().createHeavyMappingTypeAndMappingTypeReference(
@@ -331,7 +330,7 @@ public class MMINT implements MMINTConstants {
 			// model element type endpoints
 			IConfigurationElement[] modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MODELRELS_MAPPINGTYPE_CHILD_MODELELEMTYPEENDPOINT);
 			for (IConfigurationElement modelElemTypeEndpointConfig : modelElemTypeEndpointConfigs) {
-				extensionType = new ExtensionType(modelElemTypeEndpointConfig, typeFactory);
+				extensionType = new ExtensionPointType(modelElemTypeEndpointConfig, typeFactory);
 				IConfigurationElement modelElemTypeEndpointSubconfig = modelElemTypeEndpointConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 				String targetModelElemTypeUri = modelElemTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 				ModelElement modelElemType = MIDTypeRegistry.getType(targetModelElemTypeUri);
@@ -379,7 +378,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Editor createEditorType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
+		ExtensionPointType extensionType = new ExtensionPointType(extensionConfig, typeFactory);
 		String modelTypeUri = extensionConfig.getAttribute(EDITORS_ATTR_MODELTYPEURI);
 		String editorId = extensionConfig.getAttribute(EDITORS_ATTR_ID);
 		String wizardId = extensionConfig.getAttribute(EDITORS_ATTR_WIZARDID);
@@ -413,7 +412,7 @@ public class MMINT implements MMINTConstants {
 		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
 		for (int i = 0; i < paramTypeConfigs.length; i++) {
 			IConfigurationElement paramTypeConfig = paramTypeConfigs[i];
-			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
+			ExtensionPointType extensionType = new ExtensionPointType(paramTypeConfig, typeFactory);
 			IConfigurationElement modelTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
@@ -485,7 +484,7 @@ public class MMINT implements MMINTConstants {
 
 		IConfigurationElement[] paramTypeConfigs = extensionConfig.getChildren(OPERATORS_GENINOUT_CHILD_PARAMETER);
 		for (IConfigurationElement paramTypeConfig : paramTypeConfigs) {
-			ExtensionType extensionType = new ExtensionType(paramTypeConfig, typeFactory);
+			ExtensionPointType extensionType = new ExtensionPointType(paramTypeConfig, typeFactory);
 			IConfigurationElement genericTypeEndpointSubconfig = paramTypeConfig.getChildren(CHILD_TYPEENDPOINT)[0];
 			String targetGenericTypeUri = genericTypeEndpointSubconfig.getAttribute(TYPEENDPOINT_ATTR_TARGETTYPEURI);
 			GenericElement targetGenericType = MIDTypeRegistry.getType(targetGenericTypeUri);
@@ -522,7 +521,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Operator createOperatorType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		ExtensionType extensionType = new ExtensionType(extensionConfig, typeFactory);
+		ExtensionPointType extensionType = new ExtensionPointType(extensionConfig, typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
 		}
@@ -753,14 +752,13 @@ public class MMINT implements MMINTConstants {
 	}
 
 	/**
-	 * Initializes the repository from the registered extensions and the dynamic
-	 * types created at runtime before the last shutdown, then stores it in the
-	 * Type MID file.
+	 * Initializes the Type MID from the registered extensions and the dynamic
+	 * types created at runtime before the last shutdown, then stores it.
 	 * 
 	 * @param registry
 	 *            The Eclipse extension registry.
 	 */
-	private void initRepository(IExtensionRegistry registry) {
+	private void initTypeMID(IExtensionRegistry registry) {
 
 		cachedTypeMID = MIDFactory.eINSTANCE.createMID();
 		cachedTypeMID.setLevel(MIDLevel.TYPES);
@@ -846,7 +844,7 @@ public class MMINT implements MMINTConstants {
 		subtypesMID = new HashMap<>();
 		conversionsMID = new HashMap<>();
 		cachedRuntimeTypes = new HashMap<>();
-		storeRepository();
+		storeTypeMID();
 	}
 
 	/**
@@ -892,7 +890,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Stores the repository into the Type MID file (repository -> Type MID).
 	 */
-	public static void storeRepository() {
+	public static void storeTypeMID() {
 
 		createTypeHierarchy();
 		copySubtypeTable(subtypes, subtypesMID);
@@ -911,7 +909,7 @@ public class MMINT implements MMINTConstants {
 	 * @param typeMID
 	 *            The Type MID.
 	 */
-	public static void syncRepository(MID typeMID) {
+	public static void syncTypeMID(MID typeMID) {
 
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
 		cachedTypeMID = MMINTEcoreUtil.copy(typeMID);
@@ -1047,11 +1045,11 @@ public class MMINT implements MMINTConstants {
 
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
-			initRepository(registry);
-			registry.addListener(new ModelsExtensionListener(), MODELS_EXT_POINT);
-			registry.addListener(new RelationshipsExtensionListener(), MODELRELS_EXT_POINT);
-			registry.addListener(new EditorsExtensionListener(), EDITORS_EXT_POINT);
-			registry.addListener(new OperatorsExtensionListener(), OPERATORS_EXT_POINT);
+			initTypeMID(registry);
+			registry.addListener(new ModelExtensionPointListener(), MODELS_EXT_POINT);
+			registry.addListener(new ModelRelExtensionPointListener(), MODELRELS_EXT_POINT);
+			registry.addListener(new EditorExtensionPointListener(), EDITORS_EXT_POINT);
+			registry.addListener(new OperatorExtensionPointListener(), OPERATORS_EXT_POINT);
 		}
 		initPreferences();
 	}

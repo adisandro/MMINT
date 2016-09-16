@@ -281,7 +281,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 
 		MID mid1 = (MID) this.getDiagram().getElement();
 		if (mid1.isTypesLevel()) {
-			MMINT.syncRepository(mid1);
+			MMINT.syncTypeMID(mid1);
 			// diagram sync required
 			final String relDiagramId = "edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID";
 			for (IEditorReference editorRef : PlatformUI

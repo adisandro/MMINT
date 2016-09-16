@@ -46,6 +46,7 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -56,7 +57,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
@@ -73,7 +73,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
 
 /**
  * <!-- begin-user-doc -->

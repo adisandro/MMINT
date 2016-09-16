@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.library;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -42,7 +41,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -50,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
 
 /**
  * The registry for querying a multimodel.
@@ -63,7 +62,7 @@ public class MIDRegistry {
 	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
 	public final static String ECORE_ROOT_FEATURE = "root";
 
-	public static void addEndpointCardinality(String uri, HashMap<String, Integer> cardinalityTable) {
+	public static void addEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) {
 
 		Integer value = cardinalityTable.get(uri);
 		Integer newValue = (value == null) ?
@@ -72,7 +71,7 @@ public class MIDRegistry {
 		cardinalityTable.put(uri, newValue);
 	}
 
-	public static void subtractEndpointCardinality(String uri, HashMap<String, Integer> cardinalityTable) throws MMINTException {
+	public static void subtractEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) throws MMINTException {
 
 		Integer value = cardinalityTable.get(uri);
 		if (value == null) {

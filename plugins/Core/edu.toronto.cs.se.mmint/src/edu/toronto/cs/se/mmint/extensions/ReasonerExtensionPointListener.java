@@ -9,30 +9,28 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.repository;
+package edu.toronto.cs.se.mmint.extensions;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 /**
  * A listener for dynamic installation/unistallation of extensions to the
- * Editors extension point.
+ * Reasoners extension point.
  * 
  * @author Alessio Di Sandro
  * 
  */
-public class EditorsExtensionListener extends MMINTExtensionListener {
+public class ReasonerExtensionPointListener extends MMINTExtensionPointListener {
 
 	/**
 	 * {@inheritDoc}
-	 * Installs a new Editors extension.
+	 * Installs a new Reasoners extension.
 	 */
 	@Override
 	public void added(IExtension[] extensions) {
@@ -42,20 +40,18 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				try {
-					Editor editorType = MMINT.createEditorType(config);
-					MIDHeavyTypeFactory.addHeavyModelTypeEditor(editorType, editorType.getModelUri());
+					MMINT.createReasoner(config);
 				}
-				catch (MMINTException e) {
-					MMINTException.print(IStatus.ERROR, "Editor type can't be created in " + config.getContributor().getName(), e);
+				catch (CoreException e) {
+					MMINTException.print(IStatus.ERROR, "Reasoner can't be created in " + config.getContributor().getName(), e);
 				}
 			}
 		}
-		MMINT.storeRepository();
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * Uninstalls a Editors extension.
+	 * Uninstalls a Reasoners extension.
 	 */
 	@Override
 	public void removed(IExtension[] extensions) {
@@ -64,19 +60,14 @@ public class EditorsExtensionListener extends MMINTExtensionListener {
 		for (IExtension extension : extensions) {
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
-				String uri = config.getAttribute(MMINT.TYPE_ATTR_URI);
-				Editor editorType = MIDTypeRegistry.getType(uri);
-				if (editorType != null) {
-					try {
-						editorType.deleteType();
-					}
-					catch (MMINTException e) {
-						// never happens by construction
-					}
+				String reasonerName = config.getAttribute(MMINT.REASONERS_REASONER_ATTR_NAME);
+				IConfigurationElement[] languageConfigs = config.getChildren(MMINT.REASONERS_REASONER_CHILD_LANGUAGE);
+				for (IConfigurationElement languageConfig : languageConfigs) {
+					String languageId = languageConfig.getAttribute(MMINT.REASONERS_REASONER_LANGUAGE_ATTR_ID);
+					MMINT.getLanguageReasoners(languageId).remove(reasonerName);
 				}
 			}
 		}
-		MMINT.storeRepository();
 	}
 
 }

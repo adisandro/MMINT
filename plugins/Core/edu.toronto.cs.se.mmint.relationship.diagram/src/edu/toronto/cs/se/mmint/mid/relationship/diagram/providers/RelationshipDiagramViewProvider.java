@@ -35,6 +35,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryMappingReference2EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.BinaryMappingReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementEndpointReference2EditPart;
@@ -52,7 +53,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel25EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.WrappingLabel26EditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDVisualIDRegistry;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public class RelationshipDiagramViewProvider extends MIDViewProvider {
 

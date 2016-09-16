@@ -88,6 +88,8 @@ public class MIDOperatorUtils {
 		outputProperties.store(new FileOutputStream(outputPropertiesFile), null);
 	}
 
+	//TODO MMINT[OPERATOR] Remove
+	@Deprecated
 	public static void writeTextFile(Operator operator, Model anyOperatorParameter, String subdirName, String suffix, StringBuilder fileContent) throws IOException {
 
 		String outputTextFile = getPropertiesUri(operator, anyOperatorParameter, subdirName, false) + suffix;

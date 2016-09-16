@@ -24,6 +24,7 @@ import java.util.TreeSet;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.EList;
 
+import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -45,7 +46,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.repository.ExtensionType;
 
 /**
  * Utilities to deal with the hierarchy of types.
@@ -101,7 +101,7 @@ public class MIDTypeHierarchy {
 				extension1 = extension1.getChildren(childName)[0];
 				extension2 = extension2.getChildren(childName)[0];
 			}
-			ExtensionType type1 = new ExtensionType(extension1);
+			ExtensionPointType type1 = new ExtensionPointType(extension1);
 			String uri1 = type1.getUri();
 			String tempUri1 = uri1;
 			String tempSupertypeUri1 = extensionUris.get(uri1);
@@ -111,7 +111,7 @@ public class MIDTypeHierarchy {
 				tempUri1 = tempSupertypeUri1;
 				tempSupertypeUri1 = extensionUris.get(tempUri1);
 			}
-			ExtensionType type2 = new ExtensionType(extension2);
+			ExtensionPointType type2 = new ExtensionPointType(extension2);
 			String uri2 = type2.getUri();
 			String tempUri2 = uri2;
 			String tempSupertypeUri2 = extensionUris.get(uri2);
@@ -242,7 +242,7 @@ public class MIDTypeHierarchy {
 			if (childName != null) {
 				extension = extension.getChildren(childName)[0];
 			}
-			ExtensionType type = new ExtensionType(extension);
+			ExtensionPointType type = new ExtensionPointType(extension);
 			extensionUris.put(type.getUri(), type.getSupertypeUri());
 		}
 		TreeSet<IConfigurationElement> hierarchy = new TreeSet<>(

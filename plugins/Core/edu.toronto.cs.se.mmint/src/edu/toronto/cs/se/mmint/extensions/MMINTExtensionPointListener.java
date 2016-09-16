@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.repository;
+package edu.toronto.cs.se.mmint.extensions;
 
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IRegistryEventListener;
  * @author Alessio Di Sandro
  * 
  */
-public abstract class MMINTExtensionListener implements IRegistryEventListener {
+public abstract class MMINTExtensionPointListener implements IRegistryEventListener {
 
 	@Override
 	public abstract void added(IExtension[] extensions);

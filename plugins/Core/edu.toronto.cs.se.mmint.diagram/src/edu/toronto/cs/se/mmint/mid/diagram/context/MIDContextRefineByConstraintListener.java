@@ -25,9 +25,9 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
+import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
 
 public class MIDContextRefineByConstraintListener extends MIDContextMenuListener {
 

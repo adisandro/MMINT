@@ -30,8 +30,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 public class AddModifyConstraintListener extends MIDContextMenuListener {

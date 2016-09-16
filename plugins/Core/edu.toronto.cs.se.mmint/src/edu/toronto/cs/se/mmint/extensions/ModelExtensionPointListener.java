@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.repository;
+package edu.toronto.cs.se.mmint.extensions;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
  * @author Alessio Di Sandro
  * 
  */
-public class ModelsExtensionListener extends MMINTExtensionListener {
+public class ModelExtensionPointListener extends MMINTExtensionPointListener {
 
 	/**
 	 * {@inheritDoc}
@@ -50,7 +50,7 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 				}
 			}
 		}
-		MMINT.storeRepository();
+		MMINT.storeTypeMID();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class ModelsExtensionListener extends MMINTExtensionListener {
 				}
 			}
 		}
-		MMINT.storeRepository();
+		MMINT.storeTypeMID();
 	}
 
 }

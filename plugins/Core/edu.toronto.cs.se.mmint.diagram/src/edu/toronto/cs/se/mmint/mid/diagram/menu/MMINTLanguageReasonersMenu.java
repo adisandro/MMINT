@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 
 public class MMINTLanguageReasonersMenu extends ContributionItem {
 

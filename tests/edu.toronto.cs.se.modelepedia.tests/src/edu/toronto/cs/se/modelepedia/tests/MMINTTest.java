@@ -29,13 +29,13 @@ import org.junit.BeforeClass;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.library.FileUtils;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
 
 public abstract class MMINTTest {
 
