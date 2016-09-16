@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="edu.toronto.cs.se.mmint.sdk.feature"
+      label="MMINT SDK"
+      version="2.1.0.qualifier"
+      provider-name="Software Engineering Group, University of Toronto">
+
+   <description url="https://github.com/adisandro/MMINT">
+      MMINT provides a mega-modeling workbench to handle collections
+of related models and describe the relationships that exist among
+them. Users can plug in their own languages (model types, relationship
+types, operators, editors) and work with them through Model Interconnection
+Diagrams. Mega-models can be used to support the development,
+comprehension, validation, consistency, evolution and reuse of
+sets of related models.
+      The MMINT SDK includes the source code and documentation.
+   </description>
+
+   <copyright>
+      Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+   </license>
+
+   <includes
+         id="edu.toronto.cs.se.mmint.feature"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.diagram.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.edit.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.editor.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.relationship.diagram.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.operator.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.uml.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.ocl.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.java.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.ecore.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.operator.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.primitive.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.primitive.edit.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.primitive.editor.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

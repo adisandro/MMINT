@@ -3,6 +3,9 @@
    <feature url="features/edu.toronto.cs.se.mmint.feature_2.1.0.qualifier.jar" id="edu.toronto.cs.se.mmint.feature" version="2.1.0.qualifier">
       <category name="Modeling"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmint.sdk.feature_2.1.0.qualifier.jar" id="edu.toronto.cs.se.mmint.sdk.feature" version="2.1.0.qualifier">
+      <category name="Modeling"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.mummint.feature_2.1.0.qualifier.jar" id="edu.toronto.cs.se.mummint.feature" version="2.1.0.qualifier">
       <category name="Modeling"/>
    </feature>

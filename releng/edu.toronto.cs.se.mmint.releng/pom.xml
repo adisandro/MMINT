@@ -213,6 +213,7 @@
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.editor</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
+  	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
   	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.emftocsp.feature</module>
