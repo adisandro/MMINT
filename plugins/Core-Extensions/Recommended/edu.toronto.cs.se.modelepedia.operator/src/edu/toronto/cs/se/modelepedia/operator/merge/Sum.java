@@ -21,8 +21,8 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
 

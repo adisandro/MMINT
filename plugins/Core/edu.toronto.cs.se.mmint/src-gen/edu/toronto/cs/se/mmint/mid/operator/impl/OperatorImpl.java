@@ -58,9 +58,6 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -71,9 +68,12 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -1185,7 +1185,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
-			GenericElement genericType = MIDDialogUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+			GenericElement genericType = MIDDialogs.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
 			OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 			generic.setGenericSuperTypeEndpoint(genericSuperTypeEndpoint);
 			generic.setGeneric(genericType);
@@ -1220,7 +1220,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			return null;
 		}
 		String propertiesUri = FileUtils.prependWorkspacePathToUri(instanceMIDFile.getParent().getFullPath().toString());
-		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorUtils.PROPERTIES_SUFFIX;
+		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 
 		return propertiesUri;
 	}
@@ -1230,7 +1230,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Properties getInputProperties() {
 
-		String propertiesUri =  getPropertiesUri(MIDOperatorUtils.INPUT_PROPERTIES_SUFFIX);
+		String propertiesUri =  getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
 		Properties inputProperties = new Properties();
 		try {
 			inputProperties.load(new FileInputStream(propertiesUri));
@@ -1248,10 +1248,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		setUpdateMID(
-			MIDOperatorUtils.getOptionalBoolProperty(inputProperties, MIDOperatorUtils.PROPERTY_IN_UPDATEMID, true)
+			MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, true)
 		);
 		setInputSubdir(
-			MIDOperatorUtils.getOptionalStringProperty(inputProperties, MIDOperatorUtils.PROPERTY_IN_SUBDIR, null)
+			MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, null)
 		);
 	}
 
@@ -1382,7 +1382,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
 			List<Model> outputModels;
 			if (outputModelTypeEndpoint.getUpperBound() == -1) {
-				outputModels = MIDOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
+				outputModels = MIDOperatorIOUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
 			}
 			else {
 				outputModels = new ArrayList<>();

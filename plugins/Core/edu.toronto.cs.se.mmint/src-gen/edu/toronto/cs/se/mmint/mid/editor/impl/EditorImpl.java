@@ -31,7 +31,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -42,9 +41,10 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->

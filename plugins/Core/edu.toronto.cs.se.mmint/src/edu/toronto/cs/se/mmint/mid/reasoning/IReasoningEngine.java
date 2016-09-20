@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.reasoning;
+package edu.toronto.cs.se.mmint.mid.reasoning;
 
 import java.util.Map;
 

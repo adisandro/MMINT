@@ -22,9 +22,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
-public class MAVOGMFDiagramUtils extends GMFDiagramUtils {
+public class MAVOGMFDiagramUtils extends GMFUtils {
 
 	private static void getDiagramFormulaVariable(@NonNull View diagramView, @NonNull Map<String, View> diagramViews) {
 

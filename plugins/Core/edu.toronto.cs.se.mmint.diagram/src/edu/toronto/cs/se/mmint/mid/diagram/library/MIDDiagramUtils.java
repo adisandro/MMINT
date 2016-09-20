@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 public class MIDDiagramUtils {
 
@@ -41,7 +41,7 @@ public class MIDDiagramUtils {
 		Map<MID, List<IFile>> mids = new HashMap<>();
 		for (IEditorReference editorReference : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences()) {
 			String editorName = editorReference.getName();
-			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFDiagramUtils.DIAGRAM_SUFFIX)) {
+			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFUtils.DIAGRAM_SUFFIX)) {
 				MIDDiagramEditor midDiagram = (MIDDiagramEditor) editorReference.getEditor(true);
 				MID mid = (MID) midDiagram.getDiagram().getElement();
 				if (!mid.isInstancesLevel()) {
@@ -54,7 +54,7 @@ public class MIDDiagramUtils {
 				}
 				midFiles.add(diagramFile);
 				try {
-					midFiles.add(GMFDiagramUtils.getModelFileFromDiagramFile(diagramFile));
+					midFiles.add(GMFUtils.getModelFileFromDiagramFile(diagramFile));
 				}
 				catch (Exception e) {
 					MMINTException.print(IStatus.WARNING, "Can't add model file of MID " + diagramFile.getName(), e);
@@ -73,7 +73,7 @@ public class MIDDiagramUtils {
 		if (instanceMIDFile != null) {
 			files.add(instanceMIDFile);
 			try {
-				files.add(GMFDiagramUtils.getModelFileFromDiagramFile(instanceMIDFile));
+				files.add(GMFUtils.getModelFileFromDiagramFile(instanceMIDFile));
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + instanceMIDFile.getName() + " for gmf transactional command", e);
@@ -85,7 +85,7 @@ public class MIDDiagramUtils {
 
 	public static Node createModelShortcut(Model model, View gmfDiagramRoot) throws Exception {
 
-		return GMFDiagramUtils.createGMFNodeShortcut(model, gmfDiagramRoot, MIDDiagramEditorPlugin.ID, MIDEditPart.MODEL_ID);
+		return GMFUtils.createGMFNodeShortcut(model, gmfDiagramRoot, MIDDiagramEditorPlugin.ID, MIDEditPart.MODEL_ID);
 	}
 
 }

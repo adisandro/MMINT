@@ -25,8 +25,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
@@ -35,7 +35,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
-		String midDiagramUri = midModelUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
+		String midDiagramUri = midModelUri + GMFUtils.DIAGRAM_SUFFIX;
 		File middiag = new File(midDiagramUri);
 		if (!middiag.exists()) {
 			createTypeMIDDiagram();
@@ -54,9 +54,9 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
 		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
-		String midDiagramUri = midModelUri + GMFDiagramUtils.DIAGRAM_SUFFIX;
+		String midDiagramUri = midModelUri + GMFUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFDiagramUtils.createGMFDiagram(midModelUri, midDiagramUri, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
+			GMFUtils.createGMFDiagram(midModelUri, midDiagramUri, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);

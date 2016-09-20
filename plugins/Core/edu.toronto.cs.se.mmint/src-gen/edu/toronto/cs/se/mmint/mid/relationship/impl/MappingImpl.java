@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -20,6 +19,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -27,7 +27,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -378,7 +379,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		for (ModelRel containerModelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, typeMID)) {
 			MappingReference mappingSubtypeRef = (mappingTypeRef == null) ?
 				null :
-				MIDTypeHierarchy.getReference(mappingTypeRef, containerModelRelSubtype.getMappingRefs());
+				MIDRegistry.getReference(mappingTypeRef, containerModelRelSubtype.getMappingRefs());
 			newMappingType.createTypeReference(mappingSubtypeRef, false, containerModelRelSubtype);
 		}
 

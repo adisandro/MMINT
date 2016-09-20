@@ -27,7 +27,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 
 public class MIDContextRefineByConstraintListener extends MIDContextMenuListener {
 

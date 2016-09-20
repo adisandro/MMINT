@@ -24,7 +24,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 
 public class JavaReasoningEngine implements IReasoningEngine {
 

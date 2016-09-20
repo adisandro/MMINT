@@ -9,18 +9,19 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint;
+package edu.toronto.cs.se.mmint.mid.utils;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
-public class MMINTEcoreUtil extends EcoreUtil {
+public class MIDEcoreUtil extends EcoreUtil {
 
 	public static <T extends EObject> T copy(T eObject) {
 
-		Copier copier = new MMINTCopier();
+		Copier copier = new MIDCopier();
 		EObject result = copier.copy(eObject);
 		copier.copyReferences();
 
@@ -28,7 +29,7 @@ public class MMINTEcoreUtil extends EcoreUtil {
 		return t;
 	}
 
-	public static class MMINTCopier extends Copier {
+	public static class MIDCopier extends Copier {
 
 		private static final long serialVersionUID = 1L;
 

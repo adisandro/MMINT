@@ -28,12 +28,12 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -111,9 +111,9 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		MID typeMID = getContainer();
 		Model srcModelType = getSource(), tgtModelType = getTarget();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToExtend(typeMID, srcModelType, tgtModelType);
-		String newModelRelTypeName = MIDDialogUtils.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelType.getName());
-		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light binary model relationship type", null);
+		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToExtend(typeMID, srcModelType, tgtModelType);
+		String newModelRelTypeName = MIDDialogs.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelType.getName());
+		String[] constraint = MIDDialogs.getConstraintInput("Create new light binary model relationship type", null);
 		BinaryModelRel newModelRelType = modelRelType.createBinarySubtype(newModelRelTypeName, false);
 		newModelRelType.addTypeConstraint(constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(typeMID);
@@ -124,7 +124,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			newModelRelType.addModelType(srcModelType, true);
 		}
 		else {
-			newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
+			newModelTypeEndpointName = MIDDialogs.getStringInput("Create new source model type endpoint", "Insert new source model type endpoint role", srcModelType.getName());
 			modelTypeEndpoint.createSubtype(newModelTypeEndpointName, srcModelType, true, newModelRelType);
 		}
 
@@ -133,7 +133,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 			newModelRelType.addModelType(tgtModelType, false);
 		}
 		else {
-			newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
+			newModelTypeEndpointName = MIDDialogs.getStringInput("Create new target model type endpoint", "Insert new target model type endpoint role", tgtModelType.getName());
 			modelTypeEndpoint.createSubtype(newModelTypeEndpointName, tgtModelType, false, newModelRelType);
 		}
 
@@ -143,14 +143,14 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID instanceMID = getContainer();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(getSource(), getTarget());
+		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToCreate(getSource(), getTarget());
 		BinaryModelRel newModelRel = modelRelType.createBinaryInstance(null, instanceMID);
 
 		List<String> modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getSource());
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
 		modelTypeEndpointRef.getObject().createInstance(getSource(), newModelRel);
 		modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getTarget());
-		modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
+		modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
 		modelTypeEndpointRef.getObject().createInstance(getTarget(), newModelRel);
 
 		return newModelRel;
@@ -159,15 +159,15 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 	protected BinaryModelRel doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID workflowMID = getContainer();
-		ModelRel modelRelType = MIDDialogUtils.selectWorkflowModelRelTypeToCreate(getSource(), getTarget());
+		ModelRel modelRelType = MIDDialogs.selectWorkflowModelRelTypeToCreate(getSource(), getTarget());
 		String newModelRelId = MIDRegistry.getNextWorkflowID(workflowMID);
 		BinaryModelRel newModelRel = modelRelType.createWorkflowBinaryInstance(newModelRelId, workflowMID);
 
 		List<String> modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getSource());
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
 		modelTypeEndpointRef.getObject().createWorkflowInstance(getSource(), newModelRel);
 		modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getTarget());
-		modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
+		modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
 		modelTypeEndpointRef.getObject().createWorkflowInstance(getTarget(), newModelRel);
 
 		return newModelRel;

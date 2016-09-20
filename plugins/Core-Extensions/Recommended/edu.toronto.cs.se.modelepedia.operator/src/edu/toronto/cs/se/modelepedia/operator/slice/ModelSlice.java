@@ -27,9 +27,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class ModelSlice extends OperatorImpl {
 
@@ -52,11 +52,11 @@ public class ModelSlice extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		idAttribute = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		sliceIds = MIDOperatorUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
+		idAttribute = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		sliceIds = MIDOperatorIOUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
 		boundariesIds = new HashMap<>();
 		for (String sliceId : sliceIds) {
-			boundariesIds.put(sliceId, MIDOperatorUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
+			boundariesIds.put(sliceId, MIDOperatorIOUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
 		}
 	}
 

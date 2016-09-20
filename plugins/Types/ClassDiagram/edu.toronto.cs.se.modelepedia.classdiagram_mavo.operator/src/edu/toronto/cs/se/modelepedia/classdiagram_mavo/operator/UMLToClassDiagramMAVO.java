@@ -21,8 +21,8 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
 public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {

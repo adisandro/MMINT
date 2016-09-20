@@ -39,7 +39,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
 

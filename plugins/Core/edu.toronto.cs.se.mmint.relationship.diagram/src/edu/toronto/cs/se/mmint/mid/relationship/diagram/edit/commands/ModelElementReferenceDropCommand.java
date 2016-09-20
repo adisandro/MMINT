@@ -24,16 +24,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramOutlineDropObject;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * The command to create a model element reference from a dropped object.
@@ -118,12 +117,12 @@ supertypes:
 				String[] uris = MIDRegistry.getModelAndModelElementUris(modelObjSuper, MIDLevel.TYPES);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
-				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MIDTypeHierarchy.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
+				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MIDRegistry.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
 				if (modelTypeEndpointRefsOrModelTypeEndpointRefsSuper == null) {
 					continue;
 				}
 				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
-					modelElemTypeRef = MIDTypeHierarchy.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
+					modelElemTypeRef = MIDRegistry.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
 					if (modelElemTypeRef != null) {
 						modelElemType = modelElemTypeRef.getObject();
 						break supertypes;

@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
@@ -36,6 +35,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -232,7 +233,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 			}
 		}
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), containerMappingTypeRef.getModelElemEndpointRefs());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDRegistry.getReference(getUri(), containerMappingTypeRef.getModelElemEndpointRefs());
 		Mapping mappingType = containerMappingTypeRef.getObject();
 		ModelElement targetModelElemType = targetModelElemTypeRef.getObject();
 		ModelRel modelRelType = (ModelRel) containerMappingTypeRef.eContainer();
@@ -246,15 +247,15 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		MIDTypeFactory.addModelElementTypeEndpointReference(newModelElemTypeEndpointRef, mappingType);
 		// create references of the "thing" in subtypes of the container's container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference containerMappingSubtypeRef = MIDTypeHierarchy.getReference(containerMappingTypeRef, modelRelSubtype.getMappingRefs());
+			MappingReference containerMappingSubtypeRef = MIDRegistry.getReference(containerMappingTypeRef, modelRelSubtype.getMappingRefs());
 			ModelElementEndpointReference modelElemSubtypeEndpointRef = null;
 			if (modelElemTypeEndpointRef != null) {
 				MappingReference mappingTypeRefSuper = (MappingReference) modelElemTypeEndpointRef.eContainer();
-				MappingReference mappingSubtypeRefSuper = MIDTypeHierarchy.getReference(mappingTypeRefSuper, modelRelSubtype.getMappingRefs());
-				modelElemSubtypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpointRef, mappingSubtypeRefSuper.getModelElemEndpointRefs());
+				MappingReference mappingSubtypeRefSuper = MIDRegistry.getReference(mappingTypeRefSuper, modelRelSubtype.getMappingRefs());
+				modelElemSubtypeEndpointRef = MIDRegistry.getReference(modelElemTypeEndpointRef, mappingSubtypeRefSuper.getModelElemEndpointRefs());
 			}
-			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference targetModelElemSubtypeRef = MIDTypeHierarchy.getReference(targetModelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
+			ModelEndpointReference modelSubtypeEndpointRef = MIDRegistry.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference targetModelElemSubtypeRef = MIDRegistry.getReference(targetModelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
 			newModelElemTypeEndpoint.createTypeReference(modelElemSubtypeEndpointRef, targetModelElemSubtypeRef, false, isBinarySrc, containerMappingSubtypeRef);
 		}
 		// create references of the "thing" in subtypes of the container
@@ -278,7 +279,7 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 			}
 		}
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), containerMappingTypeRef.getModelElemEndpointRefs());
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDRegistry.getReference(getUri(), containerMappingTypeRef.getModelElemEndpointRefs());
 		oldModelElemTypeEndpointRef.deleteTypeAndReference(false);
 		ModelElementEndpoint oldModelElemTypeEndpoint = oldModelElemTypeEndpointRef.getObject();
 		Mapping mappingType = containerMappingTypeRef.getObject();
@@ -299,16 +300,16 @@ public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl impl
 		}
 		// modify references of the "thing" in subtypes of the container's container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(containerMappingTypeRef, modelRelSubtype.getMappingRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(containerMappingTypeRef, modelRelSubtype.getMappingRefs());
 			ModelElementEndpointReference modelElemSubtypeEndpointRef = null;
 			if (modelElemTypeEndpointRef != null) {
 				MappingReference mappingTypeRefSuper = (MappingReference) modelElemTypeEndpointRef.eContainer();
-				MappingReference mappingSubtypeRefSuper = MIDTypeHierarchy.getReference(mappingTypeRefSuper, modelRelSubtype.getMappingRefs());
-				modelElemSubtypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpointRef, mappingSubtypeRefSuper.getModelElemEndpointRefs());
+				MappingReference mappingSubtypeRefSuper = MIDRegistry.getReference(mappingTypeRefSuper, modelRelSubtype.getMappingRefs());
+				modelElemSubtypeEndpointRef = MIDRegistry.getReference(modelElemTypeEndpointRef, mappingSubtypeRefSuper.getModelElemEndpointRefs());
 			}
-			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference newModelElemSubtypeRef = MIDTypeHierarchy.getReference(targetModelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
-			ModelElementEndpointReference oldModelElemSubtypeEndpointRef = MIDTypeHierarchy.getReference(oldModelElemTypeEndpointRef, mappingSubtypeRef.getModelElemEndpointRefs());
+			ModelEndpointReference modelSubtypeEndpointRef = MIDRegistry.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference newModelElemSubtypeRef = MIDRegistry.getReference(targetModelElemTypeRef, modelSubtypeEndpointRef.getModelElemRefs());
+			ModelElementEndpointReference oldModelElemSubtypeEndpointRef = MIDRegistry.getReference(oldModelElemTypeEndpointRef, mappingSubtypeRef.getModelElemEndpointRefs());
 			oldModelElemTypeEndpointRef.setModelElemRef(newModelElemSubtypeRef);
 			oldModelElemSubtypeEndpointRef.setSupertypeRef(modelElemSubtypeEndpointRef);
 		}

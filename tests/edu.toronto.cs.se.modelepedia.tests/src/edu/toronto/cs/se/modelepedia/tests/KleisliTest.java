@@ -38,7 +38,6 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -49,9 +48,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -61,6 +57,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -210,7 +210,7 @@ public class KleisliTest extends MMINTTest {
 		transformationGeneric.setGenericSuperTypeEndpoint(transformationOperator.getGenerics().get(0));
 		transformationGeneric.setGeneric(kModelRelType);
 		transformationGenerics.add(transformationGeneric);
-		Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
 		Map<String, Model> transformationOutput = transformationOperator.startInstance(transformationInputs, null, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
 		FileUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 

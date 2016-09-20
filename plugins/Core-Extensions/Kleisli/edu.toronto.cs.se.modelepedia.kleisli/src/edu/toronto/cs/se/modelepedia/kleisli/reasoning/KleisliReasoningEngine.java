@@ -31,10 +31,10 @@ import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
 public class KleisliReasoningEngine implements IReasoningEngine {

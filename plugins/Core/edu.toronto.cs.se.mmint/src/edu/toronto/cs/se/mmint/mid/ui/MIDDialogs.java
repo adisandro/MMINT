@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -43,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * A container for common functions of a Mid diagram.
@@ -50,7 +50,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
  * @author Alessio Di Sandro
  * 
  */
-public class MIDDialogUtils {
+public class MIDDialogs {
 
 	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
 

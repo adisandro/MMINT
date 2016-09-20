@@ -22,7 +22,7 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mavo.diagram.outline.context.MAVODiagramOutlineContextMenu;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 public class MAVODiagramOutlinePage extends ContentOutlinePage {
 
@@ -34,7 +34,7 @@ public class MAVODiagramOutlinePage extends ContentOutlinePage {
 
 		super();
 		mavoRootModelObj = (MAVORoot) diagram.getElement();
-		adapterFactory = GMFDiagramUtils.getAdapterFactory();
+		adapterFactory = GMFUtils.getAdapterFactory();
 	}
 
 	@Override

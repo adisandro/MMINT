@@ -34,12 +34,12 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class Reduce extends OperatorImpl {
 
@@ -71,7 +71,7 @@ public class Reduce extends OperatorImpl {
 
 		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorUtils
+		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
 			.createSimpleOutputMIDsByName(accumulatorOperatorType, reducedMID);
 		EList<MID> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
@@ -80,11 +80,11 @@ public class Reduce extends OperatorImpl {
 		EList<OperatorInput> accumulatorInputs;
 		// preparation for composition operator
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-		Map<String, MID> compositionOutputMIDsByName = MIDOperatorUtils
+		Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
 			.createSimpleOutputMIDsByName(compositionOperatorType, reducedMID);
 		// preparation for merge operator
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-		Map<String, MID> mergeOutputMIDsByName = MIDOperatorUtils
+		Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
 			.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
 		// reduce loop
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {

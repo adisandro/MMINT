@@ -23,8 +23,8 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -61,7 +61,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	protected Model doExecuteInstancesLevel() throws Exception, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		String modelUri = MIDDialogUtils.selectModelToImport(false);
+		String modelUri = MIDDialogs.selectModelToImport(false);
 		Model modelType = MIDTypeRegistry.getType(FileUtils.readModelFile(modelUri, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
 			modelType = MIDTypeHierarchy.getRootModelType();

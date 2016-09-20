@@ -21,12 +21,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 
@@ -76,8 +76,8 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 
 		//TODO MMINT[MISC] Support undo/redo with workflow mid file
 		MID typeMID = (MID) getElementToEdit();
-		String workflowMIDUri = MIDDialogUtils.selectWorkflowMIDToCreateOperatorType(typeMID);
-		String newOperatorTypeName = MIDDialogUtils.getStringInput(
+		String workflowMIDUri = MIDDialogs.selectWorkflowMIDToCreateOperatorType(typeMID);
+		String newOperatorTypeName = MIDDialogs.getStringInput(
 			"Create new operator type from workflow",
 			"Insert new operator type name",
 			FileUtils.getFileNameFromUri(workflowMIDUri));

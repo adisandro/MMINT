@@ -44,15 +44,14 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -85,7 +84,7 @@ public class MAVORefiner {
 			String refinedModelObjUri = refinedModelUri + modelObjUri.substring(modelObjUri.lastIndexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			MAVOElement refinedModelObj;
 			try {
-				refinedModelObj = (MAVOElement) MIDTypeIntrospection.getPointer(refinedResource, refinedModelObjUri);
+				refinedModelObj = (MAVOElement) FileUtils.readModelObject(refinedModelObjUri, refinedResource);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);

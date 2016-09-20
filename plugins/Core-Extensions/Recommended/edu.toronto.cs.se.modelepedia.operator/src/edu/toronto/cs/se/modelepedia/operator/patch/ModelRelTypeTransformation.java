@@ -29,7 +29,6 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -37,19 +36,19 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
-import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
@@ -88,12 +87,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			}
 			// find containment based on model element types first, then fallback to first one available
 			String srcModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MIDLevel.TYPES)[1];
-			ModelElementReference srcModelElemTypeContainment = MIDTypeHierarchy.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
+			ModelElementReference srcModelElemTypeContainment = MIDRegistry.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
 			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
 				if (MIDConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
 					String tgtModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(containment, MIDLevel.TYPES)[1];
-					ModelElementReference tgtModelElemTypeContainment = MIDTypeHierarchy.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
+					ModelElementReference tgtModelElemTypeContainment = MIDRegistry.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
 					if (
 						tgtModelElemTypeContainment == null ||
 						srcModelElemTypeContainment.getModelElemEndpointRefs().get(0).eContainer() != tgtModelElemTypeContainment.getModelElemEndpointRefs().get(0).eContainer()
@@ -175,7 +174,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			if (srcModelElemType == null) {
 				continue;
 			}
-			ModelElementReference srcModelElemTypeRef = MIDTypeHierarchy.getReference(srcModelElemType.getUri(), srcModelTypeEndpointRef.getModelElemRefs());
+			ModelElementReference srcModelElemTypeRef = MIDRegistry.getReference(srcModelElemType.getUri(), srcModelTypeEndpointRef.getModelElemRefs());
 			ModelElementReference tgtModelElemTypeRef = ((MappingReference) srcModelElemTypeRef.getModelElemEndpointRefs().get(0).eContainer()).getModelElemEndpointRefs().get(tgtIndex).getModelElemRef();
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}

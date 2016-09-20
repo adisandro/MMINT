@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.library;
+package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
-public class MIDOperatorUtils {
+public class MIDOperatorIOUtils {
 
 	public static final String INPUT_PROPERTIES_SUFFIX = "In";
 	public static final String OUTPUT_PROPERTIES_SUFFIX = "Out";

@@ -38,13 +38,13 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class Map extends OperatorImpl {
 
@@ -233,7 +233,7 @@ public class Map extends OperatorImpl {
 				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
-		java.util.Map<String, Model> outputsByName = MIDOperatorUtils.setVarargs(outputMIDModels, OUT_MIDS);
+		java.util.Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);
 		// create midoper
 //		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 //		if (operatorMID != null) {
@@ -304,7 +304,7 @@ public class Map extends OperatorImpl {
 			java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MIDOperatorUtils.getVarargs(inputsByName, IN_MIDS);
+		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		MID instanceMID = outputMIDsByName.get(OUT_MIDS);
 		EList<MID> inputMIDs = new BasicEList<>();

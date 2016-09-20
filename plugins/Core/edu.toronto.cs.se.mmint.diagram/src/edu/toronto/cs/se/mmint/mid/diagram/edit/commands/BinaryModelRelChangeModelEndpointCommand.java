@@ -22,10 +22,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -137,7 +137,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
-				String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
+				String newModelTypeEndpointName = MIDDialogs.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
 				if (isBinarySrc && containerModelRelType.getModelEndpoints().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelEndpoint tgtModelTypeEndpoint = containerModelRelType.getModelEndpoints().get(0);
 					tgtModelTypeEndpoint.deleteType(true);
@@ -157,7 +157,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
 			containerModelRel.getModelEndpoints().get(0) :
 			containerModelRel.getModelEndpoints().get(1);
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
 		modelTypeEndpointRef.getObject().replaceInstance(oldModelEndpoint, targetModel);
 	}
 
@@ -166,7 +166,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
 			containerModelRel.getModelEndpoints().get(0) :
 			containerModelRel.getModelEndpoints().get(1);
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
 		modelTypeEndpointRef.getObject().replaceWorkflowInstance(oldModelEndpoint, targetModel);
 	}
 

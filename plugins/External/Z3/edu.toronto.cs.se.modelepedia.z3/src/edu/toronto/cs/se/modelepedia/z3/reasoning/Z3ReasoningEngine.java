@@ -40,11 +40,11 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -154,7 +154,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return constraintTruthValue;
 		}
 		//TODO MMINT[MAVO] This needs to be skipped when in a cycle (e.g. looking for all valid super/sub types)
-		if (!MIDDialogUtils.getBooleanInput(
+		if (!MIDDialogs.getBooleanInput(
 			"Concretization highlighter",
 			"The result is MAYBE, do you want to see a concretization that violates the constraint?"
 		)) {

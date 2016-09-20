@@ -26,14 +26,14 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -109,8 +109,8 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
-		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
-		String newMappingTypeName = MIDDialogUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
+		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
+		String newMappingTypeName = MIDDialogs.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
 		BinaryMappingReference newMappingTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newMappingTypeName, true, modelRelType);
 		MMINT.createTypeHierarchy(modelRelType.getMIDContainer());
 
@@ -120,7 +120,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 			newMappingTypeRef.addModelElementTypeReference(srcModelElemTypeRef, true);
 		}
 		else {
-			newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
+			newModelElemTypeEndpointName = MIDDialogs.getStringInput("Create new source model element type endpoint", "Insert new source model element type endpoint role", srcModelElemTypeRef.getObject().getName());
 			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, srcModelElemTypeRef, true, newMappingTypeRef);
 		}
 
@@ -129,7 +129,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 			newMappingTypeRef.addModelElementTypeReference(tgtModelElemTypeRef, false);
 		}
 		else {
-			newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+			newModelElemTypeEndpointName = MIDDialogs.getStringInput("Create new target model element type endpoint", "Insert new target model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
 			modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, newMappingTypeRef);
 		}
 
@@ -139,14 +139,14 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 	protected BinaryMappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRel = getContainer();
-		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
+		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToCreate(modelRel, getSource(), getTarget());
 		BinaryMappingReference newMappingRef = (BinaryMappingReference) mappingTypeRef.getObject().createInstanceAndReference(true, modelRel);
 
 		List<String> modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getSource());
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getSource(), newMappingRef);
 		modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(newMappingRef, null, getTarget());
-		modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(newMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), newMappingRef);
 
 		return newMappingRef;

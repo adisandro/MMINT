@@ -29,11 +29,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -243,7 +243,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			);
 		boolean extendMetamodel = false;
 		if (!isK && MMINT.isInitialized() && !Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED))) {
-			extendMetamodel = MIDDialogUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
+			extendMetamodel = MIDDialogs.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isK = extendMetamodel;
 		}
 		ModelEndpointReference newModelTypeEndpointRef;

@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -95,12 +95,12 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected MappingReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRelType = (ModelRel) getElementToEdit();
-		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToExtend(modelRelType, null, null);
+		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToExtend(modelRelType, null, null);
 		Mapping mappingType = mappingTypeRef.getObject();
 		if (MIDTypeHierarchy.getRootTypeUri(mappingType).equals(mappingType.getUri())) {
 			mappingTypeRef = null; // the link reference to the root is never shown
 		}
-		String newMappingTypeName = MIDDialogUtils.getStringInput("Create new light mapping type", "Insert new mapping type name", null);
+		String newMappingTypeName = MIDDialogs.getStringInput("Create new light mapping type", "Insert new mapping type name", null);
 		MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, newMappingTypeName, false, modelRelType);
 		MMINT.createTypeHierarchy(modelRelType.getMIDContainer());
 
@@ -110,7 +110,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected MappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		MappingReference mappingTypeRef = MIDDialogUtils.selectMappingTypeReferenceToCreate(modelRel, null, null);
+		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToCreate(modelRel, null, null);
 		MappingReference newMappingRef = mappingTypeRef.getObject().createInstanceAndReference(false, modelRel);
 
 		return newMappingRef;

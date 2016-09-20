@@ -25,11 +25,11 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class Union extends OperatorImpl {
 
@@ -70,7 +70,7 @@ public class Union extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MIDOperatorUtils.getVarargs(inputsByName, IN_MIDS);
+		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
 		MID instanceMID = outputMIDsByName.get(OUT_MID);
 
 		// create union of input mids

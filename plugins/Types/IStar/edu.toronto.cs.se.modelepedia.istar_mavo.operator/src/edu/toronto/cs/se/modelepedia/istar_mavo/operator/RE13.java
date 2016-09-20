@@ -31,9 +31,9 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.istar_mavo.Actor;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar;
 import edu.toronto.cs.se.modelepedia.istar_mavo.IStar_MAVOPackage;
@@ -108,9 +108,9 @@ public class RE13 extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeModelEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeTargetsEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		targetsProperty = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
+		timeModelEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeTargetsEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		targetsProperty = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 
 	protected void init() {
@@ -334,12 +334,12 @@ public class RE13 extends OperatorImpl {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorUtils.writePropertiesFile(
+		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			istarModel,
 			null,
-			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return new HashMap<>();

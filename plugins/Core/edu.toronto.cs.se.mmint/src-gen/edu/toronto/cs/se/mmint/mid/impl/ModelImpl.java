@@ -42,7 +42,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -55,13 +54,14 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -881,7 +881,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		Editor newEditor = null;
 		//TODO MMINT[EDITOR] prioritize editors list instead of running twice?
 		// all diagrams are tried..
-		for (Editor diagramType : MIDTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
+		for (Editor diagramType : this.getMetatype().getEditors()) {
 			if (!(diagramType instanceof Diagram)) {
 				continue;
 			}
@@ -895,7 +895,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		// ..or first editor is used
 		if (newEditor == null) {
-			for (Editor editorType : MIDTypeRegistry.getModelTypeEditors(getMetatypeUri())) {
+			for (Editor editorType : this.getMetatype().getEditors()) {
 				if (editorType instanceof Diagram) {
 					continue;
 				}

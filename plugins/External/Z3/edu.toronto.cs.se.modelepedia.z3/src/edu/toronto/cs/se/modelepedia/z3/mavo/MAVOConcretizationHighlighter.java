@@ -33,8 +33,8 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class MAVOConcretizationHighlighter {
 
@@ -144,7 +144,7 @@ public class MAVOConcretizationHighlighter {
 			if (diagramView == null) {
 				throw new MMINTException("Can't find " + mavoModelObjFormulaVar + " in diagram");
 			}
-			GMFDiagramUtils.colorDiagramElement(diagramView, color, fontColor);
+			GMFUtils.colorDiagramElement(diagramView, color, fontColor);
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Can't color diagram element, skipping it", e);

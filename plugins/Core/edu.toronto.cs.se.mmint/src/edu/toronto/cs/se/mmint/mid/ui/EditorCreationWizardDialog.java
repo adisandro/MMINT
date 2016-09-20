@@ -18,7 +18,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * A wizard dialog to create a new editor.

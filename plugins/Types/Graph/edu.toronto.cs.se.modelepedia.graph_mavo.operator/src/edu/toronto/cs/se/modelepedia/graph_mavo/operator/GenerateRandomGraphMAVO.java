@@ -30,9 +30,9 @@ import edu.toronto.cs.se.mavo.MAVOPackage;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph_MAVOFactory;
@@ -73,16 +73,16 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		maxModelObjs = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
-		minModelObjs = MIDOperatorUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
+		maxModelObjs = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXMODELOBJS);
+		minModelObjs = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MINMODELOBJS, maxModelObjs);
 		if (minModelObjs > maxModelObjs) {
 			throw new MMINTException("minModelElems (" + minModelObjs + ") > maxModelElems (" + maxModelObjs + ")");
 		}
-		edgesToNodesRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
-		percMavo = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAVO);
-		percMay = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
-		percSet = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCSET);
-		percVar = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
+		edgesToNodesRatio = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_EDGESTONODESRATIO);
+		percMavo = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAVO);
+		percMay = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCMAY);
+		percSet = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCSET);
+		percVar = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PERCVAR);
 	}
 
 	private void init() {

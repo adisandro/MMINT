@@ -42,9 +42,9 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -277,12 +277,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		outputsByName.put(OUT_MODELREL, traceRel);
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorUtils.writePropertiesFile(
+		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			origModel,
 			getInputSubdir(),
-			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return outputsByName;

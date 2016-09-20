@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public abstract class UMLModelConstraint implements IJavaModelConstraint {
 

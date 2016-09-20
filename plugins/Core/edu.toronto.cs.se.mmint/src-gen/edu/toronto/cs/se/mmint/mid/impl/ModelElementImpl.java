@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -34,12 +33,13 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 /**
  * <!-- begin-user-doc -->
@@ -355,11 +355,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElementReference newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference containerModelSubtypeEndpointRef = MIDTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference containerModelSubtypeEndpointRef = MIDRegistry.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference modelElemSubtypeRef = null;
 			if (modelElemTypeRef != null) {
-				ModelEndpointReference modelSubtypeRefSuper = MIDTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
-				modelElemSubtypeRef = MIDTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
+				ModelEndpointReference modelSubtypeRefSuper = MIDRegistry.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
+				modelElemSubtypeRef = MIDRegistry.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
 			}
 			newModelElemType.createTypeReference(modelElemSubtypeRef, false, containerModelSubtypeEndpointRef);
 		}
@@ -387,7 +387,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		ENamedElement modelTypeObj;
 		try {
-			modelTypeObj = (ENamedElement) MIDTypeIntrospection.getPointer(((Model) eContainer()).getEMFTypeRoot().eResource(), getUri());
+			modelTypeObj = (ENamedElement) FileUtils.readModelObject(getUri(), ((Model) eContainer()).getEMFTypeRoot().eResource());
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing metamodel file", e);
@@ -467,7 +467,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 		EObject modelObj;
 		try {
-			modelObj = MIDTypeIntrospection.getPointer(modelElemUri);
+			modelObj = FileUtils.readModelObject(modelElemUri, null);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model element" + getUri(), e);

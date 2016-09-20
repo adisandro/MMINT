@@ -26,26 +26,24 @@ import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * Utilities to deal with the hierarchy of types.
@@ -354,151 +352,6 @@ public class MIDTypeHierarchy {
 		TreeSet<T> hierarchy = getTypeRefHierarchy(typeRefs);
 
 		return hierarchy.descendingIterator();
-	}
-
-	/**
-	 * Gets an extendible element in a list of extendible elements.
-	 * 
-	 * @param elementUri
-	 *            The uri of the extendible element.
-	 * @param elements
-	 *            The list of extendible elements.
-	 * @return The extendible element, null if it can't be found.
-	 */
-	public static <T extends ExtendibleElement> T get(String elementUri, EList<T> elements) {
-
-		if (elementUri == null) {
-			return null;
-		}
-
-		for (T element : elements) {
-			if (elementUri.equals(element.getUri())) {
-				return element;
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Gets an extendible element in a list of extendible elements.
-	 * 
-	 * @param correspondingElement
-	 *            The corresponding extendible element, i.e. an extendible
-	 *            element with the same uri of the one to get.
-	 * @param elements
-	 *            The list of extendible elements.
-	 * @return The extendible element, null if it can't be found.
-	 */
-	public static <T extends ExtendibleElement> T get(T correspondingElement, EList<T> elements) {
-
-		if (correspondingElement == null) {
-			return null;
-		}
-
-		return get(correspondingElement.getUri(), elements);
-	}
-
-	/**
-	 * Gets a reference to an extendible element in a list of references to
-	 * extendible elements.
-	 * 
-	 * @param elementUri
-	 *            The uri of the extendible element.
-	 * @param elementRefs
-	 *            The list of references to extendible elements.
-	 * @return The reference to the extendible element, null if it can't be
-	 *         found.
-	 */
-	public static <T extends ExtendibleElementReference> T getReference(String elementUri, EList<T> elementRefs) {
-
-		if (elementUri == null) {
-			return null;
-		}
-
-		for (T elementRef : elementRefs) {
-			if (elementUri.equals(elementRef.getUri())) {
-				return elementRef;
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Gets a reference to an extendible element in a list of references to
-	 * extendible elements.
-	 * 
-	 * @param correspondingElementRef
-	 *            The corresponding reference to extendible element, i.e. a
-	 *            reference to an extendible element with the same uri of the
-	 *            one to get.
-	 * @param elementRefs
-	 *            The list of references to extendible elements.
-	 * @return The reference to the extendible element, null if it can't be
-	 *         found.
-	 */
-	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
-
-		if (correspondingElementRef == null) {
-			return null;
-		}
-
-		return getReference(correspondingElementRef.getUri(), elementRefs);
-	}
-
-	/**
-	 * Gets the extendible element endpoints in a list of extendible element
-	 * endpoints.
-	 * 
-	 * @param targetUri
-	 *            The uri of the extendible element which is the target of the
-	 *            endpoint.
-	 * @param endpoints
-	 *            The list of extendible element endpoints.
-	 * @return The extendible element endpoints.
-	 */
-	public static <T extends ExtendibleElementEndpoint> List<T> getEndpoints(String targetUri, EList<T> endpoints) {
-
-		if (targetUri == null) {
-			return null;
-		}
-
-		List<T> targetEndpoints = new ArrayList<T>();
-		for (T endpoint : endpoints) {
-			if (targetUri.equals(endpoint.getTargetUri())) {
-				targetEndpoints.add(endpoint);
-			}
-		}
-
-		return targetEndpoints;
-	}
-
-	/**
-	 * Gets the references to an extendible element endpoint in a list of
-	 * references to extendible element endpoints.
-	 * 
-	 * @param targetUri
-	 *            The uri of the extendible element which is the target of the
-	 *            endpoint.
-	 * @param endpointRefs
-	 *            The list of references to extendible element endpoints.
-	 * @return The references to the extendible element endpoints.
-	 */
-	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetUri, EList<T> endpointRefs) {
-
-		if (targetUri == null) {
-			return null;
-		}
-
-		List<T> targetEndpointRefs = new ArrayList<T>();
-		for (T endpointRef : endpointRefs) {
-			if (targetUri.equals(endpointRef.getTargetUri())) {
-				targetEndpointRefs.add(endpointRef);
-			}
-		}
-
-		return targetEndpointRefs;
 	}
 
 	/**
@@ -865,7 +718,7 @@ public class MIDTypeHierarchy {
 				}
 				if (MIDTypeHierarchy.isSubtypeOf(targetModelType.getUri(), modelTypeEndpoint.getTargetUri(), typeMID)) {
 					if (!isBinary) {
-						if (!MIDDialogUtils.getBooleanInput("Override model type endpoint", "Override " + modelTypeEndpoint.getName() + "?")) {
+						if (!MIDDialogs.getBooleanInput("Override model type endpoint", "Override " + modelTypeEndpoint.getName() + "?")) {
 							continue;
 						}
 					}
@@ -890,7 +743,7 @@ public class MIDTypeHierarchy {
 				}
 				if (MIDTypeHierarchy.isSubtypeOf(targetModelElemTypeRef.getUri(), modelElemTypeEndpoint.getTargetUri(), typeMID)) {
 					if (!isBinary) {
-						if (!MIDDialogUtils.getBooleanInput("Override model element type endpoint", "Override " + modelElemTypeEndpoint.getName() + "?")) {
+						if (!MIDDialogs.getBooleanInput("Override model element type endpoint", "Override " + modelElemTypeEndpoint.getName() + "?")) {
 							continue;
 						}
 					}

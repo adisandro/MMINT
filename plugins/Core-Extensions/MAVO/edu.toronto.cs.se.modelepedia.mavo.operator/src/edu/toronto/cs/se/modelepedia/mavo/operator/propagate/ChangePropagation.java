@@ -32,7 +32,6 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference;
@@ -48,10 +47,8 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -59,7 +56,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ChangePropagation extends OperatorImpl {
 
@@ -186,7 +184,7 @@ public class ChangePropagation extends OperatorImpl {
 				String propModelObjUri =
 					newPropModel.getUri() +
 					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
-				EObject propModelObj = MIDTypeIntrospection.getPointer(propModelObjUri);
+				EObject propModelObj = FileUtils.readModelObject(propModelObjUri, null);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = propModelEndpointRef_propTraceRel.createModelElementInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName());
 				// create new propagated trace links
@@ -222,7 +220,7 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		BinaryMAVOMappingReference newTraceMappingRef = null;
-		for (MappingReference traceMappingTypeRef : MIDTypeRegistry.getMappingTypeReferences(traceRel.getMetatype())) {
+		for (MappingReference traceMappingTypeRef : traceRel.getMetatype().getMappingRefs()) {
 			if (!(traceMappingTypeRef instanceof BinaryMappingReference)) { // a trace rel type is meant to have two model types
 				continue;
 			}
@@ -287,9 +285,9 @@ traceLinks:
 			boolean Mb = modelElemB.isMay(), Sb = modelElemB.isSet(), Vb = modelElemB.isVar();
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
-			EObject modelObjB = MIDTypeIntrospection.getPointer(
-				modelRootB.eResource(),
-				getModelEObjectUri(modelElemB.getUri())
+			EObject modelObjB = FileUtils.readModelObject(
+				getModelEObjectUri(modelElemB.getUri()),
+				modelRootB.eResource()
 			);
 
 			// rule 1
@@ -405,8 +403,8 @@ traceLinks:
 		ModelElementReference varModelElemRef = varTraceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		// get var object and other object from same resource
-		EObject varModelObj = MIDTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(varModelElemRef.getUri()));
-		EObject modelObj = MIDTypeIntrospection.getPointer(modelRootB.eResource(), getModelEObjectUri(modelElemRef.getUri()));
+		EObject varModelObj = FileUtils.readModelObject(getModelEObjectUri(varModelElemRef.getUri()), modelRootB.eResource());
+		EObject modelObj = FileUtils.readModelObject(getModelEObjectUri(modelElemRef.getUri()), modelRootB.eResource());
 		// unify contents
 		for (EObject varModelObjContent : varModelObj.eContents()) {
 			EStructuralFeature varModelObjContainingFeature = varModelObjContent.eContainingFeature();

@@ -31,14 +31,14 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -275,7 +275,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			return false;
 		}
 		// filter duplicates
-		if (MIDTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
+		if (MIDRegistry.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
 			return false;
 		}
 		//TODO MMINT[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
@@ -319,7 +319,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 			return null;
 		}
 		// filter duplicates
-		if (MIDTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+		if (MIDRegistry.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

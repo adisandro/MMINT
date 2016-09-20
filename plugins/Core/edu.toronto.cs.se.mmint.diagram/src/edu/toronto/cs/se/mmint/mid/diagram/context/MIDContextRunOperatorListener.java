@@ -32,11 +32,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
@@ -75,7 +75,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(operatorType, mid);
+				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(operatorType, mid);
 				switch (mid.getLevel()) {
 					case TYPES:
 						throw new MMINTException("The TYPES level is not allowed");

@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.library;
+package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.lang.reflect.InvocationTargetException;
 

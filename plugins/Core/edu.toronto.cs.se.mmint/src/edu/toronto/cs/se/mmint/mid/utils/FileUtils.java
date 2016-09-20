@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.library;
+package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -279,6 +279,17 @@ public class FileUtils {
 	public static @NonNull EObject readModelFileInState(@NonNull String relativeFileUri) throws Exception {
 
 		return readModelFile(prependStatePathToUri(relativeFileUri), false);
+	}
+
+	public static @NonNull EObject readModelObject(@NonNull String fileObjectUri, @Nullable Resource resource) throws Exception {
+	
+		URI emfUri = URI.createURI(fileObjectUri, false, URI.FRAGMENT_LAST_SEPARATOR);
+		if (resource == null) {
+			ResourceSet set = new ResourceSetImpl();
+			resource = set.getResource(emfUri, true);
+		}
+	
+		return resource.getEObject(emfUri.fragment());
 	}
 
 	public static void deleteFile(String fileUri, boolean isWorkspaceRelative) {

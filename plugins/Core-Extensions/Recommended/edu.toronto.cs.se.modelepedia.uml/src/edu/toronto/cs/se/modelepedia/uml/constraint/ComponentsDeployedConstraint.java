@@ -18,9 +18,9 @@ import org.eclipse.uml2.uml.PackageableElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 

@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;

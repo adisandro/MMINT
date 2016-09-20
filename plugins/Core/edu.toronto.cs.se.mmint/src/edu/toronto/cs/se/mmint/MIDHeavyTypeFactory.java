@@ -49,6 +49,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * The factory to create/modify/remove "heavy" types, i.e. types from
@@ -339,7 +341,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		Mapping mappingType = getSupertype(newMappingType, newMappingTypeUri, mappingTypeUri);
 		addHeavyType(newMappingType, mappingType, newMappingTypeUri, newMappingTypeName);
 		addMappingType(newMappingType, mappingType, containerModelRelType);
-		MappingReference mappingTypeRef = MIDTypeHierarchy.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
+		MappingReference mappingTypeRef = MIDRegistry.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
 		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
 
 		return newMappingTypeRef;
@@ -590,9 +592,9 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemTypeRef.getObject(), containerMappingType);
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		if (modelElemTypeEndpoint != null) { // may be root
-			MappingReference newMappingTypeRefSuper = MIDTypeHierarchy.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
+			MappingReference newMappingTypeRefSuper = MIDRegistry.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
 			if (newMappingTypeRefSuper != null) {
-				modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
+				modelElemTypeEndpointRef = MIDRegistry.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
 			}
 		}
 		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);

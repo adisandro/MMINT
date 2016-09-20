@@ -29,8 +29,8 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -187,12 +187,12 @@ public class FASE14 extends RE13 {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorUtils.writePropertiesFile(
+		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			istarModel,
 			null,
-			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 		if (timeRNF != -1) {
 			writeRNF(istarModel);

@@ -40,10 +40,10 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
-public class GMFDiagramUtils {
+public class GMFUtils {
 
 	/** The suffix for GMF diagrams. */
 	public static final String DIAGRAM_SUFFIX = "diag";
@@ -119,7 +119,7 @@ public class GMFDiagramUtils {
 
 	public static Node createGMFNodeShortcut(EObject modelObj, View gmfContainer, String diagramPluginId, String shortcutId) {
 
-		Node gmfNode = GMFDiagramUtils.createGMFNode(modelObj, gmfContainer, diagramPluginId);
+		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfContainer, diagramPluginId);
 		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		shortcutAnnotation.setSource("Shortcut");
 		shortcutAnnotation.getDetails().put("modelID", shortcutId);

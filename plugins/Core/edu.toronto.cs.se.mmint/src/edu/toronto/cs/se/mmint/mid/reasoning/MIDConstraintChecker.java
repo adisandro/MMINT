@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.reasoning;
+package edu.toronto.cs.se.mmint.mid.reasoning;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,8 +36,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -49,6 +47,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 /**
  * The constraint checker for multimodels.
@@ -430,7 +430,7 @@ public class MIDConstraintChecker {
 	public static ModelElement getAllowedModelElementType(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelRel modelRelType = ((ModelRel) modelEndpointRef.eContainer()).getMetatype();
-		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(modelEndpointRef.getObject().getMetatypeUri(), modelRelType.getModelEndpointRefs());
 		Iterator<ModelElementReference> modelElemTypeRefIter = MIDTypeHierarchy.getInverseTypeRefHierarchyIterator(modelTypeEndpointRef.getModelElemRefs());
 		while (modelElemTypeRefIter.hasNext()) {
 			ModelElementReference modelElemTypeRef = modelElemTypeRefIter.next();

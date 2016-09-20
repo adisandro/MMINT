@@ -26,10 +26,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -83,7 +83,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		Model tgtModelType = (Model) getTarget();
-		String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
+		String newModelTypeEndpointName = MIDDialogs.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
 		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), tgtModelType);
 		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtype(newModelTypeEndpointName, tgtModelType, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
@@ -93,7 +93,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 
 	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstance((Model) getTarget(), getSource());
 
 		return newModelEndpointRef.getObject();
@@ -101,7 +101,7 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 
 	protected ModelEndpoint doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
 		ModelEndpoint newModelEndpoint = modelTypeEndpointRef.getObject().createWorkflowInstance((Model) getTarget(), getSource());
 
 		return newModelEndpoint;

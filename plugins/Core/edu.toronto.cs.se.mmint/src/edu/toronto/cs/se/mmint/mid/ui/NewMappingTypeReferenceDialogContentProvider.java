@@ -19,9 +19,9 @@ import org.eclipse.jface.viewers.Viewer;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class NewMappingTypeReferenceDialogContentProvider implements ITreeContentProvider {
 

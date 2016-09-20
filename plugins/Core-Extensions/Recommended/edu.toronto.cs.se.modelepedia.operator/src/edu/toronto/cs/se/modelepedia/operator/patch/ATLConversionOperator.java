@@ -16,8 +16,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public abstract class ATLConversionOperator extends ConversionOperatorImpl {
 

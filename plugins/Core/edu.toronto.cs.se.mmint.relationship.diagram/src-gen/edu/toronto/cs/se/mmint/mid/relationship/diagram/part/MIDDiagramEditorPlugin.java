@@ -37,7 +37,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.policies.MIDBaseIte
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.providers.ElementInitializers;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
  * @generated
@@ -140,7 +140,7 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
 
-		return GMFDiagramUtils.getAdapterFactory();
+		return GMFUtils.getAdapterFactory();
 	}
 
 	/**

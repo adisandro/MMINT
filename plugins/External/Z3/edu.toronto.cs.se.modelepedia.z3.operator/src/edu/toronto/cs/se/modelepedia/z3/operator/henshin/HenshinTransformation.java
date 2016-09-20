@@ -36,10 +36,10 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 //TODO MMINT[OPERATOR] Move to appropriate package+feature when they're created for core operators
 //TODO MMINT[OPERATOR] Use this as base for the lifted ones
@@ -59,7 +59,7 @@ public class HenshinTransformation extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		henshinFileName = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
+		henshinFileName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
 	}
 
 	private EObject transform(Model originalModel) throws MMINTException {

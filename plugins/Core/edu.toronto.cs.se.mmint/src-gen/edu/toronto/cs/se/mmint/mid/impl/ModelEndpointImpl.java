@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
@@ -28,11 +27,13 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -257,7 +258,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	protected void addTypeReference(ModelEndpointReference newModelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) {
 
 		ModelEndpointReference modelTypeEndpointRef = (getSupertype() != null) ? // may be root
-			MIDTypeHierarchy.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
+			MIDRegistry.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
 			null;
 		MIDTypeFactory.addTypeReference(newModelTypeEndpointRef, this, modelTypeEndpointRef, isModifiable, false);
 		containerModelRelType.getModelEndpointRefs().add(newModelTypeEndpointRef);
@@ -356,7 +357,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 
 		MID instanceMID = containerModelRelType.getMIDContainer();
-		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
 		oldModelTypeEndpoint.deleteType(false);
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
@@ -366,15 +367,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 		oldModelTypeEndpoint.setTarget(targetModelType);
 		if (modelTypeEndpointRef != null) {
-			ModelEndpointReference oldModelTypeEndpointRef = MIDTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MIDRegistry.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelTypeEndpointRef);
 		}
 		// modify references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, instanceMID)) {
 			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
 				null :
-				MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelEndpointReference oldModelTypeEndpointRef = MIDTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
+				MIDRegistry.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MIDRegistry.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelSubtypeEndpointRef);
 		}
 	}
@@ -397,11 +398,11 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		if (isFullDelete) {
 			modelRelType.getModelEndpoints().remove(this);
 		}
-		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
+		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(getUri(), modelRelType.getModelEndpointRefs());
 		modelTypeEndpointRef.deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference modelSubtypeEndpointRef = MIDRegistry.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
 			modelSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 	}

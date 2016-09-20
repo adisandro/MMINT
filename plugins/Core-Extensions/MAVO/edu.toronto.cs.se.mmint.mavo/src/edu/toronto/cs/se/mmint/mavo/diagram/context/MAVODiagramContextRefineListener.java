@@ -41,7 +41,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 

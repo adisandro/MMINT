@@ -19,9 +19,9 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
@@ -126,7 +126,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			return false;
 		}
 		// filter duplicates
-		if (MIDTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
+		if (MIDRegistry.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
 			return false;
 		}
 		//TODO MMINT[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
@@ -154,7 +154,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			return null;
 		}
 		// filter duplicates
-		if (MIDTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+		if (MIDRegistry.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

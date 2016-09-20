@@ -36,7 +36,7 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class MAVOUtils {
 

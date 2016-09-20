@@ -20,12 +20,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -112,7 +112,7 @@ public class MappingReferenceChangeModelElementEndpointReferenceCommand extends 
 
 	protected void doExecuteInstancesLevel(MappingReference mappingRef, ModelElementReference modelElemRef, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(mappingRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(mappingRef, modelElemTypeEndpointUris);
 		if (isFullDelete) {
 			getLink().deleteInstanceAndReference(isFullDelete);
 			modelElemTypeEndpointRef.getObject().createInstanceAndReference(modelElemRef, mappingRef);

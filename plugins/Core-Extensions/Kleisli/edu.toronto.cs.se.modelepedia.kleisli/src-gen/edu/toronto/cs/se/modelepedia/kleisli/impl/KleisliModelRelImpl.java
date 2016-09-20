@@ -31,7 +31,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PartInitException;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -43,13 +42,13 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -377,8 +376,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				FileUtils.prependStatePathToUri(kModelTypeUriRelative):
 				null;
 			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
-				String kModelTypeDiagramUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX)) ?
-					FileUtils.prependStatePathToUri(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX):
+				String kModelTypeDiagramUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX)) ?
+					FileUtils.prependStatePathToUri(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX):
 					null;
 				String kUri = (kModelTypeDiagramUri == null) ? kModelTypeUri : kModelTypeDiagramUri;
 				//TODO MMINT[ECORE] Try to open ecore diagram
@@ -414,7 +413,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			try {
 				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
 				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
-				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDRegistry.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
 				String modelUri = kModelEndpoint.getTargetUri();
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
 				String extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(kModelTypeEndpoint.getTarget());

@@ -17,8 +17,8 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.swt.widgets.Shell;
 
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 

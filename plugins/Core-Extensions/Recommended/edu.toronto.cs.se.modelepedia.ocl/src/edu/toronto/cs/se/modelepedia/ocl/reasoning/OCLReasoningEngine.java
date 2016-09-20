@@ -28,9 +28,9 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
 public class OCLReasoningEngine implements IReasoningEngine {
 

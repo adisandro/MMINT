@@ -19,8 +19,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 public class ModelElementLabelProvider extends AdapterFactoryLabelProvider {
 

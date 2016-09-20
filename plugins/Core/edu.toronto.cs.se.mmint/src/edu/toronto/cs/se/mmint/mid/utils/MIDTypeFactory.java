@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint;
+package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +17,9 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -27,7 +30,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
@@ -212,7 +214,7 @@ public class MIDTypeFactory {
 			Iterator<ModelElementReference> modelElemTypeRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(modelTypeEndpointRefSuper.getModelElemRefs());
 			while (modelElemTypeRefIter.hasNext()) {
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeRefIter.next();
-				ModelElementReference modelElemTypeRef = MIDTypeHierarchy.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
+				ModelElementReference modelElemTypeRef = MIDRegistry.getReference(modelElemTypeRefSuper.getSupertypeRef(), newModelTypeEndpointRef.getModelElemRefs());
 				modelElemTypeRefSuper.getObject().createTypeReference(modelElemTypeRef, false, newModelTypeEndpointRef);
 			}
 		}
@@ -223,7 +225,7 @@ public class MIDTypeFactory {
 			if (skipMappingRefs.contains(mappingTypeRefSuper)) { // don't copy link types using model element types from the root model type
 				continue;
 			}
-			MappingReference mappingTypeRef = MIDTypeHierarchy.getReference(mappingTypeRefSuper.getSupertypeRef(), newModelRelType.getMappingRefs());
+			MappingReference mappingTypeRef = MIDRegistry.getReference(mappingTypeRefSuper.getSupertypeRef(), newModelRelType.getMappingRefs());
 			MappingReference newMappingTypeRef = mappingTypeRefSuper.getObject().createTypeReference(mappingTypeRef, false, newModelRelType);
 			// connect it to model element type references (takes care of binary too)
 			Iterator<ModelElementEndpointReference> modelElemTypeEndpointRefIter = MIDTypeHierarchy.getTypeRefHierarchyIterator(mappingTypeRefSuper.getModelElemEndpointRefs());
@@ -233,12 +235,12 @@ public class MIDTypeFactory {
 				ModelElementEndpointReference modelElemTypeEndpointRefSuper2 = modelElemTypeEndpointRefSuper.getSupertypeRef();
 				if (modelElemTypeEndpointRefSuper2 != null) {
 					MappingReference mappingTypeRefSuper2 = (MappingReference) modelElemTypeEndpointRefSuper2.eContainer();
-					MappingReference mappingTypeRef2 = MIDTypeHierarchy.getReference(mappingTypeRefSuper2, newModelRelType.getMappingRefs());
-					modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpointRefSuper2, mappingTypeRef2.getModelElemEndpointRefs());
+					MappingReference mappingTypeRef2 = MIDRegistry.getReference(mappingTypeRefSuper2, newModelRelType.getMappingRefs());
+					modelElemTypeEndpointRef = MIDRegistry.getReference(modelElemTypeEndpointRefSuper2, mappingTypeRef2.getModelElemEndpointRefs());
 				}
 				ModelElementReference modelElemTypeRefSuper = modelElemTypeEndpointRefSuper.getModelElemRef();
-				ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
-				ModelElementReference newModelElemTypeRef = MIDTypeHierarchy.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference((ModelEndpointReference) modelElemTypeRefSuper.eContainer(), newModelRelType.getModelEndpointRefs());
+				ModelElementReference newModelElemTypeRef = MIDRegistry.getReference(modelElemTypeRefSuper, modelTypeEndpointRef.getModelElemRefs());
 				modelElemTypeEndpointRefSuper.getObject().createTypeReference(modelElemTypeEndpointRef, newModelElemTypeRef, false, false, newMappingTypeRef);
 			}
 		}

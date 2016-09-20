@@ -50,9 +50,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -60,6 +57,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -67,7 +65,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDEcoreUtil;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * Model Management is the management of collections of related models. It
@@ -273,7 +274,7 @@ public class MMINT implements MMINTConstants {
 				extensionType = new ExtensionPointType(modelElemTypeConfig, typeFactory);
 				ModelElement newModelElemType = MIDTypeRegistry.getType(extensionType.getUri());
 				if (newModelElemType == null) { // create new model element type
-					EObject modelElemTypeObj = MIDTypeIntrospection.getPointer(rootModelTypeObj.eResource(), extensionType.getUri());
+					EObject modelElemTypeObj = FileUtils.readModelObject(extensionType.getUri(), rootModelTypeObj.eResource());
 					EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(modelElemTypeObj, MIDLevel.TYPES);
 					try {
 						newModelElemType = modelRelExtensionType.getFactory().createHeavyModelElementType(
@@ -289,7 +290,7 @@ public class MMINT implements MMINTConstants {
 				}
 				ModelElementReference modelElemTypeRef = (extensionType.getSupertypeUri() == null) ?
 					null :
-					MIDTypeHierarchy.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
+					MIDRegistry.getReference(extensionType.getSupertypeUri(), newModelTypeEndpointRef.getModelElemRefs());
 				newModelElemType.createTypeReference(modelElemTypeRef, true, newModelTypeEndpointRef);
 			}
 		}
@@ -315,17 +316,17 @@ public class MMINT implements MMINTConstants {
 			String srcModelElemTypeUri = null, tgtModelElemTypeUri = null;
 			if (isBinary) {
 				srcModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_SOURCETYPEURI);
-				ModelEndpointReference containerModelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(
+				ModelEndpointReference containerModelTypeEndpointRef = MIDRegistry.getEndpointReferences(
 					((Model) MIDTypeRegistry.<ModelElement>getType(srcModelElemTypeUri).eContainer()).getUri(),
 					newModelRelType.getModelEndpointRefs()
 				).get(0);
-				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDTypeHierarchy.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDRegistry.getReference(srcModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), true);
 				tgtModelElemTypeUri = binaryTypeConfigs[0].getAttribute(BINARYTYPE_ATTR_TARGETTYPEURI);
-				containerModelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(
+				containerModelTypeEndpointRef = MIDRegistry.getEndpointReferences(
 					((Model) MIDTypeRegistry.<ModelElement>getType(tgtModelElemTypeUri).eContainer()).getUri(),
 					newModelRelType.getModelEndpointRefs()
 				).get(0);
-				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDTypeHierarchy.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
+				((BinaryMappingReference) newMappingTypeRef).addModelElementTypeReference(MIDRegistry.getReference(tgtModelElemTypeUri, containerModelTypeEndpointRef.getModelElemRefs()), false);
 			}
 			// model element type endpoints
 			IConfigurationElement[] modelElemTypeEndpointConfigs = mappingTypeConfig.getChildren(MODELRELS_MAPPINGTYPE_CHILD_MODELELEMTYPEENDPOINT);
@@ -339,8 +340,8 @@ public class MMINT implements MMINTConstants {
 					continue;
 				}
 				//TODO MMINT[MODELENDPOINT] well model elements should *really* be contained in the model endpoint now that they exist
-				ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
-				ModelElementReference newModelElemTypeRef = MIDTypeHierarchy.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
+				ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getEndpointReferences(((Model) modelElemType.eContainer()).getUri(), newModelRelType.getModelEndpointRefs()).get(0);
+				ModelElementReference newModelElemTypeRef = MIDRegistry.getReference(targetModelElemTypeUri, modelTypeEndpointRef.getModelElemRefs());
 				boolean isBinarySrc = (isBinary && srcModelElemTypeUri.equals(targetModelElemTypeUri));
 				ModelElementEndpointReference newModelElemTypeEndpointRef = modelRelExtensionType.getFactory().createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(
 					extensionType,
@@ -912,7 +913,7 @@ public class MMINT implements MMINTConstants {
 	public static void syncTypeMID(MID typeMID) {
 
 		//TODO MMINT[OO] review the copy-on-sync mechanism and find an alternative
-		cachedTypeMID = MMINTEcoreUtil.copy(typeMID);
+		cachedTypeMID = MIDEcoreUtil.copy(typeMID);
 		copySubtypeTable(subtypesMID, subtypes);
 		copyConversionTable(conversionsMID, conversions);
 	}

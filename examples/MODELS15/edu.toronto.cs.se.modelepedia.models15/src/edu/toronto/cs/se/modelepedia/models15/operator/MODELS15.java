@@ -27,10 +27,10 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
@@ -55,10 +55,10 @@ public class MODELS15 extends RandomOperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		numClassDiagrams = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSDIAGRAMS);
-		numClassesPerClassDiagram = MIDOperatorUtils.getIntProperty(
+		numClassDiagrams = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSDIAGRAMS);
+		numClassesPerClassDiagram = MIDOperatorIOUtils.getIntProperty(
 			inputProperties, PROPERTY_IN_NUMCLASSESPERCLASSDIAGRAM);
-		numClassNames = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSNAMES);
+		numClassNames = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSNAMES);
 	}
 
 	private @NonNull MID createClassDiagrams(String instanceMIDUri) {

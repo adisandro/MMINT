@@ -40,8 +40,8 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -144,13 +144,13 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		constraint = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT, PROPERTY_IN_CONSTRAINT_DEFAULT);
-		constraintVariables = MIDOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_CONSTRAINTVARIABLES, PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
-		transformationModule = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_TRANSFORMATIONMODULE);
-		transformationRules = MIDOperatorUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
-		transformationRulesLifting = MIDOperatorUtils.getStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
-		timeClassicalEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		transformedConstraintEnabled = MIDOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		constraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT, PROPERTY_IN_CONSTRAINT_DEFAULT);
+		constraintVariables = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_CONSTRAINTVARIABLES, PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
+		transformationModule = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_TRANSFORMATIONMODULE);
+		transformationRules = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULES, PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
+		transformationRulesLifting = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
+		timeClassicalEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		transformedConstraintEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
 	}
 
 	protected void writeProperties(Properties properties) {

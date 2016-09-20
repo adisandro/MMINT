@@ -64,7 +64,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 /**
  * @generated
@@ -200,7 +200,7 @@ public class MIDDiagramEditorUtil {
 	private static ModelRel createInitialModel() {
 
 		try {
-			ModelRel modelRelType = MIDDialogUtils
+			ModelRel modelRelType = MIDDialogs
 					.selectModelRelTypeToCreate(null, null);
 			return (ModelRel) modelRelType.createInstance(null, null);
 		} catch (Exception e) {

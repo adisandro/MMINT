@@ -31,9 +31,9 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,7 +123,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				String diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				try {
-					GMFDiagramUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
+					GMFUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
 					if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
 						FileUtils.openEclipseEditor(diagramUri, getId(), true);
 					}

@@ -20,12 +20,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -141,7 +141,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
-				String newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
+				String newModelElemTypeEndpointName = MIDDialogs.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
 				if (isBinarySrc && containerMappingTypeRef.getModelElemEndpointRefs().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelElementEndpointReference tgtModelElemTypeEndpointRef = containerMappingTypeRef.getModelElemEndpointRefs().get(0);
 					tgtModelElemTypeEndpointRef.deleteTypeAndReference(true);
@@ -161,7 +161,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
 			containerMappingRef.getModelElemEndpointRefs().get(0) :
 			containerMappingRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
 		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
 	}
 

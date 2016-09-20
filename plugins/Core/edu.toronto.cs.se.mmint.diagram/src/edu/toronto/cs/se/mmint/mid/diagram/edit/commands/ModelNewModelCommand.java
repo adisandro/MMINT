@@ -25,9 +25,9 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -96,15 +96,15 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		//TODO MMINT[MISC] Support undo/redo with metamodel extension file
 		MID typeMID = (MID) getElementToEdit();
-		Model modelType = MIDDialogUtils.selectModelTypeToExtend(typeMID);
-		String newModelTypeName = MIDDialogUtils.getStringInput("Create new light model type", "Insert new model type name", null);
-		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model type", null);
+		Model modelType = MIDDialogs.selectModelTypeToExtend(typeMID);
+		String newModelTypeName = MIDDialogs.getStringInput("Create new light model type", "Insert new model type name", null);
+		String[] constraint = MIDDialogs.getConstraintInput("Create new light model type", null);
 		if (!MIDConstraintChecker.checkModelConstraintConsistency(modelType, constraint[0], constraint[1])) {
 			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 		}
 		boolean isMetamodelExtension = (MIDTypeHierarchy.isRootType(modelType)) ?
 			true :
-			MIDDialogUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
+			MIDDialogs.getBooleanInput("Create new light model type", "Extend metamodel?");
 		Model newModelType = modelType.createSubtype(newModelTypeName, isMetamodelExtension);
 		newModelType.addTypeConstraint(constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(typeMID);
@@ -115,7 +115,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(instanceMID);
+		Editor newEditor = MIDDialogs.selectModelTypeToCreate(instanceMID);
 		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
 		newModel.getEditors().add(newEditor);
@@ -142,11 +142,10 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		 * - Rethink ConversionOperator to be a simple workflow
 		 * - Rewrite ExperimentDriver to be a workflow
 		 * - Review and rationalize MIDOper and MIDRel
-		 * - Refactor libraries into meaningful classes (e.g. MIDUtils into FileUtils)
 		 * - Try to unify libz3java if library load problems are fixed (z3java vs libz3java)
 		 */
 		MID workflowMID = (MID) getElementToEdit();
-		Model modelType = MIDDialogUtils.selectWorkflowModelTypeToCreate(workflowMID);
+		Model modelType = MIDDialogs.selectWorkflowModelTypeToCreate(workflowMID);
 		String newModelId = MIDRegistry.getNextWorkflowID(workflowMID);
 		Model newModel = modelType.createWorkflowInstance(newModelId, workflowMID);
 

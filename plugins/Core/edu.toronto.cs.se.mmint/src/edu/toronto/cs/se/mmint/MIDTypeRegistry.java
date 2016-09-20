@@ -14,14 +14,11 @@ package edu.toronto.cs.se.mmint;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
@@ -37,14 +34,12 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -69,7 +64,8 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogFilter;
 import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewWorkflowModelDialogContentProvider;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * The registry for querying the types.
@@ -147,74 +143,29 @@ public class MIDTypeRegistry {
 	}
 
 	/**
-	 * Gets the list of mapping types in a model relationship type.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type that contains the mapping types.
-	 * @return The list of mapping types in the model relationship type.
-	 */
-	public static EList<Mapping> getMappingTypes(ModelRel modelRelType) {
-
-		return modelRelType.getMappings();
-	}
-
-	/**
-	 * Gets the list of references to mapping types in a model relationship type.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type that contains the references to
-	 *            mapping types.
-	 * @return The list of references to mapping types in the model relationship
-	 *         type.
-	 */
-	public static EList<MappingReference> getMappingTypeReferences(ModelRel modelRelType) {
-
-		return modelRelType.getMappingRefs();
-	}
-
-	/**
-	 * Gets the list of model element types in a model type.
-	 * 
-	 * @param modelType
-	 *            The model type that contains the model element types.
-	 * 
-	 * @return The list of model element types in the model type.
-	 */
-	public static EList<ModelElement> getModelElementTypes(Model modelType) {
-
-		return modelType.getModelElems();
-	}
-
-	/**
 	 * Gets the list of file extensions for all model types in the repository.
 	 * 
 	 * @return The list of file extensions for model types.
 	 */
 	public static List<String> getModelTypeFileExtensions() {
 
-		List<String> fileExtensions = MMINT.cachedTypeMID.getModels().stream()
+		List<String> fileExtensions = getModelTypes().stream()
 			.map(Model::getFileExtension)
 			.collect(Collectors.toList());
 
 		return fileExtensions;
 	}
 
-	/**
-	 * Gets the list of editor types in the repository for a model type.
-	 * 
-	 * @param modelTypeUri
-	 *            The uri of the model type.
-	 * @return The list of editor types in the repository for the model type.
-	 */
-	public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
+	public static @Nullable Model getMIDModelType() {
 
-		Model model = getType(modelTypeUri);
-		if (model != null) {
-			return model.getEditors();
-		}
-		else {
-			return ECollections.emptyEList();
-		}
+		return MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+	}
+
+	public static @Nullable Diagram getMIDDiagramType() {
+
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
+
+		return MIDRegistry.getModelDiagram(midModelType);
 	}
 
 	/**
@@ -609,29 +560,6 @@ public class MIDTypeRegistry {
 		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
 			FileUtils.prependStatePathToUri(metamodelUri) :
 			null;
-	}
-
-	public static @Nullable Model getMIDModelType() {
-
-		return MIDTypeRegistry.getType(MIDPackage.eNS_URI);
-	}
-
-	public static @Nullable Diagram getMIDDiagramType() {
-
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Diagram midDiagramType;
-		try {
-			midDiagramType = (Diagram) midModelType.getEditors().stream()
-				.filter(editor -> editor instanceof Diagram)
-				.findFirst()
-				.get();
-		}
-		catch (NoSuchElementException e) {
-			MMINTException.print(IStatus.WARNING, "No diagram registered for MID model type, returning null", e);
-			midDiagramType = null;
-		}
-
-		return (Diagram) midDiagramType;
 	}
 
 }

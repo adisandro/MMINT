@@ -32,9 +32,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 //TODO MMINT[OPERATOR] Move other paper experiments to examples
@@ -73,13 +73,13 @@ public class ICMT15 extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		modelMultiplier = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELMULTIPLIER);
-		variablesMultiplier = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_VARIABLESMULTIPLIER);
-		idAttribute = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		constraint = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT);
-		variables = MIDOperatorUtils.getStringPropertyList(inputProperties, PROPERTY_IN_VARIABLES);
-		clausesToVariablesRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_CLAUSESTOVARIABLESRATIO);
-		presenceConditionsToModelSizeRatio = MIDOperatorUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO);
+		modelMultiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELMULTIPLIER);
+		variablesMultiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_VARIABLESMULTIPLIER);
+		idAttribute = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		constraint = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT);
+		variables = MIDOperatorIOUtils.getStringPropertyList(inputProperties, PROPERTY_IN_VARIABLES);
+		clausesToVariablesRatio = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_CLAUSESTOVARIABLESRATIO);
+		presenceConditionsToModelSizeRatio = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO);
 	}
 
 	private void init() {

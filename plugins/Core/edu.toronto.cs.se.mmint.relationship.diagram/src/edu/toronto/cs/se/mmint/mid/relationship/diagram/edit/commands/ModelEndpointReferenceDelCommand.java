@@ -19,10 +19,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditor;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
 
 /**
  * The command to delete a model reference.

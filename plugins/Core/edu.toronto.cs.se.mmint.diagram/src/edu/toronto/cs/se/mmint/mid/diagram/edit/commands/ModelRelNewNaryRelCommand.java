@@ -21,9 +21,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -91,9 +91,9 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID typeMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToExtend(typeMID, null, null);
-		String newModelRelTypeName = MIDDialogUtils.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
-		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model relationship type", null);
+		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToExtend(typeMID, null, null);
+		String newModelRelTypeName = MIDDialogs.getStringInput("Create new light model relationship type", "Insert new model relationship type name", null);
+		String[] constraint = MIDDialogs.getConstraintInput("Create new light model relationship type", null);
 		ModelRel newModelRelType = (ModelRel) modelRelType.createSubtype(newModelRelTypeName, false);
 		newModelRelType.addTypeConstraint(constraint[0], constraint[1]);
 		MMINT.createTypeHierarchy(typeMID);
@@ -104,7 +104,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MIDDialogUtils.selectModelRelTypeToCreate(null, null);
+		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToCreate(null, null);
 		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, instanceMID);
 
 		return newModelRel;
@@ -113,7 +113,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 	protected ModelRel doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID workflowMID = (MID) getElementToEdit();
-		ModelRel modelRelType = MIDDialogUtils.selectWorkflowModelRelTypeToCreate(null, null);
+		ModelRel modelRelType = MIDDialogs.selectWorkflowModelRelTypeToCreate(null, null);
 		String newModelRelId = MIDRegistry.getNextWorkflowID(workflowMID);
 		ModelRel newModelRel = (ModelRel) modelRelType.createWorkflowInstance(newModelRelId, workflowMID);
 

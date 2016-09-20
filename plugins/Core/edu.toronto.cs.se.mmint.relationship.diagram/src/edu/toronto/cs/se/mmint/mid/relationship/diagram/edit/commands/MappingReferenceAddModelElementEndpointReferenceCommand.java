@@ -24,12 +24,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -80,7 +80,7 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 	protected ModelElementEndpointReference doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelElementReference tgtModelElemTypeRef = getTarget();
-		String newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
+		String newModelElemTypeEndpointName = MIDDialogs.getStringInput("Create new light model element type endpoint", "Insert new model element type endpoint role", tgtModelElemTypeRef.getObject().getName());
 		ModelElementEndpoint modelElemTypeEndpoint = MIDTypeHierarchy.getOverriddenModelElementTypeEndpoint(getSource(), tgtModelElemTypeRef);
 		ModelElementEndpointReference newModelElemTypeEndpointRef = modelElemTypeEndpoint.createSubtypeAndReference(newModelElemTypeEndpointName, tgtModelElemTypeRef, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
@@ -90,7 +90,7 @@ public class MappingReferenceAddModelElementEndpointReferenceCommand extends Mod
 
 	protected ModelElementEndpointReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(getSource(), modelElemTypeEndpointUris);
 		ModelElementEndpointReference newModelElemEndpointRef = modelElemTypeEndpointRef.getObject().createInstanceAndReference(getTarget(), getSource());
 
 		return newModelElemEndpointRef;

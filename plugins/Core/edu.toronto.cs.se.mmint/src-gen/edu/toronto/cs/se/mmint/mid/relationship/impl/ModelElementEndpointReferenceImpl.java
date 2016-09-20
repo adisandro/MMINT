@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -340,8 +341,8 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 		deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container's container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
-			ModelElementEndpointReference modelElemSubtypeEndpointRef = MIDTypeHierarchy.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
+			ModelElementEndpointReference modelElemSubtypeEndpointRef = MIDRegistry.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
 			modelElemSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 		// delete references of the "thing" in subtypes of the container

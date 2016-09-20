@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -277,13 +278,13 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 		deleteTypeReference();
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(this, modelRelSubtype.getMappingRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(this, modelRelSubtype.getMappingRefs());
 			mappingSubtypeRef.deleteTypeReference();
 		}
 		// delete the subtypes of the "thing"
 		for (Mapping mappingSubtype : MIDTypeHierarchy.getDirectSubtypes(getObject(), typeMID)) {
 			ModelRel modelRelTypeOrSubtype = (ModelRel) mappingSubtype.eContainer();
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
 			mappingSubtypeRef.deleteTypeAndReference();
 		}
 	}

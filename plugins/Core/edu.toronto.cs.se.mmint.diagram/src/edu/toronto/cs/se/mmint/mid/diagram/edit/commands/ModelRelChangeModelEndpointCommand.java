@@ -22,10 +22,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -112,7 +112,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 	protected void doExecuteInstancesLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
 			getLink().deleteInstance(isFullDelete);
 			modelTypeEndpointRef.getObject().createInstance(model, modelRel);
@@ -124,7 +124,7 @@ public class ModelRelChangeModelEndpointCommand extends ModelEndpointReorientCom
 
 	protected void doExecuteWorkflowsLevel(ModelRel modelRel, Model model, boolean isFullDelete) throws MMINTException, MIDDialogCancellation {
 
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(modelRel, modelTypeEndpointUris, "");
 		if (isFullDelete) {
 			getLink().deleteWorkflowInstance();
 			modelTypeEndpointRef.getObject().createWorkflowInstance(model, modelRel);

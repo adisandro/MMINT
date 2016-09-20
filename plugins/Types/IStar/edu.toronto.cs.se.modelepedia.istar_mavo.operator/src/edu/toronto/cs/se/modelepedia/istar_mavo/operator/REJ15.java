@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
@@ -53,11 +53,11 @@ public class REJ15 extends FASE14 {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeAnalysisEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeRNFEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		modelConstraint = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
-		generateTargetsConcretization = MIDOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
-		timeAllSATEnabled = MIDOperatorUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		modelConstraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
+		generateTargetsConcretization = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
+		timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
 	}
 
 	@Override
@@ -242,12 +242,12 @@ public class REJ15 extends FASE14 {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorUtils.writePropertiesFile(
+		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			istarModel,
 			null,
-			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 		if (timeRNF != -1) {
 			writeRNF(istarModel);

@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -33,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelMerge extends OperatorImpl {
 
@@ -73,7 +73,7 @@ public class ModelRelMerge extends OperatorImpl {
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-			List<ModelEndpointReference> newModelEndpointRefs = MIDTypeHierarchy.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
+			List<ModelEndpointReference> newModelEndpointRefs = MIDRegistry.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
 			ModelEndpointReference newModelEndpointRef;
 			if (newModelEndpointRefs.isEmpty()) {
 				Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
@@ -84,7 +84,7 @@ public class ModelRelMerge extends OperatorImpl {
 			}
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-				ModelElementReference newModelElemRef = MIDTypeHierarchy.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
+				ModelElementReference newModelElemRef = MIDRegistry.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
 				if (newModelElemRef == null) {
 					EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
 					newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());

@@ -17,7 +17,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.library.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class NewOperatorTypeDialogFilter extends ViewerFilter {
 
