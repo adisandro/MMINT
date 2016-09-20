@@ -88,7 +88,7 @@ The Eclipse editor has to be registered through the org.eclipse.ui.editors and t
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="isDiagram" type="boolean" use="required">
+         <attribute name="isDiagram" type="boolean">
             <annotation>
                <documentation>
                   True if the editor is a GMF diagram.
