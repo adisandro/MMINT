@@ -72,7 +72,7 @@ public class ModelSlice extends OperatorImpl {
 		}
 		String id = null;
 		try {
-			id = (String) FileUtils.getModelObjFeature(sliceModelObj, idAttribute);
+			id = (String) FileUtils.getModelObjectFeature(sliceModelObj, idAttribute);
 		}
 		catch (MMINTException e) {
 			// ignore and continue
@@ -96,7 +96,7 @@ public class ModelSlice extends OperatorImpl {
 		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
 			String sliceId = null;
 			try {
-				sliceId = (String) FileUtils.getModelObjFeature(sliceModelObj, idAttribute);
+				sliceId = (String) FileUtils.getModelObjectFeature(sliceModelObj, idAttribute);
 			}
 			catch (Exception e) {
 				// ignore and continue

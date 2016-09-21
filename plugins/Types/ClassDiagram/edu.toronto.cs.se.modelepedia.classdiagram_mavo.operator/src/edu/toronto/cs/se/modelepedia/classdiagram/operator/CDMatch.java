@@ -44,9 +44,9 @@ public class CDMatch extends ModelMatch {
 			boolean associations = modelObjs.stream().allMatch(modelObj -> modelObj instanceof Association);
 			if (associations) {
 				Association association = (Association) modelObjs.iterator().next();
-				String srcAttr = (String) FileUtils.getModelObjFeature(association.getSource(), matchAttribute);
+				String srcAttr = (String) FileUtils.getModelObjectFeature(association.getSource(), matchAttribute);
 				Set<EObject> srcMatch = modelObjAttrs.get(srcAttr);
-				String tgtAttr = (String) FileUtils.getModelObjFeature(association.getTarget(), matchAttribute);
+				String tgtAttr = (String) FileUtils.getModelObjectFeature(association.getTarget(), matchAttribute);
 				Set<EObject> tgtMatch = modelObjAttrs.get(tgtAttr);
 				boolean endpointsCheck =
 					modelObjs.stream()

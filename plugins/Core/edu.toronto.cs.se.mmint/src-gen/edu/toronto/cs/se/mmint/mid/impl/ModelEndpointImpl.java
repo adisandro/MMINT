@@ -521,7 +521,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 
 		super.addBasicInstance(newModelEndpoint, null, this.getName(), containerOperator.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
-		FileUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
+		FileUtils.setModelObjectFeature(containerOperator, containerFeatureName, newModelEndpoint);
 	}
 
 	/**

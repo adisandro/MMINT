@@ -68,6 +68,134 @@ public class MIDRegistry {
 	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
 	public final static String ECORE_ROOT_FEATURE = "root";
 
+	/**
+	 * Gets an extendible element from a MID.
+	 * 
+	 * @param uri
+	 *            The uri of the element.
+	 * @param mid
+	 *            The MID that contains the element.
+	 * @return The element, null if the uri is not found or found not to be of
+	 *         the desired class of elements.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri, @NonNull MID mid) {
+
+		ExtendibleElement element = mid.getExtendibleTable().get(uri);
+		if (element == null) {
+			return null;
+		}
+
+		try {
+			return (T) element;
+		}
+		catch (ClassCastException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Gets a reference to an extendible element in a list of references to
+	 * extendible elements.
+	 * 
+	 * @param elementUri
+	 *            The uri of the extendible element.
+	 * @param elementRefs
+	 *            The list of references to extendible elements.
+	 * @return The reference to the extendible element, null if it can't be
+	 *         found.
+	 */
+	public static <T extends ExtendibleElementReference> T getReference(String elementUri, EList<T> elementRefs) {
+	
+		if (elementUri == null) {
+			return null;
+		}
+	
+		for (T elementRef : elementRefs) {
+			if (elementUri.equals(elementRef.getUri())) {
+				return elementRef;
+			}
+		}
+	
+		return null;
+	}
+
+	/**
+	 * Gets a reference to an extendible element in a list of references to
+	 * extendible elements.
+	 * 
+	 * @param correspondingElementRef
+	 *            The corresponding reference to extendible element, i.e. a
+	 *            reference to an extendible element with the same uri of the
+	 *            one to get.
+	 * @param elementRefs
+	 *            The list of references to extendible elements.
+	 * @return The reference to the extendible element, null if it can't be
+	 *         found.
+	 */
+	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
+	
+		if (correspondingElementRef == null) {
+			return null;
+		}
+	
+		return getReference(correspondingElementRef.getUri(), elementRefs);
+	}
+
+	/**
+	 * Gets the extendible element endpoints in a list of extendible element
+	 * endpoints.
+	 * 
+	 * @param targetUri
+	 *            The uri of the extendible element which is the target of the
+	 *            endpoint.
+	 * @param endpoints
+	 *            The list of extendible element endpoints.
+	 * @return The extendible element endpoints.
+	 */
+	public static <T extends ExtendibleElementEndpoint> List<T> getEndpoints(String targetUri, EList<T> endpoints) {
+	
+		if (targetUri == null) {
+			return null;
+		}
+
+		List<T> targetEndpoints = new ArrayList<T>();
+		for (T endpoint : endpoints) {
+			if (targetUri.equals(endpoint.getTargetUri())) {
+				targetEndpoints.add(endpoint);
+			}
+		}
+
+		return targetEndpoints;
+	}
+
+	/**
+	 * Gets the references to an extendible element endpoint in a list of
+	 * references to extendible element endpoints.
+	 * 
+	 * @param targetUri
+	 *            The uri of the extendible element which is the target of the
+	 *            endpoint.
+	 * @param endpointRefs
+	 *            The list of references to extendible element endpoints.
+	 * @return The references to the extendible element endpoints.
+	 */
+	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetUri, EList<T> endpointRefs) {
+
+		if (targetUri == null) {
+			return null;
+		}
+
+		List<T> targetEndpointRefs = new ArrayList<T>();
+		for (T endpointRef : endpointRefs) {
+			if (targetUri.equals(endpointRef.getTargetUri())) {
+				targetEndpointRefs.add(endpointRef);
+			}
+		}
+
+		return targetEndpointRefs;
+	}
+
 	public static void addEndpointCardinality(String uri, Map<String, Integer> cardinalityTable) {
 
 		Integer value = cardinalityTable.get(uri);
@@ -193,32 +321,6 @@ public class MIDRegistry {
 		return name;
 	}
 
-	/**
-	 * Gets an extendible element from a MID.
-	 * 
-	 * @param uri
-	 *            The uri of the element.
-	 * @param mid
-	 *            The MID that contains the element.
-	 * @return The element, null if the uri is not found or found not to be of
-	 *         the desired class of elements.
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri, @NonNull MID mid) {
-
-		ExtendibleElement element = mid.getExtendibleTable().get(uri);
-		if (element == null) {
-			return null;
-		}
-
-		try {
-			return (T) element;
-		}
-		catch (ClassCastException e) {
-			return null;
-		}
-	}
-
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
@@ -299,108 +401,6 @@ public class MIDRegistry {
 		String nextID = WORKFLOW_ID_PREFIX + (numID + 1);
 
 		return nextID;
-	}
-
-	/**
-	 * Gets a reference to an extendible element in a list of references to
-	 * extendible elements.
-	 * 
-	 * @param elementUri
-	 *            The uri of the extendible element.
-	 * @param elementRefs
-	 *            The list of references to extendible elements.
-	 * @return The reference to the extendible element, null if it can't be
-	 *         found.
-	 */
-	public static <T extends ExtendibleElementReference> T getReference(String elementUri, EList<T> elementRefs) {
-	
-		if (elementUri == null) {
-			return null;
-		}
-	
-		for (T elementRef : elementRefs) {
-			if (elementUri.equals(elementRef.getUri())) {
-				return elementRef;
-			}
-		}
-	
-		return null;
-	}
-
-	/**
-	 * Gets a reference to an extendible element in a list of references to
-	 * extendible elements.
-	 * 
-	 * @param correspondingElementRef
-	 *            The corresponding reference to extendible element, i.e. a
-	 *            reference to an extendible element with the same uri of the
-	 *            one to get.
-	 * @param elementRefs
-	 *            The list of references to extendible elements.
-	 * @return The reference to the extendible element, null if it can't be
-	 *         found.
-	 */
-	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
-	
-		if (correspondingElementRef == null) {
-			return null;
-		}
-	
-		return getReference(correspondingElementRef.getUri(), elementRefs);
-	}
-
-	/**
-	 * Gets the extendible element endpoints in a list of extendible element
-	 * endpoints.
-	 * 
-	 * @param targetUri
-	 *            The uri of the extendible element which is the target of the
-	 *            endpoint.
-	 * @param endpoints
-	 *            The list of extendible element endpoints.
-	 * @return The extendible element endpoints.
-	 */
-	public static <T extends ExtendibleElementEndpoint> List<T> getEndpoints(String targetUri, EList<T> endpoints) {
-	
-		if (targetUri == null) {
-			return null;
-		}
-
-		List<T> targetEndpoints = new ArrayList<T>();
-		for (T endpoint : endpoints) {
-			if (targetUri.equals(endpoint.getTargetUri())) {
-				targetEndpoints.add(endpoint);
-			}
-		}
-
-		return targetEndpoints;
-	}
-
-	/**
-	 * Gets the references to an extendible element endpoint in a list of
-	 * references to extendible element endpoints.
-	 * 
-	 * @param targetUri
-	 *            The uri of the extendible element which is the target of the
-	 *            endpoint.
-	 * @param endpointRefs
-	 *            The list of references to extendible element endpoints.
-	 * @return The references to the extendible element endpoints.
-	 */
-	public static <T extends ExtendibleElementEndpointReference> List<T> getEndpointReferences(String targetUri, EList<T> endpointRefs) {
-
-		if (targetUri == null) {
-			return null;
-		}
-
-		List<T> targetEndpointRefs = new ArrayList<T>();
-		for (T endpointRef : endpointRefs) {
-			if (targetUri.equals(endpointRef.getTargetUri())) {
-				targetEndpointRefs.add(endpointRef);
-			}
-		}
-
-		return targetEndpointRefs;
 	}
 
 }

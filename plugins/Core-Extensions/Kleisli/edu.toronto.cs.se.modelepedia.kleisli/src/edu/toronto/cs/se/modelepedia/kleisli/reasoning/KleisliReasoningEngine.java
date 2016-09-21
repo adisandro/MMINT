@@ -109,7 +109,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 					continue;
 				}
 				try {
-					FileUtils.setModelObjFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
+					FileUtils.setModelObjectFeature(modelObjReferrer, kModelElemTypeEInfo.getFeatureName(), kModelObj);
 				}
 				catch (MMINTException e) {
 					MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
@@ -130,7 +130,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			}
 			Object kModelObjAttr = oclReasoner.evaluateQuery(kModelObj, kQuery);
 			try {
-				FileUtils.setModelObjFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
+				FileUtils.setModelObjectFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);

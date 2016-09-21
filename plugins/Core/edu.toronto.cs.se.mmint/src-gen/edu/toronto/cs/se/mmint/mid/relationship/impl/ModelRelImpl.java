@@ -836,6 +836,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
+	public void deleteInstanceAndFile() throws MMINTException {
+
+		this.deleteInstance();
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public EObject getEMFInstanceRoot() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);

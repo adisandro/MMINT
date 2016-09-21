@@ -125,10 +125,10 @@ public class ModelMerge extends OperatorImpl {
 					modelElem2.getUri().substring(0, modelElem2.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
 					mergedModelObj);
 				try { // change merged attribute
-					Object modelObjAttr1 = FileUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
-					Object modelObjAttr2 = FileUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr1 = FileUtils.getModelObjectFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr2 = FileUtils.getModelObjectFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
 					if (!modelObjAttr1.equals(modelObjAttr2)) {
-						FileUtils.setModelObjFeature(
+						FileUtils.setModelObjectFeature(
 							mergedModelObj,
 							MERGED_MODELOBJECT_ATTRIBUTE,
 							modelObjAttr1 + MERGED_SEPARATOR + modelObjAttr2);
@@ -138,7 +138,7 @@ public class ModelMerge extends OperatorImpl {
 					// no attribute to be merged
 				}
 			}
-			FileUtils.setModelObjFeature(
+			FileUtils.setModelObjectFeature(
 				rootMergedModelObj,
 				modelObj1.eContainingFeature().getName(),
 				mergedModelObj);
@@ -172,7 +172,7 @@ public class ModelMerge extends OperatorImpl {
 			}
 			else {
 				mergedModelObj = EcoreUtil.copy(modelObj2);
-				FileUtils.setModelObjFeature(
+				FileUtils.setModelObjectFeature(
 					rootMergedModelObj,
 					modelObj2.eContainingFeature().getName(),
 					mergedModelObj);
@@ -205,7 +205,7 @@ public class ModelMerge extends OperatorImpl {
 				if (modelObjReference.isContainment()) {
 					continue;
 				}
-				Object modelObjReferenceValue = FileUtils.getModelObjFeature(modelObj, modelObjReference.getName());
+				Object modelObjReferenceValue = FileUtils.getModelObjectFeature(modelObj, modelObjReference.getName());
 				if (modelObjReferenceValue == null || modelObjReferenceValue instanceof EObjectWithInverseResolvingEList<?>) {
 					continue;
 				}
@@ -218,7 +218,7 @@ public class ModelMerge extends OperatorImpl {
 					modelObjValues.add((EObject) modelObjReferenceValue);
 				}
 				for (EObject modelObjValue : modelObjValues) {
-					FileUtils.setModelObjFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
+					FileUtils.setModelObjectFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
 				}
 			}
 		}

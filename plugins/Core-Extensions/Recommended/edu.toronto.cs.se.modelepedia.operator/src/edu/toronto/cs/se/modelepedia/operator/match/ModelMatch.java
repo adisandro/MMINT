@@ -84,7 +84,7 @@ public class ModelMatch extends OperatorImpl {
 
 		Object modelObjAttr;
 		try {
-			modelObjAttr = FileUtils.getModelObjFeature(modelObj, matchAttribute);
+			modelObjAttr = FileUtils.getModelObjectFeature(modelObj, matchAttribute);
 			if (modelObjAttr != null && modelObjAttr instanceof String) {
 				Set<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
 				if (modelObjs == null) {

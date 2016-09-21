@@ -138,19 +138,19 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 						if (tgtRefModelObj == null) {
 							continue;
 						}
-						FileUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
+						FileUtils.setModelObjectFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
 				}
 				else {
 					EObject srcRefModelObj = (EObject) value;
 					EObject tgtRefModelObj = tgtModelObjs.get(srcRefModelObj);
 					if (tgtRefModelObj != null) {
-						FileUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
+						FileUtils.setModelObjectFeature(tgtModelObj, tgtFeatureName, tgtRefModelObj);
 					}
 				}
 			}
 			else { // srcFeature instanceof EAttribute
-				FileUtils.setModelObjFeature(tgtModelObj, tgtFeatureName, value);
+				FileUtils.setModelObjectFeature(tgtModelObj, tgtFeatureName, value);
 				primitiveSrcModelObjs.add(new PrimitiveEObjectWrapper(srcModelObj, srcFeature, value));
 				primitiveTgtModelObjs.add(new PrimitiveEObjectWrapper(tgtModelObj, tgtFeature, value));
 			}

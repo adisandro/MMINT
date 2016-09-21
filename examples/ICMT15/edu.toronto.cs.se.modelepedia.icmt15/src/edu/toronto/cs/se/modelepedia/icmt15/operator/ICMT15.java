@@ -104,7 +104,7 @@ public class ICMT15 extends RandomOperatorImpl {
 		return
 			modelObj.eClass().getName() +
 			CSV_SEPARATOR +
-			FileUtils.getModelObjFeature(modelObj, idAttribute) +
+			FileUtils.getModelObjectFeature(modelObj, idAttribute) +
 			CSV_SEPARATOR;
 	}
 
@@ -152,10 +152,10 @@ public class ICMT15 extends RandomOperatorImpl {
 			EObject modelObjCopy = iter.next();
 			String id = null, newId = null;
 			try {
-				id = (String) FileUtils.getModelObjFeature(modelObjCopy, idAttribute);
+				id = (String) FileUtils.getModelObjectFeature(modelObjCopy, idAttribute);
 				if (id != null) {
 					newId = id + sliceIdSuffix;
-					FileUtils.setModelObjFeature(modelObjCopy, idAttribute, newId);
+					FileUtils.setModelObjectFeature(modelObjCopy, idAttribute, newId);
 				}
 			}
 			catch (MMINTException e) {
@@ -214,9 +214,9 @@ public class ICMT15 extends RandomOperatorImpl {
 			changeCopyIds(inputRootModelObjCopy, "_" + i);
 			for (EReference containmentFeature : inputRootModelObjCopy.eClass().getEAllContainments()) {
 				@SuppressWarnings("unchecked")
-				EList<EObject> inputModelObjsCopy = (EList<EObject>) FileUtils.getModelObjFeature(inputRootModelObjCopy, containmentFeature.getName());
+				EList<EObject> inputModelObjsCopy = (EList<EObject>) FileUtils.getModelObjectFeature(inputRootModelObjCopy, containmentFeature.getName());
 				@SuppressWarnings("unchecked")
-				EList<EObject> outputModelObjs = (EList<EObject>) FileUtils.getModelObjFeature(outputRootModelObj, containmentFeature.getName());
+				EList<EObject> outputModelObjs = (EList<EObject>) FileUtils.getModelObjectFeature(outputRootModelObj, containmentFeature.getName());
 				outputModelObjs.addAll(inputModelObjsCopy);
 			}
 		}

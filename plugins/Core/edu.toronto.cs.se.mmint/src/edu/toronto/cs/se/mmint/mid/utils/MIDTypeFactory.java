@@ -295,7 +295,7 @@ public class MIDTypeFactory {
 	public static void addModelTypeEndpoint(@NonNull ModelEndpoint newModelTypeEndpoint, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		addTypeEndpoint(newModelTypeEndpoint, targetModelType);
-		FileUtils.setModelObjFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
+		FileUtils.setModelObjectFeature(containerOperatorType, containerFeatureName, newModelTypeEndpoint);
 	}
 
 	/**
@@ -422,7 +422,7 @@ public class MIDTypeFactory {
 
 		constraintParam.setParameterRef(modelTypeEndpointRef);
 		constraintParam.setEndpointIndex(endpointIndex);
-		FileUtils.setModelObjFeature(constraintRule, ruleFeatureName, constraintParam);
+		FileUtils.setModelObjectFeature(constraintRule, ruleFeatureName, constraintParam);
 	}
 
 	public static void addOperatorTypeConstraintRule(OperatorConstraintRule constraintRule, OperatorConstraint constraint, ModelEndpoint modelRelTypeEndpoint) throws MMINTException {

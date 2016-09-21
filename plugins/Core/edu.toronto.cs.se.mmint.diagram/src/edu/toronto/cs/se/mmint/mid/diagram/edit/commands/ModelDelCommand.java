@@ -99,7 +99,13 @@ public class ModelDelCommand extends DestroyElementCommand {
 
 	protected void doExecuteInstancesLevel() throws MMINTException {
 
-		((Model) getElementToDestroy()).deleteInstance();
+		Model model = (Model) getElementToDestroy();
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINT.PREFERENCE_MENU_DELETEMODELFILE_ENABLED))) {
+			model.deleteInstanceAndFile();
+		}
+		else {
+			model.deleteInstance();
+		}
 	}
 
 	protected void doExecuteWorkflowsLevel() throws MMINTException {

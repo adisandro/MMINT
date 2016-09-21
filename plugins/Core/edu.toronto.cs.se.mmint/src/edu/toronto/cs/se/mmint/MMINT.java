@@ -125,25 +125,40 @@ public class MMINT implements MMINTConstants {
 	/** The type MID filename. */
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
-	/* TODO MMINT[IN PROGRESS branch mavo_out]
-	 * - Rethink mid link icons with/without MAVO
-	 * - Add createBinaryInstance/Subtype() to Mapping
+	/* TODO MMINT[IN PROGRESS WORKFLOW]
+	 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
+	 * - Add control flow operators: If and Loop
+	 * - Make Map work in a workflow
+	 * - Support conversions in workflows?
+	 * - Export an instance mid as workflow?
+	 * - Create scripting language
+	 */
+	/* TODO MMINT[IN PROGRESS OPERATOR] Unify operator type behavior with other types:
+	 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for root Model and ModelRel too)
+	 * - Add 2 model type endpoints for operators to Model with cardinality 0..n, and the corresponding operator api
+	 * - Add operator support in hierarchy tables and apis
+	 * - Review operator constraint heavy apis
+	 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
+	 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
+	 * - Rethink ConversionOperator to be a simple workflow
+	 * - Rewrite ExperimentDriver to be a workflow
+	 * - Review and rationalize MIDOper and MIDRel, introduce MIDWorkflow?
 	 */
 	/* TODO MMINT[USABILITY]
-	 * - Default deletion to remove model file as well
 	 * - Change uris into ids
 	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
 	 * - Similarly, there should be a ModelRelModelEndpoint and an OperatorModelEndpoint
 	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
-	 * - Use defaults in extension points as much as possible
+	 * - Use defaults and optionals in extension points as much as possible
 	 * - Move modelepedia types/operators into the examples directory together with papers + create appropriate features
-	 * - Transform various labels into toString() functions (also helps debug)
+	 * - Transform various labels into toString() functions (helps debug too)
 	 * - Turn updateMID into global option and use it directly into apis
 	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
-	 * - Review and unify all multimodel apis (e.g. add possibility to pass name)
-	 * - Review stuff done in megamodel operators and create more helper apis (e.g. createInstance() + createModelFile())
-	 * - Separate file apis from MIDUtils to MIDFileUtils
+	 * - Review and unify all mid apis (e.g. add possibility to pass name)
+	 * - Create apis to create model and file (createInstance() + createModelFile())
+	 * - Add createBinaryInstance/Subtype() to Mapping
+	 * - Rethink link icons in mids with/without MAVO (problem is they're detached from the label)
 	 * - Add documentation ->
 	 *   a) Prerequisite: review apis for mid construction and destruction
 	 *   b) Take every api function
@@ -152,15 +167,17 @@ public class MMINT implements MMINTConstants {
 	 *   e) Make a proper user guide online
 	 */
 	/* TODO MMINT[MATURITY]
+	 * - Use workflows to create test cases, and run tests at every commit
 	 * - Address todos
 	 * - Resource change listeners to track changes in model elements
-	 * - Operator workflows
 	 * - Formalize override semantics
 	 * - Formalize type introspection
+	 * - Unify libz3java if library load problems are fixed (z3java vs libz3java)
+	 * - Separate libz3java into own repo?
 	 * - Introduce intermediate level between model element and model element reference, contained in model endpoints
 	 * - Support standalone model rels (in their own file)
 	 * - Can operators detect input/output by code inspection rather than plugin.xml?
-	 * - Replace Pivot constraints and derivation in mid.ecore with java
+	 * - Replace ocl constraints with java in gmfmap
 	 * - Refactor functions in mid.ecore like getMetatype() using generics (and rename that to getType())
 	 * - ExtendibleElementReference.containedObject is completely useless
 	 */
@@ -951,6 +968,7 @@ public class MMINT implements MMINTConstants {
 		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		for (String languageId : languageReasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);

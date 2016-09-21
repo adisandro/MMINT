@@ -164,6 +164,9 @@ public class MIDTypeRegistry {
 	public static @Nullable Diagram getMIDDiagramType() {
 
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
+		if (midModelType == null) {
+			return null;
+		}
 
 		return MIDRegistry.getModelDiagram(midModelType);
 	}

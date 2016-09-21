@@ -125,25 +125,6 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
-		/* TODO MMINT[WORKFLOW]
-		 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
-		 * - Review operator constraint heavy apis
-		 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
-		 * - Add proper handling of endpoints through apis for operator subtypes
-		 * - Add conditional (If) operator
-		 * - Support conversions in workflows?
-		 */
-		/* TODO MMINT[OPERATOR] Unify operator type behavior with other types now that we can create dynamic subtypes:
-		 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
-		 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for all root types I'd say)
-		 * - Convert all ocl constraints in gmfmap to java
-		 * - Add 2 model type endpoints to Model with cardinality 0..n, and they need to be always overridden
-		 * - Review hierarchy tables and apis to support operators
-		 * - Rethink ConversionOperator to be a simple workflow
-		 * - Rewrite ExperimentDriver to be a workflow
-		 * - Review and rationalize MIDOper and MIDRel
-		 * - Try to unify libz3java if library load problems are fixed (z3java vs libz3java)
-		 */
 		MID workflowMID = (MID) getElementToEdit();
 		Model modelType = MIDDialogs.selectWorkflowModelTypeToCreate(workflowMID);
 		String newModelId = MIDRegistry.getNextWorkflowID(workflowMID);
