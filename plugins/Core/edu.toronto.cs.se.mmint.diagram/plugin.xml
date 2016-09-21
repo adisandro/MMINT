@@ -904,6 +904,15 @@ Contributors:
                id="org.eclipse.ui.commands.toggleState">
          </state>
       </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.DeleteModelFileEnabled"
+            name="Delete Model from File System Enabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
    </extension>
 
    <extension

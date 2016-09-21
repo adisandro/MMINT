@@ -860,7 +860,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
 		String javaFileName = this.getClass().getSimpleName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + "java";
 		Enumeration<URL> javaFiles = bundle.findEntries("/", javaFileName, true);
-		if (!javaFiles.hasMoreElements()) {
+		if (javaFiles == null || !javaFiles.hasMoreElements()) {
 			return;
 		}
 
