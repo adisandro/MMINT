@@ -34,6 +34,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -51,6 +52,7 @@ import org.eclipse.ui.ide.IDE;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 public class FileUtils {
 
@@ -412,11 +414,18 @@ public class FileUtils {
 				}
 			}
 			else {
-				java.net.URI fileUri = new File(filePath).toURI();
 				if (editorId != null) {
-					IDE.openEditor(activePage, fileUri, editorId, true);
+					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
+						URI emfFileUri = FileUtils.getEMFUri(filePath, false);
+						IDE.openEditor(activePage, new URIEditorInput(emfFileUri), editorId);
+					}
+					else {
+						java.net.URI fileUri = new File(filePath).toURI();
+						IDE.openEditor(activePage, fileUri, editorId, true);
+					}
 				}
 				else {
+					java.net.URI fileUri = new File(filePath).toURI();
 					IFileStore file = EFS.getStore(fileUri);
 					IDE.openEditorOnFileStore(activePage, file);
 				}

@@ -29,12 +29,12 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		String typeMIDUri = MMINT.TYPEMID_FILENAME + GMFUtils.DIAGRAM_SUFFIX;
-		if (!FileUtils.isFileInState(typeMIDUri)) {
+		String typeMIDPath = MMINT.TYPEMID_FILENAME + GMFUtils.DIAGRAM_SUFFIX;
+		if (!FileUtils.isFileInState(typeMIDPath)) {
 			createTypeMIDDiagram();
 		}
 		try {
-			FileUtils.openEclipseEditorInState(typeMIDUri, MIDDiagramEditor.ID);
+			FileUtils.openEclipseEditorInState(typeMIDPath, MIDDiagramEditor.ID);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error opening Type MID diagram", e);
@@ -45,10 +45,10 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 	public static void createTypeMIDDiagram() {
 
-		String typeMIDUri = FileUtils.prependStatePathToUri(MMINT.TYPEMID_FILENAME);
-		String typeMIDDiagramUri = typeMIDUri + GMFUtils.DIAGRAM_SUFFIX;
+		String typeMIDPath = FileUtils.prependStatePathToUri(MMINT.TYPEMID_FILENAME);
+		String typeMIDDiagramPath = typeMIDPath + GMFUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFUtils.createGMFDiagram(typeMIDUri, typeMIDDiagramUri, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
+			GMFUtils.createGMFDiagram(typeMIDPath, typeMIDDiagramPath, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);
