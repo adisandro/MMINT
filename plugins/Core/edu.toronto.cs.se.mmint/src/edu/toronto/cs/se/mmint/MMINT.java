@@ -704,7 +704,7 @@ public class MMINT implements MMINTConstants {
 			else if (dynamicType instanceof Model) {
 				newType = ((Model) type).createSubtype(
 					dynamicType.getName(),
-					(MIDTypeRegistry.getExtendedMetamodelUri((Model) dynamicType) != null)
+					(MIDTypeRegistry.getExtendedMetamodelPath((Model) dynamicType) != null)
 				);
 				newType.addTypeConstraint(dynamicType.getConstraint().getLanguage(), dynamicType.getConstraint().getImplementation());
 			}

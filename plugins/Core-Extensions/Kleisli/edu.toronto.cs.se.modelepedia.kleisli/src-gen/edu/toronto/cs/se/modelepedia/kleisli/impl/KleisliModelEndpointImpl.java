@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ui.PartInitException;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -262,12 +261,11 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
-					FileUtils.openEclipseEditor(
-						FileUtils.prependStatePathToUri(kModelType.getUri()),
-						ecoreEditorType.getId(),
-						false);
+					FileUtils.openEclipseEditorInState(
+						kModelType.getUri(),
+						ecoreEditorType.getId());
 				}
-				catch (PartInitException e) {
+				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);
 				}
 			}

@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.FileVisitResult;
@@ -24,12 +25,15 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -40,8 +44,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.IDE;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
@@ -392,23 +397,39 @@ public class FileUtils {
 		}
 	}
 
-	public static void openEclipseEditor(@NonNull URI fileUri, @NonNull String editorId) throws PartInitException {
+	public static void openEclipseEditor(@NonNull String filePath, @Nullable String editorId, boolean isWorkspaceRelative) throws MMINTException {
 
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-			new URIEditorInput(fileUri),
-			editorId
-		);
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		try {
+			if (isWorkspaceRelative) {
+				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
+					new org.eclipse.core.runtime.Path(filePath));
+				if (editorId != null) {
+					IDE.openEditor(activePage, file, editorId);
+				}
+				else {
+					IDE.openEditor(activePage, file);
+				}
+			}
+			else {
+				java.net.URI fileUri = new File(filePath).toURI();
+				if (editorId != null) {
+					IDE.openEditor(activePage, fileUri, editorId, true);
+				}
+				else {
+					IFileStore file = EFS.getStore(fileUri);
+					IDE.openEditorOnFileStore(activePage, file);
+				}
+			}
+		}
+		catch (CoreException e) {
+			throw new MMINTException("Error opening Eclipse editor", e);
+		}
 	}
 
-	public static void openEclipseEditor(@NonNull String fileUri, @NonNull String editorId, boolean isWorkspaceRelative) throws PartInitException {
+	public static void openEclipseEditorInState(@NonNull String filePath, @Nullable String editorId) throws MMINTException {
 
-		URI uri = FileUtils.getEMFUri(fileUri, isWorkspaceRelative);
-		FileUtils.openEclipseEditor(uri, editorId);
-	}
-
-	public static void openEclipseEditorInState(@NonNull String fileUri, @NonNull String editorId) throws PartInitException {
-
-		FileUtils.openEclipseEditor(prependStatePathToUri(fileUri), editorId, false);
+		FileUtils.openEclipseEditor(FileUtils.prependStatePathToUri(filePath), editorId, false);
 	}
 
 }

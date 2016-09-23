@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -363,6 +364,10 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 
 		MMINTException.mustBeType(this);
 
+		if (MIDTypeHierarchy.isRootType(this.getSupertype())) {
+			super.openType();
+			return;
+		}
 		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
 		FileUtils.openEclipseEditorInState(this.getMidUri() + GMFUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
 	}

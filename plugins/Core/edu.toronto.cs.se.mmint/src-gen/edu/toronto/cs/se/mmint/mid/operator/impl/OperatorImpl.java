@@ -34,7 +34,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -42,7 +41,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -865,10 +863,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		// open editor
-		URI javaFileUri = URI.createURI(FileLocator.toFileURL(javaFiles.nextElement()).toString());
-		FileUtils.openEclipseEditor(
-			javaFileUri,
-			PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(javaFileName).getId());
+		FileUtils.openEclipseEditor(FileLocator.toFileURL(javaFiles.nextElement()).getFile(), null, false);
 	}
 
 	/**

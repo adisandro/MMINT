@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ui.PartInitException;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -373,19 +372,19 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			}
 			String kModelTypeUriRelative = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri();
 			String kModelTypeUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative)) ?
-				FileUtils.prependStatePathToUri(kModelTypeUriRelative):
+				kModelTypeUriRelative:
 				null;
 			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
 				String kModelTypeDiagramUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX)) ?
-					FileUtils.prependStatePathToUri(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX):
+					kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX:
 					null;
 				String kUri = (kModelTypeDiagramUri == null) ? kModelTypeUri : kModelTypeDiagramUri;
 				//TODO MMINT[ECORE] Try to open ecore diagram
 				String editorId = (kModelTypeDiagramUri == null) ? ecoreEditorType.getId() : ecoreEditorType.getId();
 				try {
-					FileUtils.openEclipseEditor(kUri, editorId, false);
+					FileUtils.openEclipseEditorInState(kUri, editorId);
 				}
-				catch (PartInitException e) {
+				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);
 				}
 			}
@@ -416,7 +415,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDRegistry.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
 				String modelUri = kModelEndpoint.getTargetUri();
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
-				String extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(kModelTypeEndpoint.getTarget());
+				String extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(kModelTypeEndpoint.getTarget());
 				if (extendedMetamodelUri != null) { // xmi model file
 					String kModelUriTemp = kModelUri + "temp";
 					String deleteText =

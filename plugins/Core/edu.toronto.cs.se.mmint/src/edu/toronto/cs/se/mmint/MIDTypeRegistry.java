@@ -553,7 +553,7 @@ public class MIDTypeRegistry {
 	 * @return The uri of the metamodel extension if it exists, null if it
 	 *         doesn't exist or if the model type is not "light".
 	 */
-	public static String getExtendedMetamodelUri(Model modelType) {
+	public static String getExtendedMetamodelPath(Model modelType) {
 
 		if (!modelType.isDynamic()) {
 			return null;

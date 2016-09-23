@@ -25,6 +25,7 @@ Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.mid.util,
  edu.toronto.cs.se.mmint.mid.utils
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.filesystem,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit,

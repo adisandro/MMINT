@@ -11,16 +11,20 @@
  */
 package edu.toronto.cs.se.modelepedia.necsis13.operator;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.HashMap;
+import java.util.Map;
 
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 
 public class DummyUML2Java extends ConversionOperatorImpl {
 
-	public EList<Model> run(EList<Model> actualParameters) throws Exception {
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+			Map<String, MID> outputMIDsByName) throws Exception {
 
-		return actualParameters;
+		return new HashMap<>(inputsByName);
 	}
 
 }

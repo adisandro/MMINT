@@ -11,16 +11,12 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.menu;
 
-import java.io.File;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 
 import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
@@ -33,15 +29,12 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
-		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
-		String midDiagramUri = midModelUri + GMFUtils.DIAGRAM_SUFFIX;
-		File middiag = new File(midDiagramUri);
-		if (!middiag.exists()) {
+		String typeMIDUri = MMINT.TYPEMID_FILENAME + GMFUtils.DIAGRAM_SUFFIX;
+		if (!FileUtils.isFileInState(typeMIDUri)) {
 			createTypeMIDDiagram();
 		}
 		try {
-			FileUtils.openEclipseEditor(midDiagramUri, MIDDiagramEditor.ID, false);
+			FileUtils.openEclipseEditorInState(typeMIDUri, MIDDiagramEditor.ID);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error opening Type MID diagram", e);
@@ -52,11 +45,10 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 	public static void createTypeMIDDiagram() {
 
-		String pluginPath = MMINTActivator.getDefault().getStateLocation().toOSString();
-		String midModelUri = pluginPath + IPath.SEPARATOR + MMINT.TYPEMID_FILENAME;
-		String midDiagramUri = midModelUri + GMFUtils.DIAGRAM_SUFFIX;
+		String typeMIDUri = FileUtils.prependStatePathToUri(MMINT.TYPEMID_FILENAME);
+		String typeMIDDiagramUri = typeMIDUri + GMFUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFUtils.createGMFDiagram(midModelUri, midDiagramUri, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
+			GMFUtils.createGMFDiagram(typeMIDUri, typeMIDDiagramUri, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);

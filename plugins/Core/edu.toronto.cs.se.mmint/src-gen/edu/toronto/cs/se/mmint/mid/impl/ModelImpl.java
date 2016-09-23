@@ -25,7 +25,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -593,7 +592,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		if (isMetamodelExtension) {
 			try {
-				String newMetamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(newModelType);
+				String newMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(newModelType);
 				if (newMetamodelUri == null) { // create new metamodel file, else we're just recreating this subtype at startup
 					EPackage newEPackage = EcoreFactory.eINSTANCE.createEPackage();
 					newEPackage.setName(newModelTypeName.toLowerCase());
@@ -695,7 +694,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		}
 		super.delete();
 		typeMID.getModels().remove(this);
-		String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
+		String metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
 		if (metamodelUri != null) {
 			FileUtils.deleteFile(metamodelUri, false);
 		}
@@ -757,7 +756,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			rootModelTypeObj = EPackage.Registry.INSTANCE.getEPackage(getUri());
 		}
 		else {
-			String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(this);
+			String metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
 			if (metamodelUri != null) { // get package from metamodel file
 				try {
 					rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, false);
@@ -782,13 +781,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		Model modelType = this;
-		List<URI> metamodelUris = new ArrayList<>();
+		List<String> metamodelPaths = new ArrayList<>();
 		//TODO MMINT[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
 		while (true) {
 			if (modelType.isDynamic()) {
-				String metamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(modelType);
-				if (metamodelUri != null) { // get metamodel file from mmint state area
-					metamodelUris.add(URI.createFileURI(metamodelUri));
+				String metamodelPath = MIDTypeRegistry.getExtendedMetamodelPath(modelType);
+				if (metamodelPath != null) { // get metamodel file from mmint state area
+					metamodelPaths.add(metamodelPath);
 					break;
 				}
 			}
@@ -796,7 +795,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
 				Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
 				while (metamodels.hasMoreElements()) {
-					metamodelUris.add(URI.createURI(FileLocator.toFileURL(metamodels.nextElement()).toString()));
+					metamodelPaths.add(FileLocator.toFileURL(metamodels.nextElement()).getFile());
 				}
 				break;
 			}
@@ -807,10 +806,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		// open editors
 		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
-		for (URI metamodelUri : metamodelUris) {
-			FileUtils.openEclipseEditor(metamodelUri, ecoreEditorType.getId());
+		for (String metamodelPath : metamodelPaths) {
+			FileUtils.openEclipseEditor(metamodelPath, ecoreEditorType.getId(), false);
 			//TODO MMINT[ECORE] Try to open ecore diagram
-			//String metamodelDiagramUri = metamodelUri.toFileString() + GMFDiagramUtils.DIAGRAM_SUFFIX;
+			//String metamodelDiagramPath = metamodelPath + GMFDiagramUtils.DIAGRAM_SUFFIX;
 		}
 	}
 
