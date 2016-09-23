@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmint;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -38,7 +40,7 @@ public class MMINTException extends Exception {
 	 * @param e
 	 *            The exception or error.
 	 */
-	public static void print(int severity, String message, Throwable e) {
+	public static void print(int severity, @NonNull String message, @Nullable Throwable e) {
 
 		IStatus status = (e == null) ?
 			new Status(severity, MMINTActivator.PLUGIN_ID, message) :

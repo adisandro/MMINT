@@ -1095,6 +1095,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		for (Editor editor : this.getEditors()) {
 			FileUtils.deleteFile(editor.getUri(), true);
 		}
+		FileUtils.deleteFile(this.getUri(), true);
 		this.deleteInstance();
 	}
 

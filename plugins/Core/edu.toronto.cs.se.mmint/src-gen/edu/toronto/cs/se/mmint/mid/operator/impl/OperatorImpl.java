@@ -861,7 +861,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		String javaFileName = this.getClass().getSimpleName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + "java";
 		Enumeration<URL> javaFiles = bundle.findEntries("/", javaFileName, true);
 		if (javaFiles == null || !javaFiles.hasMoreElements()) {
-			return;
+			throw new MMINTException("Can't find operator " + javaFileName + " java file");
 		}
 
 		// open editor

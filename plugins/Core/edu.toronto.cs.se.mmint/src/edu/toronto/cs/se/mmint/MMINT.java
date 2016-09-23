@@ -138,7 +138,7 @@ public class MMINT implements MMINTConstants {
 	 * - Add 2 model type endpoints for operators to Model with cardinality 0..n, and the corresponding operator api
 	 * - Add operator support in hierarchy tables and apis
 	 * - Review operator constraint heavy apis
-	 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators
+	 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators, convert all operators to use them
 	 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
 	 * - Rethink ConversionOperator to be a simple workflow
 	 * - Rewrite ExperimentDriver to be a workflow

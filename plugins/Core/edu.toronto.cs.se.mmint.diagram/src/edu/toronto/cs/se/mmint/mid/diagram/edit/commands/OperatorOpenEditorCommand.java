@@ -20,6 +20,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
+
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -49,7 +51,11 @@ public class OperatorOpenEditorCommand extends AbstractTransactionalCommand {
 
 	protected void doExecuteTypesLevel(Operator operatorType) throws Exception {
 
-		operatorType.openType();
+		// only the operators in the type registry have their implementation attached
+		Operator operatorTypeImpl = MIDTypeRegistry.getType(operatorType.getUri());
+		if (operatorTypeImpl != null) {
+			operatorTypeImpl.openType();
+		}
 	}
 
 	protected void doExecuteInstancesLevel(Operator operator) throws Exception {

@@ -12,9 +12,13 @@
 package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -100,8 +104,15 @@ public class ModelDelCommand extends DestroyElementCommand {
 	protected void doExecuteInstancesLevel() throws MMINTException {
 
 		Model model = (Model) getElementToDestroy();
+		MID instanceMID = model.getMIDContainer();
 		if (Boolean.parseBoolean(MMINT.getPreference(MMINT.PREFERENCE_MENU_DELETEMODELFILE_ENABLED))) {
 			model.deleteInstanceAndFile();
+			try {
+				WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, null);
+			}
+			catch (CoreException e) {
+				MMINTException.print(Status.WARNING, "Can't refresh the project directory, deleted models will remain visible until a manual refresh is done", e);
+			}
 		}
 		else {
 			model.deleteInstance();
