@@ -30,6 +30,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -855,11 +856,19 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeType(this);
 
 		// get java source file from bundle
-		Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
 		String javaFileName = this.getClass().getSimpleName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + "java";
+		Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
+		if (bundle == null) {
+			throw new MMINTException("Can't find " + this.getName() + " bundle");
+		}
+		String srcBundleName = bundle.getSymbolicName() + ".source"; // look for sdk in a binary installation
+		Bundle srcBundle = Platform.getBundle(srcBundleName);
+		if (srcBundle != null) {
+			bundle = srcBundle;
+		}
 		Enumeration<URL> javaFiles = bundle.findEntries("/", javaFileName, true);
 		if (javaFiles == null || !javaFiles.hasMoreElements()) {
-			throw new MMINTException("Can't find operator " + javaFileName + " java file");
+			throw new MMINTException("Can't find the source java file for " + this.getName() + " (do you have the sdk installed?)");
 		}
 
 		// open editor
