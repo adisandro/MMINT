@@ -782,7 +782,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		Model modelType = this;
 		List<String> metamodelPaths = new ArrayList<>();
-		//TODO MMINT[EDITOR] fix a) references to inherited metamodels not good in runtime eclipse b) open UML
+		/*TODO MMINT[EDITOR] Fix:
+		 * a) references to inherited metamodels not good in binary eclipse
+		 * b) open UML
+		 * c) abstract model types (related to a, need to climb)
+		 */
 		while (true) {
 			if (modelType.isDynamic()) {
 				String metamodelPath = MIDTypeRegistry.getExtendedMetamodelPath(modelType);
@@ -794,8 +798,22 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			else { // get metamodel files from bundle
 				Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
 				Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
+				List<String> tempMetamodelPaths = new ArrayList<>();
+				String tempMetamodelPath = null;
 				while (metamodels.hasMoreElements()) {
-					metamodelPaths.add(FileLocator.toFileURL(metamodels.nextElement()).getFile());
+					String metamodelPath = FileLocator.toFileURL(metamodels.nextElement()).getFile();
+					// heuristic to open just one metamodel with many in the same bundle
+					if (FileUtils.getFileNameFromUri(metamodelPath).equalsIgnoreCase(modelType.getName())) {
+						tempMetamodelPath = metamodelPath;
+						break;
+					}
+					tempMetamodelPaths.add(metamodelPath);
+				}
+				if (tempMetamodelPath != null) {
+					metamodelPaths.add(tempMetamodelPath);
+				}
+				else {
+					metamodelPaths.addAll(tempMetamodelPaths);
 				}
 				break;
 			}

@@ -109,13 +109,13 @@ public class Map extends OperatorImpl {
 		return outputMIDModel;
 	}
 
-	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midrelModelType, MID instanceMID, java.util.Map<String, Set<Model>> midrelShortcutsByOutputName) throws Exception {
+	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midrelModelType, MID instanceMID, Set<Model> midrelShortcuts) throws Exception {
 
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
 		View gmfDiagramRoot = (View) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
-		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
+		for (Model midrelShortcut : midrelShortcuts) {
 			MIDDiagramUtils.createModelShortcut(midrelShortcut, gmfDiagramRoot);
 		}
 		FileUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
@@ -206,21 +206,24 @@ public class Map extends OperatorImpl {
 		List<Model> outputMIDModels = new ArrayList<>();
 		// pass 1: no midrels
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
-			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
+			String outputName = outputMIDByName.getKey();
+			MID outputMID = outputMIDByName.getValue();
+			boolean isMIDRel = midrelShortcutsByOutputName.get(outputName) != null;
 			if (isMIDRel) {
 				continue;
 			}
-			Model outputMIDModel = createOutputMIDModel(outputMIDByName.getKey(), outputMIDByName.getValue(), midModelType, instanceMID);
+			Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midModelType, instanceMID);
 			outputMIDModels.add(outputMIDModel);
 		}
 		// pass 2: midrels only
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
-			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
+			String outputName = outputMIDByName.getKey();
+			MID outputMID = outputMIDByName.getValue();
+			boolean isMIDRel = midrelShortcutsByOutputName.get(outputName) != null;
 			if (!isMIDRel) {
 				continue;
 			}
-			String outputName = outputMIDByName.getKey();
-			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMIDByName.getValue(), midrelModelType, instanceMID, midrelShortcutsByOutputName);
+			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMID, midrelModelType, instanceMID, midrelShortcutsByOutputName.get(outputName));
 			outputMIDModels.add(outputMIDModel);
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
 				String midrelMIDUri = MIDRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
@@ -233,7 +236,6 @@ public class Map extends OperatorImpl {
 				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
-		java.util.Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);
 		// create midoper
 //		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 //		if (operatorMID != null) {
@@ -295,7 +297,7 @@ public class Map extends OperatorImpl {
 //			MultiModelUtils.createModelFile(gmfDiagramRoot, operatorMIDModelDiagram.getUri(), true);
 //		}
 
-		return outputsByName;
+		return MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);
 	}
 
 	@Override
@@ -314,7 +316,7 @@ public class Map extends OperatorImpl {
 
 		// find all possible combinations of inputs for operatorType and execute them
 		Set<EList<OperatorInput>> operatorInputSet = mapperOperatorType.findAllowedInputs(inputMIDs);
-		java.util.Map<String, Model> outputsByName = map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMID);
+		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMID);
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {

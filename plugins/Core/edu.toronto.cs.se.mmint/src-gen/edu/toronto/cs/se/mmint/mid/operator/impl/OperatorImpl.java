@@ -11,9 +11,14 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -23,14 +28,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -856,23 +862,36 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeType(this);
 
 		// get java source file from bundle
-		String javaFileName = this.getClass().getSimpleName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + "java";
 		Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
 		if (bundle == null) {
 			throw new MMINTException("Can't find " + this.getName() + " bundle");
 		}
-		String srcBundleName = bundle.getSymbolicName() + ".source"; // look for sdk in a binary installation
-		Bundle srcBundle = Platform.getBundle(srcBundleName);
-		if (srcBundle != null) {
-			bundle = srcBundle;
+		String javaFileName = this.getClass().getSimpleName() + ".java";
+		String bundleFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+		String operatorImplPath;
+		if (bundleFilePath.endsWith("jar")) { // binary installation
+			int separator = bundleFilePath.lastIndexOf("_");
+			bundleFilePath = bundleFilePath.substring(0, separator) + ".source" + bundleFilePath.substring(separator);
+			if (!FileUtils.isFile(bundleFilePath, false)) {
+				throw new MMINTException("Can't find the source java file for " + this.getName() + " (did you install mmint.sdk?)");
+			}
+			JarFile bundleJar = new JarFile(new File(bundleFilePath));
+			ZipEntry bundleJarEntry = bundleJar.getEntry(this.getClass().getName().replace(".", File.separator) + ".java");
+			Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + "/" + javaFileName);
+			Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
+			operatorImplPath = tmpFilePath.toString();
+			bundleJar.close();
 		}
-		Enumeration<URL> javaFiles = bundle.findEntries("/", javaFileName, true);
-		if (javaFiles == null || !javaFiles.hasMoreElements()) {
-			throw new MMINTException("Can't find the source java file for " + this.getName() + " (do you have the sdk installed?)");
+		else { // running from the sources
+			Enumeration<URL> bundleEntries = bundle.findEntries("/", javaFileName, true);
+			if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
+				throw new MMINTException("Can't find the source java file for " + this.getName());
+			}
+			operatorImplPath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
 		}
 
 		// open editor
-		FileUtils.openEclipseEditor(FileLocator.toFileURL(javaFiles.nextElement()).getFile(), null, false);
+		FileUtils.openEclipseEditor(operatorImplPath, null, false);
 	}
 
 	/**

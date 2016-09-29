@@ -110,6 +110,7 @@ public class GMFUtils {
 
 	public static Node createGMFNode(EObject modelObj, View gmfContainer, String diagramPluginId) {
 
+		// works only if modelObj has been loaded from the file system
 		IElementType gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
 		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
 		Node gmfNode = ViewService.createNode(gmfContainer, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));

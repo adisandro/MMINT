@@ -65,7 +65,7 @@ public class OperatorOpenEditorCommand extends AbstractTransactionalCommand {
 
 	protected void doExecuteWorkflowsLevel(Operator operator) throws Exception {
 
-		operator.openInstance();
+		operator.openWorkflowInstance();
 	}
 
 	/**
