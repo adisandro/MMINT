@@ -29,30 +29,29 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassDia
 public class ClassSuperclassReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject referenceOwner;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
-	public ClassSuperclassReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	* @generated
+	*/
+	public ClassSuperclassReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -61,8 +60,8 @@ public class ClassSuperclassReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == referenceOwner instanceof Class) {
 			return false;
@@ -77,35 +76,35 @@ public class ClassSuperclassReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
 		}
-		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistClassSuperclass_4004(getNewSource(), getOldTarget());
+		return ClassDiagramBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistClassSuperclass_4004(getNewSource(), getOldTarget());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
 		}
-		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistClassSuperclass_4004(getOldSource(), getNewTarget());
+		return ClassDiagramBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistClassSuperclass_4004(getOldSource(), getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -117,8 +116,8 @@ public class ClassSuperclassReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getOldSource().setSuperclass(null);
 		getNewSource().setSuperclass(getOldTarget());
@@ -126,37 +125,37 @@ public class ClassSuperclassReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getOldSource().setSuperclass(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getOldSource() {
 		return (Class) referenceOwner;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getNewSource() {
 		return (Class) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getOldTarget() {
 		return (Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getNewTarget() {
 		return (Class) newEnd;
 	}

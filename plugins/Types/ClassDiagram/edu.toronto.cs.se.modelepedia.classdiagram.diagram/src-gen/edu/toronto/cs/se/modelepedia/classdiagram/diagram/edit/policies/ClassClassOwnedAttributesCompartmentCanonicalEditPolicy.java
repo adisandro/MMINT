@@ -1,6 +1,14 @@
 /*
- * 
- */
+* Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies;
 
 import java.util.ArrayList;
@@ -33,12 +41,11 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramVisua
 /**
  * @generated
  */
-public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
-		CanonicalEditPolicy {
+public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -49,21 +56,22 @@ public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected EStructuralFeature getFeatureToSynchronize() {
 		return ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings("rawtypes")
+
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<ClassDiagramNodeDescriptor> childDescriptors = ClassDiagramDiagramUpdater
-				.getClassClassOwnedAttributesCompartment_7001SemanticChildren(viewObject);
+			.getClassClassOwnedAttributesCompartment_7001SemanticChildren(viewObject);
 		for (ClassDiagramNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -71,33 +79,29 @@ public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
-	protected boolean isOrphaned(Collection<EObject> semanticChildren,
-			final View view) {
-		return isMyDiagramElement(view)
-				&& !semanticChildren.contains(view.getElement());
+	* @generated
+	*/
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
+		return isMyDiagramElement(view) && !semanticChildren.contains(view.getElement());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean isMyDiagramElement(View view) {
-		return AttributeEditPart.VISUAL_ID == ClassDiagramVisualIDRegistry
-				.getVisualID(view);
+		return AttributeEditPart.VISUAL_ID == ClassDiagramVisualIDRegistry.getVisualID(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshSemantic() {
 		if (resolveSemanticElement() == null) {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<ClassDiagramNodeDescriptor> childDescriptors = ClassDiagramDiagramUpdater
-				.getClassClassOwnedAttributesCompartment_7001SemanticChildren((View) getHost()
-						.getModel());
+			.getClassClassOwnedAttributesCompartment_7001SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -111,11 +115,10 @@ public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<ClassDiagramNodeDescriptor> descriptorsIterator = childDescriptors
-				.iterator(); descriptorsIterator.hasNext();) {
+		for (Iterator<ClassDiagramNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator
+			.hasNext();) {
 			ClassDiagramNodeDescriptor next = descriptorsIterator.next();
-			String hint = ClassDiagramVisualIDRegistry.getType(next
-					.getVisualID());
+			String hint = ClassDiagramVisualIDRegistry.getType(next.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			for (View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
@@ -139,15 +142,17 @@ public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
 		orphaned.addAll(knownViewChildren);
 		//
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
-				childDescriptors.size());
+			childDescriptors.size());
 		for (ClassDiagramNodeDescriptor next : childDescriptors) {
-			String hint = ClassDiagramVisualIDRegistry.getType(next
-					.getVisualID());
-			IAdaptable elementAdapter = new CanonicalElementAdapter(
-					next.getModelElement(), hint);
+			String hint = ClassDiagramVisualIDRegistry.getType(next.getVisualID());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
 			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
-					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
-					host().getDiagramPreferencesHint());
+				elementAdapter,
+				Node.class,
+				hint,
+				ViewUtil.APPEND,
+				false,
+				host().getDiagramPreferencesHint());
 			viewDescriptors.add(descriptor);
 		}
 
@@ -156,10 +161,10 @@ public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
 		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(host().getNotationView())).execute();
+			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
 			@SuppressWarnings("unchecked")
+
 			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
 			createdViews.addAll(nl);
 		}
@@ -168,8 +173,10 @@ public class ClassClassOwnedAttributesCompartmentCanonicalEditPolicy extends
 		}
 		if (createdViews.size() > 1) {
 			// perform a layout of the container
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-					.getEditingDomain(), createdViews, host());
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(
+				host().getEditingDomain(),
+				createdViews,
+				host());
 			executeCommand(new ICommandProxy(layoutCmd));
 		}
 

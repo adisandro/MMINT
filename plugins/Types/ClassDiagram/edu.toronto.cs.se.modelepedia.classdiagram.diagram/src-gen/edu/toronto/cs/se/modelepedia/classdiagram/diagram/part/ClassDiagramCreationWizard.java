@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.part;
 
@@ -23,153 +31,153 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 public class ClassDiagramCreationWizard extends Wizard implements INewWizard {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IWorkbench workbench;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IStructuredSelection selection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ClassDiagramCreationWizardPage diagramModelFilePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected ClassDiagramCreationWizardPage domainModelFilePage;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Resource diagram;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private boolean openNewlyCreatedDiagramEditor = true;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IWorkbench getWorkbench() {
 		return workbench;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IStructuredSelection getSelection() {
 		return selection;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final Resource getDiagram() {
 		return diagram;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public final boolean isOpenNewlyCreatedDiagramEditor() {
 		return openNewlyCreatedDiagramEditor;
 	}
 
 	/**
-	 * @generated
-	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	* @generated
+	*/
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(Messages.ClassDiagramCreationWizardTitle);
-		setDefaultPageImageDescriptor(ClassDiagramDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewClassDiagramWizard.gif")); //$NON-NLS-1$
+		setDefaultPageImageDescriptor(
+			ClassDiagramDiagramEditorPlugin.getBundledImageDescriptor("icons/wizban/NewClassDiagramWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void addPages() {
 		diagramModelFilePage = new ClassDiagramCreationWizardPage(
-				"DiagramModelFile", getSelection(), "classdiagramdiag"); //$NON-NLS-1$ //$NON-NLS-2$
-		diagramModelFilePage
-				.setTitle(Messages.ClassDiagramCreationWizard_DiagramModelFilePageTitle);
-		diagramModelFilePage
-				.setDescription(Messages.ClassDiagramCreationWizard_DiagramModelFilePageDescription);
+			"DiagramModelFile", //$NON-NLS-1$
+			getSelection(),
+			"classdiagramdiag"); //$NON-NLS-1$
+		diagramModelFilePage.setTitle(Messages.ClassDiagramCreationWizard_DiagramModelFilePageTitle);
+		diagramModelFilePage.setDescription(Messages.ClassDiagramCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new ClassDiagramCreationWizardPage(
-				"DomainModelFile", getSelection(), "classdiagram") { //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new ClassDiagramCreationWizardPage("DomainModelFile", getSelection(), "classdiagram") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length()
-							- ".classdiagramdiag".length()); //$NON-NLS-1$
-					setFileName(ClassDiagramDiagramEditorUtil
-							.getUniqueFileName(getContainerFullPath(),
-									fileName, "classdiagram")); //$NON-NLS-1$
+					fileName = fileName.substring(0, fileName.length() - ".classdiagramdiag".length()); //$NON-NLS-1$
+					setFileName(
+						ClassDiagramDiagramEditorUtil
+							.getUniqueFileName(getContainerFullPath(), fileName, "classdiagram")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}
 		};
-		domainModelFilePage
-				.setTitle(Messages.ClassDiagramCreationWizard_DomainModelFilePageTitle);
-		domainModelFilePage
-				.setDescription(Messages.ClassDiagramCreationWizard_DomainModelFilePageDescription);
+		domainModelFilePage.setTitle(Messages.ClassDiagramCreationWizard_DomainModelFilePageTitle);
+		domainModelFilePage.setDescription(Messages.ClassDiagramCreationWizard_DomainModelFilePageDescription);
 		addPage(domainModelFilePage);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = ClassDiagramDiagramEditorUtil.createDiagram(
-						diagramModelFilePage.getURI(),
-						domainModelFilePage.getURI(), monitor);
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = ClassDiagramDiagramEditorUtil
+					.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						ClassDiagramDiagramEditorUtil.openDiagram(diagram);
-					} catch (PartInitException e) {
-						ErrorDialog
-								.openError(
-										getContainer().getShell(),
-										Messages.ClassDiagramCreationWizardOpenEditorError,
-										null, e.getStatus());
+					}
+					catch (PartInitException e) {
+						ErrorDialog.openError(
+							getContainer().getShell(),
+							Messages.ClassDiagramCreationWizardOpenEditorError,
+							null,
+							e.getStatus());
 					}
 				}
 			}
 		};
 		try {
 			getContainer().run(false, true, op);
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			return false;
-		} catch (InvocationTargetException e) {
+		}
+		catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(),
-						Messages.ClassDiagramCreationWizardCreationError, null,
-						((CoreException) e.getTargetException()).getStatus());
-			} else {
-				ClassDiagramDiagramEditorPlugin.getInstance().logError(
-						"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				ErrorDialog.openError(
+					getContainer().getShell(),
+					Messages.ClassDiagramCreationWizardCreationError,
+					null,
+					((CoreException) e.getTargetException()).getStatus());
+			}
+			else {
+				ClassDiagramDiagramEditorPlugin
+					.getInstance()
+					.logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

@@ -9,10 +9,13 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.helpers;
+package edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.assistants;
+
+import edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagramModelingAssistantProvider;
 
 /**
  * @generated
  */
-public class ClassEditHelper extends ClassDiagramBaseEditHelper {
+public class ClassDiagramModelingAssistantProviderOfAttributeEditPart extends ClassDiagramModelingAssistantProvider {
+
 }

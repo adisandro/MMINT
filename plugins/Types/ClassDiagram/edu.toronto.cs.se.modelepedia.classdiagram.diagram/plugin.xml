@@ -288,14 +288,27 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagramModelingAssistantProvider">
+      <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.assistants.ClassDiagramModelingAssistantProviderOfClassDiagramEditPart">
          <Priority name="Lowest"/>
          <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassDiagramEditPart" id="ClassDiagram_1000"/>
-         <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart" id="Class_2001"/>
-         <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart" id="Attribute_3001"/>
-         <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationEditPart" id="Operation_3002"/>
-         <context elements="ClassDiagram_1000,Class_2001,Attribute_3001,Operation_3002"/>
+         <context elements="ClassDiagram_1000"/>
       </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.assistants.ClassDiagramModelingAssistantProviderOfClassEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassEditPart" id="Class_2001"/>
+         <context elements="Class_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.assistants.ClassDiagramModelingAssistantProviderOfAttributeEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.AttributeEditPart" id="Attribute_3001"/>
+         <context elements="Attribute_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.assistants.ClassDiagramModelingAssistantProviderOfOperationEditPart">
+         <Priority name="Lowest"/>
+         <object class="edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.OperationEditPart" id="Operation_3002"/>
+         <context elements="Operation_3002"/>
+      </modelingAssistantProvider>
+      
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">

@@ -19,11 +19,11 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#isPublic <em>Public</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getTypedElement()
  * @model abstract="true"

@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.commands;
 
@@ -22,23 +30,23 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassDia
 public class DependencyReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public DependencyReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -47,8 +55,8 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof Dependency) {
 			return false;
@@ -63,8 +71,8 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
@@ -74,14 +82,14 @@ public class DependencyReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ClassDiagram container = (ClassDiagram) getLink().eContainer();
-		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistDependency_4002(container, getLink(), getNewSource(),
-						target);
+		return ClassDiagramBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistDependency_4002(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
@@ -91,19 +99,17 @@ public class DependencyReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ClassDiagram container = (ClassDiagram) getLink().eContainer();
-		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistDependency_4002(container, getLink(), source,
-						getNewTarget());
+		return ClassDiagramBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistDependency_4002(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -115,52 +121,52 @@ public class DependencyReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setDependee(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setDepender(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Dependency getLink() {
 		return (Dependency) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getOldSource() {
 		return (Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getNewSource() {
 		return (Class) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getOldTarget() {
 		return (Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getNewTarget() {
 		return (Class) newEnd;
 	}

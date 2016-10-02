@@ -1,6 +1,14 @@
 /*
- * 
- */
+* Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.navigator;
 
 import java.util.ArrayList;
@@ -44,41 +52,39 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.Messages;
 /**
  * @generated
  */
-public class ClassDiagramNavigatorContentProvider implements
-		ICommonContentProvider {
+public class ClassDiagramNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static final Object[] EMPTY_ARRAY = new Object[0];
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Viewer myViewer;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private AdapterFactoryEditingDomain myEditingDomain;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Runnable myViewerRefreshRunnable;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public ClassDiagramNavigatorContentProvider() {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
 			public Object get(Object key) {
@@ -95,35 +101,33 @@ public class ClassDiagramNavigatorContentProvider implements
 				}
 			}
 		};
-		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain,
-				new WorkspaceSynchronizer.Delegate() {
-					public void dispose() {
-					}
+		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
+			public void dispose() {
+			}
 
-					public boolean handleResourceChanged(final Resource resource) {
-						unloadAllResources();
-						asyncRefresh();
-						return true;
-					}
+			public boolean handleResourceChanged(final Resource resource) {
+				unloadAllResources();
+				asyncRefresh();
+				return true;
+			}
 
-					public boolean handleResourceDeleted(Resource resource) {
-						unloadAllResources();
-						asyncRefresh();
-						return true;
-					}
+			public boolean handleResourceDeleted(Resource resource) {
+				unloadAllResources();
+				asyncRefresh();
+				return true;
+			}
 
-					public boolean handleResourceMoved(Resource resource,
-							final URI newURI) {
-						unloadAllResources();
-						asyncRefresh();
-						return true;
-					}
-				});
+			public boolean handleResourceMoved(Resource resource, final URI newURI) {
+				unloadAllResources();
+				asyncRefresh();
+				return true;
+			}
+		});
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -135,42 +139,40 @@ public class ClassDiagramNavigatorContentProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	void unloadAllResources() {
-		for (Resource nextResource : myEditingDomain.getResourceSet()
-				.getResources()) {
+		for (Resource nextResource : myEditingDomain.getResourceSet().getResources()) {
 			nextResource.unload();
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	void asyncRefresh() {
 		if (myViewer != null && !myViewer.getControl().isDisposed()) {
-			myViewer.getControl().getDisplay()
-					.asyncExec(myViewerRefreshRunnable);
+			myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void restoreState(IMemento aMemento) {
 	}
 
@@ -181,32 +183,28 @@ public class ClassDiagramNavigatorContentProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
-			URI fileURI = URI.createPlatformResourceURI(file.getFullPath()
-					.toString(), true);
-			Resource resource = myEditingDomain.getResourceSet().getResource(
-					fileURI, true);
+			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			ArrayList<ClassDiagramNavigatorItem> result = new ArrayList<ClassDiagramNavigatorItem>();
-			ArrayList<View> topViews = new ArrayList<View>(resource
-					.getContents().size());
+			ArrayList<View> topViews = new ArrayList<View>(resource.getContents().size());
 			for (EObject o : resource.getContents()) {
 				if (o instanceof View) {
 					topViews.add((View) o);
 				}
 			}
-			result.addAll(createNavigatorItems(
-					selectViewsByType(topViews, ClassDiagramEditPart.MODEL_ID),
-					file, false));
+			result
+				.addAll(createNavigatorItems(selectViewsByType(topViews, ClassDiagramEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -224,12 +222,11 @@ public class ClassDiagramNavigatorContentProvider implements
 		}
 
 		/*
-		 * Due to plugin.xml restrictions this code will be called only for views representing
-		 * shortcuts to this diagram elements created on other diagrams. 
-		 */
+		* Due to plugin.xml restrictions this code will be called only for views representing
+		* shortcuts to this diagram elements created on other diagrams. 
+		*/
 		if (parentElement instanceof IAdaptable) {
-			View view = (View) ((IAdaptable) parentElement)
-					.getAdapter(View.class);
+			View view = (View) ((IAdaptable) parentElement).getAdapter(View.class);
 			if (view != null) {
 				return getViewChildren(view, parentElement);
 			}
@@ -239,252 +236,240 @@ public class ClassDiagramNavigatorContentProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (ClassDiagramVisualIDRegistry.getVisualID(view)) {
 
-		case AssociationEditPart.VISUAL_ID: {
-			LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
-					Messages.NavigatorGroupName_Association_4001_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
-					Messages.NavigatorGroupName_Association_4001_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ClassEditPart.VISUAL_ID: {
-			LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			ClassDiagramNavigatorGroup incominglinks = new ClassDiagramNavigatorGroup(
-					Messages.NavigatorGroupName_Class_2001_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ClassDiagramNavigatorGroup outgoinglinks = new ClassDiagramNavigatorGroup(
-					Messages.NavigatorGroupName_Class_2001_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassClassOwnedAttributesCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ClassDiagramVisualIDRegistry
-							.getType(AttributeEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassClassOwnedOperationsCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					ClassDiagramVisualIDRegistry
-							.getType(OperationEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(AssociationEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(AssociationEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(DependencyEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(DependencyEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassNestedInEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassNestedInEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassSuperclassEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassSuperclassEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
-		case ClassNestedInEditPart.VISUAL_ID: {
-			LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
-					Messages.NavigatorGroupName_ClassNestedIn_4003_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
-					Messages.NavigatorGroupName_ClassNestedIn_4003_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
-			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
-
-		case ClassDiagramEditPart.VISUAL_ID: {
-			LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
-			result.addAll(getForeignShortcuts((Diagram) view, parentElement));
-			Diagram sv = (Diagram) view;
-			ClassDiagramNavigatorGroup links = new ClassDiagramNavigatorGroup(
+			case ClassDiagramEditPart.VISUAL_ID: {
+				LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
+				result.addAll(getForeignShortcuts((Diagram) view, parentElement));
+				Diagram sv = (Diagram) view;
+				ClassDiagramNavigatorGroup links = new ClassDiagramNavigatorGroup(
 					Messages.NavigatorGroupName_ClassDiagram_1000_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(AssociationEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(DependencyEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassNestedInEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			connectedViews = getDiagramLinksByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassSuperclassEditPart.VISUAL_ID));
-			links.addChildren(createNavigatorItems(connectedViews, links, false));
-			if (!links.isEmpty()) {
-				result.add(links);
+					"icons/linksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				Collection<View> connectedViews;
+				connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+				connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(AssociationEditPart.VISUAL_ID));
+				links.addChildren(createNavigatorItems(connectedViews, links, false));
+				connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
+				links.addChildren(createNavigatorItems(connectedViews, links, false));
+				connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassNestedInEditPart.VISUAL_ID));
+				links.addChildren(createNavigatorItems(connectedViews, links, false));
+				connectedViews = getDiagramLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassSuperclassEditPart.VISUAL_ID));
+				links.addChildren(createNavigatorItems(connectedViews, links, false));
+				if (!links.isEmpty()) {
+					result.add(links);
+				}
+				return result.toArray();
 			}
-			return result.toArray();
-		}
 
-		case DependencyEditPart.VISUAL_ID: {
-			LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
+			case ClassEditPart.VISUAL_ID: {
+				LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
+				Node sv = (Node) view;
+				ClassDiagramNavigatorGroup incominglinks = new ClassDiagramNavigatorGroup(
+					Messages.NavigatorGroupName_Class_2001_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				ClassDiagramNavigatorGroup outgoinglinks = new ClassDiagramNavigatorGroup(
+					Messages.NavigatorGroupName_Class_2001_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				Collection<View> connectedViews;
+				connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassClassOwnedAttributesCompartmentEditPart.VISUAL_ID));
+				connectedViews = getChildrenByType(
+					connectedViews,
+					ClassDiagramVisualIDRegistry.getType(AttributeEditPart.VISUAL_ID));
+				result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+				connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassClassOwnedOperationsCompartmentEditPart.VISUAL_ID));
+				connectedViews = getChildrenByType(
+					connectedViews,
+					ClassDiagramVisualIDRegistry.getType(OperationEditPart.VISUAL_ID));
+				result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+				connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(AssociationEditPart.VISUAL_ID));
+				incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+				connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(AssociationEditPart.VISUAL_ID));
+				outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+				connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
+				incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+				connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
+				outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+				connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassNestedInEditPart.VISUAL_ID));
+				incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+				connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassNestedInEditPart.VISUAL_ID));
+				outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+				connectedViews = getIncomingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassSuperclassEditPart.VISUAL_ID));
+				incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+				connectedViews = getOutgoingLinksByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassSuperclassEditPart.VISUAL_ID));
+				outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+				if (!incominglinks.isEmpty()) {
+					result.add(incominglinks);
+				}
+				if (!outgoinglinks.isEmpty()) {
+					result.add(outgoinglinks);
+				}
+				return result.toArray();
+			}
+
+			case AssociationEditPart.VISUAL_ID: {
+				LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
+				Edge sv = (Edge) view;
+				ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
+					Messages.NavigatorGroupName_Association_4001_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
+					Messages.NavigatorGroupName_Association_4001_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				Collection<View> connectedViews;
+				connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				target.addChildren(createNavigatorItems(connectedViews, target, true));
+				connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				source.addChildren(createNavigatorItems(connectedViews, source, true));
+				if (!target.isEmpty()) {
+					result.add(target);
+				}
+				if (!source.isEmpty()) {
+					result.add(source);
+				}
+				return result.toArray();
+			}
+
+			case DependencyEditPart.VISUAL_ID: {
+				LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
+				Edge sv = (Edge) view;
+				ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
 					Messages.NavigatorGroupName_Dependency_4002_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
 					Messages.NavigatorGroupName_Dependency_4002_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				Collection<View> connectedViews;
+				connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				target.addChildren(createNavigatorItems(connectedViews, target, true));
+				connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				source.addChildren(createNavigatorItems(connectedViews, source, true));
+				if (!target.isEmpty()) {
+					result.add(target);
+				}
+				if (!source.isEmpty()) {
+					result.add(source);
+				}
+				return result.toArray();
 			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
 
-		case ClassSuperclassEditPart.VISUAL_ID: {
-			LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
-			Edge sv = (Edge) view;
-			ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
+			case ClassNestedInEditPart.VISUAL_ID: {
+				LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
+				Edge sv = (Edge) view;
+				ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
+					Messages.NavigatorGroupName_ClassNestedIn_4003_target,
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
+					Messages.NavigatorGroupName_ClassNestedIn_4003_source,
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				Collection<View> connectedViews;
+				connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				target.addChildren(createNavigatorItems(connectedViews, target, true));
+				connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				source.addChildren(createNavigatorItems(connectedViews, source, true));
+				if (!target.isEmpty()) {
+					result.add(target);
+				}
+				if (!source.isEmpty()) {
+					result.add(source);
+				}
+				return result.toArray();
+			}
+
+			case ClassSuperclassEditPart.VISUAL_ID: {
+				LinkedList<ClassDiagramAbstractNavigatorItem> result = new LinkedList<ClassDiagramAbstractNavigatorItem>();
+				Edge sv = (Edge) view;
+				ClassDiagramNavigatorGroup target = new ClassDiagramNavigatorGroup(
 					Messages.NavigatorGroupName_ClassSuperclass_4004_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
+					"icons/linkTargetNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				ClassDiagramNavigatorGroup source = new ClassDiagramNavigatorGroup(
 					Messages.NavigatorGroupName_ClassSuperclass_4004_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getLinksTargetByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(Collections.singleton(sv),
-					ClassDiagramVisualIDRegistry
-							.getType(ClassEditPart.VISUAL_ID));
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
-			if (!target.isEmpty()) {
-				result.add(target);
+					"icons/linkSourceNavigatorGroup.gif", //$NON-NLS-1$
+					parentElement);
+				Collection<View> connectedViews;
+				connectedViews = getLinksTargetByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				target.addChildren(createNavigatorItems(connectedViews, target, true));
+				connectedViews = getLinksSourceByType(
+					Collections.singleton(sv),
+					ClassDiagramVisualIDRegistry.getType(ClassEditPart.VISUAL_ID));
+				source.addChildren(createNavigatorItems(connectedViews, source, true));
+				if (!target.isEmpty()) {
+					result.add(target);
+				}
+				if (!source.isEmpty()) {
+					result.add(source);
+				}
+				return result.toArray();
 			}
-			if (!source.isEmpty()) {
-				result.add(source);
-			}
-			return result.toArray();
-		}
 		}
 		return EMPTY_ARRAY;
 	}
 
 	/**
-	 * @generated
-	 */
-	private Collection<View> getLinksSourceByType(Collection<Edge> edges,
-			String type) {
+	* @generated
+	*/
+	private Collection<View> getLinksSourceByType(Collection<Edge> edges, String type) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (Edge nextEdge : edges) {
 			View nextEdgeSource = nextEdge.getSource();
-			if (type.equals(nextEdgeSource.getType())
-					&& isOwnView(nextEdgeSource)) {
+			if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
 				result.add(nextEdgeSource);
 			}
 		}
@@ -494,13 +479,11 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<View> getLinksTargetByType(Collection<Edge> edges,
-			String type) {
+	private Collection<View> getLinksTargetByType(Collection<Edge> edges, String type) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (Edge nextEdge : edges) {
 			View nextEdgeTarget = nextEdge.getTarget();
-			if (type.equals(nextEdgeTarget.getType())
-					&& isOwnView(nextEdgeTarget)) {
+			if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
 				result.add(nextEdgeTarget);
 			}
 		}
@@ -510,8 +493,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<View> getOutgoingLinksByType(
-			Collection<? extends View> nodes, String type) {
+	private Collection<View> getOutgoingLinksByType(Collection<? extends View> nodes, String type) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (View nextNode : nodes) {
 			result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
@@ -522,8 +504,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<View> getIncomingLinksByType(
-			Collection<? extends View> nodes, String type) {
+	private Collection<View> getIncomingLinksByType(Collection<? extends View> nodes, String type) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (View nextNode : nodes) {
 			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
@@ -534,8 +515,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<View> getChildrenByType(
-			Collection<? extends View> nodes, String type) {
+	private Collection<View> getChildrenByType(Collection<? extends View> nodes, String type) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (View nextNode : nodes) {
 			result.addAll(selectViewsByType(nextNode.getChildren(), type));
@@ -546,8 +526,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<View> getDiagramLinksByType(
-			Collection<Diagram> diagrams, String type) {
+	private Collection<View> getDiagramLinksByType(Collection<Diagram> diagrams, String type) {
 		ArrayList<View> result = new ArrayList<View>();
 		for (Diagram nextDiagram : diagrams) {
 			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
@@ -559,8 +538,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<View> selectViewsByType(Collection<View> views,
-			String type) {
+	private Collection<View> selectViewsByType(Collection<View> views, String type) {
 		ArrayList<View> result = new ArrayList<View>();
 		for (View nextView : views) {
 			if (type.equals(nextView.getType()) && isOwnView(nextView)) {
@@ -574,8 +552,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return ClassDiagramEditPart.MODEL_ID
-				.equals(ClassDiagramVisualIDRegistry.getModelID(view));
+		return ClassDiagramEditPart.MODEL_ID.equals(ClassDiagramVisualIDRegistry.getModelID(view));
 	}
 
 	/**
@@ -583,8 +560,7 @@ public class ClassDiagramNavigatorContentProvider implements
 	 */
 	private Collection<ClassDiagramNavigatorItem> createNavigatorItems(
 			Collection<View> views, Object parent, boolean isLeafs) {
-		ArrayList<ClassDiagramNavigatorItem> result = new ArrayList<ClassDiagramNavigatorItem>(
-				views.size());
+		ArrayList<ClassDiagramNavigatorItem> result = new ArrayList<ClassDiagramNavigatorItem>(views.size());
 		for (View nextView : views) {
 			result.add(new ClassDiagramNavigatorItem(nextView, parent, isLeafs));
 		}
@@ -594,13 +570,11 @@ public class ClassDiagramNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	private Collection<ClassDiagramNavigatorItem> getForeignShortcuts(
-			Diagram diagram, Object parent) {
+	private Collection<ClassDiagramNavigatorItem> getForeignShortcuts(Diagram diagram, Object parent) {
 		LinkedList<View> result = new LinkedList<View>();
 		for (Iterator<View> it = diagram.getChildren().iterator(); it.hasNext();) {
 			View nextView = it.next();
-			if (!isOwnView(nextView)
-					&& nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
+			if (!isOwnView(nextView) && nextView.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 				result.add(nextView);
 			}
 		}
@@ -608,8 +582,8 @@ public class ClassDiagramNavigatorContentProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Object getParent(Object element) {
 		if (element instanceof ClassDiagramAbstractNavigatorItem) {
 			ClassDiagramAbstractNavigatorItem abstractNavigatorItem = (ClassDiagramAbstractNavigatorItem) element;
@@ -619,8 +593,8 @@ public class ClassDiagramNavigatorContentProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}
