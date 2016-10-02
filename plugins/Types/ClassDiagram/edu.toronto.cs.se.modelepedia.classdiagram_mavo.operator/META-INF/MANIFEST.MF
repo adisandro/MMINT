@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator;singleton:=true
-Bundle-Version: 2.1.0
+Bundle-Version: 2.1.99.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.m2m.atl.engine.emfvm,
