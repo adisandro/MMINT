@@ -30,6 +30,10 @@
       <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel"/>
       <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/getExtendibleElement">
+        <genParameters ecoreParameter="mid.ecore#//MID/getExtendibleElement/uri"/>
+        <genTypeParameters ecoreTypeParameter="mid.ecore#//MID/getExtendibleElement/T"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//MID/getModelRels"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">

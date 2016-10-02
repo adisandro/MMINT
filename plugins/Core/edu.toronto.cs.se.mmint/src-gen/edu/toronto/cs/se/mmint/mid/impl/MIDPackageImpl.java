@@ -315,8 +315,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMID__GetModelRels() {
+	public EOperation getMID__GetExtendibleElement__String() {
 		return midEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMID__GetModelRels() {
+		return midEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -1328,6 +1337,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(midEClass, MID___IS_TYPES_LEVEL);
 		createEOperation(midEClass, MID___IS_INSTANCES_LEVEL);
 		createEOperation(midEClass, MID___IS_WORKFLOWS_LEVEL);
+		createEOperation(midEClass, MID___GET_EXTENDIBLE_ELEMENT__STRING);
 		createEOperation(midEClass, MID___GET_MODEL_RELS);
 
 		eStringToExtendibleElementMapEClass = createEClass(ESTRING_TO_EXTENDIBLE_ELEMENT_MAP);
@@ -1510,6 +1520,14 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEOperation(getMID__IsWorkflowsLevel(), ecorePackage.getEBoolean(), "isWorkflowsLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = initEOperation(getMID__GetExtendibleElement__String(), null, "getExtendibleElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		ETypeParameter t1 = addETypeParameter(op, "T");
+		EGenericType g1 = createEGenericType(this.getExtendibleElement());
+		t1.getEBounds().add(g1);
+		addEParameter(op, ecorePackage.getEString(), "uri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(t1);
+		initEOperation(op, g1);
+
 		initEOperation(getMID__GetModelRels(), theRelationshipPackage.getModelRel(), "getModelRels", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eStringToExtendibleElementMapEClass, Map.Entry.class, "EStringToExtendibleElementMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -1529,7 +1547,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
 		initEOperation(getExtendibleElement__GetMIDContainer(), this.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getExtendibleElement__IsLevel__MIDLevel(), ecorePackage.getEBoolean(), "isLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getExtendibleElement__IsLevel__MIDLevel(), ecorePackage.getEBoolean(), "isLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getMIDLevel(), "midLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getExtendibleElement__IsTypesLevel(), ecorePackage.getEBoolean(), "isTypesLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -1546,8 +1564,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		initEOperation(getExtendibleElement__IsInstancesLevel(), ecorePackage.getEBoolean(), "isInstancesLevel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getExtendibleElement__GetRuntimeTypes(), null, "getRuntimeTypes", 0, -1, IS_UNIQUE, IS_ORDERED);
-		ETypeParameter t1 = addETypeParameter(op, "T");
-		EGenericType g1 = createEGenericType(this.getExtendibleElement());
+		t1 = addETypeParameter(op, "T");
+		g1 = createEGenericType(this.getExtendibleElement());
 		t1.getEBounds().add(g1);
 		addEException(op, this.getMMINTException());
 		g1 = createEGenericType(t1);

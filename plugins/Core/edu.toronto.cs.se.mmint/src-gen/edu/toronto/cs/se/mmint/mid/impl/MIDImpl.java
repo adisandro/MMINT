@@ -41,6 +41,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <!-- begin-user-doc -->
@@ -236,6 +238,25 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri) {
+
+		ExtendibleElement element = this.getExtendibleTable().get(uri);
+		if (element == null) {
+			return null;
+		}
+
+		try {
+			return (T) element;
+		}
+		catch (ClassCastException e) {
+			return null;
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -387,6 +408,8 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 				return isInstancesLevel();
 			case MIDPackage.MID___IS_WORKFLOWS_LEVEL:
 				return isWorkflowsLevel();
+			case MIDPackage.MID___GET_EXTENDIBLE_ELEMENT__STRING:
+				return getExtendibleElement((String)arguments.get(0));
 			case MIDPackage.MID___GET_MODEL_RELS:
 				return getModelRels();
 		}

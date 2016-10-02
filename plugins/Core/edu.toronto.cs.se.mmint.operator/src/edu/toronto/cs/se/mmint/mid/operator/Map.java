@@ -96,14 +96,14 @@ public class Map extends OperatorImpl {
 
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
 
-		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		String outputMIDUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
+		String baseOutputPath = MIDRegistry.getModelUri(instanceMID);
+		String outputMIDPath = FileUtils.getUniqueUri(
+			FileUtils.replaceFileNameInUri(baseOutputPath, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
-		FileUtils.writeModelFile(outputMID, outputMIDUri, true);
+		FileUtils.writeModelFile(outputMID, outputMIDPath, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
-			outputMIDUri,
+			outputMIDPath,
 			instanceMID);
 
 		return outputMIDModel;
@@ -227,7 +227,7 @@ public class Map extends OperatorImpl {
 			outputMIDModels.add(outputMIDModel);
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
 				String midrelMIDUri = MIDRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
-				Model midrelMIDModel = MIDRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
+				Model midrelMIDModel = instanceMID.getExtendibleElement(midrelMIDUri);
 				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 					null,
 					outputMIDModel,
@@ -236,6 +236,7 @@ public class Map extends OperatorImpl {
 				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
+		//TODO MMINT[OPERATOR] MIDOper's destiny? 
 		// create midoper
 //		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 //		if (operatorMID != null) {

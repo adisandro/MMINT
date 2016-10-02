@@ -166,6 +166,18 @@ public interface MID extends EObject {
 	boolean isWorkflowsLevel();
 
 	/**
+	 * <!-- begin-user-doc --> Gets an extendible element from this MID.
+	 * 
+	 * @param uri
+	 *            The uri of the element.
+	 * @return The element, null if the uri is not found or found not to be of the desired class of elements.
+	 * <!-- end-user-doc -->
+	 * @model uriRequired="true"
+	 * @generated
+	 */
+	<T extends ExtendibleElement> T getExtendibleElement(String uri);
+
+	/**
 	 * <!-- begin-user-doc -->Gets the model rels contained in this MID.
 	 * 
 	 * @return The model rels contained in this MID. <!-- end-user-doc -->

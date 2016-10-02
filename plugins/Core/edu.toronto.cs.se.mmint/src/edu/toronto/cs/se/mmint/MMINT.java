@@ -132,7 +132,8 @@ public class MMINT implements MMINTConstants {
 	 * - Support conversions in workflows?
 	 * - Export an instance mid as workflow?
 	 * - Create scripting language
-	 * - Make Map work in workflow: it assumes all outputs are in the same mid (fix map first: create outputMIDs and diagrams earlier with api like workflow) + release 2.2.0
+	 * - Make Map work in workflow: it assumes all outputs are in the same mid + an output mid always exists
+	 *   (fix map first: create outputMIDs and diagrams earlier with api like workflow) + release 2.2.0
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Unify operator type behavior with other types:
 	 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for root Model and ModelRel too)

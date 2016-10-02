@@ -43,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * Utilities to deal with the hierarchy of types.
@@ -537,7 +536,7 @@ public class MIDTypeHierarchy {
 		}
 
 		for (String subtypeUri : subtypeTable.get(type.getUri())) {
-			T subtype = MIDRegistry.getExtendibleElement(subtypeUri, typeMID);
+			T subtype = typeMID.getExtendibleElement(subtypeUri);
 			if (subtype != null) {
 				subtypes.add(subtype);
 			}
@@ -563,7 +562,7 @@ public class MIDTypeHierarchy {
 		}
 
 		for (String subtypeUri : subtypeTable.get(type.getUri())) {
-			T subtype = MIDRegistry.getExtendibleElement(subtypeUri, typeMID);
+			T subtype = typeMID.getExtendibleElement(subtypeUri);
 			if (subtype != null && subtype.getSupertype() == type) {
 				subtypes.add(subtype);
 			}
@@ -728,7 +727,7 @@ public class MIDTypeHierarchy {
 			modelRelType = (ModelRel) modelRelType.getSupertype();
 		}
 
-		return MIDRegistry.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI, typeMID);
+		return typeMID.getExtendibleElement(MMINT.ROOT_MODELENDPOINT_URI);
 	}
 
 	public static ModelElementEndpoint getOverriddenModelElementTypeEndpoint(MappingReference mappingTypeRef, ModelElementReference targetModelElemTypeRef) {
@@ -753,7 +752,7 @@ public class MIDTypeHierarchy {
 			mappingType = mappingType.getSupertype();
 		}
 
-		return MIDRegistry.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI, typeMID);
+		return typeMID.getExtendibleElement(MMINT.ROOT_MODELELEMENDPOINT_URI);
 	}
 
 	public static List<? extends ExtendibleElement> getCachedRuntimeTypes(ExtendibleElement instance) {

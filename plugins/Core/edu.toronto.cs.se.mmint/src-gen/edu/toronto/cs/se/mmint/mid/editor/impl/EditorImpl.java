@@ -43,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
@@ -552,7 +551,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MID typeMID = this.getMIDContainer();
 		super.delete();
-		Model modelType = MIDRegistry.getExtendibleElement(getModelUri(), typeMID);
+		Model modelType = typeMID.getExtendibleElement(getModelUri());
 		if (modelType != null) {
 			modelType.getEditors().remove(this);
 		}

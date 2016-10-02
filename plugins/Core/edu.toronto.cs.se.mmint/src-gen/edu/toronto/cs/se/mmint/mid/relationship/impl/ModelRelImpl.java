@@ -489,16 +489,16 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		// model type endpoints
 		MID typeMID = newModelRelType.getMIDContainer();
 		if (origModelRelType instanceof BinaryModelRel) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
-			Model newSrcModelType = MIDRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri(), typeMID);
+			Model newSrcModelType = typeMID.getExtendibleElement(((BinaryModelRel) origModelRelType).getSourceModel().getUri());
 			((BinaryModelRel) newModelRelType).addModelType(newSrcModelType, true);
-			Model newTgtModelType = MIDRegistry.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri(), typeMID);
+			Model newTgtModelType = typeMID.getExtendibleElement(((BinaryModelRel) origModelRelType).getTargetModel().getUri());
 			((BinaryModelRel) newModelRelType).addModelType(newTgtModelType, false);
 		}
 		Iterator<ModelEndpoint> origModelTypeEndpointIter = MIDTypeHierarchy.getTypeHierarchyIterator(origModelRelType.getModelEndpoints());
 		while (origModelTypeEndpointIter.hasNext()) {
 			ModelEndpoint origModelTypeEndpoint = origModelTypeEndpointIter.next();
-			Model newModelType = MIDRegistry.getExtendibleElement(origModelTypeEndpoint.getTargetUri(), typeMID);
-			ModelEndpoint modelTypeEndpoint = MIDRegistry.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri(), typeMID);
+			Model newModelType = typeMID.getExtendibleElement(origModelTypeEndpoint.getTargetUri());
+			ModelEndpoint modelTypeEndpoint = typeMID.getExtendibleElement(origModelTypeEndpoint.getSupertype().getUri());
 			boolean isBinarySrc = ((origModelRelType instanceof BinaryModelRel) && (((BinaryModelRel) origModelRelType).getSourceModel() == origModelTypeEndpoint.getTarget())) ?
 				true :
 				false;
@@ -515,7 +515,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				if (!origModelElemTypeRef.isModifiable()) { // already copied by createSubtype()
 					continue;
 				}
-				ModelElement modelElemType = MIDRegistry.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri(), typeMID);
+				ModelElement modelElemType = typeMID.getExtendibleElement(origModelElemTypeRef.getObject().getSupertype().getUri());
 				ModelEndpointReference newModelTypeEndpointRefSuper = null;
 				ModelElementReference modelElemTypeRef = null;
 				if (origModelElemTypeRef.getSupertypeRef() != null) {
@@ -530,7 +530,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		while (origMappingTypeIter.hasNext()) {
 			Mapping origMappingType = origMappingTypeIter.next();
 			MappingReference origMappingTypeRef = MIDRegistry.getReference(origMappingType.getUri(), origModelRelType.getMappingRefs());
-			Mapping mappingType = MIDRegistry.getExtendibleElement(origMappingType.getSupertype().getUri(), typeMID);
+			Mapping mappingType = typeMID.getExtendibleElement(origMappingType.getSupertype().getUri());
 			MappingReference mappingTypeRef = MIDRegistry.getReference(origMappingType.getSupertype().getUri(), newModelRelType.getMappingRefs());
 			MappingReference newMappingTypeRef = mappingType.createSubtypeAndReference(mappingTypeRef, origMappingType.getName(), (origMappingType instanceof BinaryMapping), newModelRelType);
 			if (origMappingTypeRef instanceof BinaryMappingReference) { // this is useful only when there are 0 or 1 overridden endpoints, but doesn't hurt in case of 2
@@ -549,7 +549,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				ModelElementReference origModelElemTypeRef = origModelElemTypeEndpointRef.getModelElemRef();
 				ModelEndpointReference newModelTypeEndpointRef = MIDRegistry.getReference((ModelEndpointReference) origModelElemTypeRef.eContainer(), newModelRelType.getModelEndpointRefs());
 				ModelElementReference newModelElemTypeRef = MIDRegistry.getReference(origModelElemTypeRef, newModelTypeEndpointRef.getModelElemRefs());
-				ModelElementEndpoint modelElemTypeEndpoint = MIDRegistry.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri(), typeMID);
+				ModelElementEndpoint modelElemTypeEndpoint = typeMID.getExtendibleElement(origModelElemTypeEndpointRef.getObject().getSupertype().getUri());
 				boolean isBinarySrc = ((origMappingTypeRef instanceof BinaryMappingReference) && (((BinaryMappingReference) origMappingTypeRef).getSourceModelElemRef() == origModelElemTypeEndpointRef.getModelElemRef())) ?
 					true :
 					false;
@@ -782,7 +782,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
 		for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
-			Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
+			Model newModel = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {

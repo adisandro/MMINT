@@ -330,7 +330,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) { // second pass: create endpoints for operator type
 				Model workflowModel = inoutWorkflowModel.getKey();
 				ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
-				Model modelType = MIDRegistry.getExtendibleElement(workflowModel.getMetatypeUri(), typeMID);
+				Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());
 				MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
 				newModelTypeEndpoint.setDynamic(true);
 				MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());

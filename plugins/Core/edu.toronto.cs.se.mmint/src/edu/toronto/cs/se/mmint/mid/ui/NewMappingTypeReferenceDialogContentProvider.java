@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class NewMappingTypeReferenceDialogContentProvider implements ITreeContentProvider {
 
@@ -72,7 +71,7 @@ public class NewMappingTypeReferenceDialogContentProvider implements ITreeConten
 			// add root link ref first
 			//TODO MMINT[MODELREL] this won't work for standalone model relationship types (will it ever be a use case?)
 			MID typeMID = modelRelType.getMIDContainer();
-			ModelRel rootModelRelType = MIDRegistry.getExtendibleElement(MIDTypeHierarchy.getRootTypeUri(modelRelType), typeMID);
+			ModelRel rootModelRelType = typeMID.getExtendibleElement(MIDTypeHierarchy.getRootTypeUri(modelRelType));
 			MappingReference rootMappingTypeRef = rootModelRelType.getMappingRefs().get(0);
 			mappingTypeRefs.add(rootMappingTypeRef);
 			for (MappingReference mappingTypeRef : ((ModelRel) parentElement).getMappingRefs()) {

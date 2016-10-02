@@ -51,9 +51,9 @@ public class GMFUtils {
 	public static Diagram createGMFDiagram(String modelUri, String diagramUri, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
 
 		ResourceSet domainResourceSet = new ResourceSetImpl();
-		Resource modelResource = domainResourceSet.getResource(FileUtils.getEMFUri(modelUri, isWorkspaceRelative), true);
+		Resource modelResource = domainResourceSet.getResource(FileUtils.createEMFUri(modelUri, isWorkspaceRelative), true);
 		ResourceSet diagramResourceSet = new ResourceSetImpl();
-		Resource diagramResource =	diagramResourceSet.createResource(FileUtils.getEMFUri(diagramUri, isWorkspaceRelative));
+		Resource diagramResource =	diagramResourceSet.createResource(FileUtils.createEMFUri(diagramUri, isWorkspaceRelative));
 		EObject rootModelObj = (EObject) modelResource.getContents().get(0);
 		Diagram diagram = ViewService.createDiagram(
 			rootModelObj,
@@ -110,7 +110,7 @@ public class GMFUtils {
 
 	public static Node createGMFNode(EObject modelObj, View gmfContainer, String diagramPluginId) {
 
-		// works only if modelObj has been loaded from the file system
+		// works only if modelObj has been loaded from the file system and has an eStorage attached
 		IElementType gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
 		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
 		Node gmfNode = ViewService.createNode(gmfContainer, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));

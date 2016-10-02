@@ -260,7 +260,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					newConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 					newConstraint.setLanguage(origConstraint.getLanguage());
 					newConstraint.setImplementation(origConstraint.getImplementation());
-					newModelElemType = MIDRegistry.getExtendibleElement(origModelElemTypeRef.getUri(), typeMID);
+					newModelElemType = typeMID.getExtendibleElement(origModelElemTypeRef.getUri());
 					newModelElemType.setConstraint(newConstraint);
 				}
 			}

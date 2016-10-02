@@ -73,7 +73,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		String modelUri = MIDRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MID instanceMID : instanceMIDs.keySet()) {
-			model = MIDRegistry.getExtendibleElement(modelUri, instanceMID);
+			model = instanceMID.getExtendibleElement(modelUri);
 			if (model != null) {
 				break;
 			}

@@ -344,7 +344,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
 		MID typeMID = modelRelType.getMIDContainer();
-		ModelElement newModelElemType = MIDRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
+		ModelElement newModelElemType = typeMID.getExtendibleElement(newModelElemTypeUri);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = super.createThisEClass();
@@ -421,7 +421,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElement newModelElem = null;
 		newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
 		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
-			newModelElem = MIDRegistry.getExtendibleElement(newModelElemUri, instanceMID);
+			newModelElem = instanceMID.getExtendibleElement(newModelElemUri);
 		}
 		if (newModelElem == null) {
 			newModelElem = super.createThisEClass();

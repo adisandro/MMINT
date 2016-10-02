@@ -133,7 +133,7 @@ supertypes:
 		}
 		if (modelElemType == null) {
 			String modelElemTypeUri = MMINT.ROOT_MODELELEM_URI;
-			modelElemType = MIDRegistry.getExtendibleElement(modelElemTypeUri, typeMID);
+			modelElemType = typeMID.getExtendibleElement(modelElemTypeUri);
 		}
 
 		EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(metamodelObj, MIDLevel.TYPES);

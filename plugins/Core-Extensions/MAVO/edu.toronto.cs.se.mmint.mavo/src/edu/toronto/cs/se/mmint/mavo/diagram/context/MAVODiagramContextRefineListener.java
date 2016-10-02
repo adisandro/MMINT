@@ -88,7 +88,7 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		List<IFile> files = null;
 		for (Entry<MID, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
-			model = MIDRegistry.getExtendibleElement(modelUri, instanceMID.getKey());
+			model = instanceMID.getKey().getExtendibleElement(modelUri);
 			if (model != null) {
 				files = instanceMID.getValue();
 				break;

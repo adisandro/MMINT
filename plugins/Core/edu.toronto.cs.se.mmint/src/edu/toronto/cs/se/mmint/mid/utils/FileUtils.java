@@ -56,7 +56,7 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 public class FileUtils {
 
-	public static @NonNull URI getEMFUri(@NonNull String uri, boolean isWorkspaceRelative) {
+	public static @NonNull URI createEMFUri(@NonNull String uri, boolean isWorkspaceRelative) {
 
 		URI emfUri = (isWorkspaceRelative) ?
 			URI.createPlatformResourceURI(uri, true) :
@@ -259,7 +259,7 @@ public class FileUtils {
 	 */
 	public static void writeModelFile(@NonNull EObject rootModelObj, @NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		URI uri = FileUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		URI uri = FileUtils.createEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(rootModelObj);
@@ -275,7 +275,7 @@ public class FileUtils {
 
 	public static @NonNull EObject readModelFile(@NonNull String fileUri, boolean isWorkspaceRelative) throws Exception {
 
-		URI uri = FileUtils.getEMFUri(fileUri, isWorkspaceRelative);
+		URI uri = FileUtils.createEMFUri(fileUri, isWorkspaceRelative);
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(uri, true);
 		EObject rootModelObj = resource.getContents().get(0);
@@ -416,7 +416,7 @@ public class FileUtils {
 			else {
 				if (editorId != null) {
 					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
-						URI emfFileUri = FileUtils.getEMFUri(filePath, false);
+						URI emfFileUri = FileUtils.createEMFUri(filePath, false);
 						IDE.openEditor(activePage, new URIEditorInput(emfFileUri), editorId);
 					}
 					else {

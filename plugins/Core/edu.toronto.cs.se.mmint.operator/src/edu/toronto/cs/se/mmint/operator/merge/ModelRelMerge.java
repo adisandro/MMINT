@@ -76,7 +76,7 @@ public class ModelRelMerge extends OperatorImpl {
 			List<ModelEndpointReference> newModelEndpointRefs = MIDRegistry.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
 			ModelEndpointReference newModelEndpointRef;
 			if (newModelEndpointRefs.isEmpty()) {
-				Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
+				Model newModel = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
 				newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, mergedModelRel);
 			}
 			else {

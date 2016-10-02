@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 
@@ -81,7 +80,7 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 			"Create new operator type from workflow",
 			"Insert new operator type name",
 			FileUtils.getFileNameFromUri(workflowMIDUri));
-		Operator newOperator = MIDRegistry.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR + WorkflowOperator.class.getSimpleName(), typeMID)
+		Operator newOperator = typeMID.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR + WorkflowOperator.class.getSimpleName())
 			.createSubtype(newOperatorTypeName, workflowMIDUri);
 		MMINT.createTypeHierarchy(typeMID);
 

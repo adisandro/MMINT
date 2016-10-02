@@ -85,7 +85,7 @@ public class MIDTypeRegistry {
 	 */
 	public static <T extends ExtendibleElement> @Nullable T getType(@NonNull String typeUri) {
 
-		return MIDRegistry.getExtendibleElement(typeUri, MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getExtendibleElement(typeUri);
 	}
 
 	/**

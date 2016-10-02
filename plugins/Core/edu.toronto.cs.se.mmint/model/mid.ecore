@@ -20,6 +20,13 @@
         <details key="body" value="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="getExtendibleElement">
+      <eGenericType eTypeParameter="#//MID/getExtendibleElement/T"/>
+      <eTypeParameters name="T">
+        <eBounds eClassifier="#//ExtendibleElement"/>
+      </eTypeParameters>
+      <eParameters name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="getModelRels" upperBound="-1" eType="#//relationship/ModelRel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="EList&lt;ModelRel> modelRels = new BasicEList&lt;>();&#xA;for (Model model : this.getModels()) {&#xA;&#x9;if (model instanceof ModelRel) {&#xA;&#x9;&#x9;modelRels.add((ModelRel) model);&#xA;&#x9;}&#xA;}&#xA;return modelRels;"/>
@@ -1345,12 +1352,12 @@
       </eAnnotations>
       <eOperations name="getWorkflowMID" eType="#//MID" eExceptions="#//MMINTException">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MMINTException.mustBeType(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) MIDUtils.readModelFileInState(this.getMidUri());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
+          <details key="body" value="MMINTException.mustBeType(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) FileUtils.readModelFileInState(this.getMidUri());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="getInstanceMID" eType="#//MID" eExceptions="#//MMINTException">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MMINTException.mustBeInstance(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) MIDUtils.readModelFile(this.getMidUri(), true);&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
+          <details key="body" value="MMINTException.mustBeInstance(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) FileUtils.readModelFile(this.getMidUri(), true);&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="midUri" lowerBound="1"

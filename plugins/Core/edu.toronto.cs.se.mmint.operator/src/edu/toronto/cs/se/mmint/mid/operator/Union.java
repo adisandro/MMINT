@@ -47,7 +47,7 @@ public class Union extends OperatorImpl {
 			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
 			for (Model model : inputMID.getModels()) {
 				if (model instanceof ModelRel
-						|| MIDRegistry.getExtendibleElement(model.getUri(), unionMID) != null) {
+						|| unionMID.getExtendibleElement(model.getUri()) != null) {
 					continue;
 				}
 				model.getMetatype().createInstanceAndEditor(model.getUri(), unionMID);

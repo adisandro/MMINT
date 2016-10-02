@@ -38,7 +38,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -67,32 +66,6 @@ public class MIDRegistry {
 	public final static String RESOURCE_URI_PREFIX = "platform:/resource";
 	public final static String ECORE_EREFERENCE_URI_PREFIX = "@";
 	public final static String ECORE_ROOT_FEATURE = "root";
-
-	/**
-	 * Gets an extendible element from a MID.
-	 * 
-	 * @param uri
-	 *            The uri of the element.
-	 * @param mid
-	 *            The MID that contains the element.
-	 * @return The element, null if the uri is not found or found not to be of
-	 *         the desired class of elements.
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri, @NonNull MID mid) {
-
-		ExtendibleElement element = mid.getExtendibleTable().get(uri);
-		if (element == null) {
-			return null;
-		}
-
-		try {
-			return (T) element;
-		}
-		catch (ClassCastException e) {
-			return null;
-		}
-	}
 
 	/**
 	 * Gets a reference to an extendible element in a list of references to
@@ -252,6 +225,52 @@ public class MIDRegistry {
 		}
 
 		return new String[] {modelUri, modelElemUri};
+	}
+
+	public static String getModelUri(EObject modelObj) {
+
+		String modelUri;
+		if (modelObj instanceof EClass) { // == MIDLevel.TYPES
+			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
+		}
+		else { // == MIDLevel.INSTANCES
+			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
+				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
+			}
+			String emfUri = EcoreUtil.getURI(modelObj).toString();
+			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
+				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
+			}
+			modelUri = emfUri.substring(0, emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
+		}
+
+		return modelUri;
+	}
+
+	public static String getModelElementUri(EObject modelObj) {
+
+		String modelElemUri;
+		String emfUri = EcoreUtil.getURI(modelObj).toString();
+		if (modelObj instanceof EClass) { // == MIDLevel.TYPES
+			String metamodelUri = MIDRegistry.getModelUri(modelObj);
+			modelElemUri = metamodelUri + MMINT.ECORE_MODEL_URI_SEPARATOR + emfUri.substring(emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR)+MMINT.ECORE_MODEL_URI_SEPARATOR.length());
+		}
+		else { // == MIDLevel.INSTANCES
+			String attributeFeatureName = null;
+			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
+				attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
+				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
+			}
+			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
+				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
+			}
+			modelElemUri = emfUri;
+			if (attributeFeatureName != null) {
+				modelElemUri += MMINT.URI_SEPARATOR + attributeFeatureName;
+			}
+		}
+
+		return modelElemUri;
 	}
 
 	//TODO MMINT[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo

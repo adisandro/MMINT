@@ -160,13 +160,22 @@ public interface MIDPackage extends EPackage {
 	int MID___IS_WORKFLOWS_LEVEL = 2;
 
 	/**
+	 * The operation id for the '<em>Get Extendible Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MID___GET_EXTENDIBLE_ELEMENT__STRING = 3;
+
+	/**
 	 * The operation id for the '<em>Get Model Rels</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MID___GET_MODEL_RELS = 3;
+	int MID___GET_MODEL_RELS = 4;
 
 	/**
 	 * The number of operations of the '<em>MID</em>' class.
@@ -175,7 +184,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MID_OPERATION_COUNT = 4;
+	int MID_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.EStringToExtendibleElementMapImpl <em>EString To Extendible Element Map</em>}' class.
@@ -2440,6 +2449,16 @@ public interface MIDPackage extends EPackage {
 	EOperation getMID__IsWorkflowsLevel();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#getExtendibleElement(java.lang.String) <em>Get Extendible Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Extendible Element</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.MID#getExtendibleElement(java.lang.String)
+	 * @generated
+	 */
+	EOperation getMID__GetExtendibleElement__String();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.MID#getModelRels() <em>Get Model Rels</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3655,6 +3674,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MID___IS_WORKFLOWS_LEVEL = eINSTANCE.getMID__IsWorkflowsLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Extendible Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MID___GET_EXTENDIBLE_ELEMENT__STRING = eINSTANCE.getMID__GetExtendibleElement__String();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Model Rels</b></em>' operation.
