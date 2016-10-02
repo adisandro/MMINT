@@ -110,7 +110,7 @@ public class GMFUtils {
 
 	public static Node createGMFNode(EObject modelObj, View gmfContainer, String diagramPluginId) {
 
-		// works only if modelObj has been loaded from the file system and has an eStorage attached
+		// works only if modelObj has the right eStorage adapters attached
 		IElementType gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
 		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
 		Node gmfNode = ViewService.createNode(gmfContainer, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
@@ -118,13 +118,18 @@ public class GMFUtils {
 		return gmfNode;
 	}
 
-	public static Node createGMFNodeShortcut(EObject modelObj, View gmfContainer, String diagramPluginId, String shortcutId) {
+	public static void addGMFShortcut(Node gmfNode, String shortcutId) {
 
-		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfContainer, diagramPluginId);
 		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		shortcutAnnotation.setSource("Shortcut");
 		shortcutAnnotation.getDetails().put("modelID", shortcutId);
 		gmfNode.getEAnnotations().add(shortcutAnnotation);
+	}
+
+	public static Node createGMFNodeShortcut(EObject modelObj, View gmfContainer, String diagramPluginId, String shortcutId) {
+
+		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfContainer, diagramPluginId);
+		GMFUtils.addGMFShortcut(gmfNode, shortcutId);
 
 		return gmfNode;
 	}
