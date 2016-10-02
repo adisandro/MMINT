@@ -542,7 +542,7 @@
   </diagram>
   <plugin
       provider="Software Engineering Group, University of Toronto"
-      version="2.1.0.qualifier"
+      version="2.1.0"
       printingEnabled="true">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>

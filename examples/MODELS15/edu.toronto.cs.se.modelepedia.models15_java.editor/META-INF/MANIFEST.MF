@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.models15_java.editor;singleton:=true
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.1.0
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.models15_java.presentation.MODELS15_JavaEditorPlugin$Implementation
 Bundle-Vendor: %providerName
