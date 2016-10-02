@@ -18,6 +18,9 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PlatformUI;
@@ -26,8 +29,12 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 public class MIDDiagramUtils {
 
@@ -36,9 +43,12 @@ public class MIDDiagramUtils {
 		Map<MID, List<IFile>> mids = new HashMap<>();
 		for (IEditorReference editorReference : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences()) {
 			String editorName = editorReference.getName();
-			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFDiagramUtils.DIAGRAM_SUFFIX)) {
+			if (editorName.endsWith(MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME + GMFUtils.DIAGRAM_SUFFIX)) {
 				MIDDiagramEditor midDiagram = (MIDDiagramEditor) editorReference.getEditor(true);
 				MID mid = (MID) midDiagram.getDiagram().getElement();
+				if (!mid.isInstancesLevel()) {
+					continue;
+				}
 				List<IFile> midFiles = new ArrayList<>();
 				IFile diagramFile = (IFile) midDiagram.getEditorInput().getAdapter(IFile.class);
 				if (diagramFile == null) {
@@ -46,7 +56,7 @@ public class MIDDiagramUtils {
 				}
 				midFiles.add(diagramFile);
 				try {
-					midFiles.add(GMFDiagramUtils.getModelFileFromDiagramFile(diagramFile));
+					midFiles.add(GMFUtils.getModelFileFromDiagramFile(diagramFile));
 				}
 				catch (Exception e) {
 					MMINTException.print(IStatus.WARNING, "Can't add model file of MID " + diagramFile.getName(), e);
@@ -65,7 +75,7 @@ public class MIDDiagramUtils {
 		if (instanceMIDFile != null) {
 			files.add(instanceMIDFile);
 			try {
-				files.add(GMFDiagramUtils.getModelFileFromDiagramFile(instanceMIDFile));
+				files.add(GMFUtils.getModelFileFromDiagramFile(instanceMIDFile));
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't add model file of diagram " + instanceMIDFile.getName() + " for gmf transactional command", e);
@@ -73,6 +83,20 @@ public class MIDDiagramUtils {
 		}
 
 		return files;
+	}
+
+	public static Node createModelShortcut(Model model, View gmfDiagramRoot) throws Exception {
+
+		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
+		Node gmfNode = gmfViewProvider.createModel_2002(
+			model,
+			gmfDiagramRoot,
+			-1,
+			true,
+			new PreferencesHint(MIDDiagramEditorPlugin.ID));
+		GMFUtils.addGMFShortcut(gmfNode, MIDEditPart.MODEL_ID);
+
+		return gmfNode;
 	}
 
 }

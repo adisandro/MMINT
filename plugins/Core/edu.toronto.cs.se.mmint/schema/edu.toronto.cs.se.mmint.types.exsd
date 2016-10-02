@@ -47,6 +47,40 @@
       </complexType>
    </element>
 
+   <element name="constraint">
+      <annotation>
+         <documentation>
+            A model type constraint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" use="required">
+            <annotation>
+               <documentation>
+                  The constraint language (OCL | JAVA | SMTLIB).
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="OCL">
+                  </enumeration>
+                  <enumeration value="JAVA">
+                  </enumeration>
+                  <enumeration value="SMTLIB">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="implementation" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The constraint implementation (an OCL constraint, the fully qualified name of a JAVA class, or an SMTLIB assertion).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <element name="type">
       <annotation>
          <documentation>
@@ -74,14 +108,14 @@
          <attribute name="class" type="string">
             <annotation>
                <documentation>
-                  The fully qualified name of a Java class that: a) implements this type; or b) extends MultiModelHeavyTypeFactory and handles the creation of this type in a custom way.
+                  The fully qualified name of a Java class that: a) implements this type; or b) extends MIDHeavyTypeFactory and handles the creation of this type in a custom way.
                </documentation>
                <appinfo>
                   <meta.attribute kind="java"/>
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="isAbstract" type="boolean" use="default" value="false">
+         <attribute name="isAbstract" type="boolean">
             <annotation>
                <documentation>
                   True if the type is not to be instanciated, false otherwise.

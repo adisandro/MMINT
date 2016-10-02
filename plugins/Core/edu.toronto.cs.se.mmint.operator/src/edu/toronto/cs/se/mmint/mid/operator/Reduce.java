@@ -26,22 +26,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class Reduce extends OperatorImpl {
 
@@ -73,7 +71,7 @@ public class Reduce extends OperatorImpl {
 
 		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorUtils
+		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
 			.createSimpleOutputMIDsByName(accumulatorOperatorType, reducedMID);
 		EList<MID> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
@@ -82,11 +80,11 @@ public class Reduce extends OperatorImpl {
 		EList<OperatorInput> accumulatorInputs;
 		// preparation for composition operator
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-		Map<String, MID> compositionOutputMIDsByName = MIDOperatorUtils
+		Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
 			.createSimpleOutputMIDsByName(compositionOperatorType, reducedMID);
 		// preparation for merge operator
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-		Map<String, MID> mergeOutputMIDsByName = MIDOperatorUtils
+		Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
 			.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
 		// reduce loop
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
@@ -132,7 +130,7 @@ public class Reduce extends OperatorImpl {
 				}
 				// get all model rels attached to input models that are not inputs themselves
 				//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
-				Set<ModelRel> connectedModelRels = MIDRegistry.getModelRels(reducedMID).stream()
+				Set<ModelRel> connectedModelRels = reducedMID.getModelRels().stream()
 					.filter(modelRel -> !accumulatorInputModelRels.contains(modelRel))
 					.filter(modelRel -> !Collections.disjoint(
 						accumulatorInputModels,
@@ -143,7 +141,7 @@ public class Reduce extends OperatorImpl {
 				// run the ACCUMULATOR operator
 				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
 					accumulatorInputs);
-				accumulatorOutputsByName = accumulatorOperatorType.start(
+				accumulatorOutputsByName = accumulatorOperatorType.startInstance(
 						accumulatorInputs,
 						null,
 						accumulatorGenerics,
@@ -170,7 +168,7 @@ public class Reduce extends OperatorImpl {
 							if (compositionInputs == null) {
 								continue;
 							}
-							Map<String, Model> compositionOutputsByName = compositionOperatorType.start(
+							Map<String, Model> compositionOutputsByName = compositionOperatorType.startInstance(
 									compositionInputs,
 									null,
 									new BasicEList<>(),
@@ -204,7 +202,7 @@ public class Reduce extends OperatorImpl {
 							if (mergeInputs == null) {
 								continue;
 							}
-							mergeOperatorType.start(mergeInputs, null, new BasicEList<>(), mergeOutputMIDsByName, null);
+							mergeOperatorType.startInstance(mergeInputs, null, new BasicEList<>(), mergeOutputMIDsByName, null);
 							composedModelRelsToDelete.add(composedModelRel1);
 							composedModelRelsToDelete.add(composedModelRel2);
 						}
@@ -247,9 +245,9 @@ public class Reduce extends OperatorImpl {
 				continue;
 			}
 			for (Editor accumulatorOutputEditorToDelete : accumulatorOutputModelToDelete.getEditors()) {
-				MIDUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
+				FileUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
 			}
-			MIDUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
+			FileUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
 		}
 
 		return reducedMID;
@@ -277,12 +275,12 @@ public class Reduce extends OperatorImpl {
 		}
 
 		// output
-		String reducedMIDModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
+		String reducedMIDModelUri = FileUtils.getUniqueUri(
+			FileUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		FileUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);

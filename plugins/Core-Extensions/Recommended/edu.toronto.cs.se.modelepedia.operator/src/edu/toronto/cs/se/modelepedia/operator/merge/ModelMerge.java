@@ -28,6 +28,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -35,19 +36,38 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 //TODO MMINT[OPERATOR] Review this whole operator to find examples on how to make apis easier to use
 // e.g. direct access through ext table is useful, but there's that _AS_ thing to be fixed first
 // e.g. there is no direct link from a model to all its connected model rels
 public class ModelMerge extends OperatorImpl {
+
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
+			if (matchRel.getModelEndpoints().size() != 2) {
+				return false;
+			}
+			Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
+			Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
+			if (model1.getMetatype() != model2.getMetatype()) {
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 	// input-output
 	private final static @NonNull String IN_MODELREL = "match";
@@ -57,26 +77,6 @@ public class ModelMerge extends OperatorImpl {
 	// constants
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
 	private static final @NonNull String MERGED_SEPARATOR = "+";
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
-		if (matchRel.getModelEndpoints().size() != 2) {
-			return false;
-		}
-		Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
-		Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
-		if (model1.getMetatype() != model2.getMetatype()) {
-			return false;
-		}
-
-		return true;
-	}
 
 	// TODO MMINT[OPERATOR] Make this an api
 	private @NonNull Set<ModelElementReference> getConnected(@NonNull ModelElementReference modelElemRef) {
@@ -125,10 +125,10 @@ public class ModelMerge extends OperatorImpl {
 					modelElem2.getUri().substring(0, modelElem2.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
 					mergedModelObj);
 				try { // change merged attribute
-					Object modelObjAttr1 = MIDUtils.getModelObjFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
-					Object modelObjAttr2 = MIDUtils.getModelObjFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr1 = FileUtils.getModelObjectFeature(modelObj1, MERGED_MODELOBJECT_ATTRIBUTE);
+					Object modelObjAttr2 = FileUtils.getModelObjectFeature(modelObj2, MERGED_MODELOBJECT_ATTRIBUTE);
 					if (!modelObjAttr1.equals(modelObjAttr2)) {
-						MIDUtils.setModelObjFeature(
+						FileUtils.setModelObjectFeature(
 							mergedModelObj,
 							MERGED_MODELOBJECT_ATTRIBUTE,
 							modelObjAttr1 + MERGED_SEPARATOR + modelObjAttr2);
@@ -138,7 +138,7 @@ public class ModelMerge extends OperatorImpl {
 					// no attribute to be merged
 				}
 			}
-			MIDUtils.setModelObjFeature(
+			FileUtils.setModelObjectFeature(
 				rootMergedModelObj,
 				modelObj1.eContainingFeature().getName(),
 				mergedModelObj);
@@ -172,7 +172,7 @@ public class ModelMerge extends OperatorImpl {
 			}
 			else {
 				mergedModelObj = EcoreUtil.copy(modelObj2);
-				MIDUtils.setModelObjFeature(
+				FileUtils.setModelObjectFeature(
 					rootMergedModelObj,
 					modelObj2.eContainingFeature().getName(),
 					mergedModelObj);
@@ -205,7 +205,7 @@ public class ModelMerge extends OperatorImpl {
 				if (modelObjReference.isContainment()) {
 					continue;
 				}
-				Object modelObjReferenceValue = MIDUtils.getModelObjFeature(modelObj, modelObjReference.getName());
+				Object modelObjReferenceValue = FileUtils.getModelObjectFeature(modelObj, modelObjReference.getName());
 				if (modelObjReferenceValue == null || modelObjReferenceValue instanceof EObjectWithInverseResolvingEList<?>) {
 					continue;
 				}
@@ -218,7 +218,7 @@ public class ModelMerge extends OperatorImpl {
 					modelObjValues.add((EObject) modelObjReferenceValue);
 				}
 				for (EObject modelObjValue : modelObjValues) {
-					MIDUtils.setModelObjFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
+					FileUtils.setModelObjectFeature(mergedModelObj, modelObjReference.getName(), allModelObjs.get(modelObjValue));
 				}
 			}
 		}
@@ -238,18 +238,18 @@ public class ModelMerge extends OperatorImpl {
 
 		// create merged model and trace relationships as placeholders
 		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
-		String mergedModelUri = MIDUtils.replaceLastSegmentInUri(
+		String mergedModelUri = FileUtils.replaceLastSegmentInUri(
 			MIDRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());
 		Model mergedModel = model1.getMetatype().createInstance(mergedModelUri, mergedModelMID);
-		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model1,
 			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL1));
 		traceRel1.setName(OUT_MODELREL1);
-		BinaryModelRel traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model2,
 			mergedModel,
@@ -257,7 +257,7 @@ public class ModelMerge extends OperatorImpl {
 		traceRel2.setName(OUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
-		MIDUtils.writeModelFile(rootMergedModelObj, mergedModelUri, true);
+		FileUtils.writeModelFile(rootMergedModelObj, mergedModelUri, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 
 		// output

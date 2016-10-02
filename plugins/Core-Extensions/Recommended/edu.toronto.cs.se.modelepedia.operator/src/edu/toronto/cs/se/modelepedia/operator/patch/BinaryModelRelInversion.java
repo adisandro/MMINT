@@ -20,9 +20,11 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 
 public class BinaryModelRelInversion extends OperatorImpl {
 
@@ -46,6 +48,9 @@ public class BinaryModelRelInversion extends OperatorImpl {
 
 		// invert all indexes
 		invertedModelRel.getModelEndpoints().move(1, 0);
+		Model targetModel = invertedModelRel.getSourceModel();
+		invertedModelRel.setSourceModel(invertedModelRel.getTargetModel());
+		invertedModelRel.setTargetModel(targetModel);
 		invertedModelRel.getModelEndpointRefs().move(1, 0);
 		for (Mapping mapping : invertedModelRel.getMappings()) {
 			mapping.getModelElemEndpoints().move(1, 0);
@@ -53,6 +58,11 @@ public class BinaryModelRelInversion extends OperatorImpl {
 		}
 		for (MappingReference mappingRef : invertedModelRel.getMappingRefs()) {
 			mappingRef.getModelElemEndpointRefs().move(1, 0);
+			if (mappingRef instanceof BinaryMappingReference) {
+				ModelElementReference targetModelElemRef = ((BinaryMappingReference) mappingRef).getSourceModelElemRef();
+				((BinaryMappingReference) mappingRef).setSourceModelElemRef(((BinaryMappingReference) mappingRef).getTargetModelElemRef());
+				((BinaryMappingReference) mappingRef).setTargetModelElemRef(targetModelElemRef);
+			}
 		}
 
 		// output

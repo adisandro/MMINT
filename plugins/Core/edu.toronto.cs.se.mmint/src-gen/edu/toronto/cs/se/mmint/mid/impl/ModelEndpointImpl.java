@@ -15,10 +15,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
@@ -26,12 +27,13 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,6 +77,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Model getTarget() {
 		ExtendibleElement target = super.getTarget();
 		return (target == null) ? null : (Model) target;
@@ -100,6 +111,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ENDPOINT___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -121,12 +133,14 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
-				return getSupertype();
-			case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
-				return getTarget();
 			case MIDPackage.MODEL_ENDPOINT___GET_METATYPE:
 				return getMetatype();
+			case MIDPackage.MODEL_ENDPOINT___GET_SUPERTYPE:
+				return getSupertype();
+			case MIDPackage.MODEL_ENDPOINT___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case MIDPackage.MODEL_ENDPOINT___GET_TARGET:
+				return getTarget();
 			case MIDPackage.MODEL_ENDPOINT___CREATE_TYPE_REFERENCE__BOOLEAN_MODELREL:
 				try {
 					return createTypeReference((Boolean)arguments.get(0), (ModelRel)arguments.get(1));
@@ -134,24 +148,24 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODEL_BOOLEAN_MODELREL:
+			case MIDPackage.MODEL_ENDPOINT___CREATE_SUBTYPE__STRING_MODEL_BOOLEAN_MODELREL:
 				try {
-					return createSubtypeAndReference((String)arguments.get(0), (Model)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
+					return createSubtype((String)arguments.get(0), (Model)arguments.get(1), (Boolean)arguments.get(2), (ModelRel)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELENDPOINT_STRING_MODEL:
+			case MIDPackage.MODEL_ENDPOINT___REPLACE_SUBTYPE__MODELENDPOINT_STRING_MODEL:
 				try {
-					replaceSubtypeAndReference((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2));
+					replaceSubtype((ModelEndpoint)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2));
 					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___DELETE_TYPE_AND_REFERENCE__BOOLEAN:
+			case MIDPackage.MODEL_ENDPOINT___DELETE_TYPE__BOOLEAN:
 				try {
-					deleteTypeAndReference((Boolean)arguments.get(0));
+					deleteType((Boolean)arguments.get(0));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -164,9 +178,9 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODEL_MODELREL:
+			case MIDPackage.MODEL_ENDPOINT___CREATE_INSTANCE__MODEL_MODELREL:
 				try {
-					return createInstanceAndReference((Model)arguments.get(0), (ModelRel)arguments.get(1));
+					return createInstance((Model)arguments.get(0), (ModelRel)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -178,17 +192,47 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELENDPOINT_MODEL:
+			case MIDPackage.MODEL_ENDPOINT___REPLACE_INSTANCE__MODELENDPOINT_MODEL:
 				try {
-					replaceInstanceAndReference((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
+					replaceInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
 					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN:
+			case MIDPackage.MODEL_ENDPOINT___DELETE_INSTANCE__BOOLEAN:
 				try {
-					deleteInstanceAndReference((Boolean)arguments.get(0));
+					deleteInstance((Boolean)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_MODELREL:
+				try {
+					return createWorkflowInstance((Model)arguments.get(0), (ModelRel)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL_ENDPOINT___CREATE_WORKFLOW_INSTANCE__MODEL_OPERATOR_STRING:
+				try {
+					return createWorkflowInstance((Model)arguments.get(0), (Operator)arguments.get(1), (String)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL_ENDPOINT___REPLACE_WORKFLOW_INSTANCE__MODELENDPOINT_MODEL:
+				try {
+					replaceWorkflowInstance((ModelEndpoint)arguments.get(0), (Model)arguments.get(1));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL_ENDPOINT___DELETE_WORKFLOW_INSTANCE:
+				try {
+					deleteWorkflowInstance();
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -196,24 +240,6 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				}
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * Deletes this model type endpoint from the Type MID.
-	 * 
-	 * @param isFullDelete
-	 *            True if this model type endpoint is going to be fully deleted,
-	 *            false if it is going to be replaced later.
-	 * @throws MMINTException Never thrown.
-	 * @generated NOT
-	 */
-	protected void deleteType(boolean isFullDelete) throws MMINTException {
-
-		super.deleteType();
-		if (isFullDelete) {
-			ModelRel modelRelType = (ModelRel) eContainer();
-			modelRelType.getModelEndpoints().remove(this);
-		}
 	}
 
 	/**
@@ -232,7 +258,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	protected void addTypeReference(ModelEndpointReference newModelTypeEndpointRef, boolean isModifiable, ModelRel containerModelRelType) {
 
 		ModelEndpointReference modelTypeEndpointRef = (getSupertype() != null) ? // may be root
-			MIDTypeHierarchy.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
+			MIDRegistry.getReference(getSupertype().getUri(), containerModelRelType.getModelEndpointRefs()) :
 			null;
 		MIDTypeFactory.addTypeReference(newModelTypeEndpointRef, this, modelTypeEndpointRef, isModifiable, false);
 		containerModelRelType.getModelEndpointRefs().add(newModelTypeEndpointRef);
@@ -246,7 +272,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		MMINTException.mustBeType(this);
 
 		ModelEndpointReference newModelTypeEndpointRef = super.createThisReferenceEClass();
-		addTypeReference(newModelTypeEndpointRef, isModifiable, containerModelRelType);
+		this.addTypeReference(newModelTypeEndpointRef, isModifiable, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -278,7 +304,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 */
 	protected ModelEndpointReference addSubtypeAndReference(ModelEndpoint newModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(containerModelRelType);
+		MID typeMID = containerModelRelType.getMIDContainer();
 		// create the "thing" and the corresponding reference
 		super.addSubtype(newModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, targetModelType, isBinarySrc, containerModelRelType);
@@ -294,7 +320,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createSubtype(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -308,7 +334,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 
 		ModelEndpoint newModelTypeEndpoint = super.createThisEClass();
-		ModelEndpointReference newModelTypeEndpointRef = addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = this.addSubtypeAndReference(newModelTypeEndpoint, newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
@@ -316,19 +342,23 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
+	public void replaceSubtype(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
 
 		MMINTException.mustBeType(this);
-		ModelRel containerModelRelType = (ModelRel) oldModelTypeEndpoint.eContainer();
+		EObject containerType = oldModelTypeEndpoint.eContainer();
+		if (containerType instanceof Operator) {
+			throw new MMINTException("Can't use this api with operator types");
+		}
+		ModelRel containerModelRelType = (ModelRel) containerType;
 		if (containerModelRelType instanceof BinaryModelRel) {
 			if (MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType) != this) {
 				throw new MMINTException("Invalid overriding of this model type endpoint");
 			}
 		}
 
-		MID instanceMID = MIDRegistry.getMultiModel(containerModelRelType);
-		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
-		oldModelTypeEndpoint.deleteTypeAndReference(false);
+		MID instanceMID = containerModelRelType.getMIDContainer();
+		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(getUri(), containerModelRelType.getModelEndpointRefs());
+		oldModelTypeEndpoint.deleteType(false);
 		// modify the "thing" and the corresponding reference
 		super.addSubtype(oldModelTypeEndpoint, containerModelRelType, containerModelRelType.getName() + MMINT.ENDPOINT_SEPARATOR + targetModelType.getName(), newModelTypeEndpointName);
 		if (containerModelRelType instanceof BinaryModelRel) {
@@ -337,15 +367,15 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 		oldModelTypeEndpoint.setTarget(targetModelType);
 		if (modelTypeEndpointRef != null) {
-			ModelEndpointReference oldModelTypeEndpointRef = MIDTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MIDRegistry.getReference(oldModelTypeEndpoint.getUri(), containerModelRelType.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelTypeEndpointRef);
 		}
 		// modify references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, instanceMID)) {
 			ModelEndpointReference modelSubtypeEndpointRef = (modelTypeEndpointRef == null) ?
 				null :
-				MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelEndpointReference oldModelTypeEndpointRef = MIDTypeHierarchy.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
+				MIDRegistry.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference oldModelTypeEndpointRef = MIDRegistry.getReference(oldModelTypeEndpoint.getUri(), modelRelSubtype.getModelEndpointRefs());
 			oldModelTypeEndpointRef.setSupertypeRef(modelSubtypeEndpointRef);
 		}
 	}
@@ -353,19 +383,26 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public void deleteTypeAndReference(boolean isFullDelete) throws MMINTException {
+	public void deleteType(boolean isFullDelete) throws MMINTException {
 
 		MMINTException.mustBeType(this);
+		EObject containerType = this.eContainer();
+		if (containerType instanceof Operator) {
+			throw new MMINTException("Can't use this api with operator types");
+		}
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		// delete the "thing" and the corresponding reference
-		ModelRel modelRelType = (ModelRel) eContainer();
-		deleteType(isFullDelete);
-		ModelEndpointReference modelTypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), modelRelType.getModelEndpointRefs());
+		ModelRel modelRelType = (ModelRel) containerType;
+		super.delete();
+		if (isFullDelete) {
+			modelRelType.getModelEndpoints().remove(this);
+		}
+		ModelEndpointReference modelTypeEndpointRef = MIDRegistry.getReference(getUri(), modelRelType.getModelEndpointRefs());
 		modelTypeEndpointRef.deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference modelSubtypeEndpointRef = MIDRegistry.getReference(getUri(), modelRelSubtype.getModelEndpointRefs());
 			modelSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 	}
@@ -376,11 +413,10 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param newModelEndpointRef
 	 *            The new reference to this model endpoint to be added.
 	 * @param containerModelRel
-	 *            The model relationship that will contain the new reference to
-	 *            the model endpoint.
+	 *            The model relationship that will contain the new reference to the model endpoint.
 	 * @generated NOT
 	 */
-	protected void addInstanceReference(ModelEndpointReference newModelEndpointRef, ModelRel containerModelRel) {
+	protected void addInstanceReference(@NonNull ModelEndpointReference newModelEndpointRef, @NonNull ModelRel containerModelRel) {
 
 		super.addInstanceReference(newModelEndpointRef, false);
 		containerModelRel.getModelEndpointRefs().add(newModelEndpointRef);
@@ -394,28 +430,26 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		MMINTException.mustBeInstance(this);
 
 		ModelEndpointReference newModelEndpointRef = super.createThisReferenceEClass();
-		addInstanceReference(newModelEndpointRef, containerModelRel);
+		this.addInstanceReference(newModelEndpointRef, containerModelRel);
 
 		return newModelEndpointRef;
 	}
 
 	/**
-	 * Adds a model instance endpoint and a reference to it to an Instance MID (variant for model relationships).
+	 * Adds a model instance endpoint of this model type endpoint to an Instance or Workflow MID (variant for model
+	 * relationships).
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.
 	 * @param targetModel
 	 *            The model that is the target of the new model endpoint.
-	 * @param modelRel
+	 * @param containerModelRel
 	 *            The model relationship that will contain the new model endpoint.
-	 * @return The created reference to the new model endpoint.
-	 * @throws MMINTException
-	 *             If the new model endpoint is a model type endpoint.
 	 * @generated NOT
 	 */
-	protected ModelEndpointReference addInstanceAndReference(ModelEndpoint newModelEndpoint, Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	protected void addInstance(@NonNull ModelEndpoint newModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) {
 
-		super.addBasicInstance(newModelEndpoint, null, targetModel.getName());
+		super.addBasicInstance(newModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
 		containerModelRel.getModelEndpoints().add(newModelEndpoint);
 		if (containerModelRel instanceof BinaryModelRel) {
@@ -427,6 +461,26 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 				((BinaryModelRel) containerModelRel).setTargetModel(targetModel);
 			}
 		}
+	}
+
+	/**
+	 * Adds a model instance endpoint of this model type endpoint and a reference to it to an Instance MID (variant for
+	 * model relationships).
+	 * 
+	 * @param newModelEndpoint
+	 *            The new model endpoint to be added.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model endpoint.
+	 * @return The created reference to the new model endpoint.
+	 * @throws MMINTException
+	 *             If the new model endpoint is not a model instance endpoint.
+	 * @generated NOT
+	 */
+	protected ModelEndpointReference addInstanceAndReference(@NonNull ModelEndpoint newModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) throws MMINTException {
+
+		this.addInstance(newModelEndpoint, targetModel, containerModelRel);
 		ModelEndpointReference modelEndpointRef = newModelEndpoint.createInstanceReference(containerModelRel);
 
 		return modelEndpointRef;
@@ -435,7 +489,7 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	/**
 	 * @generated NOT
 	 */
-	public ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	public ModelEndpointReference createInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
@@ -443,13 +497,13 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		}
 
 		ModelEndpoint newModelEndpoint = super.createThisEClass();
-		ModelEndpointReference newModelEndpointRef = addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
+		ModelEndpointReference newModelEndpointRef = this.addInstanceAndReference(newModelEndpoint, targetModel, containerModelRel);
 
 		return newModelEndpointRef;
 	}
 
 	/**
-	 * Adds a model instance endpoint to an Instance MID (variant for operators).
+	 * Adds a model instance endpoint of this model type endpoint to an Instance or Workflow MID (variant for operators).
 	 * 
 	 * @param newModelEndpoint
 	 *            The new model endpoint to be added.
@@ -458,16 +512,16 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	 * @param containerOperator
 	 *            The operator that will contain the new model endpoint.
 	 * @param containerFeatureName
-	 *            The name of the feature in the operator that will contain the new model endpoint.
+	 *            The name of the feature in the operator that will contain the new model endpoint (input or output).
 	 * @throws MMINTException
 	 *             If the feature name is not found in the container operator.
 	 * @generated NOT
 	 */
-	protected void addInstance(ModelEndpoint newModelEndpoint, Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
+	protected void addInstance(@NonNull ModelEndpoint newModelEndpoint, @NonNull Model targetModel, @NonNull Operator containerOperator, @NonNull String containerFeatureName) throws MMINTException {
 
-		super.addBasicInstance(newModelEndpoint, null, this.getName());
+		super.addBasicInstance(newModelEndpoint, null, this.getName(), containerOperator.getLevel());
 		super.addInstanceEndpoint(newModelEndpoint, targetModel);
-		MIDUtils.setModelObjFeature(containerOperator, containerFeatureName, newModelEndpoint);
+		FileUtils.setModelObjectFeature(containerOperator, containerFeatureName, newModelEndpoint);
 	}
 
 	/**
@@ -478,24 +532,25 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 		MMINTException.mustBeType(this);
 
 		ModelEndpoint newModelEndpoint = super.createThisEClass();
-		addInstance(newModelEndpoint, targetModel, containerOperator, containerFeatureName);
+		this.addInstance(newModelEndpoint, targetModel, containerOperator, containerFeatureName);
 
 		return newModelEndpoint;
 	}
 
 	/**
+	 * Replaces an old model instance endpoint with a new one of this type in an Instance or Workflow MID.
+	 * 
+	 * @param oldModelEndpoint
+	 *            The old model endpoint to be replaced.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model endpoint.
 	 * @generated NOT
 	 */
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+	protected void replaceInstance(@NonNull ModelEndpoint oldModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) {
 
-		MMINTException.mustBeType(this);
-		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
-			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
-		}
-
-		ModelRel containerModelRel = (ModelRel) oldModelEndpoint.eContainer();
-		oldModelEndpoint.deleteInstanceAndReference(false);
-		super.addBasicInstance(oldModelEndpoint, null, targetModel.getName());
+		super.addBasicInstance(oldModelEndpoint, null, targetModel.getName(), containerModelRel.getLevel());
 		if (containerModelRel instanceof BinaryModelRel) {
 			boolean isBinarySrc = ((BinaryModelRel) containerModelRel).getSourceModel() == oldModelEndpoint.getTarget();
 			if (isBinarySrc) {
@@ -509,13 +564,66 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 	}
 
 	/**
+	 * Replaces an old model instance endpoint and the reference to it with new ones of this type in an Instance MID.
+	 * 
+	 * @param oldModelEndpoint
+	 *            The old model endpoint to be replaced.
+	 * @param targetModel
+	 *            The model that is the target of the new model endpoint.
+	 * @param containerModelRel
+	 *            The model relationship that will contain the new model endpoint.
+	 * @throws MMINTException
+	 *             If the old model endpoint is not an instance.
 	 * @generated NOT
 	 */
-	public void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException {
+	protected void replaceInstanceAndReference(@NonNull ModelEndpoint oldModelEndpoint, @NonNull Model targetModel, @NonNull ModelRel containerModelRel) throws MMINTException {
 
-		MMINTException.mustBeInstance(this);
+		oldModelEndpoint.deleteInstance(false);
+		this.replaceInstance(oldModelEndpoint, targetModel, containerModelRel);
+	}
 
-		ModelRel containerModelRel = (ModelRel) eContainer();
+	/**
+	 * @generated NOT
+	 */
+	public void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
+			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
+		}
+		EObject container = oldModelEndpoint.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.replaceInstanceAndReference(oldModelEndpoint, targetModel, (ModelRel) container);
+	}
+
+	/**
+	 * Deletes this model instance endpoint from the Instance or Workflow MID that contains it.
+	 * 
+	 * @param containerModelRel
+	 *            The model relationship that contains the model endpoint.
+	 * @generated NOT
+	 */
+	protected void deleteInstance(@NonNull ModelRel containerModelRel) {
+
+		containerModelRel.getModelEndpoints().remove(this);
+	}
+
+	/**
+	 * Deletes this model instance endpoint and the reference to it from the Instance MID that contains them.
+	 * 
+	 * @param isFullDelete
+	 *            True if this model endpoint is going to be fully deleted, false if it is going to be replaced later.
+	 * @param containerModelRel
+	 *            The model relationship that contains the model endpoint.
+	 * @throws MMINTException
+	 *             If there is no reference to this model endpoint.
+	 * @generated NOT
+	 */
+	protected void deleteInstanceAndReference(boolean isFullDelete, @NonNull ModelRel containerModelRel) throws MMINTException {
+
 		ModelEndpointReference modelEndpointRef = null;
 		for (ModelEndpointReference modelEndpointRef2 : containerModelRel.getModelEndpointRefs()) {
 			if (modelEndpointRef2.getObject() == this) {
@@ -530,9 +638,83 @@ public class ModelEndpointImpl extends ExtendibleElementEndpointImpl implements 
 			modelEndpointRef.getModelElemRefs().get(0).deleteInstanceReference();
 		}
 		if (isFullDelete) {
-			containerModelRel.getModelEndpoints().remove(this);
 			containerModelRel.getModelEndpointRefs().remove(modelEndpointRef);
+			this.deleteInstance(containerModelRel);
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteInstance(boolean isFullDelete) throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+		EObject container = this.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.deleteInstanceAndReference(isFullDelete, (ModelRel) container);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelEndpoint createWorkflowInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
+			throw new MMINTException("Can't add more than 2 model endpoints to a binary model relationship");
+		}
+
+		ModelEndpoint newModelEndpoint = super.createThisEClass();
+		this.addInstance(newModelEndpoint, targetModel, containerModelRel);
+
+		return newModelEndpoint;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelEndpoint createWorkflowInstance(Model targetModel, Operator containerOperator, String containerFeatureName) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ModelEndpoint newModelEndpoint = super.createThisEClass();
+		this.addInstance(newModelEndpoint, targetModel, containerOperator, containerFeatureName);
+
+		return newModelEndpoint;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void replaceWorkflowInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+		if (this.eClass() != oldModelEndpoint.eClass() && this.eClass().isSuperTypeOf(oldModelEndpoint.eClass())) {
+			throw new MMINTException("Can't replace a user-defined model endpoint with a native one");
+		}
+		EObject container = oldModelEndpoint.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.replaceInstance(oldModelEndpoint, targetModel, (ModelRel) container);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteWorkflowInstance() throws MMINTException {
+
+		MMINTException.mustBeWorkflow(this);
+		EObject container = this.eContainer();
+		if (container instanceof Operator) {
+			throw new MMINTException("Can't use this api with operators");
+		}
+
+		this.deleteInstance((ModelRel) container);
 	}
 
 } //ModelEndpointImpl

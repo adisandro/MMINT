@@ -24,8 +24,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -253,6 +254,12 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElementReference.class) {
+			switch (baseOperationID) {
+				case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == ExtendibleElementEndpointReference.class) {
 			switch (baseOperationID) {
 				case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
@@ -323,7 +330,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		MappingReference mappingTypeRef = (MappingReference) this.eContainer();
 		ModelRel modelRelType = (ModelRel) mappingTypeRef.eContainer();
 		// delete the "thing" and the corresponding reference
@@ -334,8 +341,8 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
 		deleteTypeReference(isFullDelete);
 		// delete references of the "thing" in subtypes of the container's container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
-			ModelElementEndpointReference modelElemSubtypeEndpointRef = MIDTypeHierarchy.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(mappingTypeRef, modelRelSubtype.getMappingRefs());
+			ModelElementEndpointReference modelElemSubtypeEndpointRef = MIDRegistry.getReference(this, mappingSubtypeRef.getModelElemEndpointRefs());
 			modelElemSubtypeEndpointRef.deleteTypeReference(isFullDelete);
 		}
 		// delete references of the "thing" in subtypes of the container

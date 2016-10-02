@@ -18,7 +18,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * A wizard dialog to create a new editor.
@@ -37,9 +37,9 @@ public class EditorCreationWizardDialog extends WizardDialog {
 		if (filePage.getNextPage() != null && filePage.getNextPage() instanceof WizardNewFileCreationPage) {
 			WizardNewFileCreationPage nextPage = (WizardNewFileCreationPage) filePage.getNextPage();
 			nextPage.setFileName(
-				MIDUtils.replaceFileNameInUri(
+				FileUtils.replaceFileNameInUri(
 					nextPage.getFileName(),
-					MIDUtils.getFileNameFromUri(filePage.getFileName())
+					FileUtils.getFileNameFromUri(filePage.getFileName())
 				)
 			);
 			filePage = nextPage;

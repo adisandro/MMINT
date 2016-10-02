@@ -12,9 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import edu.toronto.cs.se.mmint.mid.operator.*;
-import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -76,9 +74,13 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 			case OperatorPackage.OPERATOR: return createOperator();
 			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
 			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
+			case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
 			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
 			case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
 			case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
+			case OperatorPackage.OPERATOR_CONSTRAINT: return createOperatorConstraint();
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE: return createOperatorConstraintRule();
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER: return createOperatorConstraintParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -94,12 +96,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 		switch (eDataType.getClassifierID()) {
 			case OperatorPackage.RANDOM:
 				return createRandomFromString(eDataType, initialValue);
-			case OperatorPackage.EXCEPTION:
-				return createExceptionFromString(eDataType, initialValue);
-			case OperatorPackage.PROPERTIES:
-				return createPropertiesFromString(eDataType, initialValue);
-			case OperatorPackage.SET:
-				return createSetFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -115,12 +111,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 		switch (eDataType.getClassifierID()) {
 			case OperatorPackage.RANDOM:
 				return convertRandomToString(eDataType, instanceValue);
-			case OperatorPackage.EXCEPTION:
-				return convertExceptionToString(eDataType, instanceValue);
-			case OperatorPackage.PROPERTIES:
-				return convertPropertiesToString(eDataType, instanceValue);
-			case OperatorPackage.SET:
-				return convertSetToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -161,6 +151,16 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public WorkflowOperator createWorkflowOperator() {
+		WorkflowOperatorImpl workflowOperator = new WorkflowOperatorImpl();
+		return workflowOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GenericEndpoint createGenericEndpoint() {
 		GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
 		return genericEndpoint;
@@ -191,6 +191,36 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OperatorConstraint createOperatorConstraint() {
+		OperatorConstraintImpl operatorConstraint = new OperatorConstraintImpl();
+		return operatorConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorConstraintRule createOperatorConstraintRule() {
+		OperatorConstraintRuleImpl operatorConstraintRule = new OperatorConstraintRuleImpl();
+		return operatorConstraintRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperatorConstraintParameter createOperatorConstraintParameter() {
+		OperatorConstraintParameterImpl operatorConstraintParameter = new OperatorConstraintParameterImpl();
+		return operatorConstraintParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Random createRandomFromString(EDataType eDataType, String initialValue) {
 		return (Random)super.createFromString(eDataType, initialValue);
 	}
@@ -202,60 +232,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
 	 */
 	public String convertRandomToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Exception createExceptionFromString(EDataType eDataType, String initialValue) {
-		return (Exception)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertExceptionToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Properties createPropertiesFromString(EDataType eDataType, String initialValue) {
-		return (Properties)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPropertiesToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Set<?> createSetFromString(EDataType eDataType, String initialValue) {
-		return (Set<?>)super.createFromString(initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSetToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
 	}
 
 	/**

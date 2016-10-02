@@ -17,6 +17,7 @@ import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMappingReference;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingReferenceImpl;
@@ -69,6 +70,12 @@ public class BinaryMAVOMappingReferenceImpl extends BinaryMappingReferenceImpl i
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElementReference.class) {
+			switch (baseOperationID) {
+				case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
 		if (baseClass == MappingReference.class) {
 			switch (baseOperationID) {
 				case RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT: return MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT;

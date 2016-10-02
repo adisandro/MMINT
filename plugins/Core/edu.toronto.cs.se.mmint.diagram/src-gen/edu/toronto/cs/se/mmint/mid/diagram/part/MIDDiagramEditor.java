@@ -78,7 +78,6 @@ import org.eclipse.ui.part.ShowInContext;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.navigator.MIDNavigatorItem;
 
 /**
@@ -130,18 +129,50 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 
 		PaletteRoot root = createPaletteRootGen(existingPaletteRoot);
-		MID typeMID = (MID) this.getDiagram().getElement();
-		if (!MIDConstraintChecker.isInstancesLevel(typeMID)) {
-			for (Object paletteContainer : root.getChildren()) {
-				for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
-					if (paletteEntry instanceof ToolEntry
-							&& !(paletteEntry instanceof PanningSelectionToolEntry || paletteEntry instanceof PaletteToolEntry)) {
-						((ToolEntry) paletteEntry).setLabel(((ToolEntry) paletteEntry).getLabel() + " Type");
-						((ToolEntry) paletteEntry)
-								.setDescription(((ToolEntry) paletteEntry).getDescription() + " Type");
+
+		MID mid = (MID) this.getDiagram().getElement();
+		for (Object paletteContainer : root.getChildren()) {
+			List<ToolEntry> paletteEntriesToDel = new ArrayList<>();
+			for (Object paletteEntry : ((PaletteContainer) paletteContainer).getChildren()) {
+				if (paletteEntry instanceof ToolEntry && !(paletteEntry instanceof PanningSelectionToolEntry
+						|| paletteEntry instanceof PaletteToolEntry)) {
+					ToolEntry toolEntry = (ToolEntry) paletteEntry;
+					String label = toolEntry.getLabel();
+					String description = toolEntry.getDescription();
+					//TODO MMINT[MODELREL] Re-enable once support is implemented
+					if (label.contains("Import Nary")) {
+						paletteEntriesToDel.add(toolEntry);
+						continue;
 					}
+					switch (mid.getLevel()) { // Customize the palette labels and entries for each MID level
+						case TYPES:
+							if (label.contains("Import")) {
+								paletteEntriesToDel.add(toolEntry);
+								break;
+							}
+							label += " Type";
+							description += " Type";
+							break;
+						case INSTANCES:
+							if (label.contains("Operator")) {
+								paletteEntriesToDel.add(toolEntry);
+							}
+							break;
+						case WORKFLOWS:
+							if (label.contains("Operator") || label.contains("Import")) {
+								paletteEntriesToDel.add(toolEntry);
+								break;
+							}
+							description = description + " in the Workflow";
+							break;
+						default:
+							// should never happen
+					}
+					toolEntry.setLabel(label);
+					toolEntry.setDescription(description);
 				}
 			}
+			((PaletteContainer) paletteContainer).getChildren().removeAll(paletteEntriesToDel);
 		}
 
 		return root;
@@ -249,12 +280,15 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 		}
 
 		MID mid1 = (MID) this.getDiagram().getElement();
-		if (!MIDConstraintChecker.isInstancesLevel(mid1)) {
-			MMINT.syncRepository(mid1);
+		if (mid1.isTypesLevel()) {
+			MMINT.syncTypeMID(mid1);
 			// diagram sync required
 			final String relDiagramId = "edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID";
-			for (IEditorReference editorRef : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.getEditorReferences()) {
+			for (IEditorReference editorRef : PlatformUI
+				.getWorkbench()
+				.getActiveWorkbenchWindow()
+				.getActivePage()
+				.getEditorReferences()) {
 				IEditorPart editorPart = editorRef.getEditor(false);
 				if (!(editorPart instanceof DiagramDocumentEditor)) {
 					continue;
@@ -264,7 +298,7 @@ public class MIDDiagramEditor extends DiagramDocumentEditor implements IGotoMark
 					continue;
 				}
 				MID mid2 = (MID) editor.getDiagram().getElement().eContainer();
-				if (!MIDConstraintChecker.isInstancesLevel(mid2)) {
+				if (mid2.isTypesLevel()) {
 					IDocumentProvider provider2 = editor.getDocumentProvider();
 					try {
 						provider2.synchronize(editorRef.getEditorInput());

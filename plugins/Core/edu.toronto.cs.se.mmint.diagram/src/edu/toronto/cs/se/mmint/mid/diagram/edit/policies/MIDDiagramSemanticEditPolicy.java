@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelImportModelCommand
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelNewModelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelImportNaryRelCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.ModelRelNewNaryRelCommand;
+import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.OperatorNewOperatorCommand;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDElementTypes;
 
 /**
@@ -49,6 +50,9 @@ public class MIDDiagramSemanticEditPolicy extends MIDItemSemanticEditPolicy {
 		}
 		if (MIDElementTypes.ModelRel_2004 == req.getElementType()) {
 			return getGEFWrapper(new ModelRelImportNaryRelCommand(req));
+		}
+		if (MIDElementTypes.Operator_2005 == req.getElementType()) {
+			return getGEFWrapper(new OperatorNewOperatorCommand(req));
 		}
 		return null;
 	}

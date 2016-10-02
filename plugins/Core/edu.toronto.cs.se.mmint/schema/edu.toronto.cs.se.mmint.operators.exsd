@@ -60,6 +60,7 @@
       <complexType>
          <sequence>
             <element ref="type"/>
+            <element ref="constraint" minOccurs="0" maxOccurs="1"/>
             <element ref="inputs" minOccurs="0" maxOccurs="1"/>
             <element ref="outputs" minOccurs="0" maxOccurs="1"/>
             <element ref="generics" minOccurs="0" maxOccurs="1"/>
@@ -116,7 +117,32 @@
          <sequence>
             <element ref="type"/>
             <element ref="typeEndpoint"/>
+            <element ref="endpointConstraint" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
+      </complexType>
+   </element>
+
+   <element name="endpointConstraint">
+      <annotation>
+         <documentation>
+            A constraint specifiying what are the endpoints of an output model relationship.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="parameterName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of an input or output parameter.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="endpointIndex" type="string">
+            <annotation>
+               <documentation>
+                  An index to identify a model endpoint, if the input or output parameter is a model relationship.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

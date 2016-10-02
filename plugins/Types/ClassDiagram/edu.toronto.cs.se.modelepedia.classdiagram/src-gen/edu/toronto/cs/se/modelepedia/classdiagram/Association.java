@@ -19,11 +19,11 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation()
  * @model annotation="gmf.link label='name' label.icon='true' source='source' target='target' target.decoration='arrow'"

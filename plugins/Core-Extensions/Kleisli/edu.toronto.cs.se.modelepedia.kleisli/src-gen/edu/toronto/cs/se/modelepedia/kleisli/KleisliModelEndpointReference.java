@@ -34,8 +34,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpointReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='kleisliModelEndpoint'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot kleisliModelEndpoint='object.oclIsKindOf(kleisli::KleisliModelEndpoint)'"
+ * @model
  * @generated
  */
 public interface KleisliModelEndpointReference extends ModelEndpointReference {

@@ -32,14 +32,14 @@ import edu.toronto.cs.se.mavo.MAVOCollection;
 import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuListener {
 
@@ -73,7 +73,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 		String modelUri = MIDRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MID instanceMID : instanceMIDs.keySet()) {
-			model = MIDRegistry.getExtendibleElement(modelUri, instanceMID);
+			model = instanceMID.getExtendibleElement(modelUri);
 			if (model != null) {
 				break;
 			}
@@ -104,13 +104,13 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 
 			Diagram modelDiagram = MIDRegistry.getModelDiagram(model);
 			if (mavoElemToHighlight instanceof MAVODecision) {
-				MAVOMultiModelConstraintChecker.highlightMAVODecision(modelDiagram, (MAVODecision) mavoElemToHighlight);
+				MAVOMIDConstraintChecker.highlightMAVODecision(modelDiagram, (MAVODecision) mavoElemToHighlight);
 			}
 			else if (mavoElemToHighlight instanceof MAVOCollection) {
-				MAVOMultiModelConstraintChecker.highlightMAVOCollection(modelDiagram, (MAVOCollection) mavoElemToHighlight);
+				MAVOMIDConstraintChecker.highlightMAVOCollection(modelDiagram, (MAVOCollection) mavoElemToHighlight);
 			}
 			else if (mavoElemToHighlight instanceof MAVOElement) {
-				MAVOMultiModelConstraintChecker.highlightMAVOElement(modelDiagram, (MAVOElement) mavoElemToHighlight);
+				MAVOMIDConstraintChecker.highlightMAVOElement(modelDiagram, (MAVOElement) mavoElemToHighlight);
 			}
 
 			return CommandResult.newOKCommandResult();

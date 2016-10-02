@@ -1,5 +1,14 @@
+
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies;
 
@@ -48,86 +57,79 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.Messages;
 public class OpenDiagramEditPolicy extends OpenEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Command getOpenCommand(Request request) {
 		EditPart targetEditPart = getTargetEditPart(request);
 		if (false == targetEditPart.getModel() instanceof View) {
 			return null;
 		}
 		View view = (View) targetEditPart.getModel();
-		Style link = view.getStyle(NotationPackage.eINSTANCE
-				.getHintedDiagramLinkStyle());
+		Style link = view.getStyle(NotationPackage.eINSTANCE.getHintedDiagramLinkStyle());
 		if (false == link instanceof HintedDiagramLinkStyle) {
 			return null;
 		}
-		return new ICommandProxy(new OpenDiagramCommand(
-				(HintedDiagramLinkStyle) link));
+		return new ICommandProxy(new OpenDiagramCommand((HintedDiagramLinkStyle) link));
 	}
 
 	/**
-	 * @generated
-	 */
-	private static class OpenDiagramCommand extends
-			AbstractTransactionalCommand {
+	* @generated
+	*/
+	private static class OpenDiagramCommand extends AbstractTransactionalCommand {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final HintedDiagramLinkStyle diagramFacet;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
 			// editing domain is taken for original diagram, 
 			// if we open diagram from another file, we should use another editing domain
-			super(TransactionUtil.getEditingDomain(linkStyle),
-					Messages.CommandName_OpenDiagram, null);
+			super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
 		}
 
 		// FIXME canExecute if  !(readOnly && getDiagramToOpen == null), i.e. open works on ro diagrams only when there's associated diagram already
 
 		/**
-		 * @generated
-		 */
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-				IAdaptable info) throws ExecutionException {
+		* @generated
+		*/
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 			try {
 				Diagram diagram = getDiagramToOpen();
 				if (diagram == null) {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = uri.lastSegment() + '#'
-						+ diagram.eResource().getContents().indexOf(diagram);
+				String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
-				IWorkbenchPage page = PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getActivePage();
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				page.openEditor(editorInput, getEditorID());
 				return CommandResult.newOKCommandResult();
-			} catch (Exception ex) {
+			}
+			catch (Exception ex) {
 				throw new ExecutionException("Can't open diagram", ex);
 			}
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected Diagram getDiagramToOpen() {
 			return diagramFacet.getDiagramLink();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected Diagram intializeNewDiagram() throws ExecutionException {
-			Diagram d = ViewService.createDiagram(getDiagramDomainElement(),
-					getDiagramKind(), getPreferencesHint());
+			Diagram d = ViewService.createDiagram(getDiagramDomainElement(), getDiagramKind(), getPreferencesHint());
 			if (d == null) {
-				throw new ExecutionException("Can't create diagram of '"
-						+ getDiagramKind() + "' kind");
+				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind");
 			}
 			diagramFacet.setDiagramLink(d);
 			assert diagramFacet.eResource() != null;
@@ -140,63 +142,57 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 			try {
 				new WorkspaceModifyOperation() {
 					protected void execute(IProgressMonitor monitor)
-							throws CoreException, InvocationTargetException,
-							InterruptedException {
+							throws CoreException, InvocationTargetException, InterruptedException {
 						try {
-							for (Iterator it = diagramFacet.eResource()
-									.getResourceSet().getResources().iterator(); it
-									.hasNext();) {
+							for (Iterator it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it
+								.hasNext();) {
 								Resource nextResource = (Resource) it.next();
-								if (nextResource.isLoaded()
-										&& !getEditingDomain().isReadOnly(
-												nextResource)) {
-									nextResource
-											.save(ClassDiagramDiagramEditorUtil
-													.getSaveOptions());
+								if (nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
+									nextResource.save(ClassDiagramDiagramEditorUtil.getSaveOptions());
 								}
 							}
-						} catch (IOException ex) {
-							throw new InvocationTargetException(ex,
-									"Save operation failed");
+						}
+						catch (IOException ex) {
+							throw new InvocationTargetException(ex, "Save operation failed");
 						}
 					}
 				}.run(null);
-			} catch (InvocationTargetException e) {
-				throw new ExecutionException("Can't create diagram of '"
-						+ getDiagramKind() + "' kind", e);
-			} catch (InterruptedException e) {
-				throw new ExecutionException("Can't create diagram of '"
-						+ getDiagramKind() + "' kind", e);
+			}
+			catch (InvocationTargetException e) {
+				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
+			}
+			catch (InterruptedException e) {
+				throw new ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
 			}
 			return d;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected EObject getDiagramDomainElement() {
 			// use same element as associated with EP
 			return ((View) diagramFacet.eContainer()).getElement();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected PreferencesHint getPreferencesHint() {
 			// XXX prefhint from target diagram's editor?
 			return ClassDiagramDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected String getDiagramKind() {
 			return ClassDiagramEditPart.MODEL_ID;
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		protected String getEditorID() {
 			return ClassDiagramDiagramEditor.ID;
 		}

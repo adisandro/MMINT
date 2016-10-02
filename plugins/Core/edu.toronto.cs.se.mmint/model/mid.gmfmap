@@ -107,13 +107,17 @@
   <nodes>
     <containmentFeature
         href="mid.ecore#//MID/operators"/>
-    <ownedChild>
+    <ownedChild
+        relatedDiagrams="//@diagram">
       <domainMetaElement
           href="mid.ecore#//operator/Operator"/>
       <labelMappings>
         <diagramLabel
             href="mid.gmfgraph#OperatorLabel"/>
       </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="mid.gmftool#//@palette/@tools.0/@tools.4"/>
       <diagramNode
           href="mid.gmfgraph#Operator"/>
     </ownedChild>

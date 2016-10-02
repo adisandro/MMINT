@@ -25,46 +25,44 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.Associat
 /**
  * @generated
  */
-public class AssociationEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class AssociationEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final int VISUAL_ID = 4001;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public AssociationEditPart(View view) {
 		super(view);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AssociationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
+	* Creates figure for this edit part.
+	* 
+	* Body of this method does not depend on settings in generation model
+	* so you may safely remove <i>generated</i> tag and modify it.
+	* 
+	* @generated
+	*/
 
 	protected Connection createConnectionFigure() {
 		return new AssociationFigure();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public AssociationFigure getPrimaryShape() {
 		return (AssociationFigure) getFigure();
 	}

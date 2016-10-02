@@ -87,7 +87,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true" isBinarySrcRequired="true" containerModelRelTypeRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
+	ModelEndpointReference createSubtype(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,7 +96,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelTypeEndpointRequired="true" newModelTypeEndpointNameRequired="true" targetModelTypeRequired="true"
 	 * @generated
 	 */
-	void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException;
+	void replaceSubtype(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,7 +105,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
 	 * @generated
 	 */
-	void deleteTypeAndReference(boolean isFullDelete) throws MMINTException;
+	void deleteType(boolean isFullDelete) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetModelRequired="true" containerModelRelRequired="true"
 	 * @generated
 	 */
-	ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException;
+	ModelEndpointReference createInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,7 +127,7 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" oldModelEndpointRequired="true" targetModelRequired="true"
 	 * @generated
 	 */
-	void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
+	void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,6 +136,6 @@ public interface KleisliModelEndpoint extends ModelEndpoint {
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
 	 * @generated
 	 */
-	void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException;
+	void deleteInstance(boolean isFullDelete) throws MMINTException;
 
 } // KleisliModelEndpoint

@@ -42,9 +42,9 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -217,25 +217,26 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 
 		// input
 		Model origModel = inputsByName.get(IN_MODEL);
+		super.init();
 		// function declarations at step 0 for fN-fC-fD (phis) +
 		// function definition at every step for fY (phi apply, algorithm line 2) +
 		// function definition at every step for fX (phi P, external constraint)
-		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
+		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
-		String fullUri = MIDUtils.prependWorkspaceToUri(MIDUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
+		String fullUri = FileUtils.prependWorkspacePathToUri(FileUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(fullUri);
 		Module hModule = hResourceSet.getModule(transformationModule, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(origModel.getUri())));
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(origModel.getUri())));
 		if (timeClassicalEnabled) {
 			doTransformationClassical(hModule, hEngine, hGraph);
 			hResourceSet = new HenshinResourceSet(fullUri);
 			hModule = hResourceSet.getModule(transformationModule, false);
 			hEngine = new EngineImpl();
 			hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-			hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(origModel.getUri())));
+			hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(origModel.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
 		if (transformedConstraintEnabled) {
@@ -255,17 +256,17 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
-		String transformedMIDModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.replaceFileExtensionInUri(
-				MIDUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedMIDModelUri = FileUtils.getUniqueUri(
+			FileUtils.replaceFileExtensionInUri(
+				FileUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 				transformedModelType.getFileExtension()),
 			true,
 			false);
-		MIDUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
+		FileUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedMIDModelUri,
 			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			origModel,
 			transformedModel,
@@ -276,12 +277,12 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		outputsByName.put(OUT_MODELREL, traceRel);
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorUtils.writePropertiesFile(
+		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			origModel,
 			getInputSubdir(),
-			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return outputsByName;

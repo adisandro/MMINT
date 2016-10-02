@@ -2,16 +2,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MMINT</groupId>
   <artifactId>edu.toronto.cs.se.mmint.releng</artifactId>
-  <version>2.0.1</version>
+  <version>2.1.0</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>0.25.0</tycho-version>
+    <tycho-version>0.26.0</tycho-version>
     <acceleo-version>3.6.0-SNAPSHOT</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
     <repository>
-  	  <id>Mars</id>
+  	  <id>Neon</id>
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/releases/neon</url>
     </repository>
@@ -108,6 +108,11 @@
             <environment>
               <os>win32</os>
               <ws>win32</ws>
+              <arch>x86_64</arch>
+            </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
               <arch>x86_64</arch>
             </environment>
           </environments>
@@ -208,6 +213,7 @@
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.editor</module>
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
+  	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
   	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.emftocsp.feature</module>

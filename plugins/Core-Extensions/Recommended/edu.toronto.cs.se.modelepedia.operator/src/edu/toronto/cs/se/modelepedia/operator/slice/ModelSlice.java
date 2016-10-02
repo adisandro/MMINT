@@ -27,12 +27,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class ModelSlice extends OperatorImpl {
-
 
 	// input-output
 	private final static @NonNull String IN_MODEL = "model";
@@ -53,16 +52,15 @@ public class ModelSlice extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		idAttribute = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		sliceIds = MIDOperatorUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
+		idAttribute = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
+		sliceIds = MIDOperatorIOUtils.getStringPropertySet(inputProperties, PROPERTY_IN_SLICEIDS);
 		boundariesIds = new HashMap<>();
 		for (String sliceId : sliceIds) {
-			boundariesIds.put(sliceId, MIDOperatorUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
+			boundariesIds.put(sliceId, MIDOperatorIOUtils.getStringPropertySet(inputProperties, sliceId + PROPERTY_IN_BOUNDARIESIDS_SUFFIX));
 		}
 	}
 
-	@Override
-	public void init() {
+	private void init() {
 
 		sliceModelObjs = new HashSet<>();
 	}
@@ -74,7 +72,7 @@ public class ModelSlice extends OperatorImpl {
 		}
 		String id = null;
 		try {
-			id = (String) MIDUtils.getModelObjFeature(sliceModelObj, idAttribute);
+			id = (String) FileUtils.getModelObjectFeature(sliceModelObj, idAttribute);
 		}
 		catch (MMINTException e) {
 			// ignore and continue
@@ -98,7 +96,7 @@ public class ModelSlice extends OperatorImpl {
 		sliceRootModelObj.eAllContents().forEachRemaining(sliceModelObj -> {
 			String sliceId = null;
 			try {
-				sliceId = (String) MIDUtils.getModelObjFeature(sliceModelObj, idAttribute);
+				sliceId = (String) FileUtils.getModelObjectFeature(sliceModelObj, idAttribute);
 			}
 			catch (Exception e) {
 				// ignore and continue
@@ -126,10 +124,11 @@ public class ModelSlice extends OperatorImpl {
 
 		// input
 		Model model = inputsByName.get(IN_MODEL);
+		this.init();
 
-		String sliceModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
-		EObject sliceRootModelObj = slice(model.getEMFInstanceRoot());
-		MIDUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
+		String sliceModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
+		EObject sliceRootModelObj = this.slice(model.getEMFInstanceRoot());
+		FileUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?
 			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
 			model.getMetatype().createInstance(sliceModelUri, null);

@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies;
 
@@ -24,45 +32,47 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedback
 /**
  * @generated
  */
-public class ClassDiagramTextNonResizableEditPolicy extends
-		NonResizableEditPolicyEx implements IRefreshableFeedbackEditPolicy {
+public class ClassDiagramTextNonResizableEditPolicy extends NonResizableEditPolicyEx
+		implements IRefreshableFeedbackEditPolicy {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IFigure selectionFeedbackFigure;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IFigure focusFeedbackFigure;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private FigureListener hostPositionListener;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
 			((WrappingLabel) getHostFigure()).setFocus(true);
-		} else {
+		}
+		else {
 			showSelection();
 			showFocus();
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
 			((WrappingLabel) getHostFigure()).setFocus(false);
-		} else {
+		}
+		else {
 			hideSelection();
 			addFeedback(selectionFeedbackFigure = createSelectionFeedbackFigure());
 			getHostFigure().addFigureListener(getHostPositionListener());
@@ -72,13 +82,14 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
 			((WrappingLabel) getHostFigure()).setFocus(false);
-		} else {
+		}
+		else {
 			if (selectionFeedbackFigure != null) {
 				removeFeedback(selectionFeedbackFigure);
 				getHostFigure().removeFigureListener(getHostPositionListener());
@@ -89,12 +100,13 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
-		} else {
+		}
+		else {
 			hideFocus();
 			addFeedback(focusFeedbackFigure = createFocusFeedbackFigure());
 			refreshFocusFeedback();
@@ -102,12 +114,13 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
-		} else {
+		}
+		else {
 			if (focusFeedbackFigure != null) {
 				removeFeedback(focusFeedbackFigure);
 				focusFeedbackFigure = null;
@@ -116,14 +129,15 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Rectangle getFeedbackBounds() {
 		Rectangle bounds;
 		if (getHostFigure() instanceof Label) {
 			bounds = ((Label) getHostFigure()).getTextBounds();
 			bounds.intersect(getHostFigure().getBounds());
-		} else {
+		}
+		else {
 			bounds = getHostFigure().getBounds().getCopy();
 		}
 		getHostFigure().getParent().translateToAbsolute(bounds);
@@ -132,18 +146,17 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure createSelectionFeedbackFigure() {
 		if (getHostFigure() instanceof Label) {
 			Label feedbackFigure = new Label();
 			feedbackFigure.setOpaque(true);
-			feedbackFigure
-					.setBackgroundColor(ColorConstants.menuBackgroundSelected);
-			feedbackFigure
-					.setForegroundColor(ColorConstants.menuForegroundSelected);
+			feedbackFigure.setBackgroundColor(ColorConstants.menuBackgroundSelected);
+			feedbackFigure.setForegroundColor(ColorConstants.menuForegroundSelected);
 			return feedbackFigure;
-		} else {
+		}
+		else {
 			RectangleFigure feedbackFigure = new RectangleFigure();
 			feedbackFigure.setFill(false);
 			return feedbackFigure;
@@ -151,8 +164,8 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IFigure createFocusFeedbackFigure() {
 		return new Figure() {
 
@@ -163,8 +176,8 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void updateLabel(Label target) {
 		Label source = (Label) getHostFigure();
 		target.setText(source.getText());
@@ -173,23 +186,23 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshSelectionFeedback() {
 		if (selectionFeedbackFigure != null) {
 			if (selectionFeedbackFigure instanceof Label) {
 				updateLabel((Label) selectionFeedbackFigure);
 				selectionFeedbackFigure.setBounds(getFeedbackBounds());
-			} else {
-				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5,
-						5));
+			}
+			else {
+				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5, 5));
 			}
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected void refreshFocusFeedback() {
 		if (focusFeedbackFigure != null) {
 			focusFeedbackFigure.setBounds(getFeedbackBounds());
@@ -197,8 +210,8 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	@Override
 	public void refreshFeedback() {
 		refreshSelectionFeedback();
@@ -206,8 +219,8 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private FigureListener getHostPositionListener() {
 		if (hostPositionListener == null) {
 			hostPositionListener = new FigureListener() {
@@ -220,8 +233,8 @@ public class ClassDiagramTextNonResizableEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected List createSelectionHandles() {
 		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart) getHost());
 		moveHandle.setBorder(null);

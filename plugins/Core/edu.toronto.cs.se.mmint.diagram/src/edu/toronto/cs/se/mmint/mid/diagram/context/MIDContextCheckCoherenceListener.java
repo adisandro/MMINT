@@ -42,7 +42,6 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -82,7 +81,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 
 			try {
 				// create results for each conversion path
-				MID instanceMID = MIDRegistry.getMultiModel(model);
+				MID instanceMID = model.getMIDContainer();
 				List<Model> coherentModels = new ArrayList<Model>(), coherentModels2 = new ArrayList<Model>();
 				for (List<ConversionOperator> conversionPath : conversionPaths) {
 					Model inputModel = model;
@@ -94,7 +93,7 @@ public class MIDContextCheckCoherenceListener extends MIDContextMenuListener {
 						Map<String, MID> outputMIDsByName = new HashMap<>();
 						String convOutputName = convOperatorType.getOutputs().get(0).getName();
 						outputMIDsByName.put(convOutputName, instanceMID);
-						Map<String, Model> outputsByName = convOperatorType.start(inputs, null, generics, outputMIDsByName, null).getOutputsByName();
+						Map<String, Model> outputsByName = convOperatorType.startInstance(inputs, null, generics, outputMIDsByName, null).getOutputsByName();
 						inputModel = outputsByName.get(convOutputName);
 					}
 					coherentModels.add(inputModel);

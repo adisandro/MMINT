@@ -55,7 +55,6 @@ public class ExtendibleElementEndpointItemProvider
 			addLowerBoundPropertyDescriptor(object);
 			addUpperBoundPropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
-			addTargetUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,28 +126,6 @@ public class ExtendibleElementEndpointItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Uri feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetUriPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElementEndpoint_targetUri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementEndpoint_targetUri_feature", "_UI_ExtendibleElementEndpoint_type"),
-				 MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,7 +153,6 @@ public class ExtendibleElementEndpointItemProvider
 		switch (notification.getFeatureID(ExtendibleElementEndpoint.class)) {
 			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
 			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
-			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

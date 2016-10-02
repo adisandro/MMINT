@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.operator.*;
@@ -108,6 +109,15 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperatorPackage.WORKFLOW_OPERATOR: {
+				WorkflowOperator workflowOperator = (WorkflowOperator)theEObject;
+				T result = caseWorkflowOperator(workflowOperator);
+				if (result == null) result = caseOperator(workflowOperator);
+				if (result == null) result = caseGenericElement(workflowOperator);
+				if (result == null) result = caseExtendibleElement(workflowOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OperatorPackage.GENERIC_ENDPOINT: {
 				GenericEndpoint genericEndpoint = (GenericEndpoint)theEObject;
 				T result = caseGenericEndpoint(genericEndpoint);
@@ -125,6 +135,25 @@ public class OperatorSwitch<T> extends Switch<T> {
 			case OperatorPackage.OPERATOR_GENERIC: {
 				OperatorGeneric operatorGeneric = (OperatorGeneric)theEObject;
 				T result = caseOperatorGeneric(operatorGeneric);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperatorPackage.OPERATOR_CONSTRAINT: {
+				OperatorConstraint operatorConstraint = (OperatorConstraint)theEObject;
+				T result = caseOperatorConstraint(operatorConstraint);
+				if (result == null) result = caseExtendibleElementConstraint(operatorConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperatorPackage.OPERATOR_CONSTRAINT_RULE: {
+				OperatorConstraintRule operatorConstraintRule = (OperatorConstraintRule)theEObject;
+				T result = caseOperatorConstraintRule(operatorConstraintRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER: {
+				OperatorConstraintParameter operatorConstraintParameter = (OperatorConstraintParameter)theEObject;
+				T result = caseOperatorConstraintParameter(operatorConstraintParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -178,6 +207,21 @@ public class OperatorSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowOperator(WorkflowOperator object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Generic Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -223,6 +267,51 @@ public class OperatorSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperatorConstraint(OperatorConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperatorConstraintRule(OperatorConstraintRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperatorConstraintParameter(OperatorConstraintParameter object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -264,6 +353,21 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendibleElementConstraint(ExtendibleElementConstraint object) {
 		return null;
 	}
 

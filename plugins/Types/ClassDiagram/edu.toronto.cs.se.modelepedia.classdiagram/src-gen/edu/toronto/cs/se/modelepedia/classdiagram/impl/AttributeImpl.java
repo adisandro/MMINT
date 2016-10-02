@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AttributeImpl#getOwner <em>Owner</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,7 +62,7 @@ public class AttributeImpl extends TypedElementImpl implements Attribute {
 	 */
 	public edu.toronto.cs.se.modelepedia.classdiagram.Class getOwner() {
 		if (eContainerFeatureID() != ClassDiagramPackage.ATTRIBUTE__OWNER) return null;
-		return (edu.toronto.cs.se.modelepedia.classdiagram.Class)eContainer();
+		return (edu.toronto.cs.se.modelepedia.classdiagram.Class)eInternalContainer();
 	}
 
 	/**

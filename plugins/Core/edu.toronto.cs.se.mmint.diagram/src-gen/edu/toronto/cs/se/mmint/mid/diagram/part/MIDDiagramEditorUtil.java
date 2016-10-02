@@ -188,33 +188,75 @@ public class MIDDiagramEditorUtil {
 	}
 
 	/**
-	* Create a new instance of domain element associated with canvas.
-	* <!-- begin-user-doc -->
-	* <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	private static MID createInitialModelGen() {
-		return MIDFactory.eINSTANCE.createMID();
+	public static Resource createDiagram(
+			URI diagramURI, URI modelURI, IProgressMonitor progressMonitor, MIDLevel midLevel) {
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		progressMonitor.beginTask(Messages.MIDDiagramEditorUtil_CreateDiagramProgressTask, 3);
+		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
+		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
+		final String diagramName = diagramURI.lastSegment();
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
+			editingDomain,
+			Messages.MIDDiagramEditorUtil_CreateDiagramCommandLabel,
+			Collections.EMPTY_LIST) {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
+				MID model = createInitialModel();
+				model.setLevel(midLevel);
+				attachModelToResource(model, modelResource);
+
+				Diagram diagram = ViewService
+					.createDiagram(model, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				if (diagram != null) {
+					diagramResource.getContents().add(diagram);
+					diagram.setName(diagramName);
+					diagram.setElement(model);
+				}
+
+				try {
+					modelResource.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
+					diagramResource
+						.save(edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil.getSaveOptions());
+				}
+				catch (IOException e) {
+
+					MIDDiagramEditorPlugin.getInstance().logError("Unable to store model and diagram resources", e); //$NON-NLS-1$
+				}
+				return CommandResult.newOKCommandResult();
+			}
+		};
+		try {
+			OperationHistoryFactory
+				.getOperationHistory()
+				.execute(command, new SubProgressMonitor(progressMonitor, 1), null);
+		}
+		catch (ExecutionException e) {
+			MIDDiagramEditorPlugin.getInstance().logError("Unable to create model and diagram", e); //$NON-NLS-1$
+		}
+		setCharset(WorkspaceSynchronizer.getFile(modelResource));
+		setCharset(WorkspaceSynchronizer.getFile(diagramResource));
+		return diagramResource;
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	private static MID createInitialModel() {
-
-		MID instanceMID = createInitialModelGen();
-		instanceMID.setLevel(MIDLevel.INSTANCES);
-
-		return instanceMID;
+	* Create a new instance of domain element associated with canvas.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @generated
+	*/
+	private static edu.toronto.cs.se.mmint.mid.MID createInitialModel() {
+		return MIDFactory.eINSTANCE.createMID();
 	}
 
 	/**
 	* Store model element in the resource.
 	* <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static void attachModelToResource(MID model, Resource resource) {
+	* @generated
+	*/
+	private static void attachModelToResource(edu.toronto.cs.se.mmint.mid.MID model, Resource resource) {
 		resource.getContents().add(model);
 	}
 

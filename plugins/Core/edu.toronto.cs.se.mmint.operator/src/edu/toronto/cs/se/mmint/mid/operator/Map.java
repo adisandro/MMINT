@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,35 +22,28 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
-
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
+import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class Map extends OperatorImpl {
 
@@ -76,51 +70,63 @@ public class Map extends OperatorImpl {
 		return true;
 	}
 
+	@Override
+	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
+
+		Operator newOperator = super.startWorkflowInstance(inputs, generics, workflowMID);
+		// create the vararg mapped mids
+		Operator mapperOperatorType = (Operator) generics.get(0).getGeneric();
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
+		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
+		for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
+			Model outputModelType = (mapperOperatorType.getOutputs().get(i).getTarget() instanceof ModelRel) ?
+				midrelModelType : midModelType;
+			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+			Model outputModel = outputModelType.createWorkflowInstance(outputModelId, workflowMID);
+			ModelEndpoint outputModelEndpoint = this.getOutputs().get(0).createWorkflowInstance(
+				outputModel,
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+			outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
+		}
+
+		return newOperator;
+	}
+
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
 
-		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		String outputMIDUri = MIDUtils.getUniqueUri(
-			MIDUtils.replaceFileNameInUri(baseOutputUri, outputName + MAPPED_MID_SUFFIX),
+		String baseOutputPath = (instanceMID == null) ?
+			MMINT.getActiveInstanceMIDFile().getFullPath().toOSString() :
+			MIDRegistry.getModelUri(instanceMID);
+		String outputMIDPath = FileUtils.getUniqueUri(
+			FileUtils.replaceFileNameInUri(baseOutputPath, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(outputMID, outputMIDUri, true);
+		FileUtils.writeModelFile(outputMID, outputMIDPath, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
-			outputMIDUri,
+			outputMIDPath,
 			instanceMID);
 
 		return outputMIDModel;
 	}
 
-	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midrelModelType, MID instanceMID, java.util.Map<String, Set<Model>> midrelShortcutsByOutputName) throws Exception {
+	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midrelModelType, MID instanceMID, Set<Model> midrelShortcuts) throws Exception {
 
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
 		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
-		View gmfDiagramRoot = (View) MIDUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
-		//TODO MMINT[DIAGRAM] This is wrong, I'd need the supertype
-		String gmfDiagramPluginId = MIDTypeRegistry.getTypeBundle(
-			outputMIDModelDiagram.getMetatypeUri()).getSymbolicName();
-		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
-		for (Model midrelShortcut : midrelShortcutsByOutputName.get(outputName)) {
-			Node gmfNode = gmfViewProvider.createModel_2002(
-				midrelShortcut,
-				gmfDiagramRoot,
-				-1,
-				true,
-				new PreferencesHint(gmfDiagramPluginId));
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			shortcutAnnotation.setSource("Shortcut");
-			shortcutAnnotation.getDetails().put("modelID", MIDEditPart.MODEL_ID);
-			gmfNode.getEAnnotations().add(shortcutAnnotation);
+		View gmfDiagramRoot = (View) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
+		for (Model midrelShortcut : midrelShortcuts) {
+			MIDDiagramUtils.createModelShortcut(midrelShortcut, gmfDiagramRoot);
 		}
-		MIDUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
+		FileUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
 
 		return outputMIDModel;
 	}
 
 	private java.util.Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
-			@NonNull Set<EList<OperatorInput>> mapperInputSet, @NonNull MID instanceMID) throws Exception {
+			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.Map<String, MID> instanceMIDsByName) throws Exception {
 
 		// create output MIDs
 		java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
@@ -138,7 +144,7 @@ public class Map extends OperatorImpl {
 		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
 			try {
 				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
-				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.start(
+				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.startInstance(
 						mapperInputs,
 						null,
 						mapperGenerics,
@@ -178,7 +184,7 @@ public class Map extends OperatorImpl {
 						}
 						Set<MID> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints()
 							.stream()
-							.map(modelEndpoint -> MIDRegistry.getMultiModel(modelEndpoint.getTarget()))
+							.map(modelEndpoint -> modelEndpoint.getTarget().getMIDContainer())
 							.collect(Collectors.toSet());
 						Set<MID> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
 							mapperOutput.getKey(),
@@ -196,35 +202,38 @@ public class Map extends OperatorImpl {
 			}
 		}
 		// store output MIDs
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
-		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
-		java.util.Map<String, Model> outputsByName = new HashMap<>();
-		int i = 0;
+		List<Model> outputMIDModels = new ArrayList<>();
 		// pass 1: no midrels
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
-			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
+			String outputName = outputMIDByName.getKey();
+			MID outputMID = outputMIDByName.getValue();
+			boolean isMIDRel = midrelShortcutsByOutputName.get(outputName) != null;
 			if (isMIDRel) {
 				continue;
 			}
-			Model outputMIDModel = createOutputMIDModel(outputMIDByName.getKey(), outputMIDByName.getValue(), midModelType, instanceMID);
-			outputsByName.put(OUT_MIDS + i, outputMIDModel);
-			i++;
+			Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midModelType, instanceMIDsByName.get(outputName));
+			outputMIDModels.add(outputMIDModel);
 		}
 		// pass 2: midrels only
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
-			boolean isMIDRel = midrelShortcutsByOutputName.get(outputMIDByName.getKey()) != null;
+			String outputName = outputMIDByName.getKey();
+			MID outputMID = outputMIDByName.getValue();
+			boolean isMIDRel = midrelShortcutsByOutputName.get(outputName) != null;
 			if (!isMIDRel) {
 				continue;
 			}
-			String outputName = outputMIDByName.getKey();
-			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMIDByName.getValue(), midrelModelType, instanceMID, midrelShortcutsByOutputName);
-			outputsByName.put(OUT_MIDS + i, outputMIDModel);
-			i++;
+			MID instanceMID = instanceMIDsByName.get(outputName);
+			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMID, midrelModelType, instanceMID, midrelShortcutsByOutputName.get(outputName));
+			outputMIDModels.add(outputMIDModel);
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
-				String midrelMIDUri = MIDRegistry.getModelAndModelElementUris(midrelMID, MIDLevel.INSTANCES)[0];
-				Model midrelMIDModel = MIDRegistry.getExtendibleElement(midrelMIDUri, instanceMID);
-				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+				String midrelMIDUri = MIDRegistry.getModelUri(midrelMID);
+				if (midrelMID != instanceMID) { // can't create the rel
+					continue;
+				}
+				Model midrelMIDModel = instanceMID.getExtendibleElement(midrelMIDUri);
+				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 					null,
 					outputMIDModel,
 					midrelMIDModel,
@@ -232,7 +241,9 @@ public class Map extends OperatorImpl {
 				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
+		//TODO MMINT[OPERATOR] MIDOper's destiny? 
 		// create midoper
+//		String baseOutputUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
 //		if (operatorMID != null) {
 //			Model midoperModelType = MultiModelTypeRegistry.getType(MIDPackage.eNS_URI + MIDOPER_MODELTYPE_URI_SUFFIX);
 //			String operatorMIDUri = MultiModelUtils.getUniqueUri(
@@ -292,7 +303,7 @@ public class Map extends OperatorImpl {
 //			MultiModelUtils.createModelFile(gmfDiagramRoot, operatorMIDModelDiagram.getUri(), true);
 //		}
 
-		return outputsByName;
+		return MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);
 	}
 
 	@Override
@@ -301,21 +312,34 @@ public class Map extends OperatorImpl {
 			java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputMIDModels = MIDOperatorUtils.getVarargs(inputsByName, IN_MIDS);
-		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-		MID instanceMID = outputMIDsByName.get(OUT_MIDS);
+		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
 		EList<MID> inputMIDs = new BasicEList<>();
 		for (Model inputMIDModel : inputMIDModels) {
 			inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
 		}
+		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
+		java.util.Map<String, MID> instanceMIDsByName = new HashMap<>();
+		if (outputMIDsByName.containsKey(OUT_MIDS)) {
+			MID instanceMID = outputMIDsByName.get(OUT_MIDS);
+			instanceMIDsByName = mapperOperatorType.getOutputs().stream()
+				.collect(Collectors.toMap(
+					outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
+					outputModelTypeEndpoint -> instanceMID));
+		}
+		else {
+			List<MID> instanceMIDs = MIDOperatorIOUtils.getVarargs(outputMIDsByName, OUT_MIDS);
+			for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
+				instanceMIDsByName.put(mapperOperatorType.getOutputs().get(i).getName(), instanceMIDs.get(i));
+			}
+		}
 
 		// find all possible combinations of inputs for operatorType and execute them
 		Set<EList<OperatorInput>> operatorInputSet = mapperOperatorType.findAllowedInputs(inputMIDs);
-		java.util.Map<String, Model> outputsByName = map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMID);
+		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMIDsByName);
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {
-			MIDUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
+			FileUtils.writeModelFile(inputMIDs.get(i), inputMIDModels.get(i).getUri(), true);
 		}
 
 		return outputsByName;

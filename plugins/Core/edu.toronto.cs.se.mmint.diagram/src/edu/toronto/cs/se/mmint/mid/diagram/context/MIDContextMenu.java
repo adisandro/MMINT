@@ -31,12 +31,12 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
@@ -44,7 +44,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRel2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.library.AddModifyConstraintListener;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -60,7 +59,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class MIDContextMenu extends ContributionItem {
 
 	public static final String MMINT_MENU_LABEL = "MMINT";
-	private static final String MMINT_MENU_OPERATOR_LABEL = "Run Operator";
+	private static final String MMINT_MENU_OPERATOR_LABEL_INSTANCES = "Run Operator";
+	private static final String MMINT_MENU_OPERATOR_LABEL_WORKFLOWS = "Add Operator";
 	private static final String MMINT_MENU_CAST_LABEL = "Cast Type";
 	private static final String MMINT_MENU_COHERENCE_LABEL = "Check Runtime Coherence";
 	private static final String MMINT_MENU_ADDCONSTRAINT_LABEL = "Add/Modify Constraint";
@@ -87,21 +87,21 @@ public class MIDContextMenu extends ContributionItem {
 			return;
 		}
 		Object[] objects = ((StructuredSelection) selection).toArray();
-		boolean doOperator = true, doCast = true, doAddConstraint = true, doCheckConstraint = true, doRefineByConstraint = true, doCopy = true, doModelepedia = true, doCoherence = true;
+		boolean doAddConstraint = true, doCast = true, doCheckConstraint = true, doCoherence = true, doCopy = true, doModelepedia = true, doOperator = true, doRefineByConstraint = true;
 		if (objects.length > 1) { // actions that don't work on multiple objects
+			doAddConstraint = false;
 			doCast = false;
 			doCheckConstraint = false;
-			doCopy = false;
-			doAddConstraint = false;
-			doModelepedia = false;
 			doCoherence = false;
+			doCopy = false;
+			doModelepedia = false;
 			doRefineByConstraint = false;
 		}
 
 		// get model selection
-		MID instanceMID = null;
+		MID mid = null;
 		EList<Model> selectedModels = new BasicEList<>();
-		ITextAwareEditPart label = null;
+		ITextAwareEditPart editPartLabel = null;
 		List<GraphicalEditPart> editParts = new ArrayList<>();
 		for (Object object : objects) {
 			if (!(
@@ -117,37 +117,43 @@ public class MIDContextMenu extends ContributionItem {
 			GraphicalEditPart editPart = (GraphicalEditPart) object;
 			EObject editPartElement = ((View) editPart.getModel()).getElement();
 			if (editPartElement instanceof MID) {
+				doAddConstraint = false;
 				doCast = false;
 				doCheckConstraint = false;
-				doCopy = false;
-				doAddConstraint = false;
-				doModelepedia = false;
 				doCoherence = false;
+				doCopy = false;
+				doModelepedia = false;
 				doRefineByConstraint = false;
-				if (MIDConstraintChecker.isInstancesLevel((MID) editPartElement)) { // instances only
-					instanceMID = (MID) editPartElement;
+				if (((MID) editPartElement).isInstancesLevel()) { // instances only
+					mid = (MID) editPartElement;
 				}
 			}
 			else {
 				Model model = (Model) editPartElement;
-				if (!MIDConstraintChecker.isInstancesLevel(model)) { // instances only
-					doOperator = false;
+				// filter actions based on the MID level
+				if (model.isTypesLevel() || model.isWorkflowsLevel()) {
 					doCast = false;
 					doCheckConstraint = false;
-					doCopy = false;
 					doCoherence = false;
+					doCopy = false;
 					doRefineByConstraint = false;
+				}
+				if (model.isTypesLevel()) {
+					doOperator = false;
+				}
+				if (model.isWorkflowsLevel()) {
+					doAddConstraint = false;
 				}
 				if (model instanceof ModelRel) { // actions that don't work on model relationships
 					doCopy = false;
 				}
-				if (doOperator || doCast || doCheckConstraint || doCopy || doAddConstraint || doModelepedia || doCoherence || doRefineByConstraint) {
+				if (doAddConstraint || doCast || doCheckConstraint || doCoherence || doCopy || doModelepedia || doOperator || doRefineByConstraint) {
 					selectedModels.add(model);
 				}
 				if (doCast) {
 					for (Object child : editPart.getChildren()) {
 						if (child instanceof ITextAwareEditPart) {
-							label = (ITextAwareEditPart) child;
+							editPartLabel = (ITextAwareEditPart) child;
 							break;
 						}
 					}
@@ -160,7 +166,7 @@ public class MIDContextMenu extends ContributionItem {
 				return;
 			}
 		}
-		if (instanceMID == null && selectedModels.isEmpty()) { // no relevant edit parts selected
+		if (mid == null && selectedModels.isEmpty()) { // no relevant edit parts selected
 			return;
 		}
 
@@ -172,10 +178,15 @@ public class MIDContextMenu extends ContributionItem {
 		MMINT.storeActiveInstanceMIDFile();
 		// operator
 		if (doOperator) {
-			if (instanceMID == null) {
-				instanceMID = MIDRegistry.getMultiModel(selectedModels.get(0));
+			if (mid == null) {
+				mid = selectedModels.get(0).getMIDContainer();
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
+			String polyPreference = null;
+			if (mid.isWorkflowsLevel()) { // disable polymorphism at the workflow level
+				polyPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED);
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, "false");
+			}
 			List<Operator> executableOperators = new ArrayList<>();
 			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
 			for (Operator operatorType : MIDTypeRegistry.getOperatorTypes()) {
@@ -191,10 +202,16 @@ public class MIDContextMenu extends ContributionItem {
 					continue;
 				}
 			}
+			if (polyPreference != null) { // restore polymorphism preference
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, polyPreference);
+			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
-				operatorItem.setText(MMINT_MENU_OPERATOR_LABEL);
+				String menuLabel = (mid.isInstancesLevel()) ?
+					MMINT_MENU_OPERATOR_LABEL_INSTANCES :
+					MMINT_MENU_OPERATOR_LABEL_WORKFLOWS;
+				operatorItem.setText(menuLabel);
 				Menu operatorMenu = new Menu(mmintMenu);
 				operatorItem.setMenu(operatorMenu);
 				for (int i = 0; i < executableOperators.size(); i++) {
@@ -205,10 +222,10 @@ public class MIDContextMenu extends ContributionItem {
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
 						new MIDContextRunOperatorListener(
-							MMINT_MENU_OPERATOR_LABEL,
+							menuLabel,
 							executableOperator,
 							executableOperatorsInputs.get(i),
-							instanceMID
+							mid
 						)
 					);
 				}
@@ -241,7 +258,7 @@ public class MIDContextMenu extends ContributionItem {
 					String text = (isDowncast) ? runtimeModelType.getName() + DOWNCAST_LABEL : runtimeModelType.getName();
 					castSubitem.setText(text);
 					castSubitem.addSelectionListener(
-						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, selectedModels.get(0), runtimeModelType, label)
+						new MIDContextCastTypeListener(MMINT_MENU_CAST_LABEL, selectedModels.get(0), runtimeModelType, editPartLabel)
 					);
 				}
 			}
@@ -298,7 +315,7 @@ public class MIDContextMenu extends ContributionItem {
 		// modelepedia
 		if (doModelepedia) {
 			Model model = selectedModels.get(0);
-			if (MIDConstraintChecker.isInstancesLevel(model)) {
+			if (model.isInstancesLevel()) {
 				model = model.getMetatype();
 			}
 			MenuItem modelepediaItem = new MenuItem(mmintMenu, SWT.CASCADE);

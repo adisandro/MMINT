@@ -141,8 +141,23 @@
          <type
                name="Operator"
                uri="http://se.cs.toronto.edu/mmint/Operator"
-               class="edu.toronto.cs.se.mmint.RootOperator"
+               class="edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl"
                isAbstract="true">
+         </type>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="WorkflowOperator"
+               uri="http://se.cs.toronto.edu/mmint/WorkflowOperator"
+               class="edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl"
+               isAbstract="true">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/Operator">
+            </superType>
          </type>
       </operatorType>
    </extension>

@@ -35,13 +35,13 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MayDecision;
 import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMultiModelConstraintChecker;
+import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 
@@ -88,7 +88,7 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		List<IFile> files = null;
 		for (Entry<MID, List<IFile>> instanceMID : instanceMIDs.entrySet()) {
-			model = MIDRegistry.getExtendibleElement(modelUri, instanceMID.getKey());
+			model = instanceMID.getKey().getExtendibleElement(modelUri);
 			if (model != null) {
 				files = instanceMID.getValue();
 				break;
@@ -120,14 +120,14 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 			LogicElement mavoFirstElemToRefine = mavoElemsToRefine.get(0);
 			if (mavoFirstElemToRefine instanceof MAVOCollection) {
 				if (mavoFirstElemToRefine.eContainer() instanceof MayDecision) {
-					MAVOMultiModelConstraintChecker.refineByMayAlternative(model, (MAVOCollection) mavoFirstElemToRefine);
+					MAVOMIDConstraintChecker.refineModelByMayAlternative(model, (MAVOCollection) mavoFirstElemToRefine);
 				}
 				if (mavoFirstElemToRefine.eContainer() instanceof VarDecision) {
-					MAVOMultiModelConstraintChecker.refineByVarDomain(model, (MAVOCollection) mavoFirstElemToRefine, mergedModelObj, varModelObjs);
+					MAVOMIDConstraintChecker.refineModelByVarDomain(model, (MAVOCollection) mavoFirstElemToRefine, mergedModelObj, varModelObjs);
 				}
 			}
 			else if (mavoFirstElemToRefine instanceof MAVOElement) {
-				MAVOMultiModelConstraintChecker.refineByMayModelObjects(model, (List<MAVOElement>) mavoElemsToRefine);
+				MAVOMIDConstraintChecker.refineModelByMayModelObjects(model, (List<MAVOElement>) mavoElemsToRefine);
 			}
 
 			return CommandResult.newOKCommandResult();

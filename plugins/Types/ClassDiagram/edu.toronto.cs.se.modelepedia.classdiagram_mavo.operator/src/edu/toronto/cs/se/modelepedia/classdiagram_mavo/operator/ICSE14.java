@@ -39,8 +39,8 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
@@ -81,12 +81,12 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		featureModelName = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_FEATUREMODELNAME);
+		featureModelName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_FEATUREMODELNAME);
 		Properties constraintProperties = new Properties();
-		String constraintPropertiesFile = MIDUtils.prependWorkspaceToUri(
-			MIDUtils.replaceLastSegmentInUri(
+		String constraintPropertiesFile = FileUtils.prependWorkspacePathToUri(
+			FileUtils.replaceLastSegmentInUri(
 				inputModel.getUri(),
-				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MIDOperatorUtils.PROPERTIES_SUFFIX
+				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MIDOperatorIOUtils.PROPERTIES_SUFFIX
 			)
 		);
 		try {
@@ -94,17 +94,17 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		}
 		catch (Exception e) {
 		}
-		constraint = MIDOperatorUtils.getStringProperty(constraintProperties, PROPERTY_IN_CONSTRAINT);
-		constraintVariables = MIDOperatorUtils.getStringProperties(constraintProperties, PROPERTY_IN_CONSTRAINTVARIABLES);
-		String[] numRuleElements = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_NUMRULEELEMENTS).split(PROPERTY_IN_NUMRULEELEMENTS_SEPARATOR);
+		constraint = MIDOperatorIOUtils.getStringProperty(constraintProperties, PROPERTY_IN_CONSTRAINT);
+		constraintVariables = MIDOperatorIOUtils.getStringProperties(constraintProperties, PROPERTY_IN_CONSTRAINTVARIABLES);
+		String[] numRuleElements = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_NUMRULEELEMENTS).split(PROPERTY_IN_NUMRULEELEMENTS_SEPARATOR);
 		numRuleElementsN = Integer.parseInt(numRuleElements[0]);
 		numRuleElementsC = Integer.parseInt(numRuleElements[1]);
 		numRuleElementsA = Integer.parseInt(numRuleElements[2]);
-		modelSize = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELSIZE);
-		maxChains = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXCHAINS);
-		numIterations = MIDOperatorUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMITERATIONS);
-		nacMatchPerc = MIDOperatorUtils.getOptionalDoubleProperty(inputProperties, PROPERTY_IN_NACMATCHPERC, PROPERTY_IN_NACMATCHPERC_DEFAULT);
-		alwaysPresentPerc = MIDOperatorUtils.getOptionalDoubleProperty(inputProperties, PROPERTY_IN_ALWAYSPRESENTPERC, PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT);
+		modelSize = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELSIZE);
+		maxChains = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXCHAINS);
+		numIterations = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMITERATIONS);
+		nacMatchPerc = MIDOperatorIOUtils.getOptionalDoubleProperty(inputProperties, PROPERTY_IN_NACMATCHPERC, PROPERTY_IN_NACMATCHPERC_DEFAULT);
+		alwaysPresentPerc = MIDOperatorIOUtils.getOptionalDoubleProperty(inputProperties, PROPERTY_IN_ALWAYSPRESENTPERC, PROPERTY_IN_ALWAYSPRESENTPERC_DEFAULT);
 	}
 
 	protected void writeProperties(Properties properties) {
@@ -117,13 +117,13 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	}
 
 	@Override
-	public void init() throws MMINTException {
+	protected void init() {
 
 		super.init();
 
 		// state
-		modelObjsBucketA = new ArrayList<MAVOElement>();
-		modelObjsChainsA = new ArrayList<Integer>();
+		modelObjsBucketA = new ArrayList<>();
+		modelObjsChainsA = new ArrayList<>();
 	}
 
 	private void transformMatch() {
@@ -207,7 +207,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 
 		// input
 		inputModel = inputsByName.get(IN_MODEL);
-		initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
+		this.init();
+		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		z3IncSolver.firstCheckSatAndGetModel(smtEncoding.toString());
@@ -216,12 +217,12 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 		// output
 		Properties outputProperties = new Properties();
 		writeProperties(outputProperties);
-		MIDOperatorUtils.writePropertiesFile(
+		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
 			inputModel,
 			getInputSubdir(),
-			MIDOperatorUtils.OUTPUT_PROPERTIES_SUFFIX
+			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 
 		return new HashMap<>();
@@ -263,10 +264,10 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 	private static void getOutput(Path outputPath) throws Exception {
 		Properties outputProperties = new Properties();
 		outputProperties.load(new FileInputStream(outputPath.toString()));
-		String featureModelName = MIDOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_FEATUREMODELNAME+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
-		double smtEncodingVariables = MIDOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
-		String numRuleElements = MIDOperatorUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
-		double timeLifting = MIDOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+		String featureModelName = MIDOperatorIOUtils.getStringProperty(outputProperties, PROPERTY_IN_FEATUREMODELNAME+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
+		double smtEncodingVariables = MIDOperatorIOUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_SMTENCODINGVARIABLES+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
+		String numRuleElements = MIDOperatorIOUtils.getStringProperty(outputProperties, PROPERTY_IN_NUMRULEELEMENTS+ExperimentDriver.PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX);
+		double timeLifting = MIDOperatorIOUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_TIMELIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 //		double timeLifting = MultiModelOperatorUtils.getDoubleProperty(outputProperties, PROPERTY_OUT_UNSATCOUNTLIFTING+ExperimentDriver.PROPERTY_OUT_RESULTAVG_SUFFIX);
 		DatLine datLine = datLinesMap.get(featureModelName);
 		if (datLine == null) {

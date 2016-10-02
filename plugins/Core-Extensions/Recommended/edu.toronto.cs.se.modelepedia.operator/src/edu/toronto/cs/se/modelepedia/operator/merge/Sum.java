@@ -17,15 +17,31 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
 
 public class Sum extends OperatorImpl {
+
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			Model intModel1 = inputsByName.get(IN_INT1);
+			Model intModel2 = inputsByName.get(IN_INT2);
+			if (intModel1 == intModel2) {
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 	// input-output
 	private final static @NonNull String IN_INT1 = "int1";
@@ -33,22 +49,6 @@ public class Sum extends OperatorImpl {
 	private final static @NonNull String OUT_INT = "sum";
 	// constants
 	private final static @NonNull String SUM_SEPARATOR = "+";
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		Model intModel1 = inputsByName.get(IN_INT1);
-		Model intModel2 = inputsByName.get(IN_INT2);
-		if (intModel1 == intModel2) {
-			return false;
-		}
-
-		return true;
-	}
 
 	private @NonNull Int sum(@NonNull Model intModel1, @NonNull Model intModel2) throws MMINTException {
 
@@ -72,10 +72,10 @@ public class Sum extends OperatorImpl {
 		Int sumModelObj = sum(intModel1, intModel2);
 
 		// output
-		String sumModelUri = MIDUtils.replaceFileNameInUri(
+		String sumModelUri = FileUtils.replaceFileNameInUri(
 			intModel1.getUri(),
 			intModel1.getName() + SUM_SEPARATOR + intModel2.getName());
-		MIDUtils.writeModelFile(sumModelObj, sumModelUri, true);
+		FileUtils.writeModelFile(sumModelObj, sumModelUri, true);
 		Model sumModel = intModel1.getMetatype().createInstanceAndEditor(sumModelUri, outputMIDsByName.get(OUT_INT));
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, sumModel);

@@ -30,23 +30,23 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.policies.ClassDia
 public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final int reorientDirection;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject oldEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final EObject newEnd;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public AssociationReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
@@ -55,8 +55,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof Association) {
 			return false;
@@ -71,8 +71,8 @@ public class AssociationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientSource() {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
@@ -82,14 +82,14 @@ public class AssociationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ClassDiagram container = (ClassDiagram) getLink().eContainer();
-		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistAssociation_4001(container, getLink(), getNewSource(),
-						target);
+		return ClassDiagramBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistAssociation_4001(container, getLink(), getNewSource(), target);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean canReorientTarget() {
 		if (!(oldEnd instanceof Class && newEnd instanceof Class)) {
 			return false;
@@ -99,19 +99,17 @@ public class AssociationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ClassDiagram container = (ClassDiagram) getLink().eContainer();
-		return ClassDiagramBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistAssociation_4001(container, getLink(), source,
-						getNewTarget());
+		return ClassDiagramBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canExistAssociation_4001(container, getLink(), source, getNewTarget());
 	}
 
 	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	* @generated
+	*/
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -123,52 +121,52 @@ public class AssociationReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setSource(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setTarget(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Association getLink() {
 		return (Association) getElementToEdit();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getOldSource() {
 		return (Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getNewSource() {
 		return (Class) newEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getOldTarget() {
 		return (Class) oldEnd;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getNewTarget() {
 		return (Class) newEnd;
 	}

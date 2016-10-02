@@ -133,17 +133,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFileModel__CreateInstance__String_MID() {
-		return fileModelEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getFileModel__OpenInstance() {
-		return fileModelEClass.getEOperations().get(1);
+		return fileModelEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -175,7 +166,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 
 		// Create classes and their features
 		fileModelEClass = createEClass(FILE_MODEL);
-		createEOperation(fileModelEClass, FILE_MODEL___CREATE_INSTANCE__STRING_MID);
 		createEOperation(fileModelEClass, FILE_MODEL___OPEN_INSTANCE);
 	}
 
@@ -216,12 +206,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(fileModelEClass, FileModel.class, "FileModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getFileModel__CreateInstance__String_MID(), theMIDPackage.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getFileModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getFileModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theOperatorPackage.getException());
 
 		// Create resource

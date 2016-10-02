@@ -22,10 +22,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -58,11 +58,12 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getLink()) ||
-				!MIDTypeHierarchy.isRootType(getLink())
-			);
+		BinaryModelRel modelRel = getLink();
+		return super.canExecute() && (
+			modelRel.isInstancesLevel() ||
+			(modelRel.isWorkflowsLevel() && modelRel.getMIDContainer().getOperators().isEmpty()) ||
+			!MIDTypeHierarchy.isRootType(modelRel)
+		);
 	}
 
 	/**
@@ -73,16 +74,14 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
-
-		return
-			super.canReorientSource() && ((
-				instance &&
-				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(0), getNewSource())) != null
-			) || (
-				!instance &&
-				MIDConstraintChecker.isAllowedModelTypeEndpoint(getLink(), getNewSource(), null)
-			));
+		BinaryModelRel modelRel = getLink();
+		return super.canReorientSource() && ((
+			(modelRel.isInstancesLevel() || modelRel.isWorkflowsLevel()) &&
+			(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(modelRel, modelRel.getModelEndpoints().get(0), getNewSource())) != null
+		) || (
+			modelRel.isTypesLevel() &&
+			MIDConstraintChecker.isAllowedModelTypeEndpoint(modelRel, getNewSource(), null)
+		));
 	}
 
 	/**
@@ -93,25 +92,14 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
-
-		return
-			super.canReorientTarget() && ((
-				instance &&
-				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getLink(), getLink().getModelEndpoints().get(1), getNewTarget())) != null
-			) || (
-				!instance &&
-				MIDConstraintChecker.isAllowedModelTypeEndpoint(getLink(), null, getNewTarget())
-			));
-	}
-
-	protected void doExecuteInstancesLevel(BinaryModelRel containerModelRel, Model targetModel, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
-
-		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
-			containerModelRel.getModelEndpoints().get(0) :
-			containerModelRel.getModelEndpoints().get(1);
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
-		modelTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelEndpoint, targetModel);
+		BinaryModelRel modelRel = getLink();
+		return super.canReorientTarget() && ((
+			(modelRel.isInstancesLevel() || modelRel.isWorkflowsLevel()) &&
+			(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(modelRel, modelRel.getModelEndpoints().get(1), getNewTarget())) != null
+		) || (
+			modelRel.isTypesLevel() &&
+			MIDConstraintChecker.isAllowedModelTypeEndpoint(modelRel, null, getNewTarget())
+		));
 	}
 
 	protected void doExecuteTypesLevel(BinaryModelRel containerModelRelType, Model targetModelType, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
@@ -137,7 +125,7 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(containerModelRelType, targetModelType);
 		if (modelTypeEndpoint == null) {
 			if (wasOverriding) { // was overriding, becomes non-overriding
-				oldModelTypeEndpoint.deleteTypeAndReference(true);
+				oldModelTypeEndpoint.deleteType(true);
 			}
 			// was overriding, becomes non-overriding
 			// was non-overriding, remains non-overriding
@@ -145,23 +133,41 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 		}
 		else {
 			if (wasOverriding) { // was overriding, remains overriding
-				modelTypeEndpoint.replaceSubtypeAndReference(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), targetModelType);
+				modelTypeEndpoint.replaceSubtype(oldModelTypeEndpoint, oldModelTypeEndpoint.getName(), targetModelType);
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
-				String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
+				String newModelTypeEndpointName = MIDDialogs.getStringInput("Create new " + detail + " model type endpoint", "Insert new " + detail + " model type endpoint role", targetModelType.getName());
 				if (isBinarySrc && containerModelRelType.getModelEndpoints().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelEndpoint tgtModelTypeEndpoint = containerModelRelType.getModelEndpoints().get(0);
-					tgtModelTypeEndpoint.deleteTypeAndReference(true);
-					modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, true, containerModelRelType);
-					tgtModelTypeEndpoint.getSupertype().createSubtypeAndReference(tgtModelTypeEndpoint.getName(), tgtModelTypeEndpoint.getTarget(), false, containerModelRelType);
+					tgtModelTypeEndpoint.deleteType(true);
+					modelTypeEndpoint.createSubtype(newModelTypeEndpointName, targetModelType, true, containerModelRelType);
+					tgtModelTypeEndpoint.getSupertype().createSubtype(tgtModelTypeEndpoint.getName(), tgtModelTypeEndpoint.getTarget(), false, containerModelRelType);
 				}
 				else {
-					modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
+					modelTypeEndpoint.createSubtype(newModelTypeEndpointName, targetModelType, isBinarySrc, containerModelRelType);
 				}
 			}
 		}
 		// no need to init type hierarchy, no need for undo/redo
+	}
+
+	protected void doExecuteInstancesLevel(BinaryModelRel containerModelRel, Model targetModel, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
+			containerModelRel.getModelEndpoints().get(0) :
+			containerModelRel.getModelEndpoints().get(1);
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		modelTypeEndpointRef.getObject().replaceInstance(oldModelEndpoint, targetModel);
+	}
+
+	protected void doExecuteWorkflowsLevel(BinaryModelRel containerModelRel, Model targetModel, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpoint oldModelEndpoint = (isBinarySrc) ?
+			containerModelRel.getModelEndpoints().get(0) :
+			containerModelRel.getModelEndpoints().get(1);
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(containerModelRel, modelTypeEndpointUris, ((isBinarySrc) ? "src " : "tgt "));
+		modelTypeEndpointRef.getObject().replaceWorkflowInstance(oldModelEndpoint, targetModel);
 	}
 
 	/**
@@ -175,11 +181,18 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
-				doExecuteInstancesLevel(getLink(), getNewSource(), true);
-			}
-			else {
-				doExecuteTypesLevel(getLink(), getNewSource(), true);
+			switch (getLink().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getLink(), getNewSource(), true);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getLink(), getNewSource(), true);
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel(getLink(), getNewSource(), true);
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
@@ -204,11 +217,18 @@ public class BinaryModelRelChangeModelEndpointCommand extends BinaryModelRelReor
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
-				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
-			}
-			else {
-				doExecuteTypesLevel(getLink(), getNewTarget(), false);
+			switch (getLink().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getLink(), getNewTarget(), false);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getLink(), getNewTarget(), false);
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel(getLink(), getNewTarget(), false);
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());

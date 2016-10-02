@@ -45,7 +45,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorUtil;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
@@ -230,17 +230,32 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteInstancesLevel(ModelRel modelRel) throws Exception {
+		private void openDiagram(Diagram diagram, ModelRel modelRel) throws Exception {
 
-			modelRel.openInstance();
+			//TODO MMINT[EDITOR] Can this be moved into ModelRelImpl?
+			URI uri = EcoreUtil.getURI(diagram);
+			String editorName = modelRel.getName() + ".relationshipdiag";
+			IEditorInput editorInput = new URIEditorInput(uri, editorName);
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			page.openEditor(editorInput, getEditorID());
 		}
 
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteTypesLevel(ModelRel modelRelType) throws Exception {
+		protected void doExecuteInstancesLevel(Diagram diagram, ModelRel modelRel) throws Exception {
+
+			modelRel.openInstance();
+			this.openDiagram(diagram, modelRel);
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		protected void doExecuteTypesLevel(Diagram diagram, ModelRel modelRelType) throws Exception {
 
 			modelRelType.openType();
+			this.openDiagram(diagram, modelRelType);
 		}
 
 		/**
@@ -256,18 +271,19 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 					diagram = intializeNewDiagram();
 				}
 				ModelRel modelRel = (ModelRel) diagram.getElement();
-				if (MIDConstraintChecker.isInstancesLevel(modelRel)) {
-					doExecuteInstancesLevel(modelRel);
+				switch (modelRel.getLevel()) {
+					case TYPES:
+						this.doExecuteTypesLevel(diagram, modelRel);
+						break;
+					case INSTANCES:
+						this.doExecuteInstancesLevel(diagram, modelRel);
+						break;
+					case WORKFLOWS:
+						// do nothing
+						break;
+					default:
+						throw new MMINTException("The MID level is missing");
 				}
-				else {
-					doExecuteTypesLevel(modelRel);
-				}
-				//TODO MMINT[EDITOR] Can this be moved into ModelRelImpl?
-				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = modelRel.getName() + ".relationshipdiag";
-				IEditorInput editorInput = new URIEditorInput(uri, editorName);
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				page.openEditor(editorInput, getEditorID());
 
 				return CommandResult.newOKCommandResult();
 			}

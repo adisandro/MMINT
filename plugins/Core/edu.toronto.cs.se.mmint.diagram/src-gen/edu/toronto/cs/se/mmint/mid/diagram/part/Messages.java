@@ -302,6 +302,16 @@ public class Messages extends NLS {
 	public static String ConnectModel4CreationTool_desc;
 
 	/**
+	* @generated
+	*/
+	public static String NewOperator5CreationTool_title;
+
+	/**
+	* @generated
+	*/
+	public static String NewOperator5CreationTool_desc;
+
+	/**
 	 * @generated
 	 */
 	public static String ImportModel1CreationTool_title;

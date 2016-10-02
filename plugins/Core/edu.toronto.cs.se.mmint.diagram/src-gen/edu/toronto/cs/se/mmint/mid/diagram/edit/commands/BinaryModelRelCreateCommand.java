@@ -78,10 +78,9 @@ public class BinaryModelRelCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return MIDBaseItemSemanticEditPolicy.getLinkConstraints().canCreateBinaryModelRel_4003(
-			getContainer(),
-			getSource(),
-			getTarget());
+		return MIDBaseItemSemanticEditPolicy
+			.getLinkConstraints()
+			.canCreateBinaryModelRel_4003(getContainer(), getSource(), getTarget());
 	}
 
 	/**

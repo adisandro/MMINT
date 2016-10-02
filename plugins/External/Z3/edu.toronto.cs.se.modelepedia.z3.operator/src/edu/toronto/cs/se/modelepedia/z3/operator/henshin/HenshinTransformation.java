@@ -36,10 +36,10 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 //TODO MMINT[OPERATOR] Move to appropriate package+feature when they're created for core operators
 //TODO MMINT[OPERATOR] Use this as base for the lifted ones
@@ -59,19 +59,19 @@ public class HenshinTransformation extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		henshinFileName = MIDOperatorUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
+		henshinFileName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
 	}
 
 	private EObject transform(Model originalModel) throws MMINTException {
 
 		// init
-		String originalModelDirectoryUri = MIDUtils.prependWorkspaceToUri(
-			MIDUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
+		String originalModelDirectoryUri = FileUtils.prependWorkspacePathToUri(
+			FileUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(originalModelDirectoryUri);
 		Module hModule = hResourceSet.getModule(henshinFileName, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(MIDUtils.getLastSegmentFromUri(
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(
 			originalModel.getUri())));
 		// apply rules
 		for (Unit hUnit : hModule.getUnits()) {
@@ -115,17 +115,17 @@ public class HenshinTransformation extends OperatorImpl {
 		EObject transformedRootModelObj = transform(origModel);
 
 		// output
-		String transformedModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedModelUri = FileUtils.getUniqueUri(
+			FileUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
+		FileUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedModelUri,
 			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			origModel,
 			transformedModel,

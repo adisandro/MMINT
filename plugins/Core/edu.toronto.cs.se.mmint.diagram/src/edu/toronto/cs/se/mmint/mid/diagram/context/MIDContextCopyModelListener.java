@@ -29,8 +29,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class MIDContextCopyModelListener extends MIDContextMenuListener {
 
@@ -64,8 +63,8 @@ public class MIDContextCopyModelListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				String newModelName = MIDDialogUtils.getStringInput(menuLabel, "Insert new model name", oldModel.getName());
-				MID multiModel = MIDRegistry.getMultiModel(oldModel);
+				String newModelName = MIDDialogs.getStringInput(menuLabel, "Insert new model name", oldModel.getName());
+				MID multiModel = oldModel.getMIDContainer();
 				Model newModel = oldModel.getMetatype().copyInstanceAndEditor(oldModel, newModelName, true, multiModel);
 	
 				return CommandResult.newOKCommandResult(newModel);

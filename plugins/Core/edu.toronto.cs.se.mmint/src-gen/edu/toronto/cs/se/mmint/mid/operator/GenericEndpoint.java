@@ -87,7 +87,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 * Gets the generic target of this generic endpoint.
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='GenericElement target = MultiModelTypeRegistry.getType(getMetatargetUri());\nreturn target;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());\nreturn target;'"
 	 * @generated
 	 */
 	GenericElement getTarget();
@@ -128,10 +128,26 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
 	 *            The operator that will contain the new generic endpoint.
 	 * @return The created generic endpoint.
 	 * @throws MMINTException
-	 *             If this is a generic instance endpoint. <!-- end-user-doc -->
+	 *             If this is not a generic type endpoint. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericRequired="true" containerOperatorRequired="true"
 	 * @generated
 	 */
 	GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a generic instance endpoint of this generic type endpoint to a Workflow
+	 * MID.
+	 * 
+	 * @param targetGeneric
+	 *            The generic that is the target of the new generic endpoint.
+	 * @param containerOperator
+	 *            The operator that will contain the new generic endpoint.
+	 * @return The created generic endpoint.
+	 * @throws MMINTException
+	 *             If this is not a generic type endpoint. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" targetGenericRequired="true" containerOperatorRequired="true"
+	 * @generated
+	 */
+	GenericEndpoint createWorkflowInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException;
 
 } // GenericEndpoint

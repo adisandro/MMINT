@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.part;
 
@@ -16,37 +24,33 @@ import org.eclipse.ui.IWorkbenchPage;
 /**
  * @generated
  */
-public class ClassDiagramDiagramActionBarContributor extends
-		DiagramActionBarContributor {
+public class ClassDiagramDiagramActionBarContributor extends DiagramActionBarContributor {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected Class getEditorClass() {
 		return ClassDiagramDiagramEditor.class;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected String getEditorId() {
 		return ClassDiagramDiagramEditor.ID;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void init(IActionBars bars, IWorkbenchPage page) {
 		super.init(bars, page);
 		// print preview
-		IMenuManager fileMenu = bars.getMenuManager().findMenuUsingPath(
-				IWorkbenchActionConstants.M_FILE);
+		IMenuManager fileMenu = bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_FILE);
 		assert fileMenu != null;
-		IAction printPreviewAction = new RenderedPrintPreviewAction(
-				new EnhancedPrintActionHelper());
+		IAction printPreviewAction = new RenderedPrintPreviewAction(new EnhancedPrintActionHelper());
 		fileMenu.insertBefore("print", printPreviewAction); //$NON-NLS-1$
-		IMenuManager editMenu = bars.getMenuManager().findMenuUsingPath(
-				IWorkbenchActionConstants.M_EDIT);
+		IMenuManager editMenu = bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_EDIT);
 		assert editMenu != null;
 		if (editMenu.find("validationGroup") == null) { //$NON-NLS-1$
 			editMenu.add(new GroupMarker("validationGroup")); //$NON-NLS-1$

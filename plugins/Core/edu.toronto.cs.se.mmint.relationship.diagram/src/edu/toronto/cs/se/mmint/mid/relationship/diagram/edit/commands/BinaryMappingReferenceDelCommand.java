@@ -23,8 +23,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -42,8 +40,8 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelRel) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -57,8 +55,8 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = (MID) getElementToEdit().eContainer();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelRel) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -68,11 +66,17 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MIDTypeHierarchy.isRootType(((BinaryMappingReference) getElementToDestroy()).getObject())
-			);
+		ModelRel modelRel = (ModelRel) getElementToEdit();
+		return super.canExecute() && (
+			modelRel.isInstancesLevel() ||
+			(modelRel.isTypesLevel() && !MIDTypeHierarchy.isRootType(((BinaryMappingReference) getElementToDestroy()).getObject()))
+		);
+	}
+
+	protected void doExecuteTypesLevel() throws MMINTException {
+
+		((BinaryMappingReference) getElementToDestroy()).deleteTypeAndReference();
+		MMINT.createTypeHierarchy(((ModelRel) getElementToEdit()).getMIDContainer());
 	}
 
 	protected void doExecuteInstancesLevel() throws MMINTException {
@@ -80,23 +84,23 @@ public class BinaryMappingReferenceDelCommand extends DestroyElementCommand {
 		((BinaryMappingReference) getElementToDestroy()).deleteInstanceAndReference();
 	}
 
-	protected void doExecuteTypesLevel() throws MMINTException {
-
-		((BinaryMappingReference) getElementToDestroy()).deleteTypeAndReference();
-		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel((ModelRel) getElementToEdit()));
-	}
-
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
-				doExecuteInstancesLevel();
+			switch (((ModelRel) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
-			else {
-				doExecuteTypesLevel();
-			}
-	
+
 			return super.doExecuteWithResult(monitor, info);
 		}
 		catch (MMINTException e) {

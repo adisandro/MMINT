@@ -1,6 +1,14 @@
 /*
- * 
- */
+* Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -23,77 +31,70 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramVisua
 /**
  * @generated
  */
-public class ClassDiagramShortcutsDecoratorProvider extends AbstractProvider
-		implements IDecoratorProvider {
+public class ClassDiagramShortcutsDecoratorProvider extends AbstractProvider implements IDecoratorProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public static final String SHORTCUTS_DECORATOR_ID = "shortcuts"; //$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
-		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation)
-				.getDecoratorTarget();
+		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
 		View view = (View) decoratorTarget.getAdapter(View.class);
-		return view != null
-				&& ClassDiagramEditPart.MODEL_ID
-						.equals(ClassDiagramVisualIDRegistry.getModelID(view));
+		return view != null && ClassDiagramEditPart.MODEL_ID.equals(ClassDiagramVisualIDRegistry.getModelID(view));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
 		View view = (View) decoratorTarget.getAdapter(View.class);
 		if (view != null) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 			if (annotation != null) {
-				decoratorTarget.installDecorator(SHORTCUTS_DECORATOR_ID,
-						new ShortcutsDecorator(decoratorTarget));
+				decoratorTarget.installDecorator(SHORTCUTS_DECORATOR_ID, new ShortcutsDecorator(decoratorTarget));
 			}
 		}
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected class ShortcutsDecorator extends AbstractDecorator {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public ShortcutsDecorator(IDecoratorTarget decoratorTarget) {
 			super(decoratorTarget);
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void activate() {
 			refresh();
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public void refresh() {
 			removeDecoration();
-			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(
-					EditPart.class);
-			Image image = ClassDiagramDiagramEditorPlugin.getInstance()
-					.getBundledImage("icons/shortcut.gif"); //$NON-NLS-1$
+			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
+			Image image = ClassDiagramDiagramEditorPlugin.getInstance().getBundledImage("icons/shortcut.gif"); //$NON-NLS-1$
 			if (editPart instanceof ShapeEditPart) {
-				setDecoration(getDecoratorTarget().addShapeDecoration(image,
-						IDecoratorTarget.Direction.SOUTH_WEST, 0, false));
-			} else if (editPart instanceof ConnectionEditPart) {
-				setDecoration(getDecoratorTarget().addConnectionDecoration(
-						image, 50, false));
+				setDecoration(
+					getDecoratorTarget().addShapeDecoration(image, IDecoratorTarget.Direction.SOUTH_WEST, 0, false));
+			}
+			else if (editPart instanceof ConnectionEditPart) {
+				setDecoration(getDecoratorTarget().addConnectionDecoration(image, 50, false));
 			}
 		}
 

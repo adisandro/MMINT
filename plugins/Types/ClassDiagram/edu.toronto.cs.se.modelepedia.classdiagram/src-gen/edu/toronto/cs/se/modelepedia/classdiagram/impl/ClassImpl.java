@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getOwnedAttributes <em>Owned Attributes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getAssociationsAsSource <em>Associations As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl#getAssociationsAsTarget <em>Associations As Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

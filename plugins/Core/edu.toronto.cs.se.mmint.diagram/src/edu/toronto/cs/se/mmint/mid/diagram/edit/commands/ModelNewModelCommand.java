@@ -24,9 +24,10 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -55,7 +56,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -69,7 +70,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -84,13 +85,37 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return super.canExecute();
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && (
+			!mid.isWorkflowsLevel() ||
+			mid.getOperators().isEmpty()
+		);
+	}
+
+	protected Model doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
+
+		//TODO MMINT[MISC] Support undo/redo with metamodel extension file
+		MID typeMID = (MID) getElementToEdit();
+		Model modelType = MIDDialogs.selectModelTypeToExtend(typeMID);
+		String newModelTypeName = MIDDialogs.getStringInput("Create new light model type", "Insert new model type name", null);
+		String[] constraint = MIDDialogs.getConstraintInput("Create new light model type", null);
+		if (!MIDConstraintChecker.checkModelConstraintConsistency(modelType, constraint[0], constraint[1])) {
+			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
+		}
+		boolean isMetamodelExtension = (MIDTypeHierarchy.isRootType(modelType)) ?
+			true :
+			MIDDialogs.getBooleanInput("Create new light model type", "Extend metamodel?");
+		Model newModelType = modelType.createSubtype(newModelTypeName, isMetamodelExtension);
+		newModelType.addTypeConstraint(constraint[0], constraint[1]);
+		MMINT.createTypeHierarchy(typeMID);
+
+		return newModelType;
 	}
 
 	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		Editor newEditor = MIDDialogUtils.selectModelTypeToCreate(instanceMID);
+		Editor newEditor = MIDDialogs.selectModelTypeToCreate(instanceMID);
 		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
 		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
 		newModel.getEditors().add(newEditor);
@@ -98,22 +123,14 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return newModel;
 	}
 
-	protected Model doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
+	protected Model doExecuteWorkflowsLevel() throws MMINTException {
 
-		MID typeMID = (MID) getElementToEdit();
-		Model modelType = MIDDialogUtils.selectModelTypeToExtend(typeMID);
-		String newModelTypeName = MIDDialogUtils.getStringInput("Create new light model type", "Insert new model type name", null);
-		String[] constraint = MIDDialogUtils.getConstraintInput("Create new light model type", null);
-		if (!MIDConstraintChecker.checkConstraintConsistency(modelType, constraint[0], constraint[1])) {
-			throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
-		}
-		boolean isMetamodelExtension = (MIDTypeHierarchy.isRootType(modelType)) ?
-			true :
-			MIDDialogUtils.getBooleanInput("Create new light model type", "Extend metamodel?");
-		Model newModelType = modelType.createSubtype(newModelTypeName, constraint[0], constraint[1], isMetamodelExtension);
-		MMINT.createTypeHierarchy(typeMID);
+		MID workflowMID = (MID) getElementToEdit();
+		Model modelType = MIDDialogs.selectWorkflowModelTypeToCreate(workflowMID);
+		String newModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+		Model newModel = modelType.createWorkflowInstance(newModelId, workflowMID);
 
-		return newModelType;
+		return newModel;
 	}
 
 	/**
@@ -132,9 +149,20 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Model newElement = (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			Model newElement;
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					newElement = this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

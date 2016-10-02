@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
 /**
@@ -52,7 +51,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -67,7 +66,7 @@ public class OperatorDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -97,6 +96,11 @@ public class OperatorDelCommand extends DestroyElementCommand {
 		((Operator) getElementToDestroy()).deleteInstance();
 	}
 
+	protected void doExecuteWorkflowsLevel() throws MMINTException {
+
+		((Operator) getElementToDestroy()).deleteWorkflowInstance();
+	}
+
 	/**
 	 * Deletes an operator.
 	 * 
@@ -112,11 +116,18 @@ public class OperatorDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 	
 			return super.doExecuteWithResult(monitor, info);

@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers;
 
@@ -27,21 +35,19 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramVisua
 /**
  * @generated
  */
-public class ClassDiagramParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class ClassDiagramParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser className_5003Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getClassName_5003Parser() {
 		if (className_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			className_5003Parser = parser;
 		}
@@ -49,17 +55,16 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser attributeName_5001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getAttributeName_5001Parser() {
 		if (attributeName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			attributeName_5001Parser = parser;
 		}
@@ -67,17 +72,16 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser operationName_5002Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getOperationName_5002Parser() {
 		if (operationName_5002Parser == null) {
-			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			operationName_5002Parser = parser;
 		}
@@ -85,17 +89,16 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser associationName_6001Parser;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IParser getAssociationName_6001Parser() {
 		if (associationName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE
-					.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] { ClassDiagramPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			associationName_6001Parser = parser;
 		}
@@ -103,35 +106,33 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case ClassNameEditPart.VISUAL_ID:
-			return getClassName_5003Parser();
-		case AttributeNameEditPart.VISUAL_ID:
-			return getAttributeName_5001Parser();
-		case OperationNameEditPart.VISUAL_ID:
-			return getOperationName_5002Parser();
-		case AssociationNameEditPart.VISUAL_ID:
-			return getAssociationName_6001Parser();
+			case ClassNameEditPart.VISUAL_ID:
+				return getClassName_5003Parser();
+			case AttributeNameEditPart.VISUAL_ID:
+				return getAttributeName_5001Parser();
+			case OperationNameEditPart.VISUAL_ID:
+				return getOperationName_5002Parser();
+			case AssociationNameEditPart.VISUAL_ID:
+				return getAssociationName_6001Parser();
 		}
 		return null;
 	}
 
 	/**
-	 * Utility method that consults ParserService
-	 * @generated
-	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	* Utility method that consults ParserService
+	* @generated
+	*/
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
@@ -145,8 +146,8 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
@@ -159,18 +160,18 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private static class HintAdapter extends ParserHintAdapter {
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		private final IElementType elementType;
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public HintAdapter(IElementType type, EObject object, String parserHint) {
 			super(object, parserHint);
 			assert type != null;
@@ -178,8 +179,8 @@ public class ClassDiagramParserProvider extends AbstractProvider implements
 		}
 
 		/**
-		 * @generated
-		 */
+		* @generated
+		*/
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

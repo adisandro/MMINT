@@ -61,48 +61,43 @@ public class MIDEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MIDItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new MIDCanonicalEditPolicy());
 		installEditPolicy(
-			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
-			new MIDItemSemanticEditPolicy());
-		installEditPolicy(
-			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-			new MIDCanonicalEditPolicy());
-		installEditPolicy(
-			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE,
+			EditPolicyRoles.CREATION_ROLE,
 			new CreationEditPolicyWithCustomReparent(MIDVisualIDRegistry.TYPED_INSTANCE));
-		installEditPolicy(
-			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE,
-			new DiagramDragDropEditPolicy() {
-				public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
-					ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>();
-					for (Iterator<?> it = dropRequest.getObjects().iterator(); it.hasNext();) {
-						Object nextObject = it.next();
-						if (false == nextObject instanceof EObject) {
-							continue;
-						}
-						viewDescriptors.add(
-							new CreateViewRequest.ViewDescriptor(
-								new EObjectAdapter((EObject) nextObject),
-								Node.class,
-								null,
-								getDiagramPreferencesHint()));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DiagramDragDropEditPolicy() {
+			public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
+				ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>();
+				for (Iterator<?> it = dropRequest.getObjects().iterator(); it.hasNext();) {
+					Object nextObject = it.next();
+					if (false == nextObject instanceof EObject) {
+						continue;
 					}
-					return createShortcutsCommand(dropRequest, viewDescriptors);
+					viewDescriptors.add(
+						new CreateViewRequest.ViewDescriptor(
+							new EObjectAdapter((EObject) nextObject),
+							Node.class,
+							null,
+							getDiagramPreferencesHint()));
 				}
+				return createShortcutsCommand(dropRequest, viewDescriptors);
+			}
 
-				private Command createShortcutsCommand(
-						DropObjectsRequest dropRequest, List<CreateViewRequest.ViewDescriptor> viewDescriptors) {
-					Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
-					if (command != null) {
-						return command.chain(new ICommandProxy(
+			private Command createShortcutsCommand(
+					DropObjectsRequest dropRequest, List<CreateViewRequest.ViewDescriptor> viewDescriptors) {
+				Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
+				if (command != null) {
+					return command.chain(
+						new ICommandProxy(
 							new MIDCreateShortcutDecorationsCommand(
 								getEditingDomain(),
 								(View) getModel(),
 								viewDescriptors)));
-					}
-					return null;
 				}
-			});
+				return null;
+			}
+		});
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MIDDiagramSemanticEditPolicy());
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);

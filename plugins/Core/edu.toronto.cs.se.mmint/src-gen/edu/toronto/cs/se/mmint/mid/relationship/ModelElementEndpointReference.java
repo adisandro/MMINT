@@ -31,8 +31,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelElementEndpointReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelElemEndpointType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelElemEndpointType='object.oclIsKindOf(ModelElementEndpoint)'"
+ * @model
  * @generated
  */
 public interface ModelElementEndpointReference extends ExtendibleElementEndpointReference {

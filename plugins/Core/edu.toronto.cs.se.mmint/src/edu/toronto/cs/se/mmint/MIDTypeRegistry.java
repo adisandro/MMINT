@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
@@ -33,15 +32,14 @@ import org.osgi.framework.Bundle;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -63,6 +61,11 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelEndpointDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
+import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogSelectionValidator;
+import edu.toronto.cs.se.mmint.mid.ui.NewWorkflowModelDialogContentProvider;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * The registry for querying the types.
@@ -82,7 +85,7 @@ public class MIDTypeRegistry {
 	 */
 	public static <T extends ExtendibleElement> @Nullable T getType(@NonNull String typeUri) {
 
-		return MIDRegistry.getExtendibleElement(typeUri, MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getExtendibleElement(typeUri);
 	}
 
 	/**
@@ -92,7 +95,7 @@ public class MIDTypeRegistry {
 	 */
 	public static List<Operator> getOperatorTypes() {
 
-		return MIDRegistry.getOperators(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getOperators();
 	}
 
 	/**
@@ -100,9 +103,9 @@ public class MIDTypeRegistry {
 	 * 
 	 * @return The list of model types in the repository.
 	 */
-	public static EList<Model> getModelTypes() {
+	public static List<Model> getModelTypes() {
 
-		return MIDRegistry.getModels(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getModels();
 	}
 
 	/**
@@ -126,7 +129,7 @@ public class MIDTypeRegistry {
 	 */
 	public static EList<Editor> getEditorTypes() {
 
-		return MIDRegistry.getEditors(MMINT.cachedTypeMID);
+		return MMINT.cachedTypeMID.getEditors();
 	}
 
 	/**
@@ -136,46 +139,7 @@ public class MIDTypeRegistry {
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
 
-		return MIDRegistry.getModelRels(MMINT.cachedTypeMID);
-	}
-
-	/**
-	 * Gets the list of mapping types in a model relationship type.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type that contains the mapping types.
-	 * @return The list of mapping types in the model relationship type.
-	 */
-	public static EList<Mapping> getMappingTypes(ModelRel modelRelType) {
-
-		return modelRelType.getMappings();
-	}
-
-	/**
-	 * Gets the list of references to mapping types in a model relationship type.
-	 * 
-	 * @param modelRelType
-	 *            The model relationship type that contains the references to
-	 *            mapping types.
-	 * @return The list of references to mapping types in the model relationship
-	 *         type.
-	 */
-	public static EList<MappingReference> getMappingTypeReferences(ModelRel modelRelType) {
-
-		return modelRelType.getMappingRefs();
-	}
-
-	/**
-	 * Gets the list of model element types in a model type.
-	 * 
-	 * @param modelType
-	 *            The model type that contains the model element types.
-	 * 
-	 * @return The list of model element types in the model type.
-	 */
-	public static EList<ModelElement> getModelElementTypes(Model modelType) {
-
-		return modelType.getModelElems();
+		return MMINT.cachedTypeMID.getModelRels();
 	}
 
 	/**
@@ -185,29 +149,214 @@ public class MIDTypeRegistry {
 	 */
 	public static List<String> getModelTypeFileExtensions() {
 
-		List<String> fileExtensions = MMINT.cachedTypeMID.getModels().stream()
+		List<String> fileExtensions = getModelTypes().stream()
 			.map(Model::getFileExtension)
 			.collect(Collectors.toList());
 
 		return fileExtensions;
 	}
 
-	/**
-	 * Gets the list of editor types in the repository for a model type.
-	 * 
-	 * @param modelTypeUri
-	 *            The uri of the model type.
-	 * @return The list of editor types in the repository for the model type.
-	 */
-	public static EList<Editor> getModelTypeEditors(String modelTypeUri) {
+	public static @Nullable Model getMIDModelType() {
 
-		Model model = getType(modelTypeUri);
-		if (model != null) {
-			return model.getEditors();
+		return MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+	}
+
+	public static @Nullable Diagram getMIDDiagramType() {
+
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
+		if (midModelType == null) {
+			return null;
 		}
-		else {
-			return ECollections.emptyEList();
+
+		return MIDRegistry.getModelDiagram(midModelType);
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model types in the Type MID, in order
+	 * to create a new "light" model type.
+	 * 
+	 * @param typeMID
+	 *            The Type MID.
+	 * @return The tree dialog to create a new "light" model type.
+	 */
+	public static MIDTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewModelTypeDialogContentProvider(),
+			typeMID
+		);
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all model relationship types in the Type MID, in order to create a new "light"
+	 * model relationship type.
+	 * 
+	 * @param newSrcModelType
+	 *            The model type that is going to be the target of the source
+	 *            model type endpoint, null if the model relationship type to be
+	 *            created is not binary.
+	 * @param newTgtModelType
+	 *            The model type that is going to be the target of the target
+	 *            model type endpoint, null if the model relationship type to be
+	 *            created is not binary.
+	 * @param typeMID
+	 *            The Type MID.
+	 * 
+	 * @return The tree dialog to create a new "light" model relationship type.
+	 */
+	public static MIDTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MID typeMID) {
+
+		List<String> modelRelTypeUris = null;
+
+		if (newSrcModelType != null && newTgtModelType != null) {
+			String newSrcUri = newSrcModelType.getUri();
+			String newTgtUri = newTgtModelType.getUri();
+			modelRelTypeUris = new ArrayList<String>();
+
+			for (ModelRel modelRelType : typeMID.getModelRels()) {
+				// binary can only inherit from root or binary
+				if (MIDTypeHierarchy.isRootType(modelRelType)) {
+					modelRelTypeUris.add(modelRelType.getUri());
+					continue;
+				}
+				if (!(modelRelType instanceof BinaryModelRel)) {
+					continue;
+				}
+				String srcUri = modelRelType.getModelEndpoints().get(0).getTargetUri();
+				String tgtUri = modelRelType.getModelEndpoints().get(1).getTargetUri();
+				// new model rel type with same endpoints or overriding one or two endpoints
+				if (
+					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
+				) {
+					modelRelTypeUris.add(modelRelType.getUri());
+				}
+			}
 		}
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
+			typeMID
+		);
+
+		return dialog;
+	}
+
+	/**
+	 * Gets a tree dialog that shows all mapping types in a model relationship
+	 * type, in order to create a new "light" mapping type and a reference to it.
+	 * 
+	 * @param newSrcModelElemTypeRef
+	 *            The reference to the model element type that is going to be
+	 *            the target of the source model element type endpoint, null if
+	 *            the mapping type to be created is not binary.
+	 * @param newTgtModelElemTypeRef
+	 *            The reference to the model element type that is going to be
+	 *            the target of the target model element type endpoint, null if
+	 *            the mapping type to be created is not binary.
+	 * @param modelRelType
+	 *            The model relationship type that contains the mapping types.
+	 * @return The tree dialog to create a new "light" mapping type.
+	 */
+	public static MIDTreeSelectionDialog getMappingTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
+
+		List<String> mappingTypeUris = null;
+
+		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
+			MID typeMID = modelRelType.getMIDContainer();
+			String newSrcUri = newSrcModelElemTypeRef.getUri();
+			String newTgtUri = newTgtModelElemTypeRef.getUri();
+			mappingTypeUris = new ArrayList<String>();
+
+			for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
+				// binary can only inherit from root or binary
+				if (!(mappingTypeRef instanceof BinaryMappingReference)) {
+					continue;
+				}
+				BinaryMapping mappingType = ((BinaryMappingReference) mappingTypeRef).getObject();
+				String srcUri = mappingType.getModelElemEndpoints().get(0).getTargetUri();
+				String tgtUri = mappingType.getModelElemEndpoints().get(1).getTargetUri();
+				// new link type with same endpoints or overriding one or two endpoints
+				if (
+					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
+					(newSrcUri.equals(srcUri) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
+					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
+				) {
+					mappingTypeUris.add(mappingTypeRef.getUri());
+				}
+			}
+		}
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
+			modelRelType
+		);
+
+		return dialog;
+	}
+
+	public static MIDTreeSelectionDialog getOperatorTypeCreationDialog(MID typeMID) {
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new WorkbenchLabelProvider(),
+			new BaseWorkbenchContentProvider(),
+			ResourcesPlugin.getWorkspace().getRoot()
+		);
+		dialog.addFilter(new NewOperatorTypeDialogFilter());
+		dialog.setValidator(new NewOperatorTypeDialogSelectionValidator());
+
+		return dialog;
+	}
+
+	public static MIDTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
+
+		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
+		MID typeMID = operatorType.getMIDContainer();
+		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
+		List<GenericElement> genericTypes = MIDTypeHierarchy.getGenericSubtypes(genericSuperType);
+		genericTypes.add(0, genericSuperType);
+		Set<GenericElement> filteredGenericTypes = new HashSet<>();
+		for (GenericElement genericType : genericTypes) {
+			try {
+				if (genericType.isAbstract()) {
+					continue;
+				}
+				if (!operatorType.isAllowedGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
+					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
+					continue;
+				}
+				filteredGenericTypes.add(genericType);
+			}
+			catch (MMINTException e) {
+				continue;
+			}
+		}
+
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+			shell,
+			new MIDDialogLabelProvider(),
+			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
+			typeMID
+		);
+
+		return dialog;
 	}
 
 	/**
@@ -304,87 +453,6 @@ public class MIDTypeRegistry {
 	}
 
 	/**
-	 * Gets a tree dialog that shows all model types in the Type MID, in order
-	 * to create a new "light" model type.
-	 * 
-	 * @param typeMID
-	 *            The Type MID.
-	 * @return The tree dialog to create a new "light" model type.
-	 */
-	public static MIDTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelTypeDialogContentProvider(),
-			typeMID
-		);
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all model relationship types in the Type MID, in order to create a new "light"
-	 * model relationship type.
-	 * 
-	 * @param newSrcModelType
-	 *            The model type that is going to be the target of the source
-	 *            model type endpoint, null if the model relationship type to be
-	 *            created is not binary.
-	 * @param newTgtModelType
-	 *            The model type that is going to be the target of the target
-	 *            model type endpoint, null if the model relationship type to be
-	 *            created is not binary.
-	 * @param typeMID
-	 *            The Type MID.
-	 * 
-	 * @return The tree dialog to create a new "light" model relationship type.
-	 */
-	public static MIDTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MID typeMID) {
-
-		List<String> modelRelTypeUris = null;
-
-		if (newSrcModelType != null && newTgtModelType != null) {
-			String newSrcUri = newSrcModelType.getUri();
-			String newTgtUri = newTgtModelType.getUri();
-			modelRelTypeUris = new ArrayList<String>();
-
-			for (ModelRel modelRelType : MIDRegistry.getModelRels(typeMID)) {
-				// binary can only inherit from root or binary
-				if (MIDTypeHierarchy.isRootType(modelRelType)) {
-					modelRelTypeUris.add(modelRelType.getUri());
-					continue;
-				}
-				if (!(modelRelType instanceof BinaryModelRel)) {
-					continue;
-				}
-				String srcUri = modelRelType.getModelEndpoints().get(0).getTargetUri();
-				String tgtUri = modelRelType.getModelEndpoints().get(1).getTargetUri();
-				// new model rel type with same endpoints or overriding one or two endpoints
-				if (
-					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
-					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
-				) {
-					modelRelTypeUris.add(modelRelType.getUri());
-				}
-			}
-		}
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
-			typeMID
-		);
-
-		return dialog;
-	}
-
-	/**
 	 * Gets a tree dialog that shows all mapping types in a model relationship
 	 * type, in order to create a new mapping and a reference to it.
 	 * 
@@ -441,96 +509,22 @@ public class MIDTypeRegistry {
 		return dialog;
 	}
 
-	/**
-	 * Gets a tree dialog that shows all mapping types in a model relationship
-	 * type, in order to create a new "light" mapping type and a reference to it.
-	 * 
-	 * @param newSrcModelElemTypeRef
-	 *            The reference to the model element type that is going to be
-	 *            the target of the source model element type endpoint, null if
-	 *            the mapping type to be created is not binary.
-	 * @param newTgtModelElemTypeRef
-	 *            The reference to the model element type that is going to be
-	 *            the target of the target model element type endpoint, null if
-	 *            the mapping type to be created is not binary.
-	 * @param modelRelType
-	 *            The model relationship type that contains the mapping types.
-	 * @return The tree dialog to create a new "light" mapping type.
-	 */
-	public static MIDTreeSelectionDialog getMappingTypeReferenceCreationDialog(ModelElementReference newSrcModelElemTypeRef, ModelElementReference newTgtModelElemTypeRef, ModelRel modelRelType) {
-
-		List<String> mappingTypeUris = null;
-
-		if (newSrcModelElemTypeRef != null && newTgtModelElemTypeRef != null) {
-			MID typeMID = MIDRegistry.getMultiModel(modelRelType);
-			String newSrcUri = newSrcModelElemTypeRef.getUri();
-			String newTgtUri = newTgtModelElemTypeRef.getUri();
-			mappingTypeUris = new ArrayList<String>();
-
-			for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
-				// binary can only inherit from root or binary
-				if (!(mappingTypeRef instanceof BinaryMappingReference)) {
-					continue;
-				}
-				BinaryMapping mappingType = ((BinaryMappingReference) mappingTypeRef).getObject();
-				String srcUri = mappingType.getModelElemEndpoints().get(0).getTargetUri();
-				String tgtUri = mappingType.getModelElemEndpoints().get(1).getTargetUri();
-				// new link type with same endpoints or overriding one or two endpoints
-				if (
-					(newSrcUri.equals(srcUri) && newTgtUri.equals(tgtUri)) ||
-					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && newTgtUri.equals(tgtUri)) ||
-					(newSrcUri.equals(srcUri) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID)) ||
-					(MIDTypeHierarchy.isSubtypeOf(newSrcUri, srcUri, typeMID) && MIDTypeHierarchy.isSubtypeOf(newTgtUri, tgtUri, typeMID))
-				) {
-					mappingTypeUris.add(mappingTypeRef.getUri());
-				}
-			}
-		}
+	public static MIDTreeSelectionDialog getWorkflowModelCreationDialog() {
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
 			shell,
 			new MIDDialogLabelProvider(),
-			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
-			modelRelType
+			new NewWorkflowModelDialogContentProvider(MMINT.cachedTypeMID),
+			MMINT.cachedTypeMID
 		);
 
 		return dialog;
 	}
 
-	public static MIDTreeSelectionDialog getGenericTypeCreationDialog(GenericEndpoint genericSuperTypeEndpoint, EList<OperatorInput> inputs) {
+	public static MIDTreeSelectionDialog getWorkflowModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
 
-		Operator operatorType = (Operator) genericSuperTypeEndpoint.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(operatorType);
-		GenericElement genericSuperType = genericSuperTypeEndpoint.getTarget();
-		List<GenericElement> genericTypes = MIDTypeHierarchy.getGenericSubtypes(genericSuperType);
-		genericTypes.add(0, genericSuperType);
-		Set<GenericElement> filteredGenericTypes = new HashSet<>();
-		for (GenericElement genericType : genericTypes) {
-			try {
-				if (genericType.isAbstract()) {
-					continue;
-				}
-				if (!operatorType.isAllowedGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
-					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
-					continue;
-				}
-				filteredGenericTypes.add(genericType);
-			}
-			catch (MMINTException e) {
-				continue;
-			}
-		}
-
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
-			typeMID
-		);
-
-		return dialog;
+		return MIDTypeRegistry.getModelRelCreationDialog(targetSrcModel, targetTgtModel);
 	}
 
 	/**
@@ -559,15 +553,15 @@ public class MIDTypeRegistry {
 	 * @return The uri of the metamodel extension if it exists, null if it
 	 *         doesn't exist or if the model type is not "light".
 	 */
-	public static String getExtendedMetamodelUri(Model modelType) {
+	public static String getExtendedMetamodelPath(Model modelType) {
 
 		if (!modelType.isDynamic()) {
 			return null;
 		}
-		String metamodelUri = modelType.getName() + "." + EcorePackage.eNAME;
+		String metamodelUri = modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
-		return (MIDUtils.isFileOrDirectoryInState(metamodelUri)) ?
-			MIDUtils.prependStateToUri(metamodelUri) :
+		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
+			FileUtils.prependStatePathToUri(metamodelUri) :
 			null;
 	}
 

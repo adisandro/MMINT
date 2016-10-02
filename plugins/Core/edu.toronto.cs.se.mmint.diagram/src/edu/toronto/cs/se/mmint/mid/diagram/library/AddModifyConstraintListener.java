@@ -30,8 +30,8 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 public class AddModifyConstraintListener extends MIDContextMenuListener {
@@ -76,9 +76,9 @@ public class AddModifyConstraintListener extends MIDContextMenuListener {
 					constraint.setLanguage(languages.iterator().next());
 					constraint.setImplementation("");
 				}
-				String[] newConstraint = MIDDialogUtils.getConstraintInput(menuLabel, constraint.getLanguage() + MIDDialogUtils.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
-				if (!MIDConstraintChecker.isInstancesLevel(element)) {
-					if (!MIDConstraintChecker.checkConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
+				String[] newConstraint = MIDDialogs.getConstraintInput(menuLabel, constraint.getLanguage() + MIDDialogs.CONSTRAINT_LANGUAGE_SEPARATOR + "\n" + constraint.getImplementation());
+				if (!element.isInstancesLevel()) {
+					if (!MIDConstraintChecker.checkModelConstraintConsistency(element, newConstraint[0], newConstraint[1])) {
 						throw new MMINTException("The combined constraint (this type + supertypes) is inconsistent");
 					}
 				}

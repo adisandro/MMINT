@@ -21,11 +21,13 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -39,6 +41,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <!-- begin-user-doc -->
@@ -211,6 +215,67 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isTypesLevel() {
+		return this.getLevel() == MIDLevel.TYPES;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInstancesLevel() {
+		return this.getLevel() == MIDLevel.INSTANCES;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isWorkflowsLevel() {
+		return this.getLevel() == MIDLevel.WORKFLOWS;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends ExtendibleElement> @Nullable T getExtendibleElement(@NonNull String uri) {
+
+		ExtendibleElement element = this.getExtendibleTable().get(uri);
+		if (element == null) {
+			return null;
+		}
+
+		try {
+			return (T) element;
+		}
+		catch (ClassCastException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ModelRel> getModelRels() {
+		EList<ModelRel> modelRels = new BasicEList<>();
+		for (Model model : this.getModels()) {
+			if (model instanceof ModelRel) {
+				modelRels.add((ModelRel) model);
+			}
+		}
+		return modelRels;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -327,6 +392,28 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
 				return level != LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MIDPackage.MID___IS_TYPES_LEVEL:
+				return isTypesLevel();
+			case MIDPackage.MID___IS_INSTANCES_LEVEL:
+				return isInstancesLevel();
+			case MIDPackage.MID___IS_WORKFLOWS_LEVEL:
+				return isWorkflowsLevel();
+			case MIDPackage.MID___GET_EXTENDIBLE_ELEMENT__STRING:
+				return getExtendibleElement((String)arguments.get(0));
+			case MIDPackage.MID___GET_MODEL_RELS:
+				return getModelRels();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -49,11 +49,11 @@ public class MIDPropertySection extends DefaultPropertySection implements IPrope
 				if (element instanceof BinaryModelRel && selected instanceof GraphicalEditPart) {
 					IFigure figure = ((GraphicalEditPart) selected).getFigure();
 					if (figure == ((BinaryModelRelFigure) figure.getParent())
-							.getFigureBinaryModelRelSourceModelEndpointLabelFigure()) {
+						.getFigureBinaryModelRelSourceModelEndpointLabelFigure()) {
 						element = ((BinaryModelRel) element).getModelEndpoints().get(0);
 					}
 					else if (figure == ((BinaryModelRelFigure) figure.getParent())
-							.getFigureBinaryModelRelTargetModelEndpointLabelFigure()) {
+						.getFigureBinaryModelRelTargetModelEndpointLabelFigure()) {
 						element = ((BinaryModelRel) element).getModelEndpoints().get(1);
 					}
 				}

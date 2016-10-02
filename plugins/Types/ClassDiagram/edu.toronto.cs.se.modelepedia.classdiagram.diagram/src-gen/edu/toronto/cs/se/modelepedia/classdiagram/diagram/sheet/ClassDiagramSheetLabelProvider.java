@@ -1,6 +1,15 @@
+
 /*
- * 
- */
+* Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+* Rick Salay.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+* 
+* Contributors:
+*    Alessio Di Sandro - Implementation.
+*/
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -18,12 +27,11 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagram
 /**
  * @generated
  */
-public class ClassDiagramSheetLabelProvider extends BaseLabelProvider implements
-		ILabelProvider {
+public class ClassDiagramSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getText(Object element) {
 		element = unwrap(element);
 		if (element instanceof ClassDiagramNavigatorGroup) {
@@ -34,16 +42,16 @@ public class ClassDiagramSheetLabelProvider extends BaseLabelProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public Image getImage(Object element) {
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null : ClassDiagramElementTypes.getImage(etype);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Object unwrap(Object element) {
 		if (element instanceof IStructuredSelection) {
 			return ((IStructuredSelection) element).getFirstElement();
@@ -52,8 +60,8 @@ public class ClassDiagramSheetLabelProvider extends BaseLabelProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private View getView(Object element) {
 		if (element instanceof View) {
 			return (View) element;
@@ -65,8 +73,8 @@ public class ClassDiagramSheetLabelProvider extends BaseLabelProvider implements
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IElementType getElementType(View view) {
 		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
 		while (view != null) {
@@ -75,8 +83,7 @@ public class ClassDiagramSheetLabelProvider extends BaseLabelProvider implements
 			if (etype != null) {
 				return etype;
 			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer()
-					: null;
+			view = view.eContainer() instanceof View ? (View) view.eContainer() : null;
 		}
 		return null;
 	}

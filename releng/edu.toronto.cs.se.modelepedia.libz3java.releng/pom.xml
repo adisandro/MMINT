@@ -2,10 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>libz3java</groupId>
   <artifactId>edu.toronto.cs.se.modelepedia.libz3java.releng</artifactId>
-  <version>2.0.1</version>
+  <version>2.1.0</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>0.25.0</tycho-version>
+    <tycho-version>0.26.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
@@ -55,6 +55,11 @@
               <ws>win32</ws>
               <arch>x86_64</arch>
             </environment>
+            <environment>
+              <os>macosx</os>
+              <ws>cocoa</ws>
+              <arch>x86_64</arch>
+            </environment>
           </environments>
         </configuration>
       </plugin>
@@ -62,6 +67,7 @@
   </build>
   <modules>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java</module>
+  	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java.mac</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java.linux</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.libz3java.win</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.libz3java.feature</module>

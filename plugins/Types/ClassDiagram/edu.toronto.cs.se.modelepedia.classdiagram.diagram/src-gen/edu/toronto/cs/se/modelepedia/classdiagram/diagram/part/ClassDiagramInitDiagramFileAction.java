@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.part;
 
@@ -29,72 +37,66 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.edit.parts.ClassDiagra
 public class ClassDiagramInitDiagramFileAction implements IObjectActionDelegate {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private IWorkbenchPart targetPart;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private URI domainModelURI;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		this.targetPart = targetPart;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void selectionChanged(IAction action, ISelection selection) {
 		domainModelURI = null;
 		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false
-				|| selection.isEmpty()) {
+		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
 			return;
 		}
-		IFile file = (IFile) ((IStructuredSelection) selection)
-				.getFirstElement();
-		domainModelURI = URI.createPlatformResourceURI(file.getFullPath()
-				.toString(), true);
+		IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
+		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 		action.setEnabled(true);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private Shell getShell() {
 		return targetPart.getSite().getShell();
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
 			diagramRoot = (EObject) resource.getContents().get(0);
-		} catch (WrappedException ex) {
-			ClassDiagramDiagramEditorPlugin.getInstance().logError(
-					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+		}
+		catch (WrappedException ex) {
+			ClassDiagramDiagramEditorPlugin.getInstance().logError("Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
-			MessageDialog.openError(getShell(),
-					Messages.InitDiagramFile_ResourceErrorDialogTitle,
-					Messages.InitDiagramFile_ResourceErrorDialogMessage);
+			MessageDialog.openError(
+				getShell(),
+				Messages.InitDiagramFile_ResourceErrorDialogTitle,
+				Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
-		Wizard wizard = new ClassDiagramNewDiagramFileWizard(domainModelURI,
-				diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle,
-				ClassDiagramEditPart.MODEL_ID));
-		ClassDiagramDiagramEditorUtil.runWizard(getShell(), wizard,
-				"InitDiagramFile"); //$NON-NLS-1$
+		Wizard wizard = new ClassDiagramNewDiagramFileWizard(domainModelURI, diagramRoot, editingDomain);
+		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle, ClassDiagramEditPart.MODEL_ID));
+		ClassDiagramDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}
 }

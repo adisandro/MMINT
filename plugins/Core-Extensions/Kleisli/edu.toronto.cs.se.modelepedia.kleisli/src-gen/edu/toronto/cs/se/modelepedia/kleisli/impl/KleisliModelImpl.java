@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -121,12 +121,12 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		Model origModelType = containerModelTypeEndpoint.getTarget();
 		String kModelTypeUri = getModelTypeExtendedUri((KleisliModelRel) containerModelTypeEndpoint.eContainer(), origModelType, containerModelTypeEndpoint.getName());
-		if (!MIDUtils.isFileOrDirectoryInState(kModelTypeUri)) {
+		if (!FileUtils.isFileOrDirectoryInState(kModelTypeUri)) {
 			try {
 				EPackage origRootModelTypeObj = origModelType.getEMFTypeRoot();
 				String origModelTypeUri = origRootModelTypeObj.getNsURI();
 				origRootModelTypeObj.setNsURI(origModelTypeUri + KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX);
-				MIDUtils.writeModelFileInState(origRootModelTypeObj, kModelTypeUri);
+				FileUtils.writeModelFileInState(origRootModelTypeObj, kModelTypeUri);
 				origRootModelTypeObj.setNsURI(origModelTypeUri); // restore original for packages coming from the registry
 			}
 			catch (Exception e) {
@@ -163,7 +163,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		MMINTException.mustBeType(this);
 
-		MIDUtils.deleteFileInState(getUri());
+		FileUtils.deleteFileInState(getUri());
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		MMINTException.mustBeType(this);
 
 		try {
-			return (EPackage) MIDUtils.readModelFileInState(getUri());
+			return (EPackage) FileUtils.readModelFileInState(getUri());
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the extended metamodel file for model type" + getUri(), e);
@@ -230,7 +230,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		MMINTException.mustBeInstance(this);
 
-		MIDUtils.deleteFile(getUri(), true);
+		FileUtils.deleteFile(getUri(), true);
 	}
 
 	/**

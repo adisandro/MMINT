@@ -24,6 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -31,9 +32,8 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -42,8 +42,19 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ChangeImpact extends OperatorImpl {
+
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			//TODO MMINT[OPERATOR] Check that diff and trace share a model
+			return true;
+		}
+	}
 
 	// input-output
 	private final static @NonNull String IN_MODELREL1 = "diff";
@@ -52,18 +63,6 @@ public class ChangeImpact extends OperatorImpl {
 	// constants
 	private final static String SRC_MODELELEMENDPOINT_NAME = "diff";
 	private final static String TGT_MODELELEMENDPOINT_NAME = "impacted";
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-
-		//TODO MMINT[OPERATOR] Check that diff and trace share a model
-		return true;
-	}
 
 	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, Map<String, List<ModelElementReference>> unifyTable, Map<String, List<MAVOModelElementReference>> typeTable) {
 
@@ -169,7 +168,7 @@ public class ChangeImpact extends OperatorImpl {
 				for (EObject impactedUnifiable : impactedUnifiables) {
 					String impactedModelElemUri = MIDRegistry.getModelAndModelElementUris(impactedUnifiable, MIDLevel.INSTANCES)[1];
 					// create or get impacted model element ref
-					ModelElementReference newImpactedModelElemRef = MIDTypeHierarchy.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
+					ModelElementReference newImpactedModelElemRef = MIDRegistry.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
 						newImpactedModelElemRef = impactedModelEndpointRef.createModelElementInstanceAndReference(impactedUnifiable, null);
 					}
@@ -201,7 +200,7 @@ public class ChangeImpact extends OperatorImpl {
 
 		// create output model relationship
 		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
-		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpoints(
 			null,
 			diffRel,
 			impactedModel,

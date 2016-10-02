@@ -597,7 +597,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -605,7 +605,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });											
+		   });
 	}
 
 	/**
@@ -615,12 +615,12 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmfAnnotations() {
-		String source = "gmf.diagram";			
+		String source = "gmf.diagram";	
 		addAnnotation
 		  (classDiagramEClass, 
 		   source, 
 		   new String[] {
-		   });										
+		   });
 	}
 
 	/**
@@ -630,25 +630,25 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmf_1Annotations() {
-		String source = "gmf.node";				
+		String source = "gmf.node";	
 		addAnnotation
 		  (classEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });						
+		   });	
 		addAnnotation
 		  (attributeEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });		
+		   });	
 		addAnnotation
 		  (operationEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"
-		   });			
+		   });
 	}
 
 	/**
@@ -658,19 +658,19 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmf_2Annotations() {
-		String source = "gmf.compartment";					
+		String source = "gmf.compartment";	
 		addAnnotation
 		  (getClass_OwnedAttributes(), 
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });		
+		   });	
 		addAnnotation
 		  (getClass_OwnedOperations(), 
 		   source, 
 		   new String[] {
 			 "layout", "list"
-		   });							
+		   });
 	}
 
 	/**
@@ -680,19 +680,19 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createGmf_3Annotations() {
-		String source = "gmf.link";							
+		String source = "gmf.link";	
 		addAnnotation
 		  (getClass_NestedIn(), 
 		   source, 
 		   new String[] {
 			 "target.decoration", "square"
-		   });		
+		   });	
 		addAnnotation
 		  (getClass_Superclass(), 
 		   source, 
 		   new String[] {
 			 "target.decoration", "closedarrow"
-		   });				
+		   });	
 		addAnnotation
 		  (dependencyEClass, 
 		   source, 
@@ -701,7 +701,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 			 "target", "depender",
 			 "target.decoration", "arrow",
 			 "style", "dash"
-		   });			
+		   });	
 		addAnnotation
 		  (associationEClass, 
 		   source, 
@@ -721,13 +721,13 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";												
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
 		addAnnotation
 		  (getDependency_Name(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if depender.oclIsUndefined() or dependee.oclIsUndefined() then \'\' else depender.name.concat(\' 2 \').concat(dependee.name) endif"
-		   });	
+		   });
 	}
 
 } //ClassDiagramPackageImpl

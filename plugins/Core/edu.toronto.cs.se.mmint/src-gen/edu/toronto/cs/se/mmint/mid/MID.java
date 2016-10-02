@@ -15,6 +15,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -133,5 +134,57 @@ public interface MID extends EObject {
 	 * @generated
 	 */
 	void setLevel(MIDLevel value);
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a Type MID.
+	 * 
+	 * @return True if this is a Type MID, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.TYPES;'"
+	 * @generated
+	 */
+	boolean isTypesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is an Instance MID.
+	 * 
+	 * @return True if this is an Instance MID, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.INSTANCES;'"
+	 * @generated
+	 */
+	boolean isInstancesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a Workflow MID.
+	 * 
+	 * @return True if this is a Workflow MID, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == MIDLevel.WORKFLOWS;'"
+	 * @generated
+	 */
+	boolean isWorkflowsLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Gets an extendible element from this MID.
+	 * 
+	 * @param uri
+	 *            The uri of the element.
+	 * @return The element, null if the uri is not found or found not to be of the desired class of elements.
+	 * <!-- end-user-doc -->
+	 * @model uriRequired="true"
+	 * @generated
+	 */
+	<T extends ExtendibleElement> T getExtendibleElement(String uri);
+
+	/**
+	 * <!-- begin-user-doc -->Gets the model rels contained in this MID.
+	 * 
+	 * @return The model rels contained in this MID. <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<ModelRel> modelRels = new BasicEList<>();\nfor (Model model : this.getModels()) {\n\tif (model instanceof ModelRel) {\n\t\tmodelRels.add((ModelRel) model);\n\t}\n}\nreturn modelRels;'"
+	 * @generated
+	 */
+	EList<ModelRel> getModelRels();
 
 } // MID

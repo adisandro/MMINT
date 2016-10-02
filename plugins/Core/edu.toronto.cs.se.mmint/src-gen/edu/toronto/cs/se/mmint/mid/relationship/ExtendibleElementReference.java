@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.relationship;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MID;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,16 +31,12 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getReferencedObject <em>Referenced Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getContainedObject <em>Contained Object</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getObject <em>Object</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getSupertypeRef <em>Supertype Ref</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isModifiable <em>Modifiable</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getUri <em>Uri</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='oneObject'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot oneObject='referencedObject.oclIsUndefined() xor containedObject.oclIsUndefined()'"
  * @generated
  */
 public interface ExtendibleElementReference extends EObject {
@@ -94,16 +91,13 @@ public interface ExtendibleElementReference extends EObject {
 	void setContainedObject(ExtendibleElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Object</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The referenced element. It can be owned by some other entity or by this reference itself, but not both.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Object</em>' reference.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_Object()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if containedObject.oclIsUndefined() then referencedObject else containedObject endif'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this.getContainedObject() == null) ?\n\tthis.getReferencedObject() :\n\tthis.getContainedObject();'"
 	 * @generated
 	 */
 	ExtendibleElement getObject();
@@ -159,18 +153,56 @@ public interface ExtendibleElementReference extends EObject {
 	void setModifiable(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The uri of the referenced element.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_Uri()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if object.oclIsUndefined() then null else object.uri endif'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = this.getObject();\nreturn (object == null) ? null : object.getUri();'"
 	 * @generated
 	 */
 	String getUri();
+
+	/**
+	 * <!-- begin-user-doc --> Returns the MID container.
+	 * 
+	 * @return The MID container, or null if this references an element that is not contained in a MID.
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().getMIDContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a reference to a type.
+	 * 
+	 * @return True if this is a reference to a type, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isTypesLevel();'"
+	 * @generated
+	 */
+	boolean isTypesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a reference to an instance.
+	 * 
+	 * @return True if this is a reference to an instance, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isInstancesLevel();'"
+	 * @generated
+	 */
+	boolean isInstancesLevel();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a reference to a workflow element.
+	 * 
+	 * @return True if this is a reference to a workflow element, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isWorkflowsLevel();'"
+	 * @generated
+	 */
+	boolean isWorkflowsLevel();
 
 } // ExtendibleElementReference

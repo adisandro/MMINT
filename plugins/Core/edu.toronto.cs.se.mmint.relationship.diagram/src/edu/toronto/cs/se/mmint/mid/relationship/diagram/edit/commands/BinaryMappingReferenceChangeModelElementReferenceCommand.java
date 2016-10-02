@@ -20,12 +20,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -59,11 +59,11 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel(getLink()) ||
-				!MIDTypeHierarchy.isRootType(getLink().getObject())
-			);
+		BinaryMappingReference mappingRef = getLink();
+		return super.canExecute() && (
+			mappingRef.isInstancesLevel() ||
+			(mappingRef.isTypesLevel() && !MIDTypeHierarchy.isRootType(mappingRef.getObject()))
+		);
 	}
 
 	/**
@@ -75,15 +75,14 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientSource() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
-
+		BinaryMappingReference mappingRef = getLink();
 		return
 			super.canReorientSource() && ((
-				instance &&
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(0), getNewSource())) != null
+				mappingRef.isInstancesLevel() &&
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(mappingRef, mappingRef.getModelElemEndpointRefs().get(0), getNewSource())) != null
 			) || (
-				!instance &&
-				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), getNewSource(), null)
+				mappingRef.isTypesLevel() &&
+				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(mappingRef, getNewSource(), null)
 			));
 	}
 
@@ -96,25 +95,15 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	@Override
 	protected boolean canReorientTarget() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getLink());
-
+		BinaryMappingReference mappingRef = getLink();
 		return
 			super.canReorientTarget() && ((
-				instance &&
-				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(getLink(), getLink().getModelElemEndpointRefs().get(1), getNewTarget())) != null
+				mappingRef.isInstancesLevel() &&
+				(modelElemTypeEndpointUris = MIDConstraintChecker.getAllowedModelElementEndpointReferences(mappingRef, mappingRef.getModelElemEndpointRefs().get(1), getNewTarget())) != null
 			) || (
-				!instance &&
-				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(getLink(), null, getNewTarget())
+				mappingRef.isTypesLevel() &&
+				MIDConstraintChecker.isAllowedModelElementTypeEndpointReference(mappingRef, null, getNewTarget())
 			));
-	}
-
-	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
-
-		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
-			containerMappingRef.getModelElemEndpointRefs().get(0) :
-			containerMappingRef.getModelElemEndpointRefs().get(1);
-		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogUtils.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
-		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
 	}
 
 	protected void doExecuteTypesLevel(BinaryMappingReference containerMappingTypeRef, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
@@ -152,7 +141,7 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 			}
 			else { // was non-overriding, becomes overriding
 				String detail = (isBinarySrc) ? "source" : "target";
-				String newModelElemTypeEndpointName = MIDDialogUtils.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
+				String newModelElemTypeEndpointName = MIDDialogs.getStringInput("Create new " + detail + " model element type endpoint", "Insert new " + detail + " model element type endpoint role", targetModelElemTypeRef.getObject().getName());
 				if (isBinarySrc && containerMappingTypeRef.getModelElemEndpointRefs().size() == 1) { // guarantee that src endpoint comes before tgt endpoint
 					ModelElementEndpointReference tgtModelElemTypeEndpointRef = containerMappingTypeRef.getModelElemEndpointRefs().get(0);
 					tgtModelElemTypeEndpointRef.deleteTypeAndReference(true);
@@ -167,6 +156,15 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 		// no need to init type hierarchy, no need for undo/redo
 	}
 
+	protected void doExecuteInstancesLevel(BinaryMappingReference containerMappingRef, ModelElementReference targetModelElemRef, boolean isBinarySrc) throws MMINTException, MIDDialogCancellation {
+
+		ModelElementEndpointReference oldModelElemEndpointRef = (isBinarySrc) ?
+			containerMappingRef.getModelElemEndpointRefs().get(0) :
+			containerMappingRef.getModelElemEndpointRefs().get(1);
+		ModelElementEndpointReference modelElemTypeEndpointRef = MIDDialogs.selectModelElementTypeEndpointToCreate(containerMappingRef, modelElemTypeEndpointUris);
+		modelElemTypeEndpointRef.getObject().replaceInstanceAndReference(oldModelElemEndpointRef, targetModelElemRef);
+	}
+
 	/**
 	 * Changes the source model element reference of a binary link.
 	 * 
@@ -178,11 +176,17 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientSource() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
-				doExecuteInstancesLevel(getLink(), getNewSource(), true);
-			}
-			else {
-				doExecuteTypesLevel(getLink(), getNewSource(), true);
+			switch (getLink().getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getLink(), getNewSource(), true);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getLink(), getNewSource(), true);
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());
@@ -207,11 +211,17 @@ public class BinaryMappingReferenceChangeModelElementReferenceCommand extends Bi
 	protected CommandResult reorientTarget() throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel(getLink())) {
-				doExecuteInstancesLevel(getLink(), getNewTarget(), false);
-			}
-			else {
-				doExecuteTypesLevel(getLink(), getNewTarget(), false);
+			switch (getLink().getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(getLink(), getNewTarget(), false);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(getLink(), getNewTarget(), false);
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult(getLink());

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -31,12 +30,15 @@ import edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
-import edu.toronto.cs.se.mmint.mid.operator.util.OperatorValidator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl;
 
@@ -73,6 +75,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass workflowOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass genericEndpointEClass = null;
 
 	/**
@@ -88,6 +97,27 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass operatorGenericEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operatorConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operatorConstraintRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass operatorConstraintParameterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,15 +209,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		theMIDPackage.initializePackageContents();
 		theRelationshipPackage.initializePackageContents();
 		theEditorPackage.initializePackageContents();
-
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theOperatorPackage, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
-					 return OperatorValidator.INSTANCE;
-				 }
-			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theOperatorPackage.freeze();
@@ -302,7 +323,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteType() {
+	public EOperation getOperator__GetMIDContainer() {
 		return operatorEClass.getEOperations().get(2);
 	}
 
@@ -311,7 +332,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindAllowedInputs__EList() {
+	public EOperation getOperator__CreateSubtype__String_String() {
 		return operatorEClass.getEOperations().get(3);
 	}
 
@@ -320,7 +341,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindFirstAllowedInput__EList() {
+	public EOperation getOperator__DeleteType() {
 		return operatorEClass.getEOperations().get(4);
 	}
 
@@ -329,7 +350,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CheckAllowedInputs__EList() {
+	public EOperation getOperator__OpenType() {
 		return operatorEClass.getEOperations().get(5);
 	}
 
@@ -338,7 +359,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsAllowedInput__Map() {
+	public EOperation getOperator__FindAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(6);
 	}
 
@@ -347,7 +368,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetOutputsByName() {
+	public EOperation getOperator__FindFirstAllowedInput__EList() {
 		return operatorEClass.getEOperations().get(7);
 	}
 
@@ -356,7 +377,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetOutputModels() {
+	public EOperation getOperator__CheckAllowedInputs__EList() {
 		return operatorEClass.getEOperations().get(8);
 	}
 
@@ -365,7 +386,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__CreateInstance__MID() {
+	public EOperation getOperator__GetOutputsByName() {
 		return operatorEClass.getEOperations().get(9);
 	}
 
@@ -374,7 +395,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__DeleteInstance() {
+	public EOperation getOperator__GetOutputModels() {
 		return operatorEClass.getEOperations().get(10);
 	}
 
@@ -383,7 +404,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__SelectAllowedGenerics__EList() {
+	public EOperation getOperator__CreateInstance__MID() {
 		return operatorEClass.getEOperations().get(11);
 	}
 
@@ -392,7 +413,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList() {
+	public EOperation getOperator__DeleteInstance() {
 		return operatorEClass.getEOperations().get(12);
 	}
 
@@ -401,7 +422,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__GetInputProperties() {
+	public EOperation getOperator__SelectAllowedGenerics__EList() {
 		return operatorEClass.getEOperations().get(13);
 	}
 
@@ -410,7 +431,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__ReadInputProperties__Properties() {
+	public EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList() {
 		return operatorEClass.getEOperations().get(14);
 	}
 
@@ -419,7 +440,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Init() {
+	public EOperation getOperator__GetInputProperties() {
 		return operatorEClass.getEOperations().get(15);
 	}
 
@@ -428,7 +449,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Run__Map_Map_Map() {
+	public EOperation getOperator__ReadInputProperties__Properties() {
 		return operatorEClass.getEOperations().get(16);
 	}
 
@@ -437,8 +458,62 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__Start__EList_Properties_EList_Map_MID() {
+	public EOperation getOperator__Run__Map_Map_Map() {
 		return operatorEClass.getEOperations().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
+		return operatorEClass.getEOperations().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__OpenInstance() {
+		return operatorEClass.getEOperations().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__CreateWorkflowInstance__MID() {
+		return operatorEClass.getEOperations().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__DeleteWorkflowInstance() {
+		return operatorEClass.getEOperations().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+		return operatorEClass.getEOperations().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__OpenWorkflowInstance() {
+		return operatorEClass.getEOperations().get(23);
 	}
 
 	/**
@@ -484,6 +559,42 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 */
 	public EAttribute getRandomOperator_State() {
 		return (EAttribute)randomOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWorkflowOperator() {
+		return workflowOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getWorkflowOperator_MidUri() {
+		return (EAttribute)workflowOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getWorkflowOperator__GetWorkflowMID() {
+		return workflowOperatorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getWorkflowOperator__GetInstanceMID() {
+		return workflowOperatorEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -554,6 +665,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator() {
+		return genericEndpointEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOperatorInput() {
 		return operatorInputEClass;
 	}
@@ -610,6 +730,78 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 */
 	public EReference getOperatorGeneric_GenericSuperTypeEndpoint() {
 		return (EReference)operatorGenericEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperatorConstraint() {
+		return operatorConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraint_Rules() {
+		return (EReference)operatorConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperatorConstraintRule() {
+		return operatorConstraintRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraintRule_OutputModelRel() {
+		return (EReference)operatorConstraintRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraintRule_EndpointModels() {
+		return (EReference)operatorConstraintRuleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOperatorConstraintParameter() {
+		return operatorConstraintParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperatorConstraintParameter_ParameterRef() {
+		return (EReference)operatorConstraintParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperatorConstraintParameter_EndpointIndex() {
+		return (EAttribute)operatorConstraintParameterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -687,11 +879,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEAttribute(operatorEClass, OPERATOR__COMMUTATIVE);
 		createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
 		createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
+		createEOperation(operatorEClass, OPERATOR___GET_MID_CONTAINER);
+		createEOperation(operatorEClass, OPERATOR___CREATE_SUBTYPE__STRING_STRING);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
+		createEOperation(operatorEClass, OPERATOR___OPEN_TYPE);
 		createEOperation(operatorEClass, OPERATOR___FIND_ALLOWED_INPUTS__ELIST);
 		createEOperation(operatorEClass, OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST);
 		createEOperation(operatorEClass, OPERATOR___CHECK_ALLOWED_INPUTS__ELIST);
-		createEOperation(operatorEClass, OPERATOR___IS_ALLOWED_INPUT__MAP);
 		createEOperation(operatorEClass, OPERATOR___GET_OUTPUTS_BY_NAME);
 		createEOperation(operatorEClass, OPERATOR___GET_OUTPUT_MODELS);
 		createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MID);
@@ -700,9 +894,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST);
 		createEOperation(operatorEClass, OPERATOR___GET_INPUT_PROPERTIES);
 		createEOperation(operatorEClass, OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
-		createEOperation(operatorEClass, OPERATOR___INIT);
 		createEOperation(operatorEClass, OPERATOR___RUN__MAP_MAP_MAP);
-		createEOperation(operatorEClass, OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID);
+		createEOperation(operatorEClass, OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID);
+		createEOperation(operatorEClass, OPERATOR___OPEN_INSTANCE);
+		createEOperation(operatorEClass, OPERATOR___CREATE_WORKFLOW_INSTANCE__MID);
+		createEOperation(operatorEClass, OPERATOR___DELETE_WORKFLOW_INSTANCE);
+		createEOperation(operatorEClass, OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID);
+		createEOperation(operatorEClass, OPERATOR___OPEN_WORKFLOW_INSTANCE);
 
 		conversionOperatorEClass = createEClass(CONVERSION_OPERATOR);
 		createEOperation(conversionOperatorEClass, CONVERSION_OPERATOR___DELETE_TYPE);
@@ -711,6 +909,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		randomOperatorEClass = createEClass(RANDOM_OPERATOR);
 		createEAttribute(randomOperatorEClass, RANDOM_OPERATOR__STATE);
 
+		workflowOperatorEClass = createEClass(WORKFLOW_OPERATOR);
+		createEAttribute(workflowOperatorEClass, WORKFLOW_OPERATOR__MID_URI);
+		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_WORKFLOW_MID);
+		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_INSTANCE_MID);
+
 		genericEndpointEClass = createEClass(GENERIC_ENDPOINT);
 		createEAttribute(genericEndpointEClass, GENERIC_ENDPOINT__METATARGET_URI);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_SUPERTYPE);
@@ -718,6 +921,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___SET_TARGET__EXTENDIBLEELEMENT);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___GET_METATYPE);
 		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR);
+		createEOperation(genericEndpointEClass, GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR);
 
 		operatorInputEClass = createEClass(OPERATOR_INPUT);
 		createEReference(operatorInputEClass, OPERATOR_INPUT__MODEL);
@@ -727,6 +931,17 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		operatorGenericEClass = createEClass(OPERATOR_GENERIC);
 		createEReference(operatorGenericEClass, OPERATOR_GENERIC__GENERIC);
 		createEReference(operatorGenericEClass, OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT);
+
+		operatorConstraintEClass = createEClass(OPERATOR_CONSTRAINT);
+		createEReference(operatorConstraintEClass, OPERATOR_CONSTRAINT__RULES);
+
+		operatorConstraintRuleEClass = createEClass(OPERATOR_CONSTRAINT_RULE);
+		createEReference(operatorConstraintRuleEClass, OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL);
+		createEReference(operatorConstraintRuleEClass, OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS);
+
+		operatorConstraintParameterEClass = createEClass(OPERATOR_CONSTRAINT_PARAMETER);
+		createEReference(operatorConstraintParameterEClass, OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF);
+		createEAttribute(operatorConstraintParameterEClass, OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX);
 
 		// Create data types
 		randomEDataType = createEDataType(RANDOM);
@@ -760,6 +975,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		// Obtain other dependent packages
 		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
+		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 
 		// Create type parameters
 		addETypeParameter(setEDataType, "E");
@@ -770,7 +986,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		operatorEClass.getESuperTypes().add(theMIDPackage.getGenericElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
 		randomOperatorEClass.getESuperTypes().add(this.getOperator());
+		workflowOperatorEClass.getESuperTypes().add(this.getOperator());
 		genericEndpointEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementEndpoint());
+		operatorConstraintEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -787,8 +1005,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEOperation(getOperator__GetSupertype(), this.getOperator(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getOperator__GetMIDContainer(), theMIDPackage.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		EOperation op = initEOperation(getOperator__CreateSubtype__String_String(), this.getOperator(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newOperatorTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "implementationUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
 
 		op = initEOperation(getOperator__FindAllowedInputs__EList(), null, "findAllowedInputs", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -806,15 +1034,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		op = initEOperation(getOperator__CheckAllowedInputs__EList(), this.getOperatorInput(), "checkAllowedInputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getModel(), "inputModels", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
-		op = initEOperation(getOperator__IsAllowedInput__Map(), ecorePackage.getEBoolean(), "isAllowedInput", 1, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMIDPackage.getModel());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "inputsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__GetOutputsByName(), null, "getOutputsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -852,9 +1071,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, this.getProperties(), "inputProperties", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getOperator__Init(), null, "init", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-
 		op = initEOperation(getOperator__Run__Map_Map_Map(), null, "run", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEString());
@@ -882,7 +1098,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		op = initEOperation(getOperator__Start__EList_Properties_EList_Map_MID(), this.getOperator(), "start", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__StartInstance__EList_Properties_EList_Map_MID(), this.getOperator(), "startInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getProperties(), "inputProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -895,6 +1111,25 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
+		op = initEOperation(getOperator__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
+		op = initEOperation(getOperator__CreateWorkflowInstance__MID(), this.getOperator(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "workflowMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__DeleteWorkflowInstance(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__StartWorkflowInstance__EList_EList_MID(), this.getOperator(), "startWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__OpenWorkflowInstance(), null, "openWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
+
 		initEClass(conversionOperatorEClass, ConversionOperator.class, "ConversionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getConversionOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -905,6 +1140,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		initEClass(randomOperatorEClass, RandomOperator.class, "RandomOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomOperator_State(), this.getRandom(), "state", null, 1, 1, RandomOperator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowOperatorEClass, WorkflowOperator.class, "WorkflowOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowOperator_MidUri(), ecorePackage.getEString(), "midUri", null, 1, 1, WorkflowOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getWorkflowOperator__GetWorkflowMID(), theMIDPackage.getMID(), "getWorkflowMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getWorkflowOperator__GetInstanceMID(), theMIDPackage.getMID(), "getInstanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(genericEndpointEClass, GenericEndpoint.class, "GenericEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenericEndpoint_MetatargetUri(), ecorePackage.getEString(), "metatargetUri", null, 1, 1, GenericEndpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -923,6 +1167,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEParameter(op, this.getOperator(), "containerOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
+		op = initEOperation(getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator(), this.getGenericEndpoint(), "createWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getGenericElement(), "targetGeneric", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperator(), "containerOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
 		initEClass(operatorInputEClass, OperatorInput.class, "OperatorInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperatorInput_Model(), theMIDPackage.getModel(), null, "model", null, 1, 1, OperatorInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperatorInput_Conversions(), this.getConversionOperator(), null, "conversions", null, 0, -1, OperatorInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -932,57 +1181,22 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEReference(getOperatorGeneric_Generic(), theMIDPackage.getGenericElement(), null, "generic", null, 1, 1, OperatorGeneric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperatorGeneric_GenericSuperTypeEndpoint(), this.getGenericEndpoint(), null, "genericSuperTypeEndpoint", null, 1, 1, OperatorGeneric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(operatorConstraintEClass, OperatorConstraint.class, "OperatorConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperatorConstraint_Rules(), this.getOperatorConstraintRule(), null, "rules", null, 1, -1, OperatorConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operatorConstraintRuleEClass, OperatorConstraintRule.class, "OperatorConstraintRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperatorConstraintRule_OutputModelRel(), this.getOperatorConstraintParameter(), null, "outputModelRel", null, 1, 1, OperatorConstraintRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperatorConstraintRule_EndpointModels(), this.getOperatorConstraintParameter(), null, "endpointModels", null, 1, -1, OperatorConstraintRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(operatorConstraintParameterEClass, OperatorConstraintParameter.class, "OperatorConstraintParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOperatorConstraintParameter_ParameterRef(), theRelationshipPackage.getModelEndpointReference(), null, "parameterRef", null, 1, 1, OperatorConstraintParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperatorConstraintParameter_EndpointIndex(), ecorePackage.getEInt(), "endpointIndex", null, 0, 1, OperatorConstraintParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(propertiesEDataType, Properties.class, "Properties", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(setEDataType, Set.class, "Set", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });	
-		addAnnotation
-		  (conversionOperatorEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "conversion"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
-		addAnnotation
-		  (conversionOperatorEClass, 
-		   source, 
-		   new String[] {
-			 "conversion", "inputs->size() = 1 and outputs->size() = 1"
-		   });
+		initEDataType(exceptionEDataType, Exception.class, "Exception", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(propertiesEDataType, Properties.class, "Properties", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(setEDataType, Set.class, "Set", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //OperatorPackageImpl

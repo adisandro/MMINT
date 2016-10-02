@@ -58,6 +58,15 @@ public interface OperatorFactory extends EFactory {
 	RandomOperator createRandomOperator();
 
 	/**
+	 * Returns a new object of class '<em>Workflow Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Workflow Operator</em>'.
+	 * @generated
+	 */
+	WorkflowOperator createWorkflowOperator();
+
+	/**
 	 * Returns a new object of class '<em>Generic Endpoint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,6 +92,33 @@ public interface OperatorFactory extends EFactory {
 	 * @generated
 	 */
 	OperatorGeneric createOperatorGeneric();
+
+	/**
+	 * Returns a new object of class '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint</em>'.
+	 * @generated
+	 */
+	OperatorConstraint createOperatorConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Constraint Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint Rule</em>'.
+	 * @generated
+	 */
+	OperatorConstraintRule createOperatorConstraintRule();
+
+	/**
+	 * Returns a new object of class '<em>Constraint Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint Parameter</em>'.
+	 * @generated
+	 */
+	OperatorConstraintParameter createOperatorConstraintParameter();
 
 	/**
 	 * Returns the package supported by this factory.

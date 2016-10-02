@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
@@ -52,22 +51,28 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit()) ||
-				!MIDTypeHierarchy.isRootType((ModelEndpoint) getElementToDestroy())
-			);
-	}
-
-	protected void doExecuteInstancesLevel() throws MMINTException {
-
-		((ModelEndpoint) getElementToDestroy()).deleteInstanceAndReference(true);
+		ModelRel modelRel = (ModelRel) getElementToEdit();
+		return super.canExecute() && (
+			modelRel.isInstancesLevel() ||
+			(modelRel.isWorkflowsLevel() && modelRel.getMIDContainer().getOperators().isEmpty()) ||
+			!MIDTypeHierarchy.isRootType((ModelEndpoint) getElementToDestroy())
+		);
 	}
 
 	protected void doExecuteTypesLevel() throws MMINTException {
 
-		((ModelEndpoint) getElementToDestroy()).deleteTypeAndReference(true);
+		((ModelEndpoint) getElementToDestroy()).deleteType(true);
 		// no need to init type hierarchy, no need for undo/redo
+	}
+
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		((ModelEndpoint) getElementToDestroy()).deleteInstance(true);
+	}
+
+	protected void doExecuteWorkflowsLevel() throws MMINTException {
+
+		((ModelEndpoint) getElementToDestroy()).deleteWorkflowInstance();
 	}
 
 	/**
@@ -85,11 +90,18 @@ public class ModelRelRemoveModelEndpointCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit())) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((ModelRel) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 	
 			return super.doExecuteWithResult(monitor, info);

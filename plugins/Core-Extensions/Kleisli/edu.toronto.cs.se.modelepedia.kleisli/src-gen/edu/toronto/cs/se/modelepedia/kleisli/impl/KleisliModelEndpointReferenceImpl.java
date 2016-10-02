@@ -13,17 +13,15 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
@@ -43,14 +41,14 @@ import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
  */
 public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImpl implements KleisliModelEndpointReference {
 	/**
-	 * The cached setting delegate for the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
+	 * The default value of the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getExtendedTargetUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate EXTENDED_TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI).getSettingDelegate();
+	protected static final String EXTENDED_TARGET_URI_EDEFAULT = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +74,9 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	 * @generated
 	 */
 	public String getExtendedTargetUri() {
-		return (String)EXTENDED_TARGET_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		// TODO: implement this method to return the 'Extended Target Uri' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
-				return EXTENDED_TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
 		}
 		return super.eIsSet(featureID);
 	}
@@ -115,7 +115,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
 		String modelTypeUri = uris[0].replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
 		String modelElemTypeUri = uris[1];
@@ -126,7 +126,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			return false;
 		}
 		// filter duplicates
-		if (MIDTypeHierarchy.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
+		if (MIDRegistry.getReference(modelElemTypeUri, getModelElemRefs()) != null) {
 			return false;
 		}
 		//TODO MMINT[MODELELEMENT] if (metamodelObj instanceof EStructuralFeature) drop only if target type (or any subtype) is already dropped
@@ -154,7 +154,7 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 			return null;
 		}
 		// filter duplicates
-		if (MIDTypeHierarchy.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
+		if (MIDRegistry.getReference(modelElemUri + MMINT.ROLE_SEPARATOR + modelElemType.getUri(), getModelElemRefs()) != null) {
 			return null;
 		}
 

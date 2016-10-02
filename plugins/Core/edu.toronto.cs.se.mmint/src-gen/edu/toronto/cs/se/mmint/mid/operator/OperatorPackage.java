@@ -34,7 +34,6 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface OperatorPackage extends EPackage {
@@ -234,6 +233,24 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_FEATURE_COUNT = MIDPackage.GENERIC_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___IS_LEVEL__MIDLEVEL = MIDPackage.GENERIC_ELEMENT___IS_LEVEL__MIDLEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___IS_TYPES_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,6 +258,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.GENERIC_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.GENERIC_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___IS_INSTANCES_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -277,6 +312,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.GENERIC_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___IS_WORKFLOWS_LEVEL = MIDPackage.GENERIC_ELEMENT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.GENERIC_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -324,13 +377,40 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_SUPERTYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_MID_CONTAINER = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___CREATE_SUBTYPE__STRING_STRING = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
+	int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___OPEN_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -339,7 +419,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___FIND_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+	int OPERATOR___FIND_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -348,7 +428,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
+	int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -357,16 +437,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Input</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___IS_ALLOWED_INPUT__MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -375,7 +446,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_OUTPUTS_BY_NAME = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___GET_OUTPUTS_BY_NAME = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Get Output Models</em>' operation.
@@ -384,7 +455,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_OUTPUT_MODELS = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int OPERATOR___GET_OUTPUT_MODELS = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -393,7 +464,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CREATE_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
+	int OPERATOR___CREATE_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -402,7 +473,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
+	int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -411,7 +482,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
+	int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
@@ -420,7 +491,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
+	int OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -429,7 +500,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -438,16 +509,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
-
-	/**
-	 * The operation id for the '<em>Init</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___INIT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Run</em>' operation.
@@ -456,16 +518,61 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
+	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
 	/**
-	 * The operation id for the '<em>Start</em>' operation.
+	 * The operation id for the '<em>Start Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
+	int OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___OPEN_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___OPEN_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -474,7 +581,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 24;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -640,6 +747,24 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -647,6 +772,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -683,6 +826,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -730,6 +891,33 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
+
+	/**
 	 * The operation id for the '<em>Find Allowed Inputs</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -755,15 +943,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Input</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___IS_ALLOWED_INPUT__MAP = OPERATOR___IS_ALLOWED_INPUT__MAP;
 
 	/**
 	 * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -838,15 +1017,6 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
 	/**
-	 * The operation id for the '<em>Init</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___INIT = OPERATOR___INIT;
-
-	/**
 	 * The operation id for the '<em>Run</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -856,13 +1026,58 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
 
 	/**
-	 * The operation id for the '<em>Start</em>' operation.
+	 * The operation id for the '<em>Start Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID;
+	int CONVERSION_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1064,6 +1279,24 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1071,6 +1304,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1107,6 +1358,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1154,6 +1423,24 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+
+	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1161,6 +1448,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
 
 	/**
 	 * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -1188,15 +1484,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Input</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR___IS_ALLOWED_INPUT__MAP = OPERATOR___IS_ALLOWED_INPUT__MAP;
 
 	/**
 	 * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -1271,15 +1558,6 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
 	/**
-	 * The operation id for the '<em>Init</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR___INIT = OPERATOR___INIT;
-
-	/**
 	 * The operation id for the '<em>Run</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1289,13 +1567,58 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
 
 	/**
-	 * The operation id for the '<em>Start</em>' operation.
+	 * The operation id for the '<em>Start Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID;
+	int RANDOM_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
 	/**
 	 * The number of operations of the '<em>Random Operator</em>' class.
@@ -1307,6 +1630,547 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getWorkflowOperator()
+	 * @generated
+	 */
+	int WORKFLOW_OPERATOR = 3;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__URI = OPERATOR__URI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__NAME = OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__LEVEL = OPERATOR__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__INPUTS = OPERATOR__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Generics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__GENERICS = OPERATOR__GENERICS;
+
+	/**
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__INPUT_SUBDIR = OPERATOR__INPUT_SUBDIR;
+
+	/**
+	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
+
+	/**
+	 * The feature id for the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Commutative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Mid Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__MID_URI = OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
+
+	/**
+	 * The operation id for the '<em>Find Allowed Inputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+
+	/**
+	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Outputs By Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
+
+	/**
+	 * The operation id for the '<em>Get Output Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Select Allowed Generics</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Read Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Run</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+
+	/**
+	 * The operation id for the '<em>Start Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Get Workflow MID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_WORKFLOW_MID = OPERATOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Instance MID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_INSTANCE_MID = OPERATOR_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Workflow Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1314,7 +2178,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGenericEndpoint()
 	 * @generated
 	 */
-	int GENERIC_ENDPOINT = 3;
+	int GENERIC_ENDPOINT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1407,15 +2271,6 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT__TARGET = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERIC_ENDPOINT__TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI;
-
-	/**
 	 * The feature id for the '<em><b>Metatarget Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1434,6 +2289,33 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_MID_CONTAINER = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___IS_LEVEL__MIDLEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_LEVEL__MIDLEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___IS_TYPES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_TYPES_LEVEL;
+
+	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1441,6 +2323,24 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___IS_INSTANCES_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1479,6 +2379,24 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___IS_WORKFLOWS_LEVEL = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1504,6 +2422,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Target Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_TARGET_URI = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1551,13 +2478,22 @@ public interface OperatorPackage extends EPackage {
 	int GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Generic Endpoint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 5;
+	int GENERIC_ENDPOINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.
@@ -1567,7 +2503,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorInput()
 	 * @generated
 	 */
-	int OPERATOR_INPUT = 4;
+	int OPERATOR_INPUT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -1622,7 +2558,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorGeneric()
 	 * @generated
 	 */
-	int OPERATOR_GENERIC = 5;
+	int OPERATOR_GENERIC = 6;
 
 	/**
 	 * The feature id for the '<em><b>Generic</b></em>' reference.
@@ -1661,6 +2597,153 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_GENERIC_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl <em>Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
+	 * @generated
+	 */
+	int OPERATOR_CONSTRAINT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT__IMPLEMENTATION = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT__LANGUAGE = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT__RULES = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl <em>Constraint Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
+	 * @generated
+	 */
+	int OPERATOR_CONSTRAINT_RULE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Output Model Rel</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Endpoint Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Constraint Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Constraint Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_RULE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl <em>Constraint Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
+	 * @generated
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Parameter Ref</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF = 0;
+
+	/**
+	 * The feature id for the '<em><b>Endpoint Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX = 1;
+
+	/**
+	 * The number of structural features of the '<em>Constraint Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Constraint Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CONSTRAINT_PARAMETER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '<em>Random</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1668,7 +2751,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 6;
+	int RANDOM = 10;
 
 
 	/**
@@ -1679,7 +2762,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 7;
+	int EXCEPTION = 11;
 
 
 	/**
@@ -1690,7 +2773,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
 	 * @generated
 	 */
-	int PROPERTIES = 8;
+	int PROPERTIES = 12;
 
 
 	/**
@@ -1701,7 +2784,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getSet()
 	 * @generated
 	 */
-	int SET = 9;
+	int SET = 13;
 
 
 	/**
@@ -1823,6 +2906,26 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__GetSupertype();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getMIDContainer() <em>Get MID Container</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get MID Container</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getMIDContainer()
+	 * @generated
+	 */
+	EOperation getOperator__GetMIDContainer();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createSubtype(java.lang.String, java.lang.String) <em>Create Subtype</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Subtype</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createSubtype(java.lang.String, java.lang.String)
+	 * @generated
+	 */
+	EOperation getOperator__CreateSubtype__String_String();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#deleteType() <em>Delete Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1831,6 +2934,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__DeleteType();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#openType() <em>Open Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Open Type</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#openType()
+	 * @generated
+	 */
+	EOperation getOperator__OpenType();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList) <em>Find Allowed Inputs</em>}' operation.
@@ -1861,16 +2974,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__CheckAllowedInputs__EList();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isAllowedInput(java.util.Map) <em>Is Allowed Input</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Allowed Input</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#isAllowedInput(java.util.Map)
-	 * @generated
-	 */
-	EOperation getOperator__IsAllowedInput__Map();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputsByName() <em>Get Outputs By Name</em>}' operation.
@@ -1953,16 +3056,6 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__ReadInputProperties__Properties();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#init() <em>Init</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Init</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#init()
-	 * @generated
-	 */
-	EOperation getOperator__Init();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#run(java.util.Map, java.util.Map, java.util.Map) <em>Run</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1973,14 +3066,64 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__Run__Map_Map_Map();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Start</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startInstance(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Start Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Start</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#start(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
+	 * @return the meta object for the '<em>Start Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#startInstance(org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getOperator__Start__EList_Properties_EList_Map_MID();
+	EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#openInstance() <em>Open Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Open Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#openInstance()
+	 * @generated
+	 */
+	EOperation getOperator__OpenInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getOperator__CreateWorkflowInstance__MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#deleteWorkflowInstance() <em>Delete Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Delete Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#deleteWorkflowInstance()
+	 * @generated
+	 */
+	EOperation getOperator__DeleteWorkflowInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Start Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getOperator__StartWorkflowInstance__EList_EList_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#openWorkflowInstance() <em>Open Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Open Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#openWorkflowInstance()
+	 * @generated
+	 */
+	EOperation getOperator__OpenWorkflowInstance();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.ConversionOperator <em>Conversion Operator</em>}'.
@@ -2032,6 +3175,47 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRandomOperator_State();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator <em>Workflow Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Operator</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator
+	 * @generated
+	 */
+	EClass getWorkflowOperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri <em>Mid Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mid Uri</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri()
+	 * @see #getWorkflowOperator()
+	 * @generated
+	 */
+	EAttribute getWorkflowOperator_MidUri();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMID() <em>Get Workflow MID</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Workflow MID</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMID()
+	 * @generated
+	 */
+	EOperation getWorkflowOperator__GetWorkflowMID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getInstanceMID() <em>Get Instance MID</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Instance MID</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getInstanceMID()
+	 * @generated
+	 */
+	EOperation getWorkflowOperator__GetInstanceMID();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint <em>Generic Endpoint</em>}'.
@@ -2103,6 +3287,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getGenericEndpoint__CreateInstance__GenericElement_Operator();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.GenericElement, edu.toronto.cs.se.mmint.mid.operator.Operator) <em>Create Workflow Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint#createWorkflowInstance(edu.toronto.cs.se.mmint.mid.GenericElement, edu.toronto.cs.se.mmint.mid.operator.Operator)
+	 * @generated
+	 */
+	EOperation getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput <em>Input</em>}'.
@@ -2180,6 +3374,91 @@ public interface OperatorPackage extends EPackage {
 	EReference getOperatorGeneric_GenericSuperTypeEndpoint();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint
+	 * @generated
+	 */
+	EClass getOperatorConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint#getRules()
+	 * @see #getOperatorConstraint()
+	 * @generated
+	 */
+	EReference getOperatorConstraint_Rules();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule <em>Constraint Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint Rule</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule
+	 * @generated
+	 */
+	EClass getOperatorConstraintRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel <em>Output Model Rel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Output Model Rel</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel()
+	 * @see #getOperatorConstraintRule()
+	 * @generated
+	 */
+	EReference getOperatorConstraintRule_OutputModelRel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEndpointModels <em>Endpoint Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Endpoint Models</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEndpointModels()
+	 * @see #getOperatorConstraintRule()
+	 * @generated
+	 */
+	EReference getOperatorConstraintRule_EndpointModels();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter <em>Constraint Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constraint Parameter</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter
+	 * @generated
+	 */
+	EClass getOperatorConstraintParameter();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameterRef <em>Parameter Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Parameter Ref</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameterRef()
+	 * @see #getOperatorConstraintParameter()
+	 * @generated
+	 */
+	EReference getOperatorConstraintParameter_ParameterRef();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex <em>Endpoint Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Endpoint Index</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex()
+	 * @see #getOperatorConstraintParameter()
+	 * @generated
+	 */
+	EAttribute getOperatorConstraintParameter_EndpointIndex();
+
+	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2196,7 +3475,7 @@ public interface OperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Exception</em>'.
 	 * @see java.lang.Exception
-	 * @model instanceClass="java.lang.Exception"
+	 * @model instanceClass="java.lang.Exception" serializeable="false"
 	 * @generated
 	 */
 	EDataType getException();
@@ -2207,7 +3486,7 @@ public interface OperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Properties</em>'.
 	 * @see java.util.Properties
-	 * @model instanceClass="java.util.Properties"
+	 * @model instanceClass="java.util.Properties" serializeable="false"
 	 * @generated
 	 */
 	EDataType getProperties();
@@ -2218,7 +3497,7 @@ public interface OperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Set</em>'.
 	 * @see java.util.Set
-	 * @model instanceClass="java.util.Set" typeParameters="E"
+	 * @model instanceClass="java.util.Set" serializeable="false" typeParameters="E"
 	 * @generated
 	 */
 	EDataType getSet();
@@ -2337,12 +3616,36 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___GET_SUPERTYPE = eINSTANCE.getOperator__GetSupertype();
 
 		/**
+		 * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___GET_MID_CONTAINER = eINSTANCE.getOperator__GetMIDContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___CREATE_SUBTYPE__STRING_STRING = eINSTANCE.getOperator__CreateSubtype__String_String();
+
+		/**
 		 * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation OPERATOR___DELETE_TYPE = eINSTANCE.getOperator__DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___OPEN_TYPE = eINSTANCE.getOperator__OpenType();
 
 		/**
 		 * The meta object literal for the '<em><b>Find Allowed Inputs</b></em>' operation.
@@ -2367,14 +3670,6 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = eINSTANCE.getOperator__CheckAllowedInputs__EList();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Allowed Input</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR___IS_ALLOWED_INPUT__MAP = eINSTANCE.getOperator__IsAllowedInput__Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Outputs By Name</b></em>' operation.
@@ -2441,14 +3736,6 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = eINSTANCE.getOperator__ReadInputProperties__Properties();
 
 		/**
-		 * The meta object literal for the '<em><b>Init</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR___INIT = eINSTANCE.getOperator__Init();
-
-		/**
 		 * The meta object literal for the '<em><b>Run</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2457,12 +3744,52 @@ public interface OperatorPackage extends EPackage {
 		EOperation OPERATOR___RUN__MAP_MAP_MAP = eINSTANCE.getOperator__Run__Map_Map_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Start</b></em>' operation.
+		 * The meta object literal for the '<em><b>Start Instance</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID = eINSTANCE.getOperator__Start__EList_Properties_EList_Map_MID();
+		EOperation OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = eINSTANCE.getOperator__StartInstance__EList_Properties_EList_Map_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___OPEN_INSTANCE = eINSTANCE.getOperator__OpenInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = eINSTANCE.getOperator__CreateWorkflowInstance__MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getOperator__DeleteWorkflowInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = eINSTANCE.getOperator__StartWorkflowInstance__EList_EList_MID();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___OPEN_WORKFLOW_INSTANCE = eINSTANCE.getOperator__OpenWorkflowInstance();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -2507,6 +3834,40 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RANDOM_OPERATOR__STATE = eINSTANCE.getRandomOperator_State();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getWorkflowOperator()
+		 * @generated
+		 */
+		EClass WORKFLOW_OPERATOR = eINSTANCE.getWorkflowOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Mid Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WORKFLOW_OPERATOR__MID_URI = eINSTANCE.getWorkflowOperator_MidUri();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Workflow MID</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation WORKFLOW_OPERATOR___GET_WORKFLOW_MID = eINSTANCE.getWorkflowOperator__GetWorkflowMID();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Instance MID</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation WORKFLOW_OPERATOR___GET_INSTANCE_MID = eINSTANCE.getWorkflowOperator__GetInstanceMID();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
@@ -2567,6 +3928,14 @@ public interface OperatorPackage extends EPackage {
 		EOperation GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateInstance__GenericElement_Operator();
 
 		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR = eINSTANCE.getGenericEndpoint__CreateWorkflowInstance__GenericElement_Operator();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorInputImpl <em>Input</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2625,6 +3994,76 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT = eINSTANCE.getOperatorGeneric_GenericSuperTypeEndpoint();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl <em>Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
+		 * @generated
+		 */
+		EClass OPERATOR_CONSTRAINT = eINSTANCE.getOperatorConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT__RULES = eINSTANCE.getOperatorConstraint_Rules();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl <em>Constraint Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
+		 * @generated
+		 */
+		EClass OPERATOR_CONSTRAINT_RULE = eINSTANCE.getOperatorConstraintRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Output Model Rel</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL = eINSTANCE.getOperatorConstraintRule_OutputModelRel();
+
+		/**
+		 * The meta object literal for the '<em><b>Endpoint Models</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS = eINSTANCE.getOperatorConstraintRule_EndpointModels();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl <em>Constraint Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
+		 * @generated
+		 */
+		EClass OPERATOR_CONSTRAINT_PARAMETER = eINSTANCE.getOperatorConstraintParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Ref</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF = eINSTANCE.getOperatorConstraintParameter_ParameterRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Endpoint Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX = eINSTANCE.getOperatorConstraintParameter_EndpointIndex();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

@@ -29,11 +29,10 @@ import org.eclipse.swt.dnd.DragSourceEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 /**
  * The outline page drag listener.
@@ -71,7 +70,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 
 		List<Object> transferData = new ArrayList<>();
 		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-		boolean isInstancesLevel = MIDConstraintChecker.isInstancesLevel(modelRel);
+		boolean isInstancesLevel = modelRel.isInstancesLevel();
 		ModelElement modelElemType = null;
 
 		// filtering

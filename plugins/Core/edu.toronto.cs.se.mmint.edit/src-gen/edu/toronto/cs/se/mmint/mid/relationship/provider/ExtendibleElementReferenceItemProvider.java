@@ -72,10 +72,8 @@ public class ExtendibleElementReferenceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addReferencedObjectPropertyDescriptor(object);
-			addObjectPropertyDescriptor(object);
 			addSupertypeRefPropertyDescriptor(object);
 			addModifiablePropertyDescriptor(object);
-			addUriPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,28 +95,6 @@ public class ExtendibleElementReferenceItemProvider
 				 true,
 				 false,
 				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Object feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addObjectPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElementReference_object_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementReference_object_feature", "_UI_ExtendibleElementReference_type"),
-				 RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__OBJECT,
-				 false,
-				 false,
-				 false,
 				 null,
 				 null,
 				 null));
@@ -164,28 +140,6 @@ public class ExtendibleElementReferenceItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Uri feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUriPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExtendibleElementReference_uri_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementReference_uri_feature", "_UI_ExtendibleElementReference_type"),
-				 RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__URI,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -245,7 +199,6 @@ public class ExtendibleElementReferenceItemProvider
 
 		switch (notification.getFeatureID(ExtendibleElementReference.class)) {
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE:
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
@@ -330,6 +283,11 @@ public class ExtendibleElementReferenceItemProvider
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 OperatorFactory.eINSTANCE.createRandomOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				 OperatorFactory.eINSTANCE.createWorkflowOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter

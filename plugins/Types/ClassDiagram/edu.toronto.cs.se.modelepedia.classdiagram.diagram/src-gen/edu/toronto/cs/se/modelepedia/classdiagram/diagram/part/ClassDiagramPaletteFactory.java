@@ -1,19 +1,25 @@
+
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.part;
 
 import java.util.Collections;
-import java.util.List;
 
-import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
-import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
+import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagramElementTypes;
 
@@ -23,20 +29,19 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.providers.ClassDiagram
 public class ClassDiagramPaletteFactory {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void fillPalette(PaletteRoot paletteRoot) {
 		paletteRoot.add(createObjects1Group());
 		paletteRoot.add(createConnections2Group());
 	}
 
 	/**
-	 * Creates "Objects" palette tool group
-	 * @generated
-	 */
+	* Creates "Objects" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createObjects1Group() {
-		PaletteDrawer paletteContainer = new PaletteDrawer(
-				Messages.Objects1Group_title);
+		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Objects1Group_title);
 		paletteContainer.setId("createObjects1Group"); //$NON-NLS-1$
 		paletteContainer.add(createAttribute1CreationTool());
 		paletteContainer.add(createClass2CreationTool());
@@ -45,12 +50,11 @@ public class ClassDiagramPaletteFactory {
 	}
 
 	/**
-	 * Creates "Connections" palette tool group
-	 * @generated
-	 */
+	* Creates "Connections" palette tool group
+	* @generated
+	*/
 	private PaletteContainer createConnections2Group() {
-		PaletteDrawer paletteContainer = new PaletteDrawer(
-				Messages.Connections2Group_title);
+		PaletteDrawer paletteContainer = new PaletteDrawer(Messages.Connections2Group_title);
 		paletteContainer.setId("createConnections2Group"); //$NON-NLS-1$
 		paletteContainer.add(createAssociation1CreationTool());
 		paletteContainer.add(createDependency2CreationTool());
@@ -60,171 +64,101 @@ public class ClassDiagramPaletteFactory {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createAttribute1CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Attribute1CreationTool_title,
-				Messages.Attribute1CreationTool_desc,
-				Collections
-						.singletonList(ClassDiagramElementTypes.Attribute_3001));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.Attribute1CreationTool_title,
+			Messages.Attribute1CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.Attribute_3001));
 		entry.setId("createAttribute1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.Attribute_3001));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.Attribute_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createClass2CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Class2CreationTool_title,
-				Messages.Class2CreationTool_desc,
-				Collections.singletonList(ClassDiagramElementTypes.Class_2001));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.Class2CreationTool_title,
+			Messages.Class2CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.Class_2001));
 		entry.setId("createClass2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.Class_2001));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.Class_2001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createOperation3CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.Operation3CreationTool_title,
-				Messages.Operation3CreationTool_desc,
-				Collections
-						.singletonList(ClassDiagramElementTypes.Operation_3002));
+		DefaultNodeToolEntry entry = new DefaultNodeToolEntry(
+			Messages.Operation3CreationTool_title,
+			Messages.Operation3CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.Operation_3002));
 		entry.setId("createOperation3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.Operation_3002));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.Operation_3002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createAssociation1CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Association1CreationTool_title,
-				Messages.Association1CreationTool_desc,
-				Collections
-						.singletonList(ClassDiagramElementTypes.Association_4001));
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
+			Messages.Association1CreationTool_title,
+			Messages.Association1CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.Association_4001));
 		entry.setId("createAssociation1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.Association_4001));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.Association_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createDependency2CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Dependency2CreationTool_title,
-				Messages.Dependency2CreationTool_desc,
-				Collections
-						.singletonList(ClassDiagramElementTypes.Dependency_4002));
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
+			Messages.Dependency2CreationTool_title,
+			Messages.Dependency2CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.Dependency_4002));
 		entry.setId("createDependency2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.Dependency_4002));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.Dependency_4002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createNestedIn3CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
-				Messages.NestedIn3CreationTool_title,
-				Messages.NestedIn3CreationTool_desc,
-				Collections
-						.singletonList(ClassDiagramElementTypes.ClassNestedIn_4003));
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
+			Messages.NestedIn3CreationTool_title,
+			Messages.NestedIn3CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.ClassNestedIn_4003));
 		entry.setId("createNestedIn3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.ClassNestedIn_4003));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.ClassNestedIn_4003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private ToolEntry createSuperclass4CreationTool() {
-		LinkToolEntry entry = new LinkToolEntry(
-				Messages.Superclass4CreationTool_title,
-				Messages.Superclass4CreationTool_desc,
-				Collections
-						.singletonList(ClassDiagramElementTypes.ClassSuperclass_4004));
+		DefaultLinkToolEntry entry = new DefaultLinkToolEntry(
+			Messages.Superclass4CreationTool_title,
+			Messages.Superclass4CreationTool_desc,
+			Collections.singletonList(ClassDiagramElementTypes.ClassSuperclass_4004));
 		entry.setId("createSuperclass4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(ClassDiagramElementTypes
-				.getImageDescriptor(ClassDiagramElementTypes.ClassSuperclass_4004));
+		entry.setSmallIcon(ClassDiagramElementTypes.getImageDescriptor(ClassDiagramElementTypes.ClassSuperclass_4004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 
-	/**
-	 * @generated
-	 */
-	private static class NodeToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> elementTypes;
-
-		/**
-		 * @generated
-		 */
-		private NodeToolEntry(String title, String description,
-				List<IElementType> elementTypes) {
-			super(title, description, null, null);
-			this.elementTypes = elementTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeCreationTool(elementTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class LinkToolEntry extends ToolEntry {
-
-		/**
-		 * @generated
-		 */
-		private final List<IElementType> relationshipTypes;
-
-		/**
-		 * @generated
-		 */
-		private LinkToolEntry(String title, String description,
-				List<IElementType> relationshipTypes) {
-			super(title, description, null, null);
-			this.relationshipTypes = relationshipTypes;
-		}
-
-		/**
-		 * @generated
-		 */
-		public Tool createTool() {
-			Tool tool = new UnspecifiedTypeConnectionTool(relationshipTypes);
-			tool.setProperties(getToolProperties());
-			return tool;
-		}
-	}
 }

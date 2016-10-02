@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The metalevels for a MID element.
+ * The levels for a MID.
  * <!-- end-model-doc -->
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getMIDLevel()
  * @model
@@ -48,14 +48,22 @@ public enum MIDLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TYPES(1, "TYPES", "TYPES");
+	TYPES(1, "TYPES", "TYPES"), /**
+	 * The '<em><b>WORKFLOWS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WORKFLOWS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	WORKFLOWS(2, "WORKFLOWS", "WORKFLOWS");
 
 	/**
 	 * The '<em><b>INSTANCES</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The instances metalevel.
+	 * The instances level, where models are defined.
 	 * <!-- end-model-doc -->
 	 * @see #INSTANCES
 	 * @model
@@ -69,7 +77,7 @@ public enum MIDLevel implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The types metalevel.
+	 * The types level, where metamodels are defined.
 	 * <!-- end-model-doc -->
 	 * @see #TYPES
 	 * @model
@@ -77,6 +85,20 @@ public enum MIDLevel implements Enumerator {
 	 * @ordered
 	 */
 	public static final int TYPES_VALUE = 1;
+
+	/**
+	 * The '<em><b>WORKFLOWS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The workflows level, where non-instantiated models are defined.
+	 * <!-- end-model-doc -->
+	 * @see #WORKFLOWS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOWS_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Level</b></em>' enumerators.
@@ -88,6 +110,7 @@ public enum MIDLevel implements Enumerator {
 		new MIDLevel[] {
 			INSTANCES,
 			TYPES,
+			WORKFLOWS,
 		};
 
 	/**
@@ -146,6 +169,7 @@ public enum MIDLevel implements Enumerator {
 		switch (value) {
 			case INSTANCES_VALUE: return INSTANCES;
 			case TYPES_VALUE: return TYPES;
+			case WORKFLOWS_VALUE: return WORKFLOWS;
 		}
 		return null;
 	}

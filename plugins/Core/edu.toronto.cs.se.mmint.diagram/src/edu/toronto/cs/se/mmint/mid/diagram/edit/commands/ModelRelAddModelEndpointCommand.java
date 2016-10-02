@@ -26,9 +26,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -65,36 +66,45 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 	@Override
 	public boolean canExecute() {
 
-		boolean instance = MIDConstraintChecker.isInstancesLevel(getSource());
-
-		return
-			super.canExecute() && ((
-				instance &&
+		ModelRel modelRel = getSource();
+		return super.canExecute() && (((
+					modelRel.isInstancesLevel() ||
+					(modelRel.isWorkflowsLevel() && modelRel.getMIDContainer().getOperators().isEmpty())
+				) &&
 				(modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(getSource(), null, (Model) getTarget())) != null
 			) || (
-				!instance &&
+				modelRel.isTypesLevel() &&
 				!MIDTypeHierarchy.isRootType(getSource()) &&
 				(getTarget() == null || !MIDTypeHierarchy.isRootType(getTarget()))
-			));
-	}
-
-	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
-
-		ModelEndpointReference modelTypeEndpointRef = MIDDialogUtils.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
-		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstanceAndReference((Model) getTarget(), getSource());
-
-		return newModelEndpointRef.getObject();
+			)
+		);
 	}
 
 	protected ModelEndpoint doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
 
 		Model tgtModelType = (Model) getTarget();
-		String newModelTypeEndpointName = MIDDialogUtils.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
+		String newModelTypeEndpointName = MIDDialogs.getStringInput("Create new light model type endpoint", "Insert new model type endpoint role", tgtModelType.getName());
 		ModelEndpoint modelTypeEndpoint = MIDTypeHierarchy.getOverriddenModelTypeEndpoint(getSource(), tgtModelType);
-		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtypeAndReference(newModelTypeEndpointName, tgtModelType, false, getSource());
+		ModelEndpointReference newModelTypeEndpointRef = modelTypeEndpoint.createSubtype(newModelTypeEndpointName, tgtModelType, false, getSource());
 		// no need to init type hierarchy, no need for undo/redo
 
 		return newModelTypeEndpointRef.getObject();
+	}
+
+	protected ModelEndpoint doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpointReference newModelEndpointRef = modelTypeEndpointRef.getObject().createInstance((Model) getTarget(), getSource());
+
+		return newModelEndpointRef.getObject();
+	}
+
+	protected ModelEndpoint doExecuteWorkflowsLevel() throws MMINTException, MIDDialogCancellation {
+
+		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(getSource(), modelTypeEndpointUris, "");
+		ModelEndpoint newModelEndpoint = modelTypeEndpointRef.getObject().createWorkflowInstance((Model) getTarget(), getSource());
+
+		return newModelEndpoint;
 	}
 
 	/**
@@ -115,9 +125,20 @@ public class ModelRelAddModelEndpointCommand extends ModelEndpointCreateCommand 
 			if (!canExecute()) {
 				throw new ExecutionException("Invalid arguments in create link command");
 			}
-			ModelEndpoint newElement = (MIDConstraintChecker.isInstancesLevel(getSource())) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			ModelEndpoint newElement;
+			switch (getSource().getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					newElement = this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

@@ -19,11 +19,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 
 /**
  * @generated
@@ -135,7 +138,7 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public boolean performFinish() {
+	public boolean performFinishGen() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
@@ -176,4 +179,56 @@ public class MIDCreationWizard extends Wizard implements INewWizard {
 		}
 		return diagram != null;
 	}
+
+	/**
+	 * @generated NOT
+	 */
+	public boolean performFinish() {
+
+		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
+
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				MIDLevel midLevel = MIDLevel.INSTANCES;
+				IWizardPage initialPage = diagramModelFilePage.getPreviousPage();
+				if (initialPage != null && initialPage.getDescription().contains("workflow")) {
+					midLevel = MIDLevel.WORKFLOWS;
+				}
+				diagram = MIDDiagramEditorUtil
+					.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor, midLevel);
+				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
+					try {
+						MIDDiagramEditorUtil.openDiagram(diagram);
+					}
+					catch (PartInitException e) {
+						ErrorDialog.openError(
+							getContainer().getShell(),
+							Messages.MIDCreationWizardOpenEditorError,
+							null,
+							e.getStatus());
+					}
+				}
+			}
+		};
+		try {
+			getContainer().run(false, true, op);
+		}
+		catch (InterruptedException e) {
+			return false;
+		}
+		catch (InvocationTargetException e) {
+			if (e.getTargetException() instanceof CoreException) {
+				ErrorDialog.openError(
+					getContainer().getShell(),
+					Messages.MIDCreationWizardCreationError,
+					null,
+					((CoreException) e.getTargetException()).getStatus());
+			}
+			else {
+				MIDDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+			}
+			return false;
+		}
+		return diagram != null;
+	}
+
 }

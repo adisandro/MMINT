@@ -22,8 +22,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -34,7 +36,11 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -43,7 +49,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.repository.ExtensionType;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * The factory to create/modify/remove "heavy" types, i.e. types from
@@ -154,19 +161,13 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *            The name of the new model type.
 	 * @param isAbstract
 	 *            True if the new model type is abstract, false otherwise.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model type, null if no constraint is associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model type, null if no constraint is associated.
 	 * @throws MMINTException
 	 *             If the package of the new model type is not registered
 	 *             through a org.eclipse.emf.ecore.generated_package extension,
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	protected static void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	protected void addHeavyModelType(Model newModelType, String newModelTypeUri, String modelTypeUri, String newModelTypeName, boolean isAbstract) throws MMINTException {
 
 		EPackage modelPackage = EPackage.Registry.INSTANCE.getEPackage(newModelTypeUri);
 		if (modelPackage == null) {
@@ -174,7 +175,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		}
 		Model modelType = getSupertype(newModelType, newModelTypeUri, modelTypeUri);
 		addHeavyGenericType(newModelType, modelType, newModelTypeUri, newModelTypeName, isAbstract);
-		addModelType(newModelType, constraintLanguage, constraintImplementation, MMINT.cachedTypeMID);
+		MIDTypeFactory.addModelType(newModelType, MMINT.cachedTypeMID);
 		newModelType.setOrigin(ModelOrigin.IMPORTED);
 
 		String modelPackageName = (modelType == null) ?
@@ -204,28 +205,20 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @param isAbstract
 	 *            True if the new model relationship type is abstract, false
 	 *            otherwise.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model relationship type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model relationship type, null if no constraint is
-	 *            associated.
 	 * @throws MMINTException
 	 *             If the package of the new model relationship type is not
 	 *             registered through a org.eclipse.emf.ecore.generated_package
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	protected void addHeavyModelRelType(ModelRel newModelRelType, String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	protected void addHeavyModelRelType(ModelRel newModelRelType, String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract) throws MMINTException {
 
 		if (MMINT.ROOT_MODEL_URI.equals(modelRelTypeUri)) { // root ModelRel's supertype
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract);
 		}
 		else {
 			ModelRel modelRelType = getSupertype(newModelRelType, newModelRelTypeUri, modelRelTypeUri);
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract, constraintLanguage, constraintImplementation);
+			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract);
 			addModelRelType(newModelRelType, modelRelType);
 		}
 	}
@@ -348,10 +341,29 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		Mapping mappingType = getSupertype(newMappingType, newMappingTypeUri, mappingTypeUri);
 		addHeavyType(newMappingType, mappingType, newMappingTypeUri, newMappingTypeName);
 		addMappingType(newMappingType, mappingType, containerModelRelType);
-		MappingReference mappingTypeRef = MIDTypeHierarchy.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
+		MappingReference mappingTypeRef = MIDRegistry.getReference(mappingTypeUri, containerModelRelType.getMappingRefs());
 		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
 
 		return newMappingTypeRef;
+	}
+
+	/**
+	 * Creates and adds a "heavy" constraint to a type.
+	 * @param constraintLanguage
+	 *            The language of the constraint.
+	 * @param constraintImplementation
+	 *            The implementation of the constraint.
+	 * @param constrainedType
+	 *            The new type to be constrained.
+	 */
+	public ExtendibleElementConstraint createHeavyTypeConstraint(@NonNull String constraintLanguage, @NonNull String constraintImplementation, @NonNull ExtendibleElement constrainedType) {
+
+		ExtendibleElementConstraint newTypeConstraint = (constrainedType instanceof Operator) ?
+			OperatorFactory.eINSTANCE.createOperatorConstraint() :
+			MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+		MIDTypeFactory.addTypeConstraint(newTypeConstraint, constraintLanguage, constraintImplementation, constrainedType);
+
+		return newTypeConstraint;
 	}
 
 	/**
@@ -359,12 +371,6 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * 
 	 * @param extensionType
 	 *            The extension info for the new model type.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model type, null if no constraint is associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model type, null if no constraint is associated.
 	 * @return The created model type.
 	 * @throws MMINTException
 	 *             If the package of the new model type is not registered
@@ -372,12 +378,12 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             or if the uri of the new model type is already registered in
 	 *             the repository.
 	 */
-	public Model createHeavyModelType(ExtensionType extensionType, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public Model createHeavyModelType(@NonNull ExtensionPointType extensionType) throws MMINTException {
 
 		Model newModelType = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModel() :
 			(Model) extensionType.getNewType();
-		addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		this.addHeavyModelType(newModelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newModelType;
 	}
@@ -396,7 +402,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new model element type is already
 	 *             registered in the repository.
 	 */
-	public ModelElement createHeavyModelElementType(ExtensionType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
+	public ModelElement createHeavyModelElementType(ExtensionPointType extensionType, EMFInfo eInfo, Model modelType) throws MMINTException {
 
 		ModelElement newModelElemType = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelElement() :
@@ -416,14 +422,6 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @param isBinary
 	 *            True if the new model relationship type is binary, false
 	 *            otherwise.
-	 * @param constraintLanguage
-	 *            The constraint language of the constraint associated with the
-	 *            new model relationship type, null if no constraint is
-	 *            associated.
-	 * @param constraintImplementation
-	 *            The constraint implementation of the constraint associated
-	 *            with the new model relationship type, null if no constraint is
-	 *            associated.
 	 * @return The created model relationship type.
 	 * @throws MMINTException
 	 *             If the package of the new model relationship type is not
@@ -431,7 +429,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             extension, or if the uri of the new model relationship type
 	 *             is already registered in the repository.
 	 */
-	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionType extensionType, boolean isBinary, @Nullable String constraintLanguage, @Nullable String constraintImplementation) throws MMINTException {
+	public @NonNull ModelRel createHeavyModelRelType(@NonNull ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
 
 		ModelRel newModelRelType;
 		if (extensionType.getNewType() == null) {
@@ -442,7 +440,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		else {
 			newModelRelType = (ModelRel) extensionType.getNewType();
 		}
-		addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newModelRelType;
 	}
@@ -464,7 +462,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new model type endpoint is already registered in the repository.
 	 */
-	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
+	public @NonNull ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(@NonNull ExtensionPointType extensionType, @NonNull Model targetModelType, boolean isBinarySrc, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
@@ -489,7 +487,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new model type endpoint is already registered in the Type MID.
 	 */
-	public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
+	public @NonNull ModelEndpoint createHeavyModelTypeEndpoint(@NonNull ExtensionPointType extensionType, @NonNull Model targetModelType, @NonNull Operator containerOperatorType, @NonNull String containerFeatureName) throws MMINTException {
 
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
@@ -516,7 +514,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 * @throws MMINTException
 	 *             If the uri of the new generic type endpoint is already registered in the Type MID.
 	 */
-	public @NonNull GenericEndpoint createHeavyGenericTypeEndpoint(@NonNull ExtensionType extensionType, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
+	public @NonNull GenericEndpoint createHeavyGenericTypeEndpoint(@NonNull ExtensionPointType extensionType, @NonNull GenericElement targetGenericType, @NonNull Operator containerOperatorType) throws MMINTException {
 
 		GenericEndpoint newGenericTypeEndpoint = (extensionType.getNewType() == null) ?
 			OperatorFactory.eINSTANCE.createGenericEndpoint() :
@@ -545,7 +543,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new mapping type is already registered in
 	 *             the repository.
 	 */
-	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
+	public @NonNull MappingReference createHeavyMappingTypeAndMappingTypeReference(@NonNull ExtensionPointType extensionType, boolean isBinary, @NonNull ModelRel containerModelRelType) throws MMINTException {
 
 		Mapping newMappingType;
 		if (extensionType.getNewType() == null) {
@@ -582,7 +580,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new model element type endpoint is already
 	 *             registered in the repository.
 	 */
-	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
+	public ModelElementEndpointReference createHeavyModelElementTypeEndpointAndModelElementTypeEndpointReference(ExtensionPointType extensionType, ModelElementReference targetModelElemTypeRef, boolean isBinarySrc, MappingReference containerMappingTypeRef) throws MMINTException {
 
 		ModelElementEndpoint newModelElemTypeEndpoint = (extensionType.getNewType() == null) ?
 			RelationshipFactory.eINSTANCE.createModelElementEndpoint() :
@@ -594,9 +592,9 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		addModelElementTypeEndpoint(newModelElemTypeEndpoint, targetModelElemTypeRef.getObject(), containerMappingType);
 		ModelElementEndpointReference modelElemTypeEndpointRef = null;
 		if (modelElemTypeEndpoint != null) { // may be root
-			MappingReference newMappingTypeRefSuper = MIDTypeHierarchy.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
+			MappingReference newMappingTypeRefSuper = MIDRegistry.getReference(((Mapping) modelElemTypeEndpoint.eContainer()).getUri(), ((ModelRel) containerMappingTypeRef.eContainer()).getMappingRefs());
 			if (newMappingTypeRefSuper != null) {
-				modelElemTypeEndpointRef = MIDTypeHierarchy.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
+				modelElemTypeEndpointRef = MIDRegistry.getReference(modelElemTypeEndpoint.getUri(), newMappingTypeRefSuper.getModelElemEndpointRefs());
 			}
 		}
 		ModelElementEndpointReference newModelElemTypeEndpointRef = newModelElemTypeEndpoint.createTypeReference(modelElemTypeEndpointRef, targetModelElemTypeRef, true, isBinarySrc, containerMappingTypeRef);
@@ -633,7 +631,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             If the uri of the new editor type is already registered in
 	 *             the repository.
 	 */
-	public Editor createHeavyEditorType(ExtensionType extensionType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, boolean isDiagram) throws MMINTException {
+	public Editor createHeavyEditorType(ExtensionPointType extensionType, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName, boolean isDiagram) throws MMINTException {
 
 		Editor newEditorType;
 		if (extensionType.getNewType() == null) {
@@ -712,7 +710,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 *             the new operator type is already registered in the
 	 *             repository.
 	 */
-	public @NonNull Operator createHeavyOperatorType(@NonNull ExtensionType extensionType) throws MMINTException {
+	public @NonNull Operator createHeavyOperatorType(@NonNull ExtensionPointType extensionType) throws MMINTException {
 
 		if (extensionType.getNewType() == null) {
 			throw new MMINTException("Missing operator implementation for " + extensionType.getName());
@@ -724,6 +722,34 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		addOperatorType(newOperatorType, MMINT.cachedTypeMID);
 
 		return newOperatorType;
+	}
+
+	public @NonNull OperatorConstraintRule createHeavyOperatorTypeConstraintRule(@NonNull OperatorConstraint constraint, @NonNull ModelEndpoint modelRelTypeEndpoint) throws MMINTException {
+
+		OperatorConstraintRule newConstraintRule = OperatorFactory.eINSTANCE.createOperatorConstraintRule();
+		MIDTypeFactory.addOperatorTypeConstraintRule(newConstraintRule, constraint, modelRelTypeEndpoint);
+		this.createHeavyOperatorTypeConstraintRuleEndpoint(
+			newConstraintRule,
+			modelRelTypeEndpoint,
+			-1,
+			OperatorPackage.eINSTANCE.getOperatorConstraintRule_OutputModelRel().getName());
+
+		return newConstraintRule;
+	}
+
+	public @NonNull OperatorConstraintParameter createHeavyOperatorTypeConstraintRuleEndpoint(@NonNull OperatorConstraintRule constraintRule, @NonNull ModelEndpoint modelTypeEndpoint, int endpointIndex, String ruleFeatureName) throws MMINTException {
+
+		ModelEndpointReference modelTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
+		MIDTypeFactory.addTypeReference(modelTypeEndpointRef, modelTypeEndpoint, null, false, false);
+		OperatorConstraintParameter newConstraintRuleParam = OperatorFactory.eINSTANCE.createOperatorConstraintParameter();
+		MIDTypeFactory.addOperatorTypeConstraintRuleEndpoint(
+			newConstraintRuleParam,
+			constraintRule,
+			modelTypeEndpointRef,
+			endpointIndex,
+			ruleFeatureName);
+
+		return newConstraintRuleParam;
 	}
 
 }

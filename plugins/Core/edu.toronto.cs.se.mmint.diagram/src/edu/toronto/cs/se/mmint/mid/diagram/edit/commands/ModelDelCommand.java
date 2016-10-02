@@ -12,9 +12,13 @@
 package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -24,7 +28,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 
 /**
  * The command to delete a model.
@@ -53,7 +56,7 @@ public class ModelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doUndo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -68,7 +71,7 @@ public class ModelDelCommand extends DestroyElementCommand {
 
 		IStatus status = super.doRedo(monitor, info);
 		MID mid = (MID) getElementToEdit();
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -83,16 +86,12 @@ public class ModelDelCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() && (
-				MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit()) ||
-				!MIDTypeHierarchy.isRootType((Model) getElementToDestroy())
-			);
-	}
-
-	protected void doExecuteInstancesLevel() throws MMINTException {
-
-		((Model) getElementToDestroy()).deleteInstance();
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && (
+			mid.isInstancesLevel() ||
+			(mid.isWorkflowsLevel() && mid.getOperators().isEmpty()) ||
+			!MIDTypeHierarchy.isRootType((Model) getElementToDestroy())
+		);
 	}
 
 	protected void doExecuteTypesLevel() throws MMINTException {
@@ -100,6 +99,29 @@ public class ModelDelCommand extends DestroyElementCommand {
 		MID typeMID = (MID) getElementToEdit();
 		((Model) getElementToDestroy()).deleteType();
 		MMINT.createTypeHierarchy(typeMID);
+	}
+
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		Model model = (Model) getElementToDestroy();
+		MID instanceMID = model.getMIDContainer();
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINT.PREFERENCE_MENU_DELETEMODELFILE_ENABLED))) {
+			model.deleteInstanceAndFile();
+			try {
+				WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, null);
+			}
+			catch (CoreException e) {
+				MMINTException.print(Status.WARNING, "Can't refresh the project directory, deleted models will remain visible until a manual refresh is done", e);
+			}
+		}
+		else {
+			model.deleteInstance();
+		}
+	}
+
+	protected void doExecuteWorkflowsLevel() throws MMINTException {
+
+		((Model) getElementToDestroy()).deleteWorkflowInstance();
 	}
 
 	/**
@@ -117,11 +139,18 @@ public class ModelDelCommand extends DestroyElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit())) {
-				doExecuteInstancesLevel();
-			}
-			else {
-				doExecuteTypesLevel();
+			switch (((MID) getElementToEdit()).getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					this.doExecuteWorkflowsLevel();
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 	
 			return super.doExecuteWithResult(monitor, info);

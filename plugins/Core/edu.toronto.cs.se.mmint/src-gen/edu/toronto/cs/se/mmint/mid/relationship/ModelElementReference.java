@@ -33,8 +33,7 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelElementReference()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='modelElementType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot modelElementType='object.oclIsKindOf(mid::ModelElement)'"
+ * @model
  * @generated
  */
 public interface ModelElementReference extends ExtendibleElementReference {

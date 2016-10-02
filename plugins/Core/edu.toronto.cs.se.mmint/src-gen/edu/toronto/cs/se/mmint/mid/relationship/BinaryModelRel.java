@@ -33,8 +33,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isBinaryModelRel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot isBinaryModelRel='modelEndpoints->size() = 2'"
+ * @model
  * @generated
  */
 public interface BinaryModelRel extends ModelRel {

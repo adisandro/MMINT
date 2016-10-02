@@ -33,8 +33,8 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class MAVOConcretizationHighlighter {
 
@@ -71,7 +71,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlightMAVOCounterExample(@NonNull Diagram modelDiagram, @NonNull Map<String, Set<String>> z3ModelObjs) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MIDUtils.readModelFile(modelDiagram.getUri(), true);
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// grey out model objects that are not in the example
@@ -81,9 +81,9 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = MIDUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MIDUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
-		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
+		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
 	private void highlightMAVODecision(@NonNull Map<String, View> diagramViews, @NonNull MAVODecision mavoDecision) {
@@ -144,7 +144,7 @@ public class MAVOConcretizationHighlighter {
 			if (diagramView == null) {
 				throw new MMINTException("Can't find " + mavoModelObjFormulaVar + " in diagram");
 			}
-			GMFDiagramUtils.colorDiagramElement(diagramView, color, fontColor);
+			GMFUtils.colorDiagramElement(diagramView, color, fontColor);
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Can't color diagram element, skipping it", e);
@@ -154,7 +154,7 @@ public class MAVOConcretizationHighlighter {
 	public void highlight(@NonNull Diagram modelDiagram, @NonNull LogicElement mavoElemToHighlight) throws Exception {
 
 		// get view elements from diagram
-		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MIDUtils.readModelFile(modelDiagram.getUri(), true);
+		org.eclipse.gmf.runtime.notation.Diagram exampleDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
 		Map<String, View> diagramViews = MAVOGMFDiagramUtils.getDiagramViews(exampleDiagram);
 
 		// highlight
@@ -169,9 +169,9 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = MIDUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
-		MIDUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
-		GMFDiagramUtils.openGMFDiagram(exampleDiagramUri, modelDiagram.getId(), true);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
+		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
 
 }

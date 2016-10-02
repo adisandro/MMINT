@@ -28,13 +28,10 @@ package edu.toronto.cs.se.mmint.mid;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getUpperBound <em>Upper Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTarget <em>Target</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint#getTargetUri <em>Target Uri</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='unboundedLevel'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot unboundedLevel='target.level = MIDLevel::INSTANCES implies (lowerBound = 1 and upperBound = 1)'"
  * @generated
  */
 public interface ExtendibleElementEndpoint extends ExtendibleElement {
@@ -114,16 +111,13 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
 	void setTarget(ExtendibleElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Target Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The uri of the target element.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementEndpoint_TargetUri()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='target.uri'"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement target = this.getTarget();\nreturn (target == null) ? null : target.getUri();'"
 	 * @generated
 	 */
 	String getTargetUri();

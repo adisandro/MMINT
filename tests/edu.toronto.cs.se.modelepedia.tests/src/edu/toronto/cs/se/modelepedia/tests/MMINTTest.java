@@ -29,13 +29,13 @@ import org.junit.BeforeClass;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public abstract class MMINTTest {
 
@@ -59,7 +59,7 @@ public abstract class MMINTTest {
 
 		createTestProject();
 		MID instanceMID = MIDFactory.eINSTANCE.createMID();
-		MIDUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
+		FileUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return instanceMID;
 	}
@@ -69,10 +69,10 @@ public abstract class MMINTTest {
 		URL bundleModelUrl = testBundle.findEntries(bundleDir, bundleFilename, false).nextElement();
 		String inputModelUri = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
 		Path bundlePath = Paths.get(FileLocator.toFileURL(bundleModelUrl).getFile().toString());
-		Path inputPath = Paths.get(MIDUtils.prependWorkspaceToUri(inputModelUri));
+		Path inputPath = Paths.get(FileUtils.prependWorkspacePathToUri(inputModelUri));
 		Files.copy(bundlePath, inputPath, StandardCopyOption.REPLACE_EXISTING);
 		Model inputModel =  MIDTypeHierarchy.getRootModelType().createInstance(inputModelUri, instanceMID);
-		MIDUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
+		FileUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return inputModel;
 	}

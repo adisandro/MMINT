@@ -23,10 +23,10 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
@@ -78,11 +78,11 @@ public class CD2JavaCheck extends OperatorImpl {
 
 		// output
 		Model intModelType = MIDTypeRegistry.getType(IntPackage.eNS_URI);
-		String checkModelUri = MIDUtils.replaceLastSegmentInUri(
+		String checkModelUri = FileUtils.replaceLastSegmentInUri(
 			MIDRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
-		MIDUtils.writeModelFile(check, checkModelUri, true);
+		FileUtils.writeModelFile(check, checkModelUri, true);
 		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, checkModel);

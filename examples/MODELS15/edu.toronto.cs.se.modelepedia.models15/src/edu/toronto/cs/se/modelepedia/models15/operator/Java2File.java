@@ -25,8 +25,8 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
 
 public class Java2File extends OperatorImpl {
@@ -40,13 +40,13 @@ public class Java2File extends OperatorImpl {
 	private @NonNull Model print(@NonNull Model javaModel, @NonNull MID instanceMID) throws Exception {
 
 		// run acceleo
-		String fileModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.replaceFileExtensionInUri(javaModel.getUri(), JAVA_FILE_SUFFIX),
+		String fileModelUri = FileUtils.getUniqueUri(
+			FileUtils.replaceFileExtensionInUri(javaModel.getUri(), JAVA_FILE_SUFFIX),
 			true,
 			false);
 		List<Object> m2tArgs = new ArrayList<>();
-		m2tArgs.add(MIDUtils.getFileNameFromUri(fileModelUri));
-		File folder = (new File(MIDUtils.prependWorkspaceToUri(javaModel.getUri()))).getParentFile();
+		m2tArgs.add(FileUtils.getFileNameFromUri(fileModelUri));
+		File folder = (new File(FileUtils.prependWorkspacePathToUri(javaModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
 		Java2File_M2T m2t = new Java2File_M2T(javaModel.getEMFInstanceRoot(), folder, m2tArgs);

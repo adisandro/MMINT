@@ -44,16 +44,14 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 
 public class MAVORefiner {
@@ -86,7 +84,7 @@ public class MAVORefiner {
 			String refinedModelObjUri = refinedModelUri + modelObjUri.substring(modelObjUri.lastIndexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			MAVOElement refinedModelObj;
 			try {
-				refinedModelObj = (MAVOElement) MIDTypeIntrospection.getPointer(refinedResource, refinedModelObjUri);
+				refinedModelObj = (MAVOElement) FileUtils.readModelObject(refinedModelObjUri, refinedResource);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't get model object " + refinedModelObjUri + ", skipping it", e);
@@ -211,16 +209,16 @@ public class MAVORefiner {
 	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser) throws Exception {
 
 		// create mid artifacts
-		String refinedModelUri = MIDUtils.getUniqueUri(MIDUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
-		MIDUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
-		MID instanceMID = MIDRegistry.getMultiModel(model);
+		String refinedModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
+		FileUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
+		MID instanceMID = model.getMIDContainer();
 		Model refinedModel = model.getMetatype().createInstance(refinedModelUri, instanceMID);
 		ModelRel modelRelType = MIDTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
 			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
 			modelRelType = MIDTypeHierarchy.getRootModelRelType();
 		}
-		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpointsAndReferences(
+		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpoints(
 			null,
 			model, 
 			refinedModel,
@@ -228,8 +226,8 @@ public class MAVORefiner {
 		refinementRel.setName(MODELREL_NAME);
 
 		// refine
-		MAVORoot rootModelObj = (MAVORoot) MIDUtils.readModelFile(model.getUri(), true);
-		MAVORoot refinedRootModelObj = (MAVORoot) MIDUtils.readModelFile(refinedModelUri, true);
+		MAVORoot rootModelObj = (MAVORoot) FileUtils.readModelFile(model.getUri(), true);
+		MAVORoot refinedRootModelObj = (MAVORoot) FileUtils.readModelFile(refinedModelUri, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
@@ -240,13 +238,13 @@ public class MAVORefiner {
 		populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file
-		MIDUtils.writeModelFile(refinedRootModelObj, refinedModelUri, true);
+		FileUtils.writeModelFile(refinedRootModelObj, refinedModelUri, true);
 		if (modelDiagram != null) {
-			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) MIDUtils.readModelFile(modelDiagram.getUri(), true);
+			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
 			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
-			String refinedModelDiagramUri = MIDUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
-			MIDUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
-			GMFDiagramUtils.openGMFDiagram(refinedModelDiagramUri, modelDiagram.getId(), true);
+			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
+			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
+			FileUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
 		refinedModel.createInstanceEditor();
 

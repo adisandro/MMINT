@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -32,8 +32,34 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelMerge extends OperatorImpl {
+
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
+				return false;
+			}
+			Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+			Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+			Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+			Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+			if (model11 == model21 && model12 == model22) {
+				return true;
+			}
+			else if (model11 == model22 && model12 == model21) {
+				return true;
+			}
+
+			return false;
+		}
+	}
 
 	// input-output
 	private final static @NonNull String IN_MODELREL1 = "rel1";
@@ -42,49 +68,23 @@ public class ModelRelMerge extends OperatorImpl {
 	// constants
 	private final static @NonNull String MERGE_SEPARATOR = "+";
 
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
-			return false;
-		}
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
-		if (model11 == model21 && model12 == model22) {
-			return true;
-		}
-		else if (model11 == model22 && model12 == model21) {
-			return true;
-		}
-
-		return false;
-	}
-
 	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MID instanceMID) throws MMINTException {
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
 		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-			List<ModelEndpointReference> newModelEndpointRefs = MIDTypeHierarchy.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
+			List<ModelEndpointReference> newModelEndpointRefs = MIDRegistry.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
 			ModelEndpointReference newModelEndpointRef;
 			if (newModelEndpointRefs.isEmpty()) {
-				Model newModel = MIDRegistry.getExtendibleElement(origModelEndpointRef.getTargetUri(), instanceMID);
-				newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstanceAndReference(newModel, mergedModelRel);
+				Model newModel = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
+				newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, mergedModelRel);
 			}
 			else {
 				newModelEndpointRef = newModelEndpointRefs.get(0);
 			}
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-				ModelElementReference newModelElemRef = MIDTypeHierarchy.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
+				ModelElementReference newModelElemRef = MIDRegistry.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
 				if (newModelElemRef == null) {
 					EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
 					newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
@@ -116,7 +116,7 @@ public class ModelRelMerge extends OperatorImpl {
 		@NonNull Model model1, @NonNull Model model2, @NonNull MID instanceMID)
 		throws MMINTException {
 
-		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpointsAndReferences(
+		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			model1,
 			model2,

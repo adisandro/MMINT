@@ -25,8 +25,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
  *
  *
  * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getConversionOperator()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='conversion'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot conversion='inputs->size() = 1 and outputs->size() = 1'"
+ * @model
  * @generated
  */
 public interface ConversionOperator extends Operator {

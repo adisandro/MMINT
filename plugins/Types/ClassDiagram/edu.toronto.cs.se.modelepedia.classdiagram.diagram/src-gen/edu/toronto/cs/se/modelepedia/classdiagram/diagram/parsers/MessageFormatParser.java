@@ -1,5 +1,14 @@
+
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.parsers;
 
@@ -13,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
+import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
 
 import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagramEditorPlugin;
@@ -21,51 +31,49 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.Messages;
 /**
  * @generated
  */
-public class MessageFormatParser extends AbstractParser {
+public class MessageFormatParser extends AbstractAttributeParser {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private String defaultPattern;
-
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private String defaultEditablePattern;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MessageFormat viewProcessor;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MessageFormat editorProcessor;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private MessageFormat editProcessor;
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public MessageFormatParser(EAttribute[] features) {
 		super(features);
 	}
 
 	/**
-	 * @generated
-	 */
-	public MessageFormatParser(EAttribute[] features,
-			EAttribute[] editableFeatures) {
+	* @generated
+	*/
+	public MessageFormatParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected String getDefaultPattern() {
 		if (defaultPattern == null) {
 			StringBuffer sb = new StringBuffer();
@@ -83,48 +91,45 @@ public class MessageFormatParser extends AbstractParser {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setViewPattern(String viewPattern) {
 		super.setViewPattern(viewPattern);
 		viewProcessor = null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setEditorPattern(String editorPattern) {
 		super.setEditorPattern(editorPattern);
 		editorProcessor = null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MessageFormat getViewProcessor() {
 		if (viewProcessor == null) {
-			viewProcessor = new MessageFormat(
-					getViewPattern() == null ? getDefaultPattern()
-							: getViewPattern());
+			viewProcessor = new MessageFormat(getViewPattern() == null ? getDefaultPattern() : getViewPattern());
 		}
 		return viewProcessor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MessageFormat getEditorProcessor() {
 		if (editorProcessor == null) {
 			editorProcessor = new MessageFormat(
-					getEditorPattern() == null ? getDefaultEditablePattern()
-							: getEditorPattern());
+				getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
 		}
 		return editorProcessor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected String getDefaultEditablePattern() {
 		if (defaultEditablePattern == null) {
 			StringBuffer sb = new StringBuffer();
@@ -142,67 +147,63 @@ public class MessageFormatParser extends AbstractParser {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void setEditPattern(String editPattern) {
 		super.setEditPattern(editPattern);
 		editProcessor = null;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected MessageFormat getEditProcessor() {
 		if (editProcessor == null) {
 			editProcessor = new MessageFormat(
-					getEditPattern() == null ? getDefaultEditablePattern()
-							: getEditPattern());
+				getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
 		}
 		return editProcessor;
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getEditString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getEditorProcessor().format(getEditableValues(element),
-				new StringBuffer(), new FieldPosition(0)).toString();
+		return getEditorProcessor()
+			.format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
+			.toString();
 	}
 
 	/**
-	 * @generated
-	 */
-	public IParserEditStatus isValidEditString(IAdaptable adapter,
-			String editString) {
+	* @generated
+	*/
+	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(ClassDiagramDiagramEditorPlugin.ID,
-					IParserEditStatus.UNEDITABLE, NLS.bind(
-							Messages.MessageFormatParser_InvalidInputError,
-							new Integer(pos.getErrorIndex())));
+			return new ParserEditStatus(
+				ClassDiagramDiagramEditorPlugin.ID,
+				IParserEditStatus.UNEDITABLE,
+				NLS.bind(Messages.MessageFormatParser_InvalidInputError, new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
 
 	/**
-	 * @generated
-	 */
-	public ICommand getParseCommand(IAdaptable adapter, String newString,
-			int flags) {
-		Object[] values = getEditProcessor().parse(newString,
-				new ParsePosition(0));
+	* @generated
+	*/
+	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
+		Object[] values = getEditProcessor().parse(newString, new ParsePosition(0));
 		return getParseCommand(adapter, values, flags);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public String getPrintString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getViewProcessor().format(getValues(element),
-				new StringBuffer(), new FieldPosition(0)).toString();
+		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 }

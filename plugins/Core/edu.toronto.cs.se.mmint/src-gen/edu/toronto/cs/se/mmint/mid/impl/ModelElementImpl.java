@@ -25,20 +25,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDTypeIntrospection;
-import edu.toronto.cs.se.mmint.mid.library.PrimitiveEObjectWrapper;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
+import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,6 +152,15 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -228,6 +238,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ELEMENT___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -246,6 +257,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				return getMetatype();
 			case MIDPackage.MODEL_ELEMENT___GET_SUPERTYPE:
 				return getSupertype();
+			case MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case MIDPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
 				try {
 					return createTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (ModelEndpointReference)arguments.get(2));
@@ -330,8 +343,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) containerModelTypeEndpointRef.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
-		ModelElement newModelElemType = MIDRegistry.getExtendibleElement(newModelElemTypeUri, typeMID);
+		MID typeMID = modelRelType.getMIDContainer();
+		ModelElement newModelElemType = typeMID.getExtendibleElement(newModelElemTypeUri);
 		if (newModelElemType == null) {
 			// create the "thing"
 			newModelElemType = super.createThisEClass();
@@ -342,11 +355,11 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		ModelElementReference newModelElemTypeRef = newModelElemType.createTypeReference(modelElemTypeRef, true, containerModelTypeEndpointRef);
 		// create references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference containerModelSubtypeEndpointRef = MIDTypeHierarchy.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelEndpointReference containerModelSubtypeEndpointRef = MIDRegistry.getReference(containerModelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
 			ModelElementReference modelElemSubtypeRef = null;
 			if (modelElemTypeRef != null) {
-				ModelEndpointReference modelSubtypeRefSuper = MIDTypeHierarchy.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
-				modelElemSubtypeRef = MIDTypeHierarchy.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
+				ModelEndpointReference modelSubtypeRefSuper = MIDRegistry.getReference((ModelEndpointReference) modelElemTypeRef.eContainer(), modelRelSubtype.getModelEndpointRefs());
+				modelElemSubtypeRef = MIDRegistry.getReference(modelElemTypeRef, modelSubtypeRefSuper.getModelElemRefs());
 			}
 			newModelElemType.createTypeReference(modelElemSubtypeRef, false, containerModelSubtypeEndpointRef);
 		}
@@ -361,7 +374,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		super.deleteType();
+		super.delete();
 		//TODO MMINT[OO] might need to implement full removal
 	}
 
@@ -374,7 +387,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		ENamedElement modelTypeObj;
 		try {
-			modelTypeObj = (ENamedElement) MIDTypeIntrospection.getPointer(((Model) eContainer()).getEMFTypeRoot().eResource(), getUri());
+			modelTypeObj = (ENamedElement) FileUtils.readModelObject(getUri(), ((Model) eContainer()).getEMFTypeRoot().eResource());
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing metamodel file", e);
@@ -404,17 +417,17 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(containerModelEndpointRef);
+		MID instanceMID = containerModelEndpointRef.getMIDContainer();
 		ModelElement newModelElem = null;
+		newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
 		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
-			newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
-			newModelElem = MIDRegistry.getExtendibleElement(newModelElemUri, instanceMID);
+			newModelElem = instanceMID.getExtendibleElement(newModelElemUri);
 		}
 		if (newModelElem == null) {
 			newModelElem = super.createThisEClass();
 			//TODO MMINT[MAP] When input and output come from different mids, is it not correct to store the extendible map entry in the output
 			if (instanceMID == null) {
-				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName);
+				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName, MIDLevel.INSTANCES);
 			}
 			else {
 				super.addInstance(newModelElem, newModelElemUri, newModelElemName, instanceMID);
@@ -434,7 +447,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeInstance(this);
 
-		super.deleteInstance();
+		super.delete();
 		//TODO MMINT[OO] might need to implement full removal
 	}
 
@@ -454,7 +467,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		}
 		EObject modelObj;
 		try {
-			modelObj = MIDTypeIntrospection.getPointer(modelElemUri);
+			modelObj = FileUtils.readModelObject(modelElemUri, null);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model element" + getUri(), e);

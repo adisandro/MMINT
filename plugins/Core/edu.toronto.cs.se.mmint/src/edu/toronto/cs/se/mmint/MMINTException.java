@@ -13,10 +13,12 @@ package edu.toronto.cs.se.mmint;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
@@ -38,7 +40,7 @@ public class MMINTException extends Exception {
 	 * @param e
 	 *            The exception or error.
 	 */
-	public static void print(int severity, String message, Throwable e) {
+	public static void print(int severity, @NonNull String message, @Nullable Throwable e) {
 
 		IStatus status = (e == null) ?
 			new Status(severity, MMINTActivator.PLUGIN_ID, message) :
@@ -84,26 +86,50 @@ public class MMINTException extends Exception {
 
 	public static void mustBeType(ExtendibleElement type) throws MMINTException {
 
-		if (MIDConstraintChecker.isInstancesLevel(type)) {
-			throw new MMINTException("Can't execute operation at the TYPES level on element at the INSTANCES level");
+		if (!type.isTypesLevel()) {
+			throw new MMINTException("Can't execute operation at the TYPES level on element at the " + type.getLevel() + " level");
 		}
 	}
 
 	public static void mustBeType(ExtendibleElementReference typeRef) throws MMINTException {
 
-		mustBeType(typeRef.getObject());
+		MMINTException.mustBeType(typeRef.getObject());
 	}
 
 	public static void mustBeInstance(ExtendibleElement instance) throws MMINTException {
 
-		if (!MIDConstraintChecker.isInstancesLevel(instance)) {
-			throw new MMINTException("Can't execute operation at the INSTANCES level on element at the TYPES level");
+		if (!instance.isInstancesLevel()) {
+			throw new MMINTException("Can't execute operation at the INSTANCES level on element at the " + instance.getLevel() + " level");
 		}
 	}
 
 	public static void mustBeInstance(ExtendibleElementReference instanceRef) throws MMINTException {
 
-		mustBeInstance(instanceRef.getObject());
+		MMINTException.mustBeInstance(instanceRef.getObject());
+	}
+
+	public static void mustBeWorkflow(ExtendibleElement workflowElem) throws MMINTException {
+
+		if (!workflowElem.isWorkflowsLevel()) {
+			throw new MMINTException("Can't execute operation at the WORKFLOWS level on element at the " + workflowElem.getLevel() + " level");
+		}
+	}
+
+	public static void mustBeWorkflow(ExtendibleElementReference workflowElemRef) throws MMINTException {
+
+		MMINTException.mustBeWorkflow(workflowElemRef.getObject());
+	}
+
+	public static void mustBeLevel(ExtendibleElement elem, MIDLevel midLevel) throws MMINTException {
+
+		if (!elem.isLevel(midLevel)) {
+			throw new MMINTException("Can't execute operation at the " + midLevel + " level on element at the " + elem.getLevel() + " level");
+		}
+	}
+
+	public static void mustBeLevel(ExtendibleElementReference elemRef, MIDLevel midLevel) throws MMINTException {
+
+		MMINTException.mustBeLevel(elemRef.getObject(), midLevel);
 	}
 
 }

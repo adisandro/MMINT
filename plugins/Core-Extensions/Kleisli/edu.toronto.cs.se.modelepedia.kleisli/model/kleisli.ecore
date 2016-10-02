@@ -2,11 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kleisli" nsURI="http://se.cs.toronto.edu/modelepedia/KleisliModelRel"
     nsPrefix="kleisli">
-  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliModel" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Kleisli version, represents a hidden extended model. {@inheritDoc}"/>
@@ -29,31 +24,31 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Kleisli version, points to a Kleisli extended model. {@inheritDoc}"/>
     </eAnnotations>
-    <eOperations name="createSubtypeAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelEndpointReference"
+    <eOperations name="createSubtype" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelEndpointReference"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="targetModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"/>
       <eParameters name="isBinarySrc" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eParameters name="containerModelRelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="replaceSubtypeAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+    <eOperations name="replaceSubtype" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="oldModelTypeEndpoint" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelEndpoint"/>
       <eParameters name="newModelTypeEndpointName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="targetModelType" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"/>
     </eOperations>
-    <eOperations name="deleteTypeAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+    <eOperations name="deleteType" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="createInstanceAndReference" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelEndpointReference"
+    <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelEndpointReference"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="targetModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"/>
       <eParameters name="containerModelRel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelRel"/>
     </eOperations>
-    <eOperations name="replaceInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+    <eOperations name="replaceInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="oldModelEndpoint" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelEndpoint"/>
       <eParameters name="targetModel" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"/>
     </eOperations>
-    <eOperations name="deleteInstanceAndReference" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
+    <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
       <eParameters name="isFullDelete" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedTarget" lowerBound="1"
@@ -102,12 +97,6 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpointReference" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//relationship/ModelEndpointReference">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="kleisliModelEndpoint"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="kleisliModelEndpoint" value="object.oclIsKindOf(kleisli::KleisliModelEndpoint)"/>
-    </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Kleisli version. {@inheritDoc}"/>
     </eAnnotations>

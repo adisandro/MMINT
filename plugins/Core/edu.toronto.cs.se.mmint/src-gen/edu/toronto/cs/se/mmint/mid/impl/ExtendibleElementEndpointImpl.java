@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -35,7 +34,6 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getUpperBound <em>Upper Bound</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl#getTargetUri <em>Target Uri</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,16 +88,6 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	 * @ordered
 	 */
 	protected ExtendibleElement target;
-
-	/**
-	 * The cached setting delegate for the '{@link #getTargetUri() <em>Target Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)MIDPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,7 +194,8 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	 * @generated
 	 */
 	public String getTargetUri() {
-		return (String)TARGET_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		ExtendibleElement target = this.getTarget();
+		return (target == null) ? null : target.getUri();
 	}
 
 	/**
@@ -244,8 +233,6 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
-				return getTargetUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -306,8 +293,6 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 				return upperBound != UPPER_BOUND_EDEFAULT;
 			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
 				return target != null;
-			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET_URI:
-				return TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -340,6 +325,8 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 				return getMetatype();
 			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE:
 				return getSupertype();
+			case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_TARGET_URI:
+				return getTargetUri();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

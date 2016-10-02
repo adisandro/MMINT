@@ -40,10 +40,11 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -92,7 +93,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 		if (inputs == null) { // use default encoder
 			inputs = ecore2smt.checkAllowedInputs(inputModels);
 		}
-		encoder = (EcoreMAVOToSMTLIB) encoder.start(inputs, null, new BasicEList<>(), new HashMap<>(), null);
+		encoder = (EcoreMAVOToSMTLIB) encoder.startInstance(inputs, null, new BasicEList<>(), new HashMap<>(), null);
 		encoder.cleanup();
 
 		return encoder.getZ3MAVOModelParser();
@@ -131,7 +132,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public @NonNull MAVOTruthValue checkMAVOConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public @NonNull MAVOTruthValue checkMAVOModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -153,7 +154,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 			return constraintTruthValue;
 		}
 		//TODO MMINT[MAVO] This needs to be skipped when in a cycle (e.g. looking for all valid super/sub types)
-		if (!MIDDialogUtils.getBooleanInput(
+		if (!MIDDialogs.getBooleanInput(
 			"Concretization highlighter",
 			"The result is MAYBE, do you want to see a concretization that violates the constraint?"
 		)) {
@@ -174,13 +175,19 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
-		return checkMAVOConstraint(model, constraint, constraintLevel).toBoolean();
+		return checkMAVOModelConstraint(model, constraint, constraintLevel).toBoolean();
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
+
+		return true;
+	}
+
+	@Override
+	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
 
 		return true;
 	}
@@ -335,7 +342,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public @Nullable Model refineByConstraint(@NonNull Model model) {
+	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
 
 		Z3MAVOModelParser z3ModelParser;
 		try {
@@ -392,7 +399,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public @Nullable Model refineByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
+	public @Nullable Model refineModelByMayAlternative(@NonNull Model model, @NonNull MAVOCollection mayAlternative) {
 
 		String smtEncoding;
 		try {
@@ -418,7 +425,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public @Nullable Model refineByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
+	public @Nullable Model refineModelByMayModelObjects(@NonNull Model model, @NonNull List<MAVOElement> mayModelObjs) {
 
 		String smtEncoding;
 		try {
@@ -442,7 +449,7 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public @Nullable Model refineByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
+	public @Nullable Model refineModelByVarDomain(@NonNull Model model, @NonNull MAVOCollection varDomain, @NonNull MAVOElement mergedModelObj, @NonNull List<MAVOElement> varModelObjs) {
 
 		//TODO MMINT[VAR-MMINT] Need to come up with a different approach than the may constraint-based: first merge in the model and remove Vs, then run the solver to cascade
 		//TODO MMINT[MU-MMINT] Migrate var approach to may too (first remove elements and Ms in the model, then run the solver to cascade)

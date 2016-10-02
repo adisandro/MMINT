@@ -23,9 +23,8 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 
 /**
@@ -55,20 +54,19 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 	@Override
 	public boolean canExecute() {
 
-		return
-			super.canExecute() &&
-			MIDConstraintChecker.isInstancesLevel((MID) getElementToEdit());
+		MID mid = (MID) getElementToEdit();
+		return super.canExecute() && mid.isInstancesLevel();
 	}
 
 	protected Model doExecuteInstancesLevel() throws Exception, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
-		String newModelUri = MIDDialogUtils.selectModelToImport(false);
-		Model modelType = MIDTypeRegistry.getType(MIDUtils.readModelFile(newModelUri, true).eClass().getEPackage().getNsURI());
+		String modelUri = MIDDialogs.selectModelToImport(false);
+		Model modelType = MIDTypeRegistry.getType(FileUtils.readModelFile(modelUri, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
 			modelType = MIDTypeHierarchy.getRootModelType();
 		}
-		Model newModel = modelType.importInstanceAndEditor(newModelUri, instanceMID);
+		Model newModel = modelType.importInstanceAndEditor(modelUri, instanceMID);
 
 		return newModel;
 	}

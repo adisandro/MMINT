@@ -30,11 +30,11 @@ public class ImportModelDialogSelectionValidator implements ISelectionStatusVali
 
 		for (Object object : selection) {
 			if (object instanceof IFolder || object instanceof IProject) {
-				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a file");
+				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a model file");
 			}
 		}
 
-		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "File selected");
+		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "Model file selected");
 	}
 
 }

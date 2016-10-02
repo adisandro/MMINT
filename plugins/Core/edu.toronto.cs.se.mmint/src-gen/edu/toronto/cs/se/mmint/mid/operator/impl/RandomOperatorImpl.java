@@ -60,9 +60,9 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected RandomOperatorImpl() {
+	public RandomOperatorImpl() {
 		super();
 	}
 

@@ -15,13 +15,13 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -192,6 +192,22 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElementReference.class) {
+			switch (baseOperationID) {
+				case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT:
@@ -255,20 +271,20 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		ModelRel modelRelType = (ModelRel) eContainer();
 		// delete the "thing" and the corresponding reference
 		getObject().deleteType();
 		deleteTypeReference();
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(this, modelRelSubtype.getMappingRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(this, modelRelSubtype.getMappingRefs());
 			mappingSubtypeRef.deleteTypeReference();
 		}
 		// delete the subtypes of the "thing"
 		for (Mapping mappingSubtype : MIDTypeHierarchy.getDirectSubtypes(getObject(), typeMID)) {
 			ModelRel modelRelTypeOrSubtype = (ModelRel) mappingSubtype.eContainer();
-			MappingReference mappingSubtypeRef = MIDTypeHierarchy.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
+			MappingReference mappingSubtypeRef = MIDRegistry.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
 			mappingSubtypeRef.deleteTypeAndReference();
 		}
 	}

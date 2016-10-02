@@ -18,6 +18,10 @@ import java.util.Random;
  * A representation of the model object '<em><b>Random Operator</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A (pseudo) random operator type or a (pseudo) random operator instance, has a pseudorandom number generator to support its execution.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

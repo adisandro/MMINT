@@ -34,9 +34,9 @@ import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
@@ -71,7 +71,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		this.isMayOnly = MIDOperatorUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
+		this.isMayOnly = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_MAYONLY, PROPERTY_IN_MAYONLY_DEFAULT);
 	}
 
 	protected void init(Model mavoModel) throws Exception {
@@ -95,7 +95,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	protected File createAcceleoFolder(Model mavoModel) {
 
-		return (new File(MIDUtils.prependWorkspaceToUri(mavoModel.getUri()))).getParentFile();
+		return (new File(FileUtils.prependWorkspacePathToUri(mavoModel.getUri()))).getParentFile();
 	}
 
 	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVORoot rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {
@@ -125,7 +125,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	public void cleanup() {
 
-		MIDUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);
+		FileUtils.deleteFile(smtListener.getZ3MAVOModelParser().getSMTLIBEncodingUri(), false);
 	}
 
 	public @NonNull Z3MAVOModelParser getZ3MAVOModelParser() {

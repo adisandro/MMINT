@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.kleisli.library;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -20,7 +21,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.repository.ExtensionType;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliFactory;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
@@ -71,12 +71,12 @@ public class KleisliMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	 * Kleisli version. {@inheritDoc}
 	 */
 	@Override
-	public ModelRel createHeavyModelRelType(ExtensionType extensionType, boolean isBinary, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	public ModelRel createHeavyModelRelType(ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
 
 		KleisliModelRel newModelRelType = (isBinary) ?
 			KleisliFactory.eINSTANCE.createBinaryKleisliModelRel() :
 			KleisliFactory.eINSTANCE.createKleisliModelRel();
-		super.addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract(), constraintLanguage, constraintImplementation);
+		super.addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newModelRelType;
 	}
@@ -85,7 +85,7 @@ public class KleisliMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 	 * Kleisli version. {@inheritDoc}
 	 */
 	@Override
-	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionType extensionType, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createHeavyModelTypeEndpointAndModelTypeEndpointReference(ExtensionPointType extensionType, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		KleisliModelEndpoint newModelTypeEndpoint = KleisliFactory.eINSTANCE.createKleisliModelEndpoint();
 		ModelEndpointReference newModelTypeEndpointRef = super.addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);

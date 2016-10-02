@@ -24,17 +24,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramOutlineDropObject;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * The command to create a model element reference from a dropped object.
@@ -67,8 +65,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -82,8 +80,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -102,20 +100,12 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		return super.canExecute();
 	}
 
-	protected ModelElementReference doExecuteInstancesLevel() throws MMINTException {
-
-		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
-		ModelElementReference newModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(dropObj.getModelObject(), null);
-
-		return newModelElemRef;
-	}
-
 	protected ModelElementReference doExecuteTypesLevel() throws MMINTException {
 
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) getElementToEdit();
 		EObject metamodelObj = dropObj.getModelObject();
 		ModelRel modelRelType = (ModelRel) modelTypeEndpointRef.eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 
 		// navigate metamodel hierarchy
 		//TODO MMINT[MODELELEMENT] could this be in the drag part?
@@ -127,12 +117,12 @@ supertypes:
 				String[] uris = MIDRegistry.getModelAndModelElementUris(modelObjSuper, MIDLevel.TYPES);
 				String modelTypeUri = uris[0];
 				String modelElemTypeUri = uris[1];
-				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MIDTypeHierarchy.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
+				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MIDRegistry.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
 				if (modelTypeEndpointRefsOrModelTypeEndpointRefsSuper == null) {
 					continue;
 				}
 				for (ModelEndpointReference modelTypeEndpointRefOrModelTypeEndpointRefSuper : modelTypeEndpointRefsOrModelTypeEndpointRefsSuper) {
-					modelElemTypeRef = MIDTypeHierarchy.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
+					modelElemTypeRef = MIDRegistry.getReference(modelElemTypeUri, modelTypeEndpointRefOrModelTypeEndpointRefSuper.getModelElemRefs());
 					if (modelElemTypeRef != null) {
 						modelElemType = modelElemTypeRef.getObject();
 						break supertypes;
@@ -143,7 +133,7 @@ supertypes:
 		}
 		if (modelElemType == null) {
 			String modelElemTypeUri = MMINT.ROOT_MODELELEM_URI;
-			modelElemType = MIDRegistry.getExtendibleElement(modelElemTypeUri, typeMID);
+			modelElemType = typeMID.getExtendibleElement(modelElemTypeUri);
 		}
 
 		EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(metamodelObj, MIDLevel.TYPES);
@@ -152,6 +142,14 @@ supertypes:
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newModelElemTypeRef;
+	}
+
+	protected ModelElementReference doExecuteInstancesLevel() throws MMINTException {
+
+		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) getElementToEdit();
+		ModelElementReference newModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(dropObj.getModelObject(), null);
+
+		return newModelElemRef;
 	}
 
 	/**
@@ -169,9 +167,19 @@ supertypes:
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			ModelElementReference newElement = (MIDConstraintChecker.isInstancesLevel((ModelRel) getElementToEdit().eContainer())) ?
-				doExecuteInstancesLevel() :
-				doExecuteTypesLevel();
+			ModelElementReference newElement;
+			switch (((ModelEndpointReference) getElementToEdit()).getObject().getLevel()) {
+				case TYPES:
+					newElement = this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					newElement = this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
 

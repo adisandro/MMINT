@@ -22,7 +22,6 @@ import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
 
 /**
@@ -48,14 +47,14 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 		editorFacet = linkStyle;
 	}
 
-	protected void doExecuteInstancesLevel(Model model) throws Exception {
-
-		model.openInstance();
-	}
-
 	protected void doExecuteTypesLevel(Model modelType) throws Exception {
 
 		modelType.openType();
+	}
+
+	protected void doExecuteInstancesLevel(Model model) throws Exception {
+
+		model.openInstance();
 	}
 
 	/**
@@ -75,11 +74,18 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 
 		try {
 			Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
-			if (MIDConstraintChecker.isInstancesLevel(model)) {
-				doExecuteInstancesLevel(model);
-			}
-			else {
-				doExecuteTypesLevel(model);
+			switch (model.getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel(model);
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel(model);
+					break;
+				case WORKFLOWS:
+					// do nothing
+					break;
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return CommandResult.newOKCommandResult();

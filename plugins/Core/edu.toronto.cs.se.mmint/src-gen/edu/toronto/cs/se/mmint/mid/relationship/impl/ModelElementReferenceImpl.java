@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -37,6 +36,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -207,6 +207,22 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElementReference.class) {
+			switch (baseOperationID) {
+				case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT:
@@ -256,7 +272,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		MMINTException.mustBeType(this);
 
 		ModelRel modelRelType = (ModelRel) eContainer().eContainer();
-		MID typeMID = MIDRegistry.getMultiModel(modelRelType);
+		MID typeMID = modelRelType.getMIDContainer();
 		// delete the corresponding reference
 		ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) this.eContainer();
 		List<BinaryMappingReference> delMappingTypeRefs = new ArrayList<>();
@@ -284,8 +300,8 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
 		deleteTypeReference(this, modelTypeEndpointRef);
 		// delete references of the "thing" in subtypes of the container
 		for (ModelRel modelRelSubtype : MIDTypeHierarchy.getSubtypes(modelRelType, typeMID)) {
-			ModelEndpointReference modelSubtypeEndpointRef = MIDTypeHierarchy.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
-			ModelElementReference modelElemSubtypeRef = MIDTypeHierarchy.getReference(this, modelSubtypeEndpointRef.getModelElemRefs());
+			ModelEndpointReference modelSubtypeEndpointRef = MIDRegistry.getReference(modelTypeEndpointRef, modelRelSubtype.getModelEndpointRefs());
+			ModelElementReference modelElemSubtypeRef = MIDRegistry.getReference(this, modelSubtypeEndpointRef.getModelElemRefs());
 			if (modelElemSubtypeRef.getModelElemEndpointRefs().size() == 0) {
 				deleteTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
 			}

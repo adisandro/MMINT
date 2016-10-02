@@ -14,18 +14,12 @@ package edu.toronto.cs.se.modelepedia.kleisli.impl;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -34,12 +28,11 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.impl.ModelEndpointImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -70,14 +63,14 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 */
 	protected KleisliModel extendedTarget;
 	/**
-	 * The cached setting delegate for the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
+	 * The default value of the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getExtendedTargetUri()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate EXTENDED_TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI).getSettingDelegate();
+	protected static final String EXTENDED_TARGET_URI_EDEFAULT = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,7 +139,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated
 	 */
 	public String getExtendedTargetUri() {
-		return (String)EXTENDED_TARGET_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		// TODO: implement this method to return the 'Extended Target Uri' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -220,7 +215,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
 				return extendedTarget != null;
 			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
-				return EXTENDED_TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
 		}
 		return super.eIsSet(featureID);
 	}
@@ -229,7 +224,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createSubtypeAndReference(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
+	public ModelEndpointReference createSubtype(String newModelTypeEndpointName, Model targetModelType, boolean isBinarySrc, ModelRel containerModelRelType) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if (containerModelRelType instanceof BinaryModelRel) {
@@ -242,12 +237,12 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 		}
 
 		boolean isK =
-			MIDUtils.isFileOrDirectoryInState(
+			FileUtils.isFileOrDirectoryInState(
 				KleisliModelImpl.getModelTypeExtendedUri((KleisliModelRel) containerModelRelType, targetModelType, newModelTypeEndpointName)
 			);
 		boolean extendMetamodel = false;
 		if (!isK && MMINT.isInitialized() && !Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_TESTS_ENABLED))) {
-			extendMetamodel = MIDDialogUtils.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
+			extendMetamodel = MIDDialogs.getBooleanInput("Create new Kleisli model type endpoint", "Extend " + targetModelType.getName() + " metamodel?");
 			isK = extendMetamodel;
 		}
 		ModelEndpointReference newModelTypeEndpointRef;
@@ -259,18 +254,18 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				kModelType = getExtendedTarget().kleisliCreateType(newModelTypeEndpoint);
 			}
 			catch (MMINTException e) {
-				newModelTypeEndpoint.deleteTypeAndReference(true);
+				newModelTypeEndpoint.deleteType(true);
 				throw new MMINTException("Error creating extended model type");
 			}
 			if (extendMetamodel) {
-				URI kUri = URI.createFileURI(MIDUtils.prependStateToUri(kModelType.getUri()));
-				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 				Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 				try {
-					activePage.openEditor(new URIEditorInput(kUri), ecoreEditorType.getId());
+					FileUtils.openEclipseEditorInState(
+						kModelType.getUri(),
+						ecoreEditorType.getId());
 				}
-				catch (PartInitException e) {
+				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);
 				}
 			}
@@ -287,9 +282,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceSubtypeAndReference(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
+	public void replaceSubtype(ModelEndpoint oldModelTypeEndpoint, String newModelTypeEndpointName, Model targetModelType) throws MMINTException {
 
-		super.replaceSubtypeAndReference(oldModelTypeEndpoint, newModelTypeEndpointName, targetModelType);
+		super.replaceSubtype(oldModelTypeEndpoint, newModelTypeEndpointName, targetModelType);
 
 		// keep choice of kleisli model type endpoint, there is no mixing problem like for instances
 		if (oldModelTypeEndpoint instanceof KleisliModelEndpoint) {
@@ -297,7 +292,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 				getExtendedTarget().kleisliCreateType((KleisliModelEndpoint) oldModelTypeEndpoint);
 			}
 			catch (MMINTException e) {
-				oldModelTypeEndpoint.deleteTypeAndReference(true);
+				oldModelTypeEndpoint.deleteType(true);
 				throw new MMINTException("Error creating extended model type");
 			}
 		}
@@ -307,9 +302,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteTypeAndReference(boolean isFullDelete) throws MMINTException {
+	public void deleteType(boolean isFullDelete) throws MMINTException {
 
-		super.deleteTypeAndReference(isFullDelete);
+		super.deleteType(isFullDelete);
 		getExtendedTarget().deleteType();
 	}
 
@@ -317,7 +312,7 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public ModelEndpointReference createInstanceAndReference(Model targetModel, ModelRel containerModelRel) throws MMINTException {
+	public ModelEndpointReference createInstance(Model targetModel, ModelRel containerModelRel) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if ((containerModelRel instanceof BinaryModelRel) && (containerModelRel.getModelEndpoints().size() == 2)) {
@@ -335,13 +330,13 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void replaceInstanceAndReference(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
+	public void replaceInstance(ModelEndpoint oldModelEndpoint, Model targetModel) throws MMINTException {
 
 		// can't transform non-kleisli into kleisli
 		if (!(oldModelEndpoint instanceof KleisliModelEndpoint)) {
 			throw new MMINTException("Can't replace a native model endpoint with a Kleisli one");
 		}
-		super.replaceInstanceAndReference(oldModelEndpoint, targetModel);
+		super.replaceInstance(oldModelEndpoint, targetModel);
 		getExtendedTarget().kleisliCreateInstance((KleisliModelEndpoint) oldModelEndpoint);
 	}
 
@@ -349,9 +344,9 @@ public class KleisliModelEndpointImpl extends ModelEndpointImpl implements Kleis
 	 * @generated NOT
 	 */
 	@Override
-	public void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException {
+	public void deleteInstance(boolean isFullDelete) throws MMINTException {
 
-		super.deleteInstanceAndReference(isFullDelete);
+		super.deleteInstance(isFullDelete);
 		getExtendedTarget().deleteInstance();
 	}
 

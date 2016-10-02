@@ -15,8 +15,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
@@ -27,26 +25,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Extendible Element Endpoint Reference</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementEndpointReferenceImpl#getTargetUri <em>Target Uri</em>}</li>
- * </ul>
  *
  * @generated
  */
 public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleElementReferenceImpl implements ExtendibleElementEndpointReference {
-	/**
-	 * The cached setting delegate for the '{@link #getTargetUri() <em>Target Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate TARGET_URI__ESETTING_DELEGATE = ((EStructuralFeature.Internal)RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI).getSettingDelegate();
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +54,8 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
 	 * @generated
 	 */
 	public String getTargetUri() {
-		return (String)TARGET_URI__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		ExtendibleElementEndpoint object = this.getObject();
+		return (object == null) ? null : object.getTargetUri();
 	}
 
 	/**
@@ -101,26 +84,14 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI:
-				return getTargetUri();
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExtendibleElementReference.class) {
+			switch (baseOperationID) {
+				case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
 		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__TARGET_URI:
-				return TARGET_URI__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-		}
-		return super.eIsSet(featureID);
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**
@@ -135,6 +106,8 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
 				return getObject();
 			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF:
 				return getSupertypeRef();
+			case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI:
+				return getTargetUri();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

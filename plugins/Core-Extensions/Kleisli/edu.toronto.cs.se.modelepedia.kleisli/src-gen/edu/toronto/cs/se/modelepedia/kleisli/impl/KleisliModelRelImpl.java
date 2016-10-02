@@ -18,8 +18,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -29,12 +27,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -46,13 +41,13 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
@@ -226,14 +221,14 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	protected void addSubtype(ModelRel newModelRelType, String newModelRelTypeName, String constraintLanguage, String constraintImplementation) throws MMINTException {
+	protected void addSubtype(Model newModelRelType, String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
-		super.addSubtype(newModelRelType, newModelRelTypeName, constraintLanguage, constraintImplementation);
+		super.addSubtype(newModelRelType, newModelRelTypeName, false);
 		String newModelRelTypeExtendedUri = getModelRelTypeExtendedUri((KleisliModelRel) newModelRelType);
 		((KleisliModelRel) newModelRelType).setExtendedUri(newModelRelTypeExtendedUri);
-		if (!MIDUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri)) {
+		if (!FileUtils.isFileOrDirectoryInState(newModelRelTypeExtendedUri)) {
 			try {
-				MIDUtils.createDirectoryInState(newModelRelTypeExtendedUri);
+				FileUtils.createDirectoryInState(newModelRelTypeExtendedUri);
 			}
 			catch (Exception e) {
 				newModelRelType.deleteType();
@@ -249,7 +244,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
 		ModelRel newModelRelType = super.copySubtype(origModelRelType);
-		MID typeMID = MIDRegistry.getMultiModel(newModelRelType);
+		MID typeMID = newModelRelType.getMIDContainer();
 		ExtendibleElementConstraint newConstraint, origConstraint;
 		ModelElement newModelElemType;
 		for (ModelEndpointReference origModelTypeEndpointRef : origModelRelType.getModelEndpointRefs()) {
@@ -265,7 +260,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					newConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 					newConstraint.setLanguage(origConstraint.getLanguage());
 					newConstraint.setImplementation(origConstraint.getImplementation());
-					newModelElemType = MIDRegistry.getExtendibleElement(origModelElemTypeRef.getUri(), typeMID);
+					newModelElemType = typeMID.getExtendibleElement(origModelElemTypeRef.getUri());
 					newModelElemType.setConstraint(newConstraint);
 				}
 			}
@@ -281,7 +276,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public void deleteType() throws MMINTException {
 
 		super.deleteType();
-		MIDUtils.deleteDirectoryInState(getExtendedUri());
+		FileUtils.deleteDirectoryInState(getExtendedUri());
 	}
 
 	/**
@@ -315,17 +310,17 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * @generated NOT
 	 */
 	@Override
-	protected void addInstance(Model newModel, String newModelUri, ModelOrigin origin, MID instanceMID) throws MMINTException {
+	protected void addInstance(@NonNull Model newModelRel, @Nullable String newModelRelId, @NonNull String newModelRelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
-		super.addInstance(newModel, newModelUri, ModelOrigin.CREATED, instanceMID);
-		String baseModelRelExtendedUri = MIDUtils.replaceLastSegmentInUri(MIDRegistry.getModelAndModelElementUris(newModel, MIDLevel.INSTANCES)[0], getName());
-		String modelRelExtendedUri = MIDUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
-		((KleisliModelRel) newModel).setExtendedUri(modelRelExtendedUri);
+		super.addInstance(newModelRel, newModelRelId, newModelRelName, origin, fileExtension, midLevel, instanceMID);
+		String baseModelRelExtendedUri = FileUtils.replaceLastSegmentInUri(MIDRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
+		String modelRelExtendedUri = FileUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
+		((KleisliModelRel) newModelRel).setExtendedUri(modelRelExtendedUri);
 		try {
-			MIDUtils.createDirectory(modelRelExtendedUri, true);
+			FileUtils.createDirectory(modelRelExtendedUri, true);
 		}
 		catch (Exception e) {
-			newModel.deleteInstance();
+			newModelRel.deleteInstance();
 			throw new MMINTException("Error creating directory for extended models", e);
 		}
 	}
@@ -337,7 +332,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public void deleteInstance() throws MMINTException {
 
 		super.deleteInstance();
-		MIDUtils.deleteDirectory(getExtendedUri(), true);
+		FileUtils.deleteDirectory(getExtendedUri(), true);
 	}
 
 	/**
@@ -369,7 +364,6 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 		super.openType();
 
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		Model ecoreModelType = MIDTypeRegistry.getType(EcorePackage.eNS_URI);
 		Editor ecoreEditorType = ecoreModelType.getEditors().get(0);
 		for (ModelEndpoint modelTypeEndpoint : getModelEndpoints()) {
@@ -377,20 +371,20 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 				continue;
 			}
 			String kModelTypeUriRelative = ((KleisliModelEndpoint) modelTypeEndpoint).getExtendedTargetUri();
-			String kModelTypeUri = (MIDUtils.isFileOrDirectoryInState(kModelTypeUriRelative)) ?
-				MIDUtils.prependStateToUri(kModelTypeUriRelative):
+			String kModelTypeUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative)) ?
+				kModelTypeUriRelative:
 				null;
 			if (kModelTypeUri != null) { // the root KleisliModelRel has no extended metamodel to open
-				String kModelTypeDiagramUri = (MIDUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX)) ?
-					MIDUtils.prependStateToUri(kModelTypeUriRelative + GMFDiagramUtils.DIAGRAM_SUFFIX):
+				String kModelTypeDiagramUri = (FileUtils.isFileOrDirectoryInState(kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX)) ?
+					kModelTypeUriRelative + GMFUtils.DIAGRAM_SUFFIX:
 					null;
-				URI kUri = (kModelTypeDiagramUri == null) ? URI.createFileURI(kModelTypeUri) : URI.createFileURI(kModelTypeDiagramUri);
+				String kUri = (kModelTypeDiagramUri == null) ? kModelTypeUri : kModelTypeDiagramUri;
 				//TODO MMINT[ECORE] Try to open ecore diagram
 				String editorId = (kModelTypeDiagramUri == null) ? ecoreEditorType.getId() : ecoreEditorType.getId();
 				try {
-					activePage.openEditor(new URIEditorInput(kUri), editorId);
+					FileUtils.openEclipseEditorInState(kUri, editorId);
 				}
-				catch (PartInitException e) {
+				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Error opening extended metamodel file", e);
 				}
 			}
@@ -418,10 +412,10 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 			try {
 				EPackage kModelTypePackage = kModelTypeEndpoint.getExtendedTarget().getEMFTypeRoot();
 				EFactory kModelTypeFactory = kModelTypePackage.getEFactoryInstance();
-				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDTypeHierarchy.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
+				KleisliModelEndpointReference kModelTypeEndpointRef = (KleisliModelEndpointReference) MIDRegistry.getReference(kModelTypeEndpoint.getUri(), ((ModelRel) kModelTypeEndpoint.eContainer()).getModelEndpointRefs());
 				String modelUri = kModelEndpoint.getTargetUri();
 				String kModelUri = kModelEndpoint.getExtendedTargetUri();
-				String extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelUri(kModelTypeEndpoint.getTarget());
+				String extendedMetamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(kModelTypeEndpoint.getTarget());
 				if (extendedMetamodelUri != null) { // xmi model file
 					String kModelUriTemp = kModelUri + "temp";
 					String deleteText =
@@ -430,7 +424,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 						" file:" +
 						extendedMetamodelUri +
 						"\"";
-					MIDUtils.copyTextFileAndReplaceText(
+					FileUtils.copyTextFileAndReplaceText(
 						modelUri,
 						kModelUriTemp,
 						deleteText,
@@ -446,9 +440,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					kModelTypeEndpoint.getTargetUri() +
 					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
 					" file:" +
-					MIDUtils.prependStateToUri(kModelTypeEndpoint.getExtendedTargetUri()) +
+					FileUtils.prependStatePathToUri(kModelTypeEndpoint.getExtendedTargetUri()) +
 					"\"";
-				MIDUtils.copyTextFileAndReplaceText(
+				FileUtils.copyTextFileAndReplaceText(
 					modelUri,
 					kModelUri,
 					kModelTypeEndpoint.getTargetUri() + "\"",
@@ -506,7 +500,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					kReasoner.evaluateEAttributeQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeEInfo);
 				}
 				// save the derived model
-				MIDUtils.writeModelFile(kRootModelObj, kModelUri, true);
+				FileUtils.writeModelFile(kRootModelObj, kModelUri, true);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Error creating extended model file, fallback to no extension", e);

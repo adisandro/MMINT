@@ -25,9 +25,8 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.GMFDiagramUtils;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.ModelElementLabelProvider;
 
 /**
@@ -56,7 +55,7 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
 		super();
 		modelRel = (ModelRel) diagram.getElement();
-		adapterFactory = GMFDiagramUtils.getAdapterFactory();
+		adapterFactory = GMFUtils.getAdapterFactory();
 	}
 
 	/**
@@ -94,9 +93,18 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		//TODO MMINT[MODELREL] with two rel types open on the same metamodels, only one will show them
 		ResourceSet resourceSet;
 		try {
-			resourceSet = (MIDConstraintChecker.isInstancesLevel(modelRel)) ?
-				modelRel.getOutlineResourceInstances() :
-				modelRel.getOutlineResourceTypes();
+			switch (modelRel.getLevel()) {
+				case TYPES:
+					resourceSet = modelRel.getOutlineResourceTypes();
+					break;
+				case INSTANCES:
+					resourceSet = modelRel.getOutlineResourceInstances();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
+			}
 		}
 		catch (MMINTException e) {
 			resourceSet = new ResourceSetImpl();

@@ -19,10 +19,10 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute#getOwner <em>Owner</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAttribute()
  * @model annotation="gmf.node label='name'"

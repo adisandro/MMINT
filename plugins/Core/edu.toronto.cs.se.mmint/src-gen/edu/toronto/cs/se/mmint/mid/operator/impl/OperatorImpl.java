@@ -11,20 +11,32 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -36,28 +48,37 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.osgi.framework.Bundle;
+
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogUtils;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -203,9 +224,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected OperatorImpl() {
+	public OperatorImpl() {
 		super();
 	}
 
@@ -382,26 +403,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getMetatype() {
-		ExtendibleElement metatype = super.getMetatype();
-		return (metatype == null) ? null : (Operator) metatype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operator getSupertype() {
-		ExtendibleElement supertype = super.getSupertype();
-		return (supertype == null) ? null : (Operator) supertype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -558,6 +559,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.OPERATOR___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return OperatorPackage.OPERATOR___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -577,9 +579,26 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				return getMetatype();
 			case OperatorPackage.OPERATOR___GET_SUPERTYPE:
 				return getSupertype();
+			case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING:
+				try {
+					return createSubtype((String)arguments.get(0), (String)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case OperatorPackage.OPERATOR___DELETE_TYPE:
 				try {
 					deleteType();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___OPEN_TYPE:
+				try {
+					openType();
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -602,13 +621,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST:
 				try {
 					return checkAllowedInputs((EList<Model>)arguments.get(0));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case OperatorPackage.OPERATOR___IS_ALLOWED_INPUT__MAP:
-				try {
-					return isAllowedInput((Map<String, Model>)arguments.get(0));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -666,14 +678,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___INIT:
-				try {
-					init();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
 				try {
 					return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
@@ -681,9 +685,47 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___START__ELIST_PROPERTIES_ELIST_MAP_MID:
+			case OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID:
 				try {
-					return start((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+					return startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___OPEN_INSTANCE:
+				try {
+					openInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID:
+				try {
+					return createWorkflowInstance((MID)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE:
+				try {
+					deleteWorkflowInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID:
+				try {
+					return startWorkflowInstance((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (MID)arguments.get(2));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE:
+				try {
+					openWorkflowInstance();
+					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -733,23 +775,123 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operator getMetatype() {
+		ExtendibleElement metatype = super.getMetatype();
+		return (metatype == null) ? null : (Operator) metatype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operator getSupertype() {
+		ExtendibleElement supertype = super.getSupertype();
+		return (supertype == null) ? null : (Operator) supertype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
+	}
+
+	/**
+	 * Adds a subtype of this operator type to the Type MID.
+	 * 
+	 * @param newOperatorType
+	 *            The new operator type to be added.
+	 * @param newOperatorTypeName
+	 *            The name of the new operator type.
+	 * @param implementationUri
+	 *            The uri of the new operator's implementation (a Java class inheriting from this class).
+	 * @throws MMINTException
+	 *             If the uri of the new operator type is already registered in the Type MID.
+	 * @generated NOT
+	 */
+	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String implementationUri) throws MMINTException {
+
+		//TODO MMINT[OPERATOR] Implement a simple way to run a java class pointed by implementationUri
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator createSubtype(String newOperatorTypeName, String implementationUri) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Operator newOperatorType = super.createThisEClass();
+		this.addSubtype(newOperatorType, newOperatorTypeName, implementationUri);
+
+		return newOperatorType;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public void deleteType() throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		// delete the "thing"
 		getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
 		getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
 		getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), typeMID));
-		super.deleteType();
+		super.delete();
 		typeMID.getOperators().remove(this);
 		// delete the subtypes of the "thing"
 		for (Operator operatorSubtype : MIDTypeHierarchy.getDirectSubtypes(this, typeMID)) {
 			operatorSubtype.deleteType();
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openType() throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		// get java source file from bundle
+		Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
+		if (bundle == null) {
+			throw new MMINTException("Can't find " + this.getName() + " bundle");
+		}
+		String javaFileName = this.getClass().getSimpleName() + ".java";
+		String bundleFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+		String operatorImplPath;
+		if (bundleFilePath.endsWith("jar")) { // binary installation
+			int separator = bundleFilePath.lastIndexOf("_");
+			bundleFilePath = bundleFilePath.substring(0, separator) + ".source" + bundleFilePath.substring(separator);
+			if (!FileUtils.isFile(bundleFilePath, false)) {
+				throw new MMINTException("Can't find the source java file for " + this.getName() + " (did you install mmint.sdk?)");
+			}
+			JarFile bundleJar = new JarFile(new File(bundleFilePath));
+			ZipEntry bundleJarEntry = bundleJar.getEntry(this.getClass().getName().replace(".", File.separator) + ".java");
+			Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + "/" + javaFileName);
+			Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
+			operatorImplPath = tmpFilePath.toString();
+			bundleJar.close();
+		}
+		else { // running from the sources
+			Enumeration<URL> bundleEntries = bundle.findEntries("/", javaFileName, true);
+			if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
+				throw new MMINTException("Can't find the source java file for " + this.getName());
+			}
+			operatorImplPath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+		}
+
+		// open editor
+		FileUtils.openEclipseEditor(operatorImplPath, null, false);
 	}
 
 	/**
@@ -784,7 +926,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			try {
 				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
-				if (this.isAllowedInput(inputsByName)) {
+				if (MIDConstraintChecker.checkOperatorInputConstraint(this, inputsByName)) {
 					boolean commutative = false;
 					if (this.isCommutative()) {
 						Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
@@ -872,7 +1014,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
-			for (Model inputModel : MIDRegistry.getModels(inputMID)) {
+			for (Model inputModel : inputMID.getModels()) {
 				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModel);
 				if (operatorInput == null) {
 					continue;
@@ -934,7 +1076,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			// check 2: type or substitutable types
 			while (i < inputModels.size()) {
-				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModels.get(i));
+				OperatorInput operatorInput = this.checkAllowedInput(inputModelTypeEndpoint, inputModels.get(i));
 				if (operatorInput == null) {
 					return null;
 				}
@@ -952,27 +1094,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		// check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
 		Map<String, Model> inputsByName = null;
 		try {
-			inputsByName = createInputsByName(inputs, false, null);
+			inputsByName = this.createInputsByName(inputs, false, null);
 		}
 		catch (Exception e) {
 			// never happens
 		}
-		if (!this.isAllowedInput(inputsByName)) {
+		if (!MIDConstraintChecker.checkOperatorInputConstraint(this, inputsByName)) {
 			//TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
 			return null;
 		}
 
 		return inputs;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		return true;
 	}
 
 	/**
@@ -1002,6 +1134,27 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Adds an operator instance of this operator type to an Instance or Workflow MID.
+	 * 
+	 * @param newOperator
+	 *            The new operator to be added.
+	 * @param midLevel
+	 *            The kind of MID (Instance or Workflow) that could contain the new operator, regardless of whether it
+	 *            is or isn't going to be contained in one.
+	 * @param instanceMID
+	 *            An Instance or Workflow MID, null if the operator isn't going to be contained in one.
+	 * @generated NOT
+	 */
+	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
+
+		super.addBasicInstance(newOperator, null, this.getName(), midLevel);
+		newOperator.setCommutative(false);
+		if (instanceMID != null) {
+			instanceMID.getOperators().add(newOperator);
+		}
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public Operator createInstance(MID instanceMID) throws MMINTException {
@@ -1015,16 +1168,25 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		catch (Exception e) {
 			throw new MMINTException("Can't invoke constructor");
 		}
-		super.addBasicInstance(newOperator, null, this.getName());
-		newOperator.setCommutative(false);
 		if (this.getPreviousOperator() != null) {
 			newOperator.setPreviousOperator(this.getPreviousOperator());
 		}
-		if (instanceMID != null) {
-			instanceMID.getOperators().add(newOperator);
-		}
+		this.addInstance(newOperator, MIDLevel.INSTANCES, instanceMID);
 
 		return newOperator;
+	}
+
+	/**
+	 * Deletes this operator instance from an Instance or Workflow MID.
+	 * 
+	 * @param instanceMID
+	 *            The Instance or Workflow MID that contains the operator.
+	 * 
+	 * @generated NOT
+	 */
+	protected void deleteInstance(MID instanceMID) {
+
+		instanceMID.getOperators().remove(this);
 	}
 
 	/**
@@ -1034,8 +1196,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
-		instanceMID.getOperators().remove(this);
+		this.deleteInstance(this.getMIDContainer());
 	}
 
 	/**
@@ -1047,7 +1208,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		for (GenericEndpoint genericSuperTypeEndpoint : this.getGenerics()) {
-			GenericElement genericType = MIDDialogUtils.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
+			GenericElement genericType = MIDDialogs.selectGenericTypeToCreate(genericSuperTypeEndpoint, inputs);
 			OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 			generic.setGenericSuperTypeEndpoint(genericSuperTypeEndpoint);
 			generic.setGeneric(genericType);
@@ -1075,14 +1236,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * @return The uri of the properties file.
 	 * @generated NOT
 	 */
-	private String getPropertiesUri(String suffix) {
+	private String getPropertiesUri(@NonNull String suffix) {
 
 		IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
 		if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
 			return null;
 		}
-		String propertiesUri = MIDUtils.prependWorkspaceToUri(instanceMIDFile.getParent().getFullPath().toString());
-		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorUtils.PROPERTIES_SUFFIX;
+		String propertiesUri = FileUtils.prependWorkspacePathToUri(instanceMIDFile.getParent().getFullPath().toString());
+		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 
 		return propertiesUri;
 	}
@@ -1092,7 +1253,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Properties getInputProperties() {
 
-		String propertiesUri =  getPropertiesUri(MIDOperatorUtils.INPUT_PROPERTIES_SUFFIX);
+		String propertiesUri =  getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
 		Properties inputProperties = new Properties();
 		try {
 			inputProperties.load(new FileInputStream(propertiesUri));
@@ -1110,20 +1271,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		setUpdateMID(
-			MIDOperatorUtils.getOptionalBoolProperty(inputProperties, MIDOperatorUtils.PROPERTY_IN_UPDATEMID, true)
+			MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, true)
 		);
 		setInputSubdir(
-			MIDOperatorUtils.getOptionalStringProperty(inputProperties, MIDOperatorUtils.PROPERTY_IN_SUBDIR, null)
+			MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, null)
 		);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public void init() throws MMINTException {
-
-		// do nothing
-		//TODO MMINT[OPERATOR] Remove: input arguments can be needed here, so leave it to the users to organize their code as they like
 	}
 
 	/**
@@ -1150,7 +1302,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *             If something went wrong running the conversions.
 	 * @generated NOT
 	 */
-	private Map<String, Model> createInputsByName(EList<OperatorInput> inputs, boolean runConversions, Operator newOperator) throws Exception {
+	protected Map<String, Model> createInputsByName(@NonNull EList<OperatorInput> inputs, boolean runConversions, @Nullable Operator newOperator) throws Exception {
 
 		//TODO MMINT[OPERATOR] This is used for two purposes, just to create the map and to populate an operator: split
 		boolean coerced = false;
@@ -1182,10 +1334,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			coerced = true;
 			Model convertedInputModel = input.getModel();
 			for (ConversionOperator conversion : input.getConversions()) {
-				//TODO MMINT[OPERATOR] Why do we run the operator type directly instead of using start()?
+				//TODO MMINT[WORKFLOW] Implement this as a simplified workflow?
 				Properties inputProperties = conversion.getInputProperties();
 				conversion.readInputProperties(inputProperties);
-				conversion.init();
 				Map<String, Model> conversionInputsByName = new HashMap<>();
 				conversionInputsByName.put(conversion.getInputs().get(0).getName(), convertedInputModel);
 				Map<String, MID> conversionOutputMIDsByName = new HashMap<>();
@@ -1214,7 +1365,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *             If any generic type is an instance instead.
 	 * @generated NOT
 	 */
-	private Map<String, GenericElement> createGenericsByName(EList<OperatorGeneric> generics, Operator newOperator) throws MMINTException {
+	private Map<String, GenericElement> createGenericsByName(@NonNull EList<OperatorGeneric> generics, @NonNull Operator newOperator) throws MMINTException {
 
 		Map<String, GenericElement> genericsByName = new HashMap<>();
 		for (OperatorGeneric generic : generics) {
@@ -1230,7 +1381,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Operator start(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
+	public Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
@@ -1240,14 +1391,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 		Operator newOperator = this.createInstance(instanceMID);
 		// generics, inputs and conversions
-		Map<String, GenericElement> genericsByName = createGenericsByName(generics, newOperator);
-		Map<String, Model> inputsByName = createInputsByName(inputs, true, newOperator);
+		Map<String, GenericElement> genericsByName = this.createGenericsByName(generics, newOperator);
+		Map<String, Model> inputsByName = this.createInputsByName(inputs, true, newOperator);
 		// run operator
 		if (inputProperties == null) {
 			inputProperties = newOperator.getInputProperties();
 		}
 		newOperator.readInputProperties(inputProperties);
-		newOperator.init();
 		long startTime = System.nanoTime();
 		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
 		newOperator.setExecutionTime(System.nanoTime()-startTime);
@@ -1255,18 +1405,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
 			List<Model> outputModels;
 			if (outputModelTypeEndpoint.getUpperBound() == -1) {
-				outputModels = MIDOperatorUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
+				outputModels = MIDOperatorIOUtils.getVarargs(outputsByName, outputModelTypeEndpoint.getName());
 			}
 			else {
 				outputModels = new ArrayList<>();
 				outputModels.add(outputsByName.get(outputModelTypeEndpoint.getName()));
 			}
-			for (Model outputModel : outputModels) {
-				outputModelTypeEndpoint.createInstance(
-					outputModel,
+			for (int i = 0; i < outputModels.size(); i++) {
+				ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createInstance(
+					outputModels.get(i),
 					newOperator,
 					OperatorPackage.eINSTANCE.getOperator_Outputs().getName()
 				);
+				if (outputModelTypeEndpoint.getUpperBound() == -1) {
+					outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
+				}
 			}
 		}
 		// clean up conversions
@@ -1280,6 +1433,151 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		return newOperator;
+	}
+
+	/**
+	 * Opens the java implementation of the metatype of this operator instance.
+	 * 
+	 * @throws Exception
+	 *             If the java editor can't be opened.
+	 * @generated NOT
+	 */
+	protected void openInstanceMetatype() throws Exception {
+
+		this.getMetatype().openType();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openInstance() throws Exception {
+
+		MMINTException.mustBeInstance(this);
+
+		this.openInstanceMetatype();
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator createWorkflowInstance(MID workflowMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Operator newOperator = OperatorFactory.eINSTANCE.createOperator();
+		this.addInstance(newOperator, MIDLevel.WORKFLOWS, workflowMID);
+
+		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void deleteWorkflowInstance() throws MMINTException {
+
+		MMINTException.mustBeWorkflow(this);
+
+		this.deleteInstance(this.getMIDContainer());
+		for (ModelEndpoint outputModelEndpoint : this.getOutputs()) {
+			Model outputModel = outputModelEndpoint.getTarget();
+			if (outputModel.getMIDContainer() == null) { // already deleted
+				continue;
+			}
+			outputModel.deleteWorkflowInstance();
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Set<String> inputNames = new HashSet<>();
+		Operator newOperator = this.createWorkflowInstance(workflowMID);
+		// generics and inputs
+		for (OperatorGeneric generic : generics) {
+			GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
+			GenericElement genericType = generic.getGeneric();
+			genericSuperTypeEndpoint.createWorkflowInstance(genericType, newOperator);
+		}
+		for (OperatorInput input : inputs) {
+			ModelEndpoint modelEndpoint = input.getModelTypeEndpoint().createWorkflowInstance(
+				input.getModel(),
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+			String inputName = input.getModelTypeEndpoint().getName();
+			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
+				int i = 0;
+				while (inputNames.contains(inputName + i) != false) {
+					i++;
+				}
+				inputName += i;
+				modelEndpoint.setName(inputName);
+			}
+			inputNames.add(inputName);
+		}
+		// outputs
+		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+			if (outputModelTypeEndpoint.getUpperBound() == -1) {
+				try {
+					if (this.getClass().getMethod("startWorkflowInstance", EList.class, EList.class, MID.class).getDeclaringClass() == OperatorImpl.class) {
+						throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and must override startWorkflowInstance()");
+					}
+				}
+				catch (NoSuchMethodException | SecurityException e) {
+					MMINTException.print(IStatus.WARNING, this.getClass().getSimpleName() + " has a variable number of outputs and startWorkflowInstance() can't be reflected, skipping outputs", e);
+				}
+				break;
+			}
+			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
+			outputModelTypeEndpoint.createWorkflowInstance(
+				outputModel,
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+		}
+		OperatorConstraint constraint = (OperatorConstraint) this.getConstraint();
+		if (constraint != null) { // create output model rel endpoints after all outputs are created
+			for (OperatorConstraintRule rule : constraint.getRules()) {
+				ModelEndpoint outputModelRelTypeEndpoint = rule.getOutputModelRel().getParameterRef().getObject();
+				//TODO MMINT[WORKFLOW] Simply do the following when proper operator endpoint types are used
+				//newOperator.getOutputs().stream().filter(outputModelEndpoint -> outputModelEndpoint.getMetatype() == outputModelRelTypeEndpoint);
+				ModelRel outputModelRel = (ModelRel) newOperator.getOutputs().stream()
+					.filter(outputModelEndpoint -> outputModelEndpoint.getName().equals(outputModelRelTypeEndpoint.getName()))
+					.findFirst()
+					.get()
+					.getTarget();
+				for (OperatorConstraintParameter param : rule.getEndpointModels()) {
+					ModelEndpoint operatorModelTypeEndpoint = param.getParameterRef().getObject();
+					//TODO MMINT[WORKFLOW] Make it a function?
+					Model endpointModel = Stream.concat(newOperator.getInputs().stream(), newOperator.getOutputs().stream())
+						.filter(modelEndpoint -> modelEndpoint.getName().equals(operatorModelTypeEndpoint.getName()))
+						.findFirst()
+						.get()
+						.getTarget();
+					if (param.getEndpointIndex() >= 0 && endpointModel instanceof ModelRel) {
+						endpointModel = ((ModelRel) endpointModel).getModelEndpoints().get(param.getEndpointIndex()).getTarget();
+					}
+					String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+					ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
+					modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+				}
+			}
+		}
+
+		return newOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void openWorkflowInstance() throws Exception {
+
+		MMINTException.mustBeWorkflow(this);
+
+		this.openInstanceMetatype();
 	}
 
 } //OperatorImpl

@@ -23,13 +23,13 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation;
 
 public class CD2Java extends ConversionOperatorImpl {
@@ -47,14 +47,14 @@ public class CD2Java extends ConversionOperatorImpl {
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(cdModel);
 		EList<OperatorInput> inputs = transformationOperatorType.checkAllowedInputs(inputModels);
-		Map<String, MID> outputMIDsByName = MIDOperatorUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));
 		ModelRel cd2javaRelType = MIDTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
 		generic.setGeneric(cd2javaRelType);
 		generics.add(generic);
-		Operator transformationOperator = transformationOperatorType.start(inputs, null, generics, outputMIDsByName, null);
+		Operator transformationOperator = transformationOperatorType.startInstance(inputs, null, generics, outputMIDsByName, null);
 
 		return transformationOperator.getOutputsByName().get(ModelRelTypeTransformation.OUT_MODEL);
 	}

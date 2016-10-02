@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.operator.*;
@@ -95,6 +96,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createRandomOperatorAdapter();
 			}
 			@Override
+			public Adapter caseWorkflowOperator(WorkflowOperator object) {
+				return createWorkflowOperatorAdapter();
+			}
+			@Override
 			public Adapter caseGenericEndpoint(GenericEndpoint object) {
 				return createGenericEndpointAdapter();
 			}
@@ -107,6 +112,18 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createOperatorGenericAdapter();
 			}
 			@Override
+			public Adapter caseOperatorConstraint(OperatorConstraint object) {
+				return createOperatorConstraintAdapter();
+			}
+			@Override
+			public Adapter caseOperatorConstraintRule(OperatorConstraintRule object) {
+				return createOperatorConstraintRuleAdapter();
+			}
+			@Override
+			public Adapter caseOperatorConstraintParameter(OperatorConstraintParameter object) {
+				return createOperatorConstraintParameterAdapter();
+			}
+			@Override
 			public Adapter caseExtendibleElement(ExtendibleElement object) {
 				return createExtendibleElementAdapter();
 			}
@@ -117,6 +134,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
 				return createExtendibleElementEndpointAdapter();
+			}
+			@Override
+			public Adapter caseExtendibleElementConstraint(ExtendibleElementConstraint object) {
+				return createExtendibleElementConstraintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -181,6 +202,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator <em>Workflow Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator
+	 * @generated
+	 */
+	public Adapter createWorkflowOperatorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint <em>Generic Endpoint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -223,6 +258,48 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint
+	 * @generated
+	 */
+	public Adapter createOperatorConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule <em>Constraint Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule
+	 * @generated
+	 */
+	public Adapter createOperatorConstraintRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter <em>Constraint Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter
+	 * @generated
+	 */
+	public Adapter createOperatorConstraintParameterAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement <em>Extendible Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -261,6 +338,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExtendibleElementEndpointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint <em>Extendible Element Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint
+	 * @generated
+	 */
+	public Adapter createExtendibleElementConstraintAdapter() {
 		return null;
 	}
 

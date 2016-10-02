@@ -21,8 +21,8 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 
 public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
@@ -43,7 +43,7 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// transform using atl
-		String newCdModelUri = MIDUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
+		String newCdModelUri = FileUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
 		UMLToClassDiagramMAVO_M2M atl = new UMLToClassDiagramMAVO_M2M();
 		atl.loadModels(umlModel.getUri());
 		atl.doUMLToClassDiagramMAVO_M2M(new NullProgressMonitor());
@@ -62,7 +62,7 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 	public void cleanup() throws Exception {
 
 		if (newCdModel != null) {
-			MIDUtils.deleteModelFile(newCdModel);
+			newCdModel.deleteInstanceAndFile();
 			newCdModel = null;
 		}
 	}

@@ -12,15 +12,14 @@
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -28,6 +27,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -147,6 +148,15 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer().eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -237,6 +247,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MAPPING___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MAPPING___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -256,6 +267,8 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 				return getMetatype();
 			case RelationshipPackage.MAPPING___GET_SUPERTYPE:
 				return getSupertype();
+			case RelationshipPackage.MAPPING___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case RelationshipPackage.MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL:
 				try {
 					return createTypeReference((MappingReference)arguments.get(0), (Boolean)arguments.get(1), (ModelRel)arguments.get(2));
@@ -342,7 +355,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		MMINTException.mustBeType(this);
 
 		MappingReference newMappingTypeRef = super.createThisReferenceEClass();
-		addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
+		this.addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
 		return newMappingTypeRef;
 	}
@@ -358,7 +371,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		Mapping newMappingType = (isBinary) ?
 			super.createThisBinaryEClass() :
 			super.createThisEClass();
-		MID typeMID = MIDRegistry.getMultiModel(containerModelRelType);
+		MID typeMID = containerModelRelType.getMIDContainer();
 		super.addSubtype(newMappingType, containerModelRelType, containerModelRelType.getName(), newMappingTypeName);
 		MIDTypeFactory.addMappingType(newMappingType, this, containerModelRelType);
 		MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
@@ -366,7 +379,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		for (ModelRel containerModelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, typeMID)) {
 			MappingReference mappingSubtypeRef = (mappingTypeRef == null) ?
 				null :
-				MIDTypeHierarchy.getReference(mappingTypeRef, containerModelRelSubtype.getMappingRefs());
+				MIDRegistry.getReference(mappingTypeRef, containerModelRelSubtype.getMappingRefs());
 			newMappingType.createTypeReference(mappingSubtypeRef, false, containerModelRelSubtype);
 		}
 
@@ -380,7 +393,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
 		MMINTException.mustBeType(this);
 
-		super.deleteType();
+		super.delete();
 		for (ModelElementEndpoint modelElemTypeEndpoint : getModelElemEndpoints()) {
 			modelElemTypeEndpoint.deleteType(false);
 		}
@@ -412,7 +425,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		MMINTException.mustBeInstance(this);
 
 		MappingReference newMappingRef = super.createThisReferenceEClass();
-		addInstanceReference(newMappingRef, containerModelRel);
+		this.addInstanceReference(newMappingRef, containerModelRel);
 
 		return newMappingRef;
 	}
@@ -427,7 +440,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 		Mapping newMapping = (isBinary) ?
 			super.createThisBinaryEClass() :
 			super.createThisEClass();
-		super.addBasicInstance(newMapping, null, null);
+		super.addBasicInstance(newMapping, null, null, MIDLevel.INSTANCES);
 		containerModelRel.getMappings().add(newMapping);
 		MappingReference newMappingRef = newMapping.createInstanceReference(containerModelRel);
 

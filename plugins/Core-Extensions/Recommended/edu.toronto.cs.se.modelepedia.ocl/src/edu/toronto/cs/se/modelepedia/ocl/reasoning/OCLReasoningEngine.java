@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 
+import java.util.Map;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -25,10 +27,10 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.reasoning.IReasoningEngine;
 
 public class OCLReasoningEngine implements IReasoningEngine {
 
@@ -38,7 +40,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	protected EObject getConstraintContext(Model model, String oclConstraint, MIDLevel constraintLevel) throws MMINTException {
 
 		//TODO MMINT[CONSTRAINT] find language to express more complex contraints on model rels
-		boolean isInstancesLevel = MIDConstraintChecker.isInstancesLevel(model);
+		boolean isInstancesLevel = model.isInstancesLevel();
 		EObject modelObj = null;
 		if (model instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
 			String modelEndpointConstraintName = oclConstraint.substring(OCL_MODELENDPOINT_VARIABLE.length(), oclConstraint.indexOf(OCL_VARIABLE_SEPARATOR));
@@ -68,7 +70,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {
@@ -85,13 +87,19 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(@NonNull Model modelType, String constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		return true;
 	}
 
 	@Override
-	public @Nullable Model refineByConstraint(@NonNull Model model) {
+	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
+
+		return true;
+	}
+
+	@Override
+	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
 
 		return null;
 	}
@@ -99,9 +107,9 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	public boolean checkConstraint(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
+			OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 			ExpressionInOCL expression = helper.createInvariant(oclConstraint);
 			return ocl.check(modelObj, expression);
 		}
@@ -117,9 +125,9 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	public Object evaluateQuery(EObject modelObj, String oclConstraint) {
 
 		OCL ocl = OCL.newInstance();
-		OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 
 		try {
+			OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
 			ExpressionInOCL expression = helper.createQuery(oclConstraint);
 			Object evaluation = ocl.evaluate(modelObj, expression);
 			if (evaluation instanceof CollectionValue.Accumulator) {

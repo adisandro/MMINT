@@ -42,7 +42,6 @@ import org.eclipse.emf.validation.IValidationContext;
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='typeLevel'"
  * @generated
  */
 public interface ExtendibleElement extends EObject {
@@ -122,16 +121,46 @@ public interface ExtendibleElement extends EObject {
 	void setName(String value);
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The static metatype (types: always null; instances: an extendible element from the types).
-	 * <!-- end-model-doc -->
+	 * <!-- begin-user-doc --> Returns the static metatype: always null for types, a type for instances and workflows.
+	 * 
+	 * @return The static metatype. <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return MultiModelTypeRegistry.getType(getMetatypeUri());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return MIDTypeRegistry.getType(getMetatypeUri());'"
 	 * @generated
 	 */
 	ExtendibleElement getMetatype();
+
+	/**
+	 * <!-- begin-user-doc --> Returns the MID container.
+	 * 
+	 * @return The MID container, or null if this element is not contained in a MID. <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return null;'"
+	 * @generated
+	 */
+	MID getMIDContainer();
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this element is at the specified MID level.
+	 * 
+	 * @param midLevel
+	 *            The MID level to check against.
+	 * @return True if this element is at the specified MID level, false otherwise. <!-- end-user-doc -->
+	 * @model required="true" midLevelRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getLevel() == midLevel;'"
+	 * @generated
+	 */
+	boolean isLevel(MIDLevel midLevel);
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a type.
+	 * 
+	 * @return True if this is a type, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.TYPES);'"
+	 * @generated
+	 */
+	boolean isTypesLevel();
 
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
@@ -253,15 +282,50 @@ public interface ExtendibleElement extends EObject {
 	String createSubtypeUri(String newTypeFragmentUri, String newTypeName);
 
 	/**
+	 * <!-- begin-user-doc --> Adds a constraint to this type.
+	 * 
+	 * @param language
+	 *            The constraint language, null for an empty constraint.
+	 * @param implementation
+	 *            The constraint language, null for an empty constraint. <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" languageRequired="true" implementationRequired="true"
+	 * @generated
+	 */
+	void addTypeConstraint(String language, String implementation) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is an instance.
+	 * 
+	 * @return True if this is an instance, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.INSTANCES);'"
+	 * @generated
+	 */
+	boolean isInstancesLevel();
+
+	/**
 	 * <!-- begin-user-doc --> Gets the list of polymorphic runtime types for this instance.
 	 * 
 	 * @return The list of runtime types.
 	 * @throws MMINTException
-	 *             If this is a type. <!-- end-user-doc -->
+	 *             If this is not an instance. <!-- end-user-doc -->
 	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
 	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Updates the id of this instance in the Workflow MID that contains it.
+	 * 
+	 * @param newInstanceId
+	 *            The new id of this instance.
+	 * @throws MMINTException
+	 *             If this is not an instance in a workflow, or if the new id is already registered in the Workflow MID.
+	 *             <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newInstanceIdRequired="true"
+	 * @generated
+	 */
+	void updateWorkflowInstanceId(String newInstanceId) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Validates this instance against a type.
@@ -270,7 +334,7 @@ public interface ExtendibleElement extends EObject {
 	 *            The type to be validated against.
 	 * @return True if the validation is successful, false otherwise.
 	 * @throws MMINTException
-	 *             If this is a type, or if the type to be validated aganst is an instance.<!-- end-user-doc -->
+	 *             If this is not an instance, or if the type to be validated aganst is not a type.<!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" typeRequired="true"
 	 * @generated
 	 */
@@ -281,7 +345,7 @@ public interface ExtendibleElement extends EObject {
 	 * 
 	 * @return True if the validation is successful, false otherwise.
 	 * @throws MMINTException
-	 *             If this is a type.<!-- end-user-doc -->
+	 *             If this is not an instance.<!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
@@ -295,11 +359,21 @@ public interface ExtendibleElement extends EObject {
 	 *            The editor context of the validation.
 	 * @return A status representing the validation result.
 	 * @throws MMINTException
-	 *             If this is a type.<!-- end-user-doc -->
+	 *             If this is not an instance.<!-- end-user-doc -->
 	 * @model dataType="edu.toronto.cs.se.mmint.mid.IStatus" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" contextDataType="edu.toronto.cs.se.mmint.mid.IValidationContext" contextRequired="true"
 	 * @generated
 	 */
 	IStatus validateInstanceInEditor(IValidationContext context) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Checks whether this is a workflow element.
+	 * 
+	 * @return True if this is a workflow element, false otherwise. <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.isLevel(MIDLevel.WORKFLOWS);'"
+	 * @generated
+	 */
+	boolean isWorkflowsLevel();
 
 	/**
 	 * <!-- begin-user-doc --> Returns a string representation of this element for its MID custom label. It returns an

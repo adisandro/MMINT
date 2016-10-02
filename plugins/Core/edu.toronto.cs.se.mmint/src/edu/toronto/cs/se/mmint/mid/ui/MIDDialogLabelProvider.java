@@ -33,7 +33,7 @@ public class MIDDialogLabelProvider implements ILabelProvider {
 
 	public MIDDialogLabelProvider() {
 
-		ComposedAdapterFactory adapterFactory = GMFDiagramUtils.getAdapterFactory();
+		ComposedAdapterFactory adapterFactory = GMFUtils.getAdapterFactory();
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 	}
 

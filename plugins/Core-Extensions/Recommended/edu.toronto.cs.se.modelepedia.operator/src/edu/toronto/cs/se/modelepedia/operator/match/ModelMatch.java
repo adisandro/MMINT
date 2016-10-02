@@ -24,13 +24,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.library.MIDOperatorUtils;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -38,8 +37,25 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class ModelMatch extends OperatorImpl {
+
+	public static class InputConstraint implements IJavaOperatorInputConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			Model srcModel = inputsByName.get(IN_MODEL1);
+			Model tgtModel = inputsByName.get(IN_MODEL2);
+			if (srcModel == tgtModel) {
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 	// input-output
 	private final static @NonNull String IN_MODEL1 = "model1";
@@ -61,30 +77,14 @@ public class ModelMatch extends OperatorImpl {
 	@Override
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		matchAttribute = MIDOperatorUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
-	}
-
-	@Override
-	public boolean isAllowedInput(Map<String, Model> inputsByName) throws MMINTException {
-
-		boolean allowed = super.isAllowedInput(inputsByName);
-		if (!allowed) {
-			return false;
-		}
-		Model srcModel = inputsByName.get(IN_MODEL1);
-		Model tgtModel = inputsByName.get(IN_MODEL2);
-		if (srcModel == tgtModel) {
-			return false;
-		}
-
-		return true;
+		matchAttribute = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
 	}
 
 	private void matchModelObjAttributes(EObject modelObj, ModelEndpointReference modelEndpointRef, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) {
 
 		Object modelObjAttr;
 		try {
-			modelObjAttr = MIDUtils.getModelObjFeature(modelObj, matchAttribute);
+			modelObjAttr = FileUtils.getModelObjectFeature(modelObj, matchAttribute);
 			if (modelObjAttr != null && modelObjAttr instanceof String) {
 				Set<EObject> modelObjs = modelObjAttrs.get(modelObjAttr);
 				if (modelObjs == null) {
@@ -139,7 +139,7 @@ public class ModelMatch extends OperatorImpl {
 		Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
 		for (Model model : models) {
 			// create model endpoint
-			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstanceAndReference(model, matchRel);
+			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstance(model, matchRel);
 			// look for identical names in the models
 			matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
 		}

@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.preferences;
 
@@ -14,8 +22,8 @@ import edu.toronto.cs.se.modelepedia.classdiagram.diagram.part.ClassDiagramDiagr
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 		DiagramGeneralPreferencePage.initDefaults(store);
@@ -27,10 +35,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPreferenceStore getPreferenceStore() {
-		return ClassDiagramDiagramEditorPlugin.getInstance()
-				.getPreferenceStore();
+		return ClassDiagramDiagramEditorPlugin.getInstance().getPreferenceStore();
 	}
 }

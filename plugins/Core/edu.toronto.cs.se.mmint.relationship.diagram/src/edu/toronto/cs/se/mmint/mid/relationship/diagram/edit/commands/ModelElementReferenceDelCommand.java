@@ -22,8 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 
@@ -53,8 +51,8 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doUndo(monitor, info);
-		MID mid = MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -68,8 +66,8 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		IStatus status = super.doRedo(monitor, info);
-		MID mid = MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit());
-		if (!MIDConstraintChecker.isInstancesLevel(mid)) {
+		MID mid = ((ModelEndpointReference) getElementToEdit()).getMIDContainer();
+		if (mid.isTypesLevel()) {
 			MMINT.createTypeHierarchy(mid);
 		}
 
@@ -82,26 +80,32 @@ public class ModelElementReferenceDelCommand extends DestroyElementCommand {
 		return super.canExecute();
 	}
 
-	protected void doExecuteInstancesLevel(IProgressMonitor monitor, IAdaptable info) throws MMINTException {
-
-		((ModelElementReference) getElementToDestroy()).deleteInstanceReference();
-	}
-
-	protected void doExecuteTypesLevel(IProgressMonitor monitor, IAdaptable info) throws MMINTException {
+	protected void doExecuteTypesLevel() throws MMINTException {
 
 		((ModelElementReference) getElementToDestroy()).deleteTypeReference();
-		MMINT.createTypeHierarchy(MIDRegistry.getMultiModel((ModelEndpointReference) getElementToEdit()));
+		MMINT.createTypeHierarchy(((ModelEndpointReference) getElementToEdit()).getMIDContainer());
+	}
+
+	protected void doExecuteInstancesLevel() throws MMINTException {
+
+		((ModelElementReference) getElementToDestroy()).deleteInstanceReference();
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			if (MIDConstraintChecker.isInstancesLevel((ModelEndpointReference) getElementToEdit())) {
-				doExecuteInstancesLevel(monitor, info);
-			}
-			else {
-				doExecuteTypesLevel(monitor, info);
+			switch (((ModelEndpointReference) getElementToEdit()).getObject().getLevel()) {
+				case TYPES:
+					this.doExecuteTypesLevel();
+					break;
+				case INSTANCES:
+					this.doExecuteInstancesLevel();
+					break;
+				case WORKFLOWS:
+					throw new MMINTException("The WORKFLOWS level is not allowed");
+				default:
+					throw new MMINTException("The MID level is missing");
 			}
 
 			return super.doExecuteWithResult(monitor, info);

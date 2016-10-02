@@ -13,7 +13,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="New Model"
-          description="Create new Model">
+          description="Create a new Model">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -22,7 +22,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="New Binary Rel"
-          description="Create new Binary Relationship">
+          description="Create a new Binary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -31,7 +31,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="New Nary Rel"
-          description="Create new Nary Relationship">
+          description="Create a new Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -40,12 +40,16 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Connect Model"
-          description="Connect Model to Nary Relationship">
+          description="Connect an existing Model to an Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
             xsi:type="gmftool:DefaultImage"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="New Operator"
+          description="Create a new Operator"/>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
@@ -54,7 +58,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Import Model"
-          description="Import existing Model">
+          description="Import an existing Model">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -63,7 +67,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Import Nary Rel"
-          description="Import existing Nary Relationship">
+          description="Import an existing Nary Relationship">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

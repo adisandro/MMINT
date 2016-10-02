@@ -31,19 +31,19 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -293,6 +293,15 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MID getMIDContainer() {
+		return (MID) this.eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -398,6 +407,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 		if (baseClass == ExtendibleElement.class) {
 			switch (baseOperationID) {
 				case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return EditorPackage.EDITOR___GET_METATYPE;
+				case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return EditorPackage.EDITOR___GET_MID_CONTAINER;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -416,6 +426,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 				return getMetatype();
 			case EditorPackage.EDITOR___GET_SUPERTYPE:
 				return getSupertype();
+			case EditorPackage.EDITOR___GET_MID_CONTAINER:
+				return getMIDContainer();
 			case EditorPackage.EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING:
 				try {
 					return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (String)arguments.get(3), (String)arguments.get(4), (String)arguments.get(5));
@@ -508,7 +520,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	 */
 	protected void addSubtype(Editor newEditorType, String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
+		MID typeMID = this.getMIDContainer();
 		super.addSubtype(newEditorType, this, newEditorTypeFragmentUri, newEditorTypeName);
 		MIDTypeFactory.addEditorType(newEditorType, modelTypeUri, editorId, wizardId, wizardDialogClassName, typeMID);
 
@@ -537,9 +549,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeType(this);
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
-		super.deleteType();
-		Model modelType = MIDRegistry.getExtendibleElement(getModelUri(), typeMID);
+		MID typeMID = this.getMIDContainer();
+		super.delete();
+		Model modelType = typeMID.getExtendibleElement(getModelUri());
 		if (modelType != null) {
 			modelType.getEditors().remove(this);
 		}
@@ -566,8 +578,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	protected void addInstance(Editor newEditor, String modelUri, MID instanceMID) {
 
 		String newEditorName = getName() + " for model " + modelUri;
-		String newEditorUri = MIDUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
-		super.addBasicInstance(newEditor, newEditorUri, newEditorName);
+		String newEditorUri = FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+		super.addBasicInstance(newEditor, newEditorUri, newEditorName, MIDLevel.INSTANCES);
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(getId());
 		newEditor.setWizardId(getWizardId());
@@ -687,9 +699,8 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
 		MMINTException.mustBeInstance(this);
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
-		instanceMID.getEditors().remove(this);
-		// no need to removeExtendibleElement
+		this.getMIDContainer().getEditors().remove(this);
+		// no need to super.delete()
 	}
 
 } //EditorImpl

@@ -48,14 +48,14 @@ import com.parctechnologies.eclipse.CompoundTerm;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 import fr.inria.atlanmod.emftocsp.ICspSolver;
 import fr.inria.atlanmod.emftocsp.IModelProperty;
@@ -148,7 +148,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 	}
 
 	@Override
-	public boolean checkConstraintConsistency(Model modelType, String oclConstraint) {
+	public boolean checkModelConstraintConsistency(Model modelType, String oclConstraint) {
 
 		EPackage modelTypeObj;
 		try {
@@ -177,7 +177,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 		}
 		// a constraint on model rel must be consistent with endpoints
 		if (modelType instanceof ModelRel && oclConstraint.startsWith(OCL_MODELENDPOINT_VARIABLE)) {
-			return checkConstraintConsistency(MIDTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
+			return checkModelConstraintConsistency(MIDTypeRegistry.<Model>getType(modelTypeObj.getNsURI()), oclConsistencyConstraint);
 		}
 		// flatten hierarchy and add constraint as annotation into the metamodel
 		ResourceSet flatResourceSet = new ResourceSetImpl();
@@ -218,7 +218,7 @@ public class EMFtoCSPReasoningEngine extends OCLReasoningEngine {
 			if (!resultLocation.exists()) {
 				resultLocation.create(true, true, null);
 			}
-			MIDUtils.writeModelFile(flatModelTypeObj, flatUri, true);
+			FileUtils.writeModelFile(flatModelTypeObj, flatUri, true);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't create EMFtoCSP temporary project, skipping consistency check", e);

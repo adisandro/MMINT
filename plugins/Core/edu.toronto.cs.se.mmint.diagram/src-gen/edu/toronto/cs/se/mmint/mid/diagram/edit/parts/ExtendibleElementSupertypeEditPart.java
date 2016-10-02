@@ -47,9 +47,7 @@ public class ExtendibleElementSupertypeEditPart extends ConnectionNodeEditPart i
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-			org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE,
-			new ExtendibleElementSupertypeItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendibleElementSupertypeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendibleElementSupertypeSemanticEditPolicy());
 	}
 

@@ -24,13 +24,11 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.library.MIDUtils;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class Filter extends OperatorImpl {
 
@@ -60,19 +58,19 @@ public class Filter extends OperatorImpl {
 
 		MID filteredMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		Set<Model> modelsToDelete = new HashSet<>();
-		for (Model model : MIDRegistry.getModels(filteredMID)) {
+		for (Model model : filteredMID.getModels()) {
 			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
 			if ((model instanceof ModelRel) != (filterModelType instanceof ModelRel)) {
 				continue;
 			}
 			// check constraint
-			if (MIDTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MIDConstraintChecker.checkConstraint(model, filterModelType.getConstraint())) {
+			if (MIDTypeHierarchy.instanceOf(model, filterModelType.getUri(), false) && MIDConstraintChecker.checkModelConstraint(model, filterModelType.getConstraint())) {
 				continue;
 			}
 			modelsToDelete.add(model);
 		}
 		for (Model modelToDelete : modelsToDelete) {
-			if (MIDRegistry.getMultiModel(modelToDelete) == null) {
+			if (modelToDelete.getMIDContainer() == null) {
 				// already deleted as side effect of another deletion e.g. model delete that triggers model rel delete
 				continue;
 			}
@@ -96,12 +94,12 @@ public class Filter extends OperatorImpl {
 		MID filteredMID = filter(inputMIDModel, filterModelType);
 
 		// output
-		String filteredMIDModelUri = MIDUtils.getUniqueUri(
-			MIDUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
+		String filteredMIDModelUri = FileUtils.getUniqueUri(
+			FileUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
 			true,
 			false);
-		MIDUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI);
+		FileUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
+		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, filteredMIDModel);

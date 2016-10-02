@@ -20,10 +20,10 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.library.ATLConversion;
+import edu.toronto.cs.se.modelepedia.operator.patch.ATLConversionOperator;
 import edu.toronto.cs.se.modelepedia.tutorial.economy.EconomyPackage;
 
-public class StateToEconomy extends ATLConversion {
+public class StateToEconomy extends ATLConversionOperator {
 
 	// input-output
 	private final static @NonNull String IN_MODEL = "state";

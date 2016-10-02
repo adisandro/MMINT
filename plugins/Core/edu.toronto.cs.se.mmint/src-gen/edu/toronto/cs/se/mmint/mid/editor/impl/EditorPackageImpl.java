@@ -214,7 +214,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__CreateSubtype__String_String_String_String_String_String() {
+	public EOperation getEditor__GetMIDContainer() {
 		return editorEClass.getEOperations().get(2);
 	}
 
@@ -223,7 +223,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__DeleteType() {
+	public EOperation getEditor__CreateSubtype__String_String_String_String_String_String() {
 		return editorEClass.getEOperations().get(3);
 	}
 
@@ -232,7 +232,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__CreateInstance__String_MID() {
+	public EOperation getEditor__DeleteType() {
 		return editorEClass.getEOperations().get(4);
 	}
 
@@ -241,7 +241,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__InvokeInstanceWizard__IStructuredSelection() {
+	public EOperation getEditor__CreateInstance__String_MID() {
 		return editorEClass.getEOperations().get(5);
 	}
 
@@ -250,8 +250,17 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEditor__DeleteInstance() {
+	public EOperation getEditor__InvokeInstanceWizard__IStructuredSelection() {
 		return editorEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getEditor__DeleteInstance() {
+		return editorEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -344,6 +353,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		createEAttribute(editorEClass, EDITOR__WIZARD_DIALOG_CLASS);
 		createEOperation(editorEClass, EDITOR___GET_METATYPE);
 		createEOperation(editorEClass, EDITOR___GET_SUPERTYPE);
+		createEOperation(editorEClass, EDITOR___GET_MID_CONTAINER);
 		createEOperation(editorEClass, EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
 		createEOperation(editorEClass, EDITOR___DELETE_TYPE);
 		createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_MID);
@@ -406,6 +416,8 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 
 		initEOperation(getEditor__GetSupertype(), this.getEditor(), "getSupertype", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getEditor__GetMIDContainer(), theMIDPackage.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		EOperation op = initEOperation(getEditor__CreateSubtype__String_String_String_String_String_String(), this.getEditor(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newEditorTypeFragmentUri", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newEditorTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -451,8 +463,8 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
 		addEException(op, theMIDPackage.getMMINTException());
 
 		// Initialize data types
-		initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(editorCreationWizardDialogEDataType, EditorCreationWizardDialog.class, "EditorCreationWizardDialog", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(editorCreationWizardDialogEDataType, EditorCreationWizardDialog.class, "EditorCreationWizardDialog", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //EditorPackageImpl

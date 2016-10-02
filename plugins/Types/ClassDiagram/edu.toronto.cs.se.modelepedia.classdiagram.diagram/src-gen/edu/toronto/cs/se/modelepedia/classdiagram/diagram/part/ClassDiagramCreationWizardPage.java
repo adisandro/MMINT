@@ -1,5 +1,13 @@
 /*
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.diagram.part;
 
@@ -17,15 +25,14 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 public class ClassDiagramCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	private final String fileExtension;
 
 	/**
-	 * @generated
-	 */
-	public ClassDiagramCreationWizardPage(String pageName,
-			IStructuredSelection selection, String fileExtension) {
+	* @generated
+	*/
+	public ClassDiagramCreationWizardPage(String pageName, IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -40,15 +47,15 @@ public class ClassDiagramCreationWizardPage extends WizardNewFileCreationPage {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public URI getURI() {
 		return URI.createPlatformResourceURI(getFilePath().toString(), false);
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected IPath getFilePath() {
 		IPath path = getContainerFullPath();
 		if (path == null) {
@@ -62,28 +69,25 @@ public class ClassDiagramCreationWizardPage extends WizardNewFileCreationPage {
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(ClassDiagramDiagramEditorUtil.getUniqueFileName(
-				getContainerFullPath(), getFileName(), getExtension()));
+		setFileName(
+			ClassDiagramDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
 	/**
-	 * @generated
-	 */
+	* @generated
+	*/
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null
-				&& !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(
-					Messages.ClassDiagramCreationWizardPageExtensionError,
-					extension));
+		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS.bind(Messages.ClassDiagramCreationWizardPageExtensionError, extension));
 			return false;
 		}
 		return true;

@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.relationship;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 
 /**
@@ -42,6 +43,15 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 	 * @generated
 	 */
 	ModelElementEndpoint getSupertype();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer().eContainer();'"
+	 * @generated
+	 */
+	MID getMIDContainer();
 
 	/**
 	 * <!-- begin-user-doc -->

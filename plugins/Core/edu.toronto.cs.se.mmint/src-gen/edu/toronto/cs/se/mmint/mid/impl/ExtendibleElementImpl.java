@@ -31,24 +31,23 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeFactory;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.constraint.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.library.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.repository.MMINTConstants;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -538,8 +537,24 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		switch (operationID) {
 			case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE:
 				return getMetatype();
+			case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER:
+				return getMIDContainer();
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_LEVEL__MIDLEVEL:
+				return isLevel((MIDLevel)arguments.get(0));
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_TYPES_LEVEL:
+				return isTypesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___CREATE_SUBTYPE_URI__STRING_STRING:
 				return createSubtypeUri((String)arguments.get(0), (String)arguments.get(1));
+			case MIDPackage.EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING:
+				try {
+					addTypeConstraint((String)arguments.get(0), (String)arguments.get(1));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL:
+				return isInstancesLevel();
 			case MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES:
 				try {
 					return getRuntimeTypes();
@@ -564,6 +579,16 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 			case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT:
 				try {
 					return validateInstanceInEditor((IValidationContext)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL:
+				return isWorkflowsLevel();
+			case MIDPackage.EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING:
+				try {
+					updateWorkflowInstanceId((String)arguments.get(0));
+					return null;
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -609,7 +634,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	public String toString() {
 
 		String label = (getName() == null) ? "" : getName();
-		if (MIDConstraintChecker.isInstancesLevel(this)) {
+		if (!this.isTypesLevel()) {
 			ExtendibleElement type = getMetatype();
 			String typeLabel = (type == null) ? "NOTYPE" : type.getName();
 			label += " : " + typeLabel;
@@ -619,12 +644,31 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ExtendibleElement getMetatype() {
 		return MIDTypeRegistry.getType(getMetatypeUri());
+	}
+
+	/**
+	 * @generated
+	 */
+	public MID getMIDContainer() {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isLevel(final MIDLevel midLevel) {
+		return this.getLevel() == midLevel;
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isTypesLevel() {
+		return this.isLevel(MIDLevel.TYPES);
 	}
 
 	/**
@@ -746,6 +790,24 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 			baseUri + MMINT.URI_SEPARATOR + newTypeFragmentUri + MMINT.URI_SEPARATOR + newTypeName;
 
 		return newTypeUri;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public void addTypeConstraint(String language, String implementation) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+		MIDTypeFactory.addTypeConstraint(newTypeConstraint, language, implementation, this);
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isInstancesLevel() {
+		return this.isLevel(MIDLevel.INSTANCES);
 	}
 
 	/**
@@ -883,6 +945,17 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * TODO MMINT[MODELELEMENT] unify with the other
+	 * @generated NOT
+	 */
+	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
+
+		MID typeMID = this.getMIDContainer();
+		MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
+		newType.setDynamic(true);
+	}
+
+	/**
 	 * Adds a subtype of this type to the Type MID.
 	 * 
 	 * @param newType
@@ -903,18 +976,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	protected void addSubtype(ExtendibleElement newType, ExtendibleElement baseType, String newTypeFragmentUri, String newTypeName) throws MMINTException {
 
 		String newTypeUri = baseType.createSubtypeUri(newTypeFragmentUri, newTypeName);
-		addSubtype(newType, newTypeUri, newTypeName);
-	}
-
-	/**
-	 * TODO MMINT[MODELELEMENT] unify with the other
-	 * @generated NOT
-	 */
-	protected void addSubtype(ExtendibleElement newType, String newTypeUri, String newTypeName) throws MMINTException {
-
-		MID typeMID = MIDRegistry.getMultiModel(this);
-		MIDTypeFactory.addType(newType, this, newTypeUri, newTypeName, typeMID);
-		newType.setDynamic(true);
+		this.addSubtype(newType, newTypeUri, newTypeName);
 	}
 
 	/**
@@ -946,86 +1008,88 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * Deletes an extendible element from a MID.
+	 * Deletes an element from a MID.
 	 * 
-	 * @param uri
-	 *            The uri of the extendible element to delete.
+	 * @param id
+	 *            The id of the element to delete.
 	 * @param mid
-	 *            The MID that contains the extendible element.
-	 * @return The deleted extendible element, null if its uri was not
-	 *         registered in the MID.
+	 *            The MID that contains the element.
+	 * @return The deleted element, null if its id was not registered in the MID.
 	 * @generated NOT
 	 */
-	protected ExtendibleElement delete(String uri, MID mid) {
+	protected ExtendibleElement delete(String id, MID mid) {
 
-		return mid.getExtendibleTable().removeKey(uri);
+		return mid.getExtendibleTable().removeKey(id);
 	}
 
 	/**
-	 * Deletes this type from the Type MID.
+	 * Deletes this element from the MID that contains it.
 	 * 
 	 * @throws MMINTException
 	 *             Never thrown.
 	 * @generated NOT
 	 */
-	protected void deleteType() throws MMINTException {
+	protected void delete() throws MMINTException {
 
-		MID typeMID = MIDRegistry.getMultiModel(this);
-		this.delete(getUri(), typeMID);
+		this.delete(this.getUri(), this.getMIDContainer());
 	}
 
 	/**
-	 * Adds an instance of this type to an Instance MID without registering its
-	 * uri.
+	 * Adds additional info to an instance of this type, without it being contained in an Instance or Workflow MID.
 	 * 
 	 * @param newInstance
-	 *            The new instance to be added.
-	 * @param newInstanceUri
-	 *            The uri of the new instance.
+	 *            The new instance.
+	 * @param newInstanceId
+	 *            The id of the new instance, null to use an empty id.
 	 * @param newInstanceName
-	 *            The name of the new instance.
+	 *            The name of the new instance, null to use an empty name.
+	 * @param midLevel
+	 *            The kind of MID (Instance or Workflow) that would contain the new instance if it were to be contained
+	 *            in one.
 	 * @generated NOT
 	 */
-	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName) {
+	protected void addBasicInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MIDLevel midLevel) {
 
-		if (newInstanceUri == null) {
-			newInstanceUri = MMINT.EMPTY_URI;
+		if (newInstanceId == null) {
+			newInstanceId = MMINT.EMPTY_ID;
 		}
-		newInstance.setUri(newInstanceUri);
+		newInstance.setUri(newInstanceId);
 		if (newInstanceName == null) {
 			newInstanceName = MMINT.EMPTY_NAME;
 		}
 		newInstance.setName(newInstanceName);
-		newInstance.setLevel(MIDLevel.INSTANCES);
+		newInstance.setLevel(midLevel);
 		newInstance.setDynamic(true);
 		newInstance.setSupertype(null);
-		newInstance.setMetatypeUri(getUri());
+		newInstance.setMetatypeUri(this.getUri());
 	}
 
 	/**
-	 * Adds an instance of this type to an Instance MID.
+	 * Adds an instance of this type to an Instance or Workflow MID.
 	 * 
 	 * @param newInstance
 	 *            The new instance to be added.
-	 * @param newInstanceUri
-	 *            The uri of the new instance.
+	 * @param newInstanceId
+	 *            The id of the new instance.
 	 * @param newInstanceName
 	 *            The name of the new instance.
 	 * @param instanceMID
-	 *            An Instance MID.
+	 *            An Instance or Workflow MID.
 	 * @throws MMINTException
-	 *             If the uri of the new instance is already registered in the
-	 *             Instance MID.
+	 *             If the id of the new instance is already registered in the MID.
 	 * @generated NOT
 	 */
-	protected void addInstance(ExtendibleElement newInstance, String newInstanceUri, String newInstanceName, MID instanceMID) throws MMINTException {
+	protected void addInstance(ExtendibleElement newInstance, String newInstanceId, String newInstanceName, MID instanceMID) throws MMINTException {
 
-		if (instanceMID.getExtendibleTable().containsKey(newInstanceUri)) {
-			throw new MMINTException("An instance with uri " + newInstanceUri + " is already present in this Instance MID");
+		MIDLevel midLevel = instanceMID.getLevel();
+		if (instanceMID.getExtendibleTable().containsKey(newInstanceId)) {
+			String level = midLevel.toString();
+			String midType = level.charAt(0) + level.toLowerCase().substring(1, level.length()-1);
+			throw new MMINTException("An instance with id " + newInstanceId + " is already present in this " + midType + " MID");
 		}
-		instanceMID.getExtendibleTable().put(newInstanceUri, newInstance);
+		instanceMID.getExtendibleTable().put(newInstanceId, newInstance);
 
-		addBasicInstance(newInstance, newInstanceUri, newInstanceName);
+		this.addBasicInstance(newInstance, newInstanceId, newInstanceName, midLevel);
 	}
 
 	/**
@@ -1088,16 +1152,23 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * Deletes this instance from the Instance MID that contains it.
-	 * 
-	 * @throws MMINTException
-	 *             Never thrown.
+	 * @generated
+	 */
+	public boolean isWorkflowsLevel() {
+		return this.isLevel(MIDLevel.WORKFLOWS);
+	}
+
+	/**
 	 * @generated NOT
 	 */
-	protected void deleteInstance() throws MMINTException {
+	public void updateWorkflowInstanceId(String newInstanceId) throws MMINTException {
 
-		MID instanceMID = MIDRegistry.getMultiModel(this);
-		delete(getUri(), instanceMID);
+		MMINTException.mustBeWorkflow(this);
+
+		MID workflowMID = this.getMIDContainer();
+		String oldInstanceId = this.getUri();
+		((ExtendibleElementImpl) this.getMetatype()).addInstance(this, newInstanceId, this.getName(), workflowMID);
+		this.delete(oldInstanceId, workflowMID);
 	}
 
 	/**
