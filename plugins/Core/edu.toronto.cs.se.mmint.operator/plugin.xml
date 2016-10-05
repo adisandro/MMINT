@@ -445,4 +445,58 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="If"
+               uri="http://se.cs.toronto.edu/mmint/Operator_If"
+               class="edu.toronto.cs.se.mmint.mid.operator.If">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="CONDITION">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="models">
+	           </type>
+	           <typeEndpoint
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="then">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="0"
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="else">
+	           </type>
+	           <typeEndpoint
+	                 lowerBound="0"
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

@@ -966,7 +966,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	 */
 	public Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException {
 
-		Model newModel = importInstance(modelUri, instanceMID);
+		Model newModel = this.importInstance(modelUri, instanceMID);
 		if (instanceMID != null) {
 			newModel.createInstanceEditor();
 		}

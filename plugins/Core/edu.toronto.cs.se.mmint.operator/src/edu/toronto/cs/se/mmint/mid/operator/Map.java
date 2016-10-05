@@ -114,7 +114,7 @@ public class Map extends OperatorImpl {
 
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
-		Diagram outputMIDModelDiagram = (Diagram) outputMIDModel.getEditors().get(0);
+		Diagram outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
 		View gmfDiagramRoot = (View) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
 		for (Model midrelShortcut : midrelShortcuts) {
 			MIDDiagramUtils.createModelShortcut(midrelShortcut, gmfDiagramRoot);
@@ -126,7 +126,7 @@ public class Map extends OperatorImpl {
 
 	private java.util.Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
-			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.Map<String, MID> instanceMIDsByName) throws Exception {
+			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
 
 		// create output MIDs
 		java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
@@ -213,7 +213,7 @@ public class Map extends OperatorImpl {
 			if (isMIDRel) {
 				continue;
 			}
-			Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midModelType, instanceMIDsByName.get(outputName));
+			Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midModelType, instanceMIDsByMapperOutput.get(outputName));
 			outputMIDModels.add(outputMIDModel);
 		}
 		// pass 2: midrels only
@@ -224,7 +224,7 @@ public class Map extends OperatorImpl {
 			if (!isMIDRel) {
 				continue;
 			}
-			MID instanceMID = instanceMIDsByName.get(outputName);
+			MID instanceMID = instanceMIDsByMapperOutput.get(outputName);
 			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMID, midrelModelType, instanceMID, midrelShortcutsByOutputName.get(outputName));
 			outputMIDModels.add(outputMIDModel);
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
@@ -318,24 +318,11 @@ public class Map extends OperatorImpl {
 			inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
 		}
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-		java.util.Map<String, MID> instanceMIDsByName = new HashMap<>();
-		if (outputMIDsByName.containsKey(OUT_MIDS)) {
-			MID instanceMID = outputMIDsByName.get(OUT_MIDS);
-			instanceMIDsByName = mapperOperatorType.getOutputs().stream()
-				.collect(Collectors.toMap(
-					outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
-					outputModelTypeEndpoint -> instanceMID));
-		}
-		else {
-			List<MID> instanceMIDs = MIDOperatorIOUtils.getVarargs(outputMIDsByName, OUT_MIDS);
-			for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
-				instanceMIDsByName.put(mapperOperatorType.getOutputs().get(i).getName(), instanceMIDs.get(i));
-			}
-		}
+		java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
 
 		// find all possible combinations of inputs for operatorType and execute them
 		Set<EList<OperatorInput>> operatorInputSet = mapperOperatorType.findAllowedInputs(inputMIDs);
-		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMIDsByName);
+		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMIDsByMapperOutput);
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {

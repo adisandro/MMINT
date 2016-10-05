@@ -12,9 +12,13 @@
 package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -23,6 +27,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 /**
  * The command to delete an operator.
@@ -93,7 +98,17 @@ public class OperatorDelCommand extends DestroyElementCommand {
 
 	protected void doExecuteInstancesLevel() throws MMINTException {
 
-		((Operator) getElementToDestroy()).deleteInstance();
+		Operator operator = (Operator) getElementToDestroy();
+		MID instanceMID = operator.getMIDContainer();
+		operator.deleteInstance();
+		if (operator instanceof WorkflowOperator) {
+			try {
+				WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, null);
+			}
+			catch (CoreException e) {
+				MMINTException.print(Status.WARNING, "Can't refresh the project directory, deleted workflows will remain visible until a manual refresh is done", e);
+			}
+		}
 	}
 
 	protected void doExecuteWorkflowsLevel() throws MMINTException {

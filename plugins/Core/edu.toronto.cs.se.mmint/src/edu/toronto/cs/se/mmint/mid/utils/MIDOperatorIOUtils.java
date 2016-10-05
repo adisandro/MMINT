@@ -25,10 +25,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -252,12 +255,12 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> modelsByName, @NonNull String argName) {
+	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> varargsByName, @NonNull String varargName) {
 
 		List<T> models = new ArrayList<>();
 		int i = 0;
 		T elem;
-		while ((elem = modelsByName.get(argName + i)) != null) {
+		while ((elem = varargsByName.get(varargName + i)) != null) {
 			models.add(elem);
 			i++;
 		}
@@ -265,14 +268,34 @@ public class MIDOperatorIOUtils {
 		return models;
 	}
 
-	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String argName) {
+	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String varargName) {
 
 		Map<String, Model> modelsByName = new HashMap<>();
 		for (int i = 0; i < models.size(); i++) {
-			modelsByName.put(argName + i, models.get(i));
+			modelsByName.put(varargName + i, models.get(i));
 		}
 
 		return modelsByName;
+	}
+
+	public static Map<String, MID> getVarargOutputMIDsByOtherName(Map<String, MID> outputMIDsByName, String varargName, List<? extends ExtendibleElement> nameElements) {
+
+		Map<String, MID> outputMIDsByOtherName = new HashMap<>();
+		if (outputMIDsByName.containsKey(varargName)) {
+			MID outputMID = outputMIDsByName.get(varargName);
+			outputMIDsByOtherName = nameElements.stream()
+				.collect(Collectors.<ExtendibleElement, String, MID>toMap( // TODO MMINT[SCRIPTING] Fix explicit types when java9 is out
+					nameElement -> nameElement.getName(),
+					nameElement -> outputMID));
+		}
+		else {
+			List<MID> instanceMIDs = MIDOperatorIOUtils.getVarargs(outputMIDsByName, varargName);
+			for (int i = 0; i < nameElements.size(); i++) {
+				outputMIDsByOtherName.put(nameElements.get(i).getName(), instanceMIDs.get(i));
+			}
+		}
+
+		return outputMIDsByOtherName;
 	}
 
 	public static @NonNull Map<String, MID> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID instanceMID) {

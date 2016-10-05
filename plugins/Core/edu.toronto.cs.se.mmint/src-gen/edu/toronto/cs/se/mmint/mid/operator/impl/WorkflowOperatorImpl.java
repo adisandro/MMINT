@@ -460,12 +460,17 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		}
 		// the order of operator creation in the workflow is a safe order of execution too
 		Map<String, Model> outputsByName = new HashMap<>();
+nextOperator:
 		for (Operator workflowOperator : workflowMID.getOperators()) {
 			EList<OperatorInput> workflowInputs = new BasicEList<>();
 			for (ModelEndpoint inputModelEndpoint : workflowOperator.getInputs()) {
+				Model inputModel = allModelsByName.get(inputModelEndpoint.getTargetUri());
+				if (inputModel == null) { // special case for operator If
+					continue nextOperator;
+				}
 				OperatorInput workflowInput = OperatorFactory.eINSTANCE.createOperatorInput();
+				workflowInput.setModel(inputModel);
 				workflowInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
-				workflowInput.setModel(allModelsByName.get(inputModelEndpoint.getTargetUri()));
 				workflowInputs.add(workflowInput);
 			}
 			EList<OperatorGeneric> workflowGenerics = new BasicEList<>();
@@ -489,6 +494,9 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 				.getOutputsByName();
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
 				Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
+				if (outputModel == null) { // special case for operator If
+					continue;
+				}
 				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
 				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != instanceMID) { // final outputs
 					outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
