@@ -17,25 +17,20 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
-public class If extends OperatorImpl {
+public class If extends ConditionalOperator {
 
 	// input-output
 	private final static @NonNull String IN_MODELS = "models";
 	private final static @NonNull String OUT_MODELS1 = "then";
 	private final static @NonNull String OUT_MODELS2 = "else";
-	private final static @NonNull String GENERIC_MODELTYPE = "CONDITION";
 
 	@Override
 	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
@@ -66,23 +61,6 @@ public class If extends OperatorImpl {
 		return newOperator;
 	}
 
-	private boolean evaluateCondition(@NonNull List<Model> inputModels, @NonNull Model conditionModelType) {
-
-		for (Model inputModel : inputModels) {
-			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
-			if ((inputModel instanceof ModelRel) != (conditionModelType instanceof ModelRel)) {
-				continue;
-			}
-			// check constraint
-			if (MIDTypeHierarchy.instanceOf(inputModel, conditionModelType.getUri(), false) &&
-				MIDConstraintChecker.checkModelConstraint(inputModel, conditionModelType.getConstraint())) {
-				return true; // any match semantics
-			}
-		}
-
-		return false;
-	}
-
 	private @NonNull List<Model> createOutputModels(List<Model> inputModels, Map<String, MID> outputMIDsByInput, String outputSuffix) throws Exception {
 
 		List<Model> outputModels = new ArrayList<>();
@@ -111,7 +89,7 @@ public class If extends OperatorImpl {
 		Map<String, MID> elseMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS2, inputModels);
 
 		// evaluate condition
-		boolean condition = this.evaluateCondition(inputModels, conditionModelType);
+		boolean condition = super.evaluateCondition(inputModels, conditionModelType);
 
 		// output
 		List<Model> outputModels = this.createOutputModels(

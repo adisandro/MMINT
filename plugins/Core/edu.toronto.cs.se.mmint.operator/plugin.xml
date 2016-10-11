@@ -499,4 +499,55 @@
       </operatorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Loop"
+               uri="http://se.cs.toronto.edu/mmint/Operator_Loop"
+               class="edu.toronto.cs.se.mmint.mid.operator.Loop">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="CONDITION">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="DO">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/WorkflowOperator">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="models">
+	           </type>
+	           <typeEndpoint
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="loopedModels">
+	           </type>
+	           <typeEndpoint
+                     upperBound="-1"
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

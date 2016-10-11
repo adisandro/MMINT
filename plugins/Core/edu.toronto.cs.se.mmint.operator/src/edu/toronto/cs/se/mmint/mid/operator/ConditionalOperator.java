@@ -1,0 +1,46 @@
+/**
+ * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Rick Salay.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Alessio Di Sandro - Implementation.
+ */
+package edu.toronto.cs.se.mmint.mid.operator;
+
+import java.util.List;
+
+import org.eclipse.jdt.annotation.NonNull;
+
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+
+public abstract class ConditionalOperator extends OperatorImpl {
+
+	// input-output
+	protected final static @NonNull String GENERIC_MODELTYPE = "CONDITION";
+
+	protected boolean evaluateCondition(@NonNull List<Model> inputModels, @NonNull Model conditionModelType) {
+
+		for (Model inputModel : inputModels) {
+			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
+			if ((inputModel instanceof ModelRel) != (conditionModelType instanceof ModelRel)) {
+				continue;
+			}
+			// check constraint
+			if (MIDTypeHierarchy.instanceOf(inputModel, conditionModelType.getUri(), false) &&
+				MIDConstraintChecker.checkModelConstraint(inputModel, conditionModelType.getConstraint())) {
+				return true; // any match semantics
+			}
+		}
+
+		return false;
+	}
+
+}
