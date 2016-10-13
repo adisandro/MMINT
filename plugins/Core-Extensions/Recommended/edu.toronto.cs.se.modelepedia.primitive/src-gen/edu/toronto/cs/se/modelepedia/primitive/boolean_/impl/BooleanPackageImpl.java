@@ -9,17 +9,16 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.primitive.file.impl;
+package edu.toronto.cs.se.modelepedia.primitive.boolean_.impl;
 
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanFactory;
 import edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage;
-import edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl;
-import edu.toronto.cs.se.modelepedia.primitive.file.FileFactory;
-import edu.toronto.cs.se.modelepedia.primitive.file.FileModel;
+
 import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
+
+import edu.toronto.cs.se.modelepedia.primitive.file.impl.FilePackageImpl;
 
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
 
@@ -29,8 +28,8 @@ import edu.toronto.cs.se.modelepedia.primitive.string.StringPackage;
 
 import edu.toronto.cs.se.modelepedia.primitive.string.impl.StringPackageImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -41,13 +40,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FilePackageImpl extends EPackageImpl implements FilePackage {
+public class BooleanPackageImpl extends EPackageImpl implements BooleanPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass fileModelEClass = null;
+	private EClass booleanEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -60,12 +59,12 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see edu.toronto.cs.se.modelepedia.primitive.file.FilePackage#eNS_URI
+	 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private FilePackageImpl() {
-		super(eNS_URI, FileFactory.eINSTANCE);
+	private BooleanPackageImpl() {
+		super(eNS_URI, BooleanFactory.eINSTANCE);
 	}
 
 	/**
@@ -78,7 +77,7 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link FilePackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link BooleanPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,11 +86,11 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static FilePackage init() {
-		if (isInited) return (FilePackage)EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI);
+	public static BooleanPackage init() {
+		if (isInited) return (BooleanPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI);
 
 		// Obtain or create and register package
-		FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FilePackageImpl());
+		BooleanPackageImpl theBooleanPackage = (BooleanPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BooleanPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BooleanPackageImpl());
 
 		isInited = true;
 
@@ -101,27 +100,27 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 		// Obtain or create and register interdependencies
 		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) : IntPackage.eINSTANCE);
 		StringPackageImpl theStringPackage = (StringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI) instanceof StringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI) : StringPackage.eINSTANCE);
-		BooleanPackageImpl theBooleanPackage = (BooleanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) instanceof BooleanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) : BooleanPackage.eINSTANCE);
+		FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theFilePackage.createPackageContents();
+		theBooleanPackage.createPackageContents();
 		theIntPackage.createPackageContents();
 		theStringPackage.createPackageContents();
-		theBooleanPackage.createPackageContents();
+		theFilePackage.createPackageContents();
 
 		// Initialize created meta-data
-		theFilePackage.initializePackageContents();
+		theBooleanPackage.initializePackageContents();
 		theIntPackage.initializePackageContents();
 		theStringPackage.initializePackageContents();
-		theBooleanPackage.initializePackageContents();
+		theFilePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theFilePackage.freeze();
+		theBooleanPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(FilePackage.eNS_URI, theFilePackage);
-		return theFilePackage;
+		EPackage.Registry.INSTANCE.put(BooleanPackage.eNS_URI, theBooleanPackage);
+		return theBooleanPackage;
 	}
 
 	/**
@@ -129,8 +128,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFileModel() {
-		return fileModelEClass;
+	public EClass getBoolean() {
+		return booleanEClass;
 	}
 
 	/**
@@ -138,8 +137,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFileModel__OpenInstance() {
-		return fileModelEClass.getEOperations().get(0);
+	public EAttribute getBoolean_Value() {
+		return (EAttribute)booleanEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -147,8 +146,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileFactory getFileFactory() {
-		return (FileFactory)getEFactoryInstance();
+	public BooleanFactory getBooleanFactory() {
+		return (BooleanFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -170,8 +169,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 		isCreated = true;
 
 		// Create classes and their features
-		fileModelEClass = createEClass(FILE_MODEL);
-		createEOperation(fileModelEClass, FILE_MODEL___OPEN_INSTANCE);
+		booleanEClass = createEClass(BOOLEAN);
+		createEAttribute(booleanEClass, BOOLEAN__VALUE);
 	}
 
 	/**
@@ -197,25 +196,18 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
-		OperatorPackage theOperatorPackage = (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
-
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		fileModelEClass.getESuperTypes().add(theMIDPackage.getModel());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(fileModelEClass, FileModel.class, "FileModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		EOperation op = initEOperation(getFileModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theOperatorPackage.getException());
+		initEClass(booleanEClass, edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean.class, "Boolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBoolean_Value(), ecorePackage.getEBoolean(), "value", null, 1, 1, edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //FilePackageImpl
+} //BooleanPackageImpl

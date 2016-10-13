@@ -23,6 +23,30 @@
             genModel="model/primitive.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated primitive -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/String"
+            class="edu.toronto.cs.se.modelepedia.primitive.string.StringPackage"
+            genModel="model/primitive.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated primitive -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/File"
+            class="edu.toronto.cs.se.modelepedia.primitive.file.FilePackage"
+            genModel="model/primitive.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated primitive -->
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/Boolean"
+            class="edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage"
+            genModel="model/primitive.genmodel"/>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
@@ -31,14 +55,6 @@
                uri="http://se.cs.toronto.edu/modelepedia/Int">
          </type>
       </modelType>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated primitive -->
-      <package
-            uri="http://se.cs.toronto.edu/modelepedia/String"
-            class="edu.toronto.cs.se.modelepedia.primitive.string.StringPackage"
-            genModel="model/primitive.genmodel"/>
    </extension>
 
    <extension
@@ -51,12 +67,14 @@
       </modelType>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated primitive -->
-      <package
-            uri="http://se.cs.toronto.edu/modelepedia/File"
-            class="edu.toronto.cs.se.modelepedia.primitive.file.FilePackage"
-            genModel="model/primitive.genmodel"/>
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="Boolean"
+               uri="http://se.cs.toronto.edu/modelepedia/Boolean">
+         </type>
+      </modelType>
    </extension>
 
    <extension

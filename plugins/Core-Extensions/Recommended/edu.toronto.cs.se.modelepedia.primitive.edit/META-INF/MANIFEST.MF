@@ -8,7 +8,8 @@ Bundle-Activator: edu.toronto.cs.se.modelepedia.primitive.provider.PrimitiveEdit
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: edu.toronto.cs.se.modelepedia.primitive.file.provider,
+Export-Package: edu.toronto.cs.se.modelepedia.primitive.boolean_.provider,
+ edu.toronto.cs.se.modelepedia.primitive.file.provider,
  edu.toronto.cs.se.modelepedia.primitive.int_.provider,
  edu.toronto.cs.se.modelepedia.primitive.provider,
  edu.toronto.cs.se.modelepedia.primitive.string.provider

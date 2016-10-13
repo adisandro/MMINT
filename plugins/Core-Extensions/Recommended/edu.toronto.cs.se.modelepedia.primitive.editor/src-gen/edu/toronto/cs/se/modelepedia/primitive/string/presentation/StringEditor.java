@@ -165,6 +165,8 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import edu.toronto.cs.se.modelepedia.primitive.string.provider.StringItemProviderAdapterFactory;
 
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.provider.BooleanItemProviderAdapterFactory;
+
 import edu.toronto.cs.se.modelepedia.primitive.int_.provider.IntItemProviderAdapterFactory;
 
 import edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin;
@@ -716,6 +718,7 @@ public class StringEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new IntItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new StringItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new BooleanItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

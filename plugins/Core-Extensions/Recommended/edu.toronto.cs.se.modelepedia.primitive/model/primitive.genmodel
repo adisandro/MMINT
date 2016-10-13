@@ -11,6 +11,7 @@
   <foreignModel>int.ecore</foreignModel>
   <foreignModel>string.ecore</foreignModel>
   <foreignModel>file.ecore</foreignModel>
+  <foreignModel>boolean.ecore</foreignModel>
   <genPackages prefix="Int" basePackage="edu.toronto.cs.se.modelepedia.primitive"
       disposableProviderFactory="true" ecorePackage="int.ecore#/">
     <genClasses ecoreClass="int.ecore#//Int">
@@ -27,6 +28,12 @@
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="file.ecore#/">
     <genClasses ecoreClass="file.ecore#//FileModel">
       <genOperations ecoreOperation="file.ecore#//FileModel/openInstance"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Boolean" basePackage="edu.toronto.cs.se.modelepedia.primitive"
+      disposableProviderFactory="true" ecorePackage="boolean.ecore#/">
+    <genClasses ecoreClass="boolean.ecore#//Boolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute boolean.ecore#//Boolean/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

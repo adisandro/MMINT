@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.primitive.file.FileFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface FilePackage extends EPackage {
@@ -463,6 +462,15 @@ public interface FilePackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_MODEL___DELETE_INSTANCE = MIDPackage.MODEL___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_MODEL___DELETE_INSTANCE_AND_FILE = MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
