@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
-import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -25,19 +23,20 @@ public abstract class ConditionalOperator extends OperatorImpl {
 
 	// input-output
 	protected final static @NonNull String GENERIC_MODELTYPE = "CONDITION";
+	protected final static @NonNull String IN_MODEL = "conditionModel";
 
-	protected boolean evaluateCondition(@NonNull List<Model> inputModels, @NonNull Model conditionModelType) {
+	//TODO MMINT[SCRIPTING] Make the condition flexible: (model + TYPE) + boolean comparators
+	//TODO MMINT[SCRIPTING] Make an operator input being selectable twice
+	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull Model conditionModelType) {
 
-		for (Model inputModel : inputModels) {
-			// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
-			if ((inputModel instanceof ModelRel) != (conditionModelType instanceof ModelRel)) {
-				continue;
-			}
-			// check constraint
-			if (MIDTypeHierarchy.instanceOf(inputModel, conditionModelType.getUri(), false) &&
-				MIDConstraintChecker.checkModelConstraint(inputModel, conditionModelType.getConstraint())) {
-				return true; // any match semantics
-			}
+		// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
+		if ((conditionModel instanceof ModelRel) != (conditionModelType instanceof ModelRel)) {
+			return false;
+		}
+		// check constraint
+		if (MIDTypeHierarchy.instanceOf(conditionModel, conditionModelType.getUri(), false) &&
+			MIDConstraintChecker.checkModelConstraint(conditionModel, conditionModelType.getConstraint())) {
+			return true;
 		}
 
 		return false;

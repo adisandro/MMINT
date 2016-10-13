@@ -124,9 +124,9 @@ public class Map extends OperatorImpl {
 		return outputMIDModel;
 	}
 
-	private java.util.Map<String, Model> map(
+	private java.util.@NonNull Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
-			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
+			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
 
 		// create output MIDs
 		java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()

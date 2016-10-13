@@ -278,7 +278,7 @@ public class MIDOperatorIOUtils {
 		return modelsByName;
 	}
 
-	public static Map<String, MID> getVarargOutputMIDsByOtherName(Map<String, MID> outputMIDsByName, String varargName, List<? extends ExtendibleElement> nameElements) {
+	public static @NonNull Map<String, MID> getVarargOutputMIDsByOtherName(@NonNull Map<String, MID> outputMIDsByName, @NonNull String varargName, @NonNull List<? extends ExtendibleElement> nameElements) {
 
 		Map<String, MID> outputMIDsByOtherName = new HashMap<>();
 		if (outputMIDsByName.containsKey(varargName)) {

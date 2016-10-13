@@ -466,6 +466,14 @@
          <inputs>
             <parameter>
 	           <type
+	                 name="conditionModel">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
 	                 name="models">
 	           </type>
 	           <typeEndpoint
@@ -528,6 +536,14 @@
          <inputs>
             <parameter>
 	           <type
+	                 name="conditionModel">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
 	                 name="models">
 	           </type>
 	           <typeEndpoint
@@ -544,6 +560,47 @@
 	           <typeEndpoint
                      upperBound="-1"
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="BooleanExpression"
+               uri="http://se.cs.toronto.edu/mmint/Operator_BooleanExpression"
+               class="edu.toronto.cs.se.mmint.mid.operator.BooleanExpression">
+         </type>
+         <generics>
+            <parameter>
+	           <type
+	                 name="TYPE">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="boolean">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Boolean">
 	           </typeEndpoint>
             </parameter>
          </outputs>

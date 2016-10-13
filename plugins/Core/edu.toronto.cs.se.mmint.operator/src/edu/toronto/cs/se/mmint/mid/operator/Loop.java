@@ -55,12 +55,12 @@ public class Loop extends ConditionalOperator {
 		return newOperator;
 	}
 
-	private @NonNull List<Model> loop(@NonNull List<Model> inputModels, @NonNull Model conditionModelType, @NonNull WorkflowOperator doOperatorType, @NonNull Map<String, MID> outputMIDsByInput) throws MMINTException, Exception {
+	private @NonNull List<Model> loop(@NonNull List<Model> inputModels, @NonNull Model conditionModel, @NonNull Model conditionModelType, @NonNull WorkflowOperator doOperatorType, @NonNull Map<String, MID> outputMIDsByInput) throws MMINTException, Exception {
 
 		List<Model> outputModels = null;
 		MID loopMID = MIDFactory.eINSTANCE.createMID();
 		List<Model> loopModels = new ArrayList<>(inputModels);
-		while (super.evaluateCondition(loopModels, conditionModelType)) {
+		while (super.evaluateCondition(conditionModel, conditionModelType)) {
 			EList<OperatorInput> doInputs = new BasicEList<>();
 			for (int i = 0; i < doOperatorType.getInputs().size(); i++) {
 				ModelEndpoint inputModelEndpoint = doOperatorType.getInputs().get(i);
@@ -98,12 +98,13 @@ public class Loop extends ConditionalOperator {
 
 		//TODO MMINT[SCRIPTING] Make this an abstract operator and provide concrete variants like While, Until, For?
 		// input
-		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
+		Model conditionModel = inputsByName.get(IN_MODEL);
 		Model conditionModelType = (Model) genericsByName.get(GENERIC_MODELTYPE);
+		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
 		WorkflowOperator doOperatorType = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE);
 		Map<String, MID> outputMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS, inputModels);
 
-		List<Model> outputModels = this.loop(inputModels, conditionModelType, doOperatorType, outputMIDsByInput);
+		List<Model> outputModels = this.loop(inputModels, conditionModel, conditionModelType, doOperatorType, outputMIDsByInput);
 		Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(outputModels, OUT_MODELS);
 
 		return outputsByName;

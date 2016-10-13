@@ -61,7 +61,7 @@ public class If extends ConditionalOperator {
 		return newOperator;
 	}
 
-	private @NonNull List<Model> createOutputModels(List<Model> inputModels, Map<String, MID> outputMIDsByInput, String outputSuffix) throws Exception {
+	private @NonNull List<Model> createOutputModels(@NonNull List<Model> inputModels, @NonNull Map<String, MID> outputMIDsByInput, @NonNull String outputSuffix) throws Exception {
 
 		List<Model> outputModels = new ArrayList<>();
 		for (Model inputModel : inputModels) {
@@ -83,13 +83,14 @@ public class If extends ConditionalOperator {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
+		Model conditionModel = inputsByName.get(IN_MODEL);
 		Model conditionModelType = (Model) genericsByName.get(GENERIC_MODELTYPE);
+		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
 		Map<String, MID> thenMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS1, inputModels);
 		Map<String, MID> elseMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS2, inputModels);
 
 		// evaluate condition
-		boolean condition = super.evaluateCondition(inputModels, conditionModelType);
+		boolean condition = super.evaluateCondition(conditionModel, conditionModelType);
 
 		// output
 		List<Model> outputModels = this.createOutputModels(
