@@ -525,6 +525,16 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
+	public static void createOperatorTypeGenerics(IConfigurationElement extensionConfig) throws MMINTException {
+
+		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
+		if (genericsParamTypeConfigs.length > 0) {
+			String operatorUri = extensionConfig.getChildren(CHILD_TYPE)[0].getAttribute(TYPE_ATTR_URI);
+			Operator operatorType = MIDTypeRegistry.getType(operatorUri);
+			MMINT.createOperatorTypeGenerics(genericsParamTypeConfigs[0], operatorType);
+		}
+	}
+
 	/**
 	 * Creates and adds an editor type to the repository from a registered
 	 * edu.toronto.cs.se.mmint.operators extension.
@@ -544,10 +554,6 @@ public class MMINT implements MMINTConstants {
 		}
 		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
 		MMINT.createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
-		IConfigurationElement[] genericsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_GENERICS);
-		if (genericsParamTypeConfigs.length > 0) {
-			MMINT.createOperatorTypeGenerics(genericsParamTypeConfigs[0], newOperatorType);
-		}
 		IConfigurationElement[] inputsParamTypeConfigs = extensionConfig.getChildren(OPERATORS_CHILD_INPUTS);
 		if (inputsParamTypeConfigs.length > 0) {
 			MMINT.createOperatorTypeParameters(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
@@ -839,6 +845,14 @@ public class MMINT implements MMINTConstants {
 			}
 			catch (MMINTException e) {
 				MMINTException.print(IStatus.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
+			}
+		}
+		for (IConfigurationElement config2 : configs) { // second pass to add generics, which can be operator types and thus not created yet at first pass
+			try {
+				createOperatorTypeGenerics(config2);
+			}
+			catch (MMINTException e) {
+				MMINTException.print(IStatus.ERROR, "Generics can't be created for operator type in " + config2.getContributor().getName(), e);
 			}
 		}
 		// dynamic types from last shutdown

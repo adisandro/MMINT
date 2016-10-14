@@ -42,6 +42,7 @@ public class OperatorExtensionPointListener extends MMINTExtensionPointListener 
 			for (IConfigurationElement config : configs) {
 				try {
 					MMINT.createOperatorType(config);
+					MMINT.createOperatorTypeGenerics(config);
 				}
 				catch (MMINTException e) {
 					MMINTException.print(IStatus.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
