@@ -84,13 +84,13 @@ public class If extends ConditionalOperator {
 
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
-		Model conditionModelType = (Model) genericsByName.get(GENERIC_MODELTYPE);
+		Operator conditionExpression = (Operator) genericsByName.get(GENERIC_MODELTYPE);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
 		Map<String, MID> thenMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS1, inputModels);
 		Map<String, MID> elseMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS2, inputModels);
 
 		// evaluate condition
-		boolean condition = super.evaluateCondition(conditionModel, conditionModelType);
+		boolean condition = super.evaluateCondition(conditionModel, conditionExpression);
 
 		// output
 		List<Model> outputModels = this.createOutputModels(

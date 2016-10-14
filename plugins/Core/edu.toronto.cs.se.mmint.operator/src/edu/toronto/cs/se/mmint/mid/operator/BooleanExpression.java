@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -27,6 +28,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanFactory;
 
+//TODO MMINT[SCRIPTING] Add and/or/not and chainers
 public class BooleanExpression extends OperatorImpl {
 
 	// input-output
@@ -37,7 +39,7 @@ public class BooleanExpression extends OperatorImpl {
 	private final static @NonNull String BOOLEAN_MODELTYPE = "http://se.cs.toronto.edu/modelepedia/Boolean";
 	private final static @NonNull String EXPRESSION_SEPARATOR = "_instanceof_";
 
-	protected edu.toronto.cs.se.modelepedia.primitive.boolean_.@NonNull Boolean evaluate(@NonNull Model inputModel, @NonNull Model modelType) {
+	private edu.toronto.cs.se.modelepedia.primitive.boolean_.@NonNull Boolean evaluate(@NonNull Model inputModel, @NonNull Model modelType) {
 
 		boolean evaluation = false;
 		// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
@@ -69,12 +71,12 @@ public class BooleanExpression extends OperatorImpl {
 		edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean boolModelObj = this.evaluate(inputModel, modelType);
 
 		// output
-		String boolModelUri = FileUtils.replaceFileNameInUri(
+		Model boolModelType = MIDTypeRegistry.<Model>getType(BOOLEAN_MODELTYPE);
+		String boolModelUri = FileUtils.replaceLastSegmentInUri(
 			inputModel.getUri(),
-			inputModel.getName() + EXPRESSION_SEPARATOR + modelType.getName());
+			inputModel.getName() + EXPRESSION_SEPARATOR + modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + boolModelType.getFileExtension());
 		FileUtils.writeModelFile(boolModelObj, boolModelUri, true);
-		Model boolModel = MIDTypeRegistry.<Model>getType(BOOLEAN_MODELTYPE)
-			.createInstanceAndEditor(boolModelUri, outputMIDsByName.get(OUT_BOOLEAN));
+		Model boolModel = boolModelType.createInstanceAndEditor(boolModelUri, outputMIDsByName.get(OUT_BOOLEAN));
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_BOOLEAN, boolModel);
 

@@ -13,11 +13,8 @@ package edu.toronto.cs.se.mmint.mid.operator;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public abstract class ConditionalOperator extends OperatorImpl {
 
@@ -25,20 +22,10 @@ public abstract class ConditionalOperator extends OperatorImpl {
 	protected final static @NonNull String GENERIC_MODELTYPE = "CONDITION";
 	protected final static @NonNull String IN_MODEL = "conditionModel";
 
-	//TODO MMINT[SCRIPTING] Make the condition flexible: (model + TYPE) + boolean comparators
 	//TODO MMINT[SCRIPTING] Make an operator input being selectable twice
-	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull Model conditionModelType) {
+	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull Operator conditionExpression) {
 
-		// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
-		if ((conditionModel instanceof ModelRel) != (conditionModelType instanceof ModelRel)) {
-			return false;
-		}
-		// check constraint
-		if (MIDTypeHierarchy.instanceOf(conditionModel, conditionModelType.getUri(), false) &&
-			MIDConstraintChecker.checkModelConstraint(conditionModel, conditionModelType.getConstraint())) {
-			return true;
-		}
-
+		//TODO MMINT[SCRIPTING] run or start conditionExpression? i.e. store the byproduct or not?
 		return false;
 	}
 

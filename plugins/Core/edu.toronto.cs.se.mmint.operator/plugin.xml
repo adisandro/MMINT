@@ -459,7 +459,7 @@
 	                 name="CONDITION">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator_BooleanExpression">
 	           </typeEndpoint>
             </parameter>
          </generics>
@@ -521,7 +521,7 @@
 	                 name="CONDITION">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Operator_BooleanExpression">
 	           </typeEndpoint>
             </parameter>
             <parameter>

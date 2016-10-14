@@ -127,10 +127,9 @@ public class MMINT implements MMINTConstants {
 
 	/* TODO MMINT[IN PROGRESS WORKFLOW]
 	 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
-	 * - Add control flow operators: Loop
 	 * - Support conversions in workflows?
-	 * - Export an instance mid as workflow?
 	 * - Create scripting language
+	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Unify operator type behavior with other types:
 	 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for root Model and ModelRel too)
@@ -167,6 +166,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	/* TODO MMINT[MATURITY]
 	 * - Use workflows to create test cases, and run tests at every commit
+	 * - Export an instance mid as workflow
 	 * - Address todos
 	 * - Resource change listeners to track changes in model elements
 	 * - Formalize override semantics
