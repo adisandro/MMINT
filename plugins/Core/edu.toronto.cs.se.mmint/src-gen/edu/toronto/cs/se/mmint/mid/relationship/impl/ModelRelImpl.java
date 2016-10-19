@@ -683,9 +683,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		this.addInstance(
 			newModelRel,
 			newModelRelUri,
-			(newModelRelUri == null) ? null : FileUtils.getFileNameFromUri(newModelRelUri),
+			(newModelRelUri == null) ? null : FileUtils.getFileNameFromPath(newModelRelUri),
 			ModelOrigin.CREATED,
-			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromUri(newModelRelUri),
+			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromPath(newModelRelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -725,9 +725,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		this.addInstance(
 			newModelRel,
 			newModelRelUri,
-			(newModelRelUri == null) ? null : FileUtils.getFileNameFromUri(newModelRelUri),
+			(newModelRelUri == null) ? null : FileUtils.getFileNameFromPath(newModelRelUri),
 			ModelOrigin.CREATED,
-			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromUri(newModelRelUri),
+			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromPath(newModelRelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 

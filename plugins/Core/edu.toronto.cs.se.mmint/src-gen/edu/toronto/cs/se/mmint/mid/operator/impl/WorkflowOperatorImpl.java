@@ -298,9 +298,9 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 				newWorkflowMIDUri = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 				FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDUri);
 				FileUtils.copyTextFileAndReplaceText(
-					FileUtils.prependWorkspacePathToUri(workflowMIDUri + GMFUtils.DIAGRAM_SUFFIX),
-					FileUtils.prependStatePathToUri(newWorkflowMIDUri + GMFUtils.DIAGRAM_SUFFIX),
-					FileUtils.getLastSegmentFromUri(workflowMIDUri),
+					FileUtils.prependWorkspacePath(workflowMIDUri + GMFUtils.DIAGRAM_SUFFIX),
+					FileUtils.prependStatePath(newWorkflowMIDUri + GMFUtils.DIAGRAM_SUFFIX),
+					FileUtils.getLastSegmentFromPath(workflowMIDUri),
 					newWorkflowMIDUri,
 					false);
 			}
@@ -383,8 +383,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			return;
 		}
 
-		String operatorInstanceMIDUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileNameInUri(
+		String operatorInstanceMIDUri = FileUtils.getUniquePath(
+			FileUtils.replaceFileNameInPath(
 				MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 				newOperator.getName()),
 			true,

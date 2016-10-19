@@ -83,7 +83,7 @@ public class MODELS15 extends RandomOperatorImpl {
 				cdClasses.put(className, clazz);
 			}
 			// write class diagram to file and create model
-			String cdModelUri = FileUtils.replaceLastSegmentInUri(
+			String cdModelUri = FileUtils.replaceLastSegmentInPath(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
 				FileUtils.writeModelFile(classDiagram, cdModelUri, true);
@@ -114,7 +114,7 @@ public class MODELS15 extends RandomOperatorImpl {
 		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output
-		String cdMIDModelUri = FileUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
+		String cdMIDModelUri = FileUtils.replaceFileNameInPath(instanceMIDUri, OUT_MID_NAME);
 		FileUtils.writeModelFile(cdMID, cdMIDModelUri, true);
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);

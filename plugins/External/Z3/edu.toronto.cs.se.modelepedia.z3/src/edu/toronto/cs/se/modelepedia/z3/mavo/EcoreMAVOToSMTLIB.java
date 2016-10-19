@@ -95,7 +95,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	protected File createAcceleoFolder(Model mavoModel) {
 
-		return (new File(FileUtils.prependWorkspacePathToUri(mavoModel.getUri()))).getParentFile();
+		return (new File(FileUtils.prependWorkspacePath(mavoModel.getUri()))).getParentFile();
 	}
 
 	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVORoot rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {

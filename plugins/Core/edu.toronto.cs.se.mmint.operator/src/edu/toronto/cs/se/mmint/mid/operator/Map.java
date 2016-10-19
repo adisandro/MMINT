@@ -98,8 +98,8 @@ public class Map extends OperatorImpl {
 		String baseOutputPath = (instanceMID == null) ?
 			MMINT.getActiveInstanceMIDFile().getFullPath().toOSString() :
 			MIDRegistry.getModelUri(instanceMID);
-		String outputMIDPath = FileUtils.getUniqueUri(
-			FileUtils.replaceFileNameInUri(baseOutputPath, outputName + MAPPED_MID_SUFFIX),
+		String outputMIDPath = FileUtils.getUniquePath(
+			FileUtils.replaceFileNameInPath(baseOutputPath, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
 		FileUtils.writeModelFile(outputMID, outputMIDPath, true);

@@ -561,7 +561,7 @@ public class MIDTypeRegistry {
 		String metamodelUri = modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
 		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
-			FileUtils.prependStatePathToUri(metamodelUri) :
+			FileUtils.prependStatePath(metamodelUri) :
 			null;
 	}
 

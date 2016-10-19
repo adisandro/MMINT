@@ -578,7 +578,7 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 	protected void addInstance(Editor newEditor, String modelUri, MID instanceMID) {
 
 		String newEditorName = getName() + " for model " + modelUri;
-		String newEditorUri = FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+		String newEditorUri = FileUtils.replaceFileExtensionInPath(modelUri, getFileExtensions().get(0));
 		super.addBasicInstance(newEditor, newEditorUri, newEditorName, MIDLevel.INSTANCES);
 		newEditor.setModelUri(modelUri);
 		newEditor.setId(getId());

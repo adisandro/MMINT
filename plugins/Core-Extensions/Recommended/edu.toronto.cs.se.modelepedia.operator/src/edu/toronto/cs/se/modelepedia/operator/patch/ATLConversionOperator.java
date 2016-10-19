@@ -38,7 +38,7 @@ public abstract class ATLConversionOperator extends ConversionOperatorImpl {
 				// modelName is ok
 			}
 		}
-		convertedModelUri = FileUtils.replaceLastSegmentInUri(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
+		convertedModelUri = FileUtils.replaceLastSegmentInPath(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
 	}
 
 	protected void createConvertedModel(String convertedModelTypeUri, MID instanceMID) throws MMINTException {

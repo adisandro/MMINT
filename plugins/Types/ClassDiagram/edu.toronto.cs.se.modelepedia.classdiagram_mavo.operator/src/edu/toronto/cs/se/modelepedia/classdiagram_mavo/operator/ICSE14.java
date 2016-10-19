@@ -83,8 +83,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 
 		featureModelName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_FEATUREMODELNAME);
 		Properties constraintProperties = new Properties();
-		String constraintPropertiesFile = FileUtils.prependWorkspacePathToUri(
-			FileUtils.replaceLastSegmentInUri(
+		String constraintPropertiesFile = FileUtils.prependWorkspacePath(
+			FileUtils.replaceLastSegmentInPath(
 				inputModel.getUri(),
 				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MIDOperatorIOUtils.PROPERTIES_SUFFIX
 			)

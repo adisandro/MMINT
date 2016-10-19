@@ -126,7 +126,7 @@ public class ModelSlice extends OperatorImpl {
 		Model model = inputsByName.get(IN_MODEL);
 		this.init();
 
-		String sliceModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
+		String sliceModelUri = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = this.slice(model.getEMFInstanceRoot());
 		FileUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
 		Model sliceModel = (isUpdateMID()) ?

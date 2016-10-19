@@ -275,8 +275,8 @@ public class Reduce extends OperatorImpl {
 		}
 
 		// output
-		String reducedMIDModelUri = FileUtils.getUniqueUri(
-			FileUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
+		String reducedMIDModelUri = FileUtils.getUniquePath(
+			FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
 		FileUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);

@@ -96,7 +96,7 @@ public class FeatureModelToSMTLIB {
 		outputProperties.setProperty(LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES, cnfVariables.toString());
 		outputProperties.store(
 			new FileOutputStream(
-				FileUtils.replaceFileExtensionInUri(featureModelPath, MIDOperatorIOUtils.PROPERTIES_SUFFIX.substring(1))
+				FileUtils.replaceFileExtensionInPath(featureModelPath, MIDOperatorIOUtils.PROPERTIES_SUFFIX.substring(1))
 			), null
 		);
 	}

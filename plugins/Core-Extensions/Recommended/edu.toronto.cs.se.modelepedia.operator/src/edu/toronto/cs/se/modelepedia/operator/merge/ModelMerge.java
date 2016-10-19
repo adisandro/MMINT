@@ -238,7 +238,7 @@ public class ModelMerge extends OperatorImpl {
 
 		// create merged model and trace relationships as placeholders
 		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
-		String mergedModelUri = FileUtils.replaceLastSegmentInUri(
+		String mergedModelUri = FileUtils.replaceLastSegmentInPath(
 			MIDRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());

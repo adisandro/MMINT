@@ -1242,7 +1242,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
 			return null;
 		}
-		String propertiesUri = FileUtils.prependWorkspacePathToUri(instanceMIDFile.getParent().getFullPath().toString());
+		String propertiesUri = FileUtils.prependWorkspacePath(instanceMIDFile.getParent().getFullPath().toString());
 		propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 
 		return propertiesUri;

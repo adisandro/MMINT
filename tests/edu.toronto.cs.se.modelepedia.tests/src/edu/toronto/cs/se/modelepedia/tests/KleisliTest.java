@@ -146,11 +146,11 @@ public class KleisliTest extends MMINTTest {
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL srcMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePathToUri(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL tgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, TGT_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePathToUri(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 
 		// model rel type
 		KleisliModelRel kRootModelRelType = MIDTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
@@ -159,7 +159,7 @@ public class KleisliTest extends MMINTTest {
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
 		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtype(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
 		URL kTgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePathToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtype(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
 		// model element types and link types
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
@@ -194,9 +194,9 @@ public class KleisliTest extends MMINTTest {
 		URL inputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, INPUT_MODEL_FILENAME, false).nextElement();
 		FileUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(inputModelUrl).getFile().toString(),
-			FileUtils.prependWorkspacePathToUri(INPUT_MODEL_URI),
+			FileUtils.prependWorkspacePath(INPUT_MODEL_URI),
 			SCHEMALOCATION_PLACEHOLDER,
-			"file:" + FileUtils.prependStatePathToUri(TGT_METAMODEL_NAME),
+			"file:" + FileUtils.prependStatePath(TGT_METAMODEL_NAME),
 			false
 		);
 		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, instanceMID);
@@ -216,7 +216,7 @@ public class KleisliTest extends MMINTTest {
 
 		// test equivalence with oracle
 		ResourceSet oracleResourceSet = new ResourceSetImpl();
-		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + FileUtils.getLastSegmentFromUri(TESTS_INSTANCEMID_URI), true);
+		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + FileUtils.getLastSegmentFromPath(TESTS_INSTANCEMID_URI), true);
 		oracleResourceSet.getResource(oracleResourceUri, true);
 		ResourceSet outputResourceSet = new ResourceSetImpl();
 		outputResourceSet.getResource(URI.createPlatformResourceURI(TESTS_INSTANCEMID_URI, true), true);
@@ -226,9 +226,9 @@ public class KleisliTest extends MMINTTest {
 		URL outputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, OUTPUT_ORACLE_FILENAME, false).nextElement();
 		FileUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(outputModelUrl).getFile().toString(),
-			FileUtils.prependWorkspacePathToUri(OUTPUT_ORACLE_URI),
+			FileUtils.prependWorkspacePath(OUTPUT_ORACLE_URI),
 			SCHEMALOCATION_PLACEHOLDER,
-			"file:" + FileUtils.prependStatePathToUri(SRC_METAMODEL_NAME),
+			"file:" + FileUtils.prependStatePath(SRC_METAMODEL_NAME),
 			false
 		);
 		oracleResourceSet = new ResourceSetImpl();

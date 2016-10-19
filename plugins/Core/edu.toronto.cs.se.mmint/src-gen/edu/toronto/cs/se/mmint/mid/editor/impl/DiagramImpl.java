@@ -83,7 +83,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 		MMINTException.mustBeType(this);
 
 		// check if diagram file already exists in model directory
-		if (!FileUtils.isFileOrDirectory(FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0)), true)) {
+		if (!FileUtils.isFileOrDirectory(FileUtils.replaceFileExtensionInPath(modelUri, getFileExtensions().get(0)), true)) {
 			// try to build a new diagram through its wizard, inited with the existing model file
 			IStructuredSelection modelFile = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFile(
@@ -114,7 +114,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			if (initialSelection.getFirstElement() instanceof IFile) {
 				String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
-				String diagramUri = FileUtils.replaceFileExtensionInUri(modelUri, getFileExtensions().get(0));
+				String diagramUri = FileUtils.replaceFileExtensionInPath(modelUri, getFileExtensions().get(0));
 				Diagram superDiagramType = this;
 				while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
 					superDiagramType = (Diagram) superDiagramType.getSupertype();

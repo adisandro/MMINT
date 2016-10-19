@@ -144,8 +144,8 @@ public class FASE14 extends RE13 {
 
 		try {
 			FileUtils.createTextFile(
-				FileUtils.replaceFileExtensionInUri(
-					FileUtils.addFileNameSuffixInUri(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
+				FileUtils.replaceFileExtensionInPath(
+					FileUtils.addFileNameSuffixInPath(istarModel.getUri(), RNF_OUTPUT_SUFFIX),
 					Z3Utils.SMTLIB_FILE_EXTENSION
 				),
 				smtEncodingRNF,

@@ -72,7 +72,7 @@ public class Sum extends OperatorImpl {
 		Int sumModelObj = sum(intModel1, intModel2);
 
 		// output
-		String sumModelUri = FileUtils.replaceFileNameInUri(
+		String sumModelUri = FileUtils.replaceFileNameInPath(
 			intModel1.getUri(),
 			intModel1.getName() + SUM_SEPARATOR + intModel2.getName());
 		FileUtils.writeModelFile(sumModelObj, sumModelUri, true);

@@ -37,7 +37,8 @@ public class BooleanExpression extends OperatorImpl {
 	protected final static @NonNull String OUT_BOOLEAN = "boolean";
 	// constants
 	private final static @NonNull String BOOLEAN_MODELTYPE = "http://se.cs.toronto.edu/modelepedia/Boolean";
-	private final static @NonNull String EXPRESSION_SEPARATOR = "_instanceof_";
+	private final static @NonNull String EXPRESSION_SEPARATOR = "_is_a_";
+	private final static @NonNull String EXPRESSION_SUFFIX = "?";
 
 	private edu.toronto.cs.se.modelepedia.primitive.boolean_.@NonNull Boolean evaluate(@NonNull Model inputModel, @NonNull Model modelType) {
 
@@ -72,11 +73,12 @@ public class BooleanExpression extends OperatorImpl {
 
 		// output
 		Model boolModelType = MIDTypeRegistry.<Model>getType(BOOLEAN_MODELTYPE);
-		String boolModelUri = FileUtils.replaceLastSegmentInUri(
+		String boolModelUri = FileUtils.replaceLastSegmentInPath(
 			inputModel.getUri(),
 			inputModel.getName() + EXPRESSION_SEPARATOR + modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + boolModelType.getFileExtension());
 		FileUtils.writeModelFile(boolModelObj, boolModelUri, true);
 		Model boolModel = boolModelType.createInstanceAndEditor(boolModelUri, outputMIDsByName.get(OUT_BOOLEAN));
+		boolModel.setName(boolModel.getName() + EXPRESSION_SUFFIX);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_BOOLEAN, boolModel);
 

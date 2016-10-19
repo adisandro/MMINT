@@ -43,7 +43,7 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// transform using atl
-		String newCdModelUri = FileUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
+		String newCdModelUri = FileUtils.replaceFileExtensionInPath(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
 		UMLToClassDiagramMAVO_M2M atl = new UMLToClassDiagramMAVO_M2M();
 		atl.loadModels(umlModel.getUri());
 		atl.doUMLToClassDiagramMAVO_M2M(new NullProgressMonitor());

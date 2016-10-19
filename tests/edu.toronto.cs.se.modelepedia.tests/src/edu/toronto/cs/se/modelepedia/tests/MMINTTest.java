@@ -69,7 +69,7 @@ public abstract class MMINTTest {
 		URL bundleModelUrl = testBundle.findEntries(bundleDir, bundleFilename, false).nextElement();
 		String inputModelUri = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
 		Path bundlePath = Paths.get(FileLocator.toFileURL(bundleModelUrl).getFile().toString());
-		Path inputPath = Paths.get(FileUtils.prependWorkspacePathToUri(inputModelUri));
+		Path inputPath = Paths.get(FileUtils.prependWorkspacePath(inputModelUri));
 		Files.copy(bundlePath, inputPath, StandardCopyOption.REPLACE_EXISTING);
 		Model inputModel =  MIDTypeHierarchy.getRootModelType().createInstance(inputModelUri, instanceMID);
 		FileUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);

@@ -40,13 +40,13 @@ public class Java2File extends OperatorImpl {
 	private @NonNull Model print(@NonNull Model javaModel, @NonNull MID instanceMID) throws Exception {
 
 		// run acceleo
-		String fileModelUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileExtensionInUri(javaModel.getUri(), JAVA_FILE_SUFFIX),
+		String fileModelUri = FileUtils.getUniquePath(
+			FileUtils.replaceFileExtensionInPath(javaModel.getUri(), JAVA_FILE_SUFFIX),
 			true,
 			false);
 		List<Object> m2tArgs = new ArrayList<>();
-		m2tArgs.add(FileUtils.getFileNameFromUri(fileModelUri));
-		File folder = (new File(FileUtils.prependWorkspacePathToUri(javaModel.getUri()))).getParentFile();
+		m2tArgs.add(FileUtils.getFileNameFromPath(fileModelUri));
+		File folder = (new File(FileUtils.prependWorkspacePath(javaModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
 		Java2File_M2T m2t = new Java2File_M2T(javaModel.getEMFInstanceRoot(), folder, m2tArgs);

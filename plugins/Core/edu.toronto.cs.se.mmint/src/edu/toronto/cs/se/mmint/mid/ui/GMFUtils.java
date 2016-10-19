@@ -60,7 +60,7 @@ public class GMFUtils {
 			diagramKind,
 			new PreferencesHint(diagramPluginId)
 		);
-		diagram.setName(FileUtils.getLastSegmentFromUri(diagramUri));
+		diagram.setName(FileUtils.getLastSegmentFromPath(diagramUri));
 		diagramResource.getContents().add(diagram);
 		Map<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");

@@ -29,7 +29,7 @@ public class UMLDiagramCreationWizardDialog extends EditorCreationWizardDialog {
 
 		NewModelFilePage filePage = (NewModelFilePage) page;
 		createdModelUri = filePage.getContainerFullPath().toString() + IPath.SEPARATOR + filePage.getFileName();
-		createdModelUri = FileUtils.replaceFileExtensionInUri(createdModelUri, UML_FILE_EXTENSION);
+		createdModelUri = FileUtils.replaceFileExtensionInPath(createdModelUri, UML_FILE_EXTENSION);
 	}
 
 	/**

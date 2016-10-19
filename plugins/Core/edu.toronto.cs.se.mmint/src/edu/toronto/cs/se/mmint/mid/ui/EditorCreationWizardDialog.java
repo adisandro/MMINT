@@ -37,9 +37,9 @@ public class EditorCreationWizardDialog extends WizardDialog {
 		if (filePage.getNextPage() != null && filePage.getNextPage() instanceof WizardNewFileCreationPage) {
 			WizardNewFileCreationPage nextPage = (WizardNewFileCreationPage) filePage.getNextPage();
 			nextPage.setFileName(
-				FileUtils.replaceFileNameInUri(
+				FileUtils.replaceFileNameInPath(
 					nextPage.getFileName(),
-					FileUtils.getFileNameFromUri(filePage.getFileName())
+					FileUtils.getFileNameFromPath(filePage.getFileName())
 				)
 			);
 			filePage = nextPage;

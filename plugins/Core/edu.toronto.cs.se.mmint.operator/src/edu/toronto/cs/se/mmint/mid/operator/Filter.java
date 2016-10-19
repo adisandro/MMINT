@@ -94,8 +94,8 @@ public class Filter extends OperatorImpl {
 		MID filteredMID = filter(inputMIDModel, filterModelType);
 
 		// output
-		String filteredMIDModelUri = FileUtils.getUniqueUri(
-			FileUtils.addFileNameSuffixInUri(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
+		String filteredMIDModelUri = FileUtils.getUniquePath(
+			FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
 			true,
 			false);
 		FileUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);

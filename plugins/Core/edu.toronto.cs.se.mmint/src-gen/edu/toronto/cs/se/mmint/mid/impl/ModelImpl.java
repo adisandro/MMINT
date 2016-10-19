@@ -803,7 +803,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				while (metamodels.hasMoreElements()) {
 					String metamodelPath = FileLocator.toFileURL(metamodels.nextElement()).getFile();
 					// heuristic to open just one metamodel with many in the same bundle
-					if (FileUtils.getFileNameFromUri(metamodelPath).equalsIgnoreCase(modelType.getName())) {
+					if (FileUtils.getFileNameFromPath(metamodelPath).equalsIgnoreCase(modelType.getName())) {
 						tempMetamodelPath = metamodelPath;
 						break;
 					}
@@ -878,9 +878,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		this.addInstance(
 			newModel,
 			newModelUri,
-			FileUtils.getFileNameFromUri(newModelUri),
+			FileUtils.getFileNameFromPath(newModelUri),
 			ModelOrigin.CREATED,
-			FileUtils.getFileExtensionFromUri(newModelUri),
+			FileUtils.getFileExtensionFromPath(newModelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -952,9 +952,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		this.addInstance(
 			newModel,
 			modelUri,
-			FileUtils.getFileNameFromUri(modelUri),
+			FileUtils.getFileNameFromPath(modelUri),
 			ModelOrigin.IMPORTED,
-			FileUtils.getFileExtensionFromUri(modelUri),
+			FileUtils.getFileExtensionFromPath(modelUri),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -982,7 +982,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeType(this);
 
 		// copy model
-		String newModelUri = FileUtils.replaceFileNameInUri(origModel.getUri(), newModelName);
+		String newModelUri = FileUtils.replaceFileNameInPath(origModel.getUri(), newModelName);
 		try {
 			FileUtils.copyTextFileAndReplaceText(
 				origModel.getUri(),
@@ -1014,7 +1014,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				try {
 					FileUtils.copyTextFileAndReplaceText(
 						oldEditor.getUri(),
-						FileUtils.replaceFileNameInUri(oldEditor.getUri(), newModelName),
+						FileUtils.replaceFileNameInPath(oldEditor.getUri(), newModelName),
 						origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 						newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
 						true);

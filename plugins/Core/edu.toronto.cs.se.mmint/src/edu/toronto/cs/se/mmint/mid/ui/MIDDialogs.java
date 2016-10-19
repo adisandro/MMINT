@@ -155,7 +155,7 @@ public class MIDDialogs {
 		String message = "Choose editor to create model";
 		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
-		String midContainerUri = FileUtils.replaceLastSegmentInUri(instanceMID.eResource().getURI().toPlatformString(true), "");
+		String midContainerUri = FileUtils.replaceLastSegmentInPath(instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
 			midContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(

@@ -78,7 +78,7 @@ public class CD2JavaCheck extends OperatorImpl {
 
 		// output
 		Model intModelType = MIDTypeRegistry.getType(IntPackage.eNS_URI);
-		String checkModelUri = FileUtils.replaceLastSegmentInUri(
+		String checkModelUri = FileUtils.replaceLastSegmentInPath(
 			MIDRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());

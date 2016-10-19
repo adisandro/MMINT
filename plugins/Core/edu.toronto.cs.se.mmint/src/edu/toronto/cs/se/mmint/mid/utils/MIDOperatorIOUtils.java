@@ -57,7 +57,7 @@ public class MIDOperatorIOUtils {
 	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String propertiesUri = FileUtils.prependWorkspacePathToUri(projectUri);
+		String propertiesUri = FileUtils.prependWorkspacePath(projectUri);
 		if (subdirName != null) {
 			File dir = new File(propertiesUri + subdirName);
 			if (!readonly && !dir.exists()) {

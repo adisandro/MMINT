@@ -209,7 +209,7 @@ public class MAVORefiner {
 	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser) throws Exception {
 
 		// create mid artifacts
-		String refinedModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
+		String refinedModelUri = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
 		FileUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
 		MID instanceMID = model.getMIDContainer();
 		Model refinedModel = model.getMetatype().createInstance(refinedModelUri, instanceMID);
@@ -242,7 +242,7 @@ public class MAVORefiner {
 		if (modelDiagram != null) {
 			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
 			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
-			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
+			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInPath(refinedModelUri, modelDiagram.getFileExtensions().get(0));
 			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			FileUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}

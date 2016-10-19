@@ -28,7 +28,7 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 
 	protected boolean validate(Model model, String modelTypeName) {
 
-		String notationFileUri = FileUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
+		String notationFileUri = FileUtils.replaceFileExtensionInPath(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
 			Diagram diagram = (Diagram) FileUtils.readModelFile(notationFileUri, true);
 			return diagram.getType().equals(modelTypeName);

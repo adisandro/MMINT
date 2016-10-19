@@ -65,13 +65,13 @@ public class HenshinTransformation extends OperatorImpl {
 	private EObject transform(Model originalModel) throws MMINTException {
 
 		// init
-		String originalModelDirectoryUri = FileUtils.prependWorkspacePathToUri(
-			FileUtils.replaceLastSegmentInUri(originalModel.getUri(), ""));
+		String originalModelDirectoryUri = FileUtils.prependWorkspacePath(
+			FileUtils.replaceLastSegmentInPath(originalModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(originalModelDirectoryUri);
 		Module hModule = hResourceSet.getModule(henshinFileName, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromPath(
 			originalModel.getUri())));
 		// apply rules
 		for (Unit hUnit : hModule.getUnits()) {
@@ -115,8 +115,8 @@ public class HenshinTransformation extends OperatorImpl {
 		EObject transformedRootModelObj = transform(origModel);
 
 		// output
-		String transformedModelUri = FileUtils.getUniqueUri(
-			FileUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedModelUri = FileUtils.getUniquePath(
+			FileUtils.addFileNameSuffixInPath(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
 		FileUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);

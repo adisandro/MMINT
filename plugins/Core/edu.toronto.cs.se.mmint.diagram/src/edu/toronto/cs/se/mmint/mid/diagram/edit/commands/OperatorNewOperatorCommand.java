@@ -79,7 +79,7 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 		String newOperatorTypeName = MIDDialogs.getStringInput(
 			"Create new operator type from workflow",
 			"Insert new operator type name",
-			FileUtils.getFileNameFromUri(workflowMIDUri));
+			FileUtils.getFileNameFromPath(workflowMIDUri));
 		Operator newOperator = typeMID.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR + WorkflowOperator.class.getSimpleName())
 			.createSubtype(newOperatorTypeName, workflowMIDUri);
 		MMINT.createTypeHierarchy(typeMID);

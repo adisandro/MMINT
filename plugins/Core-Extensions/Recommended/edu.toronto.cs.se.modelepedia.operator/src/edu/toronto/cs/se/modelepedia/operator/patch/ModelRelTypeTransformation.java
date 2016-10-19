@@ -237,9 +237,9 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileExtensionInUri(
-				FileUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
+		tgtModelUri = FileUtils.getUniquePath(
+			FileUtils.replaceFileExtensionInPath(
+				FileUtils.addFileNameSuffixInPath(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);

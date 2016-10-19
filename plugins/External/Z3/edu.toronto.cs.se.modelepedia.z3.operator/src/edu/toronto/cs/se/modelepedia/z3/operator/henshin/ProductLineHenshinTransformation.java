@@ -224,19 +224,19 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
-		String fullUri = FileUtils.prependWorkspacePathToUri(FileUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
+		String fullUri = FileUtils.prependWorkspacePath(FileUtils.replaceLastSegmentInPath(origModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(fullUri);
 		Module hModule = hResourceSet.getModule(transformationModule, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(origModel.getUri())));
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromPath(origModel.getUri())));
 		if (timeClassicalEnabled) {
 			doTransformationClassical(hModule, hEngine, hGraph);
 			hResourceSet = new HenshinResourceSet(fullUri);
 			hModule = hResourceSet.getModule(transformationModule, false);
 			hEngine = new EngineImpl();
 			hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-			hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(origModel.getUri())));
+			hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromPath(origModel.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
 		if (transformedConstraintEnabled) {
@@ -256,9 +256,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 		}
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
-		String transformedMIDModelUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileExtensionInUri(
-				FileUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedMIDModelUri = FileUtils.getUniquePath(
+			FileUtils.replaceFileExtensionInPath(
+				FileUtils.addFileNameSuffixInPath(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 				transformedModelType.getFileExtension()),
 			true,
 			false);

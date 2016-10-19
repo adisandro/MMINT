@@ -313,8 +313,8 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	protected void addInstance(@NonNull Model newModelRel, @Nullable String newModelRelId, @NonNull String newModelRelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
 		super.addInstance(newModelRel, newModelRelId, newModelRelName, origin, fileExtension, midLevel, instanceMID);
-		String baseModelRelExtendedUri = FileUtils.replaceLastSegmentInUri(MIDRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
-		String modelRelExtendedUri = FileUtils.getUniqueUri(baseModelRelExtendedUri, true, true);
+		String baseModelRelExtendedUri = FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
+		String modelRelExtendedUri = FileUtils.getUniquePath(baseModelRelExtendedUri, true, true);
 		((KleisliModelRel) newModelRel).setExtendedUri(modelRelExtendedUri);
 		try {
 			FileUtils.createDirectory(modelRelExtendedUri, true);
@@ -440,7 +440,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					kModelTypeEndpoint.getTargetUri() +
 					KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX +
 					" file:" +
-					FileUtils.prependStatePathToUri(kModelTypeEndpoint.getExtendedTargetUri()) +
+					FileUtils.prependStatePath(kModelTypeEndpoint.getExtendedTargetUri()) +
 					"\"";
 				FileUtils.copyTextFileAndReplaceText(
 					modelUri,

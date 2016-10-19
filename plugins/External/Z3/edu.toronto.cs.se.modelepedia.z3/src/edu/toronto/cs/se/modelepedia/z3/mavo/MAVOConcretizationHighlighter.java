@@ -81,7 +81,7 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = FileUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
@@ -169,7 +169,7 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = FileUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}

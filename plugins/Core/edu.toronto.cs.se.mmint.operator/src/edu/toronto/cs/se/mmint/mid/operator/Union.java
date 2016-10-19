@@ -80,7 +80,7 @@ public class Union extends OperatorImpl {
 		String unionMIDModelName = inputMIDModels.stream()
 			.map(Model::getName)
 			.collect(Collectors.joining(UNION_SEPARATOR));
-		String unionMIDModelUri = FileUtils.replaceFileNameInUri(
+		String unionMIDModelUri = FileUtils.replaceFileNameInPath(
 			MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 			unionMIDModelName);
 		FileUtils.writeModelFile(unionMID, unionMIDModelUri, true);
