@@ -223,7 +223,7 @@ public interface Model extends GenericElement {
 	void openType() throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to an Instance MID.
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID.
 	 * 
 	 * @param newModelUri
 	 *            The uri of the new model.
@@ -237,6 +237,27 @@ public interface Model extends GenericElement {
 	 * @generated
 	 */
 	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID.
+	 * 
+	 * @param rootModelObj
+	 *            The root of the underlying ECore model.
+	 * @param newModelPath
+	 *            The file path of the new model (the model name is taken from the file name). When instanceMID is null,
+	 *            it is just a name for the model.
+	 * @param instanceMID
+	 *            An Instance MID, null if the model is not going to be contained in one and the ECore model file not
+	 *            going to be created.
+	 * @return The created model.
+	 * @throws MMINTException
+	 *             If this is not a model type, or if the uri of the new model instance is already registered in the
+	 *             Instance MID. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" rootModelObjRequired="true"
+	 *        newModelPathRequired="true"
+	 * @generated
+	 */
+	Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model instance.

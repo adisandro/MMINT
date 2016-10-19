@@ -277,6 +277,11 @@
       <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
+    <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//operator/Exception">
+      <eParameters name="rootModelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="#//MID"/>
+    </eOperations>
     <eOperations name="createInstanceEditor" lowerBound="1" eType="#//editor/Editor"
         eExceptions="#//MMINTException"/>
     <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">

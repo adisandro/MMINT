@@ -452,6 +452,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID;
 
 	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID;
+
+	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1035,6 +1044,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MID = MODEL_REL___CREATE_INSTANCE__STRING_MID;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.

@@ -151,6 +151,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	protected EList<ConversionOperator> conversionOperators;
 
 	/**
+	 * The root model object when this model is not backed up by an ECore model file.
+	 * @generated NOT
+	 */
+	protected EObject inMemoryRootModelObj;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -456,6 +462,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			case MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID:
 				try {
 					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID:
+				try {
+					return createInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -890,6 +903,33 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
+	public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		//TODO MMINT[FILES] In memory when serialized too? Need a resource listener for changes to the file
+		if (instanceMID == null) {
+			inMemoryRootModelObj = rootModelObj;
+		}
+		else {
+			FileUtils.writeModelFile(rootModelObj, newModelPath, true);
+		}
+		Model newModel = super.createThisEClass();
+		this.addInstance(
+			newModel,
+			newModelPath,
+			FileUtils.getFileNameFromPath(newModelPath),
+			ModelOrigin.CREATED,
+			FileUtils.getFileExtensionFromPath(newModelPath),
+			MIDLevel.INSTANCES,
+			instanceMID);
+
+		return newModel;
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public Editor createInstanceEditor() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
@@ -1123,15 +1163,16 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		EObject rootModelObj;
+		if (inMemoryRootModelObj != null) {
+			return inMemoryRootModelObj;
+		}
+
 		try {
-			rootModelObj = FileUtils.readModelFile(this.getUri(), true);
+			return FileUtils.readModelFile(this.getUri(), true);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);
 		}
-
-		return rootModelObj;
 	}
 
 	/**

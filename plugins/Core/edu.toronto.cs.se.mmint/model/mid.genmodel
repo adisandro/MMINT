@@ -111,6 +111,11 @@
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelUri"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/instanceMID"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//Model/createInstance.1">
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance.1/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance.1/newModelPath"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance.1/instanceMID"/>
+      </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceEditor"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceAndEditor">
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelUri"/>
