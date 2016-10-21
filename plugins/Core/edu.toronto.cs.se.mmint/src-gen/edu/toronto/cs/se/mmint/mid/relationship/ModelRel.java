@@ -186,7 +186,7 @@ public interface ModelRel extends Model {
 	 * 
 	 * @param newModelRelUri
 	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
-	 *            e.g. a standalone model relationship is in its own files, a simple model relationship is not.
+	 *            e.g. a standalone model relationship is in its own file, a simple model relationship is not.
 	 * @param endpointModels
 	 *            The endpoint models.
 	 * @param instanceMID
@@ -206,7 +206,7 @@ public interface ModelRel extends Model {
 	 * 
 	 * @param newModelRelUri
 	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
-	 *            e.g. a standalone model relationship is in its own files, a simple model relationship is not.
+	 *            e.g. a standalone model relationship is in its own file, a simple model relationship is not.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model relationship isn't going to be contained in one.
 	 * @return The created binary model relationship.

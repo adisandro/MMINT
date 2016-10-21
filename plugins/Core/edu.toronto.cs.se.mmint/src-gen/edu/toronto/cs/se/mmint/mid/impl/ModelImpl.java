@@ -883,36 +883,19 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstance(String newModelUri, MID instanceMID) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		Model newModel = super.createThisEClass();
-		this.addInstance(
-			newModel,
-			newModelUri,
-			FileUtils.getFileNameFromPath(newModelUri),
-			ModelOrigin.CREATED,
-			FileUtils.getFileExtensionFromPath(newModelUri),
-			MIDLevel.INSTANCES,
-			instanceMID);
-
-		return newModel;
-	}
-
-	/**
-	 * @generated NOT
-	 */
 	public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
-		//TODO MMINT[FILES] In memory when serialized too? Need a resource listener for changes to the file
-		if (instanceMID == null) {
-			inMemoryRootModelObj = rootModelObj;
-		}
-		else {
-			FileUtils.writeModelFile(rootModelObj, newModelPath, true);
+		//TODO MMINT[OPERATOR] Separate using instanceMID = null from not creating the model file, with a setting flag enabled by operators that need it?
+		if (rootModelObj != null) {
+			if (instanceMID == null) {
+				//TODO MMINT[FILES] In memory when serialized too? Need a resource listener for changes to the file
+				inMemoryRootModelObj = rootModelObj;
+			}
+			else {
+				FileUtils.writeModelFile(rootModelObj, newModelPath, true);
+			}
 		}
 		Model newModel = super.createThisEClass();
 		this.addInstance(
@@ -971,9 +954,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException {
+	public Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception {
 
-		Model newModel = this.createInstance(newModelUri, instanceMID);
+		Model newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
 		if (instanceMID != null) {
 			newModel.createInstanceEditor();
 		}
@@ -984,17 +967,20 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model importInstance(String modelUri, MID instanceMID) throws MMINTException {
+	public Model importInstance(String modelPath, MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
+		if (!FileUtils.isFile(modelPath, true)) {
+			throw new MMINTException("Missing ECore model file " + modelPath);
+		}
 
 		Model newModel = super.createThisEClass();
 		this.addInstance(
 			newModel,
-			modelUri,
-			FileUtils.getFileNameFromPath(modelUri),
+			modelPath,
+			FileUtils.getFileNameFromPath(modelPath),
 			ModelOrigin.IMPORTED,
-			FileUtils.getFileExtensionFromPath(modelUri),
+			FileUtils.getFileExtensionFromPath(modelPath),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -1004,9 +990,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException {
+	public Model importInstanceAndEditor(String modelPath, MID instanceMID) throws MMINTException {
 
-		Model newModel = this.importInstance(modelUri, instanceMID);
+		Model newModel = this.importInstance(modelPath, instanceMID);
 		if (instanceMID != null) {
 			newModel.createInstanceEditor();
 		}
@@ -1034,7 +1020,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		catch (Exception e) {
 			throw new MMINTException("Error copying model file");
 		}
-		Model newModel = createInstance(newModelUri, instanceMID);
+		Model newModel = this.createInstance(newModelUri, instanceMID);
 
 		return newModel;
 	}

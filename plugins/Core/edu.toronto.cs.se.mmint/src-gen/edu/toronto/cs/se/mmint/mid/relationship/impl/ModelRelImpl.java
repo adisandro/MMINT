@@ -675,17 +675,17 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
-	public Model createInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+	public Model createInstance(EObject rootModelObj, String newModelRelPath, MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		ModelRel newModelRel = super.createThisEClass();
 		this.addInstance(
 			newModelRel,
-			newModelRelUri,
-			(newModelRelUri == null) ? null : FileUtils.getFileNameFromPath(newModelRelUri),
+			newModelRelPath,
+			FileUtils.getFileNameFromPath(newModelRelPath),
 			ModelOrigin.CREATED,
-			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromPath(newModelRelUri),
+			FileUtils.getFileExtensionFromPath(newModelRelPath),
 			MIDLevel.INSTANCES,
 			instanceMID);
 

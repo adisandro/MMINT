@@ -223,47 +223,44 @@ public interface Model extends GenericElement {
 	void openType() throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID.
-	 * 
-	 * @param newModelUri
-	 *            The uri of the new model.
-	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be contained in one.
-	 * @return The created model.
-	 * @throws MMINTException
-	 *             If this is not a model type, or if the uri of the new model instance is already registered in the
-	 *             Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
-	 * @generated
-	 */
-	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;
-
-	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID.
+	 * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID. Possibly
+	 * creates the ECore model file in the process.
+	 * <p>
+	 * Can be invoked in 4 ways:
+	 * <ol>
+	 * <li>(null, str, null) model file not created, model not added to the MID;
+	 * <li>(obj, str, null) model root kept in memory ({@link #getEMFInstanceRoot()} works as expected), model not added
+	 * to the MID;
+	 * <li>(null, str, mid) model file not created, model added to the MID;
+	 * <li>(obj, str, mid) model file created, model added to the MID.
+	 * </ol>
+	 * </p>
 	 * 
 	 * @param rootModelObj
-	 *            The root of the underlying ECore model.
+	 *            The root of the ECore model. Can be null if the ECore model file is going to be created separately.
 	 * @param newModelPath
-	 *            The file path of the new model (the model name is taken from the file name). When instanceMID is null,
-	 *            it is just a name for the model.
+	 *            The file path of the ECore model (the model name is taken from the file name). When instanceMID is
+	 *            null, it is just a name for the model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model is not going to be contained in one and the ECore model file not
-	 *            going to be created.
+	 *            An Instance MID. Can be null if the model is not going to be contained in one and the ECore model file
+	 *            not going to be created.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is not a model type, or if the uri of the new model instance is already registered in the
-	 *             Instance MID. <!-- end-user-doc -->
+	 *             If this is not a model type, or the path of the new model instance is already registered in the
+	 *             Instance MID.
+	 * @throws Exception
+	 *             If the ECore model file could not be created or overwritten. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" rootModelObjRequired="true"
 	 *        newModelPathRequired="true"
 	 * @generated
 	 */
-	Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, Exception;
+	Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model instance.
 	 * 
 	 * @throws MMINTException
-	 *             If this is not a model instance, or if there are no editor types registered for this model instance's
+	 *             If this is not a model instance, or there are no editor types registered for this model instance's
 	 *             type. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
@@ -271,28 +268,45 @@ public interface Model extends GenericElement {
 	Editor createInstanceEditor() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to an Instance MID,
-	 * together with an editor for it.
+	 * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, together
+	 * with an editor for it. Possibly creates the ECore model file in the process.
+	 * <p>
+	 * Can be invoked in 4 ways:
+	 * <ol>
+	 * <li>(null, str, null) model file not created, model not added to the MID, editor not created;
+	 * <li>(obj, str, null) model root kept in memory ({@link #getEMFInstanceRoot()} works as expected), model not added
+	 * to the MID, editor not created;
+	 * <li>(null, str, mid) model file not created, model added to the MID, editor created;
+	 * <li>(obj, str, mid) model file created, model added to the MID, editor created.
+	 * </ol>
+	 * </p>
 	 * 
-	 * @param newModelUri
-	 *            The uri of the new model.
+	 * @param rootModelObj
+	 *            The root of the ECore model. Can be null if the ECore model file is going to be created separately.
+	 * @param newModelPath
+	 *            The file path of the ECore model (the model name is taken from the file name). When instanceMID is
+	 *            null, it is just a name for the model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to it and the editor is not going to be
-	 *            created.
+	 *            An Instance MID. Can be null if the model is not going to be contained in one, the editor and the
+	 *            ECore model file not going to be created.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is not a model type, if the uri of the new model instance is already registered in the
-	 *             Instance MID, or if there are no editor types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, the path of the new model instance is already registered in the Instance
+	 *             MID, or there are no editor types registered for this model type.
+	 * @throws Exception
+	 *             If the ECore model file could not be created or overwritten.
+	 * @see #createInstance(EObject, String, MID) <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
+	 *        instanceMIDRequired="true"
 	 * @generated
 	 */
-	Model createInstanceAndEditor(String newModelUri, MID instanceMID) throws MMINTException;
+	Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Imports and possibly adds an already existing model instance of this model type to an
 	 * Instance MID.
 	 * 
-	 * @param modelUri
+	 * @param modelPath
 	 *            The uri of the model to import.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to it.
@@ -303,13 +317,13 @@ public interface Model extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
 	 * @generated
 	 */
-	Model importInstance(String modelUri, MID instanceMID) throws MMINTException;
+	Model importInstance(String modelPath, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Imports and possibly adds a model instance of this model type to an Instance MID,
 	 * together with an editor for it.
 	 * 
-	 * @param modelUri
+	 * @param modelPath
 	 *            The uri of the model to import.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model isn't going to be added to it and the editor is not going to be
@@ -321,7 +335,7 @@ public interface Model extends GenericElement {
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Model importInstanceAndEditor(String modelUri, MID instanceMID) throws MMINTException;
+	Model importInstanceAndEditor(String modelPath, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID, copying its

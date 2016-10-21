@@ -273,28 +273,25 @@
     <eOperations name="getEMFTypeRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"
         eExceptions="#//MMINTException"/>
     <eOperations name="openType" eExceptions="#//operator/Exception"/>
-    <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" eType="#//MID"/>
-    </eOperations>
     <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//operator/Exception">
-      <eParameters name="rootModelObj" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="rootModelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="createInstanceEditor" lowerBound="1" eType="#//editor/Editor"
         eExceptions="#//MMINTException"/>
-    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//operator/Exception">
+      <eParameters name="rootModelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="importInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="importInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+      <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="copyInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
