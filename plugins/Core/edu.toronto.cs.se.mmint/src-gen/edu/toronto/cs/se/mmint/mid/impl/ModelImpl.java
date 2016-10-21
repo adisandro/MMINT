@@ -459,13 +459,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID:
-				try {
-					return createInstance((String)arguments.get(0), (MID)arguments.get(1));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID:
 				try {
 					return createInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
@@ -482,7 +475,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				}
 			case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID:
 				try {
-					return createInstanceAndEditor((String)arguments.get(0), (MID)arguments.get(1));
+					return createInstanceAndEditor((EObject) arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -845,8 +838,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	}
 
 	/**
-	 * Adds a model instance of this model type to an Instance or Workflow MID, or simply adds additional info to the
-	 * model instance.
+	 * Adds an instance of this model type to an Instance or Workflow MID, or simply adds additional info to the model
+	 * instance.
 	 * 
 	 * @param newModel
 	 *            The new model to be added.
@@ -1003,36 +996,23 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException {
+	public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
-		// copy model
-		String newModelUri = FileUtils.replaceFileNameInPath(origModel.getUri(), newModelName);
-		try {
-			FileUtils.copyTextFileAndReplaceText(
-				origModel.getUri(),
-				newModelUri,
-				origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
-				newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
-				true);
-		}
-		catch (Exception e) {
-			throw new MMINTException("Error copying model file");
-		}
-		Model newModel = this.createInstance(newModelUri, instanceMID);
+		String newModelPath = FileUtils.replaceFileNameInPath(origModel.getUri(), newModelName);
 
-		return newModel;
+		return this.createInstance(origModel.getEMFInstanceRoot(), newModelPath, instanceMID);
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException {
+	public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws Exception {
 
 		Model newModel = copyInstance(origModel, newModelName, instanceMID);
 		// copy diagrams
-		if (copyDiagram) {
+		if (copyDiagram && instanceMID != null) {
 			for (Editor oldEditor : origModel.getEditors()) {
 				if (oldEditor.getUri().equals(origModel.getUri())) {
 					continue;

@@ -391,21 +391,21 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				}
 			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID:
 				try {
-					return createInstanceAndEndpoints((String)arguments.get(0), (EList<Model>)arguments.get(1), (MID)arguments.get(2));
+					return createInstanceAndEndpoints((EObject) arguments.get(0), (String)arguments.get(1), (EList<Model>)arguments.get(2), (MID)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
 			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID:
 				try {
-					return createBinaryInstance((String)arguments.get(0), (MID)arguments.get(1));
+					return createBinaryInstance((EObject) arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
 			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID:
 				try {
-					return createBinaryInstanceAndEndpoints((String)arguments.get(0), (Model)arguments.get(1), (Model)arguments.get(2), (MID)arguments.get(3));
+					return createBinaryInstanceAndEndpoints((EObject) arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Model)arguments.get(3), (MID)arguments.get(4));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -628,8 +628,8 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
 
 	/**
-	 * Adds a model relationship instance of this model relationship type to an Instance or Workflow MID, or simply adds
-	 * additional info to the model relationship instance.
+	 * Adds an instance of this model relationship type to an Instance or Workflow MID, or simply adds additional info
+	 * to the model relationship instance.
 	 * 
 	 * @param newModelRel
 	 *            The new model relationship to be added.
@@ -672,20 +672,41 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Creates and possibly adds an instance of this model relationship type to an Instance MID.
+	 * <p>
+	 * (Support for model relationships in their own ECore file is future work, i.e. rootModelRelObj is always null)
+	 * <p>
+	 * Can be invoked in 2 ways:
+	 * <ol>
+	 * <li>(null, str, null) model rel file not created, model rel not added to the MID;
+	 * <li>(null, str, mid) model rel file not created, model rel added to the MID;
+	 * </ol>
+	 * </p>
+	 * 
+	 * @param rootModelRelObj
+	 *            Always considered to be null.
+	 * @param newModelRelName
+	 *            The name for the model relationship.
+	 * @param instanceMID
+	 *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
+	 * @return The created model relationship.
+	 * @throws MMINTException
+	 *             If this is not a model relationship type.
 	 * @generated NOT
 	 */
 	@Override
-	public Model createInstance(EObject rootModelObj, String newModelRelPath, MID instanceMID) throws MMINTException {
+	public Model createInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
+		//TODO MMINT[EDITOR] Add editor for modelrel too and relative api?
 		ModelRel newModelRel = super.createThisEClass();
 		this.addInstance(
 			newModelRel,
-			newModelRelPath,
-			FileUtils.getFileNameFromPath(newModelRelPath),
+			null,
+			FileUtils.getFileNameFromPath(newModelRelName),
 			ModelOrigin.CREATED,
-			FileUtils.getFileExtensionFromPath(newModelRelPath),
+			FileUtils.getFileExtensionFromPath(newModelRelName),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -693,23 +714,37 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	}
 
 	/**
+	 * Adds model instance endpoints to a model relationship instance.
+	 * 
+	 * @param modelRel
+	 *            The model relationship.
+	 * @param endpointModels
+	 *            The model endpoints to be added.
+	 * @throws MMINTException
+	 *             If the model endpoints are not allowed for the model relationship.
 	 * @generated NOT
 	 */
-	public ModelRel createInstanceAndEndpoints(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException {
+	protected void addInstanceEndpoints(ModelRel modelRel, EList<Model> endpointModels) throws MMINTException {
+
+		for (Model endpointModel : endpointModels) {
+			String modelTypeEndpointId = MIDConstraintChecker.getAllowedModelEndpoints(modelRel, null, endpointModel).get(0);
+			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointId);
+			modelTypeEndpoint.createInstance(endpointModel, modelRel);
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 		if (endpointModels.size() == 0) {
 			throw new MMINTException("No endpoint models specified");
 		}
 
-		// create model rel
-		ModelRel newModelRel = (ModelRel) this.createInstance(newModelRelUri, instanceMID);
-		// create model rel endpoints
-		for (Model endpointModel : endpointModels) {
-			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
-			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstance(endpointModel, newModelRel);
-		}
+		ModelRel newModelRel = (ModelRel) this.createInstance(rootModelRelObj, newModelRelName, instanceMID);
+		this.addInstanceEndpoints(newModelRel, endpointModels);
 
 		return newModelRel;
 	}
@@ -717,17 +752,17 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException {
+	public BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
 
 		BinaryModelRel newModelRel = super.createThisBinaryEClass();
 		this.addInstance(
 			newModelRel,
-			newModelRelUri,
-			(newModelRelUri == null) ? null : FileUtils.getFileNameFromPath(newModelRelUri),
+			null,
+			FileUtils.getFileNameFromPath(newModelRelName),
 			ModelOrigin.CREATED,
-			(newModelRelUri == null) ? MMINT.EMPTY_MODEL_FILE_EXTENSION : FileUtils.getFileExtensionFromPath(newModelRelUri),
+			FileUtils.getFileExtensionFromPath(newModelRelName),
 			MIDLevel.INSTANCES,
 			instanceMID);
 
@@ -737,21 +772,18 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public BinaryModelRel createBinaryInstanceAndEndpoints(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException {
+	public BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws Exception {
 
 		MMINTException.mustBeType(this);
+		if (endpointSourceModel == null || endpointTargetModel == null) {
+			throw new MMINTException("One or both endpoint models not specified");
+		}
 
-		// create model rel
-		BinaryModelRel newModelRel = this.createBinaryInstance(newModelRelUri, instanceMID);
+		BinaryModelRel newModelRel = this.createBinaryInstance(rootModelRelObj, newModelRelName, instanceMID);
 		EList<Model> endpointModels = new BasicEList<>();
 		endpointModels.add(endpointSourceModel);
 		endpointModels.add(endpointTargetModel);
-		// create model rel endpoints
-		for (Model endpointModel : endpointModels) {
-			String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, endpointModel).get(0);
-			ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-			modelTypeEndpoint.createInstance(endpointModel, newModelRel);
-		}
+		this.addInstanceEndpoints(newModelRel, endpointModels);
 
 		return newModelRel;
 	}
@@ -762,6 +794,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * 
 	 * @param origModelRel
 	 *            The original model relationship instance to be copied into the new one.
+	 * @param newModelRelName The name of the new model relationship.
 	 * @param instanceMID
 	 *            An Instance MID, null if the model relationship isn't going to be contained in one.
 	 * @return The created model relationship.
@@ -771,13 +804,12 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
-	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
+	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws Exception {
 
 		// create initial empty copy
 		ModelRel newModelRel = (origModelRel instanceof BinaryModelRel) ?
-			this.createBinaryInstance(null, instanceMID) :
-			(ModelRel) this.createInstance(null, instanceMID);
-		newModelRel.setName(newModelRelName);
+			this.createBinaryInstance(null, newModelRelName, instanceMID) :
+			(ModelRel) this.createInstance(null, newModelRelName, instanceMID);
 
 		// models
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();

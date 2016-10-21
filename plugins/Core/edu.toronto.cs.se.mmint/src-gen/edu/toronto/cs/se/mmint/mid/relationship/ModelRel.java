@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.relationship;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -181,64 +182,94 @@ public interface ModelRel extends Model {
 	ResourceSet getOutlineResourceTypes() throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model relationship instance of this model relationship type to an
-	 * Instance MID, together with its model instance endpoints.
+	 * <!-- begin-user-doc --> Creates and possibly adds an instance of this model relationship type to an Instance MID,
+	 * together with its model instance endpoints.
+	 * <p>
+	 * (Support for model relationships in their own ECore file is future work, i.e. rootModelRelObj is always null)
+	 * <p>
+	 * Can be invoked in 2 ways:
+	 * <ol>
+	 * <li>(null, str, models, null) model rel file not created, model rel not added to the MID;
+	 * <li>(null, str, models, mid) model rel file not created, model rel added to the MID;
+	 * </ol>
+	 * </p>
 	 * 
-	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
-	 *            e.g. a standalone model relationship is in its own file, a simple model relationship is not.
+	 * @param rootModelRelObj
+	 *            Always considered to be null.
+	 * @param newModelRelName
+	 *            The name for the model relationship.
 	 * @param endpointModels
 	 *            The endpoint models.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model relationship isn't going to be contained in one.
+	 *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
 	 * @return The created model relationship.
 	 * @throws MMINTException
-	 *             If this is not a model relationship type, if no endpoint models are specified, or if the uri of the
-	 *             new model relationship is already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true" endpointModelsMany="true"
+	 *             If this is not a model relationship type, or no endpoint models are specified. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true"
+	 *        endpointModelsMany="true"
 	 * @generated
 	 */
-	ModelRel createInstanceAndEndpoints(String newModelRelUri, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
+	ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a binary model relationship instance of this model relationship
-	 * type to an Instance MID.
+	 * <!-- begin-user-doc --> Creates and possibly adds a binary instance of this model relationship type to an
+	 * Instance MID, together with its model instance endpoints.
+	 * <p>
+	 * (Support for model relationships in their own ECore file is future work, i.e. rootModelRelObj is always null)
+	 * <p>
+	 * Can be invoked in 2 ways:
+	 * <ol>
+	 * <li>(null, str, null) model rel file not created, model rel not added to the MID;
+	 * <li>(null, str, mid) model rel file not created, model rel added to the MID;
+	 * </ol>
+	 * </p>
 	 * 
-	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
-	 *            e.g. a standalone model relationship is in its own file, a simple model relationship is not.
+	 * @param rootModelRelObj
+	 *            Always considered to be null.
+	 * @param newModelRelName
+	 *            The name for the model relationship.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model relationship isn't going to be contained in one.
+	 *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
 	 * @return The created binary model relationship.
 	 * @throws MMINTException
-	 *             If this is not a model relationship type, or if the uri of the new model relationship is already
-	 *             registered in the Instance MID. <!-- end-user-doc -->
+	 *             If this is not a model relationship type. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
 	 * @generated
 	 */
-	BinaryModelRel createBinaryInstance(String newModelRelUri, MID instanceMID) throws MMINTException;
+	BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and possibly adds a binary model relationship instance of this model relationship
-	 * type to an Instance MID, together with its model instance endpoints.
+	 * <!-- begin-user-doc --> Creates and possibly adds a binary instance of this model relationship type to an
+	 * Instance MID, together with its model instance endpoints.
+	 * <p>
+	 * (Support for model relationships in their own ECore file is future work, i.e. rootModelRelObj is always null)
+	 * <p>
+	 * Can be invoked in 2 ways:
+	 * <ol>
+	 * <li>(null, str, model, model, null) model rel file not created, model rel not added to the MID;
+	 * <li>(null, str, model, model, mid) model rel file not created, model rel added to the MID;
+	 * </ol>
+	 * </p>
 	 * 
-	 * @param newModelRelUri
-	 *            The uri of the new model relationship, null if the new model relationship is not in a separate file;
-	 *            e.g. a standalone model relationship is in its own files, a simple model relationship is not.
+	 * @param rootModelRelObj
+	 *            Always considered to be null.
+	 * @param newModelRelName
+	 *            The name for the model relationship.
 	 * @param endpointSourceModel
 	 *            The source endpoint model.
 	 * @param endpointTargetModel
 	 *            The target endpoint model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model relationship isn't going to be contained in one.
+	 *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
 	 * @return The created binary model relationship.
 	 * @throws MMINTException
-	 *             If this is not a model relationship type, or if the uri of the new model relationship is already
-	 *             registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
+	 *             If this is not a model relationship type, or one endpoint model is not specified. <!-- end-user-doc
+	 *             -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true"
+	 *        endpointTargetModelRequired="true"
 	 * @generated
 	 */
-	BinaryModelRel createBinaryInstanceAndEndpoints(String newModelRelUri, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
+	BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the model instance resources to be used in the Relationship diagram outline for this

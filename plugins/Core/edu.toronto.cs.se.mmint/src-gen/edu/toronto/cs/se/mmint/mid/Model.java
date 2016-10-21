@@ -303,80 +303,105 @@ public interface Model extends GenericElement {
 	Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Imports and possibly adds an already existing model instance of this model type to an
-	 * Instance MID.
+	 * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, importing an
+	 * already existing ECore model file.
 	 * 
 	 * @param modelPath
-	 *            The uri of the model to import.
+	 *            The file path of the ECore model (the model name is taken from the file name).
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to it.
+	 *            An Instance MID. Can be null if the model is not going to be contained in one.
 	 * @return The imported model.
 	 * @throws MMINTException
-	 *             If this is not a model type, or if the uri of the imported model instance is already registered in
-	 *             the Instance MID. <!-- end-user-doc -->
+	 *             If this is not a model type, or the path of the imported model instance is already registered in the
+	 *             Instance MID. <!-- end-user-doc -->
 	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
 	 * @generated
 	 */
 	Model importInstance(String modelPath, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Imports and possibly adds a model instance of this model type to an Instance MID,
-	 * together with an editor for it.
+	 * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, together
+	 * with an editor for it, importing an already existing ECore model file.
 	 * 
 	 * @param modelPath
-	 *            The uri of the model to import.
+	 *            The file path of the ECore model (the model name is taken from the file name).
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to it and the editor is not going to be
-	 *            created.
+	 *            An Instance MID. Can be null if the model is not going to be contained in one and the editor not going
+	 *            to be created.
 	 * @return The imported model.
 	 * @throws MMINTException
-	 *             If this is not a model type, if the uri of the imported model instance is already registered in the
-	 *             Instance MID, or if there are no editor types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, or the path of the imported model instance is already registered in the
+	 *             Instance MID, or there are no editor types registered for this model type. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
+	 *        instanceMIDRequired="true"
 	 * @generated
 	 */
 	Model importInstanceAndEditor(String modelPath, MID instanceMID) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID, copying its
-	 * structure from another model instance.
+	 * <!-- begin-user-doc --> Copies an existing instance of this model type and possibly adds it to an Instance MID.
+	 * Possibly copies the ECore model file in the process.
+	 * <p>
+	 * Can be invoked in 2 ways:
+	 * <ol>
+	 * <li>(model, str, null) model root copied in memory ({@link #getEMFInstanceRoot()} works as expected), model not
+	 * added to the MID;
+	 * <li>(model, str, mid) model file copied, model added to the MID.
+	 * </ol>
+	 * </p>
 	 * 
 	 * @param origModel
-	 *            The original model instance to be copied into the new one.
+	 *            The original model instance to be copied.
 	 * @param newModelName
 	 *            The name of the new model.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to it.
+	 *            An Instance MID. Can be null if the model is not going to be contained in one and the ECore model file
+	 *            not going to be copied.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is not a model type, if the model file can't be copied, if the uri of the new model instance
-	 *             is already registered in the Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, or the path of the new model instance is already registered in the
+	 *             Instance MID.
+	 * @throws Exception
+	 *             If the ECore model file could not be copied. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
+	 *        newModelNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
+	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws Exception;
 
 	/**
-	 * <!-- begin-user-doc --> Creates and adds a model instance of this model type to an Instance MID, together with an
-	 * editor for it, copying its structure from another model instance and possibly all diagrams for it.
+	 * <!-- begin-user-doc --> Copies an existing instance of this model type and possibly adds it to an Instance MID,
+	 * together with an editor for it. Possibly copies the ECore model file and the GMF diagram files in the process.
+	 * <p>
+	 * Can be invoked in 3 ways:
+	 * <ol>
+	 * <li>(model, str, true/false, null) model root copied in memory ({@link #getEMFInstanceRoot()} works as expected),
+	 * diagram files not copied, model not added to the MID;
+	 * <li>(model, str, false, mid) model file copied, diagram files not copied, model added to the MID.
+	 * <li>(model, str, true, mid) model file copied, diagram files copied, model added to the MID.
+	 * </ol>
+	 * </p>
 	 * 
 	 * @param origModel
-	 *            The original model instance to be copied into the new one.
+	 *            The original model instance to be copied.
 	 * @param newModelName
 	 *            The name of the new model.
 	 * @param copyDiagram
-	 *            True if the diagrams for the original model should be copied, false otherwise.
+	 *            True if the GMF diagrams for the original model should be copied, false otherwise.
 	 * @param instanceMID
-	 *            An Instance MID, null if the model isn't going to be added to it.
+	 *            An Instance MID. Can be null if the model is not going to be contained in one, the ECore model file
+	 *            and the GMF diagram files not going to be copied.
 	 * @return The created model.
 	 * @throws MMINTException
-	 *             If this is not a model type, if the model file can't be copied, if the uri of the new model instance
-	 *             is already registered in the Instance MID, or if there are no editor types registered for this model
-	 *             type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
+	 *             If this is not a model type, the path of the new model instance is already registered in the Instance
+	 *             MID, or there are no editor types registered for this model type.
+	 * @throws Exception
+	 *             If the ECore model file or the GMF diagram files could not be copied. <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
+	 *        newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException;
+	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID that contains it.

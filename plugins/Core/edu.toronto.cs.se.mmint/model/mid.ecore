@@ -293,12 +293,12 @@
       <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
-    <eOperations name="copyInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
+    <eOperations name="copyInstance" lowerBound="1" eType="#//Model" eExceptions="#//operator/Exception">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
     </eOperations>
-    <eOperations name="copyInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
+    <eOperations name="copyInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//operator/Exception">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="copyDiagram" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -613,19 +613,22 @@
       <eOperations name="getOutlineResourceTypes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
           eExceptions="#//MMINTException"/>
       <eOperations name="createInstanceAndEndpoints" lowerBound="1" eType="#//relationship/ModelRel"
-          eExceptions="#//MMINTException">
-        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eExceptions="#//operator/Exception">
+        <eParameters name="rootModelRelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelRelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="endpointModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
         <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="createBinaryInstance" lowerBound="1" eType="#//relationship/BinaryModelRel"
-          eExceptions="#//MMINTException">
-        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eExceptions="#//operator/Exception">
+        <eParameters name="rootModelRelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelRelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="createBinaryInstanceAndEndpoints" lowerBound="1" eType="#//relationship/BinaryModelRel"
-          eExceptions="#//MMINTException">
-        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eExceptions="#//operator/Exception">
+        <eParameters name="rootModelRelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelRelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="endpointSourceModel" lowerBound="1" eType="#//Model"/>
         <eParameters name="endpointTargetModel" lowerBound="1" eType="#//Model"/>
         <eParameters name="instanceMID" eType="#//MID"/>
