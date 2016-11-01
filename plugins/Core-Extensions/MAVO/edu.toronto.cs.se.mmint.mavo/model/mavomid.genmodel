@@ -12,11 +12,12 @@
       childCreationExtenders="true" ecorePackage="mavomid.ecore#/">
     <genClasses ecoreClass="mavomid.ecore#//MAVOModel">
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/createInstance">
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/newModelUri"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/rootModelObj"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/newModelPath"/>
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/createInstance/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/importInstance">
-        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/modelUri"/>
+        <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/modelPath"/>
         <genParameters ecoreParameter="mavomid.ecore#//MAVOModel/importInstance/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mavomid.ecore#//MAVOModel/validateInstanceInEditor">

@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.match;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -126,13 +127,12 @@ public class ModelMatch extends OperatorImpl {
 		}
 	}
 
-	private ModelRel match(List<Model> models, MID instanceMID) throws MMINTException {
+	private ModelRel match(List<Model> models, MID instanceMID) throws MMINTException, IOException {
 
 		// create model relationship among models
 		ModelRel matchRel = (models.size() == 2) ?
-			MIDTypeHierarchy.getRootModelRelType().createBinaryInstance(null, instanceMID) :
-			(ModelRel) MIDTypeHierarchy.getRootModelRelType().createInstance(null, instanceMID);
-		matchRel.setName(MODELREL_NAME);
+			MIDTypeHierarchy.getRootModelRelType().createBinaryInstance(null, MODELREL_NAME, instanceMID) :
+			(ModelRel) MIDTypeHierarchy.getRootModelRelType().createInstance(null, MODELREL_NAME, instanceMID);
 		// loop through selected models
 		ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
 		Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();

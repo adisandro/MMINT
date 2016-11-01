@@ -43,7 +43,7 @@ public class StateToEconomy extends ATLConversionOperator {
 		StateToEconomy_M2M atl = new StateToEconomy_M2M();
 		atl.loadModels(inputModel.getUri());
 		atl.doStateToEconomy_M2M(new NullProgressMonitor());
-		atl.saveModels(convertedModelUri);
+		atl.saveModels(convertedModelPath);
 
 		// output
 		super.createConvertedModel(EconomyPackage.eNS_URI, instanceMID);

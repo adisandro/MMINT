@@ -202,10 +202,9 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		}
 
 		// output
-		String randomGraphModelUri = FileUtils.replaceLastSegmentInPath(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
-		FileUtils.writeModelFile(randomGraph, randomGraphModelUri, true);
+		String randomGraphModelPath = FileUtils.replaceLastSegmentInPath(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
 		Model graphModelType = MIDTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
-		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, instanceMID);
+		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraph, randomGraphModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, randomGraphModel);
 

@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.impl.ModelImpl;
 
+import java.io.IOException;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IStatus;
@@ -31,6 +32,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -270,10 +272,12 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	 * @generated NOT
 	 */
 	@Override
-	public Model createInstance(String newModelUri, MID instanceMID) throws MMINTException {
+	public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
-		MAVOModel newMAVOModel = (MAVOModel) super.createInstance(newModelUri, instanceMID);
-		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
+		MAVOModel newMAVOModel = (MAVOModel) super.createInstance(rootModelObj, newModelPath, instanceMID);
+		if (rootModelObj != null) {
+			MAVOUtils.initializeMAVOModel(rootModelObj, newMAVOModel);
+		}
 
 		return newMAVOModel;
 	}
@@ -281,9 +285,9 @@ public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
 	 * @generated NOT
 	 */
-	public Model importInstance(String modelUri, MID instanceMID) throws MMINTException {
+	public Model importInstance(String modelPath, MID instanceMID) throws MMINTException {
 
-		MAVOModel newMAVOModel = (MAVOModel) super.importInstance(modelUri, instanceMID);
+		MAVOModel newMAVOModel = (MAVOModel) super.importInstance(modelPath, instanceMID);
 		MAVOUtils.initializeMAVOModel(newMAVOModel.getEMFInstanceRoot(), newMAVOModel);
 
 		return newMAVOModel;

@@ -126,12 +126,9 @@ public class ModelSlice extends OperatorImpl {
 		Model model = inputsByName.get(IN_MODEL);
 		this.init();
 
-		String sliceModelUri = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
+		String sliceModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(model.getUri(), SLICE_MODEL_SUFFIX), true, false);
 		EObject sliceRootModelObj = this.slice(model.getEMFInstanceRoot());
-		FileUtils.writeModelFile(sliceRootModelObj, sliceModelUri, true);
-		Model sliceModel = (isUpdateMID()) ?
-			model.getMetatype().createInstanceAndEditor(sliceModelUri, outputMIDsByName.get(OUT_MODEL)) :
-			model.getMetatype().createInstance(sliceModelUri, null);
+		Model sliceModel = model.getMetatype().createInstanceAndEditor(sliceRootModelObj, sliceModelPath, outputMIDsByName.get(OUT_MODEL));
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();

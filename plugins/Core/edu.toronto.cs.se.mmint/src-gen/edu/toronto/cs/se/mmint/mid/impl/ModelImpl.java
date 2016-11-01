@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -473,9 +474,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID:
+			case MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID:
 				try {
-					return createInstanceAndEditor((EObject) arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
+					return createInstanceAndEditor((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -876,7 +877,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception {
+	public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
 		MMINTException.mustBeType(this);
 
@@ -947,7 +948,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception {
+	public Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
 		Model newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
 		if (instanceMID != null) {
@@ -996,7 +997,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws Exception {
+	public Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException, IOException {
 
 		MMINTException.mustBeType(this);
 
@@ -1008,7 +1009,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	/**
 	 * @generated NOT
 	 */
-	public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws Exception {
+	public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException, IOException {
 
 		Model newModel = copyInstance(origModel, newModelName, instanceMID);
 		// copy diagrams

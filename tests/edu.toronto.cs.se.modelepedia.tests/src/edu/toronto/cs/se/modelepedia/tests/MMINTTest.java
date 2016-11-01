@@ -67,11 +67,11 @@ public abstract class MMINTTest {
 	protected @NonNull Model addInputModel(MID instanceMID, Bundle testBundle, String bundleDir, String bundleFilename) throws Exception {
 
 		URL bundleModelUrl = testBundle.findEntries(bundleDir, bundleFilename, false).nextElement();
-		String inputModelUri = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
+		String inputModelPath = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
 		Path bundlePath = Paths.get(FileLocator.toFileURL(bundleModelUrl).getFile().toString());
-		Path inputPath = Paths.get(FileUtils.prependWorkspacePath(inputModelUri));
+		Path inputPath = Paths.get(FileUtils.prependWorkspacePath(inputModelPath));
 		Files.copy(bundlePath, inputPath, StandardCopyOption.REPLACE_EXISTING);
-		Model inputModel =  MIDTypeHierarchy.getRootModelType().createInstance(inputModelUri, instanceMID);
+		Model inputModel =  MIDTypeHierarchy.getRootModelType().createInstance(null, inputModelPath, instanceMID);
 		FileUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return inputModel;

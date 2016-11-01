@@ -16,7 +16,11 @@ import edu.toronto.cs.se.mmint.MMINTException;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 
 /**
@@ -38,19 +42,19 @@ public interface MAVOModel extends Model, MAVORoot {
 	 * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException edu.toronto.cs.se.mmint.mid.IOException" newModelPathRequired="true"
 	 * @generated
 	 */
-	Model createInstance(String newModelUri, MID instanceMID) throws MMINTException;
+	Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelPathRequired="true"
 	 * @generated
 	 */
-	Model importInstance(String modelUri, MID instanceMID) throws MMINTException;
+	Model importInstance(String modelPath, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc -->

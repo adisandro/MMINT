@@ -118,10 +118,10 @@ public class ModelRelMerge extends OperatorImpl {
 
 		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
+			modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName(),
 			model1,
 			model2,
 			instanceMID);
-		mergedRel.setName(modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName());
 		populate(mergedRel, modelRel1, instanceMID);
 		populate(mergedRel, modelRel2, instanceMID);
 

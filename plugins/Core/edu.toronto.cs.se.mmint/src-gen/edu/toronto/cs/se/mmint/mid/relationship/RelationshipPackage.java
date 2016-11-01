@@ -449,15 +449,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID;
-
-	/**
-	 * The operation id for the '<em>Create Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
@@ -476,7 +467,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -629,7 +620,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 6;
+	int MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = MIDPackage.MODEL_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -638,7 +629,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 7;
+	int MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -647,7 +638,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 8;
+	int MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = MIDPackage.MODEL_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1043,15 +1034,6 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MID = MODEL_REL___CREATE_INSTANCE__STRING_MID;
-
-	/**
-	 * The operation id for the '<em>Create Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
@@ -1070,7 +1052,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -1223,7 +1205,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+	int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1232,7 +1214,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -1241,7 +1223,7 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+	int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -3506,36 +3488,6 @@ public interface RelationshipPackage extends EPackage {
 	EOperation getModelRel__CopySubtype__ModelRel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Endpoints</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance And Endpoints</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
-	 * @generated
-	 */
-	EOperation getModelRel__CreateInstanceAndEndpoints__String_EList_MID();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Binary Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
-	 * @generated
-	 */
-	EOperation getModelRel__CreateBinaryInstance__String_MID();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpoints(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance And Endpoints</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Binary Instance And Endpoints</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpoints(java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID)
-	 * @generated
-	 */
-	EOperation getModelRel__CreateBinaryInstanceAndEndpoints__String_Model_Model_MID();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getOutlineResourceTypes() <em>Get Outline Resource Types</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3544,6 +3496,36 @@ public interface RelationshipPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelRel__GetOutlineResourceTypes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(org.eclipse.emf.ecore.EObject, java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Endpoints</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Instance And Endpoints</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createInstanceAndEndpoints(org.eclipse.emf.ecore.EObject, java.lang.String, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateInstanceAndEndpoints__EObject_String_EList_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstance(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Binary Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstance(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateBinaryInstance__EObject_String_MID();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpoints(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID) <em>Create Binary Instance And Endpoints</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Binary Instance And Endpoints</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.relationship.ModelRel#createBinaryInstanceAndEndpoints(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.Model, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getModelRel__CreateBinaryInstanceAndEndpoints__EObject_String_Model_Model_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel#getOutlineResourceInstances() <em>Get Outline Resource Instances</em>}' operation.
@@ -4495,12 +4477,20 @@ public interface RelationshipPackage extends EPackage {
 		EOperation MODEL_REL___COPY_SUBTYPE__MODELREL = eINSTANCE.getModelRel__CopySubtype__ModelRel();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = eINSTANCE.getModelRel__GetOutlineResourceTypes();
+
+		/**
 		 * The meta object literal for the '<em><b>Create Instance And Endpoints</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = eINSTANCE.getModelRel__CreateInstanceAndEndpoints__String_EList_MID();
+		EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = eINSTANCE.getModelRel__CreateInstanceAndEndpoints__EObject_String_EList_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Binary Instance</b></em>' operation.
@@ -4508,7 +4498,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = eINSTANCE.getModelRel__CreateBinaryInstance__String_MID();
+		EOperation MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = eINSTANCE.getModelRel__CreateBinaryInstance__EObject_String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Create Binary Instance And Endpoints</b></em>' operation.
@@ -4516,15 +4506,7 @@ public interface RelationshipPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateBinaryInstanceAndEndpoints__String_Model_Model_MID();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = eINSTANCE.getModelRel__GetOutlineResourceTypes();
+		EOperation MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateBinaryInstanceAndEndpoints__EObject_String_Model_Model_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Outline Resource Instances</b></em>' operation.

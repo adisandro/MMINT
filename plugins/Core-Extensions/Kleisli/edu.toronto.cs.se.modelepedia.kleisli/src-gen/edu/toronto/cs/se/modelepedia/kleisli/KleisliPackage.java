@@ -383,7 +383,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID;
+	int KLEISLI_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -401,7 +401,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int KLEISLI_MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -438,6 +438,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MIDPackage.MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL___DELETE_INSTANCE_AND_FILE = MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1285,7 +1294,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_MID;
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1303,7 +1312,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -1340,6 +1349,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int KLEISLI_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = RelationshipPackage.MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KLEISLI_MODEL_REL___DELETE_INSTANCE_AND_FILE = RelationshipPackage.MODEL_REL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -1411,7 +1429,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+	int KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1420,7 +1438,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -1429,7 +1447,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+	int KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.
@@ -1881,7 +1899,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1899,7 +1917,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -1936,6 +1954,15 @@ public interface KleisliPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_KLEISLI_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = KLEISLI_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_KLEISLI_MODEL_REL___DELETE_INSTANCE_AND_FILE = KLEISLI_MODEL_REL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -2007,7 +2034,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = KLEISLI_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -2016,7 +2043,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -2025,7 +2052,7 @@ public interface KleisliPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+	int BINARY_KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = KLEISLI_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.

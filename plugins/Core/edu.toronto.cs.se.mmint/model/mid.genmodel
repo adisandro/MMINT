@@ -19,6 +19,7 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
     </genEnums>
     <genDataTypes ecoreDataType="mid.ecore#//MMINTException"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IOException"/>
     <genDataTypes ecoreDataType="mid.ecore#//IStatus"/>
     <genDataTypes ecoreDataType="mid.ecore#//IValidationContext"/>
     <genClasses ecoreClass="mid.ecore#//MID">
@@ -108,25 +109,22 @@
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFTypeRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openType"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstance">
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/instanceMID"/>
-      </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//Model/createInstance.1">
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstance.1/rootModelObj"/>
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstance.1/newModelPath"/>
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstance.1/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceEditor"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceAndEditor">
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/importInstance">
-        <genParameters ecoreParameter="mid.ecore#//Model/importInstance/modelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstance/modelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/importInstance/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/importInstanceAndEditor">
-        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/modelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/modelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/copyInstance">
@@ -272,16 +270,19 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/endpointModels"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstance">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/newModelRelName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/newModelRelName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointSourceModel"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointTargetModel"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/instanceMID"/>

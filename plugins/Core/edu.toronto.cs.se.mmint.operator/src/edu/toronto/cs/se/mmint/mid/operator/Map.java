@@ -102,8 +102,8 @@ public class Map extends OperatorImpl {
 			FileUtils.replaceFileNameInPath(baseOutputPath, outputName + MAPPED_MID_SUFFIX),
 			true,
 			false);
-		FileUtils.writeModelFile(outputMID, outputMIDPath, true);
 		Model outputMIDModel = midModelType.createInstanceAndEditor(
+			outputMID,
 			outputMIDPath,
 			instanceMID);
 
@@ -235,10 +235,10 @@ public class Map extends OperatorImpl {
 				Model midrelMIDModel = instanceMID.getExtendibleElement(midrelMIDUri);
 				ModelRel midrelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 					null,
+					midrelMIDModel.getName(),
 					outputMIDModel,
 					midrelMIDModel,
 					instanceMID);
-				midrelRel.setName(midrelMIDModel.getName());
 			}
 		}
 		//TODO MMINT[OPERATOR] MIDOper's destiny? 

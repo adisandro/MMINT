@@ -72,11 +72,10 @@ public class Sum extends OperatorImpl {
 		Int sumModelObj = sum(intModel1, intModel2);
 
 		// output
-		String sumModelUri = FileUtils.replaceFileNameInPath(
+		String sumModelPath = FileUtils.replaceFileNameInPath(
 			intModel1.getUri(),
 			intModel1.getName() + SUM_SEPARATOR + intModel2.getName());
-		FileUtils.writeModelFile(sumModelObj, sumModelUri, true);
-		Model sumModel = intModel1.getMetatype().createInstanceAndEditor(sumModelUri, outputMIDsByName.get(OUT_INT));
+		Model sumModel = intModel1.getMetatype().createInstanceAndEditor(sumModelObj, sumModelPath, outputMIDsByName.get(OUT_INT));
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, sumModel);
 

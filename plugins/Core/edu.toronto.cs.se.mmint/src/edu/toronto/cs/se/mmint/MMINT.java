@@ -154,7 +154,6 @@ public class MMINT implements MMINTConstants {
 	 * - Turn updateMID into global option and use it directly into apis
 	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
 	 * - Review and unify all mid apis (e.g. add possibility to pass name)
-	 * - Create apis to create model and file (createInstance() + createModelFile())
 	 * - Add createBinaryInstance/Subtype() to Mapping
 	 * - Rethink link icons in mids with/without MAVO (problem is they're detached from the label)
 	 * - Add documentation ->

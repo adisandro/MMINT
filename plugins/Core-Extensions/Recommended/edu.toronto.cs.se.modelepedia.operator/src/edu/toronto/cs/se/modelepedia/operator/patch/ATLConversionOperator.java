@@ -13,6 +13,9 @@ package edu.toronto.cs.se.modelepedia.operator.patch;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+
+import java.io.IOException;
+
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -23,7 +26,7 @@ public abstract class ATLConversionOperator extends ConversionOperatorImpl {
 
 	protected Model inputModel;
 	protected Model convertedModel;
-	protected String convertedModelUri;
+	protected String convertedModelPath;
 
 	protected void init(String convertedModelFileExtension) {
 
@@ -38,13 +41,15 @@ public abstract class ATLConversionOperator extends ConversionOperatorImpl {
 				// modelName is ok
 			}
 		}
-		convertedModelUri = FileUtils.replaceLastSegmentInPath(inputModel.getUri(), modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
+		convertedModelPath = FileUtils.replaceLastSegmentInPath(
+			inputModel.getUri(),
+			modelName + MMINT.MODEL_FILENAMESUFFIX_SEPARATOR + System.currentTimeMillis() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + convertedModelFileExtension);
 	}
 
-	protected void createConvertedModel(String convertedModelTypeUri, MID instanceMID) throws MMINTException {
+	protected void createConvertedModel(String convertedModelTypeId, MID instanceMID) throws MMINTException, IOException {
 
-		Model convertedModelType = MIDTypeRegistry.getType(convertedModelTypeUri);
-		convertedModel = convertedModelType.createInstanceAndEditor(convertedModelUri, instanceMID);
+		Model convertedModelType = MIDTypeRegistry.getType(convertedModelTypeId);
+		convertedModel = convertedModelType.createInstanceAndEditor(null, convertedModelPath, instanceMID);
 	}
 
 	@Override

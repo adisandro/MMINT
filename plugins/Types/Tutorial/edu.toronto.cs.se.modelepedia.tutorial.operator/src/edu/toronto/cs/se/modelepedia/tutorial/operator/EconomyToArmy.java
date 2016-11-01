@@ -43,7 +43,7 @@ public class EconomyToArmy extends ATLConversionOperator {
 		EconomyToArmy_M2M atl = new EconomyToArmy_M2M();
 		atl.loadModels(inputModel.getUri());
 		atl.doEconomyToArmy_M2M(new NullProgressMonitor());
-		atl.saveModels(convertedModelUri);
+		atl.saveModels(convertedModelPath);
 
 		// output
 		super.createConvertedModel(ArmyPackage.eNS_URI, instanceMID);

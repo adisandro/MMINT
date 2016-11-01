@@ -398,7 +398,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID;
+	int FILE_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -416,7 +416,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int FILE_MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.

@@ -202,10 +202,10 @@ public class ChangeImpact extends OperatorImpl {
 		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
 		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpoints(
 			null,
+			OUT_MODELREL,
 			diffRel,
 			impactedModel,
 			outputMIDsByName.get(OUT_MODELREL));
-		newImpactModelRel.setName(OUT_MODELREL);
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 

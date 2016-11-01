@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class Union extends OperatorImpl {
 	// constants
 	private final static @NonNull String UNION_SEPARATOR = "+";
 
-	private @NonNull MID union(@NonNull List<Model> inputMIDModels) throws MMINTException {
+	private @NonNull MID union(@NonNull List<Model> inputMIDModels) throws MMINTException, IOException {
 
 		MID unionMID = MIDFactory.eINSTANCE.createMID();
 		// models only at first pass
@@ -50,7 +51,7 @@ public class Union extends OperatorImpl {
 						|| unionMID.getExtendibleElement(model.getUri()) != null) {
 					continue;
 				}
-				model.getMetatype().createInstanceAndEditor(model.getUri(), unionMID);
+				model.getMetatype().createInstanceAndEditor(null, model.getUri(), unionMID);
 			}
 		}
 		// model rels at second pass
@@ -80,12 +81,10 @@ public class Union extends OperatorImpl {
 		String unionMIDModelName = inputMIDModels.stream()
 			.map(Model::getName)
 			.collect(Collectors.joining(UNION_SEPARATOR));
-		String unionMIDModelUri = FileUtils.replaceFileNameInPath(
+		String unionMIDModelPath = FileUtils.replaceFileNameInPath(
 			MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
 			unionMIDModelName);
-		FileUtils.writeModelFile(unionMID, unionMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Model unionMIDModel = midModelType.createInstanceAndEditor(unionMIDModelUri, instanceMID);
+		Model unionMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(unionMID, unionMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, unionMIDModel);
 

@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -101,11 +103,11 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return newModelRelType;
 	}
 
-	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+	protected ModelRel doExecuteInstancesLevel() throws MMINTException, IOException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
 		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToCreate(null, null);
-		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, instanceMID);
+		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, "", instanceMID);
 
 		return newModelRel;
 	}
@@ -160,7 +162,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		catch (MMINTException e) {
+		catch (MMINTException | IOException e) {
 			MMINTException.print(IStatus.ERROR, "No model relationship created", e);
 			return CommandResult.newErrorCommandResult("No model relationship created");
 		}

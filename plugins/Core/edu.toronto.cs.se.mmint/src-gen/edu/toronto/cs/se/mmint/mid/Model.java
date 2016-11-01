@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid;
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -248,13 +250,12 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, or the path of the new model instance is already registered in the
 	 *             Instance MID.
-	 * @throws Exception
+	 * @throws IOException
 	 *             If the ECore model file could not be created or overwritten. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" rootModelObjRequired="true"
-	 *        newModelPathRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException edu.toronto.cs.se.mmint.mid.IOException" newModelPathRequired="true"
 	 * @generated
 	 */
-	Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception;
+	Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and adds an editor instance to this model instance.
@@ -293,14 +294,13 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, the path of the new model instance is already registered in the Instance
 	 *             MID, or there are no editor types registered for this model type.
-	 * @throws Exception
+	 * @throws IOException
 	 *             If the ECore model file could not be created or overwritten.
 	 * @see #createInstance(EObject, String, MID) <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelUriRequired="true"
-	 *        instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException edu.toronto.cs.se.mmint.mid.IOException" newModelPathRequired="true"
 	 * @generated
 	 */
-	Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws Exception;
+	Model createInstanceAndEditor(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, importing an
@@ -314,7 +314,7 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, or the path of the imported model instance is already registered in the
 	 *             Instance MID. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelPathRequired="true"
 	 * @generated
 	 */
 	Model importInstance(String modelPath, MID instanceMID) throws MMINTException;
@@ -332,8 +332,7 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, or the path of the imported model instance is already registered in the
 	 *             Instance MID, or there are no editor types registered for this model type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
-	 *        instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelPathRequired="true"
 	 * @generated
 	 */
 	Model importInstanceAndEditor(String modelPath, MID instanceMID) throws MMINTException;
@@ -361,13 +360,12 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, or the path of the new model instance is already registered in the
 	 *             Instance MID.
-	 * @throws Exception
+	 * @throws IOException
 	 *             If the ECore model file could not be copied. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
-	 *        newModelNameRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException edu.toronto.cs.se.mmint.mid.IOException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws Exception;
+	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException, IOException;
 
 	/**
 	 * <!-- begin-user-doc --> Copies an existing instance of this model type and possibly adds it to an Instance MID,
@@ -395,13 +393,12 @@ public interface Model extends GenericElement {
 	 * @throws MMINTException
 	 *             If this is not a model type, the path of the new model instance is already registered in the Instance
 	 *             MID, or there are no editor types registered for this model type.
-	 * @throws Exception
+	 * @throws IOException
 	 *             If the ECore model file or the GMF diagram files could not be copied. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true"
-	 *        newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException edu.toronto.cs.se.mmint.mid.IOException" origModelRequired="true" newModelNameRequired="true" copyDiagramRequired="true" instanceMIDRequired="true"
 	 * @generated
 	 */
-	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws Exception;
+	Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException, IOException;
 
 	/**
 	 * <!-- begin-user-doc --> Deletes this model instance from the Instance MID that contains it.

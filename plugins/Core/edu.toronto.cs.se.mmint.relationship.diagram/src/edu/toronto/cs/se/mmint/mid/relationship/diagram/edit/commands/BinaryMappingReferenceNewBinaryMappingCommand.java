@@ -110,7 +110,7 @@ public class BinaryMappingReferenceNewBinaryMappingCommand extends BinaryMapping
 		ModelRel modelRelType = getContainer();
 		ModelElementReference srcModelElemTypeRef = getSource(), tgtModelElemTypeRef = getTarget();
 		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToExtend(modelRelType, srcModelElemTypeRef, tgtModelElemTypeRef);
-		String newMappingTypeName = MIDDialogs.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
+		String newMappingTypeName = MIDDialogs.getStringInput("Create new light mapping type", "Insert new mapping type name", srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemTypeRef.getObject().getName());
 		BinaryMappingReference newMappingTypeRef = (BinaryMappingReference) mappingTypeRef.getObject().createSubtypeAndReference(mappingTypeRef, newMappingTypeName, true, modelRelType);
 		MMINT.createTypeHierarchy(modelRelType.getMIDContainer());
 

@@ -94,13 +94,11 @@ public class Filter extends OperatorImpl {
 		MID filteredMID = filter(inputMIDModel, filterModelType);
 
 		// output
-		String filteredMIDModelUri = FileUtils.getUniquePath(
+		String filteredMIDModelPath = FileUtils.getUniquePath(
 			FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), FILTERED_MID_SUFFIX),
 			true,
 			false);
-		FileUtils.writeModelFile(filteredMID, filteredMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Model filteredMIDModel = midModelType.createInstanceAndEditor(filteredMIDModelUri, instanceMID);
+		Model filteredMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(filteredMID, filteredMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, filteredMIDModel);
 

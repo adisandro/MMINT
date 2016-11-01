@@ -238,26 +238,26 @@ public class ModelMerge extends OperatorImpl {
 
 		// create merged model and trace relationships as placeholders
 		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
-		String mergedModelUri = FileUtils.replaceLastSegmentInPath(
+		String mergedModelPath = FileUtils.replaceLastSegmentInPath(
 			MIDRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());
-		Model mergedModel = model1.getMetatype().createInstance(mergedModelUri, mergedModelMID);
+		Model mergedModel = model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);
 		BinaryModelRel traceRel1 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
+			OUT_MODELREL1,
 			model1,
 			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL1));
-		traceRel1.setName(OUT_MODELREL1);
 		BinaryModelRel traceRel2 = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
+			OUT_MODELREL2,
 			model2,
 			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL2));
-		traceRel2.setName(OUT_MODELREL2);
 		// merge the models
 		EObject rootMergedModelObj = merge(model1, model2, matchRel, mergedModel, traceRel1, traceRel2);
-		FileUtils.writeModelFile(rootMergedModelObj, mergedModelUri, true);
+		FileUtils.writeModelFile(rootMergedModelObj, mergedModelPath, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 
 		// output

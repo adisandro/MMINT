@@ -275,13 +275,11 @@ public class Reduce extends OperatorImpl {
 		}
 
 		// output
-		String reducedMIDModelUri = FileUtils.getUniquePath(
+		String reducedMIDModelPath = FileUtils.getUniquePath(
 			FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		FileUtils.writeModelFile(reducedMID, reducedMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Model reducedMIDModel = midModelType.createInstanceAndEditor(reducedMIDModelUri, instanceMID);
+		Model reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(reducedMID, reducedMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);
 

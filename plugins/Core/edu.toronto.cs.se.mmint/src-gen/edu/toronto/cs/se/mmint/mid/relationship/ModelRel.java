@@ -205,11 +205,10 @@ public interface ModelRel extends Model {
 	 * @return The created model relationship.
 	 * @throws MMINTException
 	 *             If this is not a model relationship type, or no endpoint models are specified. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointModelsRequired="true"
-	 *        endpointModelsMany="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelNameRequired="true" endpointModelsRequired="true" endpointModelsMany="true"
 	 * @generated
 	 */
-	ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws Exception;
+	ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a binary instance of this model relationship type to an
@@ -233,10 +232,10 @@ public interface ModelRel extends Model {
 	 * @return The created binary model relationship.
 	 * @throws MMINTException
 	 *             If this is not a model relationship type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelNameRequired="true"
 	 * @generated
 	 */
-	BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws Exception;
+	BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Creates and possibly adds a binary instance of this model relationship type to an
@@ -263,13 +262,12 @@ public interface ModelRel extends Model {
 	 *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
 	 * @return The created binary model relationship.
 	 * @throws MMINTException
-	 *             If this is not a model relationship type, or one endpoint model is not specified. <!-- end-user-doc
-	 *             -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" endpointSourceModelRequired="true"
-	 *        endpointTargetModelRequired="true"
+	 *             If this is not a model relationship type, or one endpoint model is not specified.
+	 *             <!-- end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelNameRequired="true" endpointSourceModelRequired="true" endpointTargetModelRequired="true"
 	 * @generated
 	 */
-	BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws Exception;
+	BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Gets the model instance resources to be used in the Relationship diagram outline for this

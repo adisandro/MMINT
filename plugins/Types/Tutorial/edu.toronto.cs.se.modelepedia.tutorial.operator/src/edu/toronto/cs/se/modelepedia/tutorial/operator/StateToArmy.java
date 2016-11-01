@@ -43,7 +43,7 @@ public class StateToArmy extends ATLConversionOperator {
 		StateToArmy_M2M atl = new StateToArmy_M2M();
 		atl.loadModels(inputModel.getUri());
 		atl.doStateToArmy_M2M(new NullProgressMonitor());
-		atl.saveModels(convertedModelUri);
+		atl.saveModels(convertedModelPath);
 
 		// output
 		super.createConvertedModel(ArmyPackage.eNS_URI, instanceMID);

@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -112,12 +114,12 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		return newModelType;
 	}
 
-	protected Model doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+	protected Model doExecuteInstancesLevel() throws MMINTException, IOException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
 		Editor newEditor = MIDDialogs.selectModelTypeToCreate(instanceMID);
 		Model modelType = MIDTypeRegistry.getType(newEditor.getMetatype().getModelUri());
-		Model newModel = modelType.createInstance(newEditor.getModelUri(), instanceMID);
+		Model newModel = modelType.createInstance(null, newEditor.getModelUri(), instanceMID);
 		newModel.getEditors().add(newEditor);
 
 		return newModel;
@@ -174,7 +176,7 @@ public class ModelNewModelCommand extends ModelCreateCommand {
 		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		catch (MMINTException e) {
+		catch (MMINTException | IOException e) {
 			MMINTException.print(IStatus.ERROR, "No model created", e);
 			return CommandResult.newErrorCommandResult("No model created");
 		}

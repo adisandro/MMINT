@@ -78,12 +78,11 @@ public class CD2JavaCheck extends OperatorImpl {
 
 		// output
 		Model intModelType = MIDTypeRegistry.getType(IntPackage.eNS_URI);
-		String checkModelUri = FileUtils.replaceLastSegmentInPath(
+		String checkModelPath = FileUtils.replaceLastSegmentInPath(
 			MIDRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
-		FileUtils.writeModelFile(check, checkModelUri, true);
-		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, instanceMID);
+		Model checkModel = intModelType.createInstanceAndEditor(check, checkModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, checkModel);
 

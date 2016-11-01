@@ -389,23 +389,23 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID:
+			case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID:
 				try {
-					return createInstanceAndEndpoints((EObject) arguments.get(0), (String)arguments.get(1), (EList<Model>)arguments.get(2), (MID)arguments.get(3));
+					return createInstanceAndEndpoints((EObject)arguments.get(0), (String)arguments.get(1), (EList<Model>)arguments.get(2), (MID)arguments.get(3));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID:
+			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID:
 				try {
-					return createBinaryInstance((EObject) arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
+					return createBinaryInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID:
+			case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID:
 				try {
-					return createBinaryInstanceAndEndpoints((EObject) arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Model)arguments.get(3), (MID)arguments.get(4));
+					return createBinaryInstanceAndEndpoints((EObject)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Model)arguments.get(3), (MID)arguments.get(4));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -695,7 +695,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
-	public Model createInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws Exception {
+	public Model createInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -736,7 +736,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws Exception {
+	public ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if (endpointModels.size() == 0) {
@@ -752,7 +752,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws Exception {
+	public BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -772,7 +772,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	/**
 	 * @generated NOT
 	 */
-	public BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws Exception {
+	public BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 		if (endpointSourceModel == null || endpointTargetModel == null) {
@@ -804,7 +804,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 	 * @generated NOT
 	 */
 	@Override
-	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws Exception {
+	public Model copyInstance(Model origModelRel, String newModelRelName, MID instanceMID) throws MMINTException {
 
 		// create initial empty copy
 		ModelRel newModelRel = (origModelRel instanceof BinaryModelRel) ?

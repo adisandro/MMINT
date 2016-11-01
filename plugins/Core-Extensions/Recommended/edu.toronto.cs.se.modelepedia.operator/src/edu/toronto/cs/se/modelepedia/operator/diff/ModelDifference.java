@@ -103,9 +103,10 @@ public class ModelDifference extends OperatorImpl {
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
 
 		// create diff model relationship
-		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
-		BinaryModelRel diffModelRel = rootModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
-		diffModelRel.setName(MODELREL_NAME);
+		BinaryModelRel diffModelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstance(
+			null,
+			MODELREL_NAME,
+			outputMIDsByName.get(OUT_MODELREL));
 
 		ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
 		Mapping rootMappingType = MIDTypeHierarchy.getRootMappingType();

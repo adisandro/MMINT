@@ -83,11 +83,10 @@ public class MODELS15 extends RandomOperatorImpl {
 				cdClasses.put(className, clazz);
 			}
 			// write class diagram to file and create model
-			String cdModelUri = FileUtils.replaceLastSegmentInPath(
+			String cdModelPath = FileUtils.replaceLastSegmentInPath(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
-				FileUtils.writeModelFile(classDiagram, cdModelUri, true);
-				cdModelType.createInstance(cdModelUri, cdMID);
+				cdModelType.createInstance(classDiagram, cdModelPath, cdMID);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't generate class diagram number " + i + " , skipping it", e);
@@ -114,10 +113,8 @@ public class MODELS15 extends RandomOperatorImpl {
 		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output
-		String cdMIDModelUri = FileUtils.replaceFileNameInPath(instanceMIDUri, OUT_MID_NAME);
-		FileUtils.writeModelFile(cdMID, cdMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);
+		String cdMIDModelPath = FileUtils.replaceFileNameInPath(instanceMIDUri, OUT_MID_NAME);
+		Model cdMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(cdMID, cdMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, cdMIDModel);
 

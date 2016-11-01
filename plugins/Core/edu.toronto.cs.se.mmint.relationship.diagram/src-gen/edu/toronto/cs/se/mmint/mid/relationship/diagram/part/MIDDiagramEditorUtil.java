@@ -200,9 +200,8 @@ public class MIDDiagramEditorUtil {
 	private static ModelRel createInitialModel() {
 
 		try {
-			ModelRel modelRelType = MIDDialogs
-					.selectModelRelTypeToCreate(null, null);
-			return (ModelRel) modelRelType.createInstance(null, null);
+			ModelRel modelRelType = MIDDialogs.selectModelRelTypeToCreate(null, null);
+			return (ModelRel) modelRelType.createInstance(null, "", null);
 		} catch (Exception e) {
 			return createInitialModelGen();
 		}

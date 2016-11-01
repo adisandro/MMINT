@@ -40,12 +40,12 @@ public class Java2File extends OperatorImpl {
 	private @NonNull Model print(@NonNull Model javaModel, @NonNull MID instanceMID) throws Exception {
 
 		// run acceleo
-		String fileModelUri = FileUtils.getUniquePath(
+		String fileModelPath = FileUtils.getUniquePath(
 			FileUtils.replaceFileExtensionInPath(javaModel.getUri(), JAVA_FILE_SUFFIX),
 			true,
 			false);
 		List<Object> m2tArgs = new ArrayList<>();
-		m2tArgs.add(FileUtils.getFileNameFromPath(fileModelUri));
+		m2tArgs.add(FileUtils.getFileNameFromPath(fileModelPath));
 		File folder = (new File(FileUtils.prependWorkspacePath(javaModel.getUri()))).getParentFile();
 		AcceleoPreferences.switchForceDeactivationNotifications(true);
 		AcceleoPreferences.switchNotifications(false);
@@ -54,7 +54,7 @@ public class Java2File extends OperatorImpl {
 
 		// create file model
 		Model fileModelType = MIDTypeRegistry.getType(FilePackage.eNS_URI);
-		Model fileModel = fileModelType.createInstance(fileModelUri, instanceMID);
+		Model fileModel = fileModelType.createInstance(null, fileModelPath, instanceMID);
 
 		return fileModel;
 	}

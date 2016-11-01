@@ -75,10 +75,10 @@ public class ModelRelComposition extends OperatorImpl {
 		// createModelFile, add model element creation to link creation)
 		ModelRel composedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
+			modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName(),
 			model1,
 			model2,
 			instanceMID);
-		composedRel.setName(modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName());
 		ModelEndpointReference composedModelEndpointRef1 = composedRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference composedModelEndpointRef2 = composedRel.getModelEndpointRefs().get(1);
 		// loop through mappings in modelRel1

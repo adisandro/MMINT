@@ -73,11 +73,10 @@ public class BooleanExpression extends OperatorImpl {
 
 		// output
 		Model boolModelType = MIDTypeRegistry.<Model>getType(BOOLEAN_MODELTYPE);
-		String boolModelUri = FileUtils.replaceLastSegmentInPath(
+		String boolModelPath = FileUtils.replaceLastSegmentInPath(
 			inputModel.getUri(),
 			inputModel.getName() + EXPRESSION_SEPARATOR + modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + boolModelType.getFileExtension());
-		FileUtils.writeModelFile(boolModelObj, boolModelUri, true);
-		Model boolModel = boolModelType.createInstanceAndEditor(boolModelUri, outputMIDsByName.get(OUT_BOOLEAN));
+		Model boolModel = boolModelType.createInstanceAndEditor(boolModelObj, boolModelPath, outputMIDsByName.get(OUT_BOOLEAN));
 		boolModel.setName(boolModel.getName() + EXPRESSION_SUFFIX);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_BOOLEAN, boolModel);

@@ -1323,16 +1323,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 7;
-
-	/**
-	 * The operation id for the '<em>Create Instance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 8;
+	int MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1341,7 +1332,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE_EDITOR = GENERIC_ELEMENT_OPERATION_COUNT + 9;
+	int MODEL___CREATE_INSTANCE_EDITOR = GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1350,7 +1341,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 10;
+	int MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -1359,7 +1350,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___IMPORT_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 11;
+	int MODEL___IMPORT_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
@@ -1368,7 +1359,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 12;
+	int MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Copy Instance</em>' operation.
@@ -1377,7 +1368,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___COPY_INSTANCE__MODEL_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 13;
+	int MODEL___COPY_INSTANCE__MODEL_STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Copy Instance And Editor</em>' operation.
@@ -1386,7 +1377,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = GENERIC_ELEMENT_OPERATION_COUNT + 14;
+	int MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1395,7 +1386,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 15;
+	int MODEL___DELETE_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Delete Instance And File</em>' operation.
@@ -1404,7 +1395,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_INSTANCE_AND_FILE = GENERIC_ELEMENT_OPERATION_COUNT + 16;
+	int MODEL___DELETE_INSTANCE_AND_FILE = GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -1413,7 +1404,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 17;
+	int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -1422,7 +1413,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 18;
+	int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1431,7 +1422,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 19;
+	int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 18;
 
 	/**
 	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -1440,7 +1431,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___DELETE_WORKFLOW_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 20;
+	int MODEL___DELETE_WORKFLOW_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -1449,7 +1440,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 21;
+	int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 20;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -2342,6 +2333,16 @@ public interface MIDPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>IO Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.io.IOException
+	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIOException()
+	 * @generated
+	 */
+	int IO_EXCEPTION = 13;
+
+	/**
 	 * The meta object id for the '<em>IStatus</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2349,7 +2350,7 @@ public interface MIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIStatus()
 	 * @generated
 	 */
-	int ISTATUS = 13;
+	int ISTATUS = 14;
 
 	/**
 	 * The meta object id for the '<em>IValidation Context</em>' data type.
@@ -2359,7 +2360,7 @@ public interface MIDPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIValidationContext()
 	 * @generated
 	 */
-	int IVALIDATION_CONTEXT = 14;
+	int IVALIDATION_CONTEXT = 15;
 
 
 	/**
@@ -2957,16 +2958,6 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__GetEMFTypeRoot();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
-	 * @generated
-	 */
-	EOperation getModel__CreateInstance__String_MID();
-
-	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstance(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2987,14 +2978,14 @@ public interface MIDPackage extends EPackage {
 	EOperation getModel__CreateInstanceEditor();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Editor</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Editor</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance And Editor</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+	 * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getModel__CreateInstanceAndEditor__String_MID();
+	EOperation getModel__CreateInstanceAndEditor__EObject_String_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#importInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Import Instance</em>}' operation.
@@ -3576,6 +3567,17 @@ public interface MIDPackage extends EPackage {
 	EDataType getMMINTException();
 
 	/**
+	 * Returns the meta object for data type '{@link java.io.IOException <em>IO Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>IO Exception</em>'.
+	 * @see java.io.IOException
+	 * @model instanceClass="java.io.IOException" serializeable="false"
+	 * @generated
+	 */
+	EDataType getIOException();
+
+	/**
 	 * Returns the meta object for data type '{@link org.eclipse.core.runtime.IStatus <em>IStatus</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4092,14 +4094,6 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_INSTANCE__STRING_MID = eINSTANCE.getModel__CreateInstance__String_MID();
-
-		/**
-		 * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
 		EOperation MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = eINSTANCE.getModel__CreateInstance__EObject_String_MID();
 
 		/**
@@ -4116,7 +4110,7 @@ public interface MIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = eINSTANCE.getModel__CreateInstanceAndEditor__String_MID();
+		EOperation MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = eINSTANCE.getModel__CreateInstanceAndEditor__EObject_String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Import Instance</b></em>' operation.
@@ -4589,6 +4583,16 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType MMINT_EXCEPTION = eINSTANCE.getMMINTException();
+
+		/**
+		 * The meta object literal for the '<em>IO Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.io.IOException
+		 * @see edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl#getIOException()
+		 * @generated
+		 */
+		EDataType IO_EXCEPTION = eINSTANCE.getIOException();
 
 		/**
 		 * The meta object literal for the '<em>IStatus</em>' data type.

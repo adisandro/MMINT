@@ -243,10 +243,9 @@ public class ICMT15 extends RandomOperatorImpl {
 				getInputSubdir() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromPath(inputModel.getUri())
 			) :
 			inputModel.getUri();
-		String outputModelUri = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(uri, MODEL_GENERATED_SUFFIX), true, false);
-		FileUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
-		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, instanceMID);
-		FileUtils.createTextFile(FileUtils.replaceFileExtensionInPath(outputModelUri, "csv"), presenceConditions, true);
+		String outputModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(uri, MODEL_GENERATED_SUFFIX), true, false);
+		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputRootModelObj, outputModelPath, instanceMID);
+		FileUtils.createTextFile(FileUtils.replaceFileExtensionInPath(outputModelPath, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, outputModel);
 

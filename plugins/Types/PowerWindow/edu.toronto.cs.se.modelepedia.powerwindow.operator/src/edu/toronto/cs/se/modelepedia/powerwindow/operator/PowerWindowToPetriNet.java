@@ -58,11 +58,10 @@ public class PowerWindowToPetriNet extends ConversionOperatorImpl {
 		}
 
 		// output
-		String newPetrinetModelUri = FileUtils.replaceFileExtensionInPath(windowModel.getUri(), PetriNetPackage.eNAME);
-		newPetrinetModelUri = FileUtils.addFileNameSuffixInPath(newPetrinetModelUri, FILE_SUFFIX + (new Date()).getTime());
-		FileUtils.writeModelFile(newPetrinet, newPetrinetModelUri, true);
+		String newPetrinetModelPath = FileUtils.replaceFileExtensionInPath(windowModel.getUri(), PetriNetPackage.eNAME);
+		newPetrinetModelPath = FileUtils.addFileNameSuffixInPath(newPetrinetModelPath, FILE_SUFFIX + (new Date()).getTime());
 		Model petrinetModelType = MIDTypeRegistry.getType(PetriNetPackage.eNS_URI);
-		newPetrinetModel = petrinetModelType.createInstanceAndEditor(newPetrinetModelUri, instanceMID);
+		newPetrinetModel = petrinetModelType.createInstanceAndEditor(newPetrinet, newPetrinetModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, newPetrinetModel);
 

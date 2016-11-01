@@ -115,22 +115,22 @@ public class HenshinTransformation extends OperatorImpl {
 		EObject transformedRootModelObj = transform(origModel);
 
 		// output
-		String transformedModelUri = FileUtils.getUniquePath(
+		String transformedModelPath = FileUtils.getUniquePath(
 			FileUtils.addFileNameSuffixInPath(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
-		FileUtils.writeModelFile(transformedRootModelObj, transformedModelUri, true);
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
-			transformedModelUri,
+			transformedRootModelObj,
+			transformedModelPath,
 			outputMIDsByName.get(OUT_MODEL));
 		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
+			OUT_MODELREL,
 			origModel,
 			transformedModel,
 			outputMIDsByName.get(OUT_MODELREL));
-		traceRel.setName(OUT_MODELREL);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, transformedModel);
 		outputsByName.put(OUT_MODELREL, traceRel);

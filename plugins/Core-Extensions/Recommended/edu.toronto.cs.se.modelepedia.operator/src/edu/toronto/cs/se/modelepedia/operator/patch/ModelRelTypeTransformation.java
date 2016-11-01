@@ -61,7 +61,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	protected final static @NonNull String TRANSFORMATION_SUFFIX = "_transformed";
 
 	protected EObject tgtRootModelObj;
-	protected String tgtModelUri;
+	protected String tgtModelPath;
 
 	private void init() {
 
@@ -207,7 +207,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		FileUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
+		FileUtils.writeModelFile(tgtRootModelObj, tgtModelPath, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
@@ -216,7 +216,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			targetModelElemRefs.add(tgtModelElemRef);
 			Mapping mappingType = MIDTypeRegistry.getType(MIDConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
 			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
-			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemRef.getObject().getName());
+			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}
 
@@ -237,15 +237,17 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelUri = FileUtils.getUniquePath(
+		tgtModelPath = FileUtils.getUniquePath(
 			FileUtils.replaceFileExtensionInPath(
 				FileUtils.addFileNameSuffixInPath(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);
-		Model tgtModel = tgtModelType.createInstance(tgtModelUri, outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
-		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModel.getName());
+		Model tgtModel = tgtModelType.createInstance(null, tgtModelPath, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(
+			null,
+			srcModel.getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModel.getName(),
+			outputMIDsByName.get(OUT_MODELREL));
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstance(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstance(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
