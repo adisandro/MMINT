@@ -294,7 +294,7 @@
          <type
                name="Map"
                uri="http://se.cs.toronto.edu/mmint/Operator_Map"
-               class="edu.toronto.cs.se.mmint.mid.operator.Map">
+               class="edu.toronto.cs.se.mmint.operator.mid.Map">
          </type>
          <generics>
             <parameter>
@@ -337,7 +337,7 @@
          <type
                name="Reduce"
                uri="http://se.cs.toronto.edu/mmint/Operator_Reduce"
-               class="edu.toronto.cs.se.mmint.mid.operator.Reduce">
+               class="edu.toronto.cs.se.mmint.operator.mid.Reduce">
          </type>
          <generics>
             <parameter>
@@ -378,7 +378,7 @@
          <type
                name="Union"
                uri="http://se.cs.toronto.edu/mmint/Operator_Union"
-               class="edu.toronto.cs.se.mmint.mid.operator.Union">
+               class="edu.toronto.cs.se.mmint.operator.mid.Union">
          </type>
          <inputs>
             <parameter>
@@ -410,7 +410,7 @@
          <type
                name="Filter"
                uri="http://se.cs.toronto.edu/mmint/Operator_Filter"
-               class="edu.toronto.cs.se.mmint.mid.operator.Filter">
+               class="edu.toronto.cs.se.mmint.operator.mid.Filter">
          </type>
          <generics>
             <parameter>
@@ -451,7 +451,7 @@
          <type
                name="If"
                uri="http://se.cs.toronto.edu/mmint/Operator_If"
-               class="edu.toronto.cs.se.mmint.mid.operator.If">
+               class="edu.toronto.cs.se.mmint.operator.flow.If">
          </type>
          <generics>
             <parameter>
@@ -513,7 +513,7 @@
          <type
                name="Loop"
                uri="http://se.cs.toronto.edu/mmint/Operator_Loop"
-               class="edu.toronto.cs.se.mmint.mid.operator.Loop">
+               class="edu.toronto.cs.se.mmint.operator.flow.Loop">
          </type>
          <generics>
             <parameter>
@@ -572,7 +572,7 @@
          <type
                name="BooleanExpression"
                uri="http://se.cs.toronto.edu/mmint/Operator_BooleanExpression"
-               class="edu.toronto.cs.se.mmint.mid.operator.BooleanExpression">
+               class="edu.toronto.cs.se.mmint.operator.flow.BooleanExpression">
          </type>
          <generics>
             <parameter>

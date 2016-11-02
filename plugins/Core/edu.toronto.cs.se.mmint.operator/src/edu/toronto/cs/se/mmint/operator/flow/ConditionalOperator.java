@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.operator;
+package edu.toronto.cs.se.mmint.operator.flow;
 
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -23,7 +23,7 @@ public abstract class ConditionalOperator extends OperatorImpl {
 	protected final static @NonNull String IN_MODEL = "conditionModel";
 
 	//TODO MMINT[SCRIPTING] Make an operator input being selectable twice
-	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull Operator conditionExpression) {
+	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull BooleanExpression conditionExpression) {
 
 		//TODO MMINT[SCRIPTING] run or start conditionExpression? i.e. store the byproduct or not?
 		return false;

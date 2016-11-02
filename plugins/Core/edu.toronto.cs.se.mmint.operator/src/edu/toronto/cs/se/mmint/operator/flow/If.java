@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.operator;
+package edu.toronto.cs.se.mmint.operator.flow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,10 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -84,7 +88,7 @@ public class If extends ConditionalOperator {
 
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
-		Operator conditionExpression = (Operator) genericsByName.get(GENERIC_MODELTYPE);
+		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_MODELTYPE);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
 		Map<String, MID> thenMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS1, inputModels);
 		Map<String, MID> elseMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS2, inputModels);

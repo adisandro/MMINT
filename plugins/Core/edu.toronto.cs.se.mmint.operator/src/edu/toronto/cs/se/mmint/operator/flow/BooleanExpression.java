@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.operator;
+package edu.toronto.cs.se.mmint.operator.flow;
 
 import java.util.HashMap;
 import java.util.Map;

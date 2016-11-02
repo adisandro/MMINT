@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.mid.operator;
+package edu.toronto.cs.se.mmint.operator.flow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,12 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -55,7 +61,7 @@ public class Loop extends ConditionalOperator {
 		return newOperator;
 	}
 
-	private @NonNull List<Model> loop(@NonNull List<Model> inputModels, @NonNull Model conditionModel, @NonNull Operator conditionExpression, @NonNull WorkflowOperator doOperatorType, @NonNull Map<String, MID> outputMIDsByInput) throws MMINTException, Exception {
+	private @NonNull List<Model> loop(@NonNull List<Model> inputModels, @NonNull Model conditionModel, @NonNull BooleanExpression conditionExpression, @NonNull WorkflowOperator doOperatorType, @NonNull Map<String, MID> outputMIDsByInput) throws MMINTException, Exception {
 
 		List<Model> outputModels = null;
 		MID loopMID = MIDFactory.eINSTANCE.createMID();
@@ -99,7 +105,7 @@ public class Loop extends ConditionalOperator {
 		//TODO MMINT[SCRIPTING] Make this an abstract operator and provide concrete variants like While, Until, For?
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
-		Operator conditionExpression = (Operator) genericsByName.get(GENERIC_MODELTYPE);
+		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_MODELTYPE);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
 		WorkflowOperator doOperatorType = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE);
 		Map<String, MID> outputMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS, inputModels);
