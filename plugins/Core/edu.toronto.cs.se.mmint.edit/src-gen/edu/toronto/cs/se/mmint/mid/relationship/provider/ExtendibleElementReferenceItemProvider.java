@@ -287,6 +287,11 @@ public class ExtendibleElementReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
+				 OperatorFactory.eINSTANCE.createNestingOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
 				 OperatorFactory.eINSTANCE.createWorkflowOperator()));
 
 		newChildDescriptors.add

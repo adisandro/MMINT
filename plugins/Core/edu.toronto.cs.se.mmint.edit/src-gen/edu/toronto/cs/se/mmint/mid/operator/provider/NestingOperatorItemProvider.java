@@ -12,30 +12,34 @@
 package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 
+import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
+public class NestingOperatorItemProvider extends OperatorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowOperatorItemProvider(AdapterFactory adapterFactory) {
+	public NestingOperatorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,19 +54,42 @@ public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNestedMIDPathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns WorkflowOperator.gif.
+	 * This adds a property descriptor for the Nested MID Path feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNestedMIDPathPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NestingOperator_nestedMIDPath_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NestingOperator_nestedMIDPath_feature", "_UI_NestingOperator_type"),
+				 OperatorPackage.Literals.NESTING_OPERATOR__NESTED_MID_PATH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns NestingOperator.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkflowOperator"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/NestingOperator"));
 	}
 
 	/**
@@ -73,10 +100,10 @@ public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((WorkflowOperator)object).getName();
+		String label = ((NestingOperator)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_WorkflowOperator_type") :
-			getString("_UI_WorkflowOperator_type") + " " + label;
+			getString("_UI_NestingOperator_type") :
+			getString("_UI_NestingOperator_type") + " " + label;
 	}
 	
 
@@ -90,6 +117,12 @@ public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(NestingOperator.class)) {
+			case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

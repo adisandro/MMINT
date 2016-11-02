@@ -96,6 +96,10 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 				return createRandomOperatorAdapter();
 			}
 			@Override
+			public Adapter caseNestingOperator(NestingOperator object) {
+				return createNestingOperatorAdapter();
+			}
+			@Override
 			public Adapter caseWorkflowOperator(WorkflowOperator object) {
 				return createWorkflowOperatorAdapter();
 			}
@@ -198,6 +202,20 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRandomOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator <em>Nesting Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator
+	 * @generated
+	 */
+	public Adapter createNestingOperatorAdapter() {
 		return null;
 	}
 

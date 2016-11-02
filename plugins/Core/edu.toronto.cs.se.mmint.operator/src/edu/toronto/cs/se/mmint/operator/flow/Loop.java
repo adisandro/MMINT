@@ -105,8 +105,8 @@ public class Loop extends ConditionalOperator {
 		//TODO MMINT[SCRIPTING] Make this an abstract operator and provide concrete variants like While, Until, For?
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
-		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_MODELTYPE);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
+		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_OPERATORTYPE);
 		WorkflowOperator doOperatorType = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE);
 		Map<String, MID> outputMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS, inputModels);
 

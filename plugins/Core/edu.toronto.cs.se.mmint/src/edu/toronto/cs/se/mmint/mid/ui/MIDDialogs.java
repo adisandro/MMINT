@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
@@ -236,7 +237,8 @@ public class MIDDialogs {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
 		String title = "Run generic operator";
-		String message = "Choose generic type <" + genericSuperTypeEndpoint.getName() + ">";
+		String message = "Choose type <" + genericSuperTypeEndpoint.getName() + "> of operator " +
+			((Operator) genericSuperTypeEndpoint.eContainer()).getName();
 	
 		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
 	}

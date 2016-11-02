@@ -540,7 +540,7 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createSubtype">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/newOperatorTypeName"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationUri"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationPath"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/openType"/>
@@ -602,10 +602,12 @@
       <genClasses ecoreClass="mid.ecore#//operator/RandomOperator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperator/state"/>
       </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/NestingOperator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/NestingOperator/nestedMIDPath"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/getNestedInstanceMID"/>
+      </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/WorkflowOperator">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/WorkflowOperator/midUri"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getWorkflowMID"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getInstanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getNestedWorkflowMID"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>

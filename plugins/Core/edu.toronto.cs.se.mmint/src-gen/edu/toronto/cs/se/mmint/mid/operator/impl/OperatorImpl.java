@@ -761,12 +761,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	@Override
 	public String toString() {
 
-		String label = (getName() == null) ? "" : getName();
-		if (!getGenerics().isEmpty()) {
+		String label = (this.getName() == null) ? "" : this.getName();
+		if (!this.getGenerics().isEmpty()) {
 			label +=
 				"<" +
-				getGenerics().stream()
-					.map(GenericEndpoint::getName)
+				this.getGenerics().stream()
+					.map(GenericEndpoint::toString)
 					.collect(Collectors.joining(",")) +
 				">";
 		}
@@ -810,15 +810,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *            The new operator type to be added.
 	 * @param newOperatorTypeName
 	 *            The name of the new operator type.
-	 * @param implementationUri
-	 *            The uri of the new operator's implementation (a Java class inheriting from this class).
+	 * @param implementationPath
+	 *            The path to the new operator's implementation (a Java class inheriting from this class).
 	 * @throws MMINTException
 	 *             If the uri of the new operator type is already registered in the Type MID.
 	 * @generated NOT
 	 */
-	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String implementationUri) throws MMINTException {
+	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String implementationPath) throws MMINTException {
 
-		//TODO MMINT[OPERATOR] Implement a simple way to run a java class pointed by implementationUri
+		//TODO MMINT[OPERATOR] Implement a simple way to run a java class pointed by implementationPath
 	}
 
 	/**
@@ -1069,7 +1069,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		// check actual parameters
 		EList<OperatorInput> inputs = new BasicEList<>();
 		int i = 0;
-		for (ModelEndpoint inputModelTypeEndpoint : getInputs()) {
+		for (ModelEndpoint inputModelTypeEndpoint : this.getInputs()) {
 			// check 1: not enough actual parameters, considering formal parameters with upper bound > 1 too
 			if (i >= inputModels.size()) {
 				return null;

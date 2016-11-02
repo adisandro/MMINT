@@ -246,6 +246,11 @@ public class MIDItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(MIDPackage.Literals.MID__OPERATORS,
+				 OperatorFactory.eINSTANCE.createNestingOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MID__OPERATORS,
 				 OperatorFactory.eINSTANCE.createWorkflowOperator()));
 
 		newChildDescriptors.add

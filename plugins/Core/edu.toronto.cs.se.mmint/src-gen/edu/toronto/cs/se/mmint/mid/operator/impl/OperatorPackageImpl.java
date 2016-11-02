@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
 import edu.toronto.cs.se.mmint.mid.impl.MIDPackageImpl;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
@@ -69,6 +70,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * @generated
 	 */
 	private EClass randomOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nestingOperatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -566,6 +574,33 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNestingOperator() {
+		return nestingOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNestingOperator_NestedMIDPath() {
+		return (EAttribute)nestingOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getNestingOperator__GetNestedInstanceMID() {
+		return nestingOperatorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWorkflowOperator() {
 		return workflowOperatorEClass;
 	}
@@ -575,26 +610,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getWorkflowOperator_MidUri() {
-		return (EAttribute)workflowOperatorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getWorkflowOperator__GetWorkflowMID() {
+	public EOperation getWorkflowOperator__GetNestedWorkflowMID() {
 		return workflowOperatorEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getWorkflowOperator__GetInstanceMID() {
-		return workflowOperatorEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -909,10 +926,12 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		randomOperatorEClass = createEClass(RANDOM_OPERATOR);
 		createEAttribute(randomOperatorEClass, RANDOM_OPERATOR__STATE);
 
+		nestingOperatorEClass = createEClass(NESTING_OPERATOR);
+		createEAttribute(nestingOperatorEClass, NESTING_OPERATOR__NESTED_MID_PATH);
+		createEOperation(nestingOperatorEClass, NESTING_OPERATOR___GET_NESTED_INSTANCE_MID);
+
 		workflowOperatorEClass = createEClass(WORKFLOW_OPERATOR);
-		createEAttribute(workflowOperatorEClass, WORKFLOW_OPERATOR__MID_URI);
-		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_WORKFLOW_MID);
-		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_INSTANCE_MID);
+		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID);
 
 		genericEndpointEClass = createEClass(GENERIC_ENDPOINT);
 		createEAttribute(genericEndpointEClass, GENERIC_ENDPOINT__METATARGET_URI);
@@ -986,7 +1005,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		operatorEClass.getESuperTypes().add(theMIDPackage.getGenericElement());
 		conversionOperatorEClass.getESuperTypes().add(this.getOperator());
 		randomOperatorEClass.getESuperTypes().add(this.getOperator());
-		workflowOperatorEClass.getESuperTypes().add(this.getOperator());
+		nestingOperatorEClass.getESuperTypes().add(this.getOperator());
+		workflowOperatorEClass.getESuperTypes().add(this.getNestingOperator());
 		genericEndpointEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementEndpoint());
 		operatorConstraintEClass.getESuperTypes().add(theMIDPackage.getExtendibleElementConstraint());
 
@@ -1009,7 +1029,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		EOperation op = initEOperation(getOperator__CreateSubtype__String_String(), this.getOperator(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "newOperatorTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "implementationUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "implementationPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1141,13 +1161,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		initEClass(randomOperatorEClass, RandomOperator.class, "RandomOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomOperator_State(), this.getRandom(), "state", null, 1, 1, RandomOperator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(workflowOperatorEClass, WorkflowOperator.class, "WorkflowOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWorkflowOperator_MidUri(), ecorePackage.getEString(), "midUri", null, 1, 1, WorkflowOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(nestingOperatorEClass, NestingOperator.class, "NestingOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNestingOperator_NestedMIDPath(), ecorePackage.getEString(), "nestedMIDPath", null, 1, 1, NestingOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getWorkflowOperator__GetWorkflowMID(), theMIDPackage.getMID(), "getWorkflowMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getNestingOperator__GetNestedInstanceMID(), theMIDPackage.getMID(), "getNestedInstanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getWorkflowOperator__GetInstanceMID(), theMIDPackage.getMID(), "getInstanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(workflowOperatorEClass, WorkflowOperator.class, "WorkflowOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getWorkflowOperator__GetNestedWorkflowMID(), theMIDPackage.getMID(), "getNestedWorkflowMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		initEClass(genericEndpointEClass, GenericEndpoint.class, "GenericEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

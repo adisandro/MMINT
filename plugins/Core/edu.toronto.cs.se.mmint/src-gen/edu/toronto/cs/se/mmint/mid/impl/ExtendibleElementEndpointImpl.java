@@ -337,7 +337,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
 	 * @generated
 	 */
 	@Override
-	public String toString() {
+	public String toStringGen() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

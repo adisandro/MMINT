@@ -109,9 +109,19 @@ public class OperatorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OperatorPackage.NESTING_OPERATOR: {
+				NestingOperator nestingOperator = (NestingOperator)theEObject;
+				T result = caseNestingOperator(nestingOperator);
+				if (result == null) result = caseOperator(nestingOperator);
+				if (result == null) result = caseGenericElement(nestingOperator);
+				if (result == null) result = caseExtendibleElement(nestingOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OperatorPackage.WORKFLOW_OPERATOR: {
 				WorkflowOperator workflowOperator = (WorkflowOperator)theEObject;
 				T result = caseWorkflowOperator(workflowOperator);
+				if (result == null) result = caseNestingOperator(workflowOperator);
 				if (result == null) result = caseOperator(workflowOperator);
 				if (result == null) result = caseGenericElement(workflowOperator);
 				if (result == null) result = caseExtendibleElement(workflowOperator);
@@ -203,6 +213,21 @@ public class OperatorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRandomOperator(RandomOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Nesting Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Nesting Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNestingOperator(NestingOperator object) {
 		return null;
 	}
 

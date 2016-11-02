@@ -1630,14 +1630,14 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl <em>Nesting Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getWorkflowOperator()
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getNestingOperator()
 	 * @generated
 	 */
-	int WORKFLOW_OPERATOR = 3;
+	int NESTING_OPERATOR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -1646,7 +1646,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
+	int NESTING_OPERATOR__SUPERTYPE = OPERATOR__SUPERTYPE;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1655,7 +1655,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__URI = OPERATOR__URI;
+	int NESTING_OPERATOR__URI = OPERATOR__URI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1664,7 +1664,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__NAME = OPERATOR__NAME;
+	int NESTING_OPERATOR__NAME = OPERATOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -1673,7 +1673,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__LEVEL = OPERATOR__LEVEL;
+	int NESTING_OPERATOR__LEVEL = OPERATOR__LEVEL;
 
 	/**
 	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -1682,7 +1682,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
+	int NESTING_OPERATOR__METATYPE_URI = OPERATOR__METATYPE_URI;
 
 	/**
 	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -1691,7 +1691,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
+	int NESTING_OPERATOR__DYNAMIC = OPERATOR__DYNAMIC;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -1700,7 +1700,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
+	int NESTING_OPERATOR__CONSTRAINT = OPERATOR__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1709,7 +1709,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
+	int NESTING_OPERATOR__ABSTRACT = OPERATOR__ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -1718,7 +1718,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__INPUTS = OPERATOR__INPUTS;
+	int NESTING_OPERATOR__INPUTS = OPERATOR__INPUTS;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -1727,7 +1727,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
+	int NESTING_OPERATOR__OUTPUTS = OPERATOR__OUTPUTS;
 
 	/**
 	 * The feature id for the '<em><b>Generics</b></em>' containment reference list.
@@ -1736,7 +1736,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__GENERICS = OPERATOR__GENERICS;
+	int NESTING_OPERATOR__GENERICS = OPERATOR__GENERICS;
 
 	/**
 	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
@@ -1745,7 +1745,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__INPUT_SUBDIR = OPERATOR__INPUT_SUBDIR;
+	int NESTING_OPERATOR__INPUT_SUBDIR = OPERATOR__INPUT_SUBDIR;
 
 	/**
 	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
@@ -1754,7 +1754,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
+	int NESTING_OPERATOR__PREVIOUS_OPERATOR = OPERATOR__PREVIOUS_OPERATOR;
 
 	/**
 	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
@@ -1763,7 +1763,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
+	int NESTING_OPERATOR__UPDATE_MID = OPERATOR__UPDATE_MID;
 
 	/**
 	 * The feature id for the '<em><b>Execution Time</b></em>' attribute.
@@ -1772,7 +1772,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
+	int NESTING_OPERATOR__EXECUTION_TIME = OPERATOR__EXECUTION_TIME;
 
 	/**
 	 * The feature id for the '<em><b>Commutative</b></em>' attribute.
@@ -1781,25 +1781,25 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
+	int NESTING_OPERATOR__COMMUTATIVE = OPERATOR__COMMUTATIVE;
 
 	/**
-	 * The feature id for the '<em><b>Mid Uri</b></em>' attribute.
+	 * The feature id for the '<em><b>Nested MID Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR__MID_URI = OPERATOR_FEATURE_COUNT + 0;
+	int NESTING_OPERATOR__NESTED_MID_PATH = OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Workflow Operator</em>' class.
+	 * The number of structural features of the '<em>Nesting Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
+	int NESTING_OPERATOR_FEATURE_COUNT = OPERATOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Level</em>' operation.
@@ -1808,7 +1808,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
+	int NESTING_OPERATOR___IS_LEVEL__MIDLEVEL = OPERATOR___IS_LEVEL__MIDLEVEL;
 
 	/**
 	 * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1817,7 +1817,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
+	int NESTING_OPERATOR___IS_TYPES_LEVEL = OPERATOR___IS_TYPES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -1826,7 +1826,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+	int NESTING_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -1835,7 +1835,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+	int NESTING_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1844,7 +1844,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
+	int NESTING_OPERATOR___IS_INSTANCES_LEVEL = OPERATOR___IS_INSTANCES_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -1853,7 +1853,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+	int NESTING_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1862,7 +1862,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+	int NESTING_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance</em>' operation.
@@ -1871,7 +1871,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
+	int NESTING_OPERATOR___VALIDATE_INSTANCE = OPERATOR___VALIDATE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -1880,7 +1880,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+	int NESTING_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
 	/**
 	 * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1889,7 +1889,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
+	int NESTING_OPERATOR___IS_WORKFLOWS_LEVEL = OPERATOR___IS_WORKFLOWS_LEVEL;
 
 	/**
 	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1898,7 +1898,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+	int NESTING_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1907,7 +1907,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+	int NESTING_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1916,7 +1916,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+	int NESTING_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
 
 	/**
 	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1925,7 +1925,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+	int NESTING_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1934,7 +1934,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
+	int NESTING_OPERATOR___GET_METATYPE = OPERATOR___GET_METATYPE;
 
 	/**
 	 * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1943,7 +1943,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
+	int NESTING_OPERATOR___GET_SUPERTYPE = OPERATOR___GET_SUPERTYPE;
 
 	/**
 	 * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1952,7 +1952,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+	int NESTING_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
 
 	/**
 	 * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1961,7 +1961,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+	int NESTING_OPERATOR___CREATE_SUBTYPE__STRING_STRING = OPERATOR___CREATE_SUBTYPE__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Delete Type</em>' operation.
@@ -1970,7 +1970,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
+	int NESTING_OPERATOR___DELETE_TYPE = OPERATOR___DELETE_TYPE;
 
 	/**
 	 * The operation id for the '<em>Open Type</em>' operation.
@@ -1979,7 +1979,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
+	int NESTING_OPERATOR___OPEN_TYPE = OPERATOR___OPEN_TYPE;
 
 	/**
 	 * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -1988,7 +1988,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -1997,7 +1997,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2006,7 +2006,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+	int NESTING_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -2015,7 +2015,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
+	int NESTING_OPERATOR___GET_OUTPUTS_BY_NAME = OPERATOR___GET_OUTPUTS_BY_NAME;
 
 	/**
 	 * The operation id for the '<em>Get Output Models</em>' operation.
@@ -2024,7 +2024,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
+	int NESTING_OPERATOR___GET_OUTPUT_MODELS = OPERATOR___GET_OUTPUT_MODELS;
 
 	/**
 	 * The operation id for the '<em>Create Instance</em>' operation.
@@ -2033,7 +2033,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
+	int NESTING_OPERATOR___CREATE_INSTANCE__MID = OPERATOR___CREATE_INSTANCE__MID;
 
 	/**
 	 * The operation id for the '<em>Delete Instance</em>' operation.
@@ -2042,7 +2042,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
+	int NESTING_OPERATOR___DELETE_INSTANCE = OPERATOR___DELETE_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -2051,7 +2051,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+	int NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
@@ -2060,7 +2060,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
+	int NESTING_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -2069,7 +2069,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
+	int NESTING_OPERATOR___GET_INPUT_PROPERTIES = OPERATOR___GET_INPUT_PROPERTIES;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -2078,7 +2078,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+	int NESTING_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
 
 	/**
 	 * The operation id for the '<em>Run</em>' operation.
@@ -2087,7 +2087,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
+	int NESTING_OPERATOR___RUN__MAP_MAP_MAP = OPERATOR___RUN__MAP_MAP_MAP;
 
 	/**
 	 * The operation id for the '<em>Start Instance</em>' operation.
@@ -2096,7 +2096,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+	int NESTING_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -2105,7 +2105,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
+	int NESTING_OPERATOR___OPEN_INSTANCE = OPERATOR___OPEN_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -2114,7 +2114,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+	int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
 
 	/**
 	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -2123,7 +2123,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+	int NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -2132,7 +2132,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+	int NESTING_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -2141,25 +2141,557 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
+	int NESTING_OPERATOR___OPEN_WORKFLOW_INSTANCE = OPERATOR___OPEN_WORKFLOW_INSTANCE;
 
 	/**
-	 * The operation id for the '<em>Get Workflow MID</em>' operation.
+	 * The operation id for the '<em>Get Nested Instance MID</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_WORKFLOW_MID = OPERATOR_OPERATION_COUNT + 0;
+	int NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Get Instance MID</em>' operation.
+	 * The number of operations of the '<em>Nesting Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___GET_INSTANCE_MID = OPERATOR_OPERATION_COUNT + 1;
+	int NESTING_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl
+	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getWorkflowOperator()
+	 * @generated
+	 */
+	int WORKFLOW_OPERATOR = 4;
+
+	/**
+	 * The feature id for the '<em><b>Supertype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__SUPERTYPE = NESTING_OPERATOR__SUPERTYPE;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__URI = NESTING_OPERATOR__URI;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__NAME = NESTING_OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__LEVEL = NESTING_OPERATOR__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__METATYPE_URI = NESTING_OPERATOR__METATYPE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Dynamic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__DYNAMIC = NESTING_OPERATOR__DYNAMIC;
+
+	/**
+	 * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__CONSTRAINT = NESTING_OPERATOR__CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__ABSTRACT = NESTING_OPERATOR__ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__INPUTS = NESTING_OPERATOR__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__OUTPUTS = NESTING_OPERATOR__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Generics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__GENERICS = NESTING_OPERATOR__GENERICS;
+
+	/**
+	 * The feature id for the '<em><b>Input Subdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__INPUT_SUBDIR = NESTING_OPERATOR__INPUT_SUBDIR;
+
+	/**
+	 * The feature id for the '<em><b>Previous Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__PREVIOUS_OPERATOR = NESTING_OPERATOR__PREVIOUS_OPERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Update MID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__UPDATE_MID = NESTING_OPERATOR__UPDATE_MID;
+
+	/**
+	 * The feature id for the '<em><b>Execution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__EXECUTION_TIME = NESTING_OPERATOR__EXECUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Commutative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__COMMUTATIVE = NESTING_OPERATOR__COMMUTATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Nested MID Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR__NESTED_MID_PATH = NESTING_OPERATOR__NESTED_MID_PATH;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR_FEATURE_COUNT = NESTING_OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_LEVEL__MIDLEVEL = NESTING_OPERATOR___IS_LEVEL__MIDLEVEL;
+
+	/**
+	 * The operation id for the '<em>Is Types Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_TYPES_LEVEL = NESTING_OPERATOR___IS_TYPES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Create Subtype Uri</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING = NESTING_OPERATOR___CREATE_SUBTYPE_URI__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Add Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING = NESTING_OPERATOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Is Instances Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_INSTANCES_LEVEL = NESTING_OPERATOR___IS_INSTANCES_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Get Runtime Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = NESTING_OPERATOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Validate Instance Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = NESTING_OPERATOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE = NESTING_OPERATOR___VALIDATE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = NESTING_OPERATOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+
+	/**
+	 * The operation id for the '<em>Is Workflows Level</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_WORKFLOWS_LEVEL = NESTING_OPERATOR___IS_WORKFLOWS_LEVEL;
+
+	/**
+	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING = NESTING_OPERATOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL = NESTING_OPERATOR___TO_MID_CUSTOM_PRINT_LABEL;
+
+	/**
+	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL = NESTING_OPERATOR___TO_MID_CUSTOM_EDIT_LABEL;
+
+	/**
+	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING = NESTING_OPERATOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Metatype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_METATYPE = NESTING_OPERATOR___GET_METATYPE;
+
+	/**
+	 * The operation id for the '<em>Get Supertype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_SUPERTYPE = NESTING_OPERATOR___GET_SUPERTYPE;
+
+	/**
+	 * The operation id for the '<em>Get MID Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_MID_CONTAINER = NESTING_OPERATOR___GET_MID_CONTAINER;
+
+	/**
+	 * The operation id for the '<em>Create Subtype</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_SUBTYPE__STRING_STRING = NESTING_OPERATOR___CREATE_SUBTYPE__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Delete Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___DELETE_TYPE = NESTING_OPERATOR___DELETE_TYPE;
+
+	/**
+	 * The operation id for the '<em>Open Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_TYPE = NESTING_OPERATOR___OPEN_TYPE;
+
+	/**
+	 * The operation id for the '<em>Find Allowed Inputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+
+	/**
+	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = NESTING_OPERATOR___CHECK_ALLOWED_INPUTS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Outputs By Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_OUTPUTS_BY_NAME = NESTING_OPERATOR___GET_OUTPUTS_BY_NAME;
+
+	/**
+	 * The operation id for the '<em>Get Output Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_OUTPUT_MODELS = NESTING_OPERATOR___GET_OUTPUT_MODELS;
+
+	/**
+	 * The operation id for the '<em>Create Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_INSTANCE__MID = NESTING_OPERATOR___CREATE_INSTANCE__MID;
+
+	/**
+	 * The operation id for the '<em>Delete Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___DELETE_INSTANCE = NESTING_OPERATOR___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Select Allowed Generics</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = NESTING_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
+
+	/**
+	 * The operation id for the '<em>Get Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_INPUT_PROPERTIES = NESTING_OPERATOR___GET_INPUT_PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Read Input Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = NESTING_OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES;
+
+	/**
+	 * The operation id for the '<em>Run</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___RUN__MAP_MAP_MAP = NESTING_OPERATOR___RUN__MAP_MAP_MAP;
+
+	/**
+	 * The operation id for the '<em>Start Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = NESTING_OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID;
+
+	/**
+	 * The operation id for the '<em>Open Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_INSTANCE = NESTING_OPERATOR___OPEN_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE__MID;
+
+	/**
+	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = NESTING_OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID;
+
+	/**
+	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___OPEN_WORKFLOW_INSTANCE = NESTING_OPERATOR___OPEN_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Get Nested Instance MID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_NESTED_INSTANCE_MID = NESTING_OPERATOR___GET_NESTED_INSTANCE_MID;
+
+	/**
+	 * The operation id for the '<em>Get Nested Workflow MID</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID = NESTING_OPERATOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Workflow Operator</em>' class.
@@ -2168,7 +2700,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
+	int WORKFLOW_OPERATOR_OPERATION_COUNT = NESTING_OPERATOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.
@@ -2178,7 +2710,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getGenericEndpoint()
 	 * @generated
 	 */
-	int GENERIC_ENDPOINT = 4;
+	int GENERIC_ENDPOINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Supertype</b></em>' reference.
@@ -2503,7 +3035,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorInput()
 	 * @generated
 	 */
-	int OPERATOR_INPUT = 5;
+	int OPERATOR_INPUT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -2558,7 +3090,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorGeneric()
 	 * @generated
 	 */
-	int OPERATOR_GENERIC = 6;
+	int OPERATOR_GENERIC = 7;
 
 	/**
 	 * The feature id for the '<em><b>Generic</b></em>' reference.
@@ -2604,7 +3136,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
 	 * @generated
 	 */
-	int OPERATOR_CONSTRAINT = 7;
+	int OPERATOR_CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
@@ -2659,7 +3191,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
 	 * @generated
 	 */
-	int OPERATOR_CONSTRAINT_RULE = 8;
+	int OPERATOR_CONSTRAINT_RULE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Output Model Rel</b></em>' containment reference.
@@ -2705,7 +3237,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
 	 * @generated
 	 */
-	int OPERATOR_CONSTRAINT_PARAMETER = 9;
+	int OPERATOR_CONSTRAINT_PARAMETER = 10;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Ref</b></em>' containment reference.
@@ -2751,7 +3283,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 10;
+	int RANDOM = 11;
 
 
 	/**
@@ -2762,7 +3294,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 11;
+	int EXCEPTION = 12;
 
 
 	/**
@@ -2773,7 +3305,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
 	 * @generated
 	 */
-	int PROPERTIES = 12;
+	int PROPERTIES = 13;
 
 
 	/**
@@ -2784,7 +3316,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getSet()
 	 * @generated
 	 */
-	int SET = 13;
+	int SET = 14;
 
 
 	/**
@@ -3177,6 +3709,37 @@ public interface OperatorPackage extends EPackage {
 	EAttribute getRandomOperator_State();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator <em>Nesting Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Nesting Operator</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator
+	 * @generated
+	 */
+	EClass getNestingOperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDPath <em>Nested MID Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nested MID Path</em>'.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedMIDPath()
+	 * @see #getNestingOperator()
+	 * @generated
+	 */
+	EAttribute getNestingOperator_NestedMIDPath();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedInstanceMID() <em>Get Nested Instance MID</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Nested Instance MID</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator#getNestedInstanceMID()
+	 * @generated
+	 */
+	EOperation getNestingOperator__GetNestedInstanceMID();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator <em>Workflow Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3187,35 +3750,14 @@ public interface OperatorPackage extends EPackage {
 	EClass getWorkflowOperator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri <em>Mid Uri</em>}'.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getNestedWorkflowMID() <em>Get Nested Workflow MID</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mid Uri</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getMidUri()
-	 * @see #getWorkflowOperator()
+	 * @return the meta object for the '<em>Get Nested Workflow MID</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getNestedWorkflowMID()
 	 * @generated
 	 */
-	EAttribute getWorkflowOperator_MidUri();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMID() <em>Get Workflow MID</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Workflow MID</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getWorkflowMID()
-	 * @generated
-	 */
-	EOperation getWorkflowOperator__GetWorkflowMID();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getInstanceMID() <em>Get Instance MID</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Instance MID</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator#getInstanceMID()
-	 * @generated
-	 */
-	EOperation getWorkflowOperator__GetInstanceMID();
+	EOperation getWorkflowOperator__GetNestedWorkflowMID();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint <em>Generic Endpoint</em>}'.
@@ -3836,6 +4378,32 @@ public interface OperatorPackage extends EPackage {
 		EAttribute RANDOM_OPERATOR__STATE = eINSTANCE.getRandomOperator_State();
 
 		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl <em>Nesting Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl
+		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getNestingOperator()
+		 * @generated
+		 */
+		EClass NESTING_OPERATOR = eINSTANCE.getNestingOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Nested MID Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NESTING_OPERATOR__NESTED_MID_PATH = eINSTANCE.getNestingOperator_NestedMIDPath();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Nested Instance MID</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = eINSTANCE.getNestingOperator__GetNestedInstanceMID();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3846,28 +4414,12 @@ public interface OperatorPackage extends EPackage {
 		EClass WORKFLOW_OPERATOR = eINSTANCE.getWorkflowOperator();
 
 		/**
-		 * The meta object literal for the '<em><b>Mid Uri</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Get Nested Workflow MID</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WORKFLOW_OPERATOR__MID_URI = eINSTANCE.getWorkflowOperator_MidUri();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Workflow MID</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation WORKFLOW_OPERATOR___GET_WORKFLOW_MID = eINSTANCE.getWorkflowOperator__GetWorkflowMID();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Instance MID</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation WORKFLOW_OPERATOR___GET_INSTANCE_MID = eINSTANCE.getWorkflowOperator__GetInstanceMID();
+		EOperation WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID = eINSTANCE.getWorkflowOperator__GetNestedWorkflowMID();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.GenericEndpointImpl <em>Generic Endpoint</em>}' class.

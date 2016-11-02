@@ -26,21 +26,22 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean;
 import edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanFactory;
 
 //TODO MMINT[SCRIPTING] Add and/or/not and chainers
 public class BooleanExpression extends OperatorImpl {
 
 	// input-output
-	protected final static @NonNull String GENERIC_MODELTYPE = "TYPE";
-	protected final static @NonNull String IN_MODEL = "model";
-	protected final static @NonNull String OUT_BOOLEAN = "boolean";
+	private final static @NonNull String GENERIC_MODELTYPE = "TYPE";
+	private final static @NonNull String IN_MODEL = "model";
+	public final static @NonNull String OUT_BOOLEAN = "boolean";
 	// constants
 	private final static @NonNull String BOOLEAN_MODELTYPE = "http://se.cs.toronto.edu/modelepedia/Boolean";
 	private final static @NonNull String EXPRESSION_SEPARATOR = "_is_a_";
 	private final static @NonNull String EXPRESSION_SUFFIX = "?";
 
-	private edu.toronto.cs.se.modelepedia.primitive.boolean_.@NonNull Boolean evaluate(@NonNull Model inputModel, @NonNull Model modelType) {
+	private @NonNull Boolean evaluate(@NonNull Model inputModel, @NonNull Model modelType) {
 
 		boolean evaluation = false;
 		// check constraint only if types match (Model and Model, or ModelRel and ModelRel)
@@ -53,10 +54,10 @@ public class BooleanExpression extends OperatorImpl {
 				evaluation = true;
 			}
 		}
-		edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean bool = BooleanFactory.eINSTANCE.createBoolean();
-		bool.setValue(evaluation);
+		Boolean boolModelObj = BooleanFactory.eINSTANCE.createBoolean();
+		boolModelObj.setValue(evaluation);
 
-		return bool;
+		return boolModelObj;
 	}
 
 	@Override
@@ -69,7 +70,7 @@ public class BooleanExpression extends OperatorImpl {
 		Model modelType = (Model) genericsByName.get(GENERIC_MODELTYPE);
 
 		// evaluate boolean expression
-		edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean boolModelObj = this.evaluate(inputModel, modelType);
+		Boolean boolModelObj = this.evaluate(inputModel, modelType);
 
 		// output
 		Model boolModelType = MIDTypeRegistry.<Model>getType(BOOLEAN_MODELTYPE);

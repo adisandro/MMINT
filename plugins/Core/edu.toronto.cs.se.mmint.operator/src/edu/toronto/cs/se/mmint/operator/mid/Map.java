@@ -48,6 +48,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
+//TODO MMINT[OPERATOR] Make it a NestingOperator
 public class Map extends OperatorImpl {
 
 	// input-output

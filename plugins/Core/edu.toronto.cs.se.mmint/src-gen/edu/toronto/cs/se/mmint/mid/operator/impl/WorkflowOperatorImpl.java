@@ -18,7 +18,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -41,51 +40,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Workflow Operator</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl#getMidUri <em>Mid Uri</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperator {
-	/**
-	 * The default value of the '{@link #getMidUri() <em>Mid Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMidUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String MID_URI_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMidUri() <em>Mid Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMidUri()
-	 * @generated
-	 * @ordered
-	 */
-	protected String midUri = MID_URI_EDEFAULT;
-
+public class WorkflowOperatorImpl extends NestingOperatorImpl implements WorkflowOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,110 +77,15 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMidUri() {
-		return midUri;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMidUri(String newMidUri) {
-		String oldMidUri = midUri;
-		midUri = newMidUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.WORKFLOW_OPERATOR__MID_URI, oldMidUri, midUri));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MID getWorkflowMID() throws MMINTException {
+	public MID getNestedWorkflowMID() throws MMINTException {
 		MMINTException.mustBeType(this);
 		
 		try {
-			return (MID) FileUtils.readModelFileInState(this.getMidUri());
+			return (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());
 		}
 		catch (Exception e) {
 			return null;
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MID getInstanceMID() throws MMINTException {
-		MMINTException.mustBeInstance(this);
-		
-		try {
-			return (MID) FileUtils.readModelFile(this.getMidUri(), true);
-		}
-		catch (Exception e) {
-			return null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OperatorPackage.WORKFLOW_OPERATOR__MID_URI:
-				return getMidUri();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OperatorPackage.WORKFLOW_OPERATOR__MID_URI:
-				setMidUri((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OperatorPackage.WORKFLOW_OPERATOR__MID_URI:
-				setMidUri(MID_URI_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OperatorPackage.WORKFLOW_OPERATOR__MID_URI:
-				return MID_URI_EDEFAULT == null ? midUri != null : !MID_URI_EDEFAULT.equals(midUri);
-		}
-		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -224,38 +96,15 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case OperatorPackage.WORKFLOW_OPERATOR___GET_WORKFLOW_MID:
+			case OperatorPackage.WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID:
 				try {
-					return getWorkflowMID();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-			case OperatorPackage.WORKFLOW_OPERATOR___GET_INSTANCE_MID:
-				try {
-					return getInstanceMID();
+					return getNestedWorkflowMID();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
 		}
 		return super.eInvoke(operationID, arguments);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toStringGen() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (midUri: ");
-		result.append(midUri);
-		result.append(')');
-		return result.toString();
 	}
 
 	/**
@@ -274,37 +123,37 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	 *            The new operator type to be added.
 	 * @param newOperatorTypeName
 	 *            The name of the new operator type.
-	 * @param workflowMIDUri
-	 *            The uri of the Workflow MID that implements the new operator.
+	 * @param workflowMIDPath
+	 *            The path to the Workflow MID that implements the new operator.
 	 * @throws MMINTException
-	 *             If the uri of the new operator type is already registered in the Type MID, or if the Workflow MID
+	 *             If the id of the new operator type is already registered in the Type MID, or if the Workflow MID
 	 *             cannot be read or copied.
 	 * @generated NOT
 	 */
 	@Override
-	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String workflowMIDUri) throws MMINTException {
+	protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String workflowMIDPath) throws MMINTException {
 
 		MID typeMID = this.getMIDContainer();
 		super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
 		try {
 			MID workflowMID;
-			String newWorkflowMIDUri;
-			if (FileUtils.isFileOrDirectoryInState(workflowMIDUri)) { // just recreating this subtype at startup
-				workflowMID = (MID) FileUtils.readModelFileInState(workflowMIDUri);
-				newWorkflowMIDUri = workflowMIDUri;
+			String newWorkflowMIDPath;
+			if (FileUtils.isFileOrDirectoryInState(workflowMIDPath)) { // just recreating this subtype at startup
+				workflowMID = (MID) FileUtils.readModelFileInState(workflowMIDPath);
+				newWorkflowMIDPath = workflowMIDPath;
 			}
 			else { // make a copy of the Workflow MID files
-				workflowMID = (MID) FileUtils.readModelFile(workflowMIDUri, true);
-				newWorkflowMIDUri = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
-				FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDUri);
+				workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
+				newWorkflowMIDPath = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+				FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDPath);
 				FileUtils.copyTextFileAndReplaceText(
-					FileUtils.prependWorkspacePath(workflowMIDUri + GMFUtils.DIAGRAM_SUFFIX),
-					FileUtils.prependStatePath(newWorkflowMIDUri + GMFUtils.DIAGRAM_SUFFIX),
-					FileUtils.getLastSegmentFromPath(workflowMIDUri),
-					newWorkflowMIDUri,
+					FileUtils.prependWorkspacePath(workflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
+					FileUtils.prependStatePath(newWorkflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
+					FileUtils.getLastSegmentFromPath(workflowMIDPath),
+					newWorkflowMIDPath,
 					false);
 			}
-			((WorkflowOperator) newOperatorType).setMidUri(newWorkflowMIDUri);
+			((WorkflowOperator) newOperatorType).setNestedMIDPath(newWorkflowMIDPath);
 			MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
 			Map<Model, String> inoutWorkflowModels = new HashMap<>();
 			for (Model workflowModel : workflowMID.getModels()) { // first pass: identify inputs and outputs
@@ -348,8 +197,8 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 	public void deleteType() throws MMINTException {
 
 		super.deleteType();
-		FileUtils.deleteFileInState(this.getMidUri());
-		FileUtils.deleteFileInState(this.getMidUri() + GMFUtils.DIAGRAM_SUFFIX);
+		FileUtils.deleteFileInState(this.getNestedMIDPath());
+		FileUtils.deleteFileInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX);
 	}
 
 	/**
@@ -369,54 +218,7 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 			return;
 		}
 		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-		FileUtils.openEclipseEditorInState(this.getMidUri() + GMFUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
-
-		super.addInstance(newOperator, midLevel, instanceMID);
-		if (instanceMID == null) {
-			return;
-		}
-
-		String operatorInstanceMIDUri = FileUtils.getUniquePath(
-			FileUtils.replaceFileNameInPath(
-				MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0],
-				newOperator.getName()),
-			true,
-			false);
-		MID operatorInstanceMID = MIDFactory.eINSTANCE.createMID();
-		operatorInstanceMID.setLevel(MIDLevel.INSTANCES);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-		try {
-			FileUtils.writeModelFile(operatorInstanceMID, operatorInstanceMIDUri, true);
-			((WorkflowOperator) newOperator).setMidUri(operatorInstanceMIDUri);
-			GMFUtils.createGMFDiagram(
-				operatorInstanceMIDUri,
-				operatorInstanceMIDUri + GMFUtils.DIAGRAM_SUFFIX,
-				midModelType.getName(),
-				MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName(),
-				true);
-		}
-		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this workflow operator's intermediate results, skipping it", e);
-		}
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public void deleteInstance() throws MMINTException {
-
-		super.deleteInstance();
-		FileUtils.deleteFile(this.getMidUri(), true);
-		FileUtils.deleteFile(this.getMidUri() + GMFUtils.DIAGRAM_SUFFIX, true);
+		FileUtils.openEclipseEditorInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
 	}
 
 	/**
@@ -443,17 +245,20 @@ public class WorkflowOperatorImpl extends OperatorImpl implements WorkflowOperat
 		MMINTException.mustBeInstance(this);
 
 		// workflowMID is executed, intermediate models are stored in instanceMID, outputs in outputMIDsByName
-		MID workflowMID = ((WorkflowOperator) this.getMetatype()).getWorkflowMID();
-		MID instanceMID = this.getInstanceMID();
+		MID workflowMID = ((WorkflowOperator) this.getMetatype()).getNestedWorkflowMID();
+		MID instanceMID = this.getNestedInstanceMID();
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
 		// create shortcuts to input models
-		String instanceMIDUri = this.getMidUri();
-		String instanceMIDDiagramUri = instanceMIDUri + GMFUtils.DIAGRAM_SUFFIX;
-		View instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramUri, true);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(midDiagramType.getUri()).getSymbolicName();
+		String instanceMIDPath = null, instanceMIDDiagramPath = null;
+		View instanceMIDDiagramRoot = null;
+		Model midModelType = null;
+		String midDiagramPluginId = null;
 		if (instanceMID != null) {
+			instanceMIDPath = this.getNestedMIDPath();
+			instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+			instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramPath, true);
+			midModelType = MIDTypeRegistry.getMIDModelType();
+			midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
 			for (Model inputModel : inputsByName.values()) {
 				GMFUtils.createGMFNodeShortcut(inputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
 			}
@@ -514,29 +319,11 @@ nextOperator:
 			}
 		}
 		if (instanceMID != null) {
-			FileUtils.writeModelFile(instanceMID, instanceMIDUri, true);
-			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramUri, true);
+			FileUtils.writeModelFile(instanceMID, instanceMIDPath, true);
+			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramPath, true);
 		}
 
 		return outputsByName;
-	}
-
-	/**
-	 * Opens the MID with the intermediate models generated by this workflow operator instance, if it exists.
-	 * 
-	 * @throws Exception
-	 *             If this is not a workflow operator instance, or if the MID diagram can't be opened.
-	 * @generated NOT
-	 */
-	@Override
-	public void openInstance() throws Exception {
-
-		MMINTException.mustBeInstance(this);
-
-		if (FileUtils.isFile(this.getMidUri(), true)) {
-			Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-			FileUtils.openEclipseEditor(this.getMidUri() + GMFUtils.DIAGRAM_SUFFIX, midDiagramType.getId(), true);
-		}
 	}
 
 } //WorkflowOperatorImpl

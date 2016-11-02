@@ -88,8 +88,8 @@ public class If extends ConditionalOperator {
 
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
-		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_MODELTYPE);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
+		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_OPERATORTYPE);
 		Map<String, MID> thenMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS1, inputModels);
 		Map<String, MID> elseMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS2, inputModels);
 

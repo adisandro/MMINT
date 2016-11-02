@@ -58,6 +58,15 @@ public interface OperatorFactory extends EFactory {
 	RandomOperator createRandomOperator();
 
 	/**
+	 * Returns a new object of class '<em>Nesting Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Nesting Operator</em>'.
+	 * @generated
+	 */
+	NestingOperator createNestingOperator();
+
+	/**
 	 * Returns a new object of class '<em>Workflow Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

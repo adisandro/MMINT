@@ -713,7 +713,7 @@ public class MMINT implements MMINTConstants {
 				newType.addTypeConstraint(dynamicType.getConstraint().getLanguage(), dynamicType.getConstraint().getImplementation());
 			}
 			else if (dynamicType instanceof WorkflowOperator) {
-				newType = ((Operator) type).createSubtype(dynamicType.getName(), ((WorkflowOperator) dynamicType).getMidUri());
+				newType = ((Operator) type).createSubtype(dynamicType.getName(), ((WorkflowOperator) dynamicType).getNestedMIDPath());
 			}
 		}
 		catch (MMINTException e) {
