@@ -11,22 +11,17 @@
  */
 package edu.toronto.cs.se.mmint.operator.flow;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
-import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean;
 
 public abstract class ConditionalOperator extends NestingOperatorImpl {
@@ -34,46 +29,31 @@ public abstract class ConditionalOperator extends NestingOperatorImpl {
 	// input-output
 	protected final static @NonNull String GENERIC_OPERATORTYPE = "CONDITION";
 	protected final static @NonNull String IN_MODEL = "conditionModel";
+	protected final static @NonNull String IN_MODELS = "blockInModels";
+	protected final static @NonNull String OUT_MODELS = "blockOutModels";
 
-	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull BooleanExpression conditionExpression) throws Exception {
-
-		// create shortcut to condition model
-		//TODO MMINT[SCRIPTING] Add option to detect when the intermediate MID is enabled (WorkflowOperator too)
-		//TODO MMINT[SCRIPTING] Make an operator input being selectable twice + find a way to highlight conditionModel
-		//TODO MMINT[SCRIPTING] NestingOperator's deleteInstance should delete models of the nested MID
-		MID instanceMID = this.getNestedInstanceMID();
-		String instanceMIDPath = null, instanceMIDDiagramPath = null;
-		View instanceMIDDiagramRoot = null;
-		if (instanceMID != null) {
-			instanceMIDPath = this.getNestedMIDPath();
-			instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-			instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramPath, true);
-			MIDDiagramUtils.createModelShortcut(conditionModel, instanceMIDDiagramRoot);
-		}
+	protected boolean evaluateCondition(@NonNull Model conditionModel, @NonNull BooleanExpression condition) throws Exception {
 
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(conditionModel);
-		EList<OperatorInput> expressionInputs = conditionExpression.checkAllowedInputs(inputModels);
-		EList<OperatorGeneric> expressionGenerics = conditionExpression.selectAllowedGenerics(expressionInputs);
-		Map<String, MID> expressionOutputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(
-			conditionExpression,
-			instanceMID);
-		Map<String, Model> expressionOutputsByName = conditionExpression.startInstance(
-				expressionInputs,
-				null,
-				expressionGenerics,
-				expressionOutputMIDsByName,
-				instanceMID)
-			.getOutputsByName();
-		Model booleanModel = expressionOutputsByName.get(BooleanExpression.OUT_BOOLEAN);
+		Map<String, Model> conditionOutputsByName = super.startNested(inputModels, condition);
+		Model booleanModel = conditionOutputsByName.get(BooleanExpression.OUT_BOOLEAN);
 		Boolean boolModelObj = (Boolean) booleanModel.getEMFInstanceRoot();
 
-		if (instanceMID != null) {
-			FileUtils.writeModelFile(instanceMID, instanceMIDPath, true);
-			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramPath, true);
-		}
-
 		return boolModelObj.isValue();
+	}
+
+	protected List<Model> runBlock(List<Model> blockInputModels, WorkflowOperator block) throws Exception {
+
+		EList<Model> inputModels = new BasicEList<>(blockInputModels);
+		Map<String, Model> blockOutputsByName = super.startNested(inputModels, block);
+		/*TODO:
+		 * 1) Check that the block workflow operator is compatible with the blockInputModels at creation time
+		 * 2) Do the outputs need to be the same as inputs?
+		 * 3) Refactor plugin.xml signatures
+		 */
+
+		return new ArrayList<>(blockOutputsByName.values());
 	}
 
 }

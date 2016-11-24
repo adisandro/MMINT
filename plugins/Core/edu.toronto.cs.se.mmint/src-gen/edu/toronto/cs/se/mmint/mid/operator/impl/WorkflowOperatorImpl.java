@@ -244,6 +244,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 
 		MMINTException.mustBeInstance(this);
 
+		//TODO MMINT[SCRIPTING] Reuse run utilities from NestingOperator
 		// workflowMID is executed, intermediate models are stored in instanceMID, outputs in outputMIDsByName
 		MID workflowMID = ((WorkflowOperator) this.getMetatype()).getNestedWorkflowMID();
 		MID instanceMID = this.getNestedInstanceMID();

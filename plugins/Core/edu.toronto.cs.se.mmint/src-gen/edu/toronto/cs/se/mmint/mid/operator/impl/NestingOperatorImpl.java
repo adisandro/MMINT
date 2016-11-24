@@ -21,21 +21,25 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -260,11 +264,72 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
 	/**
 	 * @generated NOT
+	 * TODO docs + add to mid.ecore
+	 */
+	protected Map<String, Model> startNested(EList<Model> inputModels, Operator nestedOperator) throws Exception {
+
+		// create shortcuts to input models
+		//TODO MMINT[SCRIPTING] Add option to detect when the nested MID is enabled (WorkflowOperator too)
+		//TODO MMINT[SCRIPTING] Make an operator input being selectable twice + find a way to highlight conditionModel
+		//TODO MMINT[SCRIPTING] Pass outputMIDs too
+		MID nestedInstanceMID = this.getNestedInstanceMID();
+		String instanceMIDPath = null, instanceMIDDiagramPath = null;
+		View instanceMIDDiagramRoot = null;
+		Model midModelType = null;
+		String midDiagramPluginId = null;
+		if (nestedInstanceMID != null) {
+			instanceMIDPath = this.getNestedMIDPath();
+			instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+			instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramPath, true);
+			midModelType = MIDTypeRegistry.getMIDModelType();
+			midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+			for (Model inputModel : inputModels) {
+				GMFUtils.createGMFNodeShortcut(inputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
+			}
+		}
+		// run nested operator
+		//TODO MMINT[SCRIPTING] Trust inputs rather then checking them? If yes, each subclass is required to check them on creation (WO does, CO does not yet)
+//		for (int i = 0; i < block.getInputs().size(); i++) {
+//			ModelEndpoint inputModelEndpoint = block.getInputs().get(i);
+//			Model inputModel = inputModels.get(i);
+//			OperatorInput doInput = OperatorFactory.eINSTANCE.createOperatorInput();
+//			doInput.setModel(inputModel);
+//			doInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
+//			doInputs.add(doInput);
+//		}
+		EList<OperatorInput> nestedInputs = nestedOperator.checkAllowedInputs(inputModels);
+		EList<OperatorGeneric> nestedGenerics = nestedOperator.selectAllowedGenerics(nestedInputs);
+		Map<String, MID> nestedOutputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(
+			nestedOperator,
+			nestedInstanceMID);
+		Map<String, Model> nestedOutputsByName = nestedOperator.startInstance(
+				nestedInputs,
+				null,
+				nestedGenerics,
+				nestedOutputMIDsByName,
+				nestedInstanceMID)
+			.getOutputsByName();
+
+		if (nestedInstanceMID != null) {
+			FileUtils.writeModelFile(nestedInstanceMID, instanceMIDPath, true);
+			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramPath, true);
+		}
+
+		//TODO MMINT[SCRIPTING] Is input a list or map of models? And what about output?
+		return nestedOutputsByName;
+	}
+
+	/**
+	 * @generated NOT
 	 */
 	@Override
 	public void deleteInstance() throws MMINTException {
 
 		super.deleteInstance();
+		MID nestedInstanceMID = this.getNestedInstanceMID();
+		for (Model nestedModel : new ArrayList<>(nestedInstanceMID.getModels())) {
+			nestedModel.deleteInstanceAndFile();
+		}
 		FileUtils.deleteFile(this.getNestedMIDPath(), true);
 		FileUtils.deleteFile(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX, true);
 	}

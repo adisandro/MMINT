@@ -15,18 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
@@ -37,8 +34,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public class Loop extends ConditionalOperator {
 
 	// input-output
-	private final static @NonNull String IN_MODELS = "models";
-	private final static @NonNull String OUT_MODELS = "loopedModels";
 	private final static @NonNull String GENERIC_WORKFLOWOPERATORTYPE = "DO";
 
 	@Override
@@ -61,56 +56,26 @@ public class Loop extends ConditionalOperator {
 		return newOperator;
 	}
 
-	private @NonNull List<Model> loop(@NonNull List<Model> inputModels, @NonNull Model conditionModel, @NonNull BooleanExpression conditionExpression, @NonNull WorkflowOperator doOperatorType, @NonNull Map<String, MID> outputMIDsByInput) throws MMINTException, Exception {
-
-		List<Model> outputModels = null;
-		MID loopMID = MIDFactory.eINSTANCE.createMID();
-		List<Model> loopModels = new ArrayList<>(inputModels);
-		while (super.evaluateCondition(conditionModel, conditionExpression)) {
-			EList<OperatorInput> doInputs = new BasicEList<>();
-			for (int i = 0; i < doOperatorType.getInputs().size(); i++) {
-				ModelEndpoint inputModelEndpoint = doOperatorType.getInputs().get(i);
-				Model inputModel = inputModels.get(i);
-				OperatorInput doInput = OperatorFactory.eINSTANCE.createOperatorInput();
-				doInput.setModel(inputModel);
-				doInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
-				doInputs.add(doInput);
-			}
-			EList<OperatorGeneric> doGenerics = doOperatorType.selectAllowedGenerics(doInputs);
-			Map<String, MID> doOutputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(doOperatorType, loopMID);
-			Map<String, Model> doOutputsByName = doOperatorType.startInstance(
-				doInputs,
-				null,
-				doGenerics,
-				doOutputMIDsByName,
-				loopMID)
-					.getOutputsByName();
-			loopModels = new ArrayList<>(doOutputsByName.values());
-			/*TODO:
-			 * 1) Check that DO workflow operator is compatible with the inputModels (here or at creation time?)
-			 * 2) Reassign inputModels at every step by running and getting the output of doWorkflowOperator
-			 * 3) Create a traceability MID to unroll every time the cycle has been executed
-			 * 4) Do the outputs need to be the same as inputs?
-			 */
-		}
-
-		return outputModels;
-	}
-
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
-		//TODO MMINT[SCRIPTING] Make this an abstract operator and provide concrete variants like While, Until, For?
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
-		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_OPERATORTYPE);
-		WorkflowOperator doOperatorType = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE);
+		BooleanExpression condition = (BooleanExpression) genericsByName.get(GENERIC_OPERATORTYPE);
+		WorkflowOperator doBlock = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE);
 		Map<String, MID> outputMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS, inputModels);
 
-		List<Model> outputModels = this.loop(inputModels, conditionModel, conditionExpression, doOperatorType, outputMIDsByInput);
+		// loop and run block
+		List<Model> outputModels = new ArrayList<>(inputModels);
+		while (super.evaluateCondition(conditionModel, condition)) {
+			outputModels = super.runBlock(outputModels, doBlock);
+			//TODO MMINT[SCRIPTING] Figure out a way to keep track of every time the cycle has been executed (create a new mid each time?)
+		}
+
+		// output
 		Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(outputModels, OUT_MODELS);
 
 		return outputsByName;

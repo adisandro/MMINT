@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.operator.flow;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
@@ -26,15 +25,15 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class If extends ConditionalOperator {
 
 	// input-output
-	private final static @NonNull String IN_MODELS = "models";
-	private final static @NonNull String OUT_MODELS1 = "then";
-	private final static @NonNull String OUT_MODELS2 = "else";
+	private final static @NonNull String GENERIC_WORKFLOWOPERATORTYPE1 = "THEN";
+	private final static @NonNull String GENERIC_WORKFLOWOPERATORTYPE2 = "ELSE";
 
 	@Override
 	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
@@ -65,22 +64,6 @@ public class If extends ConditionalOperator {
 		return newOperator;
 	}
 
-	private @NonNull List<Model> createOutputModels(@NonNull List<Model> inputModels, @NonNull Map<String, MID> outputMIDsByInput, @NonNull String outputSuffix) throws Exception {
-
-		List<Model> outputModels = new ArrayList<>();
-		for (Model inputModel : inputModels) {
-			MID outputMID = outputMIDsByInput.get(inputModel.getName());
-			Model outputModel = inputModel.getMetatype().copyInstanceAndEditor(
-				inputModel,
-				inputModel.getName() + "_" + outputSuffix,
-				true,
-				outputMID);
-			outputModels.add(outputModel);
-		}
-
-		return outputModels;
-	}
-
 	@Override
 	public Map<String, Model> run(
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
@@ -89,19 +72,17 @@ public class If extends ConditionalOperator {
 		// input
 		Model conditionModel = inputsByName.get(IN_MODEL);
 		List<Model> inputModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
-		BooleanExpression conditionExpression = (BooleanExpression) genericsByName.get(GENERIC_OPERATORTYPE);
-		Map<String, MID> thenMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS1, inputModels);
-		Map<String, MID> elseMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS2, inputModels);
+		BooleanExpression condition = (BooleanExpression) genericsByName.get(GENERIC_OPERATORTYPE);
+		WorkflowOperator thenBlock = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE1);
+		WorkflowOperator elseBlock = (WorkflowOperator) genericsByName.get(GENERIC_WORKFLOWOPERATORTYPE2);
+		Map<String, MID> outputMIDsByInput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MODELS, inputModels);
 
-		// evaluate condition
-		boolean condition = super.evaluateCondition(conditionModel, conditionExpression);
+		// evaluate and run block
+		WorkflowOperator block = super.evaluateCondition(conditionModel, condition) ? thenBlock : elseBlock;
+		List<Model> outputModels = super.runBlock(inputModels, block);
 
 		// output
-		List<Model> outputModels = this.createOutputModels(
-			inputModels,
-			condition ? thenMIDsByInput : elseMIDsByInput,
-			condition ? OUT_MODELS1 : OUT_MODELS2);
-		Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(outputModels, (condition ? OUT_MODELS1 : OUT_MODELS2));
+		Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(outputModels, OUT_MODELS);
 
 		return outputsByName;
 	}

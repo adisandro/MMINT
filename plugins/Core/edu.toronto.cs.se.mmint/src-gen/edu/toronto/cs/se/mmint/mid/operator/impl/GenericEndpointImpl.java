@@ -216,6 +216,15 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+
+		return (this.getName() == null) ? "" : this.getName();
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

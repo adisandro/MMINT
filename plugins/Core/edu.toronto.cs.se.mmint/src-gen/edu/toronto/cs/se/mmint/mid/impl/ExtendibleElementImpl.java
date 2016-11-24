@@ -633,9 +633,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public String toString() {
 
-		String label = (getName() == null) ? "" : getName();
+		String label = (this.getName() == null) ? "" : this.getName();
 		if (!this.isTypesLevel()) {
-			ExtendibleElement type = getMetatype();
+			ExtendibleElement type = this.getMetatype();
 			String typeLabel = (type == null) ? "NOTYPE" : type.getName();
 			label += " : " + typeLabel;
 		}

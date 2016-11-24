@@ -132,7 +132,7 @@ public class MMINT implements MMINTConstants {
 	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Unify operator type behavior with other types:
-	 * - Set root Operator as supertype and add filter in gmfmap to avoid drawing the inheritance link (for root Model and ModelRel too)
+	 * - Set root Operator as supertype
 	 * - Add 2 model type endpoints for operators to Model with cardinality 0..n, and the corresponding operator api
 	 * - Add operator support in hierarchy tables and apis
 	 * - Review operator constraint heavy apis
@@ -162,6 +162,15 @@ public class MMINT implements MMINTConstants {
 	 *   c) Check usage and delete if unnecessary
 	 *   d) Add @NonNull/@Nullable annotations + javadoc
 	 *   e) Make a proper user guide online
+	 * - Avoid drawing inheritance links for root elements? Tried, but does not improve things, this is how to do it in MIDCanonicalEditPolicy:
+			IElementType elementType = (IElementType) nextLinkDescriptor.getSemanticAdapter().getAdapter(IElementType.class);
+			String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
+			int visualID = MIDVisualIDRegistry.getVisualID(elementTypeHint);
+			if (visualID == ExtendibleElementSupertypeEditPart.VISUAL_ID) {
+				if (MIDTypeHierarchy.isRootType((ExtendibleElement) nextLinkDescriptor.getDestination())) {
+					continue;
+				}
+			}
 	 */
 	/* TODO MMINT[MATURITY]
 	 * - Use workflows to create test cases, and run tests at every commit
