@@ -19,7 +19,10 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean;
@@ -36,7 +39,9 @@ public abstract class ConditionalOperator extends NestingOperatorImpl {
 
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(conditionModel);
-		Map<String, Model> conditionOutputsByName = super.startNested(inputModels, condition);
+		EList<OperatorInput> inputs = condition.checkAllowedInputs(inputModels);
+		EList<OperatorGeneric> generics = condition.selectAllowedGenerics(inputs);
+		Map<String, Model> conditionOutputsByName = super.startNestedInstance(condition, inputs, null, generics, null).getOutputsByName();
 		Model booleanModel = conditionOutputsByName.get(BooleanExpression.OUT_BOOLEAN);
 		Boolean boolModelObj = (Boolean) booleanModel.getEMFInstanceRoot();
 
@@ -46,11 +51,15 @@ public abstract class ConditionalOperator extends NestingOperatorImpl {
 	protected List<Model> runBlock(List<Model> blockInputModels, WorkflowOperator block) throws Exception {
 
 		EList<Model> inputModels = new BasicEList<>(blockInputModels);
-		Map<String, Model> blockOutputsByName = super.startNested(inputModels, block);
+		EList<OperatorInput> inputs = block.checkAllowedInputs(inputModels);
+		EList<OperatorGeneric> generics = block.selectAllowedGenerics(inputs);
+		Map<String, MID> outputMIDsByName = null; //TODO bring the outputs back into the main MID
+		Map<String, Model> blockOutputsByName = super.startNestedInstance(block, inputs, null, generics, outputMIDsByName).getOutputsByName();
 		/*TODO:
 		 * 1) Check that the block workflow operator is compatible with the blockInputModels at creation time
-		 * 2) Do the outputs need to be the same as inputs?
 		 * 3) Refactor plugin.xml signatures
+		 * 4) Allow creation of block workflow on the fly
+		 * 5) Create empty workflow for an empty else clause
 		 */
 
 		return new ArrayList<>(blockOutputsByName.values());

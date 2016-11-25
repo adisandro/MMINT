@@ -39,7 +39,8 @@ public class If extends ConditionalOperator {
 	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
 
 		Operator newOperator = super.startWorkflowInstance(inputs, generics, workflowMID);
-		// create the vararg output models
+		// create the vararg output models based on
+		//TODO MMINT[SCRIPTING] Do the outputs need to be the same as inputs?
 		for (int i = 0; i < inputs.size(); i++) {
 			//TODO MMINT[SCRIPTING] Handle model rels
 			Model outputModelType = inputs.get(i).getModel().getMetatype();

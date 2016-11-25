@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -30,7 +31,9 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
@@ -264,14 +267,14 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
 	/**
 	 * @generated NOT
-	 * TODO docs + add to mid.ecore
 	 */
-	protected Map<String, Model> startNested(EList<Model> inputModels, Operator nestedOperator) throws Exception {
+	public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
 
 		// create shortcuts to input models
+		//TODO MMINT[SCRIPTING] Add in mid.ecore + javadoc
 		//TODO MMINT[SCRIPTING] Add option to detect when the nested MID is enabled (WorkflowOperator too)
 		//TODO MMINT[SCRIPTING] Make an operator input being selectable twice + find a way to highlight conditionModel
-		//TODO MMINT[SCRIPTING] Pass outputMIDs too
+		//TODO MMINT[SCRIPTING] Don't always create links to inputs, and find a way to cache the nestedInstanceMID without deserialize/serialize every time
 		MID nestedInstanceMID = this.getNestedInstanceMID();
 		String instanceMIDPath = null, instanceMIDDiagramPath = null;
 		View instanceMIDDiagramRoot = null;
@@ -283,40 +286,34 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 			instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramPath, true);
 			midModelType = MIDTypeRegistry.getMIDModelType();
 			midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-			for (Model inputModel : inputModels) {
-				GMFUtils.createGMFNodeShortcut(inputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
+			for (OperatorInput input : inputs) {
+				GMFUtils.createGMFNodeShortcut(input.getModel(), instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
 			}
 		}
-		// run nested operator
-		//TODO MMINT[SCRIPTING] Trust inputs rather then checking them? If yes, each subclass is required to check them on creation (WO does, CO does not yet)
-//		for (int i = 0; i < block.getInputs().size(); i++) {
-//			ModelEndpoint inputModelEndpoint = block.getInputs().get(i);
-//			Model inputModel = inputModels.get(i);
-//			OperatorInput doInput = OperatorFactory.eINSTANCE.createOperatorInput();
-//			doInput.setModel(inputModel);
-//			doInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
-//			doInputs.add(doInput);
-//		}
-		EList<OperatorInput> nestedInputs = nestedOperator.checkAllowedInputs(inputModels);
-		EList<OperatorGeneric> nestedGenerics = nestedOperator.selectAllowedGenerics(nestedInputs);
-		Map<String, MID> nestedOutputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(
-			nestedOperator,
+		// use the nested MID as default, or provided output MIDs otherwise
+		Map<String, MID> nestedOutputMIDsByName = new HashMap<>();
+		if (outputMIDsByName == null) {
+			nestedOutputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(nestedOperatorType, nestedInstanceMID);
+		}
+		else {
+			for (ModelEndpoint outputModelTypeEndpoint : nestedOperatorType.getOutputs()) {
+				MID outputMID = outputMIDsByName.getOrDefault(outputModelTypeEndpoint.getName(), nestedInstanceMID);
+				nestedOutputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
+			}
+		}
+		// run nested operator and store nested MID
+		Operator newNestedOperator = nestedOperatorType.startInstance(
+			inputs,
+			inputProperties,
+			generics,
+			outputMIDsByName,
 			nestedInstanceMID);
-		Map<String, Model> nestedOutputsByName = nestedOperator.startInstance(
-				nestedInputs,
-				null,
-				nestedGenerics,
-				nestedOutputMIDsByName,
-				nestedInstanceMID)
-			.getOutputsByName();
-
 		if (nestedInstanceMID != null) {
 			FileUtils.writeModelFile(nestedInstanceMID, instanceMIDPath, true);
 			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramPath, true);
 		}
 
-		//TODO MMINT[SCRIPTING] Is input a list or map of models? And what about output?
-		return nestedOutputsByName;
+		return newNestedOperator;
 	}
 
 	/**
