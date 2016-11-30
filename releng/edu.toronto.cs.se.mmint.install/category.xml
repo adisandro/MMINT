@@ -45,6 +45,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.models15.feature_2.1.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.models15.feature" version="2.1.99.qualifier">
       <category name="Examples"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.icse15.feature_2.1.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.icse15.feature" version="2.1.99.qualifier">
+      <category name="Examples"/>
+   </feature>
    <category-def name="Modeling" label="Modeling"/>
    <category-def name="Modelepedia" label="Modelepedia"/>
    <category-def name="Examples" label="Examples"/>

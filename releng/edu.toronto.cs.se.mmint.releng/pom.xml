@@ -226,6 +226,7 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.tutorial.feature</module>
+  	<module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>

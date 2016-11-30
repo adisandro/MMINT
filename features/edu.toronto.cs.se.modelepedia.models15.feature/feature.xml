@@ -5,15 +5,15 @@
       version="2.1.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
-   <description url="http://www.example.com/description">
+   <description url="https://github.com/adisandro/MMINT">
       Examples from the MODELS15 conference.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
+   <copyright>
       Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
    </copyright>
 
-   <license url="http://www.example.com/license">
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
       This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
