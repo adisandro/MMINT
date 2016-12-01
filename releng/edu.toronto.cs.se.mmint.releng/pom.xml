@@ -208,6 +208,10 @@
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.diagram</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.edit</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.editor</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
