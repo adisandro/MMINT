@@ -216,8 +216,6 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
-  	<module>../../features/edu.toronto.cs.se.modelepedia.petrinet.feature</module>
-  	<module>../../features/edu.toronto.cs.se.modelepedia.powerwindow.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.tutorial.feature</module>
