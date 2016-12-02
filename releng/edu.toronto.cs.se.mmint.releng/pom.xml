@@ -169,15 +169,6 @@
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.edit</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.editor</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.operator</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet.edit</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet.editor</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet.operator</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.diagram</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.edit</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.editor</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.operator</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.diagram</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.edit</module>
