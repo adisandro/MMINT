@@ -67,6 +67,15 @@ public interface ICSE15_SequenceDiagram_MAVOFactory extends EFactory {
 	Class createClass();
 
 	/**
+	 * Returns a new object of class '<em>Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute</em>'.
+	 * @generated
+	 */
+	Attribute createAttribute();
+
+	/**
 	 * Returns a new object of class '<em>Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +101,15 @@ public interface ICSE15_SequenceDiagram_MAVOFactory extends EFactory {
 	 * @generated
 	 */
 	ClassReference createClassReference();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Reference</em>'.
+	 * @generated
+	 */
+	AttributeReference createAttributeReference();
 
 	/**
 	 * Returns a new object of class '<em>Operation Reference</em>'.

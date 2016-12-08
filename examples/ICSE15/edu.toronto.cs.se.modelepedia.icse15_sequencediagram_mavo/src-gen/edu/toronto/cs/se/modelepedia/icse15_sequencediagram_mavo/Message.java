@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getSourceLifeline <em>Source Lifeline</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getTargetLifeline <em>Target Lifeline</em>}</li>
@@ -32,6 +33,24 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Message extends NamedElement {
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getMessage_Attributes()
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference#getSource
+	 * @model opposite="source" containment="true"
+	 * @generated
+	 */
+	EList<AttributeReference> getAttributes();
+
 	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference}.
