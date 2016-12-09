@@ -1361,11 +1361,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A nesting operator type or a nesting operator instance, i.e. an operator that in turn runs other operators and uses a nested Instance MID to trace intermediate artifacts."/>
       </eAnnotations>
-      <eOperations name="getNestedInstanceMID" eType="#//MID" eExceptions="#//MMINTException">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MMINTException.mustBeInstance(this);&#xA;&#xA;try {&#xA;&#x9;String nestedMIDPath = this.getNestedMIDPath();&#xA;&#x9;return (nestedMIDPath == null) ?&#xA;&#x9;&#x9;null :&#xA;&#x9;&#x9;(MID) FileUtils.readModelFile(nestedMIDPath, true);&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
-        </eAnnotations>
-      </eOperations>
+      <eOperations name="getNestedInstanceMID" eType="#//MID" eExceptions="#//MMINTException"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nestedMIDPath" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

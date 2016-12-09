@@ -40,7 +40,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
@@ -79,6 +78,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 * @ordered
 	 */
 	protected String nestedMIDPath = NESTED_MID_PATH_EDEFAULT;
+
+	/**
+	 * The nested MID, kept in memory for performance reasons.
+	 * @generated NOT
+	 */
+	protected MID inMemoryNestedMID;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,17 +126,26 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public MID getNestedInstanceMID() throws MMINTException {
+
 		MMINTException.mustBeInstance(this);
-		
+
+		if (this.inMemoryNestedMID != null) {
+			return this.inMemoryNestedMID;
+		}
+
 		try {
-			return (MID) FileUtils.readModelFile(this.getNestedMIDPath(), true);
+			if (this.getNestedMIDPath() == null) {
+				return null;
+			}
+			MID nestedMID = (MID) FileUtils.readModelFile(this.getNestedMIDPath(), true);
+			this.inMemoryNestedMID = nestedMID;
+			return nestedMID;
 		}
 		catch (Exception e) {
+			this.inMemoryNestedMID = null;
 			return null;
 		}
 	}
@@ -253,6 +267,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		try {
 			FileUtils.writeModelFile(nestedInstanceMID, nestedInstanceMIDPath, true);
 			((NestingOperator) newOperator).setNestedMIDPath(nestedInstanceMIDPath);
+			((NestingOperatorImpl) newOperator).inMemoryNestedMID = nestedInstanceMID;
 			GMFUtils.createGMFDiagram(
 				nestedInstanceMIDPath,
 				nestedInstanceMIDPath + GMFUtils.DIAGRAM_SUFFIX,
@@ -268,29 +283,30 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	/**
 	 * @generated NOT
 	 */
-	public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
+	public View createInputShortcuts(EList<OperatorInput> inputs) throws Exception {
 
-		// create shortcuts to input models
-		//TODO MMINT[SCRIPTING] Add in mid.ecore + javadoc
-		//TODO MMINT[SCRIPTING] Add option to detect when the nested MID is enabled (WorkflowOperator too)
-		//TODO MMINT[SCRIPTING] Make an operator input being selectable twice + find a way to highlight conditionModel
-		//TODO MMINT[SCRIPTING] Don't always create links to inputs, and find a way to cache the nestedInstanceMID without deserialize/serialize every time
-		MID nestedInstanceMID = this.getNestedInstanceMID();
-		String instanceMIDPath = null, instanceMIDDiagramPath = null;
 		View instanceMIDDiagramRoot = null;
-		Model midModelType = null;
-		String midDiagramPluginId = null;
-		if (nestedInstanceMID != null) {
-			instanceMIDPath = this.getNestedMIDPath();
-			instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
+		if (this.getNestedInstanceMID() != null) {
+			String instanceMIDPath = this.getNestedMIDPath();
+			String instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
 			instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramPath, true);
-			midModelType = MIDTypeRegistry.getMIDModelType();
-			midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+			Model midModelType = MIDTypeRegistry.getMIDModelType();
+			String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
 			for (OperatorInput input : inputs) {
 				GMFUtils.createGMFNodeShortcut(input.getModel(), instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
 			}
 		}
+
+		return instanceMIDDiagramRoot;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator startNestedInstanceSimple(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
+
 		// use the nested MID as default, or provided output MIDs otherwise
+		MID nestedInstanceMID = this.getNestedInstanceMID();
 		Map<String, MID> nestedOutputMIDsByName = new HashMap<>();
 		if (outputMIDsByName == null) {
 			nestedOutputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(nestedOperatorType, nestedInstanceMID);
@@ -301,14 +317,33 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				nestedOutputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
 			}
 		}
-		// run nested operator and store nested MID
+		// run nested operator
 		Operator newNestedOperator = nestedOperatorType.startInstance(
 			inputs,
 			inputProperties,
 			generics,
 			outputMIDsByName,
 			nestedInstanceMID);
+
+		return newNestedOperator;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
+
+		//TODO MMINT[SCRIPTING] Add in mid.ecore + javadoc
+		//TODO MMINT[SCRIPTING] Add option to detect when the nested MID is enabled (WorkflowOperator too)
+		// create shortcuts to input models
+		View instanceMIDDiagramRoot = this.createInputShortcuts(inputs);
+		// run nested operator
+		Operator newNestedOperator = this.startNestedInstanceSimple(nestedOperatorType, inputs, inputProperties, generics, outputMIDsByName);
+		// store nested MID
+		MID nestedInstanceMID = this.getNestedInstanceMID();
 		if (nestedInstanceMID != null) {
+			String instanceMIDPath = this.getNestedMIDPath();
+			String instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
 			FileUtils.writeModelFile(nestedInstanceMID, instanceMIDPath, true);
 			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramPath, true);
 		}

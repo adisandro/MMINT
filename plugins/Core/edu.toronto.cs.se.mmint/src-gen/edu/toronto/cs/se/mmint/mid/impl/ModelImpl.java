@@ -881,16 +881,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeType(this);
 
-		//TODO MMINT[OPERATOR] Separate using instanceMID = null from not creating the model file, with a setting flag enabled by operators that need it?
-		if (rootModelObj != null) {
-			if (instanceMID == null) {
-				//TODO MMINT[FILES] In memory when serialized too? Need a resource listener for changes to the file
-				inMemoryRootModelObj = rootModelObj;
-			}
-			else {
-				FileUtils.writeModelFile(rootModelObj, newModelPath, true);
-			}
-		}
 		Model newModel = super.createThisEClass();
 		this.addInstance(
 			newModel,
@@ -900,6 +890,16 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			FileUtils.getFileExtensionFromPath(newModelPath),
 			MIDLevel.INSTANCES,
 			instanceMID);
+		//TODO MMINT[OPERATOR] Separate using instanceMID = null from not creating the model file, with a setting flag enabled by operators that need it?
+		if (rootModelObj != null) {
+			if (instanceMID == null) {
+				//TODO MMINT[FILES] In memory when serialized too? Need a resource listener for changes to the file
+				((ModelImpl) newModel).inMemoryRootModelObj = rootModelObj;
+			}
+			else {
+				FileUtils.writeModelFile(rootModelObj, newModelPath, true);
+			}
+		}
 
 		return newModel;
 	}
@@ -1130,14 +1130,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		if (inMemoryRootModelObj != null) {
-			return inMemoryRootModelObj;
+		if (this.inMemoryRootModelObj != null) {
+			return this.inMemoryRootModelObj;
 		}
 
 		try {
-			return FileUtils.readModelFile(this.getUri(), true);
+			EObject rootModelObj = FileUtils.readModelFile(this.getUri(), true);
+			this.inMemoryRootModelObj = rootModelObj;
+			return rootModelObj;
 		}
 		catch (Exception e) {
+			this.inMemoryRootModelObj = null;
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);
 		}
 	}

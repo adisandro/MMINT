@@ -187,6 +187,7 @@ public class MMINT implements MMINTConstants {
 	 * - Replace ocl constraints with java in gmfmap
 	 * - Refactor functions in mid.ecore like getMetatype() using generics (and rename that to getType())
 	 * - ExtendibleElementReference.containedObject is completely useless
+	 * - Remove all operation implementations from mid.ecore
 	 */
 
 	private static void createTypeConstraint(IConfigurationElement extensionConfig, ExtendibleElement constrainedType, MIDHeavyTypeFactory typeFactory) {
