@@ -175,7 +175,7 @@ public class MIDContextMenu extends ContributionItem {
 		mmintItem.setText(MMINT_MENU_LABEL);
 		Menu mmintMenu = new Menu(menu);
 		mmintItem.setMenu(mmintMenu);
-		MMINT.storeActiveInstanceMIDFile();
+		MMINT.stashActiveInstanceMIDFile();
 		// operator
 		if (doOperator) {
 			if (mid == null) {

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -152,7 +153,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
 	protected EList<ConversionOperator> conversionOperators;
 
 	/**
-	 * The root model object when this model is not backed up by an ECore model file.
+	 * The root model object when it is not serialized in an ECore model file (different from
+	 * {@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#inMemoryNestedMID}, this is NOT for
+	 * performance reasons).
+	 * 
 	 * @generated NOT
 	 */
 	protected EObject inMemoryRootModelObj;
@@ -893,7 +897,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		//TODO MMINT[OPERATOR] Separate using instanceMID = null from not creating the model file, with a setting flag enabled by operators that need it?
 		if (rootModelObj != null) {
 			if (instanceMID == null) {
-				//TODO MMINT[FILES] In memory when serialized too? Need a resource listener for changes to the file
+				/* TODO MMINT[OPERATOR] Could we put it in memory when serialized too as optimization, or will it consume too much memory?
+				 * (find the cases where it really stays in memory, which shouldn't happen when working with a MID diagram, only in a workflow)
+				 * Also, should cache it when using getEMFInstanceRoot() in that case.
+				 * This thing (having to copy it) is tricky because one never modifies a model in place with an operator (only with a MID diagram) but a new model is always created
+				 */
 				((ModelImpl) newModel).inMemoryRootModelObj = rootModelObj;
 			}
 			else {
@@ -1116,6 +1124,21 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
+		/*TODO MMINT[MODEL] Deleting like this assumes that all models are unique, e.g. there are no copies
+		 * This will break when deleting a model that exist in two mids, and the following proper mid handling breaks it even more especially with nesting operators
+		if (this.getMetatype() == MIDTypeRegistry.getMIDModelType()) { // the model is a MID
+			MID nestedMID = (MID) this.getEMFInstanceRoot();
+			for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
+				nestedModel.deleteInstanceAndFile();
+			}
+		}
+		 */
+		if (this.getMetatype() == MIDTypeRegistry.getMIDModelType()) { // the model is a MID
+			MID nestedMID = (MID) this.getEMFInstanceRoot();
+			for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
+				nestedModel.deleteInstanceAndFile();
+			}
+		}
 		for (Editor editor : this.getEditors()) {
 			FileUtils.deleteFile(editor.getUri(), true);
 		}
@@ -1131,16 +1154,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
 		MMINTException.mustBeInstance(this);
 
 		if (this.inMemoryRootModelObj != null) {
-			return this.inMemoryRootModelObj;
+			return EcoreUtil.copy(this.inMemoryRootModelObj);
 		}
 
 		try {
 			EObject rootModelObj = FileUtils.readModelFile(this.getUri(), true);
-			this.inMemoryRootModelObj = rootModelObj;
 			return rootModelObj;
 		}
 		catch (Exception e) {
-			this.inMemoryRootModelObj = null;
 			throw new MMINTException("Error accessing the model file for model " + getUri(), e);
 		}
 	}

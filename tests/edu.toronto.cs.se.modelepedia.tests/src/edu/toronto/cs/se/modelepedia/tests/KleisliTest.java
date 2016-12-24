@@ -210,7 +210,7 @@ public class KleisliTest extends MMINTTest {
 		transformationGeneric.setGenericSuperTypeEndpoint(transformationOperator.getGenerics().get(0));
 		transformationGeneric.setGeneric(kModelRelType);
 		transformationGenerics.add(transformationGeneric);
-		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(transformationOperator, instanceMID);
 		Map<String, Model> transformationOutput = transformationOperator.startInstance(transformationInputs, null, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
 		FileUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 

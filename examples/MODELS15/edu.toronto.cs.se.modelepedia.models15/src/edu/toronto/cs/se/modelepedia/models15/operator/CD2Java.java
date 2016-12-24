@@ -47,7 +47,7 @@ public class CD2Java extends ConversionOperatorImpl {
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(cdModel);
 		EList<OperatorInput> inputs = transformationOperatorType.checkAllowedInputs(inputModels);
-		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(transformationOperatorType, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(transformationOperatorType, instanceMID);
 		EList<OperatorGeneric> generics = new BasicEList<>();
 		OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
 		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));

@@ -108,12 +108,12 @@ public class GMFUtils {
 		return modelFile;
 	}
 
-	public static Node createGMFNode(EObject modelObj, View gmfContainer, String diagramPluginId) {
+	public static Node createGMFNode(EObject modelObj, Diagram gmfDiagram, String diagramPluginId) {
 
 		// works only if modelObj has the right eStorage adapters attached
 		IElementType gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
 		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
-		Node gmfNode = ViewService.createNode(gmfContainer, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
+		Node gmfNode = ViewService.createNode(gmfDiagram, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
 
 		return gmfNode;
 	}
@@ -126,9 +126,9 @@ public class GMFUtils {
 		gmfNode.getEAnnotations().add(shortcutAnnotation);
 	}
 
-	public static Node createGMFNodeShortcut(EObject modelObj, View gmfContainer, String diagramPluginId, String shortcutId) {
+	public static Node createGMFNodeShortcut(EObject modelObj, Diagram gmfDiagram, String diagramPluginId, String shortcutId) {
 
-		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfContainer, diagramPluginId);
+		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfDiagram, diagramPluginId);
 		GMFUtils.addGMFShortcut(gmfNode, shortcutId);
 
 		return gmfNode;

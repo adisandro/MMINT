@@ -75,7 +75,7 @@ public class Reduce extends OperatorImpl {
 		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
-			.createSimpleOutputMIDsByName(accumulatorOperatorType, reducedMID);
+			.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
 		EList<MID> inputMIDs = new BasicEList<>();
 		inputMIDs.add(reducedMID);
 		Set<Model> accumulatorOutputModelsToDelete = new HashSet<>();
@@ -84,11 +84,11 @@ public class Reduce extends OperatorImpl {
 		// preparation for composition operator
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 		Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
-			.createSimpleOutputMIDsByName(compositionOperatorType, reducedMID);
+			.createSameOutputMIDsByName(compositionOperatorType, reducedMID);
 		// preparation for merge operator
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
 		Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
-			.createSimpleOutputMIDsByName(mergeOperatorType, reducedMID);
+			.createSameOutputMIDsByName(mergeOperatorType, reducedMID);
 		// reduce loop
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
 			Set<Model> accumulatorInputModels = new HashSet<>();

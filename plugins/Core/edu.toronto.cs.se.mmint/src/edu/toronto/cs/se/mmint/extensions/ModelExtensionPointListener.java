@@ -50,7 +50,7 @@ public class ModelExtensionPointListener extends MMINTExtensionPointListener {
 				}
 			}
 		}
-		MMINT.storeTypeMID();
+		MMINT.writeTypeMID();
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class ModelExtensionPointListener extends MMINTExtensionPointListener {
 				}
 			}
 		}
-		MMINT.storeTypeMID();
+		MMINT.writeTypeMID();
 	}
 
 }

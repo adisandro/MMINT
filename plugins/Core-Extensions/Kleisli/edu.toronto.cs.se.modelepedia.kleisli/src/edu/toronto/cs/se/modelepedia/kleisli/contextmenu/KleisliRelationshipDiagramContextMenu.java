@@ -94,7 +94,7 @@ public class KleisliRelationshipDiagramContextMenu extends ContributionItem {
 		mmintItem.setText(MIDContextMenu.MMINT_MENU_LABEL);
 		Menu mmintMenu = new Menu(menu);
 		mmintItem.setMenu(mmintMenu);
-		MMINT.storeActiveInstanceMIDFile();
+		MMINT.stashActiveInstanceMIDFile();
 		// derivation
 		if (doDerivation) {
 			MenuItem derivationItem = new MenuItem(mmintMenu, SWT.NONE);

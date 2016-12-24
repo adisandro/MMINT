@@ -49,7 +49,7 @@ public class OperatorExtensionPointListener extends MMINTExtensionPointListener 
 				}
 			}
 		}
-		MMINT.storeTypeMID();
+		MMINT.writeTypeMID();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class OperatorExtensionPointListener extends MMINTExtensionPointListener 
 				}
 			}
 		}
-		MMINT.storeTypeMID();
+		MMINT.writeTypeMID();
 	}
 
 }

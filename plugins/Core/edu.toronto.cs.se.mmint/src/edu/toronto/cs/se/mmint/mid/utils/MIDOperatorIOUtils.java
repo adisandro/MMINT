@@ -298,11 +298,22 @@ public class MIDOperatorIOUtils {
 		return outputMIDsByOtherName;
 	}
 
-	public static @NonNull Map<String, MID> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID instanceMID) {
+	public static @NonNull Map<String, MID> createSameOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID outputMID) {
 
 		Map<String, MID> outputMIDsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
-			outputMIDsByName.put(outputModelTypeEndpoint.getName(), instanceMID);
+			outputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
+		}
+
+		return outputMIDsByName;
+	}
+
+	public static @NonNull Map<String, MID> mixOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID defaultOutputMID, @NonNull Map<String, MID> assignedOutputMIDsByName) {
+
+		Map<String, MID> outputMIDsByName = new HashMap<>();
+		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
+			MID outputMID = assignedOutputMIDsByName.getOrDefault(outputModelTypeEndpoint.getName(), defaultOutputMID);
+			outputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
 		}
 
 		return outputMIDsByName;

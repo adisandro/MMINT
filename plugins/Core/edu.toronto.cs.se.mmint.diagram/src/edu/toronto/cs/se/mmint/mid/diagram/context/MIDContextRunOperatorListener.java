@@ -75,7 +75,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(operatorType, mid);
+				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(operatorType, mid);
 				switch (mid.getLevel()) {
 					case TYPES:
 						throw new MMINTException("The TYPES level is not allowed");

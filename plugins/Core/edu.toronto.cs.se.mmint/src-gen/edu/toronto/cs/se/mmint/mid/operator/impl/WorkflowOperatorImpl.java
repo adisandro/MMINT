@@ -41,9 +41,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * <!-- begin-user-doc -->
@@ -244,36 +244,21 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 
 		MMINTException.mustBeInstance(this);
 
-		//TODO MMINT[SCRIPTING] Reuse run utilities from NestingOperator
-		// workflowMID is executed, intermediate models are stored in instanceMID, outputs in outputMIDsByName
+		// workflowMID is executed, intermediate models are stored in nestedMID, outputs in outputMIDsByName
 		MID workflowMID = ((WorkflowOperator) this.getMetatype()).getNestedWorkflowMID();
-		MID instanceMID = this.getNestedInstanceMID();
+		MID nestedMID = this.getNestedInstanceMID();
+		String nestedMIDPath = this.getNestedMIDPath();
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
 		// create shortcuts to input models
-		String instanceMIDPath = null, instanceMIDDiagramPath = null;
-		View instanceMIDDiagramRoot = null;
-		Model midModelType = null;
-		String midDiagramPluginId = null;
-		if (instanceMID != null) {
-			instanceMIDPath = this.getNestedMIDPath();
-			instanceMIDDiagramPath = instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-			instanceMIDDiagramRoot = (View) FileUtils.readModelFile(instanceMIDDiagramPath, true);
-			midModelType = MIDTypeRegistry.getMIDModelType();
-			midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-			for (Model inputModel : inputsByName.values()) {
-				GMFUtils.createGMFNodeShortcut(inputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
-			}
+		if (nestedMIDPath != null) {
+			super.createNestedInstanceMIDModelShortcuts(ECollections.toEList(inputsByName.values()));
 		}
 		// the order of operator creation in the workflow is a safe order of execution too
 		Map<String, Model> outputsByName = new HashMap<>();
-nextOperator:
 		for (Operator workflowOperator : workflowMID.getOperators()) {
 			EList<OperatorInput> workflowInputs = new BasicEList<>();
 			for (ModelEndpoint inputModelEndpoint : workflowOperator.getInputs()) {
 				Model inputModel = allModelsByName.get(inputModelEndpoint.getTargetUri());
-				if (inputModel == null) { // special case for operator If
-					continue nextOperator;
-				}
 				OperatorInput workflowInput = OperatorFactory.eINSTANCE.createOperatorInput();
 				workflowInput.setModel(inputModel);
 				workflowInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
@@ -288,40 +273,32 @@ nextOperator:
 			}
 			Map<String, MID> workflowOutputMIDsByName = new HashMap<>();
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
-				MID outputMID = outputMIDsByName.getOrDefault(outputModelEndpoint.getTargetUri(), instanceMID);
-				workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID);
+				MID outputMID = outputMIDsByName.getOrDefault(outputModelEndpoint.getTargetUri(), nestedMID); // match workflow ids..
+				workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID); // ..with operator output names
 			}
 			Map<String, Model> workflowOutputsByName = workflowOperator.getMetatype().startInstance(
-					workflowInputs,
-					null,
-					workflowGenerics,
-					workflowOutputMIDsByName,
-					instanceMID)
-				.getOutputsByName();
+				workflowInputs,
+				null,
+				workflowGenerics,
+				workflowOutputMIDsByName,
+				nestedMID)
+					.getOutputsByName();
+			EList<Model> outputModels = new BasicEList<>();
 			for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
 				Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
-				if (outputModel == null) { // special case for operator If
-					continue;
-				}
-				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
-				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != instanceMID) { // final outputs
+				allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel); // ids are unique in a workflowMID
+				if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != nestedMID) { // final outputs
 					outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
-					// create shortcuts to output models, or make a copy of output model rels
-					if (instanceMID != null) {
-						if (outputModel instanceof ModelRel) {
-							((ModelRel) outputModel).getMetatype().copyInstance(outputModel, outputModel.getName(), instanceMID);
-						}
-						else {
-							GMFUtils.createGMFNodeShortcut(outputModel, instanceMIDDiagramRoot, midDiagramPluginId, midModelType.getName());
-							instanceMID.getExtendibleTable().put(outputModel.getUri(), outputModel);
-						}
-					}
+					outputModels.add(outputModel);
 				}
 			}
+			// create shortcuts to output models
+			if (nestedMIDPath != null) {
+				super.createNestedInstanceMIDModelShortcuts(outputModels);
+			}
 		}
-		if (instanceMID != null) {
-			FileUtils.writeModelFile(instanceMID, instanceMIDPath, true);
-			FileUtils.writeModelFile(instanceMIDDiagramRoot, instanceMIDDiagramPath, true);
+		if (nestedMIDPath != null) {
+			super.writeNestedInstanceMID();
 		}
 
 		return outputsByName;

@@ -884,7 +884,7 @@ public class MMINT implements MMINTConstants {
 		subtypesMID = new HashMap<>();
 		conversionsMID = new HashMap<>();
 		cachedRuntimeTypes = new HashMap<>();
-		storeTypeMID();
+		writeTypeMID();
 	}
 
 	/**
@@ -930,7 +930,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Stores the repository into the Type MID file (repository -> Type MID).
 	 */
-	public static void storeTypeMID() {
+	public static void writeTypeMID() {
 
 		createTypeHierarchy();
 		copySubtypeTable(subtypes, subtypesMID);
@@ -1066,7 +1066,7 @@ public class MMINT implements MMINTConstants {
 		return activeInstanceMIDFile;
 	}
 
-	public static void storeActiveInstanceMIDFile() {
+	public static void stashActiveInstanceMIDFile() {
 
 		try {
 			IFile instanceMIDFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
