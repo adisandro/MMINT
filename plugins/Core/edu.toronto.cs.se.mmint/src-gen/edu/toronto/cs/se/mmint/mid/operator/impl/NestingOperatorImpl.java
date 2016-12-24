@@ -356,6 +356,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 			if (!(model instanceof ModelRel)) {
 				continue;
 			}
+			//TODO MMINT[NESTED] Need to create an endpoint from the nested operator to this new model rel
 			((ModelRel) model).getMetatype().copyInstance(model, model.getName(), nestedMID);
 		}
 	}
@@ -384,8 +385,8 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 */
 	public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
 
-		//TODO MMINT[SCRIPTING] Add all new operations in mid.ecore + javadoc
-		//TODO MMINT[SCRIPTING] Add option to detect when the nested MID is enabled, different from when operator instances are enabled (WorkflowOperator too)
+		//TODO MMINT[NESTED] Add all new operations in mid.ecore + javadoc
+		//TODO MMINT[NESTED] Add option to detect when the nested MID is enabled, different from when operator instances are enabled (WorkflowOperator too)
 		MMINTException.mustBeInstance(this);
 
 		// create shortcuts to input models

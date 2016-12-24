@@ -102,31 +102,7 @@ public class Reduce extends OperatorImpl {
 							.map(ModelEndpoint::getTarget)
 							.collect(Collectors.toSet()));
 						accumulatorInputModelRels.add((ModelRel) accumulatorInputModel);
-					}	/**
-					 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models,
-					 * creates an operator instance, invokes {@link #readInputProperties(Properties)}, {@link #init()},
-					 * {@link #run(Map, Map, Map)}, records the execution time.
-					 * 
-					 * @param inputs
-					 *            A list of inputs to run the operator instance, including necessary conversions.
-					 * @param inputProperties
-					 *            The input properties, or null to read them from a file named OperatorNameIn.properties.
-					 * @param generics
-					 *            A list of generics to run the operator instance.
-					 * @param outputMIDsByName
-					 *            The instance MIDs where the output models are created, identified by the output name. A null instance
-					 *            MID means that the output model isn't added to it.
-					 * @param instanceMID
-					 *            The Instance MID where the operator instance is run, null if the operator isn't going to be added to
-					 *            it.
-					 * @return The executed operator instance.
-					 * @throws Exception
-					 *             If something went wrong starting the operator. <!-- end-user-doc -->
-					 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true"
-					 *        genericsMany="true" outputMIDsByNameRequired="true" instanceMIDRequired="true"
-					 * @generated
-					 */
-
+					}
 					else {
 						accumulatorInputModels.add(accumulatorInputModel);
 					}

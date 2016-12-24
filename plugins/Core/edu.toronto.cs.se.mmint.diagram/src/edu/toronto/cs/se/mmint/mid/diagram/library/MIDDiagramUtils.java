@@ -85,7 +85,7 @@ public class MIDDiagramUtils {
 		return files;
 	}
 
-	public static Node createModelShortcut(Model model, View gmfDiagramRoot) throws Exception {
+	public static Node createModelShortcut(Model model, View gmfDiagramRoot) {
 
 		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		Node gmfNode = gmfViewProvider.createModel_2002(
