@@ -11,7 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.operator.mid;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -35,8 +34,7 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
-import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -44,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -113,52 +112,24 @@ public class Map extends NestingOperatorImpl {
 		return outputMIDModel;
 	}
 
-	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midrelModelType, MID instanceMID, Set<Model> midrelShortcuts) throws Exception {
+	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midModelType, Model midrelModelType, String midDiagramPluginId, MID instanceMID, Set<Model> midrelShortcuts, MIDDiagramViewProvider gmfViewProvider) throws Exception {
 
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
-		Diagram outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
-		View gmfDiagramRoot = (View) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
+		edu.toronto.cs.se.mmint.mid.editor.Diagram outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
+		Diagram gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
 		for (Model midrelShortcut : midrelShortcuts) {
-			MIDDiagramUtils.createModelShortcut(midrelShortcut, gmfDiagramRoot);
+			GMFUtils.createGMFNodeShortcut(midrelShortcut, gmfDiagram, midDiagramPluginId, midModelType.getName(), gmfViewProvider);
 		}
-		FileUtils.writeModelFile(gmfDiagramRoot, outputMIDModelDiagram.getUri(), true);
+		FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), true);
 
 		return outputMIDModel;
 	}
 
-	//TODO MMINT[NESTED] Come up with a better alternative than this brutal override (createModelShortcut() issue)
-	protected void createNestedInstanceMIDModelShortcuts(EList<Model> models) throws MMINTException, IOException {
-
-		MMINTException.mustBeInstance(this);
-
-		String nestedMIDPath = this.getNestedMIDPath();
-		if (nestedMIDPath == null) {
-			throw new MMINTException("The nested MID is not serialized");
-		}
-		if (models.isEmpty()) {
-			return;
-		}
-
-		MID nestedMID = this.getNestedInstanceMID();
-		org.eclipse.gmf.runtime.notation.Diagram nestedMIDDiagram = this.getNestedInstanceMIDDiagram();
-		// models first, then model rels
-		for (Model model : models) {
-			if (model instanceof ModelRel) {
-				continue;
-			}
-			MIDDiagramUtils.createModelShortcut(model, nestedMIDDiagram);
-			nestedMID.getExtendibleTable().put(model.getUri(), model);
-		}
-		for (Model model : models) {
-			if (!(model instanceof ModelRel)) {
-				continue;
-			}
-			((ModelRel) model).getMetatype().copyInstance(model, model.getName(), nestedMID);
-		}
-	}
-
-	//TODO MMINT[NESTED] Address deletion of the input models when deleting the mapperMID
+	/*Today's list:
+	 * 1) try to create rel shortcuts, so that deleting Map.mid does not delete the model endpoints
+	 * 3) add apis in mid.ecore, regen and document
+	 */
 	private java.util.@NonNull Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
 			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
@@ -173,6 +144,7 @@ public class Map extends NestingOperatorImpl {
 		// start operator types
 		java.util.Map<String, Set<Model>> midrelShortcutsByOutputName = new HashMap<>();
 		java.util.Map<String, Set<MID>> midrelMIDsByOutputName = new HashMap<>();
+		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
 			try {
 				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
@@ -188,8 +160,8 @@ public class Map extends NestingOperatorImpl {
 						mapperInputs.stream()
 							.map(OperatorInput::getModel)
 							.collect(Collectors.toList()));
-					this.createNestedInstanceMIDModelShortcuts(mapperInputModels);
-					this.createNestedInstanceMIDModelShortcuts(ECollections.toEList(mapperOutputsByName.values()));
+					this.createNestedInstanceMIDModelShortcuts(mapperInputModels, gmfViewProvider);
+					this.createNestedInstanceMIDModelShortcuts(ECollections.toEList(mapperOutputsByName.values()), gmfViewProvider);
 				}
 				// get gmf shortcuts to create (output MIDRels need gmf shortcuts to model endpoints)
 				for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
@@ -224,7 +196,6 @@ public class Map extends NestingOperatorImpl {
 		}
 		// store output MIDs
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		List<Model> outputMIDModels = new ArrayList<>();
 		// pass 1: no MIDRels
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
@@ -234,10 +205,16 @@ public class Map extends NestingOperatorImpl {
 			if (isMIDRel) {
 				continue;
 			}
-			Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midModelType, instanceMIDsByMapperOutput.get(outputName));
+			Model outputMIDModel = createOutputMIDModel(
+				outputName,
+				outputMID,
+				midModelType,
+				instanceMIDsByMapperOutput.get(outputName));
 			outputMIDModels.add(outputMIDModel);
 		}
 		// pass 2: MIDRels only
+		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
+		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			String outputName = outputMIDByName.getKey();
 			MID outputMID = outputMIDByName.getValue();
@@ -246,7 +223,15 @@ public class Map extends NestingOperatorImpl {
 				continue;
 			}
 			MID instanceMID = instanceMIDsByMapperOutput.get(outputName);
-			Model outputMIDModel = createOutputMIDRelModel(outputName, outputMID, midrelModelType, instanceMID, midrelShortcutsByOutputName.get(outputName));
+			Model outputMIDModel = createOutputMIDRelModel(
+				outputName,
+				outputMID,
+				midModelType,
+				midrelModelType,
+				midDiagramPluginId,
+				instanceMID,
+				midrelShortcutsByOutputName.get(outputName),
+				gmfViewProvider);
 			outputMIDModels.add(outputMIDModel);
 			for (MID midrelMID : midrelMIDsByOutputName.get(outputName)) {
 				String midrelMIDUri = MIDRegistry.getModelUri(midrelMID);

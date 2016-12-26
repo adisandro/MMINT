@@ -251,7 +251,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 		Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
 		// create shortcuts to input models
 		if (nestedMIDPath != null) {
-			super.createNestedInstanceMIDModelShortcuts(ECollections.toEList(inputsByName.values()));
+			super.createNestedInstanceMIDModelShortcuts(ECollections.toEList(inputsByName.values()), null);
 		}
 		// the order of operator creation in the workflow is a safe order of execution too
 		Map<String, Model> outputsByName = new HashMap<>();
@@ -294,7 +294,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 			}
 			// create shortcuts to output models
 			if (nestedMIDPath != null) {
-				super.createNestedInstanceMIDModelShortcuts(outputModels);
+				super.createNestedInstanceMIDModelShortcuts(outputModels, null);
 			}
 		}
 		if (nestedMIDPath != null) {

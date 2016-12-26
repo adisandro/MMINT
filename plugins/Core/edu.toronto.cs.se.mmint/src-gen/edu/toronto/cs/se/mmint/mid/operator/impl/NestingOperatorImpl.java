@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -43,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -328,7 +330,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 * create shortcuts to output models, or make a copy of output model rels
 	 * @generated NOT
 	 */
-	protected void createNestedInstanceMIDModelShortcuts(EList<Model> models) throws MMINTException, IOException {
+	protected void createNestedInstanceMIDModelShortcuts(EList<Model> models, IViewProvider viewProvider) throws MMINTException, IOException {
 
 		MMINTException.mustBeInstance(this);
 
@@ -346,17 +348,21 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
 		// models first, then model rels
 		for (Model model : models) {
-			if (model instanceof ModelRel) {
+			if (model instanceof BinaryModelRel) {
 				continue;
 			}
-			GMFUtils.createGMFNodeShortcut(model, nestedMIDDiagram, midDiagramPluginId, midModelType.getName());
+			GMFUtils.createGMFNodeShortcut(model, nestedMIDDiagram, midDiagramPluginId, midModelType.getName(), viewProvider);
 			nestedMID.getExtendibleTable().put(model.getUri(), model);
 		}
 		for (Model model : models) {
-			if (!(model instanceof ModelRel)) {
+			if (!(model instanceof BinaryModelRel)) {
 				continue;
 			}
-			//TODO MMINT[NESTED] Need to create an endpoint from the nested operator to this new model rel
+//			BinaryModelRel modelRel = (BinaryModelRel) model;
+//			BinaryModelRel shortcutModelRel = modelRel.getMetatype().createBinaryInstance(null, modelRel.getName(), nestedMID);
+//			shortcutModelRel.setSourceModel(modelRel.getSourceModel());
+//			shortcutModelRel.setTargetModel(modelRel.getTargetModel());
+			//TODO MMINT[NESTED] Need to create an endpoint from the nested operator to this new model rel because it's not a simple shortcut
 			((ModelRel) model).getMetatype().copyInstance(model, model.getName(), nestedMID);
 		}
 	}
@@ -396,7 +402,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				inputs.stream()
 					.map(OperatorInput::getModel)
 					.collect(Collectors.toList()));
-			this.createNestedInstanceMIDModelShortcuts(inputModels);
+			this.createNestedInstanceMIDModelShortcuts(inputModels, null);
 		}
 		// run nested operator
 		MID nestedMID = this.getNestedInstanceMID();

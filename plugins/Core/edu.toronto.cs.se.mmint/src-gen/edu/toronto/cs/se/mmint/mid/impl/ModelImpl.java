@@ -1124,8 +1124,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
 		MMINTException.mustBeInstance(this);
 
-		/*TODO MMINT[MODEL] Deleting like this assumes that all models are unique, e.g. there are no copies
-		 * This will break when deleting a model that exist in two mids, and the following proper mid handling breaks it even more especially with nesting operators
+		/*TODO MMINT[MODEL] Deleting assumes that all models are unique, e.g. there are no copies, and it can't detect when a model exists in two mids
+		 * The following proper mid deletion breaks it
 		if (this.getMetatype() == MIDTypeRegistry.getMIDModelType()) { // the model is a MID
 			MID nestedMID = (MID) this.getEMFInstanceRoot();
 			for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
@@ -1133,12 +1133,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
 			}
 		}
 		 */
-		if (this.getMetatype() == MIDTypeRegistry.getMIDModelType()) { // the model is a MID
-			MID nestedMID = (MID) this.getEMFInstanceRoot();
-			for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
-				nestedModel.deleteInstanceAndFile();
-			}
-		}
 		for (Editor editor : this.getEditors()) {
 			FileUtils.deleteFile(editor.getUri(), true);
 		}
