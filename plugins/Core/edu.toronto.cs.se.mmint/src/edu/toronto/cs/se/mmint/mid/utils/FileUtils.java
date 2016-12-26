@@ -420,8 +420,12 @@ public class FileUtils {
 
 	public static void openEclipseEditor(@NonNull String filePath, @Nullable String editorId, boolean isWorkspaceRelative) throws MMINTException {
 
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		if (!FileUtils.isFile(filePath, isWorkspaceRelative)) {
+			throw new MMINTException("The file " + filePath + " does not exist");
+		}
+
 		try {
+			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			if (isWorkspaceRelative) {
 				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
 					new org.eclipse.core.runtime.Path(filePath));
