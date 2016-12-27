@@ -48,7 +48,7 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 		String typeMIDPath = FileUtils.prependStatePath(MMINT.TYPEMID_FILENAME);
 		String typeMIDDiagramPath = typeMIDPath + GMFUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFUtils.createGMFDiagram(typeMIDPath, typeMIDDiagramPath, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
+			GMFUtils.createGMFDiagramAndFile(typeMIDPath, typeMIDDiagramPath, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);

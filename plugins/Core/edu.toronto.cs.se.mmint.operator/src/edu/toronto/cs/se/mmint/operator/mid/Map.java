@@ -127,7 +127,7 @@ public class Map extends NestingOperatorImpl {
 	}
 
 	/*Today's list:
-	 * 1) try to create rel shortcuts, so that deleting Map.mid does not delete the model endpoints
+	 * 1) try to create rel shortcuts
 	 * 3) add apis in mid.ecore, regen and document
 	 */
 	private java.util.@NonNull Map<String, Model> map(
@@ -156,12 +156,12 @@ public class Map extends NestingOperatorImpl {
 					mapperMID)
 						.getOutputsByName();
 				if (mapperMIDPath != null) {
-					EList<Model> mapperInputModels = ECollections.toEList(
+					EList<Model> mapperShortcutModels = ECollections.toEList(
 						mapperInputs.stream()
 							.map(OperatorInput::getModel)
 							.collect(Collectors.toList()));
-					this.createNestedInstanceMIDModelShortcuts(mapperInputModels, gmfViewProvider);
-					this.createNestedInstanceMIDModelShortcuts(ECollections.toEList(mapperOutputsByName.values()), gmfViewProvider);
+					mapperShortcutModels.addAll(mapperOutputsByName.values());
+					this.createNestedInstanceMIDModelShortcuts(mapperShortcutModels, gmfViewProvider);
 				}
 				// get gmf shortcuts to create (output MIDRels need gmf shortcuts to model endpoints)
 				for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {

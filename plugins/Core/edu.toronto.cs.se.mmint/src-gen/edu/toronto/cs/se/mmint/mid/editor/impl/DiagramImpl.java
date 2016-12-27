@@ -123,7 +123,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 				String diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
 				// create the diagram directly and do not open the wizard
 				try {
-					GMFUtils.createGMFDiagram(modelUri, diagramUri, diagramKind, diagramPluginId, true);
+					GMFUtils.createGMFDiagramAndFile(modelUri, diagramUri, diagramKind, diagramPluginId, true);
 					if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
 						FileUtils.openEclipseEditor(diagramUri, getId(), true);
 					}

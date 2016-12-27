@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -33,6 +32,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -311,7 +312,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		nestedMID.setLevel(MIDLevel.INSTANCES);
 		try {
 			FileUtils.writeModelFile(nestedMID, nestedMIDPath, true);
-			Diagram nestedMIDDiagram = GMFUtils.createGMFDiagram(
+			Diagram nestedMIDDiagram = GMFUtils.createGMFDiagramAndFile(
 				nestedMIDPath,
 				nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX,
 				MIDTypeRegistry.getMIDModelType().getName(),
@@ -347,23 +348,34 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
 		// models first, then model rels
+		Map<Model, Node> gmfNodes = new HashMap<>();
 		for (Model model : models) {
 			if (model instanceof BinaryModelRel) {
 				continue;
 			}
-			GMFUtils.createGMFNodeShortcut(model, nestedMIDDiagram, midDiagramPluginId, midModelType.getName(), viewProvider);
+			Node gmfNode = GMFUtils.createGMFNodeShortcut(
+				model,
+				nestedMIDDiagram,
+				midDiagramPluginId,
+				midModelType.getName(),
+				viewProvider);
+			//TODO MMINT[NESTED] What about rels whose endpoints are not created here as shortcuts? Pass additional parameter to this function?
+			gmfNodes.put(model, gmfNode);
 			nestedMID.getExtendibleTable().put(model.getUri(), model);
 		}
 		for (Model model : models) {
 			if (!(model instanceof BinaryModelRel)) {
 				continue;
 			}
-//			BinaryModelRel modelRel = (BinaryModelRel) model;
-//			BinaryModelRel shortcutModelRel = modelRel.getMetatype().createBinaryInstance(null, modelRel.getName(), nestedMID);
-//			shortcutModelRel.setSourceModel(modelRel.getSourceModel());
-//			shortcutModelRel.setTargetModel(modelRel.getTargetModel());
-			//TODO MMINT[NESTED] Need to create an endpoint from the nested operator to this new model rel because it's not a simple shortcut
-			((ModelRel) model).getMetatype().copyInstance(model, model.getName(), nestedMID);
+			BinaryModelRel modelRel = (BinaryModelRel) model;
+			GMFUtils.createGMFEdge(
+				modelRel,
+				gmfNodes.get(modelRel.getSourceModel()),
+				gmfNodes.get(modelRel.getTargetModel()),
+				nestedMIDDiagram,
+				midDiagramPluginId,
+				viewProvider);
+			//TODO MMINT[NESTED] Need to create an endpoint from the nested operator to the model rel shortcut or it's automatic?
 		}
 	}
 

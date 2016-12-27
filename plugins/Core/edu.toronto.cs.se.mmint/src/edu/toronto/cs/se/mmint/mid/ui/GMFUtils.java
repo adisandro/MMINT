@@ -11,12 +11,15 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -26,14 +29,21 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelper;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Shape;
@@ -51,18 +61,25 @@ public class GMFUtils {
 	/** The suffix for GMF diagrams. */
 	public static final String DIAGRAM_SUFFIX = "diag";
 
-	public static Diagram createGMFDiagram(String modelPath, String diagramPath, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
+	public static Diagram createGMFDiagram(EObject rootModelObj, String diagramKind, String diagramPluginId) {
+
+		Diagram diagram = ViewService.createDiagram(
+			rootModelObj,
+			diagramKind,
+			new PreferencesHint(diagramPluginId)
+		);
+
+		return diagram;
+	}
+
+	public static Diagram createGMFDiagramAndFile(String modelPath, String diagramPath, String diagramKind, String diagramPluginId, boolean isWorkspaceRelative) throws Exception {
 
 		ResourceSet domainResourceSet = new ResourceSetImpl();
 		Resource modelResource = domainResourceSet.getResource(FileUtils.createEMFUri(modelPath, isWorkspaceRelative), true);
 		ResourceSet diagramResourceSet = new ResourceSetImpl();
 		Resource diagramResource =	diagramResourceSet.createResource(FileUtils.createEMFUri(diagramPath, isWorkspaceRelative));
 		EObject rootModelObj = (EObject) modelResource.getContents().get(0);
-		Diagram diagram = ViewService.createDiagram(
-			rootModelObj,
-			diagramKind,
-			new PreferencesHint(diagramPluginId)
-		);
+		Diagram diagram = GMFUtils.createGMFDiagram(rootModelObj, diagramKind, diagramPluginId);
 		diagram.setName(FileUtils.getLastSegmentFromPath(diagramPath));
 		diagramResource.getContents().add(diagram);
 		Map<String, Object> saveOptions = new HashMap<String, Object>();
@@ -73,13 +90,97 @@ public class GMFUtils {
 		return diagram;
 	}
 
-	public static ComposedAdapterFactory getAdapterFactory() {
+	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		Diagram diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), true);
+		String modelUri = MIDRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
+		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
-		return adapterFactory;
+		return modelFile;
+	}
+
+	private static @NonNull String getGMFRegistryType(@NonNull EObject modelObj, @Nullable String contextId) {
+
+		IElementType gmfType = null;
+		if (contextId == null) {
+			gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
+		}
+		else {
+			IClientContext context = ClientContextManager.getInstance().getClientContext(contextId);
+			gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj, context);
+		}
+		String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
+
+		return gmfTypeHint;
+	}
+
+	public static @Nullable Node createGMFNode(@NonNull EObject modelObj, @NonNull Diagram gmfDiagram, @NonNull String diagramPluginId, @Nullable IViewProvider viewProvider) {
+
+		Node gmfNode = null;
+		if (viewProvider == null) {
+			String gmfTypeHint = GMFUtils.getGMFRegistryType(modelObj, null);
+			// works only if modelObj has the right eStorage adapters attached, or it returns a generic type
+			gmfNode = ViewService.createNode(gmfDiagram, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
+		}
+		else {
+			gmfNode = viewProvider.createNode(new EObjectAdapter(modelObj), gmfDiagram, null, -1, true, new PreferencesHint(diagramPluginId));
+		}
+
+		return gmfNode;
+	}
+
+	public static @Nullable Edge createGMFEdge(@NonNull EObject modelObj, @NonNull Node srcNode, @NonNull Node tgtNode, @NonNull Diagram gmfDiagram, @NonNull String diagramPluginId, @Nullable IViewProvider viewProvider) {
+
+		Edge gmfEdge = null;
+		if (viewProvider == null) {
+			String gmfTypeHint = GMFUtils.getGMFRegistryType(modelObj, null);
+			// works only if modelObj has the right eStorage adapters attached, or it returns a generic type
+			gmfEdge = ViewService.createEdge(srcNode, tgtNode, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
+		}
+		else {
+			IAdaptable modelObjWrapper = new IAdaptable() {
+				public Object getAdapter(Class adapter) {
+					if (adapter == IElementType.class) {
+						return new IHintedType() {
+							public String getSemanticHint() {
+								return GMFUtils.getGMFRegistryType(modelObj, diagramPluginId + ".TypeContext");
+							}
+							public String getId() { return null; }
+							public URL getIconURL() { return null; }
+							public String getDisplayName() { return null; }
+							public EClass getEClass() { return null; }
+							public ICommand getEditCommand(IEditCommandRequest request) { return null; }
+							public boolean canEdit(IEditCommandRequest req) { return false; }
+							public IEditHelper getEditHelper() { return null; }
+							public IElementType[] getAllSuperTypes() { return null; }
+							public <T> T getAdapter(Class<T> adapter) { return null; }
+						};
+					}
+					return new EObjectAdapter(modelObj).getAdapter(adapter);
+				}
+			};
+			gmfEdge = viewProvider.createEdge(modelObjWrapper, gmfDiagram, null, -1, true, new PreferencesHint(diagramPluginId));
+			gmfEdge.setSource(srcNode);
+			gmfEdge.setTarget(tgtNode);
+		}
+
+		return gmfEdge;
+	}
+
+	public static void addGMFShortcut(@NonNull Node gmfNode, @NonNull String shortcutId) {
+
+		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		shortcutAnnotation.setSource("Shortcut");
+		shortcutAnnotation.getDetails().put("modelID", shortcutId);
+		gmfNode.getEAnnotations().add(shortcutAnnotation);
+	}
+
+	public static @Nullable Node createGMFNodeShortcut(@NonNull EObject modelObj, @NonNull Diagram gmfDiagram, @NonNull String diagramPluginId, @NonNull String shortcutId, @Nullable IViewProvider viewProvider) {
+
+		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfDiagram, diagramPluginId, viewProvider);
+		GMFUtils.addGMFShortcut(gmfNode, shortcutId);
+
+		return gmfNode;
 	}
 
 	public static void colorDiagramElement(View diagramView, int color, int fontColor) throws MMINTException {
@@ -102,57 +203,13 @@ public class GMFUtils {
 		}
 	}
 
-	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
+	public static ComposedAdapterFactory getAdapterFactory() {
 
-		Diagram diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), true);
-		String modelUri = MIDRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
-		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
-		return modelFile;
-	}
-
-//	public static Diagram createX(EObject rootModelObj, String diagramKind, String diagramPluginId) {
-//
-//		Diagram diagram = ViewService.createDiagram(
-//			rootModelObj,
-//			diagramKind,
-//			new PreferencesHint(diagramPluginId)
-//		);
-//		diagram
-//
-//		return diagram;
-//	}
-
-	public static @Nullable Node createGMFNode(@NonNull EObject modelObj, @NonNull Diagram gmfDiagram, @NonNull String diagramPluginId, @Nullable IViewProvider viewProvider) {
-
-		Node gmfNode = null;
-		if (viewProvider == null) {
-			// works only if modelObj has the right eStorage adapters attached
-			IElementType gmfType = ElementTypeRegistry.getInstance().getElementType(modelObj);
-			String gmfTypeHint = gmfType.getId().substring(gmfType.getId().lastIndexOf('_') + 1);
-			gmfNode = ViewService.createNode(gmfDiagram, modelObj, gmfTypeHint, new PreferencesHint(diagramPluginId));
-		}
-		else {
-			gmfNode = viewProvider.createNode(new EObjectAdapter(modelObj), gmfDiagram, null, -1, true, new PreferencesHint(diagramPluginId));
-		}
-
-		return gmfNode;
-	}
-
-	public static void addGMFShortcut(@NonNull Node gmfNode, @NonNull String shortcutId) {
-
-		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		shortcutAnnotation.setSource("Shortcut");
-		shortcutAnnotation.getDetails().put("modelID", shortcutId);
-		gmfNode.getEAnnotations().add(shortcutAnnotation);
-	}
-
-	public static @Nullable Node createGMFNodeShortcut(@NonNull EObject modelObj, @NonNull Diagram gmfDiagram, @NonNull String diagramPluginId, @NonNull String shortcutId, @Nullable IViewProvider viewProvider) {
-
-		Node gmfNode = GMFUtils.createGMFNode(modelObj, gmfDiagram, diagramPluginId, viewProvider);
-		GMFUtils.addGMFShortcut(gmfNode, shortcutId);
-
-		return gmfNode;
+		return adapterFactory;
 	}
 
 }
