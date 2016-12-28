@@ -19,7 +19,8 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
-import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.View;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.part.Messages;
@@ -73,7 +74,7 @@ public class ModelOpenEditorCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		try {
-			Model model = (Model) ((Node) editorFacet.eContainer()).getElement();
+			Model model = (Model) ((View) editorFacet.eContainer()).getElement();
 			switch (model.getLevel()) {
 				case TYPES:
 					this.doExecuteTypesLevel(model);

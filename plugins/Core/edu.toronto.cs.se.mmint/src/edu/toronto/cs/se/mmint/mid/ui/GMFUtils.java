@@ -99,7 +99,7 @@ public class GMFUtils {
 		return modelFile;
 	}
 
-	private static @NonNull String getGMFRegistryType(@NonNull EObject modelObj, @Nullable String contextId) {
+	public static @NonNull String getGMFRegistryType(@NonNull EObject modelObj, @Nullable String contextId) {
 
 		IElementType gmfType = null;
 		if (contextId == null) {

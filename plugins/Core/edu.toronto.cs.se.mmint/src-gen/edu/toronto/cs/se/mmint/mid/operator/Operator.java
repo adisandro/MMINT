@@ -439,8 +439,8 @@ public interface Operator extends GenericElement {
 	void readInputProperties(Properties inputProperties) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Runs this operator instance. Used by {@link #start(EList, Map, MID)}, this
-	 * function contains the logic of the operator and must be overridden.
+	 * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be
+	 * overridden.
 	 * 
 	 * @param inputsByName
 	 *            The input model instances, identified by their formal parameter name.
@@ -452,15 +452,15 @@ public interface Operator extends GenericElement {
 	 * @return The output model instances, identified by their name.
 	 * @throws Exception
 	 *             If something went wrong running the operator. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true" genericsByNameRequired="true" outputMIDsByNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsByNameRequired="true"
+	 *        genericsByNameRequired="true" outputMIDsByNameRequired="true"
 	 * @generated
 	 */
 	Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName, Map<String, MID> outputMIDsByName) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models,
-	 * creates an operator instance, invokes {@link #readInputProperties(Properties)}, {@link #run(Map, Map, Map)},
-	 * records the execution time.
+	 * creates an operator instance, invokes {@link #readInputProperties}, {@link #run}, records the execution time.
 	 * 
 	 * @param inputs
 	 *            A list of inputs to run the operator instance, including necessary conversions.

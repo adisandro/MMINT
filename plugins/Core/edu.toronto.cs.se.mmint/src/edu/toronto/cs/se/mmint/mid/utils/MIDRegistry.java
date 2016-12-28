@@ -202,6 +202,7 @@ public class MIDRegistry {
 		return false;
 	}
 
+	@Deprecated
 	public static String[] getModelAndModelElementUris(EObject modelObj, MIDLevel level) {
 
 		String modelUri, modelElemUri;
@@ -227,13 +228,13 @@ public class MIDRegistry {
 		return new String[] {modelUri, modelElemUri};
 	}
 
-	public static String getModelUri(EObject modelObj) {
+	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
 		String modelUri;
-		if (modelObj instanceof EClass) { // == MIDLevel.TYPES
+		if (modelObj instanceof EClass) { // MIDLevel.TYPES
 			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
 		}
-		else { // == MIDLevel.INSTANCES
+		else { // MIDLevel.INSTANCES
 			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
 				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 			}
@@ -247,15 +248,15 @@ public class MIDRegistry {
 		return modelUri;
 	}
 
-	public static String getModelElementUri(EObject modelObj) {
+	public static @NonNull String getModelElementUri(@NonNull EObject modelObj) {
 
 		String modelElemUri;
 		String emfUri = EcoreUtil.getURI(modelObj).toString();
-		if (modelObj instanceof EClass) { // == MIDLevel.TYPES
+		if (modelObj instanceof EClass) { // MIDLevel.TYPES
 			String metamodelUri = MIDRegistry.getModelUri(modelObj);
 			modelElemUri = metamodelUri + MMINT.ECORE_MODEL_URI_SEPARATOR + emfUri.substring(emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR)+MMINT.ECORE_MODEL_URI_SEPARATOR.length());
 		}
-		else { // == MIDLevel.INSTANCES
+		else { // MIDLevel.INSTANCES
 			String attributeFeatureName = null;
 			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
 				attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();

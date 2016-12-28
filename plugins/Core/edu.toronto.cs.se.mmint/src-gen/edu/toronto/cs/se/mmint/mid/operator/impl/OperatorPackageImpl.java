@@ -601,6 +601,15 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getNestingOperator__StartNestedInstance__Operator_EList_Properties_EList_Map() {
+		return nestingOperatorEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWorkflowOperator() {
 		return workflowOperatorEClass;
 	}
@@ -929,6 +938,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		nestingOperatorEClass = createEClass(NESTING_OPERATOR);
 		createEAttribute(nestingOperatorEClass, NESTING_OPERATOR__NESTED_MID_PATH);
 		createEOperation(nestingOperatorEClass, NESTING_OPERATOR___GET_NESTED_INSTANCE_MID);
+		createEOperation(nestingOperatorEClass, NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP);
 
 		workflowOperatorEClass = createEClass(WORKFLOW_OPERATOR);
 		createEOperation(workflowOperatorEClass, WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID);
@@ -1166,6 +1176,19 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
 		op = initEOperation(getNestingOperator__GetNestedInstanceMID(), theMIDPackage.getMID(), "getNestedInstanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getNestingOperator__StartNestedInstance__Operator_EList_Properties_EList_Map(), this.getOperator(), "startNestedInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperator(), "nestedOperatorType", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getProperties(), "inputProperties", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperatorGeneric(), "generics", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMIDPackage.getMID());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "outputMIDsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getException());
 
 		initEClass(workflowOperatorEClass, WorkflowOperator.class, "WorkflowOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

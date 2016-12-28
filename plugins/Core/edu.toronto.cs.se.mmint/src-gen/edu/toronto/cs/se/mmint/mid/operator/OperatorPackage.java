@@ -2153,13 +2153,22 @@ public interface OperatorPackage extends EPackage {
 	int NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = OPERATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Start Nested Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = OPERATOR_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Nesting Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTING_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 1;
+	int NESTING_OPERATOR_OPERATION_COUNT = OPERATOR_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.
@@ -2683,6 +2692,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORKFLOW_OPERATOR___GET_NESTED_INSTANCE_MID = NESTING_OPERATOR___GET_NESTED_INSTANCE_MID;
+
+	/**
+	 * The operation id for the '<em>Start Nested Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Nested Workflow MID</em>' operation.
@@ -3740,6 +3758,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getNestingOperator__GetNestedInstanceMID();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator#startNestedInstance(edu.toronto.cs.se.mmint.mid.operator.Operator, org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map) <em>Start Nested Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start Nested Instance</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.NestingOperator#startNestedInstance(edu.toronto.cs.se.mmint.mid.operator.Operator, org.eclipse.emf.common.util.EList, java.util.Properties, org.eclipse.emf.common.util.EList, java.util.Map)
+	 * @generated
+	 */
+	EOperation getNestingOperator__StartNestedInstance__Operator_EList_Properties_EList_Map();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator <em>Workflow Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4402,6 +4430,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation NESTING_OPERATOR___GET_NESTED_INSTANCE_MID = eINSTANCE.getNestingOperator__GetNestedInstanceMID();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Nested Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP = eINSTANCE.getNestingOperator__StartNestedInstance__Operator_EList_Properties_EList_Map();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl <em>Workflow Operator</em>}' class.

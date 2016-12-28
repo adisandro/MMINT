@@ -605,6 +605,13 @@
       <genClasses ecoreClass="mid.ecore#//operator/NestingOperator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/NestingOperator/nestedMIDPath"/>
         <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/getNestedInstanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/startNestedInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/nestedOperatorType"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputProperties"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/outputMIDsByName"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/WorkflowOperator">
         <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getNestedWorkflowMID"/>

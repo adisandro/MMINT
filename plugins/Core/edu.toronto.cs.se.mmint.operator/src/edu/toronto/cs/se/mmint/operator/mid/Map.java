@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
@@ -126,10 +125,6 @@ public class Map extends NestingOperatorImpl {
 		return outputMIDModel;
 	}
 
-	/*Today's list:
-	 * 1) try to create rel shortcuts
-	 * 3) add apis in mid.ecore, regen and document
-	 */
 	private java.util.@NonNull Map<String, Model> map(
 			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
 			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
@@ -144,7 +139,7 @@ public class Map extends NestingOperatorImpl {
 		// start operator types
 		java.util.Map<String, Set<Model>> midrelShortcutsByOutputName = new HashMap<>();
 		java.util.Map<String, Set<MID>> midrelMIDsByOutputName = new HashMap<>();
-		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
+		EList<Model> mapperShortcutModels = new BasicEList<>();
 		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
 			try {
 				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
@@ -156,12 +151,10 @@ public class Map extends NestingOperatorImpl {
 					mapperMID)
 						.getOutputsByName();
 				if (mapperMIDPath != null) {
-					EList<Model> mapperShortcutModels = ECollections.toEList(
-						mapperInputs.stream()
-							.map(OperatorInput::getModel)
-							.collect(Collectors.toList()));
+					mapperShortcutModels.addAll(mapperInputs.stream()
+						.map(OperatorInput::getModel)
+						.collect(Collectors.toList()));
 					mapperShortcutModels.addAll(mapperOutputsByName.values());
-					this.createNestedInstanceMIDModelShortcuts(mapperShortcutModels, gmfViewProvider);
 				}
 				// get gmf shortcuts to create (output MIDRels need gmf shortcuts to model endpoints)
 				for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
@@ -215,6 +208,7 @@ public class Map extends NestingOperatorImpl {
 		// pass 2: MIDRels only
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			String outputName = outputMIDByName.getKey();
 			MID outputMID = outputMIDByName.getValue();
@@ -247,7 +241,8 @@ public class Map extends NestingOperatorImpl {
 					instanceMID);
 			}
 		}
-		// pass 3: mapper MID
+		// pass 3: mapper MID only after output MIDs are serialized
+		this.createNestedInstanceMIDModelShortcuts(mapperShortcutModels, gmfViewProvider);
 		super.writeNestedInstanceMID();
 
 		return MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);

@@ -14,6 +14,9 @@ package edu.toronto.cs.se.mmint.mid.operator;
 import edu.toronto.cs.se.mmint.MMINTException;
 
 import edu.toronto.cs.se.mmint.mid.MID;
+import java.util.Map;
+import java.util.Properties;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +44,7 @@ public interface NestingOperator extends Operator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The path to the nested MID to trace the intermediate artifacts.
+	 * The path to the Instance MID to trace the nested artifacts.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested MID Path</em>' attribute.
 	 * @see #setNestedMIDPath(String)
@@ -62,15 +65,41 @@ public interface NestingOperator extends Operator {
 	void setNestedMIDPath(String value);
 
 	/**
-	 * <!-- begin-user-doc --> Gets the Instance MID containing the intermediate artifacts created by this operator
-	 * instance.
+	 * <!-- begin-user-doc --> Gets the Instance MID containing the nested artifacts created by this operator instance.
 	 * 
 	 * @throws MMINTException
 	 *             If this is not an operator instance.<!-- end-user-doc -->
 	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='MMINTException.mustBeInstance(this);\n\ntry {\n\treturn (MID) FileUtils.readModelFile(this.getNestedMIDPath(), true);\n}\ncatch (Exception e) {\n\treturn null;\n}'"
 	 * @generated
 	 */
 	MID getNestedInstanceMID() throws MMINTException;
+
+	/**
+	 * <!-- begin-user-doc --> Starts a nested instance of an operator type, i.e. invokes its
+	 * {@link Operator#startInstance} within the nested Instance MID.
+	 * 
+	 * @param nestedOperatorType
+	 *            The operator type to run nested.
+	 * @param inputs
+	 *            A list of inputs to run the nested operator instance, including necessary conversions.
+	 * @param inputProperties
+	 *            The input properties for the nested operator instance, or null to read them from a file named
+	 *            OperatorNameIn.properties.
+	 * @param generics
+	 *            A list of generics to run the nested operator instance.
+	 * @param outputMIDsByName
+	 *            The instance MIDs where the output models are created, identified by the output name. A null instance
+	 *            MID means that the output model is added to the nested Instance MID.
+	 * @return The executed nested operator instance.
+	 * @throws Exception
+	 *             If this is not an operator instance, or if something went wrong starting the nested operator. <!--
+	 *             end-user-doc -->
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
+	 *        nestedOperatorTypeRequired="true" inputsMany="true"
+	 *        inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true"
+	 *        outputMIDsByNameRequired="true"
+	 * @generated
+	 */
+	Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception;
 
 } // NestingOperator
