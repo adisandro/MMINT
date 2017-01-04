@@ -239,6 +239,74 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
+		private void findShortcut(ModelRel modelRel) throws Exception {
+
+			String modelRelUri = MIDRegistry.getModelElementUri(modelRel);
+			String instanceMIDPath = MIDRegistry.getModelUri(modelRel);
+			Diagram instanceMIDDiagramRoot = (Diagram) FileUtils.readModelFile(instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX, true);
+			View shortcutView = null;
+			if (modelRel instanceof BinaryModelRel) {
+				for (Object gmfEdge : instanceMIDDiagramRoot.getEdges()) {
+					String gmfEdgeUri = MIDRegistry.getModelElementUri(((Edge) gmfEdge).getElement());
+					if (gmfEdgeUri.equals(modelRelUri)) {
+						shortcutView = (Edge) gmfEdge;
+						break;
+					}
+				}
+				if (shortcutView == null) {
+					String srcModelPath = ((BinaryModelRel) modelRel).getSourceModel().getUri();
+					String tgtModelPath = ((BinaryModelRel) modelRel).getTargetModel().getUri();
+					Node gmfSrcNode = null, gmfTgtNode = null;
+					for (Object node : instanceMIDDiagramRoot.getChildren()) {
+						Node gmfNode = (Node) node;
+						EObject element = gmfNode.getElement();
+						if (!(element instanceof Model)) {
+							continue;
+						}
+						String modelPath = ((Model) element).getUri();
+						if (modelPath.equals(srcModelPath)) {
+							gmfSrcNode = gmfNode;
+						}
+						if (modelPath.equals(tgtModelPath)) {
+							gmfTgtNode = gmfNode;
+						}
+						if (gmfSrcNode != null && gmfTgtNode != null) {
+							break;
+						}
+					}
+					String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+					shortcutView = GMFUtils.createGMFEdge(
+						modelRel,
+						gmfSrcNode,
+						gmfTgtNode,
+						instanceMIDDiagramRoot,
+						midDiagramPluginId,
+						new MIDDiagramViewProvider());
+				}
+			}
+			else {
+				for (Object gmfNode : instanceMIDDiagramRoot.getChildren()) {
+					if (!(gmfNode instanceof Node)) {
+						continue;
+					}
+					String gmfNodeUri = MIDRegistry.getModelElementUri(((Node) gmfNode).getElement());
+					if (gmfNodeUri.equals(modelRelUri)) {
+						shortcutView = (Node) gmfNode;
+						break;
+					}
+				}
+			}
+			for (Object gmfStyle : shortcutView.getStyles()) {
+				if (gmfStyle instanceof HintedDiagramLinkStyle) {
+					super.diagramFacet = (HintedDiagramLinkStyle) gmfStyle;
+					break;
+				}
+			}
+		}
+
+		/**
+		 * @generated NOT
+		 */
 		private void openDiagram(Diagram diagram, ModelRel modelRel) throws Exception {
 
 			//TODO MMINT[EDITOR] Can this be moved into ModelRelImpl?
@@ -252,8 +320,16 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteInstancesLevel(Diagram diagram, ModelRel modelRel) throws Exception {
+		protected void doExecuteInstancesLevel(ModelRel modelRel, View view) throws Exception {
 
+			if (!view.getEAnnotations().isEmpty()) { // shortcut to model rel
+				this.findShortcut(modelRel);
+			}
+			Diagram diagram = getDiagramToOpen();
+			if (diagram == null) {
+				diagram = intializeNewDiagram();
+			}
+			modelRel = (ModelRel) diagram.getElement();
 			modelRel.openInstance();
 			this.openDiagram(diagram, modelRel);
 		}
@@ -261,8 +337,13 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 		/**
 		 * @generated NOT
 		 */
-		protected void doExecuteTypesLevel(Diagram diagram, ModelRel modelRelType) throws Exception {
+		protected void doExecuteTypesLevel(ModelRel modelRelType) throws Exception {
 
+			Diagram diagram = getDiagramToOpen();
+			if (diagram == null) {
+				diagram = intializeNewDiagram();
+			}
+			modelRelType = (ModelRel) diagram.getElement();
 			modelRelType.openType();
 			this.openDiagram(diagram, modelRelType);
 		}
@@ -277,66 +358,12 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 			try {
 				View view = (View) super.diagramFacet.eContainer();
 				ModelRel modelRel = (ModelRel) view.getElement();
-				if (modelRel instanceof BinaryModelRel && !view.getEAnnotations().isEmpty()) { // shortcut to binary rel
-					String modelRelUri = MIDRegistry.getModelElementUri(modelRel);
-					String instanceMIDPath = MIDRegistry.getModelUri(modelRel);
-					Diagram instanceMIDDiagramRoot = (Diagram) FileUtils.readModelFile(instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX, true);
-					Edge shortcutEdge = null;
-					for (Object gmfEdge : instanceMIDDiagramRoot.getEdges()) {
-						String gmfEdgeUri = MIDRegistry.getModelElementUri(((Edge) gmfEdge).getElement());
-						if (gmfEdgeUri.equals(modelRelUri)) {
-							shortcutEdge = (Edge) gmfEdge;
-							break;
-						}
-					}
-					if (shortcutEdge == null) {
-						String srcModelPath = ((BinaryModelRel) modelRel).getSourceModel().getUri();
-						String tgtModelPath = ((BinaryModelRel) modelRel).getTargetModel().getUri();
-						Node gmfSrcNode = null, gmfTgtNode = null;
-						for (Object node : instanceMIDDiagramRoot.getChildren()) {
-							Node gmfNode = (Node) node;
-							EObject element = gmfNode.getElement();
-							if (!(element instanceof Model)) {
-								continue;
-							}
-							String modelPath = ((Model) element).getUri();
-							if (modelPath.equals(srcModelPath)) {
-								gmfSrcNode = gmfNode;
-							}
-							if (modelPath.equals(tgtModelPath)) {
-								gmfTgtNode = gmfNode;
-							}
-							if (gmfSrcNode != null && gmfTgtNode != null) {
-								break;
-							}
-						}
-						String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-						shortcutEdge = GMFUtils.createGMFEdge(
-							modelRel,
-							gmfSrcNode,
-							gmfTgtNode,
-							instanceMIDDiagramRoot,
-							midDiagramPluginId,
-							new MIDDiagramViewProvider());
-					}
-					for (Object gmfStyle : shortcutEdge.getStyles()) {
-						if (gmfStyle instanceof HintedDiagramLinkStyle) {
-							super.diagramFacet = (HintedDiagramLinkStyle) gmfStyle;
-							break;
-						}
-					}
-				}
-				Diagram diagram = getDiagramToOpen();
-				if (diagram == null) {
-					diagram = intializeNewDiagram();
-				}
-				modelRel = (ModelRel) diagram.getElement();
 				switch (modelRel.getLevel()) {
 					case TYPES:
-						this.doExecuteTypesLevel(diagram, modelRel);
+						this.doExecuteTypesLevel(modelRel);
 						break;
 					case INSTANCES:
-						this.doExecuteInstancesLevel(diagram, modelRel);
+						this.doExecuteInstancesLevel(modelRel, view);
 						break;
 					case WORKFLOWS:
 						// do nothing

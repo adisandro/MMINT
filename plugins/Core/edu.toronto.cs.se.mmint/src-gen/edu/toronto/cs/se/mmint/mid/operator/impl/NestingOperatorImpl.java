@@ -375,7 +375,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				midDiagramPluginId,
 				midModelType.getName(),
 				viewProvider);
-			nestedMID.getExtendibleTable().put(model.getUri(), model);
+			if (model instanceof Model) {
+				nestedMID.getExtendibleTable().put(model.getUri(), model);
+			}
 		}
 		for (Model model : models) {
 			if (!(model instanceof BinaryModelRel)) {
@@ -385,7 +387,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 			String gmfTypeHint = GMFUtils.getGMFRegistryType(RelationshipFactory.eINSTANCE.createModelRel(), midDiagramPluginId + ".TypeContext");
 			Node gmfNode = viewProvider.createNode(new EObjectAdapter(model), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
 			GMFUtils.addGMFShortcut(gmfNode, midModelType.getName());
-			//TODO MMINT[NESTED] CAn't create model rel endpoints, but maybe can use some simple connectors
+			//TODO MMINT[NESTED] Can't create model rel endpoints, but maybe can use some simple connectors
 		}
 	}
 

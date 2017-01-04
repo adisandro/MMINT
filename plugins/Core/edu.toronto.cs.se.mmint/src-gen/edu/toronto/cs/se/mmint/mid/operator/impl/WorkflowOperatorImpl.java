@@ -37,6 +37,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -155,7 +156,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 			}
 			((WorkflowOperator) newOperatorType).setNestedMIDPath(newWorkflowMIDPath);
 			MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
-			Map<Model, String> inoutWorkflowModels = new HashMap<>();
+			Map<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
 			for (Model workflowModel : workflowMID.getModels()) { // first pass: identify inputs and outputs
 				boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty(); // no operator generated this model
 				if (isInput) {
