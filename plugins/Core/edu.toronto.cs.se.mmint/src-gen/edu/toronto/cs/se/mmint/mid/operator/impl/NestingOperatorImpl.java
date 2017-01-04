@@ -304,7 +304,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
 
 		super.addInstance(newOperator, midLevel, instanceMID);
-		if (instanceMID == null) {
+		if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
 			/* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
 			 * (find the cases where it could be useful)
 			 */
