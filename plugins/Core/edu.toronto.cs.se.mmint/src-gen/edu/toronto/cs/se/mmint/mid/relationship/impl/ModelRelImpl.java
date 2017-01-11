@@ -815,6 +815,9 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
 		for (ModelEndpointReference origModelEndpointRef : ((ModelRel) origModelRel).getModelEndpointRefs()) {
 			Model newModel = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
+			if (newModel == null) { // the endpoint model is in another MID, just use the original
+				newModel = origModelEndpointRef.getObject().getTarget();
+			}
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
