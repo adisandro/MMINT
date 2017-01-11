@@ -48,9 +48,9 @@ public class ModelMatch extends OperatorImpl {
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			Model srcModel = inputsByName.get(IN_MODEL1);
-			Model tgtModel = inputsByName.get(IN_MODEL2);
-			if (srcModel == tgtModel) {
+			String srcModelPath = inputsByName.get(IN_MODEL1).getUri();
+			String tgtModelPath = inputsByName.get(IN_MODEL2).getUri();
+			if (srcModelPath.equals(tgtModelPath)) {
 				return false;
 			}
 

@@ -33,9 +33,9 @@ public class Sum extends OperatorImpl {
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			Model intModel1 = inputsByName.get(IN_INT1);
-			Model intModel2 = inputsByName.get(IN_INT2);
-			if (intModel1 == intModel2) {
+			String intModelPath1 = inputsByName.get(IN_INT1).getUri();
+			String intModelPath2 = inputsByName.get(IN_INT2).getUri();
+			if (intModelPath1.equals(intModelPath2)) {
 				return false;
 			}
 

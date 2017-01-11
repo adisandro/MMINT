@@ -46,14 +46,14 @@ public class ModelRelMerge extends OperatorImpl {
 			if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
 				return false;
 			}
-			Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-			Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-			Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-			Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
-			if (model11 == model21 && model12 == model22) {
+			String modelPath11 = modelRel1.getModelEndpoints().get(0).getTargetUri();
+			String modelPath12 = modelRel1.getModelEndpoints().get(1).getTargetUri();
+			String modelPath21 = modelRel2.getModelEndpoints().get(0).getTargetUri();
+			String modelPath22 = modelRel2.getModelEndpoints().get(1).getTargetUri();
+			if (modelPath11.equals(modelPath21) && modelPath12.equals(modelPath22)) {
 				return true;
 			}
-			else if (model11 == model22 && model12 == model21) {
+			else if (modelPath11.equals(modelPath22) && modelPath12.equals(modelPath21)) {
 				return true;
 			}
 
@@ -141,11 +141,11 @@ public class ModelRelMerge extends OperatorImpl {
 		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
 		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
 		Model model1 = null, model2 = null;
-		if (model11 == model21 && model12 == model22) {
+		if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
 			model1 = model11;
 			model2 = model22;
 		}
-		else { // model11 == model22 && model12 == model21
+		else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
 			model1 = model11;
 			model2 = model21;
 		}
