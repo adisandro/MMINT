@@ -203,6 +203,7 @@
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor</module>
+  	<module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>

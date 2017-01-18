@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.models15_java
 Export-Package: edu.toronto.cs.se.modelepedia.models15.operator
+Bundle-ActivationPolicy: lazy
