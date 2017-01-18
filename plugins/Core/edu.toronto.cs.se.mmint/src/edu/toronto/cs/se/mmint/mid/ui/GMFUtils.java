@@ -52,7 +52,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -93,7 +92,7 @@ public class GMFUtils {
 	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
 		Diagram diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), true);
-		String modelUri = MIDRegistry.getModelAndModelElementUris(diagram.getElement(), MIDLevel.INSTANCES)[0];
+		String modelUri = MIDRegistry.getModelUri(diagram.getElement());
 		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 
 		return modelFile;

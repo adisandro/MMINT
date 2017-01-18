@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -66,7 +65,7 @@ public class ModelDifference extends OperatorImpl {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFInstanceRoot(), true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String modelElemUri = MIDRegistry.getModelElementUri(modelObj);
 			if (modelElemRefTable.get(modelElemUri) == null) {
 				diffModelEObjects.add(modelObj);
 			}

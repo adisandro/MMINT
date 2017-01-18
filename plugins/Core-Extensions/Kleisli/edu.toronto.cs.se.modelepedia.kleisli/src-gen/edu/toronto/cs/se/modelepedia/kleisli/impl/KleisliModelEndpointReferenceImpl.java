@@ -17,7 +17,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl;
@@ -116,9 +115,8 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 		MMINTException.mustBeType(this);
 
 		MID typeMID = this.getMIDContainer();
-		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
-		String modelTypeUri = uris[0].replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
-		String modelElemTypeUri = uris[1];
+		String modelTypeUri = MIDRegistry.getModelUri(metamodelObj).replace(KleisliReasoningEngine.KLEISLI_MODELTYPE_URI_SUFFIX, ""); // remove uri suffix
+		String modelElemTypeUri = MIDRegistry.getModelElementUri(metamodelObj);
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
 			!MIDTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
@@ -142,9 +140,8 @@ public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImp
 
 		MMINTException.mustBeInstance(this);
 
-		String[] uris = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
-		String modelUri = uris[0];
-		String modelElemUri = uris[1];
+		String modelUri = MIDRegistry.getModelUri(modelObj);
+		String modelElemUri = MIDRegistry.getModelElementUri(modelObj);
 		if (!modelUri.equals(getExtendedTargetUri())) { // different extended model
 			return null;
 		}

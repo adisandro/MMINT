@@ -33,7 +33,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -86,12 +85,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 			}
 			// find containment based on model element types first, then fallback to first one available
-			String srcModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MIDLevel.TYPES)[1];
+			String srcModelElemTypeContainmentUri = MIDRegistry.getModelElementUri(srcModelObj.eContainingFeature());
 			ModelElementReference srcModelElemTypeContainment = MIDRegistry.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
 			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
 				if (MIDConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
-					String tgtModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(containment, MIDLevel.TYPES)[1];
+					String tgtModelElemTypeContainmentUri = MIDRegistry.getModelElementUri(containment);
 					ModelElementReference tgtModelElemTypeContainment = MIDRegistry.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
 					if (
 						tgtModelElemTypeContainment == null ||

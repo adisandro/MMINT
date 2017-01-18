@@ -128,7 +128,7 @@ public class KleisliTest extends MMINTTest {
 			metamodelObj = metamodelObjContainer.getEStructuralFeature(names[1]);
 		}
 		Assert.assertTrue(containerModelTypeEndpointRef.acceptModelElementType(metamodelObj));
-		String modelElemTypeUri = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES)[1];
+		String modelElemTypeUri = MIDRegistry.getModelElementUri(metamodelObj);
 		EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(metamodelObj, MIDLevel.TYPES);
 		String newModelElemTypeName = MIDRegistry.getModelElementName(eInfo, metamodelObj, MIDLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = rootModelElemType.createSubtypeAndReference(null, modelElemTypeUri, newModelElemTypeName, eInfo, containerModelTypeEndpointRef);

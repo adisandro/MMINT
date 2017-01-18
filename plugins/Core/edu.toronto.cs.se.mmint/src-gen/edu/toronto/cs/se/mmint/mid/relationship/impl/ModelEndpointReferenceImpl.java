@@ -265,9 +265,8 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 		MMINTException.mustBeType(this);
 
 		MID typeMID = this.getMIDContainer();
-		String[] uris = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES);
-		String modelTypeUri = uris[0];
-		String modelElemTypeUri = uris[1];
+		String modelTypeUri = MIDRegistry.getModelUri(metamodelObj);
+		String modelElemTypeUri = MIDRegistry.getModelElementUri(metamodelObj);
 		if (
 			!modelTypeUri.equals(getTargetUri()) && // different model type
 			!MIDTypeHierarchy.isSubtypeOf(getTargetUri(), modelTypeUri, typeMID) // different light model type with no metamodel extension
@@ -307,9 +306,8 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 
 		MMINTException.mustBeInstance(this);
 
-		String[] uris = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES);
-		String modelUri = uris[0];
-		String modelElemUri = uris[1];
+		String modelUri = MIDRegistry.getModelUri(modelObj);
+		String modelElemUri = MIDRegistry.getModelElementUri(modelObj);
 		if (!modelUri.equals(getTargetUri())) { // different model
 			return null;
 		}
@@ -334,7 +332,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
 		MMINTException.mustBeInstance(this);
 
 		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(this, modelObj);
-		String newModelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+		String newModelElemUri = MIDRegistry.getModelElementUri(modelObj);
 		EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(modelObj, MIDLevel.INSTANCES);
 		if (newModelElemName == null) {
 			newModelElemName = MIDRegistry.getModelElementName(eInfo, modelObj, MIDLevel.INSTANCES);

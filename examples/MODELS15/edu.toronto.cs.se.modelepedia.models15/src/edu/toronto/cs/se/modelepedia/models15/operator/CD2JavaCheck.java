@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -79,7 +78,7 @@ public class CD2JavaCheck extends OperatorImpl {
 		// output
 		Model intModelType = MIDTypeRegistry.getType(IntPackage.eNS_URI);
 		String checkModelPath = FileUtils.replaceLastSegmentInPath(
-			MIDRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
+			MIDRegistry.getModelUri(modelRel),
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
 		Model checkModel = intModelType.createInstanceAndEditor(check, checkModelPath, instanceMID);

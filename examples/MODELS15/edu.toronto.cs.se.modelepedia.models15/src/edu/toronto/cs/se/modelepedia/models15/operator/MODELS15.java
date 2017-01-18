@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -109,7 +108,7 @@ public class MODELS15 extends RandomOperatorImpl {
 		}
 
 		// create random class diagrams in a mid
-		String instanceMIDUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
+		String instanceMIDUri = MIDRegistry.getModelUri(instanceMID);
 		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output

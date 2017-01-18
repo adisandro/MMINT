@@ -313,7 +313,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	protected void addInstance(@NonNull Model newModelRel, @Nullable String newModelRelId, @NonNull String newModelRelName, @NonNull ModelOrigin origin, @NonNull String fileExtension, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) throws MMINTException {
 
 		super.addInstance(newModelRel, newModelRelId, newModelRelName, origin, fileExtension, midLevel, instanceMID);
-		String baseModelRelExtendedUri = FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelAndModelElementUris(newModelRel, MIDLevel.INSTANCES)[0], getName());
+		String baseModelRelExtendedUri = FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(newModelRel), getName());
 		String modelRelExtendedUri = FileUtils.getUniquePath(baseModelRelExtendedUri, true, true);
 		((KleisliModelRel) newModelRel).setExtendedUri(modelRelExtendedUri);
 		try {

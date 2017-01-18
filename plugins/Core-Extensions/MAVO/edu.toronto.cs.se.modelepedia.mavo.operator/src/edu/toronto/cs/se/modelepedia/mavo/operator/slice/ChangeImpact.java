@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -123,23 +122,23 @@ public class ChangeImpact extends OperatorImpl {
 		}
 		// merge table
 		for (List<EObject> unifiablesFromSameType : typeTable.values()) {
-			for (EObject modelEObject : unifiablesFromSameType) {
+			for (EObject modelObj : unifiablesFromSameType) {
 				List<EObject> unifiables = new ArrayList<EObject>();
-				String modelEObjectUri = MIDRegistry.getModelAndModelElementUris(modelEObject, MIDLevel.INSTANCES)[1];
-				unifyTable.put(modelEObjectUri, unifiables);
-				unifiables.add(modelEObject);
+				String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
+				unifyTable.put(modelObjUri, unifiables);
+				unifiables.add(modelObj);
 			}
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) {
-				EObject modelEObject = unifiablesFromSameType.get(i);
-				String modelEObjectUri = MIDRegistry.getModelAndModelElementUris(modelEObject, MIDLevel.INSTANCES)[1];
-				List<EObject> unifiables = unifyTable.get(modelEObjectUri);
+				EObject modelObj = unifiablesFromSameType.get(i);
+				String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
+				List<EObject> unifiables = unifyTable.get(modelObjUri);
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) {
-					EObject modelEObject2 = unifiablesFromSameType.get(j);
-					String modelEObjectUri2 = MIDRegistry.getModelAndModelElementUris(modelEObject2, MIDLevel.INSTANCES)[1];
-					List<EObject> unifiables2 = unifyTable.get(modelEObjectUri2);
-					if ((((MAVOElement) modelEObject).isVar() || ((MAVOElement) modelEObject2).isVar())) {
-						unifiables.add(modelEObject2);
-						unifiables2.add(modelEObject);
+					EObject modelObj2 = unifiablesFromSameType.get(j);
+					String modelObjUri2 = MIDRegistry.getModelElementUri(modelObj2);
+					List<EObject> unifiables2 = unifyTable.get(modelObjUri2);
+					if ((((MAVOElement) modelObj).isVar() || ((MAVOElement) modelObj2).isVar())) {
+						unifiables.add(modelObj2);
+						unifiables2.add(modelObj);
 					}
 				}
 			}
@@ -166,7 +165,7 @@ public class ChangeImpact extends OperatorImpl {
 				// navigate tgt mergeability
 				List<EObject> impactedUnifiables = impactedUnifyTable.get(impactedModelElemRef.getUri());
 				for (EObject impactedUnifiable : impactedUnifiables) {
-					String impactedModelElemUri = MIDRegistry.getModelAndModelElementUris(impactedUnifiable, MIDLevel.INSTANCES)[1];
+					String impactedModelElemUri = MIDRegistry.getModelElementUri(impactedUnifiable);
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MIDRegistry.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {

@@ -98,7 +98,7 @@ public class RelationshipDiagramOutlineDragListener extends DragSourceAdapter {
 			}
 			// assign to container
 			//TODO MMINT[MODELELEMENT] Think about simplifying the accept phase and the dnd info, probably not everything is needed anymore 
-			String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, modelRel.getLevel())[1];
+			String modelElemUri = MIDRegistry.getModelElementUri(modelObj);
 			for (ModelEndpointReference modelEndpointRef : modelRel.getModelEndpointRefs()) {
 				try {
 					if (isInstancesLevel) {

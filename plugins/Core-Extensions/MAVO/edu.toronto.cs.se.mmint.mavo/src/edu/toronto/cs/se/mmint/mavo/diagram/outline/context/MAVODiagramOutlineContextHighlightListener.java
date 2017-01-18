@@ -34,7 +34,6 @@ import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
@@ -70,7 +69,7 @@ public class MAVODiagramOutlineContextHighlightListener extends MIDContextMenuLi
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		String modelUri = MIDRegistry.getModelAndModelElementUris(mavoElemToHighlight, MIDLevel.INSTANCES)[0];
+		String modelUri = MIDRegistry.getModelUri(mavoElemToHighlight);
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		for (MID instanceMID : instanceMIDs.keySet()) {
 			model = instanceMID.getExtendibleElement(modelUri);

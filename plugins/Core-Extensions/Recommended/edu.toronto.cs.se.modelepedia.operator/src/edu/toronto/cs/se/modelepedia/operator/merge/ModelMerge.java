@@ -117,7 +117,7 @@ public class ModelMerge extends OperatorImpl {
 		for (EObject modelObj1 : rootModelObj1.eContents()) {
 			EObject mergedModelObj = EcoreUtil.copy(modelObj1);
 			allModelObjs.put(modelObj1, mergedModelObj);
-			String modelElemUri1 = MIDRegistry.getModelAndModelElementUris(modelObj1, MIDLevel.INSTANCES)[1];
+			String modelElemUri1 = MIDRegistry.getModelElementUri(modelObj1);
 			if (matchModelElems1.keySet().contains(modelElemUri1)) {
 				ModelElement modelElem2 = matchModelElems1.get(modelElemUri1);
 				EObject modelObj2 = modelElem2.getEMFInstanceObject();
@@ -146,8 +146,7 @@ public class ModelMerge extends OperatorImpl {
 			traceModelElemRefs1.add(traceRel1.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
 				modelObj1,
 				null));
-			String newModelElemUri = mergedModel.getUri()
-					+ MIDRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
+			String newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
 			EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
 			String newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
 			traceModelElemRefs1.add( // merged model element is not serialized yet
@@ -165,7 +164,7 @@ public class ModelMerge extends OperatorImpl {
 		EObject rootModelObj2 = model2.getEMFInstanceRoot();
 		for (EObject modelObj2 : rootModelObj2.eContents()) {
 			EObject mergedModelObj;
-			String modelElemUri2 = MIDRegistry.getModelAndModelElementUris(modelObj2, MIDLevel.INSTANCES)[1];
+			String modelElemUri2 = MIDRegistry.getModelElementUri(modelObj2);
 			if (mergedModelObjs.keySet().contains(modelElemUri2)) {
 				// already copied
 				mergedModelObj = mergedModelObjs.get(modelElemUri2);
@@ -182,8 +181,7 @@ public class ModelMerge extends OperatorImpl {
 			traceModelElemRefs2.add(traceRel2.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(
 				modelObj2,
 				null));
-			String newModelElemUri = mergedModel.getUri()
-					+ MIDRegistry.getModelAndModelElementUris(mergedModelObj, MIDLevel.INSTANCES)[1];
+			String newModelElemUri = mergedModel.getUri() + MIDRegistry.getModelElementUri(mergedModelObj);
 			EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(mergedModelObj, MIDLevel.INSTANCES);
 			String newModelElemName = MIDRegistry.getModelElementName(eInfo, mergedModelObj, MIDLevel.INSTANCES);
 			traceModelElemRefs2.add( // merged model element is not serialized yet
@@ -239,7 +237,7 @@ public class ModelMerge extends OperatorImpl {
 		// create merged model and trace relationships as placeholders
 		MID mergedModelMID = outputMIDsByName.get(OUT_MODEL);
 		String mergedModelPath = FileUtils.replaceLastSegmentInPath(
-			MIDRegistry.getModelAndModelElementUris(mergedModelMID, MIDLevel.INSTANCES)[0],
+			MIDRegistry.getModelUri(mergedModelMID),
 			model1.getName() + MERGED_SEPARATOR + model2.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ model1.getFileExtension());
 		Model mergedModel = model1.getMetatype().createInstance(null, mergedModelPath, mergedModelMID);

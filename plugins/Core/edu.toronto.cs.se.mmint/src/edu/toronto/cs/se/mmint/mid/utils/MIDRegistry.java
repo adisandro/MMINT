@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -202,32 +201,6 @@ public class MIDRegistry {
 		return false;
 	}
 
-	@Deprecated
-	public static String[] getModelAndModelElementUris(EObject modelObj, MIDLevel level) {
-
-		String modelUri, modelElemUri;
-		String attributeFeatureName = null;
-		if (level == MIDLevel.INSTANCES && modelObj instanceof PrimitiveEObjectWrapper) {
-			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
-			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
-		}
-		URI emfUri = EcoreUtil.getURI(modelObj);
-		String uri = emfUri.toString();
-		if (level == MIDLevel.INSTANCES) {
-			modelElemUri = (uri.startsWith(RESOURCE_URI_PREFIX)) ? uri.substring(RESOURCE_URI_PREFIX.length()) : uri;
-			modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
-			if (attributeFeatureName != null) {
-				modelElemUri += MMINT.URI_SEPARATOR + attributeFeatureName;
-			}
-		}
-		else {
-			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
-			modelElemUri = modelUri + MMINT.ECORE_MODEL_URI_SEPARATOR + uri.substring(uri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR)+MMINT.ECORE_MODEL_URI_SEPARATOR.length());
-		}
-
-		return new String[] {modelUri, modelElemUri};
-	}
-
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
 		String modelUri;
@@ -344,7 +317,7 @@ public class MIDRegistry {
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1] + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
+		String modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MIDRegistry.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}

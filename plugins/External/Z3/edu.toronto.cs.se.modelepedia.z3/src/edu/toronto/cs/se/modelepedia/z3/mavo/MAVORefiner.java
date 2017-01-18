@@ -41,7 +41,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -80,7 +79,7 @@ public class MAVORefiner {
 			if (!(modelObj instanceof MAVOElement) || !((MAVOElement) modelObj).isMay()) {
 				continue;
 			}
-			String modelObjUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
 			String refinedModelObjUri = refinedModelUri + modelObjUri.substring(modelObjUri.lastIndexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			MAVOElement refinedModelObj;
 			try {

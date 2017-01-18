@@ -131,9 +131,9 @@ public class MMINT implements MMINTConstants {
 	 * - Create scripting language
 	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
 	 */
-	/* TODO MMINT[IN PROGRESS OPERATOR] Unify operator type behavior with other types:
-	 * - Set root Operator as supertype
-	 * - Add 2 model type endpoints for operators to Model with cardinality 0..n, and the corresponding operator api
+	/* TODO MMINT[IN PROGRESS OPERATOR] Work on operators:
+	 * - Don't create a root operator and root model type endpoints, that is not what happens in programming languages
+	 * - Use apis that are aware of this difference, but still allow for inheritance, aka overloading/overriding
 	 * - Add operator support in hierarchy tables and apis
 	 * - Review operator constraint heavy apis
 	 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators, convert all operators to use them
@@ -141,6 +141,11 @@ public class MMINT implements MMINTConstants {
 	 * - Rethink ConversionOperator to be a simple workflow
 	 * - Rewrite ExperimentDriver to be a workflow
 	 * - Review and rationalize MIDOper and MIDRel, introduce MIDWorkflow?
+	 */
+	/* TODO MMINT[PACKAGING]
+	 * - Put generic enough models and operators into Types-style projects
+	 * - Put things specific to papers/demos in other projects
+	 * - Create features to pull all requirements for papers/demos + examples
 	 */
 	/* TODO MMINT[USABILITY]
 	 * - Change uris into ids
