@@ -18,4 +18,5 @@ Bundle-ClassPath: .
 Export-Package: edu.toronto.cs.se.modelepedia.operator.experiment,
  edu.toronto.cs.se.modelepedia.operator.match,
  edu.toronto.cs.se.modelepedia.operator.merge,
- edu.toronto.cs.se.modelepedia.operator.patch
+ edu.toronto.cs.se.modelepedia.operator.patch,
+ edu.toronto.cs.se.modelepedia.operator.slice

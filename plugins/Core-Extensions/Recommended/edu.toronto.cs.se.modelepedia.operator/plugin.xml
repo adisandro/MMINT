@@ -339,14 +339,55 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ModelRelPropagation"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelPropagation"
-               class="edu.toronto.cs.se.modelepedia.operator.propagate.ModelRelPropagation">
+               class="edu.toronto.cs.se.modelepedia.operator.slice.Slice"
+               name="Slice"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice">
          </type>
          <inputs>
             <parameter>
 	           <type
-	                 name="rel">
+	                 name="criterion"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice-ModelRel/criterion">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="slice"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice-ModelRel/slice">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="criterion"
+                     endpointIndex="0">
+               </endpointConstraint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ModelRelPropagation"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelPropagation"
+               class="edu.toronto.cs.se.modelepedia.operator.propagate.ModelRelPropagation">
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.operator.propagate.ModelRelPropagation$InputConstraint"
+               language="JAVA">
+         </constraint>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="original">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -354,15 +395,7 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="trace1">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="trace2">
+	                 name="trace">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -377,6 +410,10 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
+               <endpointConstraint
+                     parameterName="trace"
+                     endpointIndex="1">
+               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
