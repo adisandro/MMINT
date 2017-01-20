@@ -7,6 +7,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo
