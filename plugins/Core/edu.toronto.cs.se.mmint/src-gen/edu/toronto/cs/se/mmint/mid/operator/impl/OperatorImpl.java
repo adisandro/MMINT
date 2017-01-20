@@ -1015,7 +1015,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
 			for (Model inputModel : inputMID.getModels()) {
-				OperatorInput operatorInput = checkAllowedInput(inputModelTypeEndpoint, inputModel);
+				OperatorInput operatorInput = this.checkAllowedInput(inputModelTypeEndpoint, inputModel);
 				if (operatorInput == null) {
 					continue;
 				}
@@ -1034,9 +1034,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeType(this);
 
 		// get inputs by model type endpoint
-		EList<EList<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(inputMIDs);
+		EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs);
 		// do cartesian product of inputs
-		Set<EList<OperatorInput>> operatorTypeInputSet = getOperatorTypeInputs(modelTypeEndpointInputs, false);
+		Set<EList<OperatorInput>> operatorTypeInputSet = this.getOperatorTypeInputs(modelTypeEndpointInputs, false);
 
 		return operatorTypeInputSet;
 	}
@@ -1049,9 +1049,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		MMINTException.mustBeType(this);
 
 		// get inputs by model type endpoint
-		EList<EList<OperatorInput>> modelTypeEndpointInputs = getModelTypeEndpointInputs(inputMIDs);
+		EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs);
 		// get the first allowed input
-		Set<EList<OperatorInput>> operatorTypeInputSet = getOperatorTypeInputs(modelTypeEndpointInputs, true);
+		Set<EList<OperatorInput>> operatorTypeInputSet = this.getOperatorTypeInputs(modelTypeEndpointInputs, true);
 		if (operatorTypeInputSet.isEmpty()) {
 			return null;
 		}

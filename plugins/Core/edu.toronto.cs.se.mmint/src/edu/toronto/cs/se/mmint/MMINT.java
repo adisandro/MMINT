@@ -132,6 +132,7 @@ public class MMINT implements MMINTConstants {
 	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Work on operators:
+	 * - Create a polymorphism menu with separate options for dynamic types and dynamic (multiple) dispatch
 	 * - Don't create a root operator and root model type endpoints, that is not what happens in programming languages
 	 * - Use apis that are aware of this difference, but still allow for inheritance, aka overloading/overriding
 	 * - Add operator support in hierarchy tables and apis
@@ -450,6 +451,7 @@ public class MMINT implements MMINTConstants {
 			if (targetModelType == null) {
 				throw new MMINTException("Target model type " + targetModelTypeUri + " can't be found");
 			}
+			//TODO MMINT[OPERATOR] Should check that if there is a supertype, the endpoint name can't be changed
 			ModelEndpoint newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
 				extensionType,
 				targetModelType,

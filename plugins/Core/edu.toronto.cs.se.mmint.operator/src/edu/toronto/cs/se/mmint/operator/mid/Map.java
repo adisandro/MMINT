@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmint.operator.mid;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
@@ -55,7 +58,6 @@ public class Map extends NestingOperatorImpl {
 	// constants
 	private final static @NonNull String MAPPED_MID_SUFFIX = "_map";
 	private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
-	private final static @NonNull String MIDOPER_MODELTYPE_URI_SUFFIX = "Oper";
 
 	@Override
 	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
@@ -126,8 +128,10 @@ public class Map extends NestingOperatorImpl {
 	}
 
 	private java.util.@NonNull Map<String, Model> map(
-			@NonNull List<Model> inputMIDModels, @NonNull Operator mapperOperatorType,
-			@NonNull Set<EList<OperatorInput>> mapperInputSet, java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
+			@NonNull List<Model> inputMIDModels,
+			Operator mapperOperatorType,
+			java.util.@NonNull Map<Operator, Set<EList<OperatorInput>>> mapperSpecs,
+			java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
 
 		// create output MIDs
 		java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
@@ -140,51 +144,54 @@ public class Map extends NestingOperatorImpl {
 		java.util.Map<String, Set<Model>> midrelShortcutsByOutputName = new HashMap<>();
 		java.util.Map<String, Set<MID>> midrelMIDsByOutputName = new HashMap<>();
 		EList<Model> mapperShortcutModels = new BasicEList<>();
-		for (EList<OperatorInput> mapperInputs : mapperInputSet) {
-			try {
-				EList<OperatorGeneric> mapperGenerics = mapperOperatorType.selectAllowedGenerics(mapperInputs);
-				java.util.Map<String, Model> mapperOutputsByName = mapperOperatorType.startInstance(
-					mapperInputs,
-					null,
-					mapperGenerics,
-					mapperOutputMIDsByName,
-					mapperMID)
-						.getOutputsByName();
-				if (mapperMIDPath != null) {
-					mapperShortcutModels.addAll(mapperInputs.stream()
-						.map(OperatorInput::getModel)
-						.collect(Collectors.toList()));
-					mapperShortcutModels.addAll(mapperOutputsByName.values());
+		for (Entry<Operator, Set<EList<OperatorInput>>> mapperSpec : mapperSpecs.entrySet()) {
+			Operator mapper = mapperSpec.getKey();
+			for (EList<OperatorInput> mapperInputs : mapperSpec.getValue()) {
+				try {
+					EList<OperatorGeneric> mapperGenerics = mapper.selectAllowedGenerics(mapperInputs);
+					java.util.Map<String, Model> mapperOutputsByName = mapper.startInstance(
+						mapperInputs,
+						null,
+						mapperGenerics,
+						mapperOutputMIDsByName,
+						mapperMID)
+							.getOutputsByName();
+					if (mapperMIDPath != null) {
+						mapperShortcutModels.addAll(mapperInputs.stream()
+							.map(OperatorInput::getModel)
+							.collect(Collectors.toList()));
+						mapperShortcutModels.addAll(mapperOutputsByName.values());
+					}
+					// get gmf shortcuts to create (output MIDRels need gmf shortcuts to model endpoints)
+					for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
+						if (!(mapperOutput.getValue() instanceof ModelRel)) {
+							continue;
+						}
+						Set<Model> midrelShortcutsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints().stream()
+							.map(ModelEndpoint::getTarget)
+							.collect(Collectors.toSet());
+						Set<Model> midrelShortcuts = midrelShortcutsByOutputName.putIfAbsent(
+							mapperOutput.getKey(),
+							midrelShortcutsToAdd);
+						if (midrelShortcuts != null) {
+							midrelShortcuts.addAll(midrelShortcutsToAdd);
+						}
+						Set<MID> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints().stream()
+							.map(modelEndpoint -> modelEndpoint.getTarget().getMIDContainer())
+							.collect(Collectors.toSet());
+						Set<MID> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
+							mapperOutput.getKey(),
+							midrelMIDsToAdd);
+						if (midrelMIDs != null) {
+							midrelMIDs.addAll(midrelMIDsToAdd);
+						}
+					}
 				}
-				// get gmf shortcuts to create (output MIDRels need gmf shortcuts to model endpoints)
-				for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
-					if (!(mapperOutput.getValue() instanceof ModelRel)) {
-						continue;
-					}
-					Set<Model> midrelShortcutsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints().stream()
-						.map(ModelEndpoint::getTarget)
-						.collect(Collectors.toSet());
-					Set<Model> midrelShortcuts = midrelShortcutsByOutputName.putIfAbsent(
-						mapperOutput.getKey(),
-						midrelShortcutsToAdd);
-					if (midrelShortcuts != null) {
-						midrelShortcuts.addAll(midrelShortcutsToAdd);
-					}
-					Set<MID> midrelMIDsToAdd = ((ModelRel) mapperOutput.getValue()).getModelEndpoints().stream()
-						.map(modelEndpoint -> modelEndpoint.getTarget().getMIDContainer())
-						.collect(Collectors.toSet());
-					Set<MID> midrelMIDs = midrelMIDsByOutputName.putIfAbsent(
-						mapperOutput.getKey(),
-						midrelMIDsToAdd);
-					if (midrelMIDs != null) {
-						midrelMIDs.addAll(midrelMIDsToAdd);
-					}
+				catch (Exception e) {
+					// other than errors, the operator can fail because of input constraints due to the cartesian product
+					MMINTException.print(
+						IStatus.WARNING, "Operator " + mapper + " execution error, skipping it", e);
 				}
-			}
-			catch (Exception e) {
-				// other than errors, the operator can fail because of input constraints due to the cartesian product
-				MMINTException.print(
-					IStatus.WARNING, "Operator " + mapperOperatorType + " execution error, skipping it", e);
 			}
 		}
 		// store output MIDs
@@ -262,9 +269,25 @@ public class Map extends NestingOperatorImpl {
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
 
-		// find all possible combinations of inputs for operatorType and execute them
-		Set<EList<OperatorInput>> operatorInputSet = mapperOperatorType.findAllowedInputs(inputMIDs);
-		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, mapperOperatorType, operatorInputSet, instanceMIDsByMapperOutput);
+		// find all possible combinations of inputs and execute them
+		java.util.Map<Operator, Set<EList<OperatorInput>>> mapperSpecs = new HashMap<>();
+		EList<Operator> dispatch = ECollections.asEList(MIDTypeHierarchy.getSubtypes(mapperOperatorType));
+		if (dispatch.isEmpty()) {
+			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs));
+		}
+		else {
+			dispatch.add(mapperOperatorType);
+			java.util.Map<String, EList<OperatorInput>> allInputs = new HashMap<>();
+			Iterator<Operator> iter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(dispatch);
+			while (iter.hasNext()) {
+				Operator mapper = iter.next();
+				Set<EList<OperatorInput>> mapperInputs = mapper.findAllowedInputs(inputMIDs);
+				java.util.Map<String, EList<OperatorInput>> newInputs = getInputs(allInputs, mapperInputs);
+				mapperSpecs.put(mapper, new HashSet<>(newInputs.values()));
+				allInputs.putAll(newInputs);
+			}
+		}
+		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, mapperOperatorType, mapperSpecs, instanceMIDsByMapperOutput);
 
 		// store model elements created in the input mids
 		for (int i = 0; i < inputMIDModels.size(); i++) {
@@ -272,6 +295,21 @@ public class Map extends NestingOperatorImpl {
 		}
 
 		return outputsByName;
+	}
+
+	private java.util.Map<String, EList<OperatorInput>> getInputs(java.util.Map<String, EList<OperatorInput>> allInputs, Set<EList<OperatorInput>> mapperInputs) {
+
+		java.util.Map<String, EList<OperatorInput>> newInputs = new HashMap<>();
+		for (EList<OperatorInput> mapperInput : mapperInputs) {
+			String key = mapperInput.stream()
+				.map(input -> MIDRegistry.getModelElementUri(input.getModel()))
+				.collect(Collectors.joining(";"));
+			if (!allInputs.containsKey(key)) {
+				newInputs.put(key, mapperInput);
+			}
+		}
+
+		return newInputs;
 	}
 
 }
