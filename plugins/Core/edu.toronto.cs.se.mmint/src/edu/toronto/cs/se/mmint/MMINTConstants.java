@@ -176,6 +176,7 @@ public interface MMINTConstants {
 	public final static String REASONERS_REASONER_LANGUAGE_ATTR_ID = "id";
 
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
+	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
 	public final static String PREFERENCE_MENU_ID = PREFERENCE_MMINT_ID + ".mid.diagram.menu";
 	public final static String PREFERENCE_MENU_ICONS_ENABLED = PREFERENCE_MENU_ID + ".IconsEnabled";
 	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelsEnabled";
@@ -183,9 +184,10 @@ public interface MMINTConstants {
 	public final static String PREFERENCE_MENU_OPERATORS_ENABLED = PREFERENCE_MENU_ID + ".OperatorsEnabled";
 	public final static String PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".OperatorEndpointsEnabled";
 	public final static String PREFERENCE_MENU_OPENMODELEDITORS_ENABLED = PREFERENCE_MENU_ID + ".OpenModelEditorsEnabled";
-	public final static String PREFERENCE_MENU_POLYMORPHISM_ENABLED = PREFERENCE_MENU_ID + ".PolymorphismEnabled";
 	public final static String PREFERENCE_MENU_DELETEMODELFILE_ENABLED = PREFERENCE_MENU_ID + ".DeleteModelFileEnabled";
 	public final static String PREFERENCE_MENU_LANGUAGE_REASONER = PREFERENCE_MENU_ID + ".Reasoner";
-	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_ID = PREFERENCE_MENU_ID + ".polymorphism";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED = PREFERENCE_MENU_POLYMORPHISM_ID + ".RuntimeTypingEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED = PREFERENCE_MENU_POLYMORPHISM_ID + ".MultipleDispatchEnabled";
 
 }

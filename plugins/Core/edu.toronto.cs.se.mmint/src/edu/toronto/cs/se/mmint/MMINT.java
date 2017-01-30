@@ -132,7 +132,8 @@ public class MMINT implements MMINTConstants {
 	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Work on operators:
-	 * - Create a polymorphism menu with separate options for dynamic types and dynamic (multiple) dispatch
+	 * - Add a polymorphism submenu for type substitutability (coercion)
+	 * - Use multiple dispatch in workflows outside of Map, e.g. a slice(Model, Model) should adapt to the actual arguments
 	 * - Don't create a root operator and root model type endpoints, that is not what happens in programming languages
 	 * - Use apis that are aware of this difference, but still allow for inheritance, aka overloading/overriding
 	 * - Add operator support in hierarchy tables and apis
@@ -152,6 +153,7 @@ public class MMINT implements MMINTConstants {
 	 * - Change uris into ids
 	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
 	 * - Similarly, there should be a ModelRelModelEndpoint and an OperatorModelEndpoint
+	 * - The root element should be called MIDObject and not ExtendibleElement
 	 * - Simplify the type system of model rels
 	 * - Handle optional uris/ids for subelements of model/modelrel/operator
 	 * - Use defaults and optionals in extension points as much as possible
@@ -990,15 +992,17 @@ public class MMINT implements MMINTConstants {
 	private void initPreferences() {
 
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
+		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
 		initPreference(preferences, PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
+		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
+		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, "true", false);
 		for (String languageId : languageReasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);
 			if (reasonerName != null) {

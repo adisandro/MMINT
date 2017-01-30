@@ -182,10 +182,10 @@ public class MIDContextMenu extends ContributionItem {
 				mid = selectedModels.get(0).getMIDContainer();
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
-			String polyPreference = null;
-			if (mid.isWorkflowsLevel()) { // disable polymorphism at the workflow level
-				polyPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED);
-				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, "false");
+			String runtimeTypingPreference = null;
+			if (mid.isWorkflowsLevel()) { // disable runtime typing at the workflow level, since there is no runtime
+				runtimeTypingPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED);
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "false");
 			}
 			List<Operator> executableOperators = new ArrayList<>();
 			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
@@ -202,8 +202,8 @@ public class MIDContextMenu extends ContributionItem {
 					continue;
 				}
 			}
-			if (polyPreference != null) { // restore polymorphism preference
-				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, polyPreference);
+			if (runtimeTypingPreference != null) { // restore runtime typing preference
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, runtimeTypingPreference);
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {

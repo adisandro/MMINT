@@ -931,7 +931,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		}
 
 		EList<T> types = new BasicEList<>();
-		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED))) {
+		if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED))) {
 			// start from root
 			T rootType = MIDTypeRegistry.getType(MIDTypeHierarchy.getRootTypeUri(this));
 			this.getRuntimeTypes(rootType, types);

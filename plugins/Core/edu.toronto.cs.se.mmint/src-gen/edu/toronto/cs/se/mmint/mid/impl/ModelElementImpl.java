@@ -417,15 +417,15 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 
 		MMINTException.mustBeType(this);
 
-		MID instanceMID = containerModelEndpointRef.getMIDContainer();
+		Model containerModel = containerModelEndpointRef.getObject().getTarget();
+		MID instanceMID = containerModel.getMIDContainer();
 		ModelElement newModelElem = null;
-		newModelElemUri += MMINT.ROLE_SEPARATOR + getUri();
-		if (instanceMID != null) { // can be null when the containing model rel is not stored in the MID
+		newModelElemUri += MMINT.ROLE_SEPARATOR + this.getUri();
+		if (instanceMID != null) { // can be null when the containing model is not stored in the MID
 			newModelElem = instanceMID.getExtendibleElement(newModelElemUri);
 		}
 		if (newModelElem == null) {
 			newModelElem = super.createThisEClass();
-			//TODO MMINT[MAP] When input and output come from different mids, is it not correct to store the extendible map entry in the output
 			if (instanceMID == null) {
 				super.addBasicInstance(newModelElem, newModelElemUri, newModelElemName, MIDLevel.INSTANCES);
 			}
@@ -433,7 +433,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				super.addInstance(newModelElem, newModelElemUri, newModelElemName, instanceMID);
 			}
 			newModelElem.setEInfo(eInfo);
-			containerModelEndpointRef.getObject().getTarget().getModelElems().add(newModelElem);
+			containerModel.getModelElems().add(newModelElem);
 		}
 		ModelElementReference newModelElemRef = newModelElem.createInstanceReference(containerModelEndpointRef);
 
@@ -461,7 +461,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 		String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
 		int lastSegmentIndex = modelElemUri.lastIndexOf(MMINT.URI_SEPARATOR);
 		String lastSegment = modelElemUri.substring(lastSegmentIndex + 1, modelElemUri.length());
-		boolean isPrimitive = !lastSegment.startsWith(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX);
+		boolean isPrimitive = !lastSegment.equals("") && !lastSegment.startsWith(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX);
 		if (isPrimitive) {
 			modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
 		}
