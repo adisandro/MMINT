@@ -16,8 +16,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
@@ -41,14 +43,32 @@ public class ModelRelMerge extends OperatorImpl {
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
+			/**TODO MMINT[WORKFLOW]
+			 * 1) add interface for output model constraint instead of mid elements
+			 * 2) refactor all output contraints to use the new api
+			 * 3) remove old structures
+			 * 4) think about interaction with variable outputs
+			 * 5) address the suspect points here
+			 */
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-			if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
+			if ( // works with unary and binary rels, as long as they're both unary or both binary
+				modelRel1.getModelEndpoints().size() == 0 ||
+				modelRel2.getModelEndpoints().size() == 0 ||
+				modelRel1.getModelEndpoints().size() > 2 ||
+				modelRel2.getModelEndpoints().size() > 2 ||
+				modelRel1.getModelEndpoints().size() != modelRel2.getModelEndpoints().size()
+			) {
 				return false;
 			}
+			// unary
 			String modelPath11 = modelRel1.getModelEndpoints().get(0).getTargetUri();
-			String modelPath12 = modelRel1.getModelEndpoints().get(1).getTargetUri();
 			String modelPath21 = modelRel2.getModelEndpoints().get(0).getTargetUri();
+			if (modelRel1.getModelEndpoints().size() == 1) {
+				return (modelPath11.equals(modelPath21)) ? true : false;
+			}
+			// binary
+			String modelPath12 = modelRel1.getModelEndpoints().get(1).getTargetUri();
 			String modelPath22 = modelRel2.getModelEndpoints().get(1).getTargetUri();
 			if (modelPath11.equals(modelPath21) && modelPath12.equals(modelPath22)) {
 				return true;
@@ -80,6 +100,7 @@ public class ModelRelMerge extends OperatorImpl {
 				newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, mergedModelRel);
 			}
 			else {
+				//TODO this is suspect, what about model rels with endpoints to the same model?
 				newModelEndpointRef = newModelEndpointRefs.get(0);
 			}
 			// model elements
@@ -94,6 +115,7 @@ public class ModelRelMerge extends OperatorImpl {
 		}
 		// links
 		for (MappingReference origMappingRef : origModelRel.getMappingRefs()) {
+			//TODO this is suspect, what about two orig mappings with the same exact endpoints?
 			if (mergedModelRel.getMappingRefs().stream()
 				.anyMatch(mappingRef -> mappingRef.getModelElemEndpointRefs().stream()
 					.map(ModelElementEndpointReference::getTargetUri)
@@ -113,15 +135,25 @@ public class ModelRelMerge extends OperatorImpl {
 	}
 
 	private @NonNull ModelRel merge(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
-		@NonNull Model model1, @NonNull Model model2, @NonNull MID instanceMID)
+		@NonNull Model model1, @Nullable Model model2, @NonNull MID instanceMID)
 		throws MMINTException {
 
-		ModelRel mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
-			null,
-			modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName(),
-			model1,
-			model2,
-			instanceMID);
+		ModelRel mergedRel = null;
+		if (model2 == null) { // unary
+			mergedRel = MIDTypeHierarchy.getRootModelRelType().createInstanceAndEndpoints(
+				null,
+				modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName(),
+				ECollections.asEList(model1),
+				instanceMID);
+		}
+		else { // binary
+			mergedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
+				null,
+				modelRel1.getName() + MERGE_SEPARATOR + modelRel2.getName(),
+				model1,
+				model2,
+				instanceMID);
+		}
 		populate(mergedRel, modelRel1, instanceMID);
 		populate(mergedRel, modelRel2, instanceMID);
 
@@ -136,18 +168,23 @@ public class ModelRelMerge extends OperatorImpl {
 		// input
 		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
 		Model model1 = null, model2 = null;
-		if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
+		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+		if (modelRel1.getModelEndpoints().size() == 1) { // unary
 			model1 = model11;
-			model2 = model22;
 		}
-		else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
-			model1 = model11;
-			model2 = model21;
+		else { // binary
+			Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+			Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+			Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+			if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
+				model1 = model11;
+				model2 = model22;
+			}
+			else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
+				model1 = model11;
+				model2 = model21;
+			}
 		}
 
 		// merge the two model rels

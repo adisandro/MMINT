@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.operator.merge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorOutputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -43,20 +45,59 @@ public class ModelRelComposition extends OperatorImpl {
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-			if (modelRel1.getModelEndpoints().size() != 2 || modelRel2.getModelEndpoints().size() != 2) {
+			ModelRel rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			ModelRel rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			if (rel1.getModelEndpoints().size() != 2 || rel2.getModelEndpoints().size() != 2) {
 				return false;
 			}
-			String modelPath11 = modelRel1.getModelEndpoints().get(0).getTargetUri();
-			String modelPath12 = modelRel1.getModelEndpoints().get(1).getTargetUri();
-			String modelPath21 = modelRel2.getModelEndpoints().get(0).getTargetUri();
-			String modelPath22 = modelRel2.getModelEndpoints().get(1).getTargetUri();
+			String modelPath11 = rel1.getModelEndpoints().get(0).getTargetUri();
+			String modelPath12 = rel1.getModelEndpoints().get(1).getTargetUri();
+			String modelPath21 = rel2.getModelEndpoints().get(0).getTargetUri();
+			String modelPath22 = rel2.getModelEndpoints().get(1).getTargetUri();
 			if (!modelPath11.equals(modelPath21) && !modelPath11.equals(modelPath22) && !modelPath12.equals(modelPath21) && !modelPath12.equals(modelPath22)) {
 				return false;
 			}
 
 			return true;
+		}
+	}
+
+	public static class OutputConstraint implements IJavaOperatorOutputConstraint {
+
+		@Override
+		public Map<ModelRel, List<Model>> createAllowedWorkflowOutput(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			ModelRel rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			ModelRel rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			Model model11 = rel1.getModelEndpoints().get(0).getTarget();
+			Model model12 = rel1.getModelEndpoints().get(1).getTarget();
+			Model model21 = rel2.getModelEndpoints().get(0).getTarget();
+			Model model22 = rel2.getModelEndpoints().get(1).getTarget();
+			Model model1 = null, model2 = null;
+			if (model11 == model21) {
+				model1 = model12;
+				model2 = model22;
+			}
+			else if (model11 == model22) {
+				model1 = model12;
+				model2 = model21;
+			}
+			else if (model12 == model21) {
+				model1 = model11;
+				model2 = model22;
+			}
+			else { // model12 == model22
+				model1 = model11;
+				model2 = model21;
+			}
+			ModelRel composedRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+			List<Model> endpointModels = new ArrayList<>();
+			endpointModels.add(model1);
+			endpointModels.add(model2);
+			validOutputs.put(composedRel, endpointModels);
+
+			return validOutputs;
 		}
 	}
 
@@ -137,12 +178,12 @@ public class ModelRelComposition extends OperatorImpl {
 		throws Exception {
 
 		// input
-		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-		Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-		Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-		Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+		ModelRel rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+		ModelRel rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+		Model model11 = rel1.getModelEndpoints().get(0).getTarget();
+		Model model12 = rel1.getModelEndpoints().get(1).getTarget();
+		Model model21 = rel2.getModelEndpoints().get(0).getTarget();
+		Model model22 = rel2.getModelEndpoints().get(1).getTarget();
 		Model modelPivot = null, model1 = null, model2 = null;
 		if (model11.getUri().equals(model21.getUri())) {
 			modelPivot = model11;
@@ -167,8 +208,8 @@ public class ModelRelComposition extends OperatorImpl {
 
 		// compose the two model rels, using the shared model as pivot
 		ModelRel composedRel = compose(
-			modelRel1,
-			modelRel2,
+			rel1,
+			rel2,
 			model1,
 			model2,
 			modelPivot,
