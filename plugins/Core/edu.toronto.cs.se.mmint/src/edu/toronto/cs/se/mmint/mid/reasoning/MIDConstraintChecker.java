@@ -519,7 +519,7 @@ mappingTypes:
 		}
 		IReasoningEngine reasoner;
 		try {
-			reasoner = getReasoner(constraint.getLanguage());
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator input constraint check", e);
@@ -527,6 +527,24 @@ mappingTypes:
 		}
 
 		return reasoner.checkOperatorInputConstraint(inputsByName, constraint);
+	}
+
+	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+
+		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return new HashMap<>();
+		}
+		IReasoningEngine reasoner;
+		try {
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping operator output constraints", e);
+			return new HashMap<>();
+		}
+
+		return reasoner.getOperatorOutputConstraints(inputsByName, outputsByName, constraint);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {

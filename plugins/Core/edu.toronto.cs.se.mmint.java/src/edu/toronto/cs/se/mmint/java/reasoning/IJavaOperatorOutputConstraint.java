@@ -19,6 +19,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public interface IJavaOperatorOutputConstraint {
 
-	public Map<ModelRel, List<Model>> createAllowedWorkflowOutput(Map<String, Model> inputsByName, Map<String, Model> outputsByName);
+	public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName);
 
 }

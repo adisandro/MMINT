@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -25,6 +27,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class JavaReasoningEngine implements IReasoningEngine {
 
@@ -45,7 +48,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			return javaConstraint.validate(model);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java constraint error, evaluating to false: " + javaClassName, e);
+			MMINTException.print(IStatus.WARNING, "Java model constraint error, evaluating to false: " + javaClassName, e);
 			return false;
 		}
 	}
@@ -65,8 +68,28 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			return javaConstraint.isAllowedInput(inputsByName);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java constraint error, evaluating to false: " + javaClassName, e);
+			MMINTException.print(IStatus.WARNING, "Java operator input constraint error, evaluating to false: " + javaClassName, e);
 			return false;
+		}
+	}
+
+	@Override
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull OperatorConstraint constraint) {
+
+		String javaClassName = constraint.getImplementation();
+		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
+		try {
+			IJavaOperatorOutputConstraint javaConstraint = (IJavaOperatorOutputConstraint)
+				MIDTypeRegistry.getTypeBundle(operatorTypeUri).
+				loadClass(javaClassName).
+				getConstructor().
+				newInstance();
+
+			return javaConstraint.getAllowedModelRelEndpoints(inputsByName, outputsByName);
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "Java operator output constraint error, returning empty map: " + javaClassName, e);
+			return new HashMap<>();
 		}
 	}
 

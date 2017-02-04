@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.operator.merge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorOutputConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -44,6 +46,7 @@ public class ModelRelMerge extends OperatorImpl {
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
 			/**TODO MMINT[WORKFLOW]
+			 * 0) change composition to use uris again, the output constraint is valid for both instances and workflows, then use it as function in run too
 			 * 1) add interface for output model constraint instead of mid elements
 			 * 2) refactor all output contraints to use the new api
 			 * 3) remove old structures
@@ -78,6 +81,44 @@ public class ModelRelMerge extends OperatorImpl {
 			}
 
 			return false;
+		}
+	}
+
+	public static class OutputConstraint implements IJavaOperatorOutputConstraint {
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			Model model1 = null, model2 = null;
+			Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
+			if (modelRel1.getModelEndpoints().size() == 1) { // unary
+				model1 = model11;
+			}
+			else { // binary
+				Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
+				Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
+				Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
+				if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
+					model1 = model11;
+					model2 = model22;
+				}
+				else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
+					model1 = model11;
+					model2 = model21;
+				}
+			}
+			ModelRel mergedRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+			List<Model> endpointModels = new ArrayList<>();
+			endpointModels.add(model1);
+			if (model2 != null) {
+				endpointModels.add(model2);
+			}
+			validOutputs.put(mergedRel, endpointModels);
+
+			return validOutputs;
 		}
 	}
 

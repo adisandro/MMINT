@@ -65,7 +65,7 @@ public class ModelRelComposition extends OperatorImpl {
 	public static class OutputConstraint implements IJavaOperatorOutputConstraint {
 
 		@Override
-		public Map<ModelRel, List<Model>> createAllowedWorkflowOutput(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 			ModelRel rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);

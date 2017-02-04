@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.jar.JarFile;
@@ -1538,6 +1539,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				newOperator,
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
+//		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this, null, null);
+//		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
+//			ModelRel outputModelRel = validOutput.getKey();
+//			for (Model endpointModel : validOutput.getValue()) {
+//				String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+//				ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
+//				modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+//			}
+//		}
 		OperatorConstraint constraint = (OperatorConstraint) this.getConstraint();
 		if (constraint != null) { // create output model rel endpoints after all outputs are created
 			for (OperatorConstraintRule rule : constraint.getRules()) {

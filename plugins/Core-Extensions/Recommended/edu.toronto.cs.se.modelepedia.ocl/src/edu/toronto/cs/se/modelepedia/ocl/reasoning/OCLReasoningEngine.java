@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -90,6 +92,12 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
 
 		return true;
+	}
+
+	@Override
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull OperatorConstraint constraint) {
+
+		return new HashMap<>();
 	}
 
 	@Override
