@@ -22,8 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorOutputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -40,7 +39,14 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelComposition extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
+	// input-output
+	private final static @NonNull String IN_MODELREL1 = "rel1";
+	private final static @NonNull String IN_MODELREL2 = "rel2";
+	private final static @NonNull String OUT_MODELREL = "composition";
+	// constants
+	private final static @NonNull String COMPOSITION_SEPARATOR = "+";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
@@ -60,53 +66,64 @@ public class ModelRelComposition extends OperatorImpl {
 
 			return true;
 		}
-	}
-
-	public static class OutputConstraint implements IJavaOperatorOutputConstraint {
 
 		@Override
 		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
-			ModelRel rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-			ModelRel rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-			Model model11 = rel1.getModelEndpoints().get(0).getTarget();
-			Model model12 = rel1.getModelEndpoints().get(1).getTarget();
-			Model model21 = rel2.getModelEndpoints().get(0).getTarget();
-			Model model22 = rel2.getModelEndpoints().get(1).getTarget();
-			Model model1 = null, model2 = null;
-			if (model11 == model21) {
-				model1 = model12;
-				model2 = model22;
-			}
-			else if (model11 == model22) {
-				model1 = model12;
-				model2 = model21;
-			}
-			else if (model12 == model21) {
-				model1 = model11;
-				model2 = model22;
-			}
-			else { // model12 == model22
-				model1 = model11;
-				model2 = model21;
-			}
+			Input input = new Input(inputsByName);
 			ModelRel composedRel = (ModelRel) outputsByName.get(OUT_MODELREL);
 			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
 			List<Model> endpointModels = new ArrayList<>();
-			endpointModels.add(model1);
-			endpointModels.add(model2);
+			endpointModels.add(input.model1);
+			endpointModels.add(input.model2);
 			validOutputs.put(composedRel, endpointModels);
 
 			return validOutputs;
 		}
 	}
 
-	// input-output
-	private final static @NonNull String IN_MODELREL1 = "rel1";
-	private final static @NonNull String IN_MODELREL2 = "rel2";
-	private final static @NonNull String OUT_MODELREL = "composition";
-	// constants
-	private final static @NonNull String COMPOSITION_SEPARATOR = "+";
+	private static class Input {
+
+		private ModelRel rel1;
+		private ModelRel rel2;
+		private Model modelPivot;
+		private Model model1;
+		private Model model2;
+
+		public Input(Map<String, Model> inputsByName) {
+
+			this.rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			this.rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			this.modelPivot = null;
+			this.model1 = null;
+			this.model2 = null;
+			Model model11 = this.rel1.getModelEndpoints().get(0).getTarget();
+			Model model12 = this.rel1.getModelEndpoints().get(1).getTarget();
+			Model model21 = this.rel2.getModelEndpoints().get(0).getTarget();
+			Model model22 = this.rel2.getModelEndpoints().get(1).getTarget();
+			if (model11.getUri().equals(model21.getUri())) {
+				this.modelPivot = model11;
+				this.model1 = model12;
+				this.model2 = model22;
+			}
+			else if (model11.getUri().equals(model22.getUri())) {
+				this.modelPivot = model11;
+				this.model1 = model12;
+				this.model2 = model21;
+			}
+			else if (model12.getUri().equals(model21.getUri())) {
+				this.modelPivot = model12;
+				this.model1 = model11;
+				this.model2 = model22;
+			}
+			else { // model12.getUri().equals(model22.getUri())
+				this.modelPivot = model12;
+				this.model1 = model11;
+				this.model2 = model21;
+			}
+		}
+
+	}
 
 	private @NonNull ModelRel compose(@NonNull ModelRel modelRel1, @NonNull ModelRel modelRel2,
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MID instanceMID)
@@ -178,41 +195,15 @@ public class ModelRelComposition extends OperatorImpl {
 		throws Exception {
 
 		// input
-		ModelRel rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		Model model11 = rel1.getModelEndpoints().get(0).getTarget();
-		Model model12 = rel1.getModelEndpoints().get(1).getTarget();
-		Model model21 = rel2.getModelEndpoints().get(0).getTarget();
-		Model model22 = rel2.getModelEndpoints().get(1).getTarget();
-		Model modelPivot = null, model1 = null, model2 = null;
-		if (model11.getUri().equals(model21.getUri())) {
-			modelPivot = model11;
-			model1 = model12;
-			model2 = model22;
-		}
-		else if (model11.getUri().equals(model22.getUri())) {
-			modelPivot = model11;
-			model1 = model12;
-			model2 = model21;
-		}
-		else if (model12.getUri().equals(model21.getUri())) {
-			modelPivot = model12;
-			model1 = model11;
-			model2 = model22;
-		}
-		else { // model12.getUri().equals(model22.getUri())
-			modelPivot = model12;
-			model1 = model11;
-			model2 = model21;
-		}
+		Input input = new Input(inputsByName);
 
 		// compose the two model rels, using the shared model as pivot
 		ModelRel composedRel = compose(
-			rel1,
-			rel2,
-			model1,
-			model2,
-			modelPivot,
+			input.rel1,
+			input.rel2,
+			input.model1,
+			input.model2,
+			input.modelPivot,
 			outputMIDsByName.get(OUT_MODELREL));
 
 		// output

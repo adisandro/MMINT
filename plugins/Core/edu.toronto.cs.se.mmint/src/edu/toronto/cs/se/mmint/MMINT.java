@@ -18,8 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Stream;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -53,8 +51,6 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
@@ -137,8 +133,7 @@ public class MMINT implements MMINTConstants {
 	 * - Don't create a root operator and root model type endpoints, that is not what happens in programming languages
 	 * - Use apis that are aware of this difference, but still allow for inheritance, aka overloading/overriding
 	 * - Add operator support in hierarchy tables and apis
-	 * - Review operator constraint heavy apis
-	 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators, convert all operators to use them
+	 * - Use output constraint to validate output in normal operators?
 	 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
 	 * - Rethink ConversionOperator to be a simple workflow
 	 * - Rewrite ExperimentDriver to be a workflow
@@ -473,35 +468,6 @@ public class MMINT implements MMINTConstants {
 				lowerBound,
 				upperBound
 			);
-			IConfigurationElement[] endpointConstraintConfigs = paramTypeConfig.getChildren(CHILD_ENDPOINTCONSTRAINT);
-			if (endpointConstraintConfigs.length != 0 && targetModelType instanceof ModelRel) {
-				OperatorConstraint constraint = (OperatorConstraint) containerOperatorType.getConstraint();
-				if (constraint == null) { // create empty constraint first
-					constraint = (OperatorConstraint) typeFactory.createHeavyTypeConstraint("JAVA", "", containerOperatorType);
-				}
-				OperatorConstraintRule constraintRule = typeFactory.createHeavyOperatorTypeConstraintRule(constraint, newModelTypeEndpoint);
-				for (IConfigurationElement endpointConstraintConfig : endpointConstraintConfigs) {
-					String parameterName = endpointConstraintConfig.getAttribute(ENDPOINTCONSTRAINT_ATTR_PARAMETERNAME);
-					String endpointIndex = endpointConstraintConfig.getAttribute(ENDPOINTCONSTRAINT_ATTR_ENDPOINTINDEX);
-					ModelEndpoint ruleModelTypeEndpoint;
-					int ruleEndpointIndex;
-					try {
-						ruleModelTypeEndpoint = Stream.concat(containerOperatorType.getInputs().stream(), containerOperatorType.getOutputs().stream())
-							.filter(inputModelTypeEndpoint -> inputModelTypeEndpoint.getName().equals(parameterName))
-							.findFirst()
-							.get();
-						ruleEndpointIndex = (endpointIndex == null) ? -1 : Integer.valueOf(endpointIndex);
-					}
-					catch (Exception e) {
-						throw new MMINTException("Bad operator constraint format", e);
-					}
-					typeFactory.createHeavyOperatorTypeConstraintRuleEndpoint(
-						constraintRule,
-						ruleModelTypeEndpoint,
-						ruleEndpointIndex,
-						OperatorPackage.eINSTANCE.getOperatorConstraintRule_EndpointModels().getName());
-				}
-			}
 		}
 	}
 

@@ -120,16 +120,16 @@ public class MMINTException extends Exception {
 		MMINTException.mustBeWorkflow(workflowElemRef.getObject());
 	}
 
-	public static void mustBeLevel(ExtendibleElement elem, MIDLevel midLevel) throws MMINTException {
+	public static void mustNotBeLevel(ExtendibleElement elem, MIDLevel midLevel) throws MMINTException {
 
-		if (!elem.isLevel(midLevel)) {
-			throw new MMINTException("Can't execute operation at the " + midLevel + " level on element at the " + elem.getLevel() + " level");
+		if (elem.isLevel(midLevel)) {
+			throw new MMINTException("Can't execute operation forbidden at the " + midLevel + " level");
 		}
 	}
 
-	public static void mustBeLevel(ExtendibleElementReference elemRef, MIDLevel midLevel) throws MMINTException {
+	public static void mustNotBeLevel(ExtendibleElementReference elemRef, MIDLevel midLevel) throws MMINTException {
 
-		MMINTException.mustBeLevel(elemRef.getObject(), midLevel);
+		MMINTException.mustNotBeLevel(elemRef.getObject(), midLevel);
 	}
 
 }

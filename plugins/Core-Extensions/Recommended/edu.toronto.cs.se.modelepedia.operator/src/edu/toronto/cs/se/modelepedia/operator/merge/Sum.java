@@ -12,23 +12,32 @@
 package edu.toronto.cs.se.modelepedia.operator.merge;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.primitive.int_.Int;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntFactory;
 
 public class Sum extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
+	// input-output
+	private final static @NonNull String IN_INT1 = "int1";
+	private final static @NonNull String IN_INT2 = "int2";
+	private final static @NonNull String OUT_INT = "sum";
+	// constants
+	private final static @NonNull String SUM_SEPARATOR = "+";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
@@ -41,14 +50,13 @@ public class Sum extends OperatorImpl {
 
 			return true;
 		}
-	}
 
-	// input-output
-	private final static @NonNull String IN_INT1 = "int1";
-	private final static @NonNull String IN_INT2 = "int2";
-	private final static @NonNull String OUT_INT = "sum";
-	// constants
-	private final static @NonNull String SUM_SEPARATOR = "+";
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			return new HashMap<>();
+		}
+	}
 
 	private @NonNull Int sum(@NonNull Model intModel1, @NonNull Model intModel2) throws MMINTException {
 

@@ -31,7 +31,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.IFile;
@@ -67,9 +66,6 @@ import edu.toronto.cs.se.mmint.mid.impl.GenericElementImpl;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
@@ -1113,7 +1109,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Map<String, Model> getOutputsByName() throws MMINTException {
 
-		MMINTException.mustBeInstance(this);
+		MMINTException.mustNotBeLevel(this, MIDLevel.TYPES);
 
 		return this.getOutputs().stream()
 			.collect(Collectors.toMap(
@@ -1126,7 +1122,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<Model> getOutputModels() throws MMINTException {
 
-		MMINTException.mustBeInstance(this);
+		MMINTException.mustNotBeLevel(this, MIDLevel.TYPES);
 
 		return new BasicEList<>(
 			this.getOutputs().stream()
@@ -1539,41 +1535,22 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				newOperator,
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
-//		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this, null, null);
-//		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
-//			ModelRel outputModelRel = validOutput.getKey();
-//			for (Model endpointModel : validOutput.getValue()) {
-//				String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
-//				ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-//				modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
-//			}
-//		}
-		OperatorConstraint constraint = (OperatorConstraint) this.getConstraint();
-		if (constraint != null) { // create output model rel endpoints after all outputs are created
-			for (OperatorConstraintRule rule : constraint.getRules()) {
-				ModelEndpoint outputModelRelTypeEndpoint = rule.getOutputModelRel().getParameterRef().getObject();
-				//TODO MMINT[WORKFLOW] Simply do the following when proper operator endpoint types are used
-				//newOperator.getOutputs().stream().filter(outputModelEndpoint -> outputModelEndpoint.getMetatype() == outputModelRelTypeEndpoint);
-				ModelRel outputModelRel = (ModelRel) newOperator.getOutputs().stream()
-					.filter(outputModelEndpoint -> outputModelEndpoint.getName().equals(outputModelRelTypeEndpoint.getName()))
-					.findFirst()
-					.get()
-					.getTarget();
-				for (OperatorConstraintParameter param : rule.getEndpointModels()) {
-					ModelEndpoint operatorModelTypeEndpoint = param.getParameterRef().getObject();
-					//TODO MMINT[WORKFLOW] Make it a function?
-					Model endpointModel = Stream.concat(newOperator.getInputs().stream(), newOperator.getOutputs().stream())
-						.filter(modelEndpoint -> modelEndpoint.getName().equals(operatorModelTypeEndpoint.getName()))
-						.findFirst()
-						.get()
-						.getTarget();
-					if (param.getEndpointIndex() >= 0 && endpointModel instanceof ModelRel) {
-						endpointModel = ((ModelRel) endpointModel).getModelEndpoints().get(param.getEndpointIndex()).getTarget();
-					}
-					String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
-					ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-					modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
-				}
+		//TODO MMINT[OPERATOR] should create a separate createInputsByName and createOutputsByName version for workflows?
+		Map<String, Model> inputsByName = null;
+		try {
+			inputsByName = this.createInputsByName(inputs, false, null);
+		}
+		catch (Exception e) {
+			// never happens
+		}
+		Map<String, Model> outputsByName = newOperator.getOutputsByName();
+		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this, inputsByName, outputsByName);
+		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
+			ModelRel outputModelRel = validOutput.getKey();
+			for (Model endpointModel : validOutput.getValue()) {
+				String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+				ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
+				modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
 			}
 		}
 

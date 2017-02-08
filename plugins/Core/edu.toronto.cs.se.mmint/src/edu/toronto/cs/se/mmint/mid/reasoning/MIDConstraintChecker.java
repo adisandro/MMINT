@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -513,7 +512,7 @@ mappingTypes:
 
 	public static boolean checkOperatorInputConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
 
-		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
+		ExtendibleElementConstraint constraint = operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
@@ -531,7 +530,7 @@ mappingTypes:
 
 	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
-		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
+		ExtendibleElementConstraint constraint = operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return new HashMap<>();
 		}

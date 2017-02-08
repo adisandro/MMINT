@@ -148,10 +148,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="criterion"
-                     endpointIndex="0">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>

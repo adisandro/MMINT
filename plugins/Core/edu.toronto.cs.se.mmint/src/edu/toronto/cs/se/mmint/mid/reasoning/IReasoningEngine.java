@@ -20,16 +20,15 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public interface IReasoningEngine {
 
 	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel);
 
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint);
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull ExtendibleElementConstraint constraint);
 
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull OperatorConstraint constraint);
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull ExtendibleElementConstraint constraint);
 
 	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint);
 

@@ -45,7 +45,7 @@
                class="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -74,12 +74,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="model1">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="model2">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -236,7 +230,7 @@
                class="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -265,13 +259,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="match"
-                     endpointIndex="0">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="merged">
-               </endpointConstraint>
             </parameter>
             <parameter>
 	           <type
@@ -280,13 +267,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="match"
-                     endpointIndex="1">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="merged">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -301,7 +281,7 @@
                class="edu.toronto.cs.se.modelepedia.operator.merge.Sum">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.merge.Sum$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.merge.Sum$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -363,10 +343,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="criterion"
-                     endpointIndex="0">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -381,7 +357,7 @@
                class="edu.toronto.cs.se.modelepedia.operator.propagate.ModelRelPropagation">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.propagate.ModelRelPropagation$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.propagate.ModelRelPropagation$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -410,10 +386,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="trace"
-                     endpointIndex="1">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>

@@ -24,7 +24,7 @@
                class="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -67,7 +67,7 @@
                class="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>

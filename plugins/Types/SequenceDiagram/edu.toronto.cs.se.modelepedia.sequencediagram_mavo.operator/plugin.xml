@@ -52,10 +52,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/SDRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="criterion"
-                     endpointIndex="0">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>

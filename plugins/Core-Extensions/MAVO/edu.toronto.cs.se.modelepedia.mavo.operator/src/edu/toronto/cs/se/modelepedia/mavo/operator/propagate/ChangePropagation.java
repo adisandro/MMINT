@@ -31,7 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMapping;
 import edu.toronto.cs.se.mmint.mavo.mavomid.BinaryMAVOMappingReference;
@@ -55,20 +55,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ChangePropagation extends OperatorImpl {
-
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
-
-		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
-
-			//TODO MMINT[OPERATOR] Check that refinement and trace share a model, and that all models involved are mavo models
-			return true;
-		}
-	}
 
 	// input-output
 	private final static @NonNull String IN_MODELREL1 = "refinement";
@@ -80,6 +71,23 @@ public class ChangePropagation extends OperatorImpl {
 	private final static String PROP_MODEL_SUFFIX = "_propagated";
 	private final static String PROPTRACE_RULE4_LINK_NAME = "rule4Trace";
 	private final static String NAME_FEATURE = "name";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			//TODO MMINT[OPERATOR] Check that refinement and trace share a model, and that all models involved are mavo models
+			return true;
+		}
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			//TODO MMINT[CONSTRAINT] Implement
+			return new HashMap<>();
+		}
+	}
 
 	/**
 	 * Removes a model element and the reference to it from the Instance MID

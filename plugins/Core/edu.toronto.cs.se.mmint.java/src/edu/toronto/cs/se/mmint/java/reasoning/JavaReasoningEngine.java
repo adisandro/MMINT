@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
@@ -54,12 +53,12 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull ExtendibleElementConstraint constraint) {
 
 		String javaClassName = constraint.getImplementation();
 		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
 		try {
-			IJavaOperatorInputConstraint javaConstraint = (IJavaOperatorInputConstraint)
+			IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint)
 				MIDTypeRegistry.getTypeBundle(operatorTypeUri).
 				loadClass(javaClassName).
 				getConstructor().
@@ -74,12 +73,12 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull OperatorConstraint constraint) {
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull ExtendibleElementConstraint constraint) {
 
 		String javaClassName = constraint.getImplementation();
 		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
 		try {
-			IJavaOperatorOutputConstraint javaConstraint = (IJavaOperatorOutputConstraint)
+			IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint)
 				MIDTypeRegistry.getTypeBundle(operatorTypeUri).
 				loadClass(javaClassName).
 				getConstructor().

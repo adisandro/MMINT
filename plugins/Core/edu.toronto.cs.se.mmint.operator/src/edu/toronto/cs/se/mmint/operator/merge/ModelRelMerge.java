@@ -23,8 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorOutputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -40,18 +39,23 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelMerge extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
+	// input-output
+	private final static @NonNull String IN_MODELREL1 = "rel1";
+	private final static @NonNull String IN_MODELREL2 = "rel2";
+	private final static @NonNull String OUT_MODELREL = "merge";
+	// constants
+	private final static @NonNull String MERGE_SEPARATOR = "+";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
 			/**TODO MMINT[WORKFLOW]
-			 * 0) change composition to use uris again, the output constraint is valid for both instances and workflows, then use it as function in run too
-			 * 1) add interface for output model constraint instead of mid elements
-			 * 2) refactor all output contraints to use the new api
-			 * 3) remove old structures
 			 * 4) think about interaction with variable outputs
 			 * 5) address the suspect points here
+			 * 6) think about how to enforce constraint inherited by overloaded operators, look for them or simply override the constraint and add it to the ext point
+			 * 7) check why checkModelConstraint is not @NonNull
 			 */
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
@@ -82,39 +86,17 @@ public class ModelRelMerge extends OperatorImpl {
 
 			return false;
 		}
-	}
-
-	public static class OutputConstraint implements IJavaOperatorOutputConstraint {
 
 		@Override
 		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
-			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-			Model model1 = null, model2 = null;
-			Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-			if (modelRel1.getModelEndpoints().size() == 1) { // unary
-				model1 = model11;
-			}
-			else { // binary
-				Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-				Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-				Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
-				if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
-					model1 = model11;
-					model2 = model22;
-				}
-				else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
-					model1 = model11;
-					model2 = model21;
-				}
-			}
+			Input input = new Input(inputsByName);
 			ModelRel mergedRel = (ModelRel) outputsByName.get(OUT_MODELREL);
 			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
 			List<Model> endpointModels = new ArrayList<>();
-			endpointModels.add(model1);
-			if (model2 != null) {
-				endpointModels.add(model2);
+			endpointModels.add(input.model1);
+			if (input.model2 != null) {
+				endpointModels.add(input.model2);
 			}
 			validOutputs.put(mergedRel, endpointModels);
 
@@ -122,12 +104,39 @@ public class ModelRelMerge extends OperatorImpl {
 		}
 	}
 
-	// input-output
-	private final static @NonNull String IN_MODELREL1 = "rel1";
-	private final static @NonNull String IN_MODELREL2 = "rel2";
-	private final static @NonNull String OUT_MODELREL = "merge";
-	// constants
-	private final static @NonNull String MERGE_SEPARATOR = "+";
+	private static class Input {
+
+		private ModelRel modelRel1;
+		private ModelRel modelRel2;
+		private Model model1;
+		private Model model2;
+
+		public Input(Map<String, Model> inputsByName) {
+
+			this.modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+			this.modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			this.model1 = null;
+			this.model2 = null;
+			Model model11 = this.modelRel1.getModelEndpoints().get(0).getTarget();
+			if (this.modelRel1.getModelEndpoints().size() == 1) { // unary
+				this.model1 = model11;
+			}
+			else { // binary
+				Model model21 = this.modelRel2.getModelEndpoints().get(0).getTarget();
+				Model model12 = this.modelRel1.getModelEndpoints().get(1).getTarget();
+				Model model22 = this.modelRel2.getModelEndpoints().get(1).getTarget();
+				if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
+					this.model1 = model11;
+					this.model2 = model22;
+				}
+				else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
+					this.model1 = model11;
+					this.model2 = model21;
+				}
+			}
+		}
+
+	}
 
 	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MID instanceMID) throws MMINTException {
 
@@ -207,29 +216,10 @@ public class ModelRelMerge extends OperatorImpl {
 		throws Exception {
 
 		// input
-		ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-		Model model1 = null, model2 = null;
-		Model model11 = modelRel1.getModelEndpoints().get(0).getTarget();
-		if (modelRel1.getModelEndpoints().size() == 1) { // unary
-			model1 = model11;
-		}
-		else { // binary
-			Model model21 = modelRel2.getModelEndpoints().get(0).getTarget();
-			Model model12 = modelRel1.getModelEndpoints().get(1).getTarget();
-			Model model22 = modelRel2.getModelEndpoints().get(1).getTarget();
-			if (model11.getUri().equals(model21.getUri()) && model12.getUri().equals(model22.getUri())) {
-				model1 = model11;
-				model2 = model22;
-			}
-			else { // model11.getUri().equals(model22.getUri()) && model12.getUri().equals(model21.getUri())
-				model1 = model11;
-				model2 = model21;
-			}
-		}
+		Input input = new Input(inputsByName);
 
 		// merge the two model rels
-		ModelRel mergedRel = merge(modelRel1, modelRel2, model1, model2, outputMIDsByName.get(OUT_MODELREL));
+		ModelRel mergedRel = this.merge(input.modelRel1, input.modelRel2, input.model1, input.model2, outputMIDsByName.get(OUT_MODELREL));
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();

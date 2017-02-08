@@ -138,7 +138,7 @@
                class="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition$InputConstraint"
+               implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelComposition$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -167,14 +167,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="rel1"
-                     endpointIndex="0">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="rel2"
-                     endpointIndex="1">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -189,7 +181,7 @@
                class="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge$InputConstraint"
+               implementation="edu.toronto.cs.se.mmint.operator.merge.ModelRelMerge$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -218,14 +210,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="rel1"
-                     endpointIndex="0">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="rel1"
-                     endpointIndex="1">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
