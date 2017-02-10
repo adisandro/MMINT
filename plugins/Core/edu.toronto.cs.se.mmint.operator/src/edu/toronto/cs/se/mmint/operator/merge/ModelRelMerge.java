@@ -53,7 +53,6 @@ public class ModelRelMerge extends OperatorImpl {
 
 			/**TODO MMINT[WORKFLOW]
 			 * 4) think about interaction with variable outputs
-			 * 6) think about how to enforce constraint inherited by overloaded operators, look for them or simply override the constraint and add it to the ext point
 			 */
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);

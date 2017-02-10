@@ -945,6 +945,33 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
+	 * Gets the closest type constraint, searching from this type included up its supertypes.
+	 * 
+	 * @return The closest type constraint in the type inheritance, null if no constraint is found.
+	 * @throws MMINTException
+	 *             If this is not a type.
+	 * @generated NOT
+	 */
+	//TODO MMINT[OO] Shouldn't getRuntimeTypes() do something similar, climbing up rather than down?
+	protected @Nullable ExtendibleElementConstraint getClosestTypeConstraint() throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ExtendibleElementConstraint constraint = null;
+		ExtendibleElement type = this;
+		do {
+			if (type.getConstraint() != null) {
+				constraint = type.getConstraint();
+				break;
+			}
+			type = type.getSupertype();
+		}
+		while (type != null);
+
+		return constraint;
+	}
+
+	/**
 	 * TODO MMINT[MODELELEMENT] unify with the other
 	 * @generated NOT
 	 */

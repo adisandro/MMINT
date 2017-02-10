@@ -923,7 +923,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			try {
 				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
-				if (MIDConstraintChecker.checkOperatorInputConstraint(this.getConstraint(), inputsByName)) {
+				if (MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
 					boolean commutative = false;
 					if (this.isCommutative()) {
 						Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
@@ -1096,7 +1096,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		catch (Exception e) {
 			// never happens
 		}
-		if (!MIDConstraintChecker.checkOperatorInputConstraint(this.getConstraint(), inputsByName)) {
+		if (!MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
 			//TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
 			return null;
 		}
@@ -1544,7 +1544,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			// never happens
 		}
 		Map<String, Model> outputsByName = newOperator.getOutputsByName();
-		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getConstraint(), inputsByName, outputsByName);
+		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), inputsByName, outputsByName);
 		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
 			ModelRel outputModelRel = validOutput.getKey();
 			for (Model endpointModel : validOutput.getValue()) {
