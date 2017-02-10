@@ -128,6 +128,7 @@ public class MMINT implements MMINTConstants {
 	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Work on operators:
+	 * - Migrate Reduce to use NestingOperator
 	 * - Add a polymorphism submenu for type substitutability (coercion)
 	 * - Use multiple dispatch in workflows outside of Map, e.g. a slice(Model, Model) should adapt to the actual arguments
 	 * - Don't create a root operator and root model type endpoints, that is not what happens in programming languages
@@ -145,6 +146,7 @@ public class MMINT implements MMINTConstants {
 	 * - Create features to pull all requirements for papers/demos + examples
 	 */
 	/* TODO MMINT[USABILITY]
+	 * - Add an alternative way of having documentation for types, e.g. a description field or an acceleo-generated web page
 	 * - Change uris into ids
 	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
 	 * - Similarly, there should be a ModelRelModelEndpoint and an OperatorModelEndpoint

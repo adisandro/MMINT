@@ -43,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
-//TODO MMINT[OPERATOR] Make it a NestingOperator
 public class Reduce extends OperatorImpl {
 
 	// input-output

@@ -36,7 +36,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -486,7 +485,7 @@ mappingTypes:
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint) {
+	public static boolean checkModelConstraint(@NonNull Model model, @Nullable ExtendibleElementConstraint constraint) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
@@ -510,9 +509,8 @@ mappingTypes:
 		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
 	}
 
-	public static boolean checkOperatorInputConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
+	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
 
-		ExtendibleElementConstraint constraint = operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
@@ -525,12 +523,11 @@ mappingTypes:
 			return false;
 		}
 
-		return reasoner.checkOperatorInputConstraint(inputsByName, constraint);
+		return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
 	}
 
-	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
-		ExtendibleElementConstraint constraint = operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return new HashMap<>();
 		}
@@ -543,7 +540,7 @@ mappingTypes:
 			return new HashMap<>();
 		}
 
-		return reasoner.getOperatorOutputConstraints(inputsByName, outputsByName, constraint);
+		return reasoner.getOperatorOutputConstraints(constraint, inputsByName, outputsByName);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {

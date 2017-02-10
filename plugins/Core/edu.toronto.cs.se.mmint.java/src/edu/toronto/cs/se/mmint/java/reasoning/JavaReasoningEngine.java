@@ -31,7 +31,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public class JavaReasoningEngine implements IReasoningEngine {
 
 	@Override
-	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String javaClassName = constraint.getImplementation();
 		String modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
@@ -53,7 +53,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull ExtendibleElementConstraint constraint) {
+	public boolean checkOperatorInputConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
 
 		String javaClassName = constraint.getImplementation();
 		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
@@ -73,7 +73,7 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull ExtendibleElementConstraint constraint) {
+	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
 		String javaClassName = constraint.getImplementation();
 		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();

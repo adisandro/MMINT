@@ -129,8 +129,8 @@ public class ModelRelComposition extends OperatorImpl {
 		@NonNull Model model1, @NonNull Model model2, @NonNull Model modelPivot, @NonNull MID instanceMID)
 		throws MMINTException {
 
-		// TODO MMINT[USABILITY] Modify apis to simplify the creation of models and model rels (e.g. incorporate
-		// createModelFile, add model element creation to link creation)
+		// TODO MMINT[USABILITY] Modify apis to simplify the creation of models and model rels
+		// (e.g. add model element creation to link creation)
 		ModelRel composedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
 			modelRel1.getName() + COMPOSITION_SEPARATOR + modelRel2.getName(),

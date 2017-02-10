@@ -323,6 +323,10 @@
                name="Slice"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.operator.slice.Slice$OperatorConstraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type

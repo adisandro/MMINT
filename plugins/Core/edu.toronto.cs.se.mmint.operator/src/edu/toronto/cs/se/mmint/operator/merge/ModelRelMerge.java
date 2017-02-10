@@ -53,9 +53,7 @@ public class ModelRelMerge extends OperatorImpl {
 
 			/**TODO MMINT[WORKFLOW]
 			 * 4) think about interaction with variable outputs
-			 * 5) address the suspect points here
 			 * 6) think about how to enforce constraint inherited by overloaded operators, look for them or simply override the constraint and add it to the ext point
-			 * 7) check why checkModelConstraint is not @NonNull
 			 */
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
@@ -150,7 +148,7 @@ public class ModelRelMerge extends OperatorImpl {
 				newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, mergedModelRel);
 			}
 			else {
-				//TODO this is suspect, what about model rels with endpoints to the same model?
+				//TODO MMINT[REDUCE] this is suspect, what about model rels with endpoints to the same model?
 				newModelEndpointRef = newModelEndpointRefs.get(0);
 			}
 			// model elements
@@ -165,7 +163,7 @@ public class ModelRelMerge extends OperatorImpl {
 		}
 		// links
 		for (MappingReference origMappingRef : origModelRel.getMappingRefs()) {
-			//TODO this is suspect, what about two orig mappings with the same exact endpoints?
+			//TODO MMINT[REDUCE] this is suspect, what about two orig mappings with the same exact endpoints?
 			if (mergedModelRel.getMappingRefs().stream()
 				.anyMatch(mappingRef -> mappingRef.getModelElemEndpointRefs().stream()
 					.map(ModelElementEndpointReference::getTargetUri)
