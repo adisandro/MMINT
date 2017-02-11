@@ -36,7 +36,6 @@ import java.util.zip.ZipEntry;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -707,6 +706,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			case OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE:
 				try {
 					deleteWorkflowInstance();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID:
+				try {
+					createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
 					return null;
 				}
 				catch (Throwable throwable) {
@@ -1487,6 +1494,34 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
+	public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		Map<String, Model> outputsByName = new HashMap<>();
+		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
+			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
+			ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createWorkflowInstance(
+				outputModel,
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+			outputsByName.put(outputModelEndpoint.getName(), outputModel);
+		}
+		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), inputsByName, outputsByName);
+		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
+			ModelRel outputModelRel = validOutput.getKey();
+			for (Model endpointModel : validOutput.getValue()) {
+				String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
+				ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
+				modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+			}
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
@@ -1516,42 +1551,30 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			inputNames.add(inputName);
 		}
 		// outputs
-		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
-			if (outputModelTypeEndpoint.getUpperBound() == -1) {
-				try {
-					if (this.getClass().getMethod("startWorkflowInstance", EList.class, EList.class, MID.class).getDeclaringClass() == OperatorImpl.class) {
-						throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and must override startWorkflowInstance()");
-					}
+		boolean varOutputs = false;
+		if (this.getOutputs().stream().anyMatch(outputModelTypeEndpoint -> outputModelTypeEndpoint.getUpperBound() == -1)) {
+			try {
+				if (this.getClass().getMethod("startWorkflowInstance", EList.class, EList.class, MID.class).getDeclaringClass() == OperatorImpl.class) {
+					throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and must override startWorkflowInstance()");
 				}
-				catch (NoSuchMethodException | SecurityException e) {
-					MMINTException.print(IStatus.WARNING, this.getClass().getSimpleName() + " has a variable number of outputs and startWorkflowInstance() can't be reflected, skipping outputs", e);
-				}
-				break;
 			}
-			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
-			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
-			outputModelTypeEndpoint.createWorkflowInstance(
-				outputModel,
-				newOperator,
-				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-		}
-		//TODO MMINT[OPERATOR] should create a separate createInputsByName and createOutputsByName version for workflows?
-		Map<String, Model> inputsByName = null;
-		try {
-			inputsByName = this.createInputsByName(inputs, false, null);
-		}
-		catch (Exception e) {
-			// never happens
-		}
-		Map<String, Model> outputsByName = newOperator.getOutputsByName();
-		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(this.getClosestTypeConstraint(), inputsByName, outputsByName);
-		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
-			ModelRel outputModelRel = validOutput.getKey();
-			for (Model endpointModel : validOutput.getValue()) {
-				String modelTypeEndpointUri = MIDConstraintChecker.getAllowedModelEndpoints(outputModelRel, null, endpointModel).get(0);
-				ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointUri);
-				modelTypeEndpoint.createWorkflowInstance(endpointModel, outputModelRel);
+			catch (NoSuchMethodException | SecurityException e) {
+				throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and startWorkflowInstance() can't be reflected", e);
 			}
+			varOutputs = true;
+		}
+		if (!varOutputs) {
+			//TODO MMINT[OPERATOR] document createWorkflowInstanceOutputs
+			//TODO MMINT[OPERATOR] maybe vararg operators should just inherit createWorkflowInstanceOutputs now?
+			//TODO MMINT[OPERATOR] should create a separate createInputsByName for workflows, and a createWorkflowInstanceOutputs for instances
+			Map<String, Model> inputsByName = null;
+			try {
+				inputsByName = this.createInputsByName(inputs, false, null);
+			}
+			catch (Exception e) {
+				// never happens
+			}
+			this.createWorkflowInstanceOutputs(newOperator, inputsByName, workflowMID);
 		}
 
 		return newOperator;

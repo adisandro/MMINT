@@ -516,6 +516,14 @@ public interface Operator extends GenericElement {
 	void deleteWorkflowInstance() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newOperatorRequired="true" inputsByNameRequired="true" workflowMIDRequired="true"
+	 * @generated
+	 */
+	void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Creates an instance of this operator type in a workflow, connects it to its inputs and
 	 * creates its outputs. This api must be overridden by operator types with a variable number of outputs.
 	 * 

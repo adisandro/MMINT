@@ -1290,6 +1290,16 @@
         <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
+      <eOperations name="createWorkflowInstanceOutputs" eExceptions="#//MMINTException">
+        <eParameters name="newOperator" lowerBound="1" eType="#//operator/Operator"/>
+        <eParameters name="inputsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+      </eOperations>
       <eOperations name="startWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>

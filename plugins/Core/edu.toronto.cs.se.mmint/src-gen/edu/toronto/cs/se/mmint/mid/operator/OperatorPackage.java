@@ -557,13 +557,22 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
+
+	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
+	int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
 
 	/**
 	 * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -572,7 +581,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___OPEN_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
+	int OPERATOR___OPEN_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 24;
 
 	/**
 	 * The number of operations of the '<em>Operator</em>' class.
@@ -581,7 +590,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 24;
+	int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 25;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -1060,6 +1069,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -1603,6 +1621,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
 
 	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
+
+	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2124,6 +2151,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -2665,6 +2701,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -3509,6 +3554,16 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__DeleteWorkflowInstance();
 
 	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance Outputs</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();
+
+	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Start Workflow Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4112,6 +4167,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getOperator__DeleteWorkflowInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance Outputs</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = eINSTANCE.getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Start Workflow Instance</b></em>' operation.

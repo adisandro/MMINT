@@ -51,9 +51,6 @@ public class ModelRelMerge extends OperatorImpl {
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			/**TODO MMINT[WORKFLOW]
-			 * 4) think about interaction with variable outputs
-			 */
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
 			if ( // works with unary and binary rels, as long as they're both unary or both binary

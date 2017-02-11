@@ -487,7 +487,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
+	public EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID() {
 		return operatorEClass.getEOperations().get(22);
 	}
 
@@ -496,8 +496,17 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__OpenWorkflowInstance() {
+	public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
 		return operatorEClass.getEOperations().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getOperator__OpenWorkflowInstance() {
+		return operatorEClass.getEOperations().get(24);
 	}
 
 	/**
@@ -829,6 +838,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___OPEN_INSTANCE);
 		createEOperation(operatorEClass, OPERATOR___CREATE_WORKFLOW_INSTANCE__MID);
 		createEOperation(operatorEClass, OPERATOR___DELETE_WORKFLOW_INSTANCE);
+		createEOperation(operatorEClass, OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID);
 		createEOperation(operatorEClass, OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID);
 		createEOperation(operatorEClass, OPERATOR___OPEN_WORKFLOW_INSTANCE);
 
@@ -1040,6 +1050,17 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__DeleteWorkflowInstance(), null, "deleteWorkflowInstance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+
+		op = initEOperation(getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID(), null, "createWorkflowInstanceOutputs", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getOperator(), "newOperator", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theMIDPackage.getModel());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "inputsByName", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theMIDPackage.getMID(), "workflowMID", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__StartWorkflowInstance__EList_EList_MID(), this.getOperator(), "startWorkflowInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
