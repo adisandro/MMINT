@@ -929,7 +929,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			try {
 				// add only if allowed and passes commutativity check
-				Map<String, Model> inputsByName = createInputsByName(operatorTypeInputs, false, null);
+				Map<String, Model> inputsByName = this.getInputsByName(operatorTypeInputs);
 				if (MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
 					boolean commutative = false;
 					if (this.isCommutative()) {
@@ -1096,13 +1096,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			return null;
 		}
 		// check 4: operator-specific constraints other than types (e.g. 2 model rels as input connected by same model)
-		Map<String, Model> inputsByName = null;
-		try {
-			inputsByName = this.createInputsByName(inputs, false, null);
-		}
-		catch (Exception e) {
-			// never happens
-		}
+		Map<String, Model> inputsByName = this.getInputsByName(inputs);
 		if (!MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
 			//TODO MMINT[OPERATOR] Can there be conflicts since conversions are not run?
 			return null;
@@ -1116,7 +1110,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public Map<String, Model> getOutputsByName() throws MMINTException {
 
-		MMINTException.mustNotBeLevel(this, MIDLevel.TYPES);
+		MMINTException.mustBeInstance(this);
 
 		return this.getOutputs().stream()
 			.collect(Collectors.toMap(
@@ -1129,7 +1123,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<Model> getOutputModels() throws MMINTException {
 
-		MMINTException.mustNotBeLevel(this, MIDLevel.TYPES);
+		MMINTException.mustBeInstance(this);
 
 		return new BasicEList<>(
 			this.getOutputs().stream()
@@ -1292,47 +1286,79 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
-	 * Creates a map of input model instances, identified by their formal parameter name.
+	 * Adds an input model instance out of an input of an operator instance.
+	 * 
+	 * @param input
+	 *            An input of an operator instance.
+	 * @param inputsByName
+	 *            The input model instances, identified by their formal parameter name.
+	 * @return The name of the input, enumerated in case of varargs.
+	 * @generated NOT
+	 */
+	private String addInputByName(@NonNull OperatorInput input, @NonNull Map<String, Model> inputsByName) {
+
+		String inputName = input.getModelTypeEndpoint().getName();
+		if (input.getModelTypeEndpoint().getUpperBound() == -1) {
+			int i = 0;
+			while (inputsByName.get(inputName + i) != null) {
+				i++;
+			}
+			inputName += i;
+		}
+		inputsByName.put(inputName, input.getModel());
+
+		return inputName;
+	}
+
+	/**
+	 * Gets the input model instances out of a list of inputs of an operator instance.
 	 * 
 	 * @param inputs
-	 *            A list of inputs to the operator instance, including necessary conversions.
-	 * @param runConversions
-	 *            True if conversions have to be run, false otherwise.
+	 *            A list of inputs of an operator instance.
+	 * @return The input model instances, identified by their formal parameter name.
+	 * @generated NOT
+	 */
+	private Map<String, Model> getInputsByName(@NonNull List<OperatorInput> inputs) {
+
+		Map<String, Model> inputsByName = new HashMap<>();
+		for (OperatorInput input : inputs) {
+			this.addInputByName(input, inputsByName);
+		}
+
+		return inputsByName;
+	}
+
+	/**
+	 * Creates the inputs of a new operator instance.
+	 * 
 	 * @param newOperator
-	 *            The operator instance that will be invoked with the input models, null if operator traceability is not
-	 *            needed.
-	 * @return The map of input model instances, identified by their formal parameter name.
+	 *            The new operator instance that will be invoked with the input models.
+	 * @param inputs
+	 *            A list of inputs of the operator instance, including necessary conversions.
+	 * 
+	 * @return The input model instances, identified by their formal parameter name.
+	 * @throws MMINTException
+	 *             If any input type endpoint is not a type.
 	 * @throws Exception
 	 *             If something went wrong running the conversions.
 	 * @generated NOT
 	 */
-	protected Map<String, Model> createInputsByName(@NonNull EList<OperatorInput> inputs, boolean runConversions, @Nullable Operator newOperator) throws Exception {
+	private Map<String, Model> createInstanceInputs(@NonNull Operator newOperator, @NonNull List<OperatorInput> inputs) throws Exception {
 
-		//TODO MMINT[OPERATOR] This is used for two purposes, just to create the map and to populate an operator: split
 		boolean coerced = false;
 		Map<String, Model> inputsByName = new HashMap<>();
 		for (OperatorInput input : inputs) {
-			ModelEndpoint modelEndpoint = null;
-			if (newOperator != null) {
-				modelEndpoint = input.getModelTypeEndpoint().createInstance(
-					input.getModel(),
-					newOperator,
-					OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
-				);
+			ModelEndpoint modelTypeEndpoint = input.getModelTypeEndpoint();
+			ModelEndpoint modelEndpoint = modelTypeEndpoint.createInstance(
+				input.getModel(),
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
+			);
+			String inputName = this.addInputByName(input, inputsByName);
+			if (modelTypeEndpoint.getUpperBound() == -1) {
+				modelEndpoint.setName(inputName);
 			}
-			String inputName = input.getModelTypeEndpoint().getName();
-			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
-				int i = 0;
-				while (inputsByName.get(inputName + i) != null) {
-					i++;
-				}
-				inputName += i;
-				if (newOperator != null) {
-					modelEndpoint.setName(inputName);
-				}
-			}
-			if (input.getConversions().isEmpty() || !runConversions) {
-				inputsByName.put(inputName, input.getModel());
+			if (input.getConversions().isEmpty()) {
 				continue;
 			}
 			coerced = true;
@@ -1350,7 +1376,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			}
 			inputsByName.put(inputName, convertedInputModel);
 		}
-		if (coerced && newOperator != null) {
+		if (coerced) {
 			newOperator.setName(newOperator.getName() + " (coerced)");
 		}
 
@@ -1358,18 +1384,18 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
-	 * Creates a map of generic instances, identified by their name.
+	 * Creates the generics of a new operator instance.
 	 * 
-	 * @param generics
-	 *            A list of generic types for the operator instance.
 	 * @param newOperator
-	 *            The operator instance that will be invoked with the generics.
-	 * @return The map of generic instances, identified by their name.
+	 *            The new operator instance that will be invoked with the generics.
+	 * @param generics
+	 *            A list of generic types of the operator instance.
+	 * @return The generics, identified by their name.
 	 * @throws MMINTException
-	 *             If any generic type is an instance instead.
+	 *             If any generic type is not a type.
 	 * @generated NOT
 	 */
-	private Map<String, GenericElement> createGenericsByName(@NonNull EList<OperatorGeneric> generics, @NonNull Operator newOperator) throws MMINTException {
+	private Map<String, GenericElement> createInstanceGenerics(@NonNull Operator newOperator, @NonNull List<OperatorGeneric> generics) throws MMINTException {
 
 		Map<String, GenericElement> genericsByName = new HashMap<>();
 		for (OperatorGeneric generic : generics) {
@@ -1383,29 +1409,22 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Creates the outputs of a new instance of this operator type.
+	 * 
+	 * @param newOperator
+	 *            The new instance of this operator type.
+	 * @param inputsByName
+	 *            The input model instances, identified by their formal parameter name.
+	 * @param outputsByName
+	 *            The output model instances, identified by their formal parameter name.
+	 * @throws MMINTException
+	 *             If this is not an operator type.
 	 * @generated NOT
 	 */
-	public Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
+	private void createInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, Map<String, Model> outputsByName) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
-		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface (needs ui parts to be passed for GMFDiagramUtils functions to work)
-		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
-			instanceMID = null;
-		}
-		Operator newOperator = this.createInstance(instanceMID);
-		// generics, inputs and conversions
-		Map<String, GenericElement> genericsByName = this.createGenericsByName(generics, newOperator);
-		Map<String, Model> inputsByName = this.createInputsByName(inputs, true, newOperator);
-		// run operator
-		if (inputProperties == null) {
-			inputProperties = newOperator.getInputProperties();
-		}
-		newOperator.readInputProperties(inputProperties);
-		long startTime = System.nanoTime();
-		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
-		newOperator.setExecutionTime(System.nanoTime()-startTime);
-		// outputs
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
 			List<Model> outputModels;
 			if (outputModelTypeEndpoint.getUpperBound() == -1) {
@@ -1426,6 +1445,33 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				}
 			}
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
+
+		MMINTException.mustBeType(this);
+
+		//TODO MMINT[OPERATOR] Run in its own thread to avoid blocking the user interface (needs ui parts to be passed for GMFDiagramUtils functions to work)
+		if (!Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPERATORS_ENABLED))) {
+			instanceMID = null;
+		}
+		Operator newOperator = this.createInstance(instanceMID);
+		// generics, inputs and conversions
+		Map<String, GenericElement> genericsByName = this.createInstanceGenerics(newOperator, generics);
+		Map<String, Model> inputsByName = this.createInstanceInputs(newOperator, inputs);
+		// run operator
+		if (inputProperties == null) {
+			inputProperties = newOperator.getInputProperties();
+		}
+		newOperator.readInputProperties(inputProperties);
+		long startTime = System.nanoTime();
+		Map<String, Model> outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
+		newOperator.setExecutionTime(System.nanoTime()-startTime);
+		// outputs
+		this.createInstanceOutputs(newOperator, inputsByName, outputsByName);
 		// clean up conversions
 		for (OperatorInput input : inputs) {
 			if (input.getConversions().isEmpty()) {
@@ -1492,14 +1538,81 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	}
 
 	/**
+	 * Creates the inputs of a new operator instance in a workflow.
+	 * 
+	 * @param newOperator
+	 *            The new operator instance in a workflow.
+	 * @param inputs
+	 *            A list of inputs of the operator instance.
+	 * @return The input model instances, identified by their formal parameter name.
+	 * @throws MMINTException
+	 *             If any input type endpoint is not a type.
+	 * @generated NOT
+	 */
+	private Map<String, Model> createWorkflowInstanceInputs(@NonNull Operator newOperator, @NonNull List<OperatorInput> inputs) throws MMINTException {
+
+		Map<String, Model> inputsByName = new HashMap<>();
+		for (OperatorInput input : inputs) {
+			ModelEndpoint modelTypeEndpoint = input.getModelTypeEndpoint();
+			ModelEndpoint modelEndpoint = modelTypeEndpoint.createWorkflowInstance(
+				input.getModel(),
+				newOperator,
+				OperatorPackage.eINSTANCE.getOperator_Inputs().getName()
+			);
+			String inputName = this.addInputByName(input, inputsByName);
+			if (modelTypeEndpoint.getUpperBound() == -1) {
+				modelEndpoint.setName(inputName);
+			}
+		}
+
+		return inputsByName;
+	}
+
+	/**
+	 * Creates the generics of a new operator instance in a workflow.
+	 * 
+	 * @param newOperator
+	 *            The new operator instance in a workflow.
+	 * @param generics
+	 *            A list of generic types of the operator instance.
+	 * @return The generic instances, identified by their name.
+	 * @throws MMINTException
+	 *             If any generic type is not a type.
+	 * @generated NOT
+	 */
+	private Map<String, GenericElement> createWorkflowInstanceGenerics(@NonNull Operator newOperator, @NonNull List<OperatorGeneric> generics) throws MMINTException {
+
+		Map<String, GenericElement> genericsByName = new HashMap<>();
+		for (OperatorGeneric generic : generics) {
+			GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
+			GenericElement genericType = generic.getGeneric();
+			genericSuperTypeEndpoint.createWorkflowInstance(genericType, newOperator);
+			genericsByName.put(genericSuperTypeEndpoint.getName(), genericType);
+		}
+
+		return genericsByName;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
 
 		MMINTException.mustBeType(this);
+		if (this.getOutputs().stream().anyMatch(outputModelTypeEndpoint -> outputModelTypeEndpoint.getUpperBound() == -1)) {
+			try {
+				if (this.getClass().getMethod("createWorkflowInstanceOutputs", Operator.class, Map.class, MID.class).getDeclaringClass() == OperatorImpl.class) {
+					throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and must override createWorkflowInstanceOutputs()");
+				}
+			}
+			catch (NoSuchMethodException | SecurityException e) {
+				throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and createWorkflowInstanceOutputs() can't be reflected", e);
+			}
+		}
 
 		Map<String, Model> outputsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : this.getOutputs()) {
+			//TODO MMINT[OPERATOR] workflowID can be null, so outputModelId should be generated differently
 			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
 			Model outputModel = outputModelTypeEndpoint.getTarget().createWorkflowInstance(outputModelId, workflowMID);
 			ModelEndpoint outputModelEndpoint = outputModelTypeEndpoint.createWorkflowInstance(
@@ -1526,56 +1639,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeType(this);
 
-		Set<String> inputNames = new HashSet<>();
 		Operator newOperator = this.createWorkflowInstance(workflowMID);
 		// generics and inputs
-		for (OperatorGeneric generic : generics) {
-			GenericEndpoint genericSuperTypeEndpoint = generic.getGenericSuperTypeEndpoint();
-			GenericElement genericType = generic.getGeneric();
-			genericSuperTypeEndpoint.createWorkflowInstance(genericType, newOperator);
-		}
-		for (OperatorInput input : inputs) {
-			ModelEndpoint modelEndpoint = input.getModelTypeEndpoint().createWorkflowInstance(
-				input.getModel(),
-				newOperator,
-				OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
-			String inputName = input.getModelTypeEndpoint().getName();
-			if (input.getModelTypeEndpoint().getUpperBound() == -1) {
-				int i = 0;
-				while (inputNames.contains(inputName + i) != false) {
-					i++;
-				}
-				inputName += i;
-				modelEndpoint.setName(inputName);
-			}
-			inputNames.add(inputName);
-		}
+		this.createWorkflowInstanceGenerics(newOperator, generics);
+		Map<String, Model> inputsByName = this.createWorkflowInstanceInputs(newOperator, inputs);
 		// outputs
-		boolean varOutputs = false;
-		if (this.getOutputs().stream().anyMatch(outputModelTypeEndpoint -> outputModelTypeEndpoint.getUpperBound() == -1)) {
-			try {
-				if (this.getClass().getMethod("startWorkflowInstance", EList.class, EList.class, MID.class).getDeclaringClass() == OperatorImpl.class) {
-					throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and must override startWorkflowInstance()");
-				}
-			}
-			catch (NoSuchMethodException | SecurityException e) {
-				throw new MMINTException(this.getClass().getSimpleName() + " has a variable number of outputs and startWorkflowInstance() can't be reflected", e);
-			}
-			varOutputs = true;
-		}
-		if (!varOutputs) {
-			//TODO MMINT[OPERATOR] document createWorkflowInstanceOutputs
-			//TODO MMINT[OPERATOR] maybe vararg operators should just inherit createWorkflowInstanceOutputs now?
-			//TODO MMINT[OPERATOR] should create a separate createInputsByName for workflows, and a createWorkflowInstanceOutputs for instances
-			Map<String, Model> inputsByName = null;
-			try {
-				inputsByName = this.createInputsByName(inputs, false, null);
-			}
-			catch (Exception e) {
-				// never happens
-			}
-			this.createWorkflowInstanceOutputs(newOperator, inputsByName, workflowMID);
-		}
+		this.createWorkflowInstanceOutputs(newOperator, inputsByName, workflowMID);
 
 		return newOperator;
 	}

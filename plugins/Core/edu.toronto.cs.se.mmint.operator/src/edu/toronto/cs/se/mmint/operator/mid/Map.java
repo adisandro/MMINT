@@ -75,11 +75,10 @@ public class Map extends NestingOperatorImpl {
 	}
 
 	@Override
-	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
+	public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
 
-		Operator newOperator = super.startWorkflowInstance(inputs, generics, workflowMID);
 		// create the vararg mapped mids
-		Operator mapperOperatorType = (Operator) generics.get(0).getGeneric();
+		Operator mapperOperatorType = (Operator) newOperator.getGenerics().get(0);
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
@@ -93,8 +92,6 @@ public class Map extends NestingOperatorImpl {
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 			outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
 		}
-
-		return newOperator;
 	}
 
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {

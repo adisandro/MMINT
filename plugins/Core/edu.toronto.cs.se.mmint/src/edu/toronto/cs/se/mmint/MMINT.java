@@ -135,7 +135,6 @@ public class MMINT implements MMINTConstants {
 	 * - Use apis that are aware of this difference, but still allow for inheritance, aka overloading/overriding
 	 * - Add operator support in hierarchy tables and apis
 	 * - Use output constraint to validate output in normal operators?
-	 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
 	 * - Rethink ConversionOperator to be a simple workflow
 	 * - Rewrite ExperimentDriver to be a workflow
 	 * - Review and rationalize MIDOper and MIDRel, introduce MIDWorkflow?

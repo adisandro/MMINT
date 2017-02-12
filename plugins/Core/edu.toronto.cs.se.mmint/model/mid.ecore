@@ -1282,7 +1282,7 @@
             <eTypeArguments eClassifier="#//MID"/>
           </eGenericType>
         </eParameters>
-        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+        <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
       <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
@@ -1304,7 +1304,7 @@
           eExceptions="#//MMINTException">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
         <eParameters name="generics" upperBound="-1" eType="#//operator/OperatorGeneric"/>
-        <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+        <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openWorkflowInstance" eExceptions="#//operator/Exception"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
