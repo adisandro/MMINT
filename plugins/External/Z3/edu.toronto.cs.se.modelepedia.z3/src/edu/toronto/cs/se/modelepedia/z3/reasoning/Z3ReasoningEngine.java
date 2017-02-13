@@ -37,9 +37,11 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -178,6 +180,12 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		return checkMAVOModelConstraint(model, constraint, constraintLevel).toBoolean();
+	}
+
+	@Override
+	public boolean checkOperatorGenericConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+
+		return true;
 	}
 
 	@Override

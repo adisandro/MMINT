@@ -68,7 +68,7 @@ public class ModelRelComposition extends OperatorImpl {
 		}
 
 		@Override
-		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 			Input input = new Input(inputsByName);
 			ModelRel composedRel = (ModelRel) outputsByName.get(OUT_MODELREL);

@@ -38,12 +38,12 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
-public class Reduce extends OperatorImpl {
+public class Reduce extends NestingOperatorImpl {
 
 	// input-output
 	private final static @NonNull String IN_MID = "mid";
@@ -71,6 +71,16 @@ public class Reduce extends OperatorImpl {
 	private @NonNull MID reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
 
+		/*TODO Fixed Point as Reduce:
+		 * Like normal operators, a MIDRel should be able to "grab" its MID endpoints.
+		 * Reduce should not really delete anything, just create intermediate results into nested mids in order to "lose" inputs
+		 * Should add support for optional outputs (0 endpoint lower bound)
+		 * Create a diff-like operator that returns either the last input or nothing
+		 */
+		/*TODO Fixed Point custom
+		 * Like normal operators, a MIDRel should be able to "grab" its MID endpoints.
+		 * Create an operator that loops until the input is equal to the output
+		 */
 		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
@@ -192,12 +202,12 @@ public class Reduce extends OperatorImpl {
 						}
 					}
 				}
-				composedModelRelsToDelete.forEach(compModelRelToDelete -> {
+				for (ModelRel compModelRelToDelete : composedModelRelsToDelete) {
 					try {
 						compModelRelToDelete.deleteInstance();
 					}
 					catch (MMINTException e) {}
-				});
+				}
 			}
 			catch (Exception e) {
 				MMINTException.print(
@@ -208,12 +218,12 @@ public class Reduce extends OperatorImpl {
 			finally {
 				// delete accumulator inputs (model rels are deleted as a side effect of deleting the models)
 				// do it in case of failure too, because it will trigger an endless loop otherwise
-				accumulatorInputModels.forEach(accumulatorInputModel -> {
+				for (Model accumulatorInputModel : accumulatorInputModels) {
 					try {
 						accumulatorInputModel.deleteInstance();
 					}
 					catch (MMINTException e) {}
-				});
+				}
 			}
 		}
 		// delete intermediate output model files but the ones from last execution
@@ -232,8 +242,7 @@ public class Reduce extends OperatorImpl {
 	}
 
 	@Override
-	public Map<String, Model> run(
-			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
@@ -247,7 +256,7 @@ public class Reduce extends OperatorImpl {
 		if (openEditors) {
 			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
 		}
-		MID reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
+		MID reducedMID = this.reduce(inputMIDModel, accumulatorOperatorType);
 		if (openEditors) {
 			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true");
 		}

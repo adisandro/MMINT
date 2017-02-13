@@ -22,13 +22,26 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class JavaReasoningEngine implements IReasoningEngine {
+
+	private @NonNull Object getJavaConstraint(@NonNull String javaClassName, @NonNull String typeUri) throws Exception {
+
+		Object javaConstraint = MIDTypeRegistry.getTypeBundle(typeUri).
+			loadClass(javaClassName).
+			getConstructor().
+			newInstance();
+
+		return javaConstraint;
+	}
 
 	@Override
 	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
@@ -38,12 +51,9 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			((Model) constraint.eContainer()).getMetatypeUri() :
 			((Model) constraint.eContainer()).getUri();
 		try {
-			IJavaModelConstraint javaConstraint = (IJavaModelConstraint)
-				MIDTypeRegistry.getTypeBundle(modelTypeUri).
-				loadClass(javaClassName).
-				getConstructor().
-				newInstance();
-
+			IJavaModelConstraint javaConstraint = (IJavaModelConstraint) this.getJavaConstraint(
+				javaClassName,
+				modelTypeUri);
 			return javaConstraint.validate(model);
 		}
 		catch (Exception e) {
@@ -52,22 +62,39 @@ public class JavaReasoningEngine implements IReasoningEngine {
 		}
 	}
 
-	@Override
-	public boolean checkOperatorInputConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+	private @NonNull IJavaOperatorConstraint getOperatorConstraint(@NonNull ExtendibleElementConstraint constraint) throws Exception {
 
 		String javaClassName = constraint.getImplementation();
 		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
-		try {
-			IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint)
-				MIDTypeRegistry.getTypeBundle(operatorTypeUri).
-				loadClass(javaClassName).
-				getConstructor().
-				newInstance();
+		IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint) this.getJavaConstraint(
+			javaClassName,
+			operatorTypeUri);
 
+		return javaConstraint;
+	}
+
+	@Override
+	public boolean checkOperatorGenericConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+
+		try {
+			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
+			return javaConstraint.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "Java operator generic constraint error, evaluating to false: " + constraint.getImplementation(), e);
+			return false;
+		}
+	}
+
+	@Override
+	public boolean checkOperatorInputConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+
+		try {
+			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
 			return javaConstraint.isAllowedInput(inputsByName);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java operator input constraint error, evaluating to false: " + javaClassName, e);
+			MMINTException.print(IStatus.WARNING, "Java operator input constraint error, evaluating to false: " + constraint.getImplementation(), e);
 			return false;
 		}
 	}
@@ -75,19 +102,12 @@ public class JavaReasoningEngine implements IReasoningEngine {
 	@Override
 	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
-		String javaClassName = constraint.getImplementation();
-		String operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
 		try {
-			IJavaOperatorConstraint javaConstraint = (IJavaOperatorConstraint)
-				MIDTypeRegistry.getTypeBundle(operatorTypeUri).
-				loadClass(javaClassName).
-				getConstructor().
-				newInstance();
-
-			return javaConstraint.getAllowedModelRelEndpoints(inputsByName, outputsByName);
+			IJavaOperatorConstraint javaConstraint = this.getOperatorConstraint(constraint);
+			return javaConstraint.getAllowedOutputModelRelEndpoints(inputsByName, outputsByName);
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.WARNING, "Java operator output constraint error, returning empty map: " + javaClassName, e);
+			MMINTException.print(IStatus.WARNING, "Java operator output constraint error, returning empty map: " + constraint.getImplementation(), e);
 			return new HashMap<>();
 		}
 	}

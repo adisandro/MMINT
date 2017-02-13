@@ -31,11 +31,14 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -507,6 +510,23 @@ mappingTypes:
 		}
 
 		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
+	}
+
+	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return true;
+		}
+		IReasoningEngine reasoner;
+		try {
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping operator generic constraint check", e);
+			return false;
+		}
+
+		return reasoner.checkOperatorGenericConstraint(constraint, genericTypeEndpoint, genericType, inputs);
 	}
 
 	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {

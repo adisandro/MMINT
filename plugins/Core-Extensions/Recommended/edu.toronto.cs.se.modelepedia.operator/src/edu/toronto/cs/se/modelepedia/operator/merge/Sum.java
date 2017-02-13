@@ -52,7 +52,7 @@ public class Sum extends OperatorImpl {
 		}
 
 		@Override
-		public Map<ModelRel, List<Model>> getAllowedModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 			return new HashMap<>();
 		}
