@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated gsn -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNModelWizardID"
+            name="%_UI_GSNModelWizard_label"
+            class="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GSNModelFile.gif">
+         <description>%_UI_GSNModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated gsn -->
+      <editor
+            id="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNEditorID"
+            name="%_UI_GSNEditor_label"
+            icon="icons/full/obj16/GSNModelFile.gif"
+            extensions="gsn"
+            class="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNEditor"
+            contributorClass="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNEditorID"
+            modelTypeUri="http://www.cs.toronto.edu/~nlsfung/gsn"
+            wizardId="edu.toronto.cs.se.nlsfung.gsn.presentation.GSNModelWizardID">
+         <type
+               name="GSN Editor"
+               uri="http://www.cs.toronto.edu/~nlsfung/gsn_editor">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>

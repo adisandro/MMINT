@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/GSN/src" modelPluginID="GSN"
+    modelName="GSN" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>gsn.ecore</foreignModel>
+  <genPackages prefix="GSN" basePackage="edu.toronto.cs.se.nlsfung" resource="XML"
+      disposableProviderFactory="true" ecorePackage="gsn.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//AssessStatus">
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//AssessStatus/NotReviewed"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//AssessStatus/Accepted"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//AssessStatus/Incorrect"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//AssessStatus/Weak"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//AssessStatus/ReviewLater"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//Level">
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//Level/VeryLow"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//Level/Low"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//Level/Medium"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//Level/High"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//Level/VeryHigh"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="gsn.ecore#//beliefDegree"/>
+    <genDataTypes ecoreDataType="gsn.ecore#//percentage"/>
+    <genClasses ecoreClass="gsn.ecore#//SafetyCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/rootBasicNode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/rootBasicLink"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/rootCommendation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//SafetyCase/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//SafetyCase/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="gsn.ecore#//BasicNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/assessstatus"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//BasicNode/hasComment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/qualityLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/confidencePercentage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/weight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicNode/beliefDegree"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="gsn.ecore#//BasicLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//BasicLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//BasicLink/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//BasicLink/id"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//Goal"/>
+    <genClasses ecoreClass="gsn.ecore#//Strategy"/>
+    <genClasses ecoreClass="gsn.ecore#//Evidence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Evidence/attachment"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//Context"/>
+    <genClasses ecoreClass="gsn.ecore#//Justification"/>
+    <genClasses ecoreClass="gsn.ecore#//Assumption"/>
+    <genClasses ecoreClass="gsn.ecore#//InContextOf"/>
+    <genClasses ecoreClass="gsn.ecore#//SupportedBy"/>
+    <genClasses ecoreClass="gsn.ecore#//Recommendation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Recommendation/ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Recommendation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Recommendation/description"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//Strength"/>
+    <genClasses ecoreClass="gsn.ecore#//RequiredAction"/>
+    <genClasses ecoreClass="gsn.ecore#//Weakness"/>
+    <genClasses ecoreClass="gsn.ecore#//Question"/>
+    <genClasses ecoreClass="gsn.ecore#//AdditionalElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//AdditionalElement/attachment"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//AdditionalLink"/>
+    <genClasses ecoreClass="gsn.ecore#//ModuleElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ModuleElement/attachment"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//Module"/>
+    <genClasses ecoreClass="gsn.ecore#//Contract"/>
+  </genPackages>
+</genmodel:GenModel>

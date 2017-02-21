@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="gsn" nsURI="http://www.cs.toronto.edu/~nlsfung/gsn" nsPrefix="gsn">
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyCase">
+    <eAnnotations source="gmf.diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootBasicNode" upperBound="-1"
+        eType="#//BasicNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootBasicLink" upperBound="-1"
+        eType="#//BasicLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootCommendation" upperBound="-1"
+        eType="#//Recommendation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="id"/>
+        <details key="namespace" value="http://sdq.ipd.uka.de/Identifier/1.0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicNode" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="id"/>
+        <details key="namespace" value="http://sdq.ipd.uka.de/Identifier/1.0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assessstatus" eType="#//AssessStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hasComment" eType="#//Recommendation">
+      <eAnnotations source="gmf.link">
+        <details key="style" value="solid"/>
+        <details key="width" value="1"/>
+        <details key="tool.small.bundle" value="AGSN.edit"/>
+        <details key="tool.small.path" value="icons/full/obj16/BasicNodeHasComment.gif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="gmf.label"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualityLevel" eType="#//Level"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="confidencePercentage" eType="#//percentage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beliefDegree" eType="#//beliefDegree"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicLink" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//BasicNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BasicNode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="id"/>
+        <details key="namespace" value="http://sdq.ipd.uka.de/Identifier/1.0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Goal: {0}"/>
+      <details key="figure" value="gsnfigures.GSNGoal"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Strategy: {0}"/>
+      <details key="figure" value="gsnfigures.GSNStrategy"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Evidence" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Evidence: {0}"/>
+      <details key="figure" value="gsnfigures.GSNSolution"/>
+      <details key="size" value="80,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attachment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Context: {0}"/>
+      <details key="figure" value="gsnfigures.GSNContext"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Justification" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Justification: {0}"/>
+      <details key="figure" value="gsnfigures.GSNJustification"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assumption" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Assumption: {0}"/>
+      <details key="figure" value="gsnfigures.GSNAssumption"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InContextOf" eSuperTypes="#//BasicLink">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="target.decoration" value="closedarrow"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" eSuperTypes="#//BasicLink">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="target.decoration" value="filledclosedarrow"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssessStatus">
+    <eLiterals name="NotReviewed"/>
+    <eLiterals name="Accepted" value="1"/>
+    <eLiterals name="Incorrect" value="2"/>
+    <eLiterals name="Weak" value="3"/>
+    <eLiterals name="ReviewLater" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Recommendation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="gmf.label"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Strength" eSuperTypes="#//Recommendation">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.pattern" value="Strength: {0}"/>
+      <details key="figure" value="rectangle"/>
+      <details key="size" value="120,80"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RequiredAction" eSuperTypes="#//Recommendation">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.pattern" value="Required Action: {0}"/>
+      <details key="figure" value="rectangle"/>
+      <details key="size" value="120,80"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Weakness" eSuperTypes="#//Recommendation">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.pattern" value="Weakness: {0}"/>
+      <details key="figure" value="rectangle"/>
+      <details key="size" value="120,80"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Question" eSuperTypes="#//Recommendation">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.pattern" value="Question: {0}"/>
+      <details key="figure" value="rectangle"/>
+      <details key="size" value="120,80"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Level">
+    <eLiterals name="VeryLow"/>
+    <eLiterals name="Low" value="1"/>
+    <eLiterals name="Medium" value="2"/>
+    <eLiterals name="High" value="3"/>
+    <eLiterals name="VeryHigh" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditionalElement" eSuperTypes="#//BasicNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.pattern" value="Additional Node: {0}"/>
+      <details key="figure" value="rectangle"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attachment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditionalLink" eSuperTypes="#//BasicLink">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="dash"/>
+      <details key="target.decoration" value="filledclosedarrow"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModuleElement" eSuperTypes="#//BasicNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attachment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Module" eSuperTypes="#//ModuleElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Module: {0}"/>
+      <details key="figure" value="gsnfigures.GSNModule"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contract" eSuperTypes="#//ModuleElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.pattern" value="Contract: {0}"/>
+      <details key="figure" value="gsnfigures.GSNContract"/>
+      <details key="size" value="120,80"/>
+      <details key="color" value="255,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="beliefDegree" instanceClassName="java.lang.double[]"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="percentage" instanceClassName="java.lang.Integer">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="maxInclusive" value="100"/>
+      <details key="minInclusive" value="0"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>
