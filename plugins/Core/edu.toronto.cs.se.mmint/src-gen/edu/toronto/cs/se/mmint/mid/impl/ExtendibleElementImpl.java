@@ -562,6 +562,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT:
+				try {
+					return getClosestTypeConstraint();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT:
 				try {
 					return validateInstanceType((ExtendibleElement)arguments.get(0));
@@ -945,15 +952,10 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 	}
 
 	/**
-	 * Gets the closest type constraint, searching from this type included up its supertypes.
-	 * 
-	 * @return The closest type constraint in the type inheritance, null if no constraint is found.
-	 * @throws MMINTException
-	 *             If this is not a type.
+		//TODO MMINT[OO] Shouldn't getRuntimeTypes() do something similar, climbing up rather than down?
 	 * @generated NOT
 	 */
-	//TODO MMINT[OO] Shouldn't getRuntimeTypes() do something similar, climbing up rather than down?
-	protected @Nullable ExtendibleElementConstraint getClosestTypeConstraint() throws MMINTException {
+	public ExtendibleElementConstraint getClosestTypeConstraint() throws MMINTException {
 
 		MMINTException.mustBeType(this);
 

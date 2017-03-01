@@ -67,6 +67,7 @@
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getClosestTypeConstraint"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceType">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceType/type"/>
       </genOperations>

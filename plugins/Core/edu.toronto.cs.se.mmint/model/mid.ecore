@@ -121,6 +121,8 @@
         <eBounds eClassifier="#//ExtendibleElement"/>
       </eTypeParameters>
     </eOperations>
+    <eOperations name="getClosestTypeConstraint" eType="#//ExtendibleElementConstraint"
+        eExceptions="#//MMINTException"/>
     <eOperations name="validateInstanceType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         eExceptions="#//MMINTException">
       <eParameters name="type" lowerBound="1" eType="#//ExtendibleElement"/>

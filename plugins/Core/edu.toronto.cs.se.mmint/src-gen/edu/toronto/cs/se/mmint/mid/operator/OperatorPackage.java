@@ -287,6 +287,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_RUNTIME_TYPES = MIDPackage.GENERIC_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -799,6 +808,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1333,6 +1351,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1854,6 +1881,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTING_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -2397,6 +2433,15 @@ public interface OperatorPackage extends EPackage {
 	int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = NESTING_OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2900,6 +2945,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.

@@ -17,8 +17,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -110,18 +108,6 @@ public class JavaReasoningEngine implements IReasoningEngine {
 			MMINTException.print(IStatus.WARNING, "Java operator output constraint error, returning empty map: " + constraint.getImplementation(), e);
 			return new HashMap<>();
 		}
-	}
-
-	@Override
-	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
-
-		return true;
-	}
-
-	@Override
-	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
-
-		return null;
 	}
 
 }

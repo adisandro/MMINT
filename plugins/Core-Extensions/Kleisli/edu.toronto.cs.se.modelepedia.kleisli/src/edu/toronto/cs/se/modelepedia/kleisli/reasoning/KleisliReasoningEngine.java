@@ -12,9 +12,7 @@
 package edu.toronto.cs.se.modelepedia.kleisli.reasoning;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -25,20 +23,10 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
@@ -141,42 +129,6 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
 			}
 		}
-	}
-
-	@Override
-	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkOperatorGenericConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkOperatorInputConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
-
-		return true;
-	}
-
-	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
-
-		return new HashMap<>();
-	}
-
-	@Override
-	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
-
-		return true;
-	}
-
-	@Override
-	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
-
-		return null;
 	}
 
 }

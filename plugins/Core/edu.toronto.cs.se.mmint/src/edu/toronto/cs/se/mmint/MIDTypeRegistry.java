@@ -336,12 +336,13 @@ public class MIDTypeRegistry {
 			if (genericType.isAbstract()) {
 				continue;
 			}
-			//TODO MMINT[CONSTRAINT] Need to make the getClosestConstraint api public
-			if (!MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
-				//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
-				continue;
+			try {
+				if (MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getClosestTypeConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
+					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
+					filteredGenericTypes.add(genericType);
+				}
 			}
-			filteredGenericTypes.add(genericType);
+			catch (MMINTException e) {}
 		}
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
