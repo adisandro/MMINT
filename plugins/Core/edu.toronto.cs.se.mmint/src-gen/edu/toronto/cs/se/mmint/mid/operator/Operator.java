@@ -398,24 +398,6 @@ public interface Operator extends GenericElement {
 	EList<OperatorGeneric> selectAllowedGenerics(EList<OperatorInput> inputs) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc --> Checks if a generic type is allowed for this operator type. Must be overridden if there
-	 * are cases when formal generic parameter compliance alone ({@link #selectAllowedGenerics(EList)}) is not enough.
-	 * 
-	 * @param genericTypeEndpoint
-	 *            The generic type endpoint.
-	 * @param genericType
-	 *            The generic type.
-	 * @param inputs
-	 *            The list of inputs.
-	 * @return Always true.
-	 * @throws MMINTException
-	 *             If this is not an operator type. <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" genericTypeEndpointRequired="true" genericTypeRequired="true" inputsMany="true"
-	 * @generated
-	 */
-	boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException;
-
-	/**
 	 * <!-- begin-user-doc --> Gets the input properties of this operator.
 	 * 
 	 * @return The input properties of this operator. <!-- end-user-doc -->

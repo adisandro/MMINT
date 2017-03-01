@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -60,18 +61,17 @@ public class Map extends NestingOperatorImpl {
 	private final static @NonNull String MAPPED_MID_SUFFIX = "_map";
 	private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
 
-	@Override
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
-		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
-		if (!allowed) {
-			return false;
+		@Override
+		public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
+	
+			if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
+				return false;
+			}
+	
+			return true;
 		}
-		if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
-			return false;
-		}
-
-		return true;
 	}
 
 	@Override

@@ -1237,12 +1237,6 @@
           eExceptions="#//MMINTException">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
       </eOperations>
-      <eOperations name="isAllowedGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          eExceptions="#//MMINTException">
-        <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
-        <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
-        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
-      </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="readInputProperties" eExceptions="#//MMINTException">
         <eParameters name="inputProperties" lowerBound="1" eType="#//operator/Properties"/>

@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -61,6 +62,31 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 	protected EObject tgtRootModelObj;
 	protected String tgtModelPath;
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
+
+			ModelRel modelRelType = (ModelRel) genericType;
+			// check 1: satisfies transformation constraint
+			if (!(new ModelRelTypeTransformationConstraint().validate(modelRelType))) {
+				return false;
+			}
+			Model srcModel = inputs.get(0).getModel();
+			// check 2: allowed source model
+			if (
+				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
+					modelRelType instanceof BinaryModelRel || // mandatory direction
+					!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+				)
+			) {
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 	private void init() {
 
@@ -258,32 +284,6 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		outputsByName.put(OUT_MODELREL, traceModelRel);
 
 		return outputsByName;
-	}
-
-	@Override
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
-
-		if (!super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs)) {
-			return false;
-		}
-
-		ModelRel modelRelType = (ModelRel) genericType;
-		// check 1: satisfies transformation constraint
-		if (!(new ModelRelTypeTransformationConstraint().validate(modelRelType))) {
-			return false;
-		}
-		Model srcModel = inputs.get(0).getModel();
-		// check 2: allowed source model
-		if (
-			!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
-				modelRelType instanceof BinaryModelRel || // mandatory direction
-				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
-			)
-		) {
-			return false;
-		}
-
-		return true;
 	}
 
 }

@@ -50,12 +50,6 @@ public class Sum extends OperatorImpl {
 
 			return true;
 		}
-
-		@Override
-		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
-
-			return new HashMap<>();
-		}
 	}
 
 	private @NonNull Int sum(@NonNull Model intModel1, @NonNull Model intModel2) throws MMINTException {

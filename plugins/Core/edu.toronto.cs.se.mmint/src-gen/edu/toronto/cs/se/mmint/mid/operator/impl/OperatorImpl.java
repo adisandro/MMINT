@@ -657,13 +657,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST:
-				try {
-					return isAllowedGeneric((GenericEndpoint)arguments.get(0), (GenericElement)arguments.get(1), (EList<OperatorInput>)arguments.get(2));
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 			case OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES:
 				return getInputProperties();
 			case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
@@ -1214,16 +1207,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 
 		return generics;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
-
-		MMINTException.mustBeType(this);
-
-		return true;
 	}
 
 	/**

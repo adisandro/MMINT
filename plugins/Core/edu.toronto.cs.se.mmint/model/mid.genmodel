@@ -562,11 +562,6 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/selectAllowedGenerics">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/selectAllowedGenerics/inputs"/>
         </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedGeneric">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedGeneric/genericTypeEndpoint"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedGeneric/genericType"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedGeneric/inputs"/>
-        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/readInputProperties/inputProperties"/>

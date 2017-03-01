@@ -223,6 +223,10 @@
                uri="http://se.cs.toronto.edu/mmint/Operator_Map"
                class="edu.toronto.cs.se.mmint.operator.mid.Map">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.mid.Map$OperatorConstraint"
+               language="JAVA">
+         </constraint>
          <generics>
             <parameter>
 	           <type
@@ -266,6 +270,10 @@
                uri="http://se.cs.toronto.edu/mmint/Operator_Reduce"
                class="edu.toronto.cs.se.mmint.operator.mid.Reduce">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.mid.Reduce$OperatorConstraint"
+               language="JAVA">
+         </constraint>
          <generics>
             <parameter>
 	           <type
@@ -339,6 +347,10 @@
                uri="http://se.cs.toronto.edu/mmint/Operator_Filter"
                class="edu.toronto.cs.se.mmint.operator.mid.Filter">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.mmint.operator.mid.Filter$OperatorConstraint"
+               language="JAVA">
+         </constraint>
          <generics>
             <parameter>
 	           <type

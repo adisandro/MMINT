@@ -149,6 +149,10 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelRelTypeTransformation"
                class="edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.operator.patch.ModelRelTypeTransformation$OperatorConstraint"
+               language="JAVA">
+         </constraint>
          <generics>
             <parameter>
 	           <type

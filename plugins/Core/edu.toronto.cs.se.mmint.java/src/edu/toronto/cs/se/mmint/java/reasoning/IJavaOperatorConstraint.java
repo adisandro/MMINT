@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.java.reasoning;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,9 +27,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public interface IJavaOperatorConstraint {
 
 	/**
-	 * Checks if a generic type is allowed for this operator type. Must be overridden if there are cases when formal
-	 * generic parameter compliance alone
-	 * ({@link edu.toronto.cs.se.mmint.mid.operator.Operator#selectAllowedGenerics(EList)}) is not enough.
+	 * Checks if a generic type is allowed for an operator type. This is used if there are cases when formal generic
+	 * parameter compliance alone ({@link edu.toronto.cs.se.mmint.mid.operator.Operator#selectAllowedGenerics(EList)})
+	 * is not enough.
 	 * 
 	 * @param genericTypeEndpoint
 	 *            The generic type endpoint.
@@ -38,18 +39,24 @@ public interface IJavaOperatorConstraint {
 	 *            The list of inputs.
 	 * @return True if the generic is allowed, false otherwise.
 	 */
-	public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs);
+	public default boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+
+		return true;
+	}
 
 	/**
-	 * Checks if the input models, already individually validated as actual parameters, are allowed by an operator type.
-	 * This is meant to check that the input models as a whole are valid, if there are cases when formal parameter
-	 * compliance alone ({@link edu.toronto.cs.se.mmint.mid.operator.Operator#checkAllowedInputs(EList)}) is not enough.
+	 * Checks if all input models together, already individually validated as actual parameters, are allowed by an
+	 * operator type. This is used if there are cases when formal parameter compliance alone
+	 * ({@link edu.toronto.cs.se.mmint.mid.operator.Operator#checkAllowedInputs(EList)}) is not enough.
 	 * 
 	 * @param inputsByName
 	 *            The input model instances, identified by their formal parameter name.
 	 * @return True if the input models are allowed, false otherwise.
 	 */
-	public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName);
+	public default boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
+
+		return true;
+	}
 
 	/**
 	 * Gets the models that should be the endpoints for each output model relationship of an operator instance. This is
@@ -63,6 +70,9 @@ public interface IJavaOperatorConstraint {
 	 * @return A map of output model relationships and their endpoint models.
 	 */
 	//TODO MMINT[CONSTRAINT] Create a default method that just matches parameter names, which is what usually happens
-	public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName);
+	public default @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+
+		return new HashMap<>();
+	}
 
 }
