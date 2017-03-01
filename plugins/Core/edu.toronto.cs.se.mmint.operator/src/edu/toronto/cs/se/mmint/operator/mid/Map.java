@@ -248,7 +248,7 @@ public class Map extends NestingOperatorImpl {
 //			}
 		}
 		// pass 3: mapper MID, after output MIDs and MIDRels are serialized
-		this.createNestedInstanceMIDModelShortcuts(mapperShortcutModels, gmfViewProvider);
+		super.createNestedInstanceMIDModelShortcuts(mapperShortcutModels, gmfViewProvider);
 		super.writeNestedInstanceMID();
 
 		// pass 4: input MIDs and endpoint MIDs of input MIDRels, since model elements can be created there

@@ -33,6 +33,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -348,7 +349,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 *             If this is not an operator instance.
 	 * @generated NOT
 	 */
-	protected void createNestedInstanceMIDModelShortcuts(EList<Model> models, IViewProvider viewProvider) throws MMINTException {
+	protected void createNestedInstanceMIDModelShortcuts(List<Model> models, IViewProvider viewProvider) throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
 

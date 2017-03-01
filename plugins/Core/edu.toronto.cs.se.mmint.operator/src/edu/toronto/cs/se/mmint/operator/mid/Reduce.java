@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.mmint.operator.mid;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
@@ -81,25 +82,38 @@ public class Reduce extends NestingOperatorImpl {
 		 * Like normal operators, a MIDRel should be able to "grab" its MID endpoints.
 		 * Create an operator that loops until the input is equal to the output
 		 */
-		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
-			.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
-		EList<MID> inputMIDs = new BasicEList<>();
-		inputMIDs.add(reducedMID);
-		Set<Model> accumulatorOutputModelsToDelete = new HashSet<>();
-		Map<String, Model> accumulatorOutputsByName = null;
-		EList<OperatorInput> accumulatorInputs;
-		// preparation for composition operator
+		// prepare for composition operator
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 		Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
 			.createSameOutputMIDsByName(compositionOperatorType, reducedMID);
-		// preparation for merge operator
+		// prepare for merge operator
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
 		Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
 			.createSameOutputMIDsByName(mergeOperatorType, reducedMID);
+		// prepare for accumulator operator
+		List<Model> initialModels = new ArrayList<>(reducedMID.getModels());
+		EList<OperatorInput> accumulatorInputs;
+		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
+			.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
+		Set<Model> accumulatorOutputModelsToDelete = new HashSet<>();
+		Map<String, Model> accumulatorOutputsByName = null;
+		String accumulatorMIDPath = this.getNestedMIDPath();
+		MID accumulatorMID = super.getNestedInstanceMID();
+		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		// reduce loop
-		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
+		int i = 0;
+		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(
+				ECollections.newBasicEList(reducedMID))) != null) {
+			// create input shortcuts for nested MID
+			List<Model> shortcutModels = accumulatorInputs.stream()
+				.map(OperatorInput::getModel)
+				.filter(model -> initialModels.contains(model))
+				.collect(Collectors.toList());
+			if (!shortcutModels.isEmpty()) {
+				super.createNestedInstanceMIDModelShortcuts(shortcutModels, gmfViewProvider);
+				initialModels.removeAll(shortcutModels);
+			}
 			Set<Model> accumulatorInputModels = new HashSet<>();
 			Set<ModelRel> accumulatorInputModelRels = new HashSet<>();
 			try {
@@ -120,11 +134,8 @@ public class Reduce extends NestingOperatorImpl {
 				//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
 				Set<ModelRel> connectedModelRels = reducedMID.getModelRels().stream()
 					.filter(modelRel -> !accumulatorInputModelRels.contains(modelRel))
-					.filter(modelRel -> !Collections.disjoint(
-						accumulatorInputModels,
-						modelRel.getModelEndpoints().stream()
-							.map(ModelEndpoint::getTarget)
-							.collect(Collectors.toSet())))
+					.filter(modelRel -> modelRel.getModelEndpoints().stream()
+						.anyMatch(modelEndpoint -> accumulatorInputModels.contains(modelEndpoint.getTarget())))
 					.collect(Collectors.toSet());
 				// run the ACCUMULATOR operator
 				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
@@ -134,7 +145,7 @@ public class Reduce extends NestingOperatorImpl {
 						null,
 						accumulatorGenerics,
 						accumulatorOutputMIDsByName,
-						null)
+						accumulatorMID)
 					.getOutputsByName();
 				accumulatorOutputModelsToDelete.addAll(
 					accumulatorOutputsByName.values().stream()
@@ -177,10 +188,10 @@ public class Reduce extends NestingOperatorImpl {
 				}
 				// merge model rels that have been composed and share the same model endpoints
 				Set<ModelRel> composedModelRelsToDelete = new HashSet<>();
-				for (int i = 0; i < composedModelRels.size(); i++) {
-					ModelRel composedModelRel1 = composedModelRels.get(i);
-					for (int j = i+1; j < composedModelRels.size(); j++) {
-						ModelRel composedModelRel2 = composedModelRels.get(j);
+				for (int j = 0; j < composedModelRels.size(); j++) {
+					ModelRel composedModelRel1 = composedModelRels.get(j);
+					for (int k = j+1; k < composedModelRels.size(); k++) {
+						ModelRel composedModelRel2 = composedModelRels.get(k);
 						try {
 							EList<Model> mergeInputModels = new BasicEList<>();
 							mergeInputModels.add(composedModelRel1);
@@ -224,6 +235,7 @@ public class Reduce extends NestingOperatorImpl {
 					}
 					catch (MMINTException e) {}
 				}
+				i++;
 			}
 		}
 		// delete intermediate output model files but the ones from last execution
@@ -266,7 +278,9 @@ public class Reduce extends NestingOperatorImpl {
 			FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		Model reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(reducedMID, reducedMIDModelPath, instanceMID);
+		Model reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
+			reducedMID, reducedMIDModelPath, instanceMID);
+		super.writeNestedInstanceMID();
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);
 
