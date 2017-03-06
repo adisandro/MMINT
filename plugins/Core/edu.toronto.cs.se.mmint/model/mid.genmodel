@@ -547,9 +547,11 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/openType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/modelBlacklists"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findFirstAllowedInput">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputMIDs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/modelBlacklists"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/checkAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/checkAllowedInputs/inputModels"/>

@@ -428,7 +428,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___FIND_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -437,7 +437,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -942,7 +942,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int CONVERSION_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -951,7 +951,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int CONVERSION_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -1492,7 +1492,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int RANDOM_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -1501,7 +1501,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int RANDOM_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2024,7 +2024,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -2033,7 +2033,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2574,7 +2574,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -2583,7 +2583,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -3403,24 +3403,24 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__OpenType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList) <em>Find Allowed Inputs</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Find Allowed Inputs</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Find Allowed Inputs</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getOperator__FindAllowedInputs__EList();
+	EOperation getOperator__FindAllowedInputs__EList_EList();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList) <em>Find First Allowed Input</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Find First Allowed Input</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Find First Allowed Input</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getOperator__FindFirstAllowedInput__EList();
+	EOperation getOperator__FindFirstAllowedInput__EList_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#checkAllowedInputs(org.eclipse.emf.common.util.EList) <em>Check Allowed Inputs</em>}' operation.
@@ -4045,7 +4045,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___FIND_ALLOWED_INPUTS__ELIST = eINSTANCE.getOperator__FindAllowedInputs__EList();
+		EOperation OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = eINSTANCE.getOperator__FindAllowedInputs__EList_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Find First Allowed Input</b></em>' operation.
@@ -4053,7 +4053,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = eINSTANCE.getOperator__FindFirstAllowedInput__EList();
+		EOperation OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = eINSTANCE.getOperator__FindFirstAllowedInput__EList_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Allowed Inputs</b></em>' operation.

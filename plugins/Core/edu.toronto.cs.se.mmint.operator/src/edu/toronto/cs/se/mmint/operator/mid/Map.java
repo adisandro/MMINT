@@ -299,9 +299,11 @@ public class Map extends NestingOperatorImpl {
 
 		// input
 		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
-		EList<MID> inputMIDs = new BasicEList<>();
+		EList<MID> inputMIDs = ECollections.newBasicEList();
+		EList<Set<Model>> modelBlacklists = ECollections.newBasicEList();
 		for (Model inputMIDModel : inputMIDModels) {
 			inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
+			modelBlacklists.add(new HashSet<>());
 		}
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
@@ -312,7 +314,7 @@ public class Map extends NestingOperatorImpl {
 			ECollections.asEList(MIDTypeHierarchy.getSubtypes(mapperOperatorType)) :
 			ECollections.emptyEList();
 		if (multipleDispatch.isEmpty()) { // multiple dispatch disabled, or the mapper operator is not a multimethod
-			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs));
+			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs, modelBlacklists));
 		}
 		else {
 			multipleDispatch.add(mapperOperatorType);
@@ -321,7 +323,7 @@ public class Map extends NestingOperatorImpl {
 			while (multiIter.hasNext()) { // start from the most specialized operator backwards
 				Operator multiMapper = multiIter.next();
 				// assign at each step the allowed inputs that have not been already assigned
-				Set<EList<OperatorInput>> mapperInputs = multiMapper.findAllowedInputs(inputMIDs);
+				Set<EList<OperatorInput>> mapperInputs = multiMapper.findAllowedInputs(inputMIDs, modelBlacklists);
 				java.util.Map<String, EList<OperatorInput>> newInputs = this.diffMultipleDispatchInputs(assignedInputs, mapperInputs);
 				mapperSpecs.put(multiMapper, new HashSet<>(newInputs.values()));
 				assignedInputs.putAll(newInputs);

@@ -145,32 +145,6 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	public MID getNestedInstanceMID() throws MMINTException {
-
-		MMINTException.mustBeInstance(this);
-
-		if (this.inMemoryNestedMID != null) {
-			return this.inMemoryNestedMID;
-		}
-
-		try {
-			String nestedMIDPath = this.getNestedMIDPath();
-			if (nestedMIDPath == null) {
-				return null;
-			}
-			MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, true);
-			this.inMemoryNestedMID = nestedMID;
-			return nestedMID;
-		}
-		catch (Exception e) {
-			this.inMemoryNestedMID = null;
-			return null;
-		}
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -274,6 +248,32 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	/**
 	 * @generated NOT
 	 */
+	public MID getNestedInstanceMID() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		if (this.inMemoryNestedMID != null) {
+			return this.inMemoryNestedMID;
+		}
+
+		try {
+			String nestedMIDPath = this.getNestedMIDPath();
+			if (nestedMIDPath == null) {
+				return null;
+			}
+			MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, true);
+			this.inMemoryNestedMID = nestedMID;
+			return nestedMID;
+		}
+		catch (Exception e) {
+			this.inMemoryNestedMID = null;
+			return null;
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	protected Diagram getNestedInstanceMIDDiagramRoot() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
@@ -299,18 +299,16 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	}
 
 	/**
+	 * TODO MMINT[NESTED] Make it an api at the instance level?
+	 * Adds a nested Instance MID to an operator instance of this operator type.
+	 * 
+	 * @param newOperator
+	 *            The new operator to be added.
+	 * @param instanceMID
+	 *            An Instance MID.
 	 * @generated NOT
 	 */
-	@Override
-	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
-
-		super.addInstance(newOperator, midLevel, instanceMID);
-		if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
-			/* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
-			 * (find the cases where it could be useful)
-			 */
-			return;
-		}
+	protected void addNestedInstanceMID(@NonNull Operator newOperator, @NonNull MID instanceMID) {
 
 		String nestedMIDPath = FileUtils.getUniquePath(
 			FileUtils.replaceFileNameInPath(
@@ -335,6 +333,23 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't store the Instance MID to contain this nesting operator's intermediate artifacts, skipping it", e);
 		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	protected void addInstance(@NonNull Operator newOperator, @NonNull MIDLevel midLevel, @Nullable MID instanceMID) {
+
+		super.addInstance(newOperator, midLevel, instanceMID);
+		if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
+			/* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
+			 * (find the cases where it could be useful)
+			 */
+			return;
+		}
+
+		this.addNestedInstanceMID(newOperator, instanceMID);
 	}
 
 	/**

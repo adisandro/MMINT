@@ -300,13 +300,15 @@ public interface Operator extends GenericElement {
 	 *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
 	 *            different instance MID, following their order. If there are not enough instance MIDs, the last
 	 *            instance MID is used for all subsequent formal parameters.
+	 * @param inputModelBlacklists
+	 *            A List of blacklisted models not to be considered as input, following the same order as the inputMIDs.
 	 * @return A set of inputs to the operator, including necessary conversions.
 	 * @throws MMINTException
 	 *             If this is not an operator type. <!-- end-user-doc -->
-	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Set<org.eclipse.emf.ecore.EEList<edu.toronto.cs.se.mmint.mid.operator.OperatorInput>>" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true" inputModelBlacklistsDataType="edu.toronto.cs.se.mmint.mid.operator.Set<edu.toronto.cs.se.mmint.mid.Model>" inputModelBlacklistsMany="true"
 	 * @generated
 	 */
-	Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs) throws MMINTException;
+	Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Finds the first input that can be used to run this operator type.
@@ -315,13 +317,17 @@ public interface Operator extends GenericElement {
 	 *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
 	 *            different instance MID, following their order. If there are not enough instance MIDs, the last
 	 *            instance MID is used for all subsequent formal parameters.
+	 * @param inputModelBlacklists
+	 *            A List of blacklisted models not to be considered as input, following the same order as the inputMIDs.
 	 * @return An input to the operator, including necessary conversions.
 	 * @throws MMINTException
 	 *             If this is not an operator type. <!-- end-user-doc -->
 	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true"
+	 *        inputModelBlacklistsDataType="edu.toronto.cs.se.mmint.mid.operator.Set<edu.toronto.cs.se.mmint.mid.Model>"
+	 *        inputModelBlacklistsMany="true"
 	 * @generated
 	 */
-	EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs) throws MMINTException;
+	EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException;
 
 	/**
 	 * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator

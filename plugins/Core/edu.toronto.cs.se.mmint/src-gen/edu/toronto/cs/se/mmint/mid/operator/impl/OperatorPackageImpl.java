@@ -343,7 +343,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindAllowedInputs__EList() {
+	public EOperation getOperator__FindAllowedInputs__EList_EList() {
 		return operatorEClass.getEOperations().get(6);
 	}
 
@@ -352,7 +352,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getOperator__FindFirstAllowedInput__EList() {
+	public EOperation getOperator__FindFirstAllowedInput__EList_EList() {
 		return operatorEClass.getEOperations().get(7);
 	}
 
@@ -813,8 +813,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		createEOperation(operatorEClass, OPERATOR___CREATE_SUBTYPE__STRING_STRING);
 		createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
 		createEOperation(operatorEClass, OPERATOR___OPEN_TYPE);
-		createEOperation(operatorEClass, OPERATOR___FIND_ALLOWED_INPUTS__ELIST);
-		createEOperation(operatorEClass, OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST);
+		createEOperation(operatorEClass, OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST);
+		createEOperation(operatorEClass, OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST);
 		createEOperation(operatorEClass, OPERATOR___CHECK_ALLOWED_INPUTS__ELIST);
 		createEOperation(operatorEClass, OPERATOR___GET_OUTPUTS_BY_NAME);
 		createEOperation(operatorEClass, OPERATOR___GET_OUTPUT_MODELS);
@@ -939,18 +939,26 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 		op = initEOperation(getOperator__OpenType(), null, "openType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getException());
 
-		op = initEOperation(getOperator__FindAllowedInputs__EList(), null, "findAllowedInputs", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__FindAllowedInputs__EList_EList(), null, "findAllowedInputs", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
 		EGenericType g1 = createEGenericType(this.getSet());
-		EGenericType g2 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType(theMIDPackage.getModel());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "modelBlacklists", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theMIDPackage.getMMINTException());
+		g1 = createEGenericType(this.getSet());
+		g2 = createEGenericType(ecorePackage.getEEList());
 		g1.getETypeArguments().add(g2);
 		EGenericType g3 = createEGenericType(this.getOperatorInput());
 		g2.getETypeArguments().add(g3);
 		initEOperation(op, g1);
 
-		op = initEOperation(getOperator__FindFirstAllowedInput__EList(), this.getOperatorInput(), "findFirstAllowedInput", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getOperator__FindFirstAllowedInput__EList_EList(), this.getOperatorInput(), "findFirstAllowedInput", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "inputMIDs", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getSet());
+		g2 = createEGenericType(theMIDPackage.getModel());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "modelBlacklists", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 
 		op = initEOperation(getOperator__CheckAllowedInputs__EList(), this.getOperatorInput(), "checkAllowedInputs", 0, -1, IS_UNIQUE, IS_ORDERED);

@@ -600,16 +600,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST:
+			case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST:
 				try {
-					return findAllowedInputs((EList<MID>)arguments.get(0));
+					return findAllowedInputs((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST:
+			case OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST:
 				try {
-					return findFirstAllowedInput((EList<MID>)arguments.get(0));
+					return findFirstAllowedInput((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -992,10 +992,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
 	 *            different instance MID, following their order. If there are not enough instance MIDs, the last
 	 *            instance MID is used for all subsequent formal parameters.
+	 * @param inputModelBlacklists
+	 *            A List of blacklisted models not to be considered as input, following the same order as the inputMIDs.
 	 * @return The allowed inputs for each formal parameter, including necessary conversions.
 	 * @generated NOT
 	 */
-	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MID> inputMIDs) {
+	private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MID> inputMIDs, @NonNull EList<Set<Model>> inputModelBlacklists) {
 
 		//TODO MMINT[MAP] Add support for upper bound = -1
 		EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
@@ -1003,15 +1005,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 			ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
 			// TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
 			MID inputMID;
+			Set<Model> inputModelBlacklist;
 			if (i < inputMIDs.size()) {
 				inputMID = inputMIDs.get(i);
+				inputModelBlacklist = inputModelBlacklists.get(i);
 			}
 			else {
 				inputMID = inputMIDs.get(inputMIDs.size()-1);
+				inputModelBlacklist = inputModelBlacklists.get(inputModelBlacklists.size()-1);
 			}
 			EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
 			modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
 			for (Model inputModel : inputMID.getModels()) {
+				if (inputModelBlacklist.contains(inputModel)) {
+					continue;
+				}
 				OperatorInput operatorInput = this.checkAllowedInput(inputModelTypeEndpoint, inputModel);
 				if (operatorInput == null) {
 					continue;
@@ -1026,12 +1034,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs) throws MMINTException {
+	public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		// get inputs by model type endpoint
-		EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs);
+		EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs, inputModelBlacklists);
 		// do cartesian product of inputs
 		Set<EList<OperatorInput>> operatorTypeInputSet = this.getOperatorTypeInputs(modelTypeEndpointInputs, false);
 
@@ -1041,12 +1049,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	/**
 	 * @generated NOT
 	 */
-	public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs) throws MMINTException {
+	public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
 		// get inputs by model type endpoint
-		EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs);
+		EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs, inputModelBlacklists);
 		// get the first allowed input
 		Set<EList<OperatorInput>> operatorTypeInputSet = this.getOperatorTypeInputs(modelTypeEndpointInputs, true);
 		if (operatorTypeInputSet.isEmpty()) {

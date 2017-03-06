@@ -1214,10 +1214,20 @@
           </eTypeArguments>
         </eGenericType>
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
+        <eParameters name="inputModelBlacklists" upperBound="-1">
+          <eGenericType eClassifier="#//operator/Set">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="findFirstAllowedInput" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
+        <eParameters name="inputModelBlacklists" upperBound="-1">
+          <eGenericType eClassifier="#//operator/Set">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
