@@ -11,10 +11,14 @@
  */
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -22,7 +26,12 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class ModelRelPropagation extends OperatorImpl {
@@ -64,8 +73,61 @@ public class ModelRelPropagation extends OperatorImpl {
 			.get()
 			.getTarget();
 		ModelRel propRel = origRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2), outputMID);
-		//TODO MMINT[MODELS17] Continue..
-
+		
+		// Retrieve the model elements in the original model relation.
+		ModelEndpointReference origRelEndpoint = origRel.getModelEndpointRefs().get(0);
+		List<ModelElement> origElemList = new ArrayList<ModelElement>();
+		for (ModelElementReference mer : origRelEndpoint.getModelElemRefs()) {
+			ModelElement obj = mer.getObject();
+			origElemList.add(obj);
+			System.out.println("Retrieving from original model: " + obj);
+		}
+		
+		// Retrieve the mappings from the trace model relation.
+		List<Mapping> mappingList = traceRel.getMappings();
+		
+		
+		// Iterate through the mappings to retrieve each model element in the 
+		// second model that corresponds to the model elements retrieved from
+		// the original model relation.
+		// Note: It is assumed that the mappings may not be binary and that 
+		// the mappings may not originate from the original model elements.
+		// In fact, it is also assumed that each mapping may contain more
+		// than one element from the original model relation.
+		List<ModelElement> traceElemList = new ArrayList<ModelElement>();
+		for (Mapping m : mappingList) {
+			boolean relevantFlag = false;			
+			List<ModelElementEndpoint> meeList = m.getModelElemEndpoints();
+			
+			Iterator<ModelElementEndpoint> iter = meeList.iterator();
+			while (iter.hasNext()) {
+				if (origElemList.contains(iter.next().getTarget())) {
+					relevantFlag = true;
+					break;
+				}
+			}
+			
+			if (relevantFlag) {
+				ModelElement obj;
+				for (ModelElementEndpoint mee : meeList) {
+					obj = mee.getTarget();
+					if (!origElemList.contains(obj)) {
+						traceElemList.add(obj);
+						System.out.println("Tracing to: " + obj);
+					}
+				}
+			}
+		}
+		
+		// Add the traced model elements to the output model relation.
+		EObject emfObj;
+		ModelEndpointReference propMer = propRel.getModelEndpointRefs().get(0);
+		for (ModelElement elem : traceElemList) {
+			emfObj = elem.getEMFInstanceObject();
+			propMer.createModelElementInstanceAndReference(emfObj, null);
+			System.out.println("Adding to relation: " + emfObj);
+		}
+		
 		return propRel;
 	}
 
