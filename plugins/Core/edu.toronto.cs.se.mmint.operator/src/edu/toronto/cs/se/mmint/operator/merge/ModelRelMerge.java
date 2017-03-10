@@ -49,7 +49,7 @@ public class ModelRelMerge extends OperatorImpl {
 	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+		public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
 
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
@@ -82,7 +82,7 @@ public class ModelRelMerge extends OperatorImpl {
 		}
 
 		@Override
-		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+		public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
 			Input input = new Input(inputsByName);
 			ModelRel mergedRel = (ModelRel) outputsByName.get(OUT_MODELREL);
@@ -135,7 +135,7 @@ public class ModelRelMerge extends OperatorImpl {
 	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MID instanceMID) throws MMINTException {
 
 		// models
-		Map<String, ModelElementReference> newModelElemRefs = new HashMap<String, ModelElementReference>();
+		Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
 		for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
 			List<ModelEndpointReference> newModelEndpointRefs = MIDRegistry.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedModelRel.getModelEndpointRefs());
 			ModelEndpointReference newModelEndpointRef;

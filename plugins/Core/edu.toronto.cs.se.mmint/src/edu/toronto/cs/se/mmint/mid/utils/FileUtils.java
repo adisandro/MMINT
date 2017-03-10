@@ -173,7 +173,7 @@ public class FileUtils {
 		IProject project = workspaceRoot.getProject(projectName);
 		String absolutePath = (project == null) ?
 			ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + relativePath :
-			project.getLocation().toString() + relativePath.replace(IPath.SEPARATOR + projectName, "");
+			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + projectName, "");
 
 		return absolutePath;
 	}
