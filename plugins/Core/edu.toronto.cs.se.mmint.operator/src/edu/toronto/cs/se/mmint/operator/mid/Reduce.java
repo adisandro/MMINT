@@ -62,7 +62,10 @@ public class Reduce extends NestingOperatorImpl {
 		@Override
 		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-			if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
+			final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+			final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+			final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+			if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
 				return false;
 			}
 
@@ -85,16 +88,6 @@ public class Reduce extends NestingOperatorImpl {
 	private @NonNull MID reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
 
-		/*TODO Fixed Point as Reduce:
-		 * Like normal operators, a MIDRel should be able to "grab" its MID endpoints.
-		 * Reduce should not really delete anything, just create intermediate results into nested mids in order to "lose" inputs
-		 * Should add support for optional outputs (0 endpoint lower bound)
-		 * Create a diff-like operator that returns either the last input or nothing
-		 */
-		/*TODO Fixed Point custom
-		 * Like normal operators, a MIDRel should be able to "grab" its MID endpoints.
-		 * Create an operator that loops until the input is equal to the output
-		 */
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
 		String nestedMIDPath = super.getNestedMIDPath();
 		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
@@ -270,7 +263,7 @@ public class Reduce extends NestingOperatorImpl {
 		if (nestedMIDPath != null) {
 			this.inMemoryNestedMID = reducedMID;
 			super.writeNestedInstanceMID();
-			//TODO transform input/output into shortcuts
+			//TODO MMINT[REDUCE] Transform input/output into shortcuts
 			reducedMID = MIDFactory.eINSTANCE.createMID();
 			reducedMID.setLevel(MIDLevel.INSTANCES);
 			for (Model model : accumulatorOutputsByName.values()) {

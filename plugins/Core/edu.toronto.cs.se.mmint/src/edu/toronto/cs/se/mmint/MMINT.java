@@ -125,7 +125,10 @@ public class MMINT implements MMINTConstants {
 	 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
 	 * - Support conversions in workflows?
 	 * - Create scripting language
-	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
+	 * - Assumption that instance uris are unique is wrong?
+	 * -- have multiple models point to same file and a way to count references for file deletion
+	 * -- stop relying on gmf shortcuts
+	 * -- find a way to formalize MIDRels (e.g. should act like a model rel and have endpoints for grabbing other mids)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Work on operators:
 	 * - Migrate Reduce to use NestingOperator

@@ -65,11 +65,14 @@ public class Map extends NestingOperatorImpl {
 
 		@Override
 		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
-	
-			if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
+
+			final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+			final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+			final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+			if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
 				return false;
 			}
-	
+
 			return true;
 		}
 	}
