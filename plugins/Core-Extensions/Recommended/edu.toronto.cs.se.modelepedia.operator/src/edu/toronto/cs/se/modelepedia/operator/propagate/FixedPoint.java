@@ -15,11 +15,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -50,25 +54,41 @@ public class FixedPoint extends NestingOperatorImpl {
 		@Override
 		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
+			final String FIXEDPOINT_URI = "http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint";
 			Operator fixerOperatorType = (Operator) genericType;
-			if (fixerOperatorType.getInputs().size() != fixerOperatorType.getOutputs().size()) {
+			if (fixerOperatorType.getUri().equals(FIXEDPOINT_URI)) { // no nesting
 				return false;
 			}
-			if (fixerOperatorType.getInputs().size() != inputs.size()) {
+			if (inputs.size() == 0) { // can't stop from infinite cycle
 				return false;
 			}
-			for (int i = 0; i < fixerOperatorType.getInputs().size(); i++) {
-				String inputModelTypeUri = fixerOperatorType.getInputs().get(i).getTargetUri();
-				String outputModelTypeUri = fixerOperatorType.getOutputs().get(i).getTargetUri();
-				if (
-					!inputModelTypeUri.equals(outputModelTypeUri) ||
-					!MIDTypeHierarchy.isSubtypeOf(outputModelTypeUri, inputModelTypeUri)
-				) {
+			if (fixerOperatorType.getInputs().size() != fixerOperatorType.getOutputs().size()) { // can't connect outputs and inputs
+				return false;
+			}
+			String runtimeTypingPreference = null;
+			if (inputs.get(0).getModel().isWorkflowsLevel()) {
+				runtimeTypingPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED);
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "false");
+			}
+			EList<Model> inputModels = ECollections.asEList(
+				inputs.stream()
+					.map(OperatorInput::getModel)
+					.collect(Collectors.toList()));
+			try {
+				if (fixerOperatorType.checkAllowedInputs(inputModels) == null) { // invalid inputs
 					return false;
 				}
-			}
 
-			return true;
+				return true;
+			}
+			catch (MMINTException e) {
+				return false;
+			}
+			finally {
+				if (runtimeTypingPreference != null) {
+					MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, runtimeTypingPreference);
+				}
+			}
 		}
 	}
 
@@ -77,7 +97,7 @@ public class FixedPoint extends NestingOperatorImpl {
 
 		// create the vararg fixed models
 		Map<String, Model> outputsByName = new HashMap<>();
-		Operator fixerOperatorType = (Operator) newOperator.getGenerics().get(0);
+		Operator fixerOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
 		for (int i = 0; i < fixerOperatorType.getOutputs().size(); i++) {
 			ModelEndpoint outputModelTypeEndpoint = fixerOperatorType.getOutputs().get(i);
 			String outputModelId = MIDRegistry.getNextWorkflowID(workflowMID);
@@ -95,6 +115,7 @@ public class FixedPoint extends NestingOperatorImpl {
 		for (int i = 0; i < fixerOperatorType.getInputs().size(); i++) {
 			inputsByName.put(fixerOperatorType.getInputs().get(i).getName(), inputModels.get(i));
 		}
+		//TODO do something like this.getInputsByName(inputs); instead, to account for varargs
 		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(fixerOperatorType.getClosestTypeConstraint(), inputsByName, outputsByName);
 		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
 			ModelRel outputModelRel = validOutput.getKey();
