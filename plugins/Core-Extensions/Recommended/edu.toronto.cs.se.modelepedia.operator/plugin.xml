@@ -455,7 +455,7 @@
          <inputs>
             <parameter>
 	           <type
-	                 name="model">
+	                 name="models">
 	           </type>
 	           <typeEndpoint
                   targetTypeUri="http://se.cs.toronto.edu/mmint/Model"
@@ -466,7 +466,7 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="fixedModel">
+	                 name="fixedModels">
 	           </type>
 	           <typeEndpoint
                   targetTypeUri="http://se.cs.toronto.edu/mmint/Model"
