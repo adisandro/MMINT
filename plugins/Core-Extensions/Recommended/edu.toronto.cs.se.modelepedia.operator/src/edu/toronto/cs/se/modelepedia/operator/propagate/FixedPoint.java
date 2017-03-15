@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -56,15 +57,24 @@ public class FixedPoint extends NestingOperatorImpl {
 
 			final String FIXEDPOINT_URI = "http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint";
 			Operator fixerOperatorType = (Operator) genericType;
-			if (fixerOperatorType.getUri().equals(FIXEDPOINT_URI)) { // no nesting
+			// no nesting
+			if (fixerOperatorType.getUri().equals(FIXEDPOINT_URI)) {
 				return false;
 			}
-			if (inputs.size() == 0) { // can't stop from infinite cycle
+			// would not stop from infinite cycle
+			if (inputs.size() == 0) {
 				return false;
 			}
-			if (fixerOperatorType.getInputs().size() != fixerOperatorType.getOutputs().size()) { // can't connect outputs and inputs
+			// no varargs for the fixer
+			if (Stream.concat(fixerOperatorType.getInputs().stream(), fixerOperatorType.getOutputs().stream())
+					.anyMatch(modelTypeEndpoint -> modelTypeEndpoint.getUpperBound() > 1)) {
 				return false;
 			}
+			// must connect outputs to inputs
+			if (fixerOperatorType.getInputs().size() != fixerOperatorType.getOutputs().size()) {
+				return false;
+			}
+			// inputs must be valid for the fixer
 			String runtimeTypingPreference = null;
 			if (inputs.get(0).getModel().isWorkflowsLevel()) {
 				runtimeTypingPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED);
@@ -75,7 +85,7 @@ public class FixedPoint extends NestingOperatorImpl {
 					.map(OperatorInput::getModel)
 					.collect(Collectors.toList()));
 			try {
-				if (fixerOperatorType.checkAllowedInputs(inputModels) == null) { // invalid inputs
+				if (fixerOperatorType.checkAllowedInputs(inputModels) == null) {
 					return false;
 				}
 
@@ -115,7 +125,6 @@ public class FixedPoint extends NestingOperatorImpl {
 		for (int i = 0; i < fixerOperatorType.getInputs().size(); i++) {
 			inputsByName.put(fixerOperatorType.getInputs().get(i).getName(), inputModels.get(i));
 		}
-		//TODO do something like this.getInputsByName(inputs); instead, to account for varargs
 		Map<ModelRel, List<Model>> validOutputs = MIDConstraintChecker.getOperatorOutputConstraints(fixerOperatorType.getClosestTypeConstraint(), inputsByName, outputsByName);
 		for (Entry<ModelRel, List<Model>> validOutput : validOutputs.entrySet()) {
 			ModelRel outputModelRel = validOutput.getKey();
