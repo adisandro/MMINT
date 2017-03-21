@@ -24,6 +24,7 @@ import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineR
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation;
@@ -34,6 +35,99 @@ import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
 public class SDSlice extends Slice {
 
+	private static final java.lang.Class<Lifeline> LIFELINE = Lifeline.class;
+	private static final java.lang.Class<Class> CLASS = Class.class;
+	private static final java.lang.Class<Attribute> ATTRIBUTE = Attribute.class;
+	private static final java.lang.Class<Operation> OPERATION = Operation.class;
+	private static final java.lang.Class<Message> MESSAGE = Message.class;
+	
+	// Checks whether the two input model elements are equivalent. 
+	@Override
+	public boolean isModelElemEqual(EObject obj1, EObject obj2) {
+		if (LIFELINE.isInstance(obj1) && LIFELINE.isInstance(obj2)) {
+			// Lifelines are considered equivalent if they have the same name
+			// and are connected to the same classes.
+			Lifeline l1 = LIFELINE.cast(obj1);
+			List<Class> cList1 = new ArrayList<Class>();
+			for (ClassReference cRef : l1.getClass_()) {
+				cList1.add(cRef.getTarget());
+			}
+			
+			Lifeline l2 = LIFELINE.cast(obj2);
+			List<Class> cList2 = new ArrayList<Class>();
+			for (ClassReference cRef : l2.getClass_()) {
+				cList2.add(cRef.getTarget());
+			}
+			
+			return l1.getName().equals(l2.getName()) && 
+					isElemListEqual(cList1, cList2);
+			
+		} else if (CLASS.isInstance(obj1) && CLASS.isInstance(obj2)) {
+			// Classes are considered equivalent if they have the same name.
+			Class c1 = CLASS.cast(obj1);
+			Class c2 = CLASS.cast(obj2);
+			
+			return c1.getName().equals(c2.getName());
+			
+		} else if (ATTRIBUTE.isInstance(obj1) && ATTRIBUTE.isInstance(obj2)) {
+			// Attributes are equivalent if they share the same names and 
+			// are used in the same messages.
+			Attribute a1 = ATTRIBUTE.cast(obj1);
+			List<AttributeReference> mRef1 = a1.getMessages();
+
+			Attribute a2 = ATTRIBUTE.cast(obj2);
+			List<AttributeReference> mRef2 = a2.getMessages();
+			
+			return a1.getName().equals(a2.getName()) && 
+					mRef1.containsAll(mRef2) &&
+					mRef2.containsAll(mRef1); isModelElemEqual(c1, c2);
+			
+		} else if (OPERATION.isInstance(obj1) && OPERATION.isInstance(obj2)) {
+			// Operations are equivalent if they share the same names and their 
+			// owner classes are also equivalent.
+			Operation o1 = OPERATION.cast(obj1);
+			Class c1 = o1.getOwner();
+			
+			Operation o2 = OPERATION.cast(obj2);
+			Class c2 = o2.getOwner();
+			
+			return o1.getName().equals(o2.getName()) && isModelElemEqual(c1, c2);
+
+		} else if (ASSOCIATION.isInstance(obj1) && ASSOCIATION.isInstance(obj2)) {
+			// Associations are equivalent if they share the same names and their 
+			// source classes and their target classes are equivalent.
+			Association a1 = ASSOCIATION.cast(obj1);
+			Class s1 = a1.getSource();
+			Class t1 = a1.getTarget();
+						
+			Association a2 = ASSOCIATION.cast(obj2);
+			Class s2 = a2.getSource();
+			Class t2 = a2.getTarget();
+			
+			return a1.getName().equals(a2.getName()) && 
+					isModelElemEqual(s1, s2) &&
+					isModelElemEqual(t1, t2);
+			
+		} else if (DEPENDENCY.isInstance(obj1) && DEPENDENCY.isInstance(obj2)) {
+			// Dependencies are equivalent if they have the same names and their
+			// depender and dependee classes are equivalent.
+			Dependency d1 = DEPENDENCY.cast(obj1);
+			Class s1 = d1.getDepender();
+			Class t1 = d1.getDependee();
+						
+			Dependency d2 = DEPENDENCY.cast(obj2);
+			Class s2 = d2.getDepender();
+			Class t2 = d2.getDependee();
+			
+			return d1.getName().equals(d2.getName()) && 
+					isModelElemEqual(s1, s2) &&
+					isModelElemEqual(t1, t2);		
+			
+		} else {
+			return false;
+		}
+	}
+	
 //	private static final String LIFELINE = 
 //		"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl";
 //	public static final String CLASS = 

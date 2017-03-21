@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -93,6 +92,38 @@ public class Slice extends OperatorImpl {
 	// calls to getEMFInstanceObject() will return different EMF instances.
 	public boolean isModelElemEqual(EObject obj1, EObject obj2) {
 		return true;
+	}
+	
+	// Checks whether the elements in the two input lists are equivalent.
+	// Note: It is assumed that there must be a one-to-one mapping between
+	// each element in the two input lists.
+	public boolean isElemListEqual(List<? extends EObject> list1, 
+			List<? extends EObject> list2) {
+		boolean equalFlag = true; 
+
+		for (EObject obj1 : list1) {
+			boolean curEqualFlag = false;
+			Iterator<? extends EObject> iter2 = list2.iterator();
+			
+			while (iter2.hasNext()) {
+				if (isModelElemEqual(obj1, iter2.next())) {
+					iter2.remove();
+					curEqualFlag = true;
+					break;						
+				}
+			}
+			
+			equalFlag = equalFlag && curEqualFlag;
+		}
+		
+		
+		if (!list2.isEmpty()) {
+			equalFlag = false;
+		}
+		
+		return equalFlag;
+		
+				
 	}
 
 	// Returns the complete list of model elements that may be impacted
