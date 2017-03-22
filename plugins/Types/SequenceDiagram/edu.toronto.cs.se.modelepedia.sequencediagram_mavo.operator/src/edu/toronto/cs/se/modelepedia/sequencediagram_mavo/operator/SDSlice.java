@@ -12,14 +12,10 @@
 package edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
@@ -73,253 +69,99 @@ public class SDSlice extends Slice {
 			// Attributes are equivalent if they share the same names and 
 			// are used in the same messages.
 			Attribute a1 = ATTRIBUTE.cast(obj1);
-			List<AttributeReference> mRef1 = a1.getMessages();
-
+			List<Message> mList1 = new ArrayList<Message>();
+			for (AttributeReference aRef : a1.getMessages()) {
+				mList1.add(aRef.getSource());
+			}
+			
 			Attribute a2 = ATTRIBUTE.cast(obj2);
-			List<AttributeReference> mRef2 = a2.getMessages();
+			List<Message> mList2 = new ArrayList<Message>();
+			for (AttributeReference aRef : a2.getMessages()) {
+				mList2.add(aRef.getSource());
+			}
 			
 			return a1.getName().equals(a2.getName()) && 
-					mRef1.containsAll(mRef2) &&
-					mRef2.containsAll(mRef1); isModelElemEqual(c1, c2);
+					isElemListEqual(mList1, mList2);
 			
 		} else if (OPERATION.isInstance(obj1) && OPERATION.isInstance(obj2)) {
-			// Operations are equivalent if they share the same names and their 
-			// owner classes are also equivalent.
+			// Operations are equivalent if they share the same names and 
+			// are used in the same messages.
 			Operation o1 = OPERATION.cast(obj1);
-			Class c1 = o1.getOwner();
+			List<Message> mList1 = new ArrayList<Message>();
+			for (OperationReference oRef : o1.getMessages()) {
+				mList1.add(oRef.getSource());
+			}
 			
 			Operation o2 = OPERATION.cast(obj2);
-			Class c2 = o2.getOwner();
+			List<Message> mList2 = new ArrayList<Message>();
+			for (OperationReference oRef : o2.getMessages()) {
+				mList2.add(oRef.getSource());
+			}
 			
-			return o1.getName().equals(o2.getName()) && isModelElemEqual(c1, c2);
+			return o1.getName().equals(o2.getName()) && 
+					isElemListEqual(mList1, mList2);
 
-		} else if (ASSOCIATION.isInstance(obj1) && ASSOCIATION.isInstance(obj2)) {
-			// Associations are equivalent if they share the same names and their 
-			// source classes and their target classes are equivalent.
-			Association a1 = ASSOCIATION.cast(obj1);
-			Class s1 = a1.getSource();
-			Class t1 = a1.getTarget();
-						
-			Association a2 = ASSOCIATION.cast(obj2);
-			Class s2 = a2.getSource();
-			Class t2 = a2.getTarget();
+		} else if (MESSAGE.isInstance(obj1) && MESSAGE.isInstance(obj2)) {
+			// Messages are considered equivalent if they have the same name.
+			Message m1 = MESSAGE.cast(obj1);
+			Message m2 = MESSAGE.cast(obj2);
 			
-			return a1.getName().equals(a2.getName()) && 
-					isModelElemEqual(s1, s2) &&
-					isModelElemEqual(t1, t2);
-			
-		} else if (DEPENDENCY.isInstance(obj1) && DEPENDENCY.isInstance(obj2)) {
-			// Dependencies are equivalent if they have the same names and their
-			// depender and dependee classes are equivalent.
-			Dependency d1 = DEPENDENCY.cast(obj1);
-			Class s1 = d1.getDepender();
-			Class t1 = d1.getDependee();
-						
-			Dependency d2 = DEPENDENCY.cast(obj2);
-			Class s2 = d2.getDepender();
-			Class t2 = d2.getDependee();
-			
-			return d1.getName().equals(d2.getName()) && 
-					isModelElemEqual(s1, s2) &&
-					isModelElemEqual(t1, t2);		
+			return m1.getName().equals(m2.getName());
 			
 		} else {
 			return false;
 		}
 	}
 	
-//	private static final String LIFELINE = 
-//		"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl";
-//	public static final String CLASS = 
-//		"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl";
-//	private static final String ATTRIBUTE = 
-//		"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.AttributeImpl";
-//	private static final String OPERATION = 
-//		"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.OperationImpl";
-//	private static final String MESSAGE = 
-//		"edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.MessageImpl";
-//
-//	@Override
-//	public List<EObject> getAllModelElements(Model in, EObject root) throws MMINTException{
-//		SequenceDiagram root2 = (SequenceDiagram) root; 
-//		List<EObject> unchecked = new ArrayList<EObject>();
-//		List<Class> classes = root2.getClasses();
-//		for (Class elem : classes) {
-//			unchecked.add(elem);
-//			unchecked.addAll(elem.getAttributes());
-//			unchecked.addAll(elem.getOperations());
-//		}
-//		unchecked.addAll(root2.getLifelines());
-//		unchecked.addAll(root2.getMessages());
-//		
-//		return unchecked;
-//	}
-//
-//	// Iterate through the unchecked list of class diagram elements to
-//	// identify all those which are included in the input criterion.
-//	@Override
-//	public List<EObject> matchCriterionToModelElements(List<EObject> unchecked, List<String> criterionList)
-//	{
-//		List<EObject> unprocessed = new ArrayList<EObject>();
-//
-//		Iterator<EObject> uncheckedIter = unchecked.iterator();
-//		while (uncheckedIter.hasNext()) {
-//			EObject elem = uncheckedIter.next();
-//
-//			switch (elem.getClass().getName()) {
-//				case LIFELINE:
-//					Lifeline l = (Lifeline) elem;
-//	    				if (criterionList.contains(l.getName())) {
-//						unprocessed.add(l);
-//						System.out.println("Criterion Added: " + l.getName());
-//						uncheckedIter.remove();
-//					}
-//					break;
-//
-//				case CLASS:
-//					Class c = (Class) elem;
-//	    				if (criterionList.contains(c.getName())) {
-//						unprocessed.add(c);
-//						System.out.println("Criterion Added: " + c.getName());
-//						uncheckedIter.remove();
-//					}
-//					break;
-//
-//				case ATTRIBUTE:
-//					Attribute a = (Attribute) elem;
-//	    				if (criterionList.contains(a.getName())) {
-//						unprocessed.add(a);
-//						System.out.println("Criterion Added: " + a.getName());
-//						uncheckedIter.remove();
-//					}
-//					break;	
-//
-//				case OPERATION:
-//					Operation o = (Operation) elem;
-//	    				if (criterionList.contains(o.getName())) {
-//						unprocessed.add(o);
-//						System.out.println("Criterion Added: " + o.getName());
-//						uncheckedIter.remove();
-//					}
-//					break;	
-//
-//				case MESSAGE:
-//					Message m = (Message) elem;
-//	    				if (criterionList.contains(m.getName())) {
-//						unprocessed.add(m);
-//						System.out.println("Criterion Added: " + m.getName());
-//						uncheckedIter.remove();
-//					}
-//					break;
-//			}
-//		}
-//		return unprocessed;
-//	}
-//
-//	@Override
-//	public List<EObject> getImpactedElements(List<EObject> unprocessed, List<EObject> unchecked){
-//		List<EObject> changed = new ArrayList<EObject>();
-//		Iterator<EObject> unprocessedIter = unprocessed.iterator();
-//		while (unprocessedIter.hasNext()) {
-//			System.out.println("Elements to be processed: " + 
-//				+ unprocessed.size());
-//			EObject obj = unprocessedIter.next();
-//
-//			if (changed.contains(obj)){
-//				// This element has already been checked for dependencies.
-//				unprocessed.remove(obj);
-//
-//			} else {
-//				unprocessed.remove(obj);
-//				changed.add(obj);
-//
-//				switch (obj.getClass().getName()) {
-//					case LIFELINE:
-//						Lifeline refL = (Lifeline) obj;
-//						System.out.println("Current element: Lifeline " 
-//							+ refL.getName());
-//
-//						// Get all elements affected by the impacted lifeline.
-//						// According to rule SD5, these elements are:
-//						// - Arrows connected to the lifeline (not applicable)
-//						// - Messages on arrows connected to the lifeline
-//						List<SourceLifelineReference> srcRefList = 
-//							refL.getMessagesAsSource();
-//						List<TargetLifelineReference> tarRefList = 
-//							refL.getMessagesAsTarget();
-//
-//						List<Message> msgListL = new ArrayList<Message>();
-//						for (SourceLifelineReference srcRef : srcRefList) {
-//							msgListL.add(srcRef.getSource());
-//						}
-//						for (TargetLifelineReference tarRef : tarRefList) {
-//							msgListL.add(tarRef.getSource());
-//						}
-//
-//						unprocessed.addAll(msgListL);
-//						unchecked.removeAll(msgListL);
-//
-//						break;
-//	
-//					case CLASS:
-//						// Get all elements affected by the impacted class.
-//						// TODO Double-check what the rule is for classes.
-//						Class refC = (Class) obj;
-//						System.out.println("Current element: Class " + refC.getName());
-//						break;
-//
-//					case ATTRIBUTE:
-//						Attribute refAt = (Attribute) obj;
-//						System.out.println("Current element: Attr " + refAt.getName());
-//						
-//						// Get all elements affected by the impacted lifeline.
-//						// From rule SD1, if the component being assessed is a 
-//						// "term" (taken to mean an attribute or operation), 
-//						// then the associated "expression" is potentially impacted,
-//						// which is not applicable in MMINT. However, according to
-//						// rule SD2, if an expression is impacted, then the associated
-//						// message will also be impacted.
-//						List<AttributeReference> atRefList = refAt.getMessages();
-//
-//						List<Message> msgListA = new ArrayList<Message>();
-//						for (AttributeReference atRef : atRefList) {
-//							msgListA.add(atRef.getSource());
-//						}
-//
-//						unprocessed.addAll(msgListA);
-//						unchecked.removeAll(msgListA);
-//						
-//						break;	
-//	
-//					case OPERATION:
-//						Operation refOp = (Operation) obj;
-//						System.out.println("Current element: Op " + refOp.getName());
-//						List<OperationReference> opRefList = refOp.getMessages();
-//
-//						List<Message> msgListO = new ArrayList<Message>();
-//						for (OperationReference opRef : opRefList) {
-//							msgListO.add(opRef.getSource());
-//						}
-//
-//						unprocessed.addAll(msgListO);
-//						unchecked.removeAll(msgListO);
-//						
-//						break;	
-//						
-//					case MESSAGE:
-//						// Get all elements affected by the impacted message.
-//						// According to rule SD3, the only affected element is
-//						// the associated arrow, which is not applicable in MMINT.
-//						// Note: Since arrows are not modelled explicitly in MMINT,
-//						// rule SD4 is also not applicable.
-//						Message refM = (Message) obj;
-//						System.out.println("Current element: Message " + refM.getName());
-//						break;
-//				}
-//			}
-//
-//			unprocessedIter = unprocessed.iterator();
-//		}
-//		return changed;
-//	}
+	// Checks whether the first input model element is potentially
+	// impacted by the second second input model element.
+	// Note: It is assumed that if the two input elements are equivalent,
+	// then the function should return true.
+	@Override
+	public boolean isModelElemImpactedBy(EObject obj1, EObject obj2) {
+		boolean impactFlag = isModelElemEqual(obj1, obj2);
+		
+		if (LIFELINE.isInstance(obj2)) {
+			// If obj2 is a lifeline, then obj1 is potentially impacted if it 
+			// is a message connected to obj2.
+			Lifeline l = LIFELINE.cast(obj2);			
+			for (SourceLifelineReference srcRef : l.getMessagesAsSource()) {
+				impactFlag = impactFlag || 
+						isModelElemEqual(obj1, srcRef.getSource());
+			}
+			
+			for (TargetLifelineReference tarRef : l.getMessagesAsTarget()) {
+				impactFlag = impactFlag || 
+						isModelElemEqual(obj1, tarRef.getSource());
+			}
+			
+		} else if (CLASS.isInstance(obj2)) {
+			// It is assumed that if obj2 is a class, then obj1 is potentially 
+			// impacted only if it is equivalent to obj2.
+			
+		} else if (ATTRIBUTE.isInstance(obj2)) {
+			// If obj2 is an attribute, then obj1 is potentially impacted if 
+			// obj1 is a message that refers to obj2.
+			Attribute a = ATTRIBUTE.cast(obj2);
+			for (AttributeReference aRef : a.getMessages()) {
+				impactFlag = impactFlag ||
+						isModelElemEqual(obj1, aRef.getSource());
+			}
+			
+		} else if (OPERATION.isInstance(obj2)) {
+			// If obj2 is an operation, then obj1 is potentially impacted if 
+			// obj1 is a message that refers to obj2.
+			Operation o = OPERATION.cast(obj2);
+			for (OperationReference oRef : o.getMessages()) {
+				impactFlag = impactFlag ||
+						isModelElemEqual(obj1, oRef.getSource());
+			}
+			
+		} else if (MESSAGE.isInstance(obj2)) {
+			// If obj2 is a message, then obj1 is potentially impacted 
+			// only if it is equivalent to obj2.
+		}
+		
+		return impactFlag;
+	}
 }
