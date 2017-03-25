@@ -46,6 +46,8 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -151,9 +153,71 @@ public class FixedPoint extends NestingOperatorImpl {
         }
     }
 
+    private boolean isFixed(Model model1, Model model2) {
+
+        ResourceSet srcResourceSet = new ResourceSetImpl();
+        srcResourceSet.getResource(URI.createPlatformResourceURI(model1.getUri(), true), true);
+        ResourceSet tgtResourceSet = new ResourceSetImpl();
+        tgtResourceSet.getResource(URI.createPlatformResourceURI(model2.getUri(), true), true);
+        IComparisonScope scope = new DefaultComparisonScope(srcResourceSet, tgtResourceSet, null);
+        Comparison comparison = EMFCompare.builder().build().compare(scope);
+        if (!comparison.getDifferences().isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private Map<String, Integer> getEndpointRefsMap(List<? extends ExtendibleElementEndpointReference> endpointRefs) {
+
+        Map<String, Integer> endpointRefsMap = new HashMap<>();
+        for (ExtendibleElementEndpointReference endpointRef : endpointRefs) {
+            String endpointTargetUri = endpointRef.getTargetUri();
+            Integer numEndpoints = endpointRefsMap.putIfAbsent(endpointTargetUri, new Integer(1));
+            if (numEndpoints != null) {
+                endpointRefsMap.put(endpointTargetUri, new Integer(numEndpoints + 1));
+            }
+        }
+
+        return endpointRefsMap;
+    }
+
+    private Map<Map<String, Integer>, Integer> getMappingRefsMap(List<MappingReference> mappingRefs) {
+
+        Map<Map<String, Integer>, Integer> mappingRefsMap = new HashMap<>();
+        for (MappingReference mappingRef : mappingRefs) {
+            Map<String, Integer> endpointRefsMap = this.getEndpointRefsMap(mappingRef.getModelElemEndpointRefs());
+            Integer numMappings = mappingRefsMap.putIfAbsent(endpointRefsMap, new Integer(1));
+            if (numMappings != null) {
+                mappingRefsMap.put(endpointRefsMap, new Integer(numMappings + 1));
+            }
+        }
+
+        return mappingRefsMap;
+    }
+
+    private boolean isFixed(ModelRel modelRel1, ModelRel modelRel2) {
+
+        if (modelRel1.getModelEndpointRefs().size() != modelRel2.getModelEndpointRefs().size() ||
+            modelRel1.getMappingRefs().size() != modelRel2.getMappingRefs().size()) {
+            return false;
+        }
+        Map<String, Integer> modelEndpointRefs1 = this.getEndpointRefsMap(modelRel1.getModelEndpointRefs());
+        Map<String, Integer> modelEndpointRefs2 = this.getEndpointRefsMap(modelRel2.getModelEndpointRefs());
+        if (!modelEndpointRefs1.equals(modelEndpointRefs2)) {
+            return false;
+        }
+        Map<Map<String, Integer>, Integer> mappingRefs1 = this.getMappingRefsMap(modelRel1.getMappingRefs());
+        Map<Map<String, Integer>, Integer> mappingRefs2 = this.getMappingRefsMap(modelRel2.getMappingRefs());
+        if (!mappingRefs1.equals(mappingRefs2)) {
+            return false;
+        }
+
+        return true;
+    }
+
     private boolean areFixed(@NonNull List<Model> inModels, @NonNull List<Model> outModels) throws MMINTException {
 
-        //TODO MMINT[MODELS17] Handle model rels
         Model midModelType = MIDTypeRegistry.getMIDModelType();
         for (int i = 0; i < inModels.size(); i++) {
             Model inModel = inModels.get(i), outModel = outModels.get(i);
@@ -169,14 +233,15 @@ public class FixedPoint extends NestingOperatorImpl {
                 }
             }
             else {
-                ResourceSet srcResourceSet = new ResourceSetImpl();
-                srcResourceSet.getResource(URI.createPlatformResourceURI(inModel.getUri(), true), true);
-                ResourceSet tgtResourceSet = new ResourceSetImpl();
-                tgtResourceSet.getResource(URI.createPlatformResourceURI(outModel.getUri(), true), true);
-                IComparisonScope scope = new DefaultComparisonScope(srcResourceSet, tgtResourceSet, null);
-                Comparison comparison = EMFCompare.builder().build().compare(scope);
-                if (!comparison.getDifferences().isEmpty()) {
-                    return false;
+                if (inModel instanceof ModelRel) { // model relationships
+                    if (!this.isFixed((ModelRel) inModel, (ModelRel) outModel)) {
+                        return false;
+                    }
+                }
+                else { // models
+                    if (!this.isFixed(inModel, outModel)) {
+                        return false;
+                    }
                 }
             }
         }
