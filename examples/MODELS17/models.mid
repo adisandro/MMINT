@@ -4,13 +4,13 @@
   <models uri="/MODELS17/cd2.classdiagram" name="cd2" metatypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram" dynamic="true" origin="CREATED" fileExtension="classdiagram" editors="//@editors.1"/>
   <models xsi:type="mavomid:MAVOModel" uri="/MODELS17/sd1.icse15_sequencediagram_mavo" name="sd1" metatypeUri="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="icse15_sequencediagram_mavo" editors="//@editors.2"/>
   <models xsi:type="mavomid:MAVOModel" uri="/MODELS17/sd2.icse15_sequencediagram_mavo" name="sd2" metatypeUri="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO" dynamic="true" origin="CREATED" fileExtension="icse15_sequencediagram_mavo" editors="//@editors.3"/>
-  <models xsi:type="relationship:ModelRel" uri="" name="cd1->sd1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:ModelRel" uri="" name="cd1&lt;->sd1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="cd1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
     <modelEndpoints uri="" name="sd1" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
     <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.0" modifiable="true"/>
     <modelEndpointRefs referencedObject="//@models.4/@modelEndpoints.1" modifiable="true"/>
   </models>
-  <models xsi:type="relationship:ModelRel" uri="" name="cd2->sd2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+  <models xsi:type="relationship:ModelRel" uri="" name="cd2&lt;->sd2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
     <modelEndpoints uri="" name="cd2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <modelEndpoints uri="" name="sd2" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
     <modelEndpointRefs referencedObject="//@models.5/@modelEndpoints.0" modifiable="true"/>
