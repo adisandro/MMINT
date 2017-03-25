@@ -79,7 +79,7 @@ public class FixedPoint extends NestingOperatorImpl {
             }
             // no varargs for the fixer
             if (Stream.concat(fixerOperatorType.getInputs().stream(), fixerOperatorType.getOutputs().stream())
-                    .anyMatch(modelTypeEndpoint -> modelTypeEndpoint.getUpperBound() > 1)) {
+                      .anyMatch(modelTypeEndpoint -> modelTypeEndpoint.getUpperBound() > 1)) {
                 return false;
             }
             // must connect outputs to inputs
@@ -95,8 +95,8 @@ public class FixedPoint extends NestingOperatorImpl {
             }
             EList<Model> inputModels = ECollections.asEList(
                 inputs.stream()
-                    .map(OperatorInput::getModel)
-                    .collect(Collectors.toList()));
+                      .map(OperatorInput::getModel)
+                      .collect(Collectors.toList()));
             try {
                 if (fixerOperatorType.checkAllowedInputs(inputModels) == null) {
                     return false;

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -40,6 +40,9 @@ public class ModelRelPropagation extends OperatorImpl {
 
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			if (modelRel1 == modelRel2) {
+			    return false;
+			}
 			if (modelRel1.getModelEndpoints().size() != 1 || modelRel2.getModelEndpoints().size() != 2) {
 				return false;
 			}

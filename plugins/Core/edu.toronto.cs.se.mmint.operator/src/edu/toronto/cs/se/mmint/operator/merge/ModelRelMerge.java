@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -53,6 +53,9 @@ public class ModelRelMerge extends OperatorImpl {
 
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+            if (modelRel1 == modelRel2) {
+                return false;
+            }
 			if ( // works with unary and binary rels, as long as they're both unary or both binary
 				modelRel1.getModelEndpoints().size() == 0 ||
 				modelRel2.getModelEndpoints().size() == 0 ||
@@ -131,6 +134,13 @@ public class ModelRelMerge extends OperatorImpl {
 		}
 
 	}
+
+	@Override
+    public boolean isCommutative() {
+
+	    //TODO MMINT[OPERATOR] Should it be in the xml schema, or is it part of the effort to have as much as possible in the code?
+        return true;
+    }
 
 	private void populate(ModelRel mergedModelRel, ModelRel origModelRel, MID instanceMID) throws MMINTException {
 
