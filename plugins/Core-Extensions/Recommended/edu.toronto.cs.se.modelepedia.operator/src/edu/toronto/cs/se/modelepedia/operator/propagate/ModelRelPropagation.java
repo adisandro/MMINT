@@ -75,17 +75,19 @@ public class ModelRelPropagation extends OperatorImpl {
 		ModelRel propRel = origRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2), outputMID);
 		
 		// Retrieve the model elements in the original model relation.
+		// Note: traceRel and origRel may refer to different copies of the same 
+		// model instance. Therefore, to identify the corresponding elements of
+		// each copy, their URIs will be used.
 		ModelEndpointReference origRelEndpoint = origRel.getModelEndpointRefs().get(0);
-		List<ModelElement> origElemList = new ArrayList<ModelElement>();
+		List<String> origElemList = new ArrayList<String>();
 		for (ModelElementReference mer : origRelEndpoint.getModelElemRefs()) {
-			ModelElement obj = mer.getObject();
-			origElemList.add(obj);
-			System.out.println("Retrieving from original model: " + obj);
+			String uri = mer.getObject().getUri();
+			origElemList.add(uri);
+			System.out.println("Retrieving from original model: " + uri);
 		}
 		
 		// Retrieve the mappings from the trace model relation.
 		List<Mapping> mappingList = traceRel.getMappings();
-		
 		
 		// Iterate through the mappings to retrieve each model element in the 
 		// second model that corresponds to the model elements retrieved from
@@ -101,7 +103,8 @@ public class ModelRelPropagation extends OperatorImpl {
 			
 			Iterator<ModelElementEndpoint> iter = meeList.iterator();
 			while (iter.hasNext()) {
-				if (origElemList.contains(iter.next().getTarget())) {
+				String curUri = iter.next().getTarget().getUri();
+				if (origElemList.contains(curUri)) {
 					relevantFlag = true;
 					break;
 				}
@@ -111,9 +114,9 @@ public class ModelRelPropagation extends OperatorImpl {
 				ModelElement obj;
 				for (ModelElementEndpoint mee : meeList) {
 					obj = mee.getTarget();
-					if (!origElemList.contains(obj)) {
+					if (!origElemList.contains(obj.getUri())) {
 						traceElemList.add(obj);
-						System.out.println("Tracing to: " + obj);
+						System.out.println("Tracing to: " + obj.getUri());
 					}
 				}
 			}
