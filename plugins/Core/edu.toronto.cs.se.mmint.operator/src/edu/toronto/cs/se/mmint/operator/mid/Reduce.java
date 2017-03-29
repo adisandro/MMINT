@@ -36,7 +36,6 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -260,23 +259,22 @@ public class Reduce extends NestingOperatorImpl {
 			}
 		}
 		if (nestedMIDPath != null) {
-			this.inMemoryNestedMID = reducedMID;
+			super.inMemoryNestedMID = reducedMID;
 			super.writeNestedInstanceMID();
 			//TODO MMINT[REDUCE] Transform input/output into shortcuts
-			MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 			reducedMID = MIDFactory.eINSTANCE.createMID();
 			reducedMID.setLevel(MIDLevel.INSTANCES);
-			for (Model model : accumulatorOutputsByName.values()) {
-				if (model instanceof ModelRel) {
+			for (Model reducedModel : accumulatorOutputsByName.values()) {
+				if (reducedModel instanceof ModelRel) {
 					continue;
 				}
-				model.getMetatype().importInstance(model.getUri(), reducedMID);
+				reducedModel.getMetatype().importInstance(reducedModel.getUri(), reducedMID);
 			}
-			for (Model model : accumulatorOutputsByName.values()) {
-				if (!(model instanceof ModelRel)) {
+			for (Model reducedModelRel : accumulatorOutputsByName.values()) {
+				if (!(reducedModelRel instanceof ModelRel)) {
 					continue;
 				}
-				((ModelRel) model).getMetatype().copyInstance(model, model.getName(), reducedMID);
+				((ModelRel) reducedModelRel).getMetatype().copyInstance(reducedModelRel, reducedModelRel.getName(), reducedMID);
 			}
 		}
 

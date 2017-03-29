@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -226,10 +227,8 @@ public class FixedPoint extends NestingOperatorImpl {
                 if (inMID.getModels().size() != outMID.getModels().size()) {
                     return false;
                 }
-                for (int j = 0; j < inMID.getModels().size(); j++) {
-                    if (!this.areFixed(inMID.getModels(), outMID.getModels())) {
-                        return false;
-                    }
+                if (!this.areFixed(inMID.getModels(), outMID.getModels())) {
+                    return false;
                 }
             }
             else {
@@ -250,22 +249,60 @@ public class FixedPoint extends NestingOperatorImpl {
     }
 
     private @NonNull List<Model> fix(@NonNull List<Model> models, @NonNull Operator fixerOperatorType,
-                                     @NonNull Map<String, MID> instanceMIDsByFixerOutputs) throws Exception {
+                                     @NonNull Map<String, MID> outputMIDsByFixerOutputs) throws Exception {
 
-		//TODO MMINT[MODELS17] Add nested MID support (fixerOutputsByName + startInstance's instanceMID)
-    	EList<Model> inModels;
+        // prepare nested MID
+        MID fixingMID = super.getNestedInstanceMID();
+        if (fixingMID != null) {
+            super.createNestedInstanceMIDModelShortcuts(models, new MIDDiagramViewProvider());
+        }
+
+        // fixer loop
+        EList<Model> inModels;
         EList<Model> outModels = ECollections.asEList(models);
+        Operator fixerOperator;
         do {
-        	inModels = outModels;
+            inModels = outModels;
             EList<OperatorInput> fixerInputs = fixerOperatorType.checkAllowedInputs(inModels);
             EList<OperatorGeneric> fixerGenerics = fixerOperatorType.selectAllowedGenerics(fixerInputs);
             Map<String, MID> fixerOutputsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(fixerOperatorType,
-                                                                                                null);
-            Operator fixerOperator = fixerOperatorType.startInstance(fixerInputs, null, fixerGenerics,
-                                                                     fixerOutputsByName, null);
+                                                                                                fixingMID);
+            //TODO MMINT[NESTING] Add api to set the view provider once and for all globally in MMINT
+            fixerOperator = fixerOperatorType.startInstance(fixerInputs, null, fixerGenerics, fixerOutputsByName,
+                                                            fixingMID);
             outModels = fixerOperator.getOutputModels();
         }
+        //TODO MMINT[FIXEDPOINT] How to compare mids when the order of inner models is different? Just make Map run reproducibly (List instead of Set)?
         while (!this.areFixed(inModels, outModels));
+
+        // copy final outputs into proper instance MIDs
+        Map<String, Model> outModelsByName = fixerOperator.getOutputsByName();
+        for (Entry<String, Model> fixedOut : outModelsByName.entrySet()) {
+            Model fixedModel = fixedOut.getValue();
+            if (fixedModel instanceof ModelRel) {
+                continue;
+            }
+            try {
+                //TODO MMINT[FIXEDPOINT] This is to catch Identity that does not generate a new model, should be more elegant
+                fixedModel.getMetatype().importInstance(fixedModel.getUri(),
+                                                        outputMIDsByFixerOutputs.get(fixedOut.getKey()));
+            }
+            catch (MMINTException e) {}
+        }
+        for (Entry<String, Model> fixedOut : outModelsByName.entrySet()) {
+            Model fixedModelRel = fixedOut.getValue();
+            if (!(fixedModelRel instanceof ModelRel)) {
+                continue;
+            }
+            ((ModelRel) fixedModelRel).getMetatype().copyInstance(fixedModelRel, fixedModelRel.getName(),
+                                                                  outputMIDsByFixerOutputs.get(fixedOut.getKey()));
+        }
+
+        // finalize nested MID
+        if (fixingMID != null) {
+            super.writeNestedInstanceMID();
+            //TODO MMINT[FIXEDPOINT] Transform fixingMID outputs into shortcuts
+        }
 
         return outModels;
     }
@@ -277,14 +314,14 @@ public class FixedPoint extends NestingOperatorImpl {
         // input
         List<Model> models = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
         Operator fixerOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-        Map<String, MID> instanceMIDsByFixerOutputs = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(
+        Map<String, MID> outputMIDsByFixerOutputs = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(
             outputMIDsByName,
             OUT_MODELS,
             fixerOperatorType.getOutputs());
         //TODO MMINT[MODELS17] Running a workflow as fixer breaks when traceability is disabled, because it can't detect the outputs
 
         // loop until outputs are equal to inputs
-        List<Model> fixedModels = this.fix(models, fixerOperatorType, instanceMIDsByFixerOutputs);
+        List<Model> fixedModels = this.fix(models, fixerOperatorType, outputMIDsByFixerOutputs);
 
         // output
         Map<String, Model> outputsByName = MIDOperatorIOUtils.setVarargs(fixedModels, OUT_MODELS);

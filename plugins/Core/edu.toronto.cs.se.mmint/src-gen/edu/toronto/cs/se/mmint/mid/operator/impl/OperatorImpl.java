@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -39,6 +39,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -49,11 +50,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.osgi.framework.Bundle;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -243,7 +244,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<ModelEndpoint> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+			inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
 		}
 		return inputs;
 	}
@@ -255,7 +256,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<ModelEndpoint> getOutputs() {
 		if (outputs == null) {
-			outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+			outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
 		}
 		return outputs;
 	}
@@ -267,7 +268,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	public EList<GenericEndpoint> getGenerics() {
 		if (generics == null) {
-			generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+			generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
 		}
 		return generics;
 	}
@@ -736,7 +737,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toStringGen() {
+	@Override
+    public String toStringGen() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -776,7 +778,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getMetatype() {
+	@Override
+    public Operator getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (Operator) metatype;
 	}
@@ -786,7 +789,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getSupertype() {
+	@Override
+    public Operator getSupertype() {
 		ExtendibleElement supertype = super.getSupertype();
 		return (supertype == null) ? null : (Operator) supertype;
 	}
@@ -796,13 +800,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MID getMIDContainer() {
+	@Override
+    public MID getMIDContainer() {
 		return (MID) this.eContainer();
 	}
 
 	/**
 	 * Adds a subtype of this operator type to the Type MID.
-	 * 
+	 *
 	 * @param newOperatorType
 	 *            The new operator type to be added.
 	 * @param newOperatorTypeName
@@ -893,7 +898,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Computes the cartesian product of inputs for this operator type.
-	 * 
+	 *
 	 * @param modelTypeEndpointInputs
 	 *            The allowed inputs for each formal parameter.
 	 * @param firstOnly
@@ -963,7 +968,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Checks if an input model can be used as actual parameter for a formal parameter of an operator type.
-	 * 
+	 *
 	 * @param inputModelTypeEndpoint
 	 *            The model type endpoint representing the formal parameter of an operator type.
 	 * @param inputModel
@@ -987,7 +992,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Gets all allowed inputs for each formal parameter of this operator type.
-	 * 
+	 *
 	 * @param inputMIDs
 	 *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
 	 *            different instance MID, following their order. If there are not enough instance MIDs, the last
@@ -1126,7 +1131,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 		MMINTException.mustBeInstance(this);
 
-		return new BasicEList<>(
+		return ECollections.toEList(
 			this.getOutputs().stream()
 				.map(outputModelEndpoint -> outputModelEndpoint.getTarget())
 				.collect(Collectors.toList()));
@@ -1134,7 +1139,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Adds an operator instance of this operator type to an Instance or Workflow MID.
-	 * 
+	 *
 	 * @param newOperator
 	 *            The new operator to be added.
 	 * @param midLevel
@@ -1177,10 +1182,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Deletes this operator instance from an Instance or Workflow MID.
-	 * 
+	 *
 	 * @param instanceMID
 	 *            The Instance or Workflow MID that contains the operator.
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	protected void deleteInstance(MID instanceMID) {
@@ -1219,7 +1224,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Gets the uri of the properties file of this operator.
-	 * 
+	 *
 	 * @param suffix
 	 *            The suffix of the properties file.
 	 * @return The uri of the properties file.
@@ -1278,7 +1283,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Adds an input model instance out of an input of an operator instance.
-	 * 
+	 *
 	 * @param input
 	 *            An input of an operator instance.
 	 * @param inputsByName
@@ -1303,7 +1308,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Gets the input model instances out of a list of inputs of an operator instance.
-	 * 
+	 *
 	 * @param inputs
 	 *            A list of inputs of an operator instance.
 	 * @return The input model instances, identified by their formal parameter name.
@@ -1321,12 +1326,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Creates the inputs of a new operator instance.
-	 * 
+	 *
 	 * @param newOperator
 	 *            The new operator instance that will be invoked with the input models.
 	 * @param inputs
 	 *            A list of inputs of the operator instance, including necessary conversions.
-	 * 
+	 *
 	 * @return The input model instances, identified by their formal parameter name.
 	 * @throws MMINTException
 	 *             If any input type endpoint is not a type.
@@ -1376,7 +1381,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Creates the generics of a new operator instance.
-	 * 
+	 *
 	 * @param newOperator
 	 *            The new operator instance that will be invoked with the generics.
 	 * @param generics
@@ -1401,7 +1406,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Creates the outputs of a new instance of this operator type.
-	 * 
+	 *
 	 * @param newOperator
 	 *            The new instance of this operator type.
 	 * @param inputsByName
@@ -1478,7 +1483,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Opens the java implementation of the metatype of this operator instance.
-	 * 
+	 *
 	 * @throws Exception
 	 *             If the java editor can't be opened.
 	 * @generated NOT
@@ -1530,7 +1535,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Creates the inputs of a new operator instance in a workflow.
-	 * 
+	 *
 	 * @param newOperator
 	 *            The new operator instance in a workflow.
 	 * @param inputs
@@ -1561,7 +1566,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
 	/**
 	 * Creates the generics of a new operator instance in a workflow.
-	 * 
+	 *
 	 * @param newOperator
 	 *            The new operator instance in a workflow.
 	 * @param generics
