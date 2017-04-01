@@ -136,9 +136,7 @@ public class Reduce extends NestingOperatorImpl {
 					accumulatorGenerics,
 					accumulatorOutputMIDsByName,
 					(nestedMIDPath != null) ? reducedMID : null);
-				if (nestedMIDPath != null) {
-					accumulatorOperator.setName(accumulatorOperator.getName() + i);
-				}
+				accumulatorOperator.setName(accumulatorOperator.getName() + i);
 				accumulatorOutputsByName = accumulatorOperator.getOutputsByName();
 				accumulatorOutputModels.addAll(
 					accumulatorOutputsByName.values().stream()
@@ -261,7 +259,7 @@ public class Reduce extends NestingOperatorImpl {
 		if (nestedMIDPath != null) {
 			super.inMemoryNestedMID = reducedMID;
 			super.writeNestedInstanceMID();
-			//TODO MMINT[REDUCE] Transform input/output into shortcuts
+			//TODO MMINT[NESTED] Transform input/output into shortcuts
 			reducedMID = MIDFactory.eINSTANCE.createMID();
 			reducedMID.setLevel(MIDLevel.INSTANCES);
 			for (Model reducedModel : accumulatorOutputsByName.values()) {

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -341,14 +342,11 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 *
 	 * @param models
 	 *            The external models.
-	 * @param viewProvider
-	 *            A specific GMF view provider to create nodes and edges, can be null if the GMF registry is queried
-	 *            instead.
 	 * @throws MMINTException
 	 *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
 	 * @generated NOT
 	 */
-	protected void createNestedInstanceMIDModelShortcuts(List<Model> models, IViewProvider viewProvider) throws MMINTException {
+	protected void createNestedInstanceMIDModelShortcuts(List<Model> models) throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
 
@@ -364,6 +362,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		Diagram nestedMIDDiagramRoot = this.getNestedInstanceMIDDiagramRoot();
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+		IViewProvider midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
 		// models first, then model rels
 		for (Model model : models) {
 			if (model instanceof BinaryModelRel) {
@@ -374,18 +373,20 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				nestedMIDDiagramRoot,
 				midDiagramPluginId,
 				midModelType.getName(),
-				viewProvider);
+				midViewProvider);
 			if (model instanceof Model) {
 				nestedMID.getExtendibleTable().put(model.getUri(), model);
 			}
 		}
-		for (Model model : models) {
-			if (!(model instanceof BinaryModelRel)) {
+		for (Model binaryModelRel : models) {
+			if (!(binaryModelRel instanceof BinaryModelRel)) {
 				continue;
 			}
 			// gmf shortcuts can't be created for links, fake the shortcut as an nary rel
 			String gmfTypeHint = GMFUtils.getGMFRegistryType(RelationshipFactory.eINSTANCE.createModelRel(), midDiagramPluginId + ".TypeContext");
-			Node gmfNode = viewProvider.createNode(new EObjectAdapter(model), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
+			Node gmfNode = (midViewProvider == null) ?
+				ViewService.createNode(nestedMIDDiagramRoot, binaryModelRel, gmfTypeHint, new PreferencesHint(midDiagramPluginId)) :
+				midViewProvider.createNode(new EObjectAdapter(binaryModelRel), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
 			GMFUtils.addGMFShortcut(gmfNode, midModelType.getName());
 			//TODO MMINT[NESTED] Can't create model rel endpoints, but maybe can use some simple connectors
 		}
@@ -431,7 +432,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				inputs.stream()
 					.map(OperatorInput::getModel)
 					.collect(Collectors.toList()));
-			this.createNestedInstanceMIDModelShortcuts(inputModels, null);
+			this.createNestedInstanceMIDModelShortcuts(inputModels);
 		}
 		// run nested operator
 		MID nestedMID = this.getNestedInstanceMID();
@@ -462,8 +463,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		super.deleteInstance();
 		String nestedMIDPath = this.getNestedMIDPath();
 		if (nestedMIDPath != null) {
-			for (Model nestedModel : new ArrayList<>(this.getNestedInstanceMID().getModels())) {
+		    MID nestedMID = this.getNestedInstanceMID();
+			for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
 				nestedModel.deleteInstanceAndFile();
+			}
+			for (Operator nestedOperator : new ArrayList<>(nestedMID.getOperators())) {
+			    nestedOperator.deleteInstance();
 			}
 			FileUtils.deleteFile(nestedMIDPath, true);
 			FileUtils.deleteFile(nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX, true);

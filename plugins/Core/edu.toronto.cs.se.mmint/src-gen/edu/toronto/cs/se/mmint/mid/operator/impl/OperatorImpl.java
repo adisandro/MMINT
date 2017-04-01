@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -908,7 +909,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 	 */
 	private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs, boolean firstOnly) {
 
-		Set<EList<OperatorInput>> operatorTypeInputSet = new HashSet<>();
+		Set<EList<OperatorInput>> operatorTypeInputSet = new LinkedHashSet<>(); // reproducible order
 		// if at least one is empty, there is no way to have a proper input for this operator
 		if (modelTypeEndpointInputs.stream().anyMatch(modelTypeEndpointInput -> modelTypeEndpointInput.isEmpty())) {
 			return operatorTypeInputSet;
@@ -920,7 +921,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 		}
 		while (true) {
 			// get current inputs
-			EList<OperatorInput> operatorTypeInputs = new BasicEList<>();
+			EList<OperatorInput> operatorTypeInputs = ECollections.newBasicEList();
 			for (int i = 0; i < indexes.length; i++) {
 				EList<OperatorInput> modelTypeEndpointInput = modelTypeEndpointInputs.get(i);
 				operatorTypeInputs.add(modelTypeEndpointInput.get(indexes[i]));
@@ -929,17 +930,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 				// add only if allowed and passes commutativity check
 				Map<String, Model> inputsByName = this.getInputsByName(operatorTypeInputs);
 				if (MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
-					boolean commutative = false;
+					boolean commutativeInput = false;
 					if (this.isCommutative()) {
 						Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
 						if (operatorTypeInputSetCommutative.contains(operatorTypeInputsCommutative)) {
-							commutative = true;
+							commutativeInput = true;
 						}
 						else {
 							operatorTypeInputSetCommutative.add(operatorTypeInputsCommutative);
 						}
 					}
-					if (!commutative) {
+					if (!commutativeInput) {
 						operatorTypeInputSet.add(operatorTypeInputs);
 						if (firstOnly) { // just return the first allowed
 							return operatorTypeInputSet;
