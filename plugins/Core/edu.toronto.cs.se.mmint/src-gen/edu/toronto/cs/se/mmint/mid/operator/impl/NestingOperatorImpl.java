@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -40,12 +41,14 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -346,7 +349,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
 	 * @generated NOT
 	 */
-	protected void createNestedInstanceMIDModelShortcuts(List<Model> models) throws MMINTException {
+	protected void createNestedInstanceMIDModelShortcuts(@NonNull List<Model> models) throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
 
@@ -391,6 +394,62 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 			//TODO MMINT[NESTED] Can't create model rel endpoints, but maybe can use some simple connectors
 		}
 	}
+
+    /**
+     * @generated NOT
+     */
+    protected @NonNull Map<Model, Model> replaceNestedModelsWithShortcuts(@NonNull Operator operator, @NonNull Map<String, MID> instanceMIDsByOperatorOutputs) throws MMINTException {
+
+        MMINTException.mustBeInstance(this);
+
+        MID nestedMID = this.getNestedInstanceMID();
+        Map<Model, Model> nestedToCopiedModels = new HashMap<>();
+        // models first
+        for (int i = 0; i < operator.getOutputs().size(); i++) {
+            ModelEndpoint nestedOutput = operator.getOutputs().get(i);
+            Model nestedModel = nestedOutput.getTarget();
+            if (nestedModel instanceof ModelRel) {
+                continue;
+            }
+            try {
+                Model copiedModel = nestedModel.getMetatype().importInstanceAndEditor(
+                    nestedModel.getUri(), instanceMIDsByOperatorOutputs.get(nestedOutput.getName()));
+                nestedOutput.setTarget(copiedModel);
+                if (nestedMID != null) {
+                    nestedMID.getModels().remove(nestedModel);
+                    nestedMID.getExtendibleTable().put(copiedModel.getUri(), copiedModel);
+                    nestedToCopiedModels.put(nestedModel, copiedModel);
+                }
+            }
+            //TODO MMINT[NESTED] This is to catch operators that don't generate a new model (like Identity), should be more elegant
+            catch (MMINTException e) {}
+        }
+        // model rels now
+        for (int i = 0; i < operator.getOutputs().size(); i++) {
+            ModelEndpoint nestedOutput = operator.getOutputs().get(i);
+            if (!(nestedOutput.getTarget() instanceof ModelRel)) {
+                continue;
+            }
+            ModelRel nestedModelRel = (ModelRel) nestedOutput.getTarget();
+            try {
+                ModelRel copiedModelRel = (ModelRel) nestedModelRel.getMetatype().copyInstance(
+                    nestedModelRel, nestedModelRel.getName(), instanceMIDsByOperatorOutputs.get(nestedOutput.getName()));
+                nestedOutput.setTarget(copiedModelRel);
+                if (nestedMID != null) {
+                    nestedMID.getModels().remove(nestedModelRel);
+                    nestedToCopiedModels.put(nestedModelRel, copiedModelRel);
+                }
+            }
+            //TODO MMINT[NESTED] This is to catch operators that don't generate a new model (like Identity), should be more elegant
+            catch (Exception e) {}
+        }
+
+        if (nestedMID != null) {
+            this.createNestedInstanceMIDModelShortcuts(new ArrayList<>(nestedToCopiedModels.values()));
+        }
+
+        return nestedToCopiedModels;
+    }
 
 	/**
 	 * Writes the nested Instance MID to file.
