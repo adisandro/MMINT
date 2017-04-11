@@ -12,9 +12,7 @@
 package edu.toronto.cs.se.modelepedia.kleisli.reasoning;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -25,18 +23,10 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
@@ -139,36 +129,6 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
 			}
 		}
-	}
-
-	@Override
-	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
-
-		return true;
-	}
-
-	@Override
-	public Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName, @NonNull OperatorConstraint constraint) {
-
-		return new HashMap<>();
-	}
-
-	@Override
-	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
-
-		return true;
-	}
-
-	@Override
-	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
-
-		return null;
 	}
 
 }

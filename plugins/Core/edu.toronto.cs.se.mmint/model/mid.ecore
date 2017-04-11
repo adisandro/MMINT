@@ -121,6 +121,8 @@
         <eBounds eClassifier="#//ExtendibleElement"/>
       </eTypeParameters>
     </eOperations>
+    <eOperations name="getClosestTypeConstraint" eType="#//ExtendibleElementConstraint"
+        eExceptions="#//MMINTException"/>
     <eOperations name="validateInstanceType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         eExceptions="#//MMINTException">
       <eParameters name="type" lowerBound="1" eType="#//ExtendibleElement"/>
@@ -1212,10 +1214,20 @@
           </eTypeArguments>
         </eGenericType>
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
+        <eParameters name="inputModelBlacklists" upperBound="-1">
+          <eGenericType eClassifier="#//operator/Set">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="findFirstAllowedInput" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
+        <eParameters name="inputModelBlacklists" upperBound="-1">
+          <eGenericType eClassifier="#//operator/Set">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
@@ -1235,12 +1247,6 @@
       <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
       <eOperations name="selectAllowedGenerics" upperBound="-1" eType="#//operator/OperatorGeneric"
           eExceptions="#//MMINTException">
-        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
-      </eOperations>
-      <eOperations name="isAllowedGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          eExceptions="#//MMINTException">
-        <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
-        <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
@@ -1282,7 +1288,7 @@
             <eTypeArguments eClassifier="#//MID"/>
           </eGenericType>
         </eParameters>
-        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+        <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
       <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
@@ -1290,11 +1296,21 @@
         <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
+      <eOperations name="createWorkflowInstanceOutputs" eExceptions="#//MMINTException">
+        <eParameters name="newOperator" lowerBound="1" eType="#//operator/Operator"/>
+        <eParameters name="inputsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+      </eOperations>
       <eOperations name="startWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
         <eParameters name="generics" upperBound="-1" eType="#//operator/OperatorGeneric"/>
-        <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+        <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openWorkflowInstance" eExceptions="#//operator/Exception"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
@@ -1475,50 +1491,6 @@
           lowerBound="1" eType="#//operator/GenericEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The generic formal parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorConstraint" eSuperTypes="#//ExtendibleElementConstraint">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A constraint for an operator."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="1"
-          upperBound="-1" eType="#//operator/OperatorConstraintRule" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The constraint's rules."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorConstraintRule">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A rule of an operator's constraint, specifies what are the endpoints of an output model relationship."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="outputModelRel" lowerBound="1"
-          eType="#//operator/OperatorConstraintParameter" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The reference to the output model relationship."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="endpointModels" lowerBound="1"
-          upperBound="-1" eType="#//operator/OperatorConstraintParameter" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A list of references to other inputs/outputs of the operator that are the endpoints of the output model relationship."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorConstraintParameter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A reference to an input or output parameter of an operator, to be used in an operator constraint."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterRef" lowerBound="1"
-          eType="#//relationship/ModelEndpointReference" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The reference to an input or output parameter of an operator."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endpointIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="An index to identify a model endpoint, if the referenced input or output parameter is a model relationship."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

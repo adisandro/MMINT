@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -43,7 +43,18 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class ModelMatch extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
+	// input-output
+	private final static @NonNull String IN_MODEL1 = "model1";
+	private final static @NonNull String IN_MODEL2 = "model2";
+	private final static @NonNull String OUT_MODELREL = "match";
+	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
+	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
+	// constants
+	private final static @NonNull String MODELREL_NAME = "match";
+
+	protected String matchAttribute;
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
@@ -56,18 +67,33 @@ public class ModelMatch extends OperatorImpl {
 
 			return true;
 		}
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			Input input = new Input(inputsByName);
+			ModelRel matchRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+			List<Model> endpointModels = new ArrayList<>();
+			endpointModels.add(input.model1);
+			endpointModels.add(input.model2);
+			validOutputs.put(matchRel, endpointModels);
+
+			return validOutputs;
+		}
 	}
 
-	// input-output
-	private final static @NonNull String IN_MODEL1 = "model1";
-	private final static @NonNull String IN_MODEL2 = "model2";
-	private final static @NonNull String OUT_MODELREL = "match";
-	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
-	private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
-	// constants
-	private final static @NonNull String MODELREL_NAME = "match";
+	private static class Input {
 
-	protected String matchAttribute;
+		private Model model1;
+		private Model model2;
+
+		public Input(Map<String, Model> inputsByName) {
+
+			this.model1 = inputsByName.get(IN_MODEL1);
+			this.model2 = inputsByName.get(IN_MODEL2);
+		}
+	}
 
 	@Override
 	public boolean isCommutative() {
@@ -157,11 +183,12 @@ public class ModelMatch extends OperatorImpl {
 		// input
 		//TODO MMINT[MAP] Reenable when map handles varargs
 		//List<Model> models = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MODEL1);
-		List<Model> models = new ArrayList<>();
-		models.add(inputsByName.get(IN_MODEL1));
-		models.add(inputsByName.get(IN_MODEL2));
+		Input input = new Input(inputsByName);
 
 		// create match
+		List<Model> models = new ArrayList<>();
+		models.add(input.model1);
+		models.add(input.model2);
 		ModelRel matchRel = match(models, outputMIDsByName.get(OUT_MODELREL));
 
 		// output

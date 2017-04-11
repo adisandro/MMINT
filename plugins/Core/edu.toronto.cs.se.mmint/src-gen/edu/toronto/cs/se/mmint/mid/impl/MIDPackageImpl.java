@@ -485,7 +485,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ValidateInstanceType__ExtendibleElement() {
+	public EOperation getExtendibleElement__GetClosestTypeConstraint() {
 		return extendibleElementEClass.getEOperations().get(8);
 	}
 
@@ -494,7 +494,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ValidateInstance() {
+	public EOperation getExtendibleElement__ValidateInstanceType__ExtendibleElement() {
 		return extendibleElementEClass.getEOperations().get(9);
 	}
 
@@ -503,7 +503,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext() {
+	public EOperation getExtendibleElement__ValidateInstance() {
 		return extendibleElementEClass.getEOperations().get(10);
 	}
 
@@ -512,7 +512,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__IsWorkflowsLevel() {
+	public EOperation getExtendibleElement__ValidateInstanceInEditor__IValidationContext() {
 		return extendibleElementEClass.getEOperations().get(11);
 	}
 
@@ -521,7 +521,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__UpdateWorkflowInstanceId__String() {
+	public EOperation getExtendibleElement__IsWorkflowsLevel() {
 		return extendibleElementEClass.getEOperations().get(12);
 	}
 
@@ -530,7 +530,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
+	public EOperation getExtendibleElement__UpdateWorkflowInstanceId__String() {
 		return extendibleElementEClass.getEOperations().get(13);
 	}
 
@@ -539,7 +539,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
+	public EOperation getExtendibleElement__ToMIDCustomPrintLabel() {
 		return extendibleElementEClass.getEOperations().get(14);
 	}
 
@@ -548,8 +548,17 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+	public EOperation getExtendibleElement__ToMIDCustomEditLabel() {
 		return extendibleElementEClass.getEOperations().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExtendibleElement__UpdateMIDCustomLabel__String() {
+		return extendibleElementEClass.getEOperations().get(16);
 	}
 
 	/**
@@ -1377,6 +1386,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___ADD_TYPE_CONSTRAINT__STRING_STRING);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___IS_INSTANCES_LEVEL);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES);
+		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE);
 		createEOperation(extendibleElementEClass, EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
@@ -1588,6 +1598,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 		addEException(op, this.getMMINTException());
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
+
+		op = initEOperation(getExtendibleElement__GetClosestTypeConstraint(), this.getExtendibleElementConstraint(), "getClosestTypeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getMMINTException());
 
 		op = initEOperation(getExtendibleElement__ValidateInstanceType__ExtendibleElement(), ecorePackage.getEBoolean(), "validateInstanceType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getExtendibleElement(), "type", 1, 1, IS_UNIQUE, IS_ORDERED);

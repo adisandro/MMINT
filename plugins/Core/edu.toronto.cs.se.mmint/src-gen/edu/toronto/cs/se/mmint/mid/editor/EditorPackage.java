@@ -250,6 +250,15 @@ public interface EditorPackage extends EPackage {
 	int EDITOR___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDITOR___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -582,6 +591,15 @@ public interface EditorPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIAGRAM___GET_RUNTIME_TYPES = EDITOR___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM___GET_CLOSEST_TYPE_CONSTRAINT = EDITOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.

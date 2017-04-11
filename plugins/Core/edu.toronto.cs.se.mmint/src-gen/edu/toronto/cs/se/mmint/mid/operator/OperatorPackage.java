@@ -287,6 +287,15 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___GET_RUNTIME_TYPES = MIDPackage.GENERIC_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,7 +428,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___FIND_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+	int OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -428,7 +437,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
+	int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -485,22 +494,13 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
-	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
-
-	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
+	int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -509,7 +509,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
+	int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Run</em>' operation.
@@ -518,7 +518,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
+	int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Start Instance</em>' operation.
@@ -527,7 +527,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
+	int OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
 	/**
 	 * The operation id for the '<em>Open Instance</em>' operation.
@@ -536,7 +536,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___OPEN_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
+	int OPERATOR___OPEN_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
 
 	/**
 	 * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -545,7 +545,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
+	int OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
 	/**
 	 * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -554,7 +554,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
+	int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -801,6 +810,15 @@ public interface OperatorPackage extends EPackage {
 	int CONVERSION_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -924,7 +942,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int CONVERSION_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -933,7 +951,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONVERSION_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int CONVERSION_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -988,15 +1006,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONVERSION_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -1060,6 +1069,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONVERSION_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -1333,6 +1351,15 @@ public interface OperatorPackage extends EPackage {
 	int RANDOM_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1465,7 +1492,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int RANDOM_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -1474,7 +1501,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int RANDOM_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -1529,15 +1556,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -1601,6 +1619,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -1856,6 +1883,15 @@ public interface OperatorPackage extends EPackage {
 	int NESTING_OPERATOR___GET_RUNTIME_TYPES = OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1988,7 +2024,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -1997,7 +2033,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2052,15 +2088,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NESTING_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -2124,6 +2151,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE = OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -2397,6 +2433,15 @@ public interface OperatorPackage extends EPackage {
 	int WORKFLOW_OPERATOR___GET_RUNTIME_TYPES = NESTING_OPERATOR___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT = NESTING_OPERATOR___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2529,7 +2574,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST = NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST;
+	int WORKFLOW_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = NESTING_OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -2538,7 +2583,7 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST;
+	int WORKFLOW_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = NESTING_OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST;
 
 	/**
 	 * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -2593,15 +2638,6 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORKFLOW_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = NESTING_OPERATOR___SELECT_ALLOWED_GENERICS__ELIST;
-
-	/**
-	 * The operation id for the '<em>Is Allowed Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = NESTING_OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST;
 
 	/**
 	 * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -2665,6 +2701,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORKFLOW_OPERATOR___DELETE_WORKFLOW_INSTANCE = NESTING_OPERATOR___DELETE_WORKFLOW_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = NESTING_OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID;
 
 	/**
 	 * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -2900,6 +2945,15 @@ public interface OperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int GENERIC_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -3147,153 +3201,6 @@ public interface OperatorPackage extends EPackage {
 	int OPERATOR_GENERIC_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl <em>Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
-	 * @generated
-	 */
-	int OPERATOR_CONSTRAINT = 8;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT__IMPLEMENTATION = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Language</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT__LANGUAGE = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE;
-
-	/**
-	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT__RULES = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_FEATURE_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_OPERATION_COUNT = MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl <em>Constraint Rule</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
-	 * @generated
-	 */
-	int OPERATOR_CONSTRAINT_RULE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Output Model Rel</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Endpoint Models</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Constraint Rule</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_RULE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Constraint Rule</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_RULE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl <em>Constraint Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl
-	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
-	 * @generated
-	 */
-	int OPERATOR_CONSTRAINT_PARAMETER = 10;
-
-	/**
-	 * The feature id for the '<em><b>Parameter Ref</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF = 0;
-
-	/**
-	 * The feature id for the '<em><b>Endpoint Index</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX = 1;
-
-	/**
-	 * The number of structural features of the '<em>Constraint Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_PARAMETER_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Constraint Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CONSTRAINT_PARAMETER_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '<em>Random</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3301,7 +3208,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getRandom()
 	 * @generated
 	 */
-	int RANDOM = 11;
+	int RANDOM = 8;
 
 
 	/**
@@ -3312,7 +3219,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 12;
+	int EXCEPTION = 9;
 
 
 	/**
@@ -3323,7 +3230,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getProperties()
 	 * @generated
 	 */
-	int PROPERTIES = 13;
+	int PROPERTIES = 10;
 
 
 	/**
@@ -3334,7 +3241,7 @@ public interface OperatorPackage extends EPackage {
 	 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getSet()
 	 * @generated
 	 */
-	int SET = 14;
+	int SET = 11;
 
 
 	/**
@@ -3496,24 +3403,24 @@ public interface OperatorPackage extends EPackage {
 	EOperation getOperator__OpenType();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList) <em>Find Allowed Inputs</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Find Allowed Inputs</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Find Allowed Inputs</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findAllowedInputs(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getOperator__FindAllowedInputs__EList();
+	EOperation getOperator__FindAllowedInputs__EList_EList();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList) <em>Find First Allowed Input</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Find First Allowed Input</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Find First Allowed Input</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList)
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#findFirstAllowedInput(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getOperator__FindFirstAllowedInput__EList();
+	EOperation getOperator__FindFirstAllowedInput__EList_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#checkAllowedInputs(org.eclipse.emf.common.util.EList) <em>Check Allowed Inputs</em>}' operation.
@@ -3574,16 +3481,6 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__SelectAllowedGenerics__EList();
-
-	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isAllowedGeneric(edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint, edu.toronto.cs.se.mmint.mid.GenericElement, org.eclipse.emf.common.util.EList) <em>Is Allowed Generic</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Allowed Generic</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#isAllowedGeneric(edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint, edu.toronto.cs.se.mmint.mid.GenericElement, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputProperties() <em>Get Input Properties</em>}' operation.
@@ -3654,6 +3551,16 @@ public interface OperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getOperator__DeleteWorkflowInstance();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, edu.toronto.cs.se.mmint.mid.MID) <em>Create Workflow Instance Outputs</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Create Workflow Instance Outputs</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.operator.Operator#createWorkflowInstanceOutputs(edu.toronto.cs.se.mmint.mid.operator.Operator, java.util.Map, edu.toronto.cs.se.mmint.mid.MID)
+	 * @generated
+	 */
+	EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#startWorkflowInstance(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, edu.toronto.cs.se.mmint.mid.MID) <em>Start Workflow Instance</em>}' operation.
@@ -3944,91 +3851,6 @@ public interface OperatorPackage extends EPackage {
 	EReference getOperatorGeneric_GenericSuperTypeEndpoint();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constraint</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint
-	 * @generated
-	 */
-	EClass getOperatorConstraint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint#getRules <em>Rules</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Rules</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint#getRules()
-	 * @see #getOperatorConstraint()
-	 * @generated
-	 */
-	EReference getOperatorConstraint_Rules();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule <em>Constraint Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constraint Rule</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule
-	 * @generated
-	 */
-	EClass getOperatorConstraintRule();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel <em>Output Model Rel</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Output Model Rel</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getOutputModelRel()
-	 * @see #getOperatorConstraintRule()
-	 * @generated
-	 */
-	EReference getOperatorConstraintRule_OutputModelRel();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEndpointModels <em>Endpoint Models</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Endpoint Models</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule#getEndpointModels()
-	 * @see #getOperatorConstraintRule()
-	 * @generated
-	 */
-	EReference getOperatorConstraintRule_EndpointModels();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter <em>Constraint Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constraint Parameter</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter
-	 * @generated
-	 */
-	EClass getOperatorConstraintParameter();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameterRef <em>Parameter Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Parameter Ref</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getParameterRef()
-	 * @see #getOperatorConstraintParameter()
-	 * @generated
-	 */
-	EReference getOperatorConstraintParameter_ParameterRef();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex <em>Endpoint Index</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Endpoint Index</em>'.
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter#getEndpointIndex()
-	 * @see #getOperatorConstraintParameter()
-	 * @generated
-	 */
-	EAttribute getOperatorConstraintParameter_EndpointIndex();
-
-	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4223,7 +4045,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___FIND_ALLOWED_INPUTS__ELIST = eINSTANCE.getOperator__FindAllowedInputs__EList();
+		EOperation OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = eINSTANCE.getOperator__FindAllowedInputs__EList_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Find First Allowed Input</b></em>' operation.
@@ -4231,7 +4053,7 @@ public interface OperatorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST = eINSTANCE.getOperator__FindFirstAllowedInput__EList();
+		EOperation OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = eINSTANCE.getOperator__FindFirstAllowedInput__EList_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Allowed Inputs</b></em>' operation.
@@ -4280,14 +4102,6 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = eINSTANCE.getOperator__SelectAllowedGenerics__EList();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Allowed Generic</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATOR___IS_ALLOWED_GENERIC__GENERICENDPOINT_GENERICELEMENT_ELIST = eINSTANCE.getOperator__IsAllowedGeneric__GenericEndpoint_GenericElement_EList();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Input Properties</b></em>' operation.
@@ -4344,6 +4158,14 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation OPERATOR___DELETE_WORKFLOW_INSTANCE = eINSTANCE.getOperator__DeleteWorkflowInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Create Workflow Instance Outputs</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = eINSTANCE.getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Start Workflow Instance</b></em>' operation.
@@ -4582,76 +4404,6 @@ public interface OperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT = eINSTANCE.getOperatorGeneric_GenericSuperTypeEndpoint();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl <em>Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintImpl
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraint()
-		 * @generated
-		 */
-		EClass OPERATOR_CONSTRAINT = eINSTANCE.getOperatorConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_CONSTRAINT__RULES = eINSTANCE.getOperatorConstraint_Rules();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl <em>Constraint Rule</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintRuleImpl
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintRule()
-		 * @generated
-		 */
-		EClass OPERATOR_CONSTRAINT_RULE = eINSTANCE.getOperatorConstraintRule();
-
-		/**
-		 * The meta object literal for the '<em><b>Output Model Rel</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_CONSTRAINT_RULE__OUTPUT_MODEL_REL = eINSTANCE.getOperatorConstraintRule_OutputModelRel();
-
-		/**
-		 * The meta object literal for the '<em><b>Endpoint Models</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_CONSTRAINT_RULE__ENDPOINT_MODELS = eINSTANCE.getOperatorConstraintRule_EndpointModels();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl <em>Constraint Parameter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorConstraintParameterImpl
-		 * @see edu.toronto.cs.se.mmint.mid.operator.impl.OperatorPackageImpl#getOperatorConstraintParameter()
-		 * @generated
-		 */
-		EClass OPERATOR_CONSTRAINT_PARAMETER = eINSTANCE.getOperatorConstraintParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Parameter Ref</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATOR_CONSTRAINT_PARAMETER__PARAMETER_REF = eINSTANCE.getOperatorConstraintParameter_ParameterRef();
-
-		/**
-		 * The meta object literal for the '<em><b>Endpoint Index</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPERATOR_CONSTRAINT_PARAMETER__ENDPOINT_INDEX = eINSTANCE.getOperatorConstraintParameter_EndpointIndex();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

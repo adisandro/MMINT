@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -40,13 +40,16 @@ public class ModelRelPropagation extends OperatorImpl {
 	private final static @NonNull String IN_MODELREL2 = "trace";
 	private final static @NonNull String OUT_MODELREL = "propagated";
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
 			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
 			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+			if (modelRel1 == modelRel2) {
+			    return false;
+			}
 			if (modelRel1.getModelEndpoints().size() != 1 || modelRel2.getModelEndpoints().size() != 2) {
 				return false;
 			}
@@ -62,16 +65,43 @@ public class ModelRelPropagation extends OperatorImpl {
 
 			return false;
 		}
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			Input input = new Input(inputsByName);
+			ModelRel propRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+			List<Model> endpointModels = new ArrayList<>();
+			endpointModels.add(input.model2);
+			validOutputs.put(propRel, endpointModels);
+
+			return validOutputs;
+		}
 	}
 
-	private ModelRel propagate(ModelRel origRel, ModelRel traceRel, MID outputMID) throws MMINTException {
+	private static class Input {
 
-		Model model1 = origRel.getModelEndpoints().get(0).getTarget();
-		Model model2 = traceRel.getModelEndpoints().stream()
-			.filter(modelEndpoint -> !modelEndpoint.getTargetUri().equals(model1.getUri()))
-			.findFirst()
-			.get()
-			.getTarget();
+		private ModelRel origRel;
+		private ModelRel traceRel;
+		private Model model1;
+		private Model model2;
+
+		public Input(Map<String, Model> inputsByName) {
+
+			this.origRel = (ModelRel) inputsByName.get(IN_MODELREL1);
+			this.traceRel = (ModelRel) inputsByName.get(IN_MODELREL2);
+			this.model1 = origRel.getModelEndpoints().get(0).getTarget();
+			this.model2 = traceRel.getModelEndpoints().stream()
+				.filter(modelEndpoint -> !modelEndpoint.getTargetUri().equals(model1.getUri()))
+				.findFirst()
+				.get()
+				.getTarget();
+		}
+	}
+
+	private ModelRel propagate(ModelRel origRel, ModelRel traceRel, Model model1, Model model2, MID outputMID) throws MMINTException {
+
 		ModelRel propRel = origRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2), outputMID);
 		
 		// Retrieve the model elements in the original model relation.
@@ -139,12 +169,11 @@ public class ModelRelPropagation extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		ModelRel origRel = (ModelRel) inputsByName.get(IN_MODELREL1);
-		ModelRel traceRel = (ModelRel) inputsByName.get(IN_MODELREL2);
+		Input input = new Input(inputsByName);
 		MID outputMID = outputMIDsByName.get(OUT_MODELREL);
 
 		// propagate the unary original rel through the trace rel
-		ModelRel propRel = this.propagate(origRel, traceRel, outputMID);
+		ModelRel propRel = this.propagate(input.origRel, input.traceRel, input.model1, input.model2, outputMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();

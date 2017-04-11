@@ -108,13 +108,6 @@ public interface MMINTConstants {
 	/** An extension point's constraint child's implementation attribute. */
 	public final static String CONSTRAINT_ATTR_IMPLEMENTATION = "implementation";
 
-	/** An extension point's endpointConstraint child. */
-	public final static String CHILD_ENDPOINTCONSTRAINT = "endpointConstraint";
-	/** An extension point's endpointConstraint child's parameterName attribute. */
-	public final static String ENDPOINTCONSTRAINT_ATTR_PARAMETERNAME = "parameterName";
-	/** An extension point's endpointConstraint child's endpointIndex attribute. */
-	public final static String ENDPOINTCONSTRAINT_ATTR_ENDPOINTINDEX = "endpointIndex";
-
 	/** The Models extension point's id. */
 	public final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmint.models";
 	/** The Models extension point's modelType child. */

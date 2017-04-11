@@ -5,34 +5,17 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINTException;
-
-import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -45,11 +28,32 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,7 +93,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 * The nested MID, kept in memory for performance reasons (different from
 	 * {@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#inMemoryRootModelObj}, this is NOT for making it work when
 	 * there is no serialization).
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	protected MID inMemoryNestedMID;
@@ -98,7 +102,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	 * The nested MID gmf diagram, kept in memory for performance reasons (different from
 	 * {@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#inMemoryRootModelObj}, this is NOT for making it work when
 	 * there is no serialization).
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	protected Diagram inMemoryNestedMIDDiagramRoot;
@@ -141,32 +145,6 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		nestedMIDPath = newNestedMIDPath;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	public MID getNestedInstanceMID() throws MMINTException {
-
-		MMINTException.mustBeInstance(this);
-
-		if (this.inMemoryNestedMID != null) {
-			return this.inMemoryNestedMID;
-		}
-
-		try {
-			String nestedMIDPath = this.getNestedMIDPath();
-			if (nestedMIDPath == null) {
-				return null;
-			}
-			MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, true);
-			this.inMemoryNestedMID = nestedMID;
-			return nestedMID;
-		}
-		catch (Exception e) {
-			this.inMemoryNestedMID = null;
-			return null;
-		}
 	}
 
 	/**
@@ -273,6 +251,32 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 	/**
 	 * @generated NOT
 	 */
+	public MID getNestedInstanceMID() throws MMINTException {
+
+		MMINTException.mustBeInstance(this);
+
+		if (this.inMemoryNestedMID != null) {
+			return this.inMemoryNestedMID;
+		}
+
+		try {
+			String nestedMIDPath = this.getNestedMIDPath();
+			if (nestedMIDPath == null) {
+				return null;
+			}
+			MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, true);
+			this.inMemoryNestedMID = nestedMID;
+			return nestedMID;
+		}
+		catch (Exception e) {
+			this.inMemoryNestedMID = null;
+			return null;
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
 	protected Diagram getNestedInstanceMIDDiagramRoot() throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
@@ -338,17 +342,14 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
 	/**
 	 * Create shortcuts to external models into the nested Instance MID.
-	 * 
+	 *
 	 * @param models
 	 *            The external models.
-	 * @param viewProvider
-	 *            A specific GMF view provider to create nodes and edges, can be null if the GMF registry is queried
-	 *            instead.
 	 * @throws MMINTException
-	 *             If this is not an operator instance.
+	 *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
 	 * @generated NOT
 	 */
-	protected void createNestedInstanceMIDModelShortcuts(EList<Model> models, IViewProvider viewProvider) throws MMINTException {
+	protected void createNestedInstanceMIDModelShortcuts(@NonNull List<Model> models) throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
 
@@ -364,6 +365,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		Diagram nestedMIDDiagramRoot = this.getNestedInstanceMIDDiagramRoot();
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
+		IViewProvider midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
 		// models first, then model rels
 		for (Model model : models) {
 			if (model instanceof BinaryModelRel) {
@@ -374,28 +376,86 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				nestedMIDDiagramRoot,
 				midDiagramPluginId,
 				midModelType.getName(),
-				viewProvider);
+				midViewProvider);
 			if (model instanceof Model) {
 				nestedMID.getExtendibleTable().put(model.getUri(), model);
 			}
 		}
-		for (Model model : models) {
-			if (!(model instanceof BinaryModelRel)) {
+		for (Model binaryModelRel : models) {
+			if (!(binaryModelRel instanceof BinaryModelRel)) {
 				continue;
 			}
 			// gmf shortcuts can't be created for links, fake the shortcut as an nary rel
 			String gmfTypeHint = GMFUtils.getGMFRegistryType(RelationshipFactory.eINSTANCE.createModelRel(), midDiagramPluginId + ".TypeContext");
-			Node gmfNode = viewProvider.createNode(new EObjectAdapter(model), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
+			Node gmfNode = (midViewProvider == null) ?
+				ViewService.createNode(nestedMIDDiagramRoot, binaryModelRel, gmfTypeHint, new PreferencesHint(midDiagramPluginId)) :
+				midViewProvider.createNode(new EObjectAdapter(binaryModelRel), nestedMIDDiagramRoot, gmfTypeHint, -1, true, new PreferencesHint(midDiagramPluginId));
 			GMFUtils.addGMFShortcut(gmfNode, midModelType.getName());
 			//TODO MMINT[NESTED] Can't create model rel endpoints, but maybe can use some simple connectors
 		}
 	}
 
+    /**
+     * @generated NOT
+     */
+    protected @NonNull Map<Model, Model> replaceNestedModelsWithShortcuts(@NonNull Operator operator, @NonNull Map<String, MID> instanceMIDsByOperatorOutputs) throws MMINTException {
+
+        MMINTException.mustBeInstance(this);
+
+        MID nestedMID = this.getNestedInstanceMID();
+        Map<Model, Model> nestedToCopiedModels = new HashMap<>();
+        // models first
+        for (int i = 0; i < operator.getOutputs().size(); i++) {
+            ModelEndpoint nestedOutput = operator.getOutputs().get(i);
+            Model nestedModel = nestedOutput.getTarget();
+            if (nestedModel instanceof ModelRel) {
+                continue;
+            }
+            try {
+                Model copiedModel = nestedModel.getMetatype().importInstanceAndEditor(
+                    nestedModel.getUri(), instanceMIDsByOperatorOutputs.get(nestedOutput.getName()));
+                nestedOutput.setTarget(copiedModel);
+                if (nestedMID != null) {
+                    nestedMID.getModels().remove(nestedModel);
+                    nestedMID.getExtendibleTable().put(copiedModel.getUri(), copiedModel);
+                    nestedToCopiedModels.put(nestedModel, copiedModel);
+                }
+            }
+            //TODO MMINT[NESTED] This is to catch operators that don't generate a new model (like Identity), should be more elegant
+            catch (MMINTException e) {}
+        }
+        // model rels now
+        for (int i = 0; i < operator.getOutputs().size(); i++) {
+            ModelEndpoint nestedOutput = operator.getOutputs().get(i);
+            if (!(nestedOutput.getTarget() instanceof ModelRel)) {
+                continue;
+            }
+            ModelRel nestedModelRel = (ModelRel) nestedOutput.getTarget();
+            try {
+                ModelRel copiedModelRel = (ModelRel) nestedModelRel.getMetatype().copyInstance(
+                    nestedModelRel, nestedModelRel.getName(), instanceMIDsByOperatorOutputs.get(nestedOutput.getName()));
+                nestedOutput.setTarget(copiedModelRel);
+                if (nestedMID != null) {
+                    nestedMID.getModels().remove(nestedModelRel);
+                    nestedToCopiedModels.put(nestedModelRel, copiedModelRel);
+                }
+            }
+            //TODO MMINT[NESTED] This is to catch operators that don't generate a new model (like Identity), should be more elegant
+            catch (Exception e) {}
+        }
+
+        if (nestedMID != null) {
+            this.createNestedInstanceMIDModelShortcuts(new ArrayList<>(nestedToCopiedModels.values()));
+        }
+
+        return nestedToCopiedModels;
+    }
+
 	/**
 	 * Writes the nested Instance MID to file.
-	 * 
+	 *
 	 * @throws MMINTException
-	 *             If this is not an operator instance.
+	 *             If this is not an operator instance, or if this operator was created without a nested Instance MID.
 	 * @throws IOException
 	 *             If the nested Instance MID could not be created or overwritten.
 	 * @generated NOT
@@ -431,7 +491,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 				inputs.stream()
 					.map(OperatorInput::getModel)
 					.collect(Collectors.toList()));
-			this.createNestedInstanceMIDModelShortcuts(inputModels, null);
+			this.createNestedInstanceMIDModelShortcuts(inputModels);
 		}
 		// run nested operator
 		MID nestedMID = this.getNestedInstanceMID();
@@ -462,8 +522,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 		super.deleteInstance();
 		String nestedMIDPath = this.getNestedMIDPath();
 		if (nestedMIDPath != null) {
-			for (Model nestedModel : new ArrayList<>(this.getNestedInstanceMID().getModels())) {
+		    MID nestedMID = this.getNestedInstanceMID();
+			for (Model nestedModel : new ArrayList<>(nestedMID.getModels())) {
 				nestedModel.deleteInstanceAndFile();
+			}
+			for (Operator nestedOperator : new ArrayList<>(nestedMID.getOperators())) {
+			    nestedOperator.deleteInstance();
 			}
 			FileUtils.deleteFile(nestedMIDPath, true);
 			FileUtils.deleteFile(nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX, true);
@@ -472,7 +536,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
 	/**
 	 * Opens the Instance MID with the nested artifacts generated by this operator instance, if it exists.
-	 * 
+	 *
 	 * @throws Exception
 	 *             If this is not an operator instance, or if the MID diagram can't be opened.
 	 * @generated NOT

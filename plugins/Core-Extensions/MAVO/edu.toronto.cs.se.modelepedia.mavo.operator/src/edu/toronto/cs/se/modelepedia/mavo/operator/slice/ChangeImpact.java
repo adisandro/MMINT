@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -45,16 +45,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ChangeImpact extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
-
-		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
-
-			//TODO MMINT[OPERATOR] Check that diff and trace share a model
-			return true;
-		}
-	}
-
 	// input-output
 	private final static @NonNull String IN_MODELREL1 = "diff";
 	private final static @NonNull String IN_MODELREL2 = "trace";
@@ -62,6 +52,23 @@ public class ChangeImpact extends OperatorImpl {
 	// constants
 	private final static String SRC_MODELELEMENDPOINT_NAME = "diff";
 	private final static String TGT_MODELELEMENDPOINT_NAME = "impacted";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			//TODO MMINT[CONSTRAINT] Check that diff and trace share a model
+			return true;
+		}
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			//TODO MMINT[CONSTRAINT] Implement
+			return new HashMap<>();
+		}
+	}
 
 	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, Map<String, List<ModelElementReference>> unifyTable, Map<String, List<MAVOModelElementReference>> typeTable) {
 

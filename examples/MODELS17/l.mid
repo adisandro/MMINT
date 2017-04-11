@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
+  <models uri="Xi" name="Xi" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="Si" name="Si" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="Xj" name="Xj" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Model" dynamic="true" origin="CREATED" fileExtension="xmi"/>
+  <models uri="Sj" name="Sj" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <operators uri="" name="FixedPoint" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint" dynamic="true">
+    <inputs uri="" name="models0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint/models" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="models1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint/models" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="fixedModels0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint/fixedModels" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <outputs uri="" name="fixedModels1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint/fixedModels" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <generics uri="" name="SliceWorkflow" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint/FIXER" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/SliceWorkflow"/>
+  </operators>
+  <extendibleTable key="Xi" value="//@models.0"/>
+  <extendibleTable key="Si" value="//@models.1"/>
+  <extendibleTable key="Xj" value="//@models.2"/>
+  <extendibleTable key="Sj" value="//@models.3"/>
+</mid:MID>

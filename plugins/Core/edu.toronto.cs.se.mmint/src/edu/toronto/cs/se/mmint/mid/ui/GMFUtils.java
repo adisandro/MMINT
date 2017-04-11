@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.ui;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
@@ -77,11 +78,11 @@ public class GMFUtils {
 		Resource modelResource = domainResourceSet.getResource(FileUtils.createEMFUri(modelPath, isWorkspaceRelative), true);
 		ResourceSet diagramResourceSet = new ResourceSetImpl();
 		Resource diagramResource =	diagramResourceSet.createResource(FileUtils.createEMFUri(diagramPath, isWorkspaceRelative));
-		EObject rootModelObj = (EObject) modelResource.getContents().get(0);
+		EObject rootModelObj = modelResource.getContents().get(0);
 		Diagram diagram = GMFUtils.createGMFDiagram(rootModelObj, diagramKind, diagramPluginId);
 		diagram.setName(FileUtils.getLastSegmentFromPath(diagramPath));
 		diagramResource.getContents().add(diagram);
-		Map<String, Object> saveOptions = new HashMap<String, Object>();
+		Map<String, Object> saveOptions = new HashMap<>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		diagramResource.save(saveOptions);

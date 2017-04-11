@@ -103,33 +103,6 @@ public interface OperatorFactory extends EFactory {
 	OperatorGeneric createOperatorGeneric();
 
 	/**
-	 * Returns a new object of class '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint</em>'.
-	 * @generated
-	 */
-	OperatorConstraint createOperatorConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Constraint Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint Rule</em>'.
-	 * @generated
-	 */
-	OperatorConstraintRule createOperatorConstraintRule();
-
-	/**
-	 * Returns a new object of class '<em>Constraint Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint Parameter</em>'.
-	 * @generated
-	 */
-	OperatorConstraintParameter createOperatorConstraintParameter();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

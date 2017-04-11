@@ -31,13 +31,14 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -487,7 +488,7 @@ mappingTypes:
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint) {
+	public static boolean checkModelConstraint(@NonNull Model model, @Nullable ExtendibleElementConstraint constraint) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
@@ -511,9 +512,25 @@ mappingTypes:
 		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
 	}
 
-	public static boolean checkOperatorInputConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
+	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return true;
+		}
+		IReasoningEngine reasoner;
+		try {
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping operator generic constraint check", e);
+			return false;
+		}
+
+		return reasoner.checkOperatorGenericConstraint(constraint, genericTypeEndpoint, genericType, inputs);
+	}
+
+	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
@@ -526,12 +543,11 @@ mappingTypes:
 			return false;
 		}
 
-		return reasoner.checkOperatorInputConstraint(inputsByName, constraint);
+		return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
 	}
 
-	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
-		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return new HashMap<>();
 		}
@@ -544,7 +560,7 @@ mappingTypes:
 			return new HashMap<>();
 		}
 
-		return reasoner.getOperatorOutputConstraints(inputsByName, outputsByName, constraint);
+		return reasoner.getOperatorOutputConstraints(constraint, inputsByName, outputsByName);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {

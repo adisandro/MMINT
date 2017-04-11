@@ -94,10 +94,7 @@ public interface NestingOperator extends Operator {
 	 * @throws Exception
 	 *             If this is not an operator instance, or if something went wrong starting the nested operator. <!--
 	 *             end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
-	 *        nestedOperatorTypeRequired="true" inputsMany="true"
-	 *        inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true"
-	 *        outputMIDsByNameRequired="true"
+	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" nestedOperatorTypeRequired="true" inputsMany="true" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true" outputMIDsByNameRequired="true"
 	 * @generated
 	 */
 	Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception;

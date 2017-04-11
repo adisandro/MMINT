@@ -257,15 +257,15 @@ public class MIDOperatorIOUtils {
 
 	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> varargsByName, @NonNull String varargName) {
 
-		List<T> models = new ArrayList<>();
+		List<T> varargs = new ArrayList<>();
 		int i = 0;
 		T elem;
 		while ((elem = varargsByName.get(varargName + i)) != null) {
-			models.add(elem);
+			varargs.add(elem);
 			i++;
 		}
 
-		return models;
+		return varargs;
 	}
 
 	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String varargName) {

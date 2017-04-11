@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -26,18 +28,19 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
+
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
@@ -60,26 +63,27 @@ public class Map extends NestingOperatorImpl {
 	private final static @NonNull String MAPPED_MID_SUFFIX = "_map";
 	private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
 
-	@Override
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
-		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
-		if (!allowed) {
-			return false;
-		}
-		if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
-			return false;
-		}
+		@Override
+		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-		return true;
+			final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+			final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+			final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+			if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
+				return false;
+			}
+
+			return true;
+		}
 	}
 
 	@Override
-	public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
+	public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
 
-		Operator newOperator = super.startWorkflowInstance(inputs, generics, workflowMID);
 		// create the vararg mapped mids
-		Operator mapperOperatorType = (Operator) generics.get(0).getGeneric();
+		Operator mapperOperatorType = (Operator) newOperator.getGenerics().get(0).getTarget();
 		Model midModelType = MIDTypeRegistry.getMIDModelType();
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		for (int i = 0; i < mapperOperatorType.getOutputs().size(); i++) {
@@ -93,8 +97,6 @@ public class Map extends NestingOperatorImpl {
 				OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 			outputModelEndpoint.setName(outputModelEndpoint.getName() + i);
 		}
-
-		return newOperator;
 	}
 
 	private Model createOutputMIDModel(String outputName, MID outputMID, Model midModelType, MID instanceMID) throws Exception {
@@ -114,14 +116,14 @@ public class Map extends NestingOperatorImpl {
 		return outputMIDModel;
 	}
 
-	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midModelType, Model midrelModelType, String midDiagramPluginId, MID instanceMID, Set<Model> midrelEndpointModels, MIDDiagramViewProvider gmfViewProvider) throws Exception {
+	private Model createOutputMIDRelModel(String outputName, MID outputMID, Model midModelType, Model midrelModelType, String midDiagramPluginId, MID instanceMID, Set<Model> midrelEndpointModels) throws Exception {
 
 		Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
 		// create gmf shortcuts
 		edu.toronto.cs.se.mmint.mid.editor.Diagram outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
 		Diagram gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
 		for (Model midrelEndpointModel : midrelEndpointModels) {
-			GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(), gmfViewProvider);
+			GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(), MIDTypeRegistry.getCachedMIDViewProvider());
 		}
 		FileUtils.writeModelFile(gmfDiagram, outputMIDModelDiagram.getUri(), true);
 
@@ -218,7 +220,6 @@ public class Map extends NestingOperatorImpl {
 		// pass 2: output MIDRels only
 		Model midrelModelType = MIDTypeRegistry.getType(MIDPackage.eNS_URI + MIDREL_MODELTYPE_URI_SUFFIX);
 		String midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
-		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
 		for (Entry<String, MID> outputMIDByName : mapperOutputMIDsByName.entrySet()) {
 			String outputName = outputMIDByName.getKey();
 			if (!midrelEndpointModelsByOutputName.containsKey(outputName)) { // is not a MIDRel
@@ -233,8 +234,7 @@ public class Map extends NestingOperatorImpl {
 				midrelModelType,
 				midDiagramPluginId,
 				instanceMID,
-				midrelEndpointModelsByOutputName.get(outputName),
-				gmfViewProvider);
+				midrelEndpointModelsByOutputName.get(outputName));
 			outputMIDModels.add(outputMIDModel);
 			//TODO MMINT[MAP] A MIDRel is just a Model, so this was to fake it to have endpoints (a proper metamodel object and gmf figure would be needed)
 //			for (MID midrelEndpointMID : midrelEndpointMIDsByOutputName.get(outputName)) {
@@ -251,7 +251,7 @@ public class Map extends NestingOperatorImpl {
 //			}
 		}
 		// pass 3: mapper MID, after output MIDs and MIDRels are serialized
-		this.createNestedInstanceMIDModelShortcuts(mapperShortcutModels, gmfViewProvider);
+		super.createNestedInstanceMIDModelShortcuts(mapperShortcutModels);
 		super.writeNestedInstanceMID();
 
 		// pass 4: input MIDs and endpoint MIDs of input MIDRels, since model elements can be created there
@@ -282,7 +282,7 @@ public class Map extends NestingOperatorImpl {
 
 	private java.util.@NonNull Map<String, EList<OperatorInput>> diffMultipleDispatchInputs(java.util.@NonNull Map<String, EList<OperatorInput>> assignedInputs, @NonNull Set<EList<OperatorInput>> mapperInputs) {
 
-		java.util.Map<String, EList<OperatorInput>> newInputs = new HashMap<>();
+		java.util.Map<String, EList<OperatorInput>> newInputs = new LinkedHashMap<>(); // reproducible order
 		for (EList<OperatorInput> mapperInput : mapperInputs) {
 			String key = mapperInput.stream()
 				.map(input -> MIDRegistry.getModelElementUri(input.getModel()))
@@ -302,20 +302,22 @@ public class Map extends NestingOperatorImpl {
 
 		// input
 		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
-		EList<MID> inputMIDs = new BasicEList<>();
+		EList<MID> inputMIDs = ECollections.newBasicEList();
+		EList<Set<Model>> modelBlacklists = ECollections.newBasicEList();
 		for (Model inputMIDModel : inputMIDModels) {
 			inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
+			modelBlacklists.add(new HashSet<>());
 		}
 		Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
 		java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
 
 		// find all possible combinations of inputs and execute them
-		java.util.Map<Operator, Set<EList<OperatorInput>>> mapperSpecs = new HashMap<>();
+		java.util.Map<Operator, Set<EList<OperatorInput>>> mapperSpecs = new LinkedHashMap<>(); // reproducible order
 		EList<Operator> multipleDispatch = (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
 			ECollections.asEList(MIDTypeHierarchy.getSubtypes(mapperOperatorType)) :
 			ECollections.emptyEList();
 		if (multipleDispatch.isEmpty()) { // multiple dispatch disabled, or the mapper operator is not a multimethod
-			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs));
+			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs, modelBlacklists));
 		}
 		else {
 			multipleDispatch.add(mapperOperatorType);
@@ -324,9 +326,9 @@ public class Map extends NestingOperatorImpl {
 			while (multiIter.hasNext()) { // start from the most specialized operator backwards
 				Operator multiMapper = multiIter.next();
 				// assign at each step the allowed inputs that have not been already assigned
-				Set<EList<OperatorInput>> mapperInputs = multiMapper.findAllowedInputs(inputMIDs);
+				Set<EList<OperatorInput>> mapperInputs = multiMapper.findAllowedInputs(inputMIDs, modelBlacklists);
 				java.util.Map<String, EList<OperatorInput>> newInputs = this.diffMultipleDispatchInputs(assignedInputs, mapperInputs);
-				mapperSpecs.put(multiMapper, new HashSet<>(newInputs.values()));
+				mapperSpecs.put(multiMapper, new LinkedHashSet<>(newInputs.values())); // reproducible order
 				assignedInputs.putAll(newInputs);
 			}
 		}

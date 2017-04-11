@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -31,8 +32,50 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Slice extends OperatorImpl {
 
+	// input-output
 	protected final static @NonNull String IN_MODELREL = "criterion";
 	protected final static @NonNull String OUT_MODELREL = "slice";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			ModelRel critRel = (ModelRel) inputsByName.get(IN_MODELREL);
+			if (critRel.getModelEndpoints().size() > 1) {
+				return false;
+			}
+
+			return true;
+		}
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			Input input = new Input(inputsByName);
+			ModelRel sliceRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+			List<Model> endpointModels = new ArrayList<>();
+			endpointModels.add(input.model);
+			validOutputs.put(sliceRel, endpointModels);
+
+			return validOutputs;
+		}
+
+	}
+
+	private static class Input {
+
+		private ModelRel critRel;
+		private Model model;
+
+		public Input(Map<String, Model> inputsByName) {
+
+			this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
+			this.model = critRel.getModelEndpoints().get(0).getTarget();
+		}
+	}
+
 
 	// Extract all model elements from the input slicing criterion. 
 	public List<EObject> getCriterionElements(ModelRel criterion) 
@@ -173,9 +216,7 @@ public class Slice extends OperatorImpl {
 		return true;
 	}
 
-	protected ModelRel slice(ModelRel critRel, MID outputMID) throws MMINTException {
-		
-		Model model = critRel.getModelEndpoints().get(0).getTarget();
+	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 		ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
 		List<EObject> criterionList = new ArrayList<>();
@@ -211,11 +252,11 @@ public class Slice extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 		
 		// input
-		ModelRel critRel = (ModelRel) inputsByName.get(IN_MODELREL);
+		Input input = new Input(inputsByName);
 		MID outputMID = outputMIDsByName.get(OUT_MODELREL);
 
 		// create the slice from the initial criterion and the rules
-		ModelRel sliceRel = this.slice(critRel, outputMID);
+		ModelRel sliceRel = this.slice(input.critRel, input.model, outputMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();

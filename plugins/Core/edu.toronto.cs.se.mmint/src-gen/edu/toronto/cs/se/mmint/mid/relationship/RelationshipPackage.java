@@ -335,6 +335,15 @@ public interface RelationshipPackage extends EPackage {
 	int MODEL_REL___GET_RUNTIME_TYPES = MIDPackage.MODEL___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.MODEL___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -918,6 +927,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MODEL_REL___GET_RUNTIME_TYPES = MODEL_REL___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT = MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1993,6 +2011,15 @@ public interface RelationshipPackage extends EPackage {
 	int MAPPING___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2316,6 +2343,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAPPING___GET_RUNTIME_TYPES = MAPPING___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT = MAPPING___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -2650,6 +2686,15 @@ public interface RelationshipPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.

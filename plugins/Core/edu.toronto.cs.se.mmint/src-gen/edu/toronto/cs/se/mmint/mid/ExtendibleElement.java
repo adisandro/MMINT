@@ -315,6 +315,17 @@ public interface ExtendibleElement extends EObject {
 	<T extends ExtendibleElement> EList<T> getRuntimeTypes() throws MMINTException;
 
 	/**
+	 * <!-- begin-user-doc --> Gets the closest type constraint, searching from this type included up its supertypes.
+	 * 
+	 * @return The closest type constraint in the type inheritance, null if no constraint is found.
+	 * @throws MMINTException
+	 *             If this is not a type. <!-- end-user-doc -->
+	 * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+	 * @generated
+	 */
+	ExtendibleElementConstraint getClosestTypeConstraint() throws MMINTException;
+
+	/**
 	 * <!-- begin-user-doc --> Updates the id of this instance in the Workflow MID that contains it.
 	 * 
 	 * @param newInstanceId

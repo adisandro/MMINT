@@ -13,13 +13,14 @@ package edu.toronto.cs.se.mmint.operator.mid;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -41,18 +42,20 @@ public class Filter extends OperatorImpl {
 	// constants
 	private final static @NonNull String FILTERED_MID_SUFFIX = "_filter";
 
-	@Override
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
-		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
-		if (!allowed) {
-			return false;
-		}
-		if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
-			return false;
-		}
+		@Override
+		public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
-		return true;
+			final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+			final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+			final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+			if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
+				return false;
+			}
+
+			return true;
+		}
 	}
 
 	private @NonNull MID filter(@NonNull Model inputMIDModel, @NonNull Model filterModelType)

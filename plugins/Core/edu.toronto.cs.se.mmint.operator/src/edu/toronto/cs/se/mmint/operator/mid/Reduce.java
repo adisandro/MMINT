@@ -5,92 +5,102 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.operator.mid;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
-//TODO MMINT[OPERATOR] Make it a NestingOperator
-public class Reduce extends OperatorImpl {
+public class Reduce extends NestingOperatorImpl {
 
 	// input-output
 	private final static @NonNull String IN_MID = "mid";
 	private final static @NonNull String OUT_MID = "reducedMid";
 	private final static @NonNull String GENERIC_OPERATORTYPE = "ACCUMULATOR";
 	// constants
-	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduce";
+	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
 	private final static @NonNull String MODELRELCOMPOSITION_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
 	private final static @NonNull String MODELRELMERGE_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelMerge";
 
-	@Override
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
 
-		boolean allowed = super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs);
-		if (!allowed) {
-			return false;
-		}
-		if (genericType.getName().equals("Filter") || genericType.getName().equals("Map") || genericType.getName().equals("Reduce")) {
-			return false;
-		}
+		@Override
+		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-		return true;
+			final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+			final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+			final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+			if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
+				return false;
+			}
+
+			return true;
+		}
+	}
+
+	private @NonNull Set<ModelRel> getConnectedModelRels(@NonNull MID instanceMID, @NonNull Set<Model> models, @NonNull Set<ModelRel> modelRelBlacklist) {
+
+		//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
+		Set<ModelRel> connectedModelRels = instanceMID.getModelRels().stream()
+			.filter(modelRel -> !modelRelBlacklist.contains(modelRel))
+			.filter(modelRel -> modelRel.getModelEndpoints().stream()
+				.anyMatch(modelEndpoint -> models.contains(modelEndpoint.getTarget())))
+			.collect(Collectors.toSet());
+
+		return connectedModelRels;
 	}
 
 	private @NonNull MID reduce(@NonNull Model inputMIDModel, @NonNull Operator accumulatorOperatorType)
 			throws Exception {
 
-		// preparation for accumulator operator
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
-		Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
-			.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
-		EList<MID> inputMIDs = new BasicEList<>();
-		inputMIDs.add(reducedMID);
-		Set<Model> accumulatorOutputModelsToDelete = new HashSet<>();
-		Map<String, Model> accumulatorOutputsByName = null;
-		EList<OperatorInput> accumulatorInputs;
-		// preparation for composition operator
+		String nestedMIDPath = super.getNestedMIDPath();
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
-		Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
-			.createSameOutputMIDsByName(compositionOperatorType, reducedMID);
-		// preparation for merge operator
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
-		Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
-			.createSameOutputMIDsByName(mergeOperatorType, reducedMID);
 		// reduce loop
-		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs)) != null) {
+		EList<OperatorInput> accumulatorInputs;
+		Map<String, Model> accumulatorOutputsByName = null;
+		Set<Model> accumulatorOutputModels = new HashSet<>();
+		Set<Model> intermediateModelsAndRels = new HashSet<>();
+		int i = 0;
+		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(
+				ECollections.newBasicEList(reducedMID),
+				ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels))
+		) != null) {
 			Set<Model> accumulatorInputModels = new HashSet<>();
 			Set<ModelRel> accumulatorInputModelRels = new HashSet<>();
 			try {
@@ -107,56 +117,58 @@ public class Reduce extends OperatorImpl {
 						accumulatorInputModels.add(accumulatorInputModel);
 					}
 				}
-				// get all model rels attached to input models that are not inputs themselves
-				//TODO MMINT[OO] This is expensive, need a direct way to reach model rels from models
-				Set<ModelRel> connectedModelRels = reducedMID.getModelRels().stream()
-					.filter(modelRel -> !accumulatorInputModelRels.contains(modelRel))
-					.filter(modelRel -> !Collections.disjoint(
-						accumulatorInputModels,
-						modelRel.getModelEndpoints().stream()
-							.map(ModelEndpoint::getTarget)
-							.collect(Collectors.toSet())))
+				// get all model rels attached to input models that are not inputs themselves or intermediate artifacts
+				Set<ModelRel> modelRelBlacklist = Stream.concat(
+					accumulatorInputModelRels.stream(),
+					intermediateModelsAndRels.stream()
+						.filter(modelRel -> modelRel instanceof ModelRel)
+						.map(modelRel -> (ModelRel) modelRel))
 					.collect(Collectors.toSet());
+				Set<ModelRel> connectedModelRels = this.getConnectedModelRels(reducedMID, accumulatorInputModels, modelRelBlacklist);
 				// run the ACCUMULATOR operator
+				Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
+						.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
 				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
 					accumulatorInputs);
-				accumulatorOutputsByName = accumulatorOperatorType.startInstance(
-						accumulatorInputs,
-						null,
-						accumulatorGenerics,
-						accumulatorOutputMIDsByName,
-						null)
-					.getOutputsByName();
-				accumulatorOutputModelsToDelete.addAll(
+				Operator accumulatorOperator = accumulatorOperatorType.startInstance(
+					accumulatorInputs,
+					null,
+					accumulatorGenerics,
+					accumulatorOutputMIDsByName,
+					(nestedMIDPath != null) ? reducedMID : null);
+				accumulatorOperator.setName(accumulatorOperator.getName() + i);
+				accumulatorOutputsByName = accumulatorOperator.getOutputsByName();
+				accumulatorOutputModels.addAll(
 					accumulatorOutputsByName.values().stream()
-						.filter(accumulatorOutputModel -> !(accumulatorOutputModel instanceof ModelRel))
+						.filter(model -> !(model instanceof ModelRel))
 						.collect(Collectors.toSet()));
 				// for each model rel in the output that is connected with the input models, do the composition
-				List<ModelRel> composedModelRels = new ArrayList<>();
+				Map<String, MID> compositionOutputMIDsByName = MIDOperatorIOUtils
+						.createSameOutputMIDsByName(compositionOperatorType, reducedMID);
+				List<ModelRel> compositeModelRels = new ArrayList<>();
 				for (ModelRel connectedModelRel : connectedModelRels) {
-					for (Model accumulatorModelRel : accumulatorOutputsByName.values()) {
-						if (!(accumulatorModelRel instanceof ModelRel)) {
+					for (Model accumulatorOutputModelRel : accumulatorOutputsByName.values()) {
+						if (!(accumulatorOutputModelRel instanceof ModelRel)) {
 							continue;
 						}
 						try {
-							EList<Model> compositionInputModels = new BasicEList<>();
-							compositionInputModels.add(connectedModelRel);
-							compositionInputModels.add(accumulatorModelRel);
 							EList<OperatorInput> compositionInputs = compositionOperatorType.checkAllowedInputs(
-								compositionInputModels);
+								ECollections.newBasicEList(connectedModelRel, accumulatorOutputModelRel));
 							if (compositionInputs == null) {
 								continue;
 							}
-							Map<String, Model> compositionOutputsByName = compositionOperatorType.startInstance(
-									compositionInputs,
-									null,
-									new BasicEList<>(),
-									compositionOutputMIDsByName,
-									null)
-								.getOutputsByName();
-							composedModelRels.add(
-								(ModelRel) compositionOutputsByName.get(
-									compositionOperatorType.getOutputs().get(0).getName()));
+							Operator compositionOperator = compositionOperatorType.startInstance(
+								compositionInputs,
+								null,
+								ECollections.emptyEList(),
+								compositionOutputMIDsByName,
+								(nestedMIDPath != null) ? reducedMID : null);
+							if (nestedMIDPath != null) {
+								compositionOperator.setName(compositionOperator.getName() + i);
+							}
+							Map<String, Model> compositionOutputsByName = compositionOperator.getOutputsByName();
+							compositeModelRels.add((ModelRel) compositionOutputsByName.get(
+								compositionOperatorType.getOutputs().get(0).getName()));
 						}
 						catch (Exception e) {
 							MMINTException.print(
@@ -167,23 +179,30 @@ public class Reduce extends OperatorImpl {
 					}
 				}
 				// merge model rels that have been composed and share the same model endpoints
-				Set<ModelRel> composedModelRelsToDelete = new HashSet<>();
-				for (int i = 0; i < composedModelRels.size(); i++) {
-					ModelRel composedModelRel1 = composedModelRels.get(i);
-					for (int j = i+1; j < composedModelRels.size(); j++) {
-						ModelRel composedModelRel2 = composedModelRels.get(j);
+				Map<String, MID> mergeOutputMIDsByName = MIDOperatorIOUtils
+						.createSameOutputMIDsByName(mergeOperatorType, reducedMID);
+				Set<ModelRel> mergedModelRels = new HashSet<>();
+				for (int j = 0; j < compositeModelRels.size(); j++) {
+					ModelRel compositeModelRel1 = compositeModelRels.get(j);
+					for (int k = j+1; k < compositeModelRels.size(); k++) {
+						ModelRel compositeModelRel2 = compositeModelRels.get(k);
 						try {
-							EList<Model> mergeInputModels = new BasicEList<>();
-							mergeInputModels.add(composedModelRel1);
-							mergeInputModels.add(composedModelRel2);
 							EList<OperatorInput> mergeInputs = mergeOperatorType.checkAllowedInputs(
-								mergeInputModels);
+								ECollections.newBasicEList(compositeModelRel1, compositeModelRel2));
 							if (mergeInputs == null) {
 								continue;
 							}
-							mergeOperatorType.startInstance(mergeInputs, null, new BasicEList<>(), mergeOutputMIDsByName, null);
-							composedModelRelsToDelete.add(composedModelRel1);
-							composedModelRelsToDelete.add(composedModelRel2);
+							Operator mergeOperator = mergeOperatorType.startInstance(
+								mergeInputs,
+								null,
+								ECollections.emptyEList(),
+								mergeOutputMIDsByName,
+								(nestedMIDPath != null) ? reducedMID : null);
+							if (nestedMIDPath != null) {
+								mergeOperator.setName(mergeOperator.getName() + i);
+							}
+							mergedModelRels.add(compositeModelRel1);
+							mergedModelRels.add(compositeModelRel2);
 						}
 						catch (Exception e) {
 							MMINTException.print(
@@ -193,12 +212,16 @@ public class Reduce extends OperatorImpl {
 						}
 					}
 				}
-				composedModelRelsToDelete.forEach(compModelRelToDelete -> {
-					try {
-						compModelRelToDelete.deleteInstance();
+				if (nestedMIDPath != null) {
+					// exclude composed model rels that were merged
+					intermediateModelsAndRels.addAll(mergedModelRels);
+				}
+				else {
+					// delete composite model rels that were merged
+					for (ModelRel mergedModelRel : mergedModelRels) {
+						try { mergedModelRel.deleteInstance(); } catch (MMINTException e) {}
 					}
-					catch (MMINTException e) {}
-				});
+				}
 			}
 			catch (Exception e) {
 				MMINTException.print(
@@ -206,35 +229,58 @@ public class Reduce extends OperatorImpl {
 					"Operator " + accumulatorOperatorType + " execution error, skipping it",
 					e);
 			}
-			finally {
-				// delete accumulator inputs (model rels are deleted as a side effect of deleting the models)
-				// do it in case of failure too, because it will trigger an endless loop otherwise
-				accumulatorInputModels.forEach(accumulatorInputModel -> {
-					try {
-						accumulatorInputModel.deleteInstance();
+			finally { // even in case of failure, some actions must be taken to prevent endless loops
+				if (nestedMIDPath != null) {
+					// exclude accumulator inputs
+					intermediateModelsAndRels.addAll(accumulatorInputModels);
+					intermediateModelsAndRels.addAll(accumulatorInputModelRels);
+					// exclude connected model rels, composed included (don't bother creating a blacklist, it's a set)
+					intermediateModelsAndRels.addAll(
+						this.getConnectedModelRels(reducedMID, accumulatorInputModels, new HashSet<>()));
+				}
+				else {
+					// delete accumulator inputs (connected model rels are deleted as a side effect of deleting the models, composed included)
+					for (Model accumulatorInputModel : accumulatorInputModels) {
+						try {
+							if (accumulatorOutputModels.contains(accumulatorInputModel)) { // intermediate artifact
+								accumulatorInputModel.deleteInstanceAndFile();
+								accumulatorOutputModels.remove(accumulatorInputModel);
+							}
+							else { // initial input
+								accumulatorInputModel.deleteInstance();
+							}
+						}
+						catch (MMINTException e) {}
 					}
-					catch (MMINTException e) {}
-				});
+				}
+				i++;
 			}
 		}
-		// delete intermediate output model files but the ones from last execution
-		for (Model accumulatorOutputModelToDelete : accumulatorOutputModelsToDelete) {
-			if (accumulatorOutputsByName != null &&
-					accumulatorOutputsByName.values().contains(accumulatorOutputModelToDelete)) {
-				continue;
+		if (nestedMIDPath != null) {
+			super.inMemoryNestedMID = reducedMID;
+			super.writeNestedInstanceMID();
+			//TODO MMINT[NESTED] Transform input/output into shortcuts
+			reducedMID = MIDFactory.eINSTANCE.createMID();
+			reducedMID.setLevel(MIDLevel.INSTANCES);
+			for (Model reducedModel : accumulatorOutputsByName.values()) {
+				if (reducedModel instanceof ModelRel) {
+					continue;
+				}
+				reducedModel.getMetatype().importInstance(reducedModel.getUri(), reducedMID);
 			}
-			for (Editor accumulatorOutputEditorToDelete : accumulatorOutputModelToDelete.getEditors()) {
-				FileUtils.deleteFile(accumulatorOutputEditorToDelete.getUri(), true);
+			for (Model reducedModelRel : accumulatorOutputsByName.values()) {
+				if (!(reducedModelRel instanceof ModelRel)) {
+					continue;
+				}
+				((ModelRel) reducedModelRel).getMetatype().copyInstance(reducedModelRel, reducedModelRel.getName(), reducedMID);
 			}
-			FileUtils.deleteFile(accumulatorOutputModelToDelete.getUri(), true);
 		}
 
 		return reducedMID;
 	}
 
 	@Override
-	public Map<String, Model> run(
-			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
@@ -248,7 +294,7 @@ public class Reduce extends OperatorImpl {
 		if (openEditors) {
 			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false");
 		}
-		MID reducedMID = reduce(inputMIDModel, accumulatorOperatorType);
+		MID reducedMID = this.reduce(inputMIDModel, accumulatorOperatorType);
 		if (openEditors) {
 			MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true");
 		}
@@ -258,7 +304,8 @@ public class Reduce extends OperatorImpl {
 			FileUtils.addFileNameSuffixInPath(inputMIDModel.getUri(), REDUCED_MID_SUFFIX),
 			true,
 			false);
-		Model reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(reducedMID, reducedMIDModelPath, instanceMID);
+		Model reducedMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(
+			reducedMID, reducedMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);
 

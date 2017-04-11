@@ -387,13 +387,22 @@ public interface MIDPackage extends EPackage {
 	int EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = 7;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = 8;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 8;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = 9;
 
 	/**
 	 * The operation id for the '<em>Validate Instance</em>' operation.
@@ -402,7 +411,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 9;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE = 10;
 
 	/**
 	 * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -411,7 +420,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 10;
+	int EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = 11;
 
 	/**
 	 * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -420,7 +429,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = 11;
+	int EXTENDIBLE_ELEMENT___IS_WORKFLOWS_LEVEL = 12;
 
 	/**
 	 * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -429,7 +438,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = 12;
+	int EXTENDIBLE_ELEMENT___UPDATE_WORKFLOW_INSTANCE_ID__STRING = 13;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -438,7 +447,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 13;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL = 14;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -447,7 +456,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 14;
+	int EXTENDIBLE_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL = 15;
 
 	/**
 	 * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -456,7 +465,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 15;
+	int EXTENDIBLE_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING = 16;
 
 	/**
 	 * The number of operations of the '<em>Extendible Element</em>' class.
@@ -465,7 +474,7 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 16;
+	int EXTENDIBLE_ELEMENT_OPERATION_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementEndpointImpl <em>Extendible Element Endpoint</em>}' class.
@@ -638,6 +647,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -911,6 +929,15 @@ public interface MIDPackage extends EPackage {
 	int GENERIC_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1180,6 +1207,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL___GET_RUNTIME_TYPES = GENERIC_ELEMENT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___GET_CLOSEST_TYPE_CONSTRAINT = GENERIC_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -1634,6 +1670,15 @@ public interface MIDPackage extends EPackage {
 	int MODEL_ELEMENT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES;
 
 	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1975,6 +2020,15 @@ public interface MIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_ENDPOINT___GET_RUNTIME_TYPES = EXTENDIBLE_ELEMENT_ENDPOINT___GET_RUNTIME_TYPES;
+
+	/**
+	 * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT = EXTENDIBLE_ELEMENT_ENDPOINT___GET_CLOSEST_TYPE_CONSTRAINT;
 
 	/**
 	 * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -2648,6 +2702,16 @@ public interface MIDPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExtendibleElement__GetRuntimeTypes();
+
+	/**
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#getClosestTypeConstraint() <em>Get Closest Type Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Closest Type Constraint</em>' operation.
+	 * @see edu.toronto.cs.se.mmint.mid.ExtendibleElement#getClosestTypeConstraint()
+	 * @generated
+	 */
+	EOperation getExtendibleElement__GetClosestTypeConstraint();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElement#validateInstanceType(edu.toronto.cs.se.mmint.mid.ExtendibleElement) <em>Validate Instance Type</em>}' operation.
@@ -3843,6 +3907,14 @@ public interface MIDPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EXTENDIBLE_ELEMENT___GET_RUNTIME_TYPES = eINSTANCE.getExtendibleElement__GetRuntimeTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Closest Type Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT = eINSTANCE.getExtendibleElement__GetClosestTypeConstraint();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Instance Type</b></em>' operation.

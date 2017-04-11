@@ -562,6 +562,13 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case MIDPackage.EXTENDIBLE_ELEMENT___GET_CLOSEST_TYPE_CONSTRAINT:
+				try {
+					return getClosestTypeConstraint();
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 			case MIDPackage.EXTENDIBLE_ELEMENT___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT:
 				try {
 					return validateInstanceType((ExtendibleElement)arguments.get(0));
@@ -942,6 +949,28 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
 		MIDTypeHierarchy.addCachedRuntimeTypes(this, types);
 
 		return types;
+	}
+
+	/**
+		//TODO MMINT[OO] Shouldn't getRuntimeTypes() do something similar, climbing up rather than down?
+	 * @generated NOT
+	 */
+	public ExtendibleElementConstraint getClosestTypeConstraint() throws MMINTException {
+
+		MMINTException.mustBeType(this);
+
+		ExtendibleElementConstraint constraint = null;
+		ExtendibleElement type = this;
+		do {
+			if (type.getConstraint() != null) {
+				constraint = type.getConstraint();
+				break;
+			}
+			type = type.getSupertype();
+		}
+		while (type != null);
+
+		return constraint;
 	}
 
 	/**

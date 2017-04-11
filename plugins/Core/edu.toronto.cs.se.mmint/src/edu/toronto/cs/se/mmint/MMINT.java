@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -18,7 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -30,6 +29,7 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.service.prefs.BackingStoreException;
@@ -53,14 +53,12 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -76,11 +74,11 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  * (mega-modeling), defining relationships among models, automatically
  * manipulating models and relationships using operators (i.e.,
  * transformations).
- * 
+ *
  * The Model Management Tool Framework (MMINT) is an Eclipse-based framework for
  * rapidly developing model management tools emphasizing graphical, interactive
  * model management with strong typing.
- * 
+ *
  * MMINT facilitates interactive model management both at the type and instance
  * levels. It provides a graphical form of mega-model called a Model
  * Interconnection Diagram (MID) as the interface through which to perform
@@ -88,9 +86,9 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  * model/relationship/operator type hierarchy at runtime, while an instance MID
  * is used to interactively create instances of model/relationship types and to
  * apply operators to them.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MMINT implements MMINTConstants {
 
@@ -114,6 +112,8 @@ public class MMINT implements MMINTConstants {
 	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
+	/** The cached MID view provider */
+	static IViewProvider cachedMIDViewProvider;
 	/** The file containing the active instance MID (i.e. the one that triggered an operation) */
 	static IFile activeInstanceMIDFile;
 	/**
@@ -129,7 +129,10 @@ public class MMINT implements MMINTConstants {
 	 * - Add the ability to exclude arbitrary intermediate results from output (because they could be not used as inputs to subsequent operators)
 	 * - Support conversions in workflows?
 	 * - Create scripting language
-	 * - Assumption that instance uris are unique is wrong? (== have multiple models point to same file (a shortcut can't do the same)?)
+	 * - Assumption that instance uris are unique is wrong?
+	 * -- have multiple models point to same file and a way to count references for file deletion
+	 * -- stop relying on gmf shortcuts
+	 * -- find a way to formalize MIDRels (e.g. should act like a model rel and have endpoints for grabbing other mids)
 	 */
 	/* TODO MMINT[IN PROGRESS OPERATOR] Work on operators:
 	 * - Add a polymorphism submenu for type substitutability (coercion)
@@ -137,9 +140,7 @@ public class MMINT implements MMINTConstants {
 	 * - Don't create a root operator and root model type endpoints, that is not what happens in programming languages
 	 * - Use apis that are aware of this difference, but still allow for inheritance, aka overloading/overriding
 	 * - Add operator support in hierarchy tables and apis
-	 * - Review operator constraint heavy apis
-	 * - Differentiate between input and output constraints, use output constraint to validate output in normal operators, convert all operators to use them
-	 * - Add various apis: createOutputsByName() + make a workflow version for all apis used in startInstance
+	 * - Use output constraint to validate output in normal operators?
 	 * - Rethink ConversionOperator to be a simple workflow
 	 * - Rewrite ExperimentDriver to be a workflow
 	 * - Review and rationalize MIDOper and MIDRel, introduce MIDWorkflow?
@@ -150,6 +151,7 @@ public class MMINT implements MMINTConstants {
 	 * - Create features to pull all requirements for papers/demos + examples
 	 */
 	/* TODO MMINT[USABILITY]
+	 * - Add an alternative way of having documentation for types, e.g. a description field or an acceleo-generated web page
 	 * - Change uris into ids
 	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
 	 * - Similarly, there should be a ModelRelModelEndpoint and an OperatorModelEndpoint
@@ -217,7 +219,7 @@ public class MMINT implements MMINTConstants {
 	 * edu.toronto.cs.se.mmint.models extension. Requires the model type package
 	 * to be registered through a org.eclipse.emf.ecore.generated_package
 	 * extension.
-	 * 
+	 *
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.models extension configuration.
 	 * @return The created model type, null if the model type can't be created.
@@ -241,7 +243,7 @@ public class MMINT implements MMINTConstants {
 	 * registered edu.toronto.cs.se.mmint.relationships extension. Requires the
 	 * model relationship type package to be registered through a
 	 * org.eclipse.emf.ecore.generated_package extension.
-	 * 
+	 *
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.relationships extension
 	 *            configuration.
@@ -402,7 +404,7 @@ public class MMINT implements MMINTConstants {
 	 * edu.toronto.cs.se.mmint.editors extension. Requires the corresponding
 	 * Eclipse editor to be registered through a org.eclipse.ui.editors
 	 * extension.
-	 * 
+	 *
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.editors extension configuration.
 	 * @return The created editor type, null if the editor type can't be
@@ -431,7 +433,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Creates and adds parameter types to an operator type.
-	 * 
+	 *
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.operators extension subconfiguration for the parameter types.
 	 * @param containerOperatorType
@@ -473,41 +475,12 @@ public class MMINT implements MMINTConstants {
 				lowerBound,
 				upperBound
 			);
-			IConfigurationElement[] endpointConstraintConfigs = paramTypeConfig.getChildren(CHILD_ENDPOINTCONSTRAINT);
-			if (endpointConstraintConfigs.length != 0 && targetModelType instanceof ModelRel) {
-				OperatorConstraint constraint = (OperatorConstraint) containerOperatorType.getConstraint();
-				if (constraint == null) { // create empty constraint first
-					constraint = (OperatorConstraint) typeFactory.createHeavyTypeConstraint("JAVA", "", containerOperatorType);
-				}
-				OperatorConstraintRule constraintRule = typeFactory.createHeavyOperatorTypeConstraintRule(constraint, newModelTypeEndpoint);
-				for (IConfigurationElement endpointConstraintConfig : endpointConstraintConfigs) {
-					String parameterName = endpointConstraintConfig.getAttribute(ENDPOINTCONSTRAINT_ATTR_PARAMETERNAME);
-					String endpointIndex = endpointConstraintConfig.getAttribute(ENDPOINTCONSTRAINT_ATTR_ENDPOINTINDEX);
-					ModelEndpoint ruleModelTypeEndpoint;
-					int ruleEndpointIndex;
-					try {
-						ruleModelTypeEndpoint = Stream.concat(containerOperatorType.getInputs().stream(), containerOperatorType.getOutputs().stream())
-							.filter(inputModelTypeEndpoint -> inputModelTypeEndpoint.getName().equals(parameterName))
-							.findFirst()
-							.get();
-						ruleEndpointIndex = (endpointIndex == null) ? -1 : Integer.valueOf(endpointIndex);
-					}
-					catch (Exception e) {
-						throw new MMINTException("Bad operator constraint format", e);
-					}
-					typeFactory.createHeavyOperatorTypeConstraintRuleEndpoint(
-						constraintRule,
-						ruleModelTypeEndpoint,
-						ruleEndpointIndex,
-						OperatorPackage.eINSTANCE.getOperatorConstraintRule_EndpointModels().getName());
-				}
-			}
 		}
 	}
 
 	/**
 	 * Creates and adds generic types to an operator type.
-	 * 
+	 *
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.operators extension subconfiguration for the generic types.
 	 * @param containerOperatorType
@@ -556,7 +529,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Creates and adds an editor type to the repository from a registered
 	 * edu.toronto.cs.se.mmint.operators extension.
-	 * 
+	 *
 	 * @param extensionConfig
 	 *            The edu.toronto.cs.se.mmint.operators extension configuration.
 	 * @return The created operator type, null if the operator type can't be
@@ -589,7 +562,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Creates the necessary structures to support subtyping for a type.
-	 * 
+	 *
 	 * @param type
 	 *            The type being evaluated.
 	 * @param subtype
@@ -616,7 +589,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Creates the necessary structures to support type conversion for a type.
-	 * 
+	 *
 	 * @param type
 	 *            The type being evaluated.
 	 * @param conversionTypes
@@ -646,7 +619,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Creates the necessary structures to support the type hierarchy for the Type MID.
-	 * 
+	 *
 	 * @param typeMID
 	 *            The Type MID from which to extract the type hierarchy.
 	 * @param subtypeTable
@@ -687,7 +660,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Creates the necessary structures to support the type hierarchy of the Type MID.
-	 * 
+	 *
 	 * @param typeMID
 	 *            The Type MID.
 	 */
@@ -704,7 +677,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Creates and adds a model type to the repository from a dynamic ("light")
 	 * model type created at runtime before the last shutdown.
-	 * 
+	 *
 	 * @param dynamicType
 	 *            The dynamic model type from the last shutdown.
 	 * @return The created model type, null if the model type can't be created.
@@ -783,7 +756,7 @@ public class MMINT implements MMINTConstants {
 			String languageId = languageConfig.getAttribute(REASONERS_REASONER_LANGUAGE_ATTR_ID).toUpperCase();
 			Map<String, IReasoningEngine> reasoners = languageReasoners.get(languageId);
 			if (reasoners == null) {
-				reasoners = new HashMap<String, IReasoningEngine>();
+				reasoners = new HashMap<>();
 				languageReasoners.put(languageId, reasoners);
 			}
 			reasoners.put(reasonerName, reasoner);
@@ -795,7 +768,7 @@ public class MMINT implements MMINTConstants {
 	/**
 	 * Initializes the Type MID from the registered extensions and the dynamic
 	 * types created at runtime before the last shutdown, then stores it.
-	 * 
+	 *
 	 * @param registry
 	 *            The Eclipse extension registry.
 	 */
@@ -808,6 +781,7 @@ public class MMINT implements MMINTConstants {
 		typeFactory = new MIDHeavyTypeFactory();
 		languageReasoners = new HashMap<>();
 		activeInstanceMIDFile = null;
+		cachedMIDViewProvider = null;
 		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
 		IConfigurationElement config;
@@ -898,7 +872,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Copies one subtype table into another (src -> tgt).
-	 * 
+	 *
 	 * @param srcTable
 	 *            The source subtype table.
 	 * @param tgtTable
@@ -914,7 +888,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Copies one conversion table into another (src -> tgt).
-	 * 
+	 *
 	 * @param srcTable
 	 *            The source conversion table.
 	 * @param tgtTable
@@ -954,7 +928,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Syncs the Type MID with its cache in memory (TypeMID -> cache).
-	 * 
+	 *
 	 * @param typeMID
 	 *            The Type MID.
 	 */
@@ -968,7 +942,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Initializes a preference.
-	 * 
+	 *
 	 * @param preferences
 	 *            The preferences.
 	 * @param preferenceName
@@ -1018,7 +992,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Gets a preference.
-	 * 
+	 *
 	 * @param preferenceName
 	 *            The preference name.
 	 * @return The preference value, null if the preference name could not be
@@ -1033,7 +1007,7 @@ public class MMINT implements MMINTConstants {
 
 	/**
 	 * Sets a preference.
-	 * 
+	 *
 	 * @param preferenceName
 	 *            The preference name.
 	 * @param preferenceValue
@@ -1080,7 +1054,7 @@ public class MMINT implements MMINTConstants {
 	public static void stashActiveInstanceMIDFile() {
 
 		try {
-			IFile instanceMIDFile = (IFile) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
+			IFile instanceMIDFile = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().getAdapter(IFile.class);
 			activeInstanceMIDFile = instanceMIDFile;
 		}
 		catch (Exception e) {
