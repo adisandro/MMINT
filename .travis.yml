@@ -10,7 +10,7 @@ cache:
   - $HOME/.m2
 before_install:
  - test $TRAVIS_PULL_REQUEST = false \
-   && echo -e "Host cs.toronto.edu\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config \
+   && echo "Host cs.toronto.edu StrictHostKeyChecking no" >> ~/.ssh/config \
    && openssl aes-256-cbc -K $encrypted_631ea21ad1d0_key -iv $encrypted_631ea21ad1d0_iv -in releng/deploy_key.enc -out releng/deploy_key -d
 script:
  - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
