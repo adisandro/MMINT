@@ -14,9 +14,10 @@ package edu.toronto.cs.se.modelepedia.operator.propagate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
@@ -110,11 +111,11 @@ public class ModelRelPropagation extends OperatorImpl {
 		// model instance. Therefore, to identify the corresponding elements of
 		// each copy, their URIs will be used.
 		ModelEndpointReference origRelEndpoint = origRel.getModelEndpointRefs().get(0);
-		List<String> origElemList = new ArrayList<String>();
+		Set<String> origElemSet = new HashSet<>();
 		for (ModelElementReference mer : origRelEndpoint.getModelElemRefs()) {
-			String uri = mer.getObject().getUri();
-			origElemList.add(uri);
-			System.out.println("Retrieving from original model: " + uri);
+			String uri = mer.getUri();
+			origElemSet.add(uri);
+			System.out.println("Retrieving from original model relation: " + uri);
 		}
 		
 		// Retrieve the mappings from the trace model relation.
@@ -127,16 +128,16 @@ public class ModelRelPropagation extends OperatorImpl {
 		// the mappings may not originate from the original model elements.
 		// In fact, it is also assumed that each mapping may contain more
 		// than one element from the original model relation.
-		List<ModelElement> traceElemList = new ArrayList<ModelElement>();
+		Set<ModelElement> traceElemSet = new HashSet<>();
 		for (Mapping m : mappingList) {
 			boolean relevantFlag = false;			
 			List<ModelElementEndpoint> meeList = m.getModelElemEndpoints();
 			
-			Iterator<ModelElementEndpoint> iter = meeList.iterator();
-			while (iter.hasNext()) {
-				String curUri = iter.next().getTarget().getUri();
-				if (origElemList.contains(curUri)) {
+			for (ModelElementEndpoint mee : meeList) {
+				String curUri = mee.getTargetUri();
+				if (origElemSet.contains(curUri)) {
 					relevantFlag = true;
+					System.out.println("Tracing from: " + curUri);
 					break;
 				}
 			}
@@ -145,8 +146,8 @@ public class ModelRelPropagation extends OperatorImpl {
 				ModelElement obj;
 				for (ModelElementEndpoint mee : meeList) {
 					obj = mee.getTarget();
-					if (!origElemList.contains(obj.getUri())) {
-						traceElemList.add(obj);
+					if (!origElemSet.contains(obj.getUri())) {
+						traceElemSet.add(obj);
 						System.out.println("Tracing to: " + obj.getUri());
 					}
 				}
@@ -156,7 +157,7 @@ public class ModelRelPropagation extends OperatorImpl {
 		// Add the traced model elements to the output model relation.
 		EObject emfObj;
 		ModelEndpointReference propMer = propRel.getModelEndpointRefs().get(0);
-		for (ModelElement elem : traceElemList) {
+		for (ModelElement elem : traceElemSet) {
 			emfObj = elem.getEMFInstanceObject();
 			propMer.createModelElementInstanceAndReference(emfObj, null);
 			System.out.println("Adding to relation: " + emfObj);
