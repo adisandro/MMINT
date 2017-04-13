@@ -118,6 +118,14 @@ public class ModelRelPropagation extends OperatorImpl {
 			System.out.println("Retrieving from original model relation: " + uri);
 		}
 		
+		// Retrieve the model elements in the second model, which is used later 
+		// to ensure that the trace only contains model elements from it.
+		Set<ModelElement> targetModelSet = new HashSet<>();
+		for (ModelElement elem : model2.getModelElems()) {
+			targetModelSet.add(elem);
+			System.out.println("Retrieving elements from the second model: " + elem.getUri());
+		}		
+		
 		// Retrieve the mappings from the trace model relation.
 		List<Mapping> mappingList = traceRel.getMappings();
 		
@@ -146,7 +154,13 @@ public class ModelRelPropagation extends OperatorImpl {
 				ModelElement obj;
 				for (ModelElementEndpoint mee : meeList) {
 					obj = mee.getTarget();
-					if (!origElemSet.contains(obj.getUri())) {
+					System.out.println(obj.getUri());
+					
+					// Note: Only elements from the second model should be
+					// included in the trace. This accounts for cases where
+					// the mapping contains elements from the first model
+					// which is not in the original relation.
+					if (targetModelSet.contains(obj)) {
 						traceElemSet.add(obj);
 						System.out.println("Tracing to: " + obj.getUri());
 					}
