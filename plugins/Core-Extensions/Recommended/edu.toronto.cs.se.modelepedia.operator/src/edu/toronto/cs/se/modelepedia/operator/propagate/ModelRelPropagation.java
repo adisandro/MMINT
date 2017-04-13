@@ -115,7 +115,6 @@ public class ModelRelPropagation extends OperatorImpl {
 		for (ModelElementReference mer : origRelEndpoint.getModelElemRefs()) {
 			String uri = mer.getUri();
 			origElemSet.add(uri);
-			System.out.println("Retrieving from original model relation: " + uri);
 		}
 		
 		// Retrieve the model elements in the second model, which is used later 
@@ -123,7 +122,6 @@ public class ModelRelPropagation extends OperatorImpl {
 		Set<ModelElement> targetModelSet = new HashSet<>();
 		for (ModelElement elem : model2.getModelElems()) {
 			targetModelSet.add(elem);
-			System.out.println("Retrieving elements from the second model: " + elem.getUri());
 		}		
 		
 		// Retrieve the mappings from the trace model relation.
@@ -145,7 +143,6 @@ public class ModelRelPropagation extends OperatorImpl {
 				String curUri = mee.getTargetUri();
 				if (origElemSet.contains(curUri)) {
 					relevantFlag = true;
-					System.out.println("Tracing from: " + curUri);
 					break;
 				}
 			}
@@ -154,7 +151,6 @@ public class ModelRelPropagation extends OperatorImpl {
 				ModelElement obj;
 				for (ModelElementEndpoint mee : meeList) {
 					obj = mee.getTarget();
-					System.out.println(obj.getUri());
 					
 					// Note: Only elements from the second model should be
 					// included in the trace. This accounts for cases where
@@ -162,7 +158,6 @@ public class ModelRelPropagation extends OperatorImpl {
 					// which is not in the original relation.
 					if (targetModelSet.contains(obj)) {
 						traceElemSet.add(obj);
-						System.out.println("Tracing to: " + obj.getUri());
 					}
 				}
 			}
@@ -174,7 +169,6 @@ public class ModelRelPropagation extends OperatorImpl {
 		for (ModelElement elem : traceElemSet) {
 			emfObj = elem.getEMFInstanceObject();
 			propMer.createModelElementInstanceAndReference(emfObj, null);
-			System.out.println("Adding to relation: " + emfObj);
 		}
 		
 		return propRel;
