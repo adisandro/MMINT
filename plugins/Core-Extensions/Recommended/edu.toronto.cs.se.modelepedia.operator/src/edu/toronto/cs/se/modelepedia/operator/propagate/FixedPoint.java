@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,6 +49,8 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -182,6 +185,13 @@ public class FixedPoint extends NestingOperatorImpl {
         return endpointRefsMap;
     }
 
+    private Set<String> getModelElemUris(List<ModelElementReference> modelElemRefs) {
+
+        return modelElemRefs.stream()
+            .map(ModelElementReference::getUri)
+            .collect(Collectors.toSet());
+    }
+
     private Map<Map<String, Integer>, Integer> getMappingRefsMap(List<MappingReference> mappingRefs) {
 
         Map<Map<String, Integer>, Integer> mappingRefsMap = new HashMap<>();
@@ -198,18 +208,37 @@ public class FixedPoint extends NestingOperatorImpl {
 
     private boolean isFixed(ModelRel modelRel1, ModelRel modelRel2) {
 
+        // check model endpoints
         if (modelRel1.getModelEndpointRefs().size() != modelRel2.getModelEndpointRefs().size() ||
             modelRel1.getMappingRefs().size() != modelRel2.getMappingRefs().size()) {
             return false;
         }
-        Map<String, Integer> modelEndpointRefs1 = this.getEndpointRefsMap(modelRel1.getModelEndpointRefs());
-        Map<String, Integer> modelEndpointRefs2 = this.getEndpointRefsMap(modelRel2.getModelEndpointRefs());
-        if (!modelEndpointRefs1.equals(modelEndpointRefs2)) {
+        Map<String, Integer> modelEndpointRefsMap1 = this.getEndpointRefsMap(modelRel1.getModelEndpointRefs());
+        Map<String, Integer> modelEndpointRefsMap2 = this.getEndpointRefsMap(modelRel2.getModelEndpointRefs());
+        if (!modelEndpointRefsMap1.equals(modelEndpointRefsMap2)) {
             return false;
         }
-        Map<Map<String, Integer>, Integer> mappingRefs1 = this.getMappingRefsMap(modelRel1.getMappingRefs());
-        Map<Map<String, Integer>, Integer> mappingRefs2 = this.getMappingRefsMap(modelRel2.getMappingRefs());
-        if (!mappingRefs1.equals(mappingRefs2)) {
+        // check model elements
+        for (ModelEndpointReference modelEndpointRef1 : modelRel1.getModelEndpointRefs()) {
+            Set<String> modelElemUris1 = this.getModelElemUris(modelEndpointRef1.getModelElemRefs());
+            List<ModelEndpointReference> modelEndpointRefs2 = MIDRegistry.getEndpointReferences(
+                modelEndpointRef1.getTargetUri(), modelRel2.getModelEndpointRefs());
+            boolean modelElemEquals = false;
+            for (ModelEndpointReference modelEndpointRef2 : modelEndpointRefs2) { // at least one must be equal
+                Set<String> modelElemUris2 = this.getModelElemUris(modelEndpointRef2.getModelElemRefs());
+                if (modelElemUris1.equals(modelElemUris2)) {
+                    modelElemEquals = true;
+                    break;
+                }
+            }
+            if (!modelElemEquals) {
+                return false;
+            }
+        }
+        // check mappings
+        Map<Map<String, Integer>, Integer> mappingRefsMap1 = this.getMappingRefsMap(modelRel1.getMappingRefs());
+        Map<Map<String, Integer>, Integer> mappingRefsMap2 = this.getMappingRefsMap(modelRel2.getMappingRefs());
+        if (!mappingRefsMap1.equals(mappingRefsMap2)) {
             return false;
         }
 
