@@ -5,18 +5,18 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid;
 
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -868,7 +868,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT;
+	int MAVO_MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
