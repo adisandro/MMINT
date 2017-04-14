@@ -180,7 +180,7 @@ public class MAVOUtils {
 	public static boolean isMAVOElement(ModelElement modelElem) {
 
 		try {
-			return isMAVOElement(modelElem.getEMFInstanceObject());
+			return isMAVOElement(modelElem.getEMFInstanceObject(null));
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Can't get model object, skipping MAVO evaluation", e);

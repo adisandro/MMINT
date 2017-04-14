@@ -37,155 +37,155 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
  * @generated
  */
 public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
-	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Random STATE_EDEFAULT = null;
+    /**
+     * The default value of the '{@link #getState() <em>State</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getState()
+     * @generated
+     * @ordered
+     */
+    protected static final Random STATE_EDEFAULT = null;
 
-	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected Random state = STATE_EDEFAULT;
+    /**
+     * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getState()
+     * @generated
+     * @ordered
+     */
+    protected Random state = STATE_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public RandomOperatorImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public RandomOperatorImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return OperatorPackage.Literals.RANDOM_OPERATOR;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return OperatorPackage.Literals.RANDOM_OPERATOR;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Random getState() {
-		return state;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Random getState() {
+        return state;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setState(Random newState) {
-		Random oldState = state;
-		state = newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, state));
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setState(Random newState) {
+        Random oldState = state;
+        state = newState;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, state));
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR__STATE:
-				return getState();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case OperatorPackage.RANDOM_OPERATOR__STATE:
+                return getState();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR__STATE:
-				setState((Random)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case OperatorPackage.RANDOM_OPERATOR__STATE:
+                setState((Random)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR__STATE:
-				setState(STATE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case OperatorPackage.RANDOM_OPERATOR__STATE:
+                setState(STATE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OperatorPackage.RANDOM_OPERATOR__STATE:
-				return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case OperatorPackage.RANDOM_OPERATOR__STATE:
+                return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
+        }
+        return super.eIsSet(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toStringGen() {
-		if (eIsProxy()) return super.toString();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toStringGen() {
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (state: ");
-		result.append(state);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (state: ");
+        result.append(state);
+        result.append(')');
+        return result.toString();
+    }
 
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public Operator createInstance(MID instanceMID) throws MMINTException {
+    /**
+     * @generated NOT
+     */
+    @Override
+    public Operator createInstance(MID instanceMID) throws MMINTException {
 
-		RandomOperator newOperator = (RandomOperator) super.createInstance(instanceMID);
-		if (this.getState() == null) {
-			newOperator.setState(new Random());
-		}
-		else {
-			newOperator.setState(this.getState());
-		}
+        RandomOperator newOperator = (RandomOperator) super.createInstance(instanceMID);
+        if (this.getState() == null) {
+            newOperator.setState(new Random());
+        }
+        else {
+            newOperator.setState(this.getState());
+        }
 
-		return newOperator;
-	}
+        return newOperator;
+    }
 
 } //RandomOperatorImpl

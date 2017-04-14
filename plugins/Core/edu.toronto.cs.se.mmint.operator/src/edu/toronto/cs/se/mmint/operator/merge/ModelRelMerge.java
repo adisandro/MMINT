@@ -161,7 +161,7 @@ public class ModelRelMerge extends OperatorImpl {
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
 				ModelElementReference newModelElemRef = MIDRegistry.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
 				if (newModelElemRef == null) {
-					EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
+					EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject(null);
 					newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
 					newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 				}
