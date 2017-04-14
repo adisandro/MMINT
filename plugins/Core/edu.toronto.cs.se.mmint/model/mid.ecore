@@ -430,7 +430,9 @@
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFInstanceObject" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        eExceptions="#//MMINTException"/>
+        eExceptions="#//MMINTException">
+      <eParameters name="emfResource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eInfo" lowerBound="1" eType="#//EMFInfo"
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

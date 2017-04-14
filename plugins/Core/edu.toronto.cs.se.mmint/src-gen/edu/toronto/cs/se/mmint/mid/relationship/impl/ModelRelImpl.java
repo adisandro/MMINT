@@ -821,7 +821,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 			ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, newModelRel);
 			// model elements
 			for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-				EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject();
+				EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject(null);
 				ModelElementReference newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
 				newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
 			}

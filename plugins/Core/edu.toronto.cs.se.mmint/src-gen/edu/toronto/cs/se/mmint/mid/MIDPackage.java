@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -3315,11 +3316,11 @@ public interface MIDPackage extends EPackage {
 	EOperation getModelElement__DeleteInstance();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject() <em>Get EMF Instance Object</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject(Resource) <em>Get EMF Instance Object</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get EMF Instance Object</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject()
+	 * @see edu.toronto.cs.se.mmint.mid.ModelElement#getEMFInstanceObject(Resource)
 	 * @generated
 	 */
 	EOperation getModelElement__GetEMFInstanceObject();

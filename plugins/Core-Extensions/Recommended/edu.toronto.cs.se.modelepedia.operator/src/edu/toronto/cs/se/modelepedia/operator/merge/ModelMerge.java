@@ -156,7 +156,7 @@ public class ModelMerge extends OperatorImpl {
 			String modelElemUri1 = MIDRegistry.getModelElementUri(modelObj1);
 			if (matchModelElems1.keySet().contains(modelElemUri1)) {
 				ModelElement modelElem2 = matchModelElems1.get(modelElemUri1);
-				EObject modelObj2 = modelElem2.getEMFInstanceObject();
+				EObject modelObj2 = modelElem2.getEMFInstanceObject(null);
 				mergedModelObjs.put(
 					modelElem2.getUri().substring(0, modelElem2.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
 					mergedModelObj);

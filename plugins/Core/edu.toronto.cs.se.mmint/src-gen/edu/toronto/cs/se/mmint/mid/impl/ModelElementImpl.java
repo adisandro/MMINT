@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,10 +22,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -132,7 +134,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement getMetatype() {
+	@Override
+    public ModelElement getMetatype() {
 		ExtendibleElement metatype = super.getMetatype();
 		return (metatype == null) ? null : (ModelElement) metatype;
 	}
@@ -142,7 +145,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelElement getSupertype() {
+	@Override
+    public ModelElement getSupertype() {
 		ExtendibleElement supertype = super.getSupertype();
 		return (supertype == null) ? null : (ModelElement) supertype;
 	}
@@ -152,7 +156,8 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MID getMIDContainer() {
+	@Override
+    public MID getMIDContainer() {
 		return (MID) this.eContainer().eContainer();
 	}
 
@@ -312,7 +317,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 				}
 			case MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT:
 				try {
-					return getEMFInstanceObject();
+					return getEMFInstanceObject(null);
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
@@ -454,20 +459,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
 	/**
 	 * @generated NOT
 	 */
-	public EObject getEMFInstanceObject() throws MMINTException {
+	public EObject getEMFInstanceObject(@Nullable Resource emfResource) throws MMINTException {
 
 		MMINTException.mustBeInstance(this);
 
 		String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
 		int lastSegmentIndex = modelElemUri.lastIndexOf(MMINT.URI_SEPARATOR);
-		String lastSegment = modelElemUri.substring(lastSegmentIndex + 1, modelElemUri.length());
+		String lastSegment = modelElemUri.substring(lastSegmentIndex + 1);
 		boolean isPrimitive = !lastSegment.equals("") && !lastSegment.startsWith(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX);
 		if (isPrimitive) {
 			modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
 		}
 		EObject modelObj;
 		try {
-			modelObj = FileUtils.readModelObject(modelElemUri, null);
+			modelObj = FileUtils.readModelObject(modelElemUri, emfResource);
 		}
 		catch (Exception e) {
 			throw new MMINTException("Error accessing the model file for model element" + getUri(), e);

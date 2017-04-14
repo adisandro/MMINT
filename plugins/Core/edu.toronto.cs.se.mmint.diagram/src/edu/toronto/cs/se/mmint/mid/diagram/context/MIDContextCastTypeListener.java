@@ -80,7 +80,7 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 						ModelElement modelElem = modelElemRef.getObject();
 						ModelElement modelElemType;
 						try {
-							modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject());
+							modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelElem.getEMFInstanceObject(null));
 						}
 						catch (MMINTException e) {
 							MMINTException.print(IStatus.WARNING, "Can't get model object, skipping model element cast", e);

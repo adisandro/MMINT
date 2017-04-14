@@ -233,7 +233,7 @@ public class ChangeImpact extends OperatorImpl {
 			List<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
 			if (origUnifiables == null) { // not in the trace rel
 				// get the type it would have if it was in the trace rel
-				ModelElement diffModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject());
+				ModelElement diffModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject(null));
 				if (diffModelElemType != null) {
 					List<MAVOModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (MAVOModelElementReference origUnifiable : origUnifiablesFromSameType) {
