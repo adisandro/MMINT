@@ -1,23 +1,30 @@
 /**
  * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
+ * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Nick Fung - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.operator.slice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -26,7 +33,10 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class Slice extends OperatorImpl {
 
@@ -74,12 +84,45 @@ public class Slice extends OperatorImpl {
 		}
 	}
 
-	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
+	// Returns the complete list of model elements that may be impacted
+	// by the model elements included in the original slicing criterion.
+	// By default, all model elements are assumed to be impacted by the slice.
+	public Set<EObject> getImpactedElements(ModelRel criterion) throws MMINTException {
 
+		Set<EObject> changed = new HashSet<>();
+		ModelEndpointReference modelEndpointRef = criterion.getModelEndpointRefs().get(0);
+		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource r = rs.getResource(rUri, true);
+
+		EObject elem;
+		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
+			elem = mer.getObject().getEMFInstanceObject(r);
+			if (changed.contains(elem)) {
+				continue;
+			}
+			changed.add(elem);
+			// Get all model elements affected by the impacted model element.
+			addImpactedModelElems(elem, changed);
+		}
+
+		return changed;
+	}
+
+	// Checks whether the first input model element is potentially
+	// impacted by the second second input model element.
+	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {}
+
+	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 		ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
-		//TODO MMINT[MODELS17] The following is just an example of how to create a model element reference
-		EObject modelRootObj = model.getEMFInstanceRoot();
-		sliceRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(modelRootObj, null);
+
+		// Iterate through the unprocessed list of impacted elements
+		// to identify all dependent elements that are also impacted.
+		Set<EObject> changed = getImpactedElements(critRel);
+
+		for (EObject element : changed){
+			sliceRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(element, null);
+		}
 
 		return sliceRel;
 	}

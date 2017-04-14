@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
+ * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,15 +8,23 @@
  *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Nick Fung - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.operator.propagate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -24,8 +32,14 @@ import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class ModelRelPropagation extends OperatorImpl {
 
@@ -96,7 +110,76 @@ public class ModelRelPropagation extends OperatorImpl {
 	private ModelRel propagate(ModelRel origRel, ModelRel traceRel, Model model1, Model model2, MID outputMID) throws MMINTException {
 
 		ModelRel propRel = origRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2), outputMID);
-		//TODO MMINT[MODELS17] Continue..
+
+		// Retrieve the model elements in the original model relation.
+		// Note: traceRel and origRel may refer to different copies of the same
+		// model instance. Therefore, to identify the corresponding elements of
+		// each copy, their URIs will be used.
+		ModelEndpointReference origRelEndpoint = origRel.getModelEndpointRefs().get(0);
+		Set<String> origElemSet = new HashSet<>();
+		for (ModelElementReference mer : origRelEndpoint.getModelElemRefs()) {
+			String uri = mer.getUri();
+			origElemSet.add(uri);
+		}
+
+		// Retrieve the model elements in the second model, which is used later
+		// to ensure that the trace only contains model elements from it.
+		Set<ModelElement> targetModelSet = new HashSet<>();
+		for (ModelElement elem : model2.getModelElems()) {
+			targetModelSet.add(elem);
+		}
+
+		// Retrieve the mappings from the trace model relation.
+		List<Mapping> mappingList = traceRel.getMappings();
+
+		// Iterate through the mappings to retrieve each model element in the
+		// second model that corresponds to the model elements retrieved from
+		// the original model relation.
+		// Note: It is assumed that the mappings may not be binary and that
+		// the mappings may not originate from the original model elements.
+		// In fact, it is also assumed that each mapping may contain more
+		// than one element from the original model relation.
+		Set<ModelElement> traceElemSet = new HashSet<>();
+		for (Mapping m : mappingList) {
+			boolean relevantFlag = false;
+			List<ModelElementEndpoint> meeList = m.getModelElemEndpoints();
+
+			for (ModelElementEndpoint mee : meeList) {
+				String curUri = mee.getTargetUri();
+				if (origElemSet.contains(curUri)) {
+					relevantFlag = true;
+					break;
+				}
+			}
+
+			if (relevantFlag) {
+				ModelElement obj;
+				for (ModelElementEndpoint mee : meeList) {
+					obj = mee.getTarget();
+
+					// Note: Only elements from the second model should be
+					// included in the trace. This accounts for cases where
+					// the mapping contains elements from the first model
+					// which is not in the original relation.
+					if (targetModelSet.contains(obj)) {
+						traceElemSet.add(obj);
+					}
+				}
+			}
+		}
+
+		// Add the traced model elements to the output model relation.
+		EObject emfObj;
+		ModelEndpointReference propMer = propRel.getModelEndpointRefs().get(0);
+
+		URI rUri = FileUtils.createEMFUri(model2.getUri(), true);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource r = rs.getResource(rUri, true);
+
+		for (ModelElement elem : traceElemSet) {
+			emfObj = elem.getEMFInstanceObject(r);
+			propMer.createModelElementInstanceAndReference(emfObj, null);
+		}
 
 		return propRel;
 	}
