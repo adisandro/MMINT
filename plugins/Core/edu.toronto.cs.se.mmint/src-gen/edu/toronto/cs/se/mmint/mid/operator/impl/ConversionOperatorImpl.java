@@ -28,71 +28,71 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
  * @generated
  */
 public class ConversionOperatorImpl extends OperatorImpl implements ConversionOperator {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public ConversionOperatorImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public ConversionOperatorImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return OperatorPackage.Literals.CONVERSION_OPERATOR;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return OperatorPackage.Literals.CONVERSION_OPERATOR;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case OperatorPackage.CONVERSION_OPERATOR___CLEANUP:
-				try {
-					cleanup();
-					return null;
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case OperatorPackage.CONVERSION_OPERATOR___CLEANUP:
+                try {
+                    cleanup();
+                    return null;
+                }
+                catch (Throwable throwable) {
+                    throw new InvocationTargetException(throwable);
+                }
+        }
+        return super.eInvoke(operationID, arguments);
+    }
 
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public String toString() {
+    /**
+     * @generated NOT
+     */
+    @Override
+    public String toString() {
 
-		return "[conv] " + super.toString();
-	}
+        return "[conv] " + super.toString();
+    }
 
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public void deleteType() throws MMINTException {
+    /**
+     * @generated NOT
+     */
+    @Override
+    public void deleteType() throws MMINTException {
 
-		super.deleteType();
-		getInputs().get(0).getTarget().getConversionOperators().remove(this);
-	}
+        super.deleteType();
+        getInputs().get(0).getTarget().getConversionOperators().remove(this);
+    }
 
-	/**
-	 * @generated NOT
-	 */
-	public void cleanup() throws Exception {
+    /**
+     * @generated NOT
+     */
+    public void cleanup() throws Exception {
 
-		//TODO MMINT[OPERATOR] Integrate better with new apis, e.g. a transformation output now can be a model rel and it implies the converted model
-		// do nothing
-	}
+        //TODO MMINT[OPERATOR] Integrate better with new apis, e.g. a transformation output now can be a model rel and it implies the converted model
+        // do nothing
+    }
 
 } //ConversionOperatorImpl

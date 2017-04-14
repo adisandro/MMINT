@@ -35,85 +35,85 @@ import edu.toronto.cs.se.mmint.MMINTException;
  * @generated
  */
 public interface BinaryMappingReference extends MappingReference {
-	/**
-	 * Returns the value of the '<em><b>Source Model Elem Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The source model element reference.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Source Model Elem Ref</em>' reference.
-	 * @see #setSourceModelElemRef(ModelElementReference)
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryMappingReference_SourceModelElemRef()
-	 * @model required="true"
-	 * @generated
-	 */
-	ModelElementReference getSourceModelElemRef();
+    /**
+     * Returns the value of the '<em><b>Source Model Elem Ref</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The source model element reference.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Source Model Elem Ref</em>' reference.
+     * @see #setSourceModelElemRef(ModelElementReference)
+     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryMappingReference_SourceModelElemRef()
+     * @model required="true"
+     * @generated
+     */
+    ModelElementReference getSourceModelElemRef();
 
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference#getSourceModelElemRef <em>Source Model Elem Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Model Elem Ref</em>' reference.
-	 * @see #getSourceModelElemRef()
-	 * @generated
-	 */
-	void setSourceModelElemRef(ModelElementReference value);
+    /**
+     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference#getSourceModelElemRef <em>Source Model Elem Ref</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Source Model Elem Ref</em>' reference.
+     * @see #getSourceModelElemRef()
+     * @generated
+     */
+    void setSourceModelElemRef(ModelElementReference value);
 
-	/**
-	 * Returns the value of the '<em><b>Target Model Elem Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The target model element reference.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target Model Elem Ref</em>' reference.
-	 * @see #setTargetModelElemRef(ModelElementReference)
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryMappingReference_TargetModelElemRef()
-	 * @model required="true"
-	 * @generated
-	 */
-	ModelElementReference getTargetModelElemRef();
+    /**
+     * Returns the value of the '<em><b>Target Model Elem Ref</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The target model element reference.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Target Model Elem Ref</em>' reference.
+     * @see #setTargetModelElemRef(ModelElementReference)
+     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryMappingReference_TargetModelElemRef()
+     * @model required="true"
+     * @generated
+     */
+    ModelElementReference getTargetModelElemRef();
 
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference#getTargetModelElemRef <em>Target Model Elem Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Model Elem Ref</em>' reference.
-	 * @see #getTargetModelElemRef()
-	 * @generated
-	 */
-	void setTargetModelElemRef(ModelElementReference value);
+    /**
+     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference#getTargetModelElemRef <em>Target Model Elem Ref</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Target Model Elem Ref</em>' reference.
+     * @see #getTargetModelElemRef()
+     * @generated
+     */
+    void setTargetModelElemRef(ModelElementReference value);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * {@inheritDoc}<br />
-	 * Gets the referenced binary mapping.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (BinaryMapping) object;'"
-	 * @generated
-	 */
-	BinaryMapping getObject();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * {@inheritDoc}<br />
+     * Gets the referenced binary mapping.
+     * <!-- end-model-doc -->
+     * @model kind="operation" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (BinaryMapping) object;'"
+     * @generated
+     */
+    BinaryMapping getObject();
 
-	/**
-	 * <!-- begin-user-doc --> Adds the source or target reference to model
-	 * element type to this reference to binary mapping type.
-	 * 
-	 * @param modelElemTypeRef
-	 *            The reference to model element type that is the source or
-	 *            target of this reference to binary mapping type.
-	 * @param isBinarySrc
-	 *            True if the model element type is the source in the binary
-	 *            mapping type container, false otherwise.
-	 * @throws MMINTException
-	 *             If this is a reference to mapping instance.
-	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelElemTypeRefRequired="true" isBinarySrcRequired="true"
-	 * @generated
-	 */
-	void addModelElementTypeReference(ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException;
+    /**
+     * <!-- begin-user-doc --> Adds the source or target reference to model
+     * element type to this reference to binary mapping type.
+     * 
+     * @param modelElemTypeRef
+     *            The reference to model element type that is the source or
+     *            target of this reference to binary mapping type.
+     * @param isBinarySrc
+     *            True if the model element type is the source in the binary
+     *            mapping type container, false otherwise.
+     * @throws MMINTException
+     *             If this is a reference to mapping instance.
+     *             <!-- end-user-doc -->
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelElemTypeRefRequired="true" isBinarySrcRequired="true"
+     * @generated
+     */
+    void addModelElementTypeReference(ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException;
 
 } // BinaryMappingReference

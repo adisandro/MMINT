@@ -36,90 +36,90 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface MappingReference extends ExtendibleElementReference {
-	/**
-	 * Returns the value of the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The list of references to model element endpoints.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Model Elem Endpoint Refs</em>' containment reference list.
-	 * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getMappingReference_ModelElemEndpointRefs()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ModelElementEndpointReference> getModelElemEndpointRefs();
+    /**
+     * Returns the value of the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
+     * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The list of references to model element endpoints.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Model Elem Endpoint Refs</em>' containment reference list.
+     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getMappingReference_ModelElemEndpointRefs()
+     * @model containment="true"
+     * @generated
+     */
+    EList<ModelElementEndpointReference> getModelElemEndpointRefs();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * {@inheritDoc}<br />
-	 * Gets the referenced mapping.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (Mapping) object;'"
-	 * @generated
-	 */
-	Mapping getObject();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * {@inheritDoc}<br />
+     * Gets the referenced mapping.
+     * <!-- end-model-doc -->
+     * @model kind="operation" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (Mapping) object;'"
+     * @generated
+     */
+    Mapping getObject();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * {@inheritDoc}<br />
-	 * Gets the mapping supertype reference of this mapping type reference.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (MappingReference) supertypeRef;'"
-	 * @generated
-	 */
-	MappingReference getSupertypeRef();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * {@inheritDoc}<br />
+     * Gets the mapping supertype reference of this mapping type reference.
+     * <!-- end-model-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (MappingReference) supertypeRef;'"
+     * @generated
+     */
+    MappingReference getSupertypeRef();
 
-	/**
-	 * <!-- begin-user-doc --> Deletes this reference to a mapping type from the
-	 * Type MID.
-	 * 
-	 * @throws MMINTException
-	 *             If this is a reference to a mapping instance.
-	 *             <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void deleteTypeReference() throws MMINTException;
+    /**
+     * <!-- begin-user-doc --> Deletes this reference to a mapping type from the
+     * Type MID.
+     * 
+     * @throws MMINTException
+     *             If this is a reference to a mapping instance.
+     *             <!-- end-user-doc -->
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
+    void deleteTypeReference() throws MMINTException;
 
-	/**
-	 * <!-- begin-user-doc --> Deletes the referenced mapping type, this and all
-	 * reference to it from the Type MID.
-	 * 
-	 * @throws MMINTException
-	 *             If this is a reference to a mapping instance. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void deleteTypeAndReference() throws MMINTException;
+    /**
+     * <!-- begin-user-doc --> Deletes the referenced mapping type, this and all
+     * reference to it from the Type MID.
+     * 
+     * @throws MMINTException
+     *             If this is a reference to a mapping instance. <!-- end-user-doc -->
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
+    void deleteTypeAndReference() throws MMINTException;
 
-	/**
-	 * <!-- begin-user-doc --> Deletes this reference to a mapping instance from
-	 * the Instance MID that contains it.
-	 * 
-	 * @throws MMINTException
-	 *             If this is a reference to a mapping type. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void deleteInstanceReference() throws MMINTException;
+    /**
+     * <!-- begin-user-doc --> Deletes this reference to a mapping instance from
+     * the Instance MID that contains it.
+     * 
+     * @throws MMINTException
+     *             If this is a reference to a mapping type. <!-- end-user-doc -->
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
+    void deleteInstanceReference() throws MMINTException;
 
-	/**
-	 * <!-- begin-user-doc --> Deletes the referenced mapping instance and this
-	 * reference to it from the Instance MID that contains them.
-	 * 
-	 * @throws MMINTException
-	 *             If this is a reference to a mapping type. <!-- end-user-doc -->
-	 * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-	 * @generated
-	 */
-	void deleteInstanceAndReference() throws MMINTException;
+    /**
+     * <!-- begin-user-doc --> Deletes the referenced mapping instance and this
+     * reference to it from the Instance MID that contains them.
+     * 
+     * @throws MMINTException
+     *             If this is a reference to a mapping type. <!-- end-user-doc -->
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
+    void deleteInstanceAndReference() throws MMINTException;
 
 } // MappingReference
