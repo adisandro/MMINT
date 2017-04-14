@@ -29,62 +29,62 @@ import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
 public class SDSlice extends Slice {
 
-	// Checks whether the first input model element is potentially
-	// impacted by the second second input model element.
-	// Note: It is assumed that if the two input elements are equivalent,
-	// then the function should return true.
+    // Adds impacted model elements reachable from a single model element
 	@Override
 	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {
-		if (elem instanceof Lifeline) {
-			// If obj2 is a lifeline, then obj1 is potentially impacted if it
-			// is a message connected to obj2.
+
+	    if (elem instanceof Lifeline) {
 			Lifeline l = (Lifeline) elem;
+            // Impacted:
+            // 1) connected messages
 			for (SourceLifelineReference srcRef : l.getMessagesAsSource()) {
-				EObject impactedElem = srcRef.getSource();
-				if (impacted.contains(impactedElem)) {
+				Message m = srcRef.getSource();
+				if (impacted.contains(m)) {
 					continue;
 				}
-				impacted.add(impactedElem);
-				addImpactedModelElems(impactedElem, impacted);
+				impacted.add(m);
+				addImpactedModelElems(m, impacted);
 			}
-			for (TargetLifelineReference tarRef : l.getMessagesAsTarget()) {
-				EObject impactedElem = tarRef.getSource();
-				if (impacted.contains(impactedElem)) {
+			for (TargetLifelineReference tgtRef : l.getMessagesAsTarget()) {
+			    Message m = tgtRef.getSource();
+				if (impacted.contains(m)) {
 					continue;
 				}
-				impacted.add(impactedElem);
-				addImpactedModelElems(impactedElem, impacted);
+				impacted.add(m);
+				addImpactedModelElems(m, impacted);
 			}
-		} else if (elem instanceof Class) {
-			// It is assumed that if obj2 is a class, then obj1 is potentially
-			// impacted only if it is equivalent to obj2.
-		} else if (elem instanceof Attribute) {
-			// If obj2 is an attribute, then obj1 is potentially impacted if
-			// obj1 is a message that refers to obj2.
+		}
+	    else if (elem instanceof Attribute) {
 			Attribute a = (Attribute) elem;
+            // Impacted:
+            // 1) messages that refer to a
 			for (AttributeReference aRef : a.getMessages()) {
-				EObject impactedElem = aRef.getSource();
-				if (impacted.contains(impactedElem)) {
+				Message m = aRef.getSource();
+				if (impacted.contains(m)) {
 					continue;
 				}
-				impacted.add(impactedElem);
-				addImpactedModelElems(impactedElem, impacted);
+				impacted.add(m);
+				addImpactedModelElems(m, impacted);
 			}
-		} else if (elem instanceof Operation) {
-			// If obj2 is an operation, then obj1 is potentially impacted if
-			// obj1 is a message that refers to obj2.
+		}
+	    else if (elem instanceof Operation) {
 			Operation o = (Operation) elem;
+            // Impacted:
+            // 1) messages that refer to o
 			for (OperationReference oRef : o.getMessages()) {
-				EObject impactedElem = oRef.getSource();
-				if (impacted.contains(impactedElem)) {
+				Message m = oRef.getSource();
+				if (impacted.contains(m)) {
 					continue;
 				}
-				impacted.add(impactedElem);
-				addImpactedModelElems(impactedElem, impacted);
+				impacted.add(m);
+				addImpactedModelElems(m, impacted);
 			}
-		} else if (elem instanceof Message) {
-			// If obj2 is a message, then obj1 is potentially impacted
-			// only if it is equivalent to obj2.
+		}
+        else if (elem instanceof Class) {
+            // no impacted elements
+        }
+		else if (elem instanceof Message) {
+            // no impacted elements
 		}
 	}
 

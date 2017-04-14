@@ -86,10 +86,9 @@ public class Slice extends OperatorImpl {
 
 	// Returns the complete list of model elements that may be impacted
 	// by the model elements included in the original slicing criterion.
-	// By default, all model elements are assumed to be impacted by the slice.
 	public Set<EObject> getImpactedElements(ModelRel criterion) throws MMINTException {
 
-		Set<EObject> changed = new HashSet<>();
+		Set<EObject> impacted = new HashSet<>();
 		ModelEndpointReference modelEndpointRef = criterion.getModelEndpointRefs().get(0);
 		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
 		ResourceSet rs = new ResourceSetImpl();
@@ -98,26 +97,25 @@ public class Slice extends OperatorImpl {
 		EObject elem;
 		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
 			elem = mer.getObject().getEMFInstanceObject(r);
-			if (changed.contains(elem)) {
+			if (impacted.contains(elem)) {
 				continue;
 			}
-			changed.add(elem);
-			// Get all model elements affected by the impacted model element.
-			addImpactedModelElems(elem, changed);
+			impacted.add(elem);
+			// Get all model elements impacted by the element.
+			addImpactedModelElems(elem, impacted);
 		}
 
-		return changed;
+		return impacted;
 	}
 
-	// Checks whether the first input model element is potentially
-	// impacted by the second second input model element.
+    // Adds impacted model elements reachable from a single model element
+    // By default, no model elements are assumed to be impacted
 	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {}
 
 	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 		ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
-		// Iterate through the unprocessed list of impacted elements
-		// to identify all dependent elements that are also impacted.
+		// Iterate through the criteria to identify all dependent elements that are also impacted.
 		Set<EObject> changed = getImpactedElements(critRel);
 
 		for (EObject element : changed){

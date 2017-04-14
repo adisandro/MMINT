@@ -224,9 +224,10 @@ public class FixedPoint extends NestingOperatorImpl {
             List<ModelEndpointReference> modelEndpointRefs2 = MIDRegistry.getEndpointReferences(
                 modelEndpointRef1.getTargetUri(), modelRel2.getModelEndpointRefs());
             boolean modelElemEquals = false;
-            for (ModelEndpointReference modelEndpointRef2 : modelEndpointRefs2) { // at least one must be equal
+            for (ModelEndpointReference modelEndpointRef2 : modelEndpointRefs2) {
                 Set<String> modelElemUris2 = this.getModelElemUris(modelEndpointRef2.getModelElemRefs());
                 if (modelElemUris1.equals(modelElemUris2)) {
+                    // at least one must be equal here, == all must be equal when considering the outer loop
                     modelElemEquals = true;
                     break;
                 }
