@@ -29,12 +29,6 @@ import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
 public class SDSlice extends Slice {
 
-	private static final java.lang.Class<Lifeline> LIFELINE = Lifeline.class;
-	private static final java.lang.Class<Class> CLASS = Class.class;
-	private static final java.lang.Class<Attribute> ATTRIBUTE = Attribute.class;
-	private static final java.lang.Class<Operation> OPERATION = Operation.class;
-	private static final java.lang.Class<Message> MESSAGE = Message.class;
-
 	// Checks whether the first input model element is potentially
 	// impacted by the second second input model element.
 	// Note: It is assumed that if the two input elements are equivalent,

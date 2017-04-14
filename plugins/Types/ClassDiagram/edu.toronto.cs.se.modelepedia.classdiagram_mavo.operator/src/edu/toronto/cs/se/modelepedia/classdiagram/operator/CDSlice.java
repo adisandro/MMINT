@@ -28,12 +28,6 @@ import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
 public class CDSlice extends Slice {
 
-	private static final java.lang.Class<Class> CLASS = Class.class;
-	private static final java.lang.Class<Attribute> ATTRIBUTE = Attribute.class;
-	private static final java.lang.Class<Operation> OPERATION = Operation.class;
-	private static final java.lang.Class<Association> ASSOCIATION = Association.class;
-	private static final java.lang.Class<Dependency> DEPENDENCY = Dependency.class;
-
 	// Checks whether the first input model element is potentially
 	// impacted by the second second input model element.
 	@Override
@@ -120,20 +114,20 @@ public class CDSlice extends Slice {
 				addImpactedModelElems(d, impacted);
 			}
 
-		} else if (ATTRIBUTE.isInstance(elem)) {
+		} else if (elem instanceof Attribute) {
 			// If obj2 is an attribute, obj1 is potentially impacted by obj2 if
 			// obj1 is equivalent to obj2.
 
-		} else if (OPERATION.isInstance(elem)) {
+		} else if (elem instanceof Operation) {
 			// If obj2 is an attribute, obj1 is potentially impacted by obj2 if
 			// obj1 is equivalent to obj2.
 
 
-		} else if (ASSOCIATION.isInstance(elem)) {
+		} else if (elem instanceof Association) {
 			// If obj2 is an attribute, obj1 is potentially impacted by obj2 if
 			// obj1 is equivalent to obj2.
 
-		} else if (DEPENDENCY.isInstance(elem)) {
+		} else if (elem instanceof Dependency) {
 			// If obj2 is an attribute, obj1 is potentially impacted by obj2 if
 			// obj1 is equivalent to obj2.
 
