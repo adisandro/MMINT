@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mavomid="http://se.cs.toronto.edu/mmint/MAVOMID" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship">
+  <models xsi:type="relationship:ModelRel" uri="" name="criteria_CD" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="powerSD_CD" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1">
+      <target xsi:type="mid:Model" href="PowerSDMega.mid#//@models.0"/>
+    </modelEndpoints>
+    <modelEndpointRefs referencedObject="//@models.0/@modelEndpoints.0" modifiable="true">
+      <modelElemRefs modifiable="true">
+        <referencedObject xsi:type="mid:ModelElement" href="PowerSDMega.mid#//@models.0/@modelElems.0"/>
+      </modelElemRefs>
+    </modelEndpointRefs>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="criteria_SD" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="powerSD_SD" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1">
+      <target xsi:type="mavomid:MAVOModel" href="PowerSDMega.mid#//@models.1"/>
+    </modelEndpoints>
+    <modelEndpointRefs referencedObject="//@models.1/@modelEndpoints.0" modifiable="true"/>
+  </models>
+</mid:MID>
