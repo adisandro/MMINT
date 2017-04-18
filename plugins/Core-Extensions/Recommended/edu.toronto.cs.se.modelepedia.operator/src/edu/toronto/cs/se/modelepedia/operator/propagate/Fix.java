@@ -55,7 +55,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
-public class FixedPoint extends NestingOperatorImpl {
+public class Fix extends NestingOperatorImpl {
 
     // input-output
     private final static @NonNull String IN_MODELS = "models";
@@ -70,10 +70,10 @@ public class FixedPoint extends NestingOperatorImpl {
         public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint,
                                         @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-            final String FIXEDPOINT_URI = "http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint";
+            final String FIX_URI = "http://se.cs.toronto.edu/modelepedia/Operator_Fix";
             Operator fixerOperatorType = (Operator) genericType;
             // no nesting
-            if (fixerOperatorType.getUri().equals(FIXEDPOINT_URI)) {
+            if (fixerOperatorType.getUri().equals(FIX_URI)) {
                 return false;
             }
             // would not stop from infinite cycle

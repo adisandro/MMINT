@@ -434,12 +434,12 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="FixedPoint"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_FixedPoint"
-               class="edu.toronto.cs.se.modelepedia.operator.propagate.FixedPoint">
+               name="Fix"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Fix"
+               class="edu.toronto.cs.se.modelepedia.operator.propagate.Fix">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.propagate.FixedPoint$OperatorConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.propagate.Fix$OperatorConstraint"
                language="JAVA">
          </constraint>
          <generics>
