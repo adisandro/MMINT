@@ -41,7 +41,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_FIxI8hDmEeejuY7LH-d1Cg" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_FIxI8xDmEeejuY7LH-d1Cg" diagramLink="_GsmTMBDmEeejuY7LH-d1Cg" hint="Relationship"/>
       <element xmi:type="relationship:ModelRel" href="psd_criteria.mid#//@models.1"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FIxI9BDmEeejuY7LH-d1Cg" x="528" y="276"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FIxI9BDmEeejuY7LH-d1Cg" x="516" y="276"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_zzEx0RDMEeetxYYIECILew"/>
     <element xmi:type="mid:MID" href="psd_criteria.mid#/"/>
