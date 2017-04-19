@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID"/>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MODELS17/scenarios/2/v1.mid" name="v1" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid" editors="//@editors.0"/>
+  <models uri="/MODELS17/scenarios/2/v2.mid" name="v2" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid" editors="//@editors.1"/>
+  <editors xsi:type="editor:Diagram" uri="/MODELS17/scenarios/2/v1.middiag" name="MID diagram for model /MODELS17/scenarios/2/v1.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MODELS17/scenarios/2/v1.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/MODELS17/scenarios/2/v2.middiag" name="MID diagram for model /MODELS17/scenarios/2/v2.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MODELS17/scenarios/2/v2.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
+    <fileExtensions>middiag</fileExtensions>
+  </editors>
+  <extendibleTable key="/MODELS17/scenarios/2/v1.mid" value="//@models.0"/>
+  <extendibleTable key="/MODELS17/scenarios/2/v2.mid" value="//@models.1"/>
+</mid:MID>
