@@ -102,7 +102,7 @@ public class Slice extends OperatorImpl {
 			}
 			impacted.add(elem);
 			// Get all model elements impacted by the element.
-			addImpactedModelElems(elem, impacted);
+			this.addImpactedModelElems(elem, impacted);
 		}
 
 		return impacted;
@@ -116,7 +116,7 @@ public class Slice extends OperatorImpl {
 		ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
 		// Iterate through the criteria to identify all dependent elements that are also impacted.
-		Set<EObject> changed = getImpactedElements(critRel);
+		Set<EObject> changed = this.getImpactedElements(critRel);
 
 		for (EObject element : changed){
 			sliceRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(element, null);

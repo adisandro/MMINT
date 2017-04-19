@@ -70,14 +70,14 @@ public class CDSlice extends Slice {
 					continue;
 				}
 				for (Attribute a : c2.getOwnedAttributes()) {
-					if (impacted.contains(a) || a.getType() != c2) {
+					if (impacted.contains(a) || a.getType() != c) {
 						continue;
 					}
 					impacted.add(a);
 					addImpactedModelElems(a, impacted);
 				}
 				for (Operation o : c2.getOwnedOperations()) {
-					if (impacted.contains(o) || o.getType() != c2)	{
+					if (impacted.contains(o) || o.getType() != c)	{
 						continue;
 					}
 					impacted.add(o);

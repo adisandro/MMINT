@@ -461,6 +461,7 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
      */
     public EObject getEMFInstanceObject(@Nullable Resource emfResource) throws MMINTException {
 
+        //TODO MMINT[OO] Add emfResource as a cached protected member of Model to optimize every memory access
         MMINTException.mustBeInstance(this);
 
         String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
