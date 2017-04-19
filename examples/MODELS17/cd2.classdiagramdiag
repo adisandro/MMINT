@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_r4Xh0NISEeaMmt-3oKFILw" type="ClassDiagram" name="cd2.classdiagramdiag" measurementUnit="Pixel">
-  <styles xmi:type="notation:DiagramStyle" xmi:id="_r4Xh0dISEeaMmt-3oKFILw"/>
-  <element xmi:type="classdiagram:ClassDiagram" href="cd2.classdiagram#/"/>
-</notation:Diagram>
