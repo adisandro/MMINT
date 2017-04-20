@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/MODELS17/scenarios/1/psd.mid" name="psd" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.0"/>
-  <models uri="/MODELS17/scenarios/1/psd_criteria.mid" name="psd_criteria" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" fileExtension="mid" editors="//@editors.1"/>
+  <models uri="/MODELS17/scenarios/1/psd_criteria.mid" name="psd_criteria" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" fileExtension="mid" editors="//@editors.1"/>
   <editors xsi:type="editor:Diagram" uri="/MODELS17/scenarios/1/psd.middiag" name="MID diagram for model /MODELS17/scenarios/1/psd.mid" metatypeUri="http://se.cs.toronto.edu/mmint/MID_diagram" dynamic="true" modelUri="/MODELS17/scenarios/1/psd.mid" id="edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorID" wizardId="edu.toronto.cs.se.mmint.mid.diagram.part.MIDCreationWizardID">
     <fileExtensions>middiag</fileExtensions>
   </editors>
