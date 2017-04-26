@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -334,7 +334,7 @@ public class FileUtils {
 
 	/**
 	 * Writes the root of an ECore model from memory into an ECore model file.
-	 * 
+	 *
 	 * @param rootModelObj
 	 *            The root of the ECore model.
 	 * @param filePath
@@ -376,13 +376,13 @@ public class FileUtils {
 	}
 
 	public static @NonNull EObject readModelObject(@NonNull String fileObjectUri, @Nullable Resource resource) throws Exception {
-	
+
 		URI emfUri = URI.createURI(fileObjectUri, false, URI.FRAGMENT_LAST_SEPARATOR);
 		if (resource == null) {
 			ResourceSet set = new ResourceSetImpl();
 			resource = set.getResource(emfUri, true);
 		}
-	
+
 		return resource.getEObject(emfUri.fragment());
 	}
 

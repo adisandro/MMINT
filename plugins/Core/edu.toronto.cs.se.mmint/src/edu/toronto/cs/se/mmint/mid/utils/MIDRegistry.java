@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -56,9 +56,9 @@ import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
  * The registry for querying a multimodel.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDRegistry {
 
@@ -69,7 +69,7 @@ public class MIDRegistry {
 	/**
 	 * Gets a reference to an extendible element in a list of references to
 	 * extendible elements.
-	 * 
+	 *
 	 * @param elementUri
 	 *            The uri of the extendible element.
 	 * @param elementRefs
@@ -78,24 +78,24 @@ public class MIDRegistry {
 	 *         found.
 	 */
 	public static <T extends ExtendibleElementReference> T getReference(String elementUri, EList<T> elementRefs) {
-	
+
 		if (elementUri == null) {
 			return null;
 		}
-	
+
 		for (T elementRef : elementRefs) {
 			if (elementUri.equals(elementRef.getUri())) {
 				return elementRef;
 			}
 		}
-	
+
 		return null;
 	}
 
 	/**
 	 * Gets a reference to an extendible element in a list of references to
 	 * extendible elements.
-	 * 
+	 *
 	 * @param correspondingElementRef
 	 *            The corresponding reference to extendible element, i.e. a
 	 *            reference to an extendible element with the same uri of the
@@ -106,18 +106,18 @@ public class MIDRegistry {
 	 *         found.
 	 */
 	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
-	
+
 		if (correspondingElementRef == null) {
 			return null;
 		}
-	
+
 		return getReference(correspondingElementRef.getUri(), elementRefs);
 	}
 
 	/**
 	 * Gets the extendible element endpoints in a list of extendible element
 	 * endpoints.
-	 * 
+	 *
 	 * @param targetUri
 	 *            The uri of the extendible element which is the target of the
 	 *            endpoint.
@@ -126,12 +126,12 @@ public class MIDRegistry {
 	 * @return The extendible element endpoints.
 	 */
 	public static <T extends ExtendibleElementEndpoint> List<T> getEndpoints(String targetUri, EList<T> endpoints) {
-	
+
 		if (targetUri == null) {
 			return null;
 		}
 
-		List<T> targetEndpoints = new ArrayList<T>();
+		List<T> targetEndpoints = new ArrayList<>();
 		for (T endpoint : endpoints) {
 			if (targetUri.equals(endpoint.getTargetUri())) {
 				targetEndpoints.add(endpoint);
@@ -144,7 +144,7 @@ public class MIDRegistry {
 	/**
 	 * Gets the references to an extendible element endpoint in a list of
 	 * references to extendible element endpoints.
-	 * 
+	 *
 	 * @param targetUri
 	 *            The uri of the extendible element which is the target of the
 	 *            endpoint.
@@ -158,7 +158,7 @@ public class MIDRegistry {
 			return null;
 		}
 
-		List<T> targetEndpointRefs = new ArrayList<T>();
+		List<T> targetEndpointRefs = new ArrayList<>();
 		for (T endpointRef : endpointRefs) {
 			if (targetUri.equals(endpointRef.getTargetUri())) {
 				targetEndpointRefs.add(endpointRef);
@@ -246,6 +246,12 @@ public class MIDRegistry {
 
 		return modelElemUri;
 	}
+
+	//TODO MMINT[OO] Remove when switching to ModelElementIntermediate owned by ModelElementReference
+    public static @NonNull String getModelObjectUri(@NonNull ModelElement modelElem) {
+
+        return modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMINT.ROLE_SEPARATOR));
+    }
 
 	//TODO MMINT[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
 	//TODO MMINT[MODELELEMENT] add support for non-containment EReferences

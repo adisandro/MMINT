@@ -464,16 +464,16 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
         //TODO MMINT[OO] Add emfResource as a cached protected member of Model to optimize every memory access
         MMINTException.mustBeInstance(this);
 
-        String modelElemUri = getUri().substring(0, getUri().indexOf(MMINT.ROLE_SEPARATOR));
-        int lastSegmentIndex = modelElemUri.lastIndexOf(MMINT.URI_SEPARATOR);
-        String lastSegment = modelElemUri.substring(lastSegmentIndex + 1);
+        String modelObjUri = MIDRegistry.getModelObjectUri(this);
+        int lastSegmentIndex = modelObjUri.lastIndexOf(MMINT.URI_SEPARATOR);
+        String lastSegment = modelObjUri.substring(lastSegmentIndex + 1);
         boolean isPrimitive = !lastSegment.equals("") && !lastSegment.startsWith(MIDRegistry.ECORE_EREFERENCE_URI_PREFIX);
         if (isPrimitive) {
-            modelElemUri = modelElemUri.substring(0, lastSegmentIndex);
+            modelObjUri = modelObjUri.substring(0, lastSegmentIndex);
         }
         EObject modelObj;
         try {
-            modelObj = FileUtils.readModelObject(modelElemUri, emfResource);
+            modelObj = FileUtils.readModelObject(modelObjUri, emfResource);
         }
         catch (Exception e) {
             throw new MMINTException("Error accessing the model file for model element" + getUri(), e);

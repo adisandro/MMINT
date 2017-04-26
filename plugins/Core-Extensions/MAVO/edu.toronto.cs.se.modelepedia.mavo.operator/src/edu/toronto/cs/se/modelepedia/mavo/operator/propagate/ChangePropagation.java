@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -92,7 +92,7 @@ public class ChangePropagation extends OperatorImpl {
 	/**
 	 * Removes a model element and the reference to it from the Instance MID
 	 * that contains them.
-	 * 
+	 *
 	 * @param modelElemRef
 	 *            The reference to be removed to the model element to be
 	 *            removed.
@@ -108,34 +108,20 @@ public class ChangePropagation extends OperatorImpl {
 		//TODO MMINT[OO] should remove from all model rels too?
 	}
 
-	private String getModelEObjectUri(String modelElemUri) {
-
-		return modelElemUri.substring(0, modelElemUri.indexOf(MMINT.ROLE_SEPARATOR));
-	}
-
-	private ModelElementReference getModelElementReference(String modelElemRefUri, EList<ModelElementReference> modelElemRefs) {
-
-		if (modelElemRefUri == null) {
-			return null;
-		}
-
-		modelElemRefUri = getModelEObjectUri(modelElemRefUri);
-		for (ModelElementReference modelElemRef : modelElemRefs) {
-			if (modelElemRefUri.equals(getModelEObjectUri(modelElemRef.getUri()))) {
-				return modelElemRef;
-			}
-		}
-
-		return null;
-	}
-
 	private ModelElementReference getModelElementReference(ModelElementReference correspondingModelElemRef, EList<ModelElementReference> modelElemRefs) {
 
 		if (correspondingModelElemRef == null) {
 			return null;
 		}
 
-		return getModelElementReference(correspondingModelElemRef.getUri(), modelElemRefs);
+        String correspondingModelElemRefUri = MIDRegistry.getModelObjectUri(correspondingModelElemRef.getObject());
+        for (ModelElementReference modelElemRef : modelElemRefs) {
+            if (correspondingModelElemRefUri.equals(MIDRegistry.getModelObjectUri(modelElemRef.getObject()))) {
+                return modelElemRef;
+            }
+        }
+
+        return null;
 	}
 
 	private List<BinaryMAVOMappingReference> propagateTraceMappingsFromRefinements(MappingReference refinementMappingRef, BinaryMAVOModelRel traceRel, MAVOModel newPropModel, BinaryMAVOModelRel newPropTraceRel) throws Exception {
@@ -144,12 +130,12 @@ public class ChangePropagation extends OperatorImpl {
 		String origModelUri = origModelEndpointRef_traceRel.getTargetUri();
 
 		// get model element refs in trace rel that got refined
-		List<ModelElementReference> refinedModelElemRefs_refinementRel = new ArrayList<ModelElementReference>();
-		List<ModelElementReference> origModelElemRefs_traceRel = new ArrayList<ModelElementReference>();
+		List<ModelElementReference> refinedModelElemRefs_refinementRel = new ArrayList<>();
+		List<ModelElementReference> origModelElemRefs_traceRel = new ArrayList<>();
 		for (ModelElementEndpointReference refinementModelElemEndpointRef : refinementMappingRef.getModelElemEndpointRefs()) {
 			ModelElementReference refinementModelElemRef = refinementModelElemEndpointRef.getModelElemRef();
 			if (((ModelEndpointReference) refinementModelElemRef.eContainer()).getTargetUri().equals(origModelUri)) { // orig model element ref in trace rel
-				ModelElementReference origModelElemRef_traceRel = getModelElementReference(refinementModelElemRef.getUri(), origModelEndpointRef_traceRel.getModelElemRefs());
+				ModelElementReference origModelElemRef_traceRel = getModelElementReference(refinementModelElemRef, origModelEndpointRef_traceRel.getModelElemRefs());
 				if (origModelElemRef_traceRel == null) { // no trace for this model element
 					continue;
 				}
@@ -175,7 +161,7 @@ public class ChangePropagation extends OperatorImpl {
 		}
 
 		// propagate trace links
-		List<ModelElementReference> newRefinedModelElemRefs_propTraceRel = new ArrayList<ModelElementReference>();
+		List<ModelElementReference> newRefinedModelElemRefs_propTraceRel = new ArrayList<>();
 		ModelEndpointReference refinedModelEndpointRef_propTraceRel = newPropTraceRel.getModelEndpointRefs().get(0);
 		for (ModelElementReference refinedModelElemRef_refinementRel : refinedModelElemRefs_refinementRel) {
 			// create refined model elem ref in propagated trace rel
@@ -190,7 +176,7 @@ public class ChangePropagation extends OperatorImpl {
 				ModelElementReference relatedModelElemRef_traceRel = traceMappingRef.getTargetModelElemRef();
 				String propModelObjUri =
 					newPropModel.getUri() +
-					getModelEObjectUri(relatedModelElemRef_traceRel.getUri()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
+					MIDRegistry.getModelObjectUri(relatedModelElemRef_traceRel.getObject()).substring(relatedModelElemRef_traceRel.getUri().lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
 				EObject propModelObj = FileUtils.readModelObject(propModelObjUri, null);
 				// create propagated model elem ref in propagated trace rel
 				ModelElementReference newPropModelElemRef_propTraceRel = propModelEndpointRef_propTraceRel.createModelElementInstanceAndReference(propModelObj, relatedModelElemRef_traceRel.getObject().getName());
@@ -256,7 +242,7 @@ public class ChangePropagation extends OperatorImpl {
 	private List<BinaryMAVOMappingReference> reduceTraceMappingUncertainty(EObject modelRootB, List<BinaryMAVOMappingReference> propTraceMappingRefs, int indexA, int indexB) throws Exception {
 
 		int n = 0;
-		HashSet<String> uniqueModelElemUrisB = new HashSet<String>();
+		HashSet<String> uniqueModelElemUrisB = new HashSet<>();
 		for (BinaryMappingReference traceMappingRef : propTraceMappingRefs) {
 			if (traceMappingRef.getModelElemEndpointRefs().size() == 1) { // dangling link
 				continue;
@@ -293,7 +279,7 @@ traceLinks:
 			int Ua = traceModelElemEndpointRefA.getObject().getMetatype().getUpperBound();
 			int Lb = traceModelElemEndpointRefB.getObject().getMetatype().getLowerBound(), Ub = traceModelElemEndpointRefB.getObject().getMetatype().getUpperBound();
 			EObject modelObjB = FileUtils.readModelObject(
-				getModelEObjectUri(modelElemB.getUri()),
+				MIDRegistry.getModelObjectUri(modelElemB),
 				modelRootB.eResource()
 			);
 
@@ -368,16 +354,16 @@ traceLinks:
 	private void unifyModelElementUris(ModelElementReference unifiedModelElemRef, ModelElementReference modelElemRef) {
 
 		EMap<String, ExtendibleElement> extendibleTable = modelElemRef.getMIDContainer().getExtendibleTable();
-		String unifiedModelElemUri = getModelEObjectUri(unifiedModelElemRef.getUri());
-		String modelElemUri = getModelEObjectUri(modelElemRef.getUri());
+		String unifiedModelElemUri = MIDRegistry.getModelObjectUri(unifiedModelElemRef.getObject());
+		String modelElemUri = MIDRegistry.getModelObjectUri(modelElemRef.getObject());
 		ModelEndpointReference modelEndpointRef = (ModelEndpointReference) modelElemRef.eContainer();
 		String unifiedModelElemUriBase = unifiedModelElemUri.substring(0, unifiedModelElemUri.lastIndexOf('.')+1);
 		int unifiedModelElemUriIndex = Integer.parseInt(unifiedModelElemUri.substring(unifiedModelElemUri.lastIndexOf('.')+1));
 
-		List<ModelElement> otherModelElems = new ArrayList<ModelElement>();
+		List<ModelElement> otherModelElems = new ArrayList<>();
 		// first pass, modify model element uris
 		for (ModelElement otherModelElem : modelEndpointRef.getObject().getTarget().getModelElems()) {
-			String otherModelElemUri = getModelEObjectUri(otherModelElem.getUri());
+			String otherModelElemUri = MIDRegistry.getModelObjectUri(otherModelElem);
 			// other model element to be affected by unification of model elements
 			if (otherModelElemUri.contains(unifiedModelElemUriBase)) {
 				String otherModelElemUriExtra = otherModelElemUri.substring(otherModelElemUri.lastIndexOf(unifiedModelElemUriBase) + unifiedModelElemUriBase.length());
@@ -410,8 +396,8 @@ traceLinks:
 		ModelElementReference varModelElemRef = varTraceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		ModelElementReference modelElemRef = traceMappingRef.getModelElemEndpointRefs().get(indexB).getModelElemRef();
 		// get var object and other object from same resource
-		EObject varModelObj = FileUtils.readModelObject(getModelEObjectUri(varModelElemRef.getUri()), modelRootB.eResource());
-		EObject modelObj = FileUtils.readModelObject(getModelEObjectUri(modelElemRef.getUri()), modelRootB.eResource());
+		EObject varModelObj = FileUtils.readModelObject(MIDRegistry.getModelObjectUri(varModelElemRef.getObject()), modelRootB.eResource());
+		EObject modelObj = FileUtils.readModelObject(MIDRegistry.getModelObjectUri(modelElemRef.getObject()), modelRootB.eResource());
 		// unify contents
 		for (EObject varModelObjContent : varModelObj.eContents()) {
 			EStructuralFeature varModelObjContainingFeature = varModelObjContent.eContainingFeature();
