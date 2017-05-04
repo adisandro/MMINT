@@ -40,18 +40,19 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ModelMatch"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMatch"
-               class="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch">
+               name="Match"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Match"
+               class="edu.toronto.cs.se.modelepedia.operator.match.Match">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.match.ModelMatch$OperatorConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.match.Match$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
             <parameter>
 	           <type
-	                 name="model1">
+	                 name="model1"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Match-Model/model1">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -59,7 +60,8 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="model2">
+	                 name="model2"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Match-Model/model2">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -69,7 +71,8 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="match">
+	                 name="match"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Match-ModelRel/match">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -198,49 +201,19 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ModelSlice"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelSlice"
-               class="edu.toronto.cs.se.modelepedia.operator.slice.ModelSlice">
-         </type>
-         <inputs>
-            <parameter>
-	           <type
-	                 name="model">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-	           <type
-	                 name="slice">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-         </outputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
-               name="ModelMerge"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelMerge"
-               class="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge">
+               name="Merge"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Merge"
+               class="edu.toronto.cs.se.modelepedia.operator.merge.Merge">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.merge.ModelMerge$OperatorConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.merge.Merge$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
             <parameter>
 	           <type
-	                 name="match">
+	                 name="match"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Merge-ModelRel/match">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -250,7 +223,8 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="merged">
+	                 name="merged"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Merge-Model/merged">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -258,7 +232,8 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="trace1">
+	                 name="trace1"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Merge-ModelRel/trace1">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -266,7 +241,8 @@
             </parameter>
             <parameter>
 	           <type
-	                 name="trace2">
+	                 name="trace2"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_Merge-ModelRel/trace2">
 	           </type>
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -323,9 +299,9 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               class="edu.toronto.cs.se.modelepedia.operator.slice.Slice"
                name="Slice"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice">
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice"
+               class="edu.toronto.cs.se.modelepedia.operator.slice.Slice">
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.operator.slice.Slice$OperatorConstraint"

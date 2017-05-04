@@ -109,11 +109,28 @@ public class Slice extends OperatorImpl {
 	}
 
     // Adds impacted model elements reachable from a single model element
-    // By default, no model elements are assumed to be impacted
-	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {}
+    // By default, all contained and connected model elements are assumed to be impacted
+	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {
+
+	    for (EObject reachableElem : elem.eContents()) {
+	        if (impacted.contains(reachableElem)) {
+	            continue;
+	        }
+            impacted.add(reachableElem);
+            this.addImpactedModelElems(reachableElem, impacted);
+	    }
+        for (EObject reachableElem : elem.eCrossReferences()) {
+            if (impacted.contains(reachableElem)) {
+                continue;
+            }
+            impacted.add(reachableElem);
+            this.addImpactedModelElems(reachableElem, impacted);
+        }
+	}
 
 	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
-		ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
+
+	    ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
 		// Iterate through the criteria to identify all dependent elements that are also impacted.
 		Set<EObject> changed = this.getImpactedElements(critRel);

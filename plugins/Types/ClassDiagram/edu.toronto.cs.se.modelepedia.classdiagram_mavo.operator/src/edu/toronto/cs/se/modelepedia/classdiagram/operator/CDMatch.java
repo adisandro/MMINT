@@ -26,9 +26,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
-import edu.toronto.cs.se.modelepedia.operator.match.ModelMatch;
+import edu.toronto.cs.se.modelepedia.operator.match.Match;
 
-public class CDMatch extends ModelMatch {
+public class CDMatch extends Match {
 
 	@Override
 	protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {

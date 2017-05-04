@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,16 +17,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -41,7 +41,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
-public class ModelMatch extends OperatorImpl {
+public class Match extends OperatorImpl {
 
 	// input-output
 	private final static @NonNull String IN_MODEL1 = "model1";
@@ -162,7 +162,7 @@ public class ModelMatch extends OperatorImpl {
 		// loop through selected models
 		ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
 		Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();
-		Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<EObject, ModelEndpointReference>();
+		Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<>();
 		for (Model model : models) {
 			// create model endpoint
 			ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstance(model, matchRel);
@@ -181,8 +181,6 @@ public class ModelMatch extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		//TODO MMINT[MAP] Reenable when map handles varargs
-		//List<Model> models = MultiModelOperatorUtils.getVarargs(inputsByName, IN_MODEL1);
 		Input input = new Input(inputsByName);
 
 		// create match
