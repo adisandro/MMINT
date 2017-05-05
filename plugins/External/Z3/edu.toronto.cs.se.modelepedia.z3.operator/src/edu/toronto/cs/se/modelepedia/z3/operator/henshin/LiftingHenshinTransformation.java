@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -40,7 +40,10 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
@@ -48,6 +51,35 @@ import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
 public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
+
+    public static class Constraint implements IJavaOperatorConstraint {
+
+        @Override
+        public @NonNull Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+
+            Input input = new Input(inputsByName);
+            Model transformedModel = outputsByName.get(OUT_MODEL);
+            ModelRel traceRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+            List<Model> endpointModels = new ArrayList<>();
+            endpointModels.add(input.original);
+            endpointModels.add(transformedModel);
+            validOutputs.put(traceRel, endpointModels);
+
+            return validOutputs;
+        }
+
+    }
+
+    protected static class Input {
+
+        protected Model original;
+
+        public Input(Map<String, Model> inputsByName) {
+
+            this.original = inputsByName.get(IN_MODEL);
+        }
+    }
 
 	protected class TransformationApplicabilityCondition {
 
@@ -351,7 +383,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected void getNNodesAndChangeToC(NestedCondition conditionN, Rule ruleN, Set<Node> nodesN) {
 
 		// (N)ac nodes
-		Map<Node, Node> forbid2preserve = new HashMap<Node, Node>();
+		Map<Node, Node> forbid2preserve = new HashMap<>();
 		for (Node nodeN : conditionN.getConclusion().getNodes()) {
 			if (nodeN.getAction() != null && nodeN.getAction().getType() == Action.Type.FORBID) {
 				Node newNodeN = HenshinFactory.eINSTANCE.createNode();
@@ -454,7 +486,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 
 	protected boolean addNBarModelObjs(Match matchN, Set<Node> nodesN) {
 
-		Set<MAVOElement> modelObjsN = new HashSet<MAVOElement>();
+		Set<MAVOElement> modelObjsN = new HashSet<>();
 		getMatchedModelObjs(matchN, nodesN, modelObjsN, modelObjsCDN);
 		boolean isLiftedMatchNBar = (modelObjsN.size() > 0);
 		if (isLiftedMatchNBar) {
