@@ -40,12 +40,58 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
+               name="UntypedMatch"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_UntypedMatch"
+               class="edu.toronto.cs.se.modelepedia.operator.match.UntypedMatch">
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.operator.match.UntypedMatch$Constraint"
+               language="JAVA">
+         </constraint>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model1"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_UntypedMatch-Model/model1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="model2"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_UntypedMatch-Model/model2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="match"
+	                 uri="http://se.cs.toronto.edu/modelepedia/Operator_UntypedMatch-ModelRel/match">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
                name="Match"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_Match"
                class="edu.toronto.cs.se.modelepedia.operator.match.Match">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.operator.match.Match$OperatorConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.operator.match.Match$Constraint"
                language="JAVA">
          </constraint>
          <inputs>
