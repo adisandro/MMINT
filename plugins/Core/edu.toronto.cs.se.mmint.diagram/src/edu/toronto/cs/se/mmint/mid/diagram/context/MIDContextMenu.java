@@ -5,15 +5,17 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -30,13 +32,14 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.Model2EditPart;
@@ -52,9 +55,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 /**
  * The handler for the dynamic construction of a context menu for all
  * type-related operations (run operator, cast type, validate type).
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDContextMenu extends ContributionItem {
 
@@ -216,8 +219,34 @@ public class MIDContextMenu extends ContributionItem {
 				operatorItem.setMenu(operatorMenu);
 				for (int i = 0; i < executableOperators.size(); i++) {
 					Operator executableOperator = executableOperators.get(i);
-					//TODO MMINT[OPERATOR] There should be a visual match between formal and actual parameter, with indication of coercion
-					String text = executableOperator.toString();
+	                //TODO MMINT[OPERATOR] Move into an operator function + add coercion support
+					String text = executableOperator.toString() + "(";
+					Map<String, List<String>> varargs = new LinkedHashMap<>();
+					for (OperatorInput input : executableOperatorsInputs.get(i)) {
+					    ModelEndpoint formalParameter = input.getModelTypeEndpoint();
+					    Model actualParameter = input.getModel();
+					    String formal = formalParameter.getName();
+					    if (
+					        executableOperator.getSupertype() != null ||
+					        !MIDTypeHierarchy.getSubtypes(executableOperator).isEmpty()
+					    ) {
+					        formal = formalParameter.getTarget().getName() + " " + formal;
+					    }
+				        List<String> vararg = varargs.get(formal);
+				        if (vararg == null) {
+				            vararg = new ArrayList<>();
+				            varargs.put(formal, vararg);
+				        }
+				        vararg.add(actualParameter.getName());
+					}
+					List<String> params = new ArrayList<>();
+					for (Entry<String, List<String>> vararg : varargs.entrySet()) {
+					    String actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
+					                                                     vararg.getValue().get(0);
+					    params.add(vararg.getKey() + "=" + actual);
+					}
+					text += String.join(", ", params);
+					text += ")";
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
