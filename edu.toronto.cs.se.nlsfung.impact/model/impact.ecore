@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="impact" nsURI="http://www.cs.toronto.edu/~nlsfung/impact" nsPrefix="impact">
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAssessment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
+        eType="#//Annotation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Status">
+    <eLiterals name="Revise" literal="Revise"/>
+    <eLiterals name="Recheck" value="1" literal="Recheck"/>
+    <eLiterals name="Reuse" value="2" literal="Reuse"/>
+  </eClassifiers>
+</ecore:EPackage>
