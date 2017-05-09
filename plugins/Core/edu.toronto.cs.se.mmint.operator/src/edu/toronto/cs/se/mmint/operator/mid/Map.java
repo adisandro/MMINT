@@ -313,22 +313,22 @@ public class Map extends NestingOperatorImpl {
 
 		// find all possible combinations of inputs and execute them
 		java.util.Map<Operator, Set<EList<OperatorInput>>> mapperSpecs = new LinkedHashMap<>(); // reproducible order
-		EList<Operator> multipleDispatch = (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
+		EList<Operator> polyOperators = (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
 			ECollections.asEList(MIDTypeHierarchy.getSubtypes(mapperOperatorType)) :
 			ECollections.emptyEList();
-		if (multipleDispatch.isEmpty()) { // multiple dispatch disabled, or the mapper operator is not a multimethod
+		if (polyOperators.isEmpty()) { // multiple dispatch disabled, or the mapper operator is not a multimethod
 			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs, modelBlacklists));
 		}
 		else {
-			multipleDispatch.add(mapperOperatorType);
+			polyOperators.add(mapperOperatorType);
 			java.util.Map<String, EList<OperatorInput>> assignedInputs = new HashMap<>();
-			Iterator<Operator> multiIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(multipleDispatch);
-			while (multiIter.hasNext()) { // start from the most specialized operator backwards
-				Operator multiMapper = multiIter.next();
+			Iterator<Operator> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
+			while (polyIter.hasNext()) { // start from the most specialized operator backwards
+				Operator polyMapper = polyIter.next();
 				// assign at each step the allowed inputs that have not been already assigned
-				Set<EList<OperatorInput>> mapperInputs = multiMapper.findAllowedInputs(inputMIDs, modelBlacklists);
+				Set<EList<OperatorInput>> mapperInputs = polyMapper.findAllowedInputs(inputMIDs, modelBlacklists);
 				java.util.Map<String, EList<OperatorInput>> newInputs = this.diffMultipleDispatchInputs(assignedInputs, mapperInputs);
-				mapperSpecs.put(multiMapper, new LinkedHashSet<>(newInputs.values())); // reproducible order
+				mapperSpecs.put(polyMapper, new LinkedHashSet<>(newInputs.values())); // reproducible order
 				assignedInputs.putAll(newInputs);
 			}
 		}

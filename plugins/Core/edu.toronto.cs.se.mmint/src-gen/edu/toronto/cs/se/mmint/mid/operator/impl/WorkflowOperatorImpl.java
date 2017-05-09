@@ -13,9 +13,12 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -80,7 +84,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
      */
     public MID getNestedWorkflowMID() throws MMINTException {
         MMINTException.mustBeType(this);
-        
+
         try {
             return (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());
         }
@@ -278,7 +282,26 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 MID outputMID = outputMIDsByName.getOrDefault(outputModelEndpoint.getTargetUri(), nestedMID); // match workflow ids..
                 workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID); // ..with operator output names
             }
-            Map<String, Model> workflowOutputsByName = workflowOperator.getMetatype().startInstance(
+            Operator workflowOperatorType = workflowOperator.getMetatype();
+            if (Boolean.parseBoolean( // multiple dispatch enabled
+                MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))
+            ) {
+                EList<Operator> polyOperators = ECollections.asEList(MIDTypeHierarchy.getSubtypes(workflowOperatorType));
+                Iterator<Operator> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
+                List<Model> inputModels = workflowInputs.stream()
+                    .map(OperatorInput::getModel)
+                    .collect(Collectors.toList());
+                while (polyIter.hasNext()) { // start from the most specialized operator backwards
+                    Operator polyOperator = polyIter.next();
+                    EList<OperatorInput> polyInputs = polyOperator.checkAllowedInputs(ECollections.toEList(inputModels));
+                    if (polyInputs != null) {
+                        workflowOperatorType = polyOperator;
+                        workflowInputs = polyInputs;
+                        break;
+                    }
+                }
+            }
+            Map<String, Model> workflowOutputsByName = workflowOperatorType.startInstance(
                 workflowInputs,
                 null,
                 workflowGenerics,
