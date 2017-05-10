@@ -2,7 +2,7 @@
  */
 package edu.toronto.cs.nlsfung.gsn.impl;
 
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.nlsfung.gsn.InContextOf;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class InContextOfImpl extends BasicLinkImpl implements InContextOf {
+public abstract class InContextOfImpl extends GsnRelationshipImpl implements InContextOf {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -31,7 +31,7 @@ public class InContextOfImpl extends BasicLinkImpl implements InContextOf {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GsnPackage.Literals.IN_CONTEXT_OF;
+		return GSNPackage.Literals.IN_CONTEXT_OF;
 	}
 
 } //InContextOfImpl

@@ -4,7 +4,7 @@ package edu.toronto.cs.nlsfung.gsn.provider;
 
 
 import edu.toronto.cs.nlsfung.gsn.ASIL;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -63,7 +63,7 @@ public class ASILItemProvider extends ContextItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ASIL_level_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ASIL_level_feature", "_UI_ASIL_type"),
-				 GsnPackage.Literals.ASIL__LEVEL,
+				 GSNPackage.Literals.ASIL__LEVEL,
 				 true,
 				 false,
 				 false,
@@ -110,7 +110,7 @@ public class ASILItemProvider extends ContextItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ASIL.class)) {
-			case GsnPackage.ASIL__LEVEL:
+			case GSNPackage.ASIL__LEVEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -6,18 +6,19 @@
 
 <plugin>
 
+
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated gsn -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="edu.toronto.cs.nlsfung.gsn.presentation.GsnModelWizardID"
-            name="%_UI_GsnModelWizard_label"
-            class="edu.toronto.cs.nlsfung.gsn.presentation.GsnModelWizard"
+            id="edu.toronto.cs.nlsfung.gsn.presentation.GSNModelWizardID"
+            name="%_UI_GSNModelWizard_label"
+            class="edu.toronto.cs.nlsfung.gsn.presentation.GSNModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/GsnModelFile.gif">
-         <description>%_UI_GsnModelWizard_description</description>
+            icon="icons/full/obj16/GSNModelFile.gif">
+         <description>%_UI_GSNModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -25,25 +26,24 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated gsn -->
       <editor
-            id="edu.toronto.cs.nlsfung.gsn.presentation.GsnEditorID"
-            name="%_UI_GsnEditor_label"
-            icon="icons/full/obj16/GsnModelFile.gif"
+            id="edu.toronto.cs.nlsfung.gsn.presentation.GSNEditorID"
+            name="%_UI_GSNEditor_label"
+            icon="icons/full/obj16/GSNModelFile.gif"
             extensions="gsn"
-            class="edu.toronto.cs.nlsfung.gsn.presentation.GsnEditor"
-            contributorClass="edu.toronto.cs.nlsfung.gsn.presentation.GsnActionBarContributor">
+            class="edu.toronto.cs.nlsfung.gsn.presentation.GSNEditor"
+            contributorClass="edu.toronto.cs.nlsfung.gsn.presentation.GSNActionBarContributor">
       </editor>
    </extension>
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            id="edu.toronto.cs.nlsfung.gsn.presentation.GsnEditorID"
+            id="edu.toronto.cs.nlsfung.gsn.presentation.GSNEditorID"
             modelTypeUri="http://www.cs.toronto.edu/~nlsfung/gsn"
-            wizardId="edu.toronto.cs.nlsfung.gsn.presentation.GsnModelWizardID">
+            wizardId="edu.toronto.cs.nlsfung.gsn.presentation.GSNModelWizardID">
          <type
                name="GSN Editor"
                uri="http://www.cs.toronto.edu/~nlsfung/gsn/editor">
          </type>
       </editorType>
    </extension>
-
 </plugin>

@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>ASIL Level</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getASILLevel()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getASILLevel()
  * @model
  * @generated
  */

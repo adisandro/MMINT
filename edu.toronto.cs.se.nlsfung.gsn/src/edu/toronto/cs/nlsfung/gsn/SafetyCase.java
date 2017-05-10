@@ -15,45 +15,45 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getNodes <em>Nodes</em>}</li>
- *   <li>{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getLinks <em>Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getRelationships <em>Relationships</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getSafetyCase()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getSafetyCase()
  * @model
  * @generated
  */
 public interface SafetyCase extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.nlsfung.gsn.BasicNode}.
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.nlsfung.gsn.GsnElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nodes</em>' containment reference list.
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getSafetyCase_Nodes()
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getSafetyCase_Elements()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<BasicNode> getNodes();
+	EList<GsnElement> getElements();
 
 	/**
-	 * Returns the value of the '<em><b>Links</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.nlsfung.gsn.BasicLink}.
+	 * Returns the value of the '<em><b>Relationships</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.nlsfung.gsn.GsnRelationship}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Links</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Relationships</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Links</em>' containment reference list.
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getSafetyCase_Links()
+	 * @return the value of the '<em>Relationships</em>' containment reference list.
+	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getSafetyCase_Relationships()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<BasicLink> getLinks();
+	EList<GsnRelationship> getRelationships();
 
 } // SafetyCase

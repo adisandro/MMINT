@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InContextOfItemProvider extends BasicLinkItemProvider {
+public class InContextOfItemProvider extends GsnRelationshipItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

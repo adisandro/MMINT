@@ -4,7 +4,7 @@ package edu.toronto.cs.nlsfung.gsn.provider;
 
 
 import edu.toronto.cs.nlsfung.gsn.Context;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContextItemProvider extends BasicNodeItemProvider {
+public class ContextItemProvider extends GsnElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class ContextItemProvider extends BasicNodeItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Context_state_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Context_state_feature", "_UI_Context_type"),
-				 GsnPackage.Literals.CONTEXT__STATE,
+				 GSNPackage.Literals.CONTEXT__STATE,
 				 true,
 				 false,
 				 false,
@@ -110,7 +110,7 @@ public class ContextItemProvider extends BasicNodeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Context.class)) {
-			case GsnPackage.CONTEXT__STATE:
+			case GSNPackage.CONTEXT__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

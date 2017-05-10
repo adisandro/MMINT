@@ -15,7 +15,7 @@ package edu.toronto.cs.nlsfung.gsn;
  *   <li>{@link edu.toronto.cs.nlsfung.gsn.ASIL#getLevel <em>Level</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getASIL()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getASIL()
  * @model
  * @generated
  */
@@ -32,7 +32,7 @@ public interface ASIL extends Context {
 	 * @return the value of the '<em>Level</em>' attribute.
 	 * @see edu.toronto.cs.nlsfung.gsn.ASILLevel
 	 * @see #setLevel(ASILLevel)
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getASIL_Level()
+	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getASIL_Level()
 	 * @model
 	 * @generated
 	 */

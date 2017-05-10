@@ -2,8 +2,8 @@
  */
 package edu.toronto.cs.nlsfung.gsn.impl;
 
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.nlsfung.gsn.Goal;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
 import edu.toronto.cs.nlsfung.gsn.TruthState;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class GoalImpl extends BasicNodeImpl implements Goal {
+public class GoalImpl extends GsnElementImpl implements Goal {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class GoalImpl extends BasicNodeImpl implements Goal {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GsnPackage.Literals.GOAL;
+		return GSNPackage.Literals.GOAL;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class GoalImpl extends BasicNodeImpl implements Goal {
 		TruthState oldState = state;
 		state = newState == null ? STATE_EDEFAULT : newState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GsnPackage.GOAL__STATE, oldState, state));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__STATE, oldState, state));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class GoalImpl extends BasicNodeImpl implements Goal {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GsnPackage.GOAL__STATE:
+			case GSNPackage.GOAL__STATE:
 				return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public class GoalImpl extends BasicNodeImpl implements Goal {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GsnPackage.GOAL__STATE:
+			case GSNPackage.GOAL__STATE:
 				setState((TruthState)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public class GoalImpl extends BasicNodeImpl implements Goal {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GsnPackage.GOAL__STATE:
+			case GSNPackage.GOAL__STATE:
 				setState(STATE_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public class GoalImpl extends BasicNodeImpl implements Goal {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GsnPackage.GOAL__STATE:
+			case GSNPackage.GOAL__STATE:
 				return state != STATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

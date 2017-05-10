@@ -4,7 +4,7 @@ package edu.toronto.cs.nlsfung.gsn.impl;
 
 import edu.toronto.cs.nlsfung.gsn.ASIL;
 import edu.toronto.cs.nlsfung.gsn.ASILLevel;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -62,7 +62,7 @@ public class ASILImpl extends ContextImpl implements ASIL {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GsnPackage.Literals.ASIL;
+		return GSNPackage.Literals.ASIL;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class ASILImpl extends ContextImpl implements ASIL {
 		ASILLevel oldLevel = level;
 		level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GsnPackage.ASIL__LEVEL, oldLevel, level));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ASIL__LEVEL, oldLevel, level));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ASILImpl extends ContextImpl implements ASIL {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GsnPackage.ASIL__LEVEL:
+			case GSNPackage.ASIL__LEVEL:
 				return getLevel();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public class ASILImpl extends ContextImpl implements ASIL {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GsnPackage.ASIL__LEVEL:
+			case GSNPackage.ASIL__LEVEL:
 				setLevel((ASILLevel)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public class ASILImpl extends ContextImpl implements ASIL {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GsnPackage.ASIL__LEVEL:
+			case GSNPackage.ASIL__LEVEL:
 				setLevel(LEVEL_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public class ASILImpl extends ContextImpl implements ASIL {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GsnPackage.ASIL__LEVEL:
+			case GSNPackage.ASIL__LEVEL:
 				return level != LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

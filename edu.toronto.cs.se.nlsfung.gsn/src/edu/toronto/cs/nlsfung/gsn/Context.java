@@ -15,11 +15,11 @@ package edu.toronto.cs.nlsfung.gsn;
  *   <li>{@link edu.toronto.cs.nlsfung.gsn.Context#getState <em>State</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getContext()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getContext()
  * @model
  * @generated
  */
-public interface Context extends BasicNode {
+public interface Context extends GsnElement, GoalContext, StrategyContext {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.nlsfung.gsn.ValidityState}.
@@ -32,7 +32,7 @@ public interface Context extends BasicNode {
 	 * @return the value of the '<em>State</em>' attribute.
 	 * @see edu.toronto.cs.nlsfung.gsn.ValidityState
 	 * @see #setState(ValidityState)
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getContext_State()
+	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getContext_State()
 	 * @model
 	 * @generated
 	 */

@@ -2,7 +2,7 @@
  */
 package edu.toronto.cs.nlsfung.gsn.impl;
 
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.nlsfung.gsn.Strategy;
 import edu.toronto.cs.nlsfung.gsn.ValidityState;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class StrategyImpl extends BasicNodeImpl implements Strategy {
+public class StrategyImpl extends GsnElementImpl implements Strategy {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class StrategyImpl extends BasicNodeImpl implements Strategy {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GsnPackage.Literals.STRATEGY;
+		return GSNPackage.Literals.STRATEGY;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class StrategyImpl extends BasicNodeImpl implements Strategy {
 		ValidityState oldState = state;
 		state = newState == null ? STATE_EDEFAULT : newState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GsnPackage.STRATEGY__STATE, oldState, state));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.STRATEGY__STATE, oldState, state));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class StrategyImpl extends BasicNodeImpl implements Strategy {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GsnPackage.STRATEGY__STATE:
+			case GSNPackage.STRATEGY__STATE:
 				return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public class StrategyImpl extends BasicNodeImpl implements Strategy {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GsnPackage.STRATEGY__STATE:
+			case GSNPackage.STRATEGY__STATE:
 				setState((ValidityState)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public class StrategyImpl extends BasicNodeImpl implements Strategy {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GsnPackage.STRATEGY__STATE:
+			case GSNPackage.STRATEGY__STATE:
 				setState(STATE_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public class StrategyImpl extends BasicNodeImpl implements Strategy {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GsnPackage.STRATEGY__STATE:
+			case GSNPackage.STRATEGY__STATE:
 				return state != STATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

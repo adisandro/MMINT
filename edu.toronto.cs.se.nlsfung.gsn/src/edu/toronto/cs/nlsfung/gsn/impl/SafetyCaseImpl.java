@@ -2,18 +2,20 @@
  */
 package edu.toronto.cs.nlsfung.gsn.impl;
 
-import edu.toronto.cs.nlsfung.gsn.BasicLink;
-import edu.toronto.cs.nlsfung.gsn.BasicNode;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
+import edu.toronto.cs.nlsfung.gsn.GsnElement;
+import edu.toronto.cs.nlsfung.gsn.GsnRelationship;
 import edu.toronto.cs.nlsfung.gsn.SafetyCase;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -27,32 +29,32 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.nlsfung.gsn.impl.SafetyCaseImpl#getNodes <em>Nodes</em>}</li>
- *   <li>{@link edu.toronto.cs.nlsfung.gsn.impl.SafetyCaseImpl#getLinks <em>Links</em>}</li>
+ *   <li>{@link edu.toronto.cs.nlsfung.gsn.impl.SafetyCaseImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.nlsfung.gsn.impl.SafetyCaseImpl#getRelationships <em>Relationships</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements SafetyCase {
 	/**
-	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNodes()
+	 * @see #getElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BasicNode> nodes;
+	protected EList<GsnElement> elements;
 
 	/**
-	 * The cached value of the '{@link #getLinks() <em>Links</em>}' containment reference list.
+	 * The cached value of the '{@link #getRelationships() <em>Relationships</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLinks()
+	 * @see #getRelationships()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<BasicLink> links;
+	protected EList<GsnRelationship> relationships;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +72,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GsnPackage.Literals.SAFETY_CASE;
+		return GSNPackage.Literals.SAFETY_CASE;
 	}
 
 	/**
@@ -78,11 +80,11 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<BasicNode> getNodes() {
-		if (nodes == null) {
-			nodes = new EObjectContainmentEList<BasicNode>(BasicNode.class, this, GsnPackage.SAFETY_CASE__NODES);
+	public EList<GsnElement> getElements() {
+		if (elements == null) {
+			elements = new EObjectContainmentEList<GsnElement>(GsnElement.class, this, GSNPackage.SAFETY_CASE__ELEMENTS);
 		}
-		return nodes;
+		return elements;
 	}
 
 	/**
@@ -90,11 +92,11 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<BasicLink> getLinks() {
-		if (links == null) {
-			links = new EObjectContainmentEList<BasicLink>(BasicLink.class, this, GsnPackage.SAFETY_CASE__LINKS);
+	public EList<GsnRelationship> getRelationships() {
+		if (relationships == null) {
+			relationships = new EObjectContainmentEList<GsnRelationship>(GsnRelationship.class, this, GSNPackage.SAFETY_CASE__RELATIONSHIPS);
 		}
-		return links;
+		return relationships;
 	}
 
 	/**
@@ -105,10 +107,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GsnPackage.SAFETY_CASE__NODES:
-				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
-			case GsnPackage.SAFETY_CASE__LINKS:
-				return ((InternalEList<?>)getLinks()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
+				return ((InternalEList<?>)getRelationships()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -121,10 +123,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GsnPackage.SAFETY_CASE__NODES:
-				return getNodes();
-			case GsnPackage.SAFETY_CASE__LINKS:
-				return getLinks();
+			case GSNPackage.SAFETY_CASE__ELEMENTS:
+				return getElements();
+			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
+				return getRelationships();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,13 +140,13 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GsnPackage.SAFETY_CASE__NODES:
-				getNodes().clear();
-				getNodes().addAll((Collection<? extends BasicNode>)newValue);
+			case GSNPackage.SAFETY_CASE__ELEMENTS:
+				getElements().clear();
+				getElements().addAll((Collection<? extends GsnElement>)newValue);
 				return;
-			case GsnPackage.SAFETY_CASE__LINKS:
-				getLinks().clear();
-				getLinks().addAll((Collection<? extends BasicLink>)newValue);
+			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
+				getRelationships().clear();
+				getRelationships().addAll((Collection<? extends GsnRelationship>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,11 +160,11 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GsnPackage.SAFETY_CASE__NODES:
-				getNodes().clear();
+			case GSNPackage.SAFETY_CASE__ELEMENTS:
+				getElements().clear();
 				return;
-			case GsnPackage.SAFETY_CASE__LINKS:
-				getLinks().clear();
+			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
+				getRelationships().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -176,10 +178,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GsnPackage.SAFETY_CASE__NODES:
-				return nodes != null && !nodes.isEmpty();
-			case GsnPackage.SAFETY_CASE__LINKS:
-				return links != null && !links.isEmpty();
+			case GSNPackage.SAFETY_CASE__ELEMENTS:
+				return elements != null && !elements.isEmpty();
+			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
+				return relationships != null && !relationships.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

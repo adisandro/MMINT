@@ -10,7 +10,7 @@
       <!-- @generated gsn -->
       <package
             uri="http://www.cs.toronto.edu/~nlsfung/gsn"
-            class="edu.toronto.cs.nlsfung.gsn.GsnPackage"
+            class="edu.toronto.cs.nlsfung.gsn.GSNPackage"
             genModel="model/gsn.genmodel"/>
    </extension>
    <extension

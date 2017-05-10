@@ -2,12 +2,12 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="gsn" nsURI="http://www.cs.toronto.edu/~nlsfung/gsn" nsPrefix="gsn">
   <eClassifiers xsi:type="ecore:EClass" name="SafetyCase">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-        eType="#//BasicNode" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
-        eType="#//BasicLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//GsnElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relationships" upperBound="-1"
+        eType="#//GsnRelationship" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicNode" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="GsnElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -18,9 +18,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicLink" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//BasicNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BasicNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GsnRelationship" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -29,23 +27,43 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//BasicNode">
+  <eClassifiers xsi:type="ecore:EClass" name="GoalSupporter" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StrategySupporter" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GoalContext" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StrategyContext" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//GsnElement #//GoalSupporter #//StrategySupporter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TruthState"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//BasicNode">
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//GsnElement #//GoalSupporter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Evidence" eSuperTypes="#//BasicNode">
+  <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//GsnElement #//GoalSupporter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//BasicNode">
+  <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//GsnElement #//GoalContext #//StrategyContext">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ASIL" eSuperTypes="#//Context">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//ASILLevel"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InContextOf" eSuperTypes="#//BasicLink"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IsSupportedBy" eSuperTypes="#//BasicLink"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" abstract="true" eSuperTypes="#//GsnRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GoalSupportedBy" eSuperTypes="#//SupportedBy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Goal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//GoalSupporter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StrategySupportedBy" eSuperTypes="#//SupportedBy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Strategy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//StrategySupporter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InContextOf" abstract="true" eSuperTypes="#//GsnRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GoalInContextOf" eSuperTypes="#//InContextOf">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Goal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//GoalContext"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StrategyInContextOf" eSuperTypes="#//InContextOf">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Strategy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//StrategyContext"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TruthState">
     <eLiterals name="False" literal="False"/>
     <eLiterals name="True" value="1" literal="True"/>

@@ -15,11 +15,11 @@ package edu.toronto.cs.nlsfung.gsn;
  *   <li>{@link edu.toronto.cs.nlsfung.gsn.Strategy#getState <em>State</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getStrategy()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getStrategy()
  * @model
  * @generated
  */
-public interface Strategy extends BasicNode {
+public interface Strategy extends GsnElement, GoalSupporter {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.nlsfung.gsn.ValidityState}.
@@ -32,7 +32,7 @@ public interface Strategy extends BasicNode {
 	 * @return the value of the '<em>State</em>' attribute.
 	 * @see edu.toronto.cs.nlsfung.gsn.ValidityState
 	 * @see #setState(ValidityState)
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getStrategy_State()
+	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getStrategy_State()
 	 * @model
 	 * @generated
 	 */

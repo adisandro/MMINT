@@ -3,8 +3,8 @@
 package edu.toronto.cs.nlsfung.gsn.provider;
 
 
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.nlsfung.gsn.Goal;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends BasicNodeItemProvider {
+public class GoalItemProvider extends GsnElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class GoalItemProvider extends BasicNodeItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Goal_state_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_state_feature", "_UI_Goal_type"),
-				 GsnPackage.Literals.GOAL__STATE,
+				 GSNPackage.Literals.GOAL__STATE,
 				 true,
 				 false,
 				 false,
@@ -110,7 +110,7 @@ public class GoalItemProvider extends BasicNodeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Goal.class)) {
-			case GsnPackage.GOAL__STATE:
+			case GSNPackage.GOAL__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

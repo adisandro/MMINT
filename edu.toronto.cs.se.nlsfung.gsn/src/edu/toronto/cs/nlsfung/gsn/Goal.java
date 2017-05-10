@@ -15,11 +15,11 @@ package edu.toronto.cs.nlsfung.gsn;
  *   <li>{@link edu.toronto.cs.nlsfung.gsn.Goal#getState <em>State</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getGoal()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getGoal()
  * @model
  * @generated
  */
-public interface Goal extends BasicNode {
+public interface Goal extends GsnElement, GoalSupporter, StrategySupporter {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.nlsfung.gsn.TruthState}.
@@ -32,7 +32,7 @@ public interface Goal extends BasicNode {
 	 * @return the value of the '<em>State</em>' attribute.
 	 * @see edu.toronto.cs.nlsfung.gsn.TruthState
 	 * @see #setState(TruthState)
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getGoal_State()
+	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getGoal_State()
 	 * @model
 	 * @generated
 	 */

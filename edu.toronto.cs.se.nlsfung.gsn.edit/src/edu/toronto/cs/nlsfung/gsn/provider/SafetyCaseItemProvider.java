@@ -3,8 +3,8 @@
 package edu.toronto.cs.nlsfung.gsn.provider;
 
 
-import edu.toronto.cs.nlsfung.gsn.GsnFactory;
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNFactory;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.nlsfung.gsn.SafetyCase;
 
 import java.util.Collection;
@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -76,8 +77,8 @@ public class SafetyCaseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GsnPackage.Literals.SAFETY_CASE__NODES);
-			childrenFeatures.add(GsnPackage.Literals.SAFETY_CASE__LINKS);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ELEMENTS);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS);
 		}
 		return childrenFeatures;
 	}
@@ -130,8 +131,8 @@ public class SafetyCaseItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SafetyCase.class)) {
-			case GsnPackage.SAFETY_CASE__NODES:
-			case GsnPackage.SAFETY_CASE__LINKS:
+			case GSNPackage.SAFETY_CASE__ELEMENTS:
+			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,38 +152,48 @@ public class SafetyCaseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__NODES,
-				 GsnFactory.eINSTANCE.createGoal()));
+				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				 GSNFactory.eINSTANCE.createGoal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__NODES,
-				 GsnFactory.eINSTANCE.createStrategy()));
+				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				 GSNFactory.eINSTANCE.createStrategy()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__NODES,
-				 GsnFactory.eINSTANCE.createEvidence()));
+				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				 GSNFactory.eINSTANCE.createSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__NODES,
-				 GsnFactory.eINSTANCE.createContext()));
+				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				 GSNFactory.eINSTANCE.createContext()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__NODES,
-				 GsnFactory.eINSTANCE.createASIL()));
+				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				 GSNFactory.eINSTANCE.createASIL()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__LINKS,
-				 GsnFactory.eINSTANCE.createInContextOf()));
+				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
+				 GSNFactory.eINSTANCE.createGoalSupportedBy()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GsnPackage.Literals.SAFETY_CASE__LINKS,
-				 GsnFactory.eINSTANCE.createIsSupportedBy()));
+				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
+				 GSNFactory.eINSTANCE.createStrategySupportedBy()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
+				 GSNFactory.eINSTANCE.createGoalInContextOf()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
+				 GSNFactory.eINSTANCE.createStrategyInContextOf()));
 	}
 
 	/**

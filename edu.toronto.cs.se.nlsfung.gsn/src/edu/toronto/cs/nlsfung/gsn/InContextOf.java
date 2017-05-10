@@ -9,9 +9,9 @@ package edu.toronto.cs.nlsfung.gsn;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getInContextOf()
- * @model
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getInContextOf()
+ * @model abstract="true"
  * @generated
  */
-public interface InContextOf extends BasicLink {
+public interface InContextOf extends GsnRelationship {
 } // InContextOf

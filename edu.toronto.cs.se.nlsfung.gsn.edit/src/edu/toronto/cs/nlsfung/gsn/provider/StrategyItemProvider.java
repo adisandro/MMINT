@@ -3,7 +3,7 @@
 package edu.toronto.cs.nlsfung.gsn.provider;
 
 
-import edu.toronto.cs.nlsfung.gsn.GsnPackage;
+import edu.toronto.cs.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.nlsfung.gsn.Strategy;
 
 import java.util.Collection;
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StrategyItemProvider extends BasicNodeItemProvider {
+public class StrategyItemProvider extends GsnElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class StrategyItemProvider extends BasicNodeItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_Strategy_state_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Strategy_state_feature", "_UI_Strategy_type"),
-				 GsnPackage.Literals.STRATEGY__STATE,
+				 GSNPackage.Literals.STRATEGY__STATE,
 				 true,
 				 false,
 				 false,
@@ -110,7 +110,7 @@ public class StrategyItemProvider extends BasicNodeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Strategy.class)) {
-			case GsnPackage.STRATEGY__STATE:
+			case GSNPackage.STRATEGY__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

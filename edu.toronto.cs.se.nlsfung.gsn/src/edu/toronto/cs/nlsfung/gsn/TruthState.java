@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Truth State</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.nlsfung.gsn.GsnPackage#getTruthState()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getTruthState()
  * @model
  * @generated
  */
