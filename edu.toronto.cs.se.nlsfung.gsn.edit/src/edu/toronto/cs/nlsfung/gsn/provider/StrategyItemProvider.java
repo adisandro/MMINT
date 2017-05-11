@@ -46,6 +46,8 @@ public class StrategyItemProvider extends GsnElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addStatePropertyDescriptor(object);
+			addSupportedByPropertyDescriptor(object);
+			addInContextOfPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -68,6 +70,50 @@ public class StrategyItemProvider extends GsnElementItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Supported By feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSupportedByPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Strategy_supportedBy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Strategy_supportedBy_feature", "_UI_Strategy_type"),
+				 GSNPackage.Literals.STRATEGY__SUPPORTED_BY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the In Context Of feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInContextOfPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Strategy_inContextOf_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Strategy_inContextOf_feature", "_UI_Strategy_type"),
+				 GSNPackage.Literals.STRATEGY__IN_CONTEXT_OF,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

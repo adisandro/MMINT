@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getElements <em>Elements</em>}</li>
- *   <li>{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getRelationships <em>Relationships</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getSafetyCase()
@@ -39,21 +38,5 @@ public interface SafetyCase extends EObject {
 	 * @generated
 	 */
 	EList<GsnElement> getElements();
-
-	/**
-	 * Returns the value of the '<em><b>Relationships</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.nlsfung.gsn.GsnRelationship}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Relationships</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relationships</em>' containment reference list.
-	 * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getSafetyCase_Relationships()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<GsnRelationship> getRelationships();
 
 } // SafetyCase

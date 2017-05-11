@@ -6,13 +6,13 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Goal Context</b></em>'.
+ * A representation of the model object '<em><b>Goal Support</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getGoalContext()
+ * @see edu.toronto.cs.nlsfung.gsn.GSNPackage#getGoalSupport()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface GoalContext extends EObject {
-} // GoalContext
+public interface GoalSupport extends EObject {
+} // GoalSupport

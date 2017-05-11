@@ -76,24 +76,12 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 				return createGsnElementAdapter();
 			}
 			@Override
-			public Adapter caseGsnRelationship(GsnRelationship object) {
-				return createGsnRelationshipAdapter();
+			public Adapter caseGoalSupport(GoalSupport object) {
+				return createGoalSupportAdapter();
 			}
 			@Override
-			public Adapter caseGoalSupporter(GoalSupporter object) {
-				return createGoalSupporterAdapter();
-			}
-			@Override
-			public Adapter caseStrategySupporter(StrategySupporter object) {
-				return createStrategySupporterAdapter();
-			}
-			@Override
-			public Adapter caseGoalContext(GoalContext object) {
-				return createGoalContextAdapter();
-			}
-			@Override
-			public Adapter caseStrategyContext(StrategyContext object) {
-				return createStrategyContextAdapter();
+			public Adapter caseStrategySupport(StrategySupport object) {
+				return createStrategySupportAdapter();
 			}
 			@Override
 			public Adapter caseGoal(Goal object) {
@@ -114,30 +102,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseASIL(ASIL object) {
 				return createASILAdapter();
-			}
-			@Override
-			public Adapter caseSupportedBy(SupportedBy object) {
-				return createSupportedByAdapter();
-			}
-			@Override
-			public Adapter caseGoalSupportedBy(GoalSupportedBy object) {
-				return createGoalSupportedByAdapter();
-			}
-			@Override
-			public Adapter caseStrategySupportedBy(StrategySupportedBy object) {
-				return createStrategySupportedByAdapter();
-			}
-			@Override
-			public Adapter caseInContextOf(InContextOf object) {
-				return createInContextOfAdapter();
-			}
-			@Override
-			public Adapter caseGoalInContextOf(GoalInContextOf object) {
-				return createGoalInContextOfAdapter();
-			}
-			@Override
-			public Adapter caseStrategyInContextOf(StrategyInContextOf object) {
-				return createStrategyInContextOfAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -188,72 +152,30 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.GsnRelationship <em>Gsn Relationship</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.GoalSupport <em>Goal Support</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnRelationship
+	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupport
 	 * @generated
 	 */
-	public Adapter createGsnRelationshipAdapter() {
+	public Adapter createGoalSupportAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.GoalSupporter <em>Goal Supporter</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.StrategySupport <em>Strategy Support</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupporter
+	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupport
 	 * @generated
 	 */
-	public Adapter createGoalSupporterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.StrategySupporter <em>Strategy Supporter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupporter
-	 * @generated
-	 */
-	public Adapter createStrategySupporterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.GoalContext <em>Goal Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalContext
-	 * @generated
-	 */
-	public Adapter createGoalContextAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.StrategyContext <em>Strategy Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyContext
-	 * @generated
-	 */
-	public Adapter createStrategyContextAdapter() {
+	public Adapter createStrategySupportAdapter() {
 		return null;
 	}
 
@@ -324,90 +246,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createASILAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.SupportedBy <em>Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.SupportedBy
-	 * @generated
-	 */
-	public Adapter createSupportedByAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.GoalSupportedBy <em>Goal Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupportedBy
-	 * @generated
-	 */
-	public Adapter createGoalSupportedByAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.StrategySupportedBy <em>Strategy Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupportedBy
-	 * @generated
-	 */
-	public Adapter createStrategySupportedByAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.InContextOf <em>In Context Of</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.InContextOf
-	 * @generated
-	 */
-	public Adapter createInContextOfAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.GoalInContextOf <em>Goal In Context Of</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalInContextOf
-	 * @generated
-	 */
-	public Adapter createGoalInContextOfAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.nlsfung.gsn.StrategyInContextOf <em>Strategy In Context Of</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyInContextOf
-	 * @generated
-	 */
-	public Adapter createStrategyInContextOfAdapter() {
 		return null;
 	}
 

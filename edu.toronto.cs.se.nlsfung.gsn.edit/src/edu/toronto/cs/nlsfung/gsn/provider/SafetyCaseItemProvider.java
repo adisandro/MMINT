@@ -78,7 +78,6 @@ public class SafetyCaseItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ELEMENTS);
-			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS);
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +131,6 @@ public class SafetyCaseItemProvider
 
 		switch (notification.getFeatureID(SafetyCase.class)) {
 			case GSNPackage.SAFETY_CASE__ELEMENTS:
-			case GSNPackage.SAFETY_CASE__RELATIONSHIPS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -174,26 +172,6 @@ public class SafetyCaseItemProvider
 			(createChildParameter
 				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
 				 GSNFactory.eINSTANCE.createASIL()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
-				 GSNFactory.eINSTANCE.createGoalSupportedBy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
-				 GSNFactory.eINSTANCE.createStrategySupportedBy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
-				 GSNFactory.eINSTANCE.createGoalInContextOf()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__RELATIONSHIPS,
-				 GSNFactory.eINSTANCE.createStrategyInContextOf()));
 	}
 
 	/**

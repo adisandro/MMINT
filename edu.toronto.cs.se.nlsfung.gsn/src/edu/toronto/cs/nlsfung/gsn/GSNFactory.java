@@ -76,42 +76,6 @@ public interface GSNFactory extends EFactory {
 	ASIL createASIL();
 
 	/**
-	 * Returns a new object of class '<em>Goal Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Goal Supported By</em>'.
-	 * @generated
-	 */
-	GoalSupportedBy createGoalSupportedBy();
-
-	/**
-	 * Returns a new object of class '<em>Strategy Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Strategy Supported By</em>'.
-	 * @generated
-	 */
-	StrategySupportedBy createStrategySupportedBy();
-
-	/**
-	 * Returns a new object of class '<em>Goal In Context Of</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Goal In Context Of</em>'.
-	 * @generated
-	 */
-	GoalInContextOf createGoalInContextOf();
-
-	/**
-	 * Returns a new object of class '<em>Strategy In Context Of</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Strategy In Context Of</em>'.
-	 * @generated
-	 */
-	StrategyInContextOf createStrategyInContextOf();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

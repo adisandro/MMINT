@@ -78,33 +78,15 @@ public class GSNSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GSNPackage.GSN_RELATIONSHIP: {
-				GsnRelationship gsnRelationship = (GsnRelationship)theEObject;
-				T result = caseGsnRelationship(gsnRelationship);
+			case GSNPackage.GOAL_SUPPORT: {
+				GoalSupport goalSupport = (GoalSupport)theEObject;
+				T result = caseGoalSupport(goalSupport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GSNPackage.GOAL_SUPPORTER: {
-				GoalSupporter goalSupporter = (GoalSupporter)theEObject;
-				T result = caseGoalSupporter(goalSupporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.STRATEGY_SUPPORTER: {
-				StrategySupporter strategySupporter = (StrategySupporter)theEObject;
-				T result = caseStrategySupporter(strategySupporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.GOAL_CONTEXT: {
-				GoalContext goalContext = (GoalContext)theEObject;
-				T result = caseGoalContext(goalContext);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.STRATEGY_CONTEXT: {
-				StrategyContext strategyContext = (StrategyContext)theEObject;
-				T result = caseStrategyContext(strategyContext);
+			case GSNPackage.STRATEGY_SUPPORT: {
+				StrategySupport strategySupport = (StrategySupport)theEObject;
+				T result = caseStrategySupport(strategySupport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,8 +94,7 @@ public class GSNSwitch<T> extends Switch<T> {
 				Goal goal = (Goal)theEObject;
 				T result = caseGoal(goal);
 				if (result == null) result = caseGsnElement(goal);
-				if (result == null) result = caseGoalSupporter(goal);
-				if (result == null) result = caseStrategySupporter(goal);
+				if (result == null) result = caseStrategySupport(goal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -121,7 +102,7 @@ public class GSNSwitch<T> extends Switch<T> {
 				Strategy strategy = (Strategy)theEObject;
 				T result = caseStrategy(strategy);
 				if (result == null) result = caseGsnElement(strategy);
-				if (result == null) result = caseGoalSupporter(strategy);
+				if (result == null) result = caseGoalSupport(strategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,7 +110,7 @@ public class GSNSwitch<T> extends Switch<T> {
 				Solution solution = (Solution)theEObject;
 				T result = caseSolution(solution);
 				if (result == null) result = caseGsnElement(solution);
-				if (result == null) result = caseGoalSupporter(solution);
+				if (result == null) result = caseGoalSupport(solution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,8 +118,6 @@ public class GSNSwitch<T> extends Switch<T> {
 				Context context = (Context)theEObject;
 				T result = caseContext(context);
 				if (result == null) result = caseGsnElement(context);
-				if (result == null) result = caseGoalContext(context);
-				if (result == null) result = caseStrategyContext(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,54 +126,6 @@ public class GSNSwitch<T> extends Switch<T> {
 				T result = caseASIL(asil);
 				if (result == null) result = caseContext(asil);
 				if (result == null) result = caseGsnElement(asil);
-				if (result == null) result = caseGoalContext(asil);
-				if (result == null) result = caseStrategyContext(asil);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.SUPPORTED_BY: {
-				SupportedBy supportedBy = (SupportedBy)theEObject;
-				T result = caseSupportedBy(supportedBy);
-				if (result == null) result = caseGsnRelationship(supportedBy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.GOAL_SUPPORTED_BY: {
-				GoalSupportedBy goalSupportedBy = (GoalSupportedBy)theEObject;
-				T result = caseGoalSupportedBy(goalSupportedBy);
-				if (result == null) result = caseSupportedBy(goalSupportedBy);
-				if (result == null) result = caseGsnRelationship(goalSupportedBy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.STRATEGY_SUPPORTED_BY: {
-				StrategySupportedBy strategySupportedBy = (StrategySupportedBy)theEObject;
-				T result = caseStrategySupportedBy(strategySupportedBy);
-				if (result == null) result = caseSupportedBy(strategySupportedBy);
-				if (result == null) result = caseGsnRelationship(strategySupportedBy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.IN_CONTEXT_OF: {
-				InContextOf inContextOf = (InContextOf)theEObject;
-				T result = caseInContextOf(inContextOf);
-				if (result == null) result = caseGsnRelationship(inContextOf);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.GOAL_IN_CONTEXT_OF: {
-				GoalInContextOf goalInContextOf = (GoalInContextOf)theEObject;
-				T result = caseGoalInContextOf(goalInContextOf);
-				if (result == null) result = caseInContextOf(goalInContextOf);
-				if (result == null) result = caseGsnRelationship(goalInContextOf);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.STRATEGY_IN_CONTEXT_OF: {
-				StrategyInContextOf strategyInContextOf = (StrategyInContextOf)theEObject;
-				T result = caseStrategyInContextOf(strategyInContextOf);
-				if (result == null) result = caseInContextOf(strategyInContextOf);
-				if (result == null) result = caseGsnRelationship(strategyInContextOf);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -233,77 +164,32 @@ public class GSNSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Gsn Relationship</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Goal Support</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Gsn Relationship</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Goal Support</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGsnRelationship(GsnRelationship object) {
+	public T caseGoalSupport(GoalSupport object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal Supporter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Strategy Support</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Goal Supporter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Strategy Support</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGoalSupporter(GoalSupporter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Strategy Supporter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Strategy Supporter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStrategySupporter(StrategySupporter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal Context</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Goal Context</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGoalContext(GoalContext object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Strategy Context</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Strategy Context</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStrategyContext(StrategyContext object) {
+	public T caseStrategySupport(StrategySupport object) {
 		return null;
 	}
 
@@ -379,96 +265,6 @@ public class GSNSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseASIL(ASIL object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Supported By</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSupportedBy(SupportedBy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Goal Supported By</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGoalSupportedBy(GoalSupportedBy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Strategy Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Strategy Supported By</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStrategySupportedBy(StrategySupportedBy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>In Context Of</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>In Context Of</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInContextOf(InContextOf object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal In Context Of</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Goal In Context Of</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGoalInContextOf(GoalInContextOf object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Strategy In Context Of</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Strategy In Context Of</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStrategyInContextOf(StrategyInContextOf object) {
 		return null;
 	}
 

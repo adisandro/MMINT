@@ -77,22 +77,13 @@ public interface GSNPackage extends EPackage {
 	int SAFETY_CASE__ELEMENTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Relationships</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAFETY_CASE__RELATIONSHIPS = 1;
-
-	/**
 	 * The number of structural features of the '<em>Safety Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAFETY_CASE_FEATURE_COUNT = 2;
+	int SAFETY_CASE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Safety Case</em>' class.
@@ -159,153 +150,60 @@ public interface GSNPackage extends EPackage {
 	int GSN_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GsnRelationshipImpl <em>Gsn Relationship</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.GoalSupport <em>Goal Support</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GsnRelationshipImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGsnRelationship()
+	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupport
+	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalSupport()
 	 * @generated
 	 */
-	int GSN_RELATIONSHIP = 2;
+	int GOAL_SUPPORT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The number of structural features of the '<em>Goal Support</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GSN_RELATIONSHIP__ID = 0;
+	int GOAL_SUPPORT_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Gsn Relationship</em>' class.
+	 * The number of operations of the '<em>Goal Support</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GSN_RELATIONSHIP_FEATURE_COUNT = 1;
+	int GOAL_SUPPORT_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Gsn Relationship</em>' class.
+	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.StrategySupport <em>Strategy Support</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupport
+	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategySupport()
+	 * @generated
+	 */
+	int STRATEGY_SUPPORT = 3;
+
+	/**
+	 * The number of structural features of the '<em>Strategy Support</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GSN_RELATIONSHIP_OPERATION_COUNT = 0;
+	int STRATEGY_SUPPORT_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.GoalSupporter <em>Goal Supporter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupporter
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalSupporter()
-	 * @generated
-	 */
-	int GOAL_SUPPORTER = 3;
-
-	/**
-	 * The number of structural features of the '<em>Goal Supporter</em>' class.
+	 * The number of operations of the '<em>Strategy Support</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_SUPPORTER_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Goal Supporter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_SUPPORTER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.StrategySupporter <em>Strategy Supporter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupporter
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategySupporter()
-	 * @generated
-	 */
-	int STRATEGY_SUPPORTER = 4;
-
-	/**
-	 * The number of structural features of the '<em>Strategy Supporter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTER_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Strategy Supporter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.GoalContext <em>Goal Context</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalContext
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalContext()
-	 * @generated
-	 */
-	int GOAL_CONTEXT = 5;
-
-	/**
-	 * The number of structural features of the '<em>Goal Context</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_CONTEXT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Goal Context</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_CONTEXT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.StrategyContext <em>Strategy Context</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyContext
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategyContext()
-	 * @generated
-	 */
-	int STRATEGY_CONTEXT = 6;
-
-	/**
-	 * The number of structural features of the '<em>Strategy Context</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_CONTEXT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Strategy Context</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_CONTEXT_OPERATION_COUNT = 0;
+	int STRATEGY_SUPPORT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GoalImpl <em>Goal</em>}' class.
@@ -315,7 +213,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoal()
 	 * @generated
 	 */
-	int GOAL = 7;
+	int GOAL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -354,13 +252,31 @@ public interface GSNPackage extends EPackage {
 	int GOAL__STATE = GSN_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__SUPPORTED_BY = GSN_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>In Context Of</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__IN_CONTEXT_OF = GSN_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = GSN_ELEMENT_FEATURE_COUNT + 1;
+	int GOAL_FEATURE_COUNT = GSN_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -379,7 +295,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategy()
 	 * @generated
 	 */
-	int STRATEGY = 8;
+	int STRATEGY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -418,13 +334,31 @@ public interface GSNPackage extends EPackage {
 	int STRATEGY__STATE = GSN_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRATEGY__SUPPORTED_BY = GSN_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>In Context Of</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRATEGY__IN_CONTEXT_OF = GSN_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRATEGY_FEATURE_COUNT = GSN_ELEMENT_FEATURE_COUNT + 1;
+	int STRATEGY_FEATURE_COUNT = GSN_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Strategy</em>' class.
@@ -443,7 +377,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getSolution()
 	 * @generated
 	 */
-	int SOLUTION = 9;
+	int SOLUTION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -507,7 +441,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getContext()
 	 * @generated
 	 */
-	int CONTEXT = 10;
+	int CONTEXT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -571,7 +505,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getASIL()
 	 * @generated
 	 */
-	int ASIL = 11;
+	int ASIL = 8;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -637,300 +571,6 @@ public interface GSNPackage extends EPackage {
 	int ASIL_OPERATION_COUNT = CONTEXT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.SupportedByImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getSupportedBy()
-	 * @generated
-	 */
-	int SUPPORTED_BY = 12;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY__ID = GSN_RELATIONSHIP__ID;
-
-	/**
-	 * The number of structural features of the '<em>Supported By</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_FEATURE_COUNT = GSN_RELATIONSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Supported By</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_OPERATION_COUNT = GSN_RELATIONSHIP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GoalSupportedByImpl <em>Goal Supported By</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GoalSupportedByImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalSupportedBy()
-	 * @generated
-	 */
-	int GOAL_SUPPORTED_BY = 13;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_SUPPORTED_BY__ID = SUPPORTED_BY__ID;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_SUPPORTED_BY__SOURCE = SUPPORTED_BY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_SUPPORTED_BY__TARGET = SUPPORTED_BY_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Goal Supported By</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_SUPPORTED_BY_FEATURE_COUNT = SUPPORTED_BY_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Goal Supported By</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_SUPPORTED_BY_OPERATION_COUNT = SUPPORTED_BY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.StrategySupportedByImpl <em>Strategy Supported By</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.StrategySupportedByImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategySupportedBy()
-	 * @generated
-	 */
-	int STRATEGY_SUPPORTED_BY = 14;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTED_BY__ID = SUPPORTED_BY__ID;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTED_BY__SOURCE = SUPPORTED_BY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTED_BY__TARGET = SUPPORTED_BY_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Strategy Supported By</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTED_BY_FEATURE_COUNT = SUPPORTED_BY_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Strategy Supported By</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_SUPPORTED_BY_OPERATION_COUNT = SUPPORTED_BY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.InContextOfImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getInContextOf()
-	 * @generated
-	 */
-	int IN_CONTEXT_OF = 15;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IN_CONTEXT_OF__ID = GSN_RELATIONSHIP__ID;
-
-	/**
-	 * The number of structural features of the '<em>In Context Of</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IN_CONTEXT_OF_FEATURE_COUNT = GSN_RELATIONSHIP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>In Context Of</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IN_CONTEXT_OF_OPERATION_COUNT = GSN_RELATIONSHIP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GoalInContextOfImpl <em>Goal In Context Of</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GoalInContextOfImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalInContextOf()
-	 * @generated
-	 */
-	int GOAL_IN_CONTEXT_OF = 16;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_IN_CONTEXT_OF__ID = IN_CONTEXT_OF__ID;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_IN_CONTEXT_OF__SOURCE = IN_CONTEXT_OF_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_IN_CONTEXT_OF__TARGET = IN_CONTEXT_OF_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Goal In Context Of</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_IN_CONTEXT_OF_FEATURE_COUNT = IN_CONTEXT_OF_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Goal In Context Of</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL_IN_CONTEXT_OF_OPERATION_COUNT = IN_CONTEXT_OF_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.impl.StrategyInContextOfImpl <em>Strategy In Context Of</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.StrategyInContextOfImpl
-	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategyInContextOf()
-	 * @generated
-	 */
-	int STRATEGY_IN_CONTEXT_OF = 17;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_IN_CONTEXT_OF__ID = IN_CONTEXT_OF__ID;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_IN_CONTEXT_OF__SOURCE = IN_CONTEXT_OF_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_IN_CONTEXT_OF__TARGET = IN_CONTEXT_OF_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Strategy In Context Of</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_IN_CONTEXT_OF_FEATURE_COUNT = IN_CONTEXT_OF_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Strategy In Context Of</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY_IN_CONTEXT_OF_OPERATION_COUNT = IN_CONTEXT_OF_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.TruthState <em>Truth State</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,7 +578,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getTruthState()
 	 * @generated
 	 */
-	int TRUTH_STATE = 18;
+	int TRUTH_STATE = 9;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.ASILLevel <em>ASIL Level</em>}' enum.
@@ -948,7 +588,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getASILLevel()
 	 * @generated
 	 */
-	int ASIL_LEVEL = 19;
+	int ASIL_LEVEL = 10;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.nlsfung.gsn.ValidityState <em>Validity State</em>}' enum.
@@ -958,7 +598,7 @@ public interface GSNPackage extends EPackage {
 	 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getValidityState()
 	 * @generated
 	 */
-	int VALIDITY_STATE = 20;
+	int VALIDITY_STATE = 11;
 
 
 	/**
@@ -981,17 +621,6 @@ public interface GSNPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSafetyCase_Elements();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.nlsfung.gsn.SafetyCase#getRelationships <em>Relationships</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Relationships</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.SafetyCase#getRelationships()
-	 * @see #getSafetyCase()
-	 * @generated
-	 */
-	EReference getSafetyCase_Relationships();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GsnElement <em>Gsn Element</em>}'.
@@ -1037,65 +666,24 @@ public interface GSNPackage extends EPackage {
 	EAttribute getGsnElement_Description();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GsnRelationship <em>Gsn Relationship</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GoalSupport <em>Goal Support</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Gsn Relationship</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnRelationship
+	 * @return the meta object for class '<em>Goal Support</em>'.
+	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupport
 	 * @generated
 	 */
-	EClass getGsnRelationship();
+	EClass getGoalSupport();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.nlsfung.gsn.GsnRelationship#getId <em>Id</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.StrategySupport <em>Strategy Support</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GsnRelationship#getId()
-	 * @see #getGsnRelationship()
+	 * @return the meta object for class '<em>Strategy Support</em>'.
+	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupport
 	 * @generated
 	 */
-	EAttribute getGsnRelationship_Id();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GoalSupporter <em>Goal Supporter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Goal Supporter</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupporter
-	 * @generated
-	 */
-	EClass getGoalSupporter();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.StrategySupporter <em>Strategy Supporter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Strategy Supporter</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupporter
-	 * @generated
-	 */
-	EClass getStrategySupporter();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GoalContext <em>Goal Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Goal Context</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalContext
-	 * @generated
-	 */
-	EClass getGoalContext();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.StrategyContext <em>Strategy Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Strategy Context</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyContext
-	 * @generated
-	 */
-	EClass getStrategyContext();
+	EClass getStrategySupport();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.Goal <em>Goal</em>}'.
@@ -1119,6 +707,28 @@ public interface GSNPackage extends EPackage {
 	EAttribute getGoal_State();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.Goal#getSupportedBy <em>Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Supported By</em>'.
+	 * @see edu.toronto.cs.nlsfung.gsn.Goal#getSupportedBy()
+	 * @see #getGoal()
+	 * @generated
+	 */
+	EReference getGoal_SupportedBy();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.nlsfung.gsn.Goal#getInContextOf <em>In Context Of</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>In Context Of</em>'.
+	 * @see edu.toronto.cs.nlsfung.gsn.Goal#getInContextOf()
+	 * @see #getGoal()
+	 * @generated
+	 */
+	EReference getGoal_InContextOf();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.Strategy <em>Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1138,6 +748,28 @@ public interface GSNPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStrategy_State();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.nlsfung.gsn.Strategy#getSupportedBy <em>Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Supported By</em>'.
+	 * @see edu.toronto.cs.nlsfung.gsn.Strategy#getSupportedBy()
+	 * @see #getStrategy()
+	 * @generated
+	 */
+	EReference getStrategy_SupportedBy();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.nlsfung.gsn.Strategy#getInContextOf <em>In Context Of</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>In Context Of</em>'.
+	 * @see edu.toronto.cs.nlsfung.gsn.Strategy#getInContextOf()
+	 * @see #getStrategy()
+	 * @generated
+	 */
+	EReference getStrategy_InContextOf();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.Solution <em>Solution</em>}'.
@@ -1201,154 +833,6 @@ public interface GSNPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getASIL_Level();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.SupportedBy <em>Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Supported By</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.SupportedBy
-	 * @generated
-	 */
-	EClass getSupportedBy();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GoalSupportedBy <em>Goal Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Goal Supported By</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupportedBy
-	 * @generated
-	 */
-	EClass getGoalSupportedBy();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.GoalSupportedBy#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupportedBy#getSource()
-	 * @see #getGoalSupportedBy()
-	 * @generated
-	 */
-	EReference getGoalSupportedBy_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.GoalSupportedBy#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalSupportedBy#getTarget()
-	 * @see #getGoalSupportedBy()
-	 * @generated
-	 */
-	EReference getGoalSupportedBy_Target();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.StrategySupportedBy <em>Strategy Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Strategy Supported By</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupportedBy
-	 * @generated
-	 */
-	EClass getStrategySupportedBy();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.StrategySupportedBy#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupportedBy#getSource()
-	 * @see #getStrategySupportedBy()
-	 * @generated
-	 */
-	EReference getStrategySupportedBy_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.StrategySupportedBy#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategySupportedBy#getTarget()
-	 * @see #getStrategySupportedBy()
-	 * @generated
-	 */
-	EReference getStrategySupportedBy_Target();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.InContextOf <em>In Context Of</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>In Context Of</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.InContextOf
-	 * @generated
-	 */
-	EClass getInContextOf();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.GoalInContextOf <em>Goal In Context Of</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Goal In Context Of</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalInContextOf
-	 * @generated
-	 */
-	EClass getGoalInContextOf();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.GoalInContextOf#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalInContextOf#getSource()
-	 * @see #getGoalInContextOf()
-	 * @generated
-	 */
-	EReference getGoalInContextOf_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.GoalInContextOf#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.GoalInContextOf#getTarget()
-	 * @see #getGoalInContextOf()
-	 * @generated
-	 */
-	EReference getGoalInContextOf_Target();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.nlsfung.gsn.StrategyInContextOf <em>Strategy In Context Of</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Strategy In Context Of</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyInContextOf
-	 * @generated
-	 */
-	EClass getStrategyInContextOf();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.StrategyInContextOf#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyInContextOf#getSource()
-	 * @see #getStrategyInContextOf()
-	 * @generated
-	 */
-	EReference getStrategyInContextOf_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.nlsfung.gsn.StrategyInContextOf#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.nlsfung.gsn.StrategyInContextOf#getTarget()
-	 * @see #getStrategyInContextOf()
-	 * @generated
-	 */
-	EReference getStrategyInContextOf_Target();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.nlsfung.gsn.TruthState <em>Truth State</em>}'.
@@ -1422,14 +906,6 @@ public interface GSNPackage extends EPackage {
 		EReference SAFETY_CASE__ELEMENTS = eINSTANCE.getSafetyCase_Elements();
 
 		/**
-		 * The meta object literal for the '<em><b>Relationships</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SAFETY_CASE__RELATIONSHIPS = eINSTANCE.getSafetyCase_Relationships();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GsnElementImpl <em>Gsn Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1464,62 +940,24 @@ public interface GSNPackage extends EPackage {
 		EAttribute GSN_ELEMENT__DESCRIPTION = eINSTANCE.getGsnElement_Description();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GsnRelationshipImpl <em>Gsn Relationship</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.GoalSupport <em>Goal Support</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GsnRelationshipImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGsnRelationship()
+		 * @see edu.toronto.cs.nlsfung.gsn.GoalSupport
+		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalSupport()
 		 * @generated
 		 */
-		EClass GSN_RELATIONSHIP = eINSTANCE.getGsnRelationship();
+		EClass GOAL_SUPPORT = eINSTANCE.getGoalSupport();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.StrategySupport <em>Strategy Support</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.nlsfung.gsn.StrategySupport
+		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategySupport()
 		 * @generated
 		 */
-		EAttribute GSN_RELATIONSHIP__ID = eINSTANCE.getGsnRelationship_Id();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.GoalSupporter <em>Goal Supporter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.GoalSupporter
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalSupporter()
-		 * @generated
-		 */
-		EClass GOAL_SUPPORTER = eINSTANCE.getGoalSupporter();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.StrategySupporter <em>Strategy Supporter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.StrategySupporter
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategySupporter()
-		 * @generated
-		 */
-		EClass STRATEGY_SUPPORTER = eINSTANCE.getStrategySupporter();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.GoalContext <em>Goal Context</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.GoalContext
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalContext()
-		 * @generated
-		 */
-		EClass GOAL_CONTEXT = eINSTANCE.getGoalContext();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.StrategyContext <em>Strategy Context</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.StrategyContext
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategyContext()
-		 * @generated
-		 */
-		EClass STRATEGY_CONTEXT = eINSTANCE.getStrategyContext();
+		EClass STRATEGY_SUPPORT = eINSTANCE.getStrategySupport();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GoalImpl <em>Goal</em>}' class.
@@ -1540,6 +978,22 @@ public interface GSNPackage extends EPackage {
 		EAttribute GOAL__STATE = eINSTANCE.getGoal_State();
 
 		/**
+		 * The meta object literal for the '<em><b>Supported By</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GOAL__SUPPORTED_BY = eINSTANCE.getGoal_SupportedBy();
+
+		/**
+		 * The meta object literal for the '<em><b>In Context Of</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GOAL__IN_CONTEXT_OF = eINSTANCE.getGoal_InContextOf();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1556,6 +1010,22 @@ public interface GSNPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STRATEGY__STATE = eINSTANCE.getStrategy_State();
+
+		/**
+		 * The meta object literal for the '<em><b>Supported By</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRATEGY__SUPPORTED_BY = eINSTANCE.getStrategy_SupportedBy();
+
+		/**
+		 * The meta object literal for the '<em><b>In Context Of</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRATEGY__IN_CONTEXT_OF = eINSTANCE.getStrategy_InContextOf();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.SolutionImpl <em>Solution</em>}' class.
@@ -1610,130 +1080,6 @@ public interface GSNPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASIL__LEVEL = eINSTANCE.getASIL_Level();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.SupportedByImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getSupportedBy()
-		 * @generated
-		 */
-		EClass SUPPORTED_BY = eINSTANCE.getSupportedBy();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GoalSupportedByImpl <em>Goal Supported By</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GoalSupportedByImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalSupportedBy()
-		 * @generated
-		 */
-		EClass GOAL_SUPPORTED_BY = eINSTANCE.getGoalSupportedBy();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL_SUPPORTED_BY__SOURCE = eINSTANCE.getGoalSupportedBy_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL_SUPPORTED_BY__TARGET = eINSTANCE.getGoalSupportedBy_Target();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.StrategySupportedByImpl <em>Strategy Supported By</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.StrategySupportedByImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategySupportedBy()
-		 * @generated
-		 */
-		EClass STRATEGY_SUPPORTED_BY = eINSTANCE.getStrategySupportedBy();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRATEGY_SUPPORTED_BY__SOURCE = eINSTANCE.getStrategySupportedBy_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRATEGY_SUPPORTED_BY__TARGET = eINSTANCE.getStrategySupportedBy_Target();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.InContextOfImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getInContextOf()
-		 * @generated
-		 */
-		EClass IN_CONTEXT_OF = eINSTANCE.getInContextOf();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.GoalInContextOfImpl <em>Goal In Context Of</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GoalInContextOfImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getGoalInContextOf()
-		 * @generated
-		 */
-		EClass GOAL_IN_CONTEXT_OF = eINSTANCE.getGoalInContextOf();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL_IN_CONTEXT_OF__SOURCE = eINSTANCE.getGoalInContextOf_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL_IN_CONTEXT_OF__TARGET = eINSTANCE.getGoalInContextOf_Target();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.impl.StrategyInContextOfImpl <em>Strategy In Context Of</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.StrategyInContextOfImpl
-		 * @see edu.toronto.cs.nlsfung.gsn.impl.GSNPackageImpl#getStrategyInContextOf()
-		 * @generated
-		 */
-		EClass STRATEGY_IN_CONTEXT_OF = eINSTANCE.getStrategyInContextOf();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRATEGY_IN_CONTEXT_OF__SOURCE = eINSTANCE.getStrategyInContextOf_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STRATEGY_IN_CONTEXT_OF__TARGET = eINSTANCE.getStrategyInContextOf_Target();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.nlsfung.gsn.TruthState <em>Truth State</em>}' enum.

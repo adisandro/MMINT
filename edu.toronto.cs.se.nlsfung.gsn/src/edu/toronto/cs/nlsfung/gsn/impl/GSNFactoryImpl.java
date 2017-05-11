@@ -63,10 +63,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 			case GSNPackage.SOLUTION: return createSolution();
 			case GSNPackage.CONTEXT: return createContext();
 			case GSNPackage.ASIL: return createASIL();
-			case GSNPackage.GOAL_SUPPORTED_BY: return createGoalSupportedBy();
-			case GSNPackage.STRATEGY_SUPPORTED_BY: return createStrategySupportedBy();
-			case GSNPackage.GOAL_IN_CONTEXT_OF: return createGoalInContextOf();
-			case GSNPackage.STRATEGY_IN_CONTEXT_OF: return createStrategyInContextOf();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -168,46 +164,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 	public ASIL createASIL() {
 		ASILImpl asil = new ASILImpl();
 		return asil;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GoalSupportedBy createGoalSupportedBy() {
-		GoalSupportedByImpl goalSupportedBy = new GoalSupportedByImpl();
-		return goalSupportedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StrategySupportedBy createStrategySupportedBy() {
-		StrategySupportedByImpl strategySupportedBy = new StrategySupportedByImpl();
-		return strategySupportedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GoalInContextOf createGoalInContextOf() {
-		GoalInContextOfImpl goalInContextOf = new GoalInContextOfImpl();
-		return goalInContextOf;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StrategyInContextOf createStrategyInContextOf() {
-		StrategyInContextOfImpl strategyInContextOf = new StrategyInContextOfImpl();
-		return strategyInContextOf;
 	}
 
 	/**

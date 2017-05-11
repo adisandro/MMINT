@@ -24,25 +24,23 @@
     </genEnums>
     <genClasses ecoreClass="gsn.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/elements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/relationships"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//GsnElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//GsnElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//GsnElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//GsnElement/description"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//GsnRelationship">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//GsnRelationship/id"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//GoalSupporter"/>
-    <genClasses image="false" ecoreClass="gsn.ecore#//StrategySupporter"/>
-    <genClasses image="false" ecoreClass="gsn.ecore#//GoalContext"/>
-    <genClasses image="false" ecoreClass="gsn.ecore#//StrategyContext"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//GoalSupport"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//StrategySupport"/>
     <genClasses ecoreClass="gsn.ecore#//Goal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Goal/state"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Goal/supportedBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Goal/inContextOf"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//Strategy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Strategy/state"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Strategy/supportedBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Strategy/inContextOf"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//Solution">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Solution/state"/>
@@ -52,24 +50,6 @@
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//ASIL">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ASIL/level"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//SupportedBy"/>
-    <genClasses ecoreClass="gsn.ecore#//GoalSupportedBy">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//GoalSupportedBy/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//GoalSupportedBy/target"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//StrategySupportedBy">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//StrategySupportedBy/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//StrategySupportedBy/target"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//InContextOf"/>
-    <genClasses ecoreClass="gsn.ecore#//GoalInContextOf">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//GoalInContextOf/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//GoalInContextOf/target"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//StrategyInContextOf">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//StrategyInContextOf/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//StrategyInContextOf/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

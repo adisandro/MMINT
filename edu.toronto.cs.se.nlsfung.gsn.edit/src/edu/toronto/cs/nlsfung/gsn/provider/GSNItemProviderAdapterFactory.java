@@ -210,98 +210,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.nlsfung.gsn.GoalSupportedBy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GoalSupportedByItemProvider goalSupportedByItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.nlsfung.gsn.GoalSupportedBy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGoalSupportedByAdapter() {
-		if (goalSupportedByItemProvider == null) {
-			goalSupportedByItemProvider = new GoalSupportedByItemProvider(this);
-		}
-
-		return goalSupportedByItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.nlsfung.gsn.StrategySupportedBy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StrategySupportedByItemProvider strategySupportedByItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.nlsfung.gsn.StrategySupportedBy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStrategySupportedByAdapter() {
-		if (strategySupportedByItemProvider == null) {
-			strategySupportedByItemProvider = new StrategySupportedByItemProvider(this);
-		}
-
-		return strategySupportedByItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.nlsfung.gsn.GoalInContextOf} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GoalInContextOfItemProvider goalInContextOfItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.nlsfung.gsn.GoalInContextOf}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGoalInContextOfAdapter() {
-		if (goalInContextOfItemProvider == null) {
-			goalInContextOfItemProvider = new GoalInContextOfItemProvider(this);
-		}
-
-		return goalInContextOfItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.nlsfung.gsn.StrategyInContextOf} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StrategyInContextOfItemProvider strategyInContextOfItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.nlsfung.gsn.StrategyInContextOf}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStrategyInContextOfAdapter() {
-		if (strategyInContextOfItemProvider == null) {
-			strategyInContextOfItemProvider = new StrategyInContextOfItemProvider(this);
-		}
-
-		return strategyInContextOfItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,10 +314,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (contextItemProvider != null) contextItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
-		if (goalSupportedByItemProvider != null) goalSupportedByItemProvider.dispose();
-		if (strategySupportedByItemProvider != null) strategySupportedByItemProvider.dispose();
-		if (goalInContextOfItemProvider != null) goalInContextOfItemProvider.dispose();
-		if (strategyInContextOfItemProvider != null) strategyInContextOfItemProvider.dispose();
 	}
 
 }

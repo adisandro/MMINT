@@ -19,7 +19,7 @@ package edu.toronto.cs.nlsfung.gsn;
  * @model
  * @generated
  */
-public interface Solution extends GsnElement, GoalSupporter {
+public interface Solution extends GsnElement, GoalSupport {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.nlsfung.gsn.ValidityState}.
