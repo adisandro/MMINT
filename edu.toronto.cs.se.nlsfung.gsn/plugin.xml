@@ -13,5 +13,14 @@
             class="edu.toronto.cs.se.nlsfung.gsn.GSNPackage"
             genModel="model/gsn.genmodel"/>
    </extension>
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="GSN"
+               uri="http://www.cs.toronto.edu/~nlsfung/gsn">
+         </type>
+      </modelType>
+   </extension>
 
 </plugin>
