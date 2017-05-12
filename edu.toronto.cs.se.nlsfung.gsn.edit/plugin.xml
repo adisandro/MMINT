@@ -10,7 +10,7 @@
       <!-- @generated gsn -->
       <factory
             uri="http://www.cs.toronto.edu/~nlsfung/gsn"
-            class="edu.toronto.cs.nlsfung.gsn.provider.GSNItemProviderAdapterFactory"
+            class="edu.toronto.cs.se.nlsfung.gsn.provider.GSNItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

@@ -4,11 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.nlsfung.gsn.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: edu.toronto.cs.nlsfung.gsn.presentation.edutorontocssenlsfunggsnEditorPlugin$Implementation
+Bundle-Activator: edu.toronto.cs.se.nlsfung.gsn.presentation.edutorontocssenlsfunggsnEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: edu.toronto.cs.nlsfung.gsn.presentation
+Export-Package: edu.toronto.cs.se.nlsfung.gsn.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  edu.toronto.cs.se.nlsfung.gsn.edit;visibility:=reexport,

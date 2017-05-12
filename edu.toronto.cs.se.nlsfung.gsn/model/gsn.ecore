@@ -16,27 +16,35 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GoalSupport" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StrategySupport" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//GsnElement #//StrategySupport">
+  <eClassifiers xsi:type="ecore:EClass" name="GoalSupporter" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StrategySupporter" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextualElement" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//GsnElement #//StrategySupporter #//ContextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TruthState"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="1"
-        eType="#//GoalSupport"/>
+        eType="#//GoalSupporter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supports" eType="#//Strategy"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//GsnElement #//GoalSupport">
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//GsnElement #//GoalSupporter #//ContextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="1"
-        upperBound="-1" eType="#//StrategySupport"/>
+        upperBound="-1" eType="#//StrategySupporter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supports" lowerBound="1"
+        eType="#//Goal"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//GsnElement #//GoalSupport">
+  <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//GsnElement #//GoalSupporter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supports" lowerBound="1"
+        upperBound="-1" eType="#//Goal"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//GsnElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" upperBound="-1"
+        eType="#//ContextualElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ASIL" eSuperTypes="#//Context">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//ASILLevel"/>

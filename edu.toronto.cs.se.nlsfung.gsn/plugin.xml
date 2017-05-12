@@ -6,13 +6,6 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated gsn -->
-      <package
-            uri="http://www.cs.toronto.edu/~nlsfung/gsn"
-            class="edu.toronto.cs.nlsfung.gsn.GSNPackage"
-            genModel="model/gsn.genmodel"/>
-   </extension>
    <extension
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
@@ -21,6 +14,14 @@
                uri="http://www.cs.toronto.edu/~nlsfung/gsn">
          </type>
       </modelType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated gsn -->
+      <package
+            uri="http://www.cs.toronto.edu/~nlsfung/gsn"
+            class="edu.toronto.cs.se.nlsfung.gsn.GSNPackage"
+            genModel="model/gsn.genmodel"/>
    </extension>
 
 </plugin>
