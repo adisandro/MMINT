@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class StrategyImpl extends GsnElementImpl implements Strategy {
+public class StrategyImpl extends GoalSupporterImpl implements Strategy {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -2,9 +2,9 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
+import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
+import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.Goal;
-import edu.toronto.cs.se.nlsfung.gsn.Solution;
 import edu.toronto.cs.se.nlsfung.gsn.ValidityState;
 
 import java.util.Collection;
@@ -21,19 +21,19 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Solution</b></em>'.
+ * An implementation of the model object '<em><b>Contextual Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SolutionImpl#getState <em>State</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SolutionImpl#getSupports <em>Supports</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ContextualElementImpl#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ContextualElementImpl#getContextOf <em>Context Of</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SolutionImpl extends GoalSupporterImpl implements Solution {
+public abstract class ContextualElementImpl extends GsnElementImpl implements ContextualElement {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,21 +55,21 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	protected ValidityState state = STATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
+	 * The cached value of the '{@link #getContextOf() <em>Context Of</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSupports()
+	 * @see #getContextOf()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Goal> supports;
+	protected EList<CoreElement> contextOf;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SolutionImpl() {
+	protected ContextualElementImpl() {
 		super();
 	}
 
@@ -80,7 +80,7 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GSNPackage.Literals.SOLUTION;
+		return GSNPackage.Literals.CONTEXTUAL_ELEMENT;
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 		ValidityState oldState = state;
 		state = newState == null ? STATE_EDEFAULT : newState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SOLUTION__STATE, oldState, state));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.CONTEXTUAL_ELEMENT__STATE, oldState, state));
 	}
 
 	/**
@@ -109,11 +109,11 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Goal> getSupports() {
-		if (supports == null) {
-			supports = new EObjectResolvingEList<Goal>(Goal.class, this, GSNPackage.SOLUTION__SUPPORTS);
+	public EList<CoreElement> getContextOf() {
+		if (contextOf == null) {
+			contextOf = new EObjectResolvingEList<CoreElement>(CoreElement.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF);
 		}
-		return supports;
+		return contextOf;
 	}
 
 	/**
@@ -124,10 +124,10 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GSNPackage.SOLUTION__STATE:
+			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
 				return getState();
-			case GSNPackage.SOLUTION__SUPPORTS:
-				return getSupports();
+			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+				return getContextOf();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -141,12 +141,12 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GSNPackage.SOLUTION__STATE:
+			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
 				setState((ValidityState)newValue);
 				return;
-			case GSNPackage.SOLUTION__SUPPORTS:
-				getSupports().clear();
-				getSupports().addAll((Collection<? extends Goal>)newValue);
+			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+				getContextOf().clear();
+				getContextOf().addAll((Collection<? extends CoreElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -160,11 +160,11 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GSNPackage.SOLUTION__STATE:
+			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
 				setState(STATE_EDEFAULT);
 				return;
-			case GSNPackage.SOLUTION__SUPPORTS:
-				getSupports().clear();
+			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+				getContextOf().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -178,10 +178,10 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GSNPackage.SOLUTION__STATE:
+			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
 				return state != STATE_EDEFAULT;
-			case GSNPackage.SOLUTION__SUPPORTS:
-				return supports != null && !supports.isEmpty();
+			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+				return contextOf != null && !contextOf.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -202,4 +202,4 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 		return result.toString();
 	}
 
-} //SolutionImpl
+} //ContextualElementImpl

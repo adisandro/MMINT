@@ -5,6 +5,7 @@ package edu.toronto.cs.se.nlsfung.gsn.impl;
 import edu.toronto.cs.se.nlsfung.gsn.ASILLevel;
 import edu.toronto.cs.se.nlsfung.gsn.Context;
 import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
+import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNFactory;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.se.nlsfung.gsn.Goal;
@@ -51,6 +52,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass coreElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass goalSupporterEClass = null;
 
 	/**
@@ -59,13 +67,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * @generated
 	 */
 	private EClass strategySupporterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass contextualElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,6 +88,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * @generated
 	 */
 	private EClass solutionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contextualElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -243,6 +251,15 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCoreElement() {
+		return coreElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGoalSupporter() {
 		return goalSupporterEClass;
 	}
@@ -254,15 +271,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 */
 	public EClass getStrategySupporter() {
 		return strategySupporterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getContextualElement() {
-		return contextualElementEClass;
 	}
 
 	/**
@@ -387,26 +395,35 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getContextualElement() {
+		return contextualElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContextualElement_State() {
+		return (EAttribute)contextualElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContextualElement_ContextOf() {
+		return (EReference)contextualElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getContext() {
 		return contextEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getContext_State() {
-		return (EAttribute)contextEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getContext_ContextOf() {
-		return (EReference)contextEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -490,11 +507,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		createEAttribute(gsnElementEClass, GSN_ELEMENT__NAME);
 		createEAttribute(gsnElementEClass, GSN_ELEMENT__DESCRIPTION);
 
+		coreElementEClass = createEClass(CORE_ELEMENT);
+
 		goalSupporterEClass = createEClass(GOAL_SUPPORTER);
 
 		strategySupporterEClass = createEClass(STRATEGY_SUPPORTER);
-
-		contextualElementEClass = createEClass(CONTEXTUAL_ELEMENT);
 
 		goalEClass = createEClass(GOAL);
 		createEAttribute(goalEClass, GOAL__STATE);
@@ -512,9 +529,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		createEAttribute(solutionEClass, SOLUTION__STATE);
 		createEReference(solutionEClass, SOLUTION__SUPPORTS);
 
+		contextualElementEClass = createEClass(CONTEXTUAL_ELEMENT);
+		createEAttribute(contextualElementEClass, CONTEXTUAL_ELEMENT__STATE);
+		createEReference(contextualElementEClass, CONTEXTUAL_ELEMENT__CONTEXT_OF);
+
 		contextEClass = createEClass(CONTEXT);
-		createEAttribute(contextEClass, CONTEXT__STATE);
-		createEReference(contextEClass, CONTEXT__CONTEXT_OF);
 
 		asilEClass = createEClass(ASIL);
 		createEAttribute(asilEClass, ASIL__LEVEL);
@@ -553,16 +572,15 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		goalEClass.getESuperTypes().add(this.getGsnElement());
+		coreElementEClass.getESuperTypes().add(this.getGsnElement());
+		goalSupporterEClass.getESuperTypes().add(this.getCoreElement());
+		strategySupporterEClass.getESuperTypes().add(this.getCoreElement());
 		goalEClass.getESuperTypes().add(this.getStrategySupporter());
-		goalEClass.getESuperTypes().add(this.getContextualElement());
-		strategyEClass.getESuperTypes().add(this.getGsnElement());
 		strategyEClass.getESuperTypes().add(this.getGoalSupporter());
-		strategyEClass.getESuperTypes().add(this.getContextualElement());
-		solutionEClass.getESuperTypes().add(this.getGsnElement());
 		solutionEClass.getESuperTypes().add(this.getGoalSupporter());
-		contextEClass.getESuperTypes().add(this.getGsnElement());
-		asilEClass.getESuperTypes().add(this.getContext());
+		contextualElementEClass.getESuperTypes().add(this.getGsnElement());
+		contextEClass.getESuperTypes().add(this.getContextualElement());
+		asilEClass.getESuperTypes().add(this.getContextualElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -573,16 +591,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		initEAttribute(getGsnElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, GsnElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGsnElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, GsnElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(goalSupporterEClass, GoalSupporter.class, "GoalSupporter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(coreElementEClass, CoreElement.class, "CoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(strategySupporterEClass, StrategySupporter.class, "StrategySupporter", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(goalSupporterEClass, GoalSupporter.class, "GoalSupporter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(contextualElementEClass, ContextualElement.class, "ContextualElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(strategySupporterEClass, StrategySupporter.class, "StrategySupporter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGoal_State(), this.getTruthState(), "state", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGoal_SupportedBy(), this.getGoalSupporter(), null, "supportedBy", null, 1, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGoal_InContextOf(), this.getContext(), null, "inContextOf", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGoal_InContextOf(), this.getContextualElement(), null, "inContextOf", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGoal_Supports(), this.getStrategy(), null, "supports", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(strategyEClass, Strategy.class, "Strategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -595,9 +613,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		initEAttribute(getSolution_State(), this.getValidityState(), "state", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSolution_Supports(), this.getGoal(), null, "supports", null, 1, -1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(contextualElementEClass, ContextualElement.class, "ContextualElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getContextualElement_State(), this.getValidityState(), "state", null, 0, 1, ContextualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContextualElement_ContextOf(), this.getCoreElement(), null, "contextOf", null, 0, -1, ContextualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContext_State(), this.getValidityState(), "state", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getContext_ContextOf(), this.getContextualElement(), null, "contextOf", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(asilEClass, edu.toronto.cs.se.nlsfung.gsn.ASIL.class, "ASIL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getASIL_Level(), this.getASILLevel(), "level", null, 0, 1, edu.toronto.cs.se.nlsfung.gsn.ASIL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

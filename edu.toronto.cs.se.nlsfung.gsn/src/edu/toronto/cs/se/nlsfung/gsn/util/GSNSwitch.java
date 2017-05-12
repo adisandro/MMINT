@@ -78,53 +78,67 @@ public class GSNSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GSNPackage.CORE_ELEMENT: {
+				CoreElement coreElement = (CoreElement)theEObject;
+				T result = caseCoreElement(coreElement);
+				if (result == null) result = caseGsnElement(coreElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GSNPackage.GOAL_SUPPORTER: {
 				GoalSupporter goalSupporter = (GoalSupporter)theEObject;
 				T result = caseGoalSupporter(goalSupporter);
+				if (result == null) result = caseCoreElement(goalSupporter);
+				if (result == null) result = caseGsnElement(goalSupporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.STRATEGY_SUPPORTER: {
 				StrategySupporter strategySupporter = (StrategySupporter)theEObject;
 				T result = caseStrategySupporter(strategySupporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.CONTEXTUAL_ELEMENT: {
-				ContextualElement contextualElement = (ContextualElement)theEObject;
-				T result = caseContextualElement(contextualElement);
+				if (result == null) result = caseCoreElement(strategySupporter);
+				if (result == null) result = caseGsnElement(strategySupporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.GOAL: {
 				Goal goal = (Goal)theEObject;
 				T result = caseGoal(goal);
-				if (result == null) result = caseGsnElement(goal);
 				if (result == null) result = caseStrategySupporter(goal);
-				if (result == null) result = caseContextualElement(goal);
+				if (result == null) result = caseCoreElement(goal);
+				if (result == null) result = caseGsnElement(goal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.STRATEGY: {
 				Strategy strategy = (Strategy)theEObject;
 				T result = caseStrategy(strategy);
-				if (result == null) result = caseGsnElement(strategy);
 				if (result == null) result = caseGoalSupporter(strategy);
-				if (result == null) result = caseContextualElement(strategy);
+				if (result == null) result = caseCoreElement(strategy);
+				if (result == null) result = caseGsnElement(strategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.SOLUTION: {
 				Solution solution = (Solution)theEObject;
 				T result = caseSolution(solution);
-				if (result == null) result = caseGsnElement(solution);
 				if (result == null) result = caseGoalSupporter(solution);
+				if (result == null) result = caseCoreElement(solution);
+				if (result == null) result = caseGsnElement(solution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GSNPackage.CONTEXTUAL_ELEMENT: {
+				ContextualElement contextualElement = (ContextualElement)theEObject;
+				T result = caseContextualElement(contextualElement);
+				if (result == null) result = caseGsnElement(contextualElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.CONTEXT: {
 				Context context = (Context)theEObject;
 				T result = caseContext(context);
+				if (result == null) result = caseContextualElement(context);
 				if (result == null) result = caseGsnElement(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -132,7 +146,7 @@ public class GSNSwitch<T> extends Switch<T> {
 			case GSNPackage.ASIL: {
 				ASIL asil = (ASIL)theEObject;
 				T result = caseASIL(asil);
-				if (result == null) result = caseContext(asil);
+				if (result == null) result = caseContextualElement(asil);
 				if (result == null) result = caseGsnElement(asil);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -172,6 +186,21 @@ public class GSNSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Core Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Core Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCoreElement(CoreElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Goal Supporter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -198,21 +227,6 @@ public class GSNSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStrategySupporter(StrategySupporter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContextualElement(ContextualElement object) {
 		return null;
 	}
 
@@ -258,6 +272,21 @@ public class GSNSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSolution(Solution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContextualElement(ContextualElement object) {
 		return null;
 	}
 

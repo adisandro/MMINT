@@ -76,16 +76,16 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 				return createGsnElementAdapter();
 			}
 			@Override
+			public Adapter caseCoreElement(CoreElement object) {
+				return createCoreElementAdapter();
+			}
+			@Override
 			public Adapter caseGoalSupporter(GoalSupporter object) {
 				return createGoalSupporterAdapter();
 			}
 			@Override
 			public Adapter caseStrategySupporter(StrategySupporter object) {
 				return createStrategySupporterAdapter();
-			}
-			@Override
-			public Adapter caseContextualElement(ContextualElement object) {
-				return createContextualElementAdapter();
 			}
 			@Override
 			public Adapter caseGoal(Goal object) {
@@ -98,6 +98,10 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseSolution(Solution object) {
 				return createSolutionAdapter();
+			}
+			@Override
+			public Adapter caseContextualElement(ContextualElement object) {
+				return createContextualElementAdapter();
 			}
 			@Override
 			public Adapter caseContext(Context object) {
@@ -156,6 +160,20 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.CoreElement <em>Core Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.CoreElement
+	 * @generated
+	 */
+	public Adapter createCoreElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.GoalSupporter <em>Goal Supporter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -180,20 +198,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStrategySupporterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement <em>Contextual Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.ContextualElement
-	 * @generated
-	 */
-	public Adapter createContextualElementAdapter() {
 		return null;
 	}
 
@@ -236,6 +240,20 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSolutionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement <em>Contextual Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.ContextualElement
+	 * @generated
+	 */
+	public Adapter createContextualElementAdapter() {
 		return null;
 	}
 

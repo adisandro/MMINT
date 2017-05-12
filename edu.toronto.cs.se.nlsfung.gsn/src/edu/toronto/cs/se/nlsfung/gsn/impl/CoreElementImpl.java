@@ -2,25 +2,25 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
-import edu.toronto.cs.se.nlsfung.gsn.Context;
+import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context</b></em>'.
+ * An implementation of the model object '<em><b>Core Element</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ContextImpl extends ContextualElementImpl implements Context {
+public abstract class CoreElementImpl extends GsnElementImpl implements CoreElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContextImpl() {
+	protected CoreElementImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class ContextImpl extends ContextualElementImpl implements Context {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GSNPackage.Literals.CONTEXT;
+		return GSNPackage.Literals.CORE_ELEMENT;
 	}
 
-} //ContextImpl
+} //CoreElementImpl

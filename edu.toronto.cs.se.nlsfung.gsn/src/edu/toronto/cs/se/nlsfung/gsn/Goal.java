@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Goal extends GsnElement, StrategySupporter, ContextualElement {
+public interface Goal extends StrategySupporter {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.TruthState}.
@@ -81,7 +81,7 @@ public interface Goal extends GsnElement, StrategySupporter, ContextualElement {
 
 	/**
 	 * Returns the value of the '<em><b>In Context Of</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.Context}.
+	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>In Context Of</em>' reference list isn't clear,
@@ -93,7 +93,7 @@ public interface Goal extends GsnElement, StrategySupporter, ContextualElement {
 	 * @model
 	 * @generated
 	 */
-	EList<Context> getInContextOf();
+	EList<ContextualElement> getInContextOf();
 
 	/**
 	 * Returns the value of the '<em><b>Supports</b></em>' reference.

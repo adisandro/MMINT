@@ -2,7 +2,6 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,8 +10,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getStrategySupporter()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
-public interface StrategySupporter extends EObject {
+public interface StrategySupporter extends CoreElement {
 } // StrategySupporter

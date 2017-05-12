@@ -3,8 +3,8 @@
 package edu.toronto.cs.se.nlsfung.gsn.provider;
 
 
+import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.Goal;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,19 +18,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.Goal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends StrategySupporterItemProvider {
+public class ContextualElementItemProvider extends GsnElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GoalItemProvider(AdapterFactory adapterFactory) {
+	public ContextualElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,9 +46,7 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addStatePropertyDescriptor(object);
-			addSupportedByPropertyDescriptor(object);
-			addInContextOfPropertyDescriptor(object);
-			addSupportsPropertyDescriptor(object);
+			addContextOfPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,9 +62,9 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Goal_state_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_state_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__STATE,
+				 getString("_UI_ContextualElement_state_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ContextualElement_state_feature", "_UI_ContextualElement_type"),
+				 GSNPackage.Literals.CONTEXTUAL_ELEMENT__STATE,
 				 true,
 				 false,
 				 false,
@@ -76,80 +74,25 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Supported By feature.
+	 * This adds a property descriptor for the Context Of feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSupportedByPropertyDescriptor(Object object) {
+	protected void addContextOfPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Goal_supportedBy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_supportedBy_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__SUPPORTED_BY,
+				 getString("_UI_ContextualElement_contextOf_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ContextualElement_contextOf_feature", "_UI_ContextualElement_type"),
+				 GSNPackage.Literals.CONTEXTUAL_ELEMENT__CONTEXT_OF,
 				 true,
 				 false,
 				 true,
 				 null,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the In Context Of feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInContextOfPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_inContextOf_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_inContextOf_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__IN_CONTEXT_OF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Supports feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSupportsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_supports_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_supports_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__SUPPORTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns Goal.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Goal"));
 	}
 
 	/**
@@ -160,10 +103,10 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Goal)object).getName();
+		String label = ((ContextualElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Goal_type") :
-			getString("_UI_Goal_type") + " " + label;
+			getString("_UI_ContextualElement_type") :
+			getString("_UI_ContextualElement_type") + " " + label;
 	}
 	
 
@@ -178,8 +121,8 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Goal.class)) {
-			case GSNPackage.GOAL__STATE:
+		switch (notification.getFeatureID(ContextualElement.class)) {
+			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

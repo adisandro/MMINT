@@ -3,7 +3,7 @@
 package edu.toronto.cs.se.nlsfung.gsn.provider;
 
 
-import edu.toronto.cs.se.nlsfung.gsn.Context;
+import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,19 +14,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.Context} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.CoreElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContextItemProvider extends ContextualElementItemProvider {
+public class CoreElementItemProvider extends GsnElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContextItemProvider(AdapterFactory adapterFactory) {
+	public CoreElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,17 +46,6 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	}
 
 	/**
-	 * This returns Context.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Context"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,10 +53,10 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Context)object).getName();
+		String label = ((CoreElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Context_type") :
-			getString("_UI_Context_type") + " " + label;
+			getString("_UI_CoreElement_type") :
+			getString("_UI_CoreElement_type") + " " + label;
 	}
 	
 

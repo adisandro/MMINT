@@ -2,7 +2,7 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
-import edu.toronto.cs.se.nlsfung.gsn.Context;
+import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.se.nlsfung.gsn.Goal;
 import edu.toronto.cs.se.nlsfung.gsn.GoalSupporter;
@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class GoalImpl extends GsnElementImpl implements Goal {
+public class GoalImpl extends StrategySupporterImpl implements Goal {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class GoalImpl extends GsnElementImpl implements Goal {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Context> inContextOf;
+	protected EList<ContextualElement> inContextOf;
 
 	/**
 	 * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference.
@@ -172,9 +172,9 @@ public class GoalImpl extends GsnElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Context> getInContextOf() {
+	public EList<ContextualElement> getInContextOf() {
 		if (inContextOf == null) {
-			inContextOf = new EObjectResolvingEList<Context>(Context.class, this, GSNPackage.GOAL__IN_CONTEXT_OF);
+			inContextOf = new EObjectResolvingEList<ContextualElement>(ContextualElement.class, this, GSNPackage.GOAL__IN_CONTEXT_OF);
 		}
 		return inContextOf;
 	}
@@ -256,7 +256,7 @@ public class GoalImpl extends GsnElementImpl implements Goal {
 				return;
 			case GSNPackage.GOAL__IN_CONTEXT_OF:
 				getInContextOf().clear();
-				getInContextOf().addAll((Collection<? extends Context>)newValue);
+				getInContextOf().addAll((Collection<? extends ContextualElement>)newValue);
 				return;
 			case GSNPackage.GOAL__SUPPORTS:
 				setSupports((Strategy)newValue);

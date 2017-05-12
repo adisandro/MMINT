@@ -19,7 +19,7 @@ package edu.toronto.cs.se.nlsfung.gsn;
  * @model
  * @generated
  */
-public interface ASIL extends Context {
+public interface ASIL extends ContextualElement {
 	/**
 	 * Returns the value of the '<em><b>Level</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.ASILLevel}.

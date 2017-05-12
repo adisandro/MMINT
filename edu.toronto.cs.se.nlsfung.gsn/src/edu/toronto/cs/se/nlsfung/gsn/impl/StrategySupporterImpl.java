@@ -2,25 +2,25 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
-import edu.toronto.cs.se.nlsfung.gsn.Context;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
+import edu.toronto.cs.se.nlsfung.gsn.StrategySupporter;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context</b></em>'.
+ * An implementation of the model object '<em><b>Strategy Supporter</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ContextImpl extends ContextualElementImpl implements Context {
+public abstract class StrategySupporterImpl extends CoreElementImpl implements StrategySupporter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContextImpl() {
+	protected StrategySupporterImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class ContextImpl extends ContextualElementImpl implements Context {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GSNPackage.Literals.CONTEXT;
+		return GSNPackage.Literals.STRATEGY_SUPPORTER;
 	}
 
-} //ContextImpl
+} //StrategySupporterImpl
