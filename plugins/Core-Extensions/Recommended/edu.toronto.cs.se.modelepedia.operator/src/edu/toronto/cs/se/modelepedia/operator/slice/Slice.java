@@ -94,15 +94,21 @@ public class Slice extends OperatorImpl {
 		ResourceSet rs = new ResourceSetImpl();
 		Resource r = rs.getResource(rUri, true);
 
-		EObject elem;
+		// Extract the unique model elements in the input criterion.
+		Set<EObject> critSet = new HashSet<>();
 		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
-			elem = mer.getObject().getEMFInstanceObject(r);
-			if (impacted.contains(elem)) {
-				continue;
-			}
-			impacted.add(elem);
-			// Get all model elements impacted by the element.
-			this.addImpactedModelElems(elem, impacted);
+			critSet.add(mer.getObject().getEMFInstanceObject(r));
+		}
+		impacted.addAll(critSet);
+		
+		// Extract the model elements potentially impacted by the input criterion. 
+		// Each unique input element is considered individually to avoid the problem
+		// caused by non-recursive slicing rules and impacted elements masking
+		// subsequent input elements in the criterion.
+		for (EObject elem : critSet) {
+			Set<EObject> curImpacted = new HashSet<>();
+			this.addImpactedModelElems(elem, curImpacted);
+			impacted.addAll(curImpacted);
 		}
 
 		return impacted;

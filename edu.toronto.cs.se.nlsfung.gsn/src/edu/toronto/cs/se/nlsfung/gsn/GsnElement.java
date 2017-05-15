@@ -34,7 +34,7 @@ public interface GsnElement extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getGsnElement_Id()
-	 * @model id="true" ordered="false"
+	 * @model ordered="false"
 	 *        extendedMetaData="name='id' namespace='http://sdq.ipd.uka.de/Identifier/1.0'"
 	 * @generated
 	 */
