@@ -855,7 +855,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         MMINTException.mustBeType(this);
 
         String operatorClassRelativePath = this.getClass().getName().replace(".", File.separator) + ".java";
-        String operatorImplPath = MIDTypeRegistry.getFilePathInBundle(this, operatorClassRelativePath);
+        String operatorImplPath = MIDTypeRegistry.getFileBundlePath(this, operatorClassRelativePath);
         FileUtils.openEclipseEditor(operatorImplPath, null, false);
     }
 

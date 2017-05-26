@@ -553,8 +553,8 @@ public class MIDTypeRegistry {
 		return bundle;
 	}
 
-	public static @NonNull String getFilePathInBundle(@NonNull ExtendibleElement typeInBundle,
-	                                                  @NonNull String relativeFilePath) throws Exception {
+	public static @NonNull String getFileBundlePath(@NonNull ExtendibleElement typeInBundle,
+	                                                @NonNull String relativeFilePath) throws Exception {
 
         String bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
         String fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);

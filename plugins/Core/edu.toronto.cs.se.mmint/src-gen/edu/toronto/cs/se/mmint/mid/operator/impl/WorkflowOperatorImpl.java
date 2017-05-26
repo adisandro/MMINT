@@ -108,6 +108,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     /**
      * @generated NOT
      */
+    @Override
     public MID getNestedWorkflowMID() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -121,8 +122,8 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
                 String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
                                          MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
-                workflowMIDPath = MIDTypeRegistry.getFilePathInBundle(this, workflowMIDPath);
-                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, false);
+                String workflowMIDBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
+                workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, false);
             }
             return workflowMID;
         }
@@ -239,9 +240,11 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
             String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
                                      MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
-            String workflowMIDDiagramPath = MIDTypeRegistry.getFilePathInBundle(this, workflowMIDPath +
-                                                                                      GMFUtils.DIAGRAM_SUFFIX);
-            FileUtils.openEclipseEditor(workflowMIDDiagramPath, midDiagramTypeId, false);
+            // in a binary install, extracts the file from the jar as a side effect
+            MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
+            String workflowMIDDiagramBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath +
+                                                                                    GMFUtils.DIAGRAM_SUFFIX);
+            FileUtils.openEclipseEditor(workflowMIDDiagramBundlePath, midDiagramTypeId, false);
         }
     }
 
