@@ -14,14 +14,8 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -30,12 +24,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
-import java.util.jar.JarFile;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -49,7 +40,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -245,7 +235,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<ModelEndpoint> getInputs() {
         if (inputs == null) {
-            inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+            inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
         }
         return inputs;
     }
@@ -257,7 +247,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<ModelEndpoint> getOutputs() {
         if (outputs == null) {
-            outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+            outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
         }
         return outputs;
     }
@@ -269,7 +259,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<GenericEndpoint> getGenerics() {
         if (generics == null) {
-            generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+            generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
         }
         return generics;
     }
@@ -864,36 +854,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        // get java source file from bundle
-        Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
-        if (bundle == null) {
-            throw new MMINTException("Can't find " + this.getName() + " bundle");
-        }
-        String javaFileName = this.getClass().getSimpleName() + ".java";
-        String bundleFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
-        String operatorImplPath;
-        if (bundleFilePath.endsWith("jar")) { // binary installation
-            int separator = bundleFilePath.lastIndexOf("_");
-            bundleFilePath = bundleFilePath.substring(0, separator) + ".source" + bundleFilePath.substring(separator);
-            if (!FileUtils.isFile(bundleFilePath, false)) {
-                throw new MMINTException("Can't find the source java file for " + this.getName() + " (did you install mmint.sdk?)");
-            }
-            JarFile bundleJar = new JarFile(new File(bundleFilePath));
-            ZipEntry bundleJarEntry = bundleJar.getEntry(this.getClass().getName().replace(".", File.separator) + ".java");
-            Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + "/" + javaFileName);
-            Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
-            operatorImplPath = tmpFilePath.toString();
-            bundleJar.close();
-        }
-        else { // running from the sources
-            Enumeration<URL> bundleEntries = bundle.findEntries("/", javaFileName, true);
-            if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
-                throw new MMINTException("Can't find the source java file for " + this.getName());
-            }
-            operatorImplPath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
-        }
-
-        // open editor
+        String operatorClassRelativePath = this.getClass().getName().replace(".", File.separator) + ".java";
+        String operatorImplPath = MIDTypeRegistry.getFilePathInBundle(this, operatorClassRelativePath);
         FileUtils.openEclipseEditor(operatorImplPath, null, false);
     }
 

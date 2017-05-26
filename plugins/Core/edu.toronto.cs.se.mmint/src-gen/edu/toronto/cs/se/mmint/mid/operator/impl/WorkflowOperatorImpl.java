@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,7 +37,6 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
@@ -82,22 +82,6 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
      * <!-- end-user-doc -->
      * @generated
      */
-    public MID getNestedWorkflowMID() throws MMINTException {
-        MMINTException.mustBeType(this);
-
-        try {
-            return (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());
-        }
-        catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
         switch (operationID) {
@@ -119,6 +103,32 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     public String toString() {
 
         return "[workflow] " + super.toString();
+    }
+
+    /**
+     * @generated NOT
+     */
+    public MID getNestedWorkflowMID() throws MMINTException {
+
+        MMINTException.mustBeType(this);
+
+        try {
+            MID workflowMID;
+            if (this.isDynamic()) {
+                workflowMID = (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());
+            }
+            else {
+                //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
+                String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
+                                         MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                workflowMIDPath = MIDTypeRegistry.getFilePathInBundle(this, workflowMIDPath);
+                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, false);
+            }
+            return workflowMID;
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -203,8 +213,10 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     public void deleteType() throws MMINTException {
 
         super.deleteType();
-        FileUtils.deleteFileInState(this.getNestedMIDPath());
-        FileUtils.deleteFileInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX);
+        if (this.isDynamic()) {
+            FileUtils.deleteFileInState(this.getNestedMIDPath());
+            FileUtils.deleteFileInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX);
+        }
     }
 
     /**
@@ -219,12 +231,18 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 
         MMINTException.mustBeType(this);
 
-        if (MIDTypeHierarchy.isRootType(this.getSupertype())) {
-            super.openType();
-            return;
+        String midDiagramTypeId = MIDTypeRegistry.getMIDDiagramType().getId();
+        if (this.isDynamic()) {
+            FileUtils.openEclipseEditorInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX, midDiagramTypeId);
         }
-        Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-        FileUtils.openEclipseEditorInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
+        else {
+            //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
+            String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
+                                     MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+            String workflowMIDDiagramPath = MIDTypeRegistry.getFilePathInBundle(this, workflowMIDPath +
+                                                                                      GMFUtils.DIAGRAM_SUFFIX);
+            FileUtils.openEclipseEditor(workflowMIDDiagramPath, midDiagramTypeId, false);
+        }
     }
 
     /**

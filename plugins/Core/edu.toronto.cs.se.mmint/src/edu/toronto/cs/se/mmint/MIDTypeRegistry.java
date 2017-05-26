@@ -11,13 +11,23 @@
  */
 package edu.toronto.cs.se.mmint;
 
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -541,6 +551,41 @@ public class MIDTypeRegistry {
 		}
 
 		return bundle;
+	}
+
+	public static @NonNull String getFilePathInBundle(@NonNull ExtendibleElement typeInBundle,
+	                                                  @NonNull String relativeFilePath) throws Exception {
+
+        String bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+        String fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
+        String filePath;
+        if (bundlePath.endsWith("jar")) { // binary installation
+            int separator = bundlePath.lastIndexOf("_");
+            bundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
+            if (!FileUtils.isFile(bundlePath, false)) {
+                throw new MMINTException("Can't find the source file for " + fileName +
+                                         " (did you install mmint.sdk?)");
+            }
+            JarFile bundleJar = new JarFile(new File(bundlePath));
+            ZipEntry bundleJarEntry = bundleJar.getEntry(relativeFilePath);
+            Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + File.separator + fileName);
+            Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
+            filePath = tmpFilePath.toString();
+            bundleJar.close();
+        }
+        else { // running from the sources
+            Bundle bundle = MIDTypeRegistry.getTypeBundle(typeInBundle.getUri());
+            if (bundle == null) {
+                throw new MMINTException("Can't find the bundle for " + typeInBundle.getName());
+            }
+            Enumeration<URL> bundleEntries = bundle.findEntries("/", fileName, true);
+            if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
+                throw new MMINTException("Can't find the source file for " + fileName);
+            }
+            filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+        }
+
+        return filePath;
 	}
 
 	/**
