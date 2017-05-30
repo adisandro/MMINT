@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -46,12 +47,14 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
@@ -371,6 +374,33 @@ public class MIDRegistry {
 
 		return ioOperators;
 	}
+
+	public static @NonNull Map<Model, String> getInputOutputWorkflowModels(@NonNull MID workflowMID) {
+
+        Map<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
+        for (Model workflowModel : workflowMID.getModels()) {
+            boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
+            if (isInput) { // no operator created this model as output
+                inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+                continue; // an input can't be output too
+            }
+            boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
+            if (isOutput) { // no operator has this model as input
+                inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+                if (workflowModel instanceof ModelRel) { // an output model rel needs its endpoint models as output too
+                    for (ModelEndpoint outModelEndpoint : ((ModelRel) workflowModel).getModelEndpoints()) {
+                        Model outModel = outModelEndpoint.getTarget();
+                        if (inoutWorkflowModels.containsKey(outModel)) {
+                            continue;
+                        }
+                        inoutWorkflowModels.put(outModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+                    }
+                }
+            }
+        }
+
+        return inoutWorkflowModels;
+    }
 
 	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
 

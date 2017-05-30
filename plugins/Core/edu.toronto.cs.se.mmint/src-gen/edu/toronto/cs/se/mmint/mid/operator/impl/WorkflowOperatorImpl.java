@@ -15,7 +15,6 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -44,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -171,28 +169,9 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             }
             ((WorkflowOperator) newOperatorType).setNestedMIDPath(newWorkflowMIDPath);
             MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
-            Map<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
-            for (Model workflowModel : workflowMID.getModels()) { // first pass: identify inputs and outputs
-                boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty(); // no operator generated this model
-                if (isInput) {
-                    inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
-                    continue; // an input can't be output too
-                }
-                boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty(); // no operator has this model as input
-                if (isOutput) {
-                    inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-                    if (workflowModel instanceof ModelRel) { // an output model rel needs its endpoint models as output too
-                        for (ModelEndpoint outModelEndpoint : ((ModelRel) workflowModel).getModelEndpoints()) {
-                            Model outModel = outModelEndpoint.getTarget();
-                            if (inoutWorkflowModels.containsKey(outModel)) {
-                                continue;
-                            }
-                            inoutWorkflowModels.put(outModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-                        }
-                    }
-                }
-            }
-            for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) { // second pass: create endpoints for operator type
+            // identify inputs and outputs, then create endpoints for the operator type
+            Map<Model, String> inoutWorkflowModels = MIDRegistry.getInputOutputWorkflowModels(workflowMID);
+            for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) {
                 Model workflowModel = inoutWorkflowModel.getKey();
                 ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
                 Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());

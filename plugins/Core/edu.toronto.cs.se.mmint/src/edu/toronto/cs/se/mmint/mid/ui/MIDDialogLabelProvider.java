@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -23,9 +23,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
  * The label provider for the repository types tree dialog.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDDialogLabelProvider implements ILabelProvider {
 

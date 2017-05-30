@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -762,6 +763,63 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         }
 
         return label;
+    }
+
+    /**
+     * @generated NOT
+     */
+    public String getTypeSignature() {
+
+        String signature = this.toString() + "(";
+        List<String> params = new ArrayList<>();
+        for (ModelEndpoint formalParameter : this.getInputs()) {
+            String formal = formalParameter.getTarget().getName() + " ";
+            if (formalParameter.getUpperBound() > 1) {
+                formal += "*";
+            }
+            formal += formalParameter.getName();
+            params.add(formal);
+        }
+        signature += String.join(", ", params);
+        signature += ")";
+
+        return signature;
+    }
+
+    /**
+     * @generated NOT
+     */
+    public String getInstanceSignature(EList<OperatorInput> inputs) {
+
+        String signature = this.toString() + "(";
+        Map<String, List<String>> varargs = new LinkedHashMap<>();
+        for (OperatorInput input : inputs) {
+            ModelEndpoint formalParameter = input.getModelTypeEndpoint();
+            Model actualParameter = input.getModel();
+            String formal = formalParameter.getName();
+            if (
+                this.getSupertype() != null ||
+                !MIDTypeHierarchy.getSubtypes(this).isEmpty()
+            ) {
+                formal = formalParameter.getTarget().getName() + " " + formal;
+            }
+            List<String> vararg = varargs.get(formal);
+            if (vararg == null) {
+                vararg = new ArrayList<>();
+                varargs.put(formal, vararg);
+            }
+            vararg.add(actualParameter.getName());
+        }
+        List<String> params = new ArrayList<>();
+        for (Entry<String, List<String>> vararg : varargs.entrySet()) {
+            String actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
+                                                             vararg.getValue().get(0);
+            params.add(vararg.getKey() + "=" + actual);
+        }
+        signature += String.join(", ", params);
+        signature += ")";
+
+        return signature;
     }
 
     /**
