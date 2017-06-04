@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -32,7 +31,6 @@ import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -45,8 +43,6 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,62 +123,6 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         }
         catch (Exception e) {
             return null;
-        }
-    }
-
-    /**
-     * Adds a subtype of this workflow operator type to the Type MID.
-     *
-     * @param newOperatorType
-     *            The new operator type to be added.
-     * @param newOperatorTypeName
-     *            The name of the new operator type.
-     * @param workflowMIDPath
-     *            The path to the Workflow MID that implements the new operator.
-     * @throws MMINTException
-     *             If the id of the new operator type is already registered in the Type MID, or if the Workflow MID
-     *             cannot be read or copied.
-     * @generated NOT
-     */
-    @Override
-    protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String workflowMIDPath) throws MMINTException {
-
-        MID typeMID = this.getMIDContainer();
-        super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
-        try {
-            MID workflowMID;
-            String newWorkflowMIDPath;
-            if (FileUtils.isFileOrDirectoryInState(workflowMIDPath)) { // just recreating this subtype at startup
-                workflowMID = (MID) FileUtils.readModelFileInState(workflowMIDPath);
-                newWorkflowMIDPath = workflowMIDPath;
-            }
-            else { // make a copy of the Workflow MID files
-                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
-                newWorkflowMIDPath = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
-                FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDPath);
-                FileUtils.copyTextFileAndReplaceText(
-                    FileUtils.prependWorkspacePath(workflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
-                    FileUtils.prependStatePath(newWorkflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
-                    FileUtils.getLastSegmentFromPath(workflowMIDPath),
-                    newWorkflowMIDPath,
-                    false);
-            }
-            ((WorkflowOperator) newOperatorType).setNestedMIDPath(newWorkflowMIDPath);
-            MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
-            // identify inputs and outputs, then create endpoints for the operator type
-            Map<Model, String> inoutWorkflowModels = MIDRegistry.getInputOutputWorkflowModels(workflowMID);
-            for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) {
-                Model workflowModel = inoutWorkflowModel.getKey();
-                ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
-                Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());
-                MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
-                newModelTypeEndpoint.setDynamic(true);
-                MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());
-            }
-        }
-        catch (Exception e) {
-            super.delete(newOperatorType.getUri(), typeMID);
-            throw new MMINTException("Error copying the Workflow MID", e);
         }
     }
 

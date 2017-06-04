@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -40,7 +39,6 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -56,6 +54,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
  */
 public class MIDDialogs {
 
+    //TODO MMINT[MISC] Remove double layer MIDDialogs + MIDTypeRegistry, and do filtering directly in content providers
 	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
 
 	protected static Object openDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
@@ -146,12 +145,6 @@ public class MIDDialogs {
 	                                                             @NonNull String newOperatorName)
 	                                                             throws MMINTException {
 
-	    //TODO MMINT[MISC] Remove double layer MIDDialogs + MIDTypeRegistry, and do filtering directly in content providers
-        //TODO search for operators with the same name, if they exist offer to extend one of them (or "no overriding" option), otherwise use the root
-        //TODO need function to validate overriding
-	    //TODO need function to get inputs/outputs from a workflowMID (reuse in WorkflowOperator)
-	    //TODO need function to get an operator's signature as string (reuse in MIDContextMenu)
-        //TODO need to move createSubtype to the basic Operator?
         NewOperatorTypeOverrideDialogContentProvider contentProvider;
         try {
             contentProvider = new NewOperatorTypeOverrideDialogContentProvider(workflowMIDPath, newOperatorName);
@@ -159,22 +152,13 @@ public class MIDDialogs {
         catch (Exception e) {
             throw new MMINTException("Error opening the Workflow MID", e);
         }
-        List<Operator> polyOperators = contentProvider.loadContents(typeMID);
-        if (polyOperators.isEmpty()) {
-            return typeMID.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
-                                                          WorkflowOperator.class.getSimpleName());
-        }
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-            shell,
-            new MIDDialogLabelProvider(),
-            contentProvider,
-            typeMID
-        );
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(shell, new MIDDialogLabelProvider(), contentProvider,
+                                                                   typeMID);
 	    String title = "Create new operator type from workflow";
 	    String message = "Other operators exist with the same name, you can select one of them to override";
 
-	    return (Operator) MIDDialogs.openSelectionDialog(dialog, title, message);
+	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	/**

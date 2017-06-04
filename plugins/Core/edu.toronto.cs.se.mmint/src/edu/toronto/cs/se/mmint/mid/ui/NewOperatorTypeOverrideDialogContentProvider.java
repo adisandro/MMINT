@@ -12,16 +12,21 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -29,7 +34,7 @@ public class NewOperatorTypeOverrideDialogContentProvider implements ITreeConten
 
     private String newOperatorName;
     private MID workflowMID;
-    private List<Operator> filteredOperators;
+    private List<Operator> overridableOperators;
 
     public NewOperatorTypeOverrideDialogContentProvider(@NonNull String workflowMIDPath,
                                                         @NonNull String newOperatorName)
@@ -37,26 +42,50 @@ public class NewOperatorTypeOverrideDialogContentProvider implements ITreeConten
 
         this.workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
         this.newOperatorName = newOperatorName;
-        this.filteredOperators = null;
+        this.overridableOperators = null;
     }
 
-    private boolean overrides(@NonNull Operator operator, @NonNull MID workflowMID) {
+    private boolean overrides(@NonNull Operator operatorType, @NonNull LinkedHashMap<Model, String> inoutWorkflowModels,
+                              @NonNull MID typeMID) {
 
-        Map<Model, String> inoutWorkflowModels = MIDRegistry.getInputOutputWorkflowModels(workflowMID);
+        //TODO MMINT[WORKFLOW] Reuse for heavy types? (and check overlap with MIDTypeHierarchy.getOverriddenModelTypeEndpoint())
+        int i = 0;
+        for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) {
+            if (inoutWorkflowModel.getValue().equals(OperatorPackage.eINSTANCE.getOperator_Outputs().getName())) {
+                continue;
+            }
+            String subtypeUri = inoutWorkflowModel.getKey().getMetatypeUri();
+            String supertypeUri;
+            try {
+                //TODO MMINT[WORKFLOW] Handle varargs
+                supertypeUri = operatorType.getInputs().get(i).getTargetUri();
+            }
+            catch (IndexOutOfBoundsException e) {
+                return false;
+            }
+            if (!subtypeUri.equals(supertypeUri) && !MIDTypeHierarchy.isSubtypeOf(subtypeUri, supertypeUri, typeMID)) {
+                return false;
+            }
+            i++;
+        }
 
         return true;
     }
 
-    public @NonNull List<Operator> loadContents(@NonNull MID typeMID) {
+    private void loadOperators(@NonNull MID typeMID) {
 
-        filteredOperators = new ArrayList<>();
-        for (Operator operator : typeMID.getOperators()) {
-            if (operator.getName().equals(this.newOperatorName) && this.overrides(operator, workflowMID)) {
-                filteredOperators.add(operator);
+        this.overridableOperators = new ArrayList<>();
+        this.overridableOperators.add(typeMID.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+                                                                             WorkflowOperator.class.getSimpleName()));
+        LinkedHashMap<Model, String> inoutWorkflowModels = MIDRegistry.getInputOutputWorkflowModels(workflowMID);
+        for (Operator operatorType : typeMID.getOperators()) {
+            if (
+                operatorType.getName().equals(this.newOperatorName) &&
+                this.overrides(operatorType, inoutWorkflowModels, typeMID)
+            ) {
+                this.overridableOperators.add(operatorType);
             }
         }
-
-        return filteredOperators;
     }
 
     /**
@@ -93,10 +122,10 @@ public class NewOperatorTypeOverrideDialogContentProvider implements ITreeConten
     public Object[] getChildren(Object parentElement) {
 
         if (parentElement instanceof MID) {
-            if (filteredOperators == null) {
-                this.loadContents((MID) parentElement);
+            if (this.overridableOperators == null) {
+                this.loadOperators((MID) parentElement);
             }
-            return filteredOperators.toArray();
+            return this.overridableOperators.toArray();
         }
 
         return new Object[] {};
@@ -122,10 +151,10 @@ public class NewOperatorTypeOverrideDialogContentProvider implements ITreeConten
     public boolean hasChildren(Object element) {
 
         if (element instanceof MID) {
-            if (filteredOperators == null) {
-                this.loadContents((MID) element);
+            if (this.overridableOperators == null) {
+                this.loadOperators((MID) element);
             }
-            return !filteredOperators.isEmpty();
+            return !this.overridableOperators.isEmpty();
         }
 
         return false;

@@ -17,8 +17,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
@@ -91,6 +95,21 @@ public class MIDDialogLabelProvider implements ILabelProvider {
 
 		if (element instanceof MID) {
 			return "Type MID";
+		}
+		if (element instanceof Operator) {
+	        if (
+	            element instanceof WorkflowOperator &&
+	            ((Operator) element).getUri().equals(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+	                                                 WorkflowOperator.class.getSimpleName())
+	        ) {
+	            return "No Override";
+	        }
+		    try {
+                return ((Operator) element).getTypeSignature();
+            }
+            catch (MMINTException e) {
+                // never happens
+            }
 		}
 		if (element instanceof ExtendibleElement) {
 			return ((ExtendibleElement) element).getName();

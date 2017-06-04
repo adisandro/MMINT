@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -258,8 +258,19 @@ public interface Operator extends GenericElement {
     MID getMIDContainer();
 
     /**
+     * <!-- begin-user-doc --> Gets the signature of this operator type as a string.
+     *
+     * @return The operator signature.
+     * @throws MMINTException
+     *             If this is not an operator type. <!-- end-user-doc -->
+     * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @generated
+     */
+    String getTypeSignature() throws MMINTException;
+
+    /**
      * <!-- begin-user-doc --> Creates and adds a subtype of this operator type to the Type MID.
-     * 
+     *
      * @param newOperatorTypeName
      *            The name of the new operator type.
      * @param implementationUri
@@ -275,7 +286,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this operator type from the Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is not an operator type. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -285,7 +296,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Opens the java implementation of this operator type.
-     * 
+     *
      * @throws Exception
      *             If this is not an operator type, or if the java editor can't be opened. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
@@ -295,7 +306,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Finds all inputs that can be used to run this operator type.
-     * 
+     *
      * @param inputMIDs
      *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
      *            different instance MID, following their order. If there are not enough instance MIDs, the last
@@ -312,7 +323,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Finds the first input that can be used to run this operator type.
-     * 
+     *
      * @param inputMIDs
      *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
      *            different instance MID, following their order. If there are not enough instance MIDs, the last
@@ -330,7 +341,7 @@ public interface Operator extends GenericElement {
     /**
      * <!-- begin-user-doc --> Checks if a list of input models can be used as actual parameters to run this operator
      * type.
-     * 
+     *
      * @param inputModels
      *            The list of input models.
      * @return The input to run the operator, including necessary conversions, or null if the input models can't be
@@ -344,7 +355,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Gets the output model instances of this operator instance, if it has been previously run.
-     * 
+     *
      * @return The output model instances, identified by their formal parameter name.
      * @throws MMINTException
      *             If this is not an operator instance. <!-- end-user-doc -->
@@ -355,7 +366,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Gets the output model instances of this operator instance, if it has been previously run.
-     * 
+     *
      * @return The output model instances.
      * @throws MMINTException
      *             If this is not an operator instance. <!-- end-user-doc -->
@@ -365,8 +376,21 @@ public interface Operator extends GenericElement {
     EList<Model> getOutputModels() throws MMINTException;
 
     /**
+     * <!-- begin-user-doc --> Gets the signature of this operator instance as a string.
+     *
+     * @param inputs
+     *            The inputs to this operator instance.
+     * @return The operator signature.
+     * @throws MMINTException
+     *             If this is not an operator instance. <!-- end-user-doc -->
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
+     * @generated
+     */
+    String getInstanceSignature(EList<OperatorInput> inputs) throws MMINTException;
+
+    /**
      * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to an Instance MID.
-     * 
+     *
      * @param instanceMID
      *            An Instance MID, null if the operator isn't going to be added to one.
      * @return The created operator.
@@ -379,7 +403,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this operator instance from an Instance MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is not an operator instance. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -389,7 +413,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Selects a list of generics to be used to run this operator type.
-     * 
+     *
      * @param inputs
      *            The list of operator inputs.
      * @return The generics to run the operator.
@@ -403,7 +427,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Gets the input properties of this operator.
-     * 
+     *
      * @return The input properties of this operator. <!-- end-user-doc -->
      * @model kind="operation" dataType="edu.toronto.cs.se.mmint.mid.operator.Properties" required="true"
      * @generated
@@ -413,7 +437,7 @@ public interface Operator extends GenericElement {
     /**
      * <!-- begin-user-doc --> Reads the input properties of this operator instance. Used by
      * {@link #start(EList, Map, MID)}, may be overridden.
-     * 
+     *
      * @param inputProperties
      *            The input properties of this operator.
      * @throws MMINTException
@@ -427,7 +451,7 @@ public interface Operator extends GenericElement {
     /**
      * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be
      * overridden.
-     * 
+     *
      * @param inputsByName
      *            The input model instances, identified by their formal parameter name.
      * @param genericsByName
@@ -446,7 +470,7 @@ public interface Operator extends GenericElement {
     /**
      * <!-- begin-user-doc --> Starts an instance of this operator type, i.e. runs conversions for the input models,
      * creates an operator instance, invokes {@link #readInputProperties}, {@link #run}, records the execution time.
-     * 
+     *
      * @param inputs
      *            A list of inputs to run the operator instance, including necessary conversions.
      * @param inputProperties
@@ -470,7 +494,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Opens the java implementation of this operator instance.
-     * 
+     *
      * @throws Exception
      *             If this is not an operator instance, or if the java editor can't be opened. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
@@ -480,7 +504,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to a Workflow MID.
-     * 
+     *
      * @param workflowMID
      *            A Workflow MID, null if the operator isn't going to be contained in one.
      * @return The created operator.
@@ -493,7 +517,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this operator instance from a Workflow MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is not an operator instance in a workflow. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -503,7 +527,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Creates the outputs of a new instance of this operator type in a workflow.
-     * 
+     *
      * @param newOperator
      *            The new instance of this operator type in a workflow.
      * @param inputsByName
@@ -521,7 +545,7 @@ public interface Operator extends GenericElement {
     /**
      * <!-- begin-user-doc --> Creates an instance of this operator type in a workflow, connects it to its inputs and
      * creates its outputs. This api must be overridden by operator types with a variable number of outputs.
-     * 
+     *
      * @param inputs
      *            A list of inputs to create the operator instance.
      * @param generics
@@ -538,7 +562,7 @@ public interface Operator extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Opens the java implementation of this operator instance.
-     * 
+     *
      * @throws Exception
      *             If this is not an operator instance in a workflow, or if the java editor can't be opened. <!--
      *             end-user-doc -->

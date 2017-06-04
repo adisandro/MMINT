@@ -375,9 +375,9 @@ public class MIDRegistry {
 		return ioOperators;
 	}
 
-	public static @NonNull Map<Model, String> getInputOutputWorkflowModels(@NonNull MID workflowMID) {
+	public static @NonNull LinkedHashMap<Model, String> getInputOutputWorkflowModels(@NonNull MID workflowMID) {
 
-        Map<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
+	    LinkedHashMap<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
         for (Model workflowModel : workflowMID.getModels()) {
             boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
             if (isInput) { // no operator created this model as output
