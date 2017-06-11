@@ -38,6 +38,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
+// The slice operator performs a single slicing step on a model instance given
+// the input slicing criteria, which is a unary model relation containing the
+// model elements to slice.
 public class Slice extends OperatorImpl {
 
 	// input-output
@@ -84,47 +87,40 @@ public class Slice extends OperatorImpl {
 		}
 	}
 
-	// Returns the complete list of model elements that may be impacted
-	// by the model elements included in the original slicing criterion.
-	public Set<EObject> getImpactedElements(ModelRel criterion) throws MMINTException {
-
+	// Returns the complete set of model elements that may be impacted
+	// by the input set of model elements.
+	// By default, only the input elements are assumed to be impacted.
+	public Set<EObject> getAllImpactedElements(Set<EObject> elemSet) {
+		return elemSet;
+	}
+	
+	// Returns the set of model elements that may be directly impacted
+	// by the input model element (including itself).
+	// By default, only the input elements are assumed to be impacted.
+	public Set<EObject> getDirectlyImpactedElements(EObject elem) throws MMINTException {
 		Set<EObject> impacted = new HashSet<>();
-		ModelEndpointReference modelEndpointRef = criterion.getModelEndpointRefs().get(0);
-		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
-		ResourceSet rs = new ResourceSetImpl();
-		Resource r = rs.getResource(rUri, true);
-
-		// Extract the unique model elements in the input criterion.
-		Set<EObject> critSet = new HashSet<>();
-		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
-			critSet.add(mer.getObject().getEMFInstanceObject(r));
-		}
-		impacted.addAll(critSet);
-		
-		// Extract the model elements potentially impacted by the input criterion. 
-		// Each unique input element is considered individually to avoid the problem
-		// caused by non-recursive slicing rules and impacted elements masking
-		// subsequent input elements in the criterion.
-		for (EObject elem : critSet) {
-			Set<EObject> curImpacted = new HashSet<>();
-			this.addImpactedModelElems(elem, curImpacted);
-			impacted.addAll(curImpacted);
-		}
-
+		impacted.add(elem);
 		return impacted;
 	}
-
-    // Adds impacted model elements reachable from a single model element
-    // By default, no model elements are assumed to be impacted
-	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {}
 
 	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 		ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
-		// Iterate through the criteria to identify all dependent elements that are also impacted.
-		Set<EObject> changed = this.getImpactedElements(critRel);
+		// Retrieve resource corresponding to the model instance.
+		ModelEndpointReference modelEndpointRef = critRel.getModelEndpointRefs().get(0);
+		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource r = rs.getResource(rUri, true);
 
-		for (EObject element : changed){
+		// Extract the unique model elements in the input criteria.
+		Set<EObject> critSet = new HashSet<>();
+		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
+			critSet.add(mer.getObject().getEMFInstanceObject(r));
+		}
+
+		// Add impacted elements to the output model relation.
+		Set<EObject> impacted = getAllImpactedElements(critSet);
+		for (EObject element : impacted){
 			sliceRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(element, null);
 		}
 
