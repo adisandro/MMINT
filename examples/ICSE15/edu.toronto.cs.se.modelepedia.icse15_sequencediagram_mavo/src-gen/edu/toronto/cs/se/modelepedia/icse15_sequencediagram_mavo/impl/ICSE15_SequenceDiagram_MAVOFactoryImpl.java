@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
@@ -89,6 +91,8 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 			case ICSE15_SequenceDiagram_MAVOPackage.OPERATION_REFERENCE: return createOperationReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.SOURCE_LIFELINE_REFERENCE: return createSourceLifelineReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.TARGET_LIFELINE_REFERENCE: return createTargetLifelineReference();
+			case ICSE15_SequenceDiagram_MAVOPackage.ACTIVATION_BOX: return createActivationBox();
+			case ICSE15_SequenceDiagram_MAVOPackage.ACTIVATION_BOX_REFERENCE: return createActivationBoxReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -212,6 +216,26 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 	public TargetLifelineReference createTargetLifelineReference() {
 		TargetLifelineReferenceImpl targetLifelineReference = new TargetLifelineReferenceImpl();
 		return targetLifelineReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivationBox createActivationBox() {
+		ActivationBoxImpl activationBox = new ActivationBoxImpl();
+		return activationBox;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivationBoxReference createActivationBoxReference() {
+		ActivationBoxReferenceImpl activationBoxReference = new ActivationBoxReferenceImpl();
+		return activationBoxReference;
 	}
 
 	/**

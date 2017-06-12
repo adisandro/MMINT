@@ -23,6 +23,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/class"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/messagesAsSource"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/messagesAsTarget"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Lifeline/activationBoxes"/>
     </genClasses>
     <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//Class">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Class/attributes"/>
@@ -40,6 +41,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/operation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/sourceLifeline"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/targetLifeline"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/sourceActivationBox"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//Message/targetActivationBox"/>
     </genClasses>
     <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//ClassReference">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ClassReference/source"/>
@@ -60,6 +63,13 @@
     <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//TargetLifelineReference">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//TargetLifelineReference/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//TargetLifelineReference/target"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//ActivationBox">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ActivationBox/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="icse15_sequencediagram_mavo.ecore#//ActivationBoxReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ActivationBoxReference/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference icse15_sequencediagram_mavo.ecore#//ActivationBoxReference/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.mavo.MAVOReference;
@@ -193,6 +195,24 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMAVOReference(targetLifelineReference);
 				if (result == null) result = caseMAVOElement(targetLifelineReference);
 				if (result == null) result = caseLogicElement(targetLifelineReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ICSE15_SequenceDiagram_MAVOPackage.ACTIVATION_BOX: {
+				ActivationBox activationBox = (ActivationBox)theEObject;
+				T result = caseActivationBox(activationBox);
+				if (result == null) result = caseNamedElement(activationBox);
+				if (result == null) result = caseMAVOElement(activationBox);
+				if (result == null) result = caseLogicElement(activationBox);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ICSE15_SequenceDiagram_MAVOPackage.ACTIVATION_BOX_REFERENCE: {
+				ActivationBoxReference activationBoxReference = (ActivationBoxReference)theEObject;
+				T result = caseActivationBoxReference(activationBoxReference);
+				if (result == null) result = caseMAVOReference(activationBoxReference);
+				if (result == null) result = caseMAVOElement(activationBoxReference);
+				if (result == null) result = caseLogicElement(activationBoxReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -377,6 +397,36 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTargetLifelineReference(TargetLifelineReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Activation Box</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Activation Box</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivationBox(ActivationBox object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Activation Box Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Activation Box Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivationBoxReference(ActivationBoxReference object) {
 		return null;
 	}
 

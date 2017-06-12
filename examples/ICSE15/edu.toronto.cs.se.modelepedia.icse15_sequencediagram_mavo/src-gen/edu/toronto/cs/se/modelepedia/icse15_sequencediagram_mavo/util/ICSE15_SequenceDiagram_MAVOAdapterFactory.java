@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.mavo.MAVOReference;
@@ -139,6 +141,14 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 			@Override
 			public Adapter caseTargetLifelineReference(TargetLifelineReference object) {
 				return createTargetLifelineReferenceAdapter();
+			}
+			@Override
+			public Adapter caseActivationBox(ActivationBox object) {
+				return createActivationBoxAdapter();
+			}
+			@Override
+			public Adapter caseActivationBoxReference(ActivationBoxReference object) {
+				return createActivationBoxReferenceAdapter();
 			}
 			@Override
 			public Adapter caseMAVORoot(MAVORoot object) {
@@ -341,6 +351,34 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	 * @generated
 	 */
 	public Adapter createTargetLifelineReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox <em>Activation Box</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox
+	 * @generated
+	 */
+	public Adapter createActivationBoxAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference <em>Activation Box Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference
+	 * @generated
+	 */
+	public Adapter createActivationBoxReferenceAdapter() {
 		return null;
 	}
 

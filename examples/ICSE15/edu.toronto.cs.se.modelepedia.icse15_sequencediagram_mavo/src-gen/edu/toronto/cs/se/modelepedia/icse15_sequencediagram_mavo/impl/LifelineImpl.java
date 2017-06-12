@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -41,6 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getClass_ <em>Class</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getMessagesAsSource <em>Messages As Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getMessagesAsTarget <em>Messages As Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.LifelineImpl#getActivationBoxes <em>Activation Boxes</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,6 +78,16 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 	 * @ordered
 	 */
 	protected EList<TargetLifelineReference> messagesAsTarget;
+
+	/**
+	 * The cached value of the '{@link #getActivationBoxes() <em>Activation Boxes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivationBoxes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ActivationBox> activationBoxes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,6 +149,18 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ActivationBox> getActivationBoxes() {
+		if (activationBoxes == null) {
+			activationBoxes = new EObjectContainmentEList<ActivationBox>(ActivationBox.class, this, ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES);
+		}
+		return activationBoxes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -164,6 +189,8 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 				return ((InternalEList<?>)getMessagesAsSource()).basicRemove(otherEnd, msgs);
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
 				return ((InternalEList<?>)getMessagesAsTarget()).basicRemove(otherEnd, msgs);
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES:
+				return ((InternalEList<?>)getActivationBoxes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,6 +209,8 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 				return getMessagesAsSource();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
 				return getMessagesAsTarget();
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES:
+				return getActivationBoxes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,6 +236,10 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 				getMessagesAsTarget().clear();
 				getMessagesAsTarget().addAll((Collection<? extends TargetLifelineReference>)newValue);
 				return;
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES:
+				getActivationBoxes().clear();
+				getActivationBoxes().addAll((Collection<? extends ActivationBox>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -228,6 +261,9 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
 				getMessagesAsTarget().clear();
 				return;
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES:
+				getActivationBoxes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,6 +282,8 @@ public class LifelineImpl extends NamedElementImpl implements Lifeline {
 				return messagesAsSource != null && !messagesAsSource.isEmpty();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__MESSAGES_AS_TARGET:
 				return messagesAsTarget != null && !messagesAsTarget.isEmpty();
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES:
+				return activationBoxes != null && !activationBoxes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

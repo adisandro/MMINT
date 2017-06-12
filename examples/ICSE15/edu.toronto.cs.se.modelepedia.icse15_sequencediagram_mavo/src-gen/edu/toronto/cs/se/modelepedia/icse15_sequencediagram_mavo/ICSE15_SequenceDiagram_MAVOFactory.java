@@ -139,6 +139,24 @@ public interface ICSE15_SequenceDiagram_MAVOFactory extends EFactory {
 	TargetLifelineReference createTargetLifelineReference();
 
 	/**
+	 * Returns a new object of class '<em>Activation Box</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Activation Box</em>'.
+	 * @generated
+	 */
+	ActivationBox createActivationBox();
+
+	/**
+	 * Returns a new object of class '<em>Activation Box Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Activation Box Reference</em>'.
+	 * @generated
+	 */
+	ActivationBoxReference createActivationBoxReference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

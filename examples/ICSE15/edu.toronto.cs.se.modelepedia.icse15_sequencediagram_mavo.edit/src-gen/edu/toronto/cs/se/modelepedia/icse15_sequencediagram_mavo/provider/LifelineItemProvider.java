@@ -119,6 +119,7 @@ public class LifelineItemProvider extends NamedElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__CLASS);
+			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__ACTIVATION_BOXES);
 		}
 		return childrenFeatures;
 	}
@@ -175,6 +176,7 @@ public class LifelineItemProvider extends NamedElementItemProvider {
 
 		switch (notification.getFeatureID(Lifeline.class)) {
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__CLASS:
+			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE__ACTIVATION_BOXES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,6 +198,11 @@ public class LifelineItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__CLASS,
 				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createClassReference()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ICSE15_SequenceDiagram_MAVOPackage.Literals.LIFELINE__ACTIVATION_BOXES,
+				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createActivationBox()));
 	}
 
 }
