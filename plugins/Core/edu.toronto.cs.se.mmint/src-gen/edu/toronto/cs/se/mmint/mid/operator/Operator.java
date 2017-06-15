@@ -258,15 +258,18 @@ public interface Operator extends GenericElement {
     MID getMIDContainer();
 
     /**
-     * <!-- begin-user-doc --> Gets the signature of this operator type as a string.
+     * <!-- begin-user-doc --> Gets the signature of this operator type as a string, optionally with the given actual
+     * inputs.
      *
+     * @param inputs
+     *            The actual inputs to this operator type, or null for a signature with formal parameters only.
      * @return The operator signature.
      * @throws MMINTException
      *             If this is not an operator type. <!-- end-user-doc -->
-     * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
      * @generated
      */
-    String getTypeSignature() throws MMINTException;
+    String getTypeSignature(EList<OperatorInput> inputs) throws MMINTException;
 
     /**
      * <!-- begin-user-doc --> Creates and adds a subtype of this operator type to the Type MID.
@@ -374,19 +377,6 @@ public interface Operator extends GenericElement {
      * @generated
      */
     EList<Model> getOutputModels() throws MMINTException;
-
-    /**
-     * <!-- begin-user-doc --> Gets the signature of this operator instance as a string.
-     *
-     * @param inputs
-     *            The inputs to this operator instance.
-     * @return The operator signature.
-     * @throws MMINTException
-     *             If this is not an operator instance. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
-     * @generated
-     */
-    String getInstanceSignature(EList<OperatorInput> inputs) throws MMINTException;
 
     /**
      * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to an Instance MID.

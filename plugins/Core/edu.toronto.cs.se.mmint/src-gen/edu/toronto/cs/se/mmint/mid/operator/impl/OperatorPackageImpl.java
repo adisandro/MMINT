@@ -316,7 +316,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__GetTypeSignature() {
+    public EOperation getOperator__GetTypeSignature__EList() {
         return operatorEClass.getEOperations().get(3);
     }
 
@@ -397,7 +397,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__GetInstanceSignature__EList() {
+    public EOperation getOperator__CreateInstance__MID() {
         return operatorEClass.getEOperations().get(12);
     }
 
@@ -406,7 +406,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__CreateInstance__MID() {
+    public EOperation getOperator__DeleteInstance() {
         return operatorEClass.getEOperations().get(13);
     }
 
@@ -415,7 +415,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__DeleteInstance() {
+    public EOperation getOperator__SelectAllowedGenerics__EList() {
         return operatorEClass.getEOperations().get(14);
     }
 
@@ -424,7 +424,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__SelectAllowedGenerics__EList() {
+    public EOperation getOperator__GetInputProperties() {
         return operatorEClass.getEOperations().get(15);
     }
 
@@ -433,7 +433,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__GetInputProperties() {
+    public EOperation getOperator__ReadInputProperties__Properties() {
         return operatorEClass.getEOperations().get(16);
     }
 
@@ -442,7 +442,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__ReadInputProperties__Properties() {
+    public EOperation getOperator__Run__Map_Map_Map() {
         return operatorEClass.getEOperations().get(17);
     }
 
@@ -451,7 +451,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__Run__Map_Map_Map() {
+    public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
         return operatorEClass.getEOperations().get(18);
     }
 
@@ -460,7 +460,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__StartInstance__EList_Properties_EList_Map_MID() {
+    public EOperation getOperator__OpenInstance() {
         return operatorEClass.getEOperations().get(19);
     }
 
@@ -469,7 +469,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__OpenInstance() {
+    public EOperation getOperator__CreateWorkflowInstance__MID() {
         return operatorEClass.getEOperations().get(20);
     }
 
@@ -478,7 +478,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__CreateWorkflowInstance__MID() {
+    public EOperation getOperator__DeleteWorkflowInstance() {
         return operatorEClass.getEOperations().get(21);
     }
 
@@ -487,7 +487,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__DeleteWorkflowInstance() {
+    public EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID() {
         return operatorEClass.getEOperations().get(22);
     }
 
@@ -496,7 +496,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_MID() {
+    public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
         return operatorEClass.getEOperations().get(23);
     }
 
@@ -505,17 +505,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
-        return operatorEClass.getEOperations().get(24);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EOperation getOperator__OpenWorkflowInstance() {
-        return operatorEClass.getEOperations().get(25);
+        return operatorEClass.getEOperations().get(24);
     }
 
     /**
@@ -828,7 +819,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
         createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
         createEOperation(operatorEClass, OPERATOR___GET_SUPERTYPE);
         createEOperation(operatorEClass, OPERATOR___GET_MID_CONTAINER);
-        createEOperation(operatorEClass, OPERATOR___GET_TYPE_SIGNATURE);
+        createEOperation(operatorEClass, OPERATOR___GET_TYPE_SIGNATURE__ELIST);
         createEOperation(operatorEClass, OPERATOR___CREATE_SUBTYPE__STRING_STRING);
         createEOperation(operatorEClass, OPERATOR___DELETE_TYPE);
         createEOperation(operatorEClass, OPERATOR___OPEN_TYPE);
@@ -837,7 +828,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
         createEOperation(operatorEClass, OPERATOR___CHECK_ALLOWED_INPUTS__ELIST);
         createEOperation(operatorEClass, OPERATOR___GET_OUTPUTS_BY_NAME);
         createEOperation(operatorEClass, OPERATOR___GET_OUTPUT_MODELS);
-        createEOperation(operatorEClass, OPERATOR___GET_INSTANCE_SIGNATURE__ELIST);
         createEOperation(operatorEClass, OPERATOR___CREATE_INSTANCE__MID);
         createEOperation(operatorEClass, OPERATOR___DELETE_INSTANCE);
         createEOperation(operatorEClass, OPERATOR___SELECT_ALLOWED_GENERICS__ELIST);
@@ -948,7 +938,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
         initEOperation(getOperator__GetMIDContainer(), theMIDPackage.getMID(), "getMIDContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-        EOperation op = initEOperation(getOperator__GetTypeSignature(), ecorePackage.getEString(), "getTypeSignature", 1, 1, IS_UNIQUE, IS_ORDERED);
+        EOperation op = initEOperation(getOperator__GetTypeSignature__EList(), ecorePackage.getEString(), "getTypeSignature", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
         addEException(op, theMIDPackage.getMMINTException());
 
         op = initEOperation(getOperator__CreateSubtype__String_String(), this.getOperator(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -998,10 +989,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
         initEOperation(op, g1);
 
         op = initEOperation(getOperator__GetOutputModels(), theMIDPackage.getModel(), "getOutputModels", 0, -1, IS_UNIQUE, IS_ORDERED);
-        addEException(op, theMIDPackage.getMMINTException());
-
-        op = initEOperation(getOperator__GetInstanceSignature__EList(), ecorePackage.getEString(), "getInstanceSignature", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, this.getOperatorInput(), "inputs", 0, -1, IS_UNIQUE, IS_ORDERED);
         addEException(op, theMIDPackage.getMMINTException());
 
         op = initEOperation(getOperator__CreateInstance__MID(), this.getOperator(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);

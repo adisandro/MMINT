@@ -9,13 +9,21 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.operator.mid.slice;
+package edu.toronto.cs.se.mmint.operator.mid.match;
 
 import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 
 /**
- * Defaults to using MIDSliceStep.mid as the implementation.
+ * Defaults to using MIDMatch.mid as the implementation.
+ * TODO MMINT[MIDREL] Make MIDRel a subtype of both ModelRel and MID
+ * TODO MMINT[MIDREL] Inherit properly from Match
  */
-public class MIDSliceStep extends WorkflowOperatorImpl {
+public class MIDMatch extends WorkflowOperatorImpl {
+
+    @Override
+    public boolean isCommutative() {
+
+        return true;
+    }
 
 }

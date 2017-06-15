@@ -105,7 +105,7 @@ public class MIDDialogLabelProvider implements ILabelProvider {
 	            return "No Override";
 	        }
 		    try {
-                return ((Operator) element).getTypeSignature();
+                return ((Operator) element).getTypeSignature(null);
             }
             catch (MMINTException e) {
                 // never happens

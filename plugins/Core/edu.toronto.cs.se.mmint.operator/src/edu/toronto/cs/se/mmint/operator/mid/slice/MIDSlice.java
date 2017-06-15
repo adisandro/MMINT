@@ -13,6 +13,10 @@ package edu.toronto.cs.se.mmint.operator.mid.slice;
 
 import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 
+/**
+ * Defaults to using MIDSlice.mid as the implementation.
+ * TODO MMINT[MIDREL] Inherit properly from Slice
+ */
 public class MIDSlice extends WorkflowOperatorImpl {
-    // defaults to using MIDSlice.mid as the implementation
+
 }

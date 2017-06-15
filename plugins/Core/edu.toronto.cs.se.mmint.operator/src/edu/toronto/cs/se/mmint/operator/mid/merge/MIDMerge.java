@@ -9,13 +9,15 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.mmint.operator.mid.slice;
+package edu.toronto.cs.se.mmint.operator.mid.merge;
 
 import edu.toronto.cs.se.mmint.mid.operator.impl.WorkflowOperatorImpl;
 
 /**
- * Defaults to using MIDSliceStep.mid as the implementation.
+ * Defaults to using MIDMerge.mid as the implementation.
+ * TODO MMINT[MIDREL] Make a MIDRel pull its endpoints and drop mid1-mid2 inputs
+ * TODO MMINT[MIDREL] Inherit properly from Merge
  */
-public class MIDSliceStep extends WorkflowOperatorImpl {
+public class MIDMerge extends WorkflowOperatorImpl {
 
 }

@@ -1203,7 +1203,9 @@
         </eAnnotations>
       </eOperations>
       <eOperations name="getTypeSignature" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          eExceptions="#//MMINTException"/>
+          eExceptions="#//MMINTException">
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+      </eOperations>
       <eOperations name="createSubtype" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="newOperatorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1244,10 +1246,6 @@
         </eGenericType>
       </eOperations>
       <eOperations name="getOutputModels" upperBound="-1" eType="#//Model" eExceptions="#//MMINTException"/>
-      <eOperations name="getInstanceSignature" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          eExceptions="#//MMINTException">
-        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
-      </eOperations>
       <eOperations name="createInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="instanceMID" eType="#//MID"/>

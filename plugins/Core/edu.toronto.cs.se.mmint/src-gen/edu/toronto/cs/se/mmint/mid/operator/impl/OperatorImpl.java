@@ -574,9 +574,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 return getSupertype();
             case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
                 return getMIDContainer();
-            case OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE:
+            case OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST:
                 try {
-                    return getTypeSignature();
+                    return getTypeSignature((EList<OperatorInput>)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
@@ -635,13 +635,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             case OperatorPackage.OPERATOR___GET_OUTPUT_MODELS:
                 try {
                     return getOutputModels();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___GET_INSTANCE_SIGNATURE__ELIST:
-                try {
-                    return getInstanceSignature((EList<OperatorInput>)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
@@ -818,20 +811,53 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
-    public String getTypeSignature() throws MMINTException {
+    public String getTypeSignature(EList<OperatorInput> inputs) throws MMINTException {
+
+        MMINTException.mustBeType(this);
 
         String signature = this.toString() + "(";
-        List<String> params = new ArrayList<>();
-        for (ModelEndpoint formalParameter : this.getInputs()) {
-            String formal = formalParameter.getTarget().getName() + " ";
-            if (formalParameter.getUpperBound() > 1) {
-                formal += "*";
+        if (inputs == null) {
+            List<String> params = new ArrayList<>();
+            for (ModelEndpoint formalParameter : this.getInputs()) {
+                String formal = formalParameter.getTarget().getName() + " ";
+                if (formalParameter.getUpperBound() > 1) {
+                    formal += "*";
+                }
+                formal += formalParameter.getName();
+                params.add(formal);
             }
-            formal += formalParameter.getName();
-            params.add(formal);
+            signature += String.join(", ", params);
+            signature += ")";
         }
-        signature += String.join(", ", params);
-        signature += ")";
+        else {
+            //TODO MMINT[OPERATOR] Add coercion support
+            Map<String, List<String>> varargs = new LinkedHashMap<>();
+            for (OperatorInput input : inputs) {
+                ModelEndpoint formalParameter = input.getModelTypeEndpoint();
+                Model actualParameter = input.getModel();
+                String formal = formalParameter.getName();
+                if (
+                    this.getSupertype() != null ||
+                    !MIDTypeHierarchy.getSubtypes(this).isEmpty()
+                ) {
+                    formal = formalParameter.getTarget().getName() + " " + formal;
+                }
+                List<String> vararg = varargs.get(formal);
+                if (vararg == null) {
+                    vararg = new ArrayList<>();
+                    varargs.put(formal, vararg);
+                }
+                vararg.add(actualParameter.getName());
+            }
+            List<String> params = new ArrayList<>();
+            for (Entry<String, List<String>> vararg : varargs.entrySet()) {
+                String actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
+                                                                 vararg.getValue().get(0);
+                params.add(vararg.getKey() + "=" + actual);
+            }
+            signature += String.join(", ", params);
+            signature += ")";
+        }
 
         return signature;
     }
@@ -1184,45 +1210,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             this.getOutputs().stream()
                 .map(outputModelEndpoint -> outputModelEndpoint.getTarget())
                 .collect(Collectors.toList()));
-    }
-
-    /**
-     * @generated NOT
-     */
-    public String getInstanceSignature(EList<OperatorInput> inputs) throws MMINTException {
-
-        MMINTException.mustBeInstance(this);
-
-        //TODO MMINT[OPERATOR] Add coercion support
-        String signature = this.toString() + "(";
-        Map<String, List<String>> varargs = new LinkedHashMap<>();
-        for (OperatorInput input : inputs) {
-            ModelEndpoint formalParameter = input.getModelTypeEndpoint();
-            Model actualParameter = input.getModel();
-            String formal = formalParameter.getName();
-            if (
-                this.getSupertype() != null ||
-                !MIDTypeHierarchy.getSubtypes(this).isEmpty()
-            ) {
-                formal = formalParameter.getTarget().getName() + " " + formal;
-            }
-            List<String> vararg = varargs.get(formal);
-            if (vararg == null) {
-                vararg = new ArrayList<>();
-                varargs.put(formal, vararg);
-            }
-            vararg.add(actualParameter.getName());
-        }
-        List<String> params = new ArrayList<>();
-        for (Entry<String, List<String>> vararg : varargs.entrySet()) {
-            String actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
-                                                             vararg.getValue().get(0);
-            params.add(vararg.getKey() + "=" + actual);
-        }
-        signature += String.join(", ", params);
-        signature += ")";
-
-        return signature;
     }
 
     /**

@@ -218,7 +218,7 @@ public class MIDContextMenu extends ContributionItem {
 					Operator executableOperator = executableOperators.get(i);
 					String text;
                     try {
-                        text = executableOperator.getInstanceSignature(executableOperatorsInputs.get(i));
+                        text = executableOperator.getTypeSignature(executableOperatorsInputs.get(i));
                     }
                     catch (MMINTException e) {
                         text = executableOperator.toString();
