@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -108,41 +109,39 @@ public class SDSlice extends Slice {
 		} else if (elem instanceof Message) {
 			Message m = (Message) elem;
 
-			boolean proceedsSrcRefMessage = false;
-			ActivationBoxReference srcRef = m.getSourceActivationBox();
+			ActivationBoxReference srcRef;
+			ActivationBox srcBox;
+			List<ActivationBoxReference> srcMessages;
+			int srcIndex;
+			
+			srcRef = m.getSourceActivationBox();
 			if (srcRef != null) {
-				ActivationBox srcBox = m.getSourceActivationBox().getTarget();
+				srcBox = srcRef.getTarget();
 				if (srcBox != null) {
-					if (srcBox.getMessages() != null) {
-						for (ActivationBoxReference curRef : srcBox.getMessages()) {
-							if (proceedsSrcRefMessage) {
-								impacted.add(curRef);
-								break;
-							}
-
-							if (curRef == srcRef) {
-								proceedsSrcRefMessage = true;
-							}
+					srcMessages = srcBox.getMessages();
+					if (srcMessages != null) {
+						srcIndex = srcMessages.indexOf(srcRef);
+						if (srcIndex > -1 && srcIndex < srcMessages.size()-1) {
+							impacted.add(srcMessages.get(srcIndex + 1));
 						}
 					}
 				}
 			}
-
-			boolean proceedsTarRefMessage = false;
-			ActivationBoxReference tarRef = m.getTargetActivationBox();
+			
+			ActivationBoxReference tarRef;
+			ActivationBox tarBox;
+			List<ActivationBoxReference> tarMessages;
+			int tarIndex;
+			
+			tarRef = m.getTargetActivationBox();
 			if (tarRef != null) {
-				ActivationBox tarBox = tarRef.getTarget();
+				tarBox = tarRef.getTarget();
 				if (tarBox != null) {
-					if (tarBox.getMessages() != null) {
-						for (ActivationBoxReference curRef : tarBox.getMessages()) {
-							if (proceedsTarRefMessage) {
-								impacted.add(curRef);
-								break;
-							}
-
-							if (curRef == srcRef) {
-								proceedsTarRefMessage = true;
-							}
+					tarMessages = tarBox.getMessages();
+					if (tarMessages != null) {
+						tarIndex = tarMessages.indexOf(tarRef);
+						if (tarIndex > -1 && tarIndex < tarMessages.size()-1) {
+							impacted.add(tarMessages.get(tarIndex + 1));
 						}
 					}
 				}
