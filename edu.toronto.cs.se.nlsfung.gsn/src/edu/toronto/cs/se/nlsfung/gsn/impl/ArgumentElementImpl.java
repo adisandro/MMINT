@@ -2,8 +2,8 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
+import edu.toronto.cs.se.nlsfung.gsn.ArgumentElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.GsnElement;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,20 +14,20 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Gsn Element</b></em>'.
+ * An implementation of the model object '<em><b>Argument Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.GsnElementImpl#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.GsnElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.GsnElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implements GsnElement {
+public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container implements ArgumentElement {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = null;
+	protected static final String ID_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -93,7 +93,7 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GsnElementImpl() {
+	protected ArgumentElementImpl() {
 		super();
 	}
 
@@ -104,7 +104,7 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GSNPackage.Literals.GSN_ELEMENT;
+		return GSNPackage.Literals.ARGUMENT_ELEMENT;
 	}
 
 	/**
@@ -125,7 +125,7 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GSN_ELEMENT__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__ID, oldId, id));
 	}
 
 	/**
@@ -146,7 +146,7 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GSN_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -167,7 +167,7 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GSN_ELEMENT__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -178,11 +178,11 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GSNPackage.GSN_ELEMENT__ID:
+			case GSNPackage.ARGUMENT_ELEMENT__ID:
 				return getId();
-			case GSNPackage.GSN_ELEMENT__NAME:
+			case GSNPackage.ARGUMENT_ELEMENT__NAME:
 				return getName();
-			case GSNPackage.GSN_ELEMENT__DESCRIPTION:
+			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -196,13 +196,13 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GSNPackage.GSN_ELEMENT__ID:
+			case GSNPackage.ARGUMENT_ELEMENT__ID:
 				setId((String)newValue);
 				return;
-			case GSNPackage.GSN_ELEMENT__NAME:
+			case GSNPackage.ARGUMENT_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case GSNPackage.GSN_ELEMENT__DESCRIPTION:
+			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -217,13 +217,13 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GSNPackage.GSN_ELEMENT__ID:
+			case GSNPackage.ARGUMENT_ELEMENT__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case GSNPackage.GSN_ELEMENT__NAME:
+			case GSNPackage.ARGUMENT_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case GSNPackage.GSN_ELEMENT__DESCRIPTION:
+			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -238,11 +238,11 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GSNPackage.GSN_ELEMENT__ID:
+			case GSNPackage.ARGUMENT_ELEMENT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case GSNPackage.GSN_ELEMENT__NAME:
+			case GSNPackage.ARGUMENT_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GSNPackage.GSN_ELEMENT__DESCRIPTION:
+			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
@@ -268,4 +268,4 @@ public abstract class GsnElementImpl extends MinimalEObjectImpl.Container implem
 		return result.toString();
 	}
 
-} //GsnElementImpl
+} //ArgumentElementImpl

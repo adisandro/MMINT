@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement#getState <em>State</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement#getContextOf <em>Context Of</em>}</li>
  * </ul>
  *
@@ -21,39 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface ContextualElement extends GsnElement {
-	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.ValidityState}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>State</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.ValidityState
-	 * @see #setState(ValidityState)
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getContextualElement_State()
-	 * @model
-	 * @generated
-	 */
-	ValidityState getState();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement#getState <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.ValidityState
-	 * @see #getState()
-	 * @generated
-	 */
-	void setState(ValidityState value);
-
+public interface ContextualElement extends ArgumentElement {
 	/**
 	 * Returns the value of the '<em><b>Context Of</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.CoreElement}.
+	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.InContextOf}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContexts <em>Contexts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context Of</em>' reference list isn't clear,
@@ -62,9 +33,10 @@ public interface ContextualElement extends GsnElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context Of</em>' reference list.
 	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getContextualElement_ContextOf()
-	 * @model
+	 * @see edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContexts
+	 * @model opposite="contexts"
 	 * @generated
 	 */
-	EList<CoreElement> getContextOf();
+	EList<InContextOf> getContextOf();
 
 } // ContextualElement

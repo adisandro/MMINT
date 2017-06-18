@@ -2,7 +2,6 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,14 +13,14 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.Solution#getState <em>State</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.Solution#getSupports <em>Supports</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getSolution()
  * @model
  * @generated
  */
-public interface Solution extends GoalSupporter {
+public interface Solution extends CoreElement {
+
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.ValidityState}.
@@ -50,21 +49,4 @@ public interface Solution extends GoalSupporter {
 	 * @generated
 	 */
 	void setState(ValidityState value);
-
-	/**
-	 * Returns the value of the '<em><b>Supports</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.Goal}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supports</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supports</em>' reference list.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getSolution_Supports()
-	 * @model required="true"
-	 * @generated
-	 */
-	EList<Goal> getSupports();
-
 } // Solution

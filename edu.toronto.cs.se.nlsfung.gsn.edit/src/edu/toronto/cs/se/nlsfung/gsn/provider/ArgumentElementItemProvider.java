@@ -3,8 +3,8 @@
 package edu.toronto.cs.se.nlsfung.gsn.provider;
 
 
+import edu.toronto.cs.se.nlsfung.gsn.ArgumentElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.GsnElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,12 +26,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.GsnElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GsnElementItemProvider 
+public class ArgumentElementItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -45,7 +45,7 @@ public class GsnElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GsnElementItemProvider(AdapterFactory adapterFactory) {
+	public ArgumentElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -78,9 +78,9 @@ public class GsnElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GsnElement_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GsnElement_id_feature", "_UI_GsnElement_type"),
-				 GSNPackage.Literals.GSN_ELEMENT__ID,
+				 getString("_UI_ArgumentElement_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_id_feature", "_UI_ArgumentElement_type"),
+				 GSNPackage.Literals.ARGUMENT_ELEMENT__ID,
 				 true,
 				 false,
 				 false,
@@ -100,9 +100,9 @@ public class GsnElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GsnElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GsnElement_name_feature", "_UI_GsnElement_type"),
-				 GSNPackage.Literals.GSN_ELEMENT__NAME,
+				 getString("_UI_ArgumentElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_name_feature", "_UI_ArgumentElement_type"),
+				 GSNPackage.Literals.ARGUMENT_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -122,9 +122,9 @@ public class GsnElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GsnElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GsnElement_description_feature", "_UI_GsnElement_type"),
-				 GSNPackage.Literals.GSN_ELEMENT__DESCRIPTION,
+				 getString("_UI_ArgumentElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_description_feature", "_UI_ArgumentElement_type"),
+				 GSNPackage.Literals.ARGUMENT_ELEMENT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -141,10 +141,10 @@ public class GsnElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GsnElement)object).getName();
+		String label = ((ArgumentElement)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_GsnElement_type") :
-			getString("_UI_GsnElement_type") + " " + label;
+			getString("_UI_ArgumentElement_type") :
+			getString("_UI_ArgumentElement_type") + " " + label;
 	}
 	
 
@@ -159,10 +159,10 @@ public class GsnElementItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GsnElement.class)) {
-			case GSNPackage.GSN_ELEMENT__ID:
-			case GSNPackage.GSN_ELEMENT__NAME:
-			case GSNPackage.GSN_ELEMENT__DESCRIPTION:
+		switch (notification.getFeatureID(ArgumentElement.class)) {
+			case GSNPackage.ARGUMENT_ELEMENT__ID:
+			case GSNPackage.ARGUMENT_ELEMENT__NAME:
+			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

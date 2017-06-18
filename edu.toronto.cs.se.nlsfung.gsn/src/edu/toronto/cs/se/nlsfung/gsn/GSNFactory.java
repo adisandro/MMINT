@@ -31,6 +31,24 @@ public interface GSNFactory extends EFactory {
 	SafetyCase createSafetyCase();
 
 	/**
+	 * Returns a new object of class '<em>Supported By</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Supported By</em>'.
+	 * @generated
+	 */
+	SupportedBy createSupportedBy();
+
+	/**
+	 * Returns a new object of class '<em>In Context Of</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>In Context Of</em>'.
+	 * @generated
+	 */
+	InContextOf createInContextOf();
+
+	/**
 	 * Returns a new object of class '<em>Goal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

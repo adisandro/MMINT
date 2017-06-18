@@ -77,7 +77,11 @@ public class SafetyCaseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ELEMENTS);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__GOALS);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__STRATEGIES);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__SOLUTIONS);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__CONTEXTS);
+			childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ASIL_LEVELS);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +134,11 @@ public class SafetyCaseItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SafetyCase.class)) {
-			case GSNPackage.SAFETY_CASE__ELEMENTS:
+			case GSNPackage.SAFETY_CASE__GOALS:
+			case GSNPackage.SAFETY_CASE__STRATEGIES:
+			case GSNPackage.SAFETY_CASE__SOLUTIONS:
+			case GSNPackage.SAFETY_CASE__CONTEXTS:
+			case GSNPackage.SAFETY_CASE__ASIL_LEVELS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -150,28 +158,56 @@ public class SafetyCaseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				(GSNPackage.Literals.SAFETY_CASE__GOALS,
 				 GSNFactory.eINSTANCE.createGoal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				(GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
 				 GSNFactory.eINSTANCE.createStrategy()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				(GSNPackage.Literals.SAFETY_CASE__SOLUTIONS,
 				 GSNFactory.eINSTANCE.createSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				(GSNPackage.Literals.SAFETY_CASE__CONTEXTS,
 				 GSNFactory.eINSTANCE.createContext()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GSNPackage.Literals.SAFETY_CASE__ELEMENTS,
+				(GSNPackage.Literals.SAFETY_CASE__CONTEXTS,
 				 GSNFactory.eINSTANCE.createASIL()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GSNPackage.Literals.SAFETY_CASE__ASIL_LEVELS,
+				 GSNFactory.eINSTANCE.createASIL()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == GSNPackage.Literals.SAFETY_CASE__CONTEXTS ||
+			childFeature == GSNPackage.Literals.SAFETY_CASE__ASIL_LEVELS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

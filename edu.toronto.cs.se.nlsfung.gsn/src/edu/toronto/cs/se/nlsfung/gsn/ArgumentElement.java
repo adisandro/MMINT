@@ -6,25 +6,26 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Gsn Element</b></em>'.
+ * A representation of the model object '<em><b>Argument Element</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement#getName <em>Name</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getId <em>Id</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getName <em>Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getGsnElement()
+ * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getArgumentElement()
  * @model abstract="true"
  * @generated
  */
-public interface GsnElement extends EObject {
+public interface ArgumentElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -33,15 +34,14 @@ public interface GsnElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getGsnElement_Id()
-	 * @model ordered="false"
-	 *        extendedMetaData="name='id' namespace='http://sdq.ipd.uka.de/Identifier/1.0'"
+	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getArgumentElement_Id()
+	 * @model default="" required="true"
 	 * @generated
 	 */
 	String getId();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement#getId <em>Id</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Id</em>' attribute.
@@ -60,14 +60,14 @@ public interface GsnElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getGsnElement_Name()
-	 * @model
+	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getArgumentElement_Name()
+	 * @model annotation="gmf.label label='description'"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -86,14 +86,14 @@ public interface GsnElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getGsnElement_Description()
-	 * @model
+	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getArgumentElement_Description()
+	 * @model annotation="gmf.label label='description'"
 	 * @generated
 	 */
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
@@ -102,4 +102,4 @@ public interface GsnElement extends EObject {
 	 */
 	void setDescription(String value);
 
-} // GsnElement
+} // ArgumentElement

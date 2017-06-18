@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SolutionItemProvider extends GoalSupporterItemProvider {
+public class SolutionItemProvider extends CoreElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,6 @@ public class SolutionItemProvider extends GoalSupporterItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addStatePropertyDescriptor(object);
-			addSupportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -69,28 +68,6 @@ public class SolutionItemProvider extends GoalSupporterItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Supports feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSupportsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Solution_supports_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_supports_feature", "_UI_Solution_type"),
-				 GSNPackage.Literals.SOLUTION__SUPPORTS,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

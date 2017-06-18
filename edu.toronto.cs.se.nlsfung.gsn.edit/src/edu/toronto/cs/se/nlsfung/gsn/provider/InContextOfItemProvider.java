@@ -3,7 +3,6 @@
 package edu.toronto.cs.se.nlsfung.gsn.provider;
 
 
-import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
 
 import java.util.Collection;
@@ -12,23 +11,38 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.CoreElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.InContextOf} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CoreElementItemProvider extends ArgumentElementItemProvider {
+public class InContextOfItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoreElementItemProvider(AdapterFactory adapterFactory) {
+	public InContextOfItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,31 +57,42 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSupportsPropertyDescriptor(object);
+			addContextsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Supports feature.
+	 * This adds a property descriptor for the Contexts feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSupportsPropertyDescriptor(Object object) {
+	protected void addContextsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CoreElement_supports_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CoreElement_supports_feature", "_UI_CoreElement_type"),
-				 GSNPackage.Literals.CORE_ELEMENT__SUPPORTS,
+				 getString("_UI_InContextOf_contexts_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InContextOf_contexts_feature", "_UI_InContextOf_type"),
+				 GSNPackage.Literals.IN_CONTEXT_OF__CONTEXTS,
 				 true,
 				 false,
 				 true,
 				 null,
 				 null,
 				 null));
+	}
+
+	/**
+	 * This returns InContextOf.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InContextOf"));
 	}
 
 	/**
@@ -78,10 +103,7 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CoreElement)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_CoreElement_type") :
-			getString("_UI_CoreElement_type") + " " + label;
+		return getString("_UI_InContextOf_type");
 	}
 	
 
@@ -108,6 +130,17 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return edutorontocssenlsfunggsnEditPlugin.INSTANCE;
 	}
 
 }

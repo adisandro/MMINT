@@ -3,21 +3,12 @@
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.Goal;
 import edu.toronto.cs.se.nlsfung.gsn.Solution;
+
 import edu.toronto.cs.se.nlsfung.gsn.ValidityState;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,12 +19,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SolutionImpl#getState <em>State</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SolutionImpl#getSupports <em>Supports</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SolutionImpl extends GoalSupporterImpl implements Solution {
+public class SolutionImpl extends CoreElementImpl implements Solution {
 	/**
 	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,7 +33,6 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	 * @ordered
 	 */
 	protected static final ValidityState STATE_EDEFAULT = ValidityState.INVALID;
-
 	/**
 	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,16 +42,6 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	 * @ordered
 	 */
 	protected ValidityState state = STATE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSupports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Goal> supports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,25 +88,11 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Goal> getSupports() {
-		if (supports == null) {
-			supports = new EObjectResolvingEList<Goal>(Goal.class, this, GSNPackage.SOLUTION__SUPPORTS);
-		}
-		return supports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case GSNPackage.SOLUTION__STATE:
 				return getState();
-			case GSNPackage.SOLUTION__SUPPORTS:
-				return getSupports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -137,16 +102,11 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GSNPackage.SOLUTION__STATE:
 				setState((ValidityState)newValue);
-				return;
-			case GSNPackage.SOLUTION__SUPPORTS:
-				getSupports().clear();
-				getSupports().addAll((Collection<? extends Goal>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -163,9 +123,6 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 			case GSNPackage.SOLUTION__STATE:
 				setState(STATE_EDEFAULT);
 				return;
-			case GSNPackage.SOLUTION__SUPPORTS:
-				getSupports().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -180,8 +137,6 @@ public class SolutionImpl extends GoalSupporterImpl implements Solution {
 		switch (featureID) {
 			case GSNPackage.SOLUTION__STATE:
 				return state != STATE_EDEFAULT;
-			case GSNPackage.SOLUTION__SUPPORTS:
-				return supports != null && !supports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

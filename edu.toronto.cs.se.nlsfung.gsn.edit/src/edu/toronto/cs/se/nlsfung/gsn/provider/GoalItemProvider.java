@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends StrategySupporterItemProvider {
+public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -46,9 +46,6 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addStatePropertyDescriptor(object);
-			addSupportedByPropertyDescriptor(object);
-			addInContextOfPropertyDescriptor(object);
-			addSupportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,72 +68,6 @@ public class GoalItemProvider extends StrategySupporterItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Supported By feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSupportedByPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_supportedBy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_supportedBy_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__SUPPORTED_BY,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the In Context Of feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInContextOfPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_inContextOf_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_inContextOf_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__IN_CONTEXT_OF,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Supports feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSupportsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_supports_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_supports_feature", "_UI_Goal_type"),
-				 GSNPackage.Literals.GOAL__SUPPORTS,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

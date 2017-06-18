@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ASILImpl extends ContextualElementImpl implements ASIL {
+public class ASILImpl extends ContextImpl implements ASIL {
 	/**
 	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -58,6 +58,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case GSNPackage.SAFETY_CASE: return createSafetyCase();
+			case GSNPackage.SUPPORTED_BY: return createSupportedBy();
+			case GSNPackage.IN_CONTEXT_OF: return createInContextOf();
 			case GSNPackage.GOAL: return createGoal();
 			case GSNPackage.STRATEGY: return createStrategy();
 			case GSNPackage.SOLUTION: return createSolution();
@@ -114,6 +116,26 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 	public SafetyCase createSafetyCase() {
 		SafetyCaseImpl safetyCase = new SafetyCaseImpl();
 		return safetyCase;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SupportedBy createSupportedBy() {
+		SupportedByImpl supportedBy = new SupportedByImpl();
+		return supportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InContextOf createInContextOf() {
+		InContextOfImpl inContextOf = new InContextOfImpl();
+		return inContextOf;
 	}
 
 	/**

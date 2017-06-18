@@ -72,66 +72,69 @@ public class GSNSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GSNPackage.GSN_ELEMENT: {
-				GsnElement gsnElement = (GsnElement)theEObject;
-				T result = caseGsnElement(gsnElement);
+			case GSNPackage.ARGUMENT_ELEMENT: {
+				ArgumentElement argumentElement = (ArgumentElement)theEObject;
+				T result = caseArgumentElement(argumentElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.CORE_ELEMENT: {
 				CoreElement coreElement = (CoreElement)theEObject;
 				T result = caseCoreElement(coreElement);
-				if (result == null) result = caseGsnElement(coreElement);
+				if (result == null) result = caseArgumentElement(coreElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GSNPackage.GOAL_SUPPORTER: {
-				GoalSupporter goalSupporter = (GoalSupporter)theEObject;
-				T result = caseGoalSupporter(goalSupporter);
-				if (result == null) result = caseCoreElement(goalSupporter);
-				if (result == null) result = caseGsnElement(goalSupporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.STRATEGY_SUPPORTER: {
-				StrategySupporter strategySupporter = (StrategySupporter)theEObject;
-				T result = caseStrategySupporter(strategySupporter);
-				if (result == null) result = caseCoreElement(strategySupporter);
-				if (result == null) result = caseGsnElement(strategySupporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.GOAL: {
-				Goal goal = (Goal)theEObject;
-				T result = caseGoal(goal);
-				if (result == null) result = caseStrategySupporter(goal);
-				if (result == null) result = caseCoreElement(goal);
-				if (result == null) result = caseGsnElement(goal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.STRATEGY: {
-				Strategy strategy = (Strategy)theEObject;
-				T result = caseStrategy(strategy);
-				if (result == null) result = caseGoalSupporter(strategy);
-				if (result == null) result = caseCoreElement(strategy);
-				if (result == null) result = caseGsnElement(strategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GSNPackage.SOLUTION: {
-				Solution solution = (Solution)theEObject;
-				T result = caseSolution(solution);
-				if (result == null) result = caseGoalSupporter(solution);
-				if (result == null) result = caseCoreElement(solution);
-				if (result == null) result = caseGsnElement(solution);
+			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT: {
+				DecomposableCoreElement decomposableCoreElement = (DecomposableCoreElement)theEObject;
+				T result = caseDecomposableCoreElement(decomposableCoreElement);
+				if (result == null) result = caseCoreElement(decomposableCoreElement);
+				if (result == null) result = caseArgumentElement(decomposableCoreElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.CONTEXTUAL_ELEMENT: {
 				ContextualElement contextualElement = (ContextualElement)theEObject;
 				T result = caseContextualElement(contextualElement);
-				if (result == null) result = caseGsnElement(contextualElement);
+				if (result == null) result = caseArgumentElement(contextualElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GSNPackage.SUPPORTED_BY: {
+				SupportedBy supportedBy = (SupportedBy)theEObject;
+				T result = caseSupportedBy(supportedBy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GSNPackage.IN_CONTEXT_OF: {
+				InContextOf inContextOf = (InContextOf)theEObject;
+				T result = caseInContextOf(inContextOf);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GSNPackage.GOAL: {
+				Goal goal = (Goal)theEObject;
+				T result = caseGoal(goal);
+				if (result == null) result = caseDecomposableCoreElement(goal);
+				if (result == null) result = caseCoreElement(goal);
+				if (result == null) result = caseArgumentElement(goal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GSNPackage.STRATEGY: {
+				Strategy strategy = (Strategy)theEObject;
+				T result = caseStrategy(strategy);
+				if (result == null) result = caseDecomposableCoreElement(strategy);
+				if (result == null) result = caseCoreElement(strategy);
+				if (result == null) result = caseArgumentElement(strategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GSNPackage.SOLUTION: {
+				Solution solution = (Solution)theEObject;
+				T result = caseSolution(solution);
+				if (result == null) result = caseCoreElement(solution);
+				if (result == null) result = caseArgumentElement(solution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,15 +142,16 @@ public class GSNSwitch<T> extends Switch<T> {
 				Context context = (Context)theEObject;
 				T result = caseContext(context);
 				if (result == null) result = caseContextualElement(context);
-				if (result == null) result = caseGsnElement(context);
+				if (result == null) result = caseArgumentElement(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GSNPackage.ASIL: {
 				ASIL asil = (ASIL)theEObject;
 				T result = caseASIL(asil);
+				if (result == null) result = caseContext(asil);
 				if (result == null) result = caseContextualElement(asil);
-				if (result == null) result = caseGsnElement(asil);
+				if (result == null) result = caseArgumentElement(asil);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -171,17 +175,17 @@ public class GSNSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Gsn Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Argument Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Gsn Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Argument Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGsnElement(GsnElement object) {
+	public T caseArgumentElement(ArgumentElement object) {
 		return null;
 	}
 
@@ -201,32 +205,62 @@ public class GSNSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal Supporter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Decomposable Core Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Goal Supporter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Decomposable Core Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGoalSupporter(GoalSupporter object) {
+	public T caseDecomposableCoreElement(DecomposableCoreElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Strategy Supporter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Strategy Supporter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStrategySupporter(StrategySupporter object) {
+	public T caseContextualElement(ContextualElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Supported By</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Supported By</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSupportedBy(SupportedBy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>In Context Of</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>In Context Of</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInContextOf(InContextOf object) {
 		return null;
 	}
 
@@ -272,21 +306,6 @@ public class GSNSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSolution(Solution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContextualElement(ContextualElement object) {
 		return null;
 	}
 

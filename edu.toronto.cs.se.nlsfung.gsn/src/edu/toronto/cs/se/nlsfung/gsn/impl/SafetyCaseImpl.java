@@ -2,9 +2,13 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
+import edu.toronto.cs.se.nlsfung.gsn.ASIL;
+import edu.toronto.cs.se.nlsfung.gsn.Context;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.GsnElement;
+import edu.toronto.cs.se.nlsfung.gsn.Goal;
 import edu.toronto.cs.se.nlsfung.gsn.SafetyCase;
+import edu.toronto.cs.se.nlsfung.gsn.Solution;
+import edu.toronto.cs.se.nlsfung.gsn.Strategy;
 
 import java.util.Collection;
 
@@ -28,21 +32,65 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SafetyCaseImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SafetyCaseImpl#getGoals <em>Goals</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SafetyCaseImpl#getStrategies <em>Strategies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SafetyCaseImpl#getSolutions <em>Solutions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SafetyCaseImpl#getASILLevels <em>ASIL Levels</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements SafetyCase {
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
+	 * @see #getGoals()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GsnElement> elements;
+	protected EList<Goal> goals;
+
+	/**
+	 * The cached value of the '{@link #getStrategies() <em>Strategies</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStrategies()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Strategy> strategies;
+
+	/**
+	 * The cached value of the '{@link #getSolutions() <em>Solutions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSolutions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Solution> solutions;
+
+	/**
+	 * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContexts()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Context> contexts;
+
+	/**
+	 * The cached value of the '{@link #getASILLevels() <em>ASIL Levels</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getASILLevels()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ASIL> asilLevels;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,11 +116,59 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GsnElement> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList<GsnElement>(GsnElement.class, this, GSNPackage.SAFETY_CASE__ELEMENTS);
+	public EList<Goal> getGoals() {
+		if (goals == null) {
+			goals = new EObjectContainmentEList<Goal>(Goal.class, this, GSNPackage.SAFETY_CASE__GOALS);
 		}
-		return elements;
+		return goals;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Strategy> getStrategies() {
+		if (strategies == null) {
+			strategies = new EObjectContainmentEList<Strategy>(Strategy.class, this, GSNPackage.SAFETY_CASE__STRATEGIES);
+		}
+		return strategies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Solution> getSolutions() {
+		if (solutions == null) {
+			solutions = new EObjectContainmentEList<Solution>(Solution.class, this, GSNPackage.SAFETY_CASE__SOLUTIONS);
+		}
+		return solutions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Context> getContexts() {
+		if (contexts == null) {
+			contexts = new EObjectContainmentEList<Context>(Context.class, this, GSNPackage.SAFETY_CASE__CONTEXTS);
+		}
+		return contexts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ASIL> getASILLevels() {
+		if (asilLevels == null) {
+			asilLevels = new EObjectContainmentEList<ASIL>(ASIL.class, this, GSNPackage.SAFETY_CASE__ASIL_LEVELS);
+		}
+		return asilLevels;
 	}
 
 	/**
@@ -83,8 +179,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GSNPackage.SAFETY_CASE__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__GOALS:
+				return ((InternalEList<?>)getGoals()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__STRATEGIES:
+				return ((InternalEList<?>)getStrategies()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__SOLUTIONS:
+				return ((InternalEList<?>)getSolutions()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__CONTEXTS:
+				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SAFETY_CASE__ASIL_LEVELS:
+				return ((InternalEList<?>)getASILLevels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,8 +201,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GSNPackage.SAFETY_CASE__ELEMENTS:
-				return getElements();
+			case GSNPackage.SAFETY_CASE__GOALS:
+				return getGoals();
+			case GSNPackage.SAFETY_CASE__STRATEGIES:
+				return getStrategies();
+			case GSNPackage.SAFETY_CASE__SOLUTIONS:
+				return getSolutions();
+			case GSNPackage.SAFETY_CASE__CONTEXTS:
+				return getContexts();
+			case GSNPackage.SAFETY_CASE__ASIL_LEVELS:
+				return getASILLevels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,9 +224,25 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GSNPackage.SAFETY_CASE__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends GsnElement>)newValue);
+			case GSNPackage.SAFETY_CASE__GOALS:
+				getGoals().clear();
+				getGoals().addAll((Collection<? extends Goal>)newValue);
+				return;
+			case GSNPackage.SAFETY_CASE__STRATEGIES:
+				getStrategies().clear();
+				getStrategies().addAll((Collection<? extends Strategy>)newValue);
+				return;
+			case GSNPackage.SAFETY_CASE__SOLUTIONS:
+				getSolutions().clear();
+				getSolutions().addAll((Collection<? extends Solution>)newValue);
+				return;
+			case GSNPackage.SAFETY_CASE__CONTEXTS:
+				getContexts().clear();
+				getContexts().addAll((Collection<? extends Context>)newValue);
+				return;
+			case GSNPackage.SAFETY_CASE__ASIL_LEVELS:
+				getASILLevels().clear();
+				getASILLevels().addAll((Collection<? extends ASIL>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,8 +256,20 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GSNPackage.SAFETY_CASE__ELEMENTS:
-				getElements().clear();
+			case GSNPackage.SAFETY_CASE__GOALS:
+				getGoals().clear();
+				return;
+			case GSNPackage.SAFETY_CASE__STRATEGIES:
+				getStrategies().clear();
+				return;
+			case GSNPackage.SAFETY_CASE__SOLUTIONS:
+				getSolutions().clear();
+				return;
+			case GSNPackage.SAFETY_CASE__CONTEXTS:
+				getContexts().clear();
+				return;
+			case GSNPackage.SAFETY_CASE__ASIL_LEVELS:
+				getASILLevels().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -143,8 +283,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GSNPackage.SAFETY_CASE__ELEMENTS:
-				return elements != null && !elements.isEmpty();
+			case GSNPackage.SAFETY_CASE__GOALS:
+				return goals != null && !goals.isEmpty();
+			case GSNPackage.SAFETY_CASE__STRATEGIES:
+				return strategies != null && !strategies.isEmpty();
+			case GSNPackage.SAFETY_CASE__SOLUTIONS:
+				return solutions != null && !solutions.isEmpty();
+			case GSNPackage.SAFETY_CASE__CONTEXTS:
+				return contexts != null && !contexts.isEmpty();
+			case GSNPackage.SAFETY_CASE__ASIL_LEVELS:
+				return asilLevels != null && !asilLevels.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

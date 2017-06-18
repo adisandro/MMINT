@@ -72,20 +72,28 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 				return createSafetyCaseAdapter();
 			}
 			@Override
-			public Adapter caseGsnElement(GsnElement object) {
-				return createGsnElementAdapter();
+			public Adapter caseArgumentElement(ArgumentElement object) {
+				return createArgumentElementAdapter();
 			}
 			@Override
 			public Adapter caseCoreElement(CoreElement object) {
 				return createCoreElementAdapter();
 			}
 			@Override
-			public Adapter caseGoalSupporter(GoalSupporter object) {
-				return createGoalSupporterAdapter();
+			public Adapter caseDecomposableCoreElement(DecomposableCoreElement object) {
+				return createDecomposableCoreElementAdapter();
 			}
 			@Override
-			public Adapter caseStrategySupporter(StrategySupporter object) {
-				return createStrategySupporterAdapter();
+			public Adapter caseContextualElement(ContextualElement object) {
+				return createContextualElementAdapter();
+			}
+			@Override
+			public Adapter caseSupportedBy(SupportedBy object) {
+				return createSupportedByAdapter();
+			}
+			@Override
+			public Adapter caseInContextOf(InContextOf object) {
+				return createInContextOfAdapter();
 			}
 			@Override
 			public Adapter caseGoal(Goal object) {
@@ -98,10 +106,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseSolution(Solution object) {
 				return createSolutionAdapter();
-			}
-			@Override
-			public Adapter caseContextualElement(ContextualElement object) {
-				return createContextualElementAdapter();
 			}
 			@Override
 			public Adapter caseContext(Context object) {
@@ -146,16 +150,16 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.GsnElement <em>Gsn Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement <em>Argument Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GsnElement
+	 * @see edu.toronto.cs.se.nlsfung.gsn.ArgumentElement
 	 * @generated
 	 */
-	public Adapter createGsnElementAdapter() {
+	public Adapter createArgumentElementAdapter() {
 		return null;
 	}
 
@@ -174,30 +178,58 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.GoalSupporter <em>Goal Supporter</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement <em>Decomposable Core Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GoalSupporter
+	 * @see edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement
 	 * @generated
 	 */
-	public Adapter createGoalSupporterAdapter() {
+	public Adapter createDecomposableCoreElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.StrategySupporter <em>Strategy Supporter</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement <em>Contextual Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.StrategySupporter
+	 * @see edu.toronto.cs.se.nlsfung.gsn.ContextualElement
 	 * @generated
 	 */
-	public Adapter createStrategySupporterAdapter() {
+	public Adapter createContextualElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy <em>Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.SupportedBy
+	 * @generated
+	 */
+	public Adapter createSupportedByAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf <em>In Context Of</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.InContextOf
+	 * @generated
+	 */
+	public Adapter createInContextOfAdapter() {
 		return null;
 	}
 
@@ -240,20 +272,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSolutionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement <em>Contextual Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.ContextualElement
-	 * @generated
-	 */
-	public Adapter createContextualElementAdapter() {
 		return null;
 	}
 

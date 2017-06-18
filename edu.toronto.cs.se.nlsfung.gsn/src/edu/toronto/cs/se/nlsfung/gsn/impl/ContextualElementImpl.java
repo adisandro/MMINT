@@ -3,21 +3,20 @@
 package edu.toronto.cs.se.nlsfung.gsn.impl;
 
 import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
-import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-import edu.toronto.cs.se.nlsfung.gsn.ValidityState;
+import edu.toronto.cs.se.nlsfung.gsn.InContextOf;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,33 +26,12 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ContextualElementImpl#getState <em>State</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ContextualElementImpl#getContextOf <em>Context Of</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ContextualElementImpl extends GsnElementImpl implements ContextualElement {
-	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ValidityState STATE_EDEFAULT = ValidityState.INVALID;
-
-	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected ValidityState state = STATE_EDEFAULT;
-
+public abstract class ContextualElementImpl extends ArgumentElementImpl implements ContextualElement {
 	/**
 	 * The cached value of the '{@link #getContextOf() <em>Context Of</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -62,7 +40,7 @@ public abstract class ContextualElementImpl extends GsnElementImpl implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CoreElement> contextOf;
+	protected EList<InContextOf> contextOf;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,32 +66,40 @@ public abstract class ContextualElementImpl extends GsnElementImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityState getState() {
-		return state;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setState(ValidityState newState) {
-		ValidityState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.CONTEXTUAL_ELEMENT__STATE, oldState, state));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<CoreElement> getContextOf() {
+	public EList<InContextOf> getContextOf() {
 		if (contextOf == null) {
-			contextOf = new EObjectResolvingEList<CoreElement>(CoreElement.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF);
+			contextOf = new EObjectWithInverseResolvingEList.ManyInverse<InContextOf>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXTS);
 		}
 		return contextOf;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextOf()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
+				return ((InternalEList<?>)getContextOf()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -124,8 +110,6 @@ public abstract class ContextualElementImpl extends GsnElementImpl implements Co
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
-				return getState();
 			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
 				return getContextOf();
 		}
@@ -141,12 +125,9 @@ public abstract class ContextualElementImpl extends GsnElementImpl implements Co
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
-				setState((ValidityState)newValue);
-				return;
 			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
 				getContextOf().clear();
-				getContextOf().addAll((Collection<? extends CoreElement>)newValue);
+				getContextOf().addAll((Collection<? extends InContextOf>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -160,9 +141,6 @@ public abstract class ContextualElementImpl extends GsnElementImpl implements Co
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
-				setState(STATE_EDEFAULT);
-				return;
 			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
 				getContextOf().clear();
 				return;
@@ -178,28 +156,10 @@ public abstract class ContextualElementImpl extends GsnElementImpl implements Co
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GSNPackage.CONTEXTUAL_ELEMENT__STATE:
-				return state != STATE_EDEFAULT;
 			case GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF:
 				return contextOf != null && !contextOf.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (state: ");
-		result.append(state);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ContextualElementImpl

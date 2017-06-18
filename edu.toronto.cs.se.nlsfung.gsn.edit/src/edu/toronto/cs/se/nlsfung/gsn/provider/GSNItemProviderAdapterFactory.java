@@ -95,6 +95,52 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SupportedByItemProvider supportedByItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSupportedByAdapter() {
+		if (supportedByItemProvider == null) {
+			supportedByItemProvider = new SupportedByItemProvider(this);
+		}
+
+		return supportedByItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.nlsfung.gsn.InContextOf} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InContextOfItemProvider inContextOfItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.nlsfung.gsn.InContextOf}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInContextOfAdapter() {
+		if (inContextOfItemProvider == null) {
+			inContextOfItemProvider = new InContextOfItemProvider(this);
+		}
+
+		return inContextOfItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.nlsfung.gsn.Goal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -309,6 +355,8 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
 	 */
 	public void dispose() {
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
+		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
+		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
 		if (strategyItemProvider != null) strategyItemProvider.dispose();
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
