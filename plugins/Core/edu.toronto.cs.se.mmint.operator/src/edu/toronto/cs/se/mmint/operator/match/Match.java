@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.match;
+package edu.toronto.cs.se.mmint.operator.match;
 
 
 import java.util.Map;

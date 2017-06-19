@@ -10,7 +10,7 @@
  *    Alessio Di Sandro - Implementation.
  *    Nick Fung - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.slice;
+package edu.toronto.cs.se.mmint.operator.slice;
 
 import java.util.ArrayList;
 import java.util.HashMap;

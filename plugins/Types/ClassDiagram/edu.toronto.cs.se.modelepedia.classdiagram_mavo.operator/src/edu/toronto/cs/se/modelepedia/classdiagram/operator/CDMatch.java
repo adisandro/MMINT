@@ -25,8 +25,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.operator.match.Match;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
-import edu.toronto.cs.se.modelepedia.operator.match.Match;
 
 public class CDMatch extends Match {
 

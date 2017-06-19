@@ -9,7 +9,7 @@
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.propagate;
+package edu.toronto.cs.se.mmint.operator.propagate;
 
 import java.util.HashMap;
 import java.util.Map;

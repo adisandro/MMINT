@@ -77,7 +77,7 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch"
                class="edu.toronto.cs.se.modelepedia.classdiagram.operator.CDMatch">
             <superType
-                  uri="http://se.cs.toronto.edu/modelepedia/Operator_Match">
+                  uri="http://se.cs.toronto.edu/mmint/Operator_Match">
             </superType>
          </type>
          <inputs>
@@ -86,7 +86,7 @@
 	                 name="model1"
                      uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-ClassDiagram/model1">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Match-Model/model1">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-Model/model1">
                   </superType>
 	           </type>
 	           <typeEndpoint
@@ -98,7 +98,7 @@
 	                 name="model2"
                      uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-ClassDiagram/model2">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Match-Model/model2">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-Model/model2">
                   </superType>
 
 	           </type>
@@ -113,7 +113,7 @@
 	                 name="match"
                      uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-CDRel/match">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Match-ModelRel/match">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-ModelRel/match">
                   </superType>
 
 	           </type>
@@ -133,7 +133,7 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_CDSlice"
                class="edu.toronto.cs.se.modelepedia.classdiagram.operator.CDSlice">
             <superType
-                  uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice">
+                  uri="http://se.cs.toronto.edu/mmint/Operator_Slice">
             </superType>
          </type>
          <inputs>
@@ -142,7 +142,7 @@
                      name="criterion"
                      uri="http://se.cs.toronto.edu/modelepedia/Operator_CDSlice-CDRel/criterion">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice-ModelRel/criterion">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
                   </superType>
 	           </type>
 	           <typeEndpoint
@@ -156,7 +156,7 @@
                      name="slice"
                      uri="http://se.cs.toronto.edu/modelepedia/Operator_CDSlice-CDRel/slice">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice-ModelRel/slice">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
                   </superType>
 	           </type>
 	           <typeEndpoint

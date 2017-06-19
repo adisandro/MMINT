@@ -10,7 +10,7 @@
  *    Alessio Di Sandro - Implementation.
  *    Nick Fung - Implementation.
  */
-package edu.toronto.cs.se.modelepedia.operator.propagate;
+package edu.toronto.cs.se.mmint.operator.propagate;
 
 import java.util.ArrayList;
 import java.util.HashMap;

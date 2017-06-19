@@ -16,6 +16,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class;
@@ -25,7 +26,6 @@ import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference;
-import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
 public class SDSlice extends Slice {
 

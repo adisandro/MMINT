@@ -9,7 +9,6 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.gmf.runtime.diagram.core,
- org.eclipse.emf.compare,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.diagram,
@@ -17,7 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.primitive
 Bundle-ClassPath: .
 Export-Package: edu.toronto.cs.se.modelepedia.operator.experiment,
- edu.toronto.cs.se.modelepedia.operator.match,
  edu.toronto.cs.se.modelepedia.operator.merge,
- edu.toronto.cs.se.modelepedia.operator.patch,
- edu.toronto.cs.se.modelepedia.operator.slice
+ edu.toronto.cs.se.modelepedia.operator.patch
