@@ -110,10 +110,10 @@
          <outputs>
             <parameter>
 	           <type
-	                 name="match"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-CDRel/match">
+	                 name="overlap"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-CDRel/overlap">
                   <superType
-                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-ModelRel/match">
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-Overlap/overlap">
                   </superType>
 
 	           </type>

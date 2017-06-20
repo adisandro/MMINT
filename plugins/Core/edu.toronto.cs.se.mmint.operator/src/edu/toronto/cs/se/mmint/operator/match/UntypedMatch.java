@@ -46,7 +46,7 @@ public class UntypedMatch extends OperatorImpl {
     // input-output
     private final static @NonNull String IN_MODEL1 = "model1";
     private final static @NonNull String IN_MODEL2 = "model2";
-    private final static @NonNull String OUT_MODELREL = "match";
+    private final static @NonNull String OUT_MODELREL = "overlap";
     private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE = "matchAttribute";
     private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
     // constants
@@ -157,9 +157,8 @@ public class UntypedMatch extends OperatorImpl {
     private ModelRel match(List<Model> models, MID instanceMID) throws MMINTException, IOException {
 
         // create model relationship among models
-        ModelRel matchRel = (models.size() == 2) ?
-            MIDTypeHierarchy.getRootModelRelType().createBinaryInstance(null, MODELREL_NAME, instanceMID) :
-            (ModelRel) MIDTypeHierarchy.getRootModelRelType().createInstance(null, MODELREL_NAME, instanceMID);
+        ModelRel matchRel = (ModelRel) MIDTypeHierarchy.getRootModelRelType().createInstance(null, MODELREL_NAME,
+                                                                                             instanceMID);
         // loop through selected models
         ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
         Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();

@@ -31,12 +31,14 @@ public class Match extends UntypedMatch {
 		    }
 		    UntypedMatch.Input input = new UntypedMatch.Input(inputsByName);
 			if (!input.model1.getMetatypeUri().equals(input.model2.getMetatypeUri())) {
-			    //TODO MMINT[MATCH] Use instanceOf when it's optimized (automatic caching of runtime types)
+			    //TODO MMINT[POLY] Use instanceOf when it's optimized (automatic caching of runtime types)
 			    return false;
 			}
 
 			return true;
 		}
 	}
+
+	//TODO MMINT[MATCH] Change the return type to Overlap + don't match elements of different type
 
 }
