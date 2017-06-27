@@ -12,33 +12,62 @@
 package edu.toronto.cs.se.mmint.operator.match;
 
 
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class Match extends UntypedMatch {
 
-	public static class Constraint extends UntypedMatch.Constraint {
+    // constants
+    private final static @NonNull String OVERLAP_TYPE_URI = "http://se.cs.toronto.edu/mmint/Overlap";
 
-		@Override
-		public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
+    public static class Constraint extends UntypedMatch.Constraint {
 
-		    boolean isAllowed = super.isAllowedInput(inputsByName);
-		    if (!isAllowed) {
-		        return false;
-		    }
-		    UntypedMatch.Input input = new UntypedMatch.Input(inputsByName);
-			if (!input.model1.getMetatypeUri().equals(input.model2.getMetatypeUri())) {
-			    //TODO MMINT[POLY] Use instanceOf when it's optimized (automatic caching of runtime types)
-			    return false;
-			}
+        @Override
+        public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
 
-			return true;
-		}
-	}
+            boolean isAllowed = super.isAllowedInput(inputsByName);
+            if (!isAllowed) {
+                return false;
+            }
+            UntypedMatch.Input input = new UntypedMatch.Input(inputsByName);
+            if (!input.model1.getMetatypeUri().equals(input.model2.getMetatypeUri())) {
+                //TODO MMINT[POLY] Use instanceOf when it's optimized (automatic caching of runtime types)
+                return false;
+            }
 
-	//TODO MMINT[MATCH] Change the return type to Overlap + don't match elements of different type
+            return true;
+        }
+    }
+
+    @Override
+    protected void init() {
+
+        this.modelRelType = MIDTypeRegistry.getType(OVERLAP_TYPE_URI);
+        this.modelTypeEndpoint = this.modelRelType.getModelEndpoints().get(0);
+        this.mappingType = this.modelRelType.getMappings().get(0);
+        this.modelElemTypeEndpoint = this.mappingType.getModelElemEndpoints().get(0);
+    }
+
+    @Override
+    protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
+
+        Iterator<Entry<String, Set<EObject>>> iter = modelObjAttrs.entrySet().iterator();
+        while (iter.hasNext()) {
+            Entry<String, Set<EObject>> entry = iter.next();
+            //TODO Continue.. (remove entry if at least one is of different type, or keep the max number of elements of the same type
+        }
+        super.createMatchLinks(matchRel, modelObjAttrs, modelObjTable);
+    }
 
 }

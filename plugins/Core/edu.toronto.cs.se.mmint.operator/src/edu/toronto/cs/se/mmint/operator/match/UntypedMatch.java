@@ -51,8 +51,12 @@ public class UntypedMatch extends OperatorImpl {
     private final static @NonNull String PROPERTY_IN_MATCHATTRIBUTE_DEFAULT = "name";
     // constants
     private final static @NonNull String MODELREL_NAME = "match";
-
+    // state
     protected String matchAttribute;
+    protected ModelRel modelRelType;
+    protected ModelEndpoint modelTypeEndpoint;
+    protected Mapping mappingType;
+    protected ModelElementEndpoint modelElemTypeEndpoint;
 
     public static class Constraint implements IJavaOperatorConstraint {
 
@@ -108,6 +112,15 @@ public class UntypedMatch extends OperatorImpl {
         matchAttribute = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MATCHATTRIBUTE, PROPERTY_IN_MATCHATTRIBUTE_DEFAULT);
     }
 
+    protected void init() {
+
+        this.modelRelType = MIDTypeHierarchy.getRootModelRelType();
+        //TODO MMINT[MODELREL] Make it easier to pick/create the rest once the model rel type is chosen
+        this.modelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
+        this.mappingType = MIDTypeHierarchy.getRootMappingType();
+        this.modelElemTypeEndpoint = MIDTypeHierarchy.getRootModelElementTypeEndpoint();
+    }
+
     private void matchModelObjAttributes(EObject modelObj, ModelEndpointReference modelEndpointRef, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) {
 
         Object modelObjAttr;
@@ -133,8 +146,6 @@ public class UntypedMatch extends OperatorImpl {
 
     protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
-        Mapping rootMappingType = MIDTypeHierarchy.getRootMappingType();
-        ModelElementEndpoint rootModelElemTypeEndpoint = MIDTypeHierarchy.getRootModelElementTypeEndpoint();
         for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
             Set<EObject> modelObjs = entry.getValue();
             if (modelObjs.size() < 2) {
@@ -142,14 +153,14 @@ public class UntypedMatch extends OperatorImpl {
             }
             String modelObjAttr = entry.getKey();
             // create link
-            MappingReference matchMappingRef = rootMappingType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
+            MappingReference matchMappingRef = this.mappingType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
             matchMappingRef.getObject().setName(modelObjAttr);
             for (EObject modelObj : modelObjs) {
                 ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
                 // create model element
                 ModelElementReference matchModelElemRef = modelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
                 // create model element endpoints
-                rootModelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
+                this.modelElemTypeEndpoint.createInstanceAndReference(matchModelElemRef, matchMappingRef);
             }
         }
     }
@@ -157,15 +168,13 @@ public class UntypedMatch extends OperatorImpl {
     private ModelRel match(List<Model> models, MID instanceMID) throws MMINTException, IOException {
 
         // create model relationship among models
-        ModelRel matchRel = (ModelRel) MIDTypeHierarchy.getRootModelRelType().createInstance(null, MODELREL_NAME,
-                                                                                             instanceMID);
+        ModelRel matchRel = (ModelRel) this.modelRelType.createInstance(null, MODELREL_NAME, instanceMID);
         // loop through selected models
-        ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
         Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();
         Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<>();
         for (Model model : models) {
             // create model endpoint
-            ModelEndpointReference newModelEndpointRef = rootModelTypeEndpoint.createInstance(model, matchRel);
+            ModelEndpointReference newModelEndpointRef = this.modelTypeEndpoint.createInstance(model, matchRel);
             // look for identical names in the models
             matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
         }
@@ -182,6 +191,7 @@ public class UntypedMatch extends OperatorImpl {
 
         // input
         Input input = new Input(inputsByName);
+        this.init();
 
         // create match
         List<Model> models = new ArrayList<>();
