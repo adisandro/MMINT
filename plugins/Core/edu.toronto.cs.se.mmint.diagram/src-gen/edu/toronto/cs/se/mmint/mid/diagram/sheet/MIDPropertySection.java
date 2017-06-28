@@ -16,7 +16,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet.DefaultPropertySection;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart.BinaryModelRelFigure;

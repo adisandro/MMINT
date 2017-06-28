@@ -13,7 +13,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine.diagram.sheet;
 
-import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet.DefaultPropertySection;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
 /**

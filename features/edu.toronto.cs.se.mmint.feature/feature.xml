@@ -53,7 +53,7 @@ sets of related models.
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.gmf.tooling.runtime"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime"/>
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.gef"/>

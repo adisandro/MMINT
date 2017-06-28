@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.structure.DiagramStructure;
 
 import edu.toronto.cs.se.modelepedia.tutorial.state.State;
 import edu.toronto.cs.se.modelepedia.tutorial.state.StatePackage;

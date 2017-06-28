@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.DiagramUpdater;
 
 import edu.toronto.cs.se.modelepedia.tutorial.state.City;
 import edu.toronto.cs.se.modelepedia.tutorial.state.Region;

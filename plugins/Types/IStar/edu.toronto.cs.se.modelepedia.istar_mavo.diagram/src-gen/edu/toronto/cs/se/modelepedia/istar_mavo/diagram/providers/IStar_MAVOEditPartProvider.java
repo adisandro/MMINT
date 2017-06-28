@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.istar_mavo.diagram.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DefaultEditPartProvider;
 
 /**
  * @generated

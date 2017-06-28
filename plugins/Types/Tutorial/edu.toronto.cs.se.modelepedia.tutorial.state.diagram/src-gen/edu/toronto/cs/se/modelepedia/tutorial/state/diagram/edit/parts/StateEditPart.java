@@ -14,7 +14,7 @@ package edu.toronto.cs.se.modelepedia.tutorial.state.diagram.edit.parts;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 
 import edu.toronto.cs.se.modelepedia.tutorial.state.diagram.edit.policies.StateCanonicalEditPolicy;
 import edu.toronto.cs.se.modelepedia.tutorial.state.diagram.edit.policies.StateItemSemanticEditPolicy;

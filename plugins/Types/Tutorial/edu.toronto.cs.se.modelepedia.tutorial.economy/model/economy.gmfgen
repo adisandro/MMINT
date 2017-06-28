@@ -28,7 +28,7 @@
     </preferencePages>
   </diagram>
   <plugin name="Economy Diagram Type" provider="Software Engineering Group, University of Toronto" version="2.2.99.qualifier">
-    <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
+    <requiredPlugins>org.eclipse.papyrus.infra.gmfdiag.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
   </plugin>
   <editor/>

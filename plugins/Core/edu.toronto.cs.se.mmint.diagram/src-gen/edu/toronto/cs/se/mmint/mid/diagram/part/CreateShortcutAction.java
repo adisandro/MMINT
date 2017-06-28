@@ -17,9 +17,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.LogHelper;
-import org.eclipse.gmf.tooling.runtime.part.DefaultCreateShortcutHandler;
-import org.eclipse.gmf.tooling.runtime.part.DefaultElementChooserDialog;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.LogHelper;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultCreateShortcutHandler;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultElementChooserDialog;
 import org.eclipse.swt.widgets.Shell;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.commands.MIDCreateShortcutDecorationsCommand;
