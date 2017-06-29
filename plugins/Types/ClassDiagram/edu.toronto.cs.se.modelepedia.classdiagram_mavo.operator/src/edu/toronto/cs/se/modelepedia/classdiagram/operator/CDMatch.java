@@ -28,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 public class CDMatch extends Match {
 
     @Override
-    protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
+    protected void createMatchLinks(ModelRel overlapRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
         Iterator<Entry<String, Set<EObject>>> iter = modelObjAttrs.entrySet().iterator();
         while (iter.hasNext()) {
@@ -56,7 +56,7 @@ public class CDMatch extends Match {
                 iter.remove();
             }
         }
-        super.createMatchLinks(matchRel, modelObjAttrs, modelObjTable);
+        super.createMatchLinks(overlapRel, modelObjAttrs, modelObjTable);
     }
 
 }

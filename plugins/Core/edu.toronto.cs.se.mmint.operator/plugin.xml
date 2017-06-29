@@ -375,17 +375,17 @@
                class="edu.toronto.cs.se.mmint.operator.merge.Merge">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.merge.Merge$OperatorConstraint"
+               implementation="edu.toronto.cs.se.mmint.operator.merge.Merge$Constraint"
                language="JAVA">
          </constraint>
          <inputs>
             <parameter>
 	           <type
-	                 name="match"
-	                 uri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/match">
+	                 name="overlap"
+	                 uri="http://se.cs.toronto.edu/mmint/Operator_Merge-Overlap/overlap">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Overlap">
 	           </typeEndpoint>
             </parameter>
          </inputs>
@@ -875,8 +875,8 @@
          <outputs>
             <parameter>
                <type
-                     name="match"
-                     uri="http://se.cs.toronto.edu/mmint/Operator_MIDMatch-MIDRel/match">
+                     name="overlap"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_MIDMatch-MIDRel/overlap">
                </type>
                <typeEndpoint
                      targetTypeUri="http://se.cs.toronto.edu/mmint/MIDRel">
