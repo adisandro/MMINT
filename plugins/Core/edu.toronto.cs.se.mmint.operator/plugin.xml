@@ -897,14 +897,13 @@
          <inputs>
             <parameter>
                <type
-                     name="match"
-                     uri="http://se.cs.toronto.edu/mmint/Operator_MIDMerge-MIDRel/match">
+                     name="overlap"
+                     uri="http://se.cs.toronto.edu/mmint/Operator_MIDMerge-MIDRel/overlap">
                </type>
                <typeEndpoint
                      targetTypeUri="http://se.cs.toronto.edu/mmint/MIDRel">
                </typeEndpoint>
             </parameter>
-<!--
             <parameter>
                <type
                      name="mid1"
@@ -923,7 +922,6 @@
                      targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
                </typeEndpoint>
             </parameter>
--->
          </inputs>
          <outputs>
             <parameter>

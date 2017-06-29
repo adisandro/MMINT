@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -53,7 +53,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public class Merge extends OperatorImpl {
 
 	// input-output
-	private final static @NonNull String IN_MODELREL = "match";
+	private final static @NonNull String IN_MODELREL = "overlap";
 	private final static @NonNull String OUT_MODEL = "merged";
 	private final static @NonNull String OUT_MODELREL1 = "trace1";
 	private final static @NonNull String OUT_MODELREL2 = "trace2";
@@ -61,18 +61,16 @@ public class Merge extends OperatorImpl {
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
 	private static final @NonNull String MERGED_SEPARATOR = "+";
 
-	public static class OperatorConstraint implements IJavaOperatorConstraint {
+	public static class Constraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			if (matchRel.getModelEndpoints().size() != 2) {
+		    Input input = new Input(inputsByName);
+			if (input.overlapRel.getModelEndpoints().size() != 2) {
 				return false;
 			}
-			Model model1 = matchRel.getModelEndpoints().get(0).getTarget();
-			Model model2 = matchRel.getModelEndpoints().get(1).getTarget();
-			if (model1.getMetatype() != model2.getMetatype()) {
+			if (input.model1.getMetatype() != input.model2.getMetatype()) {
 				return false;
 			}
 
@@ -102,15 +100,15 @@ public class Merge extends OperatorImpl {
 
 	private static class Input {
 
-		private ModelRel matchRel;
+		private ModelRel overlapRel;
 		private Model model1;
 		private Model model2;
 
 		public Input(Map<String, Model> inputsByName) {
 
-			this.matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			this.model1 = matchRel.getModelEndpoints().get(0).getTarget();
-			this.model2 = matchRel.getModelEndpoints().get(1).getTarget();
+			this.overlapRel = (ModelRel) inputsByName.get(IN_MODELREL);
+			this.model1 = overlapRel.getModelEndpoints().get(0).getTarget();
+			this.model2 = overlapRel.getModelEndpoints().get(1).getTarget();
 		}
 	}
 
@@ -132,7 +130,7 @@ public class Merge extends OperatorImpl {
 	}
 
 	private @NonNull EObject merge(
-			@NonNull Model model1, @NonNull Model model2, @NonNull ModelRel matchRel, @NonNull Model mergedModel,
+			@NonNull Model model1, @NonNull Model model2, @NonNull ModelRel overlapRel, @NonNull Model mergedModel,
 			@NonNull ModelRel traceRel1, @NonNull ModelRel traceRel2) throws MMINTException {
 
 		// create merged root
@@ -140,7 +138,7 @@ public class Merge extends OperatorImpl {
 		EFactory mergedModelFactory = rootModelObj1.eClass().getEPackage().getEFactoryInstance();
 		EObject rootMergedModelObj = mergedModelFactory.create(rootModelObj1.eClass());
 		Map<String, ModelElement> matchModelElems1 = new HashMap<>();
-		for (ModelElementReference modelElemRef1 : matchRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
+		for (ModelElementReference modelElemRef1 : overlapRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
 			ModelElementReference modelElemRef2 = getConnected(modelElemRef1).stream().findFirst().get();
 			matchModelElems1.put(
 				modelElemRef1.getUri().substring(0, modelElemRef1.getUri().indexOf(MMINT.ROLE_SEPARATOR)),
@@ -289,7 +287,7 @@ public class Merge extends OperatorImpl {
 			mergedModel,
 			outputMIDsByName.get(OUT_MODELREL2));
 		// merge the models
-		EObject rootMergedModelObj = merge(input.model1, input.model2, input.matchRel, mergedModel, traceRel1, traceRel2);
+		EObject rootMergedModelObj = merge(input.model1, input.model2, input.overlapRel, mergedModel, traceRel1, traceRel2);
 		FileUtils.writeModelFile(rootMergedModelObj, mergedModelPath, true);
 		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
 

@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" level="WORKFLOWS">
-  <models uri="match" name="match" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="overlap" name="overlap" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MIDRel" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="mid1" name="mid1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="mid2" name="mid2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <models uri="all" name="all" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
   <models uri="merged" name="merged" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MID" dynamic="true" origin="CREATED" fileExtension="mid"/>
+  <operators uri="" name="Union" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union" dynamic="true">
+    <inputs uri="" name="mids0" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="mids1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <inputs uri="" name="mids2" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union/mids" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <outputs uri="" name="unionMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Union/unionMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+  </operators>
   <operators uri="" name="Reduce" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce" dynamic="true">
-    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="reducedMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/reducedMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <inputs uri="" name="mid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/mid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <outputs uri="" name="reducedMid" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/reducedMid" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
     <generics uri="" name="Merge" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/Operator_Reduce/ACCUMULATOR" dynamic="true" lowerBound="1" upperBound="1" metatargetUri="http://se.cs.toronto.edu/mmint/Operator_Merge"/>
   </operators>
-  <extendibleTable key="match" value="//@models.0"/>
-  <extendibleTable key="merged" value="//@models.1"/>
+  <extendibleTable key="overlap" value="//@models.0"/>
+  <extendibleTable key="mid1" value="//@models.1"/>
+  <extendibleTable key="mid2" value="//@models.2"/>
+  <extendibleTable key="all" value="//@models.3"/>
+  <extendibleTable key="merged" value="//@models.4"/>
 </mid:MID>
