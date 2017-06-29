@@ -504,7 +504,7 @@
                class="edu.toronto.cs.se.mmint.operator.propagate.Fix">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.propagate.Fix$OperatorConstraint"
+               implementation="edu.toronto.cs.se.mmint.operator.propagate.Fix$Constraint"
                language="JAVA">
          </constraint>
          <generics>

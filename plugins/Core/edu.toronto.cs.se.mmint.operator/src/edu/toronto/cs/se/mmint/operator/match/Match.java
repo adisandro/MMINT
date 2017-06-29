@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -60,14 +61,26 @@ public class Match extends UntypedMatch {
     }
 
     @Override
-    protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
+    protected void createMatchLinks(ModelRel overlapRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
         Iterator<Entry<String, Set<EObject>>> iter = modelObjAttrs.entrySet().iterator();
         while (iter.hasNext()) {
-            Entry<String, Set<EObject>> entry = iter.next();
-            //TODO Continue.. (remove entry if at least one is of different type, or keep the max number of elements of the same type
+            Set<EObject> modelObjs = iter.next().getValue();
+            if (modelObjs.size() < 2) {
+                continue;
+            }
+            EClass modelObjClass = null;
+            for (EObject modelObj : modelObjs) {
+                if (modelObjClass == null) {
+                    modelObjClass = modelObj.eClass();
+                }
+                else if (modelObjClass != modelObj.eClass()) { // remove entries that don't share the same type
+                    iter.remove();
+                    break;
+                }
+            }
         }
-        super.createMatchLinks(matchRel, modelObjAttrs, modelObjTable);
+        super.createMatchLinks(overlapRel, modelObjAttrs, modelObjTable);
     }
 
 }

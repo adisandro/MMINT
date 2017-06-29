@@ -64,7 +64,7 @@ public class Fix extends NestingOperatorImpl {
     // constants
     private final static @NonNull String FIXED_MODEL_SUFFIX = "_fixed";
 
-    public static class OperatorConstraint implements IJavaOperatorConstraint {
+    public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
         public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint,

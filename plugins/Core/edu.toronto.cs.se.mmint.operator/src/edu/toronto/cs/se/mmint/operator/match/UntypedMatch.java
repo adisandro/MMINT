@@ -144,7 +144,7 @@ public class UntypedMatch extends OperatorImpl {
         }
     }
 
-    protected void createMatchLinks(ModelRel matchRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
+    protected void createMatchLinks(ModelRel overlapRel, Map<String, Set<EObject>> modelObjAttrs, Map<EObject, ModelEndpointReference> modelObjTable) throws MMINTException {
 
         for (Entry<String, Set<EObject>> entry : modelObjAttrs.entrySet()) {
             Set<EObject> modelObjs = entry.getValue();
@@ -153,7 +153,7 @@ public class UntypedMatch extends OperatorImpl {
             }
             String modelObjAttr = entry.getKey();
             // create link
-            MappingReference matchMappingRef = this.mappingType.createInstanceAndReference((modelObjs.size() == 2), matchRel);
+            MappingReference matchMappingRef = this.mappingType.createInstanceAndReference(false, overlapRel);
             matchMappingRef.getObject().setName(modelObjAttr);
             for (EObject modelObj : modelObjs) {
                 ModelEndpointReference modelEndpointRef = modelObjTable.get(modelObj);
@@ -168,20 +168,20 @@ public class UntypedMatch extends OperatorImpl {
     private ModelRel match(List<Model> models, MID instanceMID) throws MMINTException, IOException {
 
         // create model relationship among models
-        ModelRel matchRel = (ModelRel) this.modelRelType.createInstance(null, MODELREL_NAME, instanceMID);
+        ModelRel overlapRel = (ModelRel) this.modelRelType.createInstance(null, MODELREL_NAME, instanceMID);
         // loop through selected models
         Map<String, Set<EObject>> modelObjAttrs = new HashMap<>();
         Map<EObject, ModelEndpointReference> modelObjTable = new HashMap<>();
         for (Model model : models) {
             // create model endpoint
-            ModelEndpointReference newModelEndpointRef = this.modelTypeEndpoint.createInstance(model, matchRel);
+            ModelEndpointReference newModelEndpointRef = this.modelTypeEndpoint.createInstance(model, overlapRel);
             // look for identical names in the models
             matchModelObjAttributes(model.getEMFInstanceRoot(), newModelEndpointRef, modelObjAttrs, modelObjTable);
         }
         // create model relationship links
-        createMatchLinks(matchRel, modelObjAttrs, modelObjTable);
+        createMatchLinks(overlapRel, modelObjAttrs, modelObjTable);
 
-        return matchRel;
+        return overlapRel;
     }
 
     @Override
@@ -197,11 +197,11 @@ public class UntypedMatch extends OperatorImpl {
         List<Model> models = new ArrayList<>();
         models.add(input.model1);
         models.add(input.model2);
-        ModelRel matchRel = match(models, outputMIDsByName.get(OUT_MODELREL));
+        ModelRel overlapRel = match(models, outputMIDsByName.get(OUT_MODELREL));
 
         // output
         Map<String, Model> outputsByName = new HashMap<>();
-        outputsByName.put(OUT_MODELREL, matchRel);
+        outputsByName.put(OUT_MODELREL, overlapRel);
 
         return outputsByName;
     }
