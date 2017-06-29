@@ -97,6 +97,7 @@ public class Reduce extends NestingOperatorImpl {
 		Set<Model> accumulatorOutputModels = new HashSet<>();
 		Set<Model> intermediateModelsAndRels = new HashSet<>();
 		int i = 0;
+        //TODO MMINT[POLY] Reduce should support multiple dispatch, trying the first allowed input from the most specific operator
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(
 				ECollections.newBasicEList(reducedMID),
 				ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels))
