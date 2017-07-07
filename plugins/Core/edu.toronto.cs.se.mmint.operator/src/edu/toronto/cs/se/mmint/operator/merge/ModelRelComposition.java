@@ -18,10 +18,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -29,6 +29,8 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -44,7 +46,7 @@ public class ModelRelComposition extends OperatorImpl {
     private final static @NonNull String IN_MODELREL2 = "rel2";
     private final static @NonNull String OUT_MODELREL = "composition";
     // constants
-    private final static @NonNull String COMPOSITION_SEPARATOR = "+";
+    private final static @NonNull String COMPOSITION_SEPARATOR = "∘";
 
     private static class Input {
 
@@ -58,6 +60,9 @@ public class ModelRelComposition extends OperatorImpl {
 
             this.rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
             this.rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+            if (this.rel1.getModelEndpoints().size() != 2 || this.rel2.getModelEndpoints().size() != 2) {
+                throw new IllegalArgumentException();
+            }
             this.modelPivot = null;
             this.model1 = null;
             this.model2 = null;
@@ -85,6 +90,9 @@ public class ModelRelComposition extends OperatorImpl {
                 this.model1 = model11;
                 this.model2 = model21;
             }
+            if (this.modelPivot == null) {
+                throw new IllegalArgumentException();
+            }
         }
 
     }
@@ -94,15 +102,13 @@ public class ModelRelComposition extends OperatorImpl {
         @Override
         public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-            Input input = new Input(inputsByName);
-            if (input.rel1.getModelEndpoints().size() != 2 || input.rel2.getModelEndpoints().size() != 2) {
+            try {
+                new Input(inputsByName);
+                return true;
+            }
+            catch (IllegalArgumentException e) {
                 return false;
             }
-            if (input.modelPivot == null) {
-                return false;
-            }
-
-            return true;
         }
 
         @Override
@@ -126,12 +132,16 @@ public class ModelRelComposition extends OperatorImpl {
 
         // TODO MMINT[USABILITY] Modify apis to simplify the creation of models and model rels
         // (e.g. add model element creation to link creation)
-        ModelRel composedRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
-            null,
-            rel1.getName() + COMPOSITION_SEPARATOR + rel2.getName(),
-            model1,
-            model2,
-            instanceMID);
+        ModelRel composedRel;
+        if (rel1 instanceof BinaryModelRel) {
+            composedRel = rel1.getMetatype().createBinaryInstanceAndEndpoints(
+                null, rel1.getName() + COMPOSITION_SEPARATOR + rel2.getName(), model1, model2, instanceMID);
+        }
+        else {
+            composedRel = rel1.getMetatype().createInstanceAndEndpoints(
+                null, rel1.getName() + COMPOSITION_SEPARATOR + rel2.getName(),
+                ECollections.newBasicEList(model1, model2), instanceMID);
+        }
         ModelEndpointReference composedModelEndpointRef1 = composedRel.getModelEndpointRefs().get(0);
         ModelEndpointReference composedModelEndpointRef2 = composedRel.getModelEndpointRefs().get(1);
         // loop through mappings in modelRel1
@@ -173,8 +183,9 @@ public class ModelRelComposition extends OperatorImpl {
                         targetModelElemRefs.add(modelElem2.createInstanceReference(composedModelEndpointRef2));
                     }
                     // create the composed mapping
-                    MappingReference composedMappingRef = MIDTypeHierarchy.getRootMappingType()
-                        .createInstanceAndReferenceAndEndpointsAndReferences(false, targetModelElemRefs);
+                    MappingReference composedMappingRef = mapping1.getMetatype()
+                        .createInstanceAndReferenceAndEndpointsAndReferences((mapping1 instanceof BinaryMapping),
+                                                                             targetModelElemRefs);
                     composedMappingRef.getObject().setName(
                         mapping1.getName() + COMPOSITION_SEPARATOR + mappingRef2.getObject().getName());
                 }
@@ -193,7 +204,6 @@ public class ModelRelComposition extends OperatorImpl {
         Input input = new Input(inputsByName);
 
         // compose the two model rels, using the shared model as pivot
-        //TODO MMINT[REDUCE] Should identify one main rel to assign its type to the result
         ModelRel composedRel = compose(input.rel1, input.rel2, input.model1, input.model2, input.modelPivot,
                                        outputMIDsByName.get(OUT_MODELREL));
 

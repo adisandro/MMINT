@@ -56,6 +56,21 @@ public class ModelRelMerge extends OperatorImpl {
 
             this.rel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
             this.rel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+            if (this.rel1 == this.rel2) {
+                throw new IllegalArgumentException();
+            }
+            if (this.rel1.getMetatype() != this.rel2.getMetatype()) {
+                throw new IllegalArgumentException();
+            }
+            if ( // works with unary and binary rels, as long as they're both unary or both binary
+                this.rel1.getModelEndpoints().size() == 0 ||
+                this.rel2.getModelEndpoints().size() == 0 ||
+                this.rel1.getModelEndpoints().size() > 2 ||
+                this.rel2.getModelEndpoints().size() > 2 ||
+                this.rel1.getModelEndpoints().size() != this.rel2.getModelEndpoints().size()
+            ) {
+                throw new IllegalArgumentException();
+            }
             this.model1 = null;
             this.model2 = null;
             Model model11 = this.rel1.getModelEndpoints().get(0).getTarget();
@@ -77,6 +92,9 @@ public class ModelRelMerge extends OperatorImpl {
                     this.model2 = model21;
                 }
             }
+            if (this.model1 == null) { // model paths don't match
+                throw new IllegalArgumentException();
+            }
         }
 
     }
@@ -86,27 +104,13 @@ public class ModelRelMerge extends OperatorImpl {
         @Override
         public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
 
-            Input input = new Input(inputsByName);
-            if (input.rel1 == input.rel2) {
+            try {
+                new Input(inputsByName);
+                return true;
+            }
+            catch (IllegalArgumentException e) {
                 return false;
             }
-            if (input.rel1.getMetatype() != input.rel2.getMetatype()) {
-                return false;
-            }
-            if ( // works with unary and binary rels, as long as they're both unary or both binary
-                input.rel1.getModelEndpoints().size() == 0 ||
-                input.rel2.getModelEndpoints().size() == 0 ||
-                input.rel1.getModelEndpoints().size() > 2 ||
-                input.rel2.getModelEndpoints().size() > 2 ||
-                input.rel1.getModelEndpoints().size() != input.rel2.getModelEndpoints().size()
-            ) {
-                return false;
-            }
-            if (input.model1 == null) { // model paths don't match
-                return false;
-            }
-
-            return true;
         }
 
         @Override

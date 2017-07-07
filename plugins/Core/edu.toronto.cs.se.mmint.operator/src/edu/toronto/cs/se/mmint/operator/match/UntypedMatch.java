@@ -58,19 +58,33 @@ public class UntypedMatch extends OperatorImpl {
     protected Mapping mappingType;
     protected ModelElementEndpoint modelElemTypeEndpoint;
 
+    protected static class Input {
+
+        protected Model model1;
+        protected Model model2;
+
+        public Input(Map<String, Model> inputsByName) {
+
+            this.model1 = inputsByName.get(IN_MODEL1);
+            this.model2 = inputsByName.get(IN_MODEL2);
+            if (this.model1.getUri().equals(this.model2.getUri())) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
         public boolean isAllowedInput(@NonNull Map<String, Model> inputsByName) {
 
-            Input input = new Input(inputsByName);
-            String srcModelPath = input.model1.getUri();
-            String tgtModelPath = input.model2.getUri();
-            if (srcModelPath.equals(tgtModelPath)) {
+            try {
+                new Input(inputsByName);
+                return true;
+            }
+            catch (IllegalArgumentException e) {
                 return false;
             }
-
-            return true;
         }
 
         @Override
@@ -85,18 +99,6 @@ public class UntypedMatch extends OperatorImpl {
             validOutputs.put(matchRel, endpointModels);
 
             return validOutputs;
-        }
-    }
-
-    protected static class Input {
-
-        protected Model model1;
-        protected Model model2;
-
-        public Input(Map<String, Model> inputsByName) {
-
-            this.model1 = inputsByName.get(IN_MODEL1);
-            this.model2 = inputsByName.get(IN_MODEL2);
         }
     }
 

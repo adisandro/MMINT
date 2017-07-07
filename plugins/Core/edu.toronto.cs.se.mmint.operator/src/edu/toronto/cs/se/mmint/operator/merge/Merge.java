@@ -61,20 +61,38 @@ public class Merge extends OperatorImpl {
 	private static final @NonNull String MERGED_MODELOBJECT_ATTRIBUTE = "name";
 	private static final @NonNull String MERGED_SEPARATOR = "+";
 
+    private static class Input {
+
+        private ModelRel overlapRel;
+        private Model model1;
+        private Model model2;
+
+        public Input(Map<String, Model> inputsByName) {
+
+            this.overlapRel = (ModelRel) inputsByName.get(IN_MODELREL);
+            if (this.overlapRel.getModelEndpoints().size() != 2) {
+                throw new IllegalArgumentException();
+            }
+            this.model1 = overlapRel.getModelEndpoints().get(0).getTarget();
+            this.model2 = overlapRel.getModelEndpoints().get(1).getTarget();
+            if (this.model1.getMetatype() != this.model2.getMetatype()) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
 	public static class Constraint implements IJavaOperatorConstraint {
 
 		@Override
 		public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-		    Input input = new Input(inputsByName);
-			if (input.overlapRel.getModelEndpoints().size() != 2) {
-				return false;
-			}
-			if (input.model1.getMetatype() != input.model2.getMetatype()) {
-				return false;
-			}
-
-			return true;
+		    try {
+    		    new Input(inputsByName);
+    			return true;
+		    }
+		    catch (IllegalArgumentException e) {
+		        return false;
+		    }
 		}
 
 		@Override
@@ -95,20 +113,6 @@ public class Merge extends OperatorImpl {
 			validOutputs.put(traceRel2, endpointModels2);
 
 			return validOutputs;
-		}
-	}
-
-	private static class Input {
-
-		private ModelRel overlapRel;
-		private Model model1;
-		private Model model2;
-
-		public Input(Map<String, Model> inputsByName) {
-
-			this.overlapRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			this.model1 = overlapRel.getModelEndpoints().get(0).getTarget();
-			this.model2 = overlapRel.getModelEndpoints().get(1).getTarget();
 		}
 	}
 
@@ -189,9 +193,10 @@ public class Merge extends OperatorImpl {
 					newModelElemName,
 					eInfo,
 					traceRel1.getModelEndpointRefs().get(1)));
-			MIDTypeHierarchy.getRootMappingType().createInstanceAndReferenceAndEndpointsAndReferences(
-				true,
-				traceModelElemRefs1);
+			MappingReference newMappingRef = MIDTypeHierarchy.getRootMappingType()
+			    .createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs1);
+            newMappingRef.getObject().setName(
+                FileUtils.getModelObjectFeature(mergedModelObj, MERGED_MODELOBJECT_ATTRIBUTE).toString());
 		}
 
 		// copy elements from model2
@@ -224,9 +229,10 @@ public class Merge extends OperatorImpl {
 					newModelElemName,
 					eInfo,
 					traceRel2.getModelEndpointRefs().get(1)));
-			MIDTypeHierarchy.getRootMappingType().createInstanceAndReferenceAndEndpointsAndReferences(
-				true,
-				traceModelElemRefs2);
+			MappingReference newMappingRef = MIDTypeHierarchy.getRootMappingType()
+			    .createInstanceAndReferenceAndEndpointsAndReferences(true, traceModelElemRefs2);
+			newMappingRef.getObject().setName(
+                FileUtils.getModelObjectFeature(mergedModelObj, MERGED_MODELOBJECT_ATTRIBUTE).toString());
 		}
 
 		// populate references
