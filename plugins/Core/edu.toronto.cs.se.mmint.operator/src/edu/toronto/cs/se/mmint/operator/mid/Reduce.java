@@ -218,7 +218,7 @@ public class Reduce extends NestingOperatorImpl {
 					intermediateModelsAndRels.addAll(mergedModelRels);
 				}
 				else {
-					// delete composite model rels that were merged
+					// delete composed model rels that were merged
 					for (ModelRel mergedModelRel : mergedModelRels) {
 						try { mergedModelRel.deleteInstance(); } catch (MMINTException e) {}
 					}
@@ -260,16 +260,24 @@ public class Reduce extends NestingOperatorImpl {
 		if (nestedMIDPath != null) {
 			super.inMemoryNestedMID = reducedMID;
 			super.writeNestedInstanceMID();
+			Set<Model> reducedModels = accumulatorOutputModels.stream()
+			    .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
+			    .collect(Collectors.toSet());
+			Set<ModelRel> intermediateModelRels = intermediateModelsAndRels.stream()
+                .filter(modelRel -> modelRel instanceof ModelRel)
+                .map(modelRel -> (ModelRel) modelRel)
+                .collect(Collectors.toSet());
+			reducedModels.addAll(this.getConnectedModelRels(reducedMID, reducedModels, intermediateModelRels));
 			//TODO MMINT[NESTED] Transform input/output into shortcuts
 			reducedMID = MIDFactory.eINSTANCE.createMID();
 			reducedMID.setLevel(MIDLevel.INSTANCES);
-			for (Model reducedModel : accumulatorOutputsByName.values()) {
+			for (Model reducedModel : reducedModels) {
 				if (reducedModel instanceof ModelRel) {
 					continue;
 				}
-				reducedModel.getMetatype().importInstance(reducedModel.getUri(), reducedMID);
+				reducedModel.getMetatype().importInstanceAndEditor(reducedModel.getUri(), reducedMID);
 			}
-			for (Model reducedModelRel : accumulatorOutputsByName.values()) {
+			for (Model reducedModelRel : reducedModels) {
 				if (!(reducedModelRel instanceof ModelRel)) {
 					continue;
 				}

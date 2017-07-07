@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -29,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -187,13 +189,16 @@ public class ModelRelMerge extends OperatorImpl {
                                     @Nullable Model model2, @NonNull MID instanceMID) throws MMINTException {
 
         ModelRel mergedRel = null;
-        if (model2 == null) { // unary
-            mergedRel = rel1.getMetatype().createInstanceAndEndpoints(
-                null, rel1.getName() + MERGE_SEPARATOR + rel2.getName(), ECollections.asEList(model1), instanceMID);
+        String mergedRelName = rel1.getName() + MERGE_SEPARATOR + rel2.getName();
+        if (rel1 instanceof BinaryModelRel && rel2 instanceof BinaryModelRel) { // binary merge
+            mergedRel = rel1.getMetatype().createBinaryInstanceAndEndpoints(null, mergedRelName, model1, model2,
+                                                                            instanceMID);
         }
-        else { // binary
-            mergedRel = rel1.getMetatype().createBinaryInstanceAndEndpoints(
-                null, rel1.getName() + MERGE_SEPARATOR + rel2.getName(), model1, model2, instanceMID);
+        else { // unary merge, or binary merge with nary rel
+            EList<Model> models = (model2 == null) ?
+                ECollections.asEList(model1) :
+                ECollections.asEList(model1, model2);
+            mergedRel = rel1.getMetatype().createInstanceAndEndpoints(null, mergedRelName, models, instanceMID);
         }
         populate(mergedRel, rel1, instanceMID);
         populate(mergedRel, rel2, instanceMID);
