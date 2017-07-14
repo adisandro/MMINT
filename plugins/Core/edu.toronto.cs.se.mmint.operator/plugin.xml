@@ -499,6 +499,47 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
+               name="UncheckedCast"
+               uri="http://se.cs.toronto.edu/mmint/Operator_UncheckedCast"
+               class="edu.toronto.cs.se.mmint.operator.patch.UncheckedCast">
+         </type>
+         <generics>
+            <parameter>
+               <type
+                     name="TYPE">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </generics>
+         <inputs>
+            <parameter>
+               <type
+                     name="model">
+               </type>
+               <typeEndpoint
+                  targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="castModel">
+               </type>
+               <typeEndpoint
+                  targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
                name="Fix"
                uri="http://se.cs.toronto.edu/mmint/Operator_Fix"
                class="edu.toronto.cs.se.mmint.operator.propagate.Fix">
