@@ -1053,18 +1053,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private @Nullable OperatorInput checkAllowedInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
 
-        if (!this.getUri().equals(MIDOperatorIOUtils.UNCHECKED_CAST_OPERATOR_TYPE_URI) &&
-            inputModel.getMetatypeUri().equals(MIDOperatorIOUtils.OPERATOR_NO_INPUT_URI)
-        ) {
-            // blacklisted input, stop right here unless it's a cast
-            return null;
-            /* TODO MMINT[OPERATOR] To make this really effective we'd need:
-             * - a similar NoInputRel
-             * - a Not type to compose Filter
-             * - a way for Reduce to bypass this check and be able to compose/merge NoInputRels
-             * - a recursion to select generics within generics in a workflow
-             */
-        }
         List<ConversionOperator> conversions = MIDTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
         if (conversions == null) {
             return null;

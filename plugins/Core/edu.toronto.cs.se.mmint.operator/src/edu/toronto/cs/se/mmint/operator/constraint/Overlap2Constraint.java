@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.operator.constraint;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class OverlapConstraint extends MatchConstraint {
+public class Overlap2Constraint extends MatchConstraint {
 
     @Override
     public boolean validate(Model model) {
@@ -25,7 +25,7 @@ public class OverlapConstraint extends MatchConstraint {
         long extraMappings = ((ModelRel) model).getMappings().stream()
             .filter(mapping -> mapping.getMetatypeUri().equals("http://se.cs.toronto.edu/mmint/Overlap2/Mapping2"))
             .count();
-        if (extraMappings != 0) {
+        if (extraMappings != 1) {
             return false;
         }
 
