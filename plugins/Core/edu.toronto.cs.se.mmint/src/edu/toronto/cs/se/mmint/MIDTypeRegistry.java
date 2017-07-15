@@ -344,9 +344,6 @@ public class MIDTypeRegistry {
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {
-			if (genericType.isAbstract()) {
-				continue;
-			}
 			try {
 				if (MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getClosestTypeConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
 					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?

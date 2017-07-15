@@ -240,7 +240,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<ModelEndpoint> getInputs() {
         if (inputs == null) {
-            inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+            inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
         }
         return inputs;
     }
@@ -252,7 +252,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<ModelEndpoint> getOutputs() {
         if (outputs == null) {
-            outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+            outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
         }
         return outputs;
     }
@@ -264,7 +264,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<GenericEndpoint> getGenerics() {
         if (generics == null) {
-            generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+            generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
         }
         return generics;
     }
@@ -1053,6 +1053,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private @Nullable OperatorInput checkAllowedInput(@NonNull ModelEndpoint inputModelTypeEndpoint, @NonNull Model inputModel) {
 
+        if (!this.getUri().equals(MIDOperatorIOUtils.UNCHECKED_CAST_OPERATOR_TYPE_URI) &&
+            inputModel.getMetatypeUri().equals(MIDOperatorIOUtils.OPERATOR_NO_INPUT_URI)
+        ) {
+            // blacklisted input, stop right here unless it's a cast
+            return null;
+        }
         List<ConversionOperator> conversions = MIDTypeHierarchy.instanceOf(inputModel, inputModelTypeEndpoint.getTargetUri());
         if (conversions == null) {
             return null;

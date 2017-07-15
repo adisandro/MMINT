@@ -5,11 +5,13 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.constraint;
+
+import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaModelConstraint;
@@ -23,7 +25,11 @@ public class MIDRelConstraint implements IJavaModelConstraint {
 	public boolean validate(Model model) {
 
 		try {
-			MID instanceMID = (MID) model.getEMFInstanceRoot();
+		    EObject modelObjRoot = model.getEMFInstanceRoot();
+		    if (!(modelObjRoot instanceof MID)) {
+		        return false;
+		    }
+			MID instanceMID = (MID) modelObjRoot;
 			if (instanceMID.getOperators().size() > 0) {
 				return false;
 			}

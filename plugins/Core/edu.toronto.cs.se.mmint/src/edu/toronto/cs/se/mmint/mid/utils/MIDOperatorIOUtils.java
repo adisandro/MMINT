@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -30,6 +30,8 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -47,6 +49,8 @@ public class MIDOperatorIOUtils {
 	public static final String PROPERTY_IN_UPDATEMID = "updateMID";
 	public static final String PROPERTY_IN_SUBDIR = "subdir";
 	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
+    public static final String UNCHECKED_CAST_OPERATOR_TYPE_URI = MMINT.ROOT_URI + MMINT.URI_SEPARATOR + "Operator_UncheckedCast";
+    public static final String OPERATOR_NO_INPUT_URI = MMINT.ROOT_URI + MMINT.URI_SEPARATOR + "NoInput";
 
 //	public void writeOutputPropertiesFile(Properties properties) throws Exception {
 //
