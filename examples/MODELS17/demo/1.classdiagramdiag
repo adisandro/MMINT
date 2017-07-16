@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_2OKqkGp5EeepuOdXkNj8Yg" type="ClassDiagram" name="1.classdiagramdiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_2mz0EGp5EeepuOdXkNj8Yg" type="2001" fontName="Cantarell">
+    <children xmi:type="notation:DecorationNode" xmi:id="_2m0bIGp5EeepuOdXkNj8Yg" type="5003"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2m0bIWp5EeepuOdXkNj8Yg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2m0bImp5EeepuOdXkNj8Yg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2m0bI2p5EeepuOdXkNj8Yg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_2m0bJGp5EeepuOdXkNj8Yg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_2m0bJWp5EeepuOdXkNj8Yg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_2m0bJmp5EeepuOdXkNj8Yg"/>
+    </children>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_2mz0EWp5EeepuOdXkNj8Yg"/>
+    <element xmi:type="classdiagram:Class" href="1.classdiagram#//@classes.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2mz0Emp5EeepuOdXkNj8Yg" x="273" y="83"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_2OKqkWp5EeepuOdXkNj8Yg"/>
+  <element xmi:type="classdiagram:ClassDiagram" href="1.classdiagram#/"/>
+</notation:Diagram>
