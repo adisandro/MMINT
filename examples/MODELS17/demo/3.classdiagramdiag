@@ -14,20 +14,6 @@
     <element xmi:type="classdiagram:Class" href="3.classdiagram#//@classes.0"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8OiRkmp5EeepuOdXkNj8Yg" x="276" y="47"/>
   </children>
-  <children xmi:type="notation:Shape" xmi:id="_8rbB4Gp5EeepuOdXkNj8Yg" type="2001" fontName="Cantarell">
-    <children xmi:type="notation:DecorationNode" xmi:id="_8rbo8Gp5EeepuOdXkNj8Yg" type="5003"/>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_8rbo8Wp5EeepuOdXkNj8Yg" type="7001">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_8rbo8mp5EeepuOdXkNj8Yg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_8rbo82p5EeepuOdXkNj8Yg"/>
-    </children>
-    <children xmi:type="notation:BasicCompartment" xmi:id="_8rbo9Gp5EeepuOdXkNj8Yg" type="7002">
-      <styles xmi:type="notation:SortingStyle" xmi:id="_8rbo9Wp5EeepuOdXkNj8Yg"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_8rbo9mp5EeepuOdXkNj8Yg"/>
-    </children>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_8rbB4Wp5EeepuOdXkNj8Yg"/>
-    <element xmi:type="classdiagram:Class" href="3.classdiagram#//@classes.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8rbB4mp5EeepuOdXkNj8Yg" x="429" y="46"/>
-  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_70L34Wp5EeepuOdXkNj8Yg"/>
   <element xmi:type="classdiagram:ClassDiagram" href="3.classdiagram#/"/>
 </notation:Diagram>
