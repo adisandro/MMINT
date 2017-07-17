@@ -92,6 +92,7 @@ public class Reduce extends NestingOperatorImpl {
 			throws Exception {
 
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
+		List<Model> initialModels = new ArrayList<>(reducedMID.getModels());
 		String nestedMIDPath = super.getNestedMIDPath();
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
@@ -263,6 +264,7 @@ public class Reduce extends NestingOperatorImpl {
 		}
 		if (nestedMIDPath != null) {
 			super.inMemoryNestedMID = reducedMID;
+            //TODO MMINT[NESTED] Transform input/output into shortcuts first
 			super.writeNestedInstanceMID();
 			Set<Model> reducedModels = accumulatorOutputModels.stream()
 			    .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
@@ -272,9 +274,21 @@ public class Reduce extends NestingOperatorImpl {
                 .map(modelRel -> (ModelRel) modelRel)
                 .collect(Collectors.toSet());
 			reducedModels.addAll(this.getConnectedModelRels(reducedMID, reducedModels, intermediateModelRels));
-			//TODO MMINT[NESTED] Transform input/output into shortcuts
 			reducedMID = MIDFactory.eINSTANCE.createMID();
 			reducedMID.setLevel(MIDLevel.INSTANCES);
+			//TODO MMINT[REDUCE] How to handle initial rels that are composed/merged? 1) need to be tracked 2) may need to become unary if endpoints are reduced
+            for (Model initialModel : initialModels) {
+                if (initialModel instanceof ModelRel || intermediateModelsAndRels.contains(initialModel)) {
+                    continue;
+                }
+                initialModel.getMetatype().importInstanceAndEditor(initialModel.getUri(), reducedMID);
+            }
+            for (Model initialModelRel : initialModels) {
+                if (!(initialModelRel instanceof ModelRel) || intermediateModelsAndRels.contains(initialModelRel)) {
+                    continue;
+                }
+                ((ModelRel) initialModelRel).getMetatype().copyInstance(initialModelRel, initialModelRel.getName(), reducedMID);
+            }
 			for (Model reducedModel : reducedModels) {
 				if (reducedModel instanceof ModelRel) {
 					continue;
