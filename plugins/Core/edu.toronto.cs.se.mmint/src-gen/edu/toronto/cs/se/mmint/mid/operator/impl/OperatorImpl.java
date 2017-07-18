@@ -835,13 +835,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             for (OperatorInput input : inputs) {
                 ModelEndpoint formalParameter = input.getModelTypeEndpoint();
                 Model actualParameter = input.getModel();
-                String formal = formalParameter.getName();
-                if (
-                    this.getSupertype() != null ||
-                    !MIDTypeHierarchy.getSubtypes(this).isEmpty()
-                ) {
-                    formal = formalParameter.getTarget().getName() + " " + formal;
+                String formal = formalParameter.getTarget().getName() + " ";
+                if (formalParameter.getUpperBound() > 1) {
+                    formal += "*";
                 }
+                formal += formalParameter.getName();
                 List<String> vararg = varargs.get(formal);
                 if (vararg == null) {
                     vararg = new ArrayList<>();
