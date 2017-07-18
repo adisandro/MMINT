@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -33,19 +34,19 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class MIDContextCopyModelListener extends MIDContextMenuListener {
 
-	private Model oldModel;
+	private List<Model> oldModels;
 
-	public MIDContextCopyModelListener(String menuLabel, Model oldModel) {
+	public MIDContextCopyModelListener(String menuLabel, List<Model> oldModels) {
 
 		super(menuLabel);
-		this.oldModel = oldModel;
+		this.oldModels = oldModels;
 	}
 
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
 		AbstractTransactionalCommand command = new MIDContextCopyCommand(
-			TransactionUtil.getEditingDomain(oldModel),
+			TransactionUtil.getEditingDomain(oldModels.get(0)),
 			menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
@@ -63,11 +64,14 @@ public class MIDContextCopyModelListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
-				String newModelName = MIDDialogs.getStringInput(menuLabel, "Insert new model name", oldModel.getName());
-				MID multiModel = oldModel.getMIDContainer();
-				Model newModel = oldModel.getMetatype().copyInstanceAndEditor(oldModel, newModelName, true, multiModel);
-	
-				return CommandResult.newOKCommandResult(newModel);
+			    List<Model> newModels = new ArrayList<>();
+			    for (Model oldModel : oldModels) {
+    				String newModelName = MIDDialogs.getStringInput(menuLabel, "Insert new model name for the copy of " + oldModel.getName(), oldModel.getName());
+    				MID instanceMID = oldModel.getMIDContainer();
+    				newModels.add(oldModel.getMetatype().copyInstanceAndEditor(oldModel, newModelName, true, instanceMID));
+			    }
+
+				return CommandResult.newOKCommandResult(newModels);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.ERROR, "No model copied", e);

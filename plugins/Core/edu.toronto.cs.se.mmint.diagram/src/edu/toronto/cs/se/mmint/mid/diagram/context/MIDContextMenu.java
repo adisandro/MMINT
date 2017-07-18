@@ -93,7 +93,6 @@ public class MIDContextMenu extends ContributionItem {
 			doCast = false;
 			doCheckConstraint = false;
 			doCoherence = false;
-			doCopy = false;
 			doModelepedia = false;
 			doRefineByConstraint = false;
 		}
@@ -312,9 +311,13 @@ public class MIDContextMenu extends ContributionItem {
 		// copy
 		if (doCopy) {
 			MenuItem copyItem = new MenuItem(mmintMenu, SWT.NONE);
-			copyItem.setText(MMINT_MENU_COPY_LABEL);
+			String label = MMINT_MENU_COPY_LABEL;
+			if (selectedModels.size() > 1) {
+			    label += "s";
+			}
+			copyItem.setText(label);
 			copyItem.addSelectionListener(
-				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, selectedModels.get(0))
+				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, selectedModels)
 			);
 		}
 		// modelepedia
