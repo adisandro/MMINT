@@ -111,14 +111,14 @@
             <parameter>
 	           <type
 	                 name="overlap"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-CDRel/overlap">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-Overlap/overlap">
                   <superType
                         uri="http://se.cs.toronto.edu/mmint/Operator_Match-Overlap/overlap">
                   </superType>
 
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Overlap">
 	           </typeEndpoint>
             </parameter>
          </outputs>
