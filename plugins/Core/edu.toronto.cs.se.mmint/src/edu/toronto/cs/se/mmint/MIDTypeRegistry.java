@@ -50,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -344,6 +345,10 @@ public class MIDTypeRegistry {
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {
+		    if (genericType.getUri().equals(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+		                                    WorkflowOperator.class.getSimpleName())) {
+		        continue;
+		    }
 			try {
 				if (MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getClosestTypeConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
 					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
