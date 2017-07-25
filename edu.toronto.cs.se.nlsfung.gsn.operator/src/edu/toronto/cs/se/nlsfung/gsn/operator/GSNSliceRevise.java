@@ -74,32 +74,28 @@ public class GSNSliceRevise extends Slice {
 			
 		// If input is a goal, then the following are also impacted:
 		// 1) All SupportedBy relations connected to it.
-		// 2) All model elements connected to the sliced relations.
+		// 2) All model elements supporting or supported by the input goal.
 		} else if (elem instanceof Goal) {
 			Goal g = (Goal) elem;
-			Set<SupportedBy> impactedRelSet = new HashSet<>();
-			impactedRelSet.add(g.getSupportedBy());
-			impactedRelSet.addAll(g.getSupports());
+			impacted.add(g.getSupportedBy());
+			impacted.addAll(g.getSupportedBy().getPremises());
 			
-			impacted.addAll(impactedRelSet);
-			for (SupportedBy rel : impactedRelSet) {
+			for (SupportedBy rel : g.getSupports()) {
+				impacted.add(rel);
 				impacted.add(rel.getConclusion());
-				impacted.addAll(rel.getPremises());
 			}
 		
 		// If input is a strategy, then the following are also impacted:
 		// 1) All SupportedBy relations connected to it.
-		// 2) All model elements connected to the sliced relations.
+		// 2) All model elements supporting or supported by the input strategy.
 		} else if (elem instanceof Strategy) {
 			Strategy s = (Strategy) elem;
-			Set<SupportedBy> impactedRelSet = new HashSet<>();
-			impactedRelSet.add(s.getSupportedBy());
-			impactedRelSet.addAll(s.getSupports());
+			impacted.add(s.getSupportedBy());
+			impacted.addAll(s.getSupportedBy().getPremises());
 			
-			impacted.addAll(impactedRelSet);
-			for (SupportedBy rel : impactedRelSet) {
+			for (SupportedBy rel : s.getSupports()) {
+				impacted.add(rel);
 				impacted.add(rel.getConclusion());
-				impacted.addAll(rel.getPremises());
 			}
 			
 		// If input is a contextual element (Context or ASIL), 
