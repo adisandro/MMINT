@@ -26,8 +26,6 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
-// CDSlice is a specialisation of the slice operator for performing a single
-// slice step on a single class diagram.
 public class CDSlice extends Slice {
 
 	@Override

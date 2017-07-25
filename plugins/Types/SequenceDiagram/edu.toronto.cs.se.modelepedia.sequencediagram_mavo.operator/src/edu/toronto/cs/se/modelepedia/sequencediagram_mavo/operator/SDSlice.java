@@ -187,7 +187,7 @@ public class SDSlice extends Slice {
 			AttributeReference r = (AttributeReference) elem;
 			impacted.add(r.getSource());
 
-		// If input is an operation, then its message is impacted.
+		// If input is an operation reference, then its message is impacted.
 		} else if (elem instanceof OperationReference) {
 			OperationReference r = (OperationReference) elem;
 			impacted.add(r.getSource());

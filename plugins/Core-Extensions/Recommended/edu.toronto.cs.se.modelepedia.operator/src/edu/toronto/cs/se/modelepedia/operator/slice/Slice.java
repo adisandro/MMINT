@@ -38,9 +38,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-// The slice operator performs a single slicing step on a model instance given
-// the input slicing criteria, which is a unary model relation containing the
-// model elements to slice.
+// The slice operator performs a slice on a model instance given the input 
+// slicing criteria, which is a unary model relation containing the model 
+// elements to slice.
 public class Slice extends OperatorImpl {
 
 	// input-output
