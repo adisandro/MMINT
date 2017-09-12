@@ -57,7 +57,7 @@
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="edu.toronto.cs.se.modelepedia.tutorial.state.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin name="State Diagram Type" provider="Software Engineering Group, University of Toronto" version="2.2.0">
+  <plugin name="State Diagram Type" provider="Software Engineering Group, University of Toronto" version="2.2.99.qualifier">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
   </plugin>

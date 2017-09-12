@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Profile xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_H_nKEMlAEeKrhsRgWa0Oxg" name="MAVOProfile" metaclassReference="_PEBA8MlAEeKrhsRgWa0Oxg _4-_OEMlAEeKrhsRgWa0Oxg _YlkrIM7wEeKsUIrUddA5XA" metamodelReference="_H_nKEclAEeKrhsRgWa0Oxg">
-  <eAnnotations xmi:id="_jqRd0MlBEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.2.0/UML">
+  <eAnnotations xmi:id="_jqRd0MlBEeKrhsRgWa0Oxg" source="http://www.eclipse.org/uml2/2.2.99.qualifier/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_lRSGYNEtEeKoJbXh4vbX1A" name="MAVOProfile" nsURI="http:///schemas/MAVOProfile/_lRQRMNEtEeKoJbXh4vbX1A/3" nsPrefix="MAVOProfile">
       <eAnnotations xmi:id="_vulywNEtEeKoJbXh4vbX1A" source="PapyrusVersion">
-        <details xmi:id="_vulywdEtEeKoJbXh4vbX1A" key="Version" value="2.2.0"/>
+        <details xmi:id="_vulywdEtEeKoJbXh4vbX1A" key="Version" value="2.2.99.qualifier"/>
         <details xmi:id="_vulywtEtEeKoJbXh4vbX1A" key="Comment" value=""/>
         <details xmi:id="_vulyw9EtEeKoJbXh4vbX1A" key="Copyright" value="Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."/>
         <details xmi:id="_vulyxNEtEeKoJbXh4vbX1A" key="Date" value="2013-06-09"/>
         <details xmi:id="_vulyxdEtEeKoJbXh4vbX1A" key="Author" value="Alessio Di Sandro"/>
       </eAnnotations>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGYdEtEeKoJbXh4vbX1A" name="may">
-        <eAnnotations xmi:id="_lRSGYtEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.0/UML" references="_fYEswNEsEeKoJbXh4vbX1A"/>
+        <eAnnotations xmi:id="_lRSGYtEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.99.qualifier/UML" references="_fYEswNEsEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGY9EtEeKoJbXh4vbX1A" name="base_Classifier" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
@@ -19,7 +19,7 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGZ9EtEeKoJbXh4vbX1A" name="set">
-        <eAnnotations xmi:id="_lRSGaNEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.0/UML" references="_WuiOoNEtEeKoJbXh4vbX1A"/>
+        <eAnnotations xmi:id="_lRSGaNEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.99.qualifier/UML" references="_WuiOoNEtEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGadEtEeKoJbXh4vbX1A" name="base_Classifier" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
@@ -28,7 +28,7 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGbdEtEeKoJbXh4vbX1A" name="var">
-        <eAnnotations xmi:id="_lRSGbtEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.0/UML" references="_aUS0YNEtEeKoJbXh4vbX1A"/>
+        <eAnnotations xmi:id="_lRSGbtEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.99.qualifier/UML" references="_aUS0YNEtEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGb9EtEeKoJbXh4vbX1A" name="base_Classifier" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
@@ -37,7 +37,7 @@
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lRSGc9EtEeKoJbXh4vbX1A" name="inc">
-        <eAnnotations xmi:id="_lRSGdNEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.0/UML" references="_b2Y5QNEtEeKoJbXh4vbX1A"/>
+        <eAnnotations xmi:id="_lRSGdNEtEeKoJbXh4vbX1A" source="http://www.eclipse.org/uml2/2.2.99.qualifier/UML" references="_b2Y5QNEtEeKoJbXh4vbX1A"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_lRSGddEtEeKoJbXh4vbX1A" name="base_Model" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
         </eStructuralFeatures>
