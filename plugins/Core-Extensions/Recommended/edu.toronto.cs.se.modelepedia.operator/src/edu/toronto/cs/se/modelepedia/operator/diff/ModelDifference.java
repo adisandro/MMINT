@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -66,7 +65,7 @@ public class ModelDifference extends OperatorImpl {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(model.getEMFInstanceRoot(), true);
 		while (iterator.hasNext()) {
 			EObject modelObj = iterator.next();
-			String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String modelElemUri = MIDRegistry.getModelElementUri(modelObj);
 			if (modelElemRefTable.get(modelElemUri) == null) {
 				diffModelEObjects.add(modelObj);
 			}
@@ -103,9 +102,10 @@ public class ModelDifference extends OperatorImpl {
 		ModelRel matchRel = (ModelRel) inputsByName.get(IN_MODELREL);
 
 		// create diff model relationship
-		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
-		BinaryModelRel diffModelRel = rootModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
-		diffModelRel.setName(MODELREL_NAME);
+		BinaryModelRel diffModelRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstance(
+			null,
+			MODELREL_NAME,
+			outputMIDsByName.get(OUT_MODELREL));
 
 		ModelEndpoint rootModelTypeEndpoint = MIDTypeHierarchy.getRootModelTypeEndpoint();
 		Mapping rootMappingType = MIDTypeHierarchy.getRootMappingType();

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -242,6 +242,11 @@ public class MIDItemProvider
 			(createChildParameter
 				(MIDPackage.Literals.MID__OPERATORS,
 				 OperatorFactory.eINSTANCE.createRandomOperator()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MIDPackage.Literals.MID__OPERATORS,
+				 OperatorFactory.eINSTANCE.createNestingOperator()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -72,6 +74,12 @@ public class NewGenericTypeDialogContentProvider implements ITreeContentProvider
 				}
 				genericTypes.add(genericType);
 			}
+			Collections.sort(genericTypes, new Comparator<GenericElement>() {
+                @Override
+                public int compare(GenericElement g1, GenericElement g2) {
+                    return g1.getName().compareTo(g2.getName());
+                }
+            });
 			return genericTypes.toArray();
 		}
 

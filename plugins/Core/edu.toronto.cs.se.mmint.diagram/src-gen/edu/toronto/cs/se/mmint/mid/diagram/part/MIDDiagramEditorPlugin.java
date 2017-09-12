@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -30,10 +30,12 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.policies.MIDBaseItemSemanticEditPolicy;
 import edu.toronto.cs.se.mmint.mid.diagram.expressions.MIDOCLFactory;
 import edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTOpenTypeMIDMenu;
 import edu.toronto.cs.se.mmint.mid.diagram.providers.ElementInitializers;
+import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.editor.provider.EditorItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.operator.provider.OperatorItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.provider.MIDItemProviderAdapterFactory;
@@ -110,15 +112,18 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 
 		startGen(context);
 		MMINTOpenTypeMIDMenu.createTypeMIDDiagram();
+		MIDTypeRegistry.setCachedMIDViewProvider(new MIDDiagramViewProvider());
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -140,7 +145,7 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	protected ComposedAdapterFactory createAdapterFactoryGen() {
-		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+		ArrayList<AdapterFactory> factories = new ArrayList<>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -197,7 +202,7 @@ public class MIDDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Respects images residing in any plug-in. If path is relative,
-	 * then this bundle is looked up for the image, otherwise, for absolute 
+	 * then this bundle is looked up for the image, otherwise, for absolute
 	 * path, first segment is taken as id of plug-in with image
 	 *
 	 * @generated

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,8 @@
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.diagram.edit.commands;
+
+import java.io.IOException;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -101,11 +103,11 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		return newModelRelType;
 	}
 
-	protected ModelRel doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
+	protected ModelRel doExecuteInstancesLevel() throws MMINTException, IOException, MIDDialogCancellation {
 
 		MID instanceMID = (MID) getElementToEdit();
 		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToCreate(null, null);
-		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, instanceMID);
+		ModelRel newModelRel = (ModelRel) modelRelType.createInstance(null, "", instanceMID);
 
 		return newModelRel;
 	}
@@ -160,7 +162,7 @@ public class ModelRelNewNaryRelCommand extends ModelRelCreateCommand {
 		catch (MIDDialogCancellation e) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		catch (MMINTException e) {
+		catch (MMINTException | IOException e) {
 			MMINTException.print(IStatus.ERROR, "No model relationship created", e);
 			return CommandResult.newErrorCommandResult("No model relationship created");
 		}

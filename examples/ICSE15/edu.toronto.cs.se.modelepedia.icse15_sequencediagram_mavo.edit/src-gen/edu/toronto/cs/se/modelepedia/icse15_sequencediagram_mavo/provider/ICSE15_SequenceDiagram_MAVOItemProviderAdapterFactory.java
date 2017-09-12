@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -173,6 +173,29 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeItemProvider attributeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeAdapter() {
+		if (attributeItemProvider == null) {
+			attributeItemProvider = new AttributeItemProvider(this);
+		}
+
+		return attributeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,6 +262,29 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 		}
 
 		return classReferenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AttributeReferenceItemProvider attributeReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAttributeReferenceAdapter() {
+		if (attributeReferenceItemProvider == null) {
+			attributeReferenceItemProvider = new AttributeReferenceItemProvider(this);
+		}
+
+		return attributeReferenceItemProvider;
 	}
 
 	/**
@@ -413,9 +459,11 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 		if (namedElementItemProvider != null) namedElementItemProvider.dispose();
 		if (lifelineItemProvider != null) lifelineItemProvider.dispose();
 		if (classItemProvider != null) classItemProvider.dispose();
+		if (attributeItemProvider != null) attributeItemProvider.dispose();
 		if (operationItemProvider != null) operationItemProvider.dispose();
 		if (messageItemProvider != null) messageItemProvider.dispose();
 		if (classReferenceItemProvider != null) classReferenceItemProvider.dispose();
+		if (attributeReferenceItemProvider != null) attributeReferenceItemProvider.dispose();
 		if (operationReferenceItemProvider != null) operationReferenceItemProvider.dispose();
 		if (sourceLifelineReferenceItemProvider != null) sourceLifelineReferenceItemProvider.dispose();
 		if (targetLifelineReferenceItemProvider != null) targetLifelineReferenceItemProvider.dispose();

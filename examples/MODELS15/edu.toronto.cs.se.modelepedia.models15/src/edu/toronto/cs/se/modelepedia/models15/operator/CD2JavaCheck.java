@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -78,12 +77,11 @@ public class CD2JavaCheck extends OperatorImpl {
 
 		// output
 		Model intModelType = MIDTypeRegistry.getType(IntPackage.eNS_URI);
-		String checkModelUri = FileUtils.replaceLastSegmentInUri(
-			MIDRegistry.getModelAndModelElementUris(modelRel, MIDLevel.INSTANCES)[0],
+		String checkModelPath = FileUtils.replaceLastSegmentInPath(
+			MIDRegistry.getModelUri(modelRel),
 			modelRel.getName() + CHECK_INT_SUFFIX + MMINT.MODEL_FILEEXTENSION_SEPARATOR
 					+ intModelType.getFileExtension());
-		FileUtils.writeModelFile(check, checkModelUri, true);
-		Model checkModel = intModelType.createInstanceAndEditor(checkModelUri, instanceMID);
+		Model checkModel = intModelType.createInstanceAndEditor(check, checkModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_INT, checkModel);
 

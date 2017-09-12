@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -138,9 +138,8 @@ public class ParallelComposition extends OperatorImpl {
 		StateMachine composedSM = compose((StateMachine) smModel1.getEMFInstanceRoot(), (StateMachine) smModel2.getEMFInstanceRoot());
 
 		// output
-		String composedModelUri = FileUtils.replaceFileNameInUri(smModel1.getUri(), smModel1.getName() + "+" + smModel2.getName());
-		FileUtils.writeModelFile(composedSM, composedModelUri, true);
-		Model composedModel = smModel1.getMetatype().createInstanceAndEditor(composedModelUri, instanceMID);
+		String composedModelPath = FileUtils.replaceFileNameInPath(smModel1.getUri(), smModel1.getName() + "+" + smModel2.getName());
+		Model composedModel = smModel1.getMetatype().createInstanceAndEditor(composedSM, composedModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, composedModel);
 

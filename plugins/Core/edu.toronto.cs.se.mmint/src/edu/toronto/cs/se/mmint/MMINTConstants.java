@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -20,9 +20,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 /**
  * The list of all MMINT constants.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public interface MMINTConstants {
 
@@ -38,7 +38,7 @@ public interface MMINTConstants {
 	public final static String MODELELEMENT_FEATURE_SEPARATOR1 = "[";
 	public final static String MODELELEMENT_FEATURE_SEPARATOR2 = "]";
 	public final static String MODELELEMENT_REFERENCE_SEPARATOR = "->";
-	public final static String BINARY_MODELREL_MAPPING_SEPARATOR = "_To_";
+	public final static String BINARY_MODELREL_SEPARATOR = "->";
 	//TODO MMINT[MODELELEMENT] refine everywhere used when introducing additional model element level
 	public final static String ROLE_SEPARATOR = "_AS_";
 	/** The empty uri/id. */
@@ -108,13 +108,6 @@ public interface MMINTConstants {
 	/** An extension point's constraint child's implementation attribute. */
 	public final static String CONSTRAINT_ATTR_IMPLEMENTATION = "implementation";
 
-	/** An extension point's endpointConstraint child. */
-	public final static String CHILD_ENDPOINTCONSTRAINT = "endpointConstraint";
-	/** An extension point's endpointConstraint child's parameterName attribute. */
-	public final static String ENDPOINTCONSTRAINT_ATTR_PARAMETERNAME = "parameterName";
-	/** An extension point's endpointConstraint child's endpointIndex attribute. */
-	public final static String ENDPOINTCONSTRAINT_ATTR_ENDPOINTINDEX = "endpointIndex";
-
 	/** The Models extension point's id. */
 	public final static String MODELS_EXT_POINT = "edu.toronto.cs.se.mmint.models";
 	/** The Models extension point's modelType child. */
@@ -176,6 +169,7 @@ public interface MMINTConstants {
 	public final static String REASONERS_REASONER_LANGUAGE_ATTR_ID = "id";
 
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
+	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
 	public final static String PREFERENCE_MENU_ID = PREFERENCE_MMINT_ID + ".mid.diagram.menu";
 	public final static String PREFERENCE_MENU_ICONS_ENABLED = PREFERENCE_MENU_ID + ".IconsEnabled";
 	public final static String PREFERENCE_MENU_MODELRELS_ENABLED = PREFERENCE_MENU_ID + ".ModelRelsEnabled";
@@ -183,9 +177,10 @@ public interface MMINTConstants {
 	public final static String PREFERENCE_MENU_OPERATORS_ENABLED = PREFERENCE_MENU_ID + ".OperatorsEnabled";
 	public final static String PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED = PREFERENCE_MENU_ID + ".OperatorEndpointsEnabled";
 	public final static String PREFERENCE_MENU_OPENMODELEDITORS_ENABLED = PREFERENCE_MENU_ID + ".OpenModelEditorsEnabled";
-	public final static String PREFERENCE_MENU_POLYMORPHISM_ENABLED = PREFERENCE_MENU_ID + ".PolymorphismEnabled";
 	public final static String PREFERENCE_MENU_DELETEMODELFILE_ENABLED = PREFERENCE_MENU_ID + ".DeleteModelFileEnabled";
 	public final static String PREFERENCE_MENU_LANGUAGE_REASONER = PREFERENCE_MENU_ID + ".Reasoner";
-	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_ID = PREFERENCE_MENU_ID + ".polymorphism";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED = PREFERENCE_MENU_POLYMORPHISM_ID + ".RuntimeTypingEnabled";
+	public final static String PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED = PREFERENCE_MENU_POLYMORPHISM_ID + ".MultipleDispatchEnabled";
 
 }

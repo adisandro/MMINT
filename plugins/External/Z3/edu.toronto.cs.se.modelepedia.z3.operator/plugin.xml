@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 
 <!--
- Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  Rick Salay.
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -23,6 +23,10 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_MAVOHenshinTransformation"
                class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.MAVOHenshinTransformation">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation$Constraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type
@@ -49,12 +53,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="original">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="transformed">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -68,6 +66,10 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ProductLineHenshinTransformation"
                class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.ProductLineHenshinTransformation">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation$Constraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type
@@ -94,12 +96,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="original">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="transformed">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>
@@ -113,6 +109,10 @@
                uri="http://se.cs.toronto.edu/modelepedia/Operator_HenshinTransformation"
                class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.HenshinTransformation">
          </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.HenshinTransformation$Constraint"
+               language="JAVA">
+         </constraint>
          <inputs>
             <parameter>
 	           <type
@@ -139,12 +139,6 @@
 	           <typeEndpoint
 	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
 	           </typeEndpoint>
-               <endpointConstraint
-                     parameterName="original">
-               </endpointConstraint>
-               <endpointConstraint
-                     parameterName="transformed">
-               </endpointConstraint>
             </parameter>
          </outputs>
       </operatorType>

@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -47,19 +47,21 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 /**
  * The registry for querying a multimodel.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDRegistry {
 
@@ -70,7 +72,7 @@ public class MIDRegistry {
 	/**
 	 * Gets a reference to an extendible element in a list of references to
 	 * extendible elements.
-	 * 
+	 *
 	 * @param elementUri
 	 *            The uri of the extendible element.
 	 * @param elementRefs
@@ -79,24 +81,24 @@ public class MIDRegistry {
 	 *         found.
 	 */
 	public static <T extends ExtendibleElementReference> T getReference(String elementUri, EList<T> elementRefs) {
-	
+
 		if (elementUri == null) {
 			return null;
 		}
-	
+
 		for (T elementRef : elementRefs) {
 			if (elementUri.equals(elementRef.getUri())) {
 				return elementRef;
 			}
 		}
-	
+
 		return null;
 	}
 
 	/**
 	 * Gets a reference to an extendible element in a list of references to
 	 * extendible elements.
-	 * 
+	 *
 	 * @param correspondingElementRef
 	 *            The corresponding reference to extendible element, i.e. a
 	 *            reference to an extendible element with the same uri of the
@@ -107,18 +109,18 @@ public class MIDRegistry {
 	 *         found.
 	 */
 	public static <T extends ExtendibleElementReference> T getReference(T correspondingElementRef, EList<T> elementRefs) {
-	
+
 		if (correspondingElementRef == null) {
 			return null;
 		}
-	
+
 		return getReference(correspondingElementRef.getUri(), elementRefs);
 	}
 
 	/**
 	 * Gets the extendible element endpoints in a list of extendible element
 	 * endpoints.
-	 * 
+	 *
 	 * @param targetUri
 	 *            The uri of the extendible element which is the target of the
 	 *            endpoint.
@@ -127,12 +129,12 @@ public class MIDRegistry {
 	 * @return The extendible element endpoints.
 	 */
 	public static <T extends ExtendibleElementEndpoint> List<T> getEndpoints(String targetUri, EList<T> endpoints) {
-	
+
 		if (targetUri == null) {
 			return null;
 		}
 
-		List<T> targetEndpoints = new ArrayList<T>();
+		List<T> targetEndpoints = new ArrayList<>();
 		for (T endpoint : endpoints) {
 			if (targetUri.equals(endpoint.getTargetUri())) {
 				targetEndpoints.add(endpoint);
@@ -145,7 +147,7 @@ public class MIDRegistry {
 	/**
 	 * Gets the references to an extendible element endpoint in a list of
 	 * references to extendible element endpoints.
-	 * 
+	 *
 	 * @param targetUri
 	 *            The uri of the extendible element which is the target of the
 	 *            endpoint.
@@ -159,7 +161,7 @@ public class MIDRegistry {
 			return null;
 		}
 
-		List<T> targetEndpointRefs = new ArrayList<T>();
+		List<T> targetEndpointRefs = new ArrayList<>();
 		for (T endpointRef : endpointRefs) {
 			if (targetUri.equals(endpointRef.getTargetUri())) {
 				targetEndpointRefs.add(endpointRef);
@@ -202,38 +204,13 @@ public class MIDRegistry {
 		return false;
 	}
 
-	public static String[] getModelAndModelElementUris(EObject modelObj, MIDLevel level) {
-
-		String modelUri, modelElemUri;
-		String attributeFeatureName = null;
-		if (level == MIDLevel.INSTANCES && modelObj instanceof PrimitiveEObjectWrapper) {
-			attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
-			modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
-		}
-		URI emfUri = EcoreUtil.getURI(modelObj);
-		String uri = emfUri.toString();
-		if (level == MIDLevel.INSTANCES) {
-			modelElemUri = (uri.startsWith(RESOURCE_URI_PREFIX)) ? uri.substring(RESOURCE_URI_PREFIX.length()) : uri;
-			modelUri = modelElemUri.substring(0, modelElemUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
-			if (attributeFeatureName != null) {
-				modelElemUri += MMINT.URI_SEPARATOR + attributeFeatureName;
-			}
-		}
-		else {
-			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
-			modelElemUri = modelUri + MMINT.ECORE_MODEL_URI_SEPARATOR + uri.substring(uri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR)+MMINT.ECORE_MODEL_URI_SEPARATOR.length());
-		}
-
-		return new String[] {modelUri, modelElemUri};
-	}
-
-	public static String getModelUri(EObject modelObj) {
+	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
 		String modelUri;
-		if (modelObj instanceof EClass) { // == MIDLevel.TYPES
+		if (modelObj instanceof EClass) { // MIDLevel.TYPES
 			modelUri = ((EPackage) EcoreUtil.getRootContainer(modelObj)).getNsURI(); // safe against metamodels in state
 		}
-		else { // == MIDLevel.INSTANCES
+		else { // MIDLevel.INSTANCES
 			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
 				modelObj = ((PrimitiveEObjectWrapper) modelObj).getOwner();
 			}
@@ -247,15 +224,15 @@ public class MIDRegistry {
 		return modelUri;
 	}
 
-	public static String getModelElementUri(EObject modelObj) {
+	public static @NonNull String getModelElementUri(@NonNull EObject modelObj) {
 
 		String modelElemUri;
 		String emfUri = EcoreUtil.getURI(modelObj).toString();
-		if (modelObj instanceof EClass) { // == MIDLevel.TYPES
+		if (modelObj instanceof EClass) { // MIDLevel.TYPES
 			String metamodelUri = MIDRegistry.getModelUri(modelObj);
 			modelElemUri = metamodelUri + MMINT.ECORE_MODEL_URI_SEPARATOR + emfUri.substring(emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR)+MMINT.ECORE_MODEL_URI_SEPARATOR.length());
 		}
-		else { // == MIDLevel.INSTANCES
+		else { // MIDLevel.INSTANCES
 			String attributeFeatureName = null;
 			if (modelObj instanceof PrimitiveEObjectWrapper) { // unwrap
 				attributeFeatureName = ((PrimitiveEObjectWrapper) modelObj).getFeature().getName();
@@ -272,6 +249,12 @@ public class MIDRegistry {
 
 		return modelElemUri;
 	}
+
+	//TODO MMINT[OO] Remove when switching to ModelElementIntermediate owned by ModelElementReference
+    public static @NonNull String getModelObjectUri(@NonNull ModelElement modelElem) {
+
+        return modelElem.getUri().substring(0, modelElem.getUri().indexOf(MMINT.ROLE_SEPARATOR));
+    }
 
 	//TODO MMINT[MODELELEMENT] some info here are redundant and/or misplaced, review EMFInfo
 	//TODO MMINT[MODELELEMENT] add support for non-containment EReferences
@@ -343,7 +326,7 @@ public class MIDRegistry {
 	public static ModelElementReference getModelElementReference(ModelEndpointReference modelEndpointRef, EObject modelObj) {
 
 		ModelElement modelElemType = MIDConstraintChecker.getAllowedModelElementType(modelEndpointRef, modelObj);
-		String modelElemUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1] + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
+		String modelElemUri = MIDRegistry.getModelElementUri(modelObj) + MMINT.ROLE_SEPARATOR + modelElemType.getUri();
 
 		return MIDRegistry.getReference(modelElemUri, modelEndpointRef.getModelElemRefs());
 	}
@@ -391,6 +374,33 @@ public class MIDRegistry {
 
 		return ioOperators;
 	}
+
+	public static @NonNull LinkedHashMap<Model, String> getInputOutputWorkflowModels(@NonNull MID workflowMID) {
+
+	    LinkedHashMap<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
+        for (Model workflowModel : workflowMID.getModels()) {
+            boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty();
+            if (isInput) { // no operator created this model as output
+                inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+                continue; // an input can't be output too
+            }
+            boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty();
+            if (isOutput) { // no operator has this model as input
+                inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+                if (workflowModel instanceof ModelRel) { // an output model rel needs its endpoint models as output too
+                    for (ModelEndpoint outModelEndpoint : ((ModelRel) workflowModel).getModelEndpoints()) {
+                        Model outModel = outModelEndpoint.getTarget();
+                        if (inoutWorkflowModels.containsKey(outModel)) {
+                            continue;
+                        }
+                        inoutWorkflowModels.put(outModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+                    }
+                }
+            }
+        }
+
+        return inoutWorkflowModels;
+    }
 
 	public static Set<BinaryModelRel> getConnectedBinaryModelRels(Model model, MID mid) {
 

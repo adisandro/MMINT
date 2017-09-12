@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -18,9 +18,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PlatformUI;
@@ -29,11 +26,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditor;
-import edu.toronto.cs.se.mmint.mid.diagram.part.MIDDiagramEditorPlugin;
-import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDDiagramViewProvider;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 
 public class MIDDiagramUtils {
@@ -83,20 +76,6 @@ public class MIDDiagramUtils {
 		}
 
 		return files;
-	}
-
-	public static Node createModelShortcut(Model model, View gmfDiagramRoot) throws Exception {
-
-		MIDDiagramViewProvider gmfViewProvider = new MIDDiagramViewProvider();
-		Node gmfNode = gmfViewProvider.createModel_2002(
-			model,
-			gmfDiagramRoot,
-			-1,
-			true,
-			new PreferencesHint(MIDDiagramEditorPlugin.ID));
-		GMFUtils.addGMFShortcut(gmfNode, MIDEditPart.MODEL_ID);
-
-		return gmfNode;
 	}
 
 }

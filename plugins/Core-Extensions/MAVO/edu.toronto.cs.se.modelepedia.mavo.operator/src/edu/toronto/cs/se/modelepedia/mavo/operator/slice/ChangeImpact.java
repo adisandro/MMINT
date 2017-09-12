@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -24,12 +24,11 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorInputConstraint;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
@@ -46,16 +45,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ChangeImpact extends OperatorImpl {
 
-	public static class InputConstraint implements IJavaOperatorInputConstraint {
-
-		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
-
-			//TODO MMINT[OPERATOR] Check that diff and trace share a model
-			return true;
-		}
-	}
-
 	// input-output
 	private final static @NonNull String IN_MODELREL1 = "diff";
 	private final static @NonNull String IN_MODELREL2 = "trace";
@@ -63,6 +52,23 @@ public class ChangeImpact extends OperatorImpl {
 	// constants
 	private final static String SRC_MODELELEMENDPOINT_NAME = "diff";
 	private final static String TGT_MODELELEMENDPOINT_NAME = "impacted";
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+
+			//TODO MMINT[CONSTRAINT] Check that diff and trace share a model
+			return true;
+		}
+
+		@Override
+		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+
+			//TODO MMINT[CONSTRAINT] Implement
+			return new HashMap<>();
+		}
+	}
 
 	private void createOrigVarTables(ModelEndpointReference modelEndpointRef, Map<String, List<ModelElementReference>> unifyTable, Map<String, List<MAVOModelElementReference>> typeTable) {
 
@@ -123,23 +129,23 @@ public class ChangeImpact extends OperatorImpl {
 		}
 		// merge table
 		for (List<EObject> unifiablesFromSameType : typeTable.values()) {
-			for (EObject modelEObject : unifiablesFromSameType) {
+			for (EObject modelObj : unifiablesFromSameType) {
 				List<EObject> unifiables = new ArrayList<EObject>();
-				String modelEObjectUri = MIDRegistry.getModelAndModelElementUris(modelEObject, MIDLevel.INSTANCES)[1];
-				unifyTable.put(modelEObjectUri, unifiables);
-				unifiables.add(modelEObject);
+				String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
+				unifyTable.put(modelObjUri, unifiables);
+				unifiables.add(modelObj);
 			}
 			for (int i = 0; i < unifiablesFromSameType.size(); i++) {
-				EObject modelEObject = unifiablesFromSameType.get(i);
-				String modelEObjectUri = MIDRegistry.getModelAndModelElementUris(modelEObject, MIDLevel.INSTANCES)[1];
-				List<EObject> unifiables = unifyTable.get(modelEObjectUri);
+				EObject modelObj = unifiablesFromSameType.get(i);
+				String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
+				List<EObject> unifiables = unifyTable.get(modelObjUri);
 				for (int j = i+1; j < unifiablesFromSameType.size(); j++) {
-					EObject modelEObject2 = unifiablesFromSameType.get(j);
-					String modelEObjectUri2 = MIDRegistry.getModelAndModelElementUris(modelEObject2, MIDLevel.INSTANCES)[1];
-					List<EObject> unifiables2 = unifyTable.get(modelEObjectUri2);
-					if ((((MAVOElement) modelEObject).isVar() || ((MAVOElement) modelEObject2).isVar())) {
-						unifiables.add(modelEObject2);
-						unifiables2.add(modelEObject);
+					EObject modelObj2 = unifiablesFromSameType.get(j);
+					String modelObjUri2 = MIDRegistry.getModelElementUri(modelObj2);
+					List<EObject> unifiables2 = unifyTable.get(modelObjUri2);
+					if ((((MAVOElement) modelObj).isVar() || ((MAVOElement) modelObj2).isVar())) {
+						unifiables.add(modelObj2);
+						unifiables2.add(modelObj);
 					}
 				}
 			}
@@ -166,7 +172,7 @@ public class ChangeImpact extends OperatorImpl {
 				// navigate tgt mergeability
 				List<EObject> impactedUnifiables = impactedUnifyTable.get(impactedModelElemRef.getUri());
 				for (EObject impactedUnifiable : impactedUnifiables) {
-					String impactedModelElemUri = MIDRegistry.getModelAndModelElementUris(impactedUnifiable, MIDLevel.INSTANCES)[1];
+					String impactedModelElemUri = MIDRegistry.getModelElementUri(impactedUnifiable);
 					// create or get impacted model element ref
 					ModelElementReference newImpactedModelElemRef = MIDRegistry.getReference(impactedModelElemUri, impactedModelEndpointRef.getModelElemRefs());
 					if (newImpactedModelElemRef == null) {
@@ -202,10 +208,10 @@ public class ChangeImpact extends OperatorImpl {
 		ModelRel rootModelRelType = MIDTypeHierarchy.getRootModelRelType();
 		ModelRel newImpactModelRel = rootModelRelType.createBinaryInstanceAndEndpoints(
 			null,
+			OUT_MODELREL,
 			diffRel,
 			impactedModel,
 			outputMIDsByName.get(OUT_MODELREL));
-		newImpactModelRel.setName(OUT_MODELREL);
 		ModelEndpointReference newDiffModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(0);
 		ModelEndpointReference newImpactedModelEndpointRef = newImpactModelRel.getModelEndpointRefs().get(1);
 
@@ -227,7 +233,7 @@ public class ChangeImpact extends OperatorImpl {
 			List<ModelElementReference> origUnifiables = origUnifyTable.get(diffModelElem.getUri());
 			if (origUnifiables == null) { // not in the trace rel
 				// get the type it would have if it was in the trace rel
-				ModelElement diffModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject());
+				ModelElement diffModelElemType = MIDConstraintChecker.getAllowedModelElementType(traceRel.getModelEndpointRefs().get(0), diffModelElem.getEMFInstanceObject(null));
 				if (diffModelElemType != null) {
 					List<MAVOModelElementReference> origUnifiablesFromSameType = origTypeTable.get(diffModelElemType.getUri());
 					for (MAVOModelElementReference origUnifiable : origUnifiablesFromSameType) {

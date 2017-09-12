@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.kleisli.feature"
       label="MMINT Kleisli"
-      version="2.1.0"
+      version="2.2.0"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
@@ -10,7 +10,7 @@
    </description>
 
    <copyright>
-      Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
+      Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
    </copyright>
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">

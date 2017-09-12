@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getOperations <em>Operations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class#getLifelines <em>Lifelines</em>}</li>
  * </ul>
@@ -31,6 +32,23 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Class extends NamedElement {
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getClass_Attributes()
+	 * @model containment="true"
+	 *        annotation="gmf.compartment layout='list'"
+	 * @generated
+	 */
+	EList<Attribute> getAttributes();
+
 	/**
 	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation}.

@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 
 <!--
- Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  Rick Salay.
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -24,7 +24,7 @@
                class="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.slice.ChangeImpact$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -67,7 +67,7 @@
                class="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation$InputConstraint"
+               implementation="edu.toronto.cs.se.modelepedia.mavo.operator.propagate.ChangePropagation$OperatorConstraint"
                language="JAVA">
          </constraint>
          <inputs>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -36,11 +36,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -358,9 +354,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	 */
 	public ExtendibleElementConstraint createHeavyTypeConstraint(@NonNull String constraintLanguage, @NonNull String constraintImplementation, @NonNull ExtendibleElement constrainedType) {
 
-		ExtendibleElementConstraint newTypeConstraint = (constrainedType instanceof Operator) ?
-			OperatorFactory.eINSTANCE.createOperatorConstraint() :
-			MIDFactory.eINSTANCE.createExtendibleElementConstraint();
+		ExtendibleElementConstraint newTypeConstraint = MIDFactory.eINSTANCE.createExtendibleElementConstraint();
 		MIDTypeFactory.addTypeConstraint(newTypeConstraint, constraintLanguage, constraintImplementation, constrainedType);
 
 		return newTypeConstraint;
@@ -722,34 +716,6 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		addOperatorType(newOperatorType, MMINT.cachedTypeMID);
 
 		return newOperatorType;
-	}
-
-	public @NonNull OperatorConstraintRule createHeavyOperatorTypeConstraintRule(@NonNull OperatorConstraint constraint, @NonNull ModelEndpoint modelRelTypeEndpoint) throws MMINTException {
-
-		OperatorConstraintRule newConstraintRule = OperatorFactory.eINSTANCE.createOperatorConstraintRule();
-		MIDTypeFactory.addOperatorTypeConstraintRule(newConstraintRule, constraint, modelRelTypeEndpoint);
-		this.createHeavyOperatorTypeConstraintRuleEndpoint(
-			newConstraintRule,
-			modelRelTypeEndpoint,
-			-1,
-			OperatorPackage.eINSTANCE.getOperatorConstraintRule_OutputModelRel().getName());
-
-		return newConstraintRule;
-	}
-
-	public @NonNull OperatorConstraintParameter createHeavyOperatorTypeConstraintRuleEndpoint(@NonNull OperatorConstraintRule constraintRule, @NonNull ModelEndpoint modelTypeEndpoint, int endpointIndex, String ruleFeatureName) throws MMINTException {
-
-		ModelEndpointReference modelTypeEndpointRef = RelationshipFactory.eINSTANCE.createModelEndpointReference();
-		MIDTypeFactory.addTypeReference(modelTypeEndpointRef, modelTypeEndpoint, null, false, false);
-		OperatorConstraintParameter newConstraintRuleParam = OperatorFactory.eINSTANCE.createOperatorConstraintParameter();
-		MIDTypeFactory.addOperatorTypeConstraintRuleEndpoint(
-			newConstraintRuleParam,
-			constraintRule,
-			modelTypeEndpointRef,
-			endpointIndex,
-			ruleFeatureName);
-
-		return newConstraintRuleParam;
 	}
 
 }

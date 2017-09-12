@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -36,9 +36,9 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -80,7 +80,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 	private void createZ3ApplyFormulaConstants() {
 
-		Set<MAVOElement> uniqueMayModelObjsN = new HashSet<MAVOElement>();
+		Set<MAVOElement> uniqueMayModelObjsN = new HashSet<>();
 		for (Set<MAVOElement> mayModelObjsN : modelObjsNBar) {
 			uniqueMayModelObjsN.addAll(mayModelObjsN);
 		}
@@ -122,7 +122,7 @@ public class MAVOHenshinTransformation extends LiftingHenshinTransformation {
 
 		for (int i = 0; i < rule.getLhs().getNACs().size(); i++) { // one Nac at a time
 			Rule ruleCopyN = EcoreUtil.copy(rule);
-			Set<Node> nodesN = new LinkedHashSet<Node>(), nodesC = new LinkedHashSet<Node>(), nodesD = new LinkedHashSet<Node>();
+			Set<Node> nodesN = new LinkedHashSet<>(), nodesC = new LinkedHashSet<>(), nodesD = new LinkedHashSet<>();
 			List<Match> matchesN = findNMatches(ruleCopyN, engine, graph, i, nodesC, nodesD, nodesN);
 matchesN:
 			for (int j = 0; j < matchesN.size(); j++) {
@@ -154,7 +154,7 @@ matchesN:
 					if (l == i) {
 						continue;
 					}
-					Set<Node> nodesNl = new LinkedHashSet<Node>(), nodesCl = new LinkedHashSet<Node>(), nodesDl = new LinkedHashSet<Node>();
+					Set<Node> nodesNl = new LinkedHashSet<>(), nodesCl = new LinkedHashSet<>(), nodesDl = new LinkedHashSet<>();
 					List<Match> matchesNl = findNMatches(EcoreUtil.copy(rule), engine, graph, l, nodesCl, nodesDl, nodesNl);
 					for (int m = 0; m < matchesNl.size(); m++) {
 						Match matchNm = matchesNl.get(m);
@@ -176,7 +176,7 @@ matchesN:
 
 		// no Nac matched
 		Rule ruleCopy = EcoreUtil.copy(rule);
-		Set<Node> nodesC = new HashSet<Node>(), nodesD = new HashSet<Node>();
+		Set<Node> nodesC = new HashSet<>(), nodesD = new HashSet<>();
 		getCDNodes(ruleCopy, nodesC, nodesD);
 		boolean isLiftedMatch = false;
 		List<Match> matches = InterpreterUtil.findAllMatches(engine, ruleCopy, graph, null);
@@ -253,24 +253,24 @@ matchesN:
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		Model origModel = inputsByName.get(IN_MODEL);
+	    Input input = new Input(inputsByName);
 		super.init();
 		super.initSMTEncoding(SMTLIB_APPLICABILITY_PREAMBLE, SMTLIB_APPLICABILITY_POSTAMBLE);
 
 		// do transformations
-		String fullUri = FileUtils.prependWorkspacePathToUri(FileUtils.replaceLastSegmentInUri(origModel.getUri(), ""));
+		String fullUri = FileUtils.prependWorkspacePath(FileUtils.replaceLastSegmentInPath(input.original.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(fullUri);
 		Module hModule = hResourceSet.getModule(transformationModule, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(origModel.getUri())));
+		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromPath(input.original.getUri())));
 		if (timeClassicalEnabled) {
 			doTransformationClassical(hModule, hEngine, hGraph);
 			hResourceSet = new HenshinResourceSet(fullUri);
 			hModule = hResourceSet.getModule(transformationModule, false);
 			hEngine = new EngineImpl();
 			hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
-			hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromUri(origModel.getUri())));
+			hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromPath(input.original.getUri())));
 		}
 		doTransformationLifting(hModule, hEngine, hGraph);
 		if (transformedConstraintEnabled) {
@@ -290,22 +290,22 @@ matchesN:
 		}
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
-		String transformedMIDModelUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileExtensionInUri(
-				FileUtils.addFileNameSuffixInUri(origModel.getUri(), TRANSFORMED_MODEL_SUFFIX),
+		String transformedMIDModelPath = FileUtils.getUniquePath(
+			FileUtils.replaceFileExtensionInPath(
+				FileUtils.addFileNameSuffixInPath(input.original.getUri(), TRANSFORMED_MODEL_SUFFIX),
 				transformedModelType.getFileExtension()),
 			true,
 			false);
-		FileUtils.writeModelFile(transformedRootModelObj, transformedMIDModelUri, true);
 		Model transformedModel = transformedModelType.createInstanceAndEditor(
-			transformedMIDModelUri,
+			transformedRootModelObj,
+			transformedMIDModelPath,
 			outputMIDsByName.get(OUT_MODEL));
 		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
-			origModel,
+			OUT_MODELREL,
+			input.original,
 			transformedModel,
 			outputMIDsByName.get(OUT_MODELREL));
-		traceRel.setName(OUT_MODELREL);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, transformedModel);
 		outputsByName.put(OUT_MODELREL, traceRel);
@@ -314,7 +314,7 @@ matchesN:
 		MIDOperatorIOUtils.writePropertiesFile(
 			outputProperties,
 			this,
-			origModel,
+			input.original,
 			getInputSubdir(),
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);

@@ -1,22 +1,22 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mavo.mavomid;
 
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -390,7 +390,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int MAVO_MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance And Editor</em>' operation.
@@ -427,6 +427,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL___DELETE_INSTANCE = MIDPackage.MODEL___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL___DELETE_INSTANCE_AND_FILE = MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -471,7 +480,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 0;
+	int MAVO_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -859,7 +868,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT;
+	int MAVO_MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT = MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE;
 
 	/**
 	 * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1239,7 +1248,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__STRING_MID;
+	int MAVO_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1257,7 +1266,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int MAVO_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -1294,6 +1303,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAVO_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAVO_MODEL_REL___DELETE_INSTANCE_AND_FILE = RelationshipPackage.MODEL_REL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -1392,7 +1410,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+	int MAVO_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1401,7 +1419,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+	int MAVO_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -1410,7 +1428,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAVO_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+	int MAVO_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1825,7 +1843,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__STRING_MID;
+	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1843,7 +1861,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -1880,6 +1898,15 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_MAVO_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.BINARY_MODEL_REL___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_MAVO_MODEL_REL___DELETE_INSTANCE_AND_FILE = RelationshipPackage.BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.
@@ -1978,7 +2005,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+	int BINARY_MAVO_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1987,7 +2014,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__STRING_MID;
+	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -1996,7 +2023,7 @@ public interface MAVOMIDPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+	int BINARY_MAVO_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
 	/**
 	 * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -3924,14 +3951,14 @@ public interface MAVOMIDPackage extends EPackage {
 	EClass getMAVOModel();
 
 	/**
-	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
+	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#createInstance(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Create Instance</em>' operation.
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#createInstance(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
 	 * @generated
 	 */
-	EOperation getMAVOModel__CreateInstance__String_MID();
+	EOperation getMAVOModel__CreateInstance__EObject_String_MID();
 
 	/**
 	 * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel#importInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Import Instance</em>}' operation.
@@ -4252,7 +4279,7 @@ public interface MAVOMIDPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MAVO_MODEL___CREATE_INSTANCE__STRING_MID = eINSTANCE.getMAVOModel__CreateInstance__String_MID();
+		EOperation MAVO_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = eINSTANCE.getMAVOModel__CreateInstance__EObject_String_MID();
 
 		/**
 		 * The meta object literal for the '<em><b>Import Instance</b></em>' operation.

@@ -2,14 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.operator;singleton:=true
-Bundle-Version: 2.1.0
+Bundle-Version: 2.2.0
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.compare,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.editor,
  edu.toronto.cs.se.mmint.diagram,
- edu.toronto.cs.se.mmint.java
+ edu.toronto.cs.se.mmint.java,
+ edu.toronto.cs.se.modelepedia.primitive
+Export-Package: edu.toronto.cs.se.mmint.operator.match,
+ edu.toronto.cs.se.mmint.operator.slice

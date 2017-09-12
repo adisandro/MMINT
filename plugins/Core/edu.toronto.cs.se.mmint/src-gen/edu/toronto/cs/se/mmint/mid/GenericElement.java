@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -34,28 +34,28 @@ package edu.toronto.cs.se.mmint.mid;
  */
 public interface GenericElement extends ExtendibleElement {
 
-	/**
-	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * True if the generic type can't be instanciated, false otherwise (instances: always false).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Abstract</em>' attribute.
-	 * @see #setAbstract(boolean)
-	 * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getGenericElement_Abstract()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isAbstract();
+    /**
+     * Returns the value of the '<em><b>Abstract</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * True if the generic type can't be instanciated, false otherwise (instances: always false).
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Abstract</em>' attribute.
+     * @see #setAbstract(boolean)
+     * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getGenericElement_Abstract()
+     * @model required="true"
+     * @generated
+     */
+    boolean isAbstract();
 
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Abstract</em>' attribute.
-	 * @see #isAbstract()
-	 * @generated
-	 */
-	void setAbstract(boolean value);
+    /**
+     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.GenericElement#isAbstract <em>Abstract</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Abstract</em>' attribute.
+     * @see #isAbstract()
+     * @generated
+     */
+    void setAbstract(boolean value);
 } // GenericElement

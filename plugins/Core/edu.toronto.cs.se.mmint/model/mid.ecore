@@ -121,6 +121,8 @@
         <eBounds eClassifier="#//ExtendibleElement"/>
       </eTypeParameters>
     </eOperations>
+    <eOperations name="getClosestTypeConstraint" eType="#//ExtendibleElementConstraint"
+        eExceptions="#//MMINTException"/>
     <eOperations name="validateInstanceType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         eExceptions="#//MMINTException">
       <eParameters name="type" lowerBound="1" eType="#//ExtendibleElement"/>
@@ -273,30 +275,32 @@
     <eOperations name="getEMFTypeRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"
         eExceptions="#//MMINTException"/>
     <eOperations name="openType" eExceptions="#//operator/Exception"/>
-    <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="createInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException #//IOException">
+      <eParameters name="rootModelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="createInstanceEditor" lowerBound="1" eType="#//editor/Editor"
         eExceptions="#//MMINTException"/>
-    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+    <eOperations name="createInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException #//IOException">
+      <eParameters name="rootModelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="importInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
     <eOperations name="importInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
-      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+      <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="instanceMID" eType="#//MID"/>
     </eOperations>
-    <eOperations name="copyInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
+    <eOperations name="copyInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException #//IOException">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
     </eOperations>
-    <eOperations name="copyInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
+    <eOperations name="copyInstanceAndEditor" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException #//IOException">
       <eParameters name="origModel" lowerBound="1" eType="#//Model"/>
       <eParameters name="newModelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="copyDiagram" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -426,7 +430,9 @@
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="getEMFInstanceObject" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        eExceptions="#//MMINTException"/>
+        eExceptions="#//MMINTException">
+      <eParameters name="emfResource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eInfo" lowerBound="1" eType="#//EMFInfo"
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -564,6 +570,12 @@
       <details key="documentation" value="A wrapper to throw exceptions in various operations."/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="IOException" instanceClassName="java.io.IOException"
+      serializable="false">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The wrapper for java.io.IOException."/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IStatus" instanceClassName="org.eclipse.core.runtime.IStatus"
       serializable="false">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -612,18 +624,21 @@
           eExceptions="#//MMINTException"/>
       <eOperations name="createInstanceAndEndpoints" lowerBound="1" eType="#//relationship/ModelRel"
           eExceptions="#//MMINTException">
-        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="rootModelRelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelRelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="endpointModels" lowerBound="1" upperBound="-1" eType="#//Model"/>
         <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="createBinaryInstance" lowerBound="1" eType="#//relationship/BinaryModelRel"
           eExceptions="#//MMINTException">
-        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="rootModelRelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelRelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="createBinaryInstanceAndEndpoints" lowerBound="1" eType="#//relationship/BinaryModelRel"
           eExceptions="#//MMINTException">
-        <eParameters name="newModelRelUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="rootModelRelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eParameters name="newModelRelName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eParameters name="endpointSourceModel" lowerBound="1" eType="#//Model"/>
         <eParameters name="endpointTargetModel" lowerBound="1" eType="#//Model"/>
         <eParameters name="instanceMID" eType="#//MID"/>
@@ -1187,10 +1202,14 @@
           <details key="body" value="return (MID) this.eContainer();"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getTypeSignature" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+      </eOperations>
       <eOperations name="createSubtype" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="newOperatorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eParameters name="implementationUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eParameters name="implementationPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eOperations>
       <eOperations name="deleteType" eExceptions="#//MMINTException"/>
       <eOperations name="openType" eExceptions="#//operator/Exception"/>
@@ -1201,10 +1220,20 @@
           </eTypeArguments>
         </eGenericType>
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
+        <eParameters name="inputModelBlacklists" upperBound="-1">
+          <eGenericType eClassifier="#//operator/Set">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="findFirstAllowedInput" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
         <eParameters name="inputMIDs" upperBound="-1" eType="#//MID"/>
+        <eParameters name="inputModelBlacklists" upperBound="-1">
+          <eGenericType eClassifier="#//operator/Set">
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
       </eOperations>
       <eOperations name="checkAllowedInputs" upperBound="-1" eType="#//operator/OperatorInput"
           eExceptions="#//MMINTException">
@@ -1224,12 +1253,6 @@
       <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
       <eOperations name="selectAllowedGenerics" upperBound="-1" eType="#//operator/OperatorGeneric"
           eExceptions="#//MMINTException">
-        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
-      </eOperations>
-      <eOperations name="isAllowedGeneric" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          eExceptions="#//MMINTException">
-        <eParameters name="genericTypeEndpoint" lowerBound="1" eType="#//operator/GenericEndpoint"/>
-        <eParameters name="genericType" lowerBound="1" eType="#//GenericElement"/>
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
@@ -1271,7 +1294,7 @@
             <eTypeArguments eClassifier="#//MID"/>
           </eGenericType>
         </eParameters>
-        <eParameters name="instanceMID" lowerBound="1" eType="#//MID"/>
+        <eParameters name="instanceMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
       <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
@@ -1279,11 +1302,21 @@
         <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="deleteWorkflowInstance" eExceptions="#//MMINTException"/>
+      <eOperations name="createWorkflowInstanceOutputs" eExceptions="#//MMINTException">
+        <eParameters name="newOperator" lowerBound="1" eType="#//operator/Operator"/>
+        <eParameters name="inputsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+      </eOperations>
       <eOperations name="startWorkflowInstance" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
         <eParameters name="generics" upperBound="-1" eType="#//operator/OperatorGeneric"/>
-        <eParameters name="workflowMID" lowerBound="1" eType="#//MID"/>
+        <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openWorkflowInstance" eExceptions="#//operator/Exception"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
@@ -1346,26 +1379,36 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkflowOperator" eSuperTypes="#//operator/Operator">
+    <eClassifiers xsi:type="ecore:EClass" name="NestingOperator" eSuperTypes="#//operator/Operator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A nesting operator type or a nesting operator instance, i.e. an operator that in turn runs other operators and uses a nested Instance MID to trace intermediate artifacts."/>
+      </eAnnotations>
+      <eOperations name="getNestedInstanceMID" eType="#//MID" eExceptions="#//MMINTException"/>
+      <eOperations name="startNestedInstance" lowerBound="1" eType="#//operator/Operator"
+          eExceptions="#//operator/Exception">
+        <eParameters name="nestedOperatorType" lowerBound="1" eType="#//operator/Operator"/>
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+        <eParameters name="inputProperties" eType="#//operator/Properties"/>
+        <eParameters name="generics" upperBound="-1" eType="#//operator/OperatorGeneric"/>
+        <eParameters name="outputMIDsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//MID"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nestedMIDPath" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The path to the Instance MID to trace the nested artifacts."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowOperator" eSuperTypes="#//operator/NestingOperator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A workflow operator type or a workflow operator instance, executes a Workflow MID."/>
       </eAnnotations>
-      <eOperations name="getWorkflowMID" eType="#//MID" eExceptions="#//MMINTException">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MMINTException.mustBeType(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) FileUtils.readModelFileInState(this.getMidUri());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getInstanceMID" eType="#//MID" eExceptions="#//MMINTException">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MMINTException.mustBeInstance(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) FileUtils.readModelFile(this.getMidUri(), true);&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="midUri" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The uri of the Workflow MID."/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eOperations name="getNestedWorkflowMID" eType="#//MID" eExceptions="#//MMINTException"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1450,50 +1493,6 @@
           lowerBound="1" eType="#//operator/GenericEndpoint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The generic formal parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorConstraint" eSuperTypes="#//ExtendibleElementConstraint">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A constraint for an operator."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="1"
-          upperBound="-1" eType="#//operator/OperatorConstraintRule" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The constraint's rules."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorConstraintRule">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A rule of an operator's constraint, specifies what are the endpoints of an output model relationship."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="outputModelRel" lowerBound="1"
-          eType="#//operator/OperatorConstraintParameter" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The reference to the output model relationship."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="endpointModels" lowerBound="1"
-          upperBound="-1" eType="#//operator/OperatorConstraintParameter" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A list of references to other inputs/outputs of the operator that are the endpoints of the output model relationship."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorConstraintParameter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A reference to an input or output parameter of an operator, to be used in an operator constraint."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterRef" lowerBound="1"
-          eType="#//relationship/ModelEndpointReference" containment="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The reference to an input or output parameter of an operator."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endpointIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="An index to identify a model endpoint, if the referenced input or output parameter is a model relationship."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

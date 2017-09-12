@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <!--
-Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
 Rick Salay.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -812,12 +812,6 @@ Contributors:
                   tooltip="Enables editors to be automatically opened when new models are created">
             </command>
             <command
-                  commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.PolymorphismEnabled"
-                  label="Enable Model polymorphism"
-                  style="toggle"
-                  tooltip="Enables polymorphic model types (can be slow for big models)">
-            </command>
-            <command
                   commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.DeleteModelFileEnabled"
                   label="Delete Models from file system"
                   style="toggle"
@@ -825,6 +819,26 @@ Contributors:
             </command>
             <separator
                   name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator1"
+                  visible="true">
+            </separator>
+            <menu
+                  id="edu.toronto.cs.se.mmint.mid.diagram.menu.polymorphism"
+                  label="Polymorphism">
+               <command
+                     commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.polymorphism.RuntimeTypingEnabled"
+                     label="Enable Runtime Typing"
+                     style="toggle"
+                     tooltip="Enables models to have their type evaluated at runtime, rather than using their static creation type (can be slow for big models)">
+               </command>
+               <command
+                     commandId="edu.toronto.cs.se.mmint.mid.diagram.menu.polymorphism.MultipleDispatchEnabled"
+                     label="Enable Multiple Dispatch"
+                     style="toggle"
+                     tooltip="Enables dynamic dispatch of operators when executing workflows based on all their actual arguments">
+               </command>
+            </menu>
+            <separator
+                  name="edu.toronto.cs.se.mmint.mid.diagram.menu.separator2"
                   visible="true">
             </separator>
             <dynamic
@@ -903,8 +917,8 @@ Contributors:
       </command>
       <command
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
-            id="edu.toronto.cs.se.mmint.mid.diagram.menu.PolymorphismEnabled"
-            name="PolymorphismEnabled">
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.DeleteModelFileEnabled"
+            name="DeleteModelFileEnabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">
@@ -912,8 +926,17 @@ Contributors:
       </command>
       <command
             defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
-            id="edu.toronto.cs.se.mmint.mid.diagram.menu.DeleteModelFileEnabled"
-            name="DeleteModelFileEnabled">
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.polymorphism.RuntimeTypingEnabled"
+            name="RuntimeTypingEnabled">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:true"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            defaultHandler="edu.toronto.cs.se.mmint.mid.diagram.menu.MMINTAppearanceMenus"
+            id="edu.toronto.cs.se.mmint.mid.diagram.menu.polymorphism.MultipleDispatchEnabled"
+            name="MultipleDispatchEnabled">
          <state
                class="org.eclipse.ui.handlers.RegistryToggleState:true"
                id="org.eclipse.ui.commands.toggleState">

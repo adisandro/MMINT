@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
     modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
     modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
@@ -19,6 +19,7 @@
       <genEnumLiterals ecoreEnumLiteral="mid.ecore#//ModelOrigin/CREATED"/>
     </genEnums>
     <genDataTypes ecoreDataType="mid.ecore#//MMINTException"/>
+    <genDataTypes ecoreDataType="mid.ecore#//IOException"/>
     <genDataTypes ecoreDataType="mid.ecore#//IStatus"/>
     <genDataTypes ecoreDataType="mid.ecore#//IValidationContext"/>
     <genClasses ecoreClass="mid.ecore#//MID">
@@ -66,6 +67,7 @@
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
       </genOperations>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getClosestTypeConstraint"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceType">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceType/type"/>
       </genOperations>
@@ -108,20 +110,22 @@
       <genOperations ecoreOperation="mid.ecore#//Model/getEMFTypeRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openType"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstance">
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstance/newModelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstance/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceEditor"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createInstanceAndEditor">
-        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/rootModelObj"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/newModelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createInstanceAndEditor/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/importInstance">
-        <genParameters ecoreParameter="mid.ecore#//Model/importInstance/modelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstance/modelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/importInstance/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/importInstanceAndEditor">
-        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/modelUri"/>
+        <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/modelPath"/>
         <genParameters ecoreParameter="mid.ecore#//Model/importInstanceAndEditor/instanceMID"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/copyInstance">
@@ -178,7 +182,9 @@
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createInstanceAndReference/containerModelEndpointRef"/>
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/deleteInstance"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFInstanceObject"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getEMFInstanceObject">
+        <genParameters ecoreParameter="mid.ecore#//ModelElement/getEMFInstanceObject/emfResource"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype"/>
@@ -267,16 +273,19 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getOutlineResourceTypes"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/newModelRelName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/endpointModels"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createInstanceAndEndpoints/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstance">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/newModelRelName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstance/instanceMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints">
-          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/newModelRelUri"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/rootModelRelObj"/>
+          <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/newModelRelName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointSourceModel"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/endpointTargetModel"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinaryInstanceAndEndpoints/instanceMID"/>
@@ -532,17 +541,22 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getTypeSignature">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getTypeSignature/inputs"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createSubtype">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/newOperatorTypeName"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationUri"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationPath"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/openType"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputMIDs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findAllowedInputs/inputModelBlacklists"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/findFirstAllowedInput">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputMIDs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/findFirstAllowedInput/inputModelBlacklists"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/checkAllowedInputs">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/checkAllowedInputs/inputModels"/>
@@ -555,11 +569,6 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteInstance"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/selectAllowedGenerics">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/selectAllowedGenerics/inputs"/>
-        </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/isAllowedGeneric">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedGeneric/genericTypeEndpoint"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedGeneric/genericType"/>
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/isAllowedGeneric/inputs"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/readInputProperties">
@@ -582,6 +591,11 @@
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstance/workflowMID"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/deleteWorkflowInstance"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/newOperator"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/inputsByName"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/createWorkflowInstanceOutputs/workflowMID"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/startWorkflowInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/inputs"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/startWorkflowInstance/generics"/>
@@ -596,10 +610,19 @@
       <genClasses ecoreClass="mid.ecore#//operator/RandomOperator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/RandomOperator/state"/>
       </genClasses>
+      <genClasses ecoreClass="mid.ecore#//operator/NestingOperator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/NestingOperator/nestedMIDPath"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/getNestedInstanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/NestingOperator/startNestedInstance">
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/nestedOperatorType"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputs"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/inputProperties"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/generics"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/NestingOperator/startNestedInstance/outputMIDsByName"/>
+        </genOperations>
+      </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/WorkflowOperator">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/WorkflowOperator/midUri"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getWorkflowMID"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getInstanceMID"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/WorkflowOperator/getNestedWorkflowMID"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>
@@ -631,18 +654,6 @@
             ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorGeneric/generic"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorGeneric/genericSuperTypeEndpoint"/>
-      </genClasses>
-      <genClasses ecoreClass="mid.ecore#//operator/OperatorConstraint">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorConstraint/rules"/>
-      </genClasses>
-      <genClasses ecoreClass="mid.ecore#//operator/OperatorConstraintRule">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorConstraintRule/outputModelRel"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorConstraintRule/endpointModels"/>
-      </genClasses>
-      <genClasses ecoreClass="mid.ecore#//operator/OperatorConstraintParameter">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mid.ecore#//operator/OperatorConstraintParameter/parameterRef"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/OperatorConstraintParameter/endpointIndex"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

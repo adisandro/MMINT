@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,111 +22,93 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface OperatorFactory extends EFactory {
-	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	OperatorFactory eINSTANCE = edu.toronto.cs.se.mmint.mid.operator.impl.OperatorFactoryImpl.init();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    OperatorFactory eINSTANCE = edu.toronto.cs.se.mmint.mid.operator.impl.OperatorFactoryImpl.init();
 
-	/**
-	 * Returns a new object of class '<em>Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operator</em>'.
-	 * @generated
-	 */
-	Operator createOperator();
+    /**
+     * Returns a new object of class '<em>Operator</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Operator</em>'.
+     * @generated
+     */
+    Operator createOperator();
 
-	/**
-	 * Returns a new object of class '<em>Conversion Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conversion Operator</em>'.
-	 * @generated
-	 */
-	ConversionOperator createConversionOperator();
+    /**
+     * Returns a new object of class '<em>Conversion Operator</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Conversion Operator</em>'.
+     * @generated
+     */
+    ConversionOperator createConversionOperator();
 
-	/**
-	 * Returns a new object of class '<em>Random Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Random Operator</em>'.
-	 * @generated
-	 */
-	RandomOperator createRandomOperator();
+    /**
+     * Returns a new object of class '<em>Random Operator</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Random Operator</em>'.
+     * @generated
+     */
+    RandomOperator createRandomOperator();
 
-	/**
-	 * Returns a new object of class '<em>Workflow Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Workflow Operator</em>'.
-	 * @generated
-	 */
-	WorkflowOperator createWorkflowOperator();
+    /**
+     * Returns a new object of class '<em>Nesting Operator</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Nesting Operator</em>'.
+     * @generated
+     */
+    NestingOperator createNestingOperator();
 
-	/**
-	 * Returns a new object of class '<em>Generic Endpoint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic Endpoint</em>'.
-	 * @generated
-	 */
-	GenericEndpoint createGenericEndpoint();
+    /**
+     * Returns a new object of class '<em>Workflow Operator</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Workflow Operator</em>'.
+     * @generated
+     */
+    WorkflowOperator createWorkflowOperator();
 
-	/**
-	 * Returns a new object of class '<em>Input</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Input</em>'.
-	 * @generated
-	 */
-	OperatorInput createOperatorInput();
+    /**
+     * Returns a new object of class '<em>Generic Endpoint</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Generic Endpoint</em>'.
+     * @generated
+     */
+    GenericEndpoint createGenericEndpoint();
 
-	/**
-	 * Returns a new object of class '<em>Generic</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Generic</em>'.
-	 * @generated
-	 */
-	OperatorGeneric createOperatorGeneric();
+    /**
+     * Returns a new object of class '<em>Input</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Input</em>'.
+     * @generated
+     */
+    OperatorInput createOperatorInput();
 
-	/**
-	 * Returns a new object of class '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint</em>'.
-	 * @generated
-	 */
-	OperatorConstraint createOperatorConstraint();
+    /**
+     * Returns a new object of class '<em>Generic</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Generic</em>'.
+     * @generated
+     */
+    OperatorGeneric createOperatorGeneric();
 
-	/**
-	 * Returns a new object of class '<em>Constraint Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint Rule</em>'.
-	 * @generated
-	 */
-	OperatorConstraintRule createOperatorConstraintRule();
-
-	/**
-	 * Returns a new object of class '<em>Constraint Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint Parameter</em>'.
-	 * @generated
-	 */
-	OperatorConstraintParameter createOperatorConstraintParameter();
-
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	OperatorPackage getOperatorPackage();
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    OperatorPackage getOperatorPackage();
 
 } //OperatorFactory

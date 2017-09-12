@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -198,7 +198,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMAVOModel__CreateInstance__String_MID() {
+	public EOperation getMAVOModel__CreateInstance__EObject_String_MID() {
 		return mavoModelEClass.getEOperations().get(0);
 	}
 
@@ -483,7 +483,7 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 
 		// Create classes and their features
 		mavoModelEClass = createEClass(MAVO_MODEL);
-		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__STRING_MID);
+		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID);
 		createEOperation(mavoModelEClass, MAVO_MODEL___IMPORT_INSTANCE__STRING_MID);
 		createEOperation(mavoModelEClass, MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
 		createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL);
@@ -578,13 +578,15 @@ public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getMAVOModel__CreateInstance__String_MID(), theMIDPackage.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getMAVOModel__CreateInstance__EObject_String_MID(), theMIDPackage.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "rootModelObj", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newModelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
+		addEException(op, theMIDPackage.getIOException());
 
 		op = initEOperation(getMAVOModel__ImportInstance__String_MID(), theMIDPackage.getModel(), "importInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "modelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theMIDPackage.getMMINTException());
 

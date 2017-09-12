@@ -2,10 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>MMINT</groupId>
   <artifactId>edu.toronto.cs.se.mmint.releng</artifactId>
-  <version>2.1.0</version>
+  <version>2.2.0</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>0.26.0</tycho-version>
+    <tycho-version>1.0.0</tycho-version>
     <acceleo-version>3.6.0-SNAPSHOT</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -169,15 +169,6 @@
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.edit</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.editor</module>
   	<module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.operator</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet.edit</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet.editor</module>
-  	<module>../../plugins/Types/PetriNet/edu.toronto.cs.se.modelepedia.petrinet.operator</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.diagram</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.edit</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.editor</module>
-  	<module>../../plugins/Types/PowerWindow/edu.toronto.cs.se.modelepedia.powerwindow.operator</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.diagram</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.edit</module>
@@ -208,6 +199,11 @@
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.diagram</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.edit</module>
   	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.editor</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
+  	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor</module>
+  	<module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
   	<module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
@@ -221,11 +217,10 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
-  	<module>../../features/edu.toronto.cs.se.modelepedia.petrinet.feature</module>
-  	<module>../../features/edu.toronto.cs.se.modelepedia.powerwindow.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.tutorial.feature</module>
+  	<module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>

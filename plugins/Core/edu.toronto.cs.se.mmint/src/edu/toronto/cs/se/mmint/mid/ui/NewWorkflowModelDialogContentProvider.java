@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -66,7 +66,7 @@ public class NewWorkflowModelDialogContentProvider implements ITreeContentProvid
 		if (parentElement instanceof MID) {
 			List<Model> modelTypes = new ArrayList<>();
 			for (Model modelType : ((MID) parentElement).getModels()) {
-				if (modelType instanceof ModelRel || modelType.isAbstract()) {
+				if (modelType instanceof ModelRel) {
 					continue;
 				}
 				modelTypes.add(modelType);

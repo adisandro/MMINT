@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -149,6 +149,29 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NestingOperatorItemProvider nestingOperatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.NestingOperator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNestingOperatorAdapter() {
+		if (nestingOperatorItemProvider == null) {
+			nestingOperatorItemProvider = new NestingOperatorItemProvider(this);
+		}
+
+		return nestingOperatorItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -238,75 +261,6 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		}
 
 		return operatorGenericItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OperatorConstraintItemProvider operatorConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOperatorConstraintAdapter() {
-		if (operatorConstraintItemProvider == null) {
-			operatorConstraintItemProvider = new OperatorConstraintItemProvider(this);
-		}
-
-		return operatorConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OperatorConstraintRuleItemProvider operatorConstraintRuleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOperatorConstraintRuleAdapter() {
-		if (operatorConstraintRuleItemProvider == null) {
-			operatorConstraintRuleItemProvider = new OperatorConstraintRuleItemProvider(this);
-		}
-
-		return operatorConstraintRuleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OperatorConstraintParameterItemProvider operatorConstraintParameterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOperatorConstraintParameterAdapter() {
-		if (operatorConstraintParameterItemProvider == null) {
-			operatorConstraintParameterItemProvider = new OperatorConstraintParameterItemProvider(this);
-		}
-
-		return operatorConstraintParameterItemProvider;
 	}
 
 	/**
@@ -411,13 +365,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 		if (operatorItemProvider != null) operatorItemProvider.dispose();
 		if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
 		if (randomOperatorItemProvider != null) randomOperatorItemProvider.dispose();
+		if (nestingOperatorItemProvider != null) nestingOperatorItemProvider.dispose();
 		if (workflowOperatorItemProvider != null) workflowOperatorItemProvider.dispose();
 		if (genericEndpointItemProvider != null) genericEndpointItemProvider.dispose();
 		if (operatorInputItemProvider != null) operatorInputItemProvider.dispose();
 		if (operatorGenericItemProvider != null) operatorGenericItemProvider.dispose();
-		if (operatorConstraintItemProvider != null) operatorConstraintItemProvider.dispose();
-		if (operatorConstraintRuleItemProvider != null) operatorConstraintRuleItemProvider.dispose();
-		if (operatorConstraintParameterItemProvider != null) operatorConstraintParameterItemProvider.dispose();
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,6 +15,8 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage;
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl;
 import edu.toronto.cs.se.modelepedia.primitive.file.FileFactory;
 import edu.toronto.cs.se.modelepedia.primitive.file.FileModel;
 import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
@@ -99,16 +101,19 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 		// Obtain or create and register interdependencies
 		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) : IntPackage.eINSTANCE);
 		StringPackageImpl theStringPackage = (StringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI) instanceof StringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI) : StringPackage.eINSTANCE);
+		BooleanPackageImpl theBooleanPackage = (BooleanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) instanceof BooleanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) : BooleanPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theFilePackage.createPackageContents();
 		theIntPackage.createPackageContents();
 		theStringPackage.createPackageContents();
+		theBooleanPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theFilePackage.initializePackageContents();
 		theIntPackage.initializePackageContents();
 		theStringPackage.initializePackageContents();
+		theBooleanPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theFilePackage.freeze();
@@ -211,28 +216,6 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });
 	}
 
 } //FilePackageImpl

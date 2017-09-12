@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -202,10 +202,9 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		}
 
 		// output
-		String randomGraphModelUri = FileUtils.replaceLastSegmentInUri(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
-		FileUtils.writeModelFile(randomGraph, randomGraphModelUri, true);
+		String randomGraphModelPath = FileUtils.replaceLastSegmentInPath(MMINT.getActiveInstanceMIDFile().getFullPath().toString(), lastSegmentUri);
 		Model graphModelType = MIDTypeRegistry.getType(Graph_MAVOPackage.eINSTANCE.getNsURI());
-		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraphModelUri, instanceMID);
+		Model randomGraphModel = graphModelType.createInstanceAndEditor(randomGraph, randomGraphModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, randomGraphModel);
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -94,6 +94,7 @@ public class ClassItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.CLASS__ATTRIBUTES);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.CLASS__OPERATIONS);
 		}
 		return childrenFeatures;
@@ -150,6 +151,7 @@ public class ClassItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class)) {
+			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__ATTRIBUTES:
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS__OPERATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -167,6 +169,11 @@ public class ClassItemProvider extends NamedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ICSE15_SequenceDiagram_MAVOPackage.Literals.CLASS__ATTRIBUTES,
+				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter

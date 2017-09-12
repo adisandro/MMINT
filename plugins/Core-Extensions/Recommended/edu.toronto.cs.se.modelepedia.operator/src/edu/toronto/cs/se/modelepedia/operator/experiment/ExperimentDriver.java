@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -72,7 +72,7 @@ public class ExperimentDriver extends OperatorImpl {
 
 			try {
 				// create experiment folder
-				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
+				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
 				if (!folder.exists(null)) {
 					folder.create(true, true, null);
 				}
@@ -105,7 +105,7 @@ public class ExperimentDriver extends OperatorImpl {
 				int j;
 				for (j = 0; j < maxSamples; j++) {
 					// create sample folder
-					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInUri(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
 					if (!folder.exists(null)) {
 						folder.create(true, true, null);
 					}

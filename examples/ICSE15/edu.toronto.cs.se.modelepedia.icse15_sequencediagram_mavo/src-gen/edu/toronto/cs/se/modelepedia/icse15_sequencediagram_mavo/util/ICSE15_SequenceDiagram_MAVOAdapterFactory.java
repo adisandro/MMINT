@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.mavo.MAVOReference;
 
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
@@ -107,6 +109,10 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 				return createClassAdapter();
 			}
 			@Override
+			public Adapter caseAttribute(Attribute object) {
+				return createAttributeAdapter();
+			}
+			@Override
 			public Adapter caseOperation(Operation object) {
 				return createOperationAdapter();
 			}
@@ -117,6 +123,10 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 			@Override
 			public Adapter caseClassReference(ClassReference object) {
 				return createClassReferenceAdapter();
+			}
+			@Override
+			public Adapter caseAttributeReference(AttributeReference object) {
+				return createAttributeReferenceAdapter();
 			}
 			@Override
 			public Adapter caseOperationReference(OperationReference object) {
@@ -223,6 +233,20 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute <em>Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute
+	 * @generated
+	 */
+	public Adapter createAttributeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -261,6 +285,20 @@ public class ICSE15_SequenceDiagram_MAVOAdapterFactory extends AdapterFactoryImp
 	 * @generated
 	 */
 	public Adapter createClassReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference <em>Attribute Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference
+	 * @generated
+	 */
+	public Adapter createAttributeReferenceAdapter() {
 		return null;
 	}
 

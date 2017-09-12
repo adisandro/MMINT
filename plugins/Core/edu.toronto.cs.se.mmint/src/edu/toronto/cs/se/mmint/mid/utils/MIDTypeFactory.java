@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -32,9 +32,6 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintParameter;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraintRule;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -416,18 +413,6 @@ public class MIDTypeFactory {
 	public static void addOperatorTypeConversion(ConversionOperator operatorType) {
 
 		operatorType.getInputs().get(0).getTarget().getConversionOperators().add(operatorType);
-	}
-
-	public static void addOperatorTypeConstraintRuleEndpoint(OperatorConstraintParameter constraintParam, OperatorConstraintRule constraintRule, ModelEndpointReference modelTypeEndpointRef, int endpointIndex, String ruleFeatureName) throws MMINTException {
-
-		constraintParam.setParameterRef(modelTypeEndpointRef);
-		constraintParam.setEndpointIndex(endpointIndex);
-		FileUtils.setModelObjectFeature(constraintRule, ruleFeatureName, constraintParam);
-	}
-
-	public static void addOperatorTypeConstraintRule(OperatorConstraintRule constraintRule, OperatorConstraint constraint, ModelEndpoint modelRelTypeEndpoint) throws MMINTException {
-
-		constraint.getRules().add(constraintRule);
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -114,9 +114,8 @@ public class ModelElementReferenceDropCommand extends ModelElementReferenceCreat
 		if (metamodelObj instanceof EClass) {
 supertypes:
 			for (EClass modelObjSuper : ((EClass) metamodelObj).getEAllSuperTypes()) {
-				String[] uris = MIDRegistry.getModelAndModelElementUris(modelObjSuper, MIDLevel.TYPES);
-				String modelTypeUri = uris[0];
-				String modelElemTypeUri = uris[1];
+				String modelTypeUri = MIDRegistry.getModelUri(modelObjSuper);
+				String modelElemTypeUri = MIDRegistry.getModelElementUri(modelObjSuper);
 				List<ModelEndpointReference> modelTypeEndpointRefsOrModelTypeEndpointRefsSuper = MIDRegistry.getEndpointReferences(modelTypeUri, modelRelType.getModelEndpointRefs());
 				if (modelTypeEndpointRefsOrModelTypeEndpointRefsSuper == null) {
 					continue;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -29,11 +29,11 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -61,7 +61,32 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	protected final static @NonNull String TRANSFORMATION_SUFFIX = "_transformed";
 
 	protected EObject tgtRootModelObj;
-	protected String tgtModelUri;
+	protected String tgtModelPath;
+
+	public static class OperatorConstraint implements IJavaOperatorConstraint {
+
+		@Override
+		public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
+
+			ModelRel modelRelType = (ModelRel) genericType;
+			// check 1: satisfies transformation constraint
+			if (!(new ModelRelTypeTransformationConstraint().validate(modelRelType))) {
+				return false;
+			}
+			Model srcModel = inputs.get(0).getModel();
+			// check 2: allowed source model
+			if (
+				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
+					modelRelType instanceof BinaryModelRel || // mandatory direction
+					!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+				)
+			) {
+				return false;
+			}
+
+			return true;
+		}
+	}
 
 	private void init() {
 
@@ -86,12 +111,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 				tgtContainerModelObj = transformModelObj(srcModelTypeEndpointRef, srcContainerModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 			}
 			// find containment based on model element types first, then fallback to first one available
-			String srcModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(srcModelObj.eContainingFeature(), MIDLevel.TYPES)[1];
+			String srcModelElemTypeContainmentUri = MIDRegistry.getModelElementUri(srcModelObj.eContainingFeature());
 			ModelElementReference srcModelElemTypeContainment = MIDRegistry.getReference(srcModelElemTypeContainmentUri, srcModelTypeEndpointRef.getModelElemRefs());
 			EReference containmentReference = null, fallbackContainmentReference = null;
 			for (EReference containment : tgtContainerModelObj.eClass().getEAllContainments()) {
 				if (MIDConstraintChecker.instanceofEMFClass(tgtModelObj, containment.getEType().getName())) {
-					String tgtModelElemTypeContainmentUri = MIDRegistry.getModelAndModelElementUris(containment, MIDLevel.TYPES)[1];
+					String tgtModelElemTypeContainmentUri = MIDRegistry.getModelElementUri(containment);
 					ModelElementReference tgtModelElemTypeContainment = MIDRegistry.getReference(tgtModelElemTypeContainmentUri, tgtModelTypeEndpointRef.getModelElemRefs());
 					if (
 						tgtModelElemTypeContainment == null ||
@@ -207,7 +232,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		FileUtils.writeModelFile(tgtRootModelObj, tgtModelUri, true);
+		FileUtils.writeModelFile(tgtRootModelObj, tgtModelPath, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
 			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
 			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
@@ -216,7 +241,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			targetModelElemRefs.add(tgtModelElemRef);
 			Mapping mappingType = MIDTypeRegistry.getType(MIDConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
 			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
-			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemRef.getObject().getName());
+			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
 	}
 
@@ -237,15 +262,17 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelUri = FileUtils.getUniqueUri(
-			FileUtils.replaceFileExtensionInUri(
-				FileUtils.addFileNameSuffixInUri(srcModel.getUri(), TRANSFORMATION_SUFFIX),
+		tgtModelPath = FileUtils.getUniquePath(
+			FileUtils.replaceFileExtensionInPath(
+				FileUtils.addFileNameSuffixInPath(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);
-		Model tgtModel = tgtModelType.createInstance(tgtModelUri, outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(null, outputMIDsByName.get(OUT_MODELREL));
-		traceModelRel.setName(srcModel.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModel.getName());
+		Model tgtModel = tgtModelType.createInstance(null, tgtModelPath, outputMIDsByName.get(OUT_MODEL));
+		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(
+			null,
+			srcModel.getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModel.getName(),
+			outputMIDsByName.get(OUT_MODELREL));
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstance(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstance(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
@@ -257,32 +284,6 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		outputsByName.put(OUT_MODELREL, traceModelRel);
 
 		return outputsByName;
-	}
-
-	@Override
-	public boolean isAllowedGeneric(GenericEndpoint genericTypeEndpoint, GenericElement genericType, EList<OperatorInput> inputs) throws MMINTException {
-
-		if (!super.isAllowedGeneric(genericTypeEndpoint, genericType, inputs)) {
-			return false;
-		}
-
-		ModelRel modelRelType = (ModelRel) genericType;
-		// check 1: satisfies transformation constraint
-		if (!(new ModelRelTypeTransformationConstraint().validate(modelRelType))) {
-			return false;
-		}
-		Model srcModel = inputs.get(0).getModel();
-		// check 2: allowed source model
-		if (
-			!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
-				modelRelType instanceof BinaryModelRel || // mandatory direction
-				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
-			)
-		) {
-			return false;
-		}
-
-		return true;
 	}
 
 }

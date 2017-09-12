@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -112,7 +112,7 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 		MID typeMID = getContainer();
 		Model srcModelType = getSource(), tgtModelType = getTarget();
 		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToExtend(typeMID, srcModelType, tgtModelType);
-		String newModelRelTypeName = MIDDialogs.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelType.getName());
+		String newModelRelTypeName = MIDDialogs.getStringInput("Create new light binary model relationship type", "Insert new binary model relationship type name", srcModelType.getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelType.getName());
 		String[] constraint = MIDDialogs.getConstraintInput("Create new light binary model relationship type", null);
 		BinaryModelRel newModelRelType = modelRelType.createBinarySubtype(newModelRelTypeName, false);
 		newModelRelType.addTypeConstraint(constraint[0], constraint[1]);
@@ -144,14 +144,18 @@ public class BinaryModelRelNewBinaryRelCommand extends BinaryModelRelCreateComma
 
 		MID instanceMID = getContainer();
 		ModelRel modelRelType = MIDDialogs.selectModelRelTypeToCreate(getSource(), getTarget());
-		BinaryModelRel newModelRel = modelRelType.createBinaryInstance(null, instanceMID);
+		Model srcModel = getSource(), tgtModel = getTarget();
+		BinaryModelRel newModelRel = modelRelType.createBinaryInstance(
+			null,
+			srcModel.getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModel.getName(),
+			instanceMID);
 
 		List<String> modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getSource());
 		ModelEndpointReference modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "src ");
-		modelTypeEndpointRef.getObject().createInstance(getSource(), newModelRel);
+		modelTypeEndpointRef.getObject().createInstance(srcModel, newModelRel);
 		modelTypeEndpointUris = MIDConstraintChecker.getAllowedModelEndpoints(newModelRel, null, getTarget());
 		modelTypeEndpointRef = MIDDialogs.selectModelTypeEndpointToCreate(newModelRel, modelTypeEndpointUris, "tgt ");
-		modelTypeEndpointRef.getObject().createInstance(getTarget(), newModelRel);
+		modelTypeEndpointRef.getObject().createInstance(tgtModel, newModelRel);
 
 		return newModelRel;
 	}

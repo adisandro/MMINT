@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util;
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.mavo.MAVOReference;
 
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
@@ -122,6 +124,15 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ICSE15_SequenceDiagram_MAVOPackage.ATTRIBUTE: {
+				Attribute attribute = (Attribute)theEObject;
+				T result = caseAttribute(attribute);
+				if (result == null) result = caseNamedElement(attribute);
+				if (result == null) result = caseMAVOElement(attribute);
+				if (result == null) result = caseLogicElement(attribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ICSE15_SequenceDiagram_MAVOPackage.OPERATION: {
 				Operation operation = (Operation)theEObject;
 				T result = caseOperation(operation);
@@ -146,6 +157,15 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMAVOReference(classReference);
 				if (result == null) result = caseMAVOElement(classReference);
 				if (result == null) result = caseLogicElement(classReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ICSE15_SequenceDiagram_MAVOPackage.ATTRIBUTE_REFERENCE: {
+				AttributeReference attributeReference = (AttributeReference)theEObject;
+				T result = caseAttributeReference(attributeReference);
+				if (result == null) result = caseMAVOReference(attributeReference);
+				if (result == null) result = caseMAVOElement(attributeReference);
+				if (result == null) result = caseLogicElement(attributeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -241,6 +261,21 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttribute(Attribute object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -282,6 +317,21 @@ public class ICSE15_SequenceDiagram_MAVOSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseClassReference(ClassReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeReference(AttributeReference object) {
 		return null;
 	}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -28,7 +28,7 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 
 	protected boolean validate(Model model, String modelTypeName) {
 
-		String notationFileUri = FileUtils.replaceFileExtensionInUri(model.getUri(), NOTATION_FILEEXTENSION);
+		String notationFileUri = FileUtils.replaceFileExtensionInPath(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
 			Diagram diagram = (Diagram) FileUtils.readModelFile(notationFileUri, true);
 			return diagram.getType().equals(modelTypeName);

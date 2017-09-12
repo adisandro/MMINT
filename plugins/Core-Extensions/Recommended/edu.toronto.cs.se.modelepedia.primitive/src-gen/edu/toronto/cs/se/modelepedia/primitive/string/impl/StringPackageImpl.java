@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.modelepedia.primitive.string.impl;
 
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage;
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl;
 import edu.toronto.cs.se.modelepedia.primitive.file.FilePackage;
 import edu.toronto.cs.se.modelepedia.primitive.file.impl.FilePackageImpl;
 import edu.toronto.cs.se.modelepedia.primitive.int_.IntPackage;
@@ -93,16 +95,19 @@ public class StringPackageImpl extends EPackageImpl implements StringPackage {
 		// Obtain or create and register interdependencies
 		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) : IntPackage.eINSTANCE);
 		FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
+		BooleanPackageImpl theBooleanPackage = (BooleanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) instanceof BooleanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) : BooleanPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theStringPackage.createPackageContents();
 		theIntPackage.createPackageContents();
 		theFilePackage.createPackageContents();
+		theBooleanPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStringPackage.initializePackageContents();
 		theIntPackage.initializePackageContents();
 		theFilePackage.initializePackageContents();
+		theBooleanPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStringPackage.freeze();

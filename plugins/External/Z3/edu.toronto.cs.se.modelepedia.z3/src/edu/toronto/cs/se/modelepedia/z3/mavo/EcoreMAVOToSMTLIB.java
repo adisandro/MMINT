@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -95,7 +95,7 @@ public class EcoreMAVOToSMTLIB extends OperatorImpl {
 
 	protected File createAcceleoFolder(Model mavoModel) {
 
-		return (new File(FileUtils.prependWorkspacePathToUri(mavoModel.getUri()))).getParentFile();
+		return (new File(FileUtils.prependWorkspacePath(mavoModel.getUri()))).getParentFile();
 	}
 
 	protected AbstractAcceleoGenerator createAcceleoGenerator(MAVORoot rootMavoModelObj, File folder, List<Object> m2tArgs) throws IOException {

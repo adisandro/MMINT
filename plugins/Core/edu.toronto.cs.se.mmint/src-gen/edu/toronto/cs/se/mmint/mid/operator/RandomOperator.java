@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -34,29 +34,29 @@ import java.util.Random;
  * @generated
  */
 public interface RandomOperator extends Operator {
-	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The random variable.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see #setState(Random)
-	 * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getRandomOperator_State()
-	 * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Random" required="true" transient="true"
-	 * @generated
-	 */
-	Random getState();
+    /**
+     * Returns the value of the '<em><b>State</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The random variable.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>State</em>' attribute.
+     * @see #setState(Random)
+     * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getRandomOperator_State()
+     * @model dataType="edu.toronto.cs.se.mmint.mid.operator.Random" required="true" transient="true"
+     * @generated
+     */
+    Random getState();
 
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.RandomOperator#getState <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see #getState()
-	 * @generated
-	 */
-	void setState(Random value);
+    /**
+     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.RandomOperator#getState <em>State</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>State</em>' attribute.
+     * @see #getState()
+     * @generated
+     */
+    void setState(Random value);
 
 } // RandomOperator

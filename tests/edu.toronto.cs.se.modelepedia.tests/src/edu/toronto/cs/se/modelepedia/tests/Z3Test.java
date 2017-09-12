@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -54,7 +54,7 @@ public class Z3Test extends MMINTTest {
 		EList<Model> inputModels = new BasicEList<Model>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
-		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(ecore2smt, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(ecore2smt, instanceMID);
 		ecore2smt.startInstance(inputs, null, new BasicEList<>(), outputMIDsByName, instanceMID);
 		Z3MAVOModelParser z3ModelParser = ecore2smt.getZ3MAVOModelParser();
 		MAVORoot rootMavoModelObj = (MAVORoot) model.getEMFInstanceRoot();

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -238,15 +238,14 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		// output
 		String uri = (getInputSubdir() != null) ?
-			FileUtils.replaceLastSegmentInUri(
+			FileUtils.replaceLastSegmentInPath(
 				inputModel.getUri(),
-				getInputSubdir() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromUri(inputModel.getUri())
+				getInputSubdir() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromPath(inputModel.getUri())
 			) :
 			inputModel.getUri();
-		String outputModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(uri, MODEL_GENERATED_SUFFIX), true, false);
-		FileUtils.writeModelFile(outputRootModelObj, outputModelUri, true);
-		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputModelUri, instanceMID);
-		FileUtils.createTextFile(FileUtils.replaceFileExtensionInUri(outputModelUri, "csv"), presenceConditions, true);
+		String outputModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(uri, MODEL_GENERATED_SUFFIX), true, false);
+		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputRootModelObj, outputModelPath, instanceMID);
+		FileUtils.createTextFile(FileUtils.replaceFileExtensionInPath(outputModelPath, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, outputModel);
 

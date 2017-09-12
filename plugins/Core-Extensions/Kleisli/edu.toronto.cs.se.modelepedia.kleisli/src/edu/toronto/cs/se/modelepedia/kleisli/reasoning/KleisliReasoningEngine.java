@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,15 +23,8 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -136,30 +129,6 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 				MMINTException.print(IStatus.WARNING, "Error setting model object feature, skipping it", e);
 			}
 		}
-	}
-
-	@Override
-	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
-
-		return true;
-	}
-
-	@Override
-	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
-
-		return null;
 	}
 
 }

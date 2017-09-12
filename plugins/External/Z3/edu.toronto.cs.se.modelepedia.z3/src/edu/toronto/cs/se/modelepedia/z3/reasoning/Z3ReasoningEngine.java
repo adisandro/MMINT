@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -41,7 +41,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -175,21 +174,9 @@ public class Z3ReasoningEngine implements IMAVOReasoningEngine {
 	}
 
 	@Override
-	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		return checkMAVOModelConstraint(model, constraint, constraintLevel).toBoolean();
-	}
-
-	@Override
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
-
-		return true;
 	}
 
 	public Set<String> allSATWithSolver(@NonNull Z3IncrementalSolver z3IncSolver, @NonNull Z3MAVOModelParser z3ModelParser, @NonNull Z3Model z3Model, @NonNull Set<MAVOElement> mavoModelObjs, MAVORoot rootMavoModelObj) {

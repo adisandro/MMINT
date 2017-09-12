@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -29,13 +30,14 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
@@ -46,12 +48,13 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * A container for common functions of a Mid diagram.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDDialogs {
 
+    //TODO MMINT[MISC] Remove double layer MIDDialogs + MIDTypeRegistry, and do filtering directly in content providers
 	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
 
 	protected static Object openDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
@@ -88,7 +91,7 @@ public class MIDDialogs {
 	/**
 	 * Shows a tree dialog to select a model type choosing from the registered
 	 * model types.
-	 * 
+	 *
 	 * @return The choosen model type.
 	 * @throws MIDDialogCancellation
 	 *             If the selection was not completed for any reason.
@@ -105,7 +108,7 @@ public class MIDDialogs {
 	/**
 	 * Shows a tree dialog to select a model relationship type choosing from the
 	 * registered model relationship types.
-	 * 
+	 *
 	 * @return The choosen model relationship type.
 	 * @throws MIDDialogCancellation
 	 *             If the selection was not completed for any reason.
@@ -124,7 +127,7 @@ public class MIDDialogs {
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
 		String title = "Create new light link type";
 		String message = "Choose link supertype";
-	
+
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -138,10 +141,30 @@ public class MIDDialogs {
 		return workflowMIDFile.getFullPath().toString();
 	}
 
+	public static @NonNull Operator selectOperatorTypeToOverride(@NonNull MID typeMID, @NonNull String workflowMIDPath,
+	                                                             @NonNull String newOperatorName)
+	                                                             throws MMINTException {
+
+        NewOperatorTypeOverrideDialogContentProvider contentProvider;
+        try {
+            contentProvider = new NewOperatorTypeOverrideDialogContentProvider(workflowMIDPath, newOperatorName);
+        }
+        catch (Exception e) {
+            throw new MMINTException("Error opening the Workflow MID", e);
+        }
+        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(shell, new MIDDialogLabelProvider(), contentProvider,
+                                                                   typeMID);
+	    String title = "Create new operator type from workflow";
+	    String message = "Other operators exist with the same name, you can select one of them to override";
+
+	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+	}
+
 	/**
 	 * Shows a tree dialog to create a model choosing from the registered model
 	 * types, and executes its wizard.
-	 * 
+	 *
 	 * @param instanceMID
 	 *            The Instance MID.
 	 * @return The editor for the created model.
@@ -155,7 +178,7 @@ public class MIDDialogs {
 		String message = "Choose editor to create model";
 		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
-		String midContainerUri = FileUtils.replaceLastSegmentInUri(instanceMID.eResource().getURI().toPlatformString(true), "");
+		String midContainerUri = FileUtils.replaceLastSegmentInPath(instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
 			midContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
@@ -178,7 +201,7 @@ public class MIDDialogs {
 
 	/**
 	 * Shows a dialog to choose one among existing models and imports it.
-	 * 
+	 *
 	 * @param relOnly
 	 *            True to allow the selection of relationship files only, false
 	 *            to allow all registered model files.
@@ -228,7 +251,7 @@ public class MIDDialogs {
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelElementEndpointCreationDialog(mappingRef, modelElemTypeEndpointUris);
 		String title = "Create new model endpoint";
 		String message = "Choose model type endpoint role";
-	
+
 		return (ModelElementEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -236,8 +259,9 @@ public class MIDDialogs {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getGenericTypeCreationDialog(genericSuperTypeEndpoint, inputs);
 		String title = "Run generic operator";
-		String message = "Choose generic type <" + genericSuperTypeEndpoint.getName() + ">";
-	
+		String message = "Choose type <" + genericSuperTypeEndpoint.getName() + "> of operator " +
+			((Operator) genericSuperTypeEndpoint.eContainer()).getName();
+
 		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -268,7 +292,7 @@ public class MIDDialogs {
 
 	/**
 	 * Shows an input dialog to get text from the user.
-	 * 
+	 *
 	 * @param dialogTitle
 	 *            The dialog title.
 	 * @param dialogMessage

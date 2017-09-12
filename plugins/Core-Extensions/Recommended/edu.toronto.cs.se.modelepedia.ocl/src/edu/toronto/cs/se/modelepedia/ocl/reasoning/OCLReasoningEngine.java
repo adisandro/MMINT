@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,12 +11,9 @@
  */
 package edu.toronto.cs.se.modelepedia.ocl.reasoning;
 
-import java.util.Map;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
@@ -27,7 +24,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.reasoning.IReasoningEngine;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -70,7 +66,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkModelConstraint(@NonNull Model model, ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {
@@ -84,24 +80,6 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			MMINTException.print(IStatus.ERROR, "Can't get context for OCL constraint \"" + constraint + "\" applied to model " + model + " , evaluating to false", e);
 			return false;
 		}
-	}
-
-	@Override
-	public boolean checkOperatorInputConstraint(@NonNull Map<String, Model> inputsByName, @NonNull OperatorConstraint constraint) {
-
-		return true;
-	}
-
-	@Override
-	public boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
-
-		return true;
-	}
-
-	@Override
-	public @Nullable Model refineModelByConstraint(@NonNull Model model) {
-
-		return null;
 	}
 
 	public boolean checkConstraint(EObject modelObj, String oclConstraint) {

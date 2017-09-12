@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -83,8 +83,8 @@ public class ICSE14 extends ProductLineHenshinTransformation {
 
 		featureModelName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_FEATUREMODELNAME);
 		Properties constraintProperties = new Properties();
-		String constraintPropertiesFile = FileUtils.prependWorkspacePathToUri(
-			FileUtils.replaceLastSegmentInUri(
+		String constraintPropertiesFile = FileUtils.prependWorkspacePath(
+			FileUtils.replaceLastSegmentInPath(
 				inputModel.getUri(),
 				FEATURE_MODELS_SUBDIR + MMINT.URI_SEPARATOR + featureModelName + MIDOperatorIOUtils.PROPERTIES_SUFFIX
 			)

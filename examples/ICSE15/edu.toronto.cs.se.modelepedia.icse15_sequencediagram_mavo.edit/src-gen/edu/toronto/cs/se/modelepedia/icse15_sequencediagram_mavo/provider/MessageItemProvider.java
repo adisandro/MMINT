@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -71,6 +71,7 @@ public class MessageItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__ATTRIBUTES);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__OPERATION);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__SOURCE_LIFELINE);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__TARGET_LIFELINE);
@@ -129,6 +130,7 @@ public class MessageItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Message.class)) {
+			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__ATTRIBUTES:
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__OPERATION:
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__SOURCE_LIFELINE:
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__TARGET_LIFELINE:
@@ -148,6 +150,11 @@ public class MessageItemProvider extends NamedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__ATTRIBUTES,
+				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createAttributeReference()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -34,224 +34,202 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
  * @generated
  */
 public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory {
-	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static OperatorFactory init() {
-		try {
-			OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
-			if (theOperatorFactory != null) {
-				return theOperatorFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new OperatorFactoryImpl();
-	}
+    /**
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static OperatorFactory init() {
+        try {
+            OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
+            if (theOperatorFactory != null) {
+                return theOperatorFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new OperatorFactoryImpl();
+    }
 
-	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorFactoryImpl() {
-		super();
-	}
+    /**
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperatorFactoryImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case OperatorPackage.OPERATOR: return createOperator();
-			case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
-			case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
-			case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
-			case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
-			case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
-			case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
-			case OperatorPackage.OPERATOR_CONSTRAINT: return createOperatorConstraint();
-			case OperatorPackage.OPERATOR_CONSTRAINT_RULE: return createOperatorConstraintRule();
-			case OperatorPackage.OPERATOR_CONSTRAINT_PARAMETER: return createOperatorConstraintParameter();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public EObject create(EClass eClass) {
+        switch (eClass.getClassifierID()) {
+            case OperatorPackage.OPERATOR: return createOperator();
+            case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
+            case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
+            case OperatorPackage.NESTING_OPERATOR: return createNestingOperator();
+            case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
+            case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
+            case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
+            case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case OperatorPackage.RANDOM:
-				return createRandomFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
+        switch (eDataType.getClassifierID()) {
+            case OperatorPackage.RANDOM:
+                return createRandomFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case OperatorPackage.RANDOM:
-				return convertRandomToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
+        switch (eDataType.getClassifierID()) {
+            case OperatorPackage.RANDOM:
+                return convertRandomToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operator createOperator() {
-		OperatorImpl operator = new OperatorImpl();
-		return operator;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Operator createOperator() {
+        OperatorImpl operator = new OperatorImpl();
+        return operator;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConversionOperator createConversionOperator() {
-		ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
-		return conversionOperator;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ConversionOperator createConversionOperator() {
+        ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
+        return conversionOperator;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RandomOperator createRandomOperator() {
-		RandomOperatorImpl randomOperator = new RandomOperatorImpl();
-		return randomOperator;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RandomOperator createRandomOperator() {
+        RandomOperatorImpl randomOperator = new RandomOperatorImpl();
+        return randomOperator;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WorkflowOperator createWorkflowOperator() {
-		WorkflowOperatorImpl workflowOperator = new WorkflowOperatorImpl();
-		return workflowOperator;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NestingOperator createNestingOperator() {
+        NestingOperatorImpl nestingOperator = new NestingOperatorImpl();
+        return nestingOperator;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenericEndpoint createGenericEndpoint() {
-		GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
-		return genericEndpoint;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public WorkflowOperator createWorkflowOperator() {
+        WorkflowOperatorImpl workflowOperator = new WorkflowOperatorImpl();
+        return workflowOperator;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorInput createOperatorInput() {
-		OperatorInputImpl operatorInput = new OperatorInputImpl();
-		return operatorInput;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GenericEndpoint createGenericEndpoint() {
+        GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
+        return genericEndpoint;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorGeneric createOperatorGeneric() {
-		OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
-		return operatorGeneric;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperatorInput createOperatorInput() {
+        OperatorInputImpl operatorInput = new OperatorInputImpl();
+        return operatorInput;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorConstraint createOperatorConstraint() {
-		OperatorConstraintImpl operatorConstraint = new OperatorConstraintImpl();
-		return operatorConstraint;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperatorGeneric createOperatorGeneric() {
+        OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
+        return operatorGeneric;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorConstraintRule createOperatorConstraintRule() {
-		OperatorConstraintRuleImpl operatorConstraintRule = new OperatorConstraintRuleImpl();
-		return operatorConstraintRule;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Random createRandomFromString(EDataType eDataType, String initialValue) {
+        return (Random)super.createFromString(eDataType, initialValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorConstraintParameter createOperatorConstraintParameter() {
-		OperatorConstraintParameterImpl operatorConstraintParameter = new OperatorConstraintParameterImpl();
-		return operatorConstraintParameter;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertRandomToString(EDataType eDataType, Object instanceValue) {
+        return super.convertToString(eDataType, instanceValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Random createRandomFromString(EDataType eDataType, String initialValue) {
-		return (Random)super.createFromString(eDataType, initialValue);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperatorPackage getOperatorPackage() {
+        return (OperatorPackage)getEPackage();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertRandomToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorPackage getOperatorPackage() {
-		return (OperatorPackage)getEPackage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
-	@Deprecated
-	public static OperatorPackage getPackage() {
-		return OperatorPackage.eINSTANCE;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @deprecated
+     * @generated
+     */
+    @Deprecated
+    public static OperatorPackage getPackage() {
+        return OperatorPackage.eINSTANCE;
+    }
 
 } //OperatorFactoryImpl

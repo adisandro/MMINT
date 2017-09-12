@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -83,11 +82,10 @@ public class MODELS15 extends RandomOperatorImpl {
 				cdClasses.put(className, clazz);
 			}
 			// write class diagram to file and create model
-			String cdModelUri = FileUtils.replaceLastSegmentInUri(
+			String cdModelPath = FileUtils.replaceLastSegmentInPath(
 				instanceMIDUri, CD_MODEL_NAME + i + MMINT.MODEL_FILEEXTENSION_SEPARATOR + cdModelType.getFileExtension());
 			try {
-				FileUtils.writeModelFile(classDiagram, cdModelUri, true);
-				cdModelType.createInstance(cdModelUri, cdMID);
+				cdModelType.createInstance(classDiagram, cdModelPath, cdMID);
 			}
 			catch (Exception e) {
 				MMINTException.print(IStatus.WARNING, "Can't generate class diagram number " + i + " , skipping it", e);
@@ -110,14 +108,12 @@ public class MODELS15 extends RandomOperatorImpl {
 		}
 
 		// create random class diagrams in a mid
-		String instanceMIDUri = MIDRegistry.getModelAndModelElementUris(instanceMID, MIDLevel.INSTANCES)[0];
+		String instanceMIDUri = MIDRegistry.getModelUri(instanceMID);
 		MID cdMID = createClassDiagrams(instanceMIDUri);
 
 		// output
-		String cdMIDModelUri = FileUtils.replaceFileNameInUri(instanceMIDUri, OUT_MID_NAME);
-		FileUtils.writeModelFile(cdMID, cdMIDModelUri, true);
-		Model midModelType = MIDTypeRegistry.getMIDModelType();
-		Model cdMIDModel = midModelType.createInstanceAndEditor(cdMIDModelUri, instanceMID);
+		String cdMIDModelPath = FileUtils.replaceFileNameInPath(instanceMIDUri, OUT_MID_NAME);
+		Model cdMIDModel = MIDTypeRegistry.getMIDModelType().createInstanceAndEditor(cdMID, cdMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, cdMIDModel);
 

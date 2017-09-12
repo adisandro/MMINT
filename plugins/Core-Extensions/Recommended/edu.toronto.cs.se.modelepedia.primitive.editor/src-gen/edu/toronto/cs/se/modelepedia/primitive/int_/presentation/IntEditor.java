@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -164,6 +164,8 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import edu.toronto.cs.se.modelepedia.primitive.int_.provider.IntItemProviderAdapterFactory;
+
+import edu.toronto.cs.se.modelepedia.primitive.boolean_.provider.BooleanItemProviderAdapterFactory;
 
 import edu.toronto.cs.se.modelepedia.primitive.presentation.PrimitiveEditorPlugin;
 
@@ -716,6 +718,7 @@ public class IntEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new IntItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new StringItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new BooleanItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.

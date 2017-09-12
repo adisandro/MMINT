@@ -1,26 +1,37 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint;
 
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.swt.widgets.Shell;
@@ -39,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -69,15 +81,15 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * The registry for querying the types.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDTypeRegistry {
 
 	/**
 	 * Gets a type from the repository.
-	 * 
+	 *
 	 * @param typeUri
 	 *            The uri of the type.
 	 * @return The type, null if the uri is not found or found not to be of the
@@ -90,7 +102,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the list of operator types in the repository.
-	 * 
+	 *
 	 * @return The list of operator types in the repository.
 	 */
 	public static List<Operator> getOperatorTypes() {
@@ -100,7 +112,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the list of model types in the repository.
-	 * 
+	 *
 	 * @return The list of model types in the repository.
 	 */
 	public static List<Model> getModelTypes() {
@@ -110,7 +122,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the list of generic types in the repository.
-	 * 
+	 *
 	 * @return The list of generic types in the repository.
 	 */
 	public static List<GenericElement> getGenericTypes() {
@@ -124,7 +136,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the list of editor types in the repository.
-	 * 
+	 *
 	 * @return The list of editor types in the repository.
 	 */
 	public static EList<Editor> getEditorTypes() {
@@ -134,7 +146,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the list of model relationship types in the repository.
-	 * 
+	 *
 	 * @return The list of model relationship types in the repository.
 	 */
 	public static EList<ModelRel> getModelRelTypes() {
@@ -144,7 +156,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the list of file extensions for all model types in the repository.
-	 * 
+	 *
 	 * @return The list of file extensions for model types.
 	 */
 	public static List<String> getModelTypeFileExtensions() {
@@ -174,7 +186,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model types in the Type MID, in order
 	 * to create a new "light" model type.
-	 * 
+	 *
 	 * @param typeMID
 	 *            The Type MID.
 	 * @return The tree dialog to create a new "light" model type.
@@ -195,7 +207,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model relationship types in the Type MID, in order to create a new "light"
 	 * model relationship type.
-	 * 
+	 *
 	 * @param newSrcModelType
 	 *            The model type that is going to be the target of the source
 	 *            model type endpoint, null if the model relationship type to be
@@ -206,7 +218,7 @@ public class MIDTypeRegistry {
 	 *            created is not binary.
 	 * @param typeMID
 	 *            The Type MID.
-	 * 
+	 *
 	 * @return The tree dialog to create a new "light" model relationship type.
 	 */
 	public static MIDTreeSelectionDialog getModelRelTypeCreationDialog(Model newSrcModelType, Model newTgtModelType, MID typeMID) {
@@ -216,7 +228,7 @@ public class MIDTypeRegistry {
 		if (newSrcModelType != null && newTgtModelType != null) {
 			String newSrcUri = newSrcModelType.getUri();
 			String newTgtUri = newTgtModelType.getUri();
-			modelRelTypeUris = new ArrayList<String>();
+			modelRelTypeUris = new ArrayList<>();
 
 			for (ModelRel modelRelType : typeMID.getModelRels()) {
 				// binary can only inherit from root or binary
@@ -255,7 +267,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all mapping types in a model relationship
 	 * type, in order to create a new "light" mapping type and a reference to it.
-	 * 
+	 *
 	 * @param newSrcModelElemTypeRef
 	 *            The reference to the model element type that is going to be
 	 *            the target of the source model element type endpoint, null if
@@ -276,7 +288,7 @@ public class MIDTypeRegistry {
 			MID typeMID = modelRelType.getMIDContainer();
 			String newSrcUri = newSrcModelElemTypeRef.getUri();
 			String newTgtUri = newTgtModelElemTypeRef.getUri();
-			mappingTypeUris = new ArrayList<String>();
+			mappingTypeUris = new ArrayList<>();
 
 			for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 				// binary can only inherit from root or binary
@@ -333,19 +345,17 @@ public class MIDTypeRegistry {
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {
+		    if (genericType.getUri().equals(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+		                                    WorkflowOperator.class.getSimpleName())) {
+		        continue;
+		    }
 			try {
-				if (genericType.isAbstract()) {
-					continue;
-				}
-				if (!operatorType.isAllowedGeneric(genericSuperTypeEndpoint, genericType, inputs)) {
+				if (MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getClosestTypeConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
 					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
-					continue;
+					filteredGenericTypes.add(genericType);
 				}
-				filteredGenericTypes.add(genericType);
 			}
-			catch (MMINTException e) {
-				continue;
-			}
+			catch (MMINTException e) {}
 		}
 
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -362,7 +372,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model types in the repository and their
 	 * editor types, in order to create a new model.
-	 * 
+	 *
 	 * @return The tree dialog to create a new model.
 	 */
 	public static MIDTreeSelectionDialog getModelCreationDialog() {
@@ -382,7 +392,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model files in the workspace, in order
 	 * to import an existing model.
-	 * 
+	 *
 	 * @return The tree dialog to import an existing model.
 	 */
 	public static MIDTreeSelectionDialog getModelImportDialog() {
@@ -403,7 +413,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model relationship types in the
 	 * repository, in order to create a new model relationship.
-	 * 
+	 *
 	 * @param targetSrcModel
 	 *            The model that is going to be the target of the source model
 	 *            endpoint, null if the model relationship to be created is not
@@ -430,7 +440,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model type endpoints in a model
 	 * relationship type, in order to create a new model endpoint.
-	 * 
+	 *
 	 * @param modelRel
 	 *            The model relationship that will contain the model endpoint to
 	 *            be created.
@@ -455,7 +465,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all mapping types in a model relationship
 	 * type, in order to create a new mapping and a reference to it.
-	 * 
+	 *
 	 * @param targetSrcModelElemRef
 	 *            The reference to the model element that is going to be the
 	 *            target of the source model element endpoint, null if the mapping
@@ -486,7 +496,7 @@ public class MIDTypeRegistry {
 	/**
 	 * Gets a tree dialog that shows all model element type endpoints in a mapping
 	 * type, in order to create a new model element endpoint.
-	 * 
+	 *
 	 * @param mappingRef
 	 *            The reference to the mapping that will contain the model element
 	 *            endpoint to be created.
@@ -529,7 +539,7 @@ public class MIDTypeRegistry {
 
 	/**
 	 * Gets the bundle (Eclipse plugin) that declares a type.
-	 * 
+	 *
 	 * @param typeUri
 	 *            The uri of the type.
 	 * @return The bundle that declares a type, null if it can't be found.
@@ -545,9 +555,44 @@ public class MIDTypeRegistry {
 		return bundle;
 	}
 
+	public static @NonNull String getFileBundlePath(@NonNull ExtendibleElement typeInBundle,
+	                                                @NonNull String relativeFilePath) throws Exception {
+
+        String bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+        String fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
+        String filePath;
+        if (bundlePath.endsWith("jar")) { // binary installation
+            int separator = bundlePath.lastIndexOf("_");
+            bundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
+            if (!FileUtils.isFile(bundlePath, false)) {
+                throw new MMINTException("Can't find the source file for " + fileName +
+                                         " (did you install mmint.sdk?)");
+            }
+            JarFile bundleJar = new JarFile(new File(bundlePath));
+            ZipEntry bundleJarEntry = bundleJar.getEntry(relativeFilePath);
+            Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + File.separator + fileName);
+            Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
+            filePath = tmpFilePath.toString();
+            bundleJar.close();
+        }
+        else { // running from the sources
+            Bundle bundle = MIDTypeRegistry.getTypeBundle(typeInBundle.getUri());
+            if (bundle == null) {
+                throw new MMINTException("Can't find the bundle for " + typeInBundle.getName());
+            }
+            Enumeration<URL> bundleEntries = bundle.findEntries("/", fileName, true);
+            if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
+                throw new MMINTException("Can't find the source file for " + fileName);
+            }
+            filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+        }
+
+        return filePath;
+	}
+
 	/**
 	 * Gets the uri of the metamodel of a metamodel-extended "light" model type.
-	 * 
+	 *
 	 * @param modelType
 	 *            The metamodel-extended "light" model type.
 	 * @return The uri of the metamodel extension if it exists, null if it
@@ -561,8 +606,18 @@ public class MIDTypeRegistry {
 		String metamodelUri = modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
 		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
-			FileUtils.prependStatePathToUri(metamodelUri) :
+			FileUtils.prependStatePath(metamodelUri) :
 			null;
+	}
+
+	public static @Nullable IViewProvider getCachedMIDViewProvider() {
+
+		return MMINT.cachedMIDViewProvider;
+	}
+
+	public static void setCachedMIDViewProvider(@Nullable IViewProvider midViewProvider) {
+
+		MMINT.cachedMIDViewProvider = midViewProvider;
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,6 +23,10 @@ public class KleisliModelRelTypeConstraint implements IJavaModelConstraint {
 	@Override
 	public boolean validate(Model model) {
 
+		//TODO MMINT[OO] There should be an api to do type cast with a metamodel extension like this
+		if (!(model instanceof KleisliModelRel)) {
+			return false;
+		}
 		KleisliModelRel kModelRelType = (KleisliModelRel) model;
 		if (!(new ModelRelTypeTransformationConstraint().validate(kModelRelType))) {
 			return false;

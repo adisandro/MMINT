@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -43,15 +43,15 @@ public class UMLToClassDiagramMAVO extends ConversionOperatorImpl {
 		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
 
 		// transform using atl
-		String newCdModelUri = FileUtils.replaceFileExtensionInUri(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
+		String newCdModelPath = FileUtils.replaceFileExtensionInPath(umlModel.getUri(), ClassDiagram_MAVOPackage.eNAME);
 		UMLToClassDiagramMAVO_M2M atl = new UMLToClassDiagramMAVO_M2M();
 		atl.loadModels(umlModel.getUri());
 		atl.doUMLToClassDiagramMAVO_M2M(new NullProgressMonitor());
-		atl.saveModels(newCdModelUri);
+		atl.saveModels(newCdModelPath);
 
 		// output
 		Model cdModelType = MIDTypeRegistry.getType(ClassDiagram_MAVOPackage.eNS_URI);
-		newCdModel = cdModelType.createInstanceAndEditor(newCdModelUri, instanceMID);
+		newCdModel = cdModelType.createInstanceAndEditor(null, newCdModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MODEL, newCdModel);
 

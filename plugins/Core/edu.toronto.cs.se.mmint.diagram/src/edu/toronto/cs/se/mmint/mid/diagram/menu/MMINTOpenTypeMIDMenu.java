@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -45,10 +45,10 @@ public class MMINTOpenTypeMIDMenu extends AbstractHandler {
 
 	public static void createTypeMIDDiagram() {
 
-		String typeMIDPath = FileUtils.prependStatePathToUri(MMINT.TYPEMID_FILENAME);
+		String typeMIDPath = FileUtils.prependStatePath(MMINT.TYPEMID_FILENAME);
 		String typeMIDDiagramPath = typeMIDPath + GMFUtils.DIAGRAM_SUFFIX;
 		try {
-			GMFUtils.createGMFDiagram(typeMIDPath, typeMIDDiagramPath, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
+			GMFUtils.createGMFDiagramAndFile(typeMIDPath, typeMIDDiagramPath, MIDEditPart.MODEL_ID, MIDDiagramEditorPlugin.ID, false);
 		}
 		catch (Exception e) {
 			MMINTException.print(IStatus.ERROR, "Error creating Type MID diagram", e);

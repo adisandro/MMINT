@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -23,21 +23,23 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorConstraint;
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -52,7 +54,7 @@ import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
 /**
  * The constraint checker for multimodels.
- * 
+ *
  * @author Alessio Di Sandro
  *
  */
@@ -64,7 +66,7 @@ public class MIDConstraintChecker {
 		List<ModelRel> modelRelSubtypes = MIDTypeHierarchy.getSubtypes(modelRelType, typeMID);
 
 		return (modelRelSubtypes.isEmpty()) ? true : false;
-	}	
+	}
 
 	public static boolean isAllowedModelTypeEndpoint(BinaryModelRel modelRelType, Model newSrcModelType, Model newTgtModelType) {
 
@@ -126,10 +128,10 @@ public class MIDConstraintChecker {
 
 	public static List<String> getAllowedModelRelTypes(Model targetSrcModel, Model targetTgtModel) {
 
-		List<String> modelRelTypeUris = new ArrayList<String>();
+		List<String> modelRelTypeUris = new ArrayList<>();
 		for (ModelRel modelRelType : MIDTypeRegistry.getModelRelTypes()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
-			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+			HashMap<String, Integer> cardinalityTable = new HashMap<>();
 			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModel != null) {
 				for (ModelEndpointReference modelTypeEndpointRef : modelRelType.getModelEndpointRefs()) {
@@ -165,10 +167,10 @@ public class MIDConstraintChecker {
 
 	public static List<String> getAllowedMappingTypeReferences(ModelRel modelRelType, ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef) {
 
-		List<String> mappingTypeUris = new ArrayList<String>();
+		List<String> mappingTypeUris = new ArrayList<>();
 		for (MappingReference mappingTypeRef : modelRelType.getMappingRefs()) {
 			boolean isAllowed = true, isAllowedSrc = false, isAllowedTgt = false;
-			HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+			HashMap<String, Integer> cardinalityTable = new HashMap<>();
 			//TODO MMINT[INTROSPECTION] consider direction for binary?
 			if (targetSrcModelElemRef != null) {
 				for (ModelElementEndpointReference modelElemTypeEndpointRef : mappingTypeRef.getObject().getModelElemEndpointRefs()) {
@@ -220,12 +222,12 @@ public class MIDConstraintChecker {
 	public static @Nullable List<String> getAllowedModelEndpoints(@NonNull ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
 
 		if (targetModel == null) { // model not added yet
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 
 		List<String> modelTypeEndpointUris = null;
 		// count existing instances
-		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 			MIDRegistry.addEndpointCardinality(modelEndpoint.getMetatypeUri(), cardinalityTable);
 		}
@@ -242,7 +244,7 @@ public class MIDConstraintChecker {
 		for (ModelEndpointReference modelTypeEndpointRef : modelRel.getMetatype().getModelEndpointRefs()) {
 			if (isAllowedModelEndpoint(modelTypeEndpointRef, targetModel, cardinalityTable)) {
 				if (modelTypeEndpointUris == null) {
-					modelTypeEndpointUris = new ArrayList<String>();
+					modelTypeEndpointUris = new ArrayList<>();
 				}
 				modelTypeEndpointUris.add(modelTypeEndpointRef.getUri());
 			}
@@ -253,7 +255,7 @@ public class MIDConstraintChecker {
 
 	public static boolean areAllowedModelEndpoints(ModelRel modelRel, ModelRel newModelRelType) {
 
-		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
 			boolean isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
@@ -289,12 +291,12 @@ public class MIDConstraintChecker {
 	public static List<String> getAllowedModelElementEndpointReferences(MappingReference mappingRef, ModelElementEndpointReference oldModelElemEndpointRef, ModelElementReference newModelElemRef) {
 
 		if (newModelElemRef == null) { // model element reference not added yet
-			return new ArrayList<String>();
+			return new ArrayList<>();
 		}
 
 		List<String> modelElemTypeEndpointUris = null;
 		// count existing instances
-		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelElementEndpointReference modelElemEndpointRef : mappingRef.getModelElemEndpointRefs()) {
 			MIDRegistry.addEndpointCardinality(modelElemEndpointRef.getObject().getMetatypeUri(), cardinalityTable);
 		}
@@ -311,7 +313,7 @@ public class MIDConstraintChecker {
 		for (ModelElementEndpoint modelElemTypeEndpoint : mappingRef.getObject().getMetatype().getModelElemEndpoints()) {
 			if (isAllowedModelElementEndpointReference(modelElemTypeEndpoint, newModelElemRef, cardinalityTable)) {
 				if (modelElemTypeEndpointUris == null) {
-					modelElemTypeEndpointUris = new ArrayList<String>();
+					modelElemTypeEndpointUris = new ArrayList<>();
 				}
 				modelElemTypeEndpointUris.add(modelElemTypeEndpoint.getUri());
 			}
@@ -322,7 +324,7 @@ public class MIDConstraintChecker {
 
 	public static boolean areAllowedModelElementEndpointReferences(Mapping mapping, Mapping newMappingType) {
 
-		HashMap<String, Integer> cardinalityTable = new HashMap<String, Integer>();
+		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelElementEndpointReference modelElemEndpointRef : mapping.getModelElemEndpointRefs()) {
 			boolean isAllowed = false;
 			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
@@ -448,11 +450,11 @@ public class MIDConstraintChecker {
 		ModelRel modelRelType = ((ModelRel) mapping.eContainer()).getMetatype();
 mappingTypes:
 		for (Mapping mappingType : modelRelType.getMappings()) {
-			HashSet<String> allowedModelElemTypes = new HashSet<String>();
+			HashSet<String> allowedModelElemTypes = new HashSet<>();
 			for (ModelElementEndpoint modelElemTypeEndpoint : mappingType.getModelElemEndpoints()) {
 				allowedModelElemTypes.add(modelElemTypeEndpoint.getTargetUri());
 			}
-			for (ModelElementEndpoint modelElemEndpoint : mapping.getModelElemEndpoints()) {				
+			for (ModelElementEndpoint modelElemEndpoint : mapping.getModelElemEndpoints()) {
 				if (!allowedModelElemTypes.contains(modelElemEndpoint.getTarget().getMetatypeUri())) {
 					continue mappingTypes;
 				}
@@ -480,14 +482,14 @@ mappingTypes:
 
 	/**
 	 * Checks if a constraint is satisfied on a model.
-	 * 
+	 *
 	 * @param model
 	 *            The model.
 	 * @param constraint
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint) {
+	public static boolean checkModelConstraint(@NonNull Model model, @Nullable ExtendibleElementConstraint constraint) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
@@ -511,22 +513,55 @@ mappingTypes:
 		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
 	}
 
-	public static boolean checkOperatorInputConstraint(@NonNull Operator operatorType, @NonNull Map<String, Model> inputsByName) {
+	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-		OperatorConstraint constraint = (OperatorConstraint) operatorType.getConstraint();
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
 		}
 		IReasoningEngine reasoner;
 		try {
-			reasoner = getReasoner(constraint.getLanguage());
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping operator generic constraint check", e);
+			return false;
+		}
+
+		return reasoner.checkOperatorGenericConstraint(constraint, genericTypeEndpoint, genericType, inputs);
+	}
+
+	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return true;
+		}
+		IReasoningEngine reasoner;
+		try {
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping operator input constraint check", e);
 			return false;
 		}
 
-		return reasoner.checkOperatorInputConstraint(inputsByName, constraint);
+		return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
+	}
+
+	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+
+		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
+			return new HashMap<>();
+		}
+		IReasoningEngine reasoner;
+		try {
+			reasoner = MIDConstraintChecker.getReasoner(constraint.getLanguage());
+		}
+		catch (MMINTException e) {
+			MMINTException.print(IStatus.WARNING, "Skipping operator output constraints", e);
+			return new HashMap<>();
+		}
+
+		return reasoner.getOperatorOutputConstraints(constraint, inputsByName, outputsByName);
 	}
 
 	public static boolean checkModelConstraintConsistency(ExtendibleElement type, String constraintLanguage, String constraintImplementation) {

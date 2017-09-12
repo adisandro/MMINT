@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -25,10 +25,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -54,7 +58,7 @@ public class MIDOperatorIOUtils {
 	private static String getPropertiesUri(Operator operator, Model anyOperatorParameter, String subdirName, boolean readonly) {
 
 		String projectUri = anyOperatorParameter.getUri().substring(0, anyOperatorParameter.getUri().lastIndexOf(IPath.SEPARATOR)+1);
-		String propertiesUri = FileUtils.prependWorkspacePathToUri(projectUri);
+		String propertiesUri = FileUtils.prependWorkspacePath(projectUri);
 		if (subdirName != null) {
 			File dir = new File(propertiesUri + subdirName);
 			if (!readonly && !dir.exists()) {
@@ -252,34 +256,65 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> modelsByName, @NonNull String argName) {
+	public static @NonNull <T> List<T> getVarargs(@NonNull Map<String, T> varargsByName, @NonNull String varargName) {
 
-		List<T> models = new ArrayList<>();
+		List<T> varargs = new ArrayList<>();
 		int i = 0;
 		T elem;
-		while ((elem = modelsByName.get(argName + i)) != null) {
-			models.add(elem);
+		while ((elem = varargsByName.get(varargName + i)) != null) {
+			varargs.add(elem);
 			i++;
 		}
 
-		return models;
+		return varargs;
 	}
 
-	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String argName) {
+	public static @NonNull Map<String, Model> setVarargs(@NonNull List<Model> models, @NonNull String varargName) {
 
 		Map<String, Model> modelsByName = new HashMap<>();
 		for (int i = 0; i < models.size(); i++) {
-			modelsByName.put(argName + i, models.get(i));
+			modelsByName.put(varargName + i, models.get(i));
 		}
 
 		return modelsByName;
 	}
 
-	public static @NonNull Map<String, MID> createSimpleOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID instanceMID) {
+	public static @NonNull Map<String, MID> getVarargOutputMIDsByOtherName(@NonNull Map<String, MID> outputMIDsByName, @NonNull String varargName, @NonNull List<? extends ExtendibleElement> nameElements) {
+
+		Map<String, MID> outputMIDsByOtherName = new HashMap<>();
+		if (outputMIDsByName.containsKey(varargName)) {
+			MID outputMID = outputMIDsByName.get(varargName);
+			outputMIDsByOtherName = nameElements.stream()
+				.collect(Collectors.<ExtendibleElement, String, MID>toMap( // TODO MMINT[SCRIPTING] Fix explicit types when java9 is out
+					nameElement -> nameElement.getName(),
+					nameElement -> outputMID));
+		}
+		else {
+			List<MID> instanceMIDs = MIDOperatorIOUtils.getVarargs(outputMIDsByName, varargName);
+			for (int i = 0; i < nameElements.size(); i++) {
+				outputMIDsByOtherName.put(nameElements.get(i).getName(), instanceMIDs.get(i));
+			}
+		}
+
+		return outputMIDsByOtherName;
+	}
+
+	public static @NonNull Map<String, MID> createSameOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID outputMID) {
 
 		Map<String, MID> outputMIDsByName = new HashMap<>();
 		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
-			outputMIDsByName.put(outputModelTypeEndpoint.getName(), instanceMID);
+			outputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
+		}
+
+		return outputMIDsByName;
+	}
+
+	public static @NonNull Map<String, MID> mixOutputMIDsByName(@NonNull Operator operatorType, @Nullable MID defaultOutputMID, @NonNull Map<String, MID> assignedOutputMIDsByName) {
+
+		Map<String, MID> outputMIDsByName = new HashMap<>();
+		for (ModelEndpoint outputModelTypeEndpoint : operatorType.getOutputs()) {
+			MID outputMID = assignedOutputMIDsByName.getOrDefault(outputModelTypeEndpoint.getName(), defaultOutputMID);
+			outputMIDsByName.put(outputModelTypeEndpoint.getName(), outputMID);
 		}
 
 		return outputMIDsByName;

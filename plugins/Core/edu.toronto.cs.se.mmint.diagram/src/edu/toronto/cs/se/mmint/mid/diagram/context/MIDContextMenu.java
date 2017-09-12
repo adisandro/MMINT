@@ -1,17 +1,19 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,11 +32,11 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
@@ -52,9 +54,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 /**
  * The handler for the dynamic construction of a context menu for all
  * type-related operations (run operator, cast type, validate type).
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDContextMenu extends ContributionItem {
 
@@ -71,6 +73,15 @@ public class MIDContextMenu extends ContributionItem {
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL = "Open Wiki Page";
 	private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_EDIT_LABEL = "Edit Wiki Page";
 	private static final String DOWNCAST_LABEL = " (downcast)";
+
+	private class ExecutableOperator {
+	    public Operator operatorType;
+	    public EList<OperatorInput> operatorInputs;
+	    public ExecutableOperator(Operator operatorType, EList<OperatorInput> operatorInputs) {
+	        this.operatorType = operatorType;
+	        this.operatorInputs = operatorInputs;
+	    }
+	}
 
 	@Override
 	public boolean isDynamic() {
@@ -93,7 +104,6 @@ public class MIDContextMenu extends ContributionItem {
 			doCast = false;
 			doCheckConstraint = false;
 			doCoherence = false;
-			doCopy = false;
 			doModelepedia = false;
 			doRefineByConstraint = false;
 		}
@@ -175,38 +185,42 @@ public class MIDContextMenu extends ContributionItem {
 		mmintItem.setText(MMINT_MENU_LABEL);
 		Menu mmintMenu = new Menu(menu);
 		mmintItem.setMenu(mmintMenu);
-		MMINT.storeActiveInstanceMIDFile();
+		MMINT.stashActiveInstanceMIDFile();
 		// operator
 		if (doOperator) {
 			if (mid == null) {
 				mid = selectedModels.get(0).getMIDContainer();
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
-			String polyPreference = null;
-			if (mid.isWorkflowsLevel()) { // disable polymorphism at the workflow level
-				polyPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED);
-				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, "false");
+			String runtimeTypingPreference = null;
+			if (mid.isWorkflowsLevel()) { // disable runtime typing at the workflow level, since there is no runtime
+				runtimeTypingPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED);
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "false");
 			}
-			List<Operator> executableOperators = new ArrayList<>();
-			List<EList<OperatorInput>> executableOperatorsInputs = new ArrayList<>();
+			List<ExecutableOperator> executableOperators = new ArrayList<>();
 			for (Operator operatorType : MIDTypeRegistry.getOperatorTypes()) {
 				try {
-					EList<OperatorInput> executableOperatorInputs = operatorType.checkAllowedInputs(selectedModels);
-					if (executableOperatorInputs == null) {
+					EList<OperatorInput> operatorInputs = operatorType.checkAllowedInputs(selectedModels);
+					if (operatorInputs == null) {
 						continue;
 					}
-					executableOperators.add(operatorType);
-					executableOperatorsInputs.add(executableOperatorInputs);
+					executableOperators.add(new ExecutableOperator(operatorType, operatorInputs));
 				}
 				catch (MMINTException e) {
 					continue;
 				}
 			}
-			if (polyPreference != null) { // restore polymorphism preference
-				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_ENABLED, polyPreference);
+			if (runtimeTypingPreference != null) { // restore runtime typing preference
+				MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, runtimeTypingPreference);
 			}
 			MIDTypeHierarchy.clearCachedRuntimeTypes();
 			if (!executableOperators.isEmpty()) {
+	            Collections.sort(executableOperators, new Comparator<ExecutableOperator>() { // alphabetical order
+	                @Override
+	                public int compare(ExecutableOperator o1, ExecutableOperator o2) {
+	                    return o1.operatorType.getName().compareTo(o2.operatorType.getName());
+	                }
+	            });
 				MenuItem operatorItem = new MenuItem(mmintMenu, SWT.CASCADE);
 				String menuLabel = (mid.isInstancesLevel()) ?
 					MMINT_MENU_OPERATOR_LABEL_INSTANCES :
@@ -214,17 +228,21 @@ public class MIDContextMenu extends ContributionItem {
 				operatorItem.setText(menuLabel);
 				Menu operatorMenu = new Menu(mmintMenu);
 				operatorItem.setMenu(operatorMenu);
-				for (int i = 0; i < executableOperators.size(); i++) {
-					Operator executableOperator = executableOperators.get(i);
-					//TODO MMINT[OPERATOR] There should be a visual match between formal and actual parameter, with indication of coercion
-					String text = executableOperator.toString();
+				for (ExecutableOperator executableOperator : executableOperators) {
+					String text;
+                    try {
+                        text = executableOperator.operatorType.getTypeSignature(executableOperator.operatorInputs);
+                    }
+                    catch (MMINTException e) {
+                        text = executableOperator.toString();
+                    }
 					MenuItem operatorSubitem = new MenuItem(operatorMenu, SWT.NONE);
 					operatorSubitem.setText(text);
 					operatorSubitem.addSelectionListener(
 						new MIDContextRunOperatorListener(
 							menuLabel,
-							executableOperator,
-							executableOperatorsInputs.get(i),
+							executableOperator.operatorType,
+							executableOperator.operatorInputs,
 							mid
 						)
 					);
@@ -307,9 +325,13 @@ public class MIDContextMenu extends ContributionItem {
 		// copy
 		if (doCopy) {
 			MenuItem copyItem = new MenuItem(mmintMenu, SWT.NONE);
-			copyItem.setText(MMINT_MENU_COPY_LABEL);
+			String label = MMINT_MENU_COPY_LABEL;
+			if (selectedModels.size() > 1) {
+			    label += "s";
+			}
+			copyItem.setText(label);
 			copyItem.addSelectionListener(
-				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, selectedModels.get(0))
+				new MIDContextCopyModelListener(MMINT_MENU_COPY_LABEL, selectedModels)
 			);
 		}
 		// modelepedia

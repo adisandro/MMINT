@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- end-user-doc -->
  * @see edu.toronto.cs.se.modelepedia.primitive.file.FileFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface FilePackage extends EPackage {
@@ -399,7 +398,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_INSTANCE__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__STRING_MID;
+	int FILE_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -417,7 +416,7 @@ public interface FilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__STRING_MID;
+	int FILE_MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MIDPackage.MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
 	/**
 	 * The operation id for the '<em>Import Instance</em>' operation.
@@ -463,6 +462,15 @@ public interface FilePackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_MODEL___DELETE_INSTANCE = MIDPackage.MODEL___DELETE_INSTANCE;
+
+	/**
+	 * The operation id for the '<em>Delete Instance And File</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_MODEL___DELETE_INSTANCE_AND_FILE = MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE;
 
 	/**
 	 * The operation id for the '<em>Get EMF Instance Root</em>' operation.

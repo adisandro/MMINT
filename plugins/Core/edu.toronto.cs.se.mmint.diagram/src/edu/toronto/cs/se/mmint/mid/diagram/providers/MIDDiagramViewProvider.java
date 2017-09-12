@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,14 +11,15 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.providers;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
@@ -37,6 +38,7 @@ import org.eclipse.swt.graphics.FontData;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.BinaryModelRelEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint2EditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.ModelEndpoint3EditPart;
@@ -55,10 +57,16 @@ import edu.toronto.cs.se.mmint.mid.diagram.providers.MIDViewProvider;
 public class MIDDiagramViewProvider extends MIDViewProvider {
 
 	private Node createLabel(View owner, String hint) {
-		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
-		rv.setType(hint);
-		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
-		return rv;
+
+		try {
+			Method createLabel = MIDViewProvider.class.getDeclaredMethod("createLabel", View.class, String.class);
+			createLabel.setAccessible(true);
+			return (Node) createLabel.invoke(this, owner, hint);
+		}
+		catch (Exception e) {
+			MMINTException.print(IStatus.WARNING, "Failed reflection for private GMF method MIDViewProvider.createLabel()", null);
+			return null;
+		}
 	}
 
 	/**

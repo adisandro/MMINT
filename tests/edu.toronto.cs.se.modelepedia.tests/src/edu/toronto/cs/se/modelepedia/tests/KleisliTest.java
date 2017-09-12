@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -76,7 +76,7 @@ public class KleisliTest extends MMINTTest {
 	private final static String TGT_METAMODEL_NAME = TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 	private final static String TGT_MODELTYPEENDPOINT_NAME = "CD";
 	private final static String KLEISLI_MODELRELTYPE_URI = "http://se.cs.toronto.edu/modelepedia/KleisliModelRel";
-	private final static String MODELRELTYPE_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + SRC_MODELTYPEENDPOINT_NAME;
+	private final static String MODELRELTYPE_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.BINARY_MODELREL_SEPARATOR + SRC_MODELTYPEENDPOINT_NAME;
 	private final static String KLEISLI_TGT_METAMODEL_NAME = TGT_MODELTYPEENDPOINT_NAME + MMINT.ENDPOINT_SEPARATOR + TGT_MODELTYPE_NAME + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 	private final static String[] SRC_METAMODELOBJ_NAMES = {
 		"DatabaseSchema",
@@ -110,7 +110,7 @@ public class KleisliTest extends MMINTTest {
 	private final static String TESTS_TEMP_PROJECT_URI = IPath.SEPARATOR + TESTS_TEMPPROJECT + IPath.SEPARATOR;
 	private final static String TESTS_INSTANCEMID_URI = TESTS_TEMP_PROJECT_URI + "instances" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 	private final static String INPUT_MODEL_FILENAME = "cd" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
-	private final static String INPUT_MODEL_URI = TESTS_TEMP_PROJECT_URI + INPUT_MODEL_FILENAME;
+	private final static String INPUT_MODEL_PATH = TESTS_TEMP_PROJECT_URI + INPUT_MODEL_FILENAME;
 	private final static String OUTPUT_ORACLE_FILENAME = "cd_transformed" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
 	private final static String OUTPUT_ORACLE_URI = TESTS_TEMP_PROJECT_URI + "oracle_" + OUTPUT_ORACLE_FILENAME;
 	private final static String SCHEMALOCATION_PLACEHOLDER = "SCHEMALOCATION";
@@ -128,7 +128,7 @@ public class KleisliTest extends MMINTTest {
 			metamodelObj = metamodelObjContainer.getEStructuralFeature(names[1]);
 		}
 		Assert.assertTrue(containerModelTypeEndpointRef.acceptModelElementType(metamodelObj));
-		String modelElemTypeUri = MIDRegistry.getModelAndModelElementUris(metamodelObj, MIDLevel.TYPES)[1];
+		String modelElemTypeUri = MIDRegistry.getModelElementUri(metamodelObj);
 		EMFInfo eInfo = MIDRegistry.getModelElementEMFInfo(metamodelObj, MIDLevel.TYPES);
 		String newModelElemTypeName = MIDRegistry.getModelElementName(eInfo, metamodelObj, MIDLevel.TYPES);
 		ModelElementReference newModelElemTypeRef = rootModelElemType.createSubtypeAndReference(null, modelElemTypeUri, newModelElemTypeName, eInfo, containerModelTypeEndpointRef);
@@ -146,11 +146,11 @@ public class KleisliTest extends MMINTTest {
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL srcMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePathToUri(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(srcMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(SRC_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		Model tgtModelType = rootModelType.createSubtype(TGT_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL tgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, TGT_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePathToUri(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(tgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 
 		// model rel type
 		KleisliModelRel kRootModelRelType = MIDTypeRegistry.getType(KLEISLI_MODELRELTYPE_URI);
@@ -159,7 +159,7 @@ public class KleisliTest extends MMINTTest {
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
 		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtype(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
 		URL kTgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePathToUri(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtype(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
 		// model element types and link types
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
@@ -176,7 +176,7 @@ public class KleisliTest extends MMINTTest {
 				constraint.setImplementation(TGT_MODELELEM_OCLQUERIES[i]);
 				tgtModelElemTypeRef.getObject().setConstraint(constraint);
 			}
-			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_MAPPING_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
+			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
 			MappingReference mappingTypeRef = rootMappingType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
 			MMINT.createTypeHierarchy();
 			String srcModelElemTypeEndpointName = srcModelElemTypeRef.getObject().getName(), tgtModelElemTypeEndpointName = tgtModelElemTypeRef.getObject().getName();
@@ -194,12 +194,12 @@ public class KleisliTest extends MMINTTest {
 		URL inputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, INPUT_MODEL_FILENAME, false).nextElement();
 		FileUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(inputModelUrl).getFile().toString(),
-			FileUtils.prependWorkspacePathToUri(INPUT_MODEL_URI),
+			FileUtils.prependWorkspacePath(INPUT_MODEL_PATH),
 			SCHEMALOCATION_PLACEHOLDER,
-			"file:" + FileUtils.prependStatePathToUri(TGT_METAMODEL_NAME),
+			"file:" + FileUtils.prependStatePath(TGT_METAMODEL_NAME),
 			false
 		);
-		Model inputModel =  tgtModelType.createInstanceAndEditor(INPUT_MODEL_URI, instanceMID);
+		Model inputModel =  tgtModelType.createInstanceAndEditor(null, INPUT_MODEL_PATH, instanceMID);
 		FileUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
 		Operator transformationOperator = MIDTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI);
 		EList<Model> transformationInputModels = new BasicEList<Model>();
@@ -210,13 +210,13 @@ public class KleisliTest extends MMINTTest {
 		transformationGeneric.setGenericSuperTypeEndpoint(transformationOperator.getGenerics().get(0));
 		transformationGeneric.setGeneric(kModelRelType);
 		transformationGenerics.add(transformationGeneric);
-		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSimpleOutputMIDsByName(transformationOperator, instanceMID);
+		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(transformationOperator, instanceMID);
 		Map<String, Model> transformationOutput = transformationOperator.startInstance(transformationInputs, null, transformationGenerics, outputMIDsByName, instanceMID).getOutputsByName();
 		FileUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true);
 
 		// test equivalence with oracle
 		ResourceSet oracleResourceSet = new ResourceSetImpl();
-		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + FileUtils.getLastSegmentFromUri(TESTS_INSTANCEMID_URI), true);
+		URI oracleResourceUri = URI.createPlatformPluginURI(TESTS_BUNDLE_NAME + IPath.SEPARATOR + TESTS_BUNDLE_MODEL_DIR + IPath.SEPARATOR + FileUtils.getLastSegmentFromPath(TESTS_INSTANCEMID_URI), true);
 		oracleResourceSet.getResource(oracleResourceUri, true);
 		ResourceSet outputResourceSet = new ResourceSetImpl();
 		outputResourceSet.getResource(URI.createPlatformResourceURI(TESTS_INSTANCEMID_URI, true), true);
@@ -226,9 +226,9 @@ public class KleisliTest extends MMINTTest {
 		URL outputModelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, OUTPUT_ORACLE_FILENAME, false).nextElement();
 		FileUtils.copyTextFileAndReplaceText(
 			FileLocator.toFileURL(outputModelUrl).getFile().toString(),
-			FileUtils.prependWorkspacePathToUri(OUTPUT_ORACLE_URI),
+			FileUtils.prependWorkspacePath(OUTPUT_ORACLE_URI),
 			SCHEMALOCATION_PLACEHOLDER,
-			"file:" + FileUtils.prependStatePathToUri(SRC_METAMODEL_NAME),
+			"file:" + FileUtils.prependStatePath(SRC_METAMODEL_NAME),
 			false
 		);
 		oracleResourceSet = new ResourceSetImpl();

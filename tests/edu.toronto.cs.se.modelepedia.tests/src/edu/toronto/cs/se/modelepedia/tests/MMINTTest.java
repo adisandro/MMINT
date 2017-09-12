@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -67,11 +67,11 @@ public abstract class MMINTTest {
 	protected @NonNull Model addInputModel(MID instanceMID, Bundle testBundle, String bundleDir, String bundleFilename) throws Exception {
 
 		URL bundleModelUrl = testBundle.findEntries(bundleDir, bundleFilename, false).nextElement();
-		String inputModelUri = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
+		String inputModelPath = IPath.SEPARATOR + TEST_PROJECT + IPath.SEPARATOR + bundleFilename;
 		Path bundlePath = Paths.get(FileLocator.toFileURL(bundleModelUrl).getFile().toString());
-		Path inputPath = Paths.get(FileUtils.prependWorkspacePathToUri(inputModelUri));
+		Path inputPath = Paths.get(FileUtils.prependWorkspacePath(inputModelPath));
 		Files.copy(bundlePath, inputPath, StandardCopyOption.REPLACE_EXISTING);
-		Model inputModel =  MIDTypeHierarchy.getRootModelType().createInstance(inputModelUri, instanceMID);
+		Model inputModel =  MIDTypeHierarchy.getRootModelType().createInstance(null, inputModelPath, instanceMID);
 		FileUtils.writeModelFile(instanceMID, TEST_INSTANCEMID_URI, true);
 
 		return inputModel;

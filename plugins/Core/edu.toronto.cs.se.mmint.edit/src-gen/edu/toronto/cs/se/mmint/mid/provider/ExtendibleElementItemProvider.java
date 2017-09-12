@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,7 +15,6 @@ package edu.toronto.cs.se.mmint.mid.provider;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import java.util.Collection;
 import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -290,11 +289,6 @@ public class ExtendibleElementItemProvider
 			(createChildParameter
 				(MIDPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT,
 				 MIDFactory.eINSTANCE.createExtendibleElementConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MIDPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT,
-				 OperatorFactory.eINSTANCE.createOperatorConstraint()));
 	}
 
 	/**

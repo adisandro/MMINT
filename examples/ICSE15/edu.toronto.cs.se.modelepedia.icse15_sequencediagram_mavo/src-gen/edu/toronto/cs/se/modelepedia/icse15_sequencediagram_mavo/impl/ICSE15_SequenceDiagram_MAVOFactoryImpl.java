@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
+import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
@@ -79,9 +81,11 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 			case ICSE15_SequenceDiagram_MAVOPackage.NAMED_ELEMENT: return createNamedElement();
 			case ICSE15_SequenceDiagram_MAVOPackage.LIFELINE: return createLifeline();
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS: return createClass();
+			case ICSE15_SequenceDiagram_MAVOPackage.ATTRIBUTE: return createAttribute();
 			case ICSE15_SequenceDiagram_MAVOPackage.OPERATION: return createOperation();
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE: return createMessage();
 			case ICSE15_SequenceDiagram_MAVOPackage.CLASS_REFERENCE: return createClassReference();
+			case ICSE15_SequenceDiagram_MAVOPackage.ATTRIBUTE_REFERENCE: return createAttributeReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.OPERATION_REFERENCE: return createOperationReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.SOURCE_LIFELINE_REFERENCE: return createSourceLifelineReference();
 			case ICSE15_SequenceDiagram_MAVOPackage.TARGET_LIFELINE_REFERENCE: return createTargetLifelineReference();
@@ -135,6 +139,16 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Attribute createAttribute() {
+		AttributeImpl attribute = new AttributeImpl();
+		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Operation createOperation() {
 		OperationImpl operation = new OperationImpl();
 		return operation;
@@ -158,6 +172,16 @@ public class ICSE15_SequenceDiagram_MAVOFactoryImpl extends EFactoryImpl impleme
 	public ClassReference createClassReference() {
 		ClassReferenceImpl classReference = new ClassReferenceImpl();
 		return classReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeReference createAttributeReference() {
+		AttributeReferenceImpl attributeReference = new AttributeReferenceImpl();
+		return attributeReference;
 	}
 
 	/**

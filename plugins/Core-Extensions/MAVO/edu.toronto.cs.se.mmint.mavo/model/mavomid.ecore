@@ -6,13 +6,14 @@
       <details key="documentation" value="MAVO version. {@inheritDoc}"/>
     </eAnnotations>
     <eOperations name="createInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
-      <eParameters name="newModelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//IOException">
+      <eParameters name="rootModelObj" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="newModelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
     </eOperations>
     <eOperations name="importInstance" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//Model"
         eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException">
-      <eParameters name="modelUri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="modelPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="instanceMID" eType="ecore:EClass ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MID"/>
     </eOperations>
     <eOperations name="validateInstanceInEditor" lowerBound="1" eType="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//IStatus"

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -37,7 +37,6 @@ import edu.toronto.cs.se.mavo.VarDecision;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
@@ -84,7 +83,7 @@ public class MAVODiagramContextRefineListener extends MIDContextMenuListener {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		String modelUri = MIDRegistry.getModelAndModelElementUris(mavoElemsToRefine.get(0), MIDLevel.INSTANCES)[0];
+		String modelUri = MIDRegistry.getModelUri(mavoElemsToRefine.get(0));
 		Map<MID, List<IFile>> instanceMIDs = MIDDiagramUtils.getInstanceMIDsInWorkspace();
 		List<IFile> files = null;
 		for (Entry<MID, List<IFile>> instanceMID : instanceMIDs.entrySet()) {

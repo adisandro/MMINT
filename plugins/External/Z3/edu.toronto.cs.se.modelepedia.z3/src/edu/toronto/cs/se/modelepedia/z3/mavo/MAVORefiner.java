@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -41,7 +41,6 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -80,7 +79,7 @@ public class MAVORefiner {
 			if (!(modelObj instanceof MAVOElement) || !((MAVOElement) modelObj).isMay()) {
 				continue;
 			}
-			String modelObjUri = MIDRegistry.getModelAndModelElementUris(modelObj, MIDLevel.INSTANCES)[1];
+			String modelObjUri = MIDRegistry.getModelElementUri(modelObj);
 			String refinedModelObjUri = refinedModelUri + modelObjUri.substring(modelObjUri.lastIndexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
 			MAVOElement refinedModelObj;
 			try {
@@ -209,10 +208,10 @@ public class MAVORefiner {
 	public @NonNull Model refine(@NonNull Model model, @Nullable Diagram modelDiagram, @Nullable MAVOCollection mayAlternative, @NonNull String smtEncoding, @Nullable Z3MAVOModelParser z3ModelParser) throws Exception {
 
 		// create mid artifacts
-		String refinedModelUri = FileUtils.getUniqueUri(FileUtils.addFileNameSuffixInUri(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
-		FileUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelUri, "", "", true);
+		String refinedModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(model.getUri(), REFINED_MODEL_SUFFIX), true, false);
+		FileUtils.copyTextFileAndReplaceText(model.getUri(), refinedModelPath, "", "", true);
 		MID instanceMID = model.getMIDContainer();
-		Model refinedModel = model.getMetatype().createInstance(refinedModelUri, instanceMID);
+		Model refinedModel = model.getMetatype().createInstance(null, refinedModelPath, instanceMID);
 		ModelRel modelRelType = MIDTypeRegistry.getType(MODELRELTYPE_URI);
 		if (modelRelType == null) {
 			MMINTException.print(IStatus.WARNING, "Can't find " + MODELRELTYPE_URI + " type, fallback to root ModelRel type", null);
@@ -220,16 +219,16 @@ public class MAVORefiner {
 		}
 		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpoints(
 			null,
+			MODELREL_NAME,
 			model, 
 			refinedModel,
 			instanceMID);
-		refinementRel.setName(MODELREL_NAME);
 
 		// refine
 		MAVORoot rootModelObj = (MAVORoot) FileUtils.readModelFile(model.getUri(), true);
-		MAVORoot refinedRootModelObj = (MAVORoot) FileUtils.readModelFile(refinedModelUri, true);
+		MAVORoot refinedRootModelObj = (MAVORoot) FileUtils.readModelFile(refinedModelPath, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
-		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelUri, refinementMap);
+		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelPath, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
 		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
 		if (mayAlternative != null) {
@@ -238,11 +237,11 @@ public class MAVORefiner {
 		populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file
-		FileUtils.writeModelFile(refinedRootModelObj, refinedModelUri, true);
+		FileUtils.writeModelFile(refinedRootModelObj, refinedModelPath, true);
 		if (modelDiagram != null) {
 			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
 			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
-			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInUri(refinedModelUri, modelDiagram.getFileExtensions().get(0));
+			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInPath(refinedModelPath, modelDiagram.getFileExtensions().get(0));
 			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			FileUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2016 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Naama Ben-David.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -81,7 +81,7 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = FileUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
@@ -169,7 +169,7 @@ public class MAVOConcretizationHighlighter {
 		}
 
 		// write diagram to file
-		String exampleDiagramUri = FileUtils.addFileNameSuffixInUri(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
+		String exampleDiagramUri = FileUtils.addFileNameSuffixInPath(modelDiagram.getUri(), EXAMPLE_MODEL_SUFFIX);
 		FileUtils.writeModelFile(exampleDiagram, exampleDiagramUri, true);
 		FileUtils.openEclipseEditor(exampleDiagramUri, modelDiagram.getId(), true);
 	}
