@@ -27,7 +27,7 @@
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="edu.toronto.cs.se.modelepedia.tutorial.economy.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin name="Economy Diagram Type" provider="Software Engineering Group, University of Toronto" version="2.1.99.qualifier">
+  <plugin name="Economy Diagram Type" provider="Software Engineering Group, University of Toronto" version="2.2.0">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
   </plugin>
