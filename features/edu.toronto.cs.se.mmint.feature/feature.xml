@@ -72,6 +72,7 @@ sets of related models.
       <import feature="org.eclipse.xtend.sdk"/>
       <import feature="org.eclipse.acceleo"/>
       <import feature="org.eclipse.gmf.tooling.codegen.xtend2"/>
+      <import feature="org.eclipse.sirius.specifier"/>
    </requires>
 
    <plugin

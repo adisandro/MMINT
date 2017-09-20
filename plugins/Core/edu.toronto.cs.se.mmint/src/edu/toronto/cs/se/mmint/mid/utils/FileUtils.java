@@ -425,6 +425,7 @@ public class FileUtils {
 		}
 
 		try {
+		    //DialectUIManager.INSTANCE.openEditor(null, null, new NullProgressMonitor());
 			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			if (isWorkspaceRelative) {
 				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
