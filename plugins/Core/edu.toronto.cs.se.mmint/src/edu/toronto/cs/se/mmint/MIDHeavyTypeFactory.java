@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
@@ -51,15 +52,15 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 /**
  * The factory to create/modify/remove "heavy" types, i.e. types from
  * extensions.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Gets the supertype of a new type from the repository.
-	 * 
+	 *
 	 * @param newType
 	 *            The new type for which the supertype has to be got.
 	 * @param newTypeUri
@@ -84,7 +85,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Gets the supertype of a new type from the repository, when there is no root type.
-	 * 
+	 *
 	 * @param newType
 	 *            The new type for which the supertype has to be got.
 	 * @param newTypeUri
@@ -102,7 +103,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" type to the repository.
-	 * 
+	 *
 	 * @param newType
 	 *            The new type to be added.
 	 * @param type
@@ -123,7 +124,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" generic type to the repository.
-	 * 
+	 *
 	 * @param newType
 	 *            The new type to be added.
 	 * @param type
@@ -145,7 +146,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" model type to the repository.
-	 * 
+	 *
 	 * @param newModelType
 	 *            The new model type to be added.
 	 * @param newModelTypeUri
@@ -187,7 +188,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" model relationship type to the repository.
-	 * 
+	 *
 	 * @param newModelRelType
 	 *            The new model relationship type to be added.
 	 * @param newModelRelTypeUri
@@ -210,18 +211,18 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	protected void addHeavyModelRelType(ModelRel newModelRelType, String newModelRelTypeUri, String modelRelTypeUri, String newModelRelTypeName, boolean isAbstract) throws MMINTException {
 
 		if (MMINT.ROOT_MODEL_URI.equals(modelRelTypeUri)) { // root ModelRel's supertype
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract);
+			this.addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract);
 		}
 		else {
 			ModelRel modelRelType = getSupertype(newModelRelType, newModelRelTypeUri, modelRelTypeUri);
-			addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract);
+			this.addHeavyModelType(newModelRelType, newModelRelTypeUri, modelRelTypeUri, newModelRelTypeName, isAbstract);
 			addModelRelType(newModelRelType, modelRelType);
 		}
 	}
 
 	/**
 	 * Adds a "heavy" model type endpoint (for an operator type) to the Type MID.
-	 * 
+	 *
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
 	 * @param newModelTypeEndpointUri
@@ -249,7 +250,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" generic type endpoint to the Type MID.
-	 * 
+	 *
 	 * @param newGenericTypeEndpoint
 	 *            The new generic type endpoint to be added.
 	 * @param newGenericTypeEndpointUri
@@ -277,7 +278,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	/**
 	 * Adds a "heavy" model type endpoint and a reference to it to the
 	 * repository.
-	 * 
+	 *
 	 * @param newModelTypeEndpoint
 	 *            The new model type endpoint to be added.
 	 * @param newModelTypeEndpointUri
@@ -314,7 +315,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" mapping type and a reference to it to the repository.
-	 * 
+	 *
 	 * @param newMappingType
 	 *            The new mapping type to be added.
 	 * @param newMappingTypeUri
@@ -362,7 +363,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Creates and adds a "heavy" model type to the repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new model type.
 	 * @return The created model type.
@@ -384,7 +385,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Creates and adds a "heavy" model element type to the repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new model element type.
 	 * @param eInfo
@@ -410,7 +411,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Creates and adds a "heavy" model relationship type to the repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new model relationship type.
 	 * @param isBinary
@@ -434,7 +435,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		else {
 			newModelRelType = (ModelRel) extensionType.getNewType();
 		}
-		addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
+		this.addHeavyModelRelType(newModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), extensionType.isAbstract());
 
 		return newModelRelType;
 	}
@@ -442,7 +443,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	/**
 	 * Creates and adds a "heavy" model type endpoint and a reference to it to the Type MID (variant for model
 	 * relationship types).
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new model type endpoint.
 	 * @param targetModelType
@@ -461,14 +462,14 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		ModelEndpoint newModelTypeEndpoint = (extensionType.getNewType() == null) ?
 			MIDFactory.eINSTANCE.createModelEndpoint() :
 			(ModelEndpoint) extensionType.getNewType();
-		ModelEndpointReference newModelTypeEndpointRef = addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
+		ModelEndpointReference newModelTypeEndpointRef = this.addHeavyModelTypeEndpointAndModelTypeEndpointReference(newModelTypeEndpoint, extensionType.getUri(), extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, isBinarySrc, containerModelRelType);
 
 		return newModelTypeEndpointRef;
 	}
 
 	/**
 	 * Creates and adds a "heavy" model type endpoint to the Type MID (variant for operator types).
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new model type endpoint.
 	 * @param targetModelType
@@ -490,14 +491,14 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		String newModelTypeEndpointUri = (extensionType.getUri() == null) ?
 			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
 			extensionType.getUri();
-		addHeavyModelTypeEndpoint(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, containerOperatorType, containerFeatureName);
+		this.addHeavyModelTypeEndpoint(newModelTypeEndpoint, newModelTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetModelType, containerOperatorType, containerFeatureName);
 
 		return newModelTypeEndpoint;
 	}
 
 	/**
 	 * Creates and adds a "heavy" generic type endpoint to the Type MID.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new generic type endpoint.
 	 * @param targetGenericType
@@ -516,7 +517,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		String newGenericTypeEndpointUri = (extensionType.getUri() == null) ?
 			containerOperatorType.getUri() + MMINT.URI_SEPARATOR + extensionType.getName() :
 			extensionType.getUri();
-		addHeavyGenericTypeEndpoint(newGenericTypeEndpoint, newGenericTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetGenericType, containerOperatorType);
+		this.addHeavyGenericTypeEndpoint(newGenericTypeEndpoint, newGenericTypeEndpointUri, extensionType.getSupertypeUri(), extensionType.getName(), targetGenericType, containerOperatorType);
 
 		return newGenericTypeEndpoint;
 	}
@@ -524,7 +525,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	/**
 	 * Creates and adds a "heavy" mapping type and a reference to it to the
 	 * repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new mapping type.
 	 * @param isBinary
@@ -556,7 +557,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 	/**
 	 * Creates and adds a "heavy" model element type endpoint and a reference to
 	 * it to the repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new model element type endpoint.
 	 * @param targetModelElemTypeRef
@@ -606,7 +607,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Creates and adds a "heavy" editor type to the repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new editor type.
 	 * @param modelTypeUri
@@ -643,6 +644,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		//TODO MMINT[MISC] this can be optimized to run once instead of for each editor, if needed
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
+		    // first, look for classic editors first..
 			IConfigurationElement[] config = registry.getConfigurationElementsFor(MMINT.ECLIPSE_EDITORS_EXT_POINT);
 			for (IConfigurationElement elem : config) {
 				if (elem.getAttribute(MMINT.ECLIPSE_EDITORS_ATTR_ID).equals(editorId)) {
@@ -655,6 +657,17 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 					break;
 				}
 			}
+			if (!newEditorType.getFileExtensions().isEmpty()) {
+			    return newEditorType;
+			}
+			// ..otherwise, look for Sirius viewpoints
+            config = registry.getConfigurationElementsFor(MMINT.SIRIUS_EDITORS_EXT_POINT);
+            for (IConfigurationElement elem : config) {
+                if (elem.getAttribute(MMINT.SIRIUS_EDITORS_ATTR_ID).equals(editorId)) {
+                    newEditorType.getFileExtensions().add(SiriusUtil.SESSION_RESOURCE_EXTENSION);
+                    break;
+                }
+            }
 		}
 
 		return newEditorType;
@@ -662,7 +675,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds a "heavy" editor type for a model type.
-	 * 
+	 *
 	 * @param editorType
 	 *            The editor type.
 	 * @param modelTypeUri
@@ -679,7 +692,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Adds all registered "heavy" editor types for a model type.
-	 * 
+	 *
 	 * @param modelType
 	 *            The model type handled by the editor types.
 	 */
@@ -695,7 +708,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 
 	/**
 	 * Creates and adds a "heavy" operator type to the repository.
-	 * 
+	 *
 	 * @param extensionType
 	 *            The extension info for the new operator type.
 	 * @return The created operator type.

@@ -154,6 +154,8 @@ public interface MMINTConstants {
 	public final static String ECLIPSE_EDITORS_ATTR_ID = "id";
 	/** The Eclipse's Editors extension's extensions attribute. */
 	public final static String ECLIPSE_EDITORS_ATTR_EXTENSIONS = "extensions";
+	public final static String SIRIUS_EDITORS_EXT_POINT = "org.eclipse.sirius.componentization";
+    public final static String SIRIUS_EDITORS_ATTR_ID = "id";
 
 	/** The Reasoners extension point's id. */
 	public final static String REASONERS_EXT_POINT = "edu.toronto.cs.se.mmint.reasoners";

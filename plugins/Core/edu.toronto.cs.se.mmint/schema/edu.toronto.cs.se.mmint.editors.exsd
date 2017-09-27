@@ -71,11 +71,15 @@ The Eclipse editor has to be registered through the org.eclipse.ui.editors and t
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  The id of the editor type. It must be registered through the org.eclipse.ui.editors extension point too.
+                  The id of the editor type. It must be registered through the org.eclipse.ui.editors or org.eclipse.sirius.componentization extension points.
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.editors/editor/@id"/>
-               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="isDiagram" type="boolean">
+            <annotation>
+               <documentation>
+                  True if the editor is a GMF or Sirius diagram.
+               </documentation>
             </annotation>
          </attribute>
          <attribute name="wizardId" type="string">
@@ -86,13 +90,6 @@ The Eclipse editor has to be registered through the org.eclipse.ui.editors and t
                <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.ui.newWizards/wizard/@id"/>
                </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="isDiagram" type="boolean">
-            <annotation>
-               <documentation>
-                  True if the editor is a GMF diagram.
-               </documentation>
             </annotation>
          </attribute>
          <attribute name="wizardDialogClass" type="string">

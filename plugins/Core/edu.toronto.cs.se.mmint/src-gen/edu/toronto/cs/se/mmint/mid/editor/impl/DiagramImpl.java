@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -13,27 +13,38 @@ package edu.toronto.cs.se.mmint.mid.editor.impl;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
+import org.eclipse.sirius.business.api.session.Session;
+import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.sirius.viewpoint.DAnalysis;
+import org.eclipse.sirius.viewpoint.DRepresentation;
+import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
+import org.eclipse.sirius.viewpoint.DView;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,12 +76,13 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     /**
      * @generated NOT
      */
+    @Override
     public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
         Diagram newDiagramType = super.createThisEClass();
-        addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
+        this.addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
 
         return newDiagramType;
     }
@@ -78,25 +90,49 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     /**
      * @generated NOT
      */
+    @Override
     public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        // check if diagram file already exists in model directory
-        if (!FileUtils.isFileOrDirectory(FileUtils.replaceFileExtensionInPath(modelUri, getFileExtensions().get(0)), true)) {
-            // try to build a new diagram through its wizard, inited with the existing model file
-            IStructuredSelection modelFile = new StructuredSelection(
-                ResourcesPlugin.getWorkspace().getRoot().getFile(
-                    new Path(modelUri)
-                )
-            );
-            EditorCreationWizardDialog wizDialog = invokeInstanceWizard(modelFile);
-            if (wizDialog == null) {
-                throw new MMINTException("Diagram creation canceled by user");
+        String editorUri = modelUri;
+        if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+            editorUri = IPath.SEPARATOR + FileUtils.getFirstSegmentFromPath(modelUri) + IPath.SEPARATOR + SiriusUtils.REPRESENTATION_FILE;
+            // check if representation file exists at the top level
+            //TODO[SIRIUS] Check for the file from current dir up
+            if (!FileUtils.isFileOrDirectory(editorUri, true)) {
+                //TODO[SIRIUS] Add new diagram to the representation if it does not exist
+                //TODO[SIRIUS] Create the representation file if it does not exist
+            }
+            Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(editorUri, true),
+                                                                       new NullProgressMonitor());
+            DAnalysis siriusRoot = (DAnalysis) siriusSession.getSessionResource().getContents().get(0);
+            DView v = siriusRoot.getOwnedViews().get(0); //TODO[SIRIUS] v.getViewpoint() should match the viewpoint id
+            DRepresentationDescriptor rd = v.getOwnedRepresentationDescriptors().get(0); //TODO[SIRIUS] r.getDescription() should match the diagram id
+            String diagramRootUri = MIDRegistry.getModelElementUri(rd.getTarget());
+            if (diagramRootUri.startsWith(modelUri)) {
+                DRepresentation r = rd.getRepresentation();
+                editorUri = MIDRegistry.getModelElementUri(r);
+            }
+        }
+        else { // GMF
+            editorUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
+            // check if diagram file already exists in model directory
+            if (!FileUtils.isFileOrDirectory(editorUri, true)) {
+                // try to build a new diagram through its wizard, inited with the existing model file
+                IStructuredSelection modelFile = new StructuredSelection(
+                    ResourcesPlugin.getWorkspace().getRoot().getFile(
+                        new Path(modelUri)
+                    )
+                );
+                EditorCreationWizardDialog wizDialog = this.invokeInstanceWizard(modelFile);
+                if (wizDialog == null) {
+                    throw new MMINTException("Diagram creation canceled by user");
+                }
             }
         }
         Diagram newDiagram = super.createThisEClass();
-        super.addInstance(newDiagram, modelUri, instanceMID);
+        super.addInstance(newDiagram, editorUri, modelUri, instanceMID);
 
         return newDiagram;
     }
@@ -104,17 +140,18 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     /**
      * @generated NOT
      */
+    @Override
     public EditorCreationWizardDialog invokeInstanceWizard(IStructuredSelection initialSelection) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
         IWorkbenchWizard wizard = super.getInstanceWizard(initialSelection);
         EditorCreationWizardDialog wizDialog;
-        if (getWizardDialogClass() == null) {
+        if (this.getWizardDialogClass() == null) {
             Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
             if (initialSelection.getFirstElement() instanceof IFile) {
                 String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
-                String diagramUri = FileUtils.replaceFileExtensionInPath(modelUri, getFileExtensions().get(0));
+                String diagramUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
                 Diagram superDiagramType = this;
                 while (superDiagramType.getSupertype() != null && superDiagramType.getSupertype() != MIDTypeHierarchy.getRootEditorType()) {
                     superDiagramType = (Diagram) superDiagramType.getSupertype();
@@ -125,7 +162,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 try {
                     GMFUtils.createGMFDiagramAndFile(modelUri, diagramUri, diagramKind, diagramPluginId, true);
                     if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
-                        FileUtils.openEclipseEditor(diagramUri, getId(), true);
+                        FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
                     }
                 }
                 catch (Exception e) {

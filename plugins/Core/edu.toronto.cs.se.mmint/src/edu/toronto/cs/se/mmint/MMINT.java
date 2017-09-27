@@ -143,7 +143,6 @@ public class MMINT implements MMINTConstants {
 	 * - Use output constraint to validate output in normal operators?
 	 * - Rethink ConversionOperator to be a simple workflow
 	 * - Rewrite ExperimentDriver to be a workflow
-	 * - Review and rationalize MIDOper and MIDRel, introduce MIDWorkflow?
 	 */
 	/* TODO MMINT[PACKAGING]
 	 * - Put generic enough models and operators into Types-style projects
@@ -153,7 +152,7 @@ public class MMINT implements MMINTConstants {
 	/* TODO MMINT[USABILITY]
 	 * - Add an alternative way of having documentation for types, e.g. a description field or an acceleo-generated web page
 	 * - Change uris into ids
-	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance (although it brings heaps of gmf complexity if we want customized parts as well)
+	 * - There should be different classes rather than MID levels, e.g. Model <- ModelType, ModelInstance
 	 * - Similarly, there should be a ModelRelModelEndpoint and an OperatorModelEndpoint
 	 * - The root element should be called MIDObject and not ExtendibleElement
 	 * - Simplify the type system of model rels
@@ -686,7 +685,7 @@ public class MMINT implements MMINTConstants {
 
 		ExtendibleElement type = MIDTypeRegistry.getType(dynamicType.getSupertype().getUri());
 		if (type == null && dynamicType.getSupertype().isDynamic()) {
-			type = createDynamicType(dynamicType.getSupertype());
+			type = this.createDynamicType(dynamicType.getSupertype());
 		}
 		if (type == null) {
 			return null;
@@ -848,7 +847,7 @@ public class MMINT implements MMINTConstants {
 			}
 		}
 		// dynamic types from last shutdown
-		createDynamicTypes();
+		this.createDynamicTypes();
 		// reasoners
 		configs = registry.getConfigurationElementsFor(REASONERS_EXT_POINT);
 		for (int i = 0; i < configs.length; i++) {
@@ -966,17 +965,17 @@ public class MMINT implements MMINTConstants {
 	private void initPreferences() {
 
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(MMINTActivator.PLUGIN_ID);
-		initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
-		initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
-		initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
+		this.initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, "true", false);
 		for (String languageId : languageReasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);
 			if (reasonerName != null) {
@@ -986,7 +985,7 @@ public class MMINT implements MMINTConstants {
 				}
 			}
 			reasonerName = languageReasoners.get(languageId).keySet().iterator().next();
-			initPreference(preferences, PREFERENCE_MENU_LANGUAGE_REASONER + languageId, reasonerName, true);
+			this.initPreference(preferences, PREFERENCE_MENU_LANGUAGE_REASONER + languageId, reasonerName, true);
 		}
 	}
 
@@ -1071,13 +1070,13 @@ public class MMINT implements MMINTConstants {
 
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
-			initTypeMID(registry);
+			this.initTypeMID(registry);
 			registry.addListener(new ModelExtensionPointListener(), MODELS_EXT_POINT);
 			registry.addListener(new ModelRelExtensionPointListener(), MODELRELS_EXT_POINT);
 			registry.addListener(new EditorExtensionPointListener(), EDITORS_EXT_POINT);
 			registry.addListener(new OperatorExtensionPointListener(), OPERATORS_EXT_POINT);
 		}
-		initPreferences();
+		this.initPreferences();
 	}
 
 }

@@ -65,7 +65,7 @@ public class FileUtils {
 		return emfUri;
 	}
 
-	private static @NonNull String getFirstSegmentFromPath(@NonNull String path) {
+	public static @NonNull String getFirstSegmentFromPath(@NonNull String path) {
 
 		int sepIndex = path.indexOf(IPath.SEPARATOR, 1);
 
