@@ -31,9 +31,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -45,6 +45,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.sirius.business.api.session.Session;
+import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
+import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
@@ -65,7 +69,7 @@ public class FileUtils {
 		return emfUri;
 	}
 
-	public static @NonNull String getFirstSegmentFromPath(@NonNull String path) {
+	private static @NonNull String getFirstSegmentFromPath(@NonNull String path) {
 
 		int sepIndex = path.indexOf(IPath.SEPARATOR, 1);
 
@@ -166,14 +170,21 @@ public class FileUtils {
 		return uniquePath;
 	}
 
+	public static @Nullable IProject getWorkspaceProject(@NonNull String relativePath) {
+
+	    String projectName = FileUtils.getFirstSegmentFromPath(relativePath);
+        IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+        IProject project = workspaceRoot.getProject(projectName);
+
+        return project;
+	}
+
 	public static @NonNull String prependWorkspacePath(@NonNull String relativePath) {
 
-		String projectName = FileUtils.getFirstSegmentFromPath(relativePath);
-		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-		IProject project = workspaceRoot.getProject(projectName);
+		IProject project = FileUtils.getWorkspaceProject(relativePath);
 		String absolutePath = (project == null) ?
 			ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + relativePath :
-			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + projectName, "");
+			project.getLocation().toString() + relativePath.replaceFirst(IPath.SEPARATOR + project.getName(), "");
 
 		return absolutePath;
 	}
@@ -424,38 +435,47 @@ public class FileUtils {
 			throw new MMINTException("The file " + filePath + " does not exist");
 		}
 
+        //TODO MMINT[OO] Move into Editor/Diagram
 		try {
-		    //DialectUIManager.INSTANCE.openEditor(null, null, new NullProgressMonitor());
-			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			if (isWorkspaceRelative) {
-				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new org.eclipse.core.runtime.Path(filePath));
-				if (editorId != null) {
-					IDE.openEditor(activePage, file, editorId);
-				}
-				else {
-					IDE.openEditor(activePage, file);
-				}
-			}
-			else {
-				if (editorId != null) {
-					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
-						URI emfUri = FileUtils.createEMFUri(filePath, false);
-						IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
-					}
-					else {
-						java.net.URI fileUri = new File(filePath).toURI();
-						IDE.openEditor(activePage, fileUri, editorId, true);
-					}
-				}
-				else {
-					java.net.URI fileUri = new File(filePath).toURI();
-					IFileStore file = EFS.getStore(fileUri);
-					IDE.openEditorOnFileStore(activePage, file);
-				}
-			}
+		    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) {
+                DRepresentation siriusRepr = (DRepresentation) FileUtils.readModelObject(filePath, null);
+                String siriusFileUri = MIDRegistry.getModelUri(siriusRepr);
+                Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(siriusFileUri, true),
+                                                                           new NullProgressMonitor());
+    		    DialectUIManager.INSTANCE.openEditor(siriusSession, siriusRepr, new NullProgressMonitor());
+		    }
+		    else {
+    			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+    			if (isWorkspaceRelative) {
+    				IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(
+    					new org.eclipse.core.runtime.Path(filePath));
+    				if (editorId != null) {
+    					IDE.openEditor(activePage, file, editorId);
+    				}
+    				else {
+    					IDE.openEditor(activePage, file);
+    				}
+    			}
+    			else {
+    				if (editorId != null) {
+    					if (filePath.endsWith(GMFUtils.DIAGRAM_SUFFIX)) {
+    						URI emfUri = FileUtils.createEMFUri(filePath, false);
+    						IDE.openEditor(activePage, new URIEditorInput(emfUri), editorId);
+    					}
+    					else {
+    						java.net.URI fileUri = new File(filePath).toURI();
+    						IDE.openEditor(activePage, fileUri, editorId, true);
+    					}
+    				}
+    				else {
+    					java.net.URI fileUri = new File(filePath).toURI();
+    					IFileStore file = EFS.getStore(fileUri);
+    					IDE.openEditorOnFileStore(activePage, file);
+    				}
+    			}
+		    }
 		}
-		catch (CoreException e) {
+		catch (Exception e) {
 			throw new MMINTException("Error opening Eclipse editor", e);
 		}
 	}

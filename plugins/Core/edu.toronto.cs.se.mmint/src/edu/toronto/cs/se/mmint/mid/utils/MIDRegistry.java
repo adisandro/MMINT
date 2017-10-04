@@ -218,7 +218,7 @@ public class MIDRegistry {
 			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
 				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
 			}
-			modelUri = emfUri.substring(0, emfUri.indexOf(MMINT.ECORE_MODEL_URI_SEPARATOR));
+			modelUri = emfUri.substring(0, emfUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
 		}
 
 		return modelUri;

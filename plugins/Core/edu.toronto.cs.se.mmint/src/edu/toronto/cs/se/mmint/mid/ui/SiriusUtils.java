@@ -11,14 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.sirius.business.api.helper.SiriusUtil;
-
-import edu.toronto.cs.se.mmint.MMINT;
-
 public class SiriusUtils {
-
-	public static final @NonNull String REPRESENTATION_FILE = "representations" + MMINT.MODEL_FILEEXTENSION_SEPARATOR +
-	                                                          SiriusUtil.SESSION_RESOURCE_EXTENSION;
 
 }

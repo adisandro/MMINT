@@ -944,10 +944,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
         sortedEditors.sort(new Comparator<Editor>() {
             @Override
             public int compare(Editor e1, Editor e2) {
-                // try diagrams before editors
+                // diagrams before editors, alphabetical within same type
                 boolean d1 = e1 instanceof Diagram;
                 boolean d2 = e2 instanceof Diagram;
-                if (d1 && d2) {
+                if (d1 == d2) {
                     return e1.getId().compareTo(e2.getId());
                 }
                 if (d1) {

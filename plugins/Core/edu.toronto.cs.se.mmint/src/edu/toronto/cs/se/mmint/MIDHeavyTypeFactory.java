@@ -644,7 +644,7 @@ public class MIDHeavyTypeFactory extends MIDTypeFactory {
 		//TODO MMINT[MISC] this can be optimized to run once instead of for each editor, if needed
 		IExtensionRegistry registry = RegistryFactory.getRegistry();
 		if (registry != null) {
-		    // first, look for classic editors first..
+		    // look for classic editors first..
 			IConfigurationElement[] config = registry.getConfigurationElementsFor(MMINT.ECLIPSE_EDITORS_EXT_POINT);
 			for (IConfigurationElement elem : config) {
 				if (elem.getAttribute(MMINT.ECLIPSE_EDITORS_ATTR_ID).equals(editorId)) {

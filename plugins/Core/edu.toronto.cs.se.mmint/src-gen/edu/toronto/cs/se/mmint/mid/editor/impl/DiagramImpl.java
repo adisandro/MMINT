@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmint.mid.editor.impl;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
@@ -24,7 +23,6 @@ import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DAnalysis;
-import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
 import org.eclipse.swt.widgets.Shell;
@@ -42,7 +40,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
-import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -97,22 +95,29 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
         String editorUri = modelUri;
         if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
-            editorUri = IPath.SEPARATOR + FileUtils.getFirstSegmentFromPath(modelUri) + IPath.SEPARATOR + SiriusUtils.REPRESENTATION_FILE;
-            // check if representation file exists at the top level
-            //TODO[SIRIUS] Check for the file from current dir up
-            if (!FileUtils.isFileOrDirectory(editorUri, true)) {
-                //TODO[SIRIUS] Add new diagram to the representation if it does not exist
-                //TODO[SIRIUS] Create the representation file if it does not exist
-            }
-            Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(editorUri, true),
+            //TODO[SIRIUS] Create the representation file if it does not exist
+            //TODO[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
+            //TODO[SIRIUS] e.g. filter repr files that have the model as semantic resource
+            String siriusFileUri = MIDDialogs.selectModelDiagramToImport(modelUri);
+            String modelExt = FileUtils.getFileExtensionFromPath(modelUri);
+            Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(siriusFileUri, true),
                                                                        new NullProgressMonitor());
+            //TODO[SIRIUS] Add new diagram to the representation if it does not exist
             DAnalysis siriusRoot = (DAnalysis) siriusSession.getSessionResource().getContents().get(0);
-            DView v = siriusRoot.getOwnedViews().get(0); //TODO[SIRIUS] v.getViewpoint() should match the viewpoint id
-            DRepresentationDescriptor rd = v.getOwnedRepresentationDescriptors().get(0); //TODO[SIRIUS] r.getDescription() should match the diagram id
-            String diagramRootUri = MIDRegistry.getModelElementUri(rd.getTarget());
-            if (diagramRootUri.startsWith(modelUri)) {
-                DRepresentation r = rd.getRepresentation();
-                editorUri = MIDRegistry.getModelElementUri(r);
+viewpoints:
+            for (DView siriusView : siriusRoot.getOwnedViews()) {
+                if (!siriusView.getViewpoint().getModelFileExtension().equals(modelExt)) {
+                    continue;
+                }
+                for (DRepresentationDescriptor siriusRepr : siriusView.getOwnedRepresentationDescriptors()) {
+                    if (!siriusRepr.getDescription().getName().equals(this.getUri()) ||
+                        !MIDRegistry.getModelElementUri(siriusRepr.getTarget()).startsWith(modelUri)
+                    ) {
+                        continue;
+                    }
+                    editorUri = MIDRegistry.getModelElementUri(siriusRepr.getRepresentation());
+                    break viewpoints;
+                }
             }
         }
         else { // GMF

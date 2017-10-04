@@ -34,8 +34,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Bundle;
@@ -59,8 +57,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
-import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
+import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
@@ -193,9 +191,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelTypeDialogContentProvider(),
 			typeMID
@@ -253,9 +249,7 @@ public class MIDTypeRegistry {
 			}
 		}
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
 			typeMID
@@ -310,9 +304,7 @@ public class MIDTypeRegistry {
 			}
 		}
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
 			modelRelType
@@ -323,9 +315,7 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getOperatorTypeCreationDialog(MID typeMID) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
@@ -358,9 +348,7 @@ public class MIDTypeRegistry {
 			catch (MMINTException e) {}
 		}
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
 			typeMID
@@ -377,9 +365,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelCreationDialog() {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
 			MMINT.cachedTypeMID
@@ -397,15 +383,13 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelImportDialog() {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
 		);
-		dialog.addFilter(new ImportModelDialogFilter());
-		dialog.setValidator(new ImportModelDialogSelectionValidator());
+		dialog.addFilter(new FileExtensionsDialogFilter(MIDTypeRegistry.getModelTypeFileExtensions()));
+		dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
 		return dialog;
 	}
@@ -426,9 +410,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelRelDialogContentProvider(MIDConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
 			MMINT.cachedTypeMID
@@ -451,9 +433,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
 			modelRel.getMetatype()
@@ -482,9 +462,7 @@ public class MIDTypeRegistry {
 	public static MIDTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
 
 		ModelRel modelRelType = modelRel.getMetatype();
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewMappingReferenceDialogContentProvider(MIDConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
 			modelRelType
@@ -508,9 +486,7 @@ public class MIDTypeRegistry {
 	public static MIDTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
 
 		Mapping mappingType = mappingRef.getObject().getMetatype();
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
 			mappingType
@@ -521,9 +497,7 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getWorkflowModelCreationDialog() {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewWorkflowModelDialogContentProvider(MMINT.cachedTypeMID),
 			MMINT.cachedTypeMID

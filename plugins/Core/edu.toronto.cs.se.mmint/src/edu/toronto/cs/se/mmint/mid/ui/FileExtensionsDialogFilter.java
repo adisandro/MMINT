@@ -5,21 +5,29 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+public class FileExtensionsDialogFilter extends ViewerFilter {
 
-public class ImportModelDialogFilter extends ViewerFilter {
+    private List<String> fileExtensions;
 
-	/**
+    public FileExtensionsDialogFilter(List<String> fileExtensions) {
+
+        super();
+        this.fileExtensions = fileExtensions;
+    }
+
+    /**
 	 * {@inheritDoc} Filters file extensions that are not registered with a
 	 * model type.
 	 */
@@ -30,7 +38,7 @@ public class ImportModelDialogFilter extends ViewerFilter {
 			return true;
 		}
 
-		return MIDTypeRegistry.getModelTypeFileExtensions().contains(((IFile) element).getFileExtension());
+		return this.fileExtensions.contains(((IFile) element).getFileExtension());
 	}
 
 }

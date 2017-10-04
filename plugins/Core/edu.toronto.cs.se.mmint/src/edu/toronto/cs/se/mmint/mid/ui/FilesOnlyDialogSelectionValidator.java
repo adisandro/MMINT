@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -19,9 +19,9 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 
 import edu.toronto.cs.se.mmint.MMINTActivator;
 
-public class ImportModelDialogSelectionValidator implements ISelectionStatusValidator {
+public class FilesOnlyDialogSelectionValidator implements ISelectionStatusValidator {
 
-	/**
+    /**
 	 * {@inheritDoc} The selection of a project or folder is not allowed, only
 	 * files.
 	 */
@@ -30,11 +30,11 @@ public class ImportModelDialogSelectionValidator implements ISelectionStatusVali
 
 		for (Object object : selection) {
 			if (object instanceof IFolder || object instanceof IProject) {
-				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a model file");
+				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a file");
 			}
 		}
 
-		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "Model file selected");
+		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "File selected");
 	}
 
 }

@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -23,12 +25,15 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -152,13 +157,31 @@ public class MIDDialogs {
         catch (Exception e) {
             throw new MMINTException("Error opening the Workflow MID", e);
         }
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(shell, new MIDDialogLabelProvider(), contentProvider,
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new MIDDialogLabelProvider(), contentProvider,
                                                                    typeMID);
 	    String title = "Create new operator type from workflow";
 	    String message = "Other operators exist with the same name, you can select one of them to override";
 
 	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	public static @NonNull String selectModelDiagramToImport(@NonNull String modelUri) throws MIDDialogCancellation {
+
+        Object dialogRoot = FileUtils.getWorkspaceProject(modelUri);
+        if (dialogRoot == null) {
+            dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
+        }
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
+                                                                   new BaseWorkbenchContentProvider(), dialogRoot);
+        dialog.addFilter(new FileExtensionsDialogFilter(
+            Stream.of(SiriusUtil.SESSION_RESOURCE_EXTENSION).collect(Collectors.toList())));
+        dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+
+        String title = "Import model with Sirius Diagram";
+        String message = "Select Sirius representations file";
+        IFile siriusFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+
+        return siriusFile.getFullPath().toString();
 	}
 
 	/**
