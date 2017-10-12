@@ -204,6 +204,15 @@ public class MIDRegistry {
 		return false;
 	}
 
+	public static @NonNull String getModelUri(@NonNull String modelElementUri) {
+
+        if (!modelElementUri.contains(MMINT.MODEL_URI_SEPARATOR)) {
+            return modelElementUri;
+        }
+
+        return modelElementUri.substring(0, modelElementUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
+	}
+
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
 
 		String modelUri;
@@ -218,7 +227,7 @@ public class MIDRegistry {
 			if (emfUri.startsWith(RESOURCE_URI_PREFIX)) {
 				emfUri = emfUri.substring(RESOURCE_URI_PREFIX.length());
 			}
-			modelUri = emfUri.substring(0, emfUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
+			modelUri = MIDRegistry.getModelUri(emfUri);
 		}
 
 		return modelUri;

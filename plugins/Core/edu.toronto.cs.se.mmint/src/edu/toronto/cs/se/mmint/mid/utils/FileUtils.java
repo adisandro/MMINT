@@ -431,17 +431,21 @@ public class FileUtils {
 
 	public static void openEclipseEditor(@NonNull String filePath, @Nullable String editorId, boolean isWorkspaceRelative) throws MMINTException {
 
+        //TODO MMINT[OO] Move all into Editor/Diagram
+	    String siriusReprPath = null;
+	    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) {
+	        siriusReprPath = filePath;
+	        filePath = MIDRegistry.getModelUri(siriusReprPath);
+	    }
 		if (!FileUtils.isFile(filePath, isWorkspaceRelative)) {
 			throw new MMINTException("The file " + filePath + " does not exist");
 		}
 
-        //TODO MMINT[OO] Move into Editor/Diagram
 		try {
-		    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) {
-                DRepresentation siriusRepr = (DRepresentation) FileUtils.readModelObject(filePath, null);
-                String siriusFileUri = MIDRegistry.getModelUri(siriusRepr);
-                Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(siriusFileUri, true),
+		    if (siriusReprPath != null) {
+                Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(filePath, true),
                                                                            new NullProgressMonitor());
+                DRepresentation siriusRepr = (DRepresentation) FileUtils.readModelObject(siriusReprPath, siriusSession.getSessionResource());
     		    DialectUIManager.INSTANCE.openEditor(siriusSession, siriusRepr, new NullProgressMonitor());
 		    }
 		    else {
