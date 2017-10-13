@@ -34,6 +34,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Bundle;
@@ -64,8 +66,6 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingTypeReferenceDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelElementEndpointReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelEndpointDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelDialogContentProvider;
@@ -357,22 +357,10 @@ public class MIDTypeRegistry {
 		return dialog;
 	}
 
-	/**
-	 * Gets a tree dialog that shows all model types in the repository and their
-	 * editor types, in order to create a new model.
-	 *
-	 * @return The tree dialog to create a new model.
-	 */
-	public static MIDTreeSelectionDialog getModelCreationDialog() {
+	public static MIDTreeSelectionDialog getMIDTreeTypeSelectionDialog(ILabelProvider labelProvider,
+	                                                                   ITreeContentProvider contentProvider) {
 
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			new MIDDialogLabelProvider(),
-			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
-			MMINT.cachedTypeMID
-		);
-		dialog.setValidator(new NewModelDialogSelectionValidator());
-
-		return dialog;
+        return new MIDTreeSelectionDialog(labelProvider, contentProvider, MMINT.cachedTypeMID);
 	}
 
 	/**

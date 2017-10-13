@@ -196,12 +196,15 @@ public class MIDDialogs {
 	 */
 	public static Editor selectModelTypeToCreate(MID instanceMID) throws MIDDialogCancellation, MMINTException {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelCreationDialog();
+        MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMIDTreeTypeSelectionDialog(
+            new MIDDialogLabelProvider(), new NewModelDialogContentProvider());
+        dialog.setValidator(new NewModelDialogSelectionValidator());
 		String title = "Create new model";
 		String message = "Choose editor to create model";
 		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
-		String midContainerUri = FileUtils.replaceLastSegmentInPath(instanceMID.eResource().getURI().toPlatformString(true), "");
+		String midContainerUri = FileUtils.replaceLastSegmentInPath(
+		    instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
 			midContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
@@ -214,6 +217,7 @@ public class MIDDialogs {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(midContainerUri)
 			);
 		}
+		//TODO MMINT[SIRIUS] invoke the normal tree editor, don't open it and instead create a diagram in the repr file
 		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(midContainer);
 		if (wizDialog == null) {
 			throw new MIDDialogCancellation();

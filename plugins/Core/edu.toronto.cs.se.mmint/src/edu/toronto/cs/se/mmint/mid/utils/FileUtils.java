@@ -445,7 +445,8 @@ public class FileUtils {
 		    if (siriusReprPath != null) {
                 Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(filePath, true),
                                                                            new NullProgressMonitor());
-                DRepresentation siriusRepr = (DRepresentation) FileUtils.readModelObject(siriusReprPath, siriusSession.getSessionResource());
+                DRepresentation siriusRepr = (DRepresentation) FileUtils.readModelObject(
+                    siriusReprPath, siriusSession.getSessionResource());
     		    DialectUIManager.INSTANCE.openEditor(siriusSession, siriusRepr, new NullProgressMonitor());
 		    }
 		    else {
