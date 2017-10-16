@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getArgumentElement()
@@ -101,5 +102,35 @@ public interface ArgumentElement extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Status</b></em>' attribute.
+	 * The default value is <code>"Undetermined"</code>.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.Status}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Status</em>' attribute.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.Status
+	 * @see #setStatus(Status)
+	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getArgumentElement_Status()
+	 * @model default="Undetermined"
+	 * @generated
+	 */
+	Status getStatus();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getStatus <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status</em>' attribute.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.Status
+	 * @see #getStatus()
+	 * @generated
+	 */
+	void setStatus(Status value);
 
 } // ArgumentElement

@@ -4,10 +4,12 @@ package edu.toronto.cs.se.nlsfung.gsn.impl;
 
 import edu.toronto.cs.se.nlsfung.gsn.Context;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
-
 import edu.toronto.cs.se.nlsfung.gsn.ValidityState;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -33,6 +35,7 @@ public class ContextImpl extends ContextualElementImpl implements Context {
 	 * @ordered
 	 */
 	protected static final ValidityState STATE_EDEFAULT = ValidityState.INVALID;
+
 	/**
 	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
 	 * <!-- begin-user-doc -->

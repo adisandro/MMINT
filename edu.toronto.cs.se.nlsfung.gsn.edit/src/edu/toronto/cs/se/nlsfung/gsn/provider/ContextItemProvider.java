@@ -4,8 +4,8 @@ package edu.toronto.cs.se.nlsfung.gsn.provider;
 
 
 import edu.toronto.cs.se.nlsfung.gsn.Context;
-
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
+
 import java.util.Collection;
 import java.util.List;
 

@@ -14,6 +14,7 @@ import edu.toronto.cs.se.nlsfung.gsn.Goal;
 import edu.toronto.cs.se.nlsfung.gsn.InContextOf;
 import edu.toronto.cs.se.nlsfung.gsn.SafetyCase;
 import edu.toronto.cs.se.nlsfung.gsn.Solution;
+import edu.toronto.cs.se.nlsfung.gsn.Status;
 import edu.toronto.cs.se.nlsfung.gsn.Strategy;
 import edu.toronto.cs.se.nlsfung.gsn.SupportedBy;
 import edu.toronto.cs.se.nlsfung.gsn.TruthState;
@@ -138,6 +139,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * @generated
 	 */
 	private EEnum validityStateEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum statusEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -295,6 +303,15 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getArgumentElement_Status() {
+		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCoreElement() {
 		return coreElementEClass;
 	}
@@ -376,7 +393,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSupportedBy_Premises() {
+	public EReference getSupportedBy_Premise() {
 		return (EReference)supportedByEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -394,7 +411,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInContextOf_Contexts() {
+	public EReference getInContextOf_Context() {
 		return (EReference)inContextOfEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -529,6 +546,15 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getStatus() {
+		return statusEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GSNFactory getGSNFactory() {
 		return (GSNFactory)getEFactoryInstance();
 	}
@@ -563,6 +589,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__ID);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__NAME);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__DESCRIPTION);
+		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__STATUS);
 
 		coreElementEClass = createEClass(CORE_ELEMENT);
 		createEReference(coreElementEClass, CORE_ELEMENT__SUPPORTS);
@@ -576,10 +603,10 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
 		supportedByEClass = createEClass(SUPPORTED_BY);
 		createEReference(supportedByEClass, SUPPORTED_BY__CONCLUSION);
-		createEReference(supportedByEClass, SUPPORTED_BY__PREMISES);
+		createEReference(supportedByEClass, SUPPORTED_BY__PREMISE);
 
 		inContextOfEClass = createEClass(IN_CONTEXT_OF);
-		createEReference(inContextOfEClass, IN_CONTEXT_OF__CONTEXTS);
+		createEReference(inContextOfEClass, IN_CONTEXT_OF__CONTEXT);
 		createEReference(inContextOfEClass, IN_CONTEXT_OF__CONTEXT_OF);
 
 		goalEClass = createEClass(GOAL);
@@ -601,6 +628,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		truthStateEEnum = createEEnum(TRUTH_STATE);
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
 		validityStateEEnum = createEEnum(VALIDITY_STATE);
+		statusEEnum = createEEnum(STATUS);
 	}
 
 	/**
@@ -652,23 +680,24 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		initEAttribute(getArgumentElement_Id(), ecorePackage.getEString(), "id", "", 1, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArgumentElement_Status(), this.getStatus(), "status", "Undetermined", 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coreElementEClass, CoreElement.class, "CoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCoreElement_Supports(), this.getSupportedBy(), this.getSupportedBy_Premises(), "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCoreElement_Supports(), this.getSupportedBy(), this.getSupportedBy_Premise(), "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(decomposableCoreElementEClass, DecomposableCoreElement.class, "DecomposableCoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDecomposableCoreElement_SupportedBy(), this.getSupportedBy(), this.getSupportedBy_Conclusion(), "supportedBy", null, 0, 1, DecomposableCoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDecomposableCoreElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, 1, DecomposableCoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDecomposableCoreElement_SupportedBy(), this.getSupportedBy(), this.getSupportedBy_Conclusion(), "supportedBy", null, 0, -1, DecomposableCoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDecomposableCoreElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, DecomposableCoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextualElementEClass, ContextualElement.class, "ContextualElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Contexts(), "contextOf", null, 0, -1, ContextualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, ContextualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(supportedByEClass, SupportedBy.class, "SupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSupportedBy_Conclusion(), this.getDecomposableCoreElement(), this.getDecomposableCoreElement_SupportedBy(), "conclusion", null, 1, 1, SupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSupportedBy_Premises(), this.getCoreElement(), this.getCoreElement_Supports(), "premises", null, 1, -1, SupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSupportedBy_Premise(), this.getCoreElement(), this.getCoreElement_Supports(), "premise", null, 1, 1, SupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inContextOfEClass, InContextOf.class, "InContextOf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInContextOf_Contexts(), this.getContextualElement(), this.getContextualElement_ContextOf(), "contexts", null, 1, -1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInContextOf_Context(), this.getContextualElement(), this.getContextualElement_ContextOf(), "context", null, 1, 1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInContextOf_ContextOf(), this.getDecomposableCoreElement(), this.getDecomposableCoreElement_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -701,6 +730,12 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 		initEEnum(validityStateEEnum, ValidityState.class, "ValidityState");
 		addEEnumLiteral(validityStateEEnum, ValidityState.INVALID);
 		addEEnumLiteral(validityStateEEnum, ValidityState.VALID);
+
+		initEEnum(statusEEnum, Status.class, "Status");
+		addEEnumLiteral(statusEEnum, Status.UNDETERMINED);
+		addEEnumLiteral(statusEEnum, Status.REVISE);
+		addEEnumLiteral(statusEEnum, Status.RECHECK);
+		addEEnumLiteral(statusEEnum, Status.REUSE);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -26,12 +26,12 @@
         <details key="label" value="description"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
+        defaultValueLiteral="Undetermined"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
         eType="#//SupportedBy" eOpposite="#//SupportedBy/premise"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
-        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true"
       eSuperTypes="#//CoreElement">

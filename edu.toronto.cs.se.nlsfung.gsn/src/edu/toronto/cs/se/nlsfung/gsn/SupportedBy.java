@@ -2,8 +2,6 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getConclusion <em>Conclusion</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremises <em>Premises</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremise <em>Premise</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getSupportedBy()
@@ -53,21 +51,31 @@ public interface SupportedBy extends EObject {
 	void setConclusion(DecomposableCoreElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Premises</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.CoreElement}.
+	 * Returns the value of the '<em><b>Premise</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.nlsfung.gsn.CoreElement#getSupports <em>Supports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Premises</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Premise</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Premises</em>' reference list.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getSupportedBy_Premises()
+	 * @return the value of the '<em>Premise</em>' reference.
+	 * @see #setPremise(CoreElement)
+	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getSupportedBy_Premise()
 	 * @see edu.toronto.cs.se.nlsfung.gsn.CoreElement#getSupports
 	 * @model opposite="supports" required="true"
 	 * @generated
 	 */
-	EList<CoreElement> getPremises();
+	CoreElement getPremise();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremise <em>Premise</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Premise</em>' reference.
+	 * @see #getPremise()
+	 * @generated
+	 */
+	void setPremise(CoreElement value);
 
 } // SupportedBy

@@ -2,8 +2,6 @@
  */
 package edu.toronto.cs.se.nlsfung.gsn;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContext <em>Context</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContextOf <em>Context Of</em>}</li>
  * </ul>
  *
@@ -25,22 +23,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface InContextOf extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Contexts</b></em>' reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement}.
+	 * Returns the value of the '<em><b>Context</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.nlsfung.gsn.ContextualElement#getContextOf <em>Context Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contexts</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Context</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contexts</em>' reference list.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getInContextOf_Contexts()
+	 * @return the value of the '<em>Context</em>' reference.
+	 * @see #setContext(ContextualElement)
+	 * @see edu.toronto.cs.se.nlsfung.gsn.GSNPackage#getInContextOf_Context()
 	 * @see edu.toronto.cs.se.nlsfung.gsn.ContextualElement#getContextOf
 	 * @model opposite="contextOf" required="true"
 	 * @generated
 	 */
-	EList<ContextualElement> getContexts();
+	ContextualElement getContext();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContext <em>Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Context</em>' reference.
+	 * @see #getContext()
+	 * @generated
+	 */
+	void setContext(ContextualElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Context Of</b></em>' container reference.

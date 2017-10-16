@@ -84,6 +84,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 				return createASILLevelFromString(eDataType, initialValue);
 			case GSNPackage.VALIDITY_STATE:
 				return createValidityStateFromString(eDataType, initialValue);
+			case GSNPackage.STATUS:
+				return createStatusFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -103,6 +105,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 				return convertASILLevelToString(eDataType, instanceValue);
 			case GSNPackage.VALIDITY_STATE:
 				return convertValidityStateToString(eDataType, instanceValue);
+			case GSNPackage.STATUS:
+				return convertStatusToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -245,6 +249,26 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
 	 * @generated
 	 */
 	public String convertValidityStateToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Status createStatusFromString(EDataType eDataType, String initialValue) {
+		Status result = Status.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

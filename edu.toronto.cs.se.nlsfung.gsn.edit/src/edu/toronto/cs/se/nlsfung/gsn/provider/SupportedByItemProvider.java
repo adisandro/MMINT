@@ -57,25 +57,25 @@ public class SupportedByItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPremisesPropertyDescriptor(object);
+			addPremisePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Premises feature.
+	 * This adds a property descriptor for the Premise feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPremisesPropertyDescriptor(Object object) {
+	protected void addPremisePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SupportedBy_premises_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedBy_premises_feature", "_UI_SupportedBy_type"),
-				 GSNPackage.Literals.SUPPORTED_BY__PREMISES,
+				 getString("_UI_SupportedBy_premise_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedBy_premise_feature", "_UI_SupportedBy_type"),
+				 GSNPackage.Literals.SUPPORTED_BY__PREMISE,
 				 true,
 				 false,
 				 true,

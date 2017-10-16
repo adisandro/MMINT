@@ -20,7 +20,6 @@ package edu.toronto.cs.se.nlsfung.gsn;
  * @generated
  */
 public interface Strategy extends DecomposableCoreElement {
-
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.ValidityState}.
@@ -49,4 +48,5 @@ public interface Strategy extends DecomposableCoreElement {
 	 * @generated
 	 */
 	void setState(ValidityState value);
+
 } // Strategy

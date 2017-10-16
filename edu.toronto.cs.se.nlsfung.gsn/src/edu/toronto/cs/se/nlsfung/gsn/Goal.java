@@ -20,7 +20,6 @@ package edu.toronto.cs.se.nlsfung.gsn;
  * @generated
  */
 public interface Goal extends DecomposableCoreElement {
-
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.nlsfung.gsn.TruthState}.
@@ -49,4 +48,5 @@ public interface Goal extends DecomposableCoreElement {
 	 * @generated
 	 */
 	void setState(TruthState value);
+
 } // Goal

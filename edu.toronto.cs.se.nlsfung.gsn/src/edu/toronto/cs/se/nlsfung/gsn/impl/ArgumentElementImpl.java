@@ -4,6 +4,7 @@ package edu.toronto.cs.se.nlsfung.gsn.impl;
 
 import edu.toronto.cs.se.nlsfung.gsn.ArgumentElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
+import edu.toronto.cs.se.nlsfung.gsn.Status;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.ArgumentElementImpl#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +89,26 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatus()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Status STATUS_EDEFAULT = Status.UNDETERMINED;
+
+	/**
+	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatus()
+	 * @generated
+	 * @ordered
+	 */
+	protected Status status = STATUS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,6 +197,27 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Status getStatus() {
+		return status;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatus(Status newStatus) {
+		Status oldStatus = status;
+		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__STATUS, oldStatus, status));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -184,6 +227,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return getName();
 			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return getDescription();
+			case GSNPackage.ARGUMENT_ELEMENT__STATUS:
+				return getStatus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,6 +249,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return;
 			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case GSNPackage.ARGUMENT_ELEMENT__STATUS:
+				setStatus((Status)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,6 +274,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case GSNPackage.ARGUMENT_ELEMENT__STATUS:
+				setStatus(STATUS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,6 +295,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case GSNPackage.ARGUMENT_ELEMENT__STATUS:
+				return status != STATUS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -264,6 +317,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", status: ");
+		result.append(status);
 		result.append(')');
 		return result.toString();
 	}

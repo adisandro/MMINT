@@ -68,7 +68,7 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
 	 */
 	public EList<InContextOf> getContextOf() {
 		if (contextOf == null) {
-			contextOf = new EObjectWithInverseResolvingEList.ManyInverse<InContextOf>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXTS);
+			contextOf = new EObjectWithInverseResolvingEList<InContextOf>(InContextOf.class, this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT);
 		}
 		return contextOf;
 	}

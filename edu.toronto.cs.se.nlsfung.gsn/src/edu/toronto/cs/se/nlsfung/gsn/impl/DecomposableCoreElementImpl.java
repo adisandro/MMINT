@@ -7,13 +7,17 @@ import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.se.nlsfung.gsn.InContextOf;
 import edu.toronto.cs.se.nlsfung.gsn.SupportedBy;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,24 +35,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class DecomposableCoreElementImpl extends CoreElementImpl implements DecomposableCoreElement {
 	/**
-	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference.
+	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSupportedBy()
 	 * @generated
 	 * @ordered
 	 */
-	protected SupportedBy supportedBy;
+	protected EList<SupportedBy> supportedBy;
 
 	/**
-	 * The cached value of the '{@link #getInContextOf() <em>In Context Of</em>}' containment reference.
+	 * The cached value of the '{@link #getInContextOf() <em>In Context Of</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInContextOf()
 	 * @generated
 	 * @ordered
 	 */
-	protected InContextOf inContextOf;
+	protected EList<InContextOf> inContextOf;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +78,10 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SupportedBy getSupportedBy() {
+	public EList<SupportedBy> getSupportedBy() {
+		if (supportedBy == null) {
+			supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, GSNPackage.SUPPORTED_BY__CONCLUSION);
+		}
 		return supportedBy;
 	}
 
@@ -83,41 +90,10 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSupportedBy(SupportedBy newSupportedBy, NotificationChain msgs) {
-		SupportedBy oldSupportedBy = supportedBy;
-		supportedBy = newSupportedBy;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, oldSupportedBy, newSupportedBy);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<InContextOf> getInContextOf() {
+		if (inContextOf == null) {
+			inContextOf = new EObjectContainmentWithInverseEList<InContextOf>(InContextOf.class, this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSupportedBy(SupportedBy newSupportedBy) {
-		if (newSupportedBy != supportedBy) {
-			NotificationChain msgs = null;
-			if (supportedBy != null)
-				msgs = ((InternalEObject)supportedBy).eInverseRemove(this, GSNPackage.SUPPORTED_BY__CONCLUSION, SupportedBy.class, msgs);
-			if (newSupportedBy != null)
-				msgs = ((InternalEObject)newSupportedBy).eInverseAdd(this, GSNPackage.SUPPORTED_BY__CONCLUSION, SupportedBy.class, msgs);
-			msgs = basicSetSupportedBy(newSupportedBy, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, newSupportedBy, newSupportedBy));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InContextOf getInContextOf() {
 		return inContextOf;
 	}
 
@@ -126,51 +102,14 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInContextOf(InContextOf newInContextOf, NotificationChain msgs) {
-		InContextOf oldInContextOf = inContextOf;
-		inContextOf = newInContextOf;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, oldInContextOf, newInContextOf);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInContextOf(InContextOf newInContextOf) {
-		if (newInContextOf != inContextOf) {
-			NotificationChain msgs = null;
-			if (inContextOf != null)
-				msgs = ((InternalEObject)inContextOf).eInverseRemove(this, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF, InContextOf.class, msgs);
-			if (newInContextOf != null)
-				msgs = ((InternalEObject)newInContextOf).eInverseAdd(this, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF, InContextOf.class, msgs);
-			msgs = basicSetInContextOf(newInContextOf, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, newInContextOf, newInContextOf));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-				if (supportedBy != null)
-					msgs = ((InternalEObject)supportedBy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, null, msgs);
-				return basicSetSupportedBy((SupportedBy)otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-				if (inContextOf != null)
-					msgs = ((InternalEObject)inContextOf).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, null, msgs);
-				return basicSetInContextOf((InContextOf)otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInContextOf()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -184,9 +123,9 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-				return basicSetSupportedBy(null, msgs);
+				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-				return basicSetInContextOf(null, msgs);
+				return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,14 +151,17 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-				setSupportedBy((SupportedBy)newValue);
+				getSupportedBy().clear();
+				getSupportedBy().addAll((Collection<? extends SupportedBy>)newValue);
 				return;
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-				setInContextOf((InContextOf)newValue);
+				getInContextOf().clear();
+				getInContextOf().addAll((Collection<? extends InContextOf>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -234,10 +176,10 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-				setSupportedBy((SupportedBy)null);
+				getSupportedBy().clear();
 				return;
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-				setInContextOf((InContextOf)null);
+				getInContextOf().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -252,9 +194,9 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-				return supportedBy != null;
+				return supportedBy != null && !supportedBy.isEmpty();
 			case GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-				return inContextOf != null;
+				return inContextOf != null && !inContextOf.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

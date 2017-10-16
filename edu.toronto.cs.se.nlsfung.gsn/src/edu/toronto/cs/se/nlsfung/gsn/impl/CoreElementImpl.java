@@ -68,7 +68,7 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 */
 	public EList<SupportedBy> getSupports() {
 		if (supports == null) {
-			supports = new EObjectWithInverseResolvingEList.ManyInverse<SupportedBy>(SupportedBy.class, this, GSNPackage.CORE_ELEMENT__SUPPORTS, GSNPackage.SUPPORTED_BY__PREMISES);
+			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, GSNPackage.CORE_ELEMENT__SUPPORTS, GSNPackage.SUPPORTED_BY__PREMISE);
 		}
 		return supports;
 	}

@@ -7,12 +7,8 @@ import edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.GSNPackage;
 import edu.toronto.cs.se.nlsfung.gsn.SupportedBy;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -20,9 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,21 +27,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SupportedByImpl#getConclusion <em>Conclusion</em>}</li>
- *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SupportedByImpl#getPremises <em>Premises</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.nlsfung.gsn.impl.SupportedByImpl#getPremise <em>Premise</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SupportedByImpl extends MinimalEObjectImpl.Container implements SupportedBy {
 	/**
-	 * The cached value of the '{@link #getPremises() <em>Premises</em>}' reference list.
+	 * The cached value of the '{@link #getPremise() <em>Premise</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPremises()
+	 * @see #getPremise()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CoreElement> premises;
+	protected CoreElement premise;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,11 +108,16 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CoreElement> getPremises() {
-		if (premises == null) {
-			premises = new EObjectWithInverseResolvingEList.ManyInverse<CoreElement>(CoreElement.class, this, GSNPackage.SUPPORTED_BY__PREMISES, GSNPackage.CORE_ELEMENT__SUPPORTS);
+	public CoreElement getPremise() {
+		if (premise != null && premise.eIsProxy()) {
+			InternalEObject oldPremise = (InternalEObject)premise;
+			premise = (CoreElement)eResolveProxy(oldPremise);
+			if (premise != oldPremise) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.SUPPORTED_BY__PREMISE, oldPremise, premise));
+			}
 		}
-		return premises;
+		return premise;
 	}
 
 	/**
@@ -126,7 +125,49 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	public CoreElement basicGetPremise() {
+		return premise;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPremise(CoreElement newPremise, NotificationChain msgs) {
+		CoreElement oldPremise = premise;
+		premise = newPremise;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__PREMISE, oldPremise, newPremise);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPremise(CoreElement newPremise) {
+		if (newPremise != premise) {
+			NotificationChain msgs = null;
+			if (premise != null)
+				msgs = ((InternalEObject)premise).eInverseRemove(this, GSNPackage.CORE_ELEMENT__SUPPORTS, CoreElement.class, msgs);
+			if (newPremise != null)
+				msgs = ((InternalEObject)newPremise).eInverseAdd(this, GSNPackage.CORE_ELEMENT__SUPPORTS, CoreElement.class, msgs);
+			msgs = basicSetPremise(newPremise, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTED_BY__PREMISE, newPremise, newPremise));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -134,8 +175,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetConclusion((DecomposableCoreElement)otherEnd, msgs);
-			case GSNPackage.SUPPORTED_BY__PREMISES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPremises()).basicAdd(otherEnd, msgs);
+			case GSNPackage.SUPPORTED_BY__PREMISE:
+				if (premise != null)
+					msgs = ((InternalEObject)premise).eInverseRemove(this, GSNPackage.CORE_ELEMENT__SUPPORTS, CoreElement.class, msgs);
+				return basicSetPremise((CoreElement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -150,8 +193,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 		switch (featureID) {
 			case GSNPackage.SUPPORTED_BY__CONCLUSION:
 				return basicSetConclusion(null, msgs);
-			case GSNPackage.SUPPORTED_BY__PREMISES:
-				return ((InternalEList<?>)getPremises()).basicRemove(otherEnd, msgs);
+			case GSNPackage.SUPPORTED_BY__PREMISE:
+				return basicSetPremise(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -180,8 +223,9 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 		switch (featureID) {
 			case GSNPackage.SUPPORTED_BY__CONCLUSION:
 				return getConclusion();
-			case GSNPackage.SUPPORTED_BY__PREMISES:
-				return getPremises();
+			case GSNPackage.SUPPORTED_BY__PREMISE:
+				if (resolve) return getPremise();
+				return basicGetPremise();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -191,16 +235,14 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GSNPackage.SUPPORTED_BY__CONCLUSION:
 				setConclusion((DecomposableCoreElement)newValue);
 				return;
-			case GSNPackage.SUPPORTED_BY__PREMISES:
-				getPremises().clear();
-				getPremises().addAll((Collection<? extends CoreElement>)newValue);
+			case GSNPackage.SUPPORTED_BY__PREMISE:
+				setPremise((CoreElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -217,8 +259,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 			case GSNPackage.SUPPORTED_BY__CONCLUSION:
 				setConclusion((DecomposableCoreElement)null);
 				return;
-			case GSNPackage.SUPPORTED_BY__PREMISES:
-				getPremises().clear();
+			case GSNPackage.SUPPORTED_BY__PREMISE:
+				setPremise((CoreElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -234,8 +276,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 		switch (featureID) {
 			case GSNPackage.SUPPORTED_BY__CONCLUSION:
 				return getConclusion() != null;
-			case GSNPackage.SUPPORTED_BY__PREMISES:
-				return premises != null && !premises.isEmpty();
+			case GSNPackage.SUPPORTED_BY__PREMISE:
+				return premise != null;
 		}
 		return super.eIsSet(featureID);
 	}

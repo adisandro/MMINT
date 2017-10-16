@@ -168,13 +168,22 @@ public interface GSNPackage extends EPackage {
 	int ARGUMENT_ELEMENT__DESCRIPTION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARGUMENT_ELEMENT__STATUS = 3;
+
+	/**
 	 * The number of structural features of the '<em>Argument Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARGUMENT_ELEMENT_FEATURE_COUNT = 3;
+	int ARGUMENT_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Argument Element</em>' class.
@@ -221,6 +230,15 @@ public interface GSNPackage extends EPackage {
 	 * @ordered
 	 */
 	int CORE_ELEMENT__DESCRIPTION = ARGUMENT_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORE_ELEMENT__STATUS = ARGUMENT_ELEMENT__STATUS;
 
 	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -287,6 +305,15 @@ public interface GSNPackage extends EPackage {
 	int DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION = CORE_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSABLE_CORE_ELEMENT__STATUS = CORE_ELEMENT__STATUS;
+
+	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,7 +323,7 @@ public interface GSNPackage extends EPackage {
 	int DECOMPOSABLE_CORE_ELEMENT__SUPPORTS = CORE_ELEMENT__SUPPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Supported By</b></em>' containment reference.
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -305,7 +332,7 @@ public interface GSNPackage extends EPackage {
 	int DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>In Context Of</b></em>' containment reference.
+	 * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -369,6 +396,15 @@ public interface GSNPackage extends EPackage {
 	int CONTEXTUAL_ELEMENT__DESCRIPTION = ARGUMENT_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXTUAL_ELEMENT__STATUS = ARGUMENT_ELEMENT__STATUS;
+
+	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,13 +451,13 @@ public interface GSNPackage extends EPackage {
 	int SUPPORTED_BY__CONCLUSION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Premises</b></em>' reference list.
+	 * The feature id for the '<em><b>Premise</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPORTED_BY__PREMISES = 1;
+	int SUPPORTED_BY__PREMISE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Supported By</em>' class.
@@ -452,13 +488,13 @@ public interface GSNPackage extends EPackage {
 	int IN_CONTEXT_OF = 6;
 
 	/**
-	 * The feature id for the '<em><b>Contexts</b></em>' reference list.
+	 * The feature id for the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IN_CONTEXT_OF__CONTEXTS = 0;
+	int IN_CONTEXT_OF__CONTEXT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' container reference.
@@ -525,6 +561,15 @@ public interface GSNPackage extends EPackage {
 	int GOAL__DESCRIPTION = DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__STATUS = DECOMPOSABLE_CORE_ELEMENT__STATUS;
+
+	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -534,7 +579,7 @@ public interface GSNPackage extends EPackage {
 	int GOAL__SUPPORTS = DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Supported By</b></em>' containment reference.
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -543,7 +588,7 @@ public interface GSNPackage extends EPackage {
 	int GOAL__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
 
 	/**
-	 * The feature id for the '<em><b>In Context Of</b></em>' containment reference.
+	 * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -616,6 +661,15 @@ public interface GSNPackage extends EPackage {
 	int STRATEGY__DESCRIPTION = DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRATEGY__STATUS = DECOMPOSABLE_CORE_ELEMENT__STATUS;
+
+	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -625,7 +679,7 @@ public interface GSNPackage extends EPackage {
 	int STRATEGY__SUPPORTS = DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Supported By</b></em>' containment reference.
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -634,7 +688,7 @@ public interface GSNPackage extends EPackage {
 	int STRATEGY__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
 
 	/**
-	 * The feature id for the '<em><b>In Context Of</b></em>' containment reference.
+	 * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -705,6 +759,15 @@ public interface GSNPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOLUTION__DESCRIPTION = CORE_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__STATUS = CORE_ELEMENT__STATUS;
 
 	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -780,6 +843,15 @@ public interface GSNPackage extends EPackage {
 	int CONTEXT__DESCRIPTION = CONTEXTUAL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__STATUS = CONTEXTUAL_ELEMENT__STATUS;
+
+	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -851,6 +923,15 @@ public interface GSNPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASIL__DESCRIPTION = CONTEXT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIL__STATUS = CONTEXT__STATUS;
 
 	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -926,6 +1007,16 @@ public interface GSNPackage extends EPackage {
 	 * @generated
 	 */
 	int VALIDITY_STATE = 14;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.nlsfung.gsn.Status <em>Status</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.nlsfung.gsn.Status
+	 * @see edu.toronto.cs.se.nlsfung.gsn.impl.GSNPackageImpl#getStatus()
+	 * @generated
+	 */
+	int STATUS = 15;
 
 
 	/**
@@ -1037,6 +1128,17 @@ public interface GSNPackage extends EPackage {
 	EAttribute getArgumentElement_Description();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getStatus <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Status</em>'.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.ArgumentElement#getStatus()
+	 * @see #getArgumentElement()
+	 * @generated
+	 */
+	EAttribute getArgumentElement_Status();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.nlsfung.gsn.CoreElement <em>Core Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1068,10 +1170,10 @@ public interface GSNPackage extends EPackage {
 	EClass getDecomposableCoreElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement#getSupportedBy <em>Supported By</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement#getSupportedBy <em>Supported By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Supported By</em>'.
+	 * @return the meta object for the containment reference list '<em>Supported By</em>'.
 	 * @see edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement#getSupportedBy()
 	 * @see #getDecomposableCoreElement()
 	 * @generated
@@ -1079,10 +1181,10 @@ public interface GSNPackage extends EPackage {
 	EReference getDecomposableCoreElement_SupportedBy();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement#getInContextOf <em>In Context Of</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement#getInContextOf <em>In Context Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>In Context Of</em>'.
+	 * @return the meta object for the containment reference list '<em>In Context Of</em>'.
 	 * @see edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement#getInContextOf()
 	 * @see #getDecomposableCoreElement()
 	 * @generated
@@ -1132,15 +1234,15 @@ public interface GSNPackage extends EPackage {
 	EReference getSupportedBy_Conclusion();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremises <em>Premises</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremise <em>Premise</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Premises</em>'.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremises()
+	 * @return the meta object for the reference '<em>Premise</em>'.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.SupportedBy#getPremise()
 	 * @see #getSupportedBy()
 	 * @generated
 	 */
-	EReference getSupportedBy_Premises();
+	EReference getSupportedBy_Premise();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf <em>In Context Of</em>}'.
@@ -1153,15 +1255,15 @@ public interface GSNPackage extends EPackage {
 	EClass getInContextOf();
 
 	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContexts <em>Contexts</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contexts</em>'.
-	 * @see edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContexts()
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContext()
 	 * @see #getInContextOf()
 	 * @generated
 	 */
-	EReference getInContextOf_Contexts();
+	EReference getInContextOf_Context();
 
 	/**
 	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.nlsfung.gsn.InContextOf#getContextOf <em>Context Of</em>}'.
@@ -1310,6 +1412,16 @@ public interface GSNPackage extends EPackage {
 	EEnum getValidityState();
 
 	/**
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.nlsfung.gsn.Status <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Status</em>'.
+	 * @see edu.toronto.cs.se.nlsfung.gsn.Status
+	 * @generated
+	 */
+	EEnum getStatus();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1417,6 +1529,14 @@ public interface GSNPackage extends EPackage {
 		EAttribute ARGUMENT_ELEMENT__DESCRIPTION = eINSTANCE.getArgumentElement_Description();
 
 		/**
+		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARGUMENT_ELEMENT__STATUS = eINSTANCE.getArgumentElement_Status();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.nlsfung.gsn.impl.CoreElementImpl <em>Core Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1445,7 +1565,7 @@ public interface GSNPackage extends EPackage {
 		EClass DECOMPOSABLE_CORE_ELEMENT = eINSTANCE.getDecomposableCoreElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1453,7 +1573,7 @@ public interface GSNPackage extends EPackage {
 		EReference DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = eINSTANCE.getDecomposableCoreElement_SupportedBy();
 
 		/**
-		 * The meta object literal for the '<em><b>In Context Of</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>In Context Of</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1497,12 +1617,12 @@ public interface GSNPackage extends EPackage {
 		EReference SUPPORTED_BY__CONCLUSION = eINSTANCE.getSupportedBy_Conclusion();
 
 		/**
-		 * The meta object literal for the '<em><b>Premises</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Premise</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPORTED_BY__PREMISES = eINSTANCE.getSupportedBy_Premises();
+		EReference SUPPORTED_BY__PREMISE = eINSTANCE.getSupportedBy_Premise();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.nlsfung.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
@@ -1515,12 +1635,12 @@ public interface GSNPackage extends EPackage {
 		EClass IN_CONTEXT_OF = eINSTANCE.getInContextOf();
 
 		/**
-		 * The meta object literal for the '<em><b>Contexts</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IN_CONTEXT_OF__CONTEXTS = eINSTANCE.getInContextOf_Contexts();
+		EReference IN_CONTEXT_OF__CONTEXT = eINSTANCE.getInContextOf_Context();
 
 		/**
 		 * The meta object literal for the '<em><b>Context Of</b></em>' container reference feature.
@@ -1649,6 +1769,16 @@ public interface GSNPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum VALIDITY_STATE = eINSTANCE.getValidityState();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.nlsfung.gsn.Status <em>Status</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.nlsfung.gsn.Status
+		 * @see edu.toronto.cs.se.nlsfung.gsn.impl.GSNPackageImpl#getStatus()
+		 * @generated
+		 */
+		EEnum STATUS = eINSTANCE.getStatus();
 
 	}
 

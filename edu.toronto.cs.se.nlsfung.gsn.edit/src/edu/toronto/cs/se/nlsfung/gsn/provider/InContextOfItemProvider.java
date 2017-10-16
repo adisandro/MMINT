@@ -57,25 +57,25 @@ public class InContextOfItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContextsPropertyDescriptor(object);
+			addContextPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Contexts feature.
+	 * This adds a property descriptor for the Context feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContextsPropertyDescriptor(Object object) {
+	protected void addContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_InContextOf_contexts_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InContextOf_contexts_feature", "_UI_InContextOf_type"),
-				 GSNPackage.Literals.IN_CONTEXT_OF__CONTEXTS,
+				 getString("_UI_InContextOf_context_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InContextOf_context_feature", "_UI_InContextOf_type"),
+				 GSNPackage.Literals.IN_CONTEXT_OF__CONTEXT,
 				 true,
 				 false,
 				 true,
