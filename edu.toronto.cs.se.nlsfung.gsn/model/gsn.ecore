@@ -29,28 +29,30 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
-        eType="#//SupportedBy" eOpposite="#//SupportedBy/premises"/>
+        eType="#//SupportedBy" eOpposite="#//SupportedBy/premise"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true"
       eSuperTypes="#//CoreElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" eType="#//SupportedBy"
-        containment="true" eOpposite="#//SupportedBy/conclusion"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" eType="#//InContextOf"
-        containment="true" eOpposite="#//InContextOf/contextOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
+        eType="#//SupportedBy" containment="true" eOpposite="#//SupportedBy/conclusion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
+        eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextualElement" abstract="true" eSuperTypes="#//ArgumentElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" upperBound="-1"
-        eType="#//InContextOf" eOpposite="#//InContextOf/contexts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
+        upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupportedBy">
     <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
         eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/supportedBy"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="premises" lowerBound="1"
-        upperBound="-1" eType="#//CoreElement" eOpposite="#//CoreElement/supports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
+        eType="#//CoreElement" eOpposite="#//CoreElement/supports"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InContextOf">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" lowerBound="1"
-        upperBound="-1" eType="#//ContextualElement" eOpposite="#//ContextualElement/contextOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+        eType="#//ContextualElement" eOpposite="#//ContextualElement/contextOf"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
         eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/inContextOf"/>
   </eClassifiers>
@@ -83,5 +85,11 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ValidityState">
     <eLiterals name="Invalid" literal="Invalid"/>
     <eLiterals name="Valid" value="1" literal="Valid"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Status">
+    <eLiterals name="Undetermined" literal="Undetermined"/>
+    <eLiterals name="Revise" value="1"/>
+    <eLiterals name="Recheck" value="2" literal="Recheck"/>
+    <eLiterals name="Reuse" value="3" literal="Reuse"/>
   </eClassifiers>
 </ecore:EPackage>
