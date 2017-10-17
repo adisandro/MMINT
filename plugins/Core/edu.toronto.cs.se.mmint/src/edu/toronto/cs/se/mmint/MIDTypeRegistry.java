@@ -11,21 +11,31 @@
  */
 package edu.toronto.cs.se.mmint;
 
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Bundle;
@@ -40,6 +50,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
@@ -48,15 +59,13 @@ import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogFilter;
-import edu.toronto.cs.se.mmint.mid.ui.ImportModelDialogSelectionValidator;
+import edu.toronto.cs.se.mmint.mid.ui.FileExtensionsDialogFilter;
+import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingTypeReferenceDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewModelDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelElementEndpointReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelEndpointDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelDialogContentProvider;
@@ -182,9 +191,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelTypeCreationDialog(MID typeMID) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelTypeDialogContentProvider(),
 			typeMID
@@ -242,9 +249,7 @@ public class MIDTypeRegistry {
 			}
 		}
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelRelTypeDialogContentProvider(modelRelTypeUris),
 			typeMID
@@ -299,9 +304,7 @@ public class MIDTypeRegistry {
 			}
 		}
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewMappingTypeReferenceDialogContentProvider(modelRelType, mappingTypeUris),
 			modelRelType
@@ -312,9 +315,7 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getOperatorTypeCreationDialog(MID typeMID) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
@@ -334,9 +335,10 @@ public class MIDTypeRegistry {
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {
-			if (genericType.isAbstract()) {
-				continue;
-			}
+		    if (genericType.getUri().equals(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+		                                    WorkflowOperator.class.getSimpleName())) {
+		        continue;
+		    }
 			try {
 				if (MIDConstraintChecker.checkOperatorGenericConstraint(operatorType.getClosestTypeConstraint(), genericSuperTypeEndpoint, genericType, inputs)) {
 					//TODO MMINT[GENERICS] Can we check that the generic type is consistent with the input, or is it always done by the operator itself?
@@ -346,9 +348,7 @@ public class MIDTypeRegistry {
 			catch (MMINTException e) {}
 		}
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewGenericTypeDialogContentProvider(filteredGenericTypes),
 			typeMID
@@ -357,24 +357,10 @@ public class MIDTypeRegistry {
 		return dialog;
 	}
 
-	/**
-	 * Gets a tree dialog that shows all model types in the repository and their
-	 * editor types, in order to create a new model.
-	 *
-	 * @return The tree dialog to create a new model.
-	 */
-	public static MIDTreeSelectionDialog getModelCreationDialog() {
+	public static MIDTreeSelectionDialog getMIDTreeTypeSelectionDialog(ILabelProvider labelProvider,
+	                                                                   ITreeContentProvider contentProvider) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
-			new MIDDialogLabelProvider(),
-			new NewModelDialogContentProvider(MMINT.cachedTypeMID),
-			MMINT.cachedTypeMID
-		);
-		dialog.setValidator(new NewModelDialogSelectionValidator());
-
-		return dialog;
+        return new MIDTreeSelectionDialog(labelProvider, contentProvider, MMINT.cachedTypeMID);
 	}
 
 	/**
@@ -385,15 +371,13 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelImportDialog() {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new WorkbenchLabelProvider(),
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
 		);
-		dialog.addFilter(new ImportModelDialogFilter());
-		dialog.setValidator(new ImportModelDialogSelectionValidator());
+		dialog.addFilter(new FileExtensionsDialogFilter(MIDTypeRegistry.getModelTypeFileExtensions()));
+		dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
 		return dialog;
 	}
@@ -414,9 +398,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelRelCreationDialog(Model targetSrcModel, Model targetTgtModel) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelRelDialogContentProvider(MIDConstraintChecker.getAllowedModelRelTypes(targetSrcModel, targetTgtModel)),
 			MMINT.cachedTypeMID
@@ -439,9 +421,7 @@ public class MIDTypeRegistry {
 	 */
 	public static MIDTreeSelectionDialog getModelEndpointCreationDialog(ModelRel modelRel, List<String> modelTypeEndpointUris) {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
 			modelRel.getMetatype()
@@ -470,9 +450,7 @@ public class MIDTypeRegistry {
 	public static MIDTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
 
 		ModelRel modelRelType = modelRel.getMetatype();
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewMappingReferenceDialogContentProvider(MIDConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
 			modelRelType
@@ -496,9 +474,7 @@ public class MIDTypeRegistry {
 	public static MIDTreeSelectionDialog getModelElementEndpointCreationDialog(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) {
 
 		Mapping mappingType = mappingRef.getObject().getMetatype();
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewModelElementEndpointReferenceDialogContentProvider(modelElemTypeEndpointUris),
 			mappingType
@@ -509,9 +485,7 @@ public class MIDTypeRegistry {
 
 	public static MIDTreeSelectionDialog getWorkflowModelCreationDialog() {
 
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			shell,
 			new MIDDialogLabelProvider(),
 			new NewWorkflowModelDialogContentProvider(MMINT.cachedTypeMID),
 			MMINT.cachedTypeMID
@@ -541,6 +515,41 @@ public class MIDTypeRegistry {
 		}
 
 		return bundle;
+	}
+
+	public static @NonNull String getFileBundlePath(@NonNull ExtendibleElement typeInBundle,
+	                                                @NonNull String relativeFilePath) throws Exception {
+
+        String bundlePath = typeInBundle.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+        String fileName = FileUtils.getLastSegmentFromPath(relativeFilePath);
+        String filePath;
+        if (bundlePath.endsWith("jar")) { // binary installation
+            int separator = bundlePath.lastIndexOf("_");
+            bundlePath = bundlePath.substring(0, separator) + ".source" + bundlePath.substring(separator);
+            if (!FileUtils.isFile(bundlePath, false)) {
+                throw new MMINTException("Can't find the source file for " + fileName +
+                                         " (did you install mmint.sdk?)");
+            }
+            JarFile bundleJar = new JarFile(new File(bundlePath));
+            ZipEntry bundleJarEntry = bundleJar.getEntry(relativeFilePath);
+            Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + File.separator + fileName);
+            Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
+            filePath = tmpFilePath.toString();
+            bundleJar.close();
+        }
+        else { // running from the sources
+            Bundle bundle = MIDTypeRegistry.getTypeBundle(typeInBundle.getUri());
+            if (bundle == null) {
+                throw new MMINTException("Can't find the bundle for " + typeInBundle.getName());
+            }
+            Enumeration<URL> bundleEntries = bundle.findEntries("/", fileName, true);
+            if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
+                throw new MMINTException("Can't find the source file for " + fileName);
+            }
+            filePath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
+        }
+
+        return filePath;
 	}
 
 	/**

@@ -395,13 +395,22 @@ public interface OperatorPackage extends EPackage {
     int OPERATOR___GET_MID_CONTAINER = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Type Signature</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPERATOR___GET_TYPE_SIGNATURE__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+
+    /**
      * The operation id for the '<em>Create Subtype</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int OPERATOR___CREATE_SUBTYPE__STRING_STRING = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 3;
+    int OPERATOR___CREATE_SUBTYPE__STRING_STRING = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
 
     /**
      * The operation id for the '<em>Delete Type</em>' operation.
@@ -410,7 +419,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 4;
+    int OPERATOR___DELETE_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
 
     /**
      * The operation id for the '<em>Open Type</em>' operation.
@@ -419,7 +428,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___OPEN_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 5;
+    int OPERATOR___OPEN_TYPE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
 
     /**
      * The operation id for the '<em>Find Allowed Inputs</em>' operation.
@@ -428,7 +437,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 6;
+    int OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
 
     /**
      * The operation id for the '<em>Find First Allowed Input</em>' operation.
@@ -437,7 +446,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 7;
+    int OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
     /**
      * The operation id for the '<em>Check Allowed Inputs</em>' operation.
@@ -446,7 +455,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 8;
+    int OPERATOR___CHECK_ALLOWED_INPUTS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
 
     /**
      * The operation id for the '<em>Get Outputs By Name</em>' operation.
@@ -455,7 +464,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___GET_OUTPUTS_BY_NAME = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 9;
+    int OPERATOR___GET_OUTPUTS_BY_NAME = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
 
     /**
      * The operation id for the '<em>Get Output Models</em>' operation.
@@ -464,7 +473,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___GET_OUTPUT_MODELS = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 10;
+    int OPERATOR___GET_OUTPUT_MODELS = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
 
     /**
      * The operation id for the '<em>Create Instance</em>' operation.
@@ -473,7 +482,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___CREATE_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 11;
+    int OPERATOR___CREATE_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
 
     /**
      * The operation id for the '<em>Delete Instance</em>' operation.
@@ -482,7 +491,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 12;
+    int OPERATOR___DELETE_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
 
     /**
      * The operation id for the '<em>Select Allowed Generics</em>' operation.
@@ -491,7 +500,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 13;
+    int OPERATOR___SELECT_ALLOWED_GENERICS__ELIST = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
 
     /**
      * The operation id for the '<em>Get Input Properties</em>' operation.
@@ -500,7 +509,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 14;
+    int OPERATOR___GET_INPUT_PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
     /**
      * The operation id for the '<em>Read Input Properties</em>' operation.
@@ -509,7 +518,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 15;
+    int OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
     /**
      * The operation id for the '<em>Run</em>' operation.
@@ -518,7 +527,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 16;
+    int OPERATOR___RUN__MAP_MAP_MAP = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
     /**
      * The operation id for the '<em>Start Instance</em>' operation.
@@ -527,7 +536,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 17;
+    int OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
 
     /**
      * The operation id for the '<em>Open Instance</em>' operation.
@@ -536,7 +545,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___OPEN_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 18;
+    int OPERATOR___OPEN_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
     /**
      * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -545,7 +554,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 19;
+    int OPERATOR___CREATE_WORKFLOW_INSTANCE__MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
 
     /**
      * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -554,7 +563,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 20;
+    int OPERATOR___DELETE_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
 
     /**
      * The operation id for the '<em>Create Workflow Instance Outputs</em>' operation.
@@ -563,7 +572,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 21;
+    int OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
 
     /**
      * The operation id for the '<em>Start Workflow Instance</em>' operation.
@@ -572,7 +581,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 22;
+    int OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
 
     /**
      * The operation id for the '<em>Open Workflow Instance</em>' operation.
@@ -581,7 +590,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR___OPEN_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 23;
+    int OPERATOR___OPEN_WORKFLOW_INSTANCE = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 24;
 
     /**
      * The number of operations of the '<em>Operator</em>' class.
@@ -590,7 +599,7 @@ public interface OperatorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 24;
+    int OPERATOR_OPERATION_COUNT = MIDPackage.GENERIC_ELEMENT_OPERATION_COUNT + 25;
 
     /**
      * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl <em>Conversion Operator</em>}' class.
@@ -916,6 +925,15 @@ public interface OperatorPackage extends EPackage {
      * @ordered
      */
     int CONVERSION_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+
+    /**
+     * The operation id for the '<em>Get Type Signature</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONVERSION_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
      * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1459,6 +1477,15 @@ public interface OperatorPackage extends EPackage {
     int RANDOM_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
 
     /**
+     * The operation id for the '<em>Get Type Signature</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RANDOM_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OPERATOR___GET_TYPE_SIGNATURE__ELIST;
+
+    /**
      * The operation id for the '<em>Create Subtype</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1989,6 +2016,15 @@ public interface OperatorPackage extends EPackage {
      * @ordered
      */
     int NESTING_OPERATOR___GET_MID_CONTAINER = OPERATOR___GET_MID_CONTAINER;
+
+    /**
+     * The operation id for the '<em>Get Type Signature</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NESTING_OPERATOR___GET_TYPE_SIGNATURE__ELIST = OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
      * The operation id for the '<em>Create Subtype</em>' operation.
@@ -2539,6 +2575,15 @@ public interface OperatorPackage extends EPackage {
      * @ordered
      */
     int WORKFLOW_OPERATOR___GET_MID_CONTAINER = NESTING_OPERATOR___GET_MID_CONTAINER;
+
+    /**
+     * The operation id for the '<em>Get Type Signature</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKFLOW_OPERATOR___GET_TYPE_SIGNATURE__ELIST = NESTING_OPERATOR___GET_TYPE_SIGNATURE__ELIST;
 
     /**
      * The operation id for the '<em>Create Subtype</em>' operation.
@@ -3373,6 +3418,16 @@ public interface OperatorPackage extends EPackage {
     EOperation getOperator__GetMIDContainer();
 
     /**
+     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getTypeSignature(org.eclipse.emf.common.util.EList) <em>Get Type Signature</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Type Signature</em>' operation.
+     * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getTypeSignature(org.eclipse.emf.common.util.EList)
+     * @generated
+     */
+    EOperation getOperator__GetTypeSignature__EList();
+
+    /**
      * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#createSubtype(java.lang.String, java.lang.String) <em>Create Subtype</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4014,6 +4069,14 @@ public interface OperatorPackage extends EPackage {
          * @generated
          */
         EOperation OPERATOR___GET_MID_CONTAINER = eINSTANCE.getOperator__GetMIDContainer();
+
+        /**
+         * The meta object literal for the '<em><b>Get Type Signature</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation OPERATOR___GET_TYPE_SIGNATURE__ELIST = eINSTANCE.getOperator__GetTypeSignature__EList();
 
         /**
          * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.

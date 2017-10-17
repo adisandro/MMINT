@@ -136,7 +136,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/models17/SPIN"
+            uri="http://se.cs.toronto.edu/models17/Promela"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -144,8 +144,8 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="SPIN"
-               uri="http://se.cs.toronto.edu/models17/SPIN">
+               name="Promela"
+               uri="http://se.cs.toronto.edu/models17/Promela">
          </type>
       </modelType>
    </extension>
@@ -481,8 +481,8 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="BModel2SPIN"
-               uri="http://se.cs.toronto.edu/models17/Operator_BModel2SPIN"
+               name="BModel2Promela"
+               uri="http://se.cs.toronto.edu/models17/Operator_BModel2Promela"
                class="edu.toronto.cs.se.modelepedia.models17.operator.MODELS17">
          </type>
          <inputs>
@@ -501,7 +501,7 @@
 	                 name="transformed">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/models17/SPIN">
+	                 targetTypeUri="http://se.cs.toronto.edu/models17/Promela">
 	           </typeEndpoint>
             </parameter>
          </outputs>

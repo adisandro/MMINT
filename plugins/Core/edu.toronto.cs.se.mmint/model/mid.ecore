@@ -1202,6 +1202,10 @@
           <details key="body" value="return (MID) this.eContainer();"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getTypeSignature" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          eExceptions="#//MMINTException">
+        <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
+      </eOperations>
       <eOperations name="createSubtype" lowerBound="1" eType="#//operator/Operator"
           eExceptions="#//MMINTException">
         <eParameters name="newOperatorTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1404,11 +1408,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A workflow operator type or a workflow operator instance, executes a Workflow MID."/>
       </eAnnotations>
-      <eOperations name="getNestedWorkflowMID" eType="#//MID" eExceptions="#//MMINTException">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="MMINTException.mustBeType(this);&#xA;&#xA;try {&#xA;&#x9;return (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());&#xA;}&#xA;catch (Exception e) {&#xA;&#x9;return null;&#xA;}"/>
-        </eAnnotations>
-      </eOperations>
+      <eOperations name="getNestedWorkflowMID" eType="#//MID" eExceptions="#//MMINTException"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GenericEndpoint" eSuperTypes="#//ExtendibleElementEndpoint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

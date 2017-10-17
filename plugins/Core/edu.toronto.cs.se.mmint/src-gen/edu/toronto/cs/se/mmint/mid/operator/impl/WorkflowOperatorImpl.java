@@ -11,11 +11,13 @@
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -25,14 +27,13 @@ import org.eclipse.emf.ecore.EClass;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
-import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
@@ -40,11 +41,8 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,22 +76,6 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
      * <!-- end-user-doc -->
      * @generated
      */
-    public MID getNestedWorkflowMID() throws MMINTException {
-        MMINTException.mustBeType(this);
-        
-        try {
-            return (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());
-        }
-        catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
         switch (operationID) {
@@ -118,77 +100,29 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     }
 
     /**
-     * Adds a subtype of this workflow operator type to the Type MID.
-     *
-     * @param newOperatorType
-     *            The new operator type to be added.
-     * @param newOperatorTypeName
-     *            The name of the new operator type.
-     * @param workflowMIDPath
-     *            The path to the Workflow MID that implements the new operator.
-     * @throws MMINTException
-     *             If the id of the new operator type is already registered in the Type MID, or if the Workflow MID
-     *             cannot be read or copied.
      * @generated NOT
      */
     @Override
-    protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String workflowMIDPath) throws MMINTException {
+    public MID getNestedWorkflowMID() throws MMINTException {
 
-        MID typeMID = this.getMIDContainer();
-        super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
+        MMINTException.mustBeType(this);
+
         try {
             MID workflowMID;
-            String newWorkflowMIDPath;
-            if (FileUtils.isFileOrDirectoryInState(workflowMIDPath)) { // just recreating this subtype at startup
-                workflowMID = (MID) FileUtils.readModelFileInState(workflowMIDPath);
-                newWorkflowMIDPath = workflowMIDPath;
+            if (this.isDynamic()) {
+                workflowMID = (MID) FileUtils.readModelFileInState(this.getNestedMIDPath());
             }
-            else { // make a copy of the Workflow MID files
-                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
-                newWorkflowMIDPath = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
-                FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDPath);
-                FileUtils.copyTextFileAndReplaceText(
-                    FileUtils.prependWorkspacePath(workflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
-                    FileUtils.prependStatePath(newWorkflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
-                    FileUtils.getLastSegmentFromPath(workflowMIDPath),
-                    newWorkflowMIDPath,
-                    false);
+            else {
+                //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
+                String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
+                                         MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                String workflowMIDBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
+                workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, false);
             }
-            ((WorkflowOperator) newOperatorType).setNestedMIDPath(newWorkflowMIDPath);
-            MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
-            Map<Model, String> inoutWorkflowModels = new LinkedHashMap<>();
-            for (Model workflowModel : workflowMID.getModels()) { // first pass: identify inputs and outputs
-                boolean isInput = MIDRegistry.getOutputOperators(workflowModel, workflowMID).isEmpty(); // no operator generated this model
-                if (isInput) {
-                    inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
-                    continue; // an input can't be output too
-                }
-                boolean isOutput = MIDRegistry.getInputOperators(workflowModel, workflowMID).isEmpty(); // no operator has this model as input
-                if (isOutput) {
-                    inoutWorkflowModels.put(workflowModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-                    if (workflowModel instanceof ModelRel) { // an output model rel needs its endpoint models as output too
-                        for (ModelEndpoint outModelEndpoint : ((ModelRel) workflowModel).getModelEndpoints()) {
-                            Model outModel = outModelEndpoint.getTarget();
-                            if (inoutWorkflowModels.containsKey(outModel)) {
-                                continue;
-                            }
-                            inoutWorkflowModels.put(outModel, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
-                        }
-                    }
-                }
-            }
-            for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) { // second pass: create endpoints for operator type
-                Model workflowModel = inoutWorkflowModel.getKey();
-                ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
-                Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());
-                MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
-                newModelTypeEndpoint.setDynamic(true);
-                MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());
-            }
+            return workflowMID;
         }
         catch (Exception e) {
-            super.delete(newOperatorType.getUri(), typeMID);
-            throw new MMINTException("Error copying the Workflow MID", e);
+            return null;
         }
     }
 
@@ -199,8 +133,10 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     public void deleteType() throws MMINTException {
 
         super.deleteType();
-        FileUtils.deleteFileInState(this.getNestedMIDPath());
-        FileUtils.deleteFileInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX);
+        if (this.isDynamic()) {
+            FileUtils.deleteFileInState(this.getNestedMIDPath());
+            FileUtils.deleteFileInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX);
+        }
     }
 
     /**
@@ -215,12 +151,20 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
 
         MMINTException.mustBeType(this);
 
-        if (MIDTypeHierarchy.isRootType(this.getSupertype())) {
-            super.openType();
-            return;
+        String midDiagramTypeId = MIDTypeRegistry.getMIDDiagramType().getId();
+        if (this.isDynamic()) {
+            FileUtils.openEclipseEditorInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX, midDiagramTypeId);
         }
-        Diagram midDiagramType = MIDTypeRegistry.getMIDDiagramType();
-        FileUtils.openEclipseEditorInState(this.getNestedMIDPath() + GMFUtils.DIAGRAM_SUFFIX, midDiagramType.getId());
+        else {
+            //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
+            String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
+                                     MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+            // in a binary install, extracts the file from the jar as a side effect
+            MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
+            String workflowMIDDiagramBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath +
+                                                                                    GMFUtils.DIAGRAM_SUFFIX);
+            FileUtils.openEclipseEditor(workflowMIDDiagramBundlePath, midDiagramTypeId, false);
+        }
     }
 
     /**
@@ -278,7 +222,26 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 MID outputMID = outputMIDsByName.getOrDefault(outputModelEndpoint.getTargetUri(), nestedMID); // match workflow ids..
                 workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID); // ..with operator output names
             }
-            Map<String, Model> workflowOutputsByName = workflowOperator.getMetatype().startInstance(
+            Operator workflowOperatorType = workflowOperator.getMetatype();
+            if (Boolean.parseBoolean( // multiple dispatch enabled
+                MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))
+            ) {
+                EList<Operator> polyOperators = ECollections.asEList(MIDTypeHierarchy.getSubtypes(workflowOperatorType));
+                Iterator<Operator> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
+                List<Model> inputModels = workflowInputs.stream()
+                    .map(OperatorInput::getModel)
+                    .collect(Collectors.toList());
+                while (polyIter.hasNext()) { // start from the most specialized operator backwards
+                    Operator polyOperator = polyIter.next();
+                    EList<OperatorInput> polyInputs = polyOperator.checkAllowedInputs(ECollections.toEList(inputModels));
+                    if (polyInputs != null) {
+                        workflowOperatorType = polyOperator;
+                        workflowInputs = polyInputs;
+                        break;
+                    }
+                }
+            }
+            Map<String, Model> workflowOutputsByName = workflowOperatorType.startInstance(
                 workflowInputs,
                 null,
                 workflowGenerics,

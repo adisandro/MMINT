@@ -61,12 +61,16 @@ public class Reduce extends NestingOperatorImpl {
 		@Override
 		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-			final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
-			final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
-			final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
-			if (genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)) {
-				return false;
-			}
+            final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+            final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
+            final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+            final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+            if (
+                genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
+                genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
+            ) {
+                return false;
+            }
 
 			return true;
 		}
@@ -88,6 +92,7 @@ public class Reduce extends NestingOperatorImpl {
 			throws Exception {
 
 		MID reducedMID = (MID) inputMIDModel.getEMFInstanceRoot();
+		List<Model> initialModels = new ArrayList<>(reducedMID.getModels());
 		String nestedMIDPath = super.getNestedMIDPath();
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
@@ -97,6 +102,7 @@ public class Reduce extends NestingOperatorImpl {
 		Set<Model> accumulatorOutputModels = new HashSet<>();
 		Set<Model> intermediateModelsAndRels = new HashSet<>();
 		int i = 0;
+        //TODO MMINT[POLY] Reduce should support multiple dispatch, trying the first allowed input from the most specific operator
 		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(
 				ECollections.newBasicEList(reducedMID),
 				ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels))
@@ -217,7 +223,7 @@ public class Reduce extends NestingOperatorImpl {
 					intermediateModelsAndRels.addAll(mergedModelRels);
 				}
 				else {
-					// delete composite model rels that were merged
+					// delete composed model rels that were merged
 					for (ModelRel mergedModelRel : mergedModelRels) {
 						try { mergedModelRel.deleteInstance(); } catch (MMINTException e) {}
 					}
@@ -258,17 +264,38 @@ public class Reduce extends NestingOperatorImpl {
 		}
 		if (nestedMIDPath != null) {
 			super.inMemoryNestedMID = reducedMID;
+            //TODO MMINT[NESTED] Transform input/output into shortcuts first
 			super.writeNestedInstanceMID();
-			//TODO MMINT[NESTED] Transform input/output into shortcuts
+			Set<Model> reducedModels = accumulatorOutputModels.stream()
+			    .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
+			    .collect(Collectors.toSet());
+			Set<ModelRel> intermediateModelRels = intermediateModelsAndRels.stream()
+                .filter(modelRel -> modelRel instanceof ModelRel)
+                .map(modelRel -> (ModelRel) modelRel)
+                .collect(Collectors.toSet());
+			reducedModels.addAll(this.getConnectedModelRels(reducedMID, reducedModels, intermediateModelRels));
 			reducedMID = MIDFactory.eINSTANCE.createMID();
 			reducedMID.setLevel(MIDLevel.INSTANCES);
-			for (Model reducedModel : accumulatorOutputsByName.values()) {
+			//TODO MMINT[REDUCE] How to handle initial rels that are composed/merged? 1) need to be tracked 2) may need to become unary if endpoints are reduced
+            for (Model initialModel : initialModels) {
+                if (initialModel instanceof ModelRel || intermediateModelsAndRels.contains(initialModel)) {
+                    continue;
+                }
+                initialModel.getMetatype().importInstanceAndEditor(initialModel.getUri(), reducedMID);
+            }
+            for (Model initialModelRel : initialModels) {
+                if (!(initialModelRel instanceof ModelRel) || intermediateModelsAndRels.contains(initialModelRel)) {
+                    continue;
+                }
+                ((ModelRel) initialModelRel).getMetatype().copyInstance(initialModelRel, initialModelRel.getName(), reducedMID);
+            }
+			for (Model reducedModel : reducedModels) {
 				if (reducedModel instanceof ModelRel) {
 					continue;
 				}
-				reducedModel.getMetatype().importInstance(reducedModel.getUri(), reducedMID);
+				reducedModel.getMetatype().importInstanceAndEditor(reducedModel.getUri(), reducedMID);
 			}
-			for (Model reducedModelRel : accumulatorOutputsByName.values()) {
+			for (Model reducedModelRel : reducedModels) {
 				if (!(reducedModelRel instanceof ModelRel)) {
 					continue;
 				}

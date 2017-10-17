@@ -5,31 +5,22 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public class NewModelDialogContentProvider implements ITreeContentProvider {
-
-	private MID mid;
-
-	public NewModelDialogContentProvider(MID mid) {
-
-		this.mid = mid;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -55,7 +46,7 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	@Override
 	public Object[] getElements(Object inputElement) {
 
-		return getChildren(inputElement);
+		return this.getChildren(inputElement);
 	}
 
 	/**
@@ -65,14 +56,10 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof MID) {
-			List<Model> modelTypes = new ArrayList<>();
-			for (Model modelType : ((MID) parentElement).getModels()) {
-				if (modelType instanceof ModelRel || modelType.isAbstract()) {
-					continue;
-				}
-				modelTypes.add(modelType);
-			}
-			return modelTypes.toArray();
+		    return ((MID) parentElement).getModels().stream()
+		        .filter(modelType -> !(modelType instanceof ModelRel))
+		        .filter(modelType -> !modelType.isAbstract())
+		        .toArray();
 		}
 		if (parentElement instanceof Model) {
 			return ((Model) parentElement).getEditors().toArray();
@@ -88,10 +75,10 @@ public class NewModelDialogContentProvider implements ITreeContentProvider {
 	public Object getParent(Object element) {
 
 		if (element instanceof Model) {
-			return mid;
+			return ((Model) element).eContainer();
 		}
 		if (element instanceof Editor) {
-			return mid.getExtendibleTable().get(((Editor) element).getModelUri());
+		    return MIDTypeRegistry.getType(((Editor) element).getModelUri());
 		}
 
 		return null;

@@ -5,32 +5,38 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -47,12 +53,13 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 /**
  * A container for common functions of a Mid diagram.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDDialogs {
 
+    //TODO MMINT[MISC] Remove double layer MIDDialogs + MIDTypeRegistry, and do filtering directly in content providers
 	public final static String CONSTRAINT_LANGUAGE_SEPARATOR = ":";
 
 	protected static Object openDialog(MIDTreeSelectionDialog dialog, String title, String message) throws MIDDialogCancellation {
@@ -89,7 +96,7 @@ public class MIDDialogs {
 	/**
 	 * Shows a tree dialog to select a model type choosing from the registered
 	 * model types.
-	 * 
+	 *
 	 * @return The choosen model type.
 	 * @throws MIDDialogCancellation
 	 *             If the selection was not completed for any reason.
@@ -106,7 +113,7 @@ public class MIDDialogs {
 	/**
 	 * Shows a tree dialog to select a model relationship type choosing from the
 	 * registered model relationship types.
-	 * 
+	 *
 	 * @return The choosen model relationship type.
 	 * @throws MIDDialogCancellation
 	 *             If the selection was not completed for any reason.
@@ -125,7 +132,7 @@ public class MIDDialogs {
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
 		String title = "Create new light link type";
 		String message = "Choose link supertype";
-	
+
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -139,10 +146,48 @@ public class MIDDialogs {
 		return workflowMIDFile.getFullPath().toString();
 	}
 
+	public static @NonNull Operator selectOperatorTypeToOverride(@NonNull MID typeMID, @NonNull String workflowMIDPath,
+	                                                             @NonNull String newOperatorName)
+	                                                             throws MMINTException {
+
+        NewOperatorTypeOverrideDialogContentProvider contentProvider;
+        try {
+            contentProvider = new NewOperatorTypeOverrideDialogContentProvider(workflowMIDPath, newOperatorName);
+        }
+        catch (Exception e) {
+            throw new MMINTException("Error opening the Workflow MID", e);
+        }
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new MIDDialogLabelProvider(), contentProvider,
+                                                                   typeMID);
+	    String title = "Create new operator type from workflow";
+	    String message = "Other operators exist with the same name, you can select one of them to override";
+
+	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+	}
+
+	public static @NonNull String selectModelDiagramToImport(@NonNull String modelUri) throws MIDDialogCancellation {
+
+        Object dialogRoot = FileUtils.getWorkspaceProject(modelUri);
+        if (dialogRoot == null) {
+            dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
+        }
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
+                                                                   new BaseWorkbenchContentProvider(), dialogRoot);
+        dialog.addFilter(new FileExtensionsDialogFilter(
+            Stream.of(SiriusUtil.SESSION_RESOURCE_EXTENSION).collect(Collectors.toList())));
+        dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+
+        String title = "Import model with Sirius Diagram";
+        String message = "Select Sirius representations file";
+        IFile siriusFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+
+        return siriusFile.getFullPath().toString();
+	}
+
 	/**
 	 * Shows a tree dialog to create a model choosing from the registered model
 	 * types, and executes its wizard.
-	 * 
+	 *
 	 * @param instanceMID
 	 *            The Instance MID.
 	 * @return The editor for the created model.
@@ -151,12 +196,15 @@ public class MIDDialogs {
 	 */
 	public static Editor selectModelTypeToCreate(MID instanceMID) throws MIDDialogCancellation, MMINTException {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelCreationDialog();
+        MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMIDTreeTypeSelectionDialog(
+            new MIDDialogLabelProvider(), new NewModelDialogContentProvider());
+        dialog.setValidator(new NewModelDialogSelectionValidator());
 		String title = "Create new model";
 		String message = "Choose editor to create model";
 		Editor editorType = (Editor) openSelectionDialog(dialog, title, message);
 		IStructuredSelection midContainer;
-		String midContainerUri = FileUtils.replaceLastSegmentInPath(instanceMID.eResource().getURI().toPlatformString(true), "");
+		String midContainerUri = FileUtils.replaceLastSegmentInPath(
+		    instanceMID.eResource().getURI().toPlatformString(true), "");
 		try {
 			midContainer = new StructuredSelection(
 				ResourcesPlugin.getWorkspace().getRoot().getFolder(
@@ -169,6 +217,7 @@ public class MIDDialogs {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(midContainerUri)
 			);
 		}
+		//TODO MMINT[SIRIUS] invoke the normal tree editor, don't open it and instead create a diagram in the repr file
 		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(midContainer);
 		if (wizDialog == null) {
 			throw new MIDDialogCancellation();
@@ -179,7 +228,7 @@ public class MIDDialogs {
 
 	/**
 	 * Shows a dialog to choose one among existing models and imports it.
-	 * 
+	 *
 	 * @param relOnly
 	 *            True to allow the selection of relationship files only, false
 	 *            to allow all registered model files.
@@ -229,7 +278,7 @@ public class MIDDialogs {
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getModelElementEndpointCreationDialog(mappingRef, modelElemTypeEndpointUris);
 		String title = "Create new model endpoint";
 		String message = "Choose model type endpoint role";
-	
+
 		return (ModelElementEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -239,7 +288,7 @@ public class MIDDialogs {
 		String title = "Run generic operator";
 		String message = "Choose type <" + genericSuperTypeEndpoint.getName() + "> of operator " +
 			((Operator) genericSuperTypeEndpoint.eContainer()).getName();
-	
+
 		return (GenericElement) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
@@ -270,7 +319,7 @@ public class MIDDialogs {
 
 	/**
 	 * Shows an input dialog to get text from the user.
-	 * 
+	 *
 	 * @param dialogTitle
 	 *            The dialog title.
 	 * @param dialogMessage

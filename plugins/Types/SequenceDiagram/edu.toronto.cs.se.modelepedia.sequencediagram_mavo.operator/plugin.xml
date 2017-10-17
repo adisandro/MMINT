@@ -19,11 +19,11 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="SDSlice"
+               name="Slice"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_SDSlice"
                class="edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator.SDSlice">
             <superType
-                  uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice">
+                  uri="http://se.cs.toronto.edu/mmint/Operator_Slice">
             </superType>
          </type>
          <inputs>
@@ -32,7 +32,7 @@
                   name="criterion"
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_SDSlice-SDRel/criterion">
                <superType
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice-ModelRel/criterion">
+                     uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
                </superType>
 	           </type>
 	           <typeEndpoint
@@ -46,7 +46,7 @@
                   name="slice"
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_SDSlice-SDRel/slice">
                <superType
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_Slice-ModelRel/slice">
+                     uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
                </superType>
 	           </type>
 	           <typeEndpoint

@@ -12,6 +12,8 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -72,6 +74,12 @@ public class NewGenericTypeDialogContentProvider implements ITreeContentProvider
 				}
 				genericTypes.add(genericType);
 			}
+			Collections.sort(genericTypes, new Comparator<GenericElement>() {
+                @Override
+                public int compare(GenericElement g1, GenericElement g2) {
+                    return g1.getName().compareTo(g2.getName());
+                }
+            });
 			return genericTypes.toArray();
 		}
 

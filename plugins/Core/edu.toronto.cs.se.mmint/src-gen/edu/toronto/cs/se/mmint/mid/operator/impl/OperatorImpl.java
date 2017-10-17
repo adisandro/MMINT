@@ -14,28 +14,20 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
-import java.util.jar.JarFile;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -49,7 +41,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -59,6 +50,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -71,12 +63,15 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -245,7 +240,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<ModelEndpoint> getInputs() {
         if (inputs == null) {
-            inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+            inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
         }
         return inputs;
     }
@@ -257,7 +252,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<ModelEndpoint> getOutputs() {
         if (outputs == null) {
-            outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+            outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
         }
         return outputs;
     }
@@ -269,7 +264,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public EList<GenericEndpoint> getGenerics() {
         if (generics == null) {
-            generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+            generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
         }
         return generics;
     }
@@ -579,6 +574,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 return getSupertype();
             case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
                 return getMIDContainer();
+            case OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST:
+                try {
+                    return getTypeSignature((EList<OperatorInput>)arguments.get(0));
+                }
+                catch (Throwable throwable) {
+                    throw new InvocationTargetException(throwable);
+                }
             case OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING:
                 try {
                     return createSubtype((String)arguments.get(0), (String)arguments.get(1));
@@ -807,6 +809,58 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     }
 
     /**
+     * @generated NOT
+     */
+    public String getTypeSignature(EList<OperatorInput> inputs) throws MMINTException {
+
+        MMINTException.mustBeType(this);
+
+        String signature = this.toString() + "(";
+        if (inputs == null) {
+            List<String> params = new ArrayList<>();
+            for (ModelEndpoint formalParameter : this.getInputs()) {
+                String formal = formalParameter.getTarget().getName() + " ";
+                if (formalParameter.getUpperBound() > 1) {
+                    formal += "*";
+                }
+                formal += formalParameter.getName();
+                params.add(formal);
+            }
+            signature += String.join(", ", params);
+            signature += ")";
+        }
+        else {
+            //TODO MMINT[OPERATOR] Add coercion support
+            Map<String, List<String>> varargs = new LinkedHashMap<>();
+            for (OperatorInput input : inputs) {
+                ModelEndpoint formalParameter = input.getModelTypeEndpoint();
+                Model actualParameter = input.getModel();
+                String formal = formalParameter.getTarget().getName() + " ";
+                if (formalParameter.getUpperBound() > 1) {
+                    formal += "*";
+                }
+                formal += formalParameter.getName();
+                List<String> vararg = varargs.get(formal);
+                if (vararg == null) {
+                    vararg = new ArrayList<>();
+                    varargs.put(formal, vararg);
+                }
+                vararg.add(actualParameter.getName());
+            }
+            List<String> params = new ArrayList<>();
+            for (Entry<String, List<String>> vararg : varargs.entrySet()) {
+                String actual = (vararg.getValue().size() > 1) ? vararg.getValue().toString() :
+                                                                 vararg.getValue().get(0);
+                params.add(vararg.getKey() + "=" + actual);
+            }
+            signature += String.join(", ", params);
+            signature += ")";
+        }
+
+        return signature;
+    }
+
+    /**
      * Adds a subtype of this operator type to the Type MID.
      *
      * @param newOperatorType
@@ -814,14 +868,58 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @param newOperatorTypeName
      *            The name of the new operator type.
      * @param implementationPath
-     *            The path to the new operator's implementation (a Java class inheriting from this class).
+     *            The path to the new operator's implementation (a Java class inheriting from this class, or a Workflow
+     *            MID).
      * @throws MMINTException
-     *             If the uri of the new operator type is already registered in the Type MID.
+     *             If the id of the new operator type is already registered in the Type MID, or if the Workflow MID
+     *             cannot be read or copied.
      * @generated NOT
      */
     protected void addSubtype(Operator newOperatorType, String newOperatorTypeName, String implementationPath) throws MMINTException {
 
-        //TODO MMINT[OPERATOR] Implement a simple way to run a java class pointed by implementationPath
+        if (implementationPath.endsWith(".java")) {
+            //TODO MMINT[OPERATOR] Implement a simple way to run a java class pointed by implementationPath
+            return;
+        }
+
+        MID typeMID = this.getMIDContainer();
+        super.addSubtype(newOperatorType, this, null, newOperatorTypeName);
+        try {
+            String workflowMIDPath = implementationPath;
+            MID workflowMID;
+            String newWorkflowMIDPath;
+            if (FileUtils.isFileOrDirectoryInState(workflowMIDPath)) { // just recreating this subtype at startup
+                workflowMID = (MID) FileUtils.readModelFileInState(workflowMIDPath);
+                newWorkflowMIDPath = workflowMIDPath;
+            }
+            else { // make a copy of the Workflow MID files
+                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
+                newWorkflowMIDPath = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDPath);
+                FileUtils.copyTextFileAndReplaceText(
+                    FileUtils.prependWorkspacePath(workflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
+                    FileUtils.prependStatePath(newWorkflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
+                    FileUtils.getLastSegmentFromPath(workflowMIDPath),
+                    newWorkflowMIDPath,
+                    false);
+            }
+            ((WorkflowOperator) newOperatorType).setNestedMIDPath(newWorkflowMIDPath);
+            MIDTypeFactory.addOperatorType(newOperatorType, typeMID);
+            // identify inputs and outputs, then create endpoints for the operator type
+            Map<Model, String> inoutWorkflowModels = MIDRegistry.getInputOutputWorkflowModels(workflowMID);
+            for (Entry<Model, String> inoutWorkflowModel : inoutWorkflowModels.entrySet()) {
+                Model workflowModel = inoutWorkflowModel.getKey();
+                ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
+                Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());
+                MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
+                newModelTypeEndpoint.setDynamic(true);
+                MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());
+            }
+        }
+        catch (Exception e) {
+            super.delete(newOperatorType.getUri(), typeMID);
+            throw new MMINTException("Error copying the Workflow MID", e);
+        }
     }
 
     /**
@@ -831,7 +929,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        Operator newOperatorType = super.createThisEClass();
+        Operator newOperatorType = (implementationUri.endsWith(".java")) ?
+            super.createThisEClass() :
+            OperatorFactory.eINSTANCE.createWorkflowOperator();
         this.addSubtype(newOperatorType, newOperatorTypeName, implementationUri);
 
         return newOperatorType;
@@ -864,36 +964,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MMINTException.mustBeType(this);
 
-        // get java source file from bundle
-        Bundle bundle = MIDTypeRegistry.getTypeBundle(this.getUri());
-        if (bundle == null) {
-            throw new MMINTException("Can't find " + this.getName() + " bundle");
-        }
-        String javaFileName = this.getClass().getSimpleName() + ".java";
-        String bundleFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
-        String operatorImplPath;
-        if (bundleFilePath.endsWith("jar")) { // binary installation
-            int separator = bundleFilePath.lastIndexOf("_");
-            bundleFilePath = bundleFilePath.substring(0, separator) + ".source" + bundleFilePath.substring(separator);
-            if (!FileUtils.isFile(bundleFilePath, false)) {
-                throw new MMINTException("Can't find the source java file for " + this.getName() + " (did you install mmint.sdk?)");
-            }
-            JarFile bundleJar = new JarFile(new File(bundleFilePath));
-            ZipEntry bundleJarEntry = bundleJar.getEntry(this.getClass().getName().replace(".", File.separator) + ".java");
-            Path tmpFilePath = Paths.get(System.getProperty("java.io.tmpdir") + "/" + javaFileName);
-            Files.copy(bundleJar.getInputStream(bundleJarEntry), tmpFilePath, StandardCopyOption.REPLACE_EXISTING);
-            operatorImplPath = tmpFilePath.toString();
-            bundleJar.close();
-        }
-        else { // running from the sources
-            Enumeration<URL> bundleEntries = bundle.findEntries("/", javaFileName, true);
-            if (bundleEntries == null || !bundleEntries.hasMoreElements()) {
-                throw new MMINTException("Can't find the source java file for " + this.getName());
-            }
-            operatorImplPath = FileLocator.toFileURL(bundleEntries.nextElement()).getFile();
-        }
-
-        // open editor
+        String operatorClassRelativePath = this.getClass().getName().replace(".", File.separator) + ".java";
+        String operatorImplPath = MIDTypeRegistry.getFileBundlePath(this, operatorClassRelativePath);
         FileUtils.openEclipseEditor(operatorImplPath, null, false);
     }
 

@@ -541,6 +541,9 @@
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getTypeSignature">
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/getTypeSignature/inputs"/>
+        </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/createSubtype">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/newOperatorTypeName"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/createSubtype/implementationPath"/>

@@ -18,13 +18,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
-import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
 
 public class CDSlice extends Slice {
 

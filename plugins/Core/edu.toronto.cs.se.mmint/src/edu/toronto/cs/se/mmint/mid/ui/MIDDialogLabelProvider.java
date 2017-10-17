@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,15 +17,19 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 
 /**
  * The label provider for the repository types tree dialog.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MIDDialogLabelProvider implements ILabelProvider {
 
@@ -91,6 +95,21 @@ public class MIDDialogLabelProvider implements ILabelProvider {
 
 		if (element instanceof MID) {
 			return "Type MID";
+		}
+		if (element instanceof Operator) {
+	        if (
+	            element instanceof WorkflowOperator &&
+	            ((Operator) element).getUri().equals(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+	                                                 WorkflowOperator.class.getSimpleName())
+	        ) {
+	            return "No Override";
+	        }
+		    try {
+                return ((Operator) element).getTypeSignature(null);
+            }
+            catch (MMINTException e) {
+                // never happens
+            }
 		}
 		if (element instanceof ExtendibleElement) {
 			return ((ExtendibleElement) element).getName();

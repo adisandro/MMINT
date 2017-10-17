@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -71,17 +70,18 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 		return super.canExecute() && mid.isTypesLevel();
 	}
 
-	protected Operator doExecuteTypesLevel() throws MMINTException, MIDDialogCancellation {
+	protected Operator doExecuteTypesLevel() throws MMINTException {
 
 		//TODO MMINT[MISC] Support undo/redo with workflow mid file
 		MID typeMID = (MID) getElementToEdit();
-		String workflowMIDUri = MIDDialogs.selectWorkflowMIDToCreateOperatorType(typeMID);
+		String workflowMIDPath = MIDDialogs.selectWorkflowMIDToCreateOperatorType(typeMID);
 		String newOperatorTypeName = MIDDialogs.getStringInput(
 			"Create new operator type from workflow",
 			"Insert new operator type name",
-			FileUtils.getFileNameFromPath(workflowMIDUri));
-		Operator newOperator = typeMID.<Operator>getExtendibleElement(MMINT.ROOT_URI + MMINT.URI_SEPARATOR + WorkflowOperator.class.getSimpleName())
-			.createSubtype(newOperatorTypeName, workflowMIDUri);
+			FileUtils.getFileNameFromPath(workflowMIDPath));
+		Operator polyOperatorType = MIDDialogs.selectOperatorTypeToOverride(typeMID, workflowMIDPath,
+		                                                                    newOperatorTypeName);
+		Operator newOperator = polyOperatorType.createSubtype(newOperatorTypeName, workflowMIDPath);
 		MMINT.createTypeHierarchy(typeMID);
 
 		return newOperator;
@@ -105,7 +105,7 @@ public class OperatorNewOperatorCommand extends OperatorCreateCommand {
 			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
-	
+
 			return CommandResult.newOKCommandResult(newElement);
 		}
 		catch (ExecutionException ee) {
