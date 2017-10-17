@@ -123,10 +123,10 @@ public class GSNSliceRecheck extends Slice {
 			for (EObject curElem : descendantsCur) {
 				if (curElem instanceof DecomposableCoreElement) {
 					DecomposableCoreElement d = (DecomposableCoreElement) curElem;
-					descendantsNext.add(d.getSupportedBy());
+					descendantsNext.addAll(d.getSupportedBy());
 				} else if (curElem instanceof SupportedBy) {
 					SupportedBy s = (SupportedBy) curElem;
-					descendantsNext.addAll(s.getPremises());
+					descendantsNext.add(s.getPremise());
 				}
 			}
 			

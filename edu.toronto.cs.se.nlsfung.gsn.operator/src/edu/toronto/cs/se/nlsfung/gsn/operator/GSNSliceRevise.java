@@ -68,8 +68,8 @@ public class GSNSliceRevise extends Slice {
 			impacted.addAll(decompElemSet);
 			
 			for (DecomposableCoreElement decompElem : decompElemSet) {
-				impacted.add(decompElem.getInContextOf());
-				impacted.add(decompElem.getSupportedBy());
+				impacted.addAll(decompElem.getInContextOf());
+				impacted.addAll(decompElem.getSupportedBy());
 			}
 			
 		// If input is a goal, then the following are also impacted:
@@ -77,8 +77,11 @@ public class GSNSliceRevise extends Slice {
 		// 2) All model elements supporting or supported by the input goal.
 		} else if (elem instanceof Goal) {
 			Goal g = (Goal) elem;
-			impacted.add(g.getSupportedBy());
-			impacted.addAll(g.getSupportedBy().getPremises());
+			
+			for (SupportedBy rel : g.getSupportedBy()) {
+				impacted.add(rel);
+				impacted.add(rel.getPremise());
+			}
 			
 			for (SupportedBy rel : g.getSupports()) {
 				impacted.add(rel);
@@ -90,8 +93,11 @@ public class GSNSliceRevise extends Slice {
 		// 2) All model elements supporting or supported by the input strategy.
 		} else if (elem instanceof Strategy) {
 			Strategy s = (Strategy) elem;
-			impacted.add(s.getSupportedBy());
-			impacted.addAll(s.getSupportedBy().getPremises());
+			
+			for (SupportedBy rel : s.getSupportedBy()) {
+				impacted.add(rel);
+				impacted.add(rel.getPremise());
+			}
 			
 			for (SupportedBy rel : s.getSupports()) {
 				impacted.add(rel);
@@ -125,7 +131,7 @@ public class GSNSliceRevise extends Slice {
 			impacted.addAll(impactedRelSet);
 			for (SupportedBy rel : impactedRelSet) {
 				impacted.add(rel.getConclusion());
-				impacted.addAll(rel.getPremises());
+				impacted.add(rel.getPremise());
 			}
 			
 		// If input is a SupportedBy relation, then its source and 
@@ -133,7 +139,7 @@ public class GSNSliceRevise extends Slice {
 		} else if (elem instanceof SupportedBy) {
 			SupportedBy rel = (SupportedBy) elem;
 			impacted.add(rel.getConclusion());
-			impacted.addAll(rel.getPremises());
+			impacted.add(rel.getPremise());
 			
 		// If input is a InContextOf relation, then the decomposable core 
 		// elements with or inherit this context are also impacted.
@@ -163,10 +169,10 @@ public class GSNSliceRevise extends Slice {
 			for (EObject curElem : descendantsCur) {
 				if (curElem instanceof DecomposableCoreElement) {
 					DecomposableCoreElement d = (DecomposableCoreElement) curElem;
-					descendantsNext.add(d.getSupportedBy());
+					descendantsNext.addAll(d.getSupportedBy());
 				} else if (curElem instanceof SupportedBy) {
 					SupportedBy s = (SupportedBy) curElem;
-					descendantsNext.addAll(s.getPremises());
+					descendantsNext.add(s.getPremise());
 				}
 			}
 			
