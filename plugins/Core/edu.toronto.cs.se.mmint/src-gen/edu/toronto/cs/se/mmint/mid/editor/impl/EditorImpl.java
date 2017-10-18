@@ -666,17 +666,16 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         EditorCreationWizardDialog wizDialog;
         String wizardDialogClassName = this.getWizardDialogClass();
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         try {
             wizDialog = (EditorCreationWizardDialog)
                 MIDTypeRegistry.getTypeBundle(this.getUri()).
                 loadClass(wizardDialogClassName).
                 getConstructor(Shell.class, IWizard.class).
-                newInstance(shell, wizard);
+                newInstance(wizard);
         }
         catch (Exception e) {
             MMINTException.print(IStatus.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
-            wizDialog = new EditorCreationWizardDialog(shell, wizard);
+            wizDialog = new EditorCreationWizardDialog(wizard);
         }
 
         return wizDialog;
@@ -692,13 +691,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         IWorkbenchWizard wizard = this.getInstanceWizard(initialSelection);
         EditorCreationWizardDialog wizDialog;
-        if (this.getWizardDialogClass() == null) {
-            Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-            wizDialog = new EditorCreationWizardDialog(shell, wizard);
-        }
-        else {
-            wizDialog = this.createCustomInstanceWizard(wizard);
-        }
+        wizDialog = (this.getWizardDialogClass() == null) ?
+            new EditorCreationWizardDialog(wizard) :
+            this.createCustomInstanceWizard(wizard);
         wizDialog.setTitle(wizard.getWindowTitle());
         if (wizDialog.open() == Window.CANCEL) {
             return null;

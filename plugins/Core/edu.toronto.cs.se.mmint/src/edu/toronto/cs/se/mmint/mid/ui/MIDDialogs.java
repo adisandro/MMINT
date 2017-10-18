@@ -217,7 +217,6 @@ public class MIDDialogs {
 				ResourcesPlugin.getWorkspace().getRoot().getProject(midContainerUri)
 			);
 		}
-		//TODO MMINT[SIRIUS] invoke the normal tree editor, don't open it and instead create a diagram in the repr file
 		EditorCreationWizardDialog wizDialog = editorType.invokeInstanceWizard(midContainer);
 		if (wizDialog == null) {
 			throw new MIDDialogCancellation();
