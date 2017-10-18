@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.modelepedia.operator.slice.Slice;
+import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
 import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement;

@@ -7,4 +7,16 @@
 	       name="gsn">
     </component>
   </extension>
+  <extension
+        point="edu.toronto.cs.se.mmint.editors">
+     <editorType
+           id="edu.toronto.cs.se.nlsfung.gsn.design"
+           modelTypeUri="http://www.cs.toronto.edu/~nlsfung/gsn"
+           isDiagram="true">
+        <type
+              name="SafetyCase Viewpoint"
+              uri="Safety case diagram">
+        </type>
+     </editorType>
+  </extension>
 </plugin>

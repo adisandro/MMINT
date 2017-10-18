@@ -11,4 +11,6 @@ Require-Bundle: edu.toronto.cs.se.modelepedia.operator,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.nlsfung.gsn,
  org.eclipse.core.runtime,
- org.eclipse.emf.validation
+ org.eclipse.emf.validation,
+ edu.toronto.cs.se.mmint.operator
+Import-Package: edu.toronto.cs.se.mmint.java.reasoning
