@@ -24,11 +24,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
+import org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DAnalysis;
-import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
@@ -102,11 +102,14 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
         String editorUri = null;
         if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+            //TODO MMINT[SIRIUS] Open the modeling project if not open
             //TODO MMINT[SIRIUS] Create the representation file if it does not exist
             //TODO MMINT[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
             //TODO MMINT[SIRIUS] e.g. filter repr files that have the model as semantic resource
             //TODO MMINT[SIRIUS] Test: a) how to add viewpoints to the project b) how to import/create into an empty repr.aird
-            String sFileUri = MIDDialogs.selectModelDiagramToImport(modelUri);
+            //TODO MMINT[SIRIUS] Remove the diagram representation when deleting the model
+            String sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelUri);
+            //TODO handle dialog cancellation
             String modelExt = FileUtils.getFileExtensionFromPath(modelUri);
             Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
                                                                        new NullProgressMonitor());
@@ -116,20 +119,21 @@ viewpoints:
                 if (!sView.getViewpoint().getModelFileExtension().equals(modelExt)) {
                     continue;
                 }
-                for (DRepresentationDescriptor sRepr : sView.getOwnedRepresentationDescriptors()) {
-                    if (!sRepr.getDescription().getName().equals(this.getUri()) ||
-                        !MIDRegistry.getModelElementUri(sRepr.getTarget()).startsWith(modelUri)
+                for (DRepresentationDescriptor sReprDesc : sView.getOwnedRepresentationDescriptors()) {
+                    if (!sReprDesc.getDescription().getName().equals(this.getUri()) ||
+                        !MIDRegistry.getModelElementUri(sReprDesc.getTarget()).startsWith(modelUri)
                     ) {
                         continue;
                     }
                     // import existing sirius diagram
-                    editorUri = MIDRegistry.getModelElementUri(sRepr.getRepresentation());
+                    editorUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
                     break viewpoints;
                 }
                 if (editorUri == null) { // create a new sirius diagram
                     // close the tree editor that was used to create the model
                     IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
                     page.closeEditor(page.getActiveEditor(), false);
+                    // get the model root from the sirius session
                     EObject modelRootObj = null;
                     for (Resource resource : sSession.getSemanticResources()) {
                         if (resource.getURI().toPlatformString(true).equals(modelUri)) {
@@ -137,12 +141,14 @@ viewpoints:
                             break;
                         }
                     }
+                    // create a new sirius representation within an emf transaction
                     Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
                         .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
-                    DRepresentation sRepr = DialectManager.INSTANCE.createRepresentation(
-                        FileUtils.getFileNameFromPath(modelUri), modelRootObj, sDescs.iterator().next(), sSession,
+                    CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
+                        sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelUri),
                         new NullProgressMonitor());
-                    editorUri = MIDRegistry.getModelElementUri(sRepr);
+                    sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
+                    editorUri = MIDRegistry.getModelElementUri(sCmd.getCreatedRepresentation());
                     break;
                 }
             }

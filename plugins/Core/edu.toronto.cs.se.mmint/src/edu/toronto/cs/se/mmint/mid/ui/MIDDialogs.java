@@ -165,7 +165,7 @@ public class MIDDialogs {
 	    return (Operator) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static @NonNull String selectModelDiagramToImport(@NonNull String modelUri) throws MIDDialogCancellation {
+	public static @NonNull String selectSiriusRepresentationsFileToContainModelDiagram(@NonNull String modelUri) throws MIDDialogCancellation {
 
         Object dialogRoot = FileUtils.getWorkspaceProject(modelUri);
         if (dialogRoot == null) {
@@ -177,7 +177,7 @@ public class MIDDialogs {
             Stream.of(SiriusUtil.SESSION_RESOURCE_EXTENSION).collect(Collectors.toList())));
         dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
-        String title = "Import model with Sirius Diagram";
+        String title = "Model with Sirius Diagram";
         String message = "Select Sirius representations file";
         IFile siriusFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
 
