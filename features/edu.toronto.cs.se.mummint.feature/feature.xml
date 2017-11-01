@@ -40,8 +40,6 @@ Famelis, Rick Salay, Naama Ben-David. All rights reserved.
       <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
-      <import plugin="org.eclipse.gmf.codegen"/>
-      <import plugin="org.eclipse.gmf.codegen.xtend"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="edu.toronto.cs.se.mmint"/>

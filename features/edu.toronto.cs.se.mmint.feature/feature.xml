@@ -64,15 +64,14 @@ sets of related models.
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.ocl.pivot"/>
       <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.core.filesystem"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
-      <import feature="org.eclipse.gmf.sdk"/>
       <import feature="org.eclipse.papyrus.sdk.feature"/>
-      <import feature="org.eclipse.xtend.sdk"/>
       <import feature="org.eclipse.acceleo"/>
-      <import feature="org.eclipse.gmf.tooling.codegen.xtend2"/>
       <import feature="org.eclipse.sirius.specifier"/>
+      <import feature="org.eclipse.sirius.specifier.properties.feature"/>
    </requires>
 
    <plugin

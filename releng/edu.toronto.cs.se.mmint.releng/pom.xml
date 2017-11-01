@@ -11,7 +11,7 @@
   </properties>
   <repositories>
     <repository>
-  	  <id>Neon</id>
+  	  <id>Oxygen</id>
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/releases/oxygen</url>
     </repository>
@@ -193,19 +193,6 @@
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.edit</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.editor</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.operator</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.diagram</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.edit</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.army.editor</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.economy</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.economy.diagram</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.economy.edit</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.economy.editor</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.operator</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.diagram</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.edit</module>
-  	<module>../../plugins/Types/Tutorial/edu.toronto.cs.se.modelepedia.tutorial.state.editor</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
   	<module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
