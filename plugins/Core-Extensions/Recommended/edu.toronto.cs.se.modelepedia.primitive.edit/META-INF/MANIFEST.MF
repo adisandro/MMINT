@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.primitive.provider.PrimitiveEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Export-Package: edu.toronto.cs.se.modelepedia.primitive.boolean_.provider,
  edu.toronto.cs.se.modelepedia.primitive.file.provider,
  edu.toronto.cs.se.modelepedia.primitive.int_.provider,

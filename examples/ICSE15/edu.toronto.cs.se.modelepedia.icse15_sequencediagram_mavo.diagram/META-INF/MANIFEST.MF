@@ -45,4 +45,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo,
  edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9

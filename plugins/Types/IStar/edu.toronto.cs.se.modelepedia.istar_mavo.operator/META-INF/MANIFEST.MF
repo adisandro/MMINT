@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.istar_mavo,
  edu.toronto.cs.se.modelepedia.libz3java,
  edu.toronto.cs.se.modelepedia.z3
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Export-Package: edu.toronto.cs.se.modelepedia.istar_mavo.operator

@@ -41,4 +41,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.relationaldatabase,
  edu.toronto.cs.se.modelepedia.relationaldatabase.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
