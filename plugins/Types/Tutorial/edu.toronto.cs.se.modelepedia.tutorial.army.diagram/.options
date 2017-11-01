@@ -1,7 +1,0 @@
-# Tracing options for the edu.toronto.cs.se.modelepedia.tutorial.army.diagram plug-in
-
-# Common issues
-edu.toronto.cs.se.modelepedia.tutorial.army.diagram/debug=false
-
-# Visual IDs
-edu.toronto.cs.se.modelepedia.tutorial.army.diagram/debug/visualID=false

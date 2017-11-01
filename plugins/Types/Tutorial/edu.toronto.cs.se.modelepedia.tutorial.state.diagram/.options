@@ -1,7 +1,0 @@
-# Tracing options for the edu.toronto.cs.se.modelepedia.tutorial.state.diagram plug-in
-
-# Common issues
-edu.toronto.cs.se.modelepedia.tutorial.state.diagram/debug=false
-
-# Visual IDs
-edu.toronto.cs.se.modelepedia.tutorial.state.diagram/debug/visualID=false
