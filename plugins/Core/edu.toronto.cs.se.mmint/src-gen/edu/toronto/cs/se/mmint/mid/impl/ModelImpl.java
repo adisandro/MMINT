@@ -62,6 +62,7 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
@@ -960,6 +961,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
             try {
                 newEditor = editorType.createInstance(this.getUri(), instanceMID);
                 break;
+            }
+            catch (MIDDialogCancellation e) {
+                // bubble up to signal user cancellation
+                throw e;
             }
             catch (MMINTException e) {
                 lastException = e;
