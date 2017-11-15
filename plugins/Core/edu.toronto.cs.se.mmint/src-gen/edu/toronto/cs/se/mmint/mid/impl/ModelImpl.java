@@ -1025,7 +1025,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         Model newModel = this.importInstance(modelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor(true);
+            newModel.createInstanceEditor(false);
         }
 
         return newModel;
@@ -1050,6 +1050,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException, IOException {
 
+        //TODO MMINT[SIRIUS] Make this work when copying a sirius representation
         Model newModel = this.copyInstance(origModel, newModelName, instanceMID);
         // copy diagrams
         if (copyDiagram && instanceMID != null) {
@@ -1071,7 +1072,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 //TODO MMINT[UML] add support for notation extra file (e.g. in UML)
             }
         }
-        newModel.createInstanceEditor(true);
+        newModel.createInstanceEditor(false);
 
         return newModel;
     }

@@ -102,7 +102,6 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
         MMINTException.mustBeType(this);
 
-        //TODO MMINT[EDITOR] Add parameter to distinguish when the diagram file should be created instaad of guessing (like Model.createInstance)
         String editorUri = null;
         if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
             //TODO MMINT[SIRIUS] Open the modeling project if not open

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Naama Ben-David - Implementation.
  *    Alessio Di Sandro - Generalization to all metamodels.
@@ -34,10 +34,10 @@ import edu.toronto.cs.se.mavo.MAVODecision;
 import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mavo.MayDecision;
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOGMFDiagramUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -70,7 +70,7 @@ public class MAVORefiner {
 
 	private @NonNull Map<String, MAVOElement> getModelObjectsToRefine(@NonNull MAVORoot rootModelObj, @NonNull MAVORoot refinedRootModelObj, @NonNull String refinedModelUri, @NonNull Map<MAVOElement, MAVOElement> refinementMap) {
 
-		Map<String, MAVOElement> modelObjsToRefine = new HashMap<String, MAVOElement>();
+		Map<String, MAVOElement> modelObjsToRefine = new HashMap<>();
 		Resource refinedResource = refinedRootModelObj.eResource();
 		TreeIterator<EObject> iter = rootModelObj.eAllContents();
 		while (iter.hasNext()) {
@@ -220,7 +220,7 @@ public class MAVORefiner {
 		BinaryModelRel refinementRel = modelRelType.createBinaryInstanceAndEndpoints(
 			null,
 			MODELREL_NAME,
-			model, 
+			model,
 			refinedModel,
 			instanceMID);
 
@@ -228,24 +228,24 @@ public class MAVORefiner {
 		MAVORoot rootModelObj = (MAVORoot) FileUtils.readModelFile(model.getUri(), true);
 		MAVORoot refinedRootModelObj = (MAVORoot) FileUtils.readModelFile(refinedModelPath, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
-		Map<String, MAVOElement> modelObjsToRefine = getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelPath, refinementMap);
-		Map<String, MAVOTruthValue> refinedTruthValues = reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
-		refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
+		Map<String, MAVOElement> modelObjsToRefine = this.getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelPath, refinementMap);
+		Map<String, MAVOTruthValue> refinedTruthValues = this.reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
+		this.refineModel(modelObjsToRefine, refinedTruthValues, refinementMap);
 		if (mayAlternative != null) {
-			refineMayDecision(refinedRootModelObj, mayAlternative);
+			this.refineMayDecision(refinedRootModelObj, mayAlternative);
 		}
-		populateRefinementRel(refinementRel, refinementMap);
+		this.populateRefinementRel(refinementRel, refinementMap);
 
 		// write refinement to file
 		FileUtils.writeModelFile(refinedRootModelObj, refinedModelPath, true);
 		if (modelDiagram != null) {
 			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
-			refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
+			this.refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
 			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInPath(refinedModelPath, modelDiagram.getFileExtensions().get(0));
 			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			FileUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
-		refinedModel.createInstanceEditor(true);
+		refinedModel.createInstanceEditor(false);
 
 		return refinedModel;
 	}

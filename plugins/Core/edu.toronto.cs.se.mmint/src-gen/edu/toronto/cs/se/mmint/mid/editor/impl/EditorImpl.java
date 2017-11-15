@@ -608,11 +608,11 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     @Override
     public Editor createInstance(String modelPath, boolean createEditorFile, MID instanceMID) throws MMINTException {
 
-        //TODO MMINT[OO] shouldn't this try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
         MMINTException.mustBeType(this);
 
         Editor newEditor = super.createThisEClass();
         this.addInstance(newEditor, modelPath, modelPath, instanceMID);
+        // an editor is an EMF tree editor, so it never needs to create the editor file, which is the model itself
 
         return newEditor;
     }

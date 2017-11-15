@@ -222,7 +222,7 @@ public class MIDDialogs {
 			throw new MIDDialogCancellation();
 		}
 
-		return editorType.createInstance(wizDialog.getCreatedModelUri(), true, instanceMID);
+		return editorType.createInstance(wizDialog.getCreatedModelUri(), false, instanceMID);
 	}
 
 	/**
