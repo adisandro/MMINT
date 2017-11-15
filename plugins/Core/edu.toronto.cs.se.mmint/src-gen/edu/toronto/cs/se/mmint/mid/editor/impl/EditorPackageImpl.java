@@ -241,7 +241,7 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getEditor__CreateInstance__String_MID() {
+    public EOperation getEditor__CreateInstance__String_boolean_MID() {
         return editorEClass.getEOperations().get(5);
     }
 
@@ -270,33 +270,6 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
      */
     public EClass getDiagram() {
         return diagramEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EOperation getDiagram__CreateSubtype__String_String_String_String_String_String() {
-        return diagramEClass.getEOperations().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EOperation getDiagram__CreateInstance__String_MID() {
-        return diagramEClass.getEOperations().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EOperation getDiagram__InvokeInstanceWizard__IStructuredSelection() {
-        return diagramEClass.getEOperations().get(2);
     }
 
     /**
@@ -356,14 +329,11 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
         createEOperation(editorEClass, EDITOR___GET_MID_CONTAINER);
         createEOperation(editorEClass, EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
         createEOperation(editorEClass, EDITOR___DELETE_TYPE);
-        createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_MID);
+        createEOperation(editorEClass, EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID);
         createEOperation(editorEClass, EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
         createEOperation(editorEClass, EDITOR___DELETE_INSTANCE);
 
         diagramEClass = createEClass(DIAGRAM);
-        createEOperation(diagramEClass, DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING);
-        createEOperation(diagramEClass, DIAGRAM___CREATE_INSTANCE__STRING_MID);
-        createEOperation(diagramEClass, DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION);
 
         // Create data types
         iStructuredSelectionEDataType = createEDataType(ISTRUCTURED_SELECTION);
@@ -430,8 +400,9 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
         op = initEOperation(getEditor__DeleteType(), null, "deleteType", 0, 1, IS_UNIQUE, IS_ORDERED);
         addEException(op, theMIDPackage.getMMINTException());
 
-        op = initEOperation(getEditor__CreateInstance__String_MID(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getEditor__CreateInstance__String_boolean_MID(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "modelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEBoolean(), "createEditorFile", 1, 1, IS_UNIQUE, IS_ORDERED);
         addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
         addEException(op, theMIDPackage.getMMINTException());
 
@@ -443,24 +414,6 @@ public class EditorPackageImpl extends EPackageImpl implements EditorPackage {
         addEException(op, theMIDPackage.getMMINTException());
 
         initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        op = initEOperation(getDiagram__CreateSubtype__String_String_String_String_String_String(), this.getEditor(), "createSubtype", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "newEditorTypeFragmentUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "newEditorTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "modelTypeUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "editorId", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "wizardId", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "wizardDialogClassName", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEException(op, theMIDPackage.getMMINTException());
-
-        op = initEOperation(getDiagram__CreateInstance__String_MID(), this.getEditor(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, ecorePackage.getEString(), "modelUri", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEException(op, theMIDPackage.getMMINTException());
-
-        op = initEOperation(getDiagram__InvokeInstanceWizard__IStructuredSelection(), this.getEditorCreationWizardDialog(), "invokeInstanceWizard", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEParameter(op, this.getIStructuredSelection(), "initialSelection", 1, 1, IS_UNIQUE, IS_ORDERED);
-        addEException(op, theMIDPackage.getMMINTException());
 
         // Initialize data types
         initEDataType(iStructuredSelectionEDataType, IStructuredSelection.class, "IStructuredSelection", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

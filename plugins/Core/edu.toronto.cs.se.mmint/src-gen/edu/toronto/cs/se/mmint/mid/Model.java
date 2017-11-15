@@ -266,7 +266,7 @@ public interface Model extends GenericElement {
      * @throws MMINTException
      *             If this is not a model instance, or there are no editor types registered for this model instance's
      *             type. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" createEditorFileRequired="true"
      * @generated
      */
     Editor createInstanceEditor(boolean createEditorFile) throws MMINTException;

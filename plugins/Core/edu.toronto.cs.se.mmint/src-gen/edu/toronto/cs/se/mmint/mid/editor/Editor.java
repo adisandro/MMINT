@@ -245,11 +245,10 @@ public interface Editor extends ExtendibleElement {
      * @return The created editor.
      * @throws MMINTException
      *             If this is an editor instance. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
-     *        instanceMIDRequired="true"
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelPathRequired="true" createEditorFileRequired="true" instanceMIDRequired="true"
      * @generated
      */
-    Editor createInstance(String modelUri, boolean createEditorFile, MID instanceMID) throws MMINTException;
+    Editor createInstance(String modelPath, boolean createEditorFile, MID instanceMID) throws MMINTException;
 
     /**
      * <!-- begin-user-doc --> Invokes an editor instance creation wizard for

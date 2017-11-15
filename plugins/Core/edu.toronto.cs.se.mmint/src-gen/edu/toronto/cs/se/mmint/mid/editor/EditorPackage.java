@@ -382,7 +382,7 @@ public interface EditorPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EDITOR___CREATE_INSTANCE__STRING_MID = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
+    int EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID = MIDPackage.EXTENDIBLE_ELEMENT_OPERATION_COUNT + 5;
 
     /**
      * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -701,6 +701,15 @@ public interface EditorPackage extends EPackage {
     int DIAGRAM___GET_MID_CONTAINER = EDITOR___GET_MID_CONTAINER;
 
     /**
+     * The operation id for the '<em>Create Subtype</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING;
+
+    /**
      * The operation id for the '<em>Delete Type</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -708,6 +717,24 @@ public interface EditorPackage extends EPackage {
      * @ordered
      */
     int DIAGRAM___DELETE_TYPE = EDITOR___DELETE_TYPE;
+
+    /**
+     * The operation id for the '<em>Create Instance</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIAGRAM___CREATE_INSTANCE__STRING_BOOLEAN_MID = EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID;
+
+    /**
+     * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION;
 
     /**
      * The operation id for the '<em>Delete Instance</em>' operation.
@@ -719,40 +746,13 @@ public interface EditorPackage extends EPackage {
     int DIAGRAM___DELETE_INSTANCE = EDITOR___DELETE_INSTANCE;
 
     /**
-     * The operation id for the '<em>Create Subtype</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = EDITOR_OPERATION_COUNT + 0;
-
-    /**
-     * The operation id for the '<em>Create Instance</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DIAGRAM___CREATE_INSTANCE__STRING_MID = EDITOR_OPERATION_COUNT + 1;
-
-    /**
-     * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = EDITOR_OPERATION_COUNT + 2;
-
-    /**
      * The number of operations of the '<em>Diagram</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 3;
+    int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 0;
 
 
     /**
@@ -899,7 +899,7 @@ public interface EditorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID)
      * @generated
      */
-    EOperation getEditor__CreateInstance__String_MID();
+    EOperation getEditor__CreateInstance__String_boolean_MID();
 
     /**
      * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection) <em>Invoke Instance Wizard</em>}' operation.
@@ -930,36 +930,6 @@ public interface EditorPackage extends EPackage {
      * @generated
      */
     EClass getDiagram();
-
-    /**
-     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#createSubtype(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String) <em>Create Subtype</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the '<em>Create Subtype</em>' operation.
-     * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#createSubtype(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
-     * @generated
-     */
-    EOperation getDiagram__CreateSubtype__String_String_String_String_String_String();
-
-    /**
-     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the '<em>Create Instance</em>' operation.
-     * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID)
-     * @generated
-     */
-    EOperation getDiagram__CreateInstance__String_MID();
-
-    /**
-     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection) <em>Invoke Instance Wizard</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the '<em>Invoke Instance Wizard</em>' operation.
-     * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#invokeInstanceWizard(org.eclipse.jface.viewers.IStructuredSelection)
-     * @generated
-     */
-    EOperation getDiagram__InvokeInstanceWizard__IStructuredSelection();
 
     /**
      * Returns the meta object for data type '{@link org.eclipse.jface.viewers.IStructuredSelection <em>IStructured Selection</em>}'.
@@ -1102,7 +1072,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EOperation EDITOR___CREATE_INSTANCE__STRING_MID = eINSTANCE.getEditor__CreateInstance__String_MID();
+        EOperation EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID = eINSTANCE.getEditor__CreateInstance__String_boolean_MID();
 
         /**
          * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.
@@ -1129,30 +1099,6 @@ public interface EditorPackage extends EPackage {
          * @generated
          */
         EClass DIAGRAM = eINSTANCE.getDiagram();
-
-        /**
-         * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EOperation DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = eINSTANCE.getDiagram__CreateSubtype__String_String_String_String_String_String();
-
-        /**
-         * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EOperation DIAGRAM___CREATE_INSTANCE__STRING_MID = eINSTANCE.getDiagram__CreateInstance__String_MID();
-
-        /**
-         * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EOperation DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = eINSTANCE.getDiagram__InvokeInstanceWizard__IStructuredSelection();
 
         /**
          * The meta object literal for the '<em>IStructured Selection</em>' data type.

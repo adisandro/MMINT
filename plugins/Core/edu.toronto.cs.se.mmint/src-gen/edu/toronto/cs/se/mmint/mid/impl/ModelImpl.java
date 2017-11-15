@@ -484,9 +484,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
-            case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR:
+            case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN:
                 try {
-                    return this.createInstanceEditor(true);
+                    return this.createInstanceEditor((Boolean)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);

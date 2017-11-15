@@ -1368,7 +1368,7 @@ public interface MIDPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MODEL___CREATE_INSTANCE_EDITOR = GENERIC_ELEMENT_OPERATION_COUNT + 8;
+    int MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN = GENERIC_ELEMENT_OPERATION_COUNT + 8;
 
     /**
      * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -3039,7 +3039,7 @@ public interface MIDPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceEditor(boolean)
      * @generated
      */
-    EOperation getModel__CreateInstanceEditor();
+    EOperation getModel__CreateInstanceEditor__boolean();
 
     /**
      * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceAndEditor(org.eclipse.emf.ecore.EObject, java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance And Editor</em>}' operation.
@@ -4174,7 +4174,7 @@ public interface MIDPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EOperation MODEL___CREATE_INSTANCE_EDITOR = eINSTANCE.getModel__CreateInstanceEditor();
+        EOperation MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN = eINSTANCE.getModel__CreateInstanceEditor__boolean();
 
         /**
          * The meta object literal for the '<em><b>Create Instance And Editor</b></em>' operation.

@@ -454,9 +454,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
-            case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_MID:
+            case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID:
                 try {
-                    return this.createInstance((String)arguments.get(0), true, (MID)arguments.get(1));
+                    return this.createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (MID)arguments.get(2));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);

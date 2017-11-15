@@ -239,10 +239,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public EList<ModelEndpoint> getInputs() {
-        if (inputs == null) {
-            inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+        if (this.inputs == null) {
+            this.inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
         }
-        return inputs;
+        return this.inputs;
     }
 
     /**
@@ -251,10 +251,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public EList<ModelEndpoint> getOutputs() {
-        if (outputs == null) {
-            outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+        if (this.outputs == null) {
+            this.outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
         }
-        return outputs;
+        return this.outputs;
     }
 
     /**
@@ -263,10 +263,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public EList<GenericEndpoint> getGenerics() {
-        if (generics == null) {
-            generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+        if (this.generics == null) {
+            this.generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
         }
-        return generics;
+        return this.generics;
     }
 
     /**
@@ -275,7 +275,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public String getInputSubdir() {
-        return inputSubdir;
+        return this.inputSubdir;
     }
 
     /**
@@ -284,10 +284,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public void setInputSubdir(String newInputSubdir) {
-        String oldInputSubdir = inputSubdir;
-        inputSubdir = newInputSubdir;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__INPUT_SUBDIR, oldInputSubdir, inputSubdir));
+        String oldInputSubdir = this.inputSubdir;
+        this.inputSubdir = newInputSubdir;
+        if (this.eNotificationRequired())
+            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__INPUT_SUBDIR, oldInputSubdir, this.inputSubdir));
     }
 
     /**
@@ -296,15 +296,15 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public Operator getPreviousOperator() {
-        if (previousOperator != null && previousOperator.eIsProxy()) {
-            InternalEObject oldPreviousOperator = (InternalEObject)previousOperator;
-            previousOperator = (Operator)eResolveProxy(oldPreviousOperator);
-            if (previousOperator != oldPreviousOperator) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, previousOperator));
+        if (this.previousOperator != null && this.previousOperator.eIsProxy()) {
+            InternalEObject oldPreviousOperator = (InternalEObject)this.previousOperator;
+            this.previousOperator = (Operator)this.eResolveProxy(oldPreviousOperator);
+            if (this.previousOperator != oldPreviousOperator) {
+                if (this.eNotificationRequired())
+                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
             }
         }
-        return previousOperator;
+        return this.previousOperator;
     }
 
     /**
@@ -313,7 +313,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public Operator basicGetPreviousOperator() {
-        return previousOperator;
+        return this.previousOperator;
     }
 
     /**
@@ -322,10 +322,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public void setPreviousOperator(Operator newPreviousOperator) {
-        Operator oldPreviousOperator = previousOperator;
-        previousOperator = newPreviousOperator;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, previousOperator));
+        Operator oldPreviousOperator = this.previousOperator;
+        this.previousOperator = newPreviousOperator;
+        if (this.eNotificationRequired())
+            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
     }
 
     /**
@@ -334,7 +334,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public boolean isUpdateMID() {
-        return updateMID;
+        return this.updateMID;
     }
 
     /**
@@ -343,10 +343,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public void setUpdateMID(boolean newUpdateMID) {
-        boolean oldUpdateMID = updateMID;
-        updateMID = newUpdateMID;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__UPDATE_MID, oldUpdateMID, updateMID));
+        boolean oldUpdateMID = this.updateMID;
+        this.updateMID = newUpdateMID;
+        if (this.eNotificationRequired())
+            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__UPDATE_MID, oldUpdateMID, this.updateMID));
     }
 
     /**
@@ -355,7 +355,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public long getExecutionTime() {
-        return executionTime;
+        return this.executionTime;
     }
 
     /**
@@ -364,10 +364,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public void setExecutionTime(long newExecutionTime) {
-        long oldExecutionTime = executionTime;
-        executionTime = newExecutionTime;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, executionTime));
+        long oldExecutionTime = this.executionTime;
+        this.executionTime = newExecutionTime;
+        if (this.eNotificationRequired())
+            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, this.executionTime));
     }
 
     /**
@@ -376,7 +376,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public boolean isCommutative() {
-        return commutative;
+        return this.commutative;
     }
 
     /**
@@ -385,10 +385,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     public void setCommutative(boolean newCommutative) {
-        boolean oldCommutative = commutative;
-        commutative = newCommutative;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, commutative));
+        boolean oldCommutative = this.commutative;
+        this.commutative = newCommutative;
+        if (this.eNotificationRequired())
+            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, this.commutative));
     }
 
     /**
@@ -400,11 +400,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case OperatorPackage.OPERATOR__INPUTS:
-                return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
+                return ((InternalEList<?>)this.getInputs()).basicRemove(otherEnd, msgs);
             case OperatorPackage.OPERATOR__OUTPUTS:
-                return ((InternalEList<?>)getOutputs()).basicRemove(otherEnd, msgs);
+                return ((InternalEList<?>)this.getOutputs()).basicRemove(otherEnd, msgs);
             case OperatorPackage.OPERATOR__GENERICS:
-                return ((InternalEList<?>)getGenerics()).basicRemove(otherEnd, msgs);
+                return ((InternalEList<?>)this.getGenerics()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -418,22 +418,22 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case OperatorPackage.OPERATOR__INPUTS:
-                return getInputs();
+                return this.getInputs();
             case OperatorPackage.OPERATOR__OUTPUTS:
-                return getOutputs();
+                return this.getOutputs();
             case OperatorPackage.OPERATOR__GENERICS:
-                return getGenerics();
+                return this.getGenerics();
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                return getInputSubdir();
+                return this.getInputSubdir();
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                if (resolve) return getPreviousOperator();
-                return basicGetPreviousOperator();
+                if (resolve) return this.getPreviousOperator();
+                return this.basicGetPreviousOperator();
             case OperatorPackage.OPERATOR__UPDATE_MID:
-                return isUpdateMID();
+                return this.isUpdateMID();
             case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                return getExecutionTime();
+                return this.getExecutionTime();
             case OperatorPackage.OPERATOR__COMMUTATIVE:
-                return isCommutative();
+                return this.isCommutative();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -448,31 +448,31 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case OperatorPackage.OPERATOR__INPUTS:
-                getInputs().clear();
-                getInputs().addAll((Collection<? extends ModelEndpoint>)newValue);
+                this.getInputs().clear();
+                this.getInputs().addAll((Collection<? extends ModelEndpoint>)newValue);
                 return;
             case OperatorPackage.OPERATOR__OUTPUTS:
-                getOutputs().clear();
-                getOutputs().addAll((Collection<? extends ModelEndpoint>)newValue);
+                this.getOutputs().clear();
+                this.getOutputs().addAll((Collection<? extends ModelEndpoint>)newValue);
                 return;
             case OperatorPackage.OPERATOR__GENERICS:
-                getGenerics().clear();
-                getGenerics().addAll((Collection<? extends GenericEndpoint>)newValue);
+                this.getGenerics().clear();
+                this.getGenerics().addAll((Collection<? extends GenericEndpoint>)newValue);
                 return;
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                setInputSubdir((String)newValue);
+                this.setInputSubdir((String)newValue);
                 return;
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                setPreviousOperator((Operator)newValue);
+                this.setPreviousOperator((Operator)newValue);
                 return;
             case OperatorPackage.OPERATOR__UPDATE_MID:
-                setUpdateMID((Boolean)newValue);
+                this.setUpdateMID((Boolean)newValue);
                 return;
             case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                setExecutionTime((Long)newValue);
+                this.setExecutionTime((Long)newValue);
                 return;
             case OperatorPackage.OPERATOR__COMMUTATIVE:
-                setCommutative((Boolean)newValue);
+                this.setCommutative((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -487,28 +487,28 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public void eUnset(int featureID) {
         switch (featureID) {
             case OperatorPackage.OPERATOR__INPUTS:
-                getInputs().clear();
+                this.getInputs().clear();
                 return;
             case OperatorPackage.OPERATOR__OUTPUTS:
-                getOutputs().clear();
+                this.getOutputs().clear();
                 return;
             case OperatorPackage.OPERATOR__GENERICS:
-                getGenerics().clear();
+                this.getGenerics().clear();
                 return;
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                setInputSubdir(INPUT_SUBDIR_EDEFAULT);
+                this.setInputSubdir(INPUT_SUBDIR_EDEFAULT);
                 return;
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                setPreviousOperator((Operator)null);
+                this.setPreviousOperator((Operator)null);
                 return;
             case OperatorPackage.OPERATOR__UPDATE_MID:
-                setUpdateMID(UPDATE_MID_EDEFAULT);
+                this.setUpdateMID(UPDATE_MID_EDEFAULT);
                 return;
             case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                setExecutionTime(EXECUTION_TIME_EDEFAULT);
+                this.setExecutionTime(EXECUTION_TIME_EDEFAULT);
                 return;
             case OperatorPackage.OPERATOR__COMMUTATIVE:
-                setCommutative(COMMUTATIVE_EDEFAULT);
+                this.setCommutative(COMMUTATIVE_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -523,21 +523,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case OperatorPackage.OPERATOR__INPUTS:
-                return inputs != null && !inputs.isEmpty();
+                return this.inputs != null && !this.inputs.isEmpty();
             case OperatorPackage.OPERATOR__OUTPUTS:
-                return outputs != null && !outputs.isEmpty();
+                return this.outputs != null && !this.outputs.isEmpty();
             case OperatorPackage.OPERATOR__GENERICS:
-                return generics != null && !generics.isEmpty();
+                return this.generics != null && !this.generics.isEmpty();
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                return INPUT_SUBDIR_EDEFAULT == null ? inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(inputSubdir);
+                return INPUT_SUBDIR_EDEFAULT == null ? this.inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(this.inputSubdir);
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                return previousOperator != null;
+                return this.previousOperator != null;
             case OperatorPackage.OPERATOR__UPDATE_MID:
-                return updateMID != UPDATE_MID_EDEFAULT;
+                return this.updateMID != UPDATE_MID_EDEFAULT;
             case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                return executionTime != EXECUTION_TIME_EDEFAULT;
+                return this.executionTime != EXECUTION_TIME_EDEFAULT;
             case OperatorPackage.OPERATOR__COMMUTATIVE:
-                return commutative != COMMUTATIVE_EDEFAULT;
+                return this.commutative != COMMUTATIVE_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -569,28 +569,28 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
         switch (operationID) {
             case OperatorPackage.OPERATOR___GET_METATYPE:
-                return getMetatype();
+                return this.getMetatype();
             case OperatorPackage.OPERATOR___GET_SUPERTYPE:
-                return getSupertype();
+                return this.getSupertype();
             case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
-                return getMIDContainer();
+                return this.getMIDContainer();
             case OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST:
                 try {
-                    return getTypeSignature((EList<OperatorInput>)arguments.get(0));
+                    return this.getTypeSignature((EList<OperatorInput>)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING:
                 try {
-                    return createSubtype((String)arguments.get(0), (String)arguments.get(1));
+                    return this.createSubtype((String)arguments.get(0), (String)arguments.get(1));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___DELETE_TYPE:
                 try {
-                    deleteType();
+                    this.deleteType();
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -598,7 +598,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___OPEN_TYPE:
                 try {
-                    openType();
+                    this.openType();
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -606,49 +606,49 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST:
                 try {
-                    return findAllowedInputs((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
+                    return this.findAllowedInputs((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST:
                 try {
-                    return findFirstAllowedInput((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
+                    return this.findFirstAllowedInput((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST:
                 try {
-                    return checkAllowedInputs((EList<Model>)arguments.get(0));
+                    return this.checkAllowedInputs((EList<Model>)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME:
                 try {
-                    return getOutputsByName();
+                    return this.getOutputsByName();
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___GET_OUTPUT_MODELS:
                 try {
-                    return getOutputModels();
+                    return this.getOutputModels();
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___CREATE_INSTANCE__MID:
                 try {
-                    return createInstance((MID)arguments.get(0));
+                    return this.createInstance((MID)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___DELETE_INSTANCE:
                 try {
-                    deleteInstance();
+                    this.deleteInstance();
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -656,16 +656,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST:
                 try {
-                    return selectAllowedGenerics((EList<OperatorInput>)arguments.get(0));
+                    return this.selectAllowedGenerics((EList<OperatorInput>)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES:
-                return getInputProperties();
+                return this.getInputProperties();
             case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
                 try {
-                    readInputProperties((Properties)arguments.get(0));
+                    this.readInputProperties((Properties)arguments.get(0));
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -673,21 +673,21 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
                 try {
-                    return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
+                    return this.run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID:
                 try {
-                    return startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+                    return this.startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___OPEN_INSTANCE:
                 try {
-                    openInstance();
+                    this.openInstance();
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -695,14 +695,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID:
                 try {
-                    return createWorkflowInstance((MID)arguments.get(0));
+                    return this.createWorkflowInstance((MID)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE:
                 try {
-                    deleteWorkflowInstance();
+                    this.deleteWorkflowInstance();
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -710,7 +710,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID:
                 try {
-                    createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
+                    this.createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -718,14 +718,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 }
             case OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID:
                 try {
-                    return startWorkflowInstance((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (MID)arguments.get(2));
+                    return this.startWorkflowInstance((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (MID)arguments.get(2));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
             case OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE:
                 try {
-                    openWorkflowInstance();
+                    this.openWorkflowInstance();
                     return null;
                 }
                 catch (Throwable throwable) {
@@ -742,17 +742,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     @Override
     public String toStringGen() {
-        if (eIsProxy()) return super.toString();
+        if (this.eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (inputSubdir: ");
-        result.append(inputSubdir);
+        result.append(this.inputSubdir);
         result.append(", updateMID: ");
-        result.append(updateMID);
+        result.append(this.updateMID);
         result.append(", executionTime: ");
-        result.append(executionTime);
+        result.append(this.executionTime);
         result.append(", commutative: ");
-        result.append(commutative);
+        result.append(this.commutative);
         result.append(')');
         return result.toString();
     }
@@ -946,9 +946,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         MID typeMID = this.getMIDContainer();
         // delete the "thing"
-        getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
-        getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
-        getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), typeMID));
+        this.getInputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
+        this.getOutputs().forEach(modelTypeEndpoint -> super.delete(modelTypeEndpoint.getUri(), typeMID));
+        this.getGenerics().forEach(genericTypeEndpoint -> super.delete(genericTypeEndpoint.getUri(), typeMID));
         super.delete();
         typeMID.getOperators().remove(this);
         // delete the subtypes of the "thing"
@@ -1320,7 +1320,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public Properties getInputProperties() {
 
-        String propertiesUri =  getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
+        String propertiesUri =  this.getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
         Properties inputProperties = new Properties();
         try {
             inputProperties.load(new FileInputStream(propertiesUri));
@@ -1337,10 +1337,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-        setUpdateMID(
+        this.setUpdateMID(
             MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, true)
         );
-        setInputSubdir(
+        this.setInputSubdir(
             MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, null)
         );
     }
