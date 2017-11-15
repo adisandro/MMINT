@@ -245,7 +245,7 @@ public class MAVORefiner {
 			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);
 			FileUtils.openEclipseEditor(refinedModelDiagramUri, modelDiagram.getId(), true);
 		}
-		refinedModel.createInstanceEditor();
+		refinedModel.createInstanceEditor(true);
 
 		return refinedModel;
 	}

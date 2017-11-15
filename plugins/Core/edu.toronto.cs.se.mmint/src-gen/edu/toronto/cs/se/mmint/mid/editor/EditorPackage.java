@@ -892,11 +892,11 @@ public interface EditorPackage extends EPackage {
     EOperation getEditor__DeleteType();
 
     /**
-     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
+     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the '<em>Create Instance</em>' operation.
-     * @see edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+     * @see edu.toronto.cs.se.mmint.mid.editor.Editor#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID)
      * @generated
      */
     EOperation getEditor__CreateInstance__String_MID();
@@ -942,11 +942,11 @@ public interface EditorPackage extends EPackage {
     EOperation getDiagram__CreateSubtype__String_String_String_String_String_String();
 
     /**
-     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
+     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID) <em>Create Instance</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the '<em>Create Instance</em>' operation.
-     * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, edu.toronto.cs.se.mmint.mid.MID)
+     * @see edu.toronto.cs.se.mmint.mid.editor.Diagram#createInstance(java.lang.String, boolean, edu.toronto.cs.se.mmint.mid.MID)
      * @generated
      */
     EOperation getDiagram__CreateInstance__String_MID();

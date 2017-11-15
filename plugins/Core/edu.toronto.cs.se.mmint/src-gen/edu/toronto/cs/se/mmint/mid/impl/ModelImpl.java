@@ -486,7 +486,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 }
             case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR:
                 try {
-                    return this.createInstanceEditor();
+                    return this.createInstanceEditor(true);
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
@@ -934,7 +934,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
      * @generated NOT
      */
     @Override
-    public Editor createInstanceEditor() throws MMINTException {
+    public Editor createInstanceEditor(boolean createEditorFile) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
@@ -959,7 +959,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
         });
         for (Editor editorType : sortedEditors) {
             try {
-                newEditor = editorType.createInstance(this.getUri(), instanceMID);
+                newEditor = editorType.createInstance(this.getUri(), createEditorFile, instanceMID);
                 break;
             }
             catch (MIDDialogCancellation e) {
@@ -987,7 +987,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         Model newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor();
+            newModel.createInstanceEditor(true);
         }
 
         return newModel;
@@ -1025,7 +1025,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         Model newModel = this.importInstance(modelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor();
+            newModel.createInstanceEditor(true);
         }
 
         return newModel;
@@ -1071,7 +1071,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 //TODO MMINT[UML] add support for notation extra file (e.g. in UML)
             }
         }
-        newModel.createInstanceEditor();
+        newModel.createInstanceEditor(true);
 
         return newModel;
     }

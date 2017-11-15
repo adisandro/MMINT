@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -16,6 +16,7 @@ import java.io.IOException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
@@ -180,7 +181,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Creates and adds a subtype of this model type to the Type MID.
-     * 
+     *
      * @param newModelTypeName
      *            The name of the new model type.
      * @param isMetamodelExtension
@@ -196,7 +197,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this model type from the Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model type. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -206,7 +207,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Gets the EMF package root of this model type.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model type, or if the metamodel file can't be accessed. <!-- end-user-doc -->
      * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -216,7 +217,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Opens the editor associated with this model type.
-     * 
+     *
      * @throws Exception
      *             If this is not a model type, or if the editor can't be opened.<!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
@@ -237,7 +238,7 @@ public interface Model extends GenericElement {
      * <li>(obj, str, mid) model file created, model added to the MID.
      * </ol>
      * </p>
-     * 
+     *
      * @param rootModelObj
      *            The root of the ECore model. Can be null if the ECore model file is going to be created separately.
      * @param newModelPath
@@ -259,14 +260,16 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Creates and adds an editor instance to this model instance.
-     * 
+     *
+     * @param createEditorFile
+     *            True if the editor file is going to be created, false if it exists already.
      * @throws MMINTException
      *             If this is not a model instance, or there are no editor types registered for this model instance's
      *             type. <!-- end-user-doc -->
      * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
      * @generated
      */
-    Editor createInstanceEditor() throws MMINTException;
+    Editor createInstanceEditor(boolean createEditorFile) throws MMINTException;
 
     /**
      * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, together
@@ -281,7 +284,7 @@ public interface Model extends GenericElement {
      * <li>(obj, str, mid) model file created, model added to the MID, editor created.
      * </ol>
      * </p>
-     * 
+     *
      * @param rootModelObj
      *            The root of the ECore model. Can be null if the ECore model file is going to be created separately.
      * @param newModelPath
@@ -305,7 +308,7 @@ public interface Model extends GenericElement {
     /**
      * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, importing an
      * already existing ECore model file.
-     * 
+     *
      * @param modelPath
      *            The file path of the ECore model (the model name is taken from the file name).
      * @param instanceMID
@@ -322,7 +325,7 @@ public interface Model extends GenericElement {
     /**
      * <!-- begin-user-doc --> Creates and possibly adds an instance of this model type to an Instance MID, together
      * with an editor for it, importing an already existing ECore model file.
-     * 
+     *
      * @param modelPath
      *            The file path of the ECore model (the model name is taken from the file name).
      * @param instanceMID
@@ -348,7 +351,7 @@ public interface Model extends GenericElement {
      * <li>(model, str, mid) model file copied, model added to the MID.
      * </ol>
      * </p>
-     * 
+     *
      * @param origModel
      *            The original model instance to be copied.
      * @param newModelName
@@ -379,7 +382,7 @@ public interface Model extends GenericElement {
      * <li>(model, str, true, mid) model file copied, diagram files copied, model added to the MID.
      * </ol>
      * </p>
-     * 
+     *
      * @param origModel
      *            The original model instance to be copied.
      * @param newModelName
@@ -402,7 +405,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this model instance from the Instance MID that contains it.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model instance. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -413,7 +416,7 @@ public interface Model extends GenericElement {
     /**
      * <!-- begin-user-doc --> Deletes this model instance from the Instance MID that contains it and from the file
      * system.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model instance. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -423,7 +426,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Gets the EMF object root of this model.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model instance, or if the model file can't be accessed. <!-- end-user-doc -->
      * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -433,7 +436,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Opens the editor associated with this model instance.
-     * 
+     *
      * @throws Exception
      *             If this is not a model instance, or if the editor can't be opened.<!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception"
@@ -443,7 +446,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Creates and possibly adds a model instance of this model type to a Workflow MID.
-     * 
+     *
      * @param newModelId
      *            The id of the new model.
      * @param workflowMID
@@ -459,7 +462,7 @@ public interface Model extends GenericElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this model instance from the Workflow MID that contains it.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model instance in a workflow. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"

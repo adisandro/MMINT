@@ -84,24 +84,21 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     }
 
     /**
+     * Creates and adds a diagram instance of this diagram type to an Instance MID.
+     *
+     * @param modelPath
+     *            The path of the model to be represented in the new diagram.
+     * @param createDiagramFile
+     *            True if the diagram file is going to be created, false if it exists already.
+     * @param instanceMID
+     *            An Instance MID.
+     * @return The created diagram.
+     * @throws MMINTException
+     *             If this is a diagram instance, or if the diagram couldn't be created.
      * @generated NOT
      */
     @Override
-    public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
-
-        MMINTException.mustBeType(this);
-
-        Diagram newDiagramType = super.createThisEClass();
-        this.addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
-
-        return newDiagramType;
-    }
-
-    /**
-     * @generated NOT
-     */
-    @Override
-    public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
+    public Editor createInstance(String modelPath, boolean createDiagramFile, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
@@ -117,7 +114,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
             String sFileUri = null;
             boolean isImported = false;
             try {
-                sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelUri);
+                sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
             }
             catch (MIDDialogCancellation e) {
                 throw e;
@@ -131,7 +128,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                     page.closeEditor(pageEditor, false);
                     if (sFileUri == null) { // cancellation
                         // delete the created file and refresh
-                        FileUtils.deleteFile(modelUri, true);
+                        FileUtils.deleteFile(modelPath, true);
                         try {
                             WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
                                 .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
@@ -146,7 +143,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                     // either continue or exit with the exception if canceled
                 }
             }
-            String modelExt = FileUtils.getFileExtensionFromPath(modelUri);
+            String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
             Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
                                                                   new NullProgressMonitor());
             if (isImported) { // find existing sirius diagram
@@ -158,7 +155,7 @@ viewpoints:
                     }
                     for (DRepresentationDescriptor sReprDesc : sView.getOwnedRepresentationDescriptors()) {
                         if (!sReprDesc.getDescription().getName().equals(this.getUri()) ||
-                            !MIDRegistry.getModelElementUri(sReprDesc.getTarget()).startsWith(modelUri)
+                            !MIDRegistry.getModelElementUri(sReprDesc.getTarget()).startsWith(modelPath)
                         ) {
                             continue;
                         }
@@ -175,7 +172,7 @@ viewpoints:
                 // get the model root from the sirius session
                 EObject modelRootObj = null;
                 for (Resource resource : sSession.getSemanticResources()) {
-                    if (resource.getURI().toPlatformString(true).equals(modelUri)) {
+                    if (resource.getURI().toPlatformString(true).equals(modelPath)) {
                         modelRootObj = resource.getContents().get(0);
                         break;
                     }
@@ -184,19 +181,19 @@ viewpoints:
                 Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
                     .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
                 CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
-                    sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelUri),
+                    sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelPath),
                     new NullProgressMonitor());
                 sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
                 editorUri = MIDRegistry.getModelElementUri(sCmd.getCreatedRepresentation());
             }
         }
         else { // GMF
-            editorUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
+            editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
             if (!FileUtils.isFileOrDirectory(editorUri, true)) { // create a new diagram file
                 //TODO MMINT[EDITOR] Use new signature to prevent doing this in certain cases (e.g. fallback from failed sirius diagram)
                 IStructuredSelection modelFile = new StructuredSelection(
                     ResourcesPlugin.getWorkspace().getRoot().getFile(
-                        new Path(modelUri)
+                        new Path(modelPath)
                     )
                 );
                 EditorCreationWizardDialog wizDialog = this.invokeInstanceWizard(modelFile);
@@ -206,7 +203,7 @@ viewpoints:
             }
         }
         Diagram newDiagram = super.createThisEClass();
-        super.addInstance(newDiagram, editorUri, modelUri, instanceMID);
+        super.addInstance(newDiagram, editorUri, modelPath, instanceMID);
 
         return newDiagram;
     }

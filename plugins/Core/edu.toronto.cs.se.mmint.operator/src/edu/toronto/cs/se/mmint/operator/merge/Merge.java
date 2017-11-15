@@ -295,7 +295,7 @@ public class Merge extends OperatorImpl {
 		// merge the models
 		EObject rootMergedModelObj = merge(input.model1, input.model2, input.overlapRel, mergedModel, traceRel1, traceRel2);
 		FileUtils.writeModelFile(rootMergedModelObj, mergedModelPath, true);
-		mergedModel.createInstanceEditor(); // opens the new model editor as side effect
+		mergedModel.createInstanceEditor(true); // opens the new model editor as side effect
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();

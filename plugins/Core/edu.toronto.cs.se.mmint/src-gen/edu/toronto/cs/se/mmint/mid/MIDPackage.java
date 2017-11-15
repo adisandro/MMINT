@@ -3032,11 +3032,11 @@ public interface MIDPackage extends EPackage {
     EOperation getModel__CreateInstance__EObject_String_MID();
 
     /**
-     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceEditor() <em>Create Instance Editor</em>}' operation.
+     * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#createInstanceEditor(boolean) <em>Create Instance Editor</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the '<em>Create Instance Editor</em>' operation.
-     * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceEditor()
+     * @see edu.toronto.cs.se.mmint.mid.Model#createInstanceEditor(boolean)
      * @generated
      */
     EOperation getModel__CreateInstanceEditor();

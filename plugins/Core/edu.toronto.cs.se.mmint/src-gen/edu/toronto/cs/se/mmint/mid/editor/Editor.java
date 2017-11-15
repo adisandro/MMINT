@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -197,7 +197,7 @@ public interface Editor extends ExtendibleElement {
     /**
      * <!-- begin-user-doc --> Creates and adds a subtype of this editor type to
      * the Type MID.
-     * 
+     *
      * @param newEditorTypeFragmentUri
      *            The uri fragment to be appended as part of the uri of the new
      *            editor type.
@@ -224,7 +224,7 @@ public interface Editor extends ExtendibleElement {
 
     /**
      * <!-- begin-user-doc --> Deletes this editor type from the Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is an editor instance. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -233,26 +233,29 @@ public interface Editor extends ExtendibleElement {
     void deleteType() throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Creates and adds an editor instance of this
-     * editor type to an Instance MID.
-     * 
-     * @param modelUri
-     *            The uri of the model handled by the new editor.
+     * <!-- begin-user-doc --> Creates and adds an editor instance of this editor type to an Instance MID.
+     *
+     * @param modelPath
+     *            The path of the model to be represented in the new editor.
+     * @param createEditorFile
+     *            True if the editor file is going to be created, false if it exists already.
      * @param instanceMID
      *            An Instance MID.
+     *
      * @return The created editor.
      * @throws MMINTException
      *             If this is an editor instance. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true" instanceMIDRequired="true"
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelUriRequired="true"
+     *        instanceMIDRequired="true"
      * @generated
      */
-    Editor createInstance(String modelUri, MID instanceMID) throws MMINTException;
+    Editor createInstance(String modelUri, boolean createEditorFile, MID instanceMID) throws MMINTException;
 
     /**
      * <!-- begin-user-doc --> Invokes an editor instance creation wizard for
      * this editor type. The wizard can be initialized with an existing model,
      * or create the underlying model as a side effect.
-     * 
+     *
      * @param initialSelection
      *            The selection used to initialize the wizard. It can be an
      *            existing model file, or its container when the underlying
@@ -270,7 +273,7 @@ public interface Editor extends ExtendibleElement {
     /**
      * <!-- begin-user-doc --> Deletes this editor instance from the Instance
      * MID that contains it.
-     * 
+     *
      * @throws MMINTException
      *             If this is an editor type. <!-- end-user-doc -->
      * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
