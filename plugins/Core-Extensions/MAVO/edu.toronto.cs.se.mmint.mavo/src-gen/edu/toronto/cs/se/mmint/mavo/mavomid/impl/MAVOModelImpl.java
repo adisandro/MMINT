@@ -56,217 +56,217 @@ import org.eclipse.emf.validation.model.ConstraintStatus;
  */
 public class MAVOModelImpl extends ModelImpl implements MAVOModel {
 	/**
-	 * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isInc() <em>Inc</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInc()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isInc()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean INC_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isInc() <em>Inc</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isInc() <em>Inc</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInc()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isInc()
+     * @generated
+     * @ordered
+     */
 	protected boolean inc = INC_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getDecisions() <em>Decisions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDecisions() <em>Decisions</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDecisions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDecisions()
+     * @generated
+     * @ordered
+     */
 	protected EList<MAVODecision> decisions;
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MAVOModelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.MAVO_MODEL;
-	}
+        return MAVOMIDPackage.Literals.MAVO_MODEL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isInc() {
-		return inc;
-	}
+        return inc;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInc(boolean newInc) {
-		boolean oldInc = inc;
-		inc = newInc;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_MODEL__INC, oldInc, inc));
-	}
+        boolean oldInc = inc;
+        inc = newInc;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.MAVO_MODEL__INC, oldInc, inc));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<MAVODecision> getDecisions() {
-		if (decisions == null) {
-			decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MAVOMIDPackage.MAVO_MODEL__DECISIONS);
-		}
-		return decisions;
-	}
+        if (decisions == null) {
+            decisions = new EObjectContainmentEList<MAVODecision>(MAVODecision.class, this, MAVOMIDPackage.MAVO_MODEL__DECISIONS);
+        }
+        return decisions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
-				return ((InternalEList<?>)getDecisions()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
+                return ((InternalEList<?>)getDecisions()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MAVOMIDPackage.MAVO_MODEL__INC:
-				return isInc();
-			case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
-				return getDecisions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.MAVO_MODEL__INC:
+                return isInc();
+            case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
+                return getDecisions();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MAVOMIDPackage.MAVO_MODEL__INC:
-				setInc((Boolean)newValue);
-				return;
-			case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
-				getDecisions().clear();
-				getDecisions().addAll((Collection<? extends MAVODecision>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.MAVO_MODEL__INC:
+                setInc((Boolean)newValue);
+                return;
+            case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
+                getDecisions().clear();
+                getDecisions().addAll((Collection<? extends MAVODecision>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MAVOMIDPackage.MAVO_MODEL__INC:
-				setInc(INC_EDEFAULT);
-				return;
-			case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
-				getDecisions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.MAVO_MODEL__INC:
+                setInc(INC_EDEFAULT);
+                return;
+            case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
+                getDecisions().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MAVOMIDPackage.MAVO_MODEL__INC:
-				return inc != INC_EDEFAULT;
-			case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
-				return decisions != null && !decisions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.MAVO_MODEL__INC:
+                return inc != INC_EDEFAULT;
+            case MAVOMIDPackage.MAVO_MODEL__DECISIONS:
+                return decisions != null && !decisions.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == MAVORoot.class) {
-			switch (derivedFeatureID) {
-				case MAVOMIDPackage.MAVO_MODEL__INC: return MAVOPackage.MAVO_ROOT__INC;
-				case MAVOMIDPackage.MAVO_MODEL__DECISIONS: return MAVOPackage.MAVO_ROOT__DECISIONS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == MAVORoot.class) {
+            switch (derivedFeatureID) {
+                case MAVOMIDPackage.MAVO_MODEL__INC: return MAVOPackage.MAVO_ROOT__INC;
+                case MAVOMIDPackage.MAVO_MODEL__DECISIONS: return MAVOPackage.MAVO_ROOT__DECISIONS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == MAVORoot.class) {
-			switch (baseFeatureID) {
-				case MAVOPackage.MAVO_ROOT__INC: return MAVOMIDPackage.MAVO_MODEL__INC;
-				case MAVOPackage.MAVO_ROOT__DECISIONS: return MAVOMIDPackage.MAVO_MODEL__DECISIONS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == MAVORoot.class) {
+            switch (baseFeatureID) {
+                case MAVOPackage.MAVO_ROOT__INC: return MAVOMIDPackage.MAVO_MODEL__INC;
+                case MAVOPackage.MAVO_ROOT__DECISIONS: return MAVOMIDPackage.MAVO_MODEL__DECISIONS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (inc: ");
-		result.append(inc);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (inc: ");
+        result.append(inc);
+        result.append(')');
+        return result.toString();
+    }
 
 	/**
 	 * @generated NOT

@@ -29,186 +29,186 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class MAVOMIDFactoryImpl extends EFactoryImpl implements MAVOMIDFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static MAVOMIDFactory init() {
-		try {
-			MAVOMIDFactory theMAVOMIDFactory = (MAVOMIDFactory)EPackage.Registry.INSTANCE.getEFactory(MAVOMIDPackage.eNS_URI);
-			if (theMAVOMIDFactory != null) {
-				return theMAVOMIDFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new MAVOMIDFactoryImpl();
-	}
+        try {
+            MAVOMIDFactory theMAVOMIDFactory = (MAVOMIDFactory)EPackage.Registry.INSTANCE.getEFactory(MAVOMIDPackage.eNS_URI);
+            if (theMAVOMIDFactory != null) {
+                return theMAVOMIDFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new MAVOMIDFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOMIDFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case MAVOMIDPackage.MAVO_MODEL: return createMAVOModel();
-			case MAVOMIDPackage.MAVO_MODEL_ELEMENT: return createMAVOModelElement();
-			case MAVOMIDPackage.MAVO_MODEL_REL: return createMAVOModelRel();
-			case MAVOMIDPackage.BINARY_MAVO_MODEL_REL: return createBinaryMAVOModelRel();
-			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT: return createMAVOModelEndpoint();
-			case MAVOMIDPackage.MAVO_MAPPING: return createMAVOMapping();
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING: return createBinaryMAVOMapping();
-			case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE: return createMAVOModelElementReference();
-			case MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE: return createMAVOModelEndpointReference();
-			case MAVOMIDPackage.MAVO_MAPPING_REFERENCE: return createMAVOMappingReference();
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE: return createBinaryMAVOMappingReference();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case MAVOMIDPackage.MAVO_MODEL: return createMAVOModel();
+            case MAVOMIDPackage.MAVO_MODEL_ELEMENT: return createMAVOModelElement();
+            case MAVOMIDPackage.MAVO_MODEL_REL: return createMAVOModelRel();
+            case MAVOMIDPackage.BINARY_MAVO_MODEL_REL: return createBinaryMAVOModelRel();
+            case MAVOMIDPackage.MAVO_MODEL_ENDPOINT: return createMAVOModelEndpoint();
+            case MAVOMIDPackage.MAVO_MAPPING: return createMAVOMapping();
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING: return createBinaryMAVOMapping();
+            case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE: return createMAVOModelElementReference();
+            case MAVOMIDPackage.MAVO_MODEL_ENDPOINT_REFERENCE: return createMAVOModelEndpointReference();
+            case MAVOMIDPackage.MAVO_MAPPING_REFERENCE: return createMAVOMappingReference();
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING_REFERENCE: return createBinaryMAVOMappingReference();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModel createMAVOModel() {
-		MAVOModelImpl mavoModel = new MAVOModelImpl();
-		return mavoModel;
-	}
+        MAVOModelImpl mavoModel = new MAVOModelImpl();
+        return mavoModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModelElement createMAVOModelElement() {
-		MAVOModelElementImpl mavoModelElement = new MAVOModelElementImpl();
-		return mavoModelElement;
-	}
+        MAVOModelElementImpl mavoModelElement = new MAVOModelElementImpl();
+        return mavoModelElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModelRel createMAVOModelRel() {
-		MAVOModelRelImpl mavoModelRel = new MAVOModelRelImpl();
-		return mavoModelRel;
-	}
+        MAVOModelRelImpl mavoModelRel = new MAVOModelRelImpl();
+        return mavoModelRel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BinaryMAVOModelRel createBinaryMAVOModelRel() {
-		BinaryMAVOModelRelImpl binaryMAVOModelRel = new BinaryMAVOModelRelImpl();
-		return binaryMAVOModelRel;
-	}
+        BinaryMAVOModelRelImpl binaryMAVOModelRel = new BinaryMAVOModelRelImpl();
+        return binaryMAVOModelRel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModelEndpoint createMAVOModelEndpoint() {
-		MAVOModelEndpointImpl mavoModelEndpoint = new MAVOModelEndpointImpl();
-		return mavoModelEndpoint;
-	}
+        MAVOModelEndpointImpl mavoModelEndpoint = new MAVOModelEndpointImpl();
+        return mavoModelEndpoint;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModelEndpointReference createMAVOModelEndpointReference() {
-		MAVOModelEndpointReferenceImpl mavoModelEndpointReference = new MAVOModelEndpointReferenceImpl();
-		return mavoModelEndpointReference;
-	}
+        MAVOModelEndpointReferenceImpl mavoModelEndpointReference = new MAVOModelEndpointReferenceImpl();
+        return mavoModelEndpointReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOMappingReference createMAVOMappingReference() {
-		MAVOMappingReferenceImpl mavoMappingReference = new MAVOMappingReferenceImpl();
-		return mavoMappingReference;
-	}
+        MAVOMappingReferenceImpl mavoMappingReference = new MAVOMappingReferenceImpl();
+        return mavoMappingReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BinaryMAVOMappingReference createBinaryMAVOMappingReference() {
-		BinaryMAVOMappingReferenceImpl binaryMAVOMappingReference = new BinaryMAVOMappingReferenceImpl();
-		return binaryMAVOMappingReference;
-	}
+        BinaryMAVOMappingReferenceImpl binaryMAVOMappingReference = new BinaryMAVOMappingReferenceImpl();
+        return binaryMAVOMappingReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOMapping createMAVOMapping() {
-		MAVOMappingImpl mavoMapping = new MAVOMappingImpl();
-		return mavoMapping;
-	}
+        MAVOMappingImpl mavoMapping = new MAVOMappingImpl();
+        return mavoMapping;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BinaryMAVOMapping createBinaryMAVOMapping() {
-		BinaryMAVOMappingImpl binaryMAVOMapping = new BinaryMAVOMappingImpl();
-		return binaryMAVOMapping;
-	}
+        BinaryMAVOMappingImpl binaryMAVOMapping = new BinaryMAVOMappingImpl();
+        return binaryMAVOMapping;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOModelElementReference createMAVOModelElementReference() {
-		MAVOModelElementReferenceImpl mavoModelElementReference = new MAVOModelElementReferenceImpl();
-		return mavoModelElementReference;
-	}
+        MAVOModelElementReferenceImpl mavoModelElementReference = new MAVOModelElementReferenceImpl();
+        return mavoModelElementReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOMIDPackage getMAVOMIDPackage() {
-		return (MAVOMIDPackage)getEPackage();
-	}
+        return (MAVOMIDPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static MAVOMIDPackage getPackage() {
-		return MAVOMIDPackage.eINSTANCE;
-	}
+        return MAVOMIDPackage.eINSTANCE;
+    }
 
 } //MAVOMIDFactoryImpl

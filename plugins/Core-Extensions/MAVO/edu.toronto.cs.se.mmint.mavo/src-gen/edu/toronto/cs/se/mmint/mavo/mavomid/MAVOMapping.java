@@ -32,29 +32,29 @@ import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 public interface MAVOMapping extends Mapping, MAVOElement {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 * @generated
-	 */
+     * @model required="true"
+     * @generated
+     */
 	String toMIDCustomPrintLabel();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 * @generated
-	 */
+     * @model required="true"
+     * @generated
+     */
 	String toMIDCustomEditLabel();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model newLabelRequired="true"
-	 * @generated
-	 */
+     * @model newLabelRequired="true"
+     * @generated
+     */
 	void updateMIDCustomLabel(String newLabel);
 } // MAVOMapping

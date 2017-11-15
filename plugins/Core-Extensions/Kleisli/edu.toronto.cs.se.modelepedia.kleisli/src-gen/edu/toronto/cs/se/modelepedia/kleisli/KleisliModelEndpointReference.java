@@ -39,36 +39,36 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
  */
 public interface KleisliModelEndpointReference extends ModelEndpointReference {
 	/**
-	 * Returns the value of the '<em><b>Extended Target Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Extended Target Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The uri of the referenced Kleisli extended model target (types: state-relative; instances: workspace-relative).
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Extended Target Uri</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpointReference_ExtendedTargetUri()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(kleisli::KleisliModelEndpoint).extendedTargetUri'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * The uri of the referenced Kleisli extended model target (types: state-relative; instances: workspace-relative).
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Extended Target Uri</em>' attribute.
+     * @see edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage#getKleisliModelEndpointReference_ExtendedTargetUri()
+     * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='object.oclAsType(kleisli::KleisliModelEndpoint).extendedTargetUri'"
+     * @generated
+     */
 	String getExtendedTargetUri();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" metamodelObjRequired="true"
-	 * @generated
-	 */
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" metamodelObjRequired="true"
+     * @generated
+     */
 	boolean acceptModelElementType(EObject metamodelObj) throws MMINTException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Kleisli version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-	 * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
-	 * @generated
-	 */
+     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
+     * @generated
+     */
 	ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException;
 
 } // KleisliModelEndpointReference

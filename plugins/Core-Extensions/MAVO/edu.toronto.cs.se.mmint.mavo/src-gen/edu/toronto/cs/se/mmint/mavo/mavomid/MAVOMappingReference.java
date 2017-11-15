@@ -30,15 +30,15 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 public interface MAVOMappingReference extends MappingReference {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * {@inheritDoc}<br />
-	 * Gets the referenced MAVO mapping.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOMapping) object;'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * {@inheritDoc}<br />
+     * Gets the referenced MAVO mapping.
+     * <!-- end-model-doc -->
+     * @model kind="operation" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (MAVOMapping) object;'"
+     * @generated
+     */
 	MAVOMapping getObject();
 } // MAVOMappingReference

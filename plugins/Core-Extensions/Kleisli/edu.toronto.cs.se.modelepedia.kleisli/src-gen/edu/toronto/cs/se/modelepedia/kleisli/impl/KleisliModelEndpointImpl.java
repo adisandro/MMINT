@@ -54,171 +54,171 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  */
 public class KleisliModelEndpointImpl extends ModelEndpointImpl implements KleisliModelEndpoint {
 	/**
-	 * The cached value of the '{@link #getExtendedTarget() <em>Extended Target</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExtendedTarget() <em>Extended Target</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendedTarget()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtendedTarget()
+     * @generated
+     * @ordered
+     */
 	protected KleisliModel extendedTarget;
 	/**
-	 * The default value of the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendedTargetUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtendedTargetUri()
+     * @generated
+     * @ordered
+     */
 	protected static final String EXTENDED_TARGET_URI_EDEFAULT = null;
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected KleisliModelEndpointImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT;
-	}
+        return KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliModel getExtendedTarget() {
-		return extendedTarget;
-	}
+        return extendedTarget;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExtendedTarget(KleisliModel newExtendedTarget, NotificationChain msgs) {
-		KleisliModel oldExtendedTarget = extendedTarget;
-		extendedTarget = newExtendedTarget;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, oldExtendedTarget, newExtendedTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        KleisliModel oldExtendedTarget = extendedTarget;
+        extendedTarget = newExtendedTarget;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, oldExtendedTarget, newExtendedTarget);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExtendedTarget(KleisliModel newExtendedTarget) {
-		if (newExtendedTarget != extendedTarget) {
-			NotificationChain msgs = null;
-			if (extendedTarget != null)
-				msgs = ((InternalEObject)extendedTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
-			if (newExtendedTarget != null)
-				msgs = ((InternalEObject)newExtendedTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
-			msgs = basicSetExtendedTarget(newExtendedTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, newExtendedTarget, newExtendedTarget));
-	}
+        if (newExtendedTarget != extendedTarget) {
+            NotificationChain msgs = null;
+            if (extendedTarget != null)
+                msgs = ((InternalEObject)extendedTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
+            if (newExtendedTarget != null)
+                msgs = ((InternalEObject)newExtendedTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, null, msgs);
+            msgs = basicSetExtendedTarget(newExtendedTarget, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET, newExtendedTarget, newExtendedTarget));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getExtendedTargetUri() {
-		// TODO: implement this method to return the 'Extended Target Uri' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+        // TODO: implement this method to return the 'Extended Target Uri' attribute
+        // Ensure that you remove @generated or mark it @generated NOT
+        throw new UnsupportedOperationException();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
-				return basicSetExtendedTarget(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
+                return basicSetExtendedTarget(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
-				return getExtendedTarget();
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
-				return getExtendedTargetUri();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
+                return getExtendedTarget();
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
+                return getExtendedTargetUri();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
-				setExtendedTarget((KleisliModel)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
+                setExtendedTarget((KleisliModel)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
-				setExtendedTarget((KleisliModel)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
+                setExtendedTarget((KleisliModel)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
-				return extendedTarget != null;
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
-				return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET:
+                return extendedTarget != null;
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT__EXTENDED_TARGET_URI:
+                return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * @generated NOT
