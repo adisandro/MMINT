@@ -32,6 +32,7 @@ import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DAnalysis;
+import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
@@ -84,6 +85,37 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     }
 
     /**
+     * Creates a new Sirius representation.
+     *
+     * @param modelPath
+     *            The path of the model for which we are creating the representation.
+     * @param sSession
+     *            The Sirius session (must contain the model resource).
+     * @return The created Sirius representation.
+     * @generated NOT
+     */
+    private DRepresentation createSiriusRepresentation(String modelPath, Session sSession) {
+
+        // get the model root from the sirius session
+        EObject modelRootObj = null;
+        for (Resource resource : sSession.getSemanticResources()) {
+            if (resource.getURI().toPlatformString(true).equals(modelPath)) {
+                modelRootObj = resource.getContents().get(0);
+                break;
+            }
+        }
+        // create a new sirius representation within an emf transaction
+        Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
+            .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
+        CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
+            sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelPath),
+            new NullProgressMonitor());
+        sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
+
+        return sCmd.getCreatedRepresentation();
+    }
+
+    /**
      * Creates and adds a diagram instance of this diagram type to an Instance MID.
      *
      * @param modelPath
@@ -103,93 +135,15 @@ public class DiagramImpl extends EditorImpl implements Diagram {
         MMINTException.mustBeType(this);
 
         String editorUri = null;
-        if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
-            //TODO MMINT[SIRIUS] Open the modeling project if not open
-            //TODO MMINT[SIRIUS] Create the representation file if it does not exist
-            //TODO MMINT[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
-            //TODO MMINT[SIRIUS] e.g. filter repr files that have the model as semantic resource
-            //TODO MMINT[SIRIUS] Test: a) how to add viewpoints to the project b) how to import/create into an empty repr.aird
-            //TODO MMINT[SIRIUS] Remove the diagram representation when deleting the model
-            String sFileUri = null;
-            boolean isImported = false;
-            try {
-                sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+        if (createDiagramFile) { // model created programmatically
+            if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                String sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
+                                                                      new NullProgressMonitor());
+                editorUri = MIDRegistry.getModelElementUri(this.createSiriusRepresentation(modelPath, sSession));
             }
-            catch (MIDDialogCancellation e) {
-                throw e;
-            }
-            finally {
-                // we can be here after creating or importing a model, the currently open Eclipse editor is the key
-                IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-                IEditorPart pageEditor = page.getActiveEditor();
-                if (!pageEditor.getEditorInput().getName().endsWith(GMFUtils.DIAGRAM_SUFFIX)) { // the model was created
-                    // close the tree editor that was used to create the model
-                    page.closeEditor(pageEditor, false);
-                    if (sFileUri == null) { // cancellation
-                        // delete the created file and refresh
-                        FileUtils.deleteFile(modelPath, true);
-                        try {
-                            WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
-                                .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-                        }
-                        catch (CoreException e) {
-                            // don't refresh
-                        }
-                    }
-                }
-                else { // the model was imported
-                    isImported = true;
-                    // either continue or exit with the exception if canceled
-                }
-            }
-            String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
-            Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
-                                                                  new NullProgressMonitor());
-            if (isImported) { // find existing sirius diagram
-                DAnalysis sRoot = (DAnalysis) sSession.getSessionResource().getContents().get(0);
-viewpoints:
-                for (DView sView : sRoot.getOwnedViews()) {
-                    if (!sView.getViewpoint().getModelFileExtension().equals(modelExt)) {
-                        continue;
-                    }
-                    for (DRepresentationDescriptor sReprDesc : sView.getOwnedRepresentationDescriptors()) {
-                        if (!sReprDesc.getDescription().getName().equals(this.getUri()) ||
-                            !MIDRegistry.getModelElementUri(sReprDesc.getTarget()).startsWith(modelPath)
-                        ) {
-                            continue;
-                        }
-                        editorUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
-                        break viewpoints;
-                    }
-                }
-                if (editorUri == null) { // no existing sirius diagram found
-                    // fallback to other editor by failing
-                    throw new MMINTException("Sirius diagram not found");
-                }
-            }
-            else { // create a new sirius diagram
-                // get the model root from the sirius session
-                EObject modelRootObj = null;
-                for (Resource resource : sSession.getSemanticResources()) {
-                    if (resource.getURI().toPlatformString(true).equals(modelPath)) {
-                        modelRootObj = resource.getContents().get(0);
-                        break;
-                    }
-                }
-                // create a new sirius representation within an emf transaction
-                Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
-                    .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
-                CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
-                    sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelPath),
-                    new NullProgressMonitor());
-                sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
-                editorUri = MIDRegistry.getModelElementUri(sCmd.getCreatedRepresentation());
-            }
-        }
-        else { // GMF
-            editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
-            if (!FileUtils.isFileOrDirectory(editorUri, true)) { // create a new diagram file
-                //TODO MMINT[EDITOR] Use new signature to prevent doing this in certain cases (e.g. fallback from failed sirius diagram)
+            else { // GMF
+                editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
                 IStructuredSelection modelFile = new StructuredSelection(
                     ResourcesPlugin.getWorkspace().getRoot().getFile(
                         new Path(modelPath)
@@ -201,6 +155,82 @@ viewpoints:
                 }
             }
         }
+        else { // model created or imported through an Instance MID
+            if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                //TODO MMINT[SIRIUS] Open the modeling project if not open
+                //TODO MMINT[SIRIUS] Create the representation file if it does not exist
+                //TODO MMINT[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
+                //TODO MMINT[SIRIUS] e.g. filter repr files that have the model as semantic resource
+                //TODO MMINT[SIRIUS] Test: a) how to add viewpoints to the project b) how to import/create into an empty repr.aird
+                //TODO MMINT[SIRIUS] Remove the diagram representation when deleting the model
+                String sFileUri = null;
+                boolean isImported = false;
+                try {
+                    sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                }
+                catch (MIDDialogCancellation e) {
+                    throw e;
+                }
+                finally {
+                    // the currently open Eclipse editor is the key to create vs import
+                    IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+                    IEditorPart pageEditor = page.getActiveEditor();
+                    if (pageEditor.getEditorInput().getName().endsWith(GMFUtils.DIAGRAM_SUFFIX)) { // imported model
+                        isImported = true;
+                        // either continue or exit with the exception if canceled
+                    }
+                    else { // created model
+                        page.closeEditor(pageEditor, false); // close the tree editor that was used to create the model
+                        if (sFileUri == null) { // dialog cancellation, delete the created file and refresh
+                            FileUtils.deleteFile(modelPath, true);
+                            try {
+                                WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
+                                    .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
+                            }
+                            catch (CoreException e) {
+                                // don't refresh
+                            }
+                        }
+                    }
+                }
+                String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
+                Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
+                                                                      new NullProgressMonitor());
+                if (isImported) { // find existing sirius representation
+                    DAnalysis sRoot = (DAnalysis) sSession.getSessionResource().getContents().get(0);
+viewpoints:
+                    for (DView sView : sRoot.getOwnedViews()) {
+                        if (!sView.getViewpoint().getModelFileExtension().equals(modelExt)) {
+                            continue;
+                        }
+                        for (DRepresentationDescriptor sReprDesc : sView.getOwnedRepresentationDescriptors()) {
+                            if (!sReprDesc.getDescription().getName().equals(this.getUri()) ||
+                                !MIDRegistry.getModelElementUri(sReprDesc.getTarget()).startsWith(modelPath)
+                            ) {
+                                continue;
+                            }
+                            editorUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
+                            break viewpoints;
+                        }
+                    }
+                    if (editorUri == null) { // no existing sirius diagram found
+                        // fallback to other editor by failing
+                        throw new MMINTException("Sirius representation not found");
+                    }
+                }
+                else { // create a new sirius representation
+                    editorUri = MIDRegistry.getModelElementUri(this.createSiriusRepresentation(modelPath, sSession));
+                }
+            }
+            else { // GMF
+                editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
+                if (!FileUtils.isFileOrDirectory(editorUri, true)) {
+                    // fallback to other editor by failing
+                    throw new MMINTException("GMF diagram not found");
+                }
+            }
+        }
+
         Diagram newDiagram = super.createThisEClass();
         super.addInstance(newDiagram, editorUri, modelPath, instanceMID);
 
