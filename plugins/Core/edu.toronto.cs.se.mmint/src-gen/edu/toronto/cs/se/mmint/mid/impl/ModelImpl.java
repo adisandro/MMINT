@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -63,6 +64,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
@@ -1168,7 +1170,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
          */
         for (Editor editor : this.getEditors()) {
-            FileUtils.deleteFile(editor.getUri(), true);
+            if (editor.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                SiriusUtils.deleteRepresentation((Diagram) editor);
+            }
+            else {
+                FileUtils.deleteFile(editor.getUri(), true);
+            }
         }
         FileUtils.deleteFile(this.getUri(), true);
         this.deleteInstance();

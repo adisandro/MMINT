@@ -11,8 +11,6 @@
  */
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
-import java.util.Collection;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -20,22 +18,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.sirius.business.api.dialect.DialectManager;
-import org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
-import org.eclipse.sirius.business.api.session.Session;
-import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.viewpoint.DAnalysis;
-import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
-import org.eclipse.sirius.viewpoint.DView;
-import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWizard;
@@ -54,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -85,37 +74,6 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     }
 
     /**
-     * Creates a new Sirius representation.
-     *
-     * @param modelPath
-     *            The path of the model for which we are creating the representation.
-     * @param sSession
-     *            The Sirius session (must contain the model resource).
-     * @return The created Sirius representation.
-     * @generated NOT
-     */
-    private DRepresentation createSiriusRepresentation(String modelPath, Session sSession) {
-
-        // get the model root from the sirius session
-        EObject modelRootObj = null;
-        for (Resource resource : sSession.getSemanticResources()) {
-            if (resource.getURI().toPlatformString(true).equals(modelPath)) {
-                modelRootObj = resource.getContents().get(0);
-                break;
-            }
-        }
-        // create a new sirius representation within an emf transaction
-        Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
-            .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
-        CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
-            sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelPath),
-            new NullProgressMonitor());
-        sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
-
-        return sCmd.getCreatedRepresentation();
-    }
-
-    /**
      * Creates and adds a diagram instance of this diagram type to an Instance MID.
      *
      * @param modelPath
@@ -137,10 +95,8 @@ public class DiagramImpl extends EditorImpl implements Diagram {
         String editorUri = null;
         if (createDiagramFile) { // model created programmatically
             if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
-                String sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
-                Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
-                                                                      new NullProgressMonitor());
-                editorUri = MIDRegistry.getModelElementUri(this.createSiriusRepresentation(modelPath, sSession));
+                String sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                editorUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
             }
             else { // GMF
                 editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
@@ -162,11 +118,10 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 //TODO MMINT[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
                 //TODO MMINT[SIRIUS] e.g. filter repr files that have the model as semantic resource
                 //TODO MMINT[SIRIUS] Test: a) how to add viewpoints to the project b) how to import/create into an empty repr.aird
-                //TODO MMINT[SIRIUS] Remove the diagram representation when deleting the model
-                String sFileUri = null;
+                String sAirdPath = null;
                 boolean isImported = false;
                 try {
-                    sFileUri = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                    sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
                 }
                 catch (MIDDialogCancellation e) {
                     throw e;
@@ -181,7 +136,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                     }
                     else { // created model
                         page.closeEditor(pageEditor, false); // close the tree editor that was used to create the model
-                        if (sFileUri == null) { // dialog cancellation, delete the created file and refresh
+                        if (sAirdPath == null) { // dialog cancellation, delete the created file and refresh
                             FileUtils.deleteFile(modelPath, true);
                             try {
                                 WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
@@ -193,33 +148,17 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                         }
                     }
                 }
-                String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
-                Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sFileUri, true),
-                                                                      new NullProgressMonitor());
                 if (isImported) { // find existing sirius representation
-                    DAnalysis sRoot = (DAnalysis) sSession.getSessionResource().getContents().get(0);
-viewpoints:
-                    for (DView sView : sRoot.getOwnedViews()) {
-                        if (!sView.getViewpoint().getModelFileExtension().equals(modelExt)) {
-                            continue;
-                        }
-                        for (DRepresentationDescriptor sReprDesc : sView.getOwnedRepresentationDescriptors()) {
-                            if (!sReprDesc.getDescription().getName().equals(this.getUri()) ||
-                                !MIDRegistry.getModelElementUri(sReprDesc.getTarget()).startsWith(modelPath)
-                            ) {
-                                continue;
-                            }
-                            editorUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
-                            break viewpoints;
-                        }
-                    }
-                    if (editorUri == null) { // no existing sirius diagram found
+                    DRepresentationDescriptor sReprDesc = SiriusUtils
+                        .findRepresentationDescriptor(modelPath, this.getUri(), sAirdPath);
+                    if (sReprDesc == null) { // no existing sirius diagram found
                         // fallback to other editor by failing
                         throw new MMINTException("Sirius representation not found");
                     }
+                    editorUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
                 }
                 else { // create a new sirius representation
-                    editorUri = MIDRegistry.getModelElementUri(this.createSiriusRepresentation(modelPath, sSession));
+                    editorUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
                 }
             }
             else { // GMF
