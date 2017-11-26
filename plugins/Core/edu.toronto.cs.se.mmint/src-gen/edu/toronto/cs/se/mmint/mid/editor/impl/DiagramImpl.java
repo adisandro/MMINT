@@ -92,14 +92,18 @@ public class DiagramImpl extends EditorImpl implements Diagram {
 
         MMINTException.mustBeType(this);
 
-        String editorUri = null;
+        String diagramUri = null;
         if (createDiagramFile) { // model created programmatically
             if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
                 String sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
-                editorUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                diagramUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
+                                                             PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
+                    FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
+                }
             }
             else { // GMF
-                editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
+                diagramUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
                 IStructuredSelection modelFile = new StructuredSelection(
                     ResourcesPlugin.getWorkspace().getRoot().getFile(
                         new Path(modelPath)
@@ -155,15 +159,16 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                         // fallback to other editor by failing
                         throw new MMINTException("Sirius representation not found");
                     }
-                    editorUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
+                    diagramUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
                 }
                 else { // create a new sirius representation
-                    editorUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                    diagramUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                    FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
                 }
             }
             else { // GMF
-                editorUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
-                if (!FileUtils.isFileOrDirectory(editorUri, true)) {
+                diagramUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
+                if (!FileUtils.isFileOrDirectory(diagramUri, true)) {
                     // fallback to other editor by failing
                     throw new MMINTException("GMF diagram not found");
                 }
@@ -171,7 +176,7 @@ public class DiagramImpl extends EditorImpl implements Diagram {
         }
 
         Diagram newDiagram = super.createThisEClass();
-        super.addInstance(newDiagram, editorUri, modelPath, instanceMID);
+        super.addInstance(newDiagram, diagramUri, modelPath, instanceMID);
 
         return newDiagram;
     }
@@ -199,7 +204,8 @@ public class DiagramImpl extends EditorImpl implements Diagram {
                 String diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
                 try {
                     GMFUtils.createGMFDiagramAndFile(modelUri, diagramUri, diagramKind, diagramPluginId, true);
-                    if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
+                    if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
+                                                                 PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
                         FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
                     }
                 }
