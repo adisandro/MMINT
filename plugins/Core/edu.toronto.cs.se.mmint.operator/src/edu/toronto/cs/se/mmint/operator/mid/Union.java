@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -43,14 +43,14 @@ public class Union extends OperatorImpl {
 	private final static @NonNull String IN_MIDS = "mids";
 	private final static @NonNull String OUT_MID = "unionMid";
 	// constants
-	private final static @NonNull String UNION_SEPARATOR = "+";
+	private final static @NonNull String UNION_SEPARATOR = "∪";
 
 	private @NonNull MID union(@NonNull List<Model> inputMIDModels) throws MMINTException, IOException {
 
 		MID unionMID = MIDFactory.eINSTANCE.createMID();
 		unionMID.setLevel(MIDLevel.INSTANCES);
 		// models only at first pass
-		List<MID> inputMIDs = new ArrayList<MID>();
+		List<MID> inputMIDs = new ArrayList<>();
 		for (Model inputMIDModel : inputMIDModels) {
 			MID inputMID = (MID) inputMIDModel.getEMFInstanceRoot();
 			inputMIDs.add(inputMID); // avoids to read the files again later
