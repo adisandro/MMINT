@@ -119,8 +119,6 @@ public class DiagramImpl extends EditorImpl implements Diagram {
             if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
                 //TODO MMINT[SIRIUS] Open the modeling project if not open
                 //TODO MMINT[SIRIUS] Create the representation file if it does not exist
-                //TODO MMINT[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
-                //TODO MMINT[SIRIUS] e.g. filter repr files that have the model as semantic resource
                 //TODO MMINT[SIRIUS] Test: a) how to add viewpoints to the project b) how to import/create into an empty repr.aird
                 String sAirdPath = null;
                 boolean isImported = false;

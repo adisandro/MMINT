@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
 import org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand;
 import org.eclipse.sirius.business.api.dialect.command.DeleteRepresentationCommand;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
@@ -32,11 +33,15 @@ import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class SiriusUtils {
+
+    public final static String DEFAULT_REPRESENTATIONS_FILE = "representations" + MMINT.MODEL_FILEEXTENSION_SEPARATOR +
+                                                              SiriusUtil.SESSION_RESOURCE_EXTENSION;
 
     public static @Nullable DRepresentationDescriptor findRepresentationDescriptor(@NonNull String modelPath,
                                                                                    @NonNull String diagramTypeUri,

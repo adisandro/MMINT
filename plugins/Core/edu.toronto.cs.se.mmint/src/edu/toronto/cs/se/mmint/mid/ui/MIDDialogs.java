@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -168,21 +170,38 @@ public class MIDDialogs {
 	public static @NonNull String selectSiriusRepresentationsFileToContainModelDiagram(@NonNull String modelPath)
 	                              throws MIDDialogCancellation {
 
-        Object dialogRoot = FileUtils.getWorkspaceProject(modelPath);
-        if (dialogRoot == null) {
+	    // try a default representations file next to the model first..
+	    String sAirdPath = FileUtils.replaceLastSegmentInPath(modelPath, SiriusUtils.DEFAULT_REPRESENTATIONS_FILE);
+	    if (FileUtils.isFile(sAirdPath, true)) {
+	        return sAirdPath;
+	    }
+	    // ..then a default representations file at the top level..
+	    Object dialogRoot;
+        IProject project = FileUtils.getWorkspaceProject(modelPath);
+        if (project == null) {
             dialogRoot = ResourcesPlugin.getWorkspace().getRoot();
+            sAirdPath = SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
         }
+        else {
+            dialogRoot = project;
+            sAirdPath = project.getFullPath().toString() + IPath.SEPARATOR + SiriusUtils.DEFAULT_REPRESENTATIONS_FILE;
+        }
+        if (FileUtils.isFile(sAirdPath, true)) {
+            return sAirdPath;
+        }
+	    // ..or let the user choose otherwise
         MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
                                                                    new BaseWorkbenchContentProvider(), dialogRoot);
         dialog.addFilter(new FileExtensionsDialogFilter(
-            Stream.of(SiriusUtil.SESSION_RESOURCE_EXTENSION).collect(Collectors.toList())));
+            Stream.of(SiriusUtil.SESSION_RESOURCE_EXTENSION).collect(Collectors.toList()))); //TODO MMINT[JAVA 9]
         dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
         String title = "Model with Sirius Representation";
         String message = "Select Sirius representations file";
-        IFile sAirdPath = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+        IFile sAirdFile = (IFile) MIDDialogs.openSelectionDialogWithDefault(dialog, title, message);
+        sAirdPath = sAirdFile.getFullPath().toString();
 
-        return sAirdPath.getFullPath().toString();
+        return sAirdPath;
 	}
 
 	/**
