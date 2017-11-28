@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="edu.toronto.cs.se.modelepedia.classdiagram.design.Activator"
+               id="edu.toronto.cs.se.modelepedia.classdiagram.design"
+	       name="classdiagram">
+    </component>
+  </extension>
+
+  <extension
+        point="edu.toronto.cs.se.mmint.editors">
+     <editorType
+           id="edu.toronto.cs.se.modelepedia.classdiagram.design"
+           isDiagram="true"
+           modelTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram"
+           wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
+        <type
+              name="ClassDiagram representation"
+              uri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram">
+        </type>
+     </editorType>
+  </extension>
+
+</plugin>
