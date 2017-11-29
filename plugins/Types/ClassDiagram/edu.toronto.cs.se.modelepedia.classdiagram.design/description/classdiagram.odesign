@@ -4,7 +4,7 @@
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" label="ClassDiagramRepresentation" domainClass="classdiagram.ClassDiagram" enablePopupBars="true">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.classdiagram/model/classdiagram.ecore#/"/>
       <defaultLayer name="Default">
-        <edgeMappings name="AssociationEdge" semanticCandidatesExpression="feature:associations" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="classdiagram.Association" useDomainElement="true">
+        <edgeMappings name="Association" semanticCandidatesExpression="feature:associations" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="classdiagram.Association" useDomainElement="true">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -12,7 +12,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="DependencyEdge" semanticCandidatesExpression="feature:dependencies" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']" targetFinderExpression="feature:depender" sourceFinderExpression="feature:dependee" domainClass="classdiagram.Dependency" useDomainElement="true">
+        <edgeMappings name="Dependency" semanticCandidatesExpression="feature:dependencies" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:depender" sourceFinderExpression="feature:dependee" domainClass="classdiagram.Dependency" useDomainElement="true">
           <style lineStyle="dash" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
@@ -20,16 +20,32 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="ClassContainer" semanticCandidatesExpression="feature:classes" domainClass="classdiagram.Class" childrenPresentation="VerticalStack">
+        <edgeMappings name="Superclass" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:superclass">
+          <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Nested" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:nestedIn">
+          <style targetArrow="Diamond" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Class" semanticCandidatesExpression="feature:classes" domainClass="classdiagram.Class" childrenPresentation="VerticalStack">
           <subContainerMappings name="AttributeContainer" semanticCandidatesExpression="var:self" domainClass="classdiagram.Class" childrenPresentation="List">
-            <subNodeMappings name="AttributeNode" semanticCandidatesExpression="feature:ownedAttributes" domainClass="classdiagram.Attribute">
+            <subNodeMappings name="Attribute" semanticCandidatesExpression="feature:ownedAttributes" domainClass="classdiagram.Attribute">
               <style xsi:type="style:SquareDescription" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
               </style>
             </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Attributes:" labelAlignment="LEFT">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Attributes:" labelAlignment="LEFT" hideLabelByDefault="true">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -37,29 +53,29 @@
             </style>
           </subContainerMappings>
           <subContainerMappings name="OperationContainer" semanticCandidatesExpression="var:self" domainClass="classdiagram.Class" childrenPresentation="List">
-            <subNodeMappings name="OperationNode" semanticCandidatesExpression="feature:ownedOperations" domainClass="classdiagram.Operation">
+            <subNodeMappings name="Operation" semanticCandidatesExpression="feature:ownedOperations" domainClass="classdiagram.Operation">
               <style xsi:type="style:SquareDescription" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
               </style>
             </subNodeMappings>
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Operations:" labelAlignment="LEFT">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Operations:" labelAlignment="LEFT" hideLabelByDefault="true">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <toolSections name="CreationSection">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ClassCreation" containerMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']">
+        <toolSections name="Objects" label="Objects">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ClassCreation" containerMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -68,7 +84,27 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="AssociationCreation" edgeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='AssociationEdge']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="AttributeCreation" nodeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='AttributeContainer']/@subNodeMappings[name='Attribute']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="classdiagram.Attribute" referenceName="ownedAttributes"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="OperationCreation" nodeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']/@subContainerMappings[name='OperationContainer']/@subNodeMappings[name='Operation']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="classdiagram.Operation" referenceName="ownedOperations"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Connections" label="Connections">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="AssociationCreation" edgeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Association']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -82,7 +118,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="DependencyCreation" edgeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='DependencyEdge']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="DependencyCreation" edgeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Dependency']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -93,6 +129,28 @@
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="dependee" valueExpression="var:source"/>
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="depender" valueExpression="var:target"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SuperclassCreation" edgeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Superclass']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="superclass" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="NestedCreation" edgeMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@edgeMappings[name='Nested']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="nestedIn" valueExpression="var:target"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
