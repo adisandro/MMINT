@@ -30,6 +30,9 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint.operator"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.sirius"/>
+      <import plugin="org.eclipse.sirius.common.acceleo.aql"/>
    </requires>
 
    <plugin
@@ -55,6 +58,13 @@ Famelis, Rick Salay. All rights reserved.
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.sequencediagram.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.sequencediagram.design"
          download-size="0"
          install-size="0"
          version="0.0.0"
