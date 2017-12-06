@@ -21,7 +21,7 @@
          <type
                name="Slice"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_SDSlice"
-               class="edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator.SDSlice">
+               class="edu.toronto.cs.se.modelepedia.sequencediagram.operator.SDSlice">
             <superType
                   uri="http://se.cs.toronto.edu/mmint/Operator_Slice">
             </superType>

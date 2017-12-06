@@ -30,6 +30,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.relationaldatabase.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.sequencediagram.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sequencediagram.feature" version="2.2.99.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.statemachine.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
