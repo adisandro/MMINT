@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sequencediagram" nsURI="http://se.cs.toronto.edu/modelepedia/SequenceDiagram"
+    nsPrefix="sequencediagram">
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
+        eType="#//Object" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
+        eType="#//Message" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Object" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifeline" eType="#//Lifeline"
+        containment="true" eOpposite="#//Lifeline/object"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lifeline">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+        eType="#//Object" eOpposite="#//Object/lifeline"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messagesAsSource" upperBound="-1"
+        eType="#//Message" eOpposite="#//Message/sourceLifeline"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messagesAsTarget" upperBound="-1"
+        eType="#//Message" eOpposite="#//Message/targetLifeline"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Message" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLifeline" lowerBound="1"
+        eType="#//Lifeline" eOpposite="#//Lifeline/messagesAsSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLifeline" lowerBound="1"
+        eType="#//Lifeline" eOpposite="#//Lifeline/messagesAsTarget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SynchronousMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AsynchronousMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReturnMessage" eSuperTypes="#//Message"/>
+</ecore:EPackage>
