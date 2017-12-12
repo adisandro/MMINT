@@ -46,8 +46,8 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <toolSections name="Objects">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ObjectLifelineCreation" containerMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']">
+        <toolSections name="Nodes">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ObjectLifelineCreation" label="Create Lifeline" containerMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -61,7 +61,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Connections">
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SynchronousMessageCreation" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='SynchronousMessage']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SynchronousMessageCreation" label="Create Sync Message" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='SynchronousMessage']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -75,7 +75,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="AsynchronousMessageCreation" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='AsynchronousMessage']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="AsynchronousMessageCreation" label="Create Async Message" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='AsynchronousMessage']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -89,7 +89,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="ReturnMessageCreation" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='ReturnMessage']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="ReturnMessageCreation" label="Create Return Message" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='ReturnMessage']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
