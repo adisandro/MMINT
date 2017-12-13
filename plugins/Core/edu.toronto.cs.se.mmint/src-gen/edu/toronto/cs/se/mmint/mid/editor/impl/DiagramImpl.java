@@ -117,9 +117,9 @@ public class DiagramImpl extends EditorImpl implements Diagram {
         }
         else { // model created or imported through an Instance MID
             if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                //TODO MMINT[SIRIUS] Delete does not work sometimes
                 //TODO MMINT[SIRIUS] Open the modeling project if not open
                 //TODO MMINT[SIRIUS] Create the representation file if it does not exist
-                //TODO MMINT[SIRIUS] Test: a) how to add viewpoints to the project b) how to import/create into an empty repr.aird
                 String sAirdPath = null;
                 boolean isImported = false;
                 try {

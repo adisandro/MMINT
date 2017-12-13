@@ -13,25 +13,33 @@ package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.sirius.business.api.componentization.ViewpointRegistry;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
 import org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand;
 import org.eclipse.sirius.business.api.dialect.command.DeleteRepresentationCommand;
+import org.eclipse.sirius.business.api.helper.SiriusResourceHelper;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.sirius.tools.api.command.semantic.AddSemanticResourceCommand;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
 import org.eclipse.sirius.viewpoint.DAnalysis;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
 import org.eclipse.sirius.viewpoint.DView;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
+import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
@@ -81,19 +89,39 @@ public class SiriusUtils {
         // get the model root from the sirius session
         Session sSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(sAirdPath, true),
                                                               new NullProgressMonitor());
+        URI modelUri = FileUtils.createEMFUri(modelPath, true);
         EObject modelRootObj = null;
-        for (Resource resource : sSession.getSemanticResources()) {
-            if (resource.getURI().toPlatformString(true).equals(modelPath)) {
-                modelRootObj = resource.getContents().get(0);
-                break;
-            }
+        Resource modelResource = sSession.getTransactionalEditingDomain().getResourceSet().getResource(modelUri, false);
+        if (modelResource == null) { // add the model resource to the session
+            AddSemanticResourceCommand sCmd = new AddSemanticResourceCommand(sSession, modelUri,
+                                                                             new NullProgressMonitor());
+            sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
+            modelResource = sSession.getTransactionalEditingDomain().getResourceSet().getResource(modelUri, false);
         }
-        if (modelRootObj == null) {
-            //TODO MMINT[SIRIUS] Is it ever the case that the model resource is not automatically in the session?
-        }
+        modelRootObj = modelResource.getContents().get(0);
+
         // create a new sirius representation within an emf transaction
         Collection<RepresentationDescription> sDescs = DialectManager.INSTANCE
             .getAvailableRepresentationDescriptions(sSession.getSelectedViewpoints(false), modelRootObj);
+        if (sDescs.isEmpty()) { // add the viewpoint to the session
+            String modelExt = FileUtils.getFileExtensionFromPath(modelPath);
+            List<Viewpoint> sViewpoints = ViewpointRegistry.getInstance().getViewpoints().stream()
+                .filter(sViewpoint -> sViewpoint.getModelFileExtension().equals(modelExt))
+                .collect(Collectors.toList());
+            final EObject modelRootObj2 = modelRootObj;
+            sSession.getTransactionalEditingDomain().getCommandStack().execute(
+                new RecordingCommand(sSession.getTransactionalEditingDomain()) {
+                    @Override
+                    protected void doExecute() {
+                        SiriusResourceHelper.createViews(
+                           sSession, sViewpoints, sSession.getTransactionalEditingDomain().getResourceSet(),
+                           modelRootObj2);
+                    }
+                }
+            );
+            sDescs = DialectManager.INSTANCE.getAvailableRepresentationDescriptions(
+                sSession.getSelectedViewpoints(false), modelRootObj);
+        }
         CreateRepresentationCommand sCmd = new CreateRepresentationCommand(
             sSession, sDescs.iterator().next(), modelRootObj, FileUtils.getFileNameFromPath(modelPath),
             new NullProgressMonitor());
