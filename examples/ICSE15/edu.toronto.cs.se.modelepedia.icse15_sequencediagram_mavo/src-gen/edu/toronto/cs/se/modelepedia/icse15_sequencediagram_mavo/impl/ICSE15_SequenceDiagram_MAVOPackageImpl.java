@@ -13,8 +13,6 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
 import edu.toronto.cs.se.mavo.MAVOPackage;
 
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
@@ -126,20 +124,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 	 * @generated
 	 */
 	private EClass targetLifelineReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass activationBoxEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass activationBoxReferenceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -300,15 +284,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLifeline_ActivationBoxes() {
-		return (EReference)lifelineEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -419,24 +394,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 	 */
 	public EReference getMessage_TargetLifeline() {
 		return (EReference)messageEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMessage_SourceActivationBox() {
-		return (EReference)messageEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMessage_TargetActivationBox() {
-		return (EReference)messageEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -579,51 +536,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivationBox() {
-		return activationBoxEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getActivationBox_Messages() {
-		return (EReference)activationBoxEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getActivationBoxReference() {
-		return activationBoxReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getActivationBoxReference_Source() {
-		return (EReference)activationBoxReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getActivationBoxReference_Target() {
-		return (EReference)activationBoxReferenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ICSE15_SequenceDiagram_MAVOFactory getICSE15_SequenceDiagram_MAVOFactory() {
 		return (ICSE15_SequenceDiagram_MAVOFactory)getEFactoryInstance();
 	}
@@ -659,7 +571,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		createEReference(lifelineEClass, LIFELINE__CLASS);
 		createEReference(lifelineEClass, LIFELINE__MESSAGES_AS_SOURCE);
 		createEReference(lifelineEClass, LIFELINE__MESSAGES_AS_TARGET);
-		createEReference(lifelineEClass, LIFELINE__ACTIVATION_BOXES);
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__ATTRIBUTES);
@@ -677,8 +588,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		createEReference(messageEClass, MESSAGE__OPERATION);
 		createEReference(messageEClass, MESSAGE__SOURCE_LIFELINE);
 		createEReference(messageEClass, MESSAGE__TARGET_LIFELINE);
-		createEReference(messageEClass, MESSAGE__SOURCE_ACTIVATION_BOX);
-		createEReference(messageEClass, MESSAGE__TARGET_ACTIVATION_BOX);
 
 		classReferenceEClass = createEClass(CLASS_REFERENCE);
 		createEReference(classReferenceEClass, CLASS_REFERENCE__SOURCE);
@@ -699,13 +608,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		targetLifelineReferenceEClass = createEClass(TARGET_LIFELINE_REFERENCE);
 		createEReference(targetLifelineReferenceEClass, TARGET_LIFELINE_REFERENCE__SOURCE);
 		createEReference(targetLifelineReferenceEClass, TARGET_LIFELINE_REFERENCE__TARGET);
-
-		activationBoxEClass = createEClass(ACTIVATION_BOX);
-		createEReference(activationBoxEClass, ACTIVATION_BOX__MESSAGES);
-
-		activationBoxReferenceEClass = createEClass(ACTIVATION_BOX_REFERENCE);
-		createEReference(activationBoxReferenceEClass, ACTIVATION_BOX_REFERENCE__SOURCE);
-		createEReference(activationBoxReferenceEClass, ACTIVATION_BOX_REFERENCE__TARGET);
 	}
 
 	/**
@@ -751,8 +653,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		operationReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
 		sourceLifelineReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
 		targetLifelineReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
-		activationBoxEClass.getESuperTypes().add(this.getNamedElement());
-		activationBoxReferenceEClass.getESuperTypes().add(theMAVOPackage.getMAVOReference());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(sequenceDiagramEClass, SequenceDiagram.class, "SequenceDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -767,7 +667,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		initEReference(getLifeline_Class(), this.getClassReference(), this.getClassReference_Source(), "class", null, 1, -1, Lifeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLifeline_MessagesAsSource(), this.getSourceLifelineReference(), this.getSourceLifelineReference_Target(), "messagesAsSource", null, 0, -1, Lifeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLifeline_MessagesAsTarget(), this.getTargetLifelineReference(), this.getTargetLifelineReference_Target(), "messagesAsTarget", null, 0, -1, Lifeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLifeline_ActivationBoxes(), this.getActivationBox(), null, "activationBoxes", null, 0, -1, Lifeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classEClass, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -785,8 +684,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		initEReference(getMessage_Operation(), this.getOperationReference(), this.getOperationReference_Source(), "operation", null, 1, -1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMessage_SourceLifeline(), this.getSourceLifelineReference(), this.getSourceLifelineReference_Source(), "sourceLifeline", null, 1, -1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMessage_TargetLifeline(), this.getTargetLifelineReference(), this.getTargetLifelineReference_Source(), "targetLifeline", null, 1, -1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMessage_SourceActivationBox(), this.getActivationBoxReference(), null, "sourceActivationBox", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMessage_TargetActivationBox(), this.getActivationBoxReference(), null, "targetActivationBox", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classReferenceEClass, ClassReference.class, "ClassReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassReference_Source(), this.getLifeline(), this.getLifeline_Class(), "source", null, 1, 1, ClassReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -807,13 +704,6 @@ public class ICSE15_SequenceDiagram_MAVOPackageImpl extends EPackageImpl impleme
 		initEClass(targetLifelineReferenceEClass, TargetLifelineReference.class, "TargetLifelineReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTargetLifelineReference_Source(), this.getMessage(), this.getMessage_TargetLifeline(), "source", null, 1, 1, TargetLifelineReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetLifelineReference_Target(), this.getLifeline(), this.getLifeline_MessagesAsTarget(), "target", null, 1, 1, TargetLifelineReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(activationBoxEClass, ActivationBox.class, "ActivationBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivationBox_Messages(), this.getActivationBoxReference(), this.getActivationBoxReference_Target(), "messages", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(activationBoxReferenceEClass, ActivationBoxReference.class, "ActivationBoxReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivationBoxReference_Source(), this.getMessage(), null, "source", null, 1, 1, ActivationBoxReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActivationBoxReference_Target(), this.getActivationBox(), this.getActivationBox_Messages(), "target", null, 1, 1, ActivationBoxReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

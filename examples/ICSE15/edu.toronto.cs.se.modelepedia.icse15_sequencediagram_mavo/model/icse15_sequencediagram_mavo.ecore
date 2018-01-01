@@ -24,8 +24,6 @@
         eType="#//SourceLifelineReference" eOpposite="#//SourceLifelineReference/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messagesAsTarget" upperBound="-1"
         eType="#//TargetLifelineReference" eOpposite="#//TargetLifelineReference/target"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activationBoxes" upperBound="-1"
-        eType="#//ActivationBox" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//NamedElement">
     <eAnnotations source="gmf.node">
@@ -72,10 +70,6 @@
         upperBound="-1" eType="#//SourceLifelineReference" containment="true" eOpposite="#//SourceLifelineReference/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetLifeline" lowerBound="1"
         upperBound="-1" eType="#//TargetLifelineReference" containment="true" eOpposite="#//TargetLifelineReference/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceActivationBox" eType="#//ActivationBoxReference"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetActivationBox" eType="#//ActivationBoxReference"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassReference" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOReference">
     <eAnnotations source="gmf.link">
@@ -136,15 +130,5 @@
         eType="#//Message" eOpposite="#//Message/targetLifeline"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Lifeline" eOpposite="#//Lifeline/messagesAsTarget"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActivationBox" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
-        eType="#//ActivationBoxReference" eOpposite="#//ActivationBoxReference/target"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActivationBoxReference" eSuperTypes="../../edu.toronto.cs.se.mavo/model/mavo.ecore#//MAVOReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//Message"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//ActivationBox" eOpposite="#//ActivationBox/messages"/>
   </eClassifiers>
 </ecore:EPackage>

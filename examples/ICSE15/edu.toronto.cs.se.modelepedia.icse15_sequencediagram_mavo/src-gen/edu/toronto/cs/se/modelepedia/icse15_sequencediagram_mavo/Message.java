@@ -26,8 +26,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getOperation <em>Operation</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getSourceLifeline <em>Source Lifeline</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getTargetLifeline <em>Target Lifeline</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getSourceActivationBox <em>Source Activation Box</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getTargetActivationBox <em>Target Activation Box</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getMessage()
@@ -106,57 +104,5 @@ public interface Message extends NamedElement {
 	 * @generated
 	 */
 	EList<TargetLifelineReference> getTargetLifeline();
-
-	/**
-	 * Returns the value of the '<em><b>Source Activation Box</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source Activation Box</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Activation Box</em>' containment reference.
-	 * @see #setSourceActivationBox(ActivationBoxReference)
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getMessage_SourceActivationBox()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ActivationBoxReference getSourceActivationBox();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getSourceActivationBox <em>Source Activation Box</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Activation Box</em>' containment reference.
-	 * @see #getSourceActivationBox()
-	 * @generated
-	 */
-	void setSourceActivationBox(ActivationBoxReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Activation Box</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target Activation Box</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Activation Box</em>' containment reference.
-	 * @see #setTargetActivationBox(ActivationBoxReference)
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage#getMessage_TargetActivationBox()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ActivationBoxReference getTargetActivationBox();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getTargetActivationBox <em>Target Activation Box</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Activation Box</em>' containment reference.
-	 * @see #getTargetActivationBox()
-	 * @generated
-	 */
-	void setTargetActivationBox(ActivationBoxReference value);
 
 } // Message

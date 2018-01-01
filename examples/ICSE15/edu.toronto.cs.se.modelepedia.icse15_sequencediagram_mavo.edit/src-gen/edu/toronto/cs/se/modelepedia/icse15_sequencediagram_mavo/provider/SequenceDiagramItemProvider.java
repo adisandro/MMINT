@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.provider;
 
 
 import edu.toronto.cs.se.mavo.provider.MAVORootItemProvider;
+
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOFactory;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;

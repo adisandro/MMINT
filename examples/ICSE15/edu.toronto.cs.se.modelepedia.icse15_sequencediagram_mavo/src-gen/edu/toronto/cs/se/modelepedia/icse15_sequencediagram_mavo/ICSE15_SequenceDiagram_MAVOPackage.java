@@ -314,22 +314,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int LIFELINE__MESSAGES_AS_TARGET = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Activation Boxes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFELINE__ACTIVATION_BOXES = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Lifeline</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIFELINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int LIFELINE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Lifeline</em>' class.
@@ -732,31 +723,13 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	int MESSAGE__TARGET_LIFELINE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Source Activation Box</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE__SOURCE_ACTIVATION_BOX = NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Target Activation Box</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE__TARGET_ACTIVATION_BOX = NAMED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Message</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int MESSAGE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Message</em>' class.
@@ -1224,189 +1197,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxImpl <em>Activation Box</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxImpl
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getActivationBox()
-	 * @generated
-	 */
-	int ACTIVATION_BOX = 12;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__FORMULA_VARIABLE = NAMED_ELEMENT__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__MAY = NAMED_ELEMENT__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__SET = NAMED_ELEMENT__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__VAR = NAMED_ELEMENT__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__COLLECTIONS = NAMED_ELEMENT__COLLECTIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Messages</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX__MESSAGES = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Activation Box</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Activation Box</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxReferenceImpl <em>Activation Box Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxReferenceImpl
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getActivationBoxReference()
-	 * @generated
-	 */
-	int ACTIVATION_BOX_REFERENCE = 13;
-
-	/**
-	 * The feature id for the '<em><b>Formula Variable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__FORMULA_VARIABLE = MAVOPackage.MAVO_REFERENCE__FORMULA_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>May</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__MAY = MAVOPackage.MAVO_REFERENCE__MAY;
-
-	/**
-	 * The feature id for the '<em><b>Set</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__SET = MAVOPackage.MAVO_REFERENCE__SET;
-
-	/**
-	 * The feature id for the '<em><b>Var</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__VAR = MAVOPackage.MAVO_REFERENCE__VAR;
-
-	/**
-	 * The feature id for the '<em><b>Collections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__COLLECTIONS = MAVOPackage.MAVO_REFERENCE__COLLECTIONS;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__SOURCE = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE__TARGET = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Activation Box Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE_FEATURE_COUNT = MAVOPackage.MAVO_REFERENCE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Activation Box Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVATION_BOX_REFERENCE_OPERATION_COUNT = MAVOPackage.MAVO_REFERENCE_OPERATION_COUNT + 0;
-
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram <em>Sequence Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1512,17 +1302,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLifeline_MessagesAsTarget();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getActivationBoxes <em>Activation Boxes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Activation Boxes</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline#getActivationBoxes()
-	 * @see #getLifeline()
-	 * @generated
-	 */
-	EReference getLifeline_ActivationBoxes();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class <em>Class</em>}'.
@@ -1662,28 +1441,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMessage_TargetLifeline();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getSourceActivationBox <em>Source Activation Box</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Source Activation Box</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getSourceActivationBox()
-	 * @see #getMessage()
-	 * @generated
-	 */
-	EReference getMessage_SourceActivationBox();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getTargetActivationBox <em>Target Activation Box</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Target Activation Box</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message#getTargetActivationBox()
-	 * @see #getMessage()
-	 * @generated
-	 */
-	EReference getMessage_TargetActivationBox();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference <em>Class Reference</em>}'.
@@ -1846,59 +1603,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 	EReference getTargetLifelineReference_Target();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox <em>Activation Box</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Activation Box</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox
-	 * @generated
-	 */
-	EClass getActivationBox();
-
-	/**
-	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox#getMessages <em>Messages</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Messages</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox#getMessages()
-	 * @see #getActivationBox()
-	 * @generated
-	 */
-	EReference getActivationBox_Messages();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference <em>Activation Box Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Activation Box Reference</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference
-	 * @generated
-	 */
-	EClass getActivationBoxReference();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference#getSource()
-	 * @see #getActivationBoxReference()
-	 * @generated
-	 */
-	EReference getActivationBoxReference_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference#getTarget()
-	 * @see #getActivationBoxReference()
-	 * @generated
-	 */
-	EReference getActivationBoxReference_Target();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2006,14 +1710,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LIFELINE__MESSAGES_AS_TARGET = eINSTANCE.getLifeline_MessagesAsTarget();
-
-		/**
-		 * The meta object literal for the '<em><b>Activation Boxes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LIFELINE__ACTIVATION_BOXES = eINSTANCE.getLifeline_ActivationBoxes();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassImpl <em>Class</em>}' class.
@@ -2126,22 +1822,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MESSAGE__TARGET_LIFELINE = eINSTANCE.getMessage_TargetLifeline();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Activation Box</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MESSAGE__SOURCE_ACTIVATION_BOX = eINSTANCE.getMessage_SourceActivationBox();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Activation Box</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MESSAGE__TARGET_ACTIVATION_BOX = eINSTANCE.getMessage_TargetActivationBox();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ClassReferenceImpl <em>Class Reference</em>}' class.
@@ -2272,50 +1952,6 @@ public interface ICSE15_SequenceDiagram_MAVOPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TARGET_LIFELINE_REFERENCE__TARGET = eINSTANCE.getTargetLifelineReference_Target();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxImpl <em>Activation Box</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxImpl
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getActivationBox()
-		 * @generated
-		 */
-		EClass ACTIVATION_BOX = eINSTANCE.getActivationBox();
-
-		/**
-		 * The meta object literal for the '<em><b>Messages</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTIVATION_BOX__MESSAGES = eINSTANCE.getActivationBox_Messages();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxReferenceImpl <em>Activation Box Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ActivationBoxReferenceImpl
-		 * @see edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl.ICSE15_SequenceDiagram_MAVOPackageImpl#getActivationBoxReference()
-		 * @generated
-		 */
-		EClass ACTIVATION_BOX_REFERENCE = eINSTANCE.getActivationBoxReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTIVATION_BOX_REFERENCE__SOURCE = eINSTANCE.getActivationBoxReference_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTIVATION_BOX_REFERENCE__TARGET = eINSTANCE.getActivationBoxReference_Target();
 
 	}
 

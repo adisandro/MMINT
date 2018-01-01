@@ -75,8 +75,6 @@ public class MessageItemProvider extends NamedElementItemProvider {
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__OPERATION);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__SOURCE_LIFELINE);
 			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__TARGET_LIFELINE);
-			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__SOURCE_ACTIVATION_BOX);
-			childrenFeatures.add(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__TARGET_ACTIVATION_BOX);
 		}
 		return childrenFeatures;
 	}
@@ -136,8 +134,6 @@ public class MessageItemProvider extends NamedElementItemProvider {
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__OPERATION:
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__SOURCE_LIFELINE:
 			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__TARGET_LIFELINE:
-			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__SOURCE_ACTIVATION_BOX:
-			case ICSE15_SequenceDiagram_MAVOPackage.MESSAGE__TARGET_ACTIVATION_BOX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -174,39 +170,6 @@ public class MessageItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__TARGET_LIFELINE,
 				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createTargetLifelineReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__SOURCE_ACTIVATION_BOX,
-				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createActivationBoxReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__TARGET_ACTIVATION_BOX,
-				 ICSE15_SequenceDiagram_MAVOFactory.eINSTANCE.createActivationBoxReference()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__SOURCE_ACTIVATION_BOX ||
-			childFeature == ICSE15_SequenceDiagram_MAVOPackage.Literals.MESSAGE__TARGET_ACTIVATION_BOX;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

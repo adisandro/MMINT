@@ -357,52 +357,6 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ActivationBoxItemProvider activationBoxItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createActivationBoxAdapter() {
-		if (activationBoxItemProvider == null) {
-			activationBoxItemProvider = new ActivationBoxItemProvider(this);
-		}
-
-		return activationBoxItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ActivationBoxReferenceItemProvider activationBoxReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createActivationBoxReferenceAdapter() {
-		if (activationBoxReferenceItemProvider == null) {
-			activationBoxReferenceItemProvider = new ActivationBoxReferenceItemProvider(this);
-		}
-
-		return activationBoxReferenceItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -513,8 +467,6 @@ public class ICSE15_SequenceDiagram_MAVOItemProviderAdapterFactory extends ICSE1
 		if (operationReferenceItemProvider != null) operationReferenceItemProvider.dispose();
 		if (sourceLifelineReferenceItemProvider != null) sourceLifelineReferenceItemProvider.dispose();
 		if (targetLifelineReferenceItemProvider != null) targetLifelineReferenceItemProvider.dispose();
-		if (activationBoxItemProvider != null) activationBoxItemProvider.dispose();
-		if (activationBoxReferenceItemProvider != null) activationBoxReferenceItemProvider.dispose();
 	}
 
 }
