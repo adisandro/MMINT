@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
+import edu.toronto.cs.se.nlsfung.gsn.ArgumentElement;
 import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
 import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
 import edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement;
@@ -95,10 +96,12 @@ public class GSNSliceRecheck extends Slice {
 			SupportedBy rel = (SupportedBy) elem;
 			impacted.add(rel.getConclusion());
 			
-		// If input is a InContextOf relation, then the decomposable core 
-		// elements with or inherit this context are also impacted.
+		// If input is a InContextOf relation, then the following are also impacted:
+		// 1) The decomposable core element with this context.
+		// 2) All contextual elements and core elements that inherit this context.
 		} else if (elem instanceof InContextOf) {
 			InContextOf rel = (InContextOf) elem;
+			impacted.add(rel.getContextOf());
 			impacted.addAll(getDescendants(rel.getContextOf()));
 		}
 
@@ -108,30 +111,33 @@ public class GSNSliceRecheck extends Slice {
 		return impacted;
 	}	
 	
-	// Adds all the descendants of the input decomposable core element (including 
-	// itself and connecting relations) to the input result set.
-	public Set<EObject> getDescendants(DecomposableCoreElement elem) {
-		Set<EObject> descendantsAll = new HashSet<>();
-		Set<EObject> descendantsCur = new HashSet<>();
-		Set<EObject> descendantsNext = new HashSet<>();
+	// Returns all the descendants of the input decomposable core element
+	// (including contextual elements).
+	public Set<ArgumentElement> getDescendants(DecomposableCoreElement elem) {
+		Set<ArgumentElement> descendantsAll = new HashSet<>();
+		Set<ArgumentElement> descendantsCur = new HashSet<>();
+		Set<ArgumentElement> descendantsNext = new HashSet<>();
 		
 		// Iterate through the current set of newly added descendants
 		// to identify the next generation of descendants.
 		descendantsAll.add(elem);
 		descendantsCur.add(elem);
 		while (!descendantsCur.isEmpty()) {
-			for (EObject curElem : descendantsCur) {
+			for (ArgumentElement curElem : descendantsCur) {
 				if (curElem instanceof DecomposableCoreElement) {
 					DecomposableCoreElement d = (DecomposableCoreElement) curElem;
-					descendantsNext.addAll(d.getSupportedBy());
-				} else if (curElem instanceof SupportedBy) {
-					SupportedBy s = (SupportedBy) curElem;
-					descendantsNext.add(s.getPremise());
+					for (SupportedBy rel : d.getSupportedBy()) {
+						descendantsNext.add(rel.getPremise());
+					}
+					
+					for (InContextOf rel: d.getInContextOf()) {
+						descendantsNext.add(rel.getContext());
+					}
 				}
 			}
 			
 			descendantsCur.clear();
-			for (EObject newElem : descendantsNext) {
+			for (ArgumentElement newElem : descendantsNext) {
 				if (!descendantsAll.contains(newElem)) {
 					descendantsAll.add(newElem);
 					descendantsCur.add(newElem);
