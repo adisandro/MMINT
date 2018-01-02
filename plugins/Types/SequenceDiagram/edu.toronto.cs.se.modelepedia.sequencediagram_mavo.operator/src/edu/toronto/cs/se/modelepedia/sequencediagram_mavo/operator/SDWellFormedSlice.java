@@ -18,8 +18,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class;
@@ -135,11 +133,6 @@ public class SDWellFormedSlice extends WellFormedSlice {
 			Operation o = (Operation) elem;
 			impacted.add(o.eContainer());
 		
-		// If input is an activation box, then its lifeline is impacted.
-		} else if (elem instanceof ActivationBox) {
-			ActivationBox a = (ActivationBox) elem;
-			impacted.add(a.eContainer());
-
 		// If input is a class reference, then its lifeline and 
 		// target class are impacted.
 		} else if (elem instanceof ClassReference) {
@@ -158,13 +151,6 @@ public class SDWellFormedSlice extends WellFormedSlice {
 		// lifeline are  impacted.
 		} else if (elem instanceof TargetLifelineReference) {
 			TargetLifelineReference r = (TargetLifelineReference) elem;
-			impacted.add(r.getSource());
-			impacted.add(r.getTarget());
-
-		// If input is an activation box reference, then its message and
-		// activation box are impacted.
-		} else if (elem instanceof ActivationBoxReference) {
-			ActivationBoxReference r = (ActivationBoxReference) elem;
 			impacted.add(r.getSource());
 			impacted.add(r.getTarget());
 

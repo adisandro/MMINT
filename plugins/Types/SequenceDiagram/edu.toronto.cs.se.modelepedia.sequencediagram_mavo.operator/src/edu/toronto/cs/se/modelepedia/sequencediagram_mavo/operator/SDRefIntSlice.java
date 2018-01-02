@@ -18,8 +18,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class;

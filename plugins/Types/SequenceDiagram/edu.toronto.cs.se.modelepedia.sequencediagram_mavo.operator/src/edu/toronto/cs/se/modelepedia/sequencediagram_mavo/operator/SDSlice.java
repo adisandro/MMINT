@@ -13,14 +13,11 @@
 package edu.toronto.cs.se.modelepedia.sequencediagram_mavo.operator;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBox;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ActivationBoxReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class;
@@ -101,51 +98,16 @@ public class SDSlice extends Slice {
 			impacted.addAll(l.getClass_());
 			impacted.addAll(l.getMessagesAsSource());
 			impacted.addAll(l.getMessagesAsTarget());
-			impacted.addAll(l.getActivationBoxes());
 
 		// If input is a message, then the following are impacted:
-		// 1) The activation box references relating to the subsequent
-		//    messages (if any) that are connected to the input's boxes.
+		// 1) Its target and source lifeline references.
+		// 2) Its operation and attribute references.
 		} else if (elem instanceof Message) {
 			Message m = (Message) elem;
-
-			ActivationBoxReference srcRef;
-			ActivationBox srcBox;
-			List<ActivationBoxReference> srcMessages;
-			int srcIndex;
-			
-			srcRef = m.getSourceActivationBox();
-			if (srcRef != null) {
-				srcBox = srcRef.getTarget();
-				if (srcBox != null) {
-					srcMessages = srcBox.getMessages();
-					if (srcMessages != null) {
-						srcIndex = srcMessages.indexOf(srcRef);
-						if (srcIndex > -1 && srcIndex < srcMessages.size()-1) {
-							impacted.add(srcMessages.get(srcIndex + 1));
-						}
-					}
-				}
-			}
-			
-			ActivationBoxReference tarRef;
-			ActivationBox tarBox;
-			List<ActivationBoxReference> tarMessages;
-			int tarIndex;
-			
-			tarRef = m.getTargetActivationBox();
-			if (tarRef != null) {
-				tarBox = tarRef.getTarget();
-				if (tarBox != null) {
-					tarMessages = tarBox.getMessages();
-					if (tarMessages != null) {
-						tarIndex = tarMessages.indexOf(tarRef);
-						if (tarIndex > -1 && tarIndex < tarMessages.size()-1) {
-							impacted.add(tarMessages.get(tarIndex + 1));
-						}
-					}
-				}
-			}
+			impacted.addAll(m.getSourceLifeline());
+			impacted.addAll(m.getTargetLifeline());
+			impacted.addAll(m.getOperation());
+			impacted.addAll(m.getAttributes());
 
 		// If input is an attribute, then its references are impacted.
 		} else if (elem instanceof Attribute) {
@@ -157,11 +119,6 @@ public class SDSlice extends Slice {
 			Operation o = (Operation) elem;
 			impacted.addAll(o.getMessages());
 		
-		// If input is an activation box, then its references are impacted.
-		} else if (elem instanceof ActivationBox) {
-			ActivationBox a = (ActivationBox) elem;
-			impacted.addAll(a.getMessages());
-
 		// If input is a class reference, then its lifeline is impacted.
 		} else if (elem instanceof ClassReference) {
 			ClassReference r = (ClassReference) elem;
@@ -175,11 +132,6 @@ public class SDSlice extends Slice {
 		// If input is a target lifeline reference, then its message is impacted.
 		} else if (elem instanceof TargetLifelineReference) {
 			TargetLifelineReference r = (TargetLifelineReference) elem;
-			impacted.add(r.getSource());
-
-		// If input is an activation box reference, then its message is impacted.
-		} else if (elem instanceof ActivationBoxReference) {
-			ActivationBoxReference r = (ActivationBoxReference) elem;
 			impacted.add(r.getSource());
 
 		// If input is an attribute reference, then its message is impacted.
