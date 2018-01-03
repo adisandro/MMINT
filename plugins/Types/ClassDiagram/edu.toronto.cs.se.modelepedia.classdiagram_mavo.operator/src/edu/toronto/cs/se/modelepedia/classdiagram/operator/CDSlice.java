@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
