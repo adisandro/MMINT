@@ -126,12 +126,16 @@ public class GSNSliceRecheck extends Slice {
 			for (ArgumentElement curElem : descendantsCur) {
 				if (curElem instanceof DecomposableCoreElement) {
 					DecomposableCoreElement d = (DecomposableCoreElement) curElem;
-					for (SupportedBy rel : d.getSupportedBy()) {
-						descendantsNext.add(rel.getPremise());
+					if (d.getSupportedBy() != null) {
+						for (SupportedBy rel : d.getSupportedBy()) {
+							descendantsNext.add(rel.getPremise());
+						}
 					}
 					
-					for (InContextOf rel: d.getInContextOf()) {
-						descendantsNext.add(rel.getContext());
+					if (d.getInContextOf() != null) {
+						for (InContextOf rel: d.getInContextOf()) {
+							descendantsNext.add(rel.getContext());
+						}
 					}
 				}
 			}
