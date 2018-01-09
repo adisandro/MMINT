@@ -12,9 +12,6 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -193,8 +190,7 @@ public class MIDDialogs {
 	    // ..or let the user choose otherwise
         MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
                                                                    new BaseWorkbenchContentProvider(), dialogRoot);
-        dialog.addFilter(new FileExtensionsDialogFilter(
-            Stream.of(SiriusUtil.SESSION_RESOURCE_EXTENSION).collect(Collectors.toList()))); //TODO MMINT[JAVA 9]
+        dialog.addFilter(new FileExtensionsDialogFilter(List.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
         dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
         String title = "Model with Sirius Representation";
