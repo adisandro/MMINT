@@ -20,11 +20,6 @@
   	  <layout>p2</layout>
   	  <url>http://download.eclipse.org/modeling/emft/henshin/updates/release</url>
     </repository>
-    <repository>
-  	  <id>EMFtoCSP</id>
-  	  <layout>p2</layout>
-  	  <url>jar:https://raw.githubusercontent.com/SOM-Research/EMFtoCSP/master/updateSite/fr.inria.atlanmod.emftocsp.03-09-13.zip!/</url>
-    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
@@ -139,7 +134,6 @@
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo.edit</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.operator</module>
   	<module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.uml</module>
-  	<module>../../plugins/External/EMFtoCSP/edu.toronto.cs.se.modelepedia.emftocsp</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3</module>
   	<module>../../plugins/External/Z3/edu.toronto.cs.se.modelepedia.z3.operator</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram</module>
@@ -205,7 +199,6 @@
   	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
   	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
-  	<module>../../features/edu.toronto.cs.se.modelepedia.emftocsp.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>

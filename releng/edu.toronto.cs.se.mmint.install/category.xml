@@ -12,9 +12,6 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.z3.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.z3.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.emftocsp.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.emftocsp.feature" version="2.2.99.qualifier">
-      <category name="Modelepedia"/>
-   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.kleisli.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.kleisli.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
