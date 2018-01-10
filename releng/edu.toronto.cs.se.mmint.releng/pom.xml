@@ -141,6 +141,7 @@
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.diagram</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.edit</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.editor</module>
+    <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.operator</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram</module>
   	<module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit</module>

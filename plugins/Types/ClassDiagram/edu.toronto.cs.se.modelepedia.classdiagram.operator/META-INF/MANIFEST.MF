@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.classdiagram.operator;singleton:=true
+Bundle-Version: 2.2.99.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-9
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.validation,
+ org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.operator,
+ edu.toronto.cs.se.modelepedia.classdiagram

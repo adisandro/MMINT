@@ -90,6 +90,27 @@ Famelis, Rick Salay. All rights reserved.
          unpack="false"/>
 
    <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.design"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="edu.toronto.cs.se.modelepedia.classdiagram_mavo"
          download-size="0"
          install-size="0"
@@ -111,13 +132,6 @@ Famelis, Rick Salay. All rights reserved.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.classdiagram.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram"
          download-size="0"
          install-size="0"
@@ -130,12 +144,5 @@ Famelis, Rick Salay. All rights reserved.
          install-size="0"
          version="0.0.0"
          unpack="false"/>-->
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.classdiagram.design"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
 </feature>
