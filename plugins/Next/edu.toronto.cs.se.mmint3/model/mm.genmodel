@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/edu.toronto.cs.se.mmint3/src-gen" creationIcons="false"
+    editDirectory="/edu.toronto.cs.se.mmint3.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint3.editor/src-gen"
+    modelPluginID="edu.toronto.cs.se.mmint3" modelName="Mm" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" copyrightFields="false"
+    importOrganizing="true">
+  <foreignModel>mm.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Mm" basePackage="edu.toronto.cs.se.mmint3" disposableProviderFactory="true"
+      ecorePackage="mm.ecore#/">
+    <genClasses ecoreClass="mm.ecore#//MegaModel">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MegaModel/models"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//MMElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMElement/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//TypeMegaModel"/>
+    <genClasses ecoreClass="mm.ecore#//InstanceMegaModel"/>
+    <genClasses ecoreClass="mm.ecore#//Model"/>
+    <genClasses ecoreClass="mm.ecore#//ModelType"/>
+    <genClasses ecoreClass="mm.ecore#//ModelInstance"/>
+  </genPackages>
+</genmodel:GenModel>
