@@ -43,621 +43,621 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  */
 public class MAVOMIDPackageImpl extends EPackageImpl implements MAVOMIDPackage {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoModelEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoModelElementEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoModelRelEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass binaryMAVOModelRelEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoModelEndpointEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoModelEndpointReferenceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoMappingReferenceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass binaryMAVOMappingReferenceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoMappingEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass binaryMAVOMappingEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass mavoModelElementReferenceEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see edu.toronto.cs.se.mmint.mavo.mavomid.MAVOMIDPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
 	private MAVOMIDPackageImpl() {
-		super(eNS_URI, MAVOMIDFactory.eINSTANCE);
-	}
+        super(eNS_URI, MAVOMIDFactory.eINSTANCE);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link MAVOMIDPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link MAVOMIDPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #eNS_URI
-	 * @see #createPackageContents()
-	 * @see #initializePackageContents()
-	 * @generated
-	 */
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
 	public static MAVOMIDPackage init() {
-		if (isInited) return (MAVOMIDPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOMIDPackage.eNS_URI);
+        if (isInited) return (MAVOMIDPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOMIDPackage.eNS_URI);
 
-		// Obtain or create and register package
-		MAVOMIDPackageImpl theMAVOMIDPackage = (MAVOMIDPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MAVOMIDPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MAVOMIDPackageImpl());
+        // Obtain or create and register package
+        MAVOMIDPackageImpl theMAVOMIDPackage = (MAVOMIDPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MAVOMIDPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MAVOMIDPackageImpl());
 
-		isInited = true;
+        isInited = true;
 
-		// Initialize simple dependencies
-		MAVOPackage.eINSTANCE.eClass();
-		MIDPackage.eINSTANCE.eClass();
+        // Initialize simple dependencies
+        MAVOPackage.eINSTANCE.eClass();
+        MIDPackage.eINSTANCE.eClass();
 
-		// Create package meta-data objects
-		theMAVOMIDPackage.createPackageContents();
+        // Create package meta-data objects
+        theMAVOMIDPackage.createPackageContents();
 
-		// Initialize created meta-data
-		theMAVOMIDPackage.initializePackageContents();
+        // Initialize created meta-data
+        theMAVOMIDPackage.initializePackageContents();
 
-		// Mark meta-data to indicate it can't be changed
-		theMAVOMIDPackage.freeze();
+        // Mark meta-data to indicate it can't be changed
+        theMAVOMIDPackage.freeze();
 
   
-		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(MAVOMIDPackage.eNS_URI, theMAVOMIDPackage);
-		return theMAVOMIDPackage;
-	}
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(MAVOMIDPackage.eNS_URI, theMAVOMIDPackage);
+        return theMAVOMIDPackage;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOModel() {
-		return mavoModelEClass;
-	}
+        return mavoModelEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModel__CreateInstance__EObject_String_MID() {
-		return mavoModelEClass.getEOperations().get(0);
-	}
+        return mavoModelEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModel__ImportInstance__String_MID() {
-		return mavoModelEClass.getEOperations().get(1);
-	}
+        return mavoModelEClass.getEOperations().get(1);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModel__ValidateInstanceInEditor__IValidationContext() {
-		return mavoModelEClass.getEOperations().get(2);
-	}
+        return mavoModelEClass.getEOperations().get(2);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModel__ToMIDCustomPrintLabel() {
-		return mavoModelEClass.getEOperations().get(3);
-	}
+        return mavoModelEClass.getEOperations().get(3);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModel__ToMIDCustomEditLabel() {
-		return mavoModelEClass.getEOperations().get(4);
-	}
+        return mavoModelEClass.getEOperations().get(4);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModel__UpdateMIDCustomLabel__String() {
-		return mavoModelEClass.getEOperations().get(5);
-	}
+        return mavoModelEClass.getEOperations().get(5);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOModelElement() {
-		return mavoModelElementEClass;
-	}
+        return mavoModelElementEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelElement__ToMIDCustomPrintLabel() {
-		return mavoModelElementEClass.getEOperations().get(0);
-	}
+        return mavoModelElementEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelElement__ToMIDCustomEditLabel() {
-		return mavoModelElementEClass.getEOperations().get(1);
-	}
+        return mavoModelElementEClass.getEOperations().get(1);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelElement__UpdateMIDCustomLabel__String() {
-		return mavoModelElementEClass.getEOperations().get(2);
-	}
+        return mavoModelElementEClass.getEOperations().get(2);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOModelRel() {
-		return mavoModelRelEClass;
-	}
+        return mavoModelRelEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelRel__CopyInstance__Model_String_MID() {
-		return mavoModelRelEClass.getEOperations().get(0);
-	}
+        return mavoModelRelEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getBinaryMAVOModelRel() {
-		return binaryMAVOModelRelEClass;
-	}
+        return binaryMAVOModelRelEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOModelEndpoint() {
-		return mavoModelEndpointEClass;
-	}
+        return mavoModelEndpointEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelEndpoint__GetTarget() {
-		return mavoModelEndpointEClass.getEOperations().get(0);
-	}
+        return mavoModelEndpointEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOModelEndpointReference() {
-		return mavoModelEndpointReferenceEClass;
-	}
+        return mavoModelEndpointReferenceEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelEndpointReference__GetObject() {
-		return mavoModelEndpointReferenceEClass.getEOperations().get(0);
-	}
+        return mavoModelEndpointReferenceEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String() {
-		return mavoModelEndpointReferenceEClass.getEOperations().get(1);
-	}
+        return mavoModelEndpointReferenceEClass.getEOperations().get(1);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOMappingReference() {
-		return mavoMappingReferenceEClass;
-	}
+        return mavoMappingReferenceEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOMappingReference__GetObject() {
-		return mavoMappingReferenceEClass.getEOperations().get(0);
-	}
+        return mavoMappingReferenceEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getBinaryMAVOMappingReference() {
-		return binaryMAVOMappingReferenceEClass;
-	}
+        return binaryMAVOMappingReferenceEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getBinaryMAVOMappingReference__GetObject() {
-		return binaryMAVOMappingReferenceEClass.getEOperations().get(0);
-	}
+        return binaryMAVOMappingReferenceEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOMapping() {
-		return mavoMappingEClass;
-	}
+        return mavoMappingEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOMapping__ToMIDCustomPrintLabel() {
-		return mavoMappingEClass.getEOperations().get(0);
-	}
+        return mavoMappingEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOMapping__ToMIDCustomEditLabel() {
-		return mavoMappingEClass.getEOperations().get(1);
-	}
+        return mavoMappingEClass.getEOperations().get(1);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOMapping__UpdateMIDCustomLabel__String() {
-		return mavoMappingEClass.getEOperations().get(2);
-	}
+        return mavoMappingEClass.getEOperations().get(2);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getBinaryMAVOMapping() {
-		return binaryMAVOMappingEClass;
-	}
+        return binaryMAVOMappingEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getMAVOModelElementReference() {
-		return mavoModelElementReferenceEClass;
-	}
+        return mavoModelElementReferenceEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getMAVOModelElementReference__GetObject() {
-		return mavoModelElementReferenceEClass.getEOperations().get(0);
-	}
+        return mavoModelElementReferenceEClass.getEOperations().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MAVOMIDFactory getMAVOMIDFactory() {
-		return (MAVOMIDFactory)getEFactoryInstance();
-	}
+        return (MAVOMIDFactory)getEFactoryInstance();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void createPackageContents() {
-		if (isCreated) return;
-		isCreated = true;
+        if (isCreated) return;
+        isCreated = true;
 
-		// Create classes and their features
-		mavoModelEClass = createEClass(MAVO_MODEL);
-		createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID);
-		createEOperation(mavoModelEClass, MAVO_MODEL___IMPORT_INSTANCE__STRING_MID);
-		createEOperation(mavoModelEClass, MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
-		createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL);
-		createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_EDIT_LABEL);
-		createEOperation(mavoModelEClass, MAVO_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING);
+        // Create classes and their features
+        mavoModelEClass = createEClass(MAVO_MODEL);
+        createEOperation(mavoModelEClass, MAVO_MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID);
+        createEOperation(mavoModelEClass, MAVO_MODEL___IMPORT_INSTANCE__STRING_MID);
+        createEOperation(mavoModelEClass, MAVO_MODEL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT);
+        createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_PRINT_LABEL);
+        createEOperation(mavoModelEClass, MAVO_MODEL___TO_MID_CUSTOM_EDIT_LABEL);
+        createEOperation(mavoModelEClass, MAVO_MODEL___UPDATE_MID_CUSTOM_LABEL__STRING);
 
-		mavoModelElementEClass = createEClass(MAVO_MODEL_ELEMENT);
-		createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL);
-		createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL);
-		createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING);
+        mavoModelElementEClass = createEClass(MAVO_MODEL_ELEMENT);
+        createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_PRINT_LABEL);
+        createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___TO_MID_CUSTOM_EDIT_LABEL);
+        createEOperation(mavoModelElementEClass, MAVO_MODEL_ELEMENT___UPDATE_MID_CUSTOM_LABEL__STRING);
 
-		mavoModelRelEClass = createEClass(MAVO_MODEL_REL);
-		createEOperation(mavoModelRelEClass, MAVO_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID);
+        mavoModelRelEClass = createEClass(MAVO_MODEL_REL);
+        createEOperation(mavoModelRelEClass, MAVO_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID);
 
-		binaryMAVOModelRelEClass = createEClass(BINARY_MAVO_MODEL_REL);
+        binaryMAVOModelRelEClass = createEClass(BINARY_MAVO_MODEL_REL);
 
-		mavoModelEndpointEClass = createEClass(MAVO_MODEL_ENDPOINT);
-		createEOperation(mavoModelEndpointEClass, MAVO_MODEL_ENDPOINT___GET_TARGET);
+        mavoModelEndpointEClass = createEClass(MAVO_MODEL_ENDPOINT);
+        createEOperation(mavoModelEndpointEClass, MAVO_MODEL_ENDPOINT___GET_TARGET);
 
-		mavoMappingEClass = createEClass(MAVO_MAPPING);
-		createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL);
-		createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL);
-		createEOperation(mavoMappingEClass, MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING);
+        mavoMappingEClass = createEClass(MAVO_MAPPING);
+        createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_PRINT_LABEL);
+        createEOperation(mavoMappingEClass, MAVO_MAPPING___TO_MID_CUSTOM_EDIT_LABEL);
+        createEOperation(mavoMappingEClass, MAVO_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING);
 
-		binaryMAVOMappingEClass = createEClass(BINARY_MAVO_MAPPING);
+        binaryMAVOMappingEClass = createEClass(BINARY_MAVO_MAPPING);
 
-		mavoModelElementReferenceEClass = createEClass(MAVO_MODEL_ELEMENT_REFERENCE);
-		createEOperation(mavoModelElementReferenceEClass, MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT);
+        mavoModelElementReferenceEClass = createEClass(MAVO_MODEL_ELEMENT_REFERENCE);
+        createEOperation(mavoModelElementReferenceEClass, MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT);
 
-		mavoModelEndpointReferenceEClass = createEClass(MAVO_MODEL_ENDPOINT_REFERENCE);
-		createEOperation(mavoModelEndpointReferenceEClass, MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT);
-		createEOperation(mavoModelEndpointReferenceEClass, MAVO_MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING);
+        mavoModelEndpointReferenceEClass = createEClass(MAVO_MODEL_ENDPOINT_REFERENCE);
+        createEOperation(mavoModelEndpointReferenceEClass, MAVO_MODEL_ENDPOINT_REFERENCE___GET_OBJECT);
+        createEOperation(mavoModelEndpointReferenceEClass, MAVO_MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING);
 
-		mavoMappingReferenceEClass = createEClass(MAVO_MAPPING_REFERENCE);
-		createEOperation(mavoMappingReferenceEClass, MAVO_MAPPING_REFERENCE___GET_OBJECT);
+        mavoMappingReferenceEClass = createEClass(MAVO_MAPPING_REFERENCE);
+        createEOperation(mavoMappingReferenceEClass, MAVO_MAPPING_REFERENCE___GET_OBJECT);
 
-		binaryMAVOMappingReferenceEClass = createEClass(BINARY_MAVO_MAPPING_REFERENCE);
-		createEOperation(binaryMAVOMappingReferenceEClass, BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT);
-	}
+        binaryMAVOMappingReferenceEClass = createEClass(BINARY_MAVO_MAPPING_REFERENCE);
+        createEOperation(binaryMAVOMappingReferenceEClass, BINARY_MAVO_MAPPING_REFERENCE___GET_OBJECT);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void initializePackageContents() {
-		if (isInitialized) return;
-		isInitialized = true;
+        if (isInitialized) return;
+        isInitialized = true;
 
-		// Initialize package
-		setName(eNAME);
-		setNsPrefix(eNS_PREFIX);
-		setNsURI(eNS_URI);
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
-		MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
-		RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
+        // Obtain other dependent packages
+        MIDPackage theMIDPackage = (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
+        MAVOPackage theMAVOPackage = (MAVOPackage)EPackage.Registry.INSTANCE.getEPackage(MAVOPackage.eNS_URI);
+        RelationshipPackage theRelationshipPackage = (RelationshipPackage)EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
 
-		// Create type parameters
+        // Create type parameters
 
-		// Set bounds for type parameters
+        // Set bounds for type parameters
 
-		// Add supertypes to classes
-		mavoModelEClass.getESuperTypes().add(theMIDPackage.getModel());
-		mavoModelEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
-		mavoModelElementEClass.getESuperTypes().add(theMIDPackage.getModelElement());
-		mavoModelElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
-		mavoModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
-		binaryMAVOModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
-		binaryMAVOModelRelEClass.getESuperTypes().add(this.getMAVOModelRel());
-		mavoModelEndpointEClass.getESuperTypes().add(theMIDPackage.getModelEndpoint());
-		mavoMappingEClass.getESuperTypes().add(theRelationshipPackage.getMapping());
-		mavoMappingEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
-		binaryMAVOMappingEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMapping());
-		binaryMAVOMappingEClass.getESuperTypes().add(this.getMAVOMapping());
-		mavoModelElementReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelElementReference());
-		mavoModelEndpointReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelEndpointReference());
-		mavoMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getMappingReference());
-		binaryMAVOMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMappingReference());
-		binaryMAVOMappingReferenceEClass.getESuperTypes().add(this.getMAVOMappingReference());
+        // Add supertypes to classes
+        mavoModelEClass.getESuperTypes().add(theMIDPackage.getModel());
+        mavoModelEClass.getESuperTypes().add(theMAVOPackage.getMAVORoot());
+        mavoModelElementEClass.getESuperTypes().add(theMIDPackage.getModelElement());
+        mavoModelElementEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+        mavoModelRelEClass.getESuperTypes().add(theRelationshipPackage.getModelRel());
+        binaryMAVOModelRelEClass.getESuperTypes().add(theRelationshipPackage.getBinaryModelRel());
+        binaryMAVOModelRelEClass.getESuperTypes().add(this.getMAVOModelRel());
+        mavoModelEndpointEClass.getESuperTypes().add(theMIDPackage.getModelEndpoint());
+        mavoMappingEClass.getESuperTypes().add(theRelationshipPackage.getMapping());
+        mavoMappingEClass.getESuperTypes().add(theMAVOPackage.getMAVOElement());
+        binaryMAVOMappingEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMapping());
+        binaryMAVOMappingEClass.getESuperTypes().add(this.getMAVOMapping());
+        mavoModelElementReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelElementReference());
+        mavoModelEndpointReferenceEClass.getESuperTypes().add(theRelationshipPackage.getModelEndpointReference());
+        mavoMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getMappingReference());
+        binaryMAVOMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMappingReference());
+        binaryMAVOMappingReferenceEClass.getESuperTypes().add(this.getMAVOMappingReference());
 
-		// Initialize classes, features, and operations; add parameters
-		initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        // Initialize classes, features, and operations; add parameters
+        initEClass(mavoModelEClass, MAVOModel.class, "MAVOModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getMAVOModel__CreateInstance__EObject_String_MID(), theMIDPackage.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEObject(), "rootModelObj", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
-		addEException(op, theMIDPackage.getIOException());
+        EOperation op = initEOperation(getMAVOModel__CreateInstance__EObject_String_MID(), theMIDPackage.getModel(), "createInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEObject(), "rootModelObj", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "newModelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEException(op, theMIDPackage.getMMINTException());
+        addEException(op, theMIDPackage.getIOException());
 
-		op = initEOperation(getMAVOModel__ImportInstance__String_MID(), theMIDPackage.getModel(), "importInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "modelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
+        op = initEOperation(getMAVOModel__ImportInstance__String_MID(), theMIDPackage.getModel(), "importInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "modelPath", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, theMIDPackage.getMID(), "instanceMID", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEException(op, theMIDPackage.getMMINTException());
 
-		op = initEOperation(getMAVOModel__ValidateInstanceInEditor__IValidationContext(), theMIDPackage.getIStatus(), "validateInstanceInEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getIValidationContext(), "context", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
+        op = initEOperation(getMAVOModel__ValidateInstanceInEditor__IValidationContext(), theMIDPackage.getIStatus(), "validateInstanceInEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, theMIDPackage.getIValidationContext(), "context", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEException(op, theMIDPackage.getMMINTException());
 
-		initEOperation(getMAVOModel__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModel__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getMAVOModel__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModel__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getMAVOModel__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getMAVOModel__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(mavoModelElementEClass, MAVOModelElement.class, "MAVOModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoModelElementEClass, MAVOModelElement.class, "MAVOModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMAVOModelElement__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModelElement__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getMAVOModelElement__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModelElement__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getMAVOModelElement__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getMAVOModelElement__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(mavoModelRelEClass, MAVOModelRel.class, "MAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoModelRelEClass, MAVOModelRel.class, "MAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getMAVOModelRel__CopyInstance__Model_String_MID(), theMIDPackage.getModel(), "copyInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getModel(), "origModel", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
+        op = initEOperation(getMAVOModelRel__CopyInstance__Model_String_MID(), theMIDPackage.getModel(), "copyInstance", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, theMIDPackage.getModel(), "origModel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "newModelName", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, theMIDPackage.getMID(), "instanceMID", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEException(op, theMIDPackage.getMMINTException());
 
-		initEClass(binaryMAVOModelRelEClass, BinaryMAVOModelRel.class, "BinaryMAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(binaryMAVOModelRelEClass, BinaryMAVOModelRel.class, "BinaryMAVOModelRel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(mavoModelEndpointEClass, MAVOModelEndpoint.class, "MAVOModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoModelEndpointEClass, MAVOModelEndpoint.class, "MAVOModelEndpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMAVOModelEndpoint__GetTarget(), this.getMAVOModel(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModelEndpoint__GetTarget(), this.getMAVOModel(), "getTarget", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(mavoMappingEClass, MAVOMapping.class, "MAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoMappingEClass, MAVOMapping.class, "MAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMAVOMapping__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOMapping__ToMIDCustomPrintLabel(), ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getMAVOMapping__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOMapping__ToMIDCustomEditLabel(), ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getMAVOMapping__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getMAVOMapping__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "newLabel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(binaryMAVOMappingEClass, BinaryMAVOMapping.class, "BinaryMAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(binaryMAVOMappingEClass, BinaryMAVOMapping.class, "BinaryMAVOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(mavoModelElementReferenceEClass, MAVOModelElementReference.class, "MAVOModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoModelElementReferenceEClass, MAVOModelElementReference.class, "MAVOModelElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMAVOModelElementReference__GetObject(), this.getMAVOModelElement(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModelElementReference__GetObject(), this.getMAVOModelElement(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(mavoModelEndpointReferenceEClass, MAVOModelEndpointReference.class, "MAVOModelEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoModelEndpointReferenceEClass, MAVOModelEndpointReference.class, "MAVOModelEndpointReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMAVOModelEndpointReference__GetObject(), this.getMAVOModelEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOModelEndpointReference__GetObject(), this.getMAVOModelEndpoint(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getMAVOModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String(), theRelationshipPackage.getModelElementReference(), "createModelElementInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "newModelElemName", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEException(op, theMIDPackage.getMMINTException());
+        op = initEOperation(getMAVOModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String(), theRelationshipPackage.getModelElementReference(), "createModelElementInstanceAndReference", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEObject(), "modelObj", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEString(), "newModelElemName", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEException(op, theMIDPackage.getMMINTException());
 
-		initEClass(mavoMappingReferenceEClass, MAVOMappingReference.class, "MAVOMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(mavoMappingReferenceEClass, MAVOMappingReference.class, "MAVOMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getMAVOMappingReference__GetObject(), this.getMAVOMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getMAVOMappingReference__GetObject(), this.getMAVOMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(binaryMAVOMappingReferenceEClass, BinaryMAVOMappingReference.class, "BinaryMAVOMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(binaryMAVOMappingReferenceEClass, BinaryMAVOMappingReference.class, "BinaryMAVOMappingReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getBinaryMAVOMappingReference__GetObject(), this.getBinaryMAVOMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getBinaryMAVOMappingReference__GetObject(), this.getBinaryMAVOMapping(), "getObject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		// Create resource
-		createResource(eNS_URI);
-	}
+        // Create resource
+        createResource(eNS_URI);
+    }
 
 } //MAVOMIDPackageImpl

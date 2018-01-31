@@ -37,33 +37,4 @@
       </modelType>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://se.cs.toronto.edu/modelepedia/SDRel"
-            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.relationships">
-      <relationshipType>
-         <modelType>
-            <type
-                  name="SDRel"
-                  uri="http://se.cs.toronto.edu/modelepedia/SDRel">
-            </type>
-         </modelType>
-         <modelTypeEndpoint>
-            <type
-                  name="SDEndpoint"
-                  uri="http://se.cs.toronto.edu/modelepedia/SDRel-ICSE15_SequenceDiagram_MAVO/SDEndpoint">
-            </type>
-            <typeEndpoint
-                  lowerBound="0"
-                  upperBound="-1"
-                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO">
-            </typeEndpoint>
-         </modelTypeEndpoint>
-      </relationshipType>
-   </extension>
-
 </plugin>

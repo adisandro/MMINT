@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    modelDirectory="/edu.toronto.cs.se.modelepedia.sequencediagram/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.sequencediagram.edit/src-gen"
+    editorDirectory="/edu.toronto.cs.se.modelepedia.sequencediagram.editor/src-gen"
+    modelPluginID="edu.toronto.cs.se.modelepedia.sequencediagram" modelName="SequenceDiagram"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>sequencediagram.ecore</foreignModel>
+  <genPackages prefix="SequenceDiagram" basePackage="edu.toronto.cs.se.modelepedia"
+      disposableProviderFactory="true" ecorePackage="sequencediagram.ecore#/">
+    <genClasses ecoreClass="sequencediagram.ecore#//SequenceDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//SequenceDiagram/objects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//SequenceDiagram/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="sequencediagram.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sequencediagram.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="sequencediagram.ecore#//Object">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//Object/lifeline"/>
+    </genClasses>
+    <genClasses ecoreClass="sequencediagram.ecore#//Lifeline">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sequencediagram.ecore#//Lifeline/object"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//Lifeline/messagesAsSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//Lifeline/messagesAsTarget"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sequencediagram.ecore#//Message">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//Message/sourceLifeline"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sequencediagram.ecore#//Message/targetLifeline"/>
+    </genClasses>
+    <genClasses ecoreClass="sequencediagram.ecore#//SynchronousMessage"/>
+    <genClasses ecoreClass="sequencediagram.ecore#//AsynchronousMessage"/>
+    <genClasses ecoreClass="sequencediagram.ecore#//ReturnMessage"/>
+  </genPackages>
+</genmodel:GenModel>

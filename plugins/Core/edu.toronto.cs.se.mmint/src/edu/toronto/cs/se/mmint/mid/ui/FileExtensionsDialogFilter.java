@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.ui;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
@@ -28,15 +29,22 @@ public class FileExtensionsDialogFilter extends ViewerFilter {
     }
 
     /**
-	 * {@inheritDoc} Filters file extensions that are not registered with a
-	 * model type.
+	 * {@inheritDoc} Filters file extensions.
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 
-		if (!(element instanceof IFile)) {
-			return true;
-		}
+	    if (element instanceof IFolder) {
+	        if (((IFolder) element).getName().startsWith(".")) {
+	            return false;
+	        }
+	        else {
+	            return true;
+	        }
+	    }
+	    if (!(element instanceof IFile)) {
+	        return true;
+	    }
 
 		return this.fileExtensions.contains(((IFile) element).getFileExtension());
 	}

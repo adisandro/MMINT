@@ -30,15 +30,15 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 public interface BinaryMAVOMappingReference extends BinaryMappingReference, MAVOMappingReference {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * {@inheritDoc}<br />
-	 * Gets the referenced binary MAVO mapping.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (BinaryMAVOMapping) object;'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * {@inheritDoc}<br />
+     * Gets the referenced binary MAVO mapping.
+     * <!-- end-model-doc -->
+     * @model kind="operation" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = super.getObject();\nreturn (object == null) ? null : (BinaryMAVOMapping) object;'"
+     * @generated
+     */
 	BinaryMAVOMapping getObject();
 } // BinaryMAVOMappingReference

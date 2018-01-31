@@ -49,411 +49,411 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class BinaryMAVOMappingImpl extends BinaryMappingImpl implements BinaryMAVOMapping {
 	/**
-	 * The default value of the '{@link #getFormulaVariable() <em>Formula Variable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getFormulaVariable() <em>Formula Variable</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormulaVariable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFormulaVariable()
+     * @generated
+     * @ordered
+     */
 	protected static final String FORMULA_VARIABLE_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getFormulaVariable() <em>Formula Variable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFormulaVariable() <em>Formula Variable</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormulaVariable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFormulaVariable()
+     * @generated
+     * @ordered
+     */
 	protected String formulaVariable = FORMULA_VARIABLE_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isMay() <em>May</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isMay() <em>May</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMay()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMay()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean MAY_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isMay() <em>May</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isMay() <em>May</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMay()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMay()
+     * @generated
+     * @ordered
+     */
 	protected boolean may = MAY_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isSet() <em>Set</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isSet() <em>Set</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSet()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isSet()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean SET_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isSet() <em>Set</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isSet() <em>Set</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSet()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isSet()
+     * @generated
+     * @ordered
+     */
 	protected boolean set = SET_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isVar() <em>Var</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isVar() <em>Var</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isVar()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isVar()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean VAR_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isVar() <em>Var</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isVar() <em>Var</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isVar()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isVar()
+     * @generated
+     * @ordered
+     */
 	protected boolean var = VAR_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getCollections() <em>Collections</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCollections() <em>Collections</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCollections()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCollections()
+     * @generated
+     * @ordered
+     */
 	protected EList<MAVOCollection> collections;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BinaryMAVOMappingImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.BINARY_MAVO_MAPPING;
-	}
+        return MAVOMIDPackage.Literals.BINARY_MAVO_MAPPING;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getFormulaVariable() {
-		return formulaVariable;
-	}
+        return formulaVariable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setFormulaVariable(String newFormulaVariable) {
-		String oldFormulaVariable = formulaVariable;
-		formulaVariable = newFormulaVariable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE, oldFormulaVariable, formulaVariable));
-	}
+        String oldFormulaVariable = formulaVariable;
+        formulaVariable = newFormulaVariable;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE, oldFormulaVariable, formulaVariable));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isMay() {
-		return may;
-	}
+        return may;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setMay(boolean newMay) {
-		boolean oldMay = may;
-		may = newMay;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY, oldMay, may));
-	}
+        boolean oldMay = may;
+        may = newMay;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY, oldMay, may));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSet() {
-		return set;
-	}
+        return set;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSet(boolean newSet) {
-		boolean oldSet = set;
-		set = newSet;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__SET, oldSet, set));
-	}
+        boolean oldSet = set;
+        set = newSet;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__SET, oldSet, set));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isVar() {
-		return var;
-	}
+        return var;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setVar(boolean newVar) {
-		boolean oldVar = var;
-		var = newVar;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR, oldVar, var));
-	}
+        boolean oldVar = var;
+        var = newVar;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR, oldVar, var));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<MAVOCollection> getCollections() {
-		if (collections == null) {
-			collections = new EObjectWithInverseResolvingEList.ManyInverse<MAVOCollection>(MAVOCollection.class, this, MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS, MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS);
-		}
-		return collections;
-	}
+        if (collections == null) {
+            collections = new EObjectWithInverseResolvingEList.ManyInverse<MAVOCollection>(MAVOCollection.class, this, MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS, MAVOPackage.MAVO_COLLECTION__MAVO_ELEMENTS);
+        }
+        return collections;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCollections()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getCollections()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
-				return ((InternalEList<?>)getCollections()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
+                return ((InternalEList<?>)getCollections()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
-				return getFormulaVariable();
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
-				return isMay();
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
-				return isSet();
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
-				return isVar();
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
-				return getCollections();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
+                return getFormulaVariable();
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
+                return isMay();
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
+                return isSet();
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
+                return isVar();
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
+                return getCollections();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
-				setFormulaVariable((String)newValue);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
-				setMay((Boolean)newValue);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
-				setSet((Boolean)newValue);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
-				setVar((Boolean)newValue);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
-				getCollections().clear();
-				getCollections().addAll((Collection<? extends MAVOCollection>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
+                setFormulaVariable((String)newValue);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
+                setMay((Boolean)newValue);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
+                setSet((Boolean)newValue);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
+                setVar((Boolean)newValue);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
+                getCollections().clear();
+                getCollections().addAll((Collection<? extends MAVOCollection>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
-				setFormulaVariable(FORMULA_VARIABLE_EDEFAULT);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
-				setMay(MAY_EDEFAULT);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
-				setSet(SET_EDEFAULT);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
-				setVar(VAR_EDEFAULT);
-				return;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
-				getCollections().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
+                setFormulaVariable(FORMULA_VARIABLE_EDEFAULT);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
+                setMay(MAY_EDEFAULT);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
+                setSet(SET_EDEFAULT);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
+                setVar(VAR_EDEFAULT);
+                return;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
+                getCollections().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
-				return FORMULA_VARIABLE_EDEFAULT == null ? formulaVariable != null : !FORMULA_VARIABLE_EDEFAULT.equals(formulaVariable);
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
-				return may != MAY_EDEFAULT;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
-				return set != SET_EDEFAULT;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
-				return var != VAR_EDEFAULT;
-			case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
-				return collections != null && !collections.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE:
+                return FORMULA_VARIABLE_EDEFAULT == null ? formulaVariable != null : !FORMULA_VARIABLE_EDEFAULT.equals(formulaVariable);
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY:
+                return may != MAY_EDEFAULT;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET:
+                return set != SET_EDEFAULT;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR:
+                return var != VAR_EDEFAULT;
+            case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS:
+                return collections != null && !collections.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == LogicElement.class) {
-			switch (derivedFeatureID) {
-				case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE: return MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE;
-				default: return -1;
-			}
-		}
-		if (baseClass == MAVOElement.class) {
-			switch (derivedFeatureID) {
-				case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY: return MAVOPackage.MAVO_ELEMENT__MAY;
-				case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET: return MAVOPackage.MAVO_ELEMENT__SET;
-				case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR: return MAVOPackage.MAVO_ELEMENT__VAR;
-				case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS: return MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
-				default: return -1;
-			}
-		}
-		if (baseClass == MAVOMapping.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == LogicElement.class) {
+            switch (derivedFeatureID) {
+                case MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE: return MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE;
+                default: return -1;
+            }
+        }
+        if (baseClass == MAVOElement.class) {
+            switch (derivedFeatureID) {
+                case MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY: return MAVOPackage.MAVO_ELEMENT__MAY;
+                case MAVOMIDPackage.BINARY_MAVO_MAPPING__SET: return MAVOPackage.MAVO_ELEMENT__SET;
+                case MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR: return MAVOPackage.MAVO_ELEMENT__VAR;
+                case MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS: return MAVOPackage.MAVO_ELEMENT__COLLECTIONS;
+                default: return -1;
+            }
+        }
+        if (baseClass == MAVOMapping.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == LogicElement.class) {
-			switch (baseFeatureID) {
-				case MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE: return MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE;
-				default: return -1;
-			}
-		}
-		if (baseClass == MAVOElement.class) {
-			switch (baseFeatureID) {
-				case MAVOPackage.MAVO_ELEMENT__MAY: return MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY;
-				case MAVOPackage.MAVO_ELEMENT__SET: return MAVOMIDPackage.BINARY_MAVO_MAPPING__SET;
-				case MAVOPackage.MAVO_ELEMENT__VAR: return MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR;
-				case MAVOPackage.MAVO_ELEMENT__COLLECTIONS: return MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS;
-				default: return -1;
-			}
-		}
-		if (baseClass == MAVOMapping.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == LogicElement.class) {
+            switch (baseFeatureID) {
+                case MAVOPackage.LOGIC_ELEMENT__FORMULA_VARIABLE: return MAVOMIDPackage.BINARY_MAVO_MAPPING__FORMULA_VARIABLE;
+                default: return -1;
+            }
+        }
+        if (baseClass == MAVOElement.class) {
+            switch (baseFeatureID) {
+                case MAVOPackage.MAVO_ELEMENT__MAY: return MAVOMIDPackage.BINARY_MAVO_MAPPING__MAY;
+                case MAVOPackage.MAVO_ELEMENT__SET: return MAVOMIDPackage.BINARY_MAVO_MAPPING__SET;
+                case MAVOPackage.MAVO_ELEMENT__VAR: return MAVOMIDPackage.BINARY_MAVO_MAPPING__VAR;
+                case MAVOPackage.MAVO_ELEMENT__COLLECTIONS: return MAVOMIDPackage.BINARY_MAVO_MAPPING__COLLECTIONS;
+                default: return -1;
+            }
+        }
+        if (baseClass == MAVOMapping.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (formulaVariable: ");
-		result.append(formulaVariable);
-		result.append(", may: ");
-		result.append(may);
-		result.append(", set: ");
-		result.append(set);
-		result.append(", var: ");
-		result.append(var);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (formulaVariable: ");
+        result.append(formulaVariable);
+        result.append(", may: ");
+        result.append(may);
+        result.append(", set: ");
+        result.append(set);
+        result.append(", var: ");
+        result.append(var);
+        result.append(')');
+        return result.toString();
+    }
 
 } //MAVOBinaryMappingImpl

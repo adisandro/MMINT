@@ -70,137 +70,137 @@ import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
  */
 public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel {
 	/**
-	 * The default value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendedUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtendedUri()
+     * @generated
+     * @ordered
+     */
 	protected static final String EXTENDED_URI_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExtendedUri() <em>Extended Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtendedUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtendedUri()
+     * @generated
+     * @ordered
+     */
 	protected String extendedUri = EXTENDED_URI_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected KleisliModelRelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return KleisliPackage.Literals.KLEISLI_MODEL_REL;
-	}
+        return KleisliPackage.Literals.KLEISLI_MODEL_REL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getExtendedUri() {
-		return extendedUri;
-	}
+        return extendedUri;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExtendedUri(String newExtendedUri) {
-		String oldExtendedUri = extendedUri;
-		extendedUri = newExtendedUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
-	}
+        String oldExtendedUri = extendedUri;
+        extendedUri = newExtendedUri;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-				return getExtendedUri();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+                return getExtendedUri();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-				setExtendedUri((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+                setExtendedUri((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-				setExtendedUri(EXTENDED_URI_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+                setExtendedUri(EXTENDED_URI_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-				return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
+                return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (extendedUri: ");
-		result.append(extendedUri);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (extendedUri: ");
+        result.append(extendedUri);
+        result.append(')');
+        return result.toString();
+    }
 
 	/**
 	 * Gets the uri of a Kleisli model relationship type extension.

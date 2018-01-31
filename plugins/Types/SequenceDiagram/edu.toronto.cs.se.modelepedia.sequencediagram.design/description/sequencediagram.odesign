@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="sequencediagram" version="11.1.1.201610211630">
+  <ownedViewpoints name="SequenceDiagramViewpoint" modelFileExtension="sequencediagram">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="http://se.cs.toronto.edu/modelepedia/Representation_SequenceDiagram" label="SequenceDiagramRepresentation" domainClass="sequencediagram.SequenceDiagram" enablePopupBars="true">
+      <metamodel href="../../edu.toronto.cs.se.modelepedia.sequencediagram/model/sequencediagram.ecore#/"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="SynchronousMessage" semanticCandidatesExpression="feature:messages" sourceMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']/@borderedNodeMappings[name='Lifeline']" targetMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']/@borderedNodeMappings[name='Lifeline']" targetFinderExpression="feature:targetLifeline" sourceFinderExpression="feature:sourceLifeline" domainClass="sequencediagram.SynchronousMessage" useDomainElement="true">
+          <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="feature:name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="AsynchronousMessage" semanticCandidatesExpression="feature:messages" sourceMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']/@borderedNodeMappings[name='Lifeline']" targetMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']/@borderedNodeMappings[name='Lifeline']" targetFinderExpression="feature:targetLifeline" sourceFinderExpression="feature:sourceLifeline" domainClass="sequencediagram.AsynchronousMessage" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="feature:name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="ReturnMessage" semanticCandidatesExpression="feature:messages" sourceMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']/@borderedNodeMappings[name='Lifeline']" targetMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']/@borderedNodeMappings[name='Lifeline']" targetFinderExpression="feature:targetLifeline" sourceFinderExpression="feature:sourceLifeline" domainClass="sequencediagram.ReturnMessage" useDomainElement="true">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="feature:name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Object" semanticCandidatesExpression="feature:objects" domainClass="sequencediagram.Object">
+          <borderedNodeMappings name="Lifeline" semanticCandidatesExpression="feature:lifeline" domainClass="sequencediagram.Lifeline">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NORTH_SOUTH">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <forbiddenSides>WEST</forbiddenSides>
+              <forbiddenSides>EAST</forbiddenSides>
+              <forbiddenSides>NORTH</forbiddenSides>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </borderedNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Nodes">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="ObjectLifelineCreation" label="Create Lifeline" containerMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@containerMappings[name='Object']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="sequencediagram.Object" referenceName="objects" variableName="objectInstance"/>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:objectInstance">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="sequencediagram.Lifeline" referenceName="lifeline" variableName="lifelineInstance"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Connections">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="SynchronousMessageCreation" label="Create Sync Message" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='SynchronousMessage']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="sequencediagram.SynchronousMessage" referenceName="messages">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="sourceLifeline" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="targetLifeline" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="AsynchronousMessageCreation" label="Create Async Message" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='AsynchronousMessage']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="sequencediagram.AsynchronousMessage" referenceName="messages">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="sourceLifeline" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="targetLifeline" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="ReturnMessageCreation" label="Create Return Message" edgeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@edgeMappings[name='ReturnMessage']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="sequencediagram.ReturnMessage" referenceName="messages">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="sourceLifeline" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="targetLifeline" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.sequencediagram.design.Services"/>
+  </ownedViewpoints>
+</description:Group>

@@ -12,20 +12,20 @@
 package edu.toronto.cs.se.mmint.mid.editor.impl;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
-import org.eclipse.sirius.business.api.session.Session;
-import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.viewpoint.DAnalysis;
 import org.eclipse.sirius.viewpoint.DRepresentationDescriptor;
-import org.eclipse.sirius.viewpoint.DView;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
 
@@ -40,7 +40,9 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.ui.EditorCreationWizardDialog;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
@@ -72,72 +74,107 @@ public class DiagramImpl extends EditorImpl implements Diagram {
     }
 
     /**
+     * Creates and adds a diagram instance of this diagram type to an Instance MID.
+     *
+     * @param modelPath
+     *            The path of the model to be represented in the new diagram.
+     * @param createDiagramFile
+     *            True if the diagram file is going to be created, false if it exists already.
+     * @param instanceMID
+     *            An Instance MID.
+     * @return The created diagram.
+     * @throws MMINTException
+     *             If this is a diagram instance, or if the diagram couldn't be created.
      * @generated NOT
      */
     @Override
-    public Editor createSubtype(String newEditorTypeFragmentUri, String newEditorTypeName, String modelTypeUri, String editorId, String wizardId, String wizardDialogClassName) throws MMINTException {
+    public Editor createInstance(String modelPath, boolean createDiagramFile, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        Diagram newDiagramType = super.createThisEClass();
-        this.addSubtype(newDiagramType, newEditorTypeFragmentUri, newEditorTypeName, modelTypeUri, editorId, wizardId, wizardDialogClassName);
-
-        return newDiagramType;
-    }
-
-    /**
-     * @generated NOT
-     */
-    @Override
-    public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
-
-        MMINTException.mustBeType(this);
-
-        String editorUri = modelUri;
-        if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
-            //TODO[SIRIUS] Create the representation file if it does not exist
-            //TODO[SIRIUS] Optimize the choice of a default representation file (from model up? root?)
-            //TODO[SIRIUS] e.g. filter repr files that have the model as semantic resource
-            String siriusFileUri = MIDDialogs.selectModelDiagramToImport(modelUri);
-            String modelExt = FileUtils.getFileExtensionFromPath(modelUri);
-            Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(siriusFileUri, true),
-                                                                       new NullProgressMonitor());
-            //TODO[SIRIUS] Add new diagram to the representation if it does not exist
-            DAnalysis siriusRoot = (DAnalysis) siriusSession.getSessionResource().getContents().get(0);
-viewpoints:
-            for (DView siriusView : siriusRoot.getOwnedViews()) {
-                if (!siriusView.getViewpoint().getModelFileExtension().equals(modelExt)) {
-                    continue;
-                }
-                for (DRepresentationDescriptor siriusRepr : siriusView.getOwnedRepresentationDescriptors()) {
-                    if (!siriusRepr.getDescription().getName().equals(this.getUri()) ||
-                        !MIDRegistry.getModelElementUri(siriusRepr.getTarget()).startsWith(modelUri)
-                    ) {
-                        continue;
-                    }
-                    editorUri = MIDRegistry.getModelElementUri(siriusRepr.getRepresentation());
-                    break viewpoints;
+        String diagramUri = null;
+        if (createDiagramFile) { // model created programmatically
+            if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                String sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                diagramUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
+                                                             PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
+                    FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
                 }
             }
-        }
-        else { // GMF
-            editorUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
-            // check if diagram file already exists in model directory
-            if (!FileUtils.isFileOrDirectory(editorUri, true)) {
-                // try to build a new diagram through its wizard, inited with the existing model file
+            else { // GMF
+                diagramUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
                 IStructuredSelection modelFile = new StructuredSelection(
                     ResourcesPlugin.getWorkspace().getRoot().getFile(
-                        new Path(modelUri)
+                        new Path(modelPath)
                     )
                 );
                 EditorCreationWizardDialog wizDialog = this.invokeInstanceWizard(modelFile);
                 if (wizDialog == null) {
-                    throw new MMINTException("Diagram creation canceled by user");
+                    throw new MIDDialogCancellation();
                 }
             }
         }
+        else { // model created or imported through an Instance MID
+            if (this.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                //TODO MMINT[SIRIUS] Delete does not work sometimes
+                //TODO MMINT[SIRIUS] Open the modeling project if not open
+                //TODO MMINT[SIRIUS] Create the representation file if it does not exist
+                String sAirdPath = null;
+                boolean isImported = false;
+                try {
+                    sAirdPath = MIDDialogs.selectSiriusRepresentationsFileToContainModelDiagram(modelPath);
+                }
+                catch (MIDDialogCancellation e) {
+                    throw e;
+                }
+                finally {
+                    // the currently open Eclipse editor is the key to create vs import
+                    IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+                    IEditorPart pageEditor = page.getActiveEditor();
+                    if (pageEditor.getEditorInput().getName().endsWith(GMFUtils.DIAGRAM_SUFFIX)) { // imported model
+                        isImported = true;
+                        // either continue or exit with the exception if canceled
+                    }
+                    else { // created model
+                        page.closeEditor(pageEditor, false); // close the tree editor that was used to create the model
+                        if (sAirdPath == null) { // dialog cancellation, delete the created file and refresh
+                            FileUtils.deleteFile(modelPath, true);
+                            try {
+                                WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
+                                    .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
+                            }
+                            catch (CoreException e) {
+                                // don't refresh
+                            }
+                        }
+                    }
+                }
+                if (isImported) { // find existing sirius representation
+                    DRepresentationDescriptor sReprDesc = SiriusUtils
+                        .findRepresentationDescriptor(modelPath, this.getUri(), sAirdPath);
+                    if (sReprDesc == null) { // no existing sirius diagram found
+                        // fallback to other editor by failing
+                        throw new MMINTException("Sirius representation not found");
+                    }
+                    diagramUri = MIDRegistry.getModelElementUri(sReprDesc.getRepresentation());
+                }
+                else { // create a new sirius representation
+                    diagramUri = MIDRegistry.getModelElementUri(SiriusUtils.createRepresentation(modelPath, sAirdPath));
+                    FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
+                }
+            }
+            else { // GMF
+                diagramUri = FileUtils.replaceFileExtensionInPath(modelPath, this.getFileExtensions().get(0));
+                if (!FileUtils.isFileOrDirectory(diagramUri, true)) {
+                    // fallback to other editor by failing
+                    throw new MMINTException("GMF diagram not found");
+                }
+            }
+        }
+
         Diagram newDiagram = super.createThisEClass();
-        super.addInstance(newDiagram, editorUri, modelUri, instanceMID);
+        super.addInstance(newDiagram, diagramUri, modelPath, instanceMID);
 
         return newDiagram;
     }
@@ -153,8 +190,8 @@ viewpoints:
         IWorkbenchWizard wizard = super.getInstanceWizard(initialSelection);
         EditorCreationWizardDialog wizDialog;
         if (this.getWizardDialogClass() == null) {
-            Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
             if (initialSelection.getFirstElement() instanceof IFile) {
+                // create the diagram directly and do not open the wizard
                 String modelUri = ((IFile) initialSelection.getFirstElement()).getFullPath().toOSString();
                 String diagramUri = FileUtils.replaceFileExtensionInPath(modelUri, this.getFileExtensions().get(0));
                 Diagram superDiagramType = this;
@@ -163,20 +200,20 @@ viewpoints:
                 }
                 String diagramKind = MIDTypeRegistry.getType(superDiagramType.getModelUri()).getName();
                 String diagramPluginId = MIDTypeRegistry.getTypeBundle(superDiagramType.getUri()).getSymbolicName();
-                // create the diagram directly and do not open the wizard
                 try {
                     GMFUtils.createGMFDiagramAndFile(modelUri, diagramUri, diagramKind, diagramPluginId, true);
-                    if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
+                    if (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.
+                                                                 PREFERENCE_MENU_OPENMODELEDITORS_ENABLED))) {
                         FileUtils.openEclipseEditor(diagramUri, this.getId(), true);
                     }
                 }
                 catch (Exception e) {
                     throw new MMINTException("Error creating or opening the gmf diagram", e);
                 }
-                return new EditorCreationWizardDialog(shell, wizard);
+                return new EditorCreationWizardDialog(wizard);
             }
             else {
-                wizDialog = new EditorCreationWizardDialog(shell, wizard);
+                wizDialog = new EditorCreationWizardDialog(wizard);
             }
         }
         else {

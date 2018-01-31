@@ -19,15 +19,16 @@ Famelis, Rick Salay. All rights reserved.
    </license>
 
    <requires>
-      <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="edu.toronto.cs.se.mavo"/>
-      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
       <import plugin="edu.toronto.cs.se.mavo.edit"/>
       <import plugin="edu.toronto.cs.se.mmint.edit"/>
       <import plugin="org.eclipse.core.expressions"/>
@@ -60,7 +61,10 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="edu.toronto.cs.se.modelepedia.z3"/>
       <import plugin="edu.toronto.cs.se.modelepedia.z3.operator"/>
-      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
+      <import plugin="edu.toronto.cs.se.mmint.operator"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.sirius"/>
+      <import plugin="org.eclipse.sirius.common.acceleo.aql"/>
       <import feature="org.eclipse.m2m.atl.sdk"/>
    </requires>
 
@@ -122,6 +126,13 @@ Famelis, Rick Salay. All rights reserved.
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.design"
          download-size="0"
          install-size="0"
          version="0.0.0"

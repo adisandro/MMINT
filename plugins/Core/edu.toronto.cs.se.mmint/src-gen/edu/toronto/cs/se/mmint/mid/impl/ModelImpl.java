@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -62,6 +63,8 @@ import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
@@ -483,9 +486,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
-            case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR:
+            case MIDPackage.MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN:
                 try {
-                    return this.createInstanceEditor();
+                    return this.createInstanceEditor((Boolean)arguments.get(0));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
@@ -933,7 +936,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
      * @generated NOT
      */
     @Override
-    public Editor createInstanceEditor() throws MMINTException {
+    public Editor createInstanceEditor(boolean createEditorFile) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
@@ -958,8 +961,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
         });
         for (Editor editorType : sortedEditors) {
             try {
-                newEditor = editorType.createInstance(this.getUri(), instanceMID);
+                newEditor = editorType.createInstance(this.getUri(), createEditorFile, instanceMID);
                 break;
+            }
+            catch (MIDDialogCancellation e) {
+                // bubble up to signal user cancellation
+                throw e;
             }
             catch (MMINTException e) {
                 lastException = e;
@@ -982,7 +989,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         Model newModel = this.createInstance(rootModelObj, newModelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor();
+            newModel.createInstanceEditor(true);
         }
 
         return newModel;
@@ -1020,7 +1027,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
         Model newModel = this.importInstance(modelPath, instanceMID);
         if (instanceMID != null) {
-            newModel.createInstanceEditor();
+            newModel.createInstanceEditor(false);
         }
 
         return newModel;
@@ -1045,6 +1052,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
     @Override
     public Model copyInstanceAndEditor(Model origModel, String newModelName, boolean copyDiagram, MID instanceMID) throws MMINTException, IOException {
 
+        //TODO MMINT[SIRIUS] Make this work when copying a sirius representation
         Model newModel = this.copyInstance(origModel, newModelName, instanceMID);
         // copy diagrams
         if (copyDiagram && instanceMID != null) {
@@ -1066,7 +1074,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 //TODO MMINT[UML] add support for notation extra file (e.g. in UML)
             }
         }
-        newModel.createInstanceEditor();
+        newModel.createInstanceEditor(false);
 
         return newModel;
     }
@@ -1162,7 +1170,12 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
          */
         for (Editor editor : this.getEditors()) {
-            FileUtils.deleteFile(editor.getUri(), true);
+            if (editor.getFileExtensions().get(0).equals(SiriusUtil.SESSION_RESOURCE_EXTENSION)) { // Sirius
+                SiriusUtils.deleteRepresentation((Diagram) editor);
+            }
+            else {
+                FileUtils.deleteFile(editor.getUri(), true);
+            }
         }
         FileUtils.deleteFile(this.getUri(), true);
         this.deleteInstance();

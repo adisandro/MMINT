@@ -33,23 +33,23 @@ import org.eclipse.ui.ide.IDE;
  */
 public class FileModelImpl extends ModelImpl implements FileModel {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected FileModelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return FilePackage.Literals.FILE_MODEL;
-	}
+        return FilePackage.Literals.FILE_MODEL;
+    }
 
 	/**
 	 * @generated NOT

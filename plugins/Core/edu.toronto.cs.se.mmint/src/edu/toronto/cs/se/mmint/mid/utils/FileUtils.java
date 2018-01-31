@@ -33,7 +33,6 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -45,10 +44,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.sirius.business.api.session.Session;
-import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
-import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
@@ -57,6 +52,7 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
+import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
 
 public class FileUtils {
 
@@ -432,22 +428,18 @@ public class FileUtils {
 	public static void openEclipseEditor(@NonNull String filePath, @Nullable String editorId, boolean isWorkspaceRelative) throws MMINTException {
 
         //TODO MMINT[OO] Move all into Editor/Diagram
-	    String siriusReprPath = null;
-	    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) {
-	        siriusReprPath = filePath;
-	        filePath = MIDRegistry.getModelUri(siriusReprPath);
+	    String sReprUri = null;
+	    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) { // Sirius
+	        sReprUri = filePath;
+	        filePath = MIDRegistry.getModelUri(sReprUri);
 	    }
 		if (!FileUtils.isFile(filePath, isWorkspaceRelative)) {
 			throw new MMINTException("The file " + filePath + " does not exist");
 		}
 
 		try {
-		    if (siriusReprPath != null) {
-                Session siriusSession = SessionManager.INSTANCE.getSession(FileUtils.createEMFUri(filePath, true),
-                                                                           new NullProgressMonitor());
-                DRepresentation siriusRepr = (DRepresentation) FileUtils.readModelObject(
-                    siriusReprPath, siriusSession.getSessionResource());
-    		    DialectUIManager.INSTANCE.openEditor(siriusSession, siriusRepr, new NullProgressMonitor());
+		    if (sReprUri != null) {
+		        SiriusUtils.openRepresentation(sReprUri);
 		    }
 		    else {
     			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();

@@ -454,9 +454,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
                 }
-            case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_MID:
+            case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID:
                 try {
-                    return this.createInstance((String)arguments.get(0), (MID)arguments.get(1));
+                    return this.createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (MID)arguments.get(2));
                 }
                 catch (Throwable throwable) {
                     throw new InvocationTargetException(throwable);
@@ -580,20 +580,20 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
      *
      * @param newEditor
      *            The new editor to be added.
-     * @param editorUri
+     * @param editorPath
      *            The uri of the new editor.
-     * @param modelUri
+     * @param modelPath
      *            The uri of the model handled by the new editor.
      * @param instanceMID
      *            An Instance MID, null if the editor isn't going to be added to it.
      * @return The created editor.
      * @generated NOT
      */
-    protected void addInstance(Editor newEditor, String editorUri, String modelUri, MID instanceMID) {
+    protected void addInstance(Editor newEditor, String editorPath, String modelPath, MID instanceMID) {
 
-        String newEditorName = this.getName() + " for model " + modelUri;
-        super.addBasicInstance(newEditor, editorUri, newEditorName, MIDLevel.INSTANCES);
-        newEditor.setModelUri(modelUri);
+        String newEditorName = this.getName() + " for model " + modelPath;
+        super.addBasicInstance(newEditor, editorPath, newEditorName, MIDLevel.INSTANCES);
+        newEditor.setModelUri(modelPath);
         newEditor.setId(this.getId());
         newEditor.setWizardId(this.getWizardId());
         newEditor.getFileExtensions().add(this.getFileExtensions().get(0));
@@ -606,13 +606,13 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
      * @generated NOT
      */
     @Override
-    public Editor createInstance(String modelUri, MID instanceMID) throws MMINTException {
+    public Editor createInstance(String modelPath, boolean createEditorFile, MID instanceMID) throws MMINTException {
 
-        //TODO MMINT[OO] shouldn't this try to create the model file always, or never? (== be consistent, diagrams are created, editors not)
         MMINTException.mustBeType(this);
 
         Editor newEditor = super.createThisEClass();
-        this.addInstance(newEditor, modelUri, modelUri, instanceMID);
+        this.addInstance(newEditor, modelPath, modelPath, instanceMID);
+        // an editor is an EMF tree editor, so it never needs to create the editor file, which is the model itself
 
         return newEditor;
     }
@@ -666,17 +666,16 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         EditorCreationWizardDialog wizDialog;
         String wizardDialogClassName = this.getWizardDialogClass();
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         try {
             wizDialog = (EditorCreationWizardDialog)
                 MIDTypeRegistry.getTypeBundle(this.getUri()).
                 loadClass(wizardDialogClassName).
                 getConstructor(Shell.class, IWizard.class).
-                newInstance(shell, wizard);
+                newInstance(wizard);
         }
         catch (Exception e) {
             MMINTException.print(IStatus.WARNING, "Custom editor creation wizard not found: " + wizardDialogClassName + " , using default as fallback", e);
-            wizDialog = new EditorCreationWizardDialog(shell, wizard);
+            wizDialog = new EditorCreationWizardDialog(wizard);
         }
 
         return wizDialog;
@@ -692,13 +691,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
 
         IWorkbenchWizard wizard = this.getInstanceWizard(initialSelection);
         EditorCreationWizardDialog wizDialog;
-        if (this.getWizardDialogClass() == null) {
-            Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-            wizDialog = new EditorCreationWizardDialog(shell, wizard);
-        }
-        else {
-            wizDialog = this.createCustomInstanceWizard(wizard);
-        }
+        wizDialog = (this.getWizardDialogClass() == null) ?
+            new EditorCreationWizardDialog(wizard) :
+            this.createCustomInstanceWizard(wizard);
         wizDialog.setTitle(wizard.getWindowTitle());
         if (wizDialog.open() == Window.CANCEL) {
             return null;

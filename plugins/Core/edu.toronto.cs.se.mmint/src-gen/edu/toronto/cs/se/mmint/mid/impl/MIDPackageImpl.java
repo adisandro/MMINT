@@ -773,7 +773,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getModel__CreateInstanceEditor() {
+    public EOperation getModel__CreateInstanceEditor__boolean() {
         return modelEClass.getEOperations().get(8);
     }
 
@@ -1418,7 +1418,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
         createEOperation(modelEClass, MODEL___GET_EMF_TYPE_ROOT);
         createEOperation(modelEClass, MODEL___OPEN_TYPE);
         createEOperation(modelEClass, MODEL___CREATE_INSTANCE__EOBJECT_STRING_MID);
-        createEOperation(modelEClass, MODEL___CREATE_INSTANCE_EDITOR);
+        createEOperation(modelEClass, MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN);
         createEOperation(modelEClass, MODEL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID);
         createEOperation(modelEClass, MODEL___IMPORT_INSTANCE__STRING_MID);
         createEOperation(modelEClass, MODEL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID);
@@ -1671,7 +1671,8 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
         addEException(op, this.getMMINTException());
         addEException(op, this.getIOException());
 
-        op = initEOperation(getModel__CreateInstanceEditor(), theEditorPackage.getEditor(), "createInstanceEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getModel__CreateInstanceEditor__boolean(), theEditorPackage.getEditor(), "createInstanceEditor", 1, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEBoolean(), "createEditorFile", 1, 1, IS_UNIQUE, IS_ORDERED);
         addEException(op, this.getMMINTException());
 
         op = initEOperation(getModel__CreateInstanceAndEditor__EObject_String_MID(), this.getModel(), "createInstanceAndEditor", 1, 1, IS_UNIQUE, IS_ORDERED);

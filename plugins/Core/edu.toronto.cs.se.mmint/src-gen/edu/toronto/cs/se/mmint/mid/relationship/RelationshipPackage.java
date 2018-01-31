@@ -467,7 +467,7 @@ public interface RelationshipPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MODEL_REL___CREATE_INSTANCE_EDITOR = MIDPackage.MODEL___CREATE_INSTANCE_EDITOR;
+    int MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN = MIDPackage.MODEL___CREATE_INSTANCE_EDITOR__BOOLEAN;
 
     /**
      * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1061,7 +1061,7 @@ public interface RelationshipPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR = MODEL_REL___CREATE_INSTANCE_EDITOR;
+    int BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN = MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN;
 
     /**
      * The operation id for the '<em>Create Instance And Editor</em>' operation.

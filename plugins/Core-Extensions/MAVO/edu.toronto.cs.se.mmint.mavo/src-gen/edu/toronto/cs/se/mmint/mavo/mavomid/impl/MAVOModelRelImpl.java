@@ -32,23 +32,23 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class MAVOModelRelImpl extends ModelRelImpl implements MAVOModelRel {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MAVOModelRelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return MAVOMIDPackage.Literals.MAVO_MODEL_REL;
-	}
+        return MAVOMIDPackage.Literals.MAVO_MODEL_REL;
+    }
 
 	/**
 	 * @generated NOT

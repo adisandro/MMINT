@@ -46,340 +46,340 @@ import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
  */
 public class KleisliSwitch<T> extends Switch<T> {
 	/**
-	 * The cached model package
-	 * <!-- begin-user-doc -->
+     * The cached model package
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected static KleisliPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the switch.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public KleisliSwitch() {
-		if (modelPackage == null) {
-			modelPackage = KleisliPackage.eINSTANCE;
-		}
-	}
+        if (modelPackage == null) {
+            modelPackage = KleisliPackage.eINSTANCE;
+        }
+    }
 
 	/**
-	 * Checks whether this is a switch for the given package.
-	 * <!-- begin-user-doc -->
+     * Checks whether this is a switch for the given package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
-	 * @return whether this is a switch for the given package.
-	 * @generated
-	 */
+     * @param ePackage the package in question.
+     * @return whether this is a switch for the given package.
+     * @generated
+     */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
-	}
+        return ePackage == modelPackage;
+    }
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
+     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+     * @return the first non-null result returned by a <code>caseXXX</code> call.
+     * @generated
+     */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case KleisliPackage.KLEISLI_MODEL: {
-				KleisliModel kleisliModel = (KleisliModel)theEObject;
-				T result = caseKleisliModel(kleisliModel);
-				if (result == null) result = caseModel(kleisliModel);
-				if (result == null) result = caseGenericElement(kleisliModel);
-				if (result == null) result = caseExtendibleElement(kleisliModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT: {
-				KleisliModelEndpoint kleisliModelEndpoint = (KleisliModelEndpoint)theEObject;
-				T result = caseKleisliModelEndpoint(kleisliModelEndpoint);
-				if (result == null) result = caseModelEndpoint(kleisliModelEndpoint);
-				if (result == null) result = caseExtendibleElementEndpoint(kleisliModelEndpoint);
-				if (result == null) result = caseExtendibleElement(kleisliModelEndpoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KleisliPackage.KLEISLI_MODEL_REL: {
-				KleisliModelRel kleisliModelRel = (KleisliModelRel)theEObject;
-				T result = caseKleisliModelRel(kleisliModelRel);
-				if (result == null) result = caseModelRel(kleisliModelRel);
-				if (result == null) result = caseModel(kleisliModelRel);
-				if (result == null) result = caseGenericElement(kleisliModelRel);
-				if (result == null) result = caseExtendibleElement(kleisliModelRel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KleisliPackage.BINARY_KLEISLI_MODEL_REL: {
-				BinaryKleisliModelRel binaryKleisliModelRel = (BinaryKleisliModelRel)theEObject;
-				T result = caseBinaryKleisliModelRel(binaryKleisliModelRel);
-				if (result == null) result = caseKleisliModelRel(binaryKleisliModelRel);
-				if (result == null) result = caseBinaryModelRel(binaryKleisliModelRel);
-				if (result == null) result = caseModelRel(binaryKleisliModelRel);
-				if (result == null) result = caseModel(binaryKleisliModelRel);
-				if (result == null) result = caseGenericElement(binaryKleisliModelRel);
-				if (result == null) result = caseExtendibleElement(binaryKleisliModelRel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: {
-				KleisliModelEndpointReference kleisliModelEndpointReference = (KleisliModelEndpointReference)theEObject;
-				T result = caseKleisliModelEndpointReference(kleisliModelEndpointReference);
-				if (result == null) result = caseModelEndpointReference(kleisliModelEndpointReference);
-				if (result == null) result = caseExtendibleElementEndpointReference(kleisliModelEndpointReference);
-				if (result == null) result = caseExtendibleElementReference(kleisliModelEndpointReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
-		}
-	}
+        switch (classifierID) {
+            case KleisliPackage.KLEISLI_MODEL: {
+                KleisliModel kleisliModel = (KleisliModel)theEObject;
+                T result = caseKleisliModel(kleisliModel);
+                if (result == null) result = caseModel(kleisliModel);
+                if (result == null) result = caseGenericElement(kleisliModel);
+                if (result == null) result = caseExtendibleElement(kleisliModel);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT: {
+                KleisliModelEndpoint kleisliModelEndpoint = (KleisliModelEndpoint)theEObject;
+                T result = caseKleisliModelEndpoint(kleisliModelEndpoint);
+                if (result == null) result = caseModelEndpoint(kleisliModelEndpoint);
+                if (result == null) result = caseExtendibleElementEndpoint(kleisliModelEndpoint);
+                if (result == null) result = caseExtendibleElement(kleisliModelEndpoint);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case KleisliPackage.KLEISLI_MODEL_REL: {
+                KleisliModelRel kleisliModelRel = (KleisliModelRel)theEObject;
+                T result = caseKleisliModelRel(kleisliModelRel);
+                if (result == null) result = caseModelRel(kleisliModelRel);
+                if (result == null) result = caseModel(kleisliModelRel);
+                if (result == null) result = caseGenericElement(kleisliModelRel);
+                if (result == null) result = caseExtendibleElement(kleisliModelRel);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case KleisliPackage.BINARY_KLEISLI_MODEL_REL: {
+                BinaryKleisliModelRel binaryKleisliModelRel = (BinaryKleisliModelRel)theEObject;
+                T result = caseBinaryKleisliModelRel(binaryKleisliModelRel);
+                if (result == null) result = caseKleisliModelRel(binaryKleisliModelRel);
+                if (result == null) result = caseBinaryModelRel(binaryKleisliModelRel);
+                if (result == null) result = caseModelRel(binaryKleisliModelRel);
+                if (result == null) result = caseModel(binaryKleisliModelRel);
+                if (result == null) result = caseGenericElement(binaryKleisliModelRel);
+                if (result == null) result = caseExtendibleElement(binaryKleisliModelRel);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE: {
+                KleisliModelEndpointReference kleisliModelEndpointReference = (KleisliModelEndpointReference)theEObject;
+                T result = caseKleisliModelEndpointReference(kleisliModelEndpointReference);
+                if (result == null) result = caseModelEndpointReference(kleisliModelEndpointReference);
+                if (result == null) result = caseExtendibleElementEndpointReference(kleisliModelEndpointReference);
+                if (result == null) result = caseExtendibleElementReference(kleisliModelEndpointReference);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            default: return defaultCase(theEObject);
+        }
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseKleisliModel(KleisliModel object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Rel</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model Rel</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Rel</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Rel</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseKleisliModelRel(KleisliModelRel object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Kleisli Model Rel</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Binary Kleisli Model Rel</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Kleisli Model Rel</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Binary Kleisli Model Rel</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseBinaryKleisliModelRel(BinaryKleisliModelRel object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseKleisliModelEndpoint(KleisliModelEndpoint object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseKleisliModelEndpointReference(KleisliModelEndpointReference object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendible Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseExtendibleElement(ExtendibleElement object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generic Element</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generic Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Generic Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseGenericElement(GenericElement object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseModel(Model object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Rel</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model Rel</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Rel</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Rel</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseModelRel(ModelRel object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseExtendibleElementEndpoint(ExtendibleElementEndpoint object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Endpoint</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseModelEndpoint(ModelEndpoint object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Binary Model Rel</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseBinaryModelRel(BinaryModelRel object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendible Element Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseExtendibleElementReference(ExtendibleElementReference object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint Reference</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Extendible Element Endpoint Reference</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendible Element Endpoint Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseExtendibleElementEndpointReference(ExtendibleElementEndpointReference object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Endpoint Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseModelEndpointReference(ModelEndpointReference object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+     * @generated
+     */
 	@Override
 	public T defaultCase(EObject object) {
-		return null;
-	}
+        return null;
+    }
 
 } //KleisliSwitch

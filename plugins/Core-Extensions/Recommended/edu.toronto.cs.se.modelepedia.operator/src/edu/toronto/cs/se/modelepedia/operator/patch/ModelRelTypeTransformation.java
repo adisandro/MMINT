@@ -276,7 +276,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		traceModelRelType.getModelEndpointRefs().get(srcIndex).getObject().createInstance(srcModel, traceModelRel);
 		traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().createInstance(tgtModel, traceModelRel);
 		transform(traceModelRel, srcModel, srcIndex, tgtIndex);
-		tgtModel.createInstanceEditor();
+		tgtModel.createInstanceEditor(true);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
