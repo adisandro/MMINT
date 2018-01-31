@@ -20,7 +20,21 @@
     <genClasses ecoreClass="mm.ecore#//TypeMegaModel"/>
     <genClasses ecoreClass="mm.ecore#//InstanceMegaModel"/>
     <genClasses ecoreClass="mm.ecore#//Model"/>
-    <genClasses ecoreClass="mm.ecore#//ModelType"/>
-    <genClasses ecoreClass="mm.ecore#//ModelInstance"/>
+    <genClasses ecoreClass="mm.ecore#//ModelType">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelType/t"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//ModelInstance">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/i"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mm.ecore#//Instance">
+      <genOperations ecoreOperation="mm.ecore#//Instance/getType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mm.ecore#//Type"/>
+    <genClasses ecoreClass="mm.ecore#//MMInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMInstance/typeId"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//MMType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/superType"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
