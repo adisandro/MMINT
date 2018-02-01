@@ -13,11 +13,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeMegaModel" eSuperTypes="#//MegaModel"/>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceMegaModel" eSuperTypes="#//MegaModel"/>
   <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//Type #//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelType" eSuperTypes="#//Model #//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="t" lowerBound="1" eType="#//MMType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelInstance" eSuperTypes="#//Instance #//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelInstance" eSuperTypes="#//Model #//Instance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="i" lowerBound="1" eType="#//MMInstance"
         containment="true"/>
   </eClassifiers>
@@ -25,11 +25,11 @@
     <eOperations name="getType" lowerBound="1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MMInstance" abstract="true" eSuperTypes="#//Instance #//MMElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MMInstance" abstract="true" eSuperTypes="#//MMElement #//Instance">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeId" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MMType" abstract="true" eSuperTypes="#//Type #//MMElement">
+  <eClassifiers xsi:type="ecore:EClass" name="MMType" abstract="true" eSuperTypes="#//MMElement #//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//Type"/>
   </eClassifiers>
 </ecore:EPackage>
