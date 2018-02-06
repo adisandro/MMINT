@@ -10,7 +10,7 @@
  *    Alessio Di Sandro - Implementation.
  *    Nick Fung - Implementation.
  */
-package edu.toronto.cs.se.nlsfung.gsn.operator;
+package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,14 +18,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -34,10 +30,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.nlsfung.gsn.ArgumentElement;
-import edu.toronto.cs.se.nlsfung.gsn.Goal;
-import edu.toronto.cs.se.nlsfung.gsn.SafetyCase;
-import edu.toronto.cs.se.nlsfung.gsn.Status;
+import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
+import edu.toronto.cs.se.modelepedia.safetycase.Status;
 
 public class GSNAnnotate extends OperatorImpl {
 	

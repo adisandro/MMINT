@@ -10,7 +10,7 @@
  *    Alessio Di Sandro - Implementation.
  *    Nick Fung - Implementation.
  */
-package edu.toronto.cs.se.nlsfung.gsn.operator;
+package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,14 +18,14 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.nlsfung.gsn.ASIL;
-import edu.toronto.cs.se.nlsfung.gsn.Context;
-import edu.toronto.cs.se.nlsfung.gsn.Goal;
-import edu.toronto.cs.se.nlsfung.gsn.InContextOf;
-import edu.toronto.cs.se.nlsfung.gsn.SafetyCase;
-import edu.toronto.cs.se.nlsfung.gsn.Solution;
-import edu.toronto.cs.se.nlsfung.gsn.Strategy;
-import edu.toronto.cs.se.nlsfung.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
+import edu.toronto.cs.se.modelepedia.safetycase.Context;
+import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
+import edu.toronto.cs.se.modelepedia.safetycase.Solution;
+import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNSliceRevise extends Slice {
 	

@@ -10,7 +10,7 @@
  *    Alessio Di Sandro - Implementation.
  *    Nick Fung - Implementation.
  */
-package edu.toronto.cs.se.nlsfung.gsn.operator;
+package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,13 +18,13 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.nlsfung.gsn.ArgumentElement;
-import edu.toronto.cs.se.nlsfung.gsn.ContextualElement;
-import edu.toronto.cs.se.nlsfung.gsn.CoreElement;
-import edu.toronto.cs.se.nlsfung.gsn.DecomposableCoreElement;
-import edu.toronto.cs.se.nlsfung.gsn.InContextOf;
-import edu.toronto.cs.se.nlsfung.gsn.SafetyCase;
-import edu.toronto.cs.se.nlsfung.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
+import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNSliceRecheck extends Slice {
 
