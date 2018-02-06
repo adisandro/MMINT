@@ -7,4 +7,18 @@
 	       name="safetycase">
     </component>
   </extension>
+  
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase"
+            id="edu.toronto.cs.se.modelepedia.safetycase.design"
+            isDiagram="true">
+         <type
+               name="SafetyCase Viewpoint"
+               uri="SafetyCaseRepresentation">
+         </type>
+      </editorType>
+   </extension>
+   
 </plugin>
