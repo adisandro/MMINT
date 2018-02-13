@@ -150,4 +150,48 @@
          </outputs>
       </operatorType>
    </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Sum"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_Sum"
+               class="edu.toronto.cs.se.modelepedia.operator.merge.Sum">
+         </type>
+         <constraint
+               implementation="edu.toronto.cs.se.modelepedia.operator.merge.Sum$OperatorConstraint"
+               language="JAVA">
+         </constraint>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="int1">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="int2">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="sum">
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/Int">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>
