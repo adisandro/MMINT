@@ -12,7 +12,6 @@
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl;
 
 import edu.toronto.cs.se.mavo.impl.MAVORootImpl;
-
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message;

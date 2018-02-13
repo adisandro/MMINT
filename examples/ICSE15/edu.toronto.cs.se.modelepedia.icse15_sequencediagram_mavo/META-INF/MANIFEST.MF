@@ -11,8 +11,8 @@ Export-Package: edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo,
  edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.impl,
  edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- edu.toronto.cs.se.mavo;visibility:=reexport,
+ org.eclipse.emf.ecore,
+ edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.mavo
 Bundle-ActivationPolicy: lazy

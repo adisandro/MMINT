@@ -43,4 +43,18 @@
       </editor>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ICSE15_SequenceDiagram_MAVO"
+            id="edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.presentation.ICSE15_SequenceDiagram_MAVOEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.presentation.ICSE15_SequenceDiagram_MAVOModelWizardID">
+         <type
+               name="ICSE15_SequenceDiagram_MAVO tree"
+               uri="http://se.cs.toronto.edu/modelepedia/Tree_ICSE15_SequenceDiagram_MAVO">
+         </type>
+      </editorType>
+   </extension>
+
 </plugin>

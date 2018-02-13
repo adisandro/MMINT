@@ -13,11 +13,11 @@ package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.util;
 
 import edu.toronto.cs.se.mavo.LogicElement;
 import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVOReference;
 import edu.toronto.cs.se.mavo.MAVORoot;
-
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
+import edu.toronto.cs.se.mavo.MAVOReference;
+
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ICSE15_SequenceDiagram_MAVOPackage;
 import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
