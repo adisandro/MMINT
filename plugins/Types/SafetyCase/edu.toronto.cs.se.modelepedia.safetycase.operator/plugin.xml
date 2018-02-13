@@ -62,5 +62,44 @@
             </parameter></outputs>
       </operatorType>
    </extension>
+   
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               class="edu.toronto.cs.se.modelepedia.safetycase.operator.GSNAnnotate"
+               name="GSNAnnotate"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_GsnAnnotate">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="revise">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/MIDRel">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="recheck">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/MIDRel">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="annotate">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
 
 </plugin>
