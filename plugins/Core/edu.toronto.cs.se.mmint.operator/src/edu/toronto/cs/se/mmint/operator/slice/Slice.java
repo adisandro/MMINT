@@ -18,6 +18,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
@@ -38,8 +41,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-// The slice operator performs a slice on a model instance given the input 
-// slicing criteria, which is a unary model relation containing the model 
+// The slice operator performs a slice on a model instance given the input
+// slicing criteria, which is a unary model relation containing the model
 // elements to slice.
 public class Slice extends OperatorImpl {
 
@@ -83,8 +86,13 @@ public class Slice extends OperatorImpl {
 		public Input(Map<String, Model> inputsByName) {
 
 			this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			this.model = critRel.getModelEndpoints().get(0).getTarget();
+			this.model = this.critRel.getModelEndpoints().get(0).getTarget();
 		}
+	}
+
+	protected Predicate<EObject> notIn(Set<EObject> alreadyImpacted) {
+
+		return modelObj -> !alreadyImpacted.contains(modelObj);
 	}
 
 	// Returns the complete set of model elements that may be impacted
@@ -94,13 +102,13 @@ public class Slice extends OperatorImpl {
 
 		Set<EObject> impacted = new HashSet<>(criterion);
 		Set<EObject> impactedCur = new HashSet<>(criterion);
-		
-		// Iterate through the current set of newly added model elements 
-		// to identify all others that may be potentially impacted. 
+
+		// Iterate through the current set of newly added model elements
+		// to identify all others that may be potentially impacted.
 		while (!impactedCur.isEmpty()) {
 			Set<EObject> impactedNext = new HashSet<>();
 			for (EObject elem : impactedCur) {
-				// Get all model elements directly impacted by the current 
+				// Get all model elements directly impacted by the current
 				// one without adding duplicates.
 				impactedNext.addAll(getDirectlyImpactedElements(elem, impacted));
 			}
@@ -108,26 +116,20 @@ public class Slice extends OperatorImpl {
 			impacted.addAll(impactedNext);
 			impactedCur = impactedNext;
 		}
-		
+
 		return impacted;
 	}
-	
+
 	// Returns the set of model elements that may be directly impacted
 	// by the input model element.
 	// By default, the contained elements are assumed to be impacted.
 	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
 
-		Set<EObject> impacted = new HashSet<>();
-	    for (EObject reachableElem : elem.eContents()) {
-	        if (alreadyImpacted.contains(reachableElem)) {
-	            continue;
-	        }
-            impacted.add(reachableElem);
-	    }
-
-		return impacted;
+		return elem.eContents().stream()
+		    .filter(notIn(alreadyImpacted))
+		    .collect(Collectors.toSet());
 	}
-	
+
 	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 
 	    ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
