@@ -32,26 +32,22 @@ public class GSNSliceRevise extends Slice {
 	@Override
 	// Get all model elements in a safety case that needs to be re-checked 
 	// given the input set of elements that needs to be revised.
-	public Set<EObject> getAllImpactedElements(Set<EObject> elemSet) {
-		Set<EObject> impactedAll = new HashSet<>();
+	public Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
+		Set<EObject> impacted = new HashSet<>(criterion);
 		
 		// Iterate through the input set of revised elements to identify 
 		// all model elements that require re-checking.
-		for (EObject elem : elemSet) {
-			impactedAll.add(elem);
-			impactedAll.addAll(getDirectlyImpactedElements(elem));
+		for (EObject elem : criterion) {
+			impacted.addAll(getDirectlyImpactedElements(elem, criterion));
 		}
 		
-		return impactedAll;
+		return impacted;
 	}
 	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem) {
+	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
-
-		// The input element itself is always impacted.
-		impacted.add(elem);
 		
 		// If input is a safety case, then the following are also impacted:
 		// 1) Its goals, strategies, solutions, ASILs and contexts.
@@ -110,9 +106,8 @@ public class GSNSliceRevise extends Slice {
 			impacted.add(rel.getContextOf());
 		}
 		
-		// Remove possible null element from impacted set.
-		impacted.remove(null);
-		
+		// TO-DO: Check for cases where null may be added to the impacted set.
+	
 		return impacted;
 	}
 }

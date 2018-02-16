@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
@@ -27,45 +26,10 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 
 public class CDSlice extends Slice {
 
-	@Override
-	// Get all model elements that are potentially impacted by the input set.
-	public Set<EObject> getAllImpactedElements(Set<EObject> elemSet) {
-		Set<EObject> impactedAll = new HashSet<>();
-		Set<EObject> impactedCur = new HashSet<>();
-		Set<EObject> impactedNext = new HashSet<>();
-		
-		// Iterate through the current set of newly added model elements 
-		// to identify all others that may be potentially impacted. 
-		impactedAll.addAll(elemSet);
-		impactedCur.addAll(elemSet);
-		while (!impactedCur.isEmpty()) {
-			for (EObject elem : impactedCur) {
-				// Get all model elements directly impacted by the current 
-				// one in consideration and remove duplicates.
-				for (EObject newElem : getDirectlyImpactedElements(elem)) {
-					if (!impactedAll.contains(newElem)) {
-						impactedAll.add(newElem);
-						impactedNext.add(newElem);
-					}
-				}
-			}
-			
-			// Prepare for next iteration.
-			impactedCur.clear();
-			impactedCur.addAll(impactedNext);
-			impactedNext.clear();
-		}
-		
-		return impactedAll;
-	}
-	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem) {
+	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
-
-		// The input element itself is always impacted.
-		impacted.add(elem);
 
 		// If input is a class diagram, then the following are also impacted:
 		// 1) Owned classes, associations and dependencies.
@@ -141,9 +105,6 @@ public class CDSlice extends Slice {
 			Dependency d = (Dependency) elem;
 			impacted.add(d.getDepender());
 		}
-
-		// Remove possible null element from impacted set.
-		impacted.remove(null);
 		
 		return impacted;
 	}

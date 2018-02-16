@@ -28,46 +28,10 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNSliceRecheck extends Slice {
 
-	@Override
-	// Get all model elements that are potentially impacted by the input set
-	// (and therefore needs to be rechecked).
-	public Set<EObject> getAllImpactedElements(Set<EObject> elemSet) {
-		Set<EObject> impactedAll = new HashSet<>();
-		Set<EObject> impactedCur = new HashSet<>();
-		Set<EObject> impactedNext = new HashSet<>();
-		
-		// Iterate through the current set of newly added model elements 
-		// to identify all others that may be potentially impacted. 
-		impactedAll.addAll(elemSet);
-		impactedCur.addAll(elemSet);
-		while (!impactedCur.isEmpty()) {
-			for (EObject elem : impactedCur) {
-				// Get all model elements directly impacted by the current 
-				// one in consideration and remove duplicates.
-				for (EObject newElem : getDirectlyImpactedElements(elem)) {
-					if (!impactedAll.contains(newElem)) {
-						impactedAll.add(newElem);
-						impactedNext.add(newElem);
-					}
-				}
-			}
-			
-			// Prepare for next iteration.
-			impactedCur.clear();
-			impactedCur.addAll(impactedNext);
-			impactedNext.clear();
-		}
-		
-		return impactedAll;
-	}
-	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem) {
+	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
-
-		// The input element itself is always impacted.
-		impacted.add(elem);
 
 		// If input is a safety case, then the following are also impacted:
 		// 1) Owned goals, strategies, solutions, contexts and ASILs.
@@ -104,9 +68,6 @@ public class GSNSliceRecheck extends Slice {
 			impacted.add(rel.getContextOf());
 			impacted.addAll(getDescendants(rel.getContextOf()));
 		}
-
-		// Remove possible null element from impacted set.
-		impacted.remove(null);
 		
 		return impacted;
 	}	
