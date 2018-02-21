@@ -18,7 +18,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -38,6 +41,9 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
+// The slice operator performs a slice on a model instance given the input
+// slicing criteria, which is a unary model relation containing the model
+// elements to slice.
 public class Slice extends OperatorImpl {
 
 	// input-output
@@ -80,62 +86,74 @@ public class Slice extends OperatorImpl {
 		public Input(Map<String, Model> inputsByName) {
 
 			this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			this.model = critRel.getModelEndpoints().get(0).getTarget();
+			this.model = this.critRel.getModelEndpoints().get(0).getTarget();
 		}
 	}
 
-	// Returns the complete list of model elements that may be impacted
-	// by the model elements included in the original slicing criterion.
-	public Set<EObject> getImpactedElements(ModelRel criterion) throws MMINTException {
+	protected Predicate<EObject> notIn(Set<EObject> alreadyImpacted) {
 
-		Set<EObject> impacted = new HashSet<>();
-		ModelEndpointReference modelEndpointRef = criterion.getModelEndpointRefs().get(0);
-		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
-		ResourceSet rs = new ResourceSetImpl();
-		Resource r = rs.getResource(rUri, true);
+		return modelObj -> !alreadyImpacted.contains(modelObj);
+	}
 
-		EObject elem;
-		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
-			elem = mer.getObject().getEMFInstanceObject(r);
-			if (impacted.contains(elem)) {
-				continue;
+	// Returns the complete set of model elements that may be impacted
+	// by the input set of model elements.
+	// By default, only the input elements are assumed to be impacted.
+	public Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
+
+		Set<EObject> impacted = new HashSet<>(criterion);
+		Set<EObject> impactedCur = new HashSet<>(criterion);
+
+		// Iterate through the current set of newly added model elements
+		// to identify all others that may be potentially impacted.
+		while (!impactedCur.isEmpty()) {
+			Set<EObject> impactedNext = new HashSet<>();
+			for (EObject elem : impactedCur) {
+				// Get all model elements directly impacted by the current
+				// one without adding duplicates.
+				impactedNext.addAll(getDirectlyImpactedElements(elem, impacted));
 			}
-			impacted.add(elem);
-			// Get all model elements impacted by the element.
-			this.addImpactedModelElems(elem, impacted);
+			// Prepare for next iteration.
+			impacted.addAll(impactedNext);
+			impactedCur = impactedNext;
 		}
 
 		return impacted;
 	}
 
-    // Adds impacted model elements reachable from a single model element
-    // By default, all contained and connected model elements are assumed to be impacted
-	public void addImpactedModelElems(EObject elem, Set<EObject> impacted) {
+	// Returns the set of model elements that may be directly impacted
+	// by the input model element.
+	// By default, the contained elements are assumed to be impacted.
+	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
 
-	    for (EObject reachableElem : elem.eContents()) {
-	        if (impacted.contains(reachableElem)) {
-	            continue;
-	        }
-            impacted.add(reachableElem);
-            this.addImpactedModelElems(reachableElem, impacted);
-	    }
-        for (EObject reachableElem : elem.eCrossReferences()) {
-            if (impacted.contains(reachableElem)) {
-                continue;
-            }
-            impacted.add(reachableElem);
-            this.addImpactedModelElems(reachableElem, impacted);
-        }
+		return elem.eContents().stream()
+		    .filter(notIn(alreadyImpacted))
+		    .collect(Collectors.toSet());
 	}
 
 	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 
 	    ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
-		// Iterate through the criteria to identify all dependent elements that are also impacted.
-		Set<EObject> changed = this.getImpactedElements(critRel);
+		// Retrieve resource corresponding to the model instance.
+		ModelEndpointReference modelEndpointRef = critRel.getModelEndpointRefs().get(0);
+		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
+		ResourceSet rs = new ResourceSetImpl();
+		Resource r = rs.getResource(rUri, true);
 
-		for (EObject element : changed){
+		// Extract the unique model elements in the input criteria.
+		Set<EObject> criterion = new HashSet<>();
+		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
+			try {
+				criterion.add(mer.getObject().getEMFInstanceObject(r));
+			}
+			catch (MMINTException e) {
+				MMINTException.print(IStatus.WARNING, "Skipping criterion element " + mer.getObject().getName(), e);
+			}
+		}
+
+		// Add impacted elements to the output model relation.
+		Set<EObject> impacted = getAllImpactedElements(criterion);
+		for (EObject element : impacted) {
 			sliceRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(element, null);
 		}
 
