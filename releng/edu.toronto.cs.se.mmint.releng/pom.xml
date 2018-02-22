@@ -178,6 +178,11 @@
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.edit</module>
   	<module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.editor</module>
+    <module>../../plugins/Types/SafetyCase/edu.toronto.cs.se.modelepedia.safetycase</module>
+    <module>../../plugins/Types/SafetyCase/edu.toronto.cs.se.modelepedia.safetycase.design</module>
+    <module>../../plugins/Types/SafetyCase/edu.toronto.cs.se.modelepedia.safetycase.edit</module>
+    <module>../../plugins/Types/SafetyCase/edu.toronto.cs.se.modelepedia.safetycase.editor</module>
+    <module>../../plugins/Types/SafetyCase/edu.toronto.cs.se.modelepedia.safetycase.operator</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.design</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.edit</module>
@@ -223,6 +228,7 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.safetycase.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sequencediagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.tutorial.feature</module>
