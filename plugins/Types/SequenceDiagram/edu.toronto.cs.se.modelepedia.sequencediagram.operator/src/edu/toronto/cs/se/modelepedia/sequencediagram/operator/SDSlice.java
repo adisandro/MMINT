@@ -34,13 +34,13 @@ public class SDSlice extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
 
 		// If input is a sequence diagram, then the following are impacted:
 		// 1) Owned classes, lifelines and messages.
-		if (elem instanceof SequenceDiagram) {
-			SequenceDiagram d = (SequenceDiagram) elem;
+		if (modelObj instanceof SequenceDiagram) {
+			SequenceDiagram d = (SequenceDiagram) modelObj;
 			impacted.addAll(d.getClasses());
 			impacted.addAll(d.getLifelines());
 			impacted.addAll(d.getMessages());
@@ -48,8 +48,8 @@ public class SDSlice extends Slice {
 		// If input is a class, then the following are impacted:
 		// 1) Owned attributes and operations.
 		// 2) References to the input.
-		} else if (elem instanceof Class) {
-			Class c = (Class) elem;
+		} else if (modelObj instanceof Class) {
+			Class c = (Class) modelObj;
 			impacted.addAll(c.getOperations());
 			impacted.addAll(c.getAttributes());
 			impacted.addAll(c.getLifelines());
@@ -58,8 +58,8 @@ public class SDSlice extends Slice {
 		// 1) Owned class references.
 		// 2) References to the input.
 		// 3) Owned activation boxes.
-		} else if (elem instanceof Lifeline) {
-			Lifeline l = (Lifeline) elem;
+		} else if (modelObj instanceof Lifeline) {
+			Lifeline l = (Lifeline) modelObj;
 			impacted.addAll(l.getClass_());
 			impacted.addAll(l.getMessagesAsSource());
 			impacted.addAll(l.getMessagesAsTarget());
@@ -67,50 +67,50 @@ public class SDSlice extends Slice {
 		// If input is a message, then the following are impacted:
 		// 1) Its target and source lifeline references.
 		// 2) Its operation and attribute references.
-		} else if (elem instanceof Message) {
-			Message m = (Message) elem;
+		} else if (modelObj instanceof Message) {
+			Message m = (Message) modelObj;
 			impacted.addAll(m.getSourceLifeline());
 			impacted.addAll(m.getTargetLifeline());
 			impacted.addAll(m.getOperation());
 			impacted.addAll(m.getAttributes());
 
 		// If input is an attribute, then its references are impacted.
-		} else if (elem instanceof Attribute) {
-			Attribute a = (Attribute) elem;
+		} else if (modelObj instanceof Attribute) {
+			Attribute a = (Attribute) modelObj;
 			impacted.addAll(a.getMessages());
 
 		// If input is an operation, then its references are impacted.
-		} else if (elem instanceof Operation) {
-			Operation o = (Operation) elem;
+		} else if (modelObj instanceof Operation) {
+			Operation o = (Operation) modelObj;
 			impacted.addAll(o.getMessages());
-		
+
 		// If input is a class reference, then its lifeline is impacted.
-		} else if (elem instanceof ClassReference) {
-			ClassReference r = (ClassReference) elem;
+		} else if (modelObj instanceof ClassReference) {
+			ClassReference r = (ClassReference) modelObj;
 			impacted.add(r.getSource());
 
 		// If input is a source lifeline reference, then its message is impacted.
-		} else if (elem instanceof SourceLifelineReference) {
-			SourceLifelineReference r = (SourceLifelineReference) elem;
+		} else if (modelObj instanceof SourceLifelineReference) {
+			SourceLifelineReference r = (SourceLifelineReference) modelObj;
 			impacted.add(r.getSource());
 
 		// If input is a target lifeline reference, then its message is impacted.
-		} else if (elem instanceof TargetLifelineReference) {
-			TargetLifelineReference r = (TargetLifelineReference) elem;
+		} else if (modelObj instanceof TargetLifelineReference) {
+			TargetLifelineReference r = (TargetLifelineReference) modelObj;
 			impacted.add(r.getSource());
 
 		// If input is an attribute reference, then its message is impacted.
-		} else if (elem instanceof AttributeReference) {
-			AttributeReference r = (AttributeReference) elem;
+		} else if (modelObj instanceof AttributeReference) {
+			AttributeReference r = (AttributeReference) modelObj;
 			impacted.add(r.getSource());
 
 		// If input is an operation reference, then its message is impacted.
-		} else if (elem instanceof OperationReference) {
-			OperationReference r = (OperationReference) elem;
+		} else if (modelObj instanceof OperationReference) {
+			OperationReference r = (OperationReference) modelObj;
 			impacted.add(r.getSource());
 		}
-		
+
 		return impacted;
-	}	
+	}
 }
 

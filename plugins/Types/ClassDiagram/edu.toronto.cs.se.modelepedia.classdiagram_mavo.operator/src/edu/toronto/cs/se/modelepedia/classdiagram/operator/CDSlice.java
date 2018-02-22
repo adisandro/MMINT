@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
@@ -28,13 +29,13 @@ public class CDSlice extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
 
 		// If input is a class diagram, then the following are also impacted:
 		// 1) Owned classes, associations and dependencies.
-		if (elem instanceof ClassDiagram) {
-			ClassDiagram cd = (ClassDiagram) elem;
+		if (modelObj instanceof ClassDiagram) {
+			ClassDiagram cd = (ClassDiagram) modelObj;
 			impacted.addAll(cd.getClasses());
 			impacted.addAll(cd.getAssociations());
 			impacted.addAll(cd.getDependencies());
@@ -46,8 +47,8 @@ public class CDSlice extends Slice {
 		// 3) Attributes and operations whose type is the input.
 		// 4) Classes directly nested in or extending from the input.
 		// 5) The class that the input is nested in (if any).
-		if (elem instanceof Class) {
-			Class c = (Class) elem;
+		if (modelObj instanceof Class) {
+			Class c = (Class) modelObj;
 			impacted.addAll(c.getOwnedAttributes());
 			impacted.addAll(c.getOwnedOperations());
 			impacted.addAll(c.getAssociationsAsSource());
@@ -57,7 +58,7 @@ public class CDSlice extends Slice {
 			impacted.addAll(c.getNested());
 			impacted.addAll(c.getSubclasses());
 			impacted.add(c.getNestedIn());
-			
+
 			// Get all attributes and operations from the class diagram
 			// for checking their type.
 			ClassDiagram cd = (ClassDiagram) c.eContainer();
@@ -83,29 +84,29 @@ public class CDSlice extends Slice {
 		}
 
 		// If input is an attribute, then its class is also impacted.
-		else if (elem instanceof Attribute) {
-			Attribute a = (Attribute) elem;
+		else if (modelObj instanceof Attribute) {
+			Attribute a = (Attribute) modelObj;
 			impacted.add(a.getOwner());
 		}
 
 		// If input is an operation, then its class is also impacted.
-		else if (elem instanceof Operation) {
-			Operation o = (Operation) elem;
+		else if (modelObj instanceof Operation) {
+			Operation o = (Operation) modelObj;
 			impacted.add(o.getOwner());
 		}
 
 		// If input is an association, then its source class is also impacted.
-		else if (elem instanceof Association) {
-			Association a = (Association) elem;
+		else if (modelObj instanceof Association) {
+			Association a = (Association) modelObj;
 			impacted.add(a.getSource());
 		}
 
 		// If input is a dependency, then its depender class is also impacted.
-		else if (elem instanceof Dependency) {
-			Dependency d = (Dependency) elem;
+		else if (modelObj instanceof Dependency) {
+			Dependency d = (Dependency) modelObj;
 			impacted.add(d.getDepender());
 		}
-		
+
 		return impacted;
 	}
 }

@@ -28,86 +28,86 @@ import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNSliceRevise extends Slice {
-	
-	@Override
-	// Get all model elements in a safety case that needs to be re-checked 
+
+	// Get all model elements in a safety case that needs to be re-checked
 	// given the input set of elements that needs to be revised.
-	public Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
+    @Override
+	protected Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
 		Set<EObject> impacted = new HashSet<>(criterion);
-		
-		// Iterate through the input set of revised elements to identify 
+
+		// Iterate through the input set of revised elements to identify
 		// all model elements that require re-checking.
 		for (EObject elem : criterion) {
 			impacted.addAll(getDirectlyImpactedElements(elem, criterion));
 		}
-		
+
 		return impacted;
 	}
-	
+
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
-		
+
 		// If input is a safety case, then the following are also impacted:
 		// 1) Its goals, strategies, solutions, ASILs and contexts.
-		if (elem instanceof SafetyCase) {
-			SafetyCase sc = (SafetyCase) elem;
+		if (modelObj instanceof SafetyCase) {
+			SafetyCase sc = (SafetyCase) modelObj;
 			impacted.addAll(sc.getGoals());
 			impacted.addAll(sc.getStrategies());
 			impacted.addAll(sc.getSolutions());
 			impacted.addAll(sc.getContexts());
 			impacted.addAll(sc.getASILLevels());
-			
+
 		// If input is a goal, then the following are also impacted:
 		// 1) All SupportedBy relations connected to it.
-		} else if (elem instanceof Goal) {
-			Goal g = (Goal) elem;
+		} else if (modelObj instanceof Goal) {
+			Goal g = (Goal) modelObj;
 			impacted.addAll(g.getSupportedBy());
 			impacted.addAll(g.getSupports());
-		
+
 		// If input is a strategy, then the following are also impacted:
 		// 1) All SupportedBy relations connected to it.
-		} else if (elem instanceof Strategy) {
-			Strategy s = (Strategy) elem;
+		} else if (modelObj instanceof Strategy) {
+			Strategy s = (Strategy) modelObj;
 			impacted.addAll(s.getSupportedBy());
 			impacted.addAll(s.getSupports());
-			
+
 		// If input is a solution, then the following are also impacted:
 		// 1) All SupportedBy relations connected to it.
-		} else if (elem instanceof Solution) {
-			Solution s = (Solution) elem;
+		} else if (modelObj instanceof Solution) {
+			Solution s = (Solution) modelObj;
 			impacted.addAll(s.getSupports());
-			
+
 		// If input is a context, then the following are also impacted:
-		// 1) All InContextOf relations connected to it. 
-		} else if (elem instanceof Context) {
-			Context c = (Context) elem;
+		// 1) All InContextOf relations connected to it.
+		} else if (modelObj instanceof Context) {
+			Context c = (Context) modelObj;
 			impacted.addAll(c.getContextOf());
 
 		// If input is an ASIL, then the following are also impacted:
-		// 1) All InContextOf relations connected to it. 
-		} else if (elem instanceof ASIL) {
-			ASIL a = (ASIL) elem;
+		// 1) All InContextOf relations connected to it.
+		} else if (modelObj instanceof ASIL) {
+			ASIL a = (ASIL) modelObj;
 			impacted.addAll(a.getContextOf());
-			
-		// If input is a SupportedBy relation, then its source and 
+
+		// If input is a SupportedBy relation, then its source and
 		// target model element is potentially impacted.
-		} else if (elem instanceof SupportedBy) {
-			SupportedBy rel = (SupportedBy) elem;
+		} else if (modelObj instanceof SupportedBy) {
+			SupportedBy rel = (SupportedBy) modelObj;
 			impacted.add(rel.getConclusion());
 			impacted.add(rel.getPremise());
-			
+
 		// If input is a InContextOf relation, then its source and
 		// target model element is potentially impacted.
-		} else if (elem instanceof InContextOf) {
-			InContextOf rel = (InContextOf) elem;
+		} else if (modelObj instanceof InContextOf) {
+			InContextOf rel = (InContextOf) modelObj;
 			impacted.add(rel.getContext());
 			impacted.add(rel.getContextOf());
 		}
-		
+
 		// TO-DO: Check for cases where null may be added to the impacted set.
-	
+
 		return impacted;
 	}
 }

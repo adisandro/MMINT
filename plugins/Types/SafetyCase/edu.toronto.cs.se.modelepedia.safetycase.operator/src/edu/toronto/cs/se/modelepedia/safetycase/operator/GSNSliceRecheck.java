@@ -30,55 +30,55 @@ public class GSNSliceRecheck extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 		Set<EObject> impacted = new HashSet<>();
 
 		// If input is a safety case, then the following are also impacted:
 		// 1) Owned goals, strategies, solutions, contexts and ASILs.
-		if (elem instanceof SafetyCase) {
-			SafetyCase sc = (SafetyCase) elem;
+		if (modelObj instanceof SafetyCase) {
+			SafetyCase sc = (SafetyCase) modelObj;
 			impacted.addAll(sc.getGoals());
 			impacted.addAll(sc.getStrategies());
 			impacted.addAll(sc.getSolutions());
 			impacted.addAll(sc.getContexts());
 			impacted.addAll(sc.getASILLevels());
-			
-		// If input is a core element (i.e. goal, strategy or solution), then the 
+
+		// If input is a core element (i.e. goal, strategy or solution), then the
 		// SupportedBy relations that it supports are also impacted.
-		} else if (elem instanceof CoreElement) {
-			CoreElement c = (CoreElement) elem;
+		} else if (modelObj instanceof CoreElement) {
+			CoreElement c = (CoreElement) modelObj;
 			impacted.addAll(c.getSupports());
-			
+
 		// If input is a contextual element, then its InContextOf relations
 		// are also impacted.
-		} else if (elem instanceof ContextualElement) {
-			ContextualElement c = (ContextualElement) elem;
+		} else if (modelObj instanceof ContextualElement) {
+			ContextualElement c = (ContextualElement) modelObj;
 			impacted.addAll(c.getContextOf());
-		
-		// If input is a SupportedBy relation, then its conclusion is impacted.	
-		} else if (elem instanceof SupportedBy) {
-			SupportedBy rel = (SupportedBy) elem;
+
+		// If input is a SupportedBy relation, then its conclusion is impacted.
+		} else if (modelObj instanceof SupportedBy) {
+			SupportedBy rel = (SupportedBy) modelObj;
 			impacted.add(rel.getConclusion());
-			
+
 		// If input is a InContextOf relation, then the following are also impacted:
 		// 1) The decomposable core element with this context.
 		// 2) All contextual elements and core elements that inherit this context.
-		} else if (elem instanceof InContextOf) {
-			InContextOf rel = (InContextOf) elem;
+		} else if (modelObj instanceof InContextOf) {
+			InContextOf rel = (InContextOf) modelObj;
 			impacted.add(rel.getContextOf());
 			impacted.addAll(getDescendants(rel.getContextOf()));
 		}
-		
+
 		return impacted;
-	}	
-	
+	}
+
 	// Returns all the descendants of the input decomposable core element
 	// (including contextual elements).
 	public Set<ArgumentElement> getDescendants(DecomposableCoreElement elem) {
 		Set<ArgumentElement> descendantsAll = new HashSet<>();
 		Set<ArgumentElement> descendantsCur = new HashSet<>();
 		Set<ArgumentElement> descendantsNext = new HashSet<>();
-		
+
 		// Iterate through the current set of newly added descendants
 		// to identify the next generation of descendants.
 		descendantsAll.add(elem);
@@ -92,7 +92,7 @@ public class GSNSliceRecheck extends Slice {
 							descendantsNext.add(rel.getPremise());
 						}
 					}
-					
+
 					if (d.getInContextOf() != null) {
 						for (InContextOf rel: d.getInContextOf()) {
 							descendantsNext.add(rel.getContext());
@@ -100,7 +100,7 @@ public class GSNSliceRecheck extends Slice {
 					}
 				}
 			}
-			
+
 			descendantsCur.clear();
 			for (ArgumentElement newElem : descendantsNext) {
 				if (!descendantsAll.contains(newElem)) {
@@ -108,10 +108,10 @@ public class GSNSliceRecheck extends Slice {
 					descendantsCur.add(newElem);
 				}
 			}
-			
+
 			descendantsNext.clear();
 		}
-		
+
 		return descendantsAll;
 	}
 

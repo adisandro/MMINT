@@ -46,136 +46,143 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 // elements to slice.
 public class Slice extends OperatorImpl {
 
-	// input-output
-	protected final static @NonNull String IN_MODELREL = "criterion";
-	protected final static @NonNull String OUT_MODELREL = "slice";
+    // input-output
+    protected final static @NonNull String IN_MODELREL = "criterion";
+    protected final static @NonNull String OUT_MODELREL = "slice";
 
-	public static class OperatorConstraint implements IJavaOperatorConstraint {
+    public static class OperatorConstraint implements IJavaOperatorConstraint {
 
-		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+        @Override
+        public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			ModelRel critRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			if (critRel.getModelEndpoints().size() > 1) {
-				return false;
-			}
+            ModelRel critRel = (ModelRel) inputsByName.get(IN_MODELREL);
+            if (critRel.getModelEndpoints().size() > 1) {
+                return false;
+            }
 
-			return true;
-		}
+            return true;
+        }
 
-		@Override
-		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+        @Override
+        public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
-			Input input = new Input(inputsByName);
-			ModelRel sliceRel = (ModelRel) outputsByName.get(OUT_MODELREL);
-			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
-			List<Model> endpointModels = new ArrayList<>();
-			endpointModels.add(input.model);
-			validOutputs.put(sliceRel, endpointModels);
+            Input input = new Input(inputsByName);
+            ModelRel sliceRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+            List<Model> endpointModels = new ArrayList<>();
+            endpointModels.add(input.model);
+            validOutputs.put(sliceRel, endpointModels);
 
-			return validOutputs;
-		}
+            return validOutputs;
+        }
 
-	}
+    }
 
-	private static class Input {
+    private static class Input {
 
-		private ModelRel critRel;
-		private Model model;
+        private ModelRel critRel;
+        private Model model;
 
-		public Input(Map<String, Model> inputsByName) {
+        public Input(Map<String, Model> inputsByName) {
 
-			this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
-			this.model = this.critRel.getModelEndpoints().get(0).getTarget();
-		}
-	}
+            this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
+            this.model = this.critRel.getModelEndpoints().get(0).getTarget();
+        }
+    }
 
-	protected Predicate<EObject> notIn(Set<EObject> alreadyImpacted) {
+    protected Predicate<EObject> notIn(Set<EObject> alreadyImpacted) {
 
-		return modelObj -> !alreadyImpacted.contains(modelObj);
-	}
+        return modelObj -> !alreadyImpacted.contains(modelObj);
+    }
 
-	// Returns the complete set of model elements that may be impacted
-	// by the input set of model elements.
-	// By default, only the input elements are assumed to be impacted.
-	public Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
+    // Returns the set of model elements that may be directly impacted
+    // by the input model element.
+    // By default, the contained elements are assumed to be impacted.
+    protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
-		Set<EObject> impacted = new HashSet<>(criterion);
-		Set<EObject> impactedCur = new HashSet<>(criterion);
+        return modelObj.eContents().stream()
+            .filter(notIn(alreadyImpacted))
+            .collect(Collectors.toSet());
+    }
 
-		// Iterate through the current set of newly added model elements
-		// to identify all others that may be potentially impacted.
-		while (!impactedCur.isEmpty()) {
-			Set<EObject> impactedNext = new HashSet<>();
-			for (EObject elem : impactedCur) {
-				// Get all model elements directly impacted by the current
-				// one without adding duplicates.
-				impactedNext.addAll(getDirectlyImpactedElements(elem, impacted));
-			}
-			// Prepare for next iteration.
-			impacted.addAll(impactedNext);
-			impactedCur = impactedNext;
-		}
+    // Returns the complete set of model elements that may be impacted
+    // by the input set of model elements.
+    protected Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
 
-		return impacted;
-	}
+        Set<EObject> impacted = new HashSet<>(criterion);
+        Set<EObject> impactedCur = new HashSet<>(criterion);
 
-	// Returns the set of model elements that may be directly impacted
-	// by the input model element.
-	// By default, the contained elements are assumed to be impacted.
-	public Set<EObject> getDirectlyImpactedElements(EObject elem, Set<EObject> alreadyImpacted) {
+        // Iterate through the current set of newly added model elements
+        // to identify all others that may be potentially impacted.
+        while (!impactedCur.isEmpty()) {
+            Set<EObject> impactedNext = new HashSet<>();
+            for (EObject modelObj : impactedCur) {
+                // Get all model elements directly impacted by the current
+                // one without adding duplicates.
+                impactedNext.addAll(getDirectlyImpactedElements(modelObj, impacted));
+            }
+            // Prepare for next iteration.
+            impacted.addAll(impactedNext);
+            impactedCur = impactedNext;
+        }
 
-		return elem.eContents().stream()
-		    .filter(notIn(alreadyImpacted))
-		    .collect(Collectors.toSet());
-	}
+        return impacted;
+    }
 
-	protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
+    protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
 
-	    ModelRel sliceRel = critRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
+        ModelRel sliceRel = critRel.getMetatype()
+            .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
 
-		// Retrieve resource corresponding to the model instance.
-		ModelEndpointReference modelEndpointRef = critRel.getModelEndpointRefs().get(0);
-		URI rUri = FileUtils.createEMFUri(modelEndpointRef.getTargetUri(), true);
-		ResourceSet rs = new ResourceSetImpl();
-		Resource r = rs.getResource(rUri, true);
+        // Retrieve resource corresponding to the model instance.
+        ModelEndpointReference critModelEndpointRef = critRel.getModelEndpointRefs().get(0);
+        URI rUri = FileUtils.createEMFUri(critModelEndpointRef.getTargetUri(), true);
+        ResourceSet rs = new ResourceSetImpl();
+        Resource r = rs.getResource(rUri, true);
 
-		// Extract the unique model elements in the input criteria.
-		Set<EObject> criterion = new HashSet<>();
-		for (ModelElementReference mer : modelEndpointRef.getModelElemRefs()) {
-			try {
-				criterion.add(mer.getObject().getEMFInstanceObject(r));
-			}
-			catch (MMINTException e) {
-				MMINTException.print(IStatus.WARNING, "Skipping criterion element " + mer.getObject().getName(), e);
-			}
-		}
+        // Extract the model elements in the input criterion.
+        Set<EObject> criterion = new HashSet<>();
+        for (ModelElementReference mer : critModelEndpointRef.getModelElemRefs()) {
+            try {
+                criterion.add(mer.getObject().getEMFInstanceObject(r));
+            }
+            catch (MMINTException e) {
+                MMINTException.print(IStatus.WARNING,
+                                     "Skipping criterion model element " + mer.getObject().getName(), e);
+            }
+        }
 
-		// Add impacted elements to the output model relation.
-		Set<EObject> impacted = getAllImpactedElements(criterion);
-		for (EObject element : impacted) {
-			sliceRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(element, null);
-		}
+        // Add impacted elements to the output model relation.
+        Set<EObject> impacted = getAllImpactedElements(criterion);
+        ModelEndpointReference sliceModelEndpointRef = sliceRel.getModelEndpointRefs().get(0);
+        for (EObject modelObj : impacted) {
+            try {
+                sliceModelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
+            }
+            catch (MMINTException e) {
+                MMINTException.print(IStatus.WARNING, "Skipping slice model element " + modelObj, e);
+            }
+        }
 
-		return sliceRel;
-	}
+        return sliceRel;
+    }
 
-	@Override
-	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MID> outputMIDsByName) throws Exception {
+    @Override
+    public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+            Map<String, MID> outputMIDsByName) throws Exception {
 
-		// input
-		Input input = new Input(inputsByName);
-		MID outputMID = outputMIDsByName.get(OUT_MODELREL);
+        // input
+        Input input = new Input(inputsByName);
+        MID outputMID = outputMIDsByName.get(OUT_MODELREL);
 
-		// create the slice from the initial criterion and the rules
-		ModelRel sliceRel = this.slice(input.critRel, input.model, outputMID);
+        // create the slice from the initial criterion and the rules
+        ModelRel sliceRel = slice(input.critRel, input.model, outputMID);
 
-		// output
-		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, sliceRel);
+        // output
+        Map<String, Model> outputsByName = new HashMap<>();
+        outputsByName.put(OUT_MODELREL, sliceRel);
 
-		return outputsByName;
-	}
+        return outputsByName;
+    }
 
 }
