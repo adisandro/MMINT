@@ -23,6 +23,7 @@
             class="edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage"
             genModel="model/safetycase.genmodel"/>
    </extension>
+
    <extension
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
@@ -32,6 +33,15 @@
          </type>
       </modelType>
    </extension>
+
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"
+            uri="http://se.cs.toronto.edu/modelepedia/SCRel">
+      </package>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmint.relationships">
       <relationshipType>
@@ -48,18 +58,11 @@
             </type>
             <typeEndpoint
                   lowerBound="0"
-                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase"
-                  upperBound="-1">
+                  upperBound="-1"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase">
             </typeEndpoint>
          </modelTypeEndpoint>
       </relationshipType>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.generated_package">
-      <package
-            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"
-            uri="http://se.cs.toronto.edu/modelepedia/SCRel">
-      </package>
    </extension>
 
 </plugin>
