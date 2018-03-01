@@ -35,8 +35,8 @@ public class SDSlice extends Slice {
 	// Get impacted model elements directly reachable from the input element.
 	@Override
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-		Set<EObject> impacted = new HashSet<>();
 
+	    Set<EObject> impacted = new HashSet<>();
 		// If input is a sequence diagram, then the following are impacted:
 		// 1) Owned classes, lifelines and messages.
 		if (modelObj instanceof SequenceDiagram) {
@@ -109,6 +109,7 @@ public class SDSlice extends Slice {
 			OperationReference r = (OperationReference) modelObj;
 			impacted.add(r.getSource());
 		}
+		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
 	}

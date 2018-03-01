@@ -30,8 +30,8 @@ public class CDSlice extends Slice {
 	// Get impacted model elements directly reachable from the input element.
 	@Override
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-		Set<EObject> impacted = new HashSet<>();
 
+	    Set<EObject> impacted = new HashSet<>();
 		// If input is a class diagram, then the following are also impacted:
 		// 1) Owned classes, associations and dependencies.
 		if (modelObj instanceof ClassDiagram) {
@@ -62,22 +62,15 @@ public class CDSlice extends Slice {
 			// Get all attributes and operations from the class diagram
 			// for checking their type.
 			ClassDiagram cd = (ClassDiagram) c.eContainer();
-			if (cd.getClasses() != null) {
-				for (Class c2 : cd.getClasses()) {
-					if (c2.getOwnedAttributes() != null) {
-						for (Attribute a : c2.getOwnedAttributes()) {
-							if (a.getType() == c) {
-								impacted.add(a);
-							}
-						}
+			for (Class c2 : cd.getClasses()) {
+				for (Attribute a : c2.getOwnedAttributes()) {
+					if (a.getType() == c) {
+						impacted.add(a);
 					}
-
-					if (c2.getOwnedOperations() != null) {
-						for (Operation o : c2.getOwnedOperations()) {
-							if (o.getType() == c) {
-								impacted.add(o);
-							}
-						}
+				}
+				for (Operation o : c2.getOwnedOperations()) {
+					if (o.getType() == c) {
+						impacted.add(o);
 					}
 				}
 			}
@@ -106,6 +99,7 @@ public class CDSlice extends Slice {
 			Dependency d = (Dependency) modelObj;
 			impacted.add(d.getDepender());
 		}
+		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
 	}

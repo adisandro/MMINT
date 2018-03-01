@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
@@ -90,18 +89,13 @@ public class Slice extends OperatorImpl {
         }
     }
 
-    protected Predicate<EObject> notIn(Set<EObject> alreadyImpacted) {
-
-        return modelObj -> !alreadyImpacted.contains(modelObj);
-    }
-
     // Returns the set of model elements that may be directly impacted
     // by the input model element.
     // By default, the contained elements are assumed to be impacted.
     protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
         return modelObj.eContents().stream()
-            .filter(notIn(alreadyImpacted))
+            .filter(modelObj2 -> !alreadyImpacted.contains(modelObj2))
             .collect(Collectors.toSet());
     }
 

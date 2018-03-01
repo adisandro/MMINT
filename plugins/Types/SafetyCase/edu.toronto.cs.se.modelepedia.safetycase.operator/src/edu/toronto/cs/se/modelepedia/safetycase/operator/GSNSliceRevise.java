@@ -47,8 +47,8 @@ public class GSNSliceRevise extends Slice {
 	// Get impacted model elements directly reachable from the input element.
 	@Override
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-		Set<EObject> impacted = new HashSet<>();
 
+	    Set<EObject> impacted = new HashSet<>();
 		// If input is a safety case, then the following are also impacted:
 		// 1) Its goals, strategies, solutions, ASILs and contexts.
 		if (modelObj instanceof SafetyCase) {
@@ -105,6 +105,7 @@ public class GSNSliceRevise extends Slice {
 			impacted.add(rel.getContext());
 			impacted.add(rel.getContextOf());
 		}
+		impacted.removeAll(alreadyImpacted);
 
 		// TO-DO: Check for cases where null may be added to the impacted set.
 
