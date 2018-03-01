@@ -100,6 +100,7 @@ public class CDSlice extends Slice {
 			impacted.add(d.getDepender());
 		}
 		impacted.removeAll(alreadyImpacted);
+		impacted.remove(null);
 
 		return impacted;
 	}

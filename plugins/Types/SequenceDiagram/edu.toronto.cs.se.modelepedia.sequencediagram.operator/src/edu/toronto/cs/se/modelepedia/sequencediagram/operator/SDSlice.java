@@ -110,6 +110,7 @@ public class SDSlice extends Slice {
 			impacted.add(r.getSource());
 		}
 		impacted.removeAll(alreadyImpacted);
+		impacted.remove(null);
 
 		return impacted;
 	}

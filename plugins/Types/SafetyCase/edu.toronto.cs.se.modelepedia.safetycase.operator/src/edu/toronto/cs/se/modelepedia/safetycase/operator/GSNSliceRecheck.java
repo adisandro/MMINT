@@ -69,6 +69,7 @@ public class GSNSliceRecheck extends Slice {
 			impacted.addAll(getDescendants(rel.getContextOf()));
 		}
 		impacted.removeAll(alreadyImpacted);
+		impacted.remove(null);
 
 		return impacted;
 	}

@@ -106,8 +106,7 @@ public class GSNSliceRevise extends Slice {
 			impacted.add(rel.getContextOf());
 		}
 		impacted.removeAll(alreadyImpacted);
-
-		// TO-DO: Check for cases where null may be added to the impacted set.
+		impacted.remove(null);
 
 		return impacted;
 	}
