@@ -87,28 +87,39 @@ public class SDSlice extends Slice {
 		// If input is a class reference, then its lifeline is impacted.
 		} else if (modelObj instanceof ClassReference) {
 			ClassReference r = (ClassReference) modelObj;
-			impacted.add(r.getSource());
+			if (r.getSource() != null) {
+				impacted.add(r.getSource());
+			}
 
 		// If input is a source lifeline reference, then its message is impacted.
 		} else if (modelObj instanceof SourceLifelineReference) {
 			SourceLifelineReference r = (SourceLifelineReference) modelObj;
-			impacted.add(r.getSource());
+			if (r.getSource() != null) {
+				impacted.add(r.getSource());
+			}
 
 		// If input is a target lifeline reference, then its message is impacted.
 		} else if (modelObj instanceof TargetLifelineReference) {
 			TargetLifelineReference r = (TargetLifelineReference) modelObj;
-			impacted.add(r.getSource());
+			if (r.getSource() != null) {
+				impacted.add(r.getSource());
+			}
 
 		// If input is an attribute reference, then its message is impacted.
 		} else if (modelObj instanceof AttributeReference) {
 			AttributeReference r = (AttributeReference) modelObj;
-			impacted.add(r.getSource());
+			if (r.getSource() != null) {
+				impacted.add(r.getSource());
+			}
 
 		// If input is an operation reference, then its message is impacted.
 		} else if (modelObj instanceof OperationReference) {
 			OperationReference r = (OperationReference) modelObj;
-			impacted.add(r.getSource());
+			if (r.getSource() != null) {
+				impacted.add(r.getSource());
+			}
 		}
+
 		impacted.removeAll(alreadyImpacted);
 
 		return impacted;

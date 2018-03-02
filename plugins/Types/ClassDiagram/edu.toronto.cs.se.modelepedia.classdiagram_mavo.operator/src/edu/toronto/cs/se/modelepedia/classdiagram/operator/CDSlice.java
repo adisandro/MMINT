@@ -57,7 +57,10 @@ public class CDSlice extends Slice {
 			impacted.addAll(c.getDependenciesAsDepender());
 			impacted.addAll(c.getNested());
 			impacted.addAll(c.getSubclasses());
-			impacted.add(c.getNestedIn());
+			
+			if (c.getNestedIn() != null) {
+				impacted.add(c.getNestedIn());
+			}
 
 			// Get all attributes and operations from the class diagram
 			// for checking their type.
@@ -79,25 +82,33 @@ public class CDSlice extends Slice {
 		// If input is an attribute, then its class is also impacted.
 		else if (modelObj instanceof Attribute) {
 			Attribute a = (Attribute) modelObj;
-			impacted.add(a.getOwner());
+			if (a.getOwner() != null) {
+				impacted.add(a.getOwner());
+			}
 		}
 
 		// If input is an operation, then its class is also impacted.
 		else if (modelObj instanceof Operation) {
 			Operation o = (Operation) modelObj;
-			impacted.add(o.getOwner());
+			if (o.getOwner() != null) {
+				impacted.add(o.getOwner());
+			}
 		}
 
 		// If input is an association, then its source class is also impacted.
 		else if (modelObj instanceof Association) {
 			Association a = (Association) modelObj;
-			impacted.add(a.getSource());
+			if (a.getSource() != null) {
+				impacted.add(a.getSource());
+			}
 		}
 
 		// If input is a dependency, then its depender class is also impacted.
 		else if (modelObj instanceof Dependency) {
 			Dependency d = (Dependency) modelObj;
-			impacted.add(d.getDepender());
+			if (d.getDepender() != null) {
+				impacted.add(d.getDepender());
+			}
 		}
 		impacted.removeAll(alreadyImpacted);
 

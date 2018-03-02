@@ -95,19 +95,28 @@ public class GSNSliceRevise extends Slice {
 		// target model element is potentially impacted.
 		} else if (modelObj instanceof SupportedBy) {
 			SupportedBy rel = (SupportedBy) modelObj;
-			impacted.add(rel.getConclusion());
-			impacted.add(rel.getPremise());
+			if (rel.getConclusion() != null) {
+				impacted.add(rel.getConclusion());
+			}
+
+			if (rel.getPremise() != null) {
+				impacted.add(rel.getPremise());
+			}
 
 		// If input is a InContextOf relation, then its source and
 		// target model element is potentially impacted.
 		} else if (modelObj instanceof InContextOf) {
 			InContextOf rel = (InContextOf) modelObj;
-			impacted.add(rel.getContext());
-			impacted.add(rel.getContextOf());
-		}
-		impacted.removeAll(alreadyImpacted);
+			if (rel.getContext() != null) {
+				impacted.add(rel.getContext());
+			}
 
-		// TO-DO: Check for cases where null may be added to the impacted set.
+			if (rel.getContextOf() != null) {
+				impacted.add(rel.getContextOf());
+			}
+		}
+
+		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
 	}

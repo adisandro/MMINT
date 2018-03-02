@@ -58,16 +58,22 @@ public class GSNSliceRecheck extends Slice {
 		// If input is a SupportedBy relation, then its conclusion is impacted.
 		} else if (modelObj instanceof SupportedBy) {
 			SupportedBy rel = (SupportedBy) modelObj;
-			impacted.add(rel.getConclusion());
+			if (rel.getConclusion() != null) {
+				impacted.add(rel.getConclusion());
+			}
 
 		// If input is a InContextOf relation, then the following are also impacted:
 		// 1) The decomposable core element with this context.
 		// 2) All contextual elements and core elements that inherit this context.
 		} else if (modelObj instanceof InContextOf) {
 			InContextOf rel = (InContextOf) modelObj;
-			impacted.add(rel.getContextOf());
 			impacted.addAll(getDescendants(rel.getContextOf()));
+
+			if (rel.getContextOf() != null) {
+				impacted.add(rel.getContextOf());
+			}
 		}
+
 		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
