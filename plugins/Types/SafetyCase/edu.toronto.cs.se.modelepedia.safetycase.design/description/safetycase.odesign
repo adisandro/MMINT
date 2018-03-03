@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="safetycase" version="11.1.1.201610211630">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="safetycase" version="11.1.1.201610211630">
   <ownedViewpoints name="SafetyCaseViewpoint" modelFileExtension="safetycase">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SafetyCaseRepresentation" domainClass="safetycase.SafetyCase" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SafetyCaseRepresentation" domainClass="safetycase.SafetyCase">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore#/"/>
+      <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
         <nodeMappings name="GoalNode" semanticCandidatesExpression="feature:goals" domainClass="safetycase.Goal">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.name" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal.svg">
@@ -217,5 +218,13 @@
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:EditionTableDescription" name="SafetyCaseStatistics" domainClass="safetycase.SafetyCase">
+      <metamodel href="../../edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore#/"/>
+      <ownedLineMappings name="SafetyCaseLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Safety Case"/>
+      <ownedColumnMappings name="GoalColumn" headerLabelExpression="Goals" featureName="goals" labelExpression="service:getGoalStatistics()"/>
+      <ownedColumnMappings name="StrategyColumn" headerLabelExpression="Strategies" featureName="strategies" labelExpression="service:getStrategyStatistics()"/>
+      <ownedColumnMappings name="SolutionColumn" headerLabelExpression="Solutions" featureName="solutions" labelExpression="service:getSolutionStatistics()"/>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.safetycase.design.Services"/>
   </ownedViewpoints>
 </description:Group>
