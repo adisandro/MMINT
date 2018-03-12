@@ -23,6 +23,7 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal()
@@ -58,5 +59,35 @@ public interface Goal extends DecomposableCoreElement {
 	 * @generated
 	 */
 	void setState(TruthState value);
+
+	/**
+	 * Returns the value of the '<em><b>Asil</b></em>' attribute.
+	 * The default value is <code>"D"</code>.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Asil</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Asil</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @see #setAsil(ASILLevel)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
+	 * @model default="D"
+	 * @generated
+	 */
+	ASILLevel getAsil();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Asil</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @see #getAsil()
+	 * @generated
+	 */
+	void setAsil(ASILLevel value);
 
 } // Goal

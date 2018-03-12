@@ -18,7 +18,6 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
@@ -57,7 +56,6 @@ public class GSNSliceRevise extends Slice {
 			impacted.addAll(sc.getStrategies());
 			impacted.addAll(sc.getSolutions());
 			impacted.addAll(sc.getContexts());
-			impacted.addAll(sc.getASILLevels());
 
 		// If input is a goal, then the following are also impacted:
 		// 1) All SupportedBy relations connected to it.
@@ -84,12 +82,6 @@ public class GSNSliceRevise extends Slice {
 		} else if (modelObj instanceof Context) {
 			Context c = (Context) modelObj;
 			impacted.addAll(c.getContextOf());
-
-		// If input is an ASIL, then the following are also impacted:
-		// 1) All InContextOf relations connected to it.
-		} else if (modelObj instanceof ASIL) {
-			ASIL a = (ASIL) modelObj;
-			impacted.addAll(a.getContextOf());
 
 		// If input is a SupportedBy relation, then its source and
 		// target model element is potentially impacted.

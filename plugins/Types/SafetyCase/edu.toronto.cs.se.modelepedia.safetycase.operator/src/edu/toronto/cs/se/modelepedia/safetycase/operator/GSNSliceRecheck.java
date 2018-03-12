@@ -41,7 +41,6 @@ public class GSNSliceRecheck extends Slice {
 			impacted.addAll(sc.getStrategies());
 			impacted.addAll(sc.getSolutions());
 			impacted.addAll(sc.getContexts());
-			impacted.addAll(sc.getASILLevels());
 
 		// If input is a core element (i.e. goal, strategy or solution), then the
 		// SupportedBy relations that it supports are also impacted.

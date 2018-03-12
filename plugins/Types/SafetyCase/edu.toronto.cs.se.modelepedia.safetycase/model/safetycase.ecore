@@ -11,8 +11,6 @@
         eType="#//Solution" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//Context" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ASILLevels" upperBound="-1"
-        eType="#//ASIL" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -59,6 +57,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//DecomposableCoreElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TruthState"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="asil" eType="#//ASILLevel"
+        defaultValueLiteral="D"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//DecomposableCoreElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
@@ -68,9 +68,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ContextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ASIL" eSuperTypes="#//Context">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//ASILLevel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TruthState">
     <eLiterals name="False" literal="False"/>

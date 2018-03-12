@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getStrategies <em>Strategies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getSolutions <em>Solutions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getContexts <em>Contexts</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getASILLevels <em>ASIL Levels</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase()
@@ -100,21 +99,5 @@ public interface SafetyCase extends EObject {
 	 * @generated
 	 */
 	EList<Context> getContexts();
-
-	/**
-	 * Returns the value of the '<em><b>ASIL Levels</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>ASIL Levels</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>ASIL Levels</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_ASILLevels()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ASIL> getASILLevels();
 
 } // SafetyCase

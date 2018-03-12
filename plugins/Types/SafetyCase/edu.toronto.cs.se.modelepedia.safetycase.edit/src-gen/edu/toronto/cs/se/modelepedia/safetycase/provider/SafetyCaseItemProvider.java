@@ -91,7 +91,6 @@ public class SafetyCaseItemProvider
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES);
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__SOLUTIONS);
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__ASIL_LEVELS);
 		}
 		return childrenFeatures;
 	}
@@ -148,7 +147,6 @@ public class SafetyCaseItemProvider
 			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
 			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
-			case SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -185,39 +183,6 @@ public class SafetyCaseItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS,
 				 SafetyCaseFactory.eINSTANCE.createContext()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__ASIL_LEVELS,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS ||
-			childFeature == SafetyCasePackage.Literals.SAFETY_CASE__ASIL_LEVELS;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

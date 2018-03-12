@@ -114,22 +114,13 @@ public interface SafetyCasePackage extends EPackage {
 	int SAFETY_CASE__CONTEXTS = 3;
 
 	/**
-	 * The feature id for the '<em><b>ASIL Levels</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAFETY_CASE__ASIL_LEVELS = 4;
-
-	/**
 	 * The number of structural features of the '<em>Safety Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAFETY_CASE_FEATURE_COUNT = 5;
+	int SAFETY_CASE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Safety Case</em>' class.
@@ -616,13 +607,22 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__STATE = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Asil</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__ASIL = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
+	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -898,97 +898,6 @@ public interface SafetyCasePackage extends EPackage {
 	int CONTEXT_OPERATION_COUNT = CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl <em>ASIL</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASIL()
-	 * @generated
-	 */
-	int ASIL = 11;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__ID = CONTEXT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__NAME = CONTEXT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__DESCRIPTION = CONTEXT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Status</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__STATUS = CONTEXT__STATUS;
-
-	/**
-	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__CONTEXT_OF = CONTEXT__CONTEXT_OF;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__STATE = CONTEXT__STATE;
-
-	/**
-	 * The feature id for the '<em><b>Level</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL__LEVEL = CONTEXT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>ASIL</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_FEATURE_COUNT = CONTEXT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>ASIL</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_OPERATION_COUNT = CONTEXT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.TruthState <em>Truth State</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -996,7 +905,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getTruthState()
 	 * @generated
 	 */
-	int TRUTH_STATE = 12;
+	int TRUTH_STATE = 11;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
@@ -1006,7 +915,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILLevel()
 	 * @generated
 	 */
-	int ASIL_LEVEL = 13;
+	int ASIL_LEVEL = 12;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityState <em>Validity State</em>}' enum.
@@ -1016,7 +925,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityState()
 	 * @generated
 	 */
-	int VALIDITY_STATE = 14;
+	int VALIDITY_STATE = 13;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.Status <em>Status</em>}' enum.
@@ -1026,7 +935,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getStatus()
 	 * @generated
 	 */
-	int STATUS = 15;
+	int STATUS = 14;
 
 
 	/**
@@ -1082,17 +991,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSafetyCase_Contexts();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getASILLevels <em>ASIL Levels</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>ASIL Levels</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getASILLevels()
-	 * @see #getSafetyCase()
-	 * @generated
-	 */
-	EReference getSafetyCase_ASILLevels();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement <em>Argument Element</em>}'.
@@ -1308,6 +1206,17 @@ public interface SafetyCasePackage extends EPackage {
 	EAttribute getGoal_State();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Asil</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil()
+	 * @see #getGoal()
+	 * @generated
+	 */
+	EAttribute getGoal_Asil();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy <em>Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1369,27 +1278,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getContext_State();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL <em>ASIL</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>ASIL</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL
-	 * @generated
-	 */
-	EClass getASIL();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getLevel <em>Level</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Level</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL#getLevel()
-	 * @see #getASIL()
-	 * @generated
-	 */
-	EAttribute getASIL_Level();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.TruthState <em>Truth State</em>}'.
@@ -1495,14 +1383,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SAFETY_CASE__CONTEXTS = eINSTANCE.getSafetyCase_Contexts();
-
-		/**
-		 * The meta object literal for the '<em><b>ASIL Levels</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SAFETY_CASE__ASIL_LEVELS = eINSTANCE.getSafetyCase_ASILLevels();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl <em>Argument Element</em>}' class.
@@ -1679,6 +1559,14 @@ public interface SafetyCasePackage extends EPackage {
 		EAttribute GOAL__STATE = eINSTANCE.getGoal_State();
 
 		/**
+		 * The meta object literal for the '<em><b>Asil</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GOAL__ASIL = eINSTANCE.getGoal_Asil();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl <em>Strategy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1731,24 +1619,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONTEXT__STATE = eINSTANCE.getContext_State();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl <em>ASIL</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASIL()
-		 * @generated
-		 */
-		EClass ASIL = eINSTANCE.getASIL();
-
-		/**
-		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIL__LEVEL = eINSTANCE.getASIL_Level();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.TruthState <em>Truth State</em>}' enum.

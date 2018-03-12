@@ -95,15 +95,6 @@ public interface SafetyCaseFactory extends EFactory {
 	Context createContext();
 
 	/**
-	 * Returns a new object of class '<em>ASIL</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ASIL</em>'.
-	 * @generated
-	 */
-	ASIL createASIL();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
