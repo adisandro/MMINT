@@ -101,7 +101,7 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Context)object).getName();
+		String label = ((Context)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Context_type") :
 			getString("_UI_Context_type") + " " + label;

@@ -99,7 +99,7 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DecomposableCoreElement)object).getName();
+		String label = ((DecomposableCoreElement)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DecomposableCoreElement_type") :
 			getString("_UI_DecomposableCoreElement_type") + " " + label;

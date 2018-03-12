@@ -88,7 +88,7 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CoreElement)object).getName();
+		String label = ((CoreElement)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CoreElement_type") :
 			getString("_UI_CoreElement_type") + " " + label;

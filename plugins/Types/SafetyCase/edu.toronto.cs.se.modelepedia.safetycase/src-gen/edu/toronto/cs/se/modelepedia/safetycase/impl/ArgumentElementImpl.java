@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getStatus <em>Status</em>}</li>
  * </ul>
@@ -59,26 +58,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -165,27 +144,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDescription() {
 		return description;
 	}
@@ -233,8 +191,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
 				return getId();
-			case SafetyCasePackage.ARGUMENT_ELEMENT__NAME:
-				return getName();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return getDescription();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
@@ -253,9 +209,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
 				setId((String)newValue);
-				return;
-			case SafetyCasePackage.ARGUMENT_ELEMENT__NAME:
-				setName((String)newValue);
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
@@ -278,9 +231,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case SafetyCasePackage.ARGUMENT_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
@@ -301,8 +251,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case SafetyCasePackage.ARGUMENT_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
@@ -323,8 +271,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
 		result.append(id);
-		result.append(", name: ");
-		result.append(name);
 		result.append(", description: ");
 		result.append(description);
 		result.append(", status: ");

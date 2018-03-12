@@ -279,7 +279,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArgumentElement_Name() {
+	public EAttribute getArgumentElement_Description() {
 		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -288,17 +288,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArgumentElement_Description() {
-		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getArgumentElement_Status() {
-		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -571,7 +562,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		argumentElementEClass = createEClass(ARGUMENT_ELEMENT);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__ID);
-		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__NAME);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__DESCRIPTION);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__STATUS);
 
@@ -658,7 +648,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		initEClass(argumentElementEClass, ArgumentElement.class, "ArgumentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getArgumentElement_Id(), ecorePackage.getEString(), "id", "", 1, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getArgumentElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Status(), this.getStatus(), "status", "Undetermined", 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -731,12 +720,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 */
 	protected void createGmfAnnotations() {
 		String source = "gmf.label";	
-		addAnnotation
-		  (getArgumentElement_Name(), 
-		   source, 
-		   new String[] {
-			 "label", "description"
-		   });	
 		addAnnotation
 		  (getArgumentElement_Description(), 
 		   source, 

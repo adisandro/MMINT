@@ -88,7 +88,7 @@ public class ContextualElementItemProvider extends ArgumentElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ContextualElement)object).getName();
+		String label = ((ContextualElement)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ContextualElement_type") :
 			getString("_UI_ContextualElement_type") + " " + label;

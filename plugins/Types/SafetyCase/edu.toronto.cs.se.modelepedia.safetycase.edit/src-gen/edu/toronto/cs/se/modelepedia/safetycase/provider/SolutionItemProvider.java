@@ -101,7 +101,7 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Solution)object).getName();
+		String label = ((Solution)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Solution_type") :
 			getString("_UI_Solution_type") + " " + label;

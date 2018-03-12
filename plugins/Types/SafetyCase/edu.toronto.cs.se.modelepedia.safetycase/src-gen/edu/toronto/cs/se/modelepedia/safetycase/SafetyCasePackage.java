@@ -151,22 +151,13 @@ public interface SafetyCasePackage extends EPackage {
 	int ARGUMENT_ELEMENT__ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARGUMENT_ELEMENT__NAME = 1;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARGUMENT_ELEMENT__DESCRIPTION = 2;
+	int ARGUMENT_ELEMENT__DESCRIPTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
@@ -175,7 +166,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARGUMENT_ELEMENT__STATUS = 3;
+	int ARGUMENT_ELEMENT__STATUS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Argument Element</em>' class.
@@ -184,7 +175,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARGUMENT_ELEMENT_FEATURE_COUNT = 4;
+	int ARGUMENT_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Argument Element</em>' class.
@@ -213,15 +204,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int CORE_ELEMENT__ID = ARGUMENT_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CORE_ELEMENT__NAME = ARGUMENT_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -286,15 +268,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int DECOMPOSABLE_CORE_ELEMENT__ID = CORE_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECOMPOSABLE_CORE_ELEMENT__NAME = CORE_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -377,15 +350,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTEXTUAL_ELEMENT__ID = ARGUMENT_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXTUAL_ELEMENT__NAME = ARGUMENT_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -544,15 +508,6 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__ID = DECOMPOSABLE_CORE_ELEMENT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__NAME = DECOMPOSABLE_CORE_ELEMENT__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -653,15 +608,6 @@ public interface SafetyCasePackage extends EPackage {
 	int STRATEGY__ID = DECOMPOSABLE_CORE_ELEMENT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY__NAME = DECOMPOSABLE_CORE_ELEMENT__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -753,15 +699,6 @@ public interface SafetyCasePackage extends EPackage {
 	int SOLUTION__ID = CORE_ELEMENT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION__NAME = CORE_ELEMENT__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,15 +770,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTEXT__ID = CONTEXTUAL_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT__NAME = CONTEXTUAL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1012,17 +940,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getArgumentElement_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getName()
-	 * @see #getArgumentElement()
-	 * @generated
-	 */
-	EAttribute getArgumentElement_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getDescription <em>Description</em>}'.
@@ -1401,14 +1318,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ARGUMENT_ELEMENT__ID = eINSTANCE.getArgumentElement_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ARGUMENT_ELEMENT__NAME = eINSTANCE.getArgumentElement_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.

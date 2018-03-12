@@ -124,7 +124,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Goal)object).getName();
+		String label = ((Goal)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Goal_type") :
 			getString("_UI_Goal_type") + " " + label;

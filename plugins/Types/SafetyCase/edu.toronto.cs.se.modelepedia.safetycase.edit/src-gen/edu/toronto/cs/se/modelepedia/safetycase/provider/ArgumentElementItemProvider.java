@@ -71,7 +71,6 @@ public class ArgumentElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
 		}
@@ -92,28 +91,6 @@ public class ArgumentElementItemProvider
 				 getString("_UI_ArgumentElement_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_id_feature", "_UI_ArgumentElement_type"),
 				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ArgumentElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_name_feature", "_UI_ArgumentElement_type"),
-				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -174,7 +151,7 @@ public class ArgumentElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ArgumentElement)object).getName();
+		String label = ((ArgumentElement)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ArgumentElement_type") :
 			getString("_UI_ArgumentElement_type") + " " + label;
@@ -194,7 +171,6 @@ public class ArgumentElementItemProvider
 
 		switch (notification.getFeatureID(ArgumentElement.class)) {
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
-			case SafetyCasePackage.ARGUMENT_ELEMENT__NAME:
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
