@@ -74,6 +74,7 @@
     <eLiterals name="B" value="2" literal="B"/>
     <eLiterals name="A" value="3" literal="A"/>
     <eLiterals name="QM" value="4" literal="QM"/>
+    <eLiterals name="No_ASIL" value="5" literal="No_ASIL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ValidityState">
     <eLiterals name="Invalid" literal="Invalid"/>

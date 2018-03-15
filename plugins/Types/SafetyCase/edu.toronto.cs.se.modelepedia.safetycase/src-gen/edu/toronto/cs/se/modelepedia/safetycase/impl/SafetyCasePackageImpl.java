@@ -693,6 +693,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		addEEnumLiteral(asilLevelEEnum, ASILLevel.B);
 		addEEnumLiteral(asilLevelEEnum, ASILLevel.A);
 		addEEnumLiteral(asilLevelEEnum, ASILLevel.QM);
+		addEEnumLiteral(asilLevelEEnum, ASILLevel.NO_ASIL);
 
 		initEEnum(validityStateEEnum, ValidityState.class, "ValidityState");
 		addEEnumLiteral(validityStateEEnum, ValidityState.INVALID);

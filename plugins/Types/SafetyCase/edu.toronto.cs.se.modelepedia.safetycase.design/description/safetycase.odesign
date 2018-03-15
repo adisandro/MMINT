@@ -6,7 +6,7 @@
       <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
         <nodeMappings name="GoalNode" semanticCandidatesExpression="feature:goals" domainClass="safetycase.Goal">
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description + ' (ASIL ' + self.asil + ')'" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal.svg">
+          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql: let base = self.id + ' ' + self.description in if self.asil = safetycase::ASILLevel::No_ASIL then base else base + ' (ASIL ' + self.asil + ')' endif" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
