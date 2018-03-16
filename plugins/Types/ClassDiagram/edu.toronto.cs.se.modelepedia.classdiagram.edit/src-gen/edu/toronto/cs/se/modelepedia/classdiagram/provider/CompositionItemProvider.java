@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
-import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,19 +27,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Association} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Composition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AssociationItemProvider extends NamedElementItemProvider {
+public class CompositionItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationItemProvider(AdapterFactory adapterFactory) {
+	public CompositionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -72,9 +72,9 @@ public class AssociationItemProvider extends NamedElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Association_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Association_source_feature", "_UI_Association_type"),
-				 ClassDiagramPackage.Literals.ASSOCIATION__SOURCE,
+				 getString("_UI_Composition_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_source_feature", "_UI_Composition_type"),
+				 ClassDiagramPackage.Literals.COMPOSITION__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -94,9 +94,9 @@ public class AssociationItemProvider extends NamedElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Association_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Association_target_feature", "_UI_Association_type"),
-				 ClassDiagramPackage.Literals.ASSOCIATION__TARGET,
+				 getString("_UI_Composition_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_target_feature", "_UI_Composition_type"),
+				 ClassDiagramPackage.Literals.COMPOSITION__TARGET,
 				 true,
 				 false,
 				 true,
@@ -116,9 +116,9 @@ public class AssociationItemProvider extends NamedElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Association_multiplicity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Association_multiplicity_feature", "_UI_Association_type"),
-				 ClassDiagramPackage.Literals.ASSOCIATION__MULTIPLICITY,
+				 getString("_UI_Composition_multiplicity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_multiplicity_feature", "_UI_Composition_type"),
+				 ClassDiagramPackage.Literals.COMPOSITION__MULTIPLICITY,
 				 true,
 				 false,
 				 false,
@@ -128,14 +128,14 @@ public class AssociationItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns Association.gif.
+	 * This returns Composition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Association"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Composition"));
 	}
 
 	/**
@@ -146,10 +146,10 @@ public class AssociationItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Association)object).getName();
+		String label = ((Composition)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Association_type") :
-			getString("_UI_Association_type") + " " + label;
+			getString("_UI_Composition_type") :
+			getString("_UI_Composition_type") + " " + label;
 	}
 	
 
@@ -164,8 +164,8 @@ public class AssociationItemProvider extends NamedElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Association.class)) {
-			case ClassDiagramPackage.ASSOCIATION__MULTIPLICITY:
+		switch (notification.getFeatureID(Composition.class)) {
+			case ClassDiagramPackage.COMPOSITION__MULTIPLICITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -242,6 +242,29 @@ public class ClassDiagramItemProviderAdapterFactory extends ClassDiagramAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.classdiagram.Composition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositionItemProvider compositionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Composition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositionAdapter() {
+		if (compositionItemProvider == null) {
+			compositionItemProvider = new CompositionItemProvider(this);
+		}
+
+		return compositionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -347,6 +370,7 @@ public class ClassDiagramItemProviderAdapterFactory extends ClassDiagramAdapterF
 		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
 		if (associationItemProvider != null) associationItemProvider.dispose();
 		if (dataTypeItemProvider != null) dataTypeItemProvider.dispose();
+		if (compositionItemProvider != null) compositionItemProvider.dispose();
 	}
 
 }

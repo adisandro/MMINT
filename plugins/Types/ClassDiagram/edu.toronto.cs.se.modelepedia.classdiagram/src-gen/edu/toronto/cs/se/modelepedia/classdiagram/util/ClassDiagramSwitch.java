@@ -15,6 +15,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.NamedElement;
@@ -152,6 +153,13 @@ public class ClassDiagramSwitch<T> extends Switch<T> {
 				T result = caseDataType(dataType);
 				if (result == null) result = caseTypeable(dataType);
 				if (result == null) result = caseNamedElement(dataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClassDiagramPackage.COMPOSITION: {
+				Composition composition = (Composition)theEObject;
+				T result = caseComposition(composition);
+				if (result == null) result = caseNamedElement(composition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -306,6 +314,21 @@ public class ClassDiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataType(DataType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Composition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Composition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComposition(Composition object) {
 		return null;
 	}
 

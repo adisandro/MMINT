@@ -14,26 +14,25 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Association</b></em>'.
+ * A representation of the model object '<em><b>Composition</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource <em>Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget <em>Target</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation()
- * @model annotation="gmf.link label='name' label.icon='true' source='source' target='target' target.decoration='arrow'"
+ * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition()
+ * @model
  * @generated
  */
-public interface Association extends NamedElement {
+public interface Composition extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsSource <em>Associations As Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -42,15 +41,14 @@ public interface Association extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(edu.toronto.cs.se.modelepedia.classdiagram.Class)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation_Source()
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsSource
-	 * @model opposite="associationsAsSource" required="true"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Source()
+	 * @model required="true"
 	 * @generated
 	 */
 	edu.toronto.cs.se.modelepedia.classdiagram.Class getSource();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -61,7 +59,6 @@ public interface Association extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsTarget <em>Associations As Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -70,15 +67,14 @@ public interface Association extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(edu.toronto.cs.se.modelepedia.classdiagram.Class)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation_Target()
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getAssociationsAsTarget
-	 * @model opposite="associationsAsTarget" required="true"
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Target()
+	 * @model required="true"
 	 * @generated
 	 */
 	edu.toronto.cs.se.modelepedia.classdiagram.Class getTarget();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
@@ -98,14 +94,14 @@ public interface Association extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Multiplicity</em>' attribute.
 	 * @see #setMultiplicity(String)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getAssociation_Multiplicity()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Multiplicity()
 	 * @model default=""
 	 * @generated
 	 */
 	String getMultiplicity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Association#getMultiplicity <em>Multiplicity</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getMultiplicity <em>Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Multiplicity</em>' attribute.
@@ -114,4 +110,4 @@ public interface Association extends NamedElement {
 	 */
 	void setMultiplicity(String value);
 
-} // Association
+} // Composition

@@ -16,6 +16,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
@@ -79,6 +80,7 @@ public class ClassDiagramFactoryImpl extends EFactoryImpl implements ClassDiagra
 			case ClassDiagramPackage.DEPENDENCY: return createDependency();
 			case ClassDiagramPackage.ASSOCIATION: return createAssociation();
 			case ClassDiagramPackage.DATA_TYPE: return createDataType();
+			case ClassDiagramPackage.COMPOSITION: return createComposition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -152,6 +154,16 @@ public class ClassDiagramFactoryImpl extends EFactoryImpl implements ClassDiagra
 	public DataType createDataType() {
 		DataTypeImpl dataType = new DataTypeImpl();
 		return dataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Composition createComposition() {
+		CompositionImpl composition = new CompositionImpl();
+		return composition;
 	}
 
 	/**

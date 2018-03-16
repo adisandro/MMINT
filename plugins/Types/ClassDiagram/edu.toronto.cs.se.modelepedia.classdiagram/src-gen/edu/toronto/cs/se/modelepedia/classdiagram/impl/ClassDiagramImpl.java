@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getAssociations <em>Associations</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getDatatypes <em>Datatypes</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getCompositions <em>Compositions</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +89,16 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * @ordered
 	 */
 	protected EList<DataType> datatypes;
+
+	/**
+	 * The cached value of the '{@link #getCompositions() <em>Compositions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompositions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Composition> compositions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,6 +172,18 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Composition> getCompositions() {
+		if (compositions == null) {
+			compositions = new EObjectContainmentEList<Composition>(Composition.class, this, ClassDiagramPackage.CLASS_DIAGRAM__COMPOSITIONS);
+		}
+		return compositions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -171,6 +195,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return ((InternalEList<?>)getAssociations()).basicRemove(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
 				return ((InternalEList<?>)getDatatypes()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS_DIAGRAM__COMPOSITIONS:
+				return ((InternalEList<?>)getCompositions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -191,6 +217,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return getAssociations();
 			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
 				return getDatatypes();
+			case ClassDiagramPackage.CLASS_DIAGRAM__COMPOSITIONS:
+				return getCompositions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,6 +248,10 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				getDatatypes().clear();
 				getDatatypes().addAll((Collection<? extends DataType>)newValue);
 				return;
+			case ClassDiagramPackage.CLASS_DIAGRAM__COMPOSITIONS:
+				getCompositions().clear();
+				getCompositions().addAll((Collection<? extends Composition>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -244,6 +276,9 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
 				getDatatypes().clear();
 				return;
+			case ClassDiagramPackage.CLASS_DIAGRAM__COMPOSITIONS:
+				getCompositions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -264,6 +299,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return associations != null && !associations.isEmpty();
 			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
 				return datatypes != null && !datatypes.isEmpty();
+			case ClassDiagramPackage.CLASS_DIAGRAM__COMPOSITIONS:
+				return compositions != null && !compositions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
