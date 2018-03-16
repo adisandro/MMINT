@@ -74,6 +74,14 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
+        <containerMappings name="DataType" semanticCandidatesExpression="feature:datatypes" domainClass="classdiagram.DataType">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true" widthComputationExpression="10" heightComputationExpression="3">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </containerMappings>
         <toolSections name="Objects" label="Objects">
           <ownedTools xsi:type="tool:ContainerCreationDescription" name="ClassCreation" containerMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']">
             <variable name="container"/>
@@ -99,6 +107,15 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="classdiagram.Operation" referenceName="ownedOperations"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="DataTypeCreation" containerMappings="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='DataType']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="classdiagram.DataType" referenceName="datatypes"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

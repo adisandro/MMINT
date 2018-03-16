@@ -12,13 +12,20 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -28,17 +35,13 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
-
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassDiagramItemProvider
+public class ClassDiagramItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -86,6 +89,7 @@ public class ClassDiagramItemProvider
 			childrenFeatures.add(ClassDiagramPackage.Literals.CLASS_DIAGRAM__CLASSES);
 			childrenFeatures.add(ClassDiagramPackage.Literals.CLASS_DIAGRAM__DEPENDENCIES);
 			childrenFeatures.add(ClassDiagramPackage.Literals.CLASS_DIAGRAM__ASSOCIATIONS);
+			childrenFeatures.add(ClassDiagramPackage.Literals.CLASS_DIAGRAM__DATATYPES);
 		}
 		return childrenFeatures;
 	}
@@ -124,6 +128,7 @@ public class ClassDiagramItemProvider
 	public String getText(Object object) {
 		return getString("_UI_ClassDiagram_type");
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -140,6 +145,7 @@ public class ClassDiagramItemProvider
 			case ClassDiagramPackage.CLASS_DIAGRAM__CLASSES:
 			case ClassDiagramPackage.CLASS_DIAGRAM__DEPENDENCIES:
 			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
+			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -171,6 +177,11 @@ public class ClassDiagramItemProvider
 			(createChildParameter
 				(ClassDiagramPackage.Literals.CLASS_DIAGRAM__ASSOCIATIONS,
 				 ClassDiagramFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ClassDiagramPackage.Literals.CLASS_DIAGRAM__DATATYPES,
+				 ClassDiagramFactory.eINSTANCE.createDataType()));
 	}
 
 	/**

@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 
 import java.util.Collection;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getAssociations <em>Associations</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramImpl#getDatatypes <em>Datatypes</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,6 +77,16 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * @ordered
 	 */
 	protected EList<Association> associations;
+
+	/**
+	 * The cached value of the '{@link #getDatatypes() <em>Datatypes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDatatypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DataType> datatypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,6 +148,18 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<DataType> getDatatypes() {
+		if (datatypes == null) {
+			datatypes = new EObjectContainmentEList<DataType>(DataType.class, this, ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES);
+		}
+		return datatypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -145,6 +169,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return ((InternalEList<?>)getDependencies()).basicRemove(otherEnd, msgs);
 			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
 				return ((InternalEList<?>)getAssociations()).basicRemove(otherEnd, msgs);
+			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
+				return ((InternalEList<?>)getDatatypes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -163,6 +189,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return getDependencies();
 			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
 				return getAssociations();
+			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
+				return getDatatypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -188,6 +216,10 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				getAssociations().clear();
 				getAssociations().addAll((Collection<? extends Association>)newValue);
 				return;
+			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
+				getDatatypes().clear();
+				getDatatypes().addAll((Collection<? extends DataType>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -209,6 +241,9 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
 				getAssociations().clear();
 				return;
+			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
+				getDatatypes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,6 +262,8 @@ public class ClassDiagramImpl extends EObjectImpl implements ClassDiagram {
 				return dependencies != null && !dependencies.isEmpty();
 			case ClassDiagramPackage.CLASS_DIAGRAM__ASSOCIATIONS:
 				return associations != null && !associations.isEmpty();
+			case ClassDiagramPackage.CLASS_DIAGRAM__DATATYPES:
+				return datatypes != null && !datatypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

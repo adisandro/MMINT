@@ -12,18 +12,20 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
+import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
-import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Class} object.
@@ -31,8 +33,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassItemProvider
-	extends NamedElementItemProvider {
+public class ClassItemProvider extends TypeableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -297,6 +298,7 @@ public class ClassItemProvider
 			getString("_UI_Class_type") :
 			getString("_UI_Class_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -16,10 +16,13 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.NamedElement;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
+import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 import edu.toronto.cs.se.modelepedia.classdiagram.TypedElement;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -89,6 +92,20 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * @generated
 	 */
 	private EClass associationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataTypeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -185,6 +202,15 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 */
 	public EReference getClassDiagram_Associations() {
 		return (EReference)classDiagramEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClassDiagram_Datatypes() {
+		return (EReference)classDiagramEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -435,6 +461,24 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTypeable() {
+		return typeableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDataType() {
+		return dataTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ClassDiagramFactory getClassDiagramFactory() {
 		return (ClassDiagramFactory)getEFactoryInstance();
 	}
@@ -462,6 +506,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		createEReference(classDiagramEClass, CLASS_DIAGRAM__CLASSES);
 		createEReference(classDiagramEClass, CLASS_DIAGRAM__DEPENDENCIES);
 		createEReference(classDiagramEClass, CLASS_DIAGRAM__ASSOCIATIONS);
+		createEReference(classDiagramEClass, CLASS_DIAGRAM__DATATYPES);
 
 		classEClass = createEClass(CLASS);
 		createEReference(classEClass, CLASS__OWNED_ATTRIBUTES);
@@ -496,6 +541,10 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		associationEClass = createEClass(ASSOCIATION);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
 		createEReference(associationEClass, ASSOCIATION__TARGET);
+
+		typeableEClass = createEClass(TYPEABLE);
+
+		dataTypeEClass = createEClass(DATA_TYPE);
 	}
 
 	/**
@@ -526,17 +575,20 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		classEClass.getESuperTypes().add(this.getNamedElement());
+		classEClass.getESuperTypes().add(this.getTypeable());
 		attributeEClass.getESuperTypes().add(this.getTypedElement());
 		operationEClass.getESuperTypes().add(this.getTypedElement());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
 		associationEClass.getESuperTypes().add(this.getNamedElement());
+		typeableEClass.getESuperTypes().add(this.getNamedElement());
+		dataTypeEClass.getESuperTypes().add(this.getTypeable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassDiagram_Classes(), this.getClass_(), null, "classes", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDiagram_Dependencies(), this.getDependency(), null, "dependencies", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDiagram_Associations(), this.getAssociation(), null, "associations", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassDiagram_Datatypes(), this.getDataType(), null, "datatypes", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classEClass, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClass_OwnedAttributes(), this.getAttribute(), this.getAttribute_Owner(), "ownedAttributes", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -565,12 +617,16 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		initEAttribute(getDependency_Name(), ecorePackage.getEString(), "name", null, 1, 1, Dependency.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedElement_Type(), this.getClass_(), null, "type", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedElement_Type(), this.getTypeable(), null, "type", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTypedElement_Public(), ecorePackage.getEBoolean(), "public", null, 1, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociation_Source(), this.getClass_(), this.getClass_AssociationsAsSource(), "source", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociation_Target(), this.getClass_(), this.getClass_AssociationsAsTarget(), "target", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeableEClass, Typeable.class, "Typeable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

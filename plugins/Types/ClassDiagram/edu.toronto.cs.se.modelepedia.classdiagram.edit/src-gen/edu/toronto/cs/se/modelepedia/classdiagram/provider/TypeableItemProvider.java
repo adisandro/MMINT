@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 
-import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
+import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,19 +23,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Operation} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.classdiagram.Typeable} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class OperationItemProvider extends TypedElementItemProvider {
+public class TypeableItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationItemProvider(AdapterFactory adapterFactory) {
+	public TypeableItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,17 +55,6 @@ public class OperationItemProvider extends TypedElementItemProvider {
 	}
 
 	/**
-	 * This returns Operation.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Operation"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,10 +62,10 @@ public class OperationItemProvider extends TypedElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Operation)object).getName();
+		String label = ((Typeable)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Operation_type") :
-			getString("_UI_Operation_type") + " " + label;
+			getString("_UI_Typeable_type") :
+			getString("_UI_Typeable_type") + " " + label;
 	}
 	
 

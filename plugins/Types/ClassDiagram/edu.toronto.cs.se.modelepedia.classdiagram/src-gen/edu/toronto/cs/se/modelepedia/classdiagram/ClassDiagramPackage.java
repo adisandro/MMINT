@@ -104,13 +104,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int CLASS_DIAGRAM__ASSOCIATIONS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Datatypes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM__DATATYPES = 3;
+
+	/**
 	 * The number of structural features of the '<em>Class Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_FEATURE_COUNT = 3;
+	int CLASS_DIAGRAM_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
@@ -159,6 +168,43 @@ public interface ClassDiagramPackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl <em>Typeable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getTypeable()
+	 * @generated
+	 */
+	int TYPEABLE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEABLE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Typeable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEABLE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Typeable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPEABLE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl <em>Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,7 +221,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NAME = NAMED_ELEMENT__NAME;
+	int CLASS__NAME = TYPEABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attributes</b></em>' containment reference list.
@@ -184,7 +230,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int CLASS__OWNED_ATTRIBUTES = TYPEABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
@@ -193,7 +239,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_OPERATIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CLASS__OWNED_OPERATIONS = TYPEABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Dependee</b></em>' reference list.
@@ -202,7 +248,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__DEPENDENCIES_AS_DEPENDEE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int CLASS__DEPENDENCIES_AS_DEPENDEE = TYPEABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies As Depender</b></em>' reference list.
@@ -211,7 +257,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__DEPENDENCIES_AS_DEPENDER = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int CLASS__DEPENDENCIES_AS_DEPENDER = TYPEABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Nested In</b></em>' reference.
@@ -220,7 +266,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NESTED_IN = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int CLASS__NESTED_IN = TYPEABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Nested</b></em>' reference list.
@@ -229,7 +275,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__NESTED = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int CLASS__NESTED = TYPEABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Superclass</b></em>' reference.
@@ -238,7 +284,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUPERCLASS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS__SUPERCLASS = TYPEABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Subclasses</b></em>' reference list.
@@ -247,7 +293,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__SUBCLASSES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int CLASS__SUBCLASSES = TYPEABLE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Associations As Source</b></em>' reference list.
@@ -256,7 +302,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ASSOCIATIONS_AS_SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 8;
+	int CLASS__ASSOCIATIONS_AS_SOURCE = TYPEABLE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Associations As Target</b></em>' reference list.
@@ -265,7 +311,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__ASSOCIATIONS_AS_TARGET = NAMED_ELEMENT_FEATURE_COUNT + 9;
+	int CLASS__ASSOCIATIONS_AS_TARGET = TYPEABLE_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Class</em>' class.
@@ -274,7 +320,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int CLASS_FEATURE_COUNT = TYPEABLE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -283,7 +329,7 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int CLASS_OPERATION_COUNT = TYPEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -579,6 +625,44 @@ public interface ClassDiagramPackage extends EPackage {
 	int ASSOCIATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl <em>Data Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getDataType()
+	 * @generated
+	 */
+	int DATA_TYPE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__NAME = TYPEABLE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Data Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_FEATURE_COUNT = TYPEABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Data Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_OPERATION_COUNT = TYPEABLE_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram <em>Class Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -620,6 +704,17 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClassDiagram_Associations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDatatypes <em>Datatypes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Datatypes</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram#getDatatypes()
+	 * @see #getClassDiagram()
+	 * @generated
+	 */
+	EReference getClassDiagram_Datatypes();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class <em>Class</em>}'.
@@ -912,6 +1007,26 @@ public interface ClassDiagramPackage extends EPackage {
 	EReference getAssociation_Target();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Typeable <em>Typeable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Typeable</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Typeable
+	 * @generated
+	 */
+	EClass getTypeable();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.DataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.DataType
+	 * @generated
+	 */
+	EClass getDataType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -967,6 +1082,14 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS_DIAGRAM__ASSOCIATIONS = eINSTANCE.getClassDiagram_Associations();
+
+		/**
+		 * The meta object literal for the '<em><b>Datatypes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_DIAGRAM__DATATYPES = eINSTANCE.getClassDiagram_Datatypes();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassImpl <em>Class</em>}' class.
@@ -1197,6 +1320,26 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSOCIATION__TARGET = eINSTANCE.getAssociation_Target();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl <em>Typeable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.TypeableImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getTypeable()
+		 * @generated
+		 */
+		EClass TYPEABLE = eINSTANCE.getTypeable();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl <em>Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.DataTypeImpl
+		 * @see edu.toronto.cs.se.modelepedia.classdiagram.impl.ClassDiagramPackageImpl#getDataType()
+		 * @generated
+		 */
+		EClass DATA_TYPE = eINSTANCE.getDataType();
 
 	}
 

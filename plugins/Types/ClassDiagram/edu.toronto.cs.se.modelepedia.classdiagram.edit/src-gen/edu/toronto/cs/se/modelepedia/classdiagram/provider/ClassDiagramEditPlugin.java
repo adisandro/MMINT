@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.modelepedia.classdiagram.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**

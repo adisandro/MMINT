@@ -15,11 +15,13 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.NamedElement;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
-
+import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 import edu.toronto.cs.se.modelepedia.classdiagram.TypedElement;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -114,6 +116,14 @@ public class ClassDiagramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAssociation(Association object) {
 				return createAssociationAdapter();
+			}
+			@Override
+			public Adapter caseTypeable(Typeable object) {
+				return createTypeableAdapter();
+			}
+			@Override
+			public Adapter caseDataType(DataType object) {
+				return createDataTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -244,6 +254,34 @@ public class ClassDiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssociationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Typeable <em>Typeable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Typeable
+	 * @generated
+	 */
+	public Adapter createTypeableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.classdiagram.DataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.DataType
+	 * @generated
+	 */
+	public Adapter createDataTypeAdapter() {
 		return null;
 	}
 

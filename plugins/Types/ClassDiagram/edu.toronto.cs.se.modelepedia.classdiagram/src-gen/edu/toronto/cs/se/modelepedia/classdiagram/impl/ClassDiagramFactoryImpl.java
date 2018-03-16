@@ -16,8 +16,10 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramFactory;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
+import edu.toronto.cs.se.modelepedia.classdiagram.DataType;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -76,6 +78,7 @@ public class ClassDiagramFactoryImpl extends EFactoryImpl implements ClassDiagra
 			case ClassDiagramPackage.OPERATION: return createOperation();
 			case ClassDiagramPackage.DEPENDENCY: return createDependency();
 			case ClassDiagramPackage.ASSOCIATION: return createAssociation();
+			case ClassDiagramPackage.DATA_TYPE: return createDataType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -139,6 +142,16 @@ public class ClassDiagramFactoryImpl extends EFactoryImpl implements ClassDiagra
 	public Association createAssociation() {
 		AssociationImpl association = new AssociationImpl();
 		return association;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataType createDataType() {
+		DataTypeImpl dataType = new DataTypeImpl();
+		return dataType;
 	}
 
 	/**

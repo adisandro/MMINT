@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -54,7 +55,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ClassImpl extends NamedElementImpl implements edu.toronto.cs.se.modelepedia.classdiagram.Class {
+public class ClassImpl extends TypeableImpl implements edu.toronto.cs.se.modelepedia.classdiagram.Class {
 	/**
 	 * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

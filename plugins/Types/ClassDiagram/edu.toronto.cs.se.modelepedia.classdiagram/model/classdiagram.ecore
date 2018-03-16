@@ -15,8 +15,10 @@
         eType="#//Dependency" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associations" upperBound="-1"
         eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatypes" upperBound="-1"
+        eType="#//DataType" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Typeable">
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
@@ -93,7 +95,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Typeable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="public" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
@@ -110,4 +112,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/associationsAsTarget"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Typeable" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Typeable"/>
 </ecore:EPackage>

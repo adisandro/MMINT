@@ -85,6 +85,15 @@ public interface ClassDiagramFactory extends EFactory {
 	Association createAssociation();
 
 	/**
+	 * Returns a new object of class '<em>Data Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Type</em>'.
+	 * @generated
+	 */
+	DataType createDataType();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

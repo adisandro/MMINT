@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model annotation="gmf.node label='name'"
  * @generated
  */
-public interface Class extends NamedElement {
+public interface Class extends Typeable {
 	/**
 	 * Returns the value of the '<em><b>Owned Attributes</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute}.
