@@ -41,7 +41,7 @@ public interface TypedElement extends NamedElement {
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Typeable)
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getTypedElement_Type()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Typeable getType();
