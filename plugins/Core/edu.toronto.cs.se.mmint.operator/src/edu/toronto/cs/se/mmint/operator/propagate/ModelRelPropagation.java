@@ -36,6 +36,7 @@ import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -98,9 +99,9 @@ public class ModelRelPropagation extends OperatorImpl {
 
 			this.origRel = (ModelRel) inputsByName.get(IN_MODELREL1);
 			this.traceRel = (ModelRel) inputsByName.get(IN_MODELREL2);
-			this.model1 = origRel.getModelEndpoints().get(0).getTarget();
-			this.model2 = traceRel.getModelEndpoints().stream()
-				.filter(modelEndpoint -> !modelEndpoint.getTargetUri().equals(model1.getUri()))
+			this.model1 = this.origRel.getModelEndpoints().get(0).getTarget();
+			this.model2 = this.traceRel.getModelEndpoints().stream()
+				.filter(modelEndpoint -> !modelEndpoint.getTargetUri().equals(this.model1.getUri()))
 				.findFirst()
 				.get()
 				.getTarget();
@@ -110,7 +111,9 @@ public class ModelRelPropagation extends OperatorImpl {
 	private ModelRel propagate(ModelRel origRel, ModelRel traceRel, Model model1, Model model2, MID outputMID) throws MMINTException {
 
 	    // prepare the propagated rel
-        ModelRel propRel = origRel.getMetatype().createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2), outputMID);
+        ModelRel propRel = origRel.getMetatype()
+                                  .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2),
+                                                              outputMID);
         ModelEndpointReference propModel2EndpointRef = propRel.getModelEndpointRefs().get(0);
 	    String model2Uri = model2.getUri();
         URI model2EMFUri = FileUtils.createEMFUri(model2Uri, true);
@@ -121,30 +124,38 @@ public class ModelRelPropagation extends OperatorImpl {
             .map(origModelElemRef -> MIDRegistry.getModelObjectUri(origModelElemRef.getObject()))
             .collect(Collectors.toSet());
         // loop through traceability mappings (can be n-ary, and not include any original model object)
+        Map<String, Set<ModelElementReference>> origToProp = new HashMap<>();
         for (Mapping traceMapping : traceRel.getMappings()) {
             Set<ModelElement> model2Elems = new HashSet<>();
-            boolean propagate = false;
+            Set<ModelElementReference> model2ElemRefs = null;
             for (ModelElementEndpoint traceModelElemEndpoint : traceMapping.getModelElemEndpoints()) {
                 ModelElement traceModelElem = traceModelElemEndpoint.getTarget();
-                if (origModelObjUris.contains(MIDRegistry.getModelObjectUri(traceModelElem))) {
-                    // propagate if an original model object is found
-                    propagate = true;
+                String traceModelElemUri = MIDRegistry.getModelObjectUri(traceModelElem);
+                if (origModelObjUris.contains(traceModelElemUri)) { // propagate if an original model object is found
+                    model2ElemRefs = origToProp.get(traceModelElemUri); //TODO handle n-ary with multiple from model1
+                    if (model2ElemRefs == null) {
+                        model2ElemRefs = new HashSet<>();
+                        origToProp.put(traceModelElemUri, model2ElemRefs);
+                    }
                     continue;
                 }
                 if (model2Uri.equals(((Model) traceModelElem.eContainer()).getUri())) {
-                    // collect model objects from model2 only to propagate
+                    // collect model objects from model2 to propagate
                     model2Elems.add(traceModelElem);
                 }
             }
-            if (!propagate) {
+            if (model2ElemRefs == null) { // no propagation for this trace mapping
                 continue;
             }
             // propagate!
             for (ModelElement model2Elem : model2Elems) {
                 EObject model2Obj = model2Elem.getEMFInstanceObject(model2EMFResource);
-                propModel2EndpointRef.createModelElementInstanceAndReference(model2Obj, null);
+                ModelElementReference model2ElemRef = propModel2EndpointRef.createModelElementInstanceAndReference(
+                                                          model2Obj, null);
+                model2ElemRefs.add(model2ElemRef);
             }
         }
+        //TODO loop through orig mappings, and copy them over to prop
 
         return propRel;
 	}

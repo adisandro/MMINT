@@ -29,12 +29,14 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -113,7 +115,7 @@ public class Slice extends OperatorImpl {
             for (EObject modelObj : impactedCur) {
                 // Get all model elements directly impacted by the current
                 // one without adding duplicates.
-                impactedNext.addAll(getDirectlyImpactedElements(modelObj, impacted));
+                impactedNext.addAll(this.getDirectlyImpactedElements(modelObj, impacted));
             }
             // Prepare for next iteration.
             impacted.addAll(impactedNext);
@@ -147,11 +149,18 @@ public class Slice extends OperatorImpl {
         }
 
         // Add impacted elements to the output model relation.
-        Set<EObject> impacted = getAllImpactedElements(criterion);
+        Set<EObject> impacted = this.getAllImpactedElements(criterion);
         ModelEndpointReference sliceModelEndpointRef = sliceRel.getModelEndpointRefs().get(0);
         for (EObject modelObj : impacted) {
             try {
-                sliceModelEndpointRef.createModelElementInstanceAndReference(modelObj, null);
+                ModelElementReference impactedModelElemRef = sliceModelEndpointRef
+                    .createModelElementInstanceAndReference(modelObj, null);
+                //TODO impacted should be a map from impacted elements to criterion elements
+                //TODO the name of the mapping should be set to the name of the criterion elements that sliced it
+                MappingReference impactedMappingRef = MIDTypeHierarchy.getRootMappingType()
+                    .createInstanceAndReferenceAndEndpointsAndReferences(false,
+                                                                         ECollections.asEList(impactedModelElemRef));
+                impactedMappingRef.getObject().setName("");
             }
             catch (MMINTException e) {
                 MMINTException.print(IStatus.WARNING, "Skipping slice model element " + modelObj, e);
@@ -170,7 +179,7 @@ public class Slice extends OperatorImpl {
         MID outputMID = outputMIDsByName.get(OUT_MODELREL);
 
         // create the slice from the initial criterion and the rules
-        ModelRel sliceRel = slice(input.critRel, input.model, outputMID);
+        ModelRel sliceRel = this.slice(input.critRel, input.model, outputMID);
 
         // output
         Map<String, Model> outputsByName = new HashMap<>();
