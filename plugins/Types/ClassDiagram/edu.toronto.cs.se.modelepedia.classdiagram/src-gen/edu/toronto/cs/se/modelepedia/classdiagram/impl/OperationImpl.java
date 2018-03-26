@@ -14,14 +14,18 @@ package edu.toronto.cs.se.modelepedia.classdiagram.impl;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
 
+import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -33,11 +37,22 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.OperationImpl#getParameterTypes <em>Parameter Types</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OperationImpl extends TypedElementImpl implements Operation {
+	/**
+	 * The cached value of the '{@link #getParameterTypes() <em>Parameter Types</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameterTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Typeable> parameterTypes;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,6 +118,18 @@ public class OperationImpl extends TypedElementImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Typeable> getParameterTypes() {
+		if (parameterTypes == null) {
+			parameterTypes = new EObjectResolvingEList<Typeable>(Typeable.class, this, ClassDiagramPackage.OPERATION__PARAMETER_TYPES);
+		}
+		return parameterTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -152,6 +179,8 @@ public class OperationImpl extends TypedElementImpl implements Operation {
 		switch (featureID) {
 			case ClassDiagramPackage.OPERATION__OWNER:
 				return getOwner();
+			case ClassDiagramPackage.OPERATION__PARAMETER_TYPES:
+				return getParameterTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,11 +190,16 @@ public class OperationImpl extends TypedElementImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ClassDiagramPackage.OPERATION__OWNER:
 				setOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+				return;
+			case ClassDiagramPackage.OPERATION__PARAMETER_TYPES:
+				getParameterTypes().clear();
+				getParameterTypes().addAll((Collection<? extends Typeable>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,6 +216,9 @@ public class OperationImpl extends TypedElementImpl implements Operation {
 			case ClassDiagramPackage.OPERATION__OWNER:
 				setOwner((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
 				return;
+			case ClassDiagramPackage.OPERATION__PARAMETER_TYPES:
+				getParameterTypes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -196,6 +233,8 @@ public class OperationImpl extends TypedElementImpl implements Operation {
 		switch (featureID) {
 			case ClassDiagramPackage.OPERATION__OWNER:
 				return getOwner() != null;
+			case ClassDiagramPackage.OPERATION__PARAMETER_TYPES:
+				return parameterTypes != null && !parameterTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

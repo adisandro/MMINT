@@ -54,27 +54,27 @@ public class CompositionItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourcePropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			addConstituentPropertyDescriptor(object);
+			addCompositePropertyDescriptor(object);
 			addMultiplicityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature.
+	 * This adds a property descriptor for the Constituent feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptor(Object object) {
+	protected void addConstituentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Composition_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_source_feature", "_UI_Composition_type"),
-				 ClassDiagramPackage.Literals.COMPOSITION__SOURCE,
+				 getString("_UI_Composition_constituent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_constituent_feature", "_UI_Composition_type"),
+				 ClassDiagramPackage.Literals.COMPOSITION__CONSTITUENT,
 				 true,
 				 false,
 				 true,
@@ -84,19 +84,19 @@ public class CompositionItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature.
+	 * This adds a property descriptor for the Composite feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addCompositePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Composition_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_target_feature", "_UI_Composition_type"),
-				 ClassDiagramPackage.Literals.COMPOSITION__TARGET,
+				 getString("_UI_Composition_composite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Composition_composite_feature", "_UI_Composition_type"),
+				 ClassDiagramPackage.Literals.COMPOSITION__COMPOSITE,
 				 true,
 				 false,
 				 true,

@@ -36,7 +36,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Composition" semanticCandidatesExpression="feature:compositions" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="classdiagram.Composition" useDomainElement="true">
+        <edgeMappings name="Composition" semanticCandidatesExpression="feature:compositions" sourceMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:composite" sourceFinderExpression="feature:constituent" domainClass="classdiagram.Composition" useDomainElement="true">
           <style targetArrow="Diamond">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="aql:if self.multiplicity = null then self.name else self.name +'\n' + self.multiplicity endif">
@@ -187,8 +187,8 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer()">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="classdiagram.Composition" referenceName="compositions">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="constituent" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="composite" valueExpression="var:target"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>

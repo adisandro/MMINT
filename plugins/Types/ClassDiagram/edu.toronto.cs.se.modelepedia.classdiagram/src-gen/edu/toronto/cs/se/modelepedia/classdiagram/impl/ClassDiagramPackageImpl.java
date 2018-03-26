@@ -334,6 +334,24 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_CompositionsAsConstituent() {
+		return (EReference)classEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_CompositionsAsComposite() {
+		return (EReference)classEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAttribute() {
 		return attributeEClass;
 	}
@@ -381,6 +399,15 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 */
 	public EReference getOperation_Owner() {
 		return (EReference)operationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOperation_ParameterTypes() {
+		return (EReference)operationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -514,7 +541,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComposition_Source() {
+	public EReference getComposition_Constituent() {
 		return (EReference)compositionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -523,7 +550,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComposition_Target() {
+	public EReference getComposition_Composite() {
 		return (EReference)compositionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -582,6 +609,8 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		createEReference(classEClass, CLASS__SUBCLASSES);
 		createEReference(classEClass, CLASS__ASSOCIATIONS_AS_SOURCE);
 		createEReference(classEClass, CLASS__ASSOCIATIONS_AS_TARGET);
+		createEReference(classEClass, CLASS__COMPOSITIONS_AS_CONSTITUENT);
+		createEReference(classEClass, CLASS__COMPOSITIONS_AS_COMPOSITE);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__OWNER);
@@ -591,6 +620,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 
 		operationEClass = createEClass(OPERATION);
 		createEReference(operationEClass, OPERATION__OWNER);
+		createEReference(operationEClass, OPERATION__PARAMETER_TYPES);
 
 		dependencyEClass = createEClass(DEPENDENCY);
 		createEReference(dependencyEClass, DEPENDENCY__DEPENDEE);
@@ -611,8 +641,8 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		dataTypeEClass = createEClass(DATA_TYPE);
 
 		compositionEClass = createEClass(COMPOSITION);
-		createEReference(compositionEClass, COMPOSITION__SOURCE);
-		createEReference(compositionEClass, COMPOSITION__TARGET);
+		createEReference(compositionEClass, COMPOSITION__CONSTITUENT);
+		createEReference(compositionEClass, COMPOSITION__COMPOSITE);
 		createEAttribute(compositionEClass, COMPOSITION__MULTIPLICITY);
 	}
 
@@ -672,6 +702,8 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		initEReference(getClass_Subclasses(), this.getClass_(), this.getClass_Superclass(), "subclasses", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_AssociationsAsSource(), this.getAssociation(), this.getAssociation_Source(), "associationsAsSource", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClass_AssociationsAsTarget(), this.getAssociation(), this.getAssociation_Target(), "associationsAsTarget", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_CompositionsAsConstituent(), this.getComposition(), this.getComposition_Constituent(), "compositionsAsConstituent", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_CompositionsAsComposite(), this.getComposition(), this.getComposition_Composite(), "compositionsAsComposite", null, 0, -1, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttribute_Owner(), this.getClass_(), this.getClass_OwnedAttributes(), "owner", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -681,6 +713,7 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 
 		initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperation_Owner(), this.getClass_(), this.getClass_OwnedOperations(), "owner", null, 1, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperation_ParameterTypes(), this.getTypeable(), null, "parameterTypes", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDependency_Dependee(), this.getClass_(), this.getClass_DependenciesAsDependee(), "dependee", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -701,8 +734,8 @@ public class ClassDiagramPackageImpl extends EPackageImpl implements ClassDiagra
 		initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compositionEClass, Composition.class, "Composition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComposition_Source(), this.getClass_(), null, "source", null, 1, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComposition_Target(), this.getClass_(), null, "target", null, 1, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComposition_Constituent(), this.getClass_(), this.getClass_CompositionsAsConstituent(), "constituent", null, 1, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComposition_Composite(), this.getClass_(), this.getClass_CompositionsAsComposite(), "composite", null, 1, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComposition_Multiplicity(), ecorePackage.getEString(), "multiplicity", "", 0, 1, Composition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

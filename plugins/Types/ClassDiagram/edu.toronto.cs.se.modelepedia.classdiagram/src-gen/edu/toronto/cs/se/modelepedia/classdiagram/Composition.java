@@ -21,8 +21,8 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getSource <em>Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent <em>Constituent</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite <em>Composite</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
  *
@@ -32,56 +32,60 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  */
 public interface Composition extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * Returns the value of the '<em><b>Constituent</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent <em>Compositions As Constituent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * If the meaning of the '<em>Constituent</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(edu.toronto.cs.se.modelepedia.classdiagram.Class)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Source()
-	 * @model required="true"
+	 * @return the value of the '<em>Constituent</em>' reference.
+	 * @see #setConstituent(edu.toronto.cs.se.modelepedia.classdiagram.Class)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Constituent()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent
+	 * @model opposite="compositionsAsConstituent" required="true"
 	 * @generated
 	 */
-	edu.toronto.cs.se.modelepedia.classdiagram.Class getSource();
+	edu.toronto.cs.se.modelepedia.classdiagram.Class getConstituent();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent <em>Constituent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' reference.
-	 * @see #getSource()
+	 * @param value the new value of the '<em>Constituent</em>' reference.
+	 * @see #getConstituent()
 	 * @generated
 	 */
-	void setSource(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
+	void setConstituent(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Composite</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite <em>Compositions As Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * If the meaning of the '<em>Composite</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(edu.toronto.cs.se.modelepedia.classdiagram.Class)
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Target()
-	 * @model required="true"
+	 * @return the value of the '<em>Composite</em>' reference.
+	 * @see #setComposite(edu.toronto.cs.se.modelepedia.classdiagram.Class)
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getComposition_Composite()
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite
+	 * @model opposite="compositionsAsComposite" required="true"
 	 * @generated
 	 */
-	edu.toronto.cs.se.modelepedia.classdiagram.Class getTarget();
+	edu.toronto.cs.se.modelepedia.classdiagram.Class getComposite();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite <em>Composite</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Composite</em>' reference.
+	 * @see #getComposite()
 	 * @generated
 	 */
-	void setTarget(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
+	void setComposite(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Multiplicity</b></em>' attribute.

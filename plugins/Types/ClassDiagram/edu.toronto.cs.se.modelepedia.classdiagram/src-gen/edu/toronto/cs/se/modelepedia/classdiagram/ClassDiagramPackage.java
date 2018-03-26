@@ -323,13 +323,31 @@ public interface ClassDiagramPackage extends EPackage {
 	int CLASS__ASSOCIATIONS_AS_TARGET = TYPEABLE_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Compositions As Constituent</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__COMPOSITIONS_AS_CONSTITUENT = TYPEABLE_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Compositions As Composite</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__COMPOSITIONS_AS_COMPOSITE = TYPEABLE_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = TYPEABLE_FEATURE_COUNT + 10;
+	int CLASS_FEATURE_COUNT = TYPEABLE_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -506,13 +524,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int OPERATION__OWNER = TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Parameter Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__PARAMETER_TYPES = TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OPERATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Operation</em>' class.
@@ -700,22 +727,22 @@ public interface ClassDiagramPackage extends EPackage {
 	int COMPOSITION__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * The feature id for the '<em><b>Constituent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITION__SOURCE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int COMPOSITION__CONSTITUENT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The feature id for the '<em><b>Composite</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITION__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int COMPOSITION__COMPOSITE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
@@ -931,6 +958,28 @@ public interface ClassDiagramPackage extends EPackage {
 	EReference getClass_AssociationsAsTarget();
 
 	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent <em>Compositions As Constituent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Compositions As Constituent</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsConstituent()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_CompositionsAsConstituent();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite <em>Compositions As Composite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Compositions As Composite</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Class#getCompositionsAsComposite()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_CompositionsAsComposite();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -992,6 +1041,17 @@ public interface ClassDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperation_Owner();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getParameterTypes <em>Parameter Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Parameter Types</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Operation#getParameterTypes()
+	 * @see #getOperation()
+	 * @generated
+	 */
+	EReference getOperation_ParameterTypes();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.classdiagram.Dependency <em>Dependency</em>}'.
@@ -1142,26 +1202,26 @@ public interface ClassDiagramPackage extends EPackage {
 	EClass getComposition();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent <em>Constituent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getSource()
+	 * @return the meta object for the reference '<em>Constituent</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getConstituent()
 	 * @see #getComposition()
 	 * @generated
 	 */
-	EReference getComposition_Source();
+	EReference getComposition_Constituent();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite <em>Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getTarget()
+	 * @return the meta object for the reference '<em>Composite</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.Composition#getComposite()
 	 * @see #getComposition()
 	 * @generated
 	 */
-	EReference getComposition_Target();
+	EReference getComposition_Composite();
 
 	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.classdiagram.Composition#getMultiplicity <em>Multiplicity</em>}'.
@@ -1338,6 +1398,22 @@ public interface ClassDiagramPackage extends EPackage {
 		EReference CLASS__ASSOCIATIONS_AS_TARGET = eINSTANCE.getClass_AssociationsAsTarget();
 
 		/**
+		 * The meta object literal for the '<em><b>Compositions As Constituent</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__COMPOSITIONS_AS_CONSTITUENT = eINSTANCE.getClass_CompositionsAsConstituent();
+
+		/**
+		 * The meta object literal for the '<em><b>Compositions As Composite</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__COMPOSITIONS_AS_COMPOSITE = eINSTANCE.getClass_CompositionsAsComposite();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.AttributeImpl <em>Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1390,6 +1466,14 @@ public interface ClassDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION__OWNER = eINSTANCE.getOperation_Owner();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION__PARAMETER_TYPES = eINSTANCE.getOperation_ParameterTypes();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.DependencyImpl <em>Dependency</em>}' class.
@@ -1516,20 +1600,20 @@ public interface ClassDiagramPackage extends EPackage {
 		EClass COMPOSITION = eINSTANCE.getComposition();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Constituent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITION__SOURCE = eINSTANCE.getComposition_Source();
+		EReference COMPOSITION__CONSTITUENT = eINSTANCE.getComposition_Constituent();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Composite</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOSITION__TARGET = eINSTANCE.getComposition_Target();
+		EReference COMPOSITION__COMPOSITE = eINSTANCE.getComposition_Composite();
 
 		/**
 		 * The meta object literal for the '<em><b>Multiplicity</b></em>' attribute feature.

@@ -11,6 +11,8 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +24,7 @@ package edu.toronto.cs.se.modelepedia.classdiagram;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getOwner <em>Owner</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.Operation#getParameterTypes <em>Parameter Types</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getOperation()
@@ -56,5 +59,21 @@ public interface Operation extends TypedElement {
 	 * @generated
 	 */
 	void setOwner(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Parameter Types</b></em>' reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.classdiagram.Typeable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameter Types</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter Types</em>' reference list.
+	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getOperation_ParameterTypes()
+	 * @model
+	 * @generated
+	 */
+	EList<Typeable> getParameterTypes();
 
 } // Operation

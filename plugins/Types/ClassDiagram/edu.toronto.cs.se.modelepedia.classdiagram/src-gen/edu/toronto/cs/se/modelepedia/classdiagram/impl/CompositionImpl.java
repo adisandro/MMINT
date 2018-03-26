@@ -16,6 +16,7 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -29,8 +30,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl#getSource <em>Source</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl#getConstituent <em>Constituent</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl#getComposite <em>Composite</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.classdiagram.impl.CompositionImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
  *
@@ -38,24 +39,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CompositionImpl extends NamedElementImpl implements Composition {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * The cached value of the '{@link #getConstituent() <em>Constituent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSource()
+	 * @see #getConstituent()
 	 * @generated
 	 * @ordered
 	 */
-	protected edu.toronto.cs.se.modelepedia.classdiagram.Class source;
+	protected edu.toronto.cs.se.modelepedia.classdiagram.Class constituent;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * The cached value of the '{@link #getComposite() <em>Composite</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
+	 * @see #getComposite()
 	 * @generated
 	 * @ordered
 	 */
-	protected edu.toronto.cs.se.modelepedia.classdiagram.Class target;
+	protected edu.toronto.cs.se.modelepedia.classdiagram.Class composite;
 
 	/**
 	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
@@ -101,16 +102,16 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.classdiagram.Class getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldSource);
-			if (source != oldSource) {
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class getConstituent() {
+		if (constituent != null && constituent.eIsProxy()) {
+			InternalEObject oldConstituent = (InternalEObject)constituent;
+			constituent = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldConstituent);
+			if (constituent != oldConstituent) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.COMPOSITION__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.COMPOSITION__CONSTITUENT, oldConstituent, constituent));
 			}
 		}
-		return source;
+		return constituent;
 	}
 
 	/**
@@ -118,8 +119,8 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetSource() {
-		return source;
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetConstituent() {
+		return constituent;
 	}
 
 	/**
@@ -127,11 +128,14 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(edu.toronto.cs.se.modelepedia.classdiagram.Class newSource) {
-		edu.toronto.cs.se.modelepedia.classdiagram.Class oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.COMPOSITION__SOURCE, oldSource, source));
+	public NotificationChain basicSetConstituent(edu.toronto.cs.se.modelepedia.classdiagram.Class newConstituent, NotificationChain msgs) {
+		edu.toronto.cs.se.modelepedia.classdiagram.Class oldConstituent = constituent;
+		constituent = newConstituent;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.COMPOSITION__CONSTITUENT, oldConstituent, newConstituent);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -139,16 +143,35 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.classdiagram.Class getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
+	public void setConstituent(edu.toronto.cs.se.modelepedia.classdiagram.Class newConstituent) {
+		if (newConstituent != constituent) {
+			NotificationChain msgs = null;
+			if (constituent != null)
+				msgs = ((InternalEObject)constituent).eInverseRemove(this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			if (newConstituent != null)
+				msgs = ((InternalEObject)newConstituent).eInverseAdd(this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			msgs = basicSetConstituent(newConstituent, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.COMPOSITION__CONSTITUENT, newConstituent, newConstituent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class getComposite() {
+		if (composite != null && composite.eIsProxy()) {
+			InternalEObject oldComposite = (InternalEObject)composite;
+			composite = (edu.toronto.cs.se.modelepedia.classdiagram.Class)eResolveProxy(oldComposite);
+			if (composite != oldComposite) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.COMPOSITION__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassDiagramPackage.COMPOSITION__COMPOSITE, oldComposite, composite));
 			}
 		}
-		return target;
+		return composite;
 	}
 
 	/**
@@ -156,8 +179,8 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetTarget() {
-		return target;
+	public edu.toronto.cs.se.modelepedia.classdiagram.Class basicGetComposite() {
+		return composite;
 	}
 
 	/**
@@ -165,11 +188,33 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(edu.toronto.cs.se.modelepedia.classdiagram.Class newTarget) {
-		edu.toronto.cs.se.modelepedia.classdiagram.Class oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.COMPOSITION__TARGET, oldTarget, target));
+	public NotificationChain basicSetComposite(edu.toronto.cs.se.modelepedia.classdiagram.Class newComposite, NotificationChain msgs) {
+		edu.toronto.cs.se.modelepedia.classdiagram.Class oldComposite = composite;
+		composite = newComposite;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.COMPOSITION__COMPOSITE, oldComposite, newComposite);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setComposite(edu.toronto.cs.se.modelepedia.classdiagram.Class newComposite) {
+		if (newComposite != composite) {
+			NotificationChain msgs = null;
+			if (composite != null)
+				msgs = ((InternalEObject)composite).eInverseRemove(this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			if (newComposite != null)
+				msgs = ((InternalEObject)newComposite).eInverseAdd(this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+			msgs = basicSetComposite(newComposite, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassDiagramPackage.COMPOSITION__COMPOSITE, newComposite, newComposite));
 	}
 
 	/**
@@ -199,14 +244,50 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ClassDiagramPackage.COMPOSITION__CONSTITUENT:
+				if (constituent != null)
+					msgs = ((InternalEObject)constituent).eInverseRemove(this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_CONSTITUENT, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+				return basicSetConstituent((edu.toronto.cs.se.modelepedia.classdiagram.Class)otherEnd, msgs);
+			case ClassDiagramPackage.COMPOSITION__COMPOSITE:
+				if (composite != null)
+					msgs = ((InternalEObject)composite).eInverseRemove(this, ClassDiagramPackage.CLASS__COMPOSITIONS_AS_COMPOSITE, edu.toronto.cs.se.modelepedia.classdiagram.Class.class, msgs);
+				return basicSetComposite((edu.toronto.cs.se.modelepedia.classdiagram.Class)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ClassDiagramPackage.COMPOSITION__CONSTITUENT:
+				return basicSetConstituent(null, msgs);
+			case ClassDiagramPackage.COMPOSITION__COMPOSITE:
+				return basicSetComposite(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ClassDiagramPackage.COMPOSITION__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case ClassDiagramPackage.COMPOSITION__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
+			case ClassDiagramPackage.COMPOSITION__CONSTITUENT:
+				if (resolve) return getConstituent();
+				return basicGetConstituent();
+			case ClassDiagramPackage.COMPOSITION__COMPOSITE:
+				if (resolve) return getComposite();
+				return basicGetComposite();
 			case ClassDiagramPackage.COMPOSITION__MULTIPLICITY:
 				return getMultiplicity();
 		}
@@ -221,11 +302,11 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ClassDiagramPackage.COMPOSITION__SOURCE:
-				setSource((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+			case ClassDiagramPackage.COMPOSITION__CONSTITUENT:
+				setConstituent((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
 				return;
-			case ClassDiagramPackage.COMPOSITION__TARGET:
-				setTarget((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
+			case ClassDiagramPackage.COMPOSITION__COMPOSITE:
+				setComposite((edu.toronto.cs.se.modelepedia.classdiagram.Class)newValue);
 				return;
 			case ClassDiagramPackage.COMPOSITION__MULTIPLICITY:
 				setMultiplicity((String)newValue);
@@ -242,11 +323,11 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ClassDiagramPackage.COMPOSITION__SOURCE:
-				setSource((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+			case ClassDiagramPackage.COMPOSITION__CONSTITUENT:
+				setConstituent((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
 				return;
-			case ClassDiagramPackage.COMPOSITION__TARGET:
-				setTarget((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
+			case ClassDiagramPackage.COMPOSITION__COMPOSITE:
+				setComposite((edu.toronto.cs.se.modelepedia.classdiagram.Class)null);
 				return;
 			case ClassDiagramPackage.COMPOSITION__MULTIPLICITY:
 				setMultiplicity(MULTIPLICITY_EDEFAULT);
@@ -263,10 +344,10 @@ public class CompositionImpl extends NamedElementImpl implements Composition {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ClassDiagramPackage.COMPOSITION__SOURCE:
-				return source != null;
-			case ClassDiagramPackage.COMPOSITION__TARGET:
-				return target != null;
+			case ClassDiagramPackage.COMPOSITION__CONSTITUENT:
+				return constituent != null;
+			case ClassDiagramPackage.COMPOSITION__COMPOSITE:
+				return composite != null;
 			case ClassDiagramPackage.COMPOSITION__MULTIPLICITY:
 				return MULTIPLICITY_EDEFAULT == null ? multiplicity != null : !MULTIPLICITY_EDEFAULT.equals(multiplicity);
 		}

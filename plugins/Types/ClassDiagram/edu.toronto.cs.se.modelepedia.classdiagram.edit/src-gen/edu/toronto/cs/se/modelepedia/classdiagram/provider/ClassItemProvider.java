@@ -63,6 +63,8 @@ public class ClassItemProvider extends TypeableItemProvider {
 			addSubclassesPropertyDescriptor(object);
 			addAssociationsAsSourcePropertyDescriptor(object);
 			addAssociationsAsTargetPropertyDescriptor(object);
+			addCompositionsAsConstituentPropertyDescriptor(object);
+			addCompositionsAsCompositePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -235,6 +237,50 @@ public class ClassItemProvider extends TypeableItemProvider {
 				 getString("_UI_Class_associationsAsTarget_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Class_associationsAsTarget_feature", "_UI_Class_type"),
 				 ClassDiagramPackage.Literals.CLASS__ASSOCIATIONS_AS_TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Compositions As Constituent feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositionsAsConstituentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_compositionsAsConstituent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_compositionsAsConstituent_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__COMPOSITIONS_AS_CONSTITUENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Compositions As Composite feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompositionsAsCompositePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_compositionsAsComposite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Class_compositionsAsComposite_feature", "_UI_Class_type"),
+				 ClassDiagramPackage.Literals.CLASS__COMPOSITIONS_AS_COMPOSITE,
 				 true,
 				 false,
 				 true,
