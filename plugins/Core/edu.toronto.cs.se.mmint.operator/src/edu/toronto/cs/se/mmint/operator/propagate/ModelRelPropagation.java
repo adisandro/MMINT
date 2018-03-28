@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -34,7 +35,9 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -123,6 +126,7 @@ public class ModelRelPropagation extends OperatorImpl {
         Set<String> origModelObjUris = origRel.getModelEndpointRefs().get(0).getModelElemRefs().stream()
             .map(origModelElemRef -> MIDRegistry.getModelObjectUri(origModelElemRef.getObject()))
             .collect(Collectors.toSet());
+
         // loop through traceability mappings (can be n-ary, and not include any original model object)
         Map<String, Set<ModelElementReference>> origToProp = new HashMap<>();
         for (Mapping traceMapping : traceRel.getMappings()) {
@@ -131,7 +135,8 @@ public class ModelRelPropagation extends OperatorImpl {
             for (ModelElementEndpoint traceModelElemEndpoint : traceMapping.getModelElemEndpoints()) {
                 ModelElement traceModelElem = traceModelElemEndpoint.getTarget();
                 String traceModelElemUri = MIDRegistry.getModelObjectUri(traceModelElem);
-                if (origModelObjUris.contains(traceModelElemUri)) { // propagate if an original model object is found
+                // propagate if a model elem from model1 is found
+                if (origModelObjUris.contains(traceModelElemUri)) {
                     model2ElemRefs = origToProp.get(traceModelElemUri); //TODO handle n-ary with multiple from model1
                     if (model2ElemRefs == null) {
                         model2ElemRefs = new HashSet<>();
@@ -139,15 +144,16 @@ public class ModelRelPropagation extends OperatorImpl {
                     }
                     continue;
                 }
-                if (model2Uri.equals(((Model) traceModelElem.eContainer()).getUri())) {
-                    // collect model objects from model2 to propagate
+                // collect model elems from model2 to propagate
+                if (traceModelElemUri.startsWith(model2Uri)) {
                     model2Elems.add(traceModelElem);
                 }
             }
-            if (model2ElemRefs == null) { // no propagation for this trace mapping
+            // no model elems from model1 == no propagation for this trace mapping
+            if (model2ElemRefs == null) {
                 continue;
             }
-            // propagate!
+            // propagate model elems
             for (ModelElement model2Elem : model2Elems) {
                 EObject model2Obj = model2Elem.getEMFInstanceObject(model2EMFResource);
                 ModelElementReference model2ElemRef = propModel2EndpointRef.createModelElementInstanceAndReference(
@@ -155,7 +161,28 @@ public class ModelRelPropagation extends OperatorImpl {
                 model2ElemRefs.add(model2ElemRef);
             }
         }
-        //TODO loop through orig mappings, and copy them over to prop
+
+        // loop through orig mappings, and propagate them to prop
+        for (Mapping origMapping : origRel.getMappings()) {
+            EList<ModelElementReference> propModelElemRefs = ECollections.newBasicEList();
+            for (ModelElementEndpoint origModelElemEndpoint : origMapping.getModelElemEndpoints()) {
+                ModelElement origModelElem = origModelElemEndpoint.getTarget();
+                String origModelElemUri = MIDRegistry.getModelObjectUri(origModelElem);
+                Set<ModelElementReference> propModelElemRefs2 = origToProp.get(origModelElemUri);
+                if (propModelElemRefs2 != null) {
+                    propModelElemRefs.addAll(propModelElemRefs2);
+                }
+            }
+            if (propModelElemRefs.isEmpty()) { // nothing to propagate
+                continue;
+            }
+            // propagate mapping
+            MappingReference propMappingRef = origMapping.getMetatype()
+                .createInstanceAndReferenceAndEndpointsAndReferences(
+                    origMapping instanceof BinaryMapping && propModelElemRefs.size() == 2, propModelElemRefs);
+            propMappingRef.getObject().setName(origMapping.getName());
+        }
+        //TODO problem with slice model rels like CDRel and SDRel that don't have any mapping type
 
         return propRel;
 	}
@@ -169,7 +196,7 @@ public class ModelRelPropagation extends OperatorImpl {
 		MID outputMID = outputMIDsByName.get(OUT_MODELREL);
 
 		// propagate the unary original rel through the trace rel
-		ModelRel propRel = this.propagate(input.origRel, input.traceRel, input.model1, input.model2, outputMID);
+		ModelRel propRel = propagate(input.origRel, input.traceRel, input.model1, input.model2, outputMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
