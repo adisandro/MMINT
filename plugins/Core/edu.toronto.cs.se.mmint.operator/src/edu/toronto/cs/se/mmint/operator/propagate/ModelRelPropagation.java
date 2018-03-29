@@ -47,78 +47,78 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class ModelRelPropagation extends OperatorImpl {
 
-	private final static @NonNull String IN_MODELREL1 = "original";
-	private final static @NonNull String IN_MODELREL2 = "trace";
-	private final static @NonNull String OUT_MODELREL = "propagated";
+    private final static @NonNull String IN_MODELREL1 = "original";
+    private final static @NonNull String IN_MODELREL2 = "trace";
+    private final static @NonNull String OUT_MODELREL = "propagated";
 
-	public static class OperatorConstraint implements IJavaOperatorConstraint {
+    public static class OperatorConstraint implements IJavaOperatorConstraint {
 
-		@Override
-		public boolean isAllowedInput(Map<String, Model> inputsByName) {
+        @Override
+        public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-			ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
-			ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
-			if (modelRel1 == modelRel2) {
-			    return false;
-			}
-			if (modelRel1.getModelEndpoints().size() != 1 || modelRel2.getModelEndpoints().size() != 2) {
-				return false;
-			}
-			String modelPath1 = modelRel1.getModelEndpoints().get(0).getTargetUri();
-			String modelPath21 = modelRel2.getModelEndpoints().get(0).getTargetUri();
-			String modelPath22 = modelRel2.getModelEndpoints().get(1).getTargetUri();
-			if (modelPath1.equals(modelPath21)) {
-				return true;
-			}
-			else if (modelPath1.equals(modelPath22)) {
-				return true;
-			}
+            ModelRel modelRel1 = (ModelRel) inputsByName.get(IN_MODELREL1);
+            ModelRel modelRel2 = (ModelRel) inputsByName.get(IN_MODELREL2);
+            if (modelRel1 == modelRel2) {
+                return false;
+            }
+            if (modelRel1.getModelEndpoints().size() != 1 || modelRel2.getModelEndpoints().size() != 2) {
+                return false;
+            }
+            String modelPath1 = modelRel1.getModelEndpoints().get(0).getTargetUri();
+            String modelPath21 = modelRel2.getModelEndpoints().get(0).getTargetUri();
+            String modelPath22 = modelRel2.getModelEndpoints().get(1).getTargetUri();
+            if (modelPath1.equals(modelPath21)) {
+                return true;
+            }
+            else if (modelPath1.equals(modelPath22)) {
+                return true;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
-		@Override
-		public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
+        @Override
+        public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
-			Input input = new Input(inputsByName);
-			ModelRel propRel = (ModelRel) outputsByName.get(OUT_MODELREL);
-			Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
-			List<Model> endpointModels = new ArrayList<>();
-			endpointModels.add(input.model2);
-			validOutputs.put(propRel, endpointModels);
+            Input input = new Input(inputsByName);
+            ModelRel propRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
+            List<Model> endpointModels = new ArrayList<>();
+            endpointModels.add(input.model2);
+            validOutputs.put(propRel, endpointModels);
 
-			return validOutputs;
-		}
-	}
+            return validOutputs;
+        }
+    }
 
-	private static class Input {
+    private static class Input {
 
-		private ModelRel origRel;
-		private ModelRel traceRel;
-		private Model model1;
-		private Model model2;
+        private ModelRel origRel;
+        private ModelRel traceRel;
+        private Model model1;
+        private Model model2;
 
-		public Input(Map<String, Model> inputsByName) {
+        public Input(Map<String, Model> inputsByName) {
 
-			this.origRel = (ModelRel) inputsByName.get(IN_MODELREL1);
-			this.traceRel = (ModelRel) inputsByName.get(IN_MODELREL2);
-			this.model1 = this.origRel.getModelEndpoints().get(0).getTarget();
-			this.model2 = this.traceRel.getModelEndpoints().stream()
-				.filter(modelEndpoint -> !modelEndpoint.getTargetUri().equals(this.model1.getUri()))
-				.findFirst()
-				.get()
-				.getTarget();
-		}
-	}
+            this.origRel = (ModelRel) inputsByName.get(IN_MODELREL1);
+            this.traceRel = (ModelRel) inputsByName.get(IN_MODELREL2);
+            this.model1 = this.origRel.getModelEndpoints().get(0).getTarget();
+            this.model2 = this.traceRel.getModelEndpoints().stream()
+                .filter(modelEndpoint -> !modelEndpoint.getTargetUri().equals(this.model1.getUri()))
+                .findFirst()
+                .get()
+                .getTarget();
+        }
+    }
 
-	private ModelRel propagate(ModelRel origRel, ModelRel traceRel, Model model1, Model model2, MID outputMID) throws MMINTException {
+    private ModelRel propagate(ModelRel origRel, ModelRel traceRel, Model model1, Model model2, MID outputMID) throws MMINTException {
 
-	    // prepare the propagated rel
+        // prepare the propagated rel
         ModelRel propRel = origRel.getMetatype()
                                   .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model2),
                                                               outputMID);
         ModelEndpointReference propModel2EndpointRef = propRel.getModelEndpointRefs().get(0);
-	    String model2Uri = model2.getUri();
+        String model2Uri = model2.getUri();
         URI model2EMFUri = FileUtils.createEMFUri(model2Uri, true);
         Resource model2EMFResource = new ResourceSetImpl().getResource(model2EMFUri, true);
 
@@ -185,24 +185,24 @@ public class ModelRelPropagation extends OperatorImpl {
         //TODO problem with slice model rels like CDRel and SDRel that don't have any mapping type
 
         return propRel;
-	}
+    }
 
-	@Override
-	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MID> outputMIDsByName) throws Exception {
+    @Override
+    public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+            Map<String, MID> outputMIDsByName) throws Exception {
 
-		// input
-		Input input = new Input(inputsByName);
-		MID outputMID = outputMIDsByName.get(OUT_MODELREL);
+        // input
+        Input input = new Input(inputsByName);
+        MID outputMID = outputMIDsByName.get(OUT_MODELREL);
 
-		// propagate the unary original rel through the trace rel
-		ModelRel propRel = propagate(input.origRel, input.traceRel, input.model1, input.model2, outputMID);
+        // propagate the unary original rel through the trace rel
+        ModelRel propRel = propagate(input.origRel, input.traceRel, input.model1, input.model2, outputMID);
 
-		// output
-		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODELREL, propRel);
+        // output
+        Map<String, Model> outputsByName = new HashMap<>();
+        outputsByName.put(OUT_MODELREL, propRel);
 
-		return outputsByName;
-	}
+        return outputsByName;
+    }
 
 }
