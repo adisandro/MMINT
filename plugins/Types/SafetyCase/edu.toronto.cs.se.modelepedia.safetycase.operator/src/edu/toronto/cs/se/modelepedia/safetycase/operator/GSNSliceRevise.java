@@ -30,16 +30,19 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 public class GSNSliceRevise extends Slice {
 
 	// Get all model elements in a safety case that needs to be re-checked
-	// given the input set of elements that needs to be revised.
+	// given the input element that needs to be revised.
     @Override
-	protected Set<EObject> getAllImpactedElements(Set<EObject> criterion) {
-		Set<EObject> impacted = new HashSet<>(criterion);
+	protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+
+        Set<EObject> impacted = new HashSet<>();
+        impacted.add(critModelObj);
+        alreadyImpacted.add(critModelObj);
 
 		// Iterate through the input set of revised elements to identify
 		// all model elements that require re-checking.
-		for (EObject elem : criterion) {
-			impacted.addAll(getDirectlyImpactedElements(elem, criterion));
-		}
+        Set<EObject> impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
+        impacted.addAll(impactedModelObjs);
+        alreadyImpacted.addAll(impactedModelObjs);
 
 		return impacted;
 	}
