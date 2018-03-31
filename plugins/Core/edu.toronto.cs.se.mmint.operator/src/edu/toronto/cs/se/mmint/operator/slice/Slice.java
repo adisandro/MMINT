@@ -146,11 +146,18 @@ public class Slice extends OperatorImpl {
 
         // loop through the model objects in the input criterion
         Set<EObject> impacted = new HashSet<>();
-        for (ModelElementReference mer : critModelEndpointRef.getModelElemRefs()) {
+        for (ModelElementReference critModelElemRef : critModelEndpointRef.getModelElemRefs()) {
             try {
-                EObject critModelObj = mer.getObject().getEMFInstanceObject(r);
-                EMFInfo critEInfo = MIDRegistry.getModelElementEMFInfo(critModelObj, MIDLevel.INSTANCES);
-                String critName = MIDRegistry.getModelElementName(critEInfo, critModelObj, MIDLevel.INSTANCES);
+                EObject critModelObj = critModelElemRef.getObject().getEMFInstanceObject(r);
+                String critName;
+                if (critModelElemRef.getModelElemEndpointRefs().size() == 1) { // criterion with info about previous slice steps
+                    critName = ((MappingReference) critModelElemRef.getModelElemEndpointRefs().get(0).eContainer())
+                                   .getObject().getName();
+                }
+                else { // normal criterion
+                    EMFInfo critEInfo = MIDRegistry.getModelElementEMFInfo(critModelObj, MIDLevel.INSTANCES);
+                    critName = MIDRegistry.getModelElementName(critEInfo, critModelObj, MIDLevel.INSTANCES);
+                }
                 // add impacted elements to the output model relation
                 Set<EObject> impModelObjs = getAllImpactedElements(critModelObj, impacted);
                 for (EObject impModelObj : impModelObjs) {
@@ -169,7 +176,7 @@ public class Slice extends OperatorImpl {
             }
             catch (MMINTException e) {
                 MMINTException.print(IStatus.WARNING,
-                                     "Skipping criterion model element " + mer.getObject().getName(), e);
+                                     "Skipping criterion model element " + critModelElemRef.getObject().getName(), e);
             }
         }
 
