@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay.
+ * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *    Alessio Di Sandro - Implementation.
+ *    Nick Fung - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.sequencediagram;
 
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getObjects <em>Objects</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getMessages <em>Messages</em>}</li>
  * </ul>
  *
@@ -33,36 +35,52 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SequenceDiagram extends EObject {
-    /**
-     * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
-     * The list contents are of type {@link edu.toronto.cs.se.modelepedia.sequencediagram.Object}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Objects</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Objects</em>' containment reference list.
-     * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getSequenceDiagram_Objects()
-     * @model containment="true"
-     * @generated
-     */
-    EList<edu.toronto.cs.se.modelepedia.sequencediagram.Object> getObjects();
+	/**
+	 * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.sequencediagram.Object}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Objects</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Objects</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getSequenceDiagram_Objects()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<edu.toronto.cs.se.modelepedia.sequencediagram.Object> getObjects();
 
-    /**
-     * Returns the value of the '<em><b>Messages</b></em>' containment reference list.
-     * The list contents are of type {@link edu.toronto.cs.se.modelepedia.sequencediagram.Message}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Messages</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Messages</em>' containment reference list.
-     * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getSequenceDiagram_Messages()
-     * @model containment="true"
-     * @generated
-     */
-    EList<Message> getMessages();
+	/**
+	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.sequencediagram.Class}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Classes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Classes</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getSequenceDiagram_Classes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<edu.toronto.cs.se.modelepedia.sequencediagram.Class> getClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Messages</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.sequencediagram.Message}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Messages</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Messages</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getSequenceDiagram_Messages()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Message> getMessages();
 
 } // SequenceDiagram
