@@ -7,7 +7,7 @@
         <nodeMappings name="Component" semanticCandidatesExpression="feature:objects" domainClass="sequencediagram.Component">
           <borderedNodeMappings name="Lifeline" semanticCandidatesExpression="feature:lifeline" domainClass="sequencediagram.Lifeline">
             <borderedNodeMappings name="ActivationBox" semanticCandidatesExpression="feature:activationBoxes" domainClass="sequencediagram.ActivationBox" reusedBorderedNodeMappings="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@nodeMappings[name='Component']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='ActivationBox']">
-              <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:if self.condition != null then '[' + self.condition + ']' else '' endif" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:if self.condition != null and self.condition != '' then '[' + self.condition + ']' else '' endif" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -35,7 +35,7 @@
         <edgeMappings name="AbitraryMessage" semanticCandidatesExpression="feature:messages" sourceMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@nodeMappings[name='Component']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='ActivationBox']" targetMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@nodeMappings[name='Component']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='ActivationBox']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="sequencediagram.ArbitraryMessage" useDomainElement="true">
           <conditionnalStyles predicateExpression="aql:self.type = sequencediagram::MessageType::Synchronous">
             <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
-              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <centerLabelStyleDescription showIcon="false" labelExpression="aql:if self.guard != '' and self.guard != null then '[' + self.guard +'] ' + self.content else self.content endif">
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </centerLabelStyleDescription>
@@ -43,7 +43,7 @@
           </conditionnalStyles>
           <conditionnalStyles predicateExpression="aql:self.type = sequencediagram::MessageType::Asynchronous">
             <style sizeComputationExpression="2">
-              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <centerLabelStyleDescription showIcon="false" labelExpression="aql:if self.guard != '' and self.guard != null then '[' + self.guard +'] ' + self.content else self.content endif">
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </centerLabelStyleDescription>
@@ -51,7 +51,7 @@
           </conditionnalStyles>
           <conditionnalStyles predicateExpression="aql:self.type = sequencediagram::MessageType::Return">
             <style lineStyle="dash" sizeComputationExpression="2">
-              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <centerLabelStyleDescription showIcon="false" labelExpression="aql:if self.guard != '' and self.guard != null then '[' + self.guard +'] ' + self.content else self.content endif">
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </centerLabelStyleDescription>
@@ -61,7 +61,7 @@
         <edgeMappings name="OperationMessage" semanticCandidatesExpression="feature:messages" sourceMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@nodeMappings[name='Component']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='ActivationBox']" targetMapping="//@ownedViewpoints[name='SequenceDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_SequenceDiagram']/@defaultLayer/@nodeMappings[name='Component']/@borderedNodeMappings[name='Lifeline']/@borderedNodeMappings[name='ActivationBox']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="sequencediagram.OperationMessage" useDomainElement="true">
           <conditionnalStyles predicateExpression="aql:self.type = sequencediagram::MessageType::Synchronous">
             <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
-              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <centerLabelStyleDescription showIcon="false" labelExpression="aql:let guard = if self.guard != '' and self.guard != null then '[' + self.guard + ']' else '' endif, content = if self.content != null then self.content.name else '' endif in guard + ' ' + content">
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </centerLabelStyleDescription>
@@ -69,7 +69,7 @@
           </conditionnalStyles>
           <conditionnalStyles predicateExpression="aql:self.type = sequencediagram::MessageType::Asynchronous">
             <style sizeComputationExpression="2">
-              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <centerLabelStyleDescription showIcon="false" labelExpression="aql:let guard = if self.guard != '' and self.guard != null then '[' + self.guard + ']' else '' endif, content = if self.content != null then self.content.name else '' endif in guard + ' ' + content">
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </centerLabelStyleDescription>
@@ -77,7 +77,7 @@
           </conditionnalStyles>
           <conditionnalStyles predicateExpression="aql:self.type = sequencediagram::MessageType::Return">
             <style lineStyle="dash" sizeComputationExpression="2">
-              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <centerLabelStyleDescription showIcon="false" labelExpression="aql:let guard = if self.guard != '' and self.guard != null then '[' + self.guard + ']' else '' endif, content = if self.content != null then self.content.name else '' endif in guard + ' ' + content">
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </centerLabelStyleDescription>
