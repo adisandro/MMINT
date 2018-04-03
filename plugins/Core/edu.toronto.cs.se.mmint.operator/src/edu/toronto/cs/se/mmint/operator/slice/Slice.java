@@ -166,7 +166,7 @@ public class Slice extends OperatorImpl {
                             .createModelElementInstanceAndReference(impModelObj, null);
                         MappingReference impMappingRef = MIDTypeHierarchy.getRootMappingType()
                             .createInstanceAndReferenceAndEndpointsAndReferences(
-                                 false, ECollections.asEList(impModelElemRef));
+                                false, ECollections.asEList(impModelElemRef));
                         impMappingRef.getObject().setName(critName);
                     }
                     catch (MMINTException e) {

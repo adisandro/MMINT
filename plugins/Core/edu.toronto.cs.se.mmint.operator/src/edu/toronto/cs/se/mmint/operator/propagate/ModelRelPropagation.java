@@ -137,7 +137,8 @@ public class ModelRelPropagation extends OperatorImpl {
                 String traceModelElemUri = MIDRegistry.getModelObjectUri(traceModelElem);
                 // propagate if a model elem from model1 is found
                 if (origModelObjUris.contains(traceModelElemUri)) {
-                    model2ElemRefs = origToProp.get(traceModelElemUri); //TODO handle n-ary with multiple from model1
+                    //TODO MMINT[SLICE] handle n-ary with multiple from model1
+                    model2ElemRefs = origToProp.get(traceModelElemUri);
                     if (model2ElemRefs == null) {
                         model2ElemRefs = new HashSet<>();
                         origToProp.put(traceModelElemUri, model2ElemRefs);
