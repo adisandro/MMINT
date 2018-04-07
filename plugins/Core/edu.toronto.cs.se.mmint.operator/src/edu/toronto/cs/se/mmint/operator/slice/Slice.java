@@ -54,17 +54,34 @@ public class Slice extends OperatorImpl {
     protected final static @NonNull String IN_MODELREL = "criterion";
     protected final static @NonNull String OUT_MODELREL = "slice";
 
-    public static class OperatorConstraint implements IJavaOperatorConstraint {
+    private static class Input {
+
+        private ModelRel critRel;
+        private Model model;
+
+        public Input(Map<String, Model> inputsByName) {
+
+            this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
+            if (this.critRel.getModelEndpoints().size() > 1) {
+                // critRel must be unary
+                throw new IllegalArgumentException();
+            }
+            this.model = this.critRel.getModelEndpoints().get(0).getTarget();
+        }
+    }
+
+    public static class Constraint implements IJavaOperatorConstraint {
 
         @Override
         public boolean isAllowedInput(Map<String, Model> inputsByName) {
 
-            ModelRel critRel = (ModelRel) inputsByName.get(IN_MODELREL);
-            if (critRel.getModelEndpoints().size() > 1) {
+            try {
+                new Input(inputsByName);
+                return true;
+            }
+            catch (IllegalArgumentException e) {
                 return false;
             }
-
-            return true;
         }
 
         @Override
@@ -80,18 +97,6 @@ public class Slice extends OperatorImpl {
             return validOutputs;
         }
 
-    }
-
-    private static class Input {
-
-        private ModelRel critRel;
-        private Model model;
-
-        public Input(Map<String, Model> inputsByName) {
-
-            this.critRel = (ModelRel) inputsByName.get(IN_MODELREL);
-            this.model = this.critRel.getModelEndpoints().get(0).getTarget();
-        }
     }
 
     // Returns the set of model elements that may be directly impacted
@@ -187,6 +192,7 @@ public class Slice extends OperatorImpl {
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
             Map<String, MID> outputMIDsByName) throws Exception {
 
+        //TODO slice should keep trace of the predecessor only
         // input
         Input input = new Input(inputsByName);
         MID outputMID = outputMIDsByName.get(OUT_MODELREL);
