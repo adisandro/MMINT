@@ -12,7 +12,9 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -32,17 +34,17 @@ public class GSNSliceRevise extends Slice {
 	// Get all model elements in a safety case that needs to be re-checked
 	// given the input element that needs to be revised.
     @Override
-	protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+	protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
 
-        Set<EObject> impacted = new HashSet<>();
-        impacted.add(critModelObj);
+        Map<EObject, Set<EObject>> impacted = new HashMap<>();
         alreadyImpacted.add(critModelObj);
 
 		// Iterate through the input set of revised elements to identify
 		// all model elements that require re-checking.
         Set<EObject> impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
-        impacted.addAll(impactedModelObjs);
         alreadyImpacted.addAll(impactedModelObjs);
+        impactedModelObjs.add(critModelObj);
+        impacted.put(critModelObj, impactedModelObjs);
 
 		return impacted;
 	}
