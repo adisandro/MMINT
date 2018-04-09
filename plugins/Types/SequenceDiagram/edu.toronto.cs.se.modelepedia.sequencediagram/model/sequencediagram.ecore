@@ -5,8 +5,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="SequenceDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
         eType="#//Object" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
-        eType="#//Class" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
         eType="#//Message" containment="true"/>
   </eClassifiers>
@@ -17,12 +15,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//Object"/>
   <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//Object">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Class"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
-        eType="#//Operation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lifeline">
     <eStructuralFeatures xsi:type="ecore:EReference" name="activationBoxes" upperBound="-1"
@@ -33,10 +26,7 @@
         eType="#//ActivationBox" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Message" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Message">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"
         defaultValueLiteral="Synchronous"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -44,16 +34,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//ActivationBox"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="guard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//Message"
+        eOpposite="#//Message/successor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="successor" eType="#//Message"
+        eOpposite="#//Message/predecessor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MessageType">
     <eLiterals name="Synchronous"/>
     <eLiterals name="Asynchronous" value="1"/>
     <eLiterals name="Return" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ArbitraryMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//Operation"/>
   </eClassifiers>
 </ecore:EPackage>

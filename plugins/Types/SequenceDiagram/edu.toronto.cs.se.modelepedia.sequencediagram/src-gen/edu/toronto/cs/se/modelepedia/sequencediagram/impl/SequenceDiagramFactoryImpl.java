@@ -14,12 +14,10 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.impl;
 
 import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Actor;
-import edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Component;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
+import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
 import edu.toronto.cs.se.modelepedia.sequencediagram.MessageType;
-import edu.toronto.cs.se.modelepedia.sequencediagram.Operation;
-import edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramFactory;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
@@ -80,12 +78,9 @@ public class SequenceDiagramFactoryImpl extends EFactoryImpl implements Sequence
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM: return createSequenceDiagram();
 			case SequenceDiagramPackage.ACTOR: return createActor();
 			case SequenceDiagramPackage.COMPONENT: return createComponent();
-			case SequenceDiagramPackage.CLASS: return createClass();
 			case SequenceDiagramPackage.LIFELINE: return createLifeline();
 			case SequenceDiagramPackage.ACTIVATION_BOX: return createActivationBox();
-			case SequenceDiagramPackage.OPERATION: return createOperation();
-			case SequenceDiagramPackage.ARBITRARY_MESSAGE: return createArbitraryMessage();
-			case SequenceDiagramPackage.OPERATION_MESSAGE: return createOperationMessage();
+			case SequenceDiagramPackage.MESSAGE: return createMessage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -156,16 +151,6 @@ public class SequenceDiagramFactoryImpl extends EFactoryImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.sequencediagram.Class createClass() {
-		ClassImpl class_ = new ClassImpl();
-		return class_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Lifeline createLifeline() {
 		LifelineImpl lifeline = new LifelineImpl();
 		return lifeline;
@@ -186,29 +171,9 @@ public class SequenceDiagramFactoryImpl extends EFactoryImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation createOperation() {
-		OperationImpl operation = new OperationImpl();
-		return operation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ArbitraryMessage createArbitraryMessage() {
-		ArbitraryMessageImpl arbitraryMessage = new ArbitraryMessageImpl();
-		return arbitraryMessage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperationMessage createOperationMessage() {
-		OperationMessageImpl operationMessage = new OperationMessageImpl();
-		return operationMessage;
+	public Message createMessage() {
+		MessageImpl message = new MessageImpl();
+		return message;
 	}
 
 	/**

@@ -88,7 +88,6 @@ public class SequenceDiagramItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SequenceDiagramPackage.Literals.SEQUENCE_DIAGRAM__OBJECTS);
-			childrenFeatures.add(SequenceDiagramPackage.Literals.SEQUENCE_DIAGRAM__CLASSES);
 			childrenFeatures.add(SequenceDiagramPackage.Literals.SEQUENCE_DIAGRAM__MESSAGES);
 		}
 		return childrenFeatures;
@@ -143,7 +142,6 @@ public class SequenceDiagramItemProvider
 
 		switch (notification.getFeatureID(SequenceDiagram.class)) {
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__OBJECTS:
-			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES:
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -174,18 +172,8 @@ public class SequenceDiagramItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SequenceDiagramPackage.Literals.SEQUENCE_DIAGRAM__CLASSES,
-				 SequenceDiagramFactory.eINSTANCE.createClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(SequenceDiagramPackage.Literals.SEQUENCE_DIAGRAM__MESSAGES,
-				 SequenceDiagramFactory.eINSTANCE.createArbitraryMessage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SequenceDiagramPackage.Literals.SEQUENCE_DIAGRAM__MESSAGES,
-				 SequenceDiagramFactory.eINSTANCE.createOperationMessage()));
+				 SequenceDiagramFactory.eINSTANCE.createMessage()));
 	}
 
 	/**

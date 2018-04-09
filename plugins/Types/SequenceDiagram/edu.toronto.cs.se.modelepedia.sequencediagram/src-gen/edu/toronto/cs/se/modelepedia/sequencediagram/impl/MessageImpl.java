@@ -18,6 +18,7 @@ import edu.toronto.cs.se.modelepedia.sequencediagram.MessageType;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -37,11 +38,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getGuard <em>Guard</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getContent <em>Content</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getPredecessor <em>Predecessor</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getSuccessor <em>Successor</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class MessageImpl extends MinimalEObjectImpl.Container implements Message {
+public class MessageImpl extends MinimalEObjectImpl.Container implements Message {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -101,6 +105,46 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected String guard = GUARD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getContent() <em>Content</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONTENT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getContent() <em>Content</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContent()
+	 * @generated
+	 * @ordered
+	 */
+	protected String content = CONTENT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredecessor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Message predecessor;
+
+	/**
+	 * The cached value of the '{@link #getSuccessor() <em>Successor</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccessor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Message successor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -244,6 +288,183 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getContent() {
+		return content;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContent(String newContent) {
+		String oldContent = content;
+		content = newContent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__CONTENT, oldContent, content));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Message getPredecessor() {
+		if (predecessor != null && predecessor.eIsProxy()) {
+			InternalEObject oldPredecessor = (InternalEObject)predecessor;
+			predecessor = (Message)eResolveProxy(oldPredecessor);
+			if (predecessor != oldPredecessor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequenceDiagramPackage.MESSAGE__PREDECESSOR, oldPredecessor, predecessor));
+			}
+		}
+		return predecessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Message basicGetPredecessor() {
+		return predecessor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPredecessor(Message newPredecessor, NotificationChain msgs) {
+		Message oldPredecessor = predecessor;
+		predecessor = newPredecessor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__PREDECESSOR, oldPredecessor, newPredecessor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPredecessor(Message newPredecessor) {
+		if (newPredecessor != predecessor) {
+			NotificationChain msgs = null;
+			if (predecessor != null)
+				msgs = ((InternalEObject)predecessor).eInverseRemove(this, SequenceDiagramPackage.MESSAGE__SUCCESSOR, Message.class, msgs);
+			if (newPredecessor != null)
+				msgs = ((InternalEObject)newPredecessor).eInverseAdd(this, SequenceDiagramPackage.MESSAGE__SUCCESSOR, Message.class, msgs);
+			msgs = basicSetPredecessor(newPredecessor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__PREDECESSOR, newPredecessor, newPredecessor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Message getSuccessor() {
+		if (successor != null && successor.eIsProxy()) {
+			InternalEObject oldSuccessor = (InternalEObject)successor;
+			successor = (Message)eResolveProxy(oldSuccessor);
+			if (successor != oldSuccessor) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequenceDiagramPackage.MESSAGE__SUCCESSOR, oldSuccessor, successor));
+			}
+		}
+		return successor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Message basicGetSuccessor() {
+		return successor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSuccessor(Message newSuccessor, NotificationChain msgs) {
+		Message oldSuccessor = successor;
+		successor = newSuccessor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__SUCCESSOR, oldSuccessor, newSuccessor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuccessor(Message newSuccessor) {
+		if (newSuccessor != successor) {
+			NotificationChain msgs = null;
+			if (successor != null)
+				msgs = ((InternalEObject)successor).eInverseRemove(this, SequenceDiagramPackage.MESSAGE__PREDECESSOR, Message.class, msgs);
+			if (newSuccessor != null)
+				msgs = ((InternalEObject)newSuccessor).eInverseAdd(this, SequenceDiagramPackage.MESSAGE__PREDECESSOR, Message.class, msgs);
+			msgs = basicSetSuccessor(newSuccessor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__SUCCESSOR, newSuccessor, newSuccessor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
+				if (predecessor != null)
+					msgs = ((InternalEObject)predecessor).eInverseRemove(this, SequenceDiagramPackage.MESSAGE__SUCCESSOR, Message.class, msgs);
+				return basicSetPredecessor((Message)otherEnd, msgs);
+			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
+				if (successor != null)
+					msgs = ((InternalEObject)successor).eInverseRemove(this, SequenceDiagramPackage.MESSAGE__PREDECESSOR, Message.class, msgs);
+				return basicSetSuccessor((Message)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
+				return basicSetPredecessor(null, msgs);
+			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
+				return basicSetSuccessor(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -257,6 +478,14 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 				return basicGetTarget();
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				return getGuard();
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				return getContent();
+			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
+				if (resolve) return getPredecessor();
+				return basicGetPredecessor();
+			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
+				if (resolve) return getSuccessor();
+				return basicGetSuccessor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,6 +509,15 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				setGuard((String)newValue);
+				return;
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				setContent((String)newValue);
+				return;
+			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
+				setPredecessor((Message)newValue);
+				return;
+			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
+				setSuccessor((Message)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -305,6 +543,15 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				setGuard(GUARD_EDEFAULT);
 				return;
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				setContent(CONTENT_EDEFAULT);
+				return;
+			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
+				setPredecessor((Message)null);
+				return;
+			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
+				setSuccessor((Message)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -325,6 +572,12 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 				return target != null;
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				return GUARD_EDEFAULT == null ? guard != null : !GUARD_EDEFAULT.equals(guard);
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				return CONTENT_EDEFAULT == null ? content != null : !CONTENT_EDEFAULT.equals(content);
+			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
+				return predecessor != null;
+			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
+				return successor != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -343,6 +596,8 @@ public abstract class MessageImpl extends MinimalEObjectImpl.Container implement
 		result.append(type);
 		result.append(", guard: ");
 		result.append(guard);
+		result.append(", content: ");
+		result.append(content);
 		result.append(')');
 		return result.toString();
 	}

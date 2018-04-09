@@ -31,29 +31,29 @@ package edu.toronto.cs.se.modelepedia.sequencediagram;
  */
 public interface Component extends edu.toronto.cs.se.modelepedia.sequencediagram.Object {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(edu.toronto.cs.se.modelepedia.sequencediagram.Class)
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getComponent_Type()
 	 * @model
 	 * @generated
 	 */
-	edu.toronto.cs.se.modelepedia.sequencediagram.Class getType();
+	String getType();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Component#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Component#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(edu.toronto.cs.se.modelepedia.sequencediagram.Class value);
+	void setType(String value);
 
 } // Component

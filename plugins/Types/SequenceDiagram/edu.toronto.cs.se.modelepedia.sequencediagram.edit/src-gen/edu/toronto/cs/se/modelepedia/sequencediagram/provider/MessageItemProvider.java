@@ -75,6 +75,9 @@ public class MessageItemProvider
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 			addGuardPropertyDescriptor(object);
+			addContentPropertyDescriptor(object);
+			addPredecessorPropertyDescriptor(object);
+			addSuccessorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,6 +171,83 @@ public class MessageItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Content feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Message_content_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Message_content_feature", "_UI_Message_type"),
+				 SequenceDiagramPackage.Literals.MESSAGE__CONTENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Predecessor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPredecessorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Message_predecessor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Message_predecessor_feature", "_UI_Message_type"),
+				 SequenceDiagramPackage.Literals.MESSAGE__PREDECESSOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Successor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Message_successor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Message_successor_feature", "_UI_Message_type"),
+				 SequenceDiagramPackage.Literals.MESSAGE__SUCCESSOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns Message.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Message"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,6 +277,7 @@ public class MessageItemProvider
 		switch (notification.getFeatureID(Message.class)) {
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 			case SequenceDiagramPackage.MESSAGE__GUARD:
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

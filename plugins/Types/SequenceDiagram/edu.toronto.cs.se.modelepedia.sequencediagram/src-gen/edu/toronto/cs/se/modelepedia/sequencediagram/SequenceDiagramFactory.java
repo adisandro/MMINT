@@ -59,15 +59,6 @@ public interface SequenceDiagramFactory extends EFactory {
 	Component createComponent();
 
 	/**
-	 * Returns a new object of class '<em>Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class</em>'.
-	 * @generated
-	 */
-	Class createClass();
-
-	/**
 	 * Returns a new object of class '<em>Lifeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,31 +77,13 @@ public interface SequenceDiagramFactory extends EFactory {
 	ActivationBox createActivationBox();
 
 	/**
-	 * Returns a new object of class '<em>Operation</em>'.
+	 * Returns a new object of class '<em>Message</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation</em>'.
+	 * @return a new object of class '<em>Message</em>'.
 	 * @generated
 	 */
-	Operation createOperation();
-
-	/**
-	 * Returns a new object of class '<em>Arbitrary Message</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Arbitrary Message</em>'.
-	 * @generated
-	 */
-	ArbitraryMessage createArbitraryMessage();
-
-	/**
-	 * Returns a new object of class '<em>Operation Message</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation Message</em>'.
-	 * @generated
-	 */
-	OperationMessage createOperationMessage();
+	Message createMessage();
 
 	/**
 	 * Returns the package supported by this factory.

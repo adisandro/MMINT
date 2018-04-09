@@ -14,12 +14,9 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.util;
 
 import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Actor;
-import edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Component;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
-import edu.toronto.cs.se.modelepedia.sequencediagram.Operation;
-import edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
@@ -111,12 +108,6 @@ public class SequenceDiagramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SequenceDiagramPackage.CLASS: {
-				edu.toronto.cs.se.modelepedia.sequencediagram.Class class_ = (edu.toronto.cs.se.modelepedia.sequencediagram.Class)theEObject;
-				T result = caseClass(class_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SequenceDiagramPackage.LIFELINE: {
 				Lifeline lifeline = (Lifeline)theEObject;
 				T result = caseLifeline(lifeline);
@@ -129,29 +120,9 @@ public class SequenceDiagramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SequenceDiagramPackage.OPERATION: {
-				Operation operation = (Operation)theEObject;
-				T result = caseOperation(operation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SequenceDiagramPackage.MESSAGE: {
 				Message message = (Message)theEObject;
 				T result = caseMessage(message);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SequenceDiagramPackage.ARBITRARY_MESSAGE: {
-				ArbitraryMessage arbitraryMessage = (ArbitraryMessage)theEObject;
-				T result = caseArbitraryMessage(arbitraryMessage);
-				if (result == null) result = caseMessage(arbitraryMessage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SequenceDiagramPackage.OPERATION_MESSAGE: {
-				OperationMessage operationMessage = (OperationMessage)theEObject;
-				T result = caseOperationMessage(operationMessage);
-				if (result == null) result = caseMessage(operationMessage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -220,21 +191,6 @@ public class SequenceDiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClass(edu.toronto.cs.se.modelepedia.sequencediagram.Class object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Lifeline</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -265,21 +221,6 @@ public class SequenceDiagramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOperation(Operation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Message</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -291,36 +232,6 @@ public class SequenceDiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMessage(Message object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Arbitrary Message</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Arbitrary Message</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseArbitraryMessage(ArbitraryMessage object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operation Message</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operation Message</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOperationMessage(OperationMessage object) {
 		return null;
 	}
 
