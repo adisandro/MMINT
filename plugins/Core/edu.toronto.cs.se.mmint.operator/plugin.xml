@@ -438,7 +438,7 @@
                class="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation$OperatorConstraint"
+               implementation="edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation$Constraint"
                language="JAVA">
          </constraint>
          <inputs>
@@ -600,7 +600,7 @@
                class="edu.toronto.cs.se.mmint.operator.slice.Slice">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.operator.slice.Slice$OperatorConstraint"
+               implementation="edu.toronto.cs.se.mmint.operator.slice.Slice$Constraint"
                language="JAVA">
          </constraint>
          <inputs>

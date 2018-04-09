@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -18,27 +18,27 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 /**
  * The command to create a link.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreateCommand {
 
 	/**
 	 * Constructor: initialises the superclass.
-	 * 
+	 *
 	 * @param req
 	 *            The request.
 	 */
@@ -79,7 +79,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 
 	/**
 	 * Checks if a link can be created.
-	 * 
+	 *
 	 * @return True if a link can be created, false otherwise.
 	 */
 	@Override
@@ -110,15 +110,15 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 	protected MappingReference doExecuteInstancesLevel() throws MMINTException, MIDDialogCancellation {
 
 		ModelRel modelRel = (ModelRel) getElementToEdit();
-		MappingReference mappingTypeRef = MIDDialogs.selectMappingTypeReferenceToCreate(modelRel, null, null);
-		MappingReference newMappingRef = mappingTypeRef.getObject().createInstanceAndReference(false, modelRel);
+		Mapping mappingType = MIDDialogs.selectMappingTypeToCreate(modelRel, null, null);
+		MappingReference newMappingRef = mappingType.createInstanceAndReference(false, modelRel);
 
 		return newMappingRef;
 	}
 
 	/**
 	 * Creates a new link.
-	 * 
+	 *
 	 * @param monitor
 	 *            The progress monitor.
 	 * @param info
@@ -146,7 +146,7 @@ public class MappingReferenceNewNaryMappingCommand extends MappingReferenceCreat
 			}
 			doConfigure(newElement, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(newElement);
-	
+
 			return CommandResult.newOKCommandResult(newElement);
 		}
 		catch (ExecutionException ee) {

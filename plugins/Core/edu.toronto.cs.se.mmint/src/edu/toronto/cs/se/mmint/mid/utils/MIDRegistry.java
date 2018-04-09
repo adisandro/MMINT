@@ -204,13 +204,13 @@ public class MIDRegistry {
 		return false;
 	}
 
-	public static @NonNull String getModelUri(@NonNull String modelElementUri) {
+	public static @NonNull String getModelUri(@NonNull String modelObjUri) {
 
-        if (!modelElementUri.contains(MMINT.MODEL_URI_SEPARATOR)) {
-            return modelElementUri;
+        if (!modelObjUri.contains(MMINT.MODEL_URI_SEPARATOR)) {
+            return modelObjUri;
         }
 
-        return modelElementUri.substring(0, modelElementUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
+        return modelObjUri.substring(0, modelObjUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
 	}
 
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {

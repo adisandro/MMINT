@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -30,7 +30,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -91,7 +90,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 	private void init() {
 
 		// state
-		tgtRootModelObj = null;
+		this.tgtRootModelObj = null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -102,7 +101,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		EObject tgtModelObj = tgtModelTypeObj.getEPackage().getEFactoryInstance().create(tgtModelTypeObj);
 		EObject srcContainerModelObj = srcModelObj.eContainer();
 		if (srcContainerModelObj == null) { // root found
-			tgtRootModelObj = tgtModelObj;
+			this.tgtRootModelObj = tgtModelObj;
 		}
 		else {
 			EObject tgtContainerModelObj = tgtModelObjs.get(srcContainerModelObj);
@@ -190,7 +189,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 		ModelRel traceModelRelType = traceModelRel.getMetatype();
 		ModelEndpointReference srcModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(srcIndex);
 		ModelEndpointReference tgtModelTypeEndpointRef = traceModelRelType.getModelEndpointRefs().get(tgtIndex);
-		Map<EObject, ModelElementReference> srcModelObjs = new LinkedHashMap<EObject, ModelElementReference>();
+		Map<EObject, ModelElementReference> srcModelObjs = new LinkedHashMap<>();
 		TreeIterator<EObject> srcModelObjsIter = srcModel.getEMFInstanceRoot().eResource().getAllContents();
 		// first pass: get model objects to be transformed
 		while (srcModelObjsIter.hasNext()) {
@@ -204,7 +203,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			srcModelObjs.put(srcModelObj, tgtModelElemTypeRef);
 		}
 		// second pass: transform
-		Map<EObject, EObject> tgtModelObjs = new LinkedHashMap<EObject, EObject>();
+		Map<EObject, EObject> tgtModelObjs = new LinkedHashMap<>();
 		for (EObject srcModelObj : srcModelObjs.keySet()) {
 			if (tgtModelObjs.get(srcModelObj) != null) { // already transformed
 				continue;
@@ -212,7 +211,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			transformModelObj(srcModelTypeEndpointRef, srcModelObj, srcModelObjs, tgtModelTypeEndpointRef, tgtModelObjs);
 		}
 		// third pass: EAttributes and non-containment EReferences
-		List<PrimitiveEObjectWrapper> primitiveSrcModelObjs = new ArrayList<PrimitiveEObjectWrapper>(), primitiveTgtModelObjs = new ArrayList<PrimitiveEObjectWrapper>();
+		List<PrimitiveEObjectWrapper> primitiveSrcModelObjs = new ArrayList<>(), primitiveTgtModelObjs = new ArrayList<>();
 		for (Map.Entry<EObject, EObject> tgtModelObjsEntry : tgtModelObjs.entrySet()) {
 			EObject srcModelObj = tgtModelObjsEntry.getKey(), tgtModelObj = tgtModelObjsEntry.getValue();
 			for (ModelElementReference srcModelElemTypeRef : srcModelTypeEndpointRef.getModelElemRefs()) {
@@ -232,14 +231,14 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			tgtModelObjs.put(primitiveSrcModelObjs.get(i), primitiveTgtModelObjs.get(i));
 		}
 		// fourth pass: create model elements and links
-		FileUtils.writeModelFile(tgtRootModelObj, tgtModelPath, true);
+		FileUtils.writeModelFile(this.tgtRootModelObj, this.tgtModelPath, true);
 		for (Map.Entry<EObject, EObject> tgtModelObjEntry : tgtModelObjs.entrySet()) {
-			EList<ModelElementReference> targetModelElemRefs = new BasicEList<ModelElementReference>();
+			EList<ModelElementReference> targetModelElemRefs = new BasicEList<>();
 			ModelElementReference srcModelElemRef = traceModelRel.getModelEndpointRefs().get(0).createModelElementInstanceAndReference(tgtModelObjEntry.getKey(), null);
 			targetModelElemRefs.add(srcModelElemRef);
 			ModelElementReference tgtModelElemRef = traceModelRel.getModelEndpointRefs().get(1).createModelElementInstanceAndReference(tgtModelObjEntry.getValue(), null);
 			targetModelElemRefs.add(tgtModelElemRef);
-			Mapping mappingType = MIDTypeRegistry.getType(MIDConstraintChecker.getAllowedMappingTypeReferences(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0));
+			Mapping mappingType = MIDConstraintChecker.getAllowedMappingTypes(traceModelRelType, srcModelElemRef, tgtModelElemRef).get(0);
 			MappingReference newMappingRef = mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, targetModelElemRefs);
 			newMappingRef.getObject().setName(srcModelElemRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemRef.getObject().getName());
 		}
@@ -262,13 +261,13 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			0 : 1;
 		int tgtIndex = 1 - srcIndex;
 		Model tgtModelType = traceModelRelType.getModelEndpointRefs().get(tgtIndex).getObject().getTarget();
-		tgtModelPath = FileUtils.getUniquePath(
+		this.tgtModelPath = FileUtils.getUniquePath(
 			FileUtils.replaceFileExtensionInPath(
 				FileUtils.addFileNameSuffixInPath(srcModel.getUri(), TRANSFORMATION_SUFFIX),
 				tgtModelType.getFileExtension()),
 			true,
 			false);
-		Model tgtModel = tgtModelType.createInstance(null, tgtModelPath, outputMIDsByName.get(OUT_MODEL));
+		Model tgtModel = tgtModelType.createInstance(null, this.tgtModelPath, outputMIDsByName.get(OUT_MODEL));
 		BinaryModelRel traceModelRel = traceModelRelType.createBinaryInstance(
 			null,
 			srcModel.getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModel.getName(),

@@ -46,6 +46,7 @@ import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
@@ -132,8 +133,8 @@ public class MIDDialogs {
 	public static MappingReference selectMappingTypeReferenceToExtend(ModelRel modelRelType, ModelElementReference srcModelElemTypeRef, ModelElementReference tgtModelElemTypeRef) throws MIDDialogCancellation {
 
 		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingTypeReferenceCreationDialog(srcModelElemTypeRef, tgtModelElemTypeRef, modelRelType);
-		String title = "Create new light link type";
-		String message = "Choose link supertype";
+		String title = "Create new light mapping type";
+		String message = "Choose mapping supertype";
 
 		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
@@ -283,13 +284,18 @@ public class MIDDialogs {
 		return (ModelEndpointReference) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
-	public static MappingReference selectMappingTypeReferenceToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
+	public static Mapping selectMappingTypeToCreate(ModelRel modelRel, ModelElementReference srcModelElemRef, ModelElementReference tgtModelElemRef) throws MIDDialogCancellation {
 
-		MIDTreeSelectionDialog dialog = MIDTypeRegistry.getMappingReferenceCreationDialog(srcModelElemRef, tgtModelElemRef, modelRel);
-		String title = "Create new link";
-		String message = "Choose link type";
+        ModelRel modelRelType = modelRel.getMetatype();
+        MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
+            new MIDDialogLabelProvider(),
+            new NewMappingDialogContentProvider(modelRelType, srcModelElemRef, tgtModelElemRef),
+            modelRelType
+        );
+		String title = "Create new mapping";
+		String message = "Choose mapping type";
 
-		return (MappingReference) openSelectionDialogWithDefault(dialog, title, message);
+		return (Mapping) openSelectionDialogWithDefault(dialog, title, message);
 	}
 
 	public static ModelElementEndpointReference selectModelElementTypeEndpointToCreate(MappingReference mappingRef, List<String> modelElemTypeEndpointUris) throws MIDDialogCancellation {
