@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.provider;
 
 
 import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
-import edu.toronto.cs.se.modelepedia.sequencediagram.MessageType;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
 import java.util.Collection;
@@ -71,11 +70,11 @@ public class MessageItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContentPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 			addGuardPropertyDescriptor(object);
-			addContentPropertyDescriptor(object);
 			addPredecessorPropertyDescriptor(object);
 			addSuccessorPropertyDescriptor(object);
 		}
@@ -255,8 +254,7 @@ public class MessageItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		MessageType labelValue = ((Message)object).getType();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Message)object).getContent();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Message_type") :
 			getString("_UI_Message_type") + " " + label;
@@ -275,9 +273,9 @@ public class MessageItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Message.class)) {
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 			case SequenceDiagramPackage.MESSAGE__GUARD:
-			case SequenceDiagramPackage.MESSAGE__CONTENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

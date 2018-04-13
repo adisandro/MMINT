@@ -326,13 +326,40 @@ public interface SequenceDiagramPackage extends EPackage {
 	int ACTIVATION_BOX__CONDITION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Messages As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_BOX__MESSAGES_AS_SOURCE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Messages As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_BOX__MESSAGES_AS_TARGET = 3;
+
+	/**
+	 * The feature id for the '<em><b>Owner Activation Box</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_BOX__OWNER_ACTIVATION_BOX = 4;
+
+	/**
 	 * The number of structural features of the '<em>Activation Box</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVATION_BOX_FEATURE_COUNT = 2;
+	int ACTIVATION_BOX_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Activation Box</em>' class.
@@ -354,13 +381,22 @@ public interface SequenceDiagramPackage extends EPackage {
 	int MESSAGE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Content</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE__CONTENT = 0;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__TYPE = 0;
+	int MESSAGE__TYPE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -369,7 +405,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__SOURCE = 1;
+	int MESSAGE__SOURCE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -378,7 +414,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__TARGET = 2;
+	int MESSAGE__TARGET = 3;
 
 	/**
 	 * The feature id for the '<em><b>Guard</b></em>' attribute.
@@ -387,16 +423,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__GUARD = 3;
-
-	/**
-	 * The feature id for the '<em><b>Content</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE__CONTENT = 4;
+	int MESSAGE__GUARD = 4;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -592,6 +619,39 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getActivationBox_Condition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsSource <em>Messages As Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Messages As Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsSource()
+	 * @see #getActivationBox()
+	 * @generated
+	 */
+	EReference getActivationBox_MessagesAsSource();
+
+	/**
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsTarget <em>Messages As Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Messages As Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsTarget()
+	 * @see #getActivationBox()
+	 * @generated
+	 */
+	EReference getActivationBox_MessagesAsTarget();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getOwnerActivationBox <em>Owner Activation Box</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner Activation Box</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getOwnerActivationBox()
+	 * @see #getActivationBox()
+	 * @generated
+	 */
+	EReference getActivationBox_OwnerActivationBox();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message <em>Message</em>}'.
@@ -836,6 +896,30 @@ public interface SequenceDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ACTIVATION_BOX__CONDITION = eINSTANCE.getActivationBox_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Messages As Source</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVATION_BOX__MESSAGES_AS_SOURCE = eINSTANCE.getActivationBox_MessagesAsSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Messages As Target</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVATION_BOX__MESSAGES_AS_TARGET = eINSTANCE.getActivationBox_MessagesAsTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner Activation Box</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVATION_BOX__OWNER_ACTIVATION_BOX = eINSTANCE.getActivationBox_OwnerActivationBox();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl <em>Message</em>}' class.

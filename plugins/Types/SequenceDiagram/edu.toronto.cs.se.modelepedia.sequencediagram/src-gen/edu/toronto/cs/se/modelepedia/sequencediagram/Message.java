@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getGuard <em>Guard</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getSuccessor <em>Successor</em>}</li>
  * </ul>
@@ -69,6 +69,7 @@ public interface Message extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsSource <em>Messages As Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -78,7 +79,8 @@ public interface Message extends EObject {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(ActivationBox)
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getMessage_Source()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsSource
+	 * @model opposite="messagesAsSource" required="true"
 	 * @generated
 	 */
 	ActivationBox getSource();
@@ -95,6 +97,7 @@ public interface Message extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsTarget <em>Messages As Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -104,7 +107,8 @@ public interface Message extends EObject {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ActivationBox)
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getMessage_Target()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsTarget
+	 * @model opposite="messagesAsTarget" required="true"
 	 * @generated
 	 */
 	ActivationBox getTarget();

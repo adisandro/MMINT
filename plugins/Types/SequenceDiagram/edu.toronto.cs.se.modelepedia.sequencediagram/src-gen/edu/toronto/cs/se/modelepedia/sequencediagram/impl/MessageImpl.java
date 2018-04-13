@@ -34,11 +34,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getContent <em>Content</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getSource <em>Source</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getGuard <em>Guard</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getContent <em>Content</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl#getSuccessor <em>Successor</em>}</li>
  * </ul>
@@ -46,6 +46,26 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public class MessageImpl extends MinimalEObjectImpl.Container implements Message {
+	/**
+	 * The default value of the '{@link #getContent() <em>Content</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONTENT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getContent() <em>Content</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContent()
+	 * @generated
+	 * @ordered
+	 */
+	protected String content = CONTENT_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -105,26 +125,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	 * @ordered
 	 */
 	protected String guard = GUARD_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getContent() <em>Content</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContent()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CONTENT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getContent() <em>Content</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContent()
-	 * @generated
-	 * @ordered
-	 */
-	protected String content = CONTENT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference.
@@ -217,11 +217,33 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(ActivationBox newSource) {
+	public NotificationChain basicSetSource(ActivationBox newSource, NotificationChain msgs) {
 		ActivationBox oldSource = source;
 		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__SOURCE, oldSource, source));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__SOURCE, oldSource, newSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSource(ActivationBox newSource) {
+		if (newSource != source) {
+			NotificationChain msgs = null;
+			if (source != null)
+				msgs = ((InternalEObject)source).eInverseRemove(this, SequenceDiagramPackage.ACTIVATION_BOX__MESSAGES_AS_SOURCE, ActivationBox.class, msgs);
+			if (newSource != null)
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, SequenceDiagramPackage.ACTIVATION_BOX__MESSAGES_AS_SOURCE, ActivationBox.class, msgs);
+			msgs = basicSetSource(newSource, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -255,11 +277,33 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(ActivationBox newTarget) {
+	public NotificationChain basicSetTarget(ActivationBox newTarget, NotificationChain msgs) {
 		ActivationBox oldTarget = target;
 		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__TARGET, oldTarget, target));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__TARGET, oldTarget, newTarget);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(ActivationBox newTarget) {
+		if (newTarget != target) {
+			NotificationChain msgs = null;
+			if (target != null)
+				msgs = ((InternalEObject)target).eInverseRemove(this, SequenceDiagramPackage.ACTIVATION_BOX__MESSAGES_AS_TARGET, ActivationBox.class, msgs);
+			if (newTarget != null)
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, SequenceDiagramPackage.ACTIVATION_BOX__MESSAGES_AS_TARGET, ActivationBox.class, msgs);
+			msgs = basicSetTarget(newTarget, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__TARGET, newTarget, newTarget));
 	}
 
 	/**
@@ -432,6 +476,14 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__SOURCE:
+				if (source != null)
+					msgs = ((InternalEObject)source).eInverseRemove(this, SequenceDiagramPackage.ACTIVATION_BOX__MESSAGES_AS_SOURCE, ActivationBox.class, msgs);
+				return basicSetSource((ActivationBox)otherEnd, msgs);
+			case SequenceDiagramPackage.MESSAGE__TARGET:
+				if (target != null)
+					msgs = ((InternalEObject)target).eInverseRemove(this, SequenceDiagramPackage.ACTIVATION_BOX__MESSAGES_AS_TARGET, ActivationBox.class, msgs);
+				return basicSetTarget((ActivationBox)otherEnd, msgs);
 			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
 				if (predecessor != null)
 					msgs = ((InternalEObject)predecessor).eInverseRemove(this, SequenceDiagramPackage.MESSAGE__SUCCESSOR, Message.class, msgs);
@@ -452,6 +504,10 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__SOURCE:
+				return basicSetSource(null, msgs);
+			case SequenceDiagramPackage.MESSAGE__TARGET:
+				return basicSetTarget(null, msgs);
 			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
 				return basicSetPredecessor(null, msgs);
 			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
@@ -468,6 +524,8 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				return getContent();
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 				return getType();
 			case SequenceDiagramPackage.MESSAGE__SOURCE:
@@ -478,8 +536,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 				return basicGetTarget();
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				return getGuard();
-			case SequenceDiagramPackage.MESSAGE__CONTENT:
-				return getContent();
 			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
 				if (resolve) return getPredecessor();
 				return basicGetPredecessor();
@@ -498,6 +554,9 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				setContent((String)newValue);
+				return;
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 				setType((MessageType)newValue);
 				return;
@@ -509,9 +568,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 				return;
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				setGuard((String)newValue);
-				return;
-			case SequenceDiagramPackage.MESSAGE__CONTENT:
-				setContent((String)newValue);
 				return;
 			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
 				setPredecessor((Message)newValue);
@@ -531,6 +587,9 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				setContent(CONTENT_EDEFAULT);
+				return;
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -542,9 +601,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 				return;
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				setGuard(GUARD_EDEFAULT);
-				return;
-			case SequenceDiagramPackage.MESSAGE__CONTENT:
-				setContent(CONTENT_EDEFAULT);
 				return;
 			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
 				setPredecessor((Message)null);
@@ -564,6 +620,8 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
+				return CONTENT_EDEFAULT == null ? content != null : !CONTENT_EDEFAULT.equals(content);
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 				return type != TYPE_EDEFAULT;
 			case SequenceDiagramPackage.MESSAGE__SOURCE:
@@ -572,8 +630,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 				return target != null;
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				return GUARD_EDEFAULT == null ? guard != null : !GUARD_EDEFAULT.equals(guard);
-			case SequenceDiagramPackage.MESSAGE__CONTENT:
-				return CONTENT_EDEFAULT == null ? content != null : !CONTENT_EDEFAULT.equals(content);
 			case SequenceDiagramPackage.MESSAGE__PREDECESSOR:
 				return predecessor != null;
 			case SequenceDiagramPackage.MESSAGE__SUCCESSOR:
@@ -592,12 +648,12 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
+		result.append(" (content: ");
+		result.append(content);
+		result.append(", type: ");
 		result.append(type);
 		result.append(", guard: ");
 		result.append(guard);
-		result.append(", content: ");
-		result.append(content);
 		result.append(')');
 		return result.toString();
 	}

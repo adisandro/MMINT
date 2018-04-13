@@ -285,6 +285,33 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getActivationBox_MessagesAsSource() {
+		return (EReference)activationBoxEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActivationBox_MessagesAsTarget() {
+		return (EReference)activationBoxEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActivationBox_OwnerActivationBox() {
+		return (EReference)activationBoxEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMessage() {
 		return messageEClass;
 	}
@@ -295,7 +322,7 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * @generated
 	 */
 	public EAttribute getMessage_Type() {
-		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -304,15 +331,6 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * @generated
 	 */
 	public EReference getMessage_Source() {
-		return (EReference)messageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMessage_Target() {
 		return (EReference)messageEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -321,8 +339,17 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMessage_Target() {
+		return (EReference)messageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getMessage_Guard() {
-		return (EAttribute)messageEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -331,7 +358,7 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * @generated
 	 */
 	public EAttribute getMessage_Content() {
-		return (EAttribute)messageEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -408,13 +435,16 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		activationBoxEClass = createEClass(ACTIVATION_BOX);
 		createEReference(activationBoxEClass, ACTIVATION_BOX__ACTIVATION_BOXES);
 		createEAttribute(activationBoxEClass, ACTIVATION_BOX__CONDITION);
+		createEReference(activationBoxEClass, ACTIVATION_BOX__MESSAGES_AS_SOURCE);
+		createEReference(activationBoxEClass, ACTIVATION_BOX__MESSAGES_AS_TARGET);
+		createEReference(activationBoxEClass, ACTIVATION_BOX__OWNER_ACTIVATION_BOX);
 
 		messageEClass = createEClass(MESSAGE);
+		createEAttribute(messageEClass, MESSAGE__CONTENT);
 		createEAttribute(messageEClass, MESSAGE__TYPE);
 		createEReference(messageEClass, MESSAGE__SOURCE);
 		createEReference(messageEClass, MESSAGE__TARGET);
 		createEAttribute(messageEClass, MESSAGE__GUARD);
-		createEAttribute(messageEClass, MESSAGE__CONTENT);
 		createEReference(messageEClass, MESSAGE__PREDECESSOR);
 		createEReference(messageEClass, MESSAGE__SUCCESSOR);
 
@@ -471,15 +501,18 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		initEReference(getLifeline_ActivationBoxes(), this.getActivationBox(), null, "activationBoxes", null, 0, -1, Lifeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activationBoxEClass, ActivationBox.class, "ActivationBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivationBox_ActivationBoxes(), this.getActivationBox(), null, "activationBoxes", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_ActivationBoxes(), this.getActivationBox(), this.getActivationBox_OwnerActivationBox(), "activationBoxes", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActivationBox_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_MessagesAsSource(), this.getMessage(), this.getMessage_Source(), "messagesAsSource", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_MessagesAsTarget(), this.getMessage(), this.getMessage_Target(), "messagesAsTarget", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_OwnerActivationBox(), this.getActivationBox(), this.getActivationBox_ActivationBoxes(), "ownerActivationBox", null, 0, 1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMessage_Type(), this.getMessageType(), "type", "Synchronous", 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMessage_Source(), this.getActivationBox(), null, "source", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMessage_Target(), this.getActivationBox(), null, "target", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMessage_Guard(), ecorePackage.getEString(), "guard", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMessage_Content(), ecorePackage.getEString(), "content", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMessage_Type(), this.getMessageType(), "type", "Synchronous", 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMessage_Source(), this.getActivationBox(), this.getActivationBox_MessagesAsSource(), "source", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMessage_Target(), this.getActivationBox(), this.getActivationBox_MessagesAsTarget(), "target", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMessage_Guard(), ecorePackage.getEString(), "guard", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMessage_Predecessor(), this.getMessage(), this.getMessage_Successor(), "predecessor", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMessage_Successor(), this.getMessage(), this.getMessage_Predecessor(), "successor", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
