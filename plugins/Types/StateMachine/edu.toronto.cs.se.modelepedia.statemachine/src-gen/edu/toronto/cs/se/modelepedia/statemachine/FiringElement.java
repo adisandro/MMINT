@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getAction <em>Action</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.statemachine.FiringElement#getTrigger <em>Trigger</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage#getFiringElement()
