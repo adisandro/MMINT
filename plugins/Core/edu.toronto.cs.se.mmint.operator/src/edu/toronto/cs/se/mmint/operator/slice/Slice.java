@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -97,7 +98,6 @@ public class Slice extends OperatorImpl {
 
             return validOutputs;
         }
-
     }
 
     // Returns the set of model elements that may be directly impacted
@@ -140,10 +140,11 @@ public class Slice extends OperatorImpl {
         return impacted;
     }
 
-    protected ModelRel slice(ModelRel critRel, Model model, MID outputMID) throws MMINTException {
+    protected @NonNull ModelRel slice(@NonNull ModelRel critRel, @NonNull Model model, @Nullable MID outputMID)
+                                throws MMINTException {
 
         ModelRel sliceRel = critRel.getMetatype()
-            .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(model), outputMID);
+            .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.asEList(model), outputMID);
         ModelEndpointReference sliceModelEndpointRef = sliceRel.getModelEndpointRefs().get(0);
 
         // retrieve resource corresponding to the model instance
@@ -201,9 +202,8 @@ public class Slice extends OperatorImpl {
 
     @Override
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-            Map<String, MID> outputMIDsByName) throws Exception {
+                                  Map<String, MID> outputMIDsByName) throws Exception {
 
-        //TODO slice should keep trace of the predecessor only
         // input
         Input input = new Input(inputsByName);
         MID outputMID = outputMIDsByName.get(OUT_MODELREL);
