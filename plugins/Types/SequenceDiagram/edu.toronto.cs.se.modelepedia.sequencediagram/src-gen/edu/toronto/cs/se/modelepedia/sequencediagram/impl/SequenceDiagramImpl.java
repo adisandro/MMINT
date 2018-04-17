@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramImpl#getObjects <em>Objects</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramImpl#getMessages <em>Messages</em>}</li>
  * </ul>
  *
@@ -55,16 +54,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<edu.toronto.cs.se.modelepedia.sequencediagram.Object> objects;
-
-	/**
-	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<edu.toronto.cs.se.modelepedia.sequencediagram.Class> classes;
 
 	/**
 	 * The cached value of the '{@link #getMessages() <em>Messages</em>}' containment reference list.
@@ -112,18 +101,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<edu.toronto.cs.se.modelepedia.sequencediagram.Class> getClasses() {
-		if (classes == null) {
-			classes = new EObjectContainmentEList<edu.toronto.cs.se.modelepedia.sequencediagram.Class>(edu.toronto.cs.se.modelepedia.sequencediagram.Class.class, this, SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES);
-		}
-		return classes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Message> getMessages() {
 		if (messages == null) {
 			messages = new EObjectContainmentEList<Message>(Message.class, this, SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES);
@@ -141,8 +118,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__OBJECTS:
 				return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
-			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES:
-				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				return ((InternalEList<?>)getMessages()).basicRemove(otherEnd, msgs);
 		}
@@ -159,8 +134,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__OBJECTS:
 				return getObjects();
-			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES:
-				return getClasses();
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				return getMessages();
 		}
@@ -179,10 +152,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__OBJECTS:
 				getObjects().clear();
 				getObjects().addAll((Collection<? extends edu.toronto.cs.se.modelepedia.sequencediagram.Object>)newValue);
-				return;
-			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES:
-				getClasses().clear();
-				getClasses().addAll((Collection<? extends edu.toronto.cs.se.modelepedia.sequencediagram.Class>)newValue);
 				return;
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				getMessages().clear();
@@ -203,9 +172,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__OBJECTS:
 				getObjects().clear();
 				return;
-			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES:
-				getClasses().clear();
-				return;
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				getMessages().clear();
 				return;
@@ -223,8 +189,6 @@ public class SequenceDiagramImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__OBJECTS:
 				return objects != null && !objects.isEmpty();
-			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__CLASSES:
-				return classes != null && !classes.isEmpty();
 			case SequenceDiagramPackage.SEQUENCE_DIAGRAM__MESSAGES:
 				return messages != null && !messages.isEmpty();
 		}

@@ -18,17 +18,12 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Attribute;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.AttributeReference;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Class;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.ClassReference;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Lifeline;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Message;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.Operation;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.OperationReference;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SequenceDiagram;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.SourceLifelineReference;
-import edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.TargetLifelineReference;
+import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
+import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
+import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
+import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
+import edu.toronto.cs.se.modelepedia.sequencediagram.Object;
+
 
 public class SDSlice extends Slice {
 
@@ -38,91 +33,175 @@ public class SDSlice extends Slice {
 
 	    Set<EObject> impacted = new HashSet<>();
 		// If input is a sequence diagram, then the following are impacted:
-		// 1) Owned classes, lifelines and messages.
+		// 1) Owned objects and messages.
 		if (modelObj instanceof SequenceDiagram) {
 			SequenceDiagram d = (SequenceDiagram) modelObj;
-			impacted.addAll(d.getClasses());
-			impacted.addAll(d.getLifelines());
+			impacted.addAll(d.getObjects());
 			impacted.addAll(d.getMessages());
 
-		// If input is a class, then the following are impacted:
-		// 1) Owned attributes and operations.
-		// 2) References to the input.
-		} else if (modelObj instanceof Class) {
-			Class c = (Class) modelObj;
-			impacted.addAll(c.getOperations());
-			impacted.addAll(c.getAttributes());
-			impacted.addAll(c.getLifelines());
+		// If input is an object, then the following are impacted:
+		// 1) Owned lifeline.
+		} else if (modelObj instanceof Object) {
+			Object o = (Object) modelObj;
+			if (o.getLifeline() != null) {
+				impacted.add(o.getLifeline());
+			}
 
 		// If input is a lifeline, then the following are impacted:
-		// 1) Owned class references.
-		// 2) References to the input.
-		// 3) Owned activation boxes.
+		// 1) Owned activation boxes.
 		} else if (modelObj instanceof Lifeline) {
 			Lifeline l = (Lifeline) modelObj;
-			impacted.addAll(l.getClass_());
-			impacted.addAll(l.getMessagesAsSource());
-			impacted.addAll(l.getMessagesAsTarget());
+			impacted.addAll(l.getActivationBoxes());
+			
+		// If input is an activation box, then the following are impacted:
+		// 1) Owned activation boxes.
+		// 2) All messages as source and as target.
+		} else if (modelObj instanceof ActivationBox) {
+			ActivationBox a = (ActivationBox) modelObj;
+			impacted.addAll(a.getActivationBoxes());
+			impacted.addAll(a.getMessagesAsSource());
+			impacted.addAll(a.getMessagesAsTarget());
 
 		// If input is a message, then the following are impacted:
-		// 1) Its target and source lifeline references.
-		// 2) Its operation and attribute references.
+		// 1) The next message on the source activation box (or its descendants or ancestors).
+		// 2) The next message on the target activation box (or its descendants or ancestors).
+		// 3) The source activation box if it (or its descendants) does not have any other preceding messages.
+		// 4) The target activation box if it (or its descendants) does not have any other preceding messages.
 		} else if (modelObj instanceof Message) {
 			Message m = (Message) modelObj;
-			impacted.addAll(m.getSourceLifeline());
-			impacted.addAll(m.getTargetLifeline());
-			impacted.addAll(m.getOperation());
-			impacted.addAll(m.getAttributes());
+			
+			// Get all descendants and ancestors of the source activation box.
+			// Note: The original box is considered its own descendant and ancestor.
+			Set<ActivationBox> sourceBoxes = new HashSet<>();			
+			Set<ActivationBox> sourceAncestors = getAncestorBoxes(m.getSource());
+			Set<ActivationBox> sourceDescendants = getDescendantBoxes(m.getSource());
+			sourceBoxes.addAll(sourceDescendants);
+			sourceBoxes.addAll(sourceAncestors);
 
-		// If input is an attribute, then its references are impacted.
-		} else if (modelObj instanceof Attribute) {
-			Attribute a = (Attribute) modelObj;
-			impacted.addAll(a.getMessages());
-
-		// If input is an operation, then its references are impacted.
-		} else if (modelObj instanceof Operation) {
-			Operation o = (Operation) modelObj;
-			impacted.addAll(o.getMessages());
-
-		// If input is a class reference, then its lifeline is impacted.
-		} else if (modelObj instanceof ClassReference) {
-			ClassReference r = (ClassReference) modelObj;
-			if (r.getSource() != null) {
-				impacted.add(r.getSource());
+			
+			// Get the next message related to the source activation box (if any).
+			Message nextSourceMessage = getNextMessageOnBoxes(sourceBoxes, m);
+			if (nextSourceMessage != null) {
+				impacted.add(nextSourceMessage);
 			}
-
-		// If input is a source lifeline reference, then its message is impacted.
-		} else if (modelObj instanceof SourceLifelineReference) {
-			SourceLifelineReference r = (SourceLifelineReference) modelObj;
-			if (r.getSource() != null) {
-				impacted.add(r.getSource());
+			
+			// Check if source activation box (or its descendants) has any preceding messages.
+			Message previousSourceMessage = getPreviousMessageOnBoxes(sourceDescendants, m);
+			if (previousSourceMessage == null)	{
+				impacted.add(m.getSource());
 			}
+			
+			// Get all descendants and ancestors of the target activation box.
+			// Note: The original box is considered its own descendant and ancestor.
+			Set<ActivationBox> targetBoxes = new HashSet<>();			
+			Set<ActivationBox> targetAncestors = getAncestorBoxes(m.getTarget());
+			Set<ActivationBox> targetDescendants = getDescendantBoxes(m.getTarget());
+			targetBoxes.addAll(targetDescendants);
+			targetBoxes.addAll(targetAncestors);
 
-		// If input is a target lifeline reference, then its message is impacted.
-		} else if (modelObj instanceof TargetLifelineReference) {
-			TargetLifelineReference r = (TargetLifelineReference) modelObj;
-			if (r.getSource() != null) {
-				impacted.add(r.getSource());
+			
+			// Get the next message related to the source activation box (if any).
+			Message nextTargetMessage = getNextMessageOnBoxes(targetBoxes, m);
+			if (nextTargetMessage != null) {
+				impacted.add(nextTargetMessage);
 			}
-
-		// If input is an attribute reference, then its message is impacted.
-		} else if (modelObj instanceof AttributeReference) {
-			AttributeReference r = (AttributeReference) modelObj;
-			if (r.getSource() != null) {
-				impacted.add(r.getSource());
-			}
-
-		// If input is an operation reference, then its message is impacted.
-		} else if (modelObj instanceof OperationReference) {
-			OperationReference r = (OperationReference) modelObj;
-			if (r.getSource() != null) {
-				impacted.add(r.getSource());
-			}
+			
+			// Check if source activation box (or its descendants) has any preceding messages.
+			Message previousTargetMessage = getPreviousMessageOnBoxes(targetDescendants, m);
+			if (previousTargetMessage == null)	{
+				impacted.add(m.getTarget());
+			}			
+			
 		}
 
 		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
 	}
+	
+	// Return the set of activation boxes that are contained within the input box (including itself).
+	public Set<ActivationBox> getDescendantBoxes(ActivationBox ancestor) {
+		Set<ActivationBox> descendantsAll = new HashSet<>();
+		Set<ActivationBox> descendantsCur = new HashSet<>();
+		Set<ActivationBox> descendantsNext = new HashSet<>();
+
+		// Iterate through the current set of newly added descendants
+		// to identify the next generation of descendants.
+		descendantsAll.add(ancestor);
+		descendantsCur.add(ancestor);
+		while (!descendantsCur.isEmpty()) {
+			for (ActivationBox curElem : descendantsCur) {
+				if (!curElem.getActivationBoxes().isEmpty()) {
+					descendantsNext.addAll(curElem.getActivationBoxes());	
+				}
+			}
+
+			descendantsCur.clear();
+			for (ActivationBox newElem : descendantsNext) {
+				if (!descendantsAll.contains(newElem)) {
+					descendantsAll.add(newElem);
+					descendantsCur.add(newElem);
+				}
+			}
+
+			descendantsNext.clear();
+		}
+
+		return descendantsAll;
+	}
+	
+	// Return the set of activation boxes that are ancestors of the input box (including itself).
+	public Set<ActivationBox> getAncestorBoxes(ActivationBox descendant) {
+		ActivationBox nextAncestor = descendant;
+		Set<ActivationBox> ancestorsAll = new HashSet<>();
+
+		do {
+			ancestorsAll.add(nextAncestor);
+			nextAncestor = nextAncestor.getOwnerActivationBox();
+		} while (nextAncestor != null);
+		
+		return ancestorsAll;
+	}
+	
+	// Return the message (if any) that succeeds the input message and is on the input activation boxes.
+	public Message getNextMessageOnBoxes(Set<ActivationBox> boxes, Message m) {
+		ActivationBox nextSource;
+		ActivationBox nextTarget;
+		Message nextMessage = m.getSuccessor();
+		
+		while (nextMessage != null) {
+			nextSource = nextMessage.getSource();
+			nextTarget = nextMessage.getTarget();			
+
+			if (boxes.contains(nextSource) || boxes.contains(nextTarget)) {
+				break;
+			} else {
+				nextMessage = nextMessage.getSuccessor();
+			}
+		}
+		
+		return nextMessage;
+	}
+	
+	// Return the message (if any) that precedes the input message and is on the input activation boxes.
+	public Message getPreviousMessageOnBoxes(Set<ActivationBox> boxes, Message m) {
+		ActivationBox previousSource;
+		ActivationBox previousTarget;
+		Message previousMessage = m.getPredecessor();
+		
+		while (previousMessage != null) {
+			previousSource = previousMessage.getSource();
+			previousTarget = previousMessage.getTarget();			
+
+			if (boxes.contains(previousSource) || boxes.contains(previousTarget)) {
+				break;
+			} else {
+				previousMessage = previousMessage.getPredecessor();
+			}
+		}
+		
+		return previousMessage;
+	}
+	
 }
 

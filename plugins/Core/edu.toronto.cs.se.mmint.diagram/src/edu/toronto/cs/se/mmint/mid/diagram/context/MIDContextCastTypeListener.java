@@ -28,6 +28,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
@@ -75,6 +76,11 @@ public class MIDContextCastTypeListener extends MIDContextMenuListener {
 
 			// change model relationship structure metatypes
 			if (model instanceof ModelRel) {
+			    for (ModelEndpoint modelEndpoint : ((ModelRel) model).getModelEndpoints()) {
+			        modelEndpoint.setMetatypeUri(
+			            MIDConstraintChecker.getAllowedModelEndpoints(
+			                (ModelRel) model, null, modelEndpoint.getTarget()).get(0));
+			    }
 				for (ModelEndpointReference modelEndpointRef : ((ModelRel) model).getModelEndpointRefs()) {
 					for (ModelElementReference modelElemRef : modelEndpointRef.getModelElemRefs()) {
 						ModelElement modelElem = modelElemRef.getObject();

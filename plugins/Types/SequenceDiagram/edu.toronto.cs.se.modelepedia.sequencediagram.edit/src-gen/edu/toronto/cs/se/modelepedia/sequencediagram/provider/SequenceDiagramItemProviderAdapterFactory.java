@@ -151,29 +151,6 @@ public class SequenceDiagramItemProviderAdapterFactory extends SequenceDiagramAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.sequencediagram.Class} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ClassItemProvider classItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.sequencediagram.Class}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createClassAdapter() {
-		if (classItemProvider == null) {
-			classItemProvider = new ClassItemProvider(this);
-		}
-
-		return classItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,72 +197,26 @@ public class SequenceDiagramItemProviderAdapterFactory extends SequenceDiagramAd
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.sequencediagram.Operation} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.sequencediagram.Message} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OperationItemProvider operationItemProvider;
+	protected MessageItemProvider messageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.sequencediagram.Operation}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.sequencediagram.Message}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOperationAdapter() {
-		if (operationItemProvider == null) {
-			operationItemProvider = new OperationItemProvider(this);
+	public Adapter createMessageAdapter() {
+		if (messageItemProvider == null) {
+			messageItemProvider = new MessageItemProvider(this);
 		}
 
-		return operationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ArbitraryMessageItemProvider arbitraryMessageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createArbitraryMessageAdapter() {
-		if (arbitraryMessageItemProvider == null) {
-			arbitraryMessageItemProvider = new ArbitraryMessageItemProvider(this);
-		}
-
-		return arbitraryMessageItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OperationMessageItemProvider operationMessageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOperationMessageAdapter() {
-		if (operationMessageItemProvider == null) {
-			operationMessageItemProvider = new OperationMessageItemProvider(this);
-		}
-
-		return operationMessageItemProvider;
+		return messageItemProvider;
 	}
 
 	/**
@@ -390,12 +321,9 @@ public class SequenceDiagramItemProviderAdapterFactory extends SequenceDiagramAd
 		if (sequenceDiagramItemProvider != null) sequenceDiagramItemProvider.dispose();
 		if (actorItemProvider != null) actorItemProvider.dispose();
 		if (componentItemProvider != null) componentItemProvider.dispose();
-		if (classItemProvider != null) classItemProvider.dispose();
 		if (lifelineItemProvider != null) lifelineItemProvider.dispose();
 		if (activationBoxItemProvider != null) activationBoxItemProvider.dispose();
-		if (operationItemProvider != null) operationItemProvider.dispose();
-		if (arbitraryMessageItemProvider != null) arbitraryMessageItemProvider.dispose();
-		if (operationMessageItemProvider != null) operationMessageItemProvider.dispose();
+		if (messageItemProvider != null) messageItemProvider.dispose();
 	}
 
 }

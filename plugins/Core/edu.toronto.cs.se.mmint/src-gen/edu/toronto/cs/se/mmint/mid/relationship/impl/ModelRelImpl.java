@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -33,10 +33,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -144,10 +144,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated
      */
     public EList<ModelEndpoint> getModelEndpoints() {
-        if (modelEndpoints == null) {
-            modelEndpoints = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
+        if (this.modelEndpoints == null) {
+            this.modelEndpoints = new EObjectContainmentEList<>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
         }
-        return modelEndpoints;
+        return this.modelEndpoints;
     }
 
     /**
@@ -156,10 +156,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated
      */
     public EList<Mapping> getMappings() {
-        if (mappings == null) {
-            mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
+        if (this.mappings == null) {
+            this.mappings = new EObjectContainmentEList<>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
         }
-        return mappings;
+        return this.mappings;
     }
 
     /**
@@ -168,10 +168,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated
      */
     public EList<ModelEndpointReference> getModelEndpointRefs() {
-        if (modelEndpointRefs == null) {
-            modelEndpointRefs = new EObjectContainmentEList<ModelEndpointReference>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
+        if (this.modelEndpointRefs == null) {
+            this.modelEndpointRefs = new EObjectContainmentEList<>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
         }
-        return modelEndpointRefs;
+        return this.modelEndpointRefs;
     }
 
     /**
@@ -180,10 +180,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * @generated
      */
     public EList<MappingReference> getMappingRefs() {
-        if (mappingRefs == null) {
-            mappingRefs = new EObjectContainmentEList<MappingReference>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
+        if (this.mappingRefs == null) {
+            this.mappingRefs = new EObjectContainmentEList<>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
         }
-        return mappingRefs;
+        return this.mappingRefs;
     }
 
     /**
@@ -191,6 +191,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public ModelRel getMetatype() {
         ExtendibleElement metatype = super.getMetatype();
         return (metatype == null) ? null : (ModelRel) metatype;
@@ -201,6 +202,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Model getSupertype() {
         ExtendibleElement supertype = super.getSupertype();
         return (supertype == null) ? null : (Model) supertype;
@@ -211,6 +213,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public MID getMIDContainer() {
         return (MID) this.eContainer();
     }
@@ -317,13 +320,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-                return modelEndpoints != null && !modelEndpoints.isEmpty();
+                return this.modelEndpoints != null && !this.modelEndpoints.isEmpty();
             case RelationshipPackage.MODEL_REL__MAPPINGS:
-                return mappings != null && !mappings.isEmpty();
+                return this.mappings != null && !this.mappings.isEmpty();
             case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-                return modelEndpointRefs != null && !modelEndpointRefs.isEmpty();
+                return this.modelEndpointRefs != null && !this.modelEndpointRefs.isEmpty();
             case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-                return mappingRefs != null && !mappingRefs.isEmpty();
+                return this.mappingRefs != null && !this.mappingRefs.isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -444,7 +447,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
     /**
      * Adds a subtype of this model relationship type to the Type MID.
-     * 
+     *
      * @param newModelRelType
      *            The new model relationship type to be added.
      * @param newModelRelTypeName
@@ -562,7 +565,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
     /**
      * Deletes this model relationship type from the Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model relationship type.
      * @generated NOT
@@ -621,6 +624,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public void openType() throws Exception {
 
         MMINTException.mustBeType(this);
@@ -630,7 +634,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * Adds an instance of this model relationship type to an Instance or Workflow MID, or simply adds additional info
      * to the model relationship instance.
-     * 
+     *
      * @param newModelRel
      *            The new model relationship to be added.
      * @param newModelRelId
@@ -682,7 +686,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <li>(null, str, mid) model rel file not created, model rel added to the MID;
      * </ol>
      * </p>
-     * 
+     *
      * @param rootModelRelObj
      *            Always considered to be null.
      * @param newModelRelName
@@ -715,7 +719,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
 
     /**
      * Adds model instance endpoints to a model relationship instance.
-     * 
+     *
      * @param modelRel
      *            The model relationship.
      * @param endpointModels
@@ -791,7 +795,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * Creates and adds a model relationship instance of this model relationship type to an Instance MID, copying its
      * structure from another model relationship instance.
-     * 
+     *
      * @param origModelRel
      *            The original model relationship instance to be copied into the new one.
      * @param newModelRelName The name of the new model relationship.
@@ -852,10 +856,14 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
         if (!validates) {
             return false;
         }
+        // shortcut for empty model rel types that just take advantage of types of endpoints
+        if (((ModelRel) type).getMappingRefs().isEmpty() && MIDTypeHierarchy.isRootType(type.getSupertype())) {
+            return super.validateInstanceType(type);
+        }
         for (Mapping mapping : this.getMappings()) {
             validates = false;
-            for (Mapping mappingType : ((ModelRel) type).getMappings()) {
-                validates = mapping.validateInstanceType(mappingType);
+            for (MappingReference mappingTypeRef : ((ModelRel) type).getMappingRefs()) {
+                validates = mapping.validateInstanceType(mappingTypeRef.getObject());
                 if (validates) {
                     break;
                 }
@@ -871,6 +879,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstanceAndFile() throws MMINTException {
 
         this.deleteInstance();
@@ -879,6 +888,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public EObject getEMFInstanceRoot() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -906,6 +916,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public void openInstance() throws Exception {
 
         MMINTException.mustBeInstance(this);
@@ -914,6 +925,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public Model createWorkflowInstance(String newModelRelId, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);

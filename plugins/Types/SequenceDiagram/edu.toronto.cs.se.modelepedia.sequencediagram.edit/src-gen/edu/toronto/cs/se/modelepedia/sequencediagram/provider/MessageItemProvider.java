@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.provider;
 
 
 import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
-import edu.toronto.cs.se.modelepedia.sequencediagram.MessageType;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
 import java.util.Collection;
@@ -71,10 +70,13 @@ public class MessageItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addContentPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 			addGuardPropertyDescriptor(object);
+			addPredecessorPropertyDescriptor(object);
+			addSuccessorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,6 +170,83 @@ public class MessageItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Content feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Message_content_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Message_content_feature", "_UI_Message_type"),
+				 SequenceDiagramPackage.Literals.MESSAGE__CONTENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Predecessor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPredecessorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Message_predecessor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Message_predecessor_feature", "_UI_Message_type"),
+				 SequenceDiagramPackage.Literals.MESSAGE__PREDECESSOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Successor feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Message_successor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Message_successor_feature", "_UI_Message_type"),
+				 SequenceDiagramPackage.Literals.MESSAGE__SUCCESSOR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns Message.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Message"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,8 +254,7 @@ public class MessageItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		MessageType labelValue = ((Message)object).getType();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Message)object).getContent();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Message_type") :
 			getString("_UI_Message_type") + " " + label;
@@ -195,6 +273,7 @@ public class MessageItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Message.class)) {
+			case SequenceDiagramPackage.MESSAGE__CONTENT:
 			case SequenceDiagramPackage.MESSAGE__TYPE:
 			case SequenceDiagramPackage.MESSAGE__GUARD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

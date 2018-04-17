@@ -22,8 +22,10 @@ import edu.toronto.cs.se.modelepedia.classdiagram.Association;
 import edu.toronto.cs.se.modelepedia.classdiagram.Attribute;
 import edu.toronto.cs.se.modelepedia.classdiagram.Class;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram;
+import edu.toronto.cs.se.modelepedia.classdiagram.Composition;
 import edu.toronto.cs.se.modelepedia.classdiagram.Dependency;
 import edu.toronto.cs.se.modelepedia.classdiagram.Operation;
+import edu.toronto.cs.se.modelepedia.classdiagram.Typeable;
 
 public class CDSlice extends Slice {
 
@@ -33,20 +35,24 @@ public class CDSlice extends Slice {
 
 	    Set<EObject> impacted = new HashSet<>();
 		// If input is a class diagram, then the following are also impacted:
-		// 1) Owned classes, associations and dependencies.
+		// 1) Owned classes, associations, dependencies, data types and compositions.
 		if (modelObj instanceof ClassDiagram) {
 			ClassDiagram cd = (ClassDiagram) modelObj;
 			impacted.addAll(cd.getClasses());
 			impacted.addAll(cd.getAssociations());
 			impacted.addAll(cd.getDependencies());
+			impacted.addAll(cd.getDatatypes());
+			impacted.addAll(cd.getCompositions());
 		}
 
 		// If input is a class, then the following are also impacted:
 		// 1) Owned attributes and operations.
-		// 2) All associations and dependencies connected to it.
+		// 2) All associations, dependencies and compositions connected to it.
 		// 3) Attributes and operations whose type is the input.
 		// 4) Classes directly nested in or extending from the input.
 		// 5) The class that the input is nested in (if any).
+		// Note: Since instances of Class are also instances of Typeable,
+		// the dependency rules for Typeable will also be triggered.
 		if (modelObj instanceof Class) {
 			Class c = (Class) modelObj;
 			impacted.addAll(c.getOwnedAttributes());
@@ -55,32 +61,50 @@ public class CDSlice extends Slice {
 			impacted.addAll(c.getAssociationsAsTarget());
 			impacted.addAll(c.getDependenciesAsDependee());
 			impacted.addAll(c.getDependenciesAsDepender());
+			impacted.addAll(c.getCompositionsAsComposite());
+			impacted.addAll(c.getCompositionsAsConstituent());
 			impacted.addAll(c.getNested());
 			impacted.addAll(c.getSubclasses());
 			
 			if (c.getNestedIn() != null) {
 				impacted.add(c.getNestedIn());
 			}
-
+		}
+			
+		// If input is a typeable (i.e. a class or a data type),
+		// then the following are also impacted:
+		// 1) All attributes and operations with the input type.
+		// 2) All operations with the input as one of its parameter types.
+		if (modelObj instanceof Typeable) {
+			Typeable t = (Typeable) modelObj;
+			
 			// Get all attributes and operations from the class diagram
 			// for checking their type.
-			ClassDiagram cd = (ClassDiagram) c.eContainer();
-			for (Class c2 : cd.getClasses()) {
-				for (Attribute a : c2.getOwnedAttributes()) {
-					if (a.getType() == c) {
+			ClassDiagram cd = (ClassDiagram) t.eContainer();
+			for (Class c : cd.getClasses()) {
+				for (Attribute a : c.getOwnedAttributes()) {
+					if (a.getType() == t) {
 						impacted.add(a);
 					}
 				}
-				for (Operation o : c2.getOwnedOperations()) {
-					if (o.getType() == c) {
+				for (Operation o : c.getOwnedOperations()) {
+					if (o.getType() == t) {
 						impacted.add(o);
+						continue;
+					}
+					
+					for (Typeable p : o.getParameterTypes()) {
+						if (p == t) {
+							impacted.add(o);
+							break;
+						}
 					}
 				}
 			}
 		}
 
 		// If input is an attribute, then its class is also impacted.
-		else if (modelObj instanceof Attribute) {
+		if (modelObj instanceof Attribute) {
 			Attribute a = (Attribute) modelObj;
 			if (a.getOwner() != null) {
 				impacted.add(a.getOwner());
@@ -88,7 +112,7 @@ public class CDSlice extends Slice {
 		}
 
 		// If input is an operation, then its class is also impacted.
-		else if (modelObj instanceof Operation) {
+		if (modelObj instanceof Operation) {
 			Operation o = (Operation) modelObj;
 			if (o.getOwner() != null) {
 				impacted.add(o.getOwner());
@@ -96,7 +120,7 @@ public class CDSlice extends Slice {
 		}
 
 		// If input is an association, then its source class is also impacted.
-		else if (modelObj instanceof Association) {
+		if (modelObj instanceof Association) {
 			Association a = (Association) modelObj;
 			if (a.getSource() != null) {
 				impacted.add(a.getSource());
@@ -104,12 +128,22 @@ public class CDSlice extends Slice {
 		}
 
 		// If input is a dependency, then its depender class is also impacted.
-		else if (modelObj instanceof Dependency) {
+		if (modelObj instanceof Dependency) {
 			Dependency d = (Dependency) modelObj;
 			if (d.getDepender() != null) {
 				impacted.add(d.getDepender());
 			}
 		}
+		
+		// If input is a composition, then its composite class is also impacted.
+		if (modelObj instanceof Composition) {
+			Composition c = (Composition) modelObj;
+			if (c.getComposite() != null) {
+				impacted.add(c.getComposite());
+			}
+		}
+		
+		
 		impacted.removeAll(alreadyImpacted);
 
 		return impacted;

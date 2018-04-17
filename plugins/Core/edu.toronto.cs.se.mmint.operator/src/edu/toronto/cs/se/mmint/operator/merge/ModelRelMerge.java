@@ -12,9 +12,11 @@
 package edu.toronto.cs.se.mmint.operator.merge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
@@ -46,6 +48,9 @@ public class ModelRelMerge extends OperatorImpl {
     private final static @NonNull String OUT_MODELREL = "merge";
     // constants
     private final static @NonNull String MERGE_SEPARATOR = "+";
+    // state
+    private Map<String, ModelElementReference> mergedModelElemRefs;
+    private Map<Set<String>, MappingReference> mergedMappingRefs;
 
     private static class Input {
 
@@ -139,48 +144,63 @@ public class ModelRelMerge extends OperatorImpl {
         return true;
     }
 
+    private void init() {
+
+        this.mergedModelElemRefs = new HashMap<>();
+        this.mergedMappingRefs = new HashMap<>();
+    }
+
     private void populate(ModelRel mergedRel, ModelRel origRel, MID instanceMID) throws MMINTException {
 
         // models
-        Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
         for (ModelEndpointReference origModelEndpointRef : origRel.getModelEndpointRefs()) {
-            List<ModelEndpointReference> newModelEndpointRefs = MIDRegistry.getEndpointReferences(origModelEndpointRef.getTargetUri(), mergedRel.getModelEndpointRefs());
-            ModelEndpointReference newModelEndpointRef;
-            if (newModelEndpointRefs.isEmpty()) {
-                Model newModel = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
-                newModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(newModel, mergedRel);
+            List<ModelEndpointReference> mergedModelEndpointRefs = MIDRegistry.getEndpointReferences(
+                origModelEndpointRef.getTargetUri(), mergedRel.getModelEndpointRefs());
+            ModelEndpointReference mergedModelEndpointRef;
+            if (mergedModelEndpointRefs.isEmpty()) {
+                Model model = instanceMID.getExtendibleElement(origModelEndpointRef.getTargetUri());
+                mergedModelEndpointRef = origModelEndpointRef.getObject().getMetatype().createInstance(model,
+                                                                                                       mergedRel);
             }
             else {
                 //TODO MMINT[REDUCE] this is suspect, what about model rels with endpoints to the same model?
-                newModelEndpointRef = newModelEndpointRefs.get(0);
+                mergedModelEndpointRef = mergedModelEndpointRefs.get(0);
             }
             // model elements
             for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-                ModelElementReference newModelElemRef = MIDRegistry.getReference(origModelElemRef, newModelEndpointRef.getModelElemRefs());
-                if (newModelElemRef == null) {
-                    EObject newModelObj = origModelElemRef.getObject().getEMFInstanceObject(null);
-                    newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(newModelObj, origModelElemRef.getObject().getName());
-                    newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
+                ModelElementReference mergedModelElemRef = this.mergedModelElemRefs.get(origModelElemRef.getUri());
+                if (mergedModelElemRef == null) {
+                    EObject mergedModelObj = origModelElemRef.getObject().getEMFInstanceObject(null);
+                    mergedModelElemRef = mergedModelEndpointRef.createModelElementInstanceAndReference(
+                        mergedModelObj, origModelElemRef.getObject().getName());
+                    this.mergedModelElemRefs.put(mergedModelElemRef.getUri(), mergedModelElemRef);
                 }
             }
         }
-        // links
+        // mappings
         for (MappingReference origMappingRef : origRel.getMappingRefs()) {
-            //TODO MMINT[REDUCE] this is suspect, what about two orig mappings with the same exact endpoints?
-            if (mergedRel.getMappingRefs().stream()
-                .anyMatch(mappingRef -> mappingRef.getModelElemEndpointRefs().stream()
+            Set<String> origMappingRefEndpoints = Collections.unmodifiableSet(
+                origMappingRef.getModelElemEndpointRefs().stream()
                     .map(ModelElementEndpointReference::getTargetUri)
-                    .collect(Collectors.toSet())
-                    .containsAll(origMappingRef.getModelElemEndpointRefs().stream()
-                        .map(ModelElementEndpointReference::getTargetUri)
-                        .collect(Collectors.toSet())))) {
-                continue;
+                    .collect(Collectors.toSet()));
+            MappingReference mergedMappingRef = this.mergedMappingRefs.get(origMappingRefEndpoints);
+            if (mergedMappingRef == null) {
+                mergedMappingRef = origMappingRef.getObject().getMetatype()
+                    .createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), mergedRel);
+                mergedMappingRef.getObject().setName(origMappingRef.getObject().getName());
+                for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
+                    ModelElementReference mergedModelElemRef = this.mergedModelElemRefs.get(
+                        origModelElemEndpointRef.getTargetUri());
+                    origModelElemEndpointRef.getObject().getMetatype()
+                        .createInstanceAndReference(mergedModelElemRef, mergedMappingRef);
+                }
+                this.mergedMappingRefs.put(origMappingRefEndpoints, mergedMappingRef);
             }
-            MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference((origMappingRef.getObject() instanceof BinaryMapping), mergedRel);
-            newMappingRef.getObject().setName(origMappingRef.getObject().getName());
-            for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
-                ModelElementReference newModelElemRef = newModelElemRefs.get(origModelElemEndpointRef.getTargetUri());
-                origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef, newMappingRef);
+            else {
+                // warning: this will merge mappings with same endpoints even from a single rel
+                String mergedName = mergedMappingRef.getObject().getName() + MERGE_SEPARATOR +
+                                    origMappingRef.getObject().getName();
+                mergedMappingRef.getObject().setName(mergedName);
             }
         }
     }
@@ -213,6 +233,7 @@ public class ModelRelMerge extends OperatorImpl {
 
         // input
         Input input = new Input(inputsByName);
+        init();
 
         // merge the two model rels
         ModelRel mergedRel = this.merge(input.rel1, input.rel2, input.model1, input.model2,

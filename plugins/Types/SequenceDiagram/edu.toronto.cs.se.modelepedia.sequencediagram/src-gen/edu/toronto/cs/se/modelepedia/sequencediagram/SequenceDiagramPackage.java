@@ -87,22 +87,13 @@ public interface SequenceDiagramPackage extends EPackage {
 	int SEQUENCE_DIAGRAM__OBJECTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_DIAGRAM__CLASSES = 1;
-
-	/**
 	 * The feature id for the '<em><b>Messages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_DIAGRAM__MESSAGES = 2;
+	int SEQUENCE_DIAGRAM__MESSAGES = 1;
 
 	/**
 	 * The number of structural features of the '<em>Sequence Diagram</em>' class.
@@ -111,7 +102,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_DIAGRAM_FEATURE_COUNT = 3;
+	int SEQUENCE_DIAGRAM_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Sequence Diagram</em>' class.
@@ -243,7 +234,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	int COMPONENT__LIFELINE = OBJECT__LIFELINE;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -270,52 +261,6 @@ public interface SequenceDiagramPackage extends EPackage {
 	int COMPONENT_OPERATION_COUNT = OBJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.ClassImpl <em>Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.ClassImpl
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getClass_()
-	 * @generated
-	 */
-	int CLASS = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OPERATIONS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.LifelineImpl <em>Lifeline</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,7 +268,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getLifeline()
 	 * @generated
 	 */
-	int LIFELINE = 5;
+	int LIFELINE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Activation Boxes</b></em>' containment reference list.
@@ -360,7 +305,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getActivationBox()
 	 * @generated
 	 */
-	int ACTIVATION_BOX = 6;
+	int ACTIVATION_BOX = 5;
 
 	/**
 	 * The feature id for the '<em><b>Activation Boxes</b></em>' containment reference list.
@@ -381,13 +326,40 @@ public interface SequenceDiagramPackage extends EPackage {
 	int ACTIVATION_BOX__CONDITION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Messages As Source</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_BOX__MESSAGES_AS_SOURCE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Messages As Target</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_BOX__MESSAGES_AS_TARGET = 3;
+
+	/**
+	 * The feature id for the '<em><b>Owner Activation Box</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_BOX__OWNER_ACTIVATION_BOX = 4;
+
+	/**
 	 * The number of structural features of the '<em>Activation Box</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVATION_BOX_FEATURE_COUNT = 2;
+	int ACTIVATION_BOX_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Activation Box</em>' class.
@@ -398,44 +370,6 @@ public interface SequenceDiagramPackage extends EPackage {
 	 */
 	int ACTIVATION_BOX_OPERATION_COUNT = 0;
 
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationImpl <em>Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationImpl
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getOperation()
-	 * @generated
-	 */
-	int OPERATION = 7;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_OPERATION_COUNT = 0;
-
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl <em>Message</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -444,7 +378,16 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getMessage()
 	 * @generated
 	 */
-	int MESSAGE = 8;
+	int MESSAGE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Content</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE__CONTENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -453,7 +396,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__TYPE = 0;
+	int MESSAGE__TYPE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -462,7 +405,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__SOURCE = 1;
+	int MESSAGE__SOURCE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -471,7 +414,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__TARGET = 2;
+	int MESSAGE__TARGET = 3;
 
 	/**
 	 * The feature id for the '<em><b>Guard</b></em>' attribute.
@@ -480,7 +423,25 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE__GUARD = 3;
+	int MESSAGE__GUARD = 4;
+
+	/**
+	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE__PREDECESSOR = 5;
+
+	/**
+	 * The feature id for the '<em><b>Successor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE__SUCCESSOR = 6;
 
 	/**
 	 * The number of structural features of the '<em>Message</em>' class.
@@ -489,7 +450,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_FEATURE_COUNT = 4;
+	int MESSAGE_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Message</em>' class.
@@ -501,152 +462,6 @@ public interface SequenceDiagramPackage extends EPackage {
 	int MESSAGE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.ArbitraryMessageImpl <em>Arbitrary Message</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.ArbitraryMessageImpl
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getArbitraryMessage()
-	 * @generated
-	 */
-	int ARBITRARY_MESSAGE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE__TYPE = MESSAGE__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE__SOURCE = MESSAGE__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE__TARGET = MESSAGE__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Guard</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE__GUARD = MESSAGE__GUARD;
-
-	/**
-	 * The feature id for the '<em><b>Content</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE__CONTENT = MESSAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Arbitrary Message</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Arbitrary Message</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARBITRARY_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationMessageImpl <em>Operation Message</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationMessageImpl
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getOperationMessage()
-	 * @generated
-	 */
-	int OPERATION_MESSAGE = 10;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE__TYPE = MESSAGE__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE__SOURCE = MESSAGE__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE__TARGET = MESSAGE__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Guard</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE__GUARD = MESSAGE__GUARD;
-
-	/**
-	 * The feature id for the '<em><b>Content</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE__CONTENT = MESSAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Operation Message</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Operation Message</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.MessageType <em>Message Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,7 +469,7 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getMessageType()
 	 * @generated
 	 */
-	int MESSAGE_TYPE = 11;
+	int MESSAGE_TYPE = 7;
 
 
 	/**
@@ -677,17 +492,6 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSequenceDiagram_Objects();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getClasses <em>Classes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Classes</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getClasses()
-	 * @see #getSequenceDiagram()
-	 * @generated
-	 */
-	EReference getSequenceDiagram_Classes();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getMessages <em>Messages</em>}'.
@@ -753,47 +557,15 @@ public interface SequenceDiagramPackage extends EPackage {
 	EClass getComponent();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Component#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Component#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @return the meta object for the attribute '<em>Type</em>'.
 	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Component#getType()
 	 * @see #getComponent()
 	 * @generated
 	 */
-	EReference getComponent_Type();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Class <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Class</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Class
-	 * @generated
-	 */
-	EClass getClass_();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Class#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Class#getName()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EAttribute getClass_Name();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Class#getOperations <em>Operations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Operations</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Class#getOperations()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_Operations();
+	EAttribute getComponent_Type();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline <em>Lifeline</em>}'.
@@ -849,25 +621,37 @@ public interface SequenceDiagramPackage extends EPackage {
 	EAttribute getActivationBox_Condition();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Operation <em>Operation</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsSource <em>Messages As Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Operation</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Operation
+	 * @return the meta object for the reference list '<em>Messages As Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsSource()
+	 * @see #getActivationBox()
 	 * @generated
 	 */
-	EClass getOperation();
+	EReference getActivationBox_MessagesAsSource();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Operation#getName <em>Name</em>}'.
+	 * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsTarget <em>Messages As Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Operation#getName()
-	 * @see #getOperation()
+	 * @return the meta object for the reference list '<em>Messages As Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getMessagesAsTarget()
+	 * @see #getActivationBox()
 	 * @generated
 	 */
-	EAttribute getOperation_Name();
+	EReference getActivationBox_MessagesAsTarget();
+
+	/**
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getOwnerActivationBox <em>Owner Activation Box</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner Activation Box</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox#getOwnerActivationBox()
+	 * @see #getActivationBox()
+	 * @generated
+	 */
+	EReference getActivationBox_OwnerActivationBox();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message <em>Message</em>}'.
@@ -924,46 +708,37 @@ public interface SequenceDiagramPackage extends EPackage {
 	EAttribute getMessage_Guard();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage <em>Arbitrary Message</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Arbitrary Message</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage
-	 * @generated
-	 */
-	EClass getArbitraryMessage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage#getContent <em>Content</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Content</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage#getContent()
-	 * @see #getArbitraryMessage()
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent()
+	 * @see #getMessage()
 	 * @generated
 	 */
-	EAttribute getArbitraryMessage_Content();
+	EAttribute getMessage_Content();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage <em>Operation Message</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getPredecessor <em>Predecessor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Operation Message</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage
+	 * @return the meta object for the reference '<em>Predecessor</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Message#getPredecessor()
+	 * @see #getMessage()
 	 * @generated
 	 */
-	EClass getOperationMessage();
+	EReference getMessage_Predecessor();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage#getContent <em>Content</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getSuccessor <em>Successor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Content</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage#getContent()
-	 * @see #getOperationMessage()
+	 * @return the meta object for the reference '<em>Successor</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Message#getSuccessor()
+	 * @see #getMessage()
 	 * @generated
 	 */
-	EReference getOperationMessage_Content();
+	EReference getMessage_Successor();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.sequencediagram.MessageType <em>Message Type</em>}'.
@@ -1015,14 +790,6 @@ public interface SequenceDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEQUENCE_DIAGRAM__OBJECTS = eINSTANCE.getSequenceDiagram_Objects();
-
-		/**
-		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SEQUENCE_DIAGRAM__CLASSES = eINSTANCE.getSequenceDiagram_Classes();
 
 		/**
 		 * The meta object literal for the '<em><b>Messages</b></em>' containment reference list feature.
@@ -1079,38 +846,12 @@ public interface SequenceDiagramPackage extends EPackage {
 		EClass COMPONENT = eINSTANCE.getComponent();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPONENT__TYPE = eINSTANCE.getComponent_Type();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.ClassImpl <em>Class</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.ClassImpl
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getClass_()
-		 * @generated
-		 */
-		EClass CLASS = eINSTANCE.getClass_();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASS__NAME = eINSTANCE.getClass_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__OPERATIONS = eINSTANCE.getClass_Operations();
+		EAttribute COMPONENT__TYPE = eINSTANCE.getComponent_Type();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.LifelineImpl <em>Lifeline</em>}' class.
@@ -1157,22 +898,28 @@ public interface SequenceDiagramPackage extends EPackage {
 		EAttribute ACTIVATION_BOX__CONDITION = eINSTANCE.getActivationBox_Condition();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationImpl <em>Operation</em>}' class.
+		 * The meta object literal for the '<em><b>Messages As Source</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationImpl
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getOperation()
 		 * @generated
 		 */
-		EClass OPERATION = eINSTANCE.getOperation();
+		EReference ACTIVATION_BOX__MESSAGES_AS_SOURCE = eINSTANCE.getActivationBox_MessagesAsSource();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Messages As Target</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPERATION__NAME = eINSTANCE.getOperation_Name();
+		EReference ACTIVATION_BOX__MESSAGES_AS_TARGET = eINSTANCE.getActivationBox_MessagesAsTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner Activation Box</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVATION_BOX__OWNER_ACTIVATION_BOX = eINSTANCE.getActivationBox_OwnerActivationBox();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.MessageImpl <em>Message</em>}' class.
@@ -1217,40 +964,28 @@ public interface SequenceDiagramPackage extends EPackage {
 		EAttribute MESSAGE__GUARD = eINSTANCE.getMessage_Guard();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.ArbitraryMessageImpl <em>Arbitrary Message</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.ArbitraryMessageImpl
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getArbitraryMessage()
-		 * @generated
-		 */
-		EClass ARBITRARY_MESSAGE = eINSTANCE.getArbitraryMessage();
-
-		/**
 		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ARBITRARY_MESSAGE__CONTENT = eINSTANCE.getArbitraryMessage_Content();
+		EAttribute MESSAGE__CONTENT = eINSTANCE.getMessage_Content();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationMessageImpl <em>Operation Message</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.OperationMessageImpl
-		 * @see edu.toronto.cs.se.modelepedia.sequencediagram.impl.SequenceDiagramPackageImpl#getOperationMessage()
-		 * @generated
-		 */
-		EClass OPERATION_MESSAGE = eINSTANCE.getOperationMessage();
-
-		/**
-		 * The meta object literal for the '<em><b>Content</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATION_MESSAGE__CONTENT = eINSTANCE.getOperationMessage_Content();
+		EReference MESSAGE__PREDECESSOR = eINSTANCE.getMessage_Predecessor();
+
+		/**
+		 * The meta object literal for the '<em><b>Successor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MESSAGE__SUCCESSOR = eINSTANCE.getMessage_Successor();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.MessageType <em>Message Type</em>}' enum.

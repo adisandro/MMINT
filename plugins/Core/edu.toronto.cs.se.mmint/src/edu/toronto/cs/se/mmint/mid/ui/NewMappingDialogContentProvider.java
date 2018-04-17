@@ -5,28 +5,40 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
-public class NewMappingReferenceDialogContentProvider implements ITreeContentProvider {
+public class NewMappingDialogContentProvider implements ITreeContentProvider {
 
-	private List<String> allowedMappingTypeUris;
+    private ModelRel modelRelType;
+    private ModelElementReference srcModelElemRef;
+    private ModelElementReference tgtModelElemRef;
+	private List<Mapping> allowedMappingTypes;
 
-	public NewMappingReferenceDialogContentProvider(List<String> allowedMappingTypeUris) {
+	public NewMappingDialogContentProvider(@NonNull ModelRel modelRelType,
+	                                       @Nullable ModelElementReference srcModelElemRef,
+	                                       @Nullable ModelElementReference tgtModelElemRef) {
 
-		this.allowedMappingTypeUris = allowedMappingTypeUris;
+	    this.modelRelType = modelRelType;
+	    this.srcModelElemRef = srcModelElemRef;
+	    this.tgtModelElemRef = tgtModelElemRef;
+		this.allowedMappingTypes = MIDConstraintChecker.getAllowedMappingTypes(modelRelType, this.srcModelElemRef,
+                                                                               this.tgtModelElemRef);
 	}
 
 	/**
@@ -63,13 +75,7 @@ public class NewMappingReferenceDialogContentProvider implements ITreeContentPro
 	public Object[] getChildren(Object parentElement) {
 
 		if (parentElement instanceof ModelRel) {
-			List<MappingReference> mappingTypeRefs = new ArrayList<>();
-			for (MappingReference mappingTypeRef : ((ModelRel) parentElement).getMappingRefs()) {
-				if (allowedMappingTypeUris == null || allowedMappingTypeUris.contains(mappingTypeRef.getUri())) {
-					mappingTypeRefs.add(mappingTypeRef);
-				}
-			}
-			return mappingTypeRefs.toArray();
+		    return this.allowedMappingTypes.toArray();
 		}
 
 		return new Object[] {};
@@ -81,8 +87,8 @@ public class NewMappingReferenceDialogContentProvider implements ITreeContentPro
 	@Override
 	public Object getParent(Object element) {
 
-		if (element instanceof MappingReference) {
-			return ((MappingReference) element).eContainer();
+		if (element instanceof Mapping) {
+		    return this.modelRelType;
 		}
 
 		return null;
@@ -95,7 +101,7 @@ public class NewMappingReferenceDialogContentProvider implements ITreeContentPro
 	public boolean hasChildren(Object element) {
 
 		if (element instanceof ModelRel) {
-			return !((ModelRel) element).getMappingRefs().isEmpty();
+			return !this.allowedMappingTypes.isEmpty();
 		}
 
 		return false;

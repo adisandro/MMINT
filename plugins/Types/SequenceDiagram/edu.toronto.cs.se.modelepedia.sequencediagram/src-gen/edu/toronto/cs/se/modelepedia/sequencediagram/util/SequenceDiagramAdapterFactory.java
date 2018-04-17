@@ -14,12 +14,9 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.util;
 
 import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Actor;
-import edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Component;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
-import edu.toronto.cs.se.modelepedia.sequencediagram.Operation;
-import edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 
@@ -103,10 +100,6 @@ public class SequenceDiagramAdapterFactory extends AdapterFactoryImpl {
 				return createComponentAdapter();
 			}
 			@Override
-			public Adapter caseClass(edu.toronto.cs.se.modelepedia.sequencediagram.Class object) {
-				return createClassAdapter();
-			}
-			@Override
 			public Adapter caseLifeline(Lifeline object) {
 				return createLifelineAdapter();
 			}
@@ -115,20 +108,8 @@ public class SequenceDiagramAdapterFactory extends AdapterFactoryImpl {
 				return createActivationBoxAdapter();
 			}
 			@Override
-			public Adapter caseOperation(Operation object) {
-				return createOperationAdapter();
-			}
-			@Override
 			public Adapter caseMessage(Message object) {
 				return createMessageAdapter();
-			}
-			@Override
-			public Adapter caseArbitraryMessage(ArbitraryMessage object) {
-				return createArbitraryMessageAdapter();
-			}
-			@Override
-			public Adapter caseOperationMessage(OperationMessage object) {
-				return createOperationMessageAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -207,20 +188,6 @@ public class SequenceDiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Class <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Class
-	 * @generated
-	 */
-	public Adapter createClassAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline <em>Lifeline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -249,20 +216,6 @@ public class SequenceDiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Operation <em>Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Operation
-	 * @generated
-	 */
-	public Adapter createOperationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message <em>Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -273,34 +226,6 @@ public class SequenceDiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMessageAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage <em>Arbitrary Message</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage
-	 * @generated
-	 */
-	public Adapter createArbitraryMessageAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage <em>Operation Message</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage
-	 * @generated
-	 */
-	public Adapter createOperationMessageAdapter() {
 		return null;
 	}
 

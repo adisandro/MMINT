@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getObjects <em>Objects</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getClasses <em>Classes</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram#getMessages <em>Messages</em>}</li>
  * </ul>
  *
@@ -50,22 +49,6 @@ public interface SequenceDiagram extends EObject {
 	 * @generated
 	 */
 	EList<edu.toronto.cs.se.modelepedia.sequencediagram.Object> getObjects();
-
-	/**
-	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.sequencediagram.Class}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Classes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Classes</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getSequenceDiagram_Classes()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<edu.toronto.cs.se.modelepedia.sequencediagram.Class> getClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Messages</b></em>' containment reference list.

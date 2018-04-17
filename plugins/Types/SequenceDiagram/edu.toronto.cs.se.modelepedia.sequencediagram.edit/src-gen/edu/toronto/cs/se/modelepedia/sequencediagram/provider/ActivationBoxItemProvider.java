@@ -74,6 +74,8 @@ public class ActivationBoxItemProvider
 			super.getPropertyDescriptors(object);
 
 			addConditionPropertyDescriptor(object);
+			addMessagesAsSourcePropertyDescriptor(object);
+			addMessagesAsTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,6 +98,50 @@ public class ActivationBoxItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Messages As Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMessagesAsSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActivationBox_messagesAsSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActivationBox_messagesAsSource_feature", "_UI_ActivationBox_type"),
+				 SequenceDiagramPackage.Literals.ACTIVATION_BOX__MESSAGES_AS_SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Messages As Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMessagesAsTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActivationBox_messagesAsTarget_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActivationBox_messagesAsTarget_feature", "_UI_ActivationBox_type"),
+				 SequenceDiagramPackage.Literals.ACTIVATION_BOX__MESSAGES_AS_TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

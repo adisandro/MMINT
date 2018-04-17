@@ -18,7 +18,6 @@ import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -37,14 +36,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ComponentImpl extends ObjectImpl implements Component {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected edu.toronto.cs.se.modelepedia.sequencediagram.Class type;
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,15 +79,7 @@ public class ComponentImpl extends ObjectImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.sequencediagram.Class getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (edu.toronto.cs.se.modelepedia.sequencediagram.Class)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequenceDiagramPackage.COMPONENT__TYPE, oldType, type));
-			}
-		}
+	public String getType() {
 		return type;
 	}
 
@@ -87,17 +88,8 @@ public class ComponentImpl extends ObjectImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public edu.toronto.cs.se.modelepedia.sequencediagram.Class basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(edu.toronto.cs.se.modelepedia.sequencediagram.Class newType) {
-		edu.toronto.cs.se.modelepedia.sequencediagram.Class oldType = type;
+	public void setType(String newType) {
+		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.COMPONENT__TYPE, oldType, type));
@@ -112,8 +104,7 @@ public class ComponentImpl extends ObjectImpl implements Component {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SequenceDiagramPackage.COMPONENT__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,7 +118,7 @@ public class ComponentImpl extends ObjectImpl implements Component {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SequenceDiagramPackage.COMPONENT__TYPE:
-				setType((edu.toronto.cs.se.modelepedia.sequencediagram.Class)newValue);
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,7 +133,7 @@ public class ComponentImpl extends ObjectImpl implements Component {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SequenceDiagramPackage.COMPONENT__TYPE:
-				setType((edu.toronto.cs.se.modelepedia.sequencediagram.Class)null);
+				setType(TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -157,9 +148,25 @@ public class ComponentImpl extends ObjectImpl implements Component {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SequenceDiagramPackage.COMPONENT__TYPE:
-				return type != null;
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (type: ");
+		result.append(type);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ComponentImpl

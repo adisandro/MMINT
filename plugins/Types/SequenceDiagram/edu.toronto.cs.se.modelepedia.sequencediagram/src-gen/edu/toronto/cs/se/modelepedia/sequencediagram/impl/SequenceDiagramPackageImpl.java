@@ -14,13 +14,10 @@ package edu.toronto.cs.se.modelepedia.sequencediagram.impl;
 
 import edu.toronto.cs.se.modelepedia.sequencediagram.ActivationBox;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Actor;
-import edu.toronto.cs.se.modelepedia.sequencediagram.ArbitraryMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Component;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Lifeline;
 import edu.toronto.cs.se.modelepedia.sequencediagram.Message;
 import edu.toronto.cs.se.modelepedia.sequencediagram.MessageType;
-import edu.toronto.cs.se.modelepedia.sequencediagram.Operation;
-import edu.toronto.cs.se.modelepedia.sequencediagram.OperationMessage;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagram;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramFactory;
 import edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage;
@@ -73,13 +70,6 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass classEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass lifelineEClass = null;
 
 	/**
@@ -94,28 +84,7 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass operationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass messageEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass arbitraryMessageEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass operationMessageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,17 +177,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSequenceDiagram_Classes() {
-		return (EReference)sequenceDiagramEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSequenceDiagram_Messages() {
-		return (EReference)sequenceDiagramEClass.getEStructuralFeatures().get(2);
+		return (EReference)sequenceDiagramEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -271,35 +231,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComponent_Type() {
-		return (EReference)componentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClass_() {
-		return classEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getClass_Name() {
-		return (EAttribute)classEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClass_Operations() {
-		return (EReference)classEClass.getEStructuralFeatures().get(1);
+	public EAttribute getComponent_Type() {
+		return (EAttribute)componentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -352,8 +285,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperation() {
-		return operationEClass;
+	public EReference getActivationBox_MessagesAsSource() {
+		return (EReference)activationBoxEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -361,8 +294,17 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperation_Name() {
-		return (EAttribute)operationEClass.getEStructuralFeatures().get(0);
+	public EReference getActivationBox_MessagesAsTarget() {
+		return (EReference)activationBoxEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActivationBox_OwnerActivationBox() {
+		return (EReference)activationBoxEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -380,7 +322,7 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * @generated
 	 */
 	public EAttribute getMessage_Type() {
-		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -389,15 +331,6 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * @generated
 	 */
 	public EReference getMessage_Source() {
-		return (EReference)messageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMessage_Target() {
 		return (EReference)messageEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -406,8 +339,17 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMessage_Target() {
+		return (EReference)messageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getMessage_Guard() {
-		return (EAttribute)messageEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -415,8 +357,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getArbitraryMessage() {
-		return arbitraryMessageEClass;
+	public EAttribute getMessage_Content() {
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -424,8 +366,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArbitraryMessage_Content() {
-		return (EAttribute)arbitraryMessageEClass.getEStructuralFeatures().get(0);
+	public EReference getMessage_Predecessor() {
+		return (EReference)messageEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -433,17 +375,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperationMessage() {
-		return operationMessageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOperationMessage_Content() {
-		return (EReference)operationMessageEClass.getEStructuralFeatures().get(0);
+	public EReference getMessage_Successor() {
+		return (EReference)messageEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -485,7 +418,6 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		// Create classes and their features
 		sequenceDiagramEClass = createEClass(SEQUENCE_DIAGRAM);
 		createEReference(sequenceDiagramEClass, SEQUENCE_DIAGRAM__OBJECTS);
-		createEReference(sequenceDiagramEClass, SEQUENCE_DIAGRAM__CLASSES);
 		createEReference(sequenceDiagramEClass, SEQUENCE_DIAGRAM__MESSAGES);
 
 		objectEClass = createEClass(OBJECT);
@@ -495,11 +427,7 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		actorEClass = createEClass(ACTOR);
 
 		componentEClass = createEClass(COMPONENT);
-		createEReference(componentEClass, COMPONENT__TYPE);
-
-		classEClass = createEClass(CLASS);
-		createEAttribute(classEClass, CLASS__NAME);
-		createEReference(classEClass, CLASS__OPERATIONS);
+		createEAttribute(componentEClass, COMPONENT__TYPE);
 
 		lifelineEClass = createEClass(LIFELINE);
 		createEReference(lifelineEClass, LIFELINE__ACTIVATION_BOXES);
@@ -507,21 +435,18 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		activationBoxEClass = createEClass(ACTIVATION_BOX);
 		createEReference(activationBoxEClass, ACTIVATION_BOX__ACTIVATION_BOXES);
 		createEAttribute(activationBoxEClass, ACTIVATION_BOX__CONDITION);
-
-		operationEClass = createEClass(OPERATION);
-		createEAttribute(operationEClass, OPERATION__NAME);
+		createEReference(activationBoxEClass, ACTIVATION_BOX__MESSAGES_AS_SOURCE);
+		createEReference(activationBoxEClass, ACTIVATION_BOX__MESSAGES_AS_TARGET);
+		createEReference(activationBoxEClass, ACTIVATION_BOX__OWNER_ACTIVATION_BOX);
 
 		messageEClass = createEClass(MESSAGE);
+		createEAttribute(messageEClass, MESSAGE__CONTENT);
 		createEAttribute(messageEClass, MESSAGE__TYPE);
 		createEReference(messageEClass, MESSAGE__SOURCE);
 		createEReference(messageEClass, MESSAGE__TARGET);
 		createEAttribute(messageEClass, MESSAGE__GUARD);
-
-		arbitraryMessageEClass = createEClass(ARBITRARY_MESSAGE);
-		createEAttribute(arbitraryMessageEClass, ARBITRARY_MESSAGE__CONTENT);
-
-		operationMessageEClass = createEClass(OPERATION_MESSAGE);
-		createEReference(operationMessageEClass, OPERATION_MESSAGE__CONTENT);
+		createEReference(messageEClass, MESSAGE__PREDECESSOR);
+		createEReference(messageEClass, MESSAGE__SUCCESSOR);
 
 		// Create enums
 		messageTypeEEnum = createEEnum(MESSAGE_TYPE);
@@ -557,13 +482,10 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		// Add supertypes to classes
 		actorEClass.getESuperTypes().add(this.getObject());
 		componentEClass.getESuperTypes().add(this.getObject());
-		arbitraryMessageEClass.getESuperTypes().add(this.getMessage());
-		operationMessageEClass.getESuperTypes().add(this.getMessage());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(sequenceDiagramEClass, SequenceDiagram.class, "SequenceDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSequenceDiagram_Objects(), this.getObject(), null, "objects", null, 0, -1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSequenceDiagram_Classes(), this.getClass_(), null, "classes", null, 0, -1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSequenceDiagram_Messages(), this.getMessage(), null, "messages", null, 0, -1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectEClass, edu.toronto.cs.se.modelepedia.sequencediagram.Object.class, "Object", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -573,33 +495,26 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComponent_Type(), this.getClass_(), null, "type", null, 0, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classEClass, edu.toronto.cs.se.modelepedia.sequencediagram.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClass_Name(), ecorePackage.getEString(), "name", null, 0, 1, edu.toronto.cs.se.modelepedia.sequencediagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_Operations(), this.getOperation(), null, "operations", null, 0, -1, edu.toronto.cs.se.modelepedia.sequencediagram.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComponent_Type(), ecorePackage.getEString(), "type", null, 0, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(lifelineEClass, Lifeline.class, "Lifeline", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLifeline_ActivationBoxes(), this.getActivationBox(), null, "activationBoxes", null, 0, -1, Lifeline.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activationBoxEClass, ActivationBox.class, "ActivationBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivationBox_ActivationBoxes(), this.getActivationBox(), null, "activationBoxes", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_ActivationBoxes(), this.getActivationBox(), this.getActivationBox_OwnerActivationBox(), "activationBoxes", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActivationBox_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_MessagesAsSource(), this.getMessage(), this.getMessage_Source(), "messagesAsSource", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_MessagesAsTarget(), this.getMessage(), this.getMessage_Target(), "messagesAsTarget", null, 0, -1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivationBox_OwnerActivationBox(), this.getActivationBox(), this.getActivationBox_ActivationBoxes(), "ownerActivationBox", null, 0, 1, ActivationBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOperation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(messageEClass, Message.class, "Message", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMessage_Content(), ecorePackage.getEString(), "content", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMessage_Type(), this.getMessageType(), "type", "Synchronous", 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMessage_Source(), this.getActivationBox(), null, "source", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMessage_Target(), this.getActivationBox(), null, "target", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMessage_Source(), this.getActivationBox(), this.getActivationBox_MessagesAsSource(), "source", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMessage_Target(), this.getActivationBox(), this.getActivationBox_MessagesAsTarget(), "target", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMessage_Guard(), ecorePackage.getEString(), "guard", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(arbitraryMessageEClass, ArbitraryMessage.class, "ArbitraryMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getArbitraryMessage_Content(), ecorePackage.getEString(), "content", null, 0, 1, ArbitraryMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(operationMessageEClass, OperationMessage.class, "OperationMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOperationMessage_Content(), this.getOperation(), null, "content", null, 0, 1, OperationMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMessage_Predecessor(), this.getMessage(), this.getMessage_Successor(), "predecessor", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMessage_Successor(), this.getMessage(), this.getMessage_Predecessor(), "successor", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(messageTypeEEnum, MessageType.class, "MessageType");

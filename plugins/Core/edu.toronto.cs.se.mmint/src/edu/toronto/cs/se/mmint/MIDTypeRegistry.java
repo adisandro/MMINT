@@ -64,7 +64,6 @@ import edu.toronto.cs.se.mmint.mid.ui.FilesOnlyDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.mmint.mid.ui.NewGenericTypeDialogContentProvider;
-import edu.toronto.cs.se.mmint.mid.ui.NewMappingReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewMappingTypeReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelElementEndpointReferenceDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelEndpointDialogContentProvider;
@@ -425,35 +424,6 @@ public class MIDTypeRegistry {
 			new MIDDialogLabelProvider(),
 			new NewModelEndpointDialogContentProvider(modelTypeEndpointUris),
 			modelRel.getMetatype()
-		);
-
-		return dialog;
-	}
-
-	/**
-	 * Gets a tree dialog that shows all mapping types in a model relationship
-	 * type, in order to create a new mapping and a reference to it.
-	 *
-	 * @param targetSrcModelElemRef
-	 *            The reference to the model element that is going to be the
-	 *            target of the source model element endpoint, null if the mapping
-	 *            to be created is not binary.
-	 * @param targetTgtModelElemRef
-	 *            The reference to the model element that is going to be the
-	 *            target of the target model element endpoint, null if the mapping
-	 *            to be created is not binary.
-	 * @param modelRel
-	 *            The model relationship that will contain the mapping to be
-	 *            created.
-	 * @return The tree dialog to create a new mapping.
-	 */
-	public static MIDTreeSelectionDialog getMappingReferenceCreationDialog(ModelElementReference targetSrcModelElemRef, ModelElementReference targetTgtModelElemRef, ModelRel modelRel) {
-
-		ModelRel modelRelType = modelRel.getMetatype();
-		MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(
-			new MIDDialogLabelProvider(),
-			new NewMappingReferenceDialogContentProvider(MIDConstraintChecker.getAllowedMappingTypeReferences(modelRelType, targetSrcModelElemRef, targetTgtModelElemRef)),
-			modelRelType
 		);
 
 		return dialog;
