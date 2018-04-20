@@ -95,6 +95,15 @@ public interface SafetyCaseFactory extends EFactory {
 	Context createContext();
 
 	/**
+	 * Returns a new object of class '<em>Impact Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Impact Annotation</em>'.
+	 * @generated
+	 */
+	ImpactAnnotation createImpactAnnotation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

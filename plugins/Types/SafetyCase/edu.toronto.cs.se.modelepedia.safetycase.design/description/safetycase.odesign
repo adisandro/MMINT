@@ -6,100 +6,53 @@
       <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
         <nodeMappings name="GoalNode" semanticCandidatesExpression="feature:goals" domainClass="safetycase.Goal">
+          <borderedNodeMappings name="AnnotationNode" semanticCandidatesExpression="feature:status" domainClass="safetycase.ImpactAnnotation">
+            <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Revise">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Revise.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Recheck">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Recheck.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Reuse">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Reuse.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+          </borderedNodeMappings>
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql: let base = self.id + ' ' + self.description in if self.asil = safetycase::ASILLevel::No_ASIL then base else base + ' (ASIL ' + self.asil + ')' endif" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Revise">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description + ' (ASIL ' + self.asil + ')'" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal_Revise.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Recheck">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description + ' (ASIL ' + self.asil + ')'" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal_Recheck.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Reuse">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description + ' (ASIL ' + self.asil + ')'" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal_Reuse.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
         </nodeMappings>
-        <nodeMappings name="StrategyNode" semanticCandidatesExpression="feature:strategies" domainClass="safetycase.Strategy">
+        <nodeMappings name="StrategyNode" semanticCandidatesExpression="feature:strategies" domainClass="safetycase.Strategy" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Revise">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Strategy_Revise.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Recheck">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Strategy_Recheck.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Reuse">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Strategy_Reuse.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
         </nodeMappings>
-        <nodeMappings name="SolutionNode" semanticCandidatesExpression="feature:solutions" domainClass="safetycase.Solution">
+        <nodeMappings name="SolutionNode" semanticCandidatesExpression="feature:solutions" domainClass="safetycase.Solution" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Solution.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Revise">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Solution_Revise.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Recheck">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Solution_Recheck.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Reuse">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Solution_Reuse.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
         </nodeMappings>
-        <nodeMappings name="ContextNode" semanticCandidatesExpression="feature:contexts" domainClass="safetycase.Context">
+        <nodeMappings name="ContextNode" semanticCandidatesExpression="feature:contexts" domainClass="safetycase.Context" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Context.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Revise">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Context_Revise.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Recheck">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Context_Recheck.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.status = safetycase::Status::Reuse">
-            <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Context_Reuse.svg">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
-          </conditionnalStyles>
         </nodeMappings>
         <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetFinderExpression="feature:premise" sourceFinderExpression="feature:conclusion" domainClass="safetycase.SupportedBy" useDomainElement="true">
           <style targetArrow="InputFillClosedArrow">
@@ -179,6 +132,15 @@
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="contextOf" valueExpression="var:source"/>
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="context" valueExpression="var:target"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAnnotation" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ImpactAnnotation" referenceName="status"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

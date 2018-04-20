@@ -19,12 +19,13 @@ import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
-import edu.toronto.cs.se.modelepedia.safetycase.Status;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.TruthState;
@@ -127,6 +128,13 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass impactAnnotationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum truthStateEEnum = null;
 
 	/**
@@ -148,7 +156,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum statusEEnum = null;
+	private EEnum impactTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -288,8 +296,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getArgumentElement_Status() {
-		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(2);
+	public EReference getArgumentElement_Status() {
+		return (EReference)argumentElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -495,6 +503,33 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getImpactAnnotation() {
+		return impactAnnotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImpactAnnotation_Type() {
+		return (EAttribute)impactAnnotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImpactAnnotation_Source() {
+		return (EAttribute)impactAnnotationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTruthState() {
 		return truthStateEEnum;
 	}
@@ -522,8 +557,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getStatus() {
-		return statusEEnum;
+	public EEnum getImpactType() {
+		return impactTypeEEnum;
 	}
 
 	/**
@@ -563,7 +598,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		argumentElementEClass = createEClass(ARGUMENT_ELEMENT);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__ID);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__DESCRIPTION);
-		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__STATUS);
+		createEReference(argumentElementEClass, ARGUMENT_ELEMENT__STATUS);
 
 		coreElementEClass = createEClass(CORE_ELEMENT);
 		createEReference(coreElementEClass, CORE_ELEMENT__SUPPORTS);
@@ -596,11 +631,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		contextEClass = createEClass(CONTEXT);
 		createEAttribute(contextEClass, CONTEXT__STATE);
 
+		impactAnnotationEClass = createEClass(IMPACT_ANNOTATION);
+		createEAttribute(impactAnnotationEClass, IMPACT_ANNOTATION__TYPE);
+		createEAttribute(impactAnnotationEClass, IMPACT_ANNOTATION__SOURCE);
+
 		// Create enums
 		truthStateEEnum = createEEnum(TRUTH_STATE);
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
 		validityStateEEnum = createEEnum(VALIDITY_STATE);
-		statusEEnum = createEEnum(STATUS);
+		impactTypeEEnum = createEEnum(IMPACT_TYPE);
 	}
 
 	/**
@@ -649,7 +688,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEClass(argumentElementEClass, ArgumentElement.class, "ArgumentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getArgumentElement_Id(), ecorePackage.getEString(), "id", "", 1, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getArgumentElement_Status(), this.getStatus(), "status", "Undetermined", 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArgumentElement_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coreElementEClass, CoreElement.class, "CoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCoreElement_Supports(), this.getSupportedBy(), this.getSupportedBy_Premise(), "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -682,6 +721,10 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getContext_State(), this.getValidityState(), "state", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(impactAnnotationEClass, ImpactAnnotation.class, "ImpactAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImpactAnnotation_Type(), this.getImpactType(), "type", null, 1, 1, ImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImpactAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, ImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(truthStateEEnum, TruthState.class, "TruthState");
 		addEEnumLiteral(truthStateEEnum, TruthState.FALSE);
@@ -699,11 +742,10 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		addEEnumLiteral(validityStateEEnum, ValidityState.INVALID);
 		addEEnumLiteral(validityStateEEnum, ValidityState.VALID);
 
-		initEEnum(statusEEnum, Status.class, "Status");
-		addEEnumLiteral(statusEEnum, Status.UNDETERMINED);
-		addEEnumLiteral(statusEEnum, Status.REVISE);
-		addEEnumLiteral(statusEEnum, Status.RECHECK);
-		addEEnumLiteral(statusEEnum, Status.REUSE);
+		initEEnum(impactTypeEEnum, ImpactType.class, "ImpactType");
+		addEEnumLiteral(impactTypeEEnum, ImpactType.REVISE);
+		addEEnumLiteral(impactTypeEEnum, ImpactType.RECHECK);
+		addEEnumLiteral(impactTypeEEnum, ImpactType.REUSE);
 
 		// Create resource
 		createResource(eNS_URI);

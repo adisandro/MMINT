@@ -13,12 +13,14 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.Status;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -80,24 +82,14 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
+	 * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getStatus()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Status STATUS_EDEFAULT = Status.UNDETERMINED;
-
-	/**
-	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStatus()
-	 * @generated
-	 * @ordered
-	 */
-	protected Status status = STATUS_EDEFAULT;
+	protected ImpactAnnotation status;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -165,7 +157,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Status getStatus() {
+	public ImpactAnnotation getStatus() {
 		return status;
 	}
 
@@ -174,11 +166,47 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatus(Status newStatus) {
-		Status oldStatus = status;
-		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, oldStatus, status));
+	public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
+		ImpactAnnotation oldStatus = status;
+		status = newStatus;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatus(ImpactAnnotation newStatus) {
+		if (newStatus != status) {
+			NotificationChain msgs = null;
+			if (status != null)
+				msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+			if (newStatus != null)
+				msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+			msgs = basicSetStatus(newStatus, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, newStatus, newStatus));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+				return basicSetStatus(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -214,7 +242,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				setDescription((String)newValue);
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				setStatus((Status)newValue);
+				setStatus((ImpactAnnotation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,7 +263,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				setStatus(STATUS_EDEFAULT);
+				setStatus((ImpactAnnotation)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -254,7 +282,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				return status != STATUS_EDEFAULT;
+				return status != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -273,8 +301,6 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		result.append(id);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", status: ");
-		result.append(status);
 		result.append(')');
 		return result.toString();
 	}

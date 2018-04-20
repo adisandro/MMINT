@@ -74,6 +74,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.STRATEGY: return createStrategy();
 			case SafetyCasePackage.SOLUTION: return createSolution();
 			case SafetyCasePackage.CONTEXT: return createContext();
+			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,8 +94,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 				return createASILLevelFromString(eDataType, initialValue);
 			case SafetyCasePackage.VALIDITY_STATE:
 				return createValidityStateFromString(eDataType, initialValue);
-			case SafetyCasePackage.STATUS:
-				return createStatusFromString(eDataType, initialValue);
+			case SafetyCasePackage.IMPACT_TYPE:
+				return createImpactTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -114,8 +115,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 				return convertASILLevelToString(eDataType, instanceValue);
 			case SafetyCasePackage.VALIDITY_STATE:
 				return convertValidityStateToString(eDataType, instanceValue);
-			case SafetyCasePackage.STATUS:
-				return convertStatusToString(eDataType, instanceValue);
+			case SafetyCasePackage.IMPACT_TYPE:
+				return convertImpactTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -196,6 +197,16 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ImpactAnnotation createImpactAnnotation() {
+		ImpactAnnotationImpl impactAnnotation = new ImpactAnnotationImpl();
+		return impactAnnotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TruthState createTruthStateFromString(EDataType eDataType, String initialValue) {
 		TruthState result = TruthState.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -256,8 +267,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Status createStatusFromString(EDataType eDataType, String initialValue) {
-		Status result = Status.get(initialValue);
+	public ImpactType createImpactTypeFromString(EDataType eDataType, String initialValue) {
+		ImpactType result = ImpactType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -267,7 +278,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertStatusToString(EDataType eDataType, Object instanceValue) {
+	public String convertImpactTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -20,8 +20,8 @@
         <details key="label" value="description"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
-        defaultValueLiteral="Undetermined"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
@@ -80,10 +80,13 @@
     <eLiterals name="Invalid" literal="Invalid"/>
     <eLiterals name="Valid" value="1" literal="Valid"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Status">
-    <eLiterals name="Undetermined" literal="Undetermined"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ImpactType">
     <eLiterals name="Revise" value="1"/>
     <eLiterals name="Recheck" value="2" literal="Recheck"/>
     <eLiterals name="Reuse" value="3" literal="Reuse"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnnotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ImpactType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
