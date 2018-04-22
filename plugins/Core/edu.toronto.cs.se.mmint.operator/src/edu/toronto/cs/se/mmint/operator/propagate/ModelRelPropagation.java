@@ -13,17 +13,18 @@
 package edu.toronto.cs.se.mmint.operator.propagate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
@@ -128,79 +129,95 @@ public class ModelRelPropagation extends OperatorImpl {
         ModelRel propRel = origRel.getMetatype()
                                   .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.newBasicEList(propModel),
                                                               outputMID);
-        ModelEndpointReference propModel2EndpointRef = propRel.getModelEndpointRefs().get(0);
+        ModelEndpointReference propModelEndpointRef = propRel.getModelEndpointRefs().get(0);
         String propModelUri = propModel.getUri();
         URI propModelEMFUri = FileUtils.createEMFUri(propModelUri, true);
         Resource propModelEMFResource = new ResourceSetImpl().getResource(propModelEMFUri, true);
 
-        // get uris of original model objects
-        Set<String> origModelObjUris = origRel.getModelEndpointRefs().get(0).getModelElemRefs().stream()
-            .map(origModelElemRef -> MIDRegistry.getModelObjectUri(origModelElemRef.getObject()))
-            .collect(Collectors.toSet());
-
-        // loop through traceability mappings (can be n-ary, and not include any original model object)
-        Map<String, Set<ModelElementReference>> origToProp = new HashMap<>();
+        // loop through traceability mappings (can be n-ary, and not include any sharedModel or propModel model elem)
+        Map<String, Set<Set<ModelElementReference>>> origToProp = new HashMap<>();
         for (Mapping traceMapping : traceRel.getMappings()) {
             if (
                 traceMapping instanceof BinaryMapping &&
-                propModelUri.equals(MIDRegistry.getModelUri(
-                    MIDRegistry.getModelObjectUri(traceMapping.getModelElemEndpoints().get(0).getTarget())))
+                propModelUri.equals(MIDRegistry.getModelUri(MIDRegistry.getModelObjectUri(
+                    traceMapping.getModelElemEndpoints().get(0).getTarget())))
             ) {
                 // if trace mapping is binary, the direction must be from sharedModel to propModel
                 continue;
             }
-            Set<ModelElement> propModelElems = new HashSet<>();
+            Set<ModelElement> propModelElems = null;
             Set<ModelElementReference> propModelElemRefs = null;
             for (ModelElementEndpoint traceModelElemEndpoint : traceMapping.getModelElemEndpoints()) {
                 ModelElement traceModelElem = traceModelElemEndpoint.getTarget();
                 String traceModelElemUri = MIDRegistry.getModelObjectUri(traceModelElem);
-                // propagate if a model elem from sharedModel is found
-                if (origModelObjUris.contains(traceModelElemUri)) {
-                    //TODO MMINT[SLICE] handle n-ary with multiple from sharedModel
-                    propModelElemRefs = origToProp.get(traceModelElemUri);
-                    if (propModelElemRefs == null) {
-                        propModelElemRefs = new HashSet<>();
-                        origToProp.put(traceModelElemUri, propModelElemRefs);
+                if (propModelUri.equals(MIDRegistry.getModelUri(traceModelElemUri))) {
+                    // collect model elems from propModel to propagate to
+                    if (propModelElems == null) {
+                        propModelElems = new HashSet<>();
                     }
-                    continue;
-                }
-                // collect model elems from propModel to propagate
-                if (traceModelElemUri.startsWith(propModelUri)) {
                     propModelElems.add(traceModelElem);
                 }
+                else {
+                    // collect model elems from sharedModel to propagate from
+                    //TODO MMINT[SLICE] handle n-ary with multiple from sharedModel
+                    propModelElemRefs = new HashSet<>();
+                    origToProp.computeIfAbsent(traceModelElemUri, k -> new HashSet<>()).add(propModelElemRefs);
+                }
             }
-            // no model elems from sharedModel == no propagation for this trace mapping
-            if (propModelElemRefs == null) {
+            // no model elems in either sharedModel or propModel == no propagation for this trace mapping
+            if (propModelElems == null || propModelElemRefs == null) {
                 continue;
             }
             // propagate model elems
             for (ModelElement propModelElem : propModelElems) {
-                EObject propModelObj = propModelElem.getEMFInstanceObject(propModelEMFResource);
-                ModelElementReference propModelElemRef = propModel2EndpointRef.createModelElementInstanceAndReference(
-                                                             propModelObj, null);
-                propModelElemRefs.add(propModelElemRef);
+                String propModelElemUri = MIDRegistry.getModelObjectUri(propModelElem);
+                Optional<ModelElementReference> propModelElemRef = propModelEndpointRef.getModelElemRefs().stream()
+                    .filter(e -> propModelElemUri.equals(MIDRegistry.getModelObjectUri(e.getObject())))
+                    .findAny();
+                propModelElemRefs.add(
+                    (propModelElemRef.isPresent()) ?
+                        propModelElemRef.get() :
+                        propModelEndpointRef.createModelElementInstanceAndReference(
+                            propModelElem.getEMFInstanceObject(propModelEMFResource), propModelElem.getName()));
             }
         }
 
-        // loop through orig mappings, and propagate them to prop
+        // propagate orig mappings to prop
         for (Mapping origMapping : origRel.getMappings()) {
-            EList<ModelElementReference> propModelElemRefs = ECollections.newBasicEList();
+            List<Set<Set<ModelElementReference>>> allTraces = new ArrayList<>();
             for (ModelElementEndpoint origModelElemEndpoint : origMapping.getModelElemEndpoints()) {
                 ModelElement origModelElem = origModelElemEndpoint.getTarget();
                 String origModelElemUri = MIDRegistry.getModelObjectUri(origModelElem);
-                Set<ModelElementReference> propModelElemRefs2 = origToProp.get(origModelElemUri);
-                if (propModelElemRefs2 != null) {
-                    propModelElemRefs.addAll(propModelElemRefs2);
+                Set<Set<ModelElementReference>> trace = origToProp.get(origModelElemUri);
+                if (trace != null) {
+                    allTraces.add(trace);
                 }
             }
-            if (propModelElemRefs.isEmpty()) { // nothing to propagate
+            if (allTraces.isEmpty()) { // nothing to propagate
                 continue;
             }
-            // propagate mapping
-            MappingReference propMappingRef = origMapping.getMetatype()
-                .createInstanceAndReferenceAndEndpointsAndReferences(
-                    origMapping instanceof BinaryMapping && propModelElemRefs.size() == 2, propModelElemRefs);
-            propMappingRef.getObject().setName(origMapping.getName());
+            // the pivot trace is the one with the most trace mappings
+            // it has meaning for binary/nary orig mappings, where there are other traces
+            // while a unary orig mapping has a single trace
+            Set<Set<ModelElementReference>> pivotTrace = Collections.max(allTraces, Comparator.comparingInt(Set::size));
+            List<ModelElementReference> propModelElemRefs = new ArrayList<>();
+            for (Set<Set<ModelElementReference>> trace : allTraces) {
+                if (trace == pivotTrace) {
+                    continue;
+                }
+                trace.forEach(t -> propModelElemRefs.addAll(t));
+            }
+            for (Set<ModelElementReference> pivotPropModelElemRefs : pivotTrace) {
+                EList<ModelElementReference> allPropModelElemRefs = ECollections.newBasicEList(propModelElemRefs);
+                allPropModelElemRefs.addAll(pivotPropModelElemRefs);
+                if (allPropModelElemRefs.isEmpty()) { // nothing to propagate
+                    continue;
+                }
+                MappingReference propMappingRef = origMapping.getMetatype()
+                    .createInstanceAndReferenceAndEndpointsAndReferences(
+                        origMapping instanceof BinaryMapping && allPropModelElemRefs.size() == 2, allPropModelElemRefs);
+                propMappingRef.getObject().setName(origMapping.getName());
+            }
         }
 
         return propRel;
