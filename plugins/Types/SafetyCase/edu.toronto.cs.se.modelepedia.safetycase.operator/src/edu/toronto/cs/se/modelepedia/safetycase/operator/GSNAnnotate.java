@@ -30,12 +30,17 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
-import edu.toronto.cs.se.modelepedia.safetycase.Status;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 
 public class GSNAnnotate extends OperatorImpl {
 
@@ -92,8 +97,9 @@ public class GSNAnnotate extends OperatorImpl {
         SafetyCase scRoot = (SafetyCase) scModel.getEMFInstanceRoot();
         Resource scResource = scRoot.eResource();
 
-        // Extract all argument elements that requires revision.
+        // Extract all argument elements that requires revision and prepare to extract their causes.
         Set<ArgumentElement> scReviseObjs = new HashSet<>();
+        Map<ArgumentElement, String> scRevise2impactSrcs = new HashMap<>();
         for (ModelElementReference scReviseElemRef : reviseRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
             EObject reviseObj;
             try {
@@ -106,11 +112,40 @@ public class GSNAnnotate extends OperatorImpl {
             }
             if (reviseObj instanceof ArgumentElement) {
                 scReviseObjs.add((ArgumentElement) reviseObj);
+                scRevise2impactSrcs.put((ArgumentElement) reviseObj, "");
             }
         }
+        
+        // Extract the cause(s) of the required revisions.
+        // Note: It is assumed that there may be a many-to-many mapping between
+        // the safety case elements to be revised and the causes of those revisions.      
+        for (Mapping srcMapping : reviseRel.getMappings()) {
+        	String impactSrc = srcMapping.getName();     	
+        	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
+        		EObject reviseObj;
+        		try {
+        			reviseObj = elemEndpoint.getTarget().getEMFInstanceObject(scResource);
+        		} catch (MMINTException e){
+                    MMINTException.print(IStatus.WARNING, "Skipping element to revise " +
+                            elemEndpoint.getTarget().getName(), e);
+                    continue;        			
+        		}
+        		
+        		
+        		if (reviseObj instanceof ArgumentElement) {
+        			if (scRevise2impactSrcs.get(reviseObj).equals("")) {
+        				scRevise2impactSrcs.put((ArgumentElement) reviseObj, impactSrc);
+        			} else {
+            			String srcString = scRevise2impactSrcs.get(reviseObj).concat(" + " + impactSrc);
+            			scRevise2impactSrcs.put((ArgumentElement) reviseObj, srcString);        				
+        			}
+        		}
+        	}
+        }
 
-        // Extract all argument elements that requires rechecking.
+        // Extract all argument elements that requires rechecking and prepare to extract their causes.
         Set<ArgumentElement> scRecheckObjs = new HashSet<>();
+        Map<ArgumentElement, String> scRecheck2impactSrcs = new HashMap<>();
         for (ModelElementReference scRecheckElemRef: recheckRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
             EObject recheckObj;
             try {
@@ -123,7 +158,37 @@ public class GSNAnnotate extends OperatorImpl {
             }
             if (recheckObj instanceof ArgumentElement && !scReviseObjs.contains(recheckObj)) {
                 scRecheckObjs.add((ArgumentElement) recheckObj);
+                scRecheck2impactSrcs.put((ArgumentElement) recheckObj, "");
             }
+        }
+        
+        // Extract the cause(s) of the required rechecks.
+        // Note: It is assumed that there may be a many-to-many mapping between
+        // the safety case elements to be rechecked and the causes of those rechecks.      
+        for (Mapping srcMapping : recheckRel.getMappings()) {
+        	String impactSrc = srcMapping.getName();     	
+        	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
+        		EObject recheckObj;
+        		try {
+        			recheckObj = elemEndpoint.getTarget().getEMFInstanceObject(scResource);
+        		} catch (MMINTException e){
+                    MMINTException.print(IStatus.WARNING, "Skipping element to revise " +
+                            elemEndpoint.getTarget().getName(), e);
+                    continue;        			
+        		}
+        		
+        		
+        		if (recheckObj instanceof ArgumentElement) {
+        			if (scRecheck2impactSrcs.containsKey(recheckObj)) {
+        				if (scRecheck2impactSrcs.get(recheckObj).equals("")) {
+        					scRecheck2impactSrcs.put((ArgumentElement) recheckObj, impactSrc);
+        				} else {
+        					String srcString = scRecheck2impactSrcs.get(recheckObj).concat(" + " + impactSrc);
+        					scRecheck2impactSrcs.put((ArgumentElement) recheckObj, srcString);        				
+        				}
+        			}
+        		}
+        	}
         }
 
         // Iterate through each argument element and update its status.
@@ -133,14 +198,22 @@ public class GSNAnnotate extends OperatorImpl {
             if (!(scObj instanceof ArgumentElement)) {
                 continue;
             }
+            
+            ImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
             if (scReviseObjs.contains(scObj)) {
-                ((ArgumentElement) scObj).setStatus(Status.REVISE);
+            	annotation.setType(ImpactType.REVISE);
+            	annotation.setSource(scRevise2impactSrcs.get(scObj));
+                ((ArgumentElement) scObj).setStatus(annotation);
             }
             else if (scRecheckObjs.contains(scObj)) {
-                ((ArgumentElement) scObj).setStatus(Status.RECHECK);
+            	annotation.setType(ImpactType.RECHECK); 
+            	annotation.setSource(scRecheck2impactSrcs.get(scObj));
+                ((ArgumentElement) scObj).setStatus(annotation);
             }
             else {
-                ((ArgumentElement) scObj).setStatus(Status.REUSE);
+            	annotation.setType(ImpactType.REUSE);
+            	annotation.setSource("Not applicable.");
+                ((ArgumentElement) scObj).setStatus(annotation);
             }
         }
 
