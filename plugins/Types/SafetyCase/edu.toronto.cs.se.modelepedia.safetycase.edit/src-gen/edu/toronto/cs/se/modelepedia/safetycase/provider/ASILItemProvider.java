@@ -13,7 +13,8 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
@@ -23,26 +24,42 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Goal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends DecomposableCoreElementItemProvider {
+public class ASILItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GoalItemProvider(AdapterFactory adapterFactory) {
+	public ASILItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,25 +74,25 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatePropertyDescriptor(object);
+			addLevelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State feature.
+	 * This adds a property descriptor for the Level feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addLevelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Goal_state_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_state_feature", "_UI_Goal_type"),
-				 SafetyCasePackage.Literals.GOAL__STATE,
+				 getString("_UI_ASIL_level_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ASIL_level_feature", "_UI_ASIL_type"),
+				 SafetyCasePackage.Literals.ASIL__LEVEL,
 				 true,
 				 false,
 				 false,
@@ -96,7 +113,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
+			childrenFeatures.add(SafetyCasePackage.Literals.ASIL__STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -115,14 +132,14 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	}
 
 	/**
-	 * This returns Goal.gif.
+	 * This returns ASIL.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Goal"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ASIL"));
 	}
 
 	/**
@@ -133,10 +150,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Goal)object).getId();
+		ASILLevel labelValue = ((ASIL)object).getLevel();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Goal_type") :
-			getString("_UI_Goal_type") + " " + label;
+			getString("_UI_ASIL_type") :
+			getString("_UI_ASIL_type") + " " + label;
 	}
 	
 
@@ -151,11 +169,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Goal.class)) {
-			case SafetyCasePackage.GOAL__STATE:
+		switch (notification.getFeatureID(ASIL.class)) {
+			case SafetyCasePackage.ASIL__LEVEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SafetyCasePackage.GOAL__ASIL:
+			case SafetyCasePackage.ASIL__STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -175,8 +193,19 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.GOAL__ASIL,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
+				(SafetyCasePackage.Literals.ASIL__STATUS,
+				 SafetyCaseFactory.eINSTANCE.createImpactAnnotation()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

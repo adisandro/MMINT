@@ -10,28 +10,87 @@
             <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <forbiddenSides>SOUTH</forbiddenSides>
+              <forbiddenSides>EAST</forbiddenSides>
+              <forbiddenSides>NORTH</forbiddenSides>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             </style>
             <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Revise">
               <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Revise.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>SOUTH</forbiddenSides>
+                <forbiddenSides>EAST</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Recheck">
               <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Recheck.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>SOUTH</forbiddenSides>
+                <forbiddenSides>EAST</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Reuse">
               <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Reuse.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>SOUTH</forbiddenSides>
+                <forbiddenSides>EAST</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql: let base = self.id + ' ' + self.description in if self.asil = safetycase::ASILLevel::No_ASIL then base else base + ' (ASIL ' + self.asil + ')' endif" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal.svg">
+          <borderedNodeMappings name="AsilNode" semanticCandidatesExpression="feature:asil" domainClass="safetycase.ASIL">
+            <borderedNodeMappings name="AnnotationNode" semanticCandidatesExpression="feature:status" domainClass="safetycase.ImpactAnnotation">
+              <style xsi:type="style:EllipseNodeDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>WEST</forbiddenSides>
+                <forbiddenSides>SOUTH</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              </style>
+              <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Revise">
+                <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Revise.png">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <forbiddenSides>WEST</forbiddenSides>
+                  <forbiddenSides>SOUTH</forbiddenSides>
+                  <forbiddenSides>NORTH</forbiddenSides>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Recheck">
+                <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Recheck.png">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <forbiddenSides>WEST</forbiddenSides>
+                  <forbiddenSides>SOUTH</forbiddenSides>
+                  <forbiddenSides>NORTH</forbiddenSides>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="aql:self.type = safetycase::ImpactType::Reuse">
+                <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Reuse.png">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <forbiddenSides>WEST</forbiddenSides>
+                  <forbiddenSides>SOUTH</forbiddenSides>
+                  <forbiddenSides>NORTH</forbiddenSides>
+                </style>
+              </conditionnalStyles>
+            </borderedNodeMappings>
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:'ASIL ' + self.level" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <forbiddenSides>WEST</forbiddenSides>
+              <forbiddenSides>SOUTH</forbiddenSides>
+              <forbiddenSides>NORTH</forbiddenSides>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </borderedNodeMappings>
+          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Goal.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
@@ -135,12 +194,21 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAnnotation" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAnnotation" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AsilNode']/@borderedNodeMappings[name='AnnotationNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ImpactAnnotation" referenceName="status"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAsil" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AsilNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ASIL" referenceName="asil"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -154,9 +222,10 @@
       <ownedLineMappings name="ReuseLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Reuse"/>
       <ownedLineMappings name="UndeterminedLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Undetermined"/>
       <ownedLineMappings name="TotalLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Total"/>
-      <ownedColumnMappings name="GoalColumn" headerLabelExpression="Goals" featureName="goals" labelExpression="aql:let s = self.goals in let revise = s -> select(x | x.status = safetycase::Status::Revise) -> size(), recheck = s -> select(x | x.status = safetycase::Status::Recheck) -> size(), reuse = s -> select(x | x.status = safetycase::Status::Reuse) -> size(), undet = s -> select(x | x.status = safetycase::Status::Undetermined) -> size(), total = s -> size() in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
-      <ownedColumnMappings name="StrategyColumn" headerLabelExpression="Strategies" featureName="strategies" labelExpression="aql:let s = self.strategies in let revise = s -> select(x | x.status = safetycase::Status::Revise) -> size(), recheck = s -> select(x | x.status = safetycase::Status::Recheck) -> size(), reuse = s -> select(x | x.status = safetycase::Status::Reuse) -> size(), undet = s -> select(x | x.status = safetycase::Status::Undetermined) -> size(), total = s -> size() in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
-      <ownedColumnMappings name="SolutionColumn" headerLabelExpression="Solutions" featureName="solutions" labelExpression="aql:let s = self.solutions in let revise = s -> select(x | x.status = safetycase::Status::Revise) -> size(), recheck = s -> select(x | x.status = safetycase::Status::Recheck) -> size(), reuse = s -> select(x | x.status = safetycase::Status::Reuse) -> size(), undet = s -> select(x | x.status = safetycase::Status::Undetermined) -> size(), total = s -> size() in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
+      <ownedColumnMappings name="GoalColumn" headerLabelExpression="Goals" featureName="goals" labelExpression="aql:let s = self.goals in let total = s -> size(), revise = s -> select(x | x.status.type = safetycase::ImpactType::Revise) -> size(), recheck = s -> select(x | x.status.type = safetycase::ImpactType::Recheck) -> size(), reuse = s -> select(x | x.status.type = safetycase::ImpactType::Reuse) -> size() in let undet = total - revise - recheck - reuse in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
+      <ownedColumnMappings name="StrategyColumn" headerLabelExpression="Strategies" featureName="strategies" labelExpression="aql:let s = self.strategies in let total = s -> size(), revise = s -> select(x | x.status.type = safetycase::ImpactType::Revise) -> size(), recheck = s -> select(x | x.status.type = safetycase::ImpactType::Recheck) -> size(), reuse = s -> select(x | x.status.type = safetycase::ImpactType::Reuse) -> size() in let undet = total - revise - recheck - reuse in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
+      <ownedColumnMappings name="SolutionColumn" headerLabelExpression="Solutions" featureName="solutions" labelExpression="aql:let s = self.solutions in let total = s -> size(), revise = s -> select(x | x.status.type = safetycase::ImpactType::Revise) -> size(), recheck = s -> select(x | x.status.type = safetycase::ImpactType::Recheck) -> size(), reuse = s -> select(x | x.status.type = safetycase::ImpactType::Reuse) -> size() in let undet = total - revise - recheck - reuse in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
+      <ownedColumnMappings name="AsilColumn" headerLabelExpression="ASILs" featureName="goals" labelExpression="aql:let s = self.goals.asil in let total = s -> size(), revise = s -> select(x | x.status.type = safetycase::ImpactType::Revise) -> size(), recheck = s -> select(x | x.status.type = safetycase::ImpactType::Recheck) -> size(), reuse = s -> select(x | x.status.type = safetycase::ImpactType::Reuse) -> size() in let undet = total - revise - recheck - reuse in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck' then recheck + ' (' + recheck*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Undetermined' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif"/>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.safetycase.design.Services"/>
   </ownedViewpoints>
