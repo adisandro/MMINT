@@ -13,7 +13,8 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
@@ -36,12 +37,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ArgumentElementItemProvider 
+public class ImpactAnnotationItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -55,7 +56,7 @@ public class ArgumentElementItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ArgumentElementItemProvider(AdapterFactory adapterFactory) {
+	public ImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,27 +71,26 @@ public class ArgumentElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdPropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addStatusPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIdPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArgumentElement_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_id_feature", "_UI_ArgumentElement_type"),
-				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__ID,
+				 getString("_UI_ImpactAnnotation_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_type_feature", "_UI_ImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__TYPE,
 				 true,
 				 false,
 				 false,
@@ -100,19 +100,19 @@ public class ArgumentElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ArgumentElement_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_description_feature", "_UI_ArgumentElement_type"),
-				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__DESCRIPTION,
+				 getString("_UI_ImpactAnnotation_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_source_feature", "_UI_ImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__SOURCE,
 				 true,
 				 false,
 				 false,
@@ -122,25 +122,14 @@ public class ArgumentElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Status feature.
+	 * This returns ImpactAnnotation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ArgumentElement_status_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_status_feature", "_UI_ArgumentElement_type"),
-				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__STATUS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ImpactAnnotation"));
 	}
 
 	/**
@@ -151,10 +140,11 @@ public class ArgumentElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ArgumentElement)object).getId();
+		ImpactType labelValue = ((ImpactAnnotation)object).getType();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArgumentElement_type") :
-			getString("_UI_ArgumentElement_type") + " " + label;
+			getString("_UI_ImpactAnnotation_type") :
+			getString("_UI_ImpactAnnotation_type") + " " + label;
 	}
 	
 
@@ -169,10 +159,9 @@ public class ArgumentElementItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ArgumentElement.class)) {
-			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
-			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
-			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+		switch (notification.getFeatureID(ImpactAnnotation.class)) {
+			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

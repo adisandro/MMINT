@@ -87,33 +87,29 @@ public interface ArgumentElement extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Status</b></em>' attribute.
-	 * The default value is <code>"Undetermined"</code>.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.Status}.
+	 * Returns the value of the '<em><b>Status</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Status</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Status</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Status
-	 * @see #setStatus(Status)
+	 * @return the value of the '<em>Status</em>' containment reference.
+	 * @see #setStatus(ImpactAnnotation)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Status()
-	 * @model default="Undetermined"
+	 * @model containment="true"
 	 * @generated
 	 */
-	Status getStatus();
+	ImpactAnnotation getStatus();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Status</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Status
+	 * @param value the new value of the '<em>Status</em>' containment reference.
 	 * @see #getStatus()
 	 * @generated
 	 */
-	void setStatus(Status value);
+	void setStatus(ImpactAnnotation value);
 
 } // ArgumentElement

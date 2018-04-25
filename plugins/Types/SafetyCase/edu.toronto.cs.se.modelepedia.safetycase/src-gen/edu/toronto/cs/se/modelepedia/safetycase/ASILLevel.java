@@ -76,17 +76,7 @@ public enum ASILLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QM(4, "QM", "QM"),
-
-	/**
-	 * The '<em><b>No ASIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NO_ASIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NO_ASIL(5, "No_ASIL", "No_ASIL");
+	QM(4, "QM", "QM");
 
 	/**
 	 * The '<em><b>D</b></em>' literal value.
@@ -164,21 +154,6 @@ public enum ASILLevel implements Enumerator {
 	public static final int QM_VALUE = 4;
 
 	/**
-	 * The '<em><b>No ASIL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>No ASIL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NO_ASIL
-	 * @model name="No_ASIL"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NO_ASIL_VALUE = 5;
-
-	/**
 	 * An array of all the '<em><b>ASIL Level</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,7 +166,6 @@ public enum ASILLevel implements Enumerator {
 			B,
 			A,
 			QM,
-			NO_ASIL,
 		};
 
 	/**
@@ -253,7 +227,6 @@ public enum ASILLevel implements Enumerator {
 			case B_VALUE: return B;
 			case A_VALUE: return A;
 			case QM_VALUE: return QM;
-			case NO_ASIL_VALUE: return NO_ASIL;
 		}
 		return null;
 	}

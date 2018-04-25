@@ -20,8 +20,8 @@
         <details key="label" value="description"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
-        defaultValueLiteral="Undetermined"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
@@ -52,8 +52,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//DecomposableCoreElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TruthState"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="asil" eType="#//ASILLevel"
-        defaultValueLiteral="D"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true"
+        eOpposite="#//ASIL/owner"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//DecomposableCoreElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
@@ -74,16 +74,25 @@
     <eLiterals name="B" value="2" literal="B"/>
     <eLiterals name="A" value="3" literal="A"/>
     <eLiterals name="QM" value="4" literal="QM"/>
-    <eLiterals name="No_ASIL" value="5" literal="No_ASIL"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ValidityState">
     <eLiterals name="Invalid" literal="Invalid"/>
     <eLiterals name="Valid" value="1" literal="Valid"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Status">
-    <eLiterals name="Undetermined" literal="Undetermined"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ImpactType">
     <eLiterals name="Revise" value="1"/>
     <eLiterals name="Recheck" value="2" literal="Recheck"/>
     <eLiterals name="Reuse" value="3" literal="Reuse"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnnotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ImpactType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ASIL">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Goal"
+        eOpposite="#//Goal/asil"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//ASILLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

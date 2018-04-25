@@ -61,33 +61,31 @@ public interface Goal extends DecomposableCoreElement {
 	void setState(TruthState value);
 
 	/**
-	 * Returns the value of the '<em><b>Asil</b></em>' attribute.
-	 * The default value is <code>"D"</code>.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel}.
+	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Asil</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Asil</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Asil</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
-	 * @see #setAsil(ASILLevel)
+	 * @return the value of the '<em>Asil</em>' containment reference.
+	 * @see #setAsil(ASIL)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
-	 * @model default="D"
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
-	ASILLevel getAsil();
+	ASIL getAsil();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Asil</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @param value the new value of the '<em>Asil</em>' containment reference.
 	 * @see #getAsil()
 	 * @generated
 	 */
-	void setAsil(ASILLevel value);
+	void setAsil(ASIL value);
 
 } // Goal
