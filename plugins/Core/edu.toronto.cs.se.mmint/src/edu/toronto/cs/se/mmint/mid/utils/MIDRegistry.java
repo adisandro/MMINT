@@ -206,11 +206,12 @@ public class MIDRegistry {
 
 	public static @NonNull String getModelUri(@NonNull String modelObjUri) {
 
-        if (!modelObjUri.contains(MMINT.MODEL_URI_SEPARATOR)) {
-            return modelObjUri;
-        }
+	    int sep = modelObjUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR);
+	    if (sep == -1) {
+	        return modelObjUri;
+	    }
 
-        return modelObjUri.substring(0, modelObjUri.lastIndexOf(MMINT.MODEL_URI_SEPARATOR));
+        return modelObjUri.substring(0, sep);
 	}
 
 	public static @NonNull String getModelUri(@NonNull EObject modelObj) {
