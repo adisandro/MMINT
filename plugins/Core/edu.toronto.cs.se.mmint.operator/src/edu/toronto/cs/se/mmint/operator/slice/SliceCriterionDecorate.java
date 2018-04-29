@@ -135,7 +135,8 @@ public class SliceCriterionDecorate extends OperatorImpl {
                                                         critModelObj, critModelElemRef.getObject().getName());
             MappingReference decMappingRef = MIDTypeHierarchy.getRootMappingType()
                 .createInstanceAndReferenceAndEndpointsAndReferences(false, ECollections.asEList(decModelElemRef));
-            decMappingRef.getObject().setName(critModelElemRef.getObject().getName());
+            decMappingRef.getObject().setName(this.input.model.getName() + "." +
+                                              critModelElemRef.getObject().getName());
         }
     }
 
