@@ -34,8 +34,8 @@
             </entries>
           </acceleoProject>
           <packagesToRegister>
-            <packageToRegister>edu.toronto.cs.se.mmint.MIDPackage</packageToRegister>
-            <packageToRegister>edu.toronto.cs.se.mmint.relationship.RelationshipPackage</packageToRegister>
+            <packageToRegister>edu.toronto.cs.se.mmint.mid.MIDPackage</packageToRegister>
+            <packageToRegister>edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage</packageToRegister>
           </packagesToRegister>
           <uriHandler>org.eclipse.acceleo.maven.AcceleoURIHandler</uriHandler>
         </configuration>
