@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -133,7 +134,10 @@ public class ModelRelPropagation extends OperatorImpl {
         String propModelUri = propModel.getUri();
         URI propModelEMFUri = FileUtils.createEMFUri(propModelUri, true);
         Resource propModelEMFResource = new ResourceSetImpl().getResource(propModelEMFUri, true);
-
+        // get sharedModel elements that are in origRel, in case there are traces for other sharedModel elements
+        Set<String> origModelObjUris = origRel.getModelEndpointRefs().get(0).getModelElemRefs().stream()
+            .map(origModelElemRef -> MIDRegistry.getModelObjectUri(origModelElemRef.getObject()))
+            .collect(Collectors.toSet());
         // loop through traceability mappings (can be n-ary, and not include any sharedModel or propModel model elem)
         Map<String, Set<Set<ModelElementReference>>> origToProp = new HashMap<>();
         for (Mapping traceMapping : traceRel.getMappings()) {
@@ -157,7 +161,7 @@ public class ModelRelPropagation extends OperatorImpl {
                     }
                     propModelElems.add(traceModelElem);
                 }
-                else {
+                else if (origModelObjUris.contains(traceModelElemUri)) {
                     // collect model elems from sharedModel to propagate from
                     //TODO MMINT[SLICE] handle n-ary with multiple from sharedModel
                     propModelElemRefs = new HashSet<>();

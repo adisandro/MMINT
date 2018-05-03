@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -52,12 +51,12 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 // elements to slice.
 public class Slice extends OperatorImpl {
 
-    // input-output
-    protected final static @NonNull String IN_MODELREL = "criterion";
-    protected final static @NonNull String OUT_MODELREL = "slice";
+    private Input input;
+    private Output output;
 
     private static class Input {
 
+        private final static @NonNull String IN_MODELREL = "criterion";
         private ModelRel critRel;
         private Model model;
 
@@ -69,6 +68,26 @@ public class Slice extends OperatorImpl {
                 throw new IllegalArgumentException();
             }
             this.model = this.critRel.getModelEndpoints().get(0).getTarget();
+        }
+    }
+
+    private static class Output {
+
+        private final static @NonNull String OUT_MODELREL = "slice";
+        private ModelRel sliceRel;
+        private MID mid;
+
+        public Output(@NonNull Map<String, MID> outputMIDsByName) {
+
+            this.mid = outputMIDsByName.get(OUT_MODELREL);
+        }
+
+        public @NonNull Map<String, Model> packed() {
+
+            Map<String, Model> outputsByName = new HashMap<>();
+            outputsByName.put(OUT_MODELREL, this.sliceRel);
+
+            return outputsByName;
         }
     }
 
@@ -90,7 +109,7 @@ public class Slice extends OperatorImpl {
         public Map<ModelRel, List<Model>> getAllowedOutputModelRelEndpoints(Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
-            ModelRel sliceRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            ModelRel sliceRel = (ModelRel) outputsByName.get(Output.OUT_MODELREL);
             Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
             List<Model> endpointModels = new ArrayList<>();
             endpointModels.add(input.model);
@@ -98,6 +117,12 @@ public class Slice extends OperatorImpl {
 
             return validOutputs;
         }
+    }
+
+    private void init(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, MID> outputMIDsByName) {
+
+        this.input = new Input(inputsByName);
+        this.output = new Output(outputMIDsByName);
     }
 
     // Returns the set of model elements that may be directly impacted
@@ -140,15 +165,15 @@ public class Slice extends OperatorImpl {
         return impacted;
     }
 
-    protected @NonNull ModelRel slice(@NonNull ModelRel critRel, @NonNull Model model, @Nullable MID outputMID)
-                                throws MMINTException {
+    protected void slice() throws MMINTException {
 
-        ModelRel sliceRel = critRel.getMetatype()
-            .createInstanceAndEndpoints(null, OUT_MODELREL, ECollections.asEList(model), outputMID);
-        ModelEndpointReference sliceModelEndpointRef = sliceRel.getModelEndpointRefs().get(0);
+        this.output.sliceRel = this.input.critRel.getMetatype()
+            .createInstanceAndEndpoints(null, Output.OUT_MODELREL, ECollections.asEList(this.input.model),
+                                        this.output.mid);
+        ModelEndpointReference sliceModelEndpointRef = this.output.sliceRel.getModelEndpointRefs().get(0);
 
         // retrieve resource corresponding to the model instance
-        ModelEndpointReference critModelEndpointRef = critRel.getModelEndpointRefs().get(0);
+        ModelEndpointReference critModelEndpointRef = this.input.critRel.getModelEndpointRefs().get(0);
         URI rUri = FileUtils.createEMFUri(critModelEndpointRef.getTargetUri(), true);
         ResourceSet rs = new ResourceSetImpl();
         Resource r = rs.getResource(rUri, true);
@@ -181,7 +206,7 @@ public class Slice extends OperatorImpl {
                                 impMappingRef.getObject().setName(prevImpacterName);
                             }
                             else {
-                                impMappingRef.getObject().setName(impacterName);
+                                impMappingRef.getObject().setName(this.input.model.getName() + "." + impacterName);
                             }
 
                         }
@@ -196,26 +221,16 @@ public class Slice extends OperatorImpl {
                                      "Skipping criterion model element " + critModelElemRef.getObject().getName(), e);
             }
         }
-
-        return sliceRel;
     }
 
     @Override
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                   Map<String, MID> outputMIDsByName) throws Exception {
 
-        // input
-        Input input = new Input(inputsByName);
-        MID outputMID = outputMIDsByName.get(OUT_MODELREL);
+        init(inputsByName, outputMIDsByName);
+        slice();
 
-        // create the slice from the initial criterion and the rules
-        ModelRel sliceRel = slice(input.critRel, input.model, outputMID);
-
-        // output
-        Map<String, Model> outputsByName = new HashMap<>();
-        outputsByName.put(OUT_MODELREL, sliceRel);
-
-        return outputsByName;
+        return this.output.packed();
     }
 
 }
