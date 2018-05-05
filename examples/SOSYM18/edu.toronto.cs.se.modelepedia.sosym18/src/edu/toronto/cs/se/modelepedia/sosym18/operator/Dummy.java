@@ -11,8 +11,21 @@
  */
 package edu.toronto.cs.se.modelepedia.sosym18.operator;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 
 public class Dummy extends OperatorImpl {
+    
+    @Override
+    public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+                                  Map<String, MID> outputMIDsByName) throws Exception {
+
+        return new HashMap<>();
+    }
 
 }
