@@ -50,19 +50,24 @@ public class SMSlice extends Slice {
 	    	impacted.addAll(s.getInternalActions());
 	    	
 	    // If input is an initial state, then the following are impacted:
-	    // 1) The owned state machine.
+	    // 1) Transitions originating or terminating at the state.
 	    } else if (modelObj instanceof InitialState) {
 	    	InitialState s = (InitialState) modelObj;
-	    	impacted.add(s.eContainer());
+	    	impacted.addAll(s.getTransitionsAsSource());
+	    	impacted.addAll(s.getTransitionsAsTarget());
 	    	
 	    // If input is a final state, then the following are impacted:
-	    // 1) The owned state machine.
+	    // 1) Transitions originating or terminating at the state.
 	    } else if (modelObj instanceof FinalState) {
-		    	FinalState s = (FinalState) modelObj;
-		    	impacted.add(s.eContainer());
+		    FinalState s = (FinalState) modelObj;
+		    impacted.addAll(s.getTransitionsAsSource());
+		    impacted.addAll(s.getTransitionsAsTarget());
 		    	
-		// If input is a transition, then nothing else is impacted.
+		// If input is a transition, then the following are impacted:
+		// 1) The state the transition points to.
 	    } else if (modelObj instanceof Transition) {
+	    	Transition t = (Transition) modelObj;
+	    	impacted.add(t.getTarget());
 	    	
 	    // If input is a state action, then nothing else is impacted.
 	    } else if (modelObj instanceof StateAction) {
