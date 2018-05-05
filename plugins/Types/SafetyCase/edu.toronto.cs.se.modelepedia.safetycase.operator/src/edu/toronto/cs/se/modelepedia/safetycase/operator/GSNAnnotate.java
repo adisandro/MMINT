@@ -120,7 +120,7 @@ public class GSNAnnotate extends OperatorImpl {
         // Note: It is assumed that there may be a many-to-many mapping between
         // the safety case elements to be revised and the causes of those revisions.      
         for (Mapping srcMapping : reviseRel.getMappings()) {
-        	String impactSrc = srcMapping.getName();     	
+        	String impactSrc = srcMapping.getName().replace("+", ", ");
         	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
         		EObject reviseObj;
         		try {
@@ -136,7 +136,7 @@ public class GSNAnnotate extends OperatorImpl {
         			if (scRevise2impactSrcs.get(reviseObj).equals("")) {
         				scRevise2impactSrcs.put((ArgumentElement) reviseObj, impactSrc);
         			} else {
-            			String srcString = scRevise2impactSrcs.get(reviseObj).concat(" + " + impactSrc);
+            			String srcString = scRevise2impactSrcs.get(reviseObj).concat(", " + impactSrc);
             			scRevise2impactSrcs.put((ArgumentElement) reviseObj, srcString);        				
         			}
         		}
@@ -166,7 +166,7 @@ public class GSNAnnotate extends OperatorImpl {
         // Note: It is assumed that there may be a many-to-many mapping between
         // the safety case elements to be rechecked and the causes of those rechecks.      
         for (Mapping srcMapping : recheckRel.getMappings()) {
-        	String impactSrc = srcMapping.getName();     	
+        	String impactSrc = srcMapping.getName().replace("+", ", ");
         	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
         		EObject recheckObj;
         		try {
@@ -183,7 +183,7 @@ public class GSNAnnotate extends OperatorImpl {
         				if (scRecheck2impactSrcs.get(recheckObj).equals("")) {
         					scRecheck2impactSrcs.put((ArgumentElement) recheckObj, impactSrc);
         				} else {
-        					String srcString = scRecheck2impactSrcs.get(recheckObj).concat(" + " + impactSrc);
+        					String srcString = scRecheck2impactSrcs.get(recheckObj).concat(", " + impactSrc);
         					scRecheck2impactSrcs.put((ArgumentElement) recheckObj, srcString);        				
         				}
         			}
