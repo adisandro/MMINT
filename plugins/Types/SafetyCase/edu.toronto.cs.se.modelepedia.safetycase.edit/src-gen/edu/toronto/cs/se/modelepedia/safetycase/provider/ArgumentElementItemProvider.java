@@ -73,6 +73,7 @@ public class ArgumentElementItemProvider
 			addIdPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addStatusPropertyDescriptor(object);
+			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -144,6 +145,28 @@ public class ArgumentElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Content Validity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContentValidityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArgumentElement_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_contentValidity_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__CONTENT_VALIDITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -173,6 +196,7 @@ public class ArgumentElementItemProvider
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

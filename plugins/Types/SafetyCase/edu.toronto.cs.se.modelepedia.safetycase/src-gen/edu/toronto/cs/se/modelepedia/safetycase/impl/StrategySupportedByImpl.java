@@ -19,10 +19,12 @@ import edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,16 +41,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class StrategySupportedByImpl extends SupportedByImpl implements StrategySupportedBy {
-	/**
-	 * The cached value of the '{@link #getConclusion() <em>Conclusion</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConclusion()
-	 * @generated
-	 * @ordered
-	 */
-	protected Strategy conclusion;
-
 	/**
 	 * The cached value of the '{@link #getPremise() <em>Premise</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -84,15 +76,8 @@ public class StrategySupportedByImpl extends SupportedByImpl implements Strategy
 	 * @generated
 	 */
 	public Strategy getConclusion() {
-		if (conclusion != null && conclusion.eIsProxy()) {
-			InternalEObject oldConclusion = (InternalEObject)conclusion;
-			conclusion = (Strategy)eResolveProxy(oldConclusion);
-			if (conclusion != oldConclusion) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION, oldConclusion, conclusion));
-			}
-		}
-		return conclusion;
+		if (eContainerFeatureID() != SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION) return null;
+		return (Strategy)eInternalContainer();
 	}
 
 	/**
@@ -100,8 +85,9 @@ public class StrategySupportedByImpl extends SupportedByImpl implements Strategy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Strategy basicGetConclusion() {
-		return conclusion;
+	public NotificationChain basicSetConclusion(Strategy newConclusion, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newConclusion, SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION, msgs);
+		return msgs;
 	}
 
 	/**
@@ -110,10 +96,19 @@ public class StrategySupportedByImpl extends SupportedByImpl implements Strategy
 	 * @generated
 	 */
 	public void setConclusion(Strategy newConclusion) {
-		Strategy oldConclusion = conclusion;
-		conclusion = newConclusion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION, oldConclusion, conclusion));
+		if (newConclusion != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION && newConclusion != null)) {
+			if (EcoreUtil.isAncestor(this, newConclusion))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newConclusion != null)
+				msgs = ((InternalEObject)newConclusion).eInverseAdd(this, SafetyCasePackage.STRATEGY__SUPPORTED_BY, Strategy.class, msgs);
+			msgs = basicSetConclusion(newConclusion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION, newConclusion, newConclusion));
 	}
 
 	/**
@@ -160,11 +155,54 @@ public class StrategySupportedByImpl extends SupportedByImpl implements Strategy
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetConclusion((Strategy)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION:
+				return basicSetConclusion(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION:
+				return eInternalContainer().eInverseRemove(this, SafetyCasePackage.STRATEGY__SUPPORTED_BY, Strategy.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION:
-				if (resolve) return getConclusion();
-				return basicGetConclusion();
+				return getConclusion();
 			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__PREMISE:
 				if (resolve) return getPremise();
 				return basicGetPremise();
@@ -217,7 +255,7 @@ public class StrategySupportedByImpl extends SupportedByImpl implements Strategy
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION:
-				return conclusion != null;
+				return getConclusion() != null;
 			case SafetyCasePackage.STRATEGY_SUPPORTED_BY__PREMISE:
 				return premise != null;
 		}

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -37,33 +38,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl#getContentValidity <em>Content Validity</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StrategyImpl extends DecomposableCoreElementImpl implements Strategy {
-	/**
-	 * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentValidity()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ValidityValue CONTENT_VALIDITY_EDEFAULT = ValidityValue.INVALID;
-
-	/**
-	 * The cached value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContentValidity()
-	 * @generated
-	 * @ordered
-	 */
-	protected ValidityValue contentValidity = CONTENT_VALIDITY_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -98,32 +78,26 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityValue getContentValidity() {
-		return contentValidity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContentValidity(ValidityValue newContentValidity) {
-		ValidityValue oldContentValidity = contentValidity;
-		contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STRATEGY__CONTENT_VALIDITY, oldContentValidity, contentValidity));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<StrategySupportedBy> getSupportedBy() {
 		if (supportedBy == null) {
-			supportedBy = new EObjectContainmentEList<StrategySupportedBy>(StrategySupportedBy.class, this, SafetyCasePackage.STRATEGY__SUPPORTED_BY);
+			supportedBy = new EObjectContainmentWithInverseEList<StrategySupportedBy>(StrategySupportedBy.class, this, SafetyCasePackage.STRATEGY__SUPPORTED_BY, SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION);
 		}
 		return supportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -148,8 +122,6 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
-				return getContentValidity();
 			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
 				return getSupportedBy();
 		}
@@ -165,9 +137,6 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
-				setContentValidity((ValidityValue)newValue);
-				return;
 			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
 				getSupportedBy().clear();
 				getSupportedBy().addAll((Collection<? extends StrategySupportedBy>)newValue);
@@ -184,9 +153,6 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
-				setContentValidity(CONTENT_VALIDITY_EDEFAULT);
-				return;
 			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
 				getSupportedBy().clear();
 				return;
@@ -202,28 +168,10 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
-				return contentValidity != CONTENT_VALIDITY_EDEFAULT;
 			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
 				return supportedBy != null && !supportedBy.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (contentValidity: ");
-		result.append(contentValidity);
-		result.append(')');
-		return result.toString();
 	}
 
 } //StrategyImpl

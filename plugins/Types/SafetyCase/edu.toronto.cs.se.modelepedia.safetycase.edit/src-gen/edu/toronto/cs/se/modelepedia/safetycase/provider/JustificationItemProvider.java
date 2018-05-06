@@ -55,31 +55,8 @@ public class JustificationItemProvider extends ContextualElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Content Validity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContentValidityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Justification_contentValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Justification_contentValidity_feature", "_UI_Justification_type"),
-				 SafetyCasePackage.Literals.JUSTIFICATION__CONTENT_VALIDITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -118,12 +95,6 @@ public class JustificationItemProvider extends ContextualElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Justification.class)) {
-			case SafetyCasePackage.JUSTIFICATION__CONTENT_VALIDITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

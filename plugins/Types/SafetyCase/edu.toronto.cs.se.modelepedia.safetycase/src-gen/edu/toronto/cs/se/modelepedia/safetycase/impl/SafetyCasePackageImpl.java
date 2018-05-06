@@ -337,6 +337,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getArgumentElement_ContentValidity() {
+		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCoreElement() {
 		return coreElementEClass;
 	}
@@ -454,17 +463,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGoal_ContentValidity() {
-		return (EAttribute)goalEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getGoal_SupportedBy() {
-		return (EReference)goalEClass.getEStructuralFeatures().get(3);
+		return (EReference)goalEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -481,17 +481,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStrategy_ContentValidity() {
-		return (EAttribute)strategyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getStrategy_SupportedBy() {
-		return (EReference)strategyEClass.getEStructuralFeatures().get(1);
+		return (EReference)strategyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -517,26 +508,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSolution_ContentValidity() {
-		return (EAttribute)solutionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getContext() {
 		return contextEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getContext_ContentValidity() {
-		return (EAttribute)contextEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -609,15 +582,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 */
 	public EClass getJustification() {
 		return justificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getJustification_ContentValidity() {
-		return (EAttribute)justificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -740,6 +704,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__ID);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__DESCRIPTION);
 		createEReference(argumentElementEClass, ARGUMENT_ELEMENT__STATUS);
+		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__CONTENT_VALIDITY);
 
 		coreElementEClass = createEClass(CORE_ELEMENT);
 		createEReference(coreElementEClass, CORE_ELEMENT__SUPPORTS);
@@ -759,19 +724,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		goalEClass = createEClass(GOAL);
 		createEAttribute(goalEClass, GOAL__STATE_VALIDITY);
 		createEReference(goalEClass, GOAL__ASIL);
-		createEAttribute(goalEClass, GOAL__CONTENT_VALIDITY);
 		createEReference(goalEClass, GOAL__SUPPORTED_BY);
 
 		strategyEClass = createEClass(STRATEGY);
-		createEAttribute(strategyEClass, STRATEGY__CONTENT_VALIDITY);
 		createEReference(strategyEClass, STRATEGY__SUPPORTED_BY);
 
 		solutionEClass = createEClass(SOLUTION);
 		createEAttribute(solutionEClass, SOLUTION__STATE_VALIDITY);
-		createEAttribute(solutionEClass, SOLUTION__CONTENT_VALIDITY);
 
 		contextEClass = createEClass(CONTEXT);
-		createEAttribute(contextEClass, CONTEXT__CONTENT_VALIDITY);
 
 		impactAnnotationEClass = createEClass(IMPACT_ANNOTATION);
 		createEAttribute(impactAnnotationEClass, IMPACT_ANNOTATION__TYPE);
@@ -783,7 +744,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		createEReference(asilEClass, ASIL__STATUS);
 
 		justificationEClass = createEClass(JUSTIFICATION);
-		createEAttribute(justificationEClass, JUSTIFICATION__CONTENT_VALIDITY);
 
 		goalSupportedByEClass = createEClass(GOAL_SUPPORTED_BY);
 		createEReference(goalSupportedByEClass, GOAL_SUPPORTED_BY__CONCLUSION);
@@ -850,6 +810,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEAttribute(getArgumentElement_Id(), ecorePackage.getEString(), "id", "", 1, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArgumentElement_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArgumentElement_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coreElementEClass, CoreElement.class, "CoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCoreElement_Supports(), this.getSupportedBy(), null, "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -869,19 +830,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGoal_StateValidity(), this.getValidityValue(), "stateValidity", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGoal_Asil(), this.getASIL(), this.getASIL_Owner(), "asil", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGoal_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGoal_SupportedBy(), this.getGoalSupportedBy(), null, "supportedBy", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGoal_SupportedBy(), this.getGoalSupportedBy(), this.getGoalSupportedBy_Conclusion(), "supportedBy", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(strategyEClass, Strategy.class, "Strategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStrategy_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, Strategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStrategy_SupportedBy(), this.getStrategySupportedBy(), null, "supportedBy", null, 0, -1, Strategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStrategy_SupportedBy(), this.getStrategySupportedBy(), this.getStrategySupportedBy_Conclusion(), "supportedBy", null, 0, -1, Strategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSolution_StateValidity(), this.getValidityValue(), "stateValidity", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSolution_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContext_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(impactAnnotationEClass, ImpactAnnotation.class, "ImpactAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImpactAnnotation_Type(), this.getImpactType(), "type", null, 1, 1, ImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -893,14 +850,13 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEReference(getASIL_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, edu.toronto.cs.se.modelepedia.safetycase.ASIL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(justificationEClass, Justification.class, "Justification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getJustification_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, Justification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(goalSupportedByEClass, GoalSupportedBy.class, "GoalSupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGoalSupportedBy_Conclusion(), this.getGoal(), null, "conclusion", null, 1, 1, GoalSupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGoalSupportedBy_Conclusion(), this.getGoal(), this.getGoal_SupportedBy(), "conclusion", null, 1, 1, GoalSupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGoalSupportedBy_Premise(), this.getDecomposableCoreElement(), null, "premise", null, 1, 1, GoalSupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(strategySupportedByEClass, StrategySupportedBy.class, "StrategySupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStrategySupportedBy_Conclusion(), this.getStrategy(), null, "conclusion", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStrategySupportedBy_Conclusion(), this.getStrategy(), this.getStrategy_SupportedBy(), "conclusion", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStrategySupportedBy_Premise(), this.getCoreElement(), null, "premise", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

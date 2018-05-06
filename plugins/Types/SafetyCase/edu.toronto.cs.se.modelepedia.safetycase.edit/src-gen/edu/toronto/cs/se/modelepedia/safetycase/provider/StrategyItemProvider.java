@@ -57,31 +57,8 @@ public class StrategyItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Content Validity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContentValidityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Strategy_contentValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Strategy_contentValidity_feature", "_UI_Strategy_type"),
-				 SafetyCasePackage.Literals.STRATEGY__CONTENT_VALIDITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -152,9 +129,6 @@ public class StrategyItemProvider extends DecomposableCoreElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Strategy.class)) {
-			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

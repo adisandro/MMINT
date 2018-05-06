@@ -16,6 +16,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getContentValidity <em>Content Validity</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +92,26 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected ImpactAnnotation status;
+
+	/**
+	 * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContentValidity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ValidityValue CONTENT_VALIDITY_EDEFAULT = ValidityValue.INVALID;
+
+	/**
+	 * The cached value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContentValidity()
+	 * @generated
+	 * @ordered
+	 */
+	protected ValidityValue contentValidity = CONTENT_VALIDITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,6 +222,27 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ValidityValue getContentValidity() {
+		return contentValidity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContentValidity(ValidityValue newContentValidity) {
+		ValidityValue oldContentValidity = contentValidity;
+		contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY, oldContentValidity, contentValidity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -223,6 +266,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return getDescription();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
 				return getStatus();
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				return getContentValidity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,6 +288,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
 				setStatus((ImpactAnnotation)newValue);
+				return;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				setContentValidity((ValidityValue)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -265,6 +313,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
 				setStatus((ImpactAnnotation)null);
 				return;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				setContentValidity(CONTENT_VALIDITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -283,6 +334,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
 				return status != null;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				return contentValidity != CONTENT_VALIDITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -301,6 +354,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 		result.append(id);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", contentValidity: ");
+		result.append(contentValidity);
 		result.append(')');
 		return result.toString();
 	}

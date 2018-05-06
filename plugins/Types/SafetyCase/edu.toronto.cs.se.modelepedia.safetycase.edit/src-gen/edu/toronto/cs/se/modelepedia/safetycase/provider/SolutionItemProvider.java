@@ -56,7 +56,6 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addStateValidityPropertyDescriptor(object);
-			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,28 +74,6 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 				 getString("_UI_Solution_stateValidity_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_stateValidity_feature", "_UI_Solution_type"),
 				 SafetyCasePackage.Literals.SOLUTION__STATE_VALIDITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Content Validity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addContentValidityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Solution_contentValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_contentValidity_feature", "_UI_Solution_type"),
-				 SafetyCasePackage.Literals.SOLUTION__CONTENT_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -144,7 +121,6 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 
 		switch (notification.getFeatureID(Solution.class)) {
 			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
-			case SafetyCasePackage.SOLUTION__CONTENT_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

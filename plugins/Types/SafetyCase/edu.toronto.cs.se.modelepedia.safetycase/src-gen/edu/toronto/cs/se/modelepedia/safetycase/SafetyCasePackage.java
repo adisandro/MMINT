@@ -178,13 +178,22 @@ public interface SafetyCasePackage extends EPackage {
 	int ARGUMENT_ELEMENT__STATUS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARGUMENT_ELEMENT__CONTENT_VALIDITY = 3;
+
+	/**
 	 * The number of structural features of the '<em>Argument Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARGUMENT_ELEMENT_FEATURE_COUNT = 3;
+	int ARGUMENT_ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Argument Element</em>' class.
@@ -231,6 +240,15 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int CORE_ELEMENT__STATUS = ARGUMENT_ELEMENT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CORE_ELEMENT__CONTENT_VALIDITY = ARGUMENT_ELEMENT__CONTENT_VALIDITY;
 
 	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -295,6 +313,15 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int DECOMPOSABLE_CORE_ELEMENT__STATUS = CORE_ELEMENT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY = CORE_ELEMENT__CONTENT_VALIDITY;
 
 	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -368,6 +395,15 @@ public interface SafetyCasePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTEXTUAL_ELEMENT__STATUS = ARGUMENT_ELEMENT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXTUAL_ELEMENT__CONTENT_VALIDITY = ARGUMENT_ELEMENT__CONTENT_VALIDITY;
 
 	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -508,6 +544,15 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__STATUS = DECOMPOSABLE_CORE_ELEMENT__STATUS;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
+
+	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -544,22 +589,13 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__ASIL = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 3;
+	int GOAL__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
@@ -568,7 +604,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 4;
+	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -617,6 +653,15 @@ public interface SafetyCasePackage extends EPackage {
 	int STRATEGY__STATUS = DECOMPOSABLE_CORE_ELEMENT__STATUS;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRATEGY__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY;
+
+	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,22 +680,13 @@ public interface SafetyCasePackage extends EPackage {
 	int STRATEGY__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
 	/**
-	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRATEGY__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRATEGY__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
+	int STRATEGY__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Strategy</em>' class.
@@ -659,7 +695,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRATEGY_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
+	int STRATEGY_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Strategy</em>' class.
@@ -708,6 +744,15 @@ public interface SafetyCasePackage extends EPackage {
 	int SOLUTION__STATUS = CORE_ELEMENT__STATUS;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__CONTENT_VALIDITY = CORE_ELEMENT__CONTENT_VALIDITY;
+
+	/**
 	 * The feature id for the '<em><b>Supports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -726,22 +771,13 @@ public interface SafetyCasePackage extends EPackage {
 	int SOLUTION__STATE_VALIDITY = CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOLUTION__CONTENT_VALIDITY = CORE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Solution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLUTION_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 2;
+	int SOLUTION_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Solution</em>' class.
@@ -790,6 +826,15 @@ public interface SafetyCasePackage extends EPackage {
 	int CONTEXT__STATUS = CONTEXTUAL_ELEMENT__STATUS;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
+
+	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -799,22 +844,13 @@ public interface SafetyCasePackage extends EPackage {
 	int CONTEXT__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
 
 	/**
-	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 1;
+	int CONTEXT_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Context</em>' class.
@@ -964,6 +1000,15 @@ public interface SafetyCasePackage extends EPackage {
 	int JUSTIFICATION__STATUS = CONTEXTUAL_ELEMENT__STATUS;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT__CONTENT_VALIDITY;
+
+	/**
 	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,22 +1018,13 @@ public interface SafetyCasePackage extends EPackage {
 	int JUSTIFICATION__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
 
 	/**
-	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JUSTIFICATION__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Justification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JUSTIFICATION_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 1;
+	int JUSTIFICATION_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Justification</em>' class.
@@ -1010,7 +1046,7 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL_SUPPORTED_BY = 14;
 
 	/**
-	 * The feature id for the '<em><b>Conclusion</b></em>' reference.
+	 * The feature id for the '<em><b>Conclusion</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1056,7 +1092,7 @@ public interface SafetyCasePackage extends EPackage {
 	int STRATEGY_SUPPORTED_BY = 15;
 
 	/**
-	 * The feature id for the '<em><b>Conclusion</b></em>' reference.
+	 * The feature id for the '<em><b>Conclusion</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1231,6 +1267,17 @@ public interface SafetyCasePackage extends EPackage {
 	EReference getArgumentElement_Status();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity()
+	 * @see #getArgumentElement()
+	 * @generated
+	 */
+	EAttribute getArgumentElement_ContentValidity();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.CoreElement <em>Core Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1368,17 +1415,6 @@ public interface SafetyCasePackage extends EPackage {
 	EReference getGoal_Asil();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity <em>Content Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Content Validity</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity()
-	 * @see #getGoal()
-	 * @generated
-	 */
-	EAttribute getGoal_ContentValidity();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1398,17 +1434,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStrategy();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy#getContentValidity <em>Content Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Content Validity</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Strategy#getContentValidity()
-	 * @see #getStrategy()
-	 * @generated
-	 */
-	EAttribute getStrategy_ContentValidity();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy#getSupportedBy <em>Supported By</em>}'.
@@ -1443,17 +1468,6 @@ public interface SafetyCasePackage extends EPackage {
 	EAttribute getSolution_StateValidity();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getContentValidity <em>Content Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Content Validity</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Solution#getContentValidity()
-	 * @see #getSolution()
-	 * @generated
-	 */
-	EAttribute getSolution_ContentValidity();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Context <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1462,17 +1476,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getContext();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Context#getContentValidity <em>Content Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Content Validity</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Context#getContentValidity()
-	 * @see #getContext()
-	 * @generated
-	 */
-	EAttribute getContext_ContentValidity();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation <em>Impact Annotation</em>}'.
@@ -1560,17 +1563,6 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getJustification();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Justification#getContentValidity <em>Content Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Content Validity</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Justification#getContentValidity()
-	 * @see #getJustification()
-	 * @generated
-	 */
-	EAttribute getJustification_ContentValidity();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy <em>Goal Supported By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1581,10 +1573,10 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getGoalSupportedBy();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion <em>Conclusion</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion <em>Conclusion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Conclusion</em>'.
+	 * @return the meta object for the container reference '<em>Conclusion</em>'.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion()
 	 * @see #getGoalSupportedBy()
 	 * @generated
@@ -1613,10 +1605,10 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getStrategySupportedBy();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy#getConclusion <em>Conclusion</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy#getConclusion <em>Conclusion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Conclusion</em>'.
+	 * @return the meta object for the container reference '<em>Conclusion</em>'.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy#getConclusion()
 	 * @see #getStrategySupportedBy()
 	 * @generated
@@ -1772,6 +1764,14 @@ public interface SafetyCasePackage extends EPackage {
 		EReference ARGUMENT_ELEMENT__STATUS = eINSTANCE.getArgumentElement_Status();
 
 		/**
+		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARGUMENT_ELEMENT__CONTENT_VALIDITY = eINSTANCE.getArgumentElement_ContentValidity();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.CoreElementImpl <em>Core Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1888,14 +1888,6 @@ public interface SafetyCasePackage extends EPackage {
 		EReference GOAL__ASIL = eINSTANCE.getGoal_Asil();
 
 		/**
-		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GOAL__CONTENT_VALIDITY = eINSTANCE.getGoal_ContentValidity();
-
-		/**
 		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1912,14 +1904,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EClass STRATEGY = eINSTANCE.getStrategy();
-
-		/**
-		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRATEGY__CONTENT_VALIDITY = eINSTANCE.getStrategy_ContentValidity();
 
 		/**
 		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
@@ -1948,14 +1932,6 @@ public interface SafetyCasePackage extends EPackage {
 		EAttribute SOLUTION__STATE_VALIDITY = eINSTANCE.getSolution_StateValidity();
 
 		/**
-		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SOLUTION__CONTENT_VALIDITY = eINSTANCE.getSolution_ContentValidity();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ContextImpl <em>Context</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1964,14 +1940,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTEXT = eINSTANCE.getContext();
-
-		/**
-		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONTEXT__CONTENT_VALIDITY = eINSTANCE.getContext_ContentValidity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
@@ -2044,14 +2012,6 @@ public interface SafetyCasePackage extends EPackage {
 		EClass JUSTIFICATION = eINSTANCE.getJustification();
 
 		/**
-		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute JUSTIFICATION__CONTENT_VALIDITY = eINSTANCE.getJustification_ContentValidity();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalSupportedByImpl <em>Goal Supported By</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2062,7 +2022,7 @@ public interface SafetyCasePackage extends EPackage {
 		EClass GOAL_SUPPORTED_BY = eINSTANCE.getGoalSupportedBy();
 
 		/**
-		 * The meta object literal for the '<em><b>Conclusion</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Conclusion</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2088,7 +2048,7 @@ public interface SafetyCasePackage extends EPackage {
 		EClass STRATEGY_SUPPORTED_BY = eINSTANCE.getStrategySupportedBy();
 
 		/**
-		 * The meta object literal for the '<em><b>Conclusion</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Conclusion</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

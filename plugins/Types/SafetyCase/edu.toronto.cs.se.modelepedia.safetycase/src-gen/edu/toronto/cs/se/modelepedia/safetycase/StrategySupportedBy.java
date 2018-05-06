@@ -32,26 +32,28 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  */
 public interface StrategySupportedBy extends SupportedBy {
 	/**
-	 * Returns the value of the '<em><b>Conclusion</b></em>' reference.
+	 * Returns the value of the '<em><b>Conclusion</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy#getSupportedBy <em>Supported By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Conclusion</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Conclusion</em>' reference.
+	 * @return the value of the '<em>Conclusion</em>' container reference.
 	 * @see #setConclusion(Strategy)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStrategySupportedBy_Conclusion()
-	 * @model required="true"
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Strategy#getSupportedBy
+	 * @model opposite="supportedBy" required="true" transient="false"
 	 * @generated
 	 */
 	Strategy getConclusion();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy#getConclusion <em>Conclusion</em>}' reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy#getConclusion <em>Conclusion</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Conclusion</em>' reference.
+	 * @param value the new value of the '<em>Conclusion</em>' container reference.
 	 * @see #getConclusion()
 	 * @generated
 	 */
