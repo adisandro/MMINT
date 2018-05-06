@@ -41,15 +41,6 @@ public interface SafetyCaseFactory extends EFactory {
 	SafetyCase createSafetyCase();
 
 	/**
-	 * Returns a new object of class '<em>Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Supported By</em>'.
-	 * @generated
-	 */
-	SupportedBy createSupportedBy();
-
-	/**
 	 * Returns a new object of class '<em>In Context Of</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,6 +111,24 @@ public interface SafetyCaseFactory extends EFactory {
 	 * @generated
 	 */
 	Justification createJustification();
+
+	/**
+	 * Returns a new object of class '<em>Goal Supported By</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Goal Supported By</em>'.
+	 * @generated
+	 */
+	GoalSupportedBy createGoalSupportedBy();
+
+	/**
+	 * Returns a new object of class '<em>Strategy Supported By</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Strategy Supported By</em>'.
+	 * @generated
+	 */
+	StrategySupportedBy createStrategySupportedBy();
 
 	/**
 	 * Returns the package supported by this factory.

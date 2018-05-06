@@ -121,6 +121,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
+			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY);
 		}
 		return childrenFeatures;
 	}
@@ -181,6 +182,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case SafetyCasePackage.GOAL__ASIL:
+			case SafetyCasePackage.GOAL__SUPPORTED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -202,6 +204,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 			(createChildParameter
 				(SafetyCasePackage.Literals.GOAL__ASIL,
 				 SafetyCaseFactory.eINSTANCE.createASIL()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
 	}
 
 }

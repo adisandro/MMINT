@@ -12,6 +12,8 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +27,7 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity <em>Content Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal()
@@ -117,5 +120,21 @@ public interface Goal extends DecomposableCoreElement {
 	 * @generated
 	 */
 	void setContentValidity(ValidityValue value);
+
+	/**
+	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Supported By</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Supported By</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_SupportedBy()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GoalSupportedBy> getSupportedBy();
 
 } // Goal

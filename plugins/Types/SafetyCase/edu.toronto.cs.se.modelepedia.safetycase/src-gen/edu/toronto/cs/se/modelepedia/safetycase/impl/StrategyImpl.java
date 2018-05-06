@@ -14,13 +14,20 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
+import edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +38,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl#getContentValidity <em>Content Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,6 +63,16 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * @ordered
 	 */
 	protected ValidityValue contentValidity = CONTENT_VALIDITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSupportedBy()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StrategySupportedBy> supportedBy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,11 +119,39 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<StrategySupportedBy> getSupportedBy() {
+		if (supportedBy == null) {
+			supportedBy = new EObjectContainmentEList<StrategySupportedBy>(StrategySupportedBy.class, this, SafetyCasePackage.STRATEGY__SUPPORTED_BY);
+		}
+		return supportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
 				return getContentValidity();
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return getSupportedBy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,11 +161,16 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
 				setContentValidity((ValidityValue)newValue);
+				return;
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				getSupportedBy().clear();
+				getSupportedBy().addAll((Collection<? extends StrategySupportedBy>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,6 +187,9 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
 				setContentValidity(CONTENT_VALIDITY_EDEFAULT);
 				return;
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				getSupportedBy().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -150,6 +204,8 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 		switch (featureID) {
 			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
 				return contentValidity != CONTENT_VALIDITY_EDEFAULT;
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return supportedBy != null && !supportedBy.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

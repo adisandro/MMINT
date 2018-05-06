@@ -68,7 +68,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SafetyCasePackage.SAFETY_CASE: return createSafetyCase();
-			case SafetyCasePackage.SUPPORTED_BY: return createSupportedBy();
 			case SafetyCasePackage.IN_CONTEXT_OF: return createInContextOf();
 			case SafetyCasePackage.GOAL: return createGoal();
 			case SafetyCasePackage.STRATEGY: return createStrategy();
@@ -77,6 +76,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
 			case SafetyCasePackage.ASIL: return createASIL();
 			case SafetyCasePackage.JUSTIFICATION: return createJustification();
+			case SafetyCasePackage.GOAL_SUPPORTED_BY: return createGoalSupportedBy();
+			case SafetyCasePackage.STRATEGY_SUPPORTED_BY: return createStrategySupportedBy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -128,16 +129,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public SafetyCase createSafetyCase() {
 		SafetyCaseImpl safetyCase = new SafetyCaseImpl();
 		return safetyCase;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SupportedBy createSupportedBy() {
-		SupportedByImpl supportedBy = new SupportedByImpl();
-		return supportedBy;
 	}
 
 	/**
@@ -218,6 +209,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public Justification createJustification() {
 		JustificationImpl justification = new JustificationImpl();
 		return justification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GoalSupportedBy createGoalSupportedBy() {
+		GoalSupportedByImpl goalSupportedBy = new GoalSupportedByImpl();
+		return goalSupportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StrategySupportedBy createStrategySupportedBy() {
+		StrategySupportedByImpl strategySupportedBy = new StrategySupportedByImpl();
+		return strategySupportedBy;
 	}
 
 	/**
