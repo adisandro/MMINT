@@ -113,6 +113,12 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
+        <nodeMappings name="JustificationNode" semanticCandidatesExpression="feature:justifications" domainClass="safetycase.Justification" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AnnotationNode']">
+          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Justification.svg">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
         <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetFinderExpression="feature:premise" sourceFinderExpression="feature:conclusion" domainClass="safetycase.SupportedBy" useDomainElement="true">
           <style targetArrow="InputFillClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -121,7 +127,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="InContextOfEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']" targetFinderExpression="feature:context" sourceFinderExpression="feature:contextOf" domainClass="safetycase.InContextOf" useDomainElement="true">
+        <edgeMappings name="InContextOfEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']" targetFinderExpression="feature:context" sourceFinderExpression="feature:contextOf" domainClass="safetycase.InContextOf" useDomainElement="true">
           <style targetArrow="InputClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -172,6 +178,15 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.Context" referenceName="contexts"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateJustification" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.Justification" referenceName="justifications"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
