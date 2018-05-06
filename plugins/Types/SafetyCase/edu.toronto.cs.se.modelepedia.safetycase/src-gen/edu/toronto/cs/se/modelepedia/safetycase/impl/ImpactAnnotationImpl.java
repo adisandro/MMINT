@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactedAttribute;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,6 +79,26 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected String source = SOURCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ImpactedAttribute ATTRIBUTE_EDEFAULT = ImpactedAttribute.UNKNOWN;
+
+	/**
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected ImpactedAttribute attribute = ATTRIBUTE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,6 +166,27 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ImpactedAttribute getAttribute() {
+		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAttribute(ImpactedAttribute newAttribute) {
+		ImpactedAttribute oldAttribute = attribute;
+		attribute = newAttribute == null ? ATTRIBUTE_EDEFAULT : newAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.IMPACT_ANNOTATION__ATTRIBUTE, oldAttribute, attribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -151,6 +194,8 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 				return getType();
 			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
 				return getSource();
+			case SafetyCasePackage.IMPACT_ANNOTATION__ATTRIBUTE:
+				return getAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,6 +213,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
 				setSource((String)newValue);
+				return;
+			case SafetyCasePackage.IMPACT_ANNOTATION__ATTRIBUTE:
+				setAttribute((ImpactedAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,6 +235,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
 				setSource(SOURCE_EDEFAULT);
 				return;
+			case SafetyCasePackage.IMPACT_ANNOTATION__ATTRIBUTE:
+				setAttribute(ATTRIBUTE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,6 +254,8 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 				return type != TYPE_EDEFAULT;
 			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
 				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
+			case SafetyCasePackage.IMPACT_ANNOTATION__ATTRIBUTE:
+				return attribute != ATTRIBUTE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -221,6 +274,8 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 		result.append(type);
 		result.append(", source: ");
 		result.append(source);
+		result.append(", attribute: ");
+		result.append(attribute);
 		result.append(')');
 		return result.toString();
 	}

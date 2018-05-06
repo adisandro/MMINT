@@ -24,5 +24,4 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * @generated
  */
 public interface Justification extends ContextualElement {
-
 } // Justification

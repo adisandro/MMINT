@@ -24,5 +24,4 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * @generated
  */
 public interface Context extends ContextualElement {
-
 } // Context

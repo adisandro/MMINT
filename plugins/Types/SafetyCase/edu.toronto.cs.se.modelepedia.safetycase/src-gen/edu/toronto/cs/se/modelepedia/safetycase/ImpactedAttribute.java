@@ -20,199 +20,147 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>ASIL Level</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Impacted Attribute</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASILLevel()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactedAttribute()
  * @model
  * @generated
  */
-public enum ASILLevel implements Enumerator {
+public enum ImpactedAttribute implements Enumerator {
 	/**
-	 * The '<em><b>D</b></em>' literal object.
+	 * The '<em><b>Unknown</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #D_VALUE
+	 * @see #UNKNOWN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	D(0, "D", "D"),
+	UNKNOWN(0, "Unknown", "Unknown"),
 
 	/**
-	 * The '<em><b>C</b></em>' literal object.
+	 * The '<em><b>State</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #C_VALUE
+	 * @see #STATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	C(1, "C", "C"),
+	STATE(1, "State", "State"),
 
 	/**
-	 * The '<em><b>B</b></em>' literal object.
+	 * The '<em><b>Content</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #B_VALUE
+	 * @see #CONTENT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	B(2, "B", "B"),
+	CONTENT(2, "Content", "Content"),
 
 	/**
-	 * The '<em><b>A</b></em>' literal object.
+	 * The '<em><b>ASIL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #A_VALUE
+	 * @see #ASIL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	A(3, "A", "A"),
+	ASIL(3, "ASIL", "ASIL");
 
 	/**
-	 * The '<em><b>QM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QM(4, "QM", "QM"),
-
-	/**
-	 * The '<em><b>None</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NONE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NONE(5, "None", "None");
-
-	/**
-	 * The '<em><b>D</b></em>' literal value.
+	 * The '<em><b>Unknown</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>D</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Unknown</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #D
+	 * @see #UNKNOWN
+	 * @model name="Unknown"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNKNOWN_VALUE = 0;
+
+	/**
+	 * The '<em><b>State</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>State</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STATE
+	 * @model name="State"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STATE_VALUE = 1;
+
+	/**
+	 * The '<em><b>Content</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Content</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTENT
+	 * @model name="Content"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTENT_VALUE = 2;
+
+	/**
+	 * The '<em><b>ASIL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ASIL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ASIL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int D_VALUE = 0;
+	public static final int ASIL_VALUE = 3;
 
 	/**
-	 * The '<em><b>C</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>C</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #C
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int C_VALUE = 1;
-
-	/**
-	 * The '<em><b>B</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>B</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #B
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int B_VALUE = 2;
-
-	/**
-	 * The '<em><b>A</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>A</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #A
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int A_VALUE = 3;
-
-	/**
-	 * The '<em><b>QM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>QM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #QM
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int QM_VALUE = 4;
-
-	/**
-	 * The '<em><b>None</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NONE
-	 * @model name="None"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NONE_VALUE = 5;
-
-	/**
-	 * An array of all the '<em><b>ASIL Level</b></em>' enumerators.
+	 * An array of all the '<em><b>Impacted Attribute</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ASILLevel[] VALUES_ARRAY =
-		new ASILLevel[] {
-			D,
-			C,
-			B,
-			A,
-			QM,
-			NONE,
+	private static final ImpactedAttribute[] VALUES_ARRAY =
+		new ImpactedAttribute[] {
+			UNKNOWN,
+			STATE,
+			CONTENT,
+			ASIL,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>ASIL Level</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Impacted Attribute</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ASILLevel> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ImpactedAttribute> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>ASIL Level</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Impacted Attribute</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ASILLevel get(String literal) {
+	public static ImpactedAttribute get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ASILLevel result = VALUES_ARRAY[i];
+			ImpactedAttribute result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -221,16 +169,16 @@ public enum ASILLevel implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>ASIL Level</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Impacted Attribute</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ASILLevel getByName(String name) {
+	public static ImpactedAttribute getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ASILLevel result = VALUES_ARRAY[i];
+			ImpactedAttribute result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -239,21 +187,19 @@ public enum ASILLevel implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>ASIL Level</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Impacted Attribute</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ASILLevel get(int value) {
+	public static ImpactedAttribute get(int value) {
 		switch (value) {
-			case D_VALUE: return D;
-			case C_VALUE: return C;
-			case B_VALUE: return B;
-			case A_VALUE: return A;
-			case QM_VALUE: return QM;
-			case NONE_VALUE: return NONE;
+			case UNKNOWN_VALUE: return UNKNOWN;
+			case STATE_VALUE: return STATE;
+			case CONTENT_VALUE: return CONTENT;
+			case ASIL_VALUE: return ASIL;
 		}
 		return null;
 	}
@@ -285,7 +231,7 @@ public enum ASILLevel implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ASILLevel(int value, String name, String literal) {
+	private ImpactedAttribute(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -329,4 +275,4 @@ public enum ASILLevel implements Enumerator {
 		return literal;
 	}
 	
-} //ASILLevel
+} //ImpactedAttribute

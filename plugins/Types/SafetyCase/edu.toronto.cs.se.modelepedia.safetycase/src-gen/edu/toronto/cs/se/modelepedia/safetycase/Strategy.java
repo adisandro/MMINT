@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Strategy</b></em>'.

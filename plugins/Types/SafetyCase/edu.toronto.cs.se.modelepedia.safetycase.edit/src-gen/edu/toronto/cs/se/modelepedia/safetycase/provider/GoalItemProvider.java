@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
+import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
@@ -97,8 +98,8 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
 			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY);
+			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
 		}
 		return childrenFeatures;
 	}
@@ -157,8 +158,8 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SafetyCasePackage.GOAL__ASIL:
 			case SafetyCasePackage.GOAL__SUPPORTED_BY:
+			case SafetyCasePackage.GOAL__ASIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -178,13 +179,13 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.GOAL__ASIL,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
+				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
+				(SafetyCasePackage.Literals.GOAL__ASIL,
+				 ASILLevel.D));
 	}
 
 }

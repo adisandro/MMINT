@@ -15,7 +15,6 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 import java.util.Collection;
 

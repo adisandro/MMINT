@@ -14,7 +14,6 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Goal</b></em>'.
@@ -25,8 +24,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal()
@@ -64,34 +63,6 @@ public interface Goal extends DecomposableCoreElement {
 	void setStateValidity(ValidityValue value);
 
 	/**
-	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getOwner <em>Owner</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Asil</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Asil</em>' containment reference.
-	 * @see #setAsil(ASIL)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL#getOwner
-	 * @model opposite="owner" containment="true"
-	 * @generated
-	 */
-	ASIL getAsil();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Asil</em>' containment reference.
-	 * @see #getAsil()
-	 * @generated
-	 */
-	void setAsil(ASIL value);
-
-	/**
 	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy}.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion <em>Conclusion</em>}'.
@@ -108,5 +79,34 @@ public interface Goal extends DecomposableCoreElement {
 	 * @generated
 	 */
 	EList<GoalSupportedBy> getSupportedBy();
+
+	/**
+	 * Returns the value of the '<em><b>Asil</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Asil</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Asil</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @see #setAsil(ASILLevel)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
+	 * @model
+	 * @generated
+	 */
+	ASILLevel getAsil();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Asil</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @see #getAsil()
+	 * @generated
+	 */
+	void setAsil(ASILLevel value);
 
 } // Goal

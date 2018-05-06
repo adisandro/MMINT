@@ -36,7 +36,7 @@ public interface GoalSupportedBy extends SupportedBy {
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Conclusion</em>' reference isn't clear,
+	 * If the meaning of the '<em>Conclusion</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

@@ -15,16 +15,23 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
+
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +43,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getStatus <em>Status</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getStatuses <em>Statuses</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getContentValidity <em>Content Validity</em>}</li>
  * </ul>
  *
@@ -51,7 +58,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = "";
+	protected static final String ID_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -84,14 +91,14 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
+	 * The cached value of the '{@link #getStatuses() <em>Statuses</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStatus()
+	 * @see #getStatuses()
 	 * @generated
 	 * @ordered
 	 */
-	protected ImpactAnnotation status;
+	protected EList<ImpactAnnotation> statuses;
 
 	/**
 	 * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
@@ -179,42 +186,11 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactAnnotation getStatus() {
-		return status;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
-		ImpactAnnotation oldStatus = status;
-		status = newStatus;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ImpactAnnotation> getStatuses() {
+		if (statuses == null) {
+			statuses = new EObjectContainmentEList<ImpactAnnotation>(ImpactAnnotation.class, this, SafetyCasePackage.ARGUMENT_ELEMENT__STATUSES);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStatus(ImpactAnnotation newStatus) {
-		if (newStatus != status) {
-			NotificationChain msgs = null;
-			if (status != null)
-				msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
-			if (newStatus != null)
-				msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
-			msgs = basicSetStatus(newStatus, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, newStatus, newStatus));
+		return statuses;
 	}
 
 	/**
@@ -246,8 +222,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				return basicSetStatus(null, msgs);
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUSES:
+				return ((InternalEList<?>)getStatuses()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -264,8 +240,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return getId();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return getDescription();
-			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				return getStatus();
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUSES:
+				return getStatuses();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
 				return getContentValidity();
 		}
@@ -277,6 +253,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -286,8 +263,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				setStatus((ImpactAnnotation)newValue);
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUSES:
+				getStatuses().clear();
+				getStatuses().addAll((Collection<? extends ImpactAnnotation>)newValue);
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
 				setContentValidity((ValidityValue)newValue);
@@ -310,8 +288,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				setStatus((ImpactAnnotation)null);
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUSES:
+				getStatuses().clear();
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
 				setContentValidity(CONTENT_VALIDITY_EDEFAULT);
@@ -332,8 +310,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				return status != null;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUSES:
+				return statuses != null && !statuses.isEmpty();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
 				return contentValidity != CONTENT_VALIDITY_EDEFAULT;
 		}

@@ -25,5 +25,4 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SupportedBy extends EObject {
-
 } // SupportedBy

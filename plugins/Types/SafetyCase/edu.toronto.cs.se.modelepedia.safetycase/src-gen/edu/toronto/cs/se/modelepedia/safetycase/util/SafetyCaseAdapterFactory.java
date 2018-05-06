@@ -126,10 +126,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createImpactAnnotationAdapter();
 			}
 			@Override
-			public Adapter caseASIL(ASIL object) {
-				return createASILAdapter();
-			}
-			@Override
 			public Adapter caseJustification(Justification object) {
 				return createJustificationAdapter();
 			}
@@ -334,20 +330,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImpactAnnotationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL <em>ASIL</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL
-	 * @generated
-	 */
-	public Adapter createASILAdapter() {
 		return null;
 	}
 

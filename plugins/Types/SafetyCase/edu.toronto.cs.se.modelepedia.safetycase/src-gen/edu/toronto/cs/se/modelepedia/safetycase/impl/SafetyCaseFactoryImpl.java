@@ -73,7 +73,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.SOLUTION: return createSolution();
 			case SafetyCasePackage.CONTEXT: return createContext();
 			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
-			case SafetyCasePackage.ASIL: return createASIL();
 			case SafetyCasePackage.JUSTIFICATION: return createJustification();
 			case SafetyCasePackage.GOAL_SUPPORTED_BY: return createGoalSupportedBy();
 			case SafetyCasePackage.STRATEGY_SUPPORTED_BY: return createStrategySupportedBy();
@@ -98,6 +97,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 				return createValidityValueFromString(eDataType, initialValue);
 			case SafetyCasePackage.IMPACT_TYPE:
 				return createImpactTypeFromString(eDataType, initialValue);
+			case SafetyCasePackage.IMPACTED_ATTRIBUTE:
+				return createImpactedAttributeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -117,6 +118,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 				return convertValidityValueToString(eDataType, instanceValue);
 			case SafetyCasePackage.IMPACT_TYPE:
 				return convertImpactTypeToString(eDataType, instanceValue);
+			case SafetyCasePackage.IMPACTED_ATTRIBUTE:
+				return convertImpactedAttributeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -180,16 +183,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public ImpactAnnotation createImpactAnnotation() {
 		ImpactAnnotationImpl impactAnnotation = new ImpactAnnotationImpl();
 		return impactAnnotation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ASIL createASIL() {
-		ASILImpl asil = new ASILImpl();
-		return asil;
 	}
 
 	/**
@@ -299,6 +292,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * @generated
 	 */
 	public String convertImpactTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImpactedAttribute createImpactedAttributeFromString(EDataType eDataType, String initialValue) {
+		ImpactedAttribute result = ImpactedAttribute.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertImpactedAttributeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
