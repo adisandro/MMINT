@@ -13,7 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.Context;
+import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
@@ -28,19 +28,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Context} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Justification} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContextItemProvider extends ContextualElementItemProvider {
+public class JustificationItemProvider extends ContextualElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContextItemProvider(AdapterFactory adapterFactory) {
+	public JustificationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,9 +71,9 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Context_contentValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Context_contentValidity_feature", "_UI_Context_type"),
-				 SafetyCasePackage.Literals.CONTEXT__CONTENT_VALIDITY,
+				 getString("_UI_Justification_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Justification_contentValidity_feature", "_UI_Justification_type"),
+				 SafetyCasePackage.Literals.JUSTIFICATION__CONTENT_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -83,14 +83,14 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	}
 
 	/**
-	 * This returns Context.gif.
+	 * This returns Justification.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Context"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Justification"));
 	}
 
 	/**
@@ -101,10 +101,10 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Context)object).getId();
+		String label = ((Justification)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Context_type") :
-			getString("_UI_Context_type") + " " + label;
+			getString("_UI_Justification_type") :
+			getString("_UI_Justification_type") + " " + label;
 	}
 	
 
@@ -119,8 +119,8 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Context.class)) {
-			case SafetyCasePackage.CONTEXT__CONTENT_VALIDITY:
+		switch (notification.getFeatureID(Justification.class)) {
+			case SafetyCasePackage.JUSTIFICATION__CONTENT_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

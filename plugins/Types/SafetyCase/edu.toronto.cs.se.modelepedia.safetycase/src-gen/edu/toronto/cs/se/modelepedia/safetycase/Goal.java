@@ -22,8 +22,9 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity <em>Content Validity</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal()
@@ -32,33 +33,33 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  */
 public interface Goal extends DecomposableCoreElement {
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.TruthState}.
+	 * Returns the value of the '<em><b>State Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * If the meaning of the '<em>State Validity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
-	 * @see #setState(TruthState)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_State()
+	 * @return the value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setStateValidity(ValidityValue)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_StateValidity()
 	 * @model
 	 * @generated
 	 */
-	TruthState getState();
+	ValidityValue getStateValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getState <em>State</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
-	 * @see #getState()
+	 * @param value the new value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #getStateValidity()
 	 * @generated
 	 */
-	void setState(TruthState value);
+	void setStateValidity(ValidityValue value);
 
 	/**
 	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.
@@ -87,5 +88,34 @@ public interface Goal extends DecomposableCoreElement {
 	 * @generated
 	 */
 	void setAsil(ASIL value);
+
+	/**
+	 * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Content Validity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Content Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setContentValidity(ValidityValue)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_ContentValidity()
+	 * @model
+	 * @generated
+	 */
+	ValidityValue getContentValidity();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity <em>Content Validity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Content Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #getContentValidity()
+	 * @generated
+	 */
+	void setContentValidity(ValidityValue value);
 
 } // Goal

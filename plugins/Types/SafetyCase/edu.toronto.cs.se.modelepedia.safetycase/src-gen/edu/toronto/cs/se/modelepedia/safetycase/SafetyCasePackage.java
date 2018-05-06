@@ -114,13 +114,22 @@ public interface SafetyCasePackage extends EPackage {
 	int SAFETY_CASE__CONTEXTS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Justifications</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SAFETY_CASE__JUSTIFICATIONS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Safety Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SAFETY_CASE_FEATURE_COUNT = 4;
+	int SAFETY_CASE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Safety Case</em>' class.
@@ -553,13 +562,13 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * The feature id for the '<em><b>State Validity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__STATE = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
+	int GOAL__STATE_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -571,13 +580,22 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__ASIL = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
+	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -653,13 +671,13 @@ public interface SafetyCasePackage extends EPackage {
 	int STRATEGY__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRATEGY__STATE = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
+	int STRATEGY__CONTENT_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Strategy</em>' class.
@@ -726,13 +744,22 @@ public interface SafetyCasePackage extends EPackage {
 	int SOLUTION__SUPPORTS = CORE_ELEMENT__SUPPORTS;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * The feature id for the '<em><b>State Validity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLUTION__STATE = CORE_ELEMENT_FEATURE_COUNT + 0;
+	int SOLUTION__STATE_VALIDITY = CORE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__CONTENT_VALIDITY = CORE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Solution</em>' class.
@@ -741,7 +768,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOLUTION_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 1;
+	int SOLUTION_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Solution</em>' class.
@@ -799,13 +826,13 @@ public interface SafetyCasePackage extends EPackage {
 	int CONTEXT__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__STATE = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+	int CONTEXT__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Context</em>' class.
@@ -927,14 +954,77 @@ public interface SafetyCasePackage extends EPackage {
 	int ASIL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.TruthState <em>Truth State</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.JustificationImpl <em>Justification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getTruthState()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.JustificationImpl
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getJustification()
 	 * @generated
 	 */
-	int TRUTH_STATE = 13;
+	int JUSTIFICATION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION__ID = CONTEXTUAL_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION__DESCRIPTION = CONTEXTUAL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION__STATUS = CONTEXTUAL_ELEMENT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Context Of</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION__CONTEXT_OF = CONTEXTUAL_ELEMENT__CONTEXT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Content Validity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION__CONTENT_VALIDITY = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Justification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION_FEATURE_COUNT = CONTEXTUAL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Justification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JUSTIFICATION_OPERATION_COUNT = CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
@@ -947,14 +1037,14 @@ public interface SafetyCasePackage extends EPackage {
 	int ASIL_LEVEL = 14;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityState <em>Validity State</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityState
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityState()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityValue()
 	 * @generated
 	 */
-	int VALIDITY_STATE = 15;
+	int VALIDITY_VALUE = 15;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
@@ -1020,6 +1110,17 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSafetyCase_Contexts();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications <em>Justifications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Justifications</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications()
+	 * @see #getSafetyCase()
+	 * @generated
+	 */
+	EReference getSafetyCase_Justifications();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement <em>Argument Element</em>}'.
@@ -1213,15 +1314,15 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getGoal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getState <em>State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getState()
+	 * @return the meta object for the attribute '<em>State Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity()
 	 * @see #getGoal()
 	 * @generated
 	 */
-	EAttribute getGoal_State();
+	EAttribute getGoal_StateValidity();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}'.
@@ -1235,6 +1336,17 @@ public interface SafetyCasePackage extends EPackage {
 	EReference getGoal_Asil();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity <em>Content Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getContentValidity()
+	 * @see #getGoal()
+	 * @generated
+	 */
+	EAttribute getGoal_ContentValidity();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy <em>Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1245,15 +1357,15 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getStrategy();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy#getState <em>State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Strategy#getContentValidity <em>Content Validity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Strategy#getState()
+	 * @return the meta object for the attribute '<em>Content Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Strategy#getContentValidity()
 	 * @see #getStrategy()
 	 * @generated
 	 */
-	EAttribute getStrategy_State();
+	EAttribute getStrategy_ContentValidity();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution <em>Solution</em>}'.
@@ -1266,15 +1378,26 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getSolution();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getState <em>State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getStateValidity <em>State Validity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Solution#getState()
+	 * @return the meta object for the attribute '<em>State Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Solution#getStateValidity()
 	 * @see #getSolution()
 	 * @generated
 	 */
-	EAttribute getSolution_State();
+	EAttribute getSolution_StateValidity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getContentValidity <em>Content Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Solution#getContentValidity()
+	 * @see #getSolution()
+	 * @generated
+	 */
+	EAttribute getSolution_ContentValidity();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Context <em>Context</em>}'.
@@ -1287,15 +1410,15 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getContext();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Context#getState <em>State</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Context#getContentValidity <em>Content Validity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Context#getState()
+	 * @return the meta object for the attribute '<em>Content Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Context#getContentValidity()
 	 * @see #getContext()
 	 * @generated
 	 */
-	EAttribute getContext_State();
+	EAttribute getContext_ContentValidity();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation <em>Impact Annotation</em>}'.
@@ -1373,14 +1496,25 @@ public interface SafetyCasePackage extends EPackage {
 	EReference getASIL_Status();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.TruthState <em>Truth State</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Justification <em>Justification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Truth State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
+	 * @return the meta object for class '<em>Justification</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Justification
 	 * @generated
 	 */
-	EEnum getTruthState();
+	EClass getJustification();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.Justification#getContentValidity <em>Content Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content Validity</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Justification#getContentValidity()
+	 * @see #getJustification()
+	 * @generated
+	 */
+	EAttribute getJustification_ContentValidity();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
@@ -1393,14 +1527,14 @@ public interface SafetyCasePackage extends EPackage {
 	EEnum getASILLevel();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityState <em>Validity State</em>}'.
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Validity State</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityState
+	 * @return the meta object for enum '<em>Validity Value</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
 	 * @generated
 	 */
-	EEnum getValidityState();
+	EEnum getValidityValue();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}'.
@@ -1476,6 +1610,14 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SAFETY_CASE__CONTEXTS = eINSTANCE.getSafetyCase_Contexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Justifications</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SAFETY_CASE__JUSTIFICATIONS = eINSTANCE.getSafetyCase_Justifications();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl <em>Argument Element</em>}' class.
@@ -1636,12 +1778,12 @@ public interface SafetyCasePackage extends EPackage {
 		EClass GOAL = eINSTANCE.getGoal();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>State Validity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GOAL__STATE = eINSTANCE.getGoal_State();
+		EAttribute GOAL__STATE_VALIDITY = eINSTANCE.getGoal_StateValidity();
 
 		/**
 		 * The meta object literal for the '<em><b>Asil</b></em>' containment reference feature.
@@ -1650,6 +1792,14 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference GOAL__ASIL = eINSTANCE.getGoal_Asil();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GOAL__CONTENT_VALIDITY = eINSTANCE.getGoal_ContentValidity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl <em>Strategy</em>}' class.
@@ -1662,12 +1812,12 @@ public interface SafetyCasePackage extends EPackage {
 		EClass STRATEGY = eINSTANCE.getStrategy();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRATEGY__STATE = eINSTANCE.getStrategy_State();
+		EAttribute STRATEGY__CONTENT_VALIDITY = eINSTANCE.getStrategy_ContentValidity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SolutionImpl <em>Solution</em>}' class.
@@ -1680,12 +1830,20 @@ public interface SafetyCasePackage extends EPackage {
 		EClass SOLUTION = eINSTANCE.getSolution();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>State Validity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SOLUTION__STATE = eINSTANCE.getSolution_State();
+		EAttribute SOLUTION__STATE_VALIDITY = eINSTANCE.getSolution_StateValidity();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOLUTION__CONTENT_VALIDITY = eINSTANCE.getSolution_ContentValidity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ContextImpl <em>Context</em>}' class.
@@ -1698,12 +1856,12 @@ public interface SafetyCasePackage extends EPackage {
 		EClass CONTEXT = eINSTANCE.getContext();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONTEXT__STATE = eINSTANCE.getContext_State();
+		EAttribute CONTEXT__CONTENT_VALIDITY = eINSTANCE.getContext_ContentValidity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
@@ -1766,14 +1924,22 @@ public interface SafetyCasePackage extends EPackage {
 		EReference ASIL__STATUS = eINSTANCE.getASIL_Status();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.TruthState <em>Truth State</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.JustificationImpl <em>Justification</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getTruthState()
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.JustificationImpl
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getJustification()
 		 * @generated
 		 */
-		EEnum TRUTH_STATE = eINSTANCE.getTruthState();
+		EClass JUSTIFICATION = eINSTANCE.getJustification();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Validity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JUSTIFICATION__CONTENT_VALIDITY = eINSTANCE.getJustification_ContentValidity();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
@@ -1786,14 +1952,14 @@ public interface SafetyCasePackage extends EPackage {
 		EEnum ASIL_LEVEL = eINSTANCE.getASILLevel();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityState <em>Validity State</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityState
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityState()
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityValue()
 		 * @generated
 		 */
-		EEnum VALIDITY_STATE = eINSTANCE.getValidityState();
+		EEnum VALIDITY_VALUE = eINSTANCE.getValidityValue();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.

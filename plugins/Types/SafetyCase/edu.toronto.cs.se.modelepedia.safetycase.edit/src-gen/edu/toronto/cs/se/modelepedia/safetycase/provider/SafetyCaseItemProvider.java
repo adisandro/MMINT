@@ -91,6 +91,7 @@ public class SafetyCaseItemProvider
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES);
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__SOLUTIONS);
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -147,6 +148,7 @@ public class SafetyCaseItemProvider
 			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
 			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -183,6 +185,11 @@ public class SafetyCaseItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS,
 				 SafetyCaseFactory.eINSTANCE.createContext()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS,
+				 SafetyCaseFactory.eINSTANCE.createJustification()));
 	}
 
 	/**

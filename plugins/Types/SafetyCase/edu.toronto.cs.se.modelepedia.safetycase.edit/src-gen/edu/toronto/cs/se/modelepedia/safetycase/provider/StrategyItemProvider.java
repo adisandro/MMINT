@@ -55,25 +55,25 @@ public class StrategyItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatePropertyDescriptor(object);
+			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State feature.
+	 * This adds a property descriptor for the Content Validity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addContentValidityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Strategy_state_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Strategy_state_feature", "_UI_Strategy_type"),
-				 SafetyCasePackage.Literals.STRATEGY__STATE,
+				 getString("_UI_Strategy_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Strategy_contentValidity_feature", "_UI_Strategy_type"),
+				 SafetyCasePackage.Literals.STRATEGY__CONTENT_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -120,7 +120,7 @@ public class StrategyItemProvider extends DecomposableCoreElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Strategy.class)) {
-			case SafetyCasePackage.STRATEGY__STATE:
+			case SafetyCasePackage.STRATEGY__CONTENT_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -12,7 +12,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//Context" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="justifications" upperBound="-1"
-        containment="true"/>
+        eType="#//Justification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

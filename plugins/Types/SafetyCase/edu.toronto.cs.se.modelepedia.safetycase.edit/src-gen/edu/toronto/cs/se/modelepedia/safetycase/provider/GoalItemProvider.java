@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -57,25 +58,48 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatePropertyDescriptor(object);
+			addStateValidityPropertyDescriptor(object);
+			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State feature.
+	 * This adds a property descriptor for the State Validity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addStateValidityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Goal_state_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_state_feature", "_UI_Goal_type"),
-				 SafetyCasePackage.Literals.GOAL__STATE,
+				 getString("_UI_Goal_stateValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_stateValidity_feature", "_UI_Goal_type"),
+				 SafetyCasePackage.Literals.GOAL__STATE_VALIDITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Content Validity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContentValidityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Goal_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_contentValidity_feature", "_UI_Goal_type"),
+				 SafetyCasePackage.Literals.GOAL__CONTENT_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -152,7 +176,8 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Goal.class)) {
-			case SafetyCasePackage.GOAL__STATE:
+			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+			case SafetyCasePackage.GOAL__CONTENT_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case SafetyCasePackage.GOAL__ASIL:

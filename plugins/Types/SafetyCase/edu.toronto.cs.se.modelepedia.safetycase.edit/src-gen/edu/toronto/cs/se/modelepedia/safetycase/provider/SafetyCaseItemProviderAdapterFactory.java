@@ -289,6 +289,29 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Justification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JustificationItemProvider justificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Justification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJustificationAdapter() {
+		if (justificationItemProvider == null) {
+			justificationItemProvider = new JustificationItemProvider(this);
+		}
+
+		return justificationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -396,6 +419,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (contextItemProvider != null) contextItemProvider.dispose();
 		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
+		if (justificationItemProvider != null) justificationItemProvider.dispose();
 	}
 
 }
