@@ -12,6 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +23,8 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  * </ul>
  *
@@ -32,60 +34,79 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  */
 public interface Goal extends DecomposableCoreElement {
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.TruthState}.
+	 * Returns the value of the '<em><b>State Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * If the meaning of the '<em>State Validity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
-	 * @see #setState(TruthState)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_State()
+	 * @return the value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setStateValidity(ValidityValue)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_StateValidity()
 	 * @model
 	 * @generated
 	 */
-	TruthState getState();
+	ValidityValue getStateValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getState <em>State</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.TruthState
-	 * @see #getState()
+	 * @param value the new value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #getStateValidity()
 	 * @generated
 	 */
-	void setState(TruthState value);
+	void setStateValidity(ValidityValue value);
 
 	/**
-	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getOwner <em>Owner</em>}'.
+	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy}.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion <em>Conclusion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Asil</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Supported By</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Asil</em>' containment reference.
-	 * @see #setAsil(ASIL)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL#getOwner
-	 * @model opposite="owner" containment="true"
+	 * @return the value of the '<em>Supported By</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_SupportedBy()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion
+	 * @model opposite="conclusion" containment="true"
 	 * @generated
 	 */
-	ASIL getAsil();
+	EList<GoalSupportedBy> getSupportedBy();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' containment reference.
+	 * Returns the value of the '<em><b>Asil</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Asil</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Asil</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @see #setAsil(ASILLevel)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
+	 * @model
+	 * @generated
+	 */
+	ASILLevel getAsil();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Asil</em>' containment reference.
+	 * @param value the new value of the '<em>Asil</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
 	 * @see #getAsil()
 	 * @generated
 	 */
-	void setAsil(ASIL value);
+	void setAsil(ASILLevel value);
 
 } // Goal

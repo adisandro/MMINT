@@ -105,29 +105,6 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SupportedByItemProvider supportedByItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSupportedByAdapter() {
-		if (supportedByItemProvider == null) {
-			supportedByItemProvider = new SupportedByItemProvider(this);
-		}
-
-		return supportedByItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,29 +148,6 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		}
 
 		return goalItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StrategyItemProvider strategyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStrategyAdapter() {
-		if (strategyItemProvider == null) {
-			strategyItemProvider = new StrategyItemProvider(this);
-		}
-
-		return strategyItemProvider;
 	}
 
 	/**
@@ -266,26 +220,118 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Justification} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ASILItemProvider asilItemProvider;
+	protected JustificationItemProvider justificationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Justification}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createASILAdapter() {
-		if (asilItemProvider == null) {
-			asilItemProvider = new ASILItemProvider(this);
+	public Adapter createJustificationAdapter() {
+		if (justificationItemProvider == null) {
+			justificationItemProvider = new JustificationItemProvider(this);
 		}
 
-		return asilItemProvider;
+		return justificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GoalSupportedByItemProvider goalSupportedByItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGoalSupportedByAdapter() {
+		if (goalSupportedByItemProvider == null) {
+			goalSupportedByItemProvider = new GoalSupportedByItemProvider(this);
+		}
+
+		return goalSupportedByItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StrategySupportedByItemProvider strategySupportedByItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStrategySupportedByAdapter() {
+		if (strategySupportedByItemProvider == null) {
+			strategySupportedByItemProvider = new StrategySupportedByItemProvider(this);
+		}
+
+		return strategySupportedByItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BasicStrategyItemProvider basicStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBasicStrategyAdapter() {
+		if (basicStrategyItemProvider == null) {
+			basicStrategyItemProvider = new BasicStrategyItemProvider(this);
+		}
+
+		return basicStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ASILDecompositionStrategyItemProvider asilDecompositionStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createASILDecompositionStrategyAdapter() {
+		if (asilDecompositionStrategyItemProvider == null) {
+			asilDecompositionStrategyItemProvider = new ASILDecompositionStrategyItemProvider(this);
+		}
+
+		return asilDecompositionStrategyItemProvider;
 	}
 
 	/**
@@ -388,14 +434,16 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 */
 	public void dispose() {
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
-		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
-		if (strategyItemProvider != null) strategyItemProvider.dispose();
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (contextItemProvider != null) contextItemProvider.dispose();
 		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
-		if (asilItemProvider != null) asilItemProvider.dispose();
+		if (justificationItemProvider != null) justificationItemProvider.dispose();
+		if (goalSupportedByItemProvider != null) goalSupportedByItemProvider.dispose();
+		if (strategySupportedByItemProvider != null) strategySupportedByItemProvider.dispose();
+		if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
+		if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
 	}
 
 }

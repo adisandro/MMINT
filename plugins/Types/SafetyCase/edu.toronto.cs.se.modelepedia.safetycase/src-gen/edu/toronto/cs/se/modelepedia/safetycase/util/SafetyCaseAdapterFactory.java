@@ -126,8 +126,24 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createImpactAnnotationAdapter();
 			}
 			@Override
-			public Adapter caseASIL(ASIL object) {
-				return createASILAdapter();
+			public Adapter caseJustification(Justification object) {
+				return createJustificationAdapter();
+			}
+			@Override
+			public Adapter caseGoalSupportedBy(GoalSupportedBy object) {
+				return createGoalSupportedByAdapter();
+			}
+			@Override
+			public Adapter caseStrategySupportedBy(StrategySupportedBy object) {
+				return createStrategySupportedByAdapter();
+			}
+			@Override
+			public Adapter caseBasicStrategy(BasicStrategy object) {
+				return createBasicStrategyAdapter();
+			}
+			@Override
+			public Adapter caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
+				return createASILDecompositionStrategyAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -318,16 +334,72 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL <em>ASIL</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Justification <em>Justification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Justification
 	 * @generated
 	 */
-	public Adapter createASILAdapter() {
+	public Adapter createJustificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy <em>Goal Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy
+	 * @generated
+	 */
+	public Adapter createGoalSupportedByAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy <em>Strategy Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy
+	 * @generated
+	 */
+	public Adapter createStrategySupportedByAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy <em>Basic Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy
+	 * @generated
+	 */
+	public Adapter createBasicStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy <em>ASIL Decomposition Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy
+	 * @generated
+	 */
+	public Adapter createASILDecompositionStrategyAdapter() {
 		return null;
 	}
 

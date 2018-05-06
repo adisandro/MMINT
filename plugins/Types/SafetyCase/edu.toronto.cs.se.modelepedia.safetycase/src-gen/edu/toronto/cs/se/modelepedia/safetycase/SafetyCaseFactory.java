@@ -41,15 +41,6 @@ public interface SafetyCaseFactory extends EFactory {
 	SafetyCase createSafetyCase();
 
 	/**
-	 * Returns a new object of class '<em>Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Supported By</em>'.
-	 * @generated
-	 */
-	SupportedBy createSupportedBy();
-
-	/**
 	 * Returns a new object of class '<em>In Context Of</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,15 +57,6 @@ public interface SafetyCaseFactory extends EFactory {
 	 * @generated
 	 */
 	Goal createGoal();
-
-	/**
-	 * Returns a new object of class '<em>Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Strategy</em>'.
-	 * @generated
-	 */
-	Strategy createStrategy();
 
 	/**
 	 * Returns a new object of class '<em>Solution</em>'.
@@ -104,13 +86,49 @@ public interface SafetyCaseFactory extends EFactory {
 	ImpactAnnotation createImpactAnnotation();
 
 	/**
-	 * Returns a new object of class '<em>ASIL</em>'.
+	 * Returns a new object of class '<em>Justification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ASIL</em>'.
+	 * @return a new object of class '<em>Justification</em>'.
 	 * @generated
 	 */
-	ASIL createASIL();
+	Justification createJustification();
+
+	/**
+	 * Returns a new object of class '<em>Goal Supported By</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Goal Supported By</em>'.
+	 * @generated
+	 */
+	GoalSupportedBy createGoalSupportedBy();
+
+	/**
+	 * Returns a new object of class '<em>Strategy Supported By</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Strategy Supported By</em>'.
+	 * @generated
+	 */
+	StrategySupportedBy createStrategySupportedBy();
+
+	/**
+	 * Returns a new object of class '<em>Basic Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Basic Strategy</em>'.
+	 * @generated
+	 */
+	BasicStrategy createBasicStrategy();
+
+	/**
+	 * Returns a new object of class '<em>ASIL Decomposition Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ASIL Decomposition Strategy</em>'.
+	 * @generated
+	 */
+	ASILDecompositionStrategy createASILDecompositionStrategy();
 
 	/**
 	 * Returns the package supported by this factory.

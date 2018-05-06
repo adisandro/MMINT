@@ -73,6 +73,7 @@ public class ImpactAnnotationItemProvider
 
 			addTypePropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
+			addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -122,6 +123,28 @@ public class ImpactAnnotationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ImpactAnnotation_attribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_attribute_feature", "_UI_ImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__ATTRIBUTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ImpactAnnotation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,6 +185,7 @@ public class ImpactAnnotationItemProvider
 		switch (notification.getFeatureID(ImpactAnnotation.class)) {
 			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
 			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+			case SafetyCasePackage.IMPACT_ANNOTATION__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

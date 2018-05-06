@@ -20,95 +20,147 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Validity State</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Impacted Attribute</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getValidityState()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactedAttribute()
  * @model
  * @generated
  */
-public enum ValidityState implements Enumerator {
+public enum ImpactedAttribute implements Enumerator {
 	/**
-	 * The '<em><b>Invalid</b></em>' literal object.
+	 * The '<em><b>Unknown</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INVALID_VALUE
+	 * @see #UNKNOWN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INVALID(0, "Invalid", "Invalid"),
+	UNKNOWN(0, "Unknown", "Unknown"),
 
 	/**
-	 * The '<em><b>Valid</b></em>' literal object.
+	 * The '<em><b>State</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VALID_VALUE
+	 * @see #STATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VALID(1, "Valid", "Valid");
+	STATE(1, "State", "State"),
 
 	/**
-	 * The '<em><b>Invalid</b></em>' literal value.
+	 * The '<em><b>Content</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CONTENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CONTENT(2, "Content", "Content"),
+
+	/**
+	 * The '<em><b>ASIL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ASIL_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ASIL(3, "ASIL", "ASIL");
+
+	/**
+	 * The '<em><b>Unknown</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Invalid</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Unknown</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INVALID
-	 * @model name="Invalid"
+	 * @see #UNKNOWN
+	 * @model name="Unknown"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INVALID_VALUE = 0;
+	public static final int UNKNOWN_VALUE = 0;
 
 	/**
-	 * The '<em><b>Valid</b></em>' literal value.
+	 * The '<em><b>State</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Valid</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>State</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VALID
-	 * @model name="Valid"
+	 * @see #STATE
+	 * @model name="State"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VALID_VALUE = 1;
+	public static final int STATE_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Validity State</b></em>' enumerators.
+	 * The '<em><b>Content</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Content</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTENT
+	 * @model name="Content"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTENT_VALUE = 2;
+
+	/**
+	 * The '<em><b>ASIL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ASIL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ASIL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ASIL_VALUE = 3;
+
+	/**
+	 * An array of all the '<em><b>Impacted Attribute</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ValidityState[] VALUES_ARRAY =
-		new ValidityState[] {
-			INVALID,
-			VALID,
+	private static final ImpactedAttribute[] VALUES_ARRAY =
+		new ImpactedAttribute[] {
+			UNKNOWN,
+			STATE,
+			CONTENT,
+			ASIL,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Validity State</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Impacted Attribute</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ValidityState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ImpactedAttribute> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Validity State</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Impacted Attribute</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ValidityState get(String literal) {
+	public static ImpactedAttribute get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ValidityState result = VALUES_ARRAY[i];
+			ImpactedAttribute result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -117,16 +169,16 @@ public enum ValidityState implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Validity State</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Impacted Attribute</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ValidityState getByName(String name) {
+	public static ImpactedAttribute getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ValidityState result = VALUES_ARRAY[i];
+			ImpactedAttribute result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -135,17 +187,19 @@ public enum ValidityState implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Validity State</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Impacted Attribute</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ValidityState get(int value) {
+	public static ImpactedAttribute get(int value) {
 		switch (value) {
-			case INVALID_VALUE: return INVALID;
-			case VALID_VALUE: return VALID;
+			case UNKNOWN_VALUE: return UNKNOWN;
+			case STATE_VALUE: return STATE;
+			case CONTENT_VALUE: return CONTENT;
+			case ASIL_VALUE: return ASIL;
 		}
 		return null;
 	}
@@ -177,7 +231,7 @@ public enum ValidityState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValidityState(int value, String name, String literal) {
+	private ImpactedAttribute(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -221,4 +275,4 @@ public enum ValidityState implements Enumerator {
 		return literal;
 	}
 	
-} //ValidityState
+} //ImpactedAttribute

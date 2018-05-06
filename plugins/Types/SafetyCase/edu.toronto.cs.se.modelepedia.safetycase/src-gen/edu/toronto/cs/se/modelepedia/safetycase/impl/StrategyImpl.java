@@ -14,13 +14,19 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
-import edu.toronto.cs.se.modelepedia.safetycase.ValidityState;
+import edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,31 +36,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StrategyImpl#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StrategyImpl extends DecomposableCoreElementImpl implements Strategy {
+public abstract class StrategyImpl extends DecomposableCoreElementImpl implements Strategy {
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getState()
+	 * @see #getSupportedBy()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ValidityState STATE_EDEFAULT = ValidityState.INVALID;
-
-	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getState()
-	 * @generated
-	 * @ordered
-	 */
-	protected ValidityState state = STATE_EDEFAULT;
+	protected EList<StrategySupportedBy> supportedBy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,8 +76,11 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityState getState() {
-		return state;
+	public EList<StrategySupportedBy> getSupportedBy() {
+		if (supportedBy == null) {
+			supportedBy = new EObjectContainmentWithInverseEList<StrategySupportedBy>(StrategySupportedBy.class, this, SafetyCasePackage.STRATEGY__SUPPORTED_BY, SafetyCasePackage.STRATEGY_SUPPORTED_BY__CONCLUSION);
+		}
+		return supportedBy;
 	}
 
 	/**
@@ -89,11 +88,28 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(ValidityState newState) {
-		ValidityState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STRATEGY__STATE, oldState, state));
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -104,8 +120,8 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__STATE:
-				return getState();
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return getSupportedBy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,11 +131,13 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__STATE:
-				setState((ValidityState)newValue);
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				getSupportedBy().clear();
+				getSupportedBy().addAll((Collection<? extends StrategySupportedBy>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +151,8 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__STATE:
-				setState(STATE_EDEFAULT);
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				getSupportedBy().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,26 +166,10 @@ public class StrategyImpl extends DecomposableCoreElementImpl implements Strateg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.STRATEGY__STATE:
-				return state != STATE_EDEFAULT;
+			case SafetyCasePackage.STRATEGY__SUPPORTED_BY:
+				return supportedBy != null && !supportedBy.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (state: ");
-		result.append(state);
-		result.append(')');
-		return result.toString();
 	}
 
 } //StrategyImpl

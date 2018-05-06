@@ -20,95 +20,95 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Truth State</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Validity Value</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getTruthState()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getValidityValue()
  * @model
  * @generated
  */
-public enum TruthState implements Enumerator {
+public enum ValidityValue implements Enumerator {
 	/**
-	 * The '<em><b>False</b></em>' literal object.
+	 * The '<em><b>Invalid</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FALSE_VALUE
+	 * @see #INVALID_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FALSE(0, "False", "False"),
+	INVALID(0, "Invalid", "Invalid"),
 
 	/**
-	 * The '<em><b>True</b></em>' literal object.
+	 * The '<em><b>Valid</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRUE_VALUE
+	 * @see #VALID_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRUE(1, "True", "True");
+	VALID(1, "Valid", "Valid");
 
 	/**
-	 * The '<em><b>False</b></em>' literal value.
+	 * The '<em><b>Invalid</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>False</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Invalid</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FALSE
-	 * @model name="False"
+	 * @see #INVALID
+	 * @model name="Invalid"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FALSE_VALUE = 0;
+	public static final int INVALID_VALUE = 0;
 
 	/**
-	 * The '<em><b>True</b></em>' literal value.
+	 * The '<em><b>Valid</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>True</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Valid</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRUE
-	 * @model name="True"
+	 * @see #VALID
+	 * @model name="Valid"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRUE_VALUE = 1;
+	public static final int VALID_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Truth State</b></em>' enumerators.
+	 * An array of all the '<em><b>Validity Value</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final TruthState[] VALUES_ARRAY =
-		new TruthState[] {
-			FALSE,
-			TRUE,
+	private static final ValidityValue[] VALUES_ARRAY =
+		new ValidityValue[] {
+			INVALID,
+			VALID,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Truth State</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Validity Value</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<TruthState> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ValidityValue> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Truth State</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Validity Value</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static TruthState get(String literal) {
+	public static ValidityValue get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			TruthState result = VALUES_ARRAY[i];
+			ValidityValue result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -117,16 +117,16 @@ public enum TruthState implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Truth State</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Validity Value</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static TruthState getByName(String name) {
+	public static ValidityValue getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			TruthState result = VALUES_ARRAY[i];
+			ValidityValue result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -135,17 +135,17 @@ public enum TruthState implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Truth State</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Validity Value</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static TruthState get(int value) {
+	public static ValidityValue get(int value) {
 		switch (value) {
-			case FALSE_VALUE: return FALSE;
-			case TRUE_VALUE: return TRUE;
+			case INVALID_VALUE: return INVALID;
+			case VALID_VALUE: return VALID;
 		}
 		return null;
 	}
@@ -177,7 +177,7 @@ public enum TruthState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TruthState(int value, String name, String literal) {
+	private ValidityValue(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -221,4 +221,4 @@ public enum TruthState implements Enumerator {
 		return literal;
 	}
 	
-} //TruthState
+} //ValidityValue

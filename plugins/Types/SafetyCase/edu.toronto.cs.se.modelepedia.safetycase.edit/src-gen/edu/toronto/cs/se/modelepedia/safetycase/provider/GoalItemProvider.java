@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
+import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
@@ -24,6 +25,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -57,25 +59,25 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatePropertyDescriptor(object);
+			addStateValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State feature.
+	 * This adds a property descriptor for the State Validity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addStateValidityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Goal_state_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_state_feature", "_UI_Goal_type"),
-				 SafetyCasePackage.Literals.GOAL__STATE,
+				 getString("_UI_Goal_stateValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_stateValidity_feature", "_UI_Goal_type"),
+				 SafetyCasePackage.Literals.GOAL__STATE_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -96,6 +98,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY);
 			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
 		}
 		return childrenFeatures;
@@ -152,9 +155,10 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Goal.class)) {
-			case SafetyCasePackage.GOAL__STATE:
+			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case SafetyCasePackage.GOAL__SUPPORTED_BY:
 			case SafetyCasePackage.GOAL__ASIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -175,8 +179,13 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(SafetyCasePackage.Literals.GOAL__ASIL,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
+				 ASILLevel.D));
 	}
 
 }

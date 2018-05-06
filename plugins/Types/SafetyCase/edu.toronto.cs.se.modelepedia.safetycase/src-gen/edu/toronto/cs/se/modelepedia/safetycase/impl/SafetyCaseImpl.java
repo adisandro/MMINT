@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
@@ -45,6 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getStrategies <em>Strategies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getSolutions <em>Solutions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,6 +91,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * @ordered
 	 */
 	protected EList<Context> contexts;
+
+	/**
+	 * The cached value of the '{@link #getJustifications() <em>Justifications</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJustifications()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Justification> justifications;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -162,6 +174,18 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Justification> getJustifications() {
+		if (justifications == null) {
+			justifications = new EObjectContainmentEList<Justification>(Justification.class, this, SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS);
+		}
+		return justifications;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -173,6 +197,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return ((InternalEList<?>)getSolutions()).basicRemove(otherEnd, msgs);
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				return ((InternalEList<?>)getJustifications()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -193,6 +219,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return getSolutions();
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				return getContexts();
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				return getJustifications();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,6 +250,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				getContexts().clear();
 				getContexts().addAll((Collection<? extends Context>)newValue);
 				return;
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				getJustifications().clear();
+				getJustifications().addAll((Collection<? extends Justification>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -246,6 +278,9 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				getContexts().clear();
 				return;
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				getJustifications().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -266,6 +301,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return solutions != null && !solutions.isEmpty();
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				return contexts != null && !contexts.isEmpty();
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				return justifications != null && !justifications.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -68,14 +68,16 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SafetyCasePackage.SAFETY_CASE: return createSafetyCase();
-			case SafetyCasePackage.SUPPORTED_BY: return createSupportedBy();
 			case SafetyCasePackage.IN_CONTEXT_OF: return createInContextOf();
 			case SafetyCasePackage.GOAL: return createGoal();
-			case SafetyCasePackage.STRATEGY: return createStrategy();
 			case SafetyCasePackage.SOLUTION: return createSolution();
 			case SafetyCasePackage.CONTEXT: return createContext();
 			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
-			case SafetyCasePackage.ASIL: return createASIL();
+			case SafetyCasePackage.JUSTIFICATION: return createJustification();
+			case SafetyCasePackage.GOAL_SUPPORTED_BY: return createGoalSupportedBy();
+			case SafetyCasePackage.STRATEGY_SUPPORTED_BY: return createStrategySupportedBy();
+			case SafetyCasePackage.BASIC_STRATEGY: return createBasicStrategy();
+			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -89,14 +91,14 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SafetyCasePackage.TRUTH_STATE:
-				return createTruthStateFromString(eDataType, initialValue);
 			case SafetyCasePackage.ASIL_LEVEL:
 				return createASILLevelFromString(eDataType, initialValue);
-			case SafetyCasePackage.VALIDITY_STATE:
-				return createValidityStateFromString(eDataType, initialValue);
+			case SafetyCasePackage.VALIDITY_VALUE:
+				return createValidityValueFromString(eDataType, initialValue);
 			case SafetyCasePackage.IMPACT_TYPE:
 				return createImpactTypeFromString(eDataType, initialValue);
+			case SafetyCasePackage.IMPACTED_ATTRIBUTE:
+				return createImpactedAttributeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -110,14 +112,14 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case SafetyCasePackage.TRUTH_STATE:
-				return convertTruthStateToString(eDataType, instanceValue);
 			case SafetyCasePackage.ASIL_LEVEL:
 				return convertASILLevelToString(eDataType, instanceValue);
-			case SafetyCasePackage.VALIDITY_STATE:
-				return convertValidityStateToString(eDataType, instanceValue);
+			case SafetyCasePackage.VALIDITY_VALUE:
+				return convertValidityValueToString(eDataType, instanceValue);
 			case SafetyCasePackage.IMPACT_TYPE:
 				return convertImpactTypeToString(eDataType, instanceValue);
+			case SafetyCasePackage.IMPACTED_ATTRIBUTE:
+				return convertImpactedAttributeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -138,16 +140,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SupportedBy createSupportedBy() {
-		SupportedByImpl supportedBy = new SupportedByImpl();
-		return supportedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public InContextOf createInContextOf() {
 		InContextOfImpl inContextOf = new InContextOfImpl();
 		return inContextOf;
@@ -161,16 +153,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public Goal createGoal() {
 		GoalImpl goal = new GoalImpl();
 		return goal;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Strategy createStrategy() {
-		StrategyImpl strategy = new StrategyImpl();
-		return strategy;
 	}
 
 	/**
@@ -208,9 +190,9 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ASIL createASIL() {
-		ASILImpl asil = new ASILImpl();
-		return asil;
+	public Justification createJustification() {
+		JustificationImpl justification = new JustificationImpl();
+		return justification;
 	}
 
 	/**
@@ -218,10 +200,9 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TruthState createTruthStateFromString(EDataType eDataType, String initialValue) {
-		TruthState result = TruthState.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public GoalSupportedBy createGoalSupportedBy() {
+		GoalSupportedByImpl goalSupportedBy = new GoalSupportedByImpl();
+		return goalSupportedBy;
 	}
 
 	/**
@@ -229,8 +210,29 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertTruthStateToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public StrategySupportedBy createStrategySupportedBy() {
+		StrategySupportedByImpl strategySupportedBy = new StrategySupportedByImpl();
+		return strategySupportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BasicStrategy createBasicStrategy() {
+		BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
+		return basicStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ASILDecompositionStrategy createASILDecompositionStrategy() {
+		ASILDecompositionStrategyImpl asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
+		return asilDecompositionStrategy;
 	}
 
 	/**
@@ -258,8 +260,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityState createValidityStateFromString(EDataType eDataType, String initialValue) {
-		ValidityState result = ValidityState.get(initialValue);
+	public ValidityValue createValidityValueFromString(EDataType eDataType, String initialValue) {
+		ValidityValue result = ValidityValue.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -269,7 +271,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertValidityStateToString(EDataType eDataType, Object instanceValue) {
+	public String convertValidityValueToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -290,6 +292,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * @generated
 	 */
 	public String convertImpactTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImpactedAttribute createImpactedAttributeFromString(EDataType eDataType, String initialValue) {
+		ImpactedAttribute result = ImpactedAttribute.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertImpactedAttributeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

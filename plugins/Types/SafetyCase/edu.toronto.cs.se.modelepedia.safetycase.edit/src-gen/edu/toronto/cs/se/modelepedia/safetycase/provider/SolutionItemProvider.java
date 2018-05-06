@@ -55,25 +55,25 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStatePropertyDescriptor(object);
+			addStateValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State feature.
+	 * This adds a property descriptor for the State Validity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addStateValidityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Solution_state_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_state_feature", "_UI_Solution_type"),
-				 SafetyCasePackage.Literals.SOLUTION__STATE,
+				 getString("_UI_Solution_stateValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Solution_stateValidity_feature", "_UI_Solution_type"),
+				 SafetyCasePackage.Literals.SOLUTION__STATE_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -120,7 +120,7 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Solution.class)) {
-			case SafetyCasePackage.SOLUTION__STATE:
+			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

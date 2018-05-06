@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getType <em>Type</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactAnnotation()
@@ -86,5 +87,34 @@ public interface ImpactAnnotation extends EObject {
 	 * @generated
 	 */
 	void setSource(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Attribute</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactedAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attribute</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactedAttribute
+	 * @see #setAttribute(ImpactedAttribute)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactAnnotation_Attribute()
+	 * @model required="true"
+	 * @generated
+	 */
+	ImpactedAttribute getAttribute();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getAttribute <em>Attribute</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Attribute</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactedAttribute
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	void setAttribute(ImpactedAttribute value);
 
 } // ImpactAnnotation

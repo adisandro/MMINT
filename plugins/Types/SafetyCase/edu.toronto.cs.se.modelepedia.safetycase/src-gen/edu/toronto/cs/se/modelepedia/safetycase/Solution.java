@@ -22,7 +22,7 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getStateValidity <em>State Validity</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSolution()
@@ -31,32 +31,32 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  */
 public interface Solution extends CoreElement {
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityState}.
+	 * Returns the value of the '<em><b>State Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * If the meaning of the '<em>State Validity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityState
-	 * @see #setState(ValidityState)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSolution_State()
+	 * @return the value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setStateValidity(ValidityValue)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSolution_StateValidity()
 	 * @model
 	 * @generated
 	 */
-	ValidityState getState();
+	ValidityValue getStateValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getState <em>State</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution#getStateValidity <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityState
-	 * @see #getState()
+	 * @param value the new value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #getStateValidity()
 	 * @generated
 	 */
-	void setState(ValidityState value);
+	void setStateValidity(ValidityValue value);
 
 } // Solution
