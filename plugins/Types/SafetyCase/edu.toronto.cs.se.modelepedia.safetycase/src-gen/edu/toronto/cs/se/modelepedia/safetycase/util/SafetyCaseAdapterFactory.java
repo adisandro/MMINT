@@ -130,6 +130,18 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createASILAdapter();
 			}
 			@Override
+			public Adapter caseJustification(Justification object) {
+				return createJustificationAdapter();
+			}
+			@Override
+			public Adapter caseGoalSupportedBy(GoalSupportedBy object) {
+				return createGoalSupportedByAdapter();
+			}
+			@Override
+			public Adapter caseStrategySupportedBy(StrategySupportedBy object) {
+				return createStrategySupportedByAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -328,6 +340,48 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createASILAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Justification <em>Justification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Justification
+	 * @generated
+	 */
+	public Adapter createJustificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy <em>Goal Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy
+	 * @generated
+	 */
+	public Adapter createGoalSupportedByAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy <em>Strategy Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy
+	 * @generated
+	 */
+	public Adapter createStrategySupportedByAdapter() {
 		return null;
 	}
 

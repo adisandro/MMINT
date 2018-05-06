@@ -72,7 +72,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY);
 			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
 		}
 		return childrenFeatures;
@@ -118,7 +117,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DecomposableCoreElement.class)) {
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -136,11 +134,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
 
 		newChildDescriptors.add
 			(createChildParameter

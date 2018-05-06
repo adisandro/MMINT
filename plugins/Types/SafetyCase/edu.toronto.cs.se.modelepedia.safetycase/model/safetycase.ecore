@@ -11,6 +11,8 @@
         eType="#//Solution" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//Context" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="justifications" upperBound="-1"
+        eType="#//Justification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -25,12 +27,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
-        eType="#//SupportedBy" eOpposite="#//SupportedBy/premise"/>
+        eType="#//SupportedBy"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true"
       eSuperTypes="#//CoreElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
-        eType="#//SupportedBy" containment="true" eOpposite="#//SupportedBy/conclusion"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
   </eClassifiers>
@@ -38,12 +38,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
         upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
-        eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/supportedBy"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
-        eType="#//CoreElement" eOpposite="#//CoreElement/supports"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="InContextOf">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="#//ContextualElement" eOpposite="#//ContextualElement/contextOf"/>
@@ -51,22 +46,24 @@
         eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/inContextOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//DecomposableCoreElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TruthState"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateValidity" eType="#//ValidityValue"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true"
         eOpposite="#//ASIL/owner"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
+        eType="#//GoalSupportedBy" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//DecomposableCoreElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
+        eType="#//StrategySupportedBy" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//CoreElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateValidity" eType="#//ValidityValue"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ContextualElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ValidityState"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TruthState">
-    <eLiterals name="False" literal="False"/>
-    <eLiterals name="True" value="1" literal="True"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ASILLevel">
     <eLiterals name="D" literal="D"/>
@@ -75,7 +72,7 @@
     <eLiterals name="A" value="3" literal="A"/>
     <eLiterals name="QM" value="4" literal="QM"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ValidityState">
+  <eClassifiers xsi:type="ecore:EEnum" name="ValidityValue">
     <eLiterals name="Invalid" literal="Invalid"/>
     <eLiterals name="Valid" value="1" literal="Valid"/>
   </eClassifiers>
@@ -94,5 +91,20 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" lowerBound="1" eType="#//ASILLevel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Justification" eSuperTypes="#//ContextualElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GoalSupportedBy" eSuperTypes="#//SupportedBy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
+        eType="#//Goal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
+        eType="#//DecomposableCoreElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StrategySupportedBy" eSuperTypes="#//SupportedBy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
+        eType="#//Strategy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
+        eType="#//CoreElement"/>
   </eClassifiers>
 </ecore:EPackage>

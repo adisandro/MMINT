@@ -15,21 +15,21 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Context</b></em>'.
+ * A representation of the model object '<em><b>Justification</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Context#getContentValidity <em>Content Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Justification#getContentValidity <em>Content Validity</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getContext()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getJustification()
  * @model
  * @generated
  */
-public interface Context extends ContextualElement {
+public interface Justification extends ContextualElement {
 	/**
 	 * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
@@ -42,14 +42,14 @@ public interface Context extends ContextualElement {
 	 * @return the value of the '<em>Content Validity</em>' attribute.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
 	 * @see #setContentValidity(ValidityValue)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getContext_ContentValidity()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getJustification_ContentValidity()
 	 * @model
 	 * @generated
 	 */
 	ValidityValue getContentValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Context#getContentValidity <em>Content Validity</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Justification#getContentValidity <em>Content Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Content Validity</em>' attribute.
@@ -59,4 +59,4 @@ public interface Context extends ContextualElement {
 	 */
 	void setContentValidity(ValidityValue value);
 
-} // Context
+} // Justification

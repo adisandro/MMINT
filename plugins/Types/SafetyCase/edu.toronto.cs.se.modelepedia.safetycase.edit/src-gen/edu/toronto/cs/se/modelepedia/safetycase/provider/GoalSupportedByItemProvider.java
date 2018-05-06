@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
@@ -24,23 +23,21 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Context} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContextItemProvider extends ContextualElementItemProvider {
+public class GoalSupportedByItemProvider extends SupportedByItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContextItemProvider(AdapterFactory adapterFactory) {
+	public GoalSupportedByItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,42 +52,65 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContentValidityPropertyDescriptor(object);
+			addConclusionPropertyDescriptor(object);
+			addPremisePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Content Validity feature.
+	 * This adds a property descriptor for the Conclusion feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContentValidityPropertyDescriptor(Object object) {
+	protected void addConclusionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Context_contentValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Context_contentValidity_feature", "_UI_Context_type"),
-				 SafetyCasePackage.Literals.CONTEXT__CONTENT_VALIDITY,
+				 getString("_UI_GoalSupportedBy_conclusion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GoalSupportedBy_conclusion_feature", "_UI_GoalSupportedBy_type"),
+				 SafetyCasePackage.Literals.GOAL_SUPPORTED_BY__CONCLUSION,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns Context.gif.
+	 * This adds a property descriptor for the Premise feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPremisePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GoalSupportedBy_premise_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GoalSupportedBy_premise_feature", "_UI_GoalSupportedBy_type"),
+				 SafetyCasePackage.Literals.GOAL_SUPPORTED_BY__PREMISE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns GoalSupportedBy.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Context"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GoalSupportedBy"));
 	}
 
 	/**
@@ -101,10 +121,7 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Context)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Context_type") :
-			getString("_UI_Context_type") + " " + label;
+		return getString("_UI_GoalSupportedBy_type");
 	}
 	
 
@@ -118,12 +135,6 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Context.class)) {
-			case SafetyCasePackage.CONTEXT__CONTENT_VALIDITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

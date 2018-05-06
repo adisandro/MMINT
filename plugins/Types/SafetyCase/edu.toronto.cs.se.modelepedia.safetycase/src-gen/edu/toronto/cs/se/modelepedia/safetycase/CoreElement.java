@@ -34,7 +34,6 @@ public interface CoreElement extends ArgumentElement {
 	/**
 	 * Returns the value of the '<em><b>Supports</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise <em>Premise</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Supports</em>' reference list isn't clear,
@@ -43,8 +42,7 @@ public interface CoreElement extends ArgumentElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supports</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getCoreElement_Supports()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise
-	 * @model opposite="premise"
+	 * @model
 	 * @generated
 	 */
 	EList<SupportedBy> getSupports();
