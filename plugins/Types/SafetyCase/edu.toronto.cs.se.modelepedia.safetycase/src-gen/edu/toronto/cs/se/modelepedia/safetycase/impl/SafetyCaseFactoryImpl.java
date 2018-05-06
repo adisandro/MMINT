@@ -70,7 +70,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.SAFETY_CASE: return createSafetyCase();
 			case SafetyCasePackage.IN_CONTEXT_OF: return createInContextOf();
 			case SafetyCasePackage.GOAL: return createGoal();
-			case SafetyCasePackage.STRATEGY: return createStrategy();
 			case SafetyCasePackage.SOLUTION: return createSolution();
 			case SafetyCasePackage.CONTEXT: return createContext();
 			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
@@ -78,6 +77,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.JUSTIFICATION: return createJustification();
 			case SafetyCasePackage.GOAL_SUPPORTED_BY: return createGoalSupportedBy();
 			case SafetyCasePackage.STRATEGY_SUPPORTED_BY: return createStrategySupportedBy();
+			case SafetyCasePackage.BASIC_STRATEGY: return createBasicStrategy();
+			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -156,16 +157,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Strategy createStrategy() {
-		StrategyImpl strategy = new StrategyImpl();
-		return strategy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Solution createSolution() {
 		SolutionImpl solution = new SolutionImpl();
 		return solution;
@@ -229,6 +220,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public StrategySupportedBy createStrategySupportedBy() {
 		StrategySupportedByImpl strategySupportedBy = new StrategySupportedByImpl();
 		return strategySupportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BasicStrategy createBasicStrategy() {
+		BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
+		return basicStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ASILDecompositionStrategy createASILDecompositionStrategy() {
+		ASILDecompositionStrategyImpl asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
+		return asilDecompositionStrategy;
 	}
 
 	/**

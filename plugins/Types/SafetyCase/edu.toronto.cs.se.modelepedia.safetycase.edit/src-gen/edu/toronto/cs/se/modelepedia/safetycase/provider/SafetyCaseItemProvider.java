@@ -174,7 +174,12 @@ public class SafetyCaseItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES,
-				 SafetyCaseFactory.eINSTANCE.createStrategy()));
+				 SafetyCaseFactory.eINSTANCE.createBasicStrategy()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES,
+				 SafetyCaseFactory.eINSTANCE.createASILDecompositionStrategy()));
 
 		newChildDescriptors.add
 			(createChildParameter

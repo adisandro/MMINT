@@ -317,6 +317,40 @@
     <element xmi:type="ecore:EClass" href="safetycase.ecore#//StrategySupportedBy"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1EkMrVFUEeigMeBPfuB8Xw" x="252" y="372"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_jp9FAFFWEeimybc1ISAitA" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_jp9sEFFWEeimybc1ISAitA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jp9sEVFWEeimybc1ISAitA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jp9sElFWEeimybc1ISAitA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jp9sE1FWEeimybc1ISAitA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jp9sFFFWEeimybc1ISAitA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jp9sFVFWEeimybc1ISAitA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jp9sFlFWEeimybc1ISAitA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jp9sF1FWEeimybc1ISAitA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jp9sGFFWEeimybc1ISAitA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jp9sGVFWEeimybc1ISAitA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="safetycase.ecore#//BasicStrategy"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jp9FAVFWEeimybc1ISAitA"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nSMXAFFWEeimybc1ISAitA" type="2001" fontName="Ubuntu">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nSM-EFFWEeimybc1ISAitA" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nSM-EVFWEeimybc1ISAitA" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nSM-ElFWEeimybc1ISAitA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nSM-E1FWEeimybc1ISAitA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nSM-FFFWEeimybc1ISAitA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nSM-FVFWEeimybc1ISAitA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nSM-FlFWEeimybc1ISAitA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nSM-F1FWEeimybc1ISAitA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nSM-GFFWEeimybc1ISAitA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nSM-GVFWEeimybc1ISAitA"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="safetycase.ecore#//ASILDecompositionStrategy"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nSMXAVFWEeimybc1ISAitA" x="216"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_fXq5YVPPEee_Arz6kyO6hw"/>
   <element xmi:type="ecore:EPackage" href="safetycase.ecore#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_j6lq8FPPEee_Arz6kyO6hw" type="4002" source="_j5amTFPPEee_Arz6kyO6hw" target="_j5b0ZFPPEee_Arz6kyO6hw" lineColor="0">

@@ -53,7 +53,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
         eType="#//GoalSupportedBy" containment="true" eOpposite="#//GoalSupportedBy/conclusion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//DecomposableCoreElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//DecomposableCoreElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
         eType="#//StrategySupportedBy" containment="true" eOpposite="#//StrategySupportedBy/conclusion"/>
   </eClassifiers>
@@ -101,4 +101,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
         eType="#//CoreElement"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ASILDecompositionStrategy" eSuperTypes="#//Strategy"/>
 </ecore:EPackage>

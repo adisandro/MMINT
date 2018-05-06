@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class StrategyImpl extends DecomposableCoreElementImpl implements Strategy {
+public abstract class StrategyImpl extends DecomposableCoreElementImpl implements Strategy {
 	/**
 	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

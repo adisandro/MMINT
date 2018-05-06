@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStrategy()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Strategy extends DecomposableCoreElement {

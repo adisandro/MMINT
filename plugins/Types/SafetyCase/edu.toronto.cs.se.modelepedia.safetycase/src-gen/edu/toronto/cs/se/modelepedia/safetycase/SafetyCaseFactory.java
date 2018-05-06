@@ -59,15 +59,6 @@ public interface SafetyCaseFactory extends EFactory {
 	Goal createGoal();
 
 	/**
-	 * Returns a new object of class '<em>Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Strategy</em>'.
-	 * @generated
-	 */
-	Strategy createStrategy();
-
-	/**
 	 * Returns a new object of class '<em>Solution</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -129,6 +120,24 @@ public interface SafetyCaseFactory extends EFactory {
 	 * @generated
 	 */
 	StrategySupportedBy createStrategySupportedBy();
+
+	/**
+	 * Returns a new object of class '<em>Basic Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Basic Strategy</em>'.
+	 * @generated
+	 */
+	BasicStrategy createBasicStrategy();
+
+	/**
+	 * Returns a new object of class '<em>ASIL Decomposition Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ASIL Decomposition Strategy</em>'.
+	 * @generated
+	 */
+	ASILDecompositionStrategy createASILDecompositionStrategy();
 
 	/**
 	 * Returns the package supported by this factory.

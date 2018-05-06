@@ -190,6 +190,26 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SafetyCasePackage.BASIC_STRATEGY: {
+				BasicStrategy basicStrategy = (BasicStrategy)theEObject;
+				T result = caseBasicStrategy(basicStrategy);
+				if (result == null) result = caseStrategy(basicStrategy);
+				if (result == null) result = caseDecomposableCoreElement(basicStrategy);
+				if (result == null) result = caseCoreElement(basicStrategy);
+				if (result == null) result = caseArgumentElement(basicStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: {
+				ASILDecompositionStrategy asilDecompositionStrategy = (ASILDecompositionStrategy)theEObject;
+				T result = caseASILDecompositionStrategy(asilDecompositionStrategy);
+				if (result == null) result = caseStrategy(asilDecompositionStrategy);
+				if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
+				if (result == null) result = caseCoreElement(asilDecompositionStrategy);
+				if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -431,6 +451,36 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStrategySupportedBy(StrategySupportedBy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBasicStrategy(BasicStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
 		return null;
 	}
 

@@ -151,29 +151,6 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StrategyItemProvider strategyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStrategyAdapter() {
-		if (strategyItemProvider == null) {
-			strategyItemProvider = new StrategyItemProvider(this);
-		}
-
-		return strategyItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Solution} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,6 +312,52 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BasicStrategyItemProvider basicStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBasicStrategyAdapter() {
+		if (basicStrategyItemProvider == null) {
+			basicStrategyItemProvider = new BasicStrategyItemProvider(this);
+		}
+
+		return basicStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ASILDecompositionStrategyItemProvider asilDecompositionStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createASILDecompositionStrategyAdapter() {
+		if (asilDecompositionStrategyItemProvider == null) {
+			asilDecompositionStrategyItemProvider = new ASILDecompositionStrategyItemProvider(this);
+		}
+
+		return asilDecompositionStrategyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -436,7 +459,6 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
-		if (strategyItemProvider != null) strategyItemProvider.dispose();
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (contextItemProvider != null) contextItemProvider.dispose();
 		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
@@ -444,6 +466,8 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (justificationItemProvider != null) justificationItemProvider.dispose();
 		if (goalSupportedByItemProvider != null) goalSupportedByItemProvider.dispose();
 		if (strategySupportedByItemProvider != null) strategySupportedByItemProvider.dispose();
+		if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
+		if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
 	}
 
 }

@@ -12,8 +12,10 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
+import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
@@ -159,6 +161,20 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * @generated
 	 */
 	private EClass strategySupportedByEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass basicStrategyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass asilDecompositionStrategyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -643,6 +659,24 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBasicStrategy() {
+		return basicStrategyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getASILDecompositionStrategy() {
+		return asilDecompositionStrategyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getASILLevel() {
 		return asilLevelEEnum;
 	}
@@ -753,6 +787,10 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		createEReference(strategySupportedByEClass, STRATEGY_SUPPORTED_BY__CONCLUSION);
 		createEReference(strategySupportedByEClass, STRATEGY_SUPPORTED_BY__PREMISE);
 
+		basicStrategyEClass = createEClass(BASIC_STRATEGY);
+
+		asilDecompositionStrategyEClass = createEClass(ASIL_DECOMPOSITION_STRATEGY);
+
 		// Create enums
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
 		validityValueEEnum = createEEnum(VALIDITY_VALUE);
@@ -797,6 +835,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		justificationEClass.getESuperTypes().add(this.getContextualElement());
 		goalSupportedByEClass.getESuperTypes().add(this.getSupportedBy());
 		strategySupportedByEClass.getESuperTypes().add(this.getSupportedBy());
+		basicStrategyEClass.getESuperTypes().add(this.getStrategy());
+		asilDecompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -832,7 +872,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEReference(getGoal_Asil(), this.getASIL(), this.getASIL_Owner(), "asil", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGoal_SupportedBy(), this.getGoalSupportedBy(), this.getGoalSupportedBy_Conclusion(), "supportedBy", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(strategyEClass, Strategy.class, "Strategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(strategyEClass, Strategy.class, "Strategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStrategy_SupportedBy(), this.getStrategySupportedBy(), this.getStrategySupportedBy_Conclusion(), "supportedBy", null, 0, -1, Strategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -858,6 +898,10 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEClass(strategySupportedByEClass, StrategySupportedBy.class, "StrategySupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStrategySupportedBy_Conclusion(), this.getStrategy(), this.getStrategy_SupportedBy(), "conclusion", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStrategySupportedBy_Premise(), this.getCoreElement(), null, "premise", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(basicStrategyEClass, BasicStrategy.class, "BasicStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(asilDecompositionStrategyEClass, ASILDecompositionStrategy.class, "ASILDecompositionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(asilLevelEEnum, ASILLevel.class, "ASILLevel");
