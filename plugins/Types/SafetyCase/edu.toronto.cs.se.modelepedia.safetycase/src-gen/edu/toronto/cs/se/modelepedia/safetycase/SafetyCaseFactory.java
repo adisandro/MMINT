@@ -131,6 +131,42 @@ public interface SafetyCaseFactory extends EFactory {
 	ASILDecompositionStrategy createASILDecompositionStrategy();
 
 	/**
+	 * Returns a new object of class '<em>Element Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Validity</em>'.
+	 * @generated
+	 */
+	ElementValidity createElementValidity();
+
+	/**
+	 * Returns a new object of class '<em>Content Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Content Validity</em>'.
+	 * @generated
+	 */
+	ContentValidity createContentValidity();
+
+	/**
+	 * Returns a new object of class '<em>State Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Validity</em>'.
+	 * @generated
+	 */
+	StateValidity createStateValidity();
+
+	/**
+	 * Returns a new object of class '<em>ASIL</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ASIL</em>'.
+	 * @generated
+	 */
+	ASIL createASIL();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

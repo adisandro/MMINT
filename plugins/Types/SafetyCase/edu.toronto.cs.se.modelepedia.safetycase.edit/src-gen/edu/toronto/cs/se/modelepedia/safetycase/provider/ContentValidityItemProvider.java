@@ -13,9 +13,8 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.Solution;
+import edu.toronto.cs.se.modelepedia.safetycase.ContentValidity;
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,25 +22,22 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Solution} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SolutionItemProvider extends CoreElementItemProvider {
+public class ContentValidityItemProvider extends ElementValidityItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SolutionItemProvider(AdapterFactory adapterFactory) {
+	public ContentValidityItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,44 +57,14 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns Solution.gif.
+	 * This returns ContentValidity.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Solution"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContentValidity"));
 	}
 
 	/**
@@ -109,10 +75,11 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Solution)object).getId();
+		ValidityValue labelValue = ((ContentValidity)object).getValue();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Solution_type") :
-			getString("_UI_Solution_type") + " " + label;
+			getString("_UI_ContentValidity_type") :
+			getString("_UI_ContentValidity_type") + " " + label;
 	}
 	
 
@@ -126,12 +93,6 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Solution.class)) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -145,11 +106,6 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
-				 SafetyCaseFactory.eINSTANCE.createStateValidity()));
 	}
 
 }

@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.StateValidity;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 
@@ -27,18 +26,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Solution</b></em>'.
+ * An implementation of the model object '<em><b>Stateful Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SolutionImpl#getStateValidity <em>State Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StatefulElementImpl#getStateValidity <em>State Validity</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SolutionImpl extends CoreElementImpl implements Solution {
+public abstract class StatefulElementImpl extends ArgumentElementImpl implements StatefulElement {
 	/**
 	 * The cached value of the '{@link #getStateValidity() <em>State Validity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -54,7 +53,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SolutionImpl() {
+	protected StatefulElementImpl() {
 		super();
 	}
 
@@ -65,7 +64,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.SOLUTION;
+		return SafetyCasePackage.Literals.STATEFUL_ELEMENT;
 	}
 
 	/**
@@ -86,7 +85,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 		StateValidity oldStateValidity = stateValidity;
 		stateValidity = newStateValidity;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SOLUTION__STATE_VALIDITY, oldStateValidity, newStateValidity);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY, oldStateValidity, newStateValidity);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -108,7 +107,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SOLUTION__STATE_VALIDITY, newStateValidity, newStateValidity));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY, newStateValidity, newStateValidity));
 	}
 
 	/**
@@ -119,9 +118,9 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				if (stateValidity != null)
-					msgs = ((InternalEObject)stateValidity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.SOLUTION__STATE_VALIDITY, null, msgs);
+					msgs = ((InternalEObject)stateValidity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY, null, msgs);
 				return basicSetStateValidity((StateValidity)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -135,7 +134,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				return basicSetStateValidity(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -149,7 +148,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				return getStateValidity();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -163,7 +162,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				setStateValidity((StateValidity)newValue);
 				return;
 		}
@@ -178,7 +177,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				setStateValidity((StateValidity)null);
 				return;
 		}
@@ -193,42 +192,10 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				return stateValidity != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == StatefulElement.class) {
-			switch (derivedFeatureID) {
-				case SafetyCasePackage.SOLUTION__STATE_VALIDITY: return SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == StatefulElement.class) {
-			switch (baseFeatureID) {
-				case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY: return SafetyCasePackage.SOLUTION__STATE_VALIDITY;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-} //SolutionImpl
+} //StatefulElementImpl

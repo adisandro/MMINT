@@ -86,6 +86,10 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createArgumentElementAdapter();
 			}
 			@Override
+			public Adapter caseStatefulElement(StatefulElement object) {
+				return createStatefulElementAdapter();
+			}
+			@Override
 			public Adapter caseCoreElement(CoreElement object) {
 				return createCoreElementAdapter();
 			}
@@ -146,6 +150,26 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createASILDecompositionStrategyAdapter();
 			}
 			@Override
+			public Adapter caseImpactable(Impactable object) {
+				return createImpactableAdapter();
+			}
+			@Override
+			public Adapter caseElementValidity(ElementValidity object) {
+				return createElementValidityAdapter();
+			}
+			@Override
+			public Adapter caseContentValidity(ContentValidity object) {
+				return createContentValidityAdapter();
+			}
+			@Override
+			public Adapter caseStateValidity(StateValidity object) {
+				return createStateValidityAdapter();
+			}
+			@Override
+			public Adapter caseASIL(ASIL object) {
+				return createASILAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -190,6 +214,20 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createArgumentElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement <em>Stateful Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.StatefulElement
+	 * @generated
+	 */
+	public Adapter createStatefulElementAdapter() {
 		return null;
 	}
 
@@ -400,6 +438,76 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createASILDecompositionStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Impactable <em>Impactable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Impactable
+	 * @generated
+	 */
+	public Adapter createImpactableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementValidity <em>Element Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementValidity
+	 * @generated
+	 */
+	public Adapter createElementValidityAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity <em>Content Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ContentValidity
+	 * @generated
+	 */
+	public Adapter createContentValidityAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.StateValidity <em>State Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.StateValidity
+	 * @generated
+	 */
+	public Adapter createStateValidityAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL <em>ASIL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL
+	 * @generated
+	 */
+	public Adapter createASILAdapter() {
 		return null;
 	}
 
