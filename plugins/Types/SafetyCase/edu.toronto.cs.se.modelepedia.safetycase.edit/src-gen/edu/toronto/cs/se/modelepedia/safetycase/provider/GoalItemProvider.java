@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
@@ -26,9 +25,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -59,31 +56,8 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStateValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the State Validity feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStateValidityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Goal_stateValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Goal_stateValidity_feature", "_UI_Goal_type"),
-				 SafetyCasePackage.Literals.GOAL__STATE_VALIDITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -98,6 +72,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY);
 			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY);
 			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
 		}
@@ -156,8 +131,6 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		switch (notification.getFeatureID(Goal.class)) {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case SafetyCasePackage.GOAL__SUPPORTED_BY:
 			case SafetyCasePackage.GOAL__ASIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -179,13 +152,18 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+				 SafetyCaseFactory.eINSTANCE.createStateValidity()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
 				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SafetyCasePackage.Literals.GOAL__ASIL,
-				 ASILLevel.D));
+				 SafetyCaseFactory.eINSTANCE.createASIL()));
 	}
 
 }

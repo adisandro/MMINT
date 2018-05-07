@@ -13,8 +13,8 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
@@ -23,40 +23,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImpactAnnotationItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ASILItemProvider extends ImpactableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
+	public ASILItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,26 +56,25 @@ public class ImpactAnnotationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addSourcePropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImpactAnnotation_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_type_feature", "_UI_ImpactAnnotation_type"),
-				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__TYPE,
+				 getString("_UI_ASIL_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ASIL_value_feature", "_UI_ASIL_type"),
+				 SafetyCasePackage.Literals.ASIL__VALUE,
 				 true,
 				 false,
 				 false,
@@ -100,36 +84,14 @@ public class ImpactAnnotationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ImpactAnnotation_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_source_feature", "_UI_ImpactAnnotation_type"),
-				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__SOURCE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns ImpactAnnotation.gif.
+	 * This returns ASIL.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ImpactAnnotation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ASIL"));
 	}
 
 	/**
@@ -140,11 +102,11 @@ public class ImpactAnnotationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ImpactType labelValue = ((ImpactAnnotation)object).getType();
+		ASILLevel labelValue = ((ASIL)object).getValue();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ImpactAnnotation_type") :
-			getString("_UI_ImpactAnnotation_type") + " " + label;
+			getString("_UI_ASIL_type") :
+			getString("_UI_ASIL_type") + " " + label;
 	}
 	
 
@@ -159,9 +121,8 @@ public class ImpactAnnotationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ImpactAnnotation.class)) {
-			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
-			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+		switch (notification.getFeatureID(ASIL.class)) {
+			case SafetyCasePackage.ASIL__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -178,17 +139,6 @@ public class ImpactAnnotationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  * </ul>
@@ -32,36 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Goal extends DecomposableCoreElement {
-	/**
-	 * Returns the value of the '<em><b>State Validity</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>State Validity</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Validity</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
-	 * @see #setStateValidity(ValidityValue)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_StateValidity()
-	 * @model
-	 * @generated
-	 */
-	ValidityValue getStateValidity();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getStateValidity <em>State Validity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Validity</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
-	 * @see #getStateValidity()
-	 * @generated
-	 */
-	void setStateValidity(ValidityValue value);
-
+public interface Goal extends DecomposableCoreElement, StatefulElement {
 	/**
 	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy}.
@@ -81,32 +51,31 @@ public interface Goal extends DecomposableCoreElement {
 	EList<GoalSupportedBy> getSupportedBy();
 
 	/**
-	 * Returns the value of the '<em><b>Asil</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel}.
+	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Asil</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Asil</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Asil</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
-	 * @see #setAsil(ASILLevel)
+	 * @return the value of the '<em>Asil</em>' containment reference.
+	 * @see #setAsil(ASIL)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_Asil()
-	 * @model
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASIL#getTarget
+	 * @model opposite="target" containment="true"
 	 * @generated
 	 */
-	ASILLevel getAsil();
+	ASIL getAsil();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Asil</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILLevel
+	 * @param value the new value of the '<em>Asil</em>' containment reference.
 	 * @see #getAsil()
 	 * @generated
 	 */
-	void setAsil(ASILLevel value);
+	void setAsil(ASIL value);
 
 } // Goal

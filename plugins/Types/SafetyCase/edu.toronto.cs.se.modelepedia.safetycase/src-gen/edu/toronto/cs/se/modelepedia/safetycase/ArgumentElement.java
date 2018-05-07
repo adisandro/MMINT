@@ -12,8 +12,6 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getDescription <em>Description</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatuses <em>Statuses</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}</li>
  * </ul>
  *
@@ -89,48 +86,31 @@ public interface ArgumentElement extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Statuses</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation}.
+	 * Returns the value of the '<em><b>Content Validity</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Statuses</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Content Validity</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Statuses</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Statuses()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ImpactAnnotation> getStatuses();
-
-	/**
-	 * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Content Validity</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content Validity</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
-	 * @see #setContentValidity(ValidityValue)
+	 * @return the value of the '<em>Content Validity</em>' containment reference.
+	 * @see #setContentValidity(ContentValidity)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_ContentValidity()
-	 * @model
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ContentValidity#getTarget
+	 * @model opposite="target" containment="true"
 	 * @generated
 	 */
-	ValidityValue getContentValidity();
+	ContentValidity getContentValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Content Validity</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @param value the new value of the '<em>Content Validity</em>' containment reference.
 	 * @see #getContentValidity()
 	 * @generated
 	 */
-	void setContentValidity(ValidityValue value);
+	void setContentValidity(ContentValidity value);
 
 } // ArgumentElement

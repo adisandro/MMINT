@@ -335,6 +335,98 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ElementValidity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ElementValidityItemProvider elementValidityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ElementValidity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createElementValidityAdapter() {
+		if (elementValidityItemProvider == null) {
+			elementValidityItemProvider = new ElementValidityItemProvider(this);
+		}
+
+		return elementValidityItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContentValidityItemProvider contentValidityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContentValidityAdapter() {
+		if (contentValidityItemProvider == null) {
+			contentValidityItemProvider = new ContentValidityItemProvider(this);
+		}
+
+		return contentValidityItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.StateValidity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateValidityItemProvider stateValidityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StateValidity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateValidityAdapter() {
+		if (stateValidityItemProvider == null) {
+			stateValidityItemProvider = new StateValidityItemProvider(this);
+		}
+
+		return stateValidityItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ASILItemProvider asilItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createASILAdapter() {
+		if (asilItemProvider == null) {
+			asilItemProvider = new ASILItemProvider(this);
+		}
+
+		return asilItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -444,6 +536,10 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (strategySupportedByItemProvider != null) strategySupportedByItemProvider.dispose();
 		if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
 		if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
+		if (elementValidityItemProvider != null) elementValidityItemProvider.dispose();
+		if (contentValidityItemProvider != null) contentValidityItemProvider.dispose();
+		if (stateValidityItemProvider != null) stateValidityItemProvider.dispose();
+		if (asilItemProvider != null) asilItemProvider.dispose();
 	}
 
 }

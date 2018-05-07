@@ -88,6 +88,13 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SafetyCasePackage.STATEFUL_ELEMENT: {
+				StatefulElement statefulElement = (StatefulElement)theEObject;
+				T result = caseStatefulElement(statefulElement);
+				if (result == null) result = caseArgumentElement(statefulElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SafetyCasePackage.CORE_ELEMENT: {
 				CoreElement coreElement = (CoreElement)theEObject;
 				T result = caseCoreElement(coreElement);
@@ -126,6 +133,7 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				Goal goal = (Goal)theEObject;
 				T result = caseGoal(goal);
 				if (result == null) result = caseDecomposableCoreElement(goal);
+				if (result == null) result = caseStatefulElement(goal);
 				if (result == null) result = caseCoreElement(goal);
 				if (result == null) result = caseArgumentElement(goal);
 				if (result == null) result = defaultCase(theEObject);
@@ -144,6 +152,7 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				Solution solution = (Solution)theEObject;
 				T result = caseSolution(solution);
 				if (result == null) result = caseCoreElement(solution);
+				if (result == null) result = caseStatefulElement(solution);
 				if (result == null) result = caseArgumentElement(solution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -204,6 +213,42 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SafetyCasePackage.IMPACTABLE: {
+				Impactable impactable = (Impactable)theEObject;
+				T result = caseImpactable(impactable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.ELEMENT_VALIDITY: {
+				ElementValidity elementValidity = (ElementValidity)theEObject;
+				T result = caseElementValidity(elementValidity);
+				if (result == null) result = caseImpactable(elementValidity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.CONTENT_VALIDITY: {
+				ContentValidity contentValidity = (ContentValidity)theEObject;
+				T result = caseContentValidity(contentValidity);
+				if (result == null) result = caseElementValidity(contentValidity);
+				if (result == null) result = caseImpactable(contentValidity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.STATE_VALIDITY: {
+				StateValidity stateValidity = (StateValidity)theEObject;
+				T result = caseStateValidity(stateValidity);
+				if (result == null) result = caseElementValidity(stateValidity);
+				if (result == null) result = caseImpactable(stateValidity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.ASIL: {
+				ASIL asil = (ASIL)theEObject;
+				T result = caseASIL(asil);
+				if (result == null) result = caseImpactable(asil);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -235,6 +280,21 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArgumentElement(ArgumentElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Stateful Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Stateful Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStatefulElement(StatefulElement object) {
 		return null;
 	}
 
@@ -460,6 +520,81 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Impactable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Impactable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImpactable(Impactable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Element Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Element Validity</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseElementValidity(ElementValidity object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Content Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Content Validity</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContentValidity(ContentValidity object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Validity</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateValidity(StateValidity object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ASIL</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ASIL</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseASIL(ASIL object) {
 		return null;
 	}
 
