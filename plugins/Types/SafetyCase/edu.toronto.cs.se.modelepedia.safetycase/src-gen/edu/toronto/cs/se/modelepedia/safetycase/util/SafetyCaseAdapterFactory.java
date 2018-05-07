@@ -106,6 +106,14 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createSupportedByAdapter();
 			}
 			@Override
+			public Adapter caseSupportedByDecomposable(SupportedByDecomposable object) {
+				return createSupportedByDecomposableAdapter();
+			}
+			@Override
+			public Adapter caseSupportedByCore(SupportedByCore object) {
+				return createSupportedByCoreAdapter();
+			}
+			@Override
 			public Adapter caseInContextOf(InContextOf object) {
 				return createInContextOfAdapter();
 			}
@@ -116,6 +124,14 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseStrategy(Strategy object) {
 				return createStrategyAdapter();
+			}
+			@Override
+			public Adapter caseBasicStrategy(BasicStrategy object) {
+				return createBasicStrategyAdapter();
+			}
+			@Override
+			public Adapter caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
+				return createASILDecompositionStrategyAdapter();
 			}
 			@Override
 			public Adapter caseSolution(Solution object) {
@@ -132,22 +148,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseJustification(Justification object) {
 				return createJustificationAdapter();
-			}
-			@Override
-			public Adapter caseGoalSupportedBy(GoalSupportedBy object) {
-				return createGoalSupportedByAdapter();
-			}
-			@Override
-			public Adapter caseStrategySupportedBy(StrategySupportedBy object) {
-				return createStrategySupportedByAdapter();
-			}
-			@Override
-			public Adapter caseBasicStrategy(BasicStrategy object) {
-				return createBasicStrategyAdapter();
-			}
-			@Override
-			public Adapter caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
-				return createASILDecompositionStrategyAdapter();
 			}
 			@Override
 			public Adapter caseImpactable(Impactable object) {
@@ -288,6 +288,34 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable <em>Supported By Decomposable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable
+	 * @generated
+	 */
+	public Adapter createSupportedByDecomposableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore <em>Supported By Core</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore
+	 * @generated
+	 */
+	public Adapter createSupportedByCoreAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf <em>In Context Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -326,6 +354,34 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy <em>Basic Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy
+	 * @generated
+	 */
+	public Adapter createBasicStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy <em>ASIL Decomposition Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy
+	 * @generated
+	 */
+	public Adapter createASILDecompositionStrategyAdapter() {
 		return null;
 	}
 
@@ -382,62 +438,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createJustificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy <em>Goal Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy
-	 * @generated
-	 */
-	public Adapter createGoalSupportedByAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy <em>Strategy Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy
-	 * @generated
-	 */
-	public Adapter createStrategySupportedByAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy <em>Basic Strategy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy
-	 * @generated
-	 */
-	public Adapter createBasicStrategyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy <em>ASIL Decomposition Strategy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy
-	 * @generated
-	 */
-	public Adapter createASILDecompositionStrategyAdapter() {
 		return null;
 	}
 

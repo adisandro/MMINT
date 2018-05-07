@@ -34,8 +34,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Goal extends DecomposableCoreElement, StatefulElement {
 	/**
 	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion <em>Conclusion</em>}'.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Supported By</em>' containment reference list isn't clear,
@@ -44,11 +43,10 @@ public interface Goal extends DecomposableCoreElement, StatefulElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supported By</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_SupportedBy()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy#getConclusion
-	 * @model opposite="conclusion" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<GoalSupportedBy> getSupportedBy();
+	EList<SupportedByDecomposable> getSupportedBy();
 
 	/**
 	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.

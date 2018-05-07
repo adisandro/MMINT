@@ -25,19 +25,19 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalSupportedByItemProvider extends SupportedByItemProvider {
+public class SupportedByDecomposableItemProvider extends SupportedByItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GoalSupportedByItemProvider(AdapterFactory adapterFactory) {
+	public SupportedByDecomposableItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,9 +68,9 @@ public class GoalSupportedByItemProvider extends SupportedByItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GoalSupportedBy_premise_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GoalSupportedBy_premise_feature", "_UI_GoalSupportedBy_type"),
-				 SafetyCasePackage.Literals.GOAL_SUPPORTED_BY__PREMISE,
+				 getString("_UI_SupportedByDecomposable_premise_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedByDecomposable_premise_feature", "_UI_SupportedByDecomposable_type"),
+				 SafetyCasePackage.Literals.SUPPORTED_BY_DECOMPOSABLE__PREMISE,
 				 true,
 				 false,
 				 true,
@@ -80,14 +80,14 @@ public class GoalSupportedByItemProvider extends SupportedByItemProvider {
 	}
 
 	/**
-	 * This returns GoalSupportedBy.gif.
+	 * This returns SupportedByDecomposable.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/GoalSupportedBy"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SupportedByDecomposable"));
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class GoalSupportedByItemProvider extends SupportedByItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_GoalSupportedBy_type");
+		return getString("_UI_SupportedByDecomposable_type");
 	}
 	
 

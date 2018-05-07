@@ -25,19 +25,19 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class StrategySupportedByItemProvider extends SupportedByItemProvider {
+public class SupportedByCoreItemProvider extends SupportedByItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StrategySupportedByItemProvider(AdapterFactory adapterFactory) {
+	public SupportedByCoreItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,9 +68,9 @@ public class StrategySupportedByItemProvider extends SupportedByItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StrategySupportedBy_premise_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StrategySupportedBy_premise_feature", "_UI_StrategySupportedBy_type"),
-				 SafetyCasePackage.Literals.STRATEGY_SUPPORTED_BY__PREMISE,
+				 getString("_UI_SupportedByCore_premise_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedByCore_premise_feature", "_UI_SupportedByCore_type"),
+				 SafetyCasePackage.Literals.SUPPORTED_BY_CORE__PREMISE,
 				 true,
 				 false,
 				 true,
@@ -80,14 +80,14 @@ public class StrategySupportedByItemProvider extends SupportedByItemProvider {
 	}
 
 	/**
-	 * This returns StrategySupportedBy.gif.
+	 * This returns SupportedByCore.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StrategySupportedBy"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SupportedByCore"));
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class StrategySupportedByItemProvider extends SupportedByItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_StrategySupportedBy_type");
+		return getString("_UI_SupportedByCore_type");
 	}
 	
 

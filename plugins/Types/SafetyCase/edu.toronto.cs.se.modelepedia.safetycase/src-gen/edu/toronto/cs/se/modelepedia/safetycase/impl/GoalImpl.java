@@ -14,10 +14,10 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
-import edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.StateValidity;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable;
 
 import java.util.Collection;
 
@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -68,7 +68,7 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GoalSupportedBy> supportedBy;
+	protected EList<SupportedByDecomposable> supportedBy;
 
 	/**
 	 * The cached value of the '{@link #getAsil() <em>Asil</em>}' containment reference.
@@ -147,9 +147,9 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GoalSupportedBy> getSupportedBy() {
+	public EList<SupportedByDecomposable> getSupportedBy() {
 		if (supportedBy == null) {
-			supportedBy = new EObjectContainmentWithInverseEList<GoalSupportedBy>(GoalSupportedBy.class, this, SafetyCasePackage.GOAL__SUPPORTED_BY, SafetyCasePackage.GOAL_SUPPORTED_BY__CONCLUSION);
+			supportedBy = new EObjectContainmentEList<SupportedByDecomposable>(SupportedByDecomposable.class, this, SafetyCasePackage.GOAL__SUPPORTED_BY);
 		}
 		return supportedBy;
 	}
@@ -202,7 +202,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -210,8 +209,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 				if (stateValidity != null)
 					msgs = ((InternalEObject)stateValidity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.GOAL__STATE_VALIDITY, null, msgs);
 				return basicSetStateValidity((StateValidity)otherEnd, msgs);
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
 			case SafetyCasePackage.GOAL__ASIL:
 				if (asil != null)
 					msgs = ((InternalEObject)asil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.GOAL__ASIL, null, msgs);
@@ -270,7 +267,7 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 				return;
 			case SafetyCasePackage.GOAL__SUPPORTED_BY:
 				getSupportedBy().clear();
-				getSupportedBy().addAll((Collection<? extends GoalSupportedBy>)newValue);
+				getSupportedBy().addAll((Collection<? extends SupportedByDecomposable>)newValue);
 				return;
 			case SafetyCasePackage.GOAL__ASIL:
 				setAsil((ASIL)newValue);

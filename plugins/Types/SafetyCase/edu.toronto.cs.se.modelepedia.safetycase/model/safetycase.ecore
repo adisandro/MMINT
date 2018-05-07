@@ -42,6 +42,14 @@
         upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedByDecomposable" eSuperTypes="#//SupportedBy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
+        eType="#//DecomposableCoreElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedByCore" eSuperTypes="#//SupportedBy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
+        eType="#//CoreElement"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InContextOf">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="#//ContextualElement" eOpposite="#//ContextualElement/contextOf"/>
@@ -50,13 +58,20 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//DecomposableCoreElement #//StatefulElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
-        eType="#//GoalSupportedBy" containment="true" eOpposite="#//GoalSupportedBy/conclusion"/>
+        eType="#//SupportedByDecomposable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true"
         eOpposite="#//ASIL/target"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//DecomposableCoreElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//DecomposableCoreElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
-        eType="#//StrategySupportedBy" containment="true" eOpposite="#//StrategySupportedBy/conclusion"/>
+        eType="#//SupportedByCore" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ASILDecompositionStrategy" eSuperTypes="#//Strategy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="2"
+        upperBound="2" eType="#//SupportedByDecomposable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedByIndependent"
+        lowerBound="1" eType="#//SupportedByDecomposable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//CoreElement #//StatefulElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ContextualElement"/>
@@ -82,20 +97,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Justification" eSuperTypes="#//ContextualElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GoalSupportedBy" eSuperTypes="#//SupportedBy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
-        eType="#//Goal" eOpposite="#//Goal/supportedBy"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
-        eType="#//DecomposableCoreElement"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StrategySupportedBy" eSuperTypes="#//SupportedBy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
-        eType="#//Strategy" eOpposite="#//Strategy/supportedBy"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
-        eType="#//CoreElement"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ASILDecompositionStrategy" eSuperTypes="#//Strategy"/>
   <eClassifiers xsi:type="ecore:EClass" name="Impactable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
         containment="true"/>

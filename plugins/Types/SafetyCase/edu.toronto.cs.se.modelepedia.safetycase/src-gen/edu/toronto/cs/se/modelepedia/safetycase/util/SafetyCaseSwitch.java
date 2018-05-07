@@ -123,6 +123,20 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SafetyCasePackage.SUPPORTED_BY_DECOMPOSABLE: {
+				SupportedByDecomposable supportedByDecomposable = (SupportedByDecomposable)theEObject;
+				T result = caseSupportedByDecomposable(supportedByDecomposable);
+				if (result == null) result = caseSupportedBy(supportedByDecomposable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.SUPPORTED_BY_CORE: {
+				SupportedByCore supportedByCore = (SupportedByCore)theEObject;
+				T result = caseSupportedByCore(supportedByCore);
+				if (result == null) result = caseSupportedBy(supportedByCore);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SafetyCasePackage.IN_CONTEXT_OF: {
 				InContextOf inContextOf = (InContextOf)theEObject;
 				T result = caseInContextOf(inContextOf);
@@ -145,6 +159,26 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(strategy);
 				if (result == null) result = caseCoreElement(strategy);
 				if (result == null) result = caseArgumentElement(strategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.BASIC_STRATEGY: {
+				BasicStrategy basicStrategy = (BasicStrategy)theEObject;
+				T result = caseBasicStrategy(basicStrategy);
+				if (result == null) result = caseStrategy(basicStrategy);
+				if (result == null) result = caseDecomposableCoreElement(basicStrategy);
+				if (result == null) result = caseCoreElement(basicStrategy);
+				if (result == null) result = caseArgumentElement(basicStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: {
+				ASILDecompositionStrategy asilDecompositionStrategy = (ASILDecompositionStrategy)theEObject;
+				T result = caseASILDecompositionStrategy(asilDecompositionStrategy);
+				if (result == null) result = caseStrategy(asilDecompositionStrategy);
+				if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
+				if (result == null) result = caseCoreElement(asilDecompositionStrategy);
+				if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,40 +210,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				T result = caseJustification(justification);
 				if (result == null) result = caseContextualElement(justification);
 				if (result == null) result = caseArgumentElement(justification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.GOAL_SUPPORTED_BY: {
-				GoalSupportedBy goalSupportedBy = (GoalSupportedBy)theEObject;
-				T result = caseGoalSupportedBy(goalSupportedBy);
-				if (result == null) result = caseSupportedBy(goalSupportedBy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.STRATEGY_SUPPORTED_BY: {
-				StrategySupportedBy strategySupportedBy = (StrategySupportedBy)theEObject;
-				T result = caseStrategySupportedBy(strategySupportedBy);
-				if (result == null) result = caseSupportedBy(strategySupportedBy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.BASIC_STRATEGY: {
-				BasicStrategy basicStrategy = (BasicStrategy)theEObject;
-				T result = caseBasicStrategy(basicStrategy);
-				if (result == null) result = caseStrategy(basicStrategy);
-				if (result == null) result = caseDecomposableCoreElement(basicStrategy);
-				if (result == null) result = caseCoreElement(basicStrategy);
-				if (result == null) result = caseArgumentElement(basicStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: {
-				ASILDecompositionStrategy asilDecompositionStrategy = (ASILDecompositionStrategy)theEObject;
-				T result = caseASILDecompositionStrategy(asilDecompositionStrategy);
-				if (result == null) result = caseStrategy(asilDecompositionStrategy);
-				if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
-				if (result == null) result = caseCoreElement(asilDecompositionStrategy);
-				if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -359,6 +359,36 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Supported By Decomposable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Supported By Decomposable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSupportedByDecomposable(SupportedByDecomposable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Supported By Core</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Supported By Core</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSupportedByCore(SupportedByCore object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>In Context Of</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -400,6 +430,36 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStrategy(Strategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBasicStrategy(BasicStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
 		return null;
 	}
 
@@ -460,66 +520,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseJustification(Justification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Goal Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Goal Supported By</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGoalSupportedBy(GoalSupportedBy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Strategy Supported By</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Strategy Supported By</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStrategySupportedBy(StrategySupportedBy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBasicStrategy(BasicStrategy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
 		return null;
 	}
 

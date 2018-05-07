@@ -12,52 +12,47 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Basic Strategy</b></em>'.
+ * An implementation of the model object '<em><b>Supported By Core</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.BasicStrategyImpl#getSupportedBy <em>Supported By</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByCoreImpl#getPremise <em>Premise</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
+public class SupportedByCoreImpl extends SupportedByImpl implements SupportedByCore {
 	/**
-	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
+	 * The cached value of the '{@link #getPremise() <em>Premise</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSupportedBy()
+	 * @see #getPremise()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SupportedByCore> supportedBy;
+	protected CoreElement premise;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BasicStrategyImpl() {
+	protected SupportedByCoreImpl() {
 		super();
 	}
 
@@ -68,7 +63,7 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.BASIC_STRATEGY;
+		return SafetyCasePackage.Literals.SUPPORTED_BY_CORE;
 	}
 
 	/**
@@ -76,11 +71,16 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SupportedByCore> getSupportedBy() {
-		if (supportedBy == null) {
-			supportedBy = new EObjectContainmentEList<SupportedByCore>(SupportedByCore.class, this, SafetyCasePackage.BASIC_STRATEGY__SUPPORTED_BY);
+	public CoreElement getPremise() {
+		if (premise != null && premise.eIsProxy()) {
+			InternalEObject oldPremise = (InternalEObject)premise;
+			premise = (CoreElement)eResolveProxy(oldPremise);
+			if (premise != oldPremise) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SafetyCasePackage.SUPPORTED_BY_CORE__PREMISE, oldPremise, premise));
+			}
 		}
-		return supportedBy;
+		return premise;
 	}
 
 	/**
@@ -88,13 +88,20 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SafetyCasePackage.BASIC_STRATEGY__SUPPORTED_BY:
-				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public CoreElement basicGetPremise() {
+		return premise;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPremise(CoreElement newPremise) {
+		CoreElement oldPremise = premise;
+		premise = newPremise;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY_CORE__PREMISE, oldPremise, premise));
 	}
 
 	/**
@@ -105,8 +112,9 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.BASIC_STRATEGY__SUPPORTED_BY:
-				return getSupportedBy();
+			case SafetyCasePackage.SUPPORTED_BY_CORE__PREMISE:
+				if (resolve) return getPremise();
+				return basicGetPremise();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,13 +124,11 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.BASIC_STRATEGY__SUPPORTED_BY:
-				getSupportedBy().clear();
-				getSupportedBy().addAll((Collection<? extends SupportedByCore>)newValue);
+			case SafetyCasePackage.SUPPORTED_BY_CORE__PREMISE:
+				setPremise((CoreElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,8 +142,8 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.BASIC_STRATEGY__SUPPORTED_BY:
-				getSupportedBy().clear();
+			case SafetyCasePackage.SUPPORTED_BY_CORE__PREMISE:
+				setPremise((CoreElement)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,10 +157,10 @@ public class BasicStrategyImpl extends StrategyImpl implements BasicStrategy {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.BASIC_STRATEGY__SUPPORTED_BY:
-				return supportedBy != null && !supportedBy.isEmpty();
+			case SafetyCasePackage.SUPPORTED_BY_CORE__PREMISE:
+				return premise != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //BasicStrategyImpl
+} //SupportedByCoreImpl

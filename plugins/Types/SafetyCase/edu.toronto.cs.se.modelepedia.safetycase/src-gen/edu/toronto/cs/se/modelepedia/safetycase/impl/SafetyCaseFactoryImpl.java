@@ -68,16 +68,16 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SafetyCasePackage.SAFETY_CASE: return createSafetyCase();
+			case SafetyCasePackage.SUPPORTED_BY_DECOMPOSABLE: return createSupportedByDecomposable();
+			case SafetyCasePackage.SUPPORTED_BY_CORE: return createSupportedByCore();
 			case SafetyCasePackage.IN_CONTEXT_OF: return createInContextOf();
 			case SafetyCasePackage.GOAL: return createGoal();
+			case SafetyCasePackage.BASIC_STRATEGY: return createBasicStrategy();
+			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
 			case SafetyCasePackage.SOLUTION: return createSolution();
 			case SafetyCasePackage.CONTEXT: return createContext();
 			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
 			case SafetyCasePackage.JUSTIFICATION: return createJustification();
-			case SafetyCasePackage.GOAL_SUPPORTED_BY: return createGoalSupportedBy();
-			case SafetyCasePackage.STRATEGY_SUPPORTED_BY: return createStrategySupportedBy();
-			case SafetyCasePackage.BASIC_STRATEGY: return createBasicStrategy();
-			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
 			case SafetyCasePackage.ELEMENT_VALIDITY: return createElementValidity();
 			case SafetyCasePackage.CONTENT_VALIDITY: return createContentValidity();
 			case SafetyCasePackage.STATE_VALIDITY: return createStateValidity();
@@ -140,6 +140,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SupportedByDecomposable createSupportedByDecomposable() {
+		SupportedByDecomposableImpl supportedByDecomposable = new SupportedByDecomposableImpl();
+		return supportedByDecomposable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SupportedByCore createSupportedByCore() {
+		SupportedByCoreImpl supportedByCore = new SupportedByCoreImpl();
+		return supportedByCore;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InContextOf createInContextOf() {
 		InContextOfImpl inContextOf = new InContextOfImpl();
 		return inContextOf;
@@ -153,6 +173,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public Goal createGoal() {
 		GoalImpl goal = new GoalImpl();
 		return goal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BasicStrategy createBasicStrategy() {
+		BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
+		return basicStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ASILDecompositionStrategy createASILDecompositionStrategy() {
+		ASILDecompositionStrategyImpl asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
+		return asilDecompositionStrategy;
 	}
 
 	/**
@@ -193,46 +233,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public Justification createJustification() {
 		JustificationImpl justification = new JustificationImpl();
 		return justification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GoalSupportedBy createGoalSupportedBy() {
-		GoalSupportedByImpl goalSupportedBy = new GoalSupportedByImpl();
-		return goalSupportedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StrategySupportedBy createStrategySupportedBy() {
-		StrategySupportedByImpl strategySupportedBy = new StrategySupportedByImpl();
-		return strategySupportedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BasicStrategy createBasicStrategy() {
-		BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
-		return basicStrategy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ASILDecompositionStrategy createASILDecompositionStrategy() {
-		ASILDecompositionStrategyImpl asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
-		return asilDecompositionStrategy;
 	}
 
 	/**

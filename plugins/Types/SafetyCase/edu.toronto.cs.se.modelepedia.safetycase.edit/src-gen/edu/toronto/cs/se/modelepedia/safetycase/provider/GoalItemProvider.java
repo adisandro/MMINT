@@ -158,7 +158,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
+				 SafetyCaseFactory.eINSTANCE.createSupportedByDecomposable()));
 
 		newChildDescriptors.add
 			(createChildParameter
