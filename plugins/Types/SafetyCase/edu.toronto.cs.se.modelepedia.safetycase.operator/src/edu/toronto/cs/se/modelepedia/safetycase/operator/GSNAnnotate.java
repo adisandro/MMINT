@@ -32,13 +32,12 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.Impactable;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 
@@ -98,8 +97,8 @@ public class GSNAnnotate extends OperatorImpl {
         Resource scResource = scRoot.eResource();
 
         // Extract all argument elements that requires revision and prepare to extract their causes.
-        Set<ArgumentElement> scReviseObjs = new HashSet<>();
-        Map<ArgumentElement, String> scRevise2impactSrcs = new HashMap<>();
+        Set<Impactable> scReviseObjs = new HashSet<>();
+        Map<Impactable, String> scRevise2impactSrcs = new HashMap<>();
         for (ModelElementReference scReviseElemRef : reviseRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
             EObject reviseObj;
             try {
@@ -110,9 +109,9 @@ public class GSNAnnotate extends OperatorImpl {
                                                       scReviseElemRef.getObject().getName(), e);
                 continue;
             }
-            if (reviseObj instanceof ArgumentElement) {
-                scReviseObjs.add((ArgumentElement) reviseObj);
-                scRevise2impactSrcs.put((ArgumentElement) reviseObj, "");
+            if (reviseObj instanceof Impactable) {
+                scReviseObjs.add((Impactable) reviseObj);
+                scRevise2impactSrcs.put((Impactable) reviseObj, "");
             }
         }
         
@@ -132,20 +131,20 @@ public class GSNAnnotate extends OperatorImpl {
         		}
         		
         		
-        		if (reviseObj instanceof ArgumentElement) {
+        		if (reviseObj instanceof Impactable) {
         			if (scRevise2impactSrcs.get(reviseObj).equals("")) {
-        				scRevise2impactSrcs.put((ArgumentElement) reviseObj, impactSrc);
+        				scRevise2impactSrcs.put((Impactable) reviseObj, impactSrc);
         			} else {
             			String srcString = scRevise2impactSrcs.get(reviseObj).concat(", " + impactSrc);
-            			scRevise2impactSrcs.put((ArgumentElement) reviseObj, srcString);        				
+            			scRevise2impactSrcs.put((Impactable) reviseObj, srcString);        				
         			}
         		}
         	}
         }
 
         // Extract all argument elements that requires rechecking and prepare to extract their causes.
-        Set<ArgumentElement> scRecheckObjs = new HashSet<>();
-        Map<ArgumentElement, String> scRecheck2impactSrcs = new HashMap<>();
+        Set<Impactable> scRecheckObjs = new HashSet<>();
+        Map<Impactable, String> scRecheck2impactSrcs = new HashMap<>();
         for (ModelElementReference scRecheckElemRef: recheckRel.getModelEndpointRefs().get(0).getModelElemRefs()) {
             EObject recheckObj;
             try {
@@ -156,9 +155,9 @@ public class GSNAnnotate extends OperatorImpl {
                                                       scRecheckElemRef.getObject().getName(), e);
                 continue;
             }
-            if (recheckObj instanceof ArgumentElement && !scReviseObjs.contains(recheckObj)) {
-                scRecheckObjs.add((ArgumentElement) recheckObj);
-                scRecheck2impactSrcs.put((ArgumentElement) recheckObj, "");
+            if (recheckObj instanceof Impactable && !scReviseObjs.contains(recheckObj)) {
+                scRecheckObjs.add((Impactable) recheckObj);
+                scRecheck2impactSrcs.put((Impactable) recheckObj, "");
             }
         }
         
@@ -178,13 +177,13 @@ public class GSNAnnotate extends OperatorImpl {
         		}
         		
         		
-        		if (recheckObj instanceof ArgumentElement) {
+        		if (recheckObj instanceof Impactable) {
         			if (scRecheck2impactSrcs.containsKey(recheckObj)) {
         				if (scRecheck2impactSrcs.get(recheckObj).equals("")) {
-        					scRecheck2impactSrcs.put((ArgumentElement) recheckObj, impactSrc);
+        					scRecheck2impactSrcs.put((Impactable) recheckObj, impactSrc);
         				} else {
         					String srcString = scRecheck2impactSrcs.get(recheckObj).concat(", " + impactSrc);
-        					scRecheck2impactSrcs.put((ArgumentElement) recheckObj, srcString);        				
+        					scRecheck2impactSrcs.put((Impactable) recheckObj, srcString);        				
         				}
         			}
         		}
@@ -195,7 +194,7 @@ public class GSNAnnotate extends OperatorImpl {
         Iterator<EObject> scIter = scRoot.eAllContents();
         while (scIter.hasNext()) {
             EObject scObj = scIter.next();
-            if (!(scObj instanceof ArgumentElement)) {
+            if (!(scObj instanceof Impactable)) {
                 continue;
             }
             
@@ -203,17 +202,17 @@ public class GSNAnnotate extends OperatorImpl {
             if (scReviseObjs.contains(scObj)) {
             	annotation.setType(ImpactType.REVISE);
             	annotation.setSource(scRevise2impactSrcs.get(scObj));
-                ((ArgumentElement) scObj).setStatus(annotation);
+                ((Impactable) scObj).setStatus(annotation);
             }
             else if (scRecheckObjs.contains(scObj)) {
             	annotation.setType(ImpactType.RECHECK); 
             	annotation.setSource(scRecheck2impactSrcs.get(scObj));
-                ((ArgumentElement) scObj).setStatus(annotation);
+                ((Impactable) scObj).setStatus(annotation);
             }
             else {
             	annotation.setType(ImpactType.REUSE);
             	annotation.setSource("Not applicable.");
-                ((ArgumentElement) scObj).setStatus(annotation);
+                ((Impactable) scObj).setStatus(annotation);
             }
         }
 

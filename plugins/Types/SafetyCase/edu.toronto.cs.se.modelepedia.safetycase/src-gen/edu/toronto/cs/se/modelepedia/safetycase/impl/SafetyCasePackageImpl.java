@@ -23,7 +23,6 @@ import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ElementValidity;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
-import edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.Impactable;
@@ -36,7 +35,6 @@ import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.StateValidity;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
-import edu.toronto.cs.se.modelepedia.safetycase.StrategySupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
@@ -130,6 +128,20 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass basicStrategyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass asilDecompositionStrategyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass solutionEClass = null;
 
 	/**
@@ -152,34 +164,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * @generated
 	 */
 	private EClass justificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass goalSupportedByEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass strategySupportedByEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass basicStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass asilDecompositionStrategyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -447,6 +431,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDecomposableCoreElement_SupportedBy() {
+		return (EReference)decomposableCoreElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getContextualElement() {
 		return contextualElementEClass;
 	}
@@ -467,6 +460,24 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 */
 	public EClass getSupportedBy() {
 		return supportedByEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSupportedBy_Conclusion() {
+		return (EReference)supportedByEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSupportedBy_Premise() {
+		return (EReference)supportedByEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -510,17 +521,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGoal_SupportedBy() {
-		return (EReference)goalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getGoal_Asil() {
-		return (EReference)goalEClass.getEStructuralFeatures().get(1);
+		return (EReference)goalEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -537,8 +539,17 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStrategy_SupportedBy() {
-		return (EReference)strategyEClass.getEStructuralFeatures().get(0);
+	public EClass getBasicStrategy() {
+		return basicStrategyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getASILDecompositionStrategy() {
+		return asilDecompositionStrategyEClass;
 	}
 
 	/**
@@ -593,78 +604,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 */
 	public EClass getJustification() {
 		return justificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getGoalSupportedBy() {
-		return goalSupportedByEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGoalSupportedBy_Conclusion() {
-		return (EReference)goalSupportedByEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGoalSupportedBy_Premise() {
-		return (EReference)goalSupportedByEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStrategySupportedBy() {
-		return strategySupportedByEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStrategySupportedBy_Conclusion() {
-		return (EReference)strategySupportedByEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStrategySupportedBy_Premise() {
-		return (EReference)strategySupportedByEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBasicStrategy() {
-		return basicStrategyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getASILDecompositionStrategy() {
-		return asilDecompositionStrategyEClass;
 	}
 
 	/**
@@ -841,22 +780,27 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		decomposableCoreElementEClass = createEClass(DECOMPOSABLE_CORE_ELEMENT);
 		createEReference(decomposableCoreElementEClass, DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
+		createEReference(decomposableCoreElementEClass, DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY);
 
 		contextualElementEClass = createEClass(CONTEXTUAL_ELEMENT);
 		createEReference(contextualElementEClass, CONTEXTUAL_ELEMENT__CONTEXT_OF);
 
 		supportedByEClass = createEClass(SUPPORTED_BY);
+		createEReference(supportedByEClass, SUPPORTED_BY__CONCLUSION);
+		createEReference(supportedByEClass, SUPPORTED_BY__PREMISE);
 
 		inContextOfEClass = createEClass(IN_CONTEXT_OF);
 		createEReference(inContextOfEClass, IN_CONTEXT_OF__CONTEXT);
 		createEReference(inContextOfEClass, IN_CONTEXT_OF__CONTEXT_OF);
 
 		goalEClass = createEClass(GOAL);
-		createEReference(goalEClass, GOAL__SUPPORTED_BY);
 		createEReference(goalEClass, GOAL__ASIL);
 
 		strategyEClass = createEClass(STRATEGY);
-		createEReference(strategyEClass, STRATEGY__SUPPORTED_BY);
+
+		basicStrategyEClass = createEClass(BASIC_STRATEGY);
+
+		asilDecompositionStrategyEClass = createEClass(ASIL_DECOMPOSITION_STRATEGY);
 
 		solutionEClass = createEClass(SOLUTION);
 
@@ -867,18 +811,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		createEAttribute(impactAnnotationEClass, IMPACT_ANNOTATION__SOURCE);
 
 		justificationEClass = createEClass(JUSTIFICATION);
-
-		goalSupportedByEClass = createEClass(GOAL_SUPPORTED_BY);
-		createEReference(goalSupportedByEClass, GOAL_SUPPORTED_BY__CONCLUSION);
-		createEReference(goalSupportedByEClass, GOAL_SUPPORTED_BY__PREMISE);
-
-		strategySupportedByEClass = createEClass(STRATEGY_SUPPORTED_BY);
-		createEReference(strategySupportedByEClass, STRATEGY_SUPPORTED_BY__CONCLUSION);
-		createEReference(strategySupportedByEClass, STRATEGY_SUPPORTED_BY__PREMISE);
-
-		basicStrategyEClass = createEClass(BASIC_STRATEGY);
-
-		asilDecompositionStrategyEClass = createEClass(ASIL_DECOMPOSITION_STRATEGY);
 
 		impactableEClass = createEClass(IMPACTABLE);
 		createEReference(impactableEClass, IMPACTABLE__STATUS);
@@ -937,14 +869,12 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		goalEClass.getESuperTypes().add(this.getDecomposableCoreElement());
 		goalEClass.getESuperTypes().add(this.getStatefulElement());
 		strategyEClass.getESuperTypes().add(this.getDecomposableCoreElement());
+		basicStrategyEClass.getESuperTypes().add(this.getStrategy());
+		asilDecompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
 		solutionEClass.getESuperTypes().add(this.getCoreElement());
 		solutionEClass.getESuperTypes().add(this.getStatefulElement());
 		contextEClass.getESuperTypes().add(this.getContextualElement());
 		justificationEClass.getESuperTypes().add(this.getContextualElement());
-		goalSupportedByEClass.getESuperTypes().add(this.getSupportedBy());
-		strategySupportedByEClass.getESuperTypes().add(this.getSupportedBy());
-		basicStrategyEClass.getESuperTypes().add(this.getStrategy());
-		asilDecompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
 		elementValidityEClass.getESuperTypes().add(this.getImpactable());
 		contentValidityEClass.getESuperTypes().add(this.getElementValidity());
 		stateValidityEClass.getESuperTypes().add(this.getElementValidity());
@@ -967,26 +897,31 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEReference(getStatefulElement_StateValidity(), this.getStateValidity(), this.getStateValidity_Target(), "stateValidity", null, 0, 1, StatefulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coreElementEClass, CoreElement.class, "CoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCoreElement_Supports(), this.getSupportedBy(), null, "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCoreElement_Supports(), this.getSupportedBy(), this.getSupportedBy_Premise(), "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(decomposableCoreElementEClass, DecomposableCoreElement.class, "DecomposableCoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDecomposableCoreElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, DecomposableCoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDecomposableCoreElement_SupportedBy(), this.getSupportedBy(), this.getSupportedBy_Conclusion(), "supportedBy", null, 0, -1, DecomposableCoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextualElementEClass, ContextualElement.class, "ContextualElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, ContextualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(supportedByEClass, SupportedBy.class, "SupportedBy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(supportedByEClass, SupportedBy.class, "SupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSupportedBy_Conclusion(), this.getDecomposableCoreElement(), this.getDecomposableCoreElement_SupportedBy(), "conclusion", null, 1, 1, SupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSupportedBy_Premise(), this.getCoreElement(), this.getCoreElement_Supports(), "premise", null, 1, 1, SupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inContextOfEClass, InContextOf.class, "InContextOf", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInContextOf_Context(), this.getContextualElement(), this.getContextualElement_ContextOf(), "context", null, 1, 1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInContextOf_ContextOf(), this.getDecomposableCoreElement(), this.getDecomposableCoreElement_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGoal_SupportedBy(), this.getGoalSupportedBy(), this.getGoalSupportedBy_Conclusion(), "supportedBy", null, 0, -1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGoal_Asil(), this.getASIL(), this.getASIL_Target(), "asil", null, 0, 1, Goal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(strategyEClass, Strategy.class, "Strategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStrategy_SupportedBy(), this.getStrategySupportedBy(), this.getStrategySupportedBy_Conclusion(), "supportedBy", null, 0, -1, Strategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(basicStrategyEClass, BasicStrategy.class, "BasicStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(asilDecompositionStrategyEClass, ASILDecompositionStrategy.class, "ASILDecompositionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -997,18 +932,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEAttribute(getImpactAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, ImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(justificationEClass, Justification.class, "Justification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(goalSupportedByEClass, GoalSupportedBy.class, "GoalSupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGoalSupportedBy_Conclusion(), this.getGoal(), this.getGoal_SupportedBy(), "conclusion", null, 1, 1, GoalSupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGoalSupportedBy_Premise(), this.getDecomposableCoreElement(), null, "premise", null, 1, 1, GoalSupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(strategySupportedByEClass, StrategySupportedBy.class, "StrategySupportedBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStrategySupportedBy_Conclusion(), this.getStrategy(), this.getStrategy_SupportedBy(), "conclusion", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStrategySupportedBy_Premise(), this.getCoreElement(), null, "premise", null, 1, 1, StrategySupportedBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(basicStrategyEClass, BasicStrategy.class, "BasicStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(asilDecompositionStrategyEClass, ASILDecompositionStrategy.class, "ASILDecompositionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(impactableEClass, Impactable.class, "Impactable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImpactable_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, Impactable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

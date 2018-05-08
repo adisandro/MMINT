@@ -73,7 +73,6 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY);
-			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY);
 			childrenFeatures.add(SafetyCasePackage.Literals.GOAL__ASIL);
 		}
 		return childrenFeatures;
@@ -131,7 +130,6 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		switch (notification.getFeatureID(Goal.class)) {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
 			case SafetyCasePackage.GOAL__ASIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -154,11 +152,6 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 			(createChildParameter
 				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
 				 SafetyCaseFactory.eINSTANCE.createStateValidity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.GOAL__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createGoalSupportedBy()));
 
 		newChildDescriptors.add
 			(createChildParameter

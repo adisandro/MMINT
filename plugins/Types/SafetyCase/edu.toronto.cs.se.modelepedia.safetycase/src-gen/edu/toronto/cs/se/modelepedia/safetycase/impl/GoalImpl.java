@@ -14,25 +14,17 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
-import edu.toronto.cs.se.modelepedia.safetycase.GoalSupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.StateValidity;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalImpl#getStateValidity <em>State Validity</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalImpl#getSupportedBy <em>Supported By</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalImpl#getAsil <em>Asil</em>}</li>
  * </ul>
  *
@@ -59,16 +50,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * @ordered
 	 */
 	protected StateValidity stateValidity;
-
-	/**
-	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSupportedBy()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GoalSupportedBy> supportedBy;
 
 	/**
 	 * The cached value of the '{@link #getAsil() <em>Asil</em>}' containment reference.
@@ -147,18 +128,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GoalSupportedBy> getSupportedBy() {
-		if (supportedBy == null) {
-			supportedBy = new EObjectContainmentWithInverseEList<GoalSupportedBy>(GoalSupportedBy.class, this, SafetyCasePackage.GOAL__SUPPORTED_BY, SafetyCasePackage.GOAL_SUPPORTED_BY__CONCLUSION);
-		}
-		return supportedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ASIL getAsil() {
 		return asil;
 	}
@@ -202,7 +171,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -210,8 +178,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 				if (stateValidity != null)
 					msgs = ((InternalEObject)stateValidity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.GOAL__STATE_VALIDITY, null, msgs);
 				return basicSetStateValidity((StateValidity)otherEnd, msgs);
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
 			case SafetyCasePackage.GOAL__ASIL:
 				if (asil != null)
 					msgs = ((InternalEObject)asil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.GOAL__ASIL, null, msgs);
@@ -230,8 +196,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 		switch (featureID) {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				return basicSetStateValidity(null, msgs);
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
 			case SafetyCasePackage.GOAL__ASIL:
 				return basicSetAsil(null, msgs);
 		}
@@ -248,8 +212,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 		switch (featureID) {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				return getStateValidity();
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				return getSupportedBy();
 			case SafetyCasePackage.GOAL__ASIL:
 				return getAsil();
 		}
@@ -261,16 +223,11 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				setStateValidity((StateValidity)newValue);
-				return;
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				getSupportedBy().clear();
-				getSupportedBy().addAll((Collection<? extends GoalSupportedBy>)newValue);
 				return;
 			case SafetyCasePackage.GOAL__ASIL:
 				setAsil((ASIL)newValue);
@@ -290,9 +247,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				setStateValidity((StateValidity)null);
 				return;
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				getSupportedBy().clear();
-				return;
 			case SafetyCasePackage.GOAL__ASIL:
 				setAsil((ASIL)null);
 				return;
@@ -310,8 +264,6 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 		switch (featureID) {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				return stateValidity != null;
-			case SafetyCasePackage.GOAL__SUPPORTED_BY:
-				return supportedBy != null && !supportedBy.isEmpty();
 			case SafetyCasePackage.GOAL__ASIL:
 				return asil != null;
 		}

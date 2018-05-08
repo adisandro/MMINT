@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 import java.util.Collection;
 
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DecomposableCoreElementImpl#getInContextOf <em>In Context Of</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.DecomposableCoreElementImpl#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +53,16 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	 * @ordered
 	 */
 	protected EList<InContextOf> inContextOf;
+
+	/**
+	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSupportedBy()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SupportedBy> supportedBy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,12 +100,26 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<SupportedBy> getSupportedBy() {
+		if (supportedBy == null) {
+			supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, SafetyCasePackage.SUPPORTED_BY__CONCLUSION);
+		}
+		return supportedBy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInContextOf()).basicAdd(otherEnd, msgs);
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -108,6 +134,8 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 		switch (featureID) {
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -122,6 +150,8 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 		switch (featureID) {
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				return getInContextOf();
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+				return getSupportedBy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,6 +169,10 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 				getInContextOf().clear();
 				getInContextOf().addAll((Collection<? extends InContextOf>)newValue);
 				return;
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+				getSupportedBy().clear();
+				getSupportedBy().addAll((Collection<? extends SupportedBy>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -154,6 +188,9 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				getInContextOf().clear();
 				return;
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+				getSupportedBy().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -168,6 +205,8 @@ public abstract class DecomposableCoreElementImpl extends CoreElementImpl implem
 		switch (featureID) {
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				return inContextOf != null && !inContextOf.isEmpty();
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+				return supportedBy != null && !supportedBy.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

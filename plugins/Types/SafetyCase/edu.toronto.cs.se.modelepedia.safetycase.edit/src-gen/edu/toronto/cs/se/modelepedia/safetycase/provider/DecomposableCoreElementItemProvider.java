@@ -73,6 +73,7 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
+			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY);
 		}
 		return childrenFeatures;
 	}
@@ -118,6 +119,7 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 
 		switch (notification.getFeatureID(DecomposableCoreElement.class)) {
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -139,6 +141,11 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
 				 SafetyCaseFactory.eINSTANCE.createInContextOf()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
 	}
 
 }
