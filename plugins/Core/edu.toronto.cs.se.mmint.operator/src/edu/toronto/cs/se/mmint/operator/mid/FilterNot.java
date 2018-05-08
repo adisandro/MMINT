@@ -18,9 +18,9 @@ import edu.toronto.cs.se.mmint.mid.Model;
 public class FilterNot extends Filter {
 
     @Override
-    protected boolean isFiltered(@NonNull Model model, @NonNull Model filterModelType) {
+    protected boolean isFiltered(@NonNull Model model) {
 
-        return !super.isFiltered(model, filterModelType);
+        return !super.isFiltered(model);
     }
 
 }
