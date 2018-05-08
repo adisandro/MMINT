@@ -41,24 +41,6 @@ public interface SafetyCaseFactory extends EFactory {
 	SafetyCase createSafetyCase();
 
 	/**
-	 * Returns a new object of class '<em>Supported By Decomposable</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Supported By Decomposable</em>'.
-	 * @generated
-	 */
-	SupportedByDecomposable createSupportedByDecomposable();
-
-	/**
-	 * Returns a new object of class '<em>Supported By Core</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Supported By Core</em>'.
-	 * @generated
-	 */
-	SupportedByCore createSupportedByCore();
-
-	/**
 	 * Returns a new object of class '<em>In Context Of</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -123,20 +123,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SafetyCasePackage.SUPPORTED_BY_DECOMPOSABLE: {
-				SupportedByDecomposable supportedByDecomposable = (SupportedByDecomposable)theEObject;
-				T result = caseSupportedByDecomposable(supportedByDecomposable);
-				if (result == null) result = caseSupportedBy(supportedByDecomposable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.SUPPORTED_BY_CORE: {
-				SupportedByCore supportedByCore = (SupportedByCore)theEObject;
-				T result = caseSupportedByCore(supportedByCore);
-				if (result == null) result = caseSupportedBy(supportedByCore);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SafetyCasePackage.IN_CONTEXT_OF: {
 				InContextOf inContextOf = (InContextOf)theEObject;
 				T result = caseInContextOf(inContextOf);
@@ -355,36 +341,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSupportedBy(SupportedBy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Supported By Decomposable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Supported By Decomposable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSupportedByDecomposable(SupportedByDecomposable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Supported By Core</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Supported By Core</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSupportedByCore(SupportedByCore object) {
 		return null;
 	}
 

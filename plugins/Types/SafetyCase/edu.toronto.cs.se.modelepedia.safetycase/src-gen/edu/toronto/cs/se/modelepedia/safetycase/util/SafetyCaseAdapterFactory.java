@@ -106,14 +106,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createSupportedByAdapter();
 			}
 			@Override
-			public Adapter caseSupportedByDecomposable(SupportedByDecomposable object) {
-				return createSupportedByDecomposableAdapter();
-			}
-			@Override
-			public Adapter caseSupportedByCore(SupportedByCore object) {
-				return createSupportedByCoreAdapter();
-			}
-			@Override
 			public Adapter caseInContextOf(InContextOf object) {
 				return createInContextOfAdapter();
 			}
@@ -284,34 +276,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSupportedByAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable <em>Supported By Decomposable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable
-	 * @generated
-	 */
-	public Adapter createSupportedByDecomposableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore <em>Supported By Core</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore
-	 * @generated
-	 */
-	public Adapter createSupportedByCoreAdapter() {
 		return null;
 	}
 

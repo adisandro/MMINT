@@ -12,7 +12,6 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}</li>
  * </ul>
  *
@@ -32,22 +30,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Goal extends DecomposableCoreElement, StatefulElement {
-	/**
-	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supported By</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supported By</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal_SupportedBy()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<SupportedByDecomposable> getSupportedBy();
-
 	/**
 	 * Returns the value of the '<em><b>Asil</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getTarget <em>Target</em>}'.

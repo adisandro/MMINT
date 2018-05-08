@@ -18,11 +18,15 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,9 +78,38 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 */
 	public EList<SupportedBy> getSupports() {
 		if (supports == null) {
-			supports = new EObjectResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS);
+			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__PREMISE);
 		}
 		return supports;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
+				return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -30,25 +30,24 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1"
-        eType="#//SupportedBy"/>
+        eType="#//SupportedBy" eOpposite="#//SupportedBy/premise"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true"
       eSuperTypes="#//CoreElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
+        eType="#//SupportedBy" containment="true" eOpposite="#//SupportedBy/conclusion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextualElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
         upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SupportedByDecomposable" eSuperTypes="#//SupportedBy">
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
+        eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/supportedBy"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
-        eType="#//DecomposableCoreElement"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SupportedByCore" eSuperTypes="#//SupportedBy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"
-        eType="#//CoreElement"/>
+        eType="#//CoreElement" eOpposite="#//CoreElement/supports"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InContextOf">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
@@ -57,22 +56,12 @@
         eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/inContextOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//DecomposableCoreElement #//StatefulElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
-        eType="#//SupportedByDecomposable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true"
         eOpposite="#//ASIL/target"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//DecomposableCoreElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
-        eType="#//SupportedByCore" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ASILDecompositionStrategy" eSuperTypes="#//Strategy">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="2"
-        upperBound="2" eType="#//SupportedByDecomposable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedByIndependent"
-        lowerBound="1" eType="#//SupportedByDecomposable"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ASILDecompositionStrategy" eSuperTypes="#//Strategy"/>
   <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//CoreElement #//StatefulElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ContextualElement"/>
   <eClassifiers xsi:type="ecore:EEnum" name="ASILLevel">

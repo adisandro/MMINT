@@ -379,13 +379,22 @@ public interface SafetyCasePackage extends EPackage {
 	int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = CORE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Decomposable Core Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 1;
+	int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = CORE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Decomposable Core Element</em>' class.
@@ -471,13 +480,31 @@ public interface SafetyCasePackage extends EPackage {
 	int SUPPORTED_BY = 6;
 
 	/**
+	 * The feature id for the '<em><b>Conclusion</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTED_BY__CONCLUSION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Premise</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTED_BY__PREMISE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Supported By</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPORTED_BY_FEATURE_COUNT = 0;
+	int SUPPORTED_BY_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Supported By</em>' class.
@@ -489,80 +516,6 @@ public interface SafetyCasePackage extends EPackage {
 	int SUPPORTED_BY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByDecomposableImpl <em>Supported By Decomposable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByDecomposableImpl
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSupportedByDecomposable()
-	 * @generated
-	 */
-	int SUPPORTED_BY_DECOMPOSABLE = 7;
-
-	/**
-	 * The feature id for the '<em><b>Premise</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_DECOMPOSABLE__PREMISE = SUPPORTED_BY_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Supported By Decomposable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_DECOMPOSABLE_FEATURE_COUNT = SUPPORTED_BY_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Supported By Decomposable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_DECOMPOSABLE_OPERATION_COUNT = SUPPORTED_BY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByCoreImpl <em>Supported By Core</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByCoreImpl
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSupportedByCore()
-	 * @generated
-	 */
-	int SUPPORTED_BY_CORE = 8;
-
-	/**
-	 * The feature id for the '<em><b>Premise</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_CORE__PREMISE = SUPPORTED_BY_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Supported By Core</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_CORE_FEATURE_COUNT = SUPPORTED_BY_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Supported By Core</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPPORTED_BY_CORE_OPERATION_COUNT = SUPPORTED_BY_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.InContextOfImpl <em>In Context Of</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -570,7 +523,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getInContextOf()
 	 * @generated
 	 */
-	int IN_CONTEXT_OF = 9;
+	int IN_CONTEXT_OF = 7;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -616,7 +569,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getGoal()
 	 * @generated
 	 */
-	int GOAL = 10;
+	int GOAL = 8;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -664,6 +617,15 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
 	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GOAL__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
+
+	/**
 	 * The feature id for the '<em><b>State Validity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -673,22 +635,13 @@ public interface SafetyCasePackage extends EPackage {
 	int GOAL__STATE_VALIDITY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GOAL__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Asil</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL__ASIL = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
+	int GOAL__ASIL = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Goal</em>' class.
@@ -697,7 +650,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 3;
+	int GOAL_FEATURE_COUNT = DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Goal</em>' class.
@@ -716,7 +669,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getStrategy()
 	 * @generated
 	 */
-	int STRATEGY = 11;
+	int STRATEGY = 9;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -764,6 +717,15 @@ public interface SafetyCasePackage extends EPackage {
 	int STRATEGY__IN_CONTEXT_OF = DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
 
 	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRATEGY__SUPPORTED_BY = DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
+
+	/**
 	 * The number of structural features of the '<em>Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -789,7 +751,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getBasicStrategy()
 	 * @generated
 	 */
-	int BASIC_STRATEGY = 12;
+	int BASIC_STRATEGY = 10;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -843,7 +805,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_STRATEGY__SUPPORTED_BY = STRATEGY_FEATURE_COUNT + 0;
+	int BASIC_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
 
 	/**
 	 * The number of structural features of the '<em>Basic Strategy</em>' class.
@@ -852,7 +814,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BASIC_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 1;
+	int BASIC_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Basic Strategy</em>' class.
@@ -871,7 +833,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILDecompositionStrategy()
 	 * @generated
 	 */
-	int ASIL_DECOMPOSITION_STRATEGY = 13;
+	int ASIL_DECOMPOSITION_STRATEGY = 11;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -925,16 +887,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY = STRATEGY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Supported By Independent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY_INDEPENDENT = STRATEGY_FEATURE_COUNT + 1;
+	int ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY = STRATEGY__SUPPORTED_BY;
 
 	/**
 	 * The number of structural features of the '<em>ASIL Decomposition Strategy</em>' class.
@@ -943,7 +896,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASIL_DECOMPOSITION_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 2;
+	int ASIL_DECOMPOSITION_STRATEGY_FEATURE_COUNT = STRATEGY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>ASIL Decomposition Strategy</em>' class.
@@ -962,7 +915,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSolution()
 	 * @generated
 	 */
-	int SOLUTION = 14;
+	int SOLUTION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1035,7 +988,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getContext()
 	 * @generated
 	 */
-	int CONTEXT = 15;
+	int CONTEXT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1099,7 +1052,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactAnnotation()
 	 * @generated
 	 */
-	int IMPACT_ANNOTATION = 16;
+	int IMPACT_ANNOTATION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1145,7 +1098,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getJustification()
 	 * @generated
 	 */
-	int JUSTIFICATION = 17;
+	int JUSTIFICATION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1209,7 +1162,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactable()
 	 * @generated
 	 */
-	int IMPACTABLE = 18;
+	int IMPACTABLE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1246,7 +1199,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getElementValidity()
 	 * @generated
 	 */
-	int ELEMENT_VALIDITY = 19;
+	int ELEMENT_VALIDITY = 17;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1292,7 +1245,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getContentValidity()
 	 * @generated
 	 */
-	int CONTENT_VALIDITY = 20;
+	int CONTENT_VALIDITY = 18;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1347,7 +1300,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getStateValidity()
 	 * @generated
 	 */
-	int STATE_VALIDITY = 21;
+	int STATE_VALIDITY = 19;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1402,7 +1355,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASIL()
 	 * @generated
 	 */
-	int ASIL = 22;
+	int ASIL = 20;
 
 	/**
 	 * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -1457,7 +1410,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILLevel()
 	 * @generated
 	 */
-	int ASIL_LEVEL = 23;
+	int ASIL_LEVEL = 21;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
@@ -1467,7 +1420,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityValue()
 	 * @generated
 	 */
-	int VALIDITY_VALUE = 24;
+	int VALIDITY_VALUE = 22;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
@@ -1477,7 +1430,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactType()
 	 * @generated
 	 */
-	int IMPACT_TYPE = 25;
+	int IMPACT_TYPE = 23;
 
 
 	/**
@@ -1652,6 +1605,17 @@ public interface SafetyCasePackage extends EPackage {
 	EReference getDecomposableCoreElement_InContextOf();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement#getSupportedBy <em>Supported By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Supported By</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement#getSupportedBy()
+	 * @see #getDecomposableCoreElement()
+	 * @generated
+	 */
+	EReference getDecomposableCoreElement_SupportedBy();
+
+	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ContextualElement <em>Contextual Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1683,46 +1647,26 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getSupportedBy();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable <em>Supported By Decomposable</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion <em>Conclusion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Supported By Decomposable</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable
+	 * @return the meta object for the container reference '<em>Conclusion</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion()
+	 * @see #getSupportedBy()
 	 * @generated
 	 */
-	EClass getSupportedByDecomposable();
+	EReference getSupportedBy_Conclusion();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable#getPremise <em>Premise</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise <em>Premise</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Premise</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByDecomposable#getPremise()
-	 * @see #getSupportedByDecomposable()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise()
+	 * @see #getSupportedBy()
 	 * @generated
 	 */
-	EReference getSupportedByDecomposable_Premise();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore <em>Supported By Core</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Supported By Core</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore
-	 * @generated
-	 */
-	EClass getSupportedByCore();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore#getPremise <em>Premise</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Premise</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedByCore#getPremise()
-	 * @see #getSupportedByCore()
-	 * @generated
-	 */
-	EReference getSupportedByCore_Premise();
+	EReference getSupportedBy_Premise();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf <em>In Context Of</em>}'.
@@ -1767,17 +1711,6 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getGoal();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy <em>Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Supported By</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getSupportedBy()
-	 * @see #getGoal()
-	 * @generated
-	 */
-	EReference getGoal_SupportedBy();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1809,17 +1742,6 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getBasicStrategy();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy#getSupportedBy <em>Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Supported By</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy#getSupportedBy()
-	 * @see #getBasicStrategy()
-	 * @generated
-	 */
-	EReference getBasicStrategy_SupportedBy();
-
-	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy <em>ASIL Decomposition Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1828,28 +1750,6 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getASILDecompositionStrategy();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy#getSupportedBy <em>Supported By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Supported By</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy#getSupportedBy()
-	 * @see #getASILDecompositionStrategy()
-	 * @generated
-	 */
-	EReference getASILDecompositionStrategy_SupportedBy();
-
-	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy#getSupportedByIndependent <em>Supported By Independent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Supported By Independent</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy#getSupportedByIndependent()
-	 * @see #getASILDecompositionStrategy()
-	 * @generated
-	 */
-	EReference getASILDecompositionStrategy_SupportedByIndependent();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.Solution <em>Solution</em>}'.
@@ -2221,6 +2121,14 @@ public interface SafetyCasePackage extends EPackage {
 		EReference DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = eINSTANCE.getDecomposableCoreElement_InContextOf();
 
 		/**
+		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = eINSTANCE.getDecomposableCoreElement_SupportedBy();
+
+		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2249,14 +2157,12 @@ public interface SafetyCasePackage extends EPackage {
 		EClass SUPPORTED_BY = eINSTANCE.getSupportedBy();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByDecomposableImpl <em>Supported By Decomposable</em>}' class.
+		 * The meta object literal for the '<em><b>Conclusion</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByDecomposableImpl
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSupportedByDecomposable()
 		 * @generated
 		 */
-		EClass SUPPORTED_BY_DECOMPOSABLE = eINSTANCE.getSupportedByDecomposable();
+		EReference SUPPORTED_BY__CONCLUSION = eINSTANCE.getSupportedBy_Conclusion();
 
 		/**
 		 * The meta object literal for the '<em><b>Premise</b></em>' reference feature.
@@ -2264,25 +2170,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPORTED_BY_DECOMPOSABLE__PREMISE = eINSTANCE.getSupportedByDecomposable_Premise();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByCoreImpl <em>Supported By Core</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByCoreImpl
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSupportedByCore()
-		 * @generated
-		 */
-		EClass SUPPORTED_BY_CORE = eINSTANCE.getSupportedByCore();
-
-		/**
-		 * The meta object literal for the '<em><b>Premise</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SUPPORTED_BY_CORE__PREMISE = eINSTANCE.getSupportedByCore_Premise();
+		EReference SUPPORTED_BY__PREMISE = eINSTANCE.getSupportedBy_Premise();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.InContextOfImpl <em>In Context Of</em>}' class.
@@ -2321,14 +2209,6 @@ public interface SafetyCasePackage extends EPackage {
 		EClass GOAL = eINSTANCE.getGoal();
 
 		/**
-		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GOAL__SUPPORTED_BY = eINSTANCE.getGoal_SupportedBy();
-
-		/**
 		 * The meta object literal for the '<em><b>Asil</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2357,14 +2237,6 @@ public interface SafetyCasePackage extends EPackage {
 		EClass BASIC_STRATEGY = eINSTANCE.getBasicStrategy();
 
 		/**
-		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BASIC_STRATEGY__SUPPORTED_BY = eINSTANCE.getBasicStrategy_SupportedBy();
-
-		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILDecompositionStrategyImpl <em>ASIL Decomposition Strategy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2373,22 +2245,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EClass ASIL_DECOMPOSITION_STRATEGY = eINSTANCE.getASILDecompositionStrategy();
-
-		/**
-		 * The meta object literal for the '<em><b>Supported By</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY = eINSTANCE.getASILDecompositionStrategy_SupportedBy();
-
-		/**
-		 * The meta object literal for the '<em><b>Supported By Independent</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY_INDEPENDENT = eINSTANCE.getASILDecompositionStrategy_SupportedByIndependent();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SolutionImpl <em>Solution</em>}' class.
