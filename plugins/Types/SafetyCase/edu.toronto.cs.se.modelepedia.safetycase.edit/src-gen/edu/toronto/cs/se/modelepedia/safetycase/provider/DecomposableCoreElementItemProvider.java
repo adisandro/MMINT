@@ -141,6 +141,11 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
 				 SafetyCaseFactory.eINSTANCE.createInContextOf()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
 	}
 
 }

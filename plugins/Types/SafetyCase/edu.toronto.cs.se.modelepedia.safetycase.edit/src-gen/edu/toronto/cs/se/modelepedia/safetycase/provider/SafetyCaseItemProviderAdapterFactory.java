@@ -105,6 +105,29 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SupportedByItemProvider supportedByItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSupportedByAdapter() {
+		if (supportedByItemProvider == null) {
+			supportedByItemProvider = new SupportedByItemProvider(this);
+		}
+
+		return supportedByItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -480,6 +503,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 */
 	public void dispose() {
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
+		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
 		if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();

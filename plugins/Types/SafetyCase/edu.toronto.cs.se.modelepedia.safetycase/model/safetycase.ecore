@@ -43,7 +43,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
         upperBound="-1" eType="#//InContextOf" eOpposite="#//InContextOf/context"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="SupportedBy">
     <eStructuralFeatures xsi:type="ecore:EReference" name="conclusion" lowerBound="1"
         eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/supportedBy"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="premise" lowerBound="1"

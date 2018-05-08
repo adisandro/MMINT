@@ -68,6 +68,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SafetyCasePackage.SAFETY_CASE: return createSafetyCase();
+			case SafetyCasePackage.SUPPORTED_BY: return createSupportedBy();
 			case SafetyCasePackage.IN_CONTEXT_OF: return createInContextOf();
 			case SafetyCasePackage.GOAL: return createGoal();
 			case SafetyCasePackage.BASIC_STRATEGY: return createBasicStrategy();
@@ -131,6 +132,16 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public SafetyCase createSafetyCase() {
 		SafetyCaseImpl safetyCase = new SafetyCaseImpl();
 		return safetyCase;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SupportedBy createSupportedBy() {
+		SupportedByImpl supportedBy = new SupportedByImpl();
+		return supportedBy;
 	}
 
 	/**

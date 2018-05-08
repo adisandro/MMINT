@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupportedBy()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface SupportedBy extends EObject {

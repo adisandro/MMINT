@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public abstract class SupportedByImpl extends MinimalEObjectImpl.Container implements SupportedBy {
+public class SupportedByImpl extends MinimalEObjectImpl.Container implements SupportedBy {
 	/**
 	 * The cached value of the '{@link #getPremise() <em>Premise</em>}' reference.
 	 * <!-- begin-user-doc -->
