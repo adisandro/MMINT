@@ -18,12 +18,10 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
-import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
+import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNSliceRecheck extends Slice {
@@ -33,43 +31,20 @@ public class GSNSliceRecheck extends Slice {
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
 	    Set<EObject> impacted = new HashSet<>();
-		// If input is a safety case, then the following are also impacted:
-		// 1) Owned goals, strategies, solutions, contexts and ASILs.
-		if (modelObj instanceof SafetyCase) {
-			SafetyCase sc = (SafetyCase) modelObj;
-			impacted.addAll(sc.getGoals());
-			impacted.addAll(sc.getStrategies());
-			impacted.addAll(sc.getSolutions());
-			impacted.addAll(sc.getContexts());
-
-		// If input is a core element (i.e. goal, strategy or solution), then the
-		// SupportedBy relations that it supports are also impacted.
-		} else if (modelObj instanceof CoreElement) {
-			CoreElement c = (CoreElement) modelObj;
-			impacted.addAll(c.getSupports());
-
-		// If input is a contextual element, then its InContextOf relations
-		// are also impacted.
-		} else if (modelObj instanceof ContextualElement) {
-			ContextualElement c = (ContextualElement) modelObj;
-			impacted.addAll(c.getContextOf());
-
-		// If input is a SupportedBy relation, then its conclusion is impacted.
-		} else if (modelObj instanceof SupportedBy) {
-			SupportedBy rel = (SupportedBy) modelObj;
-			if (rel.getConclusion() != null) {
-				impacted.add(rel.getConclusion());
+	    EObject modelParent = modelObj.eContainer();
+	    
+		// If input is a goal, then the state validity of all ancestor goals should be rechecked.
+		if (modelParent instanceof Goal) {
+			Goal g = (Goal) modelParent;
+			for (Goal gNew : getAncestorGoals(g)) {
+				impacted.add(gNew.getStateValidity());
 			}
-
-		// If input is a InContextOf relation, then the following are also impacted:
-		// 1) The decomposable core element with this context.
-		// 2) All contextual elements and core elements that inherit this context.
-		} else if (modelObj instanceof InContextOf) {
-			InContextOf rel = (InContextOf) modelObj;
-			impacted.addAll(getDescendants(rel.getContextOf()));
-
-			if (rel.getContextOf() != null) {
-				impacted.add(rel.getContextOf());
+			
+			// If input is a solution, then the state validity of all ancestor goals should be rechecked.
+		} else if (modelParent instanceof Solution) {
+			Solution s = (Solution) modelParent;
+			for (Goal gNew : getAncestorGoals(s)) {
+				impacted.add(gNew.getStateValidity());
 			}
 		}
 
@@ -78,47 +53,49 @@ public class GSNSliceRecheck extends Slice {
 		return impacted;
 	}
 
-	// Returns all the descendants of the input decomposable core element
-	// (including contextual elements).
-	public Set<ArgumentElement> getDescendants(DecomposableCoreElement elem) {
-		Set<ArgumentElement> descendantsAll = new HashSet<>();
-		Set<ArgumentElement> descendantsCur = new HashSet<>();
-		Set<ArgumentElement> descendantsNext = new HashSet<>();
+	// Returns all ancestor goals of the input argument element.
+	public Set<Goal> getAncestorGoals(CoreElement elem) {
+		Set<DecomposableCoreElement> ancestorsAll = new HashSet<>();
+		Set<DecomposableCoreElement> ancestorsCur = new HashSet<>();
+		Set<DecomposableCoreElement> ancestorsNext = new HashSet<>();
 
-		// Iterate through the current set of newly added descendants
-		// to identify the next generation of descendants.
-		descendantsAll.add(elem);
-		descendantsCur.add(elem);
-		while (!descendantsCur.isEmpty()) {
-			for (ArgumentElement curElem : descendantsCur) {
-				if (curElem instanceof DecomposableCoreElement) {
-					DecomposableCoreElement d = (DecomposableCoreElement) curElem;
-					if (d.getSupportedBy() != null) {
-						for (SupportedBy rel : d.getSupportedBy()) {
-							descendantsNext.add(rel.getPremise());
-						}
-					}
-
-					if (d.getInContextOf() != null) {
-						for (InContextOf rel: d.getInContextOf()) {
-							descendantsNext.add(rel.getContext());
-						}
-					}
+		// Iterate through the current set of newly added ancestors
+		// to identify the next generation of ancestors.
+		for (SupportedBy rel : elem.getSupports()) {
+			ancestorsNext.add(rel.getConclusion());
+		}
+		
+		ancestorsAll.addAll(ancestorsNext);
+		ancestorsCur.addAll(ancestorsNext);
+		ancestorsNext.clear();		
+		
+		while (!ancestorsCur.isEmpty()) {
+			for (DecomposableCoreElement curElem : ancestorsCur) {
+				for (SupportedBy rel : curElem.getSupports()) {
+					ancestorsNext.add(rel.getConclusion());
 				}
 			}
 
-			descendantsCur.clear();
-			for (ArgumentElement newElem : descendantsNext) {
-				if (!descendantsAll.contains(newElem)) {
-					descendantsAll.add(newElem);
-					descendantsCur.add(newElem);
+			ancestorsCur.clear();
+			for (DecomposableCoreElement newElem : ancestorsNext) {
+				if (!ancestorsAll.contains(newElem)) {
+					ancestorsAll.add(newElem);
+					ancestorsCur.add(newElem);
 				}
 			}
 
-			descendantsNext.clear();
+			ancestorsNext.clear();
+		}
+		
+		// Return the ancestors that are goals.
+		Set<Goal> goalAncestors = new HashSet<>();
+		for (DecomposableCoreElement newElem : ancestorsAll) {
+			if (newElem instanceof Goal) {
+				goalAncestors.add((Goal) newElem);
+			}
 		}
 
-		return descendantsAll;
+		return goalAncestors;
 	}
 
 }
