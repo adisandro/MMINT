@@ -14,7 +14,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
-import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -41,7 +42,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class ASILImpl extends ImpactableImpl implements ASIL {
+public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -107,9 +108,9 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Goal getTarget() {
+	public ASILfulElement getTarget() {
 		if (eContainerFeatureID() != SafetyCasePackage.ASIL__TARGET) return null;
-		return (Goal)eInternalContainer();
+		return (ASILfulElement)eInternalContainer();
 	}
 
 	/**
@@ -117,7 +118,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(Goal newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(ASILfulElement newTarget, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newTarget, SafetyCasePackage.ASIL__TARGET, msgs);
 		return msgs;
 	}
@@ -127,7 +128,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(Goal newTarget) {
+	public void setTarget(ASILfulElement newTarget) {
 		if (newTarget != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.ASIL__TARGET && newTarget != null)) {
 			if (EcoreUtil.isAncestor(this, newTarget))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -135,7 +136,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, SafetyCasePackage.GOAL__ASIL, Goal.class, msgs);
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL, ASILfulElement.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -154,7 +155,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 			case SafetyCasePackage.ASIL__TARGET:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetTarget((Goal)otherEnd, msgs);
+				return basicSetTarget((ASILfulElement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -182,7 +183,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SafetyCasePackage.ASIL__TARGET:
-				return eInternalContainer().eInverseRemove(this, SafetyCasePackage.GOAL__ASIL, Goal.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL, ASILfulElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -215,7 +216,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 				setValue((ASILLevel)newValue);
 				return;
 			case SafetyCasePackage.ASIL__TARGET:
-				setTarget((Goal)newValue);
+				setTarget((ASILfulElement)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -233,7 +234,7 @@ public class ASILImpl extends ImpactableImpl implements ASIL {
 				setValue(VALUE_EDEFAULT);
 				return;
 			case SafetyCasePackage.ASIL__TARGET:
-				setTarget((Goal)null);
+				setTarget((ASILfulElement)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -75,12 +75,11 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
 			case SafetyCasePackage.SOLUTION: return createSolution();
 			case SafetyCasePackage.CONTEXT: return createContext();
-			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
 			case SafetyCasePackage.JUSTIFICATION: return createJustification();
-			case SafetyCasePackage.ELEMENT_VALIDITY: return createElementValidity();
-			case SafetyCasePackage.CONTENT_VALIDITY: return createContentValidity();
-			case SafetyCasePackage.STATE_VALIDITY: return createStateValidity();
 			case SafetyCasePackage.ASIL: return createASIL();
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION: return createContentImpactAnnotation();
+			case SafetyCasePackage.STATE_IMPACT_ANNOTATION: return createStateImpactAnnotation();
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION: return createASILImpactAnnotation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -98,8 +97,12 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 				return createASILLevelFromString(eDataType, initialValue);
 			case SafetyCasePackage.VALIDITY_VALUE:
 				return createValidityValueFromString(eDataType, initialValue);
-			case SafetyCasePackage.IMPACT_TYPE:
-				return createImpactTypeFromString(eDataType, initialValue);
+			case SafetyCasePackage.CONTENT_IMPACT_TYPE:
+				return createContentImpactTypeFromString(eDataType, initialValue);
+			case SafetyCasePackage.STATE_IMPACT_TYPE:
+				return createStateImpactTypeFromString(eDataType, initialValue);
+			case SafetyCasePackage.ASIL_IMPACT_TYPE:
+				return createASILImpactTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -117,8 +120,12 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 				return convertASILLevelToString(eDataType, instanceValue);
 			case SafetyCasePackage.VALIDITY_VALUE:
 				return convertValidityValueToString(eDataType, instanceValue);
-			case SafetyCasePackage.IMPACT_TYPE:
-				return convertImpactTypeToString(eDataType, instanceValue);
+			case SafetyCasePackage.CONTENT_IMPACT_TYPE:
+				return convertContentImpactTypeToString(eDataType, instanceValue);
+			case SafetyCasePackage.STATE_IMPACT_TYPE:
+				return convertStateImpactTypeToString(eDataType, instanceValue);
+			case SafetyCasePackage.ASIL_IMPACT_TYPE:
+				return convertASILImpactTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -209,16 +216,6 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactAnnotation createImpactAnnotation() {
-		ImpactAnnotationImpl impactAnnotation = new ImpactAnnotationImpl();
-		return impactAnnotation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Justification createJustification() {
 		JustificationImpl justification = new JustificationImpl();
 		return justification;
@@ -229,39 +226,39 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementValidity createElementValidity() {
-		ElementValidityImpl elementValidity = new ElementValidityImpl();
-		return elementValidity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ContentValidity createContentValidity() {
-		ContentValidityImpl contentValidity = new ContentValidityImpl();
-		return contentValidity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateValidity createStateValidity() {
-		StateValidityImpl stateValidity = new StateValidityImpl();
-		return stateValidity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ASIL createASIL() {
 		ASILImpl asil = new ASILImpl();
 		return asil;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContentImpactAnnotation createContentImpactAnnotation() {
+		ContentImpactAnnotationImpl contentImpactAnnotation = new ContentImpactAnnotationImpl();
+		return contentImpactAnnotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateImpactAnnotation createStateImpactAnnotation() {
+		StateImpactAnnotationImpl stateImpactAnnotation = new StateImpactAnnotationImpl();
+		return stateImpactAnnotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ASILImpactAnnotation createASILImpactAnnotation() {
+		ASILImpactAnnotationImpl asilImpactAnnotation = new ASILImpactAnnotationImpl();
+		return asilImpactAnnotation;
 	}
 
 	/**
@@ -309,8 +306,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactType createImpactTypeFromString(EDataType eDataType, String initialValue) {
-		ImpactType result = ImpactType.get(initialValue);
+	public ContentImpactType createContentImpactTypeFromString(EDataType eDataType, String initialValue) {
+		ContentImpactType result = ContentImpactType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -320,7 +317,47 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertImpactTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertContentImpactTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateImpactType createStateImpactTypeFromString(EDataType eDataType, String initialValue) {
+		StateImpactType result = StateImpactType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStateImpactTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ASILImpactType createASILImpactTypeFromString(EDataType eDataType, String initialValue) {
+		ASILImpactType result = ASILImpactType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertASILImpactTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

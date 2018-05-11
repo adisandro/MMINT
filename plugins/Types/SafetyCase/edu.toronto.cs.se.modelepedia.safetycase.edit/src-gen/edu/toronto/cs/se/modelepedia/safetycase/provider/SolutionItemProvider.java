@@ -25,7 +25,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -56,8 +58,31 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addStateValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the State Validity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStateValidityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StatefulElement_stateValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
+				 SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -72,7 +97,7 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY);
+			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -129,6 +154,9 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 
 		switch (notification.getFeatureID(Solution.class)) {
 			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case SafetyCasePackage.SOLUTION__STATE_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -148,8 +176,8 @@ public class SolutionItemProvider extends CoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
-				 SafetyCaseFactory.eINSTANCE.createStateValidity()));
+				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS,
+				 SafetyCaseFactory.eINSTANCE.createStateImpactAnnotation()));
 	}
 
 }

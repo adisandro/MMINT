@@ -12,7 +12,6 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,14 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getDescription <em>Description</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement()
  * @model abstract="true"
  * @generated
  */
-public interface ArgumentElement extends EObject {
+public interface ArgumentElement extends ContentfulElement {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,33 +82,5 @@ public interface ArgumentElement extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Content Validity</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Content Validity</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content Validity</em>' containment reference.
-	 * @see #setContentValidity(ContentValidity)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_ContentValidity()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ContentValidity#getTarget
-	 * @model opposite="target" containment="true"
-	 * @generated
-	 */
-	ContentValidity getContentValidity();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Content Validity</em>' containment reference.
-	 * @see #getContentValidity()
-	 * @generated
-	 */
-	void setContentValidity(ContentValidity value);
 
 } // ArgumentElement

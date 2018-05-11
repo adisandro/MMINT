@@ -13,9 +13,10 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.ContentfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,27 +24,42 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Goal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentfulElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends DecomposableCoreElementItemProvider {
+public class ContentfulElementItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GoalItemProvider(AdapterFactory adapterFactory) {
+	public ContentfulElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,25 +74,25 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStateValidityPropertyDescriptor(object);
+			addContentValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State Validity feature.
+	 * This adds a property descriptor for the Content Validity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStateValidityPropertyDescriptor(Object object) {
+	protected void addContentValidityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StatefulElement_stateValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
-				 SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+				 getString("_UI_ContentfulElement_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ContentfulElement_contentValidity_feature", "_UI_ContentfulElement_type"),
+				 SafetyCasePackage.Literals.CONTENTFUL_ELEMENT__CONTENT_VALIDITY,
 				 true,
 				 false,
 				 false,
@@ -97,9 +113,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS);
+			childrenFeatures.add(SafetyCasePackage.Literals.CONTENTFUL_ELEMENT__CONTENT_STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -118,17 +132,6 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	}
 
 	/**
-	 * This returns Goal.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Goal"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,10 +139,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Goal)object).getId();
+		ValidityValue labelValue = ((ContentfulElement)object).getContentValidity();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Goal_type") :
-			getString("_UI_Goal_type") + " " + label;
+			getString("_UI_ContentfulElement_type") :
+			getString("_UI_ContentfulElement_type") + " " + label;
 	}
 	
 
@@ -154,13 +158,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Goal.class)) {
-			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+		switch (notification.getFeatureID(ContentfulElement.class)) {
+			case SafetyCasePackage.CONTENTFUL_ELEMENT__CONTENT_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SafetyCasePackage.GOAL__STATE_STATUS:
-			case SafetyCasePackage.GOAL__ASIL:
-			case SafetyCasePackage.GOAL__ASIL_STATUS:
+			case SafetyCasePackage.CONTENTFUL_ELEMENT__CONTENT_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -180,18 +182,19 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createStateImpactAnnotation()));
+				(SafetyCasePackage.Literals.CONTENTFUL_ELEMENT__CONTENT_STATUS,
+				 SafetyCaseFactory.eINSTANCE.createContentImpactAnnotation()));
+	}
 
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation()));
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

@@ -20,14 +20,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Impact Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>ASIL Impact Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactType()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASILImpactType()
  * @model
  * @generated
  */
-public enum ImpactType implements Enumerator {
+public enum ASILImpactType implements Enumerator {
 	/**
 	 * The '<em><b>Revise</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -104,37 +104,37 @@ public enum ImpactType implements Enumerator {
 	public static final int REUSE_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Impact Type</b></em>' enumerators.
+	 * An array of all the '<em><b>ASIL Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ImpactType[] VALUES_ARRAY =
-		new ImpactType[] {
+	private static final ASILImpactType[] VALUES_ARRAY =
+		new ASILImpactType[] {
 			REVISE,
 			RECHECK,
 			REUSE,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Impact Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>ASIL Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ASILImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Impact Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>ASIL Impact Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ImpactType get(String literal) {
+	public static ASILImpactType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ImpactType result = VALUES_ARRAY[i];
+			ASILImpactType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -143,16 +143,16 @@ public enum ImpactType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Impact Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>ASIL Impact Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ImpactType getByName(String name) {
+	public static ASILImpactType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ImpactType result = VALUES_ARRAY[i];
+			ASILImpactType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -161,14 +161,14 @@ public enum ImpactType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Impact Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>ASIL Impact Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ImpactType get(int value) {
+	public static ASILImpactType get(int value) {
 		switch (value) {
 			case REVISE_VALUE: return REVISE;
 			case RECHECK_VALUE: return RECHECK;
@@ -204,7 +204,7 @@ public enum ImpactType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ImpactType(int value, String name, String literal) {
+	private ASILImpactType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -248,4 +248,4 @@ public enum ImpactType implements Enumerator {
 		return literal;
 	}
 	
-} //ImpactType
+} //ASILImpactType
