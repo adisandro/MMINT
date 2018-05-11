@@ -12,38 +12,57 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
+import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
+import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRecheck extends Slice {
+public class GSNSliceRevise2State extends Slice {
+
+	// Get all model elements in a safety case that needs to be re-checked for state
+	// validity given the input element that contains contents requiring revision.
+    @Override
+	protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+
+        Map<EObject, Set<EObject>> impacted = new HashMap<>();
+        alreadyImpacted.add(critModelObj);
+
+		// Iterate through the input set of revised elements to identify
+		// all model elements that require re-checking.
+        Set<EObject> impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
+        alreadyImpacted.addAll(impactedModelObjs);
+        impactedModelObjs.add(critModelObj);
+        impacted.put(critModelObj, impactedModelObjs);
+
+		return impacted;
+	}
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
 	    Set<EObject> impacted = new HashSet<>();
-	    
-		// If input is a goal, then the state validity of all ancestor goals should be rechecked.
-		if (modelObj instanceof Goal) {
-			Goal g = (Goal) modelObj;
-			for (Goal gNew : getAncestorGoals(g)) {
-				impacted.add(gNew);
-			}
+
+		// If input is a strategy, then the state validity should be rechecked for:
+		// 1) All ancestor goals.
+		if (modelObj instanceof Strategy) {
+			Strategy s = (Strategy) modelObj;
 			
-			// If input is a solution, then the state validity of all ancestor goals should be rechecked.
-		} else if (modelObj instanceof Solution) {
-			Solution s = (Solution) modelObj;
-			for (Goal gNew : getAncestorGoals(s)) {
-				impacted.add(gNew);
+			for (Goal g : getAncestorGoals(s)) {
+				impacted.add(g);
 			}
 		}
 
@@ -51,9 +70,9 @@ public class GSNSliceRecheck extends Slice {
 
 		return impacted;
 	}
-
-	// Returns all ancestor goals of the input argument element.
-	public Set<Goal> getAncestorGoals(CoreElement elem) {
+	
+	// Returns all ancestor goals of the input strategy.
+	public Set<Goal> getAncestorGoals(Strategy elem) {
 		Set<DecomposableCoreElement> ancestorsAll = new HashSet<>();
 		Set<DecomposableCoreElement> ancestorsCur = new HashSet<>();
 		Set<DecomposableCoreElement> ancestorsNext = new HashSet<>();
@@ -96,5 +115,4 @@ public class GSNSliceRecheck extends Slice {
 
 		return goalAncestors;
 	}
-
 }

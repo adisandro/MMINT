@@ -12,8 +12,8 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Impact Annotation</b></em>'.
+ * An implementation of the model object '<em><b>ASIL Impact Annotation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpactAnnotationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpactAnnotationImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implements ImpactAnnotation {
+public class ASILImpactAnnotationImpl extends MinimalEObjectImpl.Container implements ASILImpactAnnotation {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ImpactType TYPE_EDEFAULT = ImpactType.REVISE;
+	protected static final ASILImpactType TYPE_EDEFAULT = ASILImpactType.REVISE;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -56,7 +56,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected ImpactType type = TYPE_EDEFAULT;
+	protected ASILImpactType type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
@@ -83,7 +83,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImpactAnnotationImpl() {
+	protected ASILImpactAnnotationImpl() {
 		super();
 	}
 
@@ -94,7 +94,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.IMPACT_ANNOTATION;
+		return SafetyCasePackage.Literals.ASIL_IMPACT_ANNOTATION;
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactType getType() {
+	public ASILImpactType getType() {
 		return type;
 	}
 
@@ -111,11 +111,11 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(ImpactType newType) {
-		ImpactType oldType = type;
+	public void setType(ASILImpactType newType) {
+		ASILImpactType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.IMPACT_ANNOTATION__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASIL_IMPACT_ANNOTATION__TYPE, oldType, type));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 		String oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.IMPACT_ANNOTATION__SOURCE, oldSource, source));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASIL_IMPACT_ANNOTATION__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -147,9 +147,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__TYPE:
 				return getType();
-			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__SOURCE:
 				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -163,10 +163,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
-				setType((ImpactType)newValue);
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__TYPE:
+				setType((ASILImpactType)newValue);
 				return;
-			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__SOURCE:
 				setSource((String)newValue);
 				return;
 		}
@@ -181,10 +181,10 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__SOURCE:
 				setSource(SOURCE_EDEFAULT);
 				return;
 		}
@@ -199,9 +199,9 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__TYPE:
 				return type != TYPE_EDEFAULT;
-			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+			case SafetyCasePackage.ASIL_IMPACT_ANNOTATION__SOURCE:
 				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
 		}
 		return super.eIsSet(featureID);
@@ -225,4 +225,4 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 		return result.toString();
 	}
 
-} //ImpactAnnotationImpl
+} //ASILImpactAnnotationImpl

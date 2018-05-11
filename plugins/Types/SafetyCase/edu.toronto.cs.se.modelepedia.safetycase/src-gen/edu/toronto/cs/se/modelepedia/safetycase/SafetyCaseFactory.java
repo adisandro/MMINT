@@ -104,15 +104,6 @@ public interface SafetyCaseFactory extends EFactory {
 	Context createContext();
 
 	/**
-	 * Returns a new object of class '<em>Impact Annotation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Impact Annotation</em>'.
-	 * @generated
-	 */
-	ImpactAnnotation createImpactAnnotation();
-
-	/**
 	 * Returns a new object of class '<em>Justification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,33 +113,6 @@ public interface SafetyCaseFactory extends EFactory {
 	Justification createJustification();
 
 	/**
-	 * Returns a new object of class '<em>Element Validity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Validity</em>'.
-	 * @generated
-	 */
-	ElementValidity createElementValidity();
-
-	/**
-	 * Returns a new object of class '<em>Content Validity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Content Validity</em>'.
-	 * @generated
-	 */
-	ContentValidity createContentValidity();
-
-	/**
-	 * Returns a new object of class '<em>State Validity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Validity</em>'.
-	 * @generated
-	 */
-	StateValidity createStateValidity();
-
-	/**
 	 * Returns a new object of class '<em>ASIL</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +120,33 @@ public interface SafetyCaseFactory extends EFactory {
 	 * @generated
 	 */
 	ASIL createASIL();
+
+	/**
+	 * Returns a new object of class '<em>Content Impact Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Content Impact Annotation</em>'.
+	 * @generated
+	 */
+	ContentImpactAnnotation createContentImpactAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>State Impact Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Impact Annotation</em>'.
+	 * @generated
+	 */
+	StateImpactAnnotation createStateImpactAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>ASIL Impact Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ASIL Impact Annotation</em>'.
+	 * @generated
+	 */
+	ASILImpactAnnotation createASILImpactAnnotation();
 
 	/**
 	 * Returns the package supported by this factory.

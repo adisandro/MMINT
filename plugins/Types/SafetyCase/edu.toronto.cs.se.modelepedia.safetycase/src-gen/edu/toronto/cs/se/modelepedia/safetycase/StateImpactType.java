@@ -20,121 +20,95 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Validity Value</b></em>',
+ * A representation of the literals of the enumeration '<em><b>State Impact Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getValidityValue()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStateImpactType()
  * @model
  * @generated
  */
-public enum ValidityValue implements Enumerator {
+public enum StateImpactType implements Enumerator {
 	/**
-	 * The '<em><b>Invalid</b></em>' literal object.
+	 * The '<em><b>Recheck</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INVALID_VALUE
+	 * @see #RECHECK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INVALID(0, "Invalid", "Invalid"),
+	RECHECK(2, "Recheck", "Recheck"),
 
 	/**
-	 * The '<em><b>Valid</b></em>' literal object.
+	 * The '<em><b>Reuse</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #VALID_VALUE
+	 * @see #REUSE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	VALID(1, "Valid", "Valid"),
+	REUSE(3, "Reuse", "Reuse");
 
 	/**
-	 * The '<em><b>Undetermined</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNDETERMINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNDETERMINED(2, "Undetermined", "Undetermined");
-
-	/**
-	 * The '<em><b>Invalid</b></em>' literal value.
+	 * The '<em><b>Recheck</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Invalid</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Recheck</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INVALID
-	 * @model name="Invalid"
+	 * @see #RECHECK
+	 * @model name="Recheck"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INVALID_VALUE = 0;
+	public static final int RECHECK_VALUE = 2;
 
 	/**
-	 * The '<em><b>Valid</b></em>' literal value.
+	 * The '<em><b>Reuse</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Valid</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Reuse</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #VALID
-	 * @model name="Valid"
+	 * @see #REUSE
+	 * @model name="Reuse"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VALID_VALUE = 1;
+	public static final int REUSE_VALUE = 3;
 
 	/**
-	 * The '<em><b>Undetermined</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Undetermined</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNDETERMINED
-	 * @model name="Undetermined"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNDETERMINED_VALUE = 2;
-
-	/**
-	 * An array of all the '<em><b>Validity Value</b></em>' enumerators.
+	 * An array of all the '<em><b>State Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ValidityValue[] VALUES_ARRAY =
-		new ValidityValue[] {
-			INVALID,
-			VALID,
-			UNDETERMINED,
+	private static final StateImpactType[] VALUES_ARRAY =
+		new StateImpactType[] {
+			RECHECK,
+			REUSE,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Validity Value</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>State Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ValidityValue> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<StateImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Validity Value</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>State Impact Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ValidityValue get(String literal) {
+	public static StateImpactType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ValidityValue result = VALUES_ARRAY[i];
+			StateImpactType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -143,16 +117,16 @@ public enum ValidityValue implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Validity Value</b></em>' literal with the specified name.
+	 * Returns the '<em><b>State Impact Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ValidityValue getByName(String name) {
+	public static StateImpactType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ValidityValue result = VALUES_ARRAY[i];
+			StateImpactType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -161,18 +135,17 @@ public enum ValidityValue implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Validity Value</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>State Impact Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ValidityValue get(int value) {
+	public static StateImpactType get(int value) {
 		switch (value) {
-			case INVALID_VALUE: return INVALID;
-			case VALID_VALUE: return VALID;
-			case UNDETERMINED_VALUE: return UNDETERMINED;
+			case RECHECK_VALUE: return RECHECK;
+			case REUSE_VALUE: return REUSE;
 		}
 		return null;
 	}
@@ -204,7 +177,7 @@ public enum ValidityValue implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValidityValue(int value, String name, String literal) {
+	private StateImpactType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -248,4 +221,4 @@ public enum ValidityValue implements Enumerator {
 		return literal;
 	}
 	
-} //ValidityValue
+} //StateImpactType

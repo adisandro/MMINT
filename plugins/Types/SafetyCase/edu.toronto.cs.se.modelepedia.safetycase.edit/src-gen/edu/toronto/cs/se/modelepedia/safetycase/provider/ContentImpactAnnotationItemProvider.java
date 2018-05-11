@@ -13,8 +13,8 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
@@ -37,12 +37,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImpactAnnotationItemProvider 
+public class ContentImpactAnnotationItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +56,7 @@ public class ImpactAnnotationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
+	public ContentImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -88,9 +88,9 @@ public class ImpactAnnotationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImpactAnnotation_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_type_feature", "_UI_ImpactAnnotation_type"),
-				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__TYPE,
+				 getString("_UI_ContentImpactAnnotation_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ContentImpactAnnotation_type_feature", "_UI_ContentImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.CONTENT_IMPACT_ANNOTATION__TYPE,
 				 true,
 				 false,
 				 false,
@@ -110,9 +110,9 @@ public class ImpactAnnotationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImpactAnnotation_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImpactAnnotation_source_feature", "_UI_ImpactAnnotation_type"),
-				 SafetyCasePackage.Literals.IMPACT_ANNOTATION__SOURCE,
+				 getString("_UI_ContentImpactAnnotation_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ContentImpactAnnotation_source_feature", "_UI_ContentImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.CONTENT_IMPACT_ANNOTATION__SOURCE,
 				 true,
 				 false,
 				 false,
@@ -122,14 +122,14 @@ public class ImpactAnnotationItemProvider
 	}
 
 	/**
-	 * This returns ImpactAnnotation.gif.
+	 * This returns ContentImpactAnnotation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ImpactAnnotation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContentImpactAnnotation"));
 	}
 
 	/**
@@ -140,11 +140,11 @@ public class ImpactAnnotationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		ImpactType labelValue = ((ImpactAnnotation)object).getType();
+		ContentImpactType labelValue = ((ContentImpactAnnotation)object).getType();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ImpactAnnotation_type") :
-			getString("_UI_ImpactAnnotation_type") + " " + label;
+			getString("_UI_ContentImpactAnnotation_type") :
+			getString("_UI_ContentImpactAnnotation_type") + " " + label;
 	}
 	
 
@@ -159,9 +159,9 @@ public class ImpactAnnotationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ImpactAnnotation.class)) {
-			case SafetyCasePackage.IMPACT_ANNOTATION__TYPE:
-			case SafetyCasePackage.IMPACT_ANNOTATION__SOURCE:
+		switch (notification.getFeatureID(ContentImpactAnnotation.class)) {
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

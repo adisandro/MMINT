@@ -266,29 +266,6 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ImpactAnnotationItemProvider impactAnnotationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createImpactAnnotationAdapter() {
-		if (impactAnnotationItemProvider == null) {
-			impactAnnotationItemProvider = new ImpactAnnotationItemProvider(this);
-		}
-
-		return impactAnnotationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Justification} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -312,75 +289,6 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ElementValidity} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ElementValidityItemProvider elementValidityItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ElementValidity}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createElementValidityAdapter() {
-		if (elementValidityItemProvider == null) {
-			elementValidityItemProvider = new ElementValidityItemProvider(this);
-		}
-
-		return elementValidityItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContentValidityItemProvider contentValidityItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentValidity}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createContentValidityAdapter() {
-		if (contentValidityItemProvider == null) {
-			contentValidityItemProvider = new ContentValidityItemProvider(this);
-		}
-
-		return contentValidityItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.StateValidity} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StateValidityItemProvider stateValidityItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StateValidity}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStateValidityAdapter() {
-		if (stateValidityItemProvider == null) {
-			stateValidityItemProvider = new StateValidityItemProvider(this);
-		}
-
-		return stateValidityItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,6 +309,75 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		}
 
 		return asilItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContentImpactAnnotationItemProvider contentImpactAnnotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContentImpactAnnotationAdapter() {
+		if (contentImpactAnnotationItemProvider == null) {
+			contentImpactAnnotationItemProvider = new ContentImpactAnnotationItemProvider(this);
+		}
+
+		return contentImpactAnnotationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateImpactAnnotationItemProvider stateImpactAnnotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateImpactAnnotationAdapter() {
+		if (stateImpactAnnotationItemProvider == null) {
+			stateImpactAnnotationItemProvider = new StateImpactAnnotationItemProvider(this);
+		}
+
+		return stateImpactAnnotationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ASILImpactAnnotationItemProvider asilImpactAnnotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createASILImpactAnnotationAdapter() {
+		if (asilImpactAnnotationItemProvider == null) {
+			asilImpactAnnotationItemProvider = new ASILImpactAnnotationItemProvider(this);
+		}
+
+		return asilImpactAnnotationItemProvider;
 	}
 
 	/**
@@ -510,12 +487,11 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (contextItemProvider != null) contextItemProvider.dispose();
-		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
 		if (justificationItemProvider != null) justificationItemProvider.dispose();
-		if (elementValidityItemProvider != null) elementValidityItemProvider.dispose();
-		if (contentValidityItemProvider != null) contentValidityItemProvider.dispose();
-		if (stateValidityItemProvider != null) stateValidityItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
+		if (contentImpactAnnotationItemProvider != null) contentImpactAnnotationItemProvider.dispose();
+		if (stateImpactAnnotationItemProvider != null) stateImpactAnnotationItemProvider.dispose();
+		if (asilImpactAnnotationItemProvider != null) asilImpactAnnotationItemProvider.dispose();
 	}
 
 }

@@ -12,6 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +31,7 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * @model
  * @generated
  */
-public interface ASIL extends Impactable {
+public interface ASIL extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel}.
@@ -62,7 +63,7 @@ public interface ASIL extends Impactable {
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil <em>Asil</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement#getAsil <em>Asil</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' container reference isn't clear,
@@ -70,13 +71,13 @@ public interface ASIL extends Impactable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' container reference.
-	 * @see #setTarget(Goal)
+	 * @see #setTarget(ASILfulElement)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASIL_Target()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Goal#getAsil
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement#getAsil
 	 * @model opposite="asil" required="true" transient="false"
 	 * @generated
 	 */
-	Goal getTarget();
+	ASILfulElement getTarget();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getTarget <em>Target</em>}' container reference.
@@ -86,6 +87,6 @@ public interface ASIL extends Impactable {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Goal value);
+	void setTarget(ASILfulElement value);
 
 } // ASIL

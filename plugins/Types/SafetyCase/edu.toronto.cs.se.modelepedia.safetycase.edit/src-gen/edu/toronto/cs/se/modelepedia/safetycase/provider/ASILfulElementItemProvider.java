@@ -13,7 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.Impactable;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
@@ -37,12 +37,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Impactable} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImpactableItemProvider 
+public class ASILfulElementItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +56,7 @@ public class ImpactableItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactableItemProvider(AdapterFactory adapterFactory) {
+	public ASILfulElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,7 +87,8 @@ public class ImpactableItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.IMPACTABLE__STATUS);
+			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL);
+			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -113,7 +114,7 @@ public class ImpactableItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Impactable_type");
+		return getString("_UI_ASILfulElement_type");
 	}
 	
 
@@ -128,8 +129,9 @@ public class ImpactableItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Impactable.class)) {
-			case SafetyCasePackage.IMPACTABLE__STATUS:
+		switch (notification.getFeatureID(ASILfulElement.class)) {
+			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
+			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +151,13 @@ public class ImpactableItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.IMPACTABLE__STATUS,
-				 SafetyCaseFactory.eINSTANCE.createImpactAnnotation()));
+				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL,
+				 SafetyCaseFactory.eINSTANCE.createASIL()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS,
+				 SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation()));
 	}
 
 	/**

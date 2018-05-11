@@ -13,9 +13,9 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.Goal;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.StateImpactType;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,27 +23,40 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Goal} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends DecomposableCoreElementItemProvider {
+public class StateImpactAnnotationItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GoalItemProvider(AdapterFactory adapterFactory) {
+	public StateImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,25 +71,26 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStateValidityPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the State Validity feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStateValidityPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StatefulElement_stateValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
-				 SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+				 getString("_UI_StateImpactAnnotation_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StateImpactAnnotation_type_feature", "_UI_StateImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.STATE_IMPACT_ANNOTATION__TYPE,
 				 true,
 				 false,
 				 false,
@@ -86,46 +100,36 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS);
-		}
-		return childrenFeatures;
+	protected void addSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StateImpactAnnotation_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StateImpactAnnotation_source_feature", "_UI_StateImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.STATE_IMPACT_ANNOTATION__SOURCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns Goal.gif.
+	 * This returns StateImpactAnnotation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Goal"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateImpactAnnotation"));
 	}
 
 	/**
@@ -136,10 +140,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Goal)object).getId();
+		StateImpactType labelValue = ((StateImpactAnnotation)object).getType();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Goal_type") :
-			getString("_UI_Goal_type") + " " + label;
+			getString("_UI_StateImpactAnnotation_type") :
+			getString("_UI_StateImpactAnnotation_type") + " " + label;
 	}
 	
 
@@ -154,14 +159,10 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Goal.class)) {
-			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+		switch (notification.getFeatureID(StateImpactAnnotation.class)) {
+			case SafetyCasePackage.STATE_IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.STATE_IMPACT_ANNOTATION__SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case SafetyCasePackage.GOAL__STATE_STATUS:
-			case SafetyCasePackage.GOAL__ASIL:
-			case SafetyCasePackage.GOAL__ASIL_STATUS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -177,21 +178,17 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createStateImpactAnnotation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL,
-				 SafetyCaseFactory.eINSTANCE.createASIL()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation()));
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

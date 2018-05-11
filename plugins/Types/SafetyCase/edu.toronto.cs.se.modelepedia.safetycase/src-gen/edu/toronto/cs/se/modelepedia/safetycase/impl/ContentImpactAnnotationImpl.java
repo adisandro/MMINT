@@ -12,7 +12,8 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,68 +21,69 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Argument Element</b></em>'.
+ * An implementation of the model object '<em><b>Content Impact Annotation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ContentImpactAnnotationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ContentImpactAnnotationImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ArgumentElementImpl extends ContentfulElementImpl implements ArgumentElement {
+public class ContentImpactAnnotationImpl extends MinimalEObjectImpl.Container implements ContentImpactAnnotation {
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getId()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = null;
+	protected static final ContentImpactType TYPE_EDEFAULT = ContentImpactType.REVISE;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getId()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected String id = ID_EDEFAULT;
+	protected ContentImpactType type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
+	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
+	protected static final String SOURCE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
+	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected String description = DESCRIPTION_EDEFAULT;
+	protected String source = SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ArgumentElementImpl() {
+	protected ContentImpactAnnotationImpl() {
 		super();
 	}
 
@@ -92,7 +94,7 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.ARGUMENT_ELEMENT;
+		return SafetyCasePackage.Literals.CONTENT_IMPACT_ANNOTATION;
 	}
 
 	/**
@@ -100,8 +102,8 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
-		return id;
+	public ContentImpactType getType() {
+		return type;
 	}
 
 	/**
@@ -109,11 +111,11 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
+	public void setType(ContentImpactType newType) {
+		ContentImpactType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__TYPE, oldType, type));
 	}
 
 	/**
@@ -121,8 +123,8 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDescription() {
-		return description;
+	public String getSource() {
+		return source;
 	}
 
 	/**
@@ -130,11 +132,11 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
+	public void setSource(String newSource) {
+		String oldSource = source;
+		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -145,10 +147,10 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
-				return getId();
-			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
-				return getDescription();
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__TYPE:
+				return getType();
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__SOURCE:
+				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,11 +163,11 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
-				setId((String)newValue);
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__TYPE:
+				setType((ContentImpactType)newValue);
 				return;
-			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
-				setDescription((String)newValue);
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__SOURCE:
+				setSource((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,11 +181,11 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
-				setId(ID_EDEFAULT);
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__TYPE:
+				setType(TYPE_EDEFAULT);
 				return;
-			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__SOURCE:
+				setSource(SOURCE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -197,10 +199,10 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__TYPE:
+				return type != TYPE_EDEFAULT;
+			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION__SOURCE:
+				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -215,12 +217,12 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
-		result.append(id);
-		result.append(", description: ");
-		result.append(description);
+		result.append(" (type: ");
+		result.append(type);
+		result.append(", source: ");
+		result.append(source);
 		result.append(')');
 		return result.toString();
 	}
 
-} //ArgumentElementImpl
+} //ContentImpactAnnotationImpl

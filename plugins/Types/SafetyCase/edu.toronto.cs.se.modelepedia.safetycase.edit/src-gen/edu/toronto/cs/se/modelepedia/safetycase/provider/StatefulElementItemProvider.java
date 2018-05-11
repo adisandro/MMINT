@@ -16,6 +16,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.provider;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,9 +24,19 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -34,7 +45,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StatefulElementItemProvider extends ArgumentElementItemProvider {
+public class StatefulElementItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -56,8 +74,31 @@ public class StatefulElementItemProvider extends ArgumentElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addStateValidityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the State Validity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStateValidityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StatefulElement_stateValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
+				 SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -72,7 +113,7 @@ public class StatefulElementItemProvider extends ArgumentElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY);
+			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -98,7 +139,8 @@ public class StatefulElementItemProvider extends ArgumentElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StatefulElement)object).getId();
+		ValidityValue labelValue = ((StatefulElement)object).getStateValidity();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_StatefulElement_type") :
 			getString("_UI_StatefulElement_type") + " " + label;
@@ -118,6 +160,9 @@ public class StatefulElementItemProvider extends ArgumentElementItemProvider {
 
 		switch (notification.getFeatureID(StatefulElement.class)) {
 			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -137,8 +182,19 @@ public class StatefulElementItemProvider extends ArgumentElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
-				 SafetyCaseFactory.eINSTANCE.createStateValidity()));
+				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS,
+				 SafetyCaseFactory.eINSTANCE.createStateImpactAnnotation()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

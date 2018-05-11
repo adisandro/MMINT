@@ -12,6 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,39 +24,67 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateValidity <em>State Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateStatus <em>State Status</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStatefulElement()
  * @model abstract="true"
  * @generated
  */
-public interface StatefulElement extends ArgumentElement {
+public interface StatefulElement extends EObject {
 	/**
-	 * Returns the value of the '<em><b>State Validity</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.StateValidity#getTarget <em>Target</em>}'.
+	 * Returns the value of the '<em><b>State Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>State Validity</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>State Validity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Validity</em>' containment reference.
-	 * @see #setStateValidity(StateValidity)
+	 * @return the value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setStateValidity(ValidityValue)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStatefulElement_StateValidity()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.StateValidity#getTarget
-	 * @model opposite="target" containment="true"
+	 * @model
 	 * @generated
 	 */
-	StateValidity getStateValidity();
+	ValidityValue getStateValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateValidity <em>State Validity</em>}' containment reference.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateValidity <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Validity</em>' containment reference.
+	 * @param value the new value of the '<em>State Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
 	 * @see #getStateValidity()
 	 * @generated
 	 */
-	void setStateValidity(StateValidity value);
+	void setStateValidity(ValidityValue value);
+
+	/**
+	 * Returns the value of the '<em><b>State Status</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State Status</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State Status</em>' containment reference.
+	 * @see #setStateStatus(StateImpactAnnotation)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStatefulElement_StateStatus()
+	 * @model containment="true"
+	 * @generated
+	 */
+	StateImpactAnnotation getStateStatus();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateStatus <em>State Status</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State Status</em>' containment reference.
+	 * @see #getStateStatus()
+	 * @generated
+	 */
+	void setStateStatus(StateImpactAnnotation value);
 
 } // StatefulElement
