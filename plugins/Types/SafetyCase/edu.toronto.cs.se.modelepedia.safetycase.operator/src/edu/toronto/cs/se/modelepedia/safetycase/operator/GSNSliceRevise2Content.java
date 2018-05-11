@@ -30,10 +30,10 @@ import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRevise extends Slice {
+public class GSNSliceRevise2Content extends Slice {
 
-	// Get all model elements in a safety case that needs to be re-checked
-	// given the input element that contains contents requiring revision.
+	// Get all model elements in a safety case that needs to be re-checked for content
+	// validity given the input element that contains contents requiring revision.
     @Override
 	protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
 
@@ -55,120 +55,63 @@ public class GSNSliceRevise extends Slice {
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
 	    Set<EObject> impacted = new HashSet<>();
-	    EObject modelParent = modelObj.eContainer();
 
-		// If input is a goal, then the following should be rechecked:
-		// 1) The content validity of any parent argument element
-		// 2) The content validity of any child argument element
-		// 3) The state validity of the input goal.
-		if (modelParent instanceof Goal) {
-			Goal g = (Goal) modelParent;
+		// If input is a goal, then the content validity should be rechecked for:
+		// 1) Any parent argument element
+		// 2) Any child argument element
+		if (modelObj instanceof Goal) {
+			Goal g = (Goal) modelObj;
 			
 			for (SupportedBy rel : g.getSupports()) {
-				impacted.add(rel.getConclusion().getContentValidity());
+				impacted.add(rel.getConclusion());
 			}
 			
 			for (SupportedBy rel : g.getSupportedBy()) {
-				impacted.add(rel.getPremise().getContentValidity());
+				impacted.add(rel.getPremise());
 			}
-			
-			impacted.add(g.getStateValidity());
 
-		// If input is a strategy, then the following should be rechecked:
-		// 1) The state validity of all ancestor goals.
-		// 2) The content validity of any child argument element.
-		// 3) The content validity of any contexts and justifications connected to it.
-		} else if (modelParent instanceof Strategy) {
-			Strategy s = (Strategy) modelParent;
-			
-			for (Goal g : getAncestorGoals(s)) {
-				impacted.add(g.getStateValidity());
-			}
+		// If input is a strategy, then the content validity should be rechecked for:
+		// 2) Any child argument element.
+		// 3) Any contexts and justifications connected to it.
+		} else if (modelObj instanceof Strategy) {
+			Strategy s = (Strategy) modelObj;
 			
 			for (SupportedBy rel : s.getSupportedBy()) {
-				impacted.add(rel.getPremise().getContentValidity());
+				impacted.add(rel.getPremise());
 			}
 			
 			for (InContextOf rel : s.getInContextOf()) {
-				impacted.add(rel.getContext().getContentValidity());
+				impacted.add(rel.getContext());
 			}
 
-		// If input is a solution, then the following should be rechecked:
-		// 1) The content validity of any parent argument element.
-		// 2) The state validity of the input solution
-		} else if (modelParent instanceof Solution) {
-			Solution s = (Solution) modelParent;
+		// If input is a solution, then the content validity should be rechecked for:
+		// 1) Any parent argument element.
+		} else if (modelObj instanceof Solution) {
+			Solution s = (Solution) modelObj;
 			
 			for (SupportedBy rel : s.getSupports()) {
-				impacted.add(rel.getConclusion().getContentValidity());
+				impacted.add(rel.getConclusion());
 			}
 			
-			impacted.add(s.getStateValidity());
-			
-		// If input is a context, then the following should be rechecked:
-		// 1) The content validity of all argument elements that uses or inherits input context.
-		} else if (modelParent instanceof Context) {
-			Context c = (Context) modelParent;
+		// If input is a context, then the content validity should be rechecked for:
+		// 1) All argument elements that uses or inherits input context.
+		} else if (modelObj instanceof Context) {
+			Context c = (Context) modelObj;
 			
 			for (InContextOf rel : c.getContextOf()) {
 				for (ArgumentElement elem : getDescendantElements(rel.getContextOf())) {
-					impacted.add(elem.getContentValidity());
+					impacted.add(elem);
 				}
 			}
 		
 		// If input is a justification, then nothing else requires rechecking.
-		} else if (modelParent instanceof Justification) {
+		} else if (modelObj instanceof Justification) {
 
 		}
 
 		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
-	}
-	
-	// Returns all ancestor goals of the input strategy.
-	public Set<Goal> getAncestorGoals(Strategy elem) {
-		Set<DecomposableCoreElement> ancestorsAll = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsCur = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsNext = new HashSet<>();
-
-		// Iterate through the current set of newly added ancestors
-		// to identify the next generation of ancestors.
-		for (SupportedBy rel : elem.getSupports()) {
-			ancestorsNext.add(rel.getConclusion());
-		}
-		
-		ancestorsAll.addAll(ancestorsNext);
-		ancestorsCur.addAll(ancestorsNext);
-		ancestorsNext.clear();		
-		
-		while (!ancestorsCur.isEmpty()) {
-			for (DecomposableCoreElement curElem : ancestorsCur) {
-				for (SupportedBy rel : curElem.getSupports()) {
-					ancestorsNext.add(rel.getConclusion());
-				}
-			}
-
-			ancestorsCur.clear();
-			for (DecomposableCoreElement newElem : ancestorsNext) {
-				if (!ancestorsAll.contains(newElem)) {
-					ancestorsAll.add(newElem);
-					ancestorsCur.add(newElem);
-				}
-			}
-
-			ancestorsNext.clear();
-		}
-		
-		// Return the ancestors that are goals.
-		Set<Goal> goalAncestors = new HashSet<>();
-		for (DecomposableCoreElement newElem : ancestorsAll) {
-			if (newElem instanceof Goal) {
-				goalAncestors.add((Goal) newElem);
-			}
-		}
-
-		return goalAncestors;
 	}
 	
 	// Returns all the descendants of the input decomposable core element
