@@ -77,7 +77,7 @@ public class GSNAnnotate extends OperatorImpl {
             this.scModel = this.reviseRel.getModelEndpoints().get(0).getTarget();
             Model sameSCModelContent = this.recheckContentRel.getModelEndpoints().get(0).getTarget();
             Model sameSCModelState = this.recheckStateRel.getModelEndpoints().get(0).getTarget();
-            if (!(this.scModel.getUri().equals(sameSCModelContent.getUri()) && 
+            if (!(this.scModel.getUri().equals(sameSCModelContent.getUri()) &&
             		this.scModel.getUri().equals(sameSCModelState.getUri()))) {
                 throw new IllegalArgumentException();
             }
@@ -123,10 +123,10 @@ public class GSNAnnotate extends OperatorImpl {
                 scRevise2impactSrcs.put((ContentfulElement) reviseObj, "");
             }
         }
-        
+
         // Extract the cause(s) of the required revisions.
         // Note: It is assumed that there may be a many-to-many mapping between
-        // the safety case elements to be revised and the causes of those revisions.      
+        // the safety case elements to be revised and the causes of those revisions.
         for (Mapping srcMapping : reviseRel.getMappings()) {
         	String impactSrc = srcMapping.getName().replace("+", ", ");
         	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
@@ -136,16 +136,16 @@ public class GSNAnnotate extends OperatorImpl {
         		} catch (MMINTException e){
                     MMINTException.print(IStatus.WARNING, "Skipping element to revise " +
                             elemEndpoint.getTarget().getName(), e);
-                    continue;        			
+                    continue;
         		}
-        		
-        		
+
+
         		if (reviseObj instanceof ContentfulElement) {
         			if (scRevise2impactSrcs.get(reviseObj).equals("")) {
         				scRevise2impactSrcs.put((ContentfulElement) reviseObj, impactSrc);
         			} else {
             			String srcString = scRevise2impactSrcs.get(reviseObj).concat(", " + impactSrc);
-            			scRevise2impactSrcs.put((ContentfulElement) reviseObj, srcString);        				
+            			scRevise2impactSrcs.put((ContentfulElement) reviseObj, srcString);
         			}
         		}
         	}
@@ -169,10 +169,10 @@ public class GSNAnnotate extends OperatorImpl {
                 scRecheckContent2impactSrcs.put((ContentfulElement) recheckObj, "");
             }
         }
-        
+
         // Extract the cause(s) of the required rechecks.
         // Note: It is assumed that there may be a many-to-many mapping between
-        // the safety case elements to be rechecked and the causes of those rechecks.      
+        // the safety case elements to be rechecked and the causes of those rechecks.
         for (Mapping srcMapping : recheckContentRel.getMappings()) {
         	String impactSrc = srcMapping.getName().replace("+", ", ");
         	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
@@ -182,23 +182,23 @@ public class GSNAnnotate extends OperatorImpl {
         		} catch (MMINTException e){
                     MMINTException.print(IStatus.WARNING, "Skipping element to revise " +
                             elemEndpoint.getTarget().getName(), e);
-                    continue;        			
+                    continue;
         		}
-        		
-        		
+
+
         		if (recheckObj instanceof ContentfulElement) {
         			if (scRecheckContent2impactSrcs.containsKey(recheckObj)) {
         				if (scRecheckContent2impactSrcs.get(recheckObj).equals("")) {
         					scRecheckContent2impactSrcs.put((ContentfulElement) recheckObj, impactSrc);
         				} else {
         					String srcString = scRecheckContent2impactSrcs.get(recheckObj).concat(", " + impactSrc);
-        					scRecheckContent2impactSrcs.put((ContentfulElement) recheckObj, srcString);        				
+        					scRecheckContent2impactSrcs.put((ContentfulElement) recheckObj, srcString);
         				}
         			}
         		}
         	}
         }
-        
+
         // Extract all argument elements whose state requires rechecking and prepare to extract their causes.
         Set<StatefulElement> scRecheckStateObjs = new HashSet<>();
         Map<StatefulElement, String> scRecheckState2impactSrcs = new HashMap<>();
@@ -217,10 +217,10 @@ public class GSNAnnotate extends OperatorImpl {
                 scRecheckState2impactSrcs.put((StatefulElement) recheckObj, "");
             }
         }
-        
+
         // Extract the cause(s) of the required rechecks.
         // Note: It is assumed that there may be a many-to-many mapping between
-        // the safety case elements to be rechecked and the causes of those rechecks.      
+        // the safety case elements to be rechecked and the causes of those rechecks.
         for (Mapping srcMapping : recheckStateRel.getMappings()) {
         	String impactSrc = srcMapping.getName().replace("+", ", ");
         	for (ModelElementEndpoint elemEndpoint : srcMapping.getModelElemEndpoints()) {
@@ -230,17 +230,17 @@ public class GSNAnnotate extends OperatorImpl {
         		} catch (MMINTException e){
                     MMINTException.print(IStatus.WARNING, "Skipping element to revise " +
                             elemEndpoint.getTarget().getName(), e);
-                    continue;        			
+                    continue;
         		}
-        		
-        		
+
+
         		if (recheckObj instanceof StatefulElement) {
         			if (scRecheckState2impactSrcs.containsKey(recheckObj)) {
         				if (scRecheckState2impactSrcs.get(recheckObj).equals("")) {
         					scRecheckState2impactSrcs.put((StatefulElement) recheckObj, impactSrc);
         				} else {
         					String srcString = scRecheckState2impactSrcs.get(recheckObj).concat(", " + impactSrc);
-        					scRecheckState2impactSrcs.put((StatefulElement) recheckObj, srcString);        				
+        					scRecheckState2impactSrcs.put((StatefulElement) recheckObj, srcString);
         				}
         			}
         		}
@@ -252,41 +252,43 @@ public class GSNAnnotate extends OperatorImpl {
         while (scIter.hasNext()) {
             EObject scObj = scIter.next();
 
-            
+
             if (scObj instanceof ContentfulElement) {
             	ContentImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createContentImpactAnnotation();
-            	
+
                 if (scReviseObjs.contains(scObj)) {
                 	annotation.setType(ContentImpactType.REVISE);
                 	annotation.setSource(scRevise2impactSrcs.get(scObj));
                     ((ContentfulElement) scObj).setContentStatus(annotation);
-                
+
                 } else if (scRecheckContentObjs.contains(scObj)) {
-                	annotation.setType(ContentImpactType.RECHECK); 
+                	annotation.setType(ContentImpactType.RECHECK);
                 	annotation.setSource(scRecheckContent2impactSrcs.get(scObj));
                     ((ContentfulElement) scObj).setContentStatus(annotation);
-                    
+
                 } else {
-                	annotation.setType(ContentImpactType.REUSE); 
+                	annotation.setType(ContentImpactType.REUSE);
                 	annotation.setSource("Not applicable.");
-                    ((ContentfulElement) scObj).setContentStatus(annotation);                	
+                    ((ContentfulElement) scObj).setContentStatus(annotation);
                 }
-            
-            } else if (scObj instanceof StatefulElement) {
+
+            }
+
+            if (scObj instanceof StatefulElement) {
             	StateImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createStateImpactAnnotation();
 
-            	if (scRecheckContentObjs.contains(scObj)) {
-            		annotation.setType(StateImpactType.RECHECK); 
+            	if (scRecheckStateObjs.contains(scObj)) {
+            		annotation.setType(StateImpactType.RECHECK);
             		annotation.setSource(scRecheckState2impactSrcs.get(scObj));
             		((StatefulElement) scObj).setStateStatus(annotation);
-            		
+
             	} else {
-            		annotation.setType(StateImpactType.REUSE); 
+            		annotation.setType(StateImpactType.REUSE);
             		annotation.setSource("Not applicable.");
-            		((StatefulElement) scObj).setStateStatus(annotation);           		
+            		((StatefulElement) scObj).setStateStatus(annotation);
             	}
             }
-            
+
         }
 
         // Create output
