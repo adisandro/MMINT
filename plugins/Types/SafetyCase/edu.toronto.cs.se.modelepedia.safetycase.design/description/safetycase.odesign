@@ -266,9 +266,12 @@
       <ownedLineMappings name="GoalLine" domainClass="safetycase.Goal" semanticCandidatesExpression="feature:goals" headerLabelExpression="aql:'Goal ' + self.id"/>
       <ownedLineMappings name="StrategyLine" domainClass="safetycase.Strategy" semanticCandidatesExpression="feature:strategies" headerLabelExpression="aql:'Strategy ' + self.id"/>
       <ownedLineMappings name="SolutionLine" domainClass="safetycase.Solution" semanticCandidatesExpression="feature:solutions" headerLabelExpression="aql:'Solution ' + self.id"/>
-      <ownedLineMappings name="AsilLine" domainClass="safetycase.ASIL" semanticCandidatesExpression="aql:root.goals.asil" headerLabelExpression="aql:'ASIL for Goal ' + self.owner.id"/>
-      <ownedColumnMappings name="ImpactColumn" headerLabelExpression="Impact Type" featureName="status" labelExpression="aql:self.status.type"/>
-      <ownedColumnMappings name="SourceColumn" headerLabelExpression="Impact Source" featureName="status" labelExpression="aql:self.status.source"/>
+      <ownedColumnMappings name="ContentImpactColumn" headerLabelExpression="Content Impact Type" featureName="contentStatus" labelExpression="aql:self.contentStatus.type"/>
+      <ownedColumnMappings name="ContentSourceColumn" headerLabelExpression="Content Impact Source" featureName="contentStatus" labelExpression="aql:self.contentStatus.source"/>
+      <ownedColumnMappings name="StateImpactColumn" headerLabelExpression="State Impact Type" featureName="stateStatus" labelExpression="aql:self.stateStatus.type"/>
+      <ownedColumnMappings name="StateSourceColumn" headerLabelExpression="State Impact Source" featureName="stateStatus" labelExpression="aql:self.stateStatus.source"/>
+      <ownedColumnMappings name="ASILImpactColumn" headerLabelExpression="ASIL Impact Type" featureName="asilStatus" labelExpression="aql:self.asilStatus.type"/>
+      <ownedColumnMappings name="ASILSourceColumn" headerLabelExpression="ASIL Impact Source" featureName="asilStatus" labelExpression="aql:self.asilStatus.source"/>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.safetycase.design.Services"/>
   </ownedViewpoints>
