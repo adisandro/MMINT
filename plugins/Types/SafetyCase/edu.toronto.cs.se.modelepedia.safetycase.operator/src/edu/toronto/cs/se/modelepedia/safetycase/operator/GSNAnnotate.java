@@ -35,14 +35,20 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.ContentfulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.StateImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNAnnotate extends OperatorImpl {
 
@@ -251,6 +257,10 @@ public class GSNAnnotate extends OperatorImpl {
         Iterator<EObject> scIter = scRoot.eAllContents();
         while (scIter.hasNext()) {
             EObject scObj = scIter.next();
+            
+            if (!(scObj instanceof CoreElement)) {
+            	continue;
+            }
 
 
             if (scObj instanceof ContentfulElement) {
@@ -286,6 +296,33 @@ public class GSNAnnotate extends OperatorImpl {
             		annotation.setType(StateImpactType.REUSE);
             		annotation.setSource("Not applicable.");
             		((StatefulElement) scObj).setStateStatus(annotation);
+            	}
+            }
+            
+            // Annotate the ASILs of the ASILful elements (i.e. goals).
+            // An ASIL should be annotated as revised if the associated goal supports
+            // an ASIL decomposition strategy and requires revision. Otherwise, the
+            // ASIL can be reused.
+            if (scObj instanceof ASILfulElement) {
+            	CoreElement elem = (CoreElement) scObj;
+            	ASILImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation();
+            	
+            	annotation.setType(ASILImpactType.REUSE);
+            	annotation.setSource("Not applicable.");
+        		((ASILfulElement) scObj).setAsilStatus(annotation);            	
+            	
+            	if (scReviseObjs.contains(scObj)) {
+            		boolean supportsAsilDecomp = false;
+            		for (SupportedBy rel : elem.getSupports()) {
+            			if (rel.getConclusion() instanceof ASILDecompositionStrategy) {
+            				supportsAsilDecomp = true;
+            			}
+            		}
+            		
+            		if (supportsAsilDecomp) {
+                		annotation.setType(ASILImpactType.REVISE);
+                		annotation.setSource(scRevise2impactSrcs.get(scObj));
+            		}
             	}
             }
 
