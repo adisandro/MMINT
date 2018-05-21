@@ -13,10 +13,10 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -111,7 +111,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * @generated
 	 * @ordered
 	 */
-	protected ElementImpactAnnotation status;
+	protected ImpactAnnotation status;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,7 +200,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementImpactAnnotation getStatus() {
+	public ImpactAnnotation getStatus() {
 		return status;
 	}
 
@@ -209,8 +209,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStatus(ElementImpactAnnotation newStatus, NotificationChain msgs) {
-		ElementImpactAnnotation oldStatus = status;
+	public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
+		ImpactAnnotation oldStatus = status;
 		status = newStatus;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
@@ -224,7 +224,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatus(ElementImpactAnnotation newStatus) {
+	public void setStatus(ImpactAnnotation newStatus) {
 		if (newStatus != status) {
 			NotificationChain msgs = null;
 			if (status != null)
@@ -290,7 +290,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				setContentValidity((ValidityValue)newValue);
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				setStatus((ElementImpactAnnotation)newValue);
+				setStatus((ImpactAnnotation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,7 +314,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 				setContentValidity(CONTENT_VALIDITY_EDEFAULT);
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
-				setStatus((ElementImpactAnnotation)null);
+				setStatus((ImpactAnnotation)null);
 				return;
 		}
 		super.eUnset(featureID);

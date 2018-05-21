@@ -99,12 +99,12 @@ public interface ASIL extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Status</em>' containment reference.
-	 * @see #setStatus(ASILImpactAnnotation)
+	 * @see #setStatus(ImpactAnnotation)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASIL_Status()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ASILImpactAnnotation getStatus();
+	ImpactAnnotation getStatus();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getStatus <em>Status</em>}' containment reference.
@@ -114,6 +114,6 @@ public interface ASIL extends EObject {
 	 * @see #getStatus()
 	 * @generated
 	 */
-	void setStatus(ASILImpactAnnotation value);
+	void setStatus(ImpactAnnotation value);
 
 } // ASIL

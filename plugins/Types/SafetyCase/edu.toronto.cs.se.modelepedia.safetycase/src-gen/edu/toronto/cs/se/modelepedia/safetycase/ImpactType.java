@@ -20,14 +20,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Element Impact Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Impact Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getElementImpactType()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactType()
  * @model
  * @generated
  */
-public enum ElementImpactType implements Enumerator {
+public enum ImpactType implements Enumerator {
 	/**
 	 * The '<em><b>Revise</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -129,13 +129,13 @@ public enum ElementImpactType implements Enumerator {
 	public static final int REUSE_VALUE = 4;
 
 	/**
-	 * An array of all the '<em><b>Element Impact Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ElementImpactType[] VALUES_ARRAY =
-		new ElementImpactType[] {
+	private static final ImpactType[] VALUES_ARRAY =
+		new ImpactType[] {
 			REVISE,
 			RECHECK_CONTENT,
 			RECHECK_STATE,
@@ -143,24 +143,24 @@ public enum ElementImpactType implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Element Impact Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<ElementImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Element Impact Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Impact Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ElementImpactType get(String literal) {
+	public static ImpactType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ElementImpactType result = VALUES_ARRAY[i];
+			ImpactType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -169,16 +169,16 @@ public enum ElementImpactType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Element Impact Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Impact Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ElementImpactType getByName(String name) {
+	public static ImpactType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ElementImpactType result = VALUES_ARRAY[i];
+			ImpactType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -187,14 +187,14 @@ public enum ElementImpactType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Element Impact Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Impact Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static ElementImpactType get(int value) {
+	public static ImpactType get(int value) {
 		switch (value) {
 			case REVISE_VALUE: return REVISE;
 			case RECHECK_CONTENT_VALUE: return RECHECK_CONTENT;
@@ -231,7 +231,7 @@ public enum ElementImpactType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ElementImpactType(int value, String name, String literal) {
+	private ImpactType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -275,4 +275,4 @@ public enum ElementImpactType implements Enumerator {
 		return literal;
 	}
 	
-} //ElementImpactType
+} //ImpactType

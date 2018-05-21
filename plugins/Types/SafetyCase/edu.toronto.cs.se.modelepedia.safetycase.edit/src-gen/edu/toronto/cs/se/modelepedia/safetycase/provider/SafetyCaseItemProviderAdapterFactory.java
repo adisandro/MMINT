@@ -335,49 +335,26 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ElementImpactAnnotationItemProvider elementImpactAnnotationItemProvider;
+	protected ImpactAnnotationItemProvider impactAnnotationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createElementImpactAnnotationAdapter() {
-		if (elementImpactAnnotationItemProvider == null) {
-			elementImpactAnnotationItemProvider = new ElementImpactAnnotationItemProvider(this);
+	public Adapter createImpactAnnotationAdapter() {
+		if (impactAnnotationItemProvider == null) {
+			impactAnnotationItemProvider = new ImpactAnnotationItemProvider(this);
 		}
 
-		return elementImpactAnnotationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ASILImpactAnnotationItemProvider asilImpactAnnotationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createASILImpactAnnotationAdapter() {
-		if (asilImpactAnnotationItemProvider == null) {
-			asilImpactAnnotationItemProvider = new ASILImpactAnnotationItemProvider(this);
-		}
-
-		return asilImpactAnnotationItemProvider;
+		return impactAnnotationItemProvider;
 	}
 
 	/**
@@ -490,8 +467,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (justificationItemProvider != null) justificationItemProvider.dispose();
 		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
-		if (elementImpactAnnotationItemProvider != null) elementImpactAnnotationItemProvider.dispose();
-		if (asilImpactAnnotationItemProvider != null) asilImpactAnnotationItemProvider.dispose();
+		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
 	}
 
 }

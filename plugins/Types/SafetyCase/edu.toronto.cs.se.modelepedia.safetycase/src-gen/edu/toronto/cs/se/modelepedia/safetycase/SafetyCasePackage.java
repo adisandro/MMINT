@@ -1355,14 +1355,14 @@ public interface SafetyCasePackage extends EPackage {
 	int ASIL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ElementImpactAnnotationImpl <em>Element Impact Annotation</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ElementImpactAnnotationImpl
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getElementImpactAnnotation()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactAnnotation()
 	 * @generated
 	 */
-	int ELEMENT_IMPACT_ANNOTATION = 18;
+	int IMPACT_ANNOTATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1371,7 +1371,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPACT_ANNOTATION__TYPE = 0;
+	int IMPACT_ANNOTATION__TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' attribute.
@@ -1380,71 +1380,25 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPACT_ANNOTATION__SOURCE = 1;
+	int IMPACT_ANNOTATION__SOURCE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Element Impact Annotation</em>' class.
+	 * The number of structural features of the '<em>Impact Annotation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPACT_ANNOTATION_FEATURE_COUNT = 2;
+	int IMPACT_ANNOTATION_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Element Impact Annotation</em>' class.
+	 * The number of operations of the '<em>Impact Annotation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_IMPACT_ANNOTATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpactAnnotationImpl <em>ASIL Impact Annotation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpactAnnotationImpl
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILImpactAnnotation()
-	 * @generated
-	 */
-	int ASIL_IMPACT_ANNOTATION = 19;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_IMPACT_ANNOTATION__TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_IMPACT_ANNOTATION__SOURCE = 1;
-
-	/**
-	 * The number of structural features of the '<em>ASIL Impact Annotation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_IMPACT_ANNOTATION_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>ASIL Impact Annotation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIL_IMPACT_ANNOTATION_OPERATION_COUNT = 0;
+	int IMPACT_ANNOTATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
@@ -1454,7 +1408,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILLevel()
 	 * @generated
 	 */
-	int ASIL_LEVEL = 20;
+	int ASIL_LEVEL = 19;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
@@ -1464,17 +1418,17 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityValue()
 	 * @generated
 	 */
-	int VALIDITY_VALUE = 21;
+	int VALIDITY_VALUE = 20;
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType <em>Element Impact Type</em>}' enum.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getElementImpactType()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactType
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactType()
 	 * @generated
 	 */
-	int ELEMENT_IMPACT_TYPE = 22;
+	int IMPACT_TYPE = 21;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType <em>ASIL Impact Type</em>}' enum.
@@ -1484,7 +1438,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILImpactType()
 	 * @generated
 	 */
-	int ASIL_IMPACT_TYPE = 23;
+	int ASIL_IMPACT_TYPE = 22;
 
 
 	/**
@@ -1921,68 +1875,36 @@ public interface SafetyCasePackage extends EPackage {
 	EReference getASIL_Status();
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation <em>Element Impact Annotation</em>}'.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation <em>Impact Annotation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Element Impact Annotation</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation
+	 * @return the meta object for class '<em>Impact Annotation</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation
 	 * @generated
 	 */
-	EClass getElementImpactAnnotation();
+	EClass getImpactAnnotation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getType()
-	 * @see #getElementImpactAnnotation()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getType()
+	 * @see #getImpactAnnotation()
 	 * @generated
 	 */
-	EAttribute getElementImpactAnnotation_Type();
+	EAttribute getImpactAnnotation_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getSource <em>Source</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Source</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getSource()
-	 * @see #getElementImpactAnnotation()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getSource()
+	 * @see #getImpactAnnotation()
 	 * @generated
 	 */
-	EAttribute getElementImpactAnnotation_Source();
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation <em>ASIL Impact Annotation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>ASIL Impact Annotation</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation
-	 * @generated
-	 */
-	EClass getASILImpactAnnotation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getType()
-	 * @see #getASILImpactAnnotation()
-	 * @generated
-	 */
-	EAttribute getASILImpactAnnotation_Type();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Source</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getSource()
-	 * @see #getASILImpactAnnotation()
-	 * @generated
-	 */
-	EAttribute getASILImpactAnnotation_Source();
+	EAttribute getImpactAnnotation_Source();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
@@ -2005,14 +1927,14 @@ public interface SafetyCasePackage extends EPackage {
 	EEnum getValidityValue();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType <em>Element Impact Type</em>}'.
+	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Element Impact Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType
+	 * @return the meta object for enum '<em>Impact Type</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactType
 	 * @generated
 	 */
-	EEnum getElementImpactType();
+	EEnum getImpactType();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType <em>ASIL Impact Type</em>}'.
@@ -2412,14 +2334,14 @@ public interface SafetyCasePackage extends EPackage {
 		EReference ASIL__STATUS = eINSTANCE.getASIL_Status();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ElementImpactAnnotationImpl <em>Element Impact Annotation</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ElementImpactAnnotationImpl
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getElementImpactAnnotation()
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ImpactAnnotationImpl
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactAnnotation()
 		 * @generated
 		 */
-		EClass ELEMENT_IMPACT_ANNOTATION = eINSTANCE.getElementImpactAnnotation();
+		EClass IMPACT_ANNOTATION = eINSTANCE.getImpactAnnotation();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -2427,7 +2349,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ELEMENT_IMPACT_ANNOTATION__TYPE = eINSTANCE.getElementImpactAnnotation_Type();
+		EAttribute IMPACT_ANNOTATION__TYPE = eINSTANCE.getImpactAnnotation_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
@@ -2435,33 +2357,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ELEMENT_IMPACT_ANNOTATION__SOURCE = eINSTANCE.getElementImpactAnnotation_Source();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpactAnnotationImpl <em>ASIL Impact Annotation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpactAnnotationImpl
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILImpactAnnotation()
-		 * @generated
-		 */
-		EClass ASIL_IMPACT_ANNOTATION = eINSTANCE.getASILImpactAnnotation();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIL_IMPACT_ANNOTATION__TYPE = eINSTANCE.getASILImpactAnnotation_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIL_IMPACT_ANNOTATION__SOURCE = eINSTANCE.getASILImpactAnnotation_Source();
+		EAttribute IMPACT_ANNOTATION__SOURCE = eINSTANCE.getImpactAnnotation_Source();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
@@ -2484,14 +2380,14 @@ public interface SafetyCasePackage extends EPackage {
 		EEnum VALIDITY_VALUE = eINSTANCE.getValidityValue();
 
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType <em>Element Impact Type</em>}' enum.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getElementImpactType()
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactType
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactType()
 		 * @generated
 		 */
-		EEnum ELEMENT_IMPACT_TYPE = eINSTANCE.getElementImpactType();
+		EEnum IMPACT_TYPE = eINSTANCE.getImpactType();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType <em>ASIL Impact Type</em>}' enum.

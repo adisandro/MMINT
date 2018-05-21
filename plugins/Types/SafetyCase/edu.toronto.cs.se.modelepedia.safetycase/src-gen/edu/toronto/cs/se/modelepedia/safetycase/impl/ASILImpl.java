@@ -13,9 +13,9 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
-import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -73,7 +73,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * @generated
 	 * @ordered
 	 */
-	protected ASILImpactAnnotation status;
+	protected ImpactAnnotation status;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,7 +161,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ASILImpactAnnotation getStatus() {
+	public ImpactAnnotation getStatus() {
 		return status;
 	}
 
@@ -170,8 +170,8 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStatus(ASILImpactAnnotation newStatus, NotificationChain msgs) {
-		ASILImpactAnnotation oldStatus = status;
+	public NotificationChain basicSetStatus(ImpactAnnotation newStatus, NotificationChain msgs) {
+		ImpactAnnotation oldStatus = status;
 		status = newStatus;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASIL__STATUS, oldStatus, newStatus);
@@ -185,7 +185,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStatus(ASILImpactAnnotation newStatus) {
+	public void setStatus(ImpactAnnotation newStatus) {
 		if (newStatus != status) {
 			NotificationChain msgs = null;
 			if (status != null)
@@ -278,7 +278,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 				setTarget((ASILfulElement)newValue);
 				return;
 			case SafetyCasePackage.ASIL__STATUS:
-				setStatus((ASILImpactAnnotation)newValue);
+				setStatus((ImpactAnnotation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -299,7 +299,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 				setTarget((ASILfulElement)null);
 				return;
 			case SafetyCasePackage.ASIL__STATUS:
-				setStatus((ASILImpactAnnotation)null);
+				setStatus((ImpactAnnotation)null);
 				return;
 		}
 		super.eUnset(featureID);

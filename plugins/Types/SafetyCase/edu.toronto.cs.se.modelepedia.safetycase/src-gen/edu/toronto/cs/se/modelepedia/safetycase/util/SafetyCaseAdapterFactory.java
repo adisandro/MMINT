@@ -150,12 +150,8 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createASILAdapter();
 			}
 			@Override
-			public Adapter caseElementImpactAnnotation(ElementImpactAnnotation object) {
-				return createElementImpactAnnotationAdapter();
-			}
-			@Override
-			public Adapter caseASILImpactAnnotation(ASILImpactAnnotation object) {
-				return createASILImpactAnnotationAdapter();
+			public Adapter caseImpactAnnotation(ImpactAnnotation object) {
+				return createImpactAnnotationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -430,30 +426,16 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation <em>Element Impact Annotation</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation <em>Impact Annotation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation
 	 * @generated
 	 */
-	public Adapter createElementImpactAnnotationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation <em>ASIL Impact Annotation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation
-	 * @generated
-	 */
-	public Adapter createASILImpactAnnotationAdapter() {
+	public Adapter createImpactAnnotationAdapter() {
 		return null;
 	}
 

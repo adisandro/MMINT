@@ -194,7 +194,7 @@ public class ASILItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SafetyCasePackage.Literals.ASIL__STATUS,
-				 SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation()));
+				 SafetyCaseFactory.eINSTANCE.createImpactAnnotation()));
 	}
 
 	/**

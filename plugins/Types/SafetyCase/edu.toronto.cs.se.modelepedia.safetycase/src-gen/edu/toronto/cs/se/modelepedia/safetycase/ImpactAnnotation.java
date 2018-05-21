@@ -16,25 +16,25 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>ASIL Impact Annotation</b></em>'.
+ * A representation of the model object '<em><b>Impact Annotation</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getSource <em>Source</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASILImpactAnnotation()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactAnnotation()
  * @model
  * @generated
  */
-public interface ASILImpactAnnotation extends EObject {
+public interface ImpactAnnotation extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType}.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -42,24 +42,24 @@ public interface ASILImpactAnnotation extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType
-	 * @see #setType(ASILImpactType)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASILImpactAnnotation_Type()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactType
+	 * @see #setType(ImpactType)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactAnnotation_Type()
 	 * @model required="true"
 	 * @generated
 	 */
-	ASILImpactType getType();
+	ImpactType getType();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ImpactType
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(ASILImpactType value);
+	void setType(ImpactType value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' attribute.
@@ -71,14 +71,14 @@ public interface ASILImpactAnnotation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' attribute.
 	 * @see #setSource(String)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASILImpactAnnotation_Source()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getImpactAnnotation_Source()
 	 * @model
 	 * @generated
 	 */
 	String getSource();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation#getSource <em>Source</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation#getSource <em>Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' attribute.
@@ -87,4 +87,4 @@ public interface ASILImpactAnnotation extends EObject {
 	 */
 	void setSource(String value);
 
-} // ASILImpactAnnotation
+} // ImpactAnnotation

@@ -24,7 +24,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ElementImpactAnnotation"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatefulElement" abstract="true">
@@ -73,7 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//ASILLevel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//ASILfulElement" eOpposite="#//ASILfulElement/asil"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ASILImpactAnnotation"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ASILLevel">
@@ -88,7 +88,7 @@
     <eLiterals name="Valid" value="1" literal="Valid"/>
     <eLiterals name="Undetermined" value="2" literal="Undetermined"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ElementImpactType">
+  <eClassifiers xsi:type="ecore:EEnum" name="ImpactType">
     <eLiterals name="Revise" value="1"/>
     <eLiterals name="RecheckContent" value="2" literal="RecheckConcent"/>
     <eLiterals name="RecheckState" value="3" literal="RecheckState"/>
@@ -99,12 +99,8 @@
     <eLiterals name="Recheck" value="2" literal="Recheck"/>
     <eLiterals name="Reuse" value="3" literal="Reuse"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementImpactAnnotation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ElementImpactType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ASILImpactAnnotation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ASILImpactType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnnotation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ImpactType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

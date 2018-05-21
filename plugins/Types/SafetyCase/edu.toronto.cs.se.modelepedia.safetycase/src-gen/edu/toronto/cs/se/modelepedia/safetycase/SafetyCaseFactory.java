@@ -131,22 +131,13 @@ public interface SafetyCaseFactory extends EFactory {
 	ASIL createASIL();
 
 	/**
-	 * Returns a new object of class '<em>Element Impact Annotation</em>'.
+	 * Returns a new object of class '<em>Impact Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Impact Annotation</em>'.
+	 * @return a new object of class '<em>Impact Annotation</em>'.
 	 * @generated
 	 */
-	ElementImpactAnnotation createElementImpactAnnotation();
-
-	/**
-	 * Returns a new object of class '<em>ASIL Impact Annotation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>ASIL Impact Annotation</em>'.
-	 * @generated
-	 */
-	ASILImpactAnnotation createASILImpactAnnotation();
+	ImpactAnnotation createImpactAnnotation();
 
 	/**
 	 * Returns the package supported by this factory.
