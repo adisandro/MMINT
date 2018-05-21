@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="safetycase" version="11.1.1.201610211630">
   <ownedViewpoints name="SafetyCaseViewpoint" modelFileExtension="safetycase">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SafetyCaseRepresentation" domainClass="safetycase.SafetyCase">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SafetyCaseRepresentation" domainClass="safetycase.AssuranceCase">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore#/"/>
       <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
         <nodeMappings name="GoalNode" semanticCandidatesExpression="feature:goals" domainClass="safetycase.Goal">
           <borderedNodeMappings name="AsilNode" semanticCandidatesExpression="feature:asil" domainClass="safetycase.ASIL">
-            <borderedNodeMappings name="AsilImpactNode" semanticCandidatesExpression="aql:self.target.asilStatus" domainClass="safetycase.ASILImpactAnnotation">
+            <borderedNodeMappings name="AsilImpactNode" semanticCandidatesExpression="aql:self.status" domainClass="safetycase.ASILImpactAnnotation">
               <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -38,45 +38,32 @@
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </borderedNodeMappings>
-          <borderedNodeMappings name="ContentImpactNode" semanticCandidatesExpression="feature:contentStatus" domainClass="safetycase.ContentImpactAnnotation">
+          <borderedNodeMappings name="ElementImpactNode" semanticCandidatesExpression="feature:status" domainClass="safetycase.ElementImpactAnnotation">
             <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             </style>
-            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ContentImpactType::Revise">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/ReviseContent.png">
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ElementImpactType::Revise">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Revise.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
-            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ContentImpactType::Recheck">
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ElementImpactType::RecheckContent">
               <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/RecheckContent.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
-            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ContentImpactType::Reuse">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/ReuseContent.png">
-                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              </style>
-            </conditionnalStyles>
-          </borderedNodeMappings>
-          <borderedNodeMappings name="StateImpactNode" semanticCandidatesExpression="feature:stateStatus" domainClass="safetycase.StateImpactAnnotation">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-            <conditionnalStyles predicateExpression="aql:self.type = safetycase::StateImpactType::Recheck">
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ElementImpactType::RecheckState">
               <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/RecheckState.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
-            <conditionnalStyles predicateExpression="aql:self.type = safetycase::StateImpactType::Reuse">
-              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/ReuseState.png">
+            <conditionnalStyles predicateExpression="aql:self.type = safetycase::ElementImpactType::Reuse">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Reuse.png">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
@@ -87,26 +74,32 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="StrategyNode" semanticCandidatesExpression="feature:strategies" domainClass="safetycase.Strategy" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ContentImpactNode']">
+        <nodeMappings name="StrategyNode" semanticCandidatesExpression="feature:strategies" domainClass="safetycase.Strategy" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="SolutionNode" semanticCandidatesExpression="feature:solutions" domainClass="safetycase.Solution" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ContentImpactNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='StateImpactNode']">
+        <nodeMappings name="SolutionNode" semanticCandidatesExpression="feature:solutions" domainClass="safetycase.Solution" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Solution.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="ContextNode" semanticCandidatesExpression="feature:contexts" domainClass="safetycase.Context" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ContentImpactNode']">
+        <nodeMappings name="ContextNode" semanticCandidatesExpression="feature:contexts" domainClass="safetycase.Context" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Context.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="JustificationNode" semanticCandidatesExpression="feature:justifications" domainClass="safetycase.Justification" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ContentImpactNode']">
+        <nodeMappings name="JustificationNode" semanticCandidatesExpression="feature:justifications" domainClass="safetycase.Justification" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
           <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Justification.svg">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="AssumptionNode" semanticCandidatesExpression="feature:assumptions" domainClass="safetycase.Assumption" reusedBorderedNodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
+          <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.id + ' ' + self.description" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.safetycase.design/icons/Assumption.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
@@ -119,7 +112,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="InContextOfEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']" targetFinderExpression="feature:context" sourceFinderExpression="feature:contextOf" domainClass="safetycase.InContextOf" useDomainElement="true">
+        <edgeMappings name="InContextOfEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AssumptionNode']" targetFinderExpression="feature:context" sourceFinderExpression="feature:contextOf" domainClass="safetycase.InContextOf" useDomainElement="true">
           <style targetArrow="InputClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -128,7 +121,7 @@
           </style>
         </edgeMappings>
         <toolSections name="Tools">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateGoal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateGoal" label="Create goal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -137,7 +130,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateBasicStrategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateBasicStrategy" label="Create basic strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -146,7 +139,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAsilDecompositionStrategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAsilDecompositionStrategy" label="Create ASIL decomposition strategy" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -155,7 +148,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateSolution" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateSolution" label="Create solution" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -164,7 +157,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateContext" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateContext" label="Create context" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -173,7 +166,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateJustification" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateJustification" label="Create justification" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -182,7 +175,16 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateASIL" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AsilNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAssumption" label="Create assumption" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AssumptionNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.Assumption" referenceName="assumptions"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateASIL" label="Create ASIL" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AsilNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -191,34 +193,25 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateContentImpact" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ContentImpactNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateContentImpact" label="Annotate argument element" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ContentImpactAnnotation" referenceName="contentStatus"/>
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ElementImpactAnnotation" referenceName="status"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateStateImpact" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='StateImpactNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateASILImpact" label="Annotate ASIL" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AsilNode']/@borderedNodeMappings[name='AsilImpactNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.StateImpactAnnotation" referenceName="stateStatus"/>
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ASILImpactAnnotation" referenceName="status"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateASILImpact" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='AsilNode']/@borderedNodeMappings[name='AsilImpactNode']">
-            <variable name="container"/>
-            <viewVariable name="containerView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container.target">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.ASILImpactAnnotation" referenceName="asilStatus"/>
-              </firstModelOperations>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateSupportedBy" edgeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateSupportedBy" label="Add supported-by link" edgeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -232,7 +225,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateInContextOf" edgeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@edgeMappings[name='InContextOfEdge']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateInContextOf" label="Add in-context-of link" edgeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@edgeMappings[name='InContextOfEdge']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>

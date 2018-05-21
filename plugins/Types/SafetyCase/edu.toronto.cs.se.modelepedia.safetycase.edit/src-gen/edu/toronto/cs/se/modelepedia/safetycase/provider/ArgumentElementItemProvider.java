@@ -22,9 +22,17 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -33,7 +41,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ArgumentElementItemProvider extends ContentfulElementItemProvider {
+public class ArgumentElementItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -57,6 +72,8 @@ public class ArgumentElementItemProvider extends ContentfulElementItemProvider {
 
 			addIdPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
+			addContentValidityPropertyDescriptor(object);
+			addStatusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -106,6 +123,50 @@ public class ArgumentElementItemProvider extends ContentfulElementItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Content Validity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContentValidityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArgumentElement_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_contentValidity_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__CONTENT_VALIDITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Status feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatusPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArgumentElement_status_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_status_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__STATUS,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,6 +195,8 @@ public class ArgumentElementItemProvider extends ContentfulElementItemProvider {
 		switch (notification.getFeatureID(ArgumentElement.class)) {
 			case SafetyCasePackage.ARGUMENT_ELEMENT__ID:
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -150,6 +213,17 @@ public class ArgumentElementItemProvider extends ContentfulElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

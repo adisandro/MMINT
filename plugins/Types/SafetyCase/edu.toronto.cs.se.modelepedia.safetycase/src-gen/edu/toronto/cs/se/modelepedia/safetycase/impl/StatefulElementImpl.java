@@ -13,15 +13,12 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -35,7 +32,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StatefulElementImpl#getStateValidity <em>State Validity</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.StatefulElementImpl#getStateStatus <em>State Status</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,16 +56,6 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected ValidityValue stateValidity = STATE_VALIDITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getStateStatus() <em>State Status</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStateStatus()
-	 * @generated
-	 * @ordered
-	 */
-	protected StateImpactAnnotation stateStatus;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,70 +102,11 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateImpactAnnotation getStateStatus() {
-		return stateStatus;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetStateStatus(StateImpactAnnotation newStateStatus, NotificationChain msgs) {
-		StateImpactAnnotation oldStateStatus = stateStatus;
-		stateStatus = newStateStatus;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS, oldStateStatus, newStateStatus);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStateStatus(StateImpactAnnotation newStateStatus) {
-		if (newStateStatus != stateStatus) {
-			NotificationChain msgs = null;
-			if (stateStatus != null)
-				msgs = ((InternalEObject)stateStatus).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS, null, msgs);
-			if (newStateStatus != null)
-				msgs = ((InternalEObject)newStateStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS, null, msgs);
-			msgs = basicSetStateStatus(newStateStatus, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS, newStateStatus, newStateStatus));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS:
-				return basicSetStateStatus(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				return getStateValidity();
-			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS:
-				return getStateStatus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -194,9 +121,6 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				setStateValidity((ValidityValue)newValue);
-				return;
-			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS:
-				setStateStatus((StateImpactAnnotation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -213,9 +137,6 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
 			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				setStateValidity(STATE_VALIDITY_EDEFAULT);
 				return;
-			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS:
-				setStateStatus((StateImpactAnnotation)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,8 +151,6 @@ public abstract class StatefulElementImpl extends MinimalEObjectImpl.Container i
 		switch (featureID) {
 			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY:
 				return stateValidity != STATE_VALIDITY_EDEFAULT;
-			case SafetyCasePackage.STATEFUL_ELEMENT__STATE_STATUS:
-				return stateStatus != null;
 		}
 		return super.eIsSet(featureID);
 	}

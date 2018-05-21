@@ -18,23 +18,21 @@ import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
+import edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase;
 import edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy;
-import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.safetycase.ContentImpactType;
-import edu.toronto.cs.se.modelepedia.safetycase.ContentfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
-import edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.safetycase.StateImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
@@ -60,7 +58,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass safetyCaseEClass = null;
+	private EClass assuranceCaseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,13 +73,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * @generated
 	 */
 	private EClass statefulElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass contentfulElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,6 +170,13 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass assumptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass asilEClass = null;
 
 	/**
@@ -186,14 +184,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass contentImpactAnnotationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stateImpactAnnotationEClass = null;
+	private EClass elementImpactAnnotationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,14 +212,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum contentImpactTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum stateImpactTypeEEnum = null;
+	private EEnum elementImpactTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -303,8 +287,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSafetyCase() {
-		return safetyCaseEClass;
+	public EClass getAssuranceCase() {
+		return assuranceCaseEClass;
 	}
 
 	/**
@@ -312,8 +296,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSafetyCase_Goals() {
-		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(0);
+	public EReference getAssuranceCase_Goals() {
+		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -321,8 +305,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSafetyCase_Strategies() {
-		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(1);
+	public EReference getAssuranceCase_Strategies() {
+		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -330,8 +314,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSafetyCase_Solutions() {
-		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(2);
+	public EReference getAssuranceCase_Solutions() {
+		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -339,8 +323,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSafetyCase_Contexts() {
-		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(3);
+	public EReference getAssuranceCase_Contexts() {
+		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -348,8 +332,17 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSafetyCase_Justifications() {
-		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(4);
+	public EReference getAssuranceCase_Justifications() {
+		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssuranceCase_Assumptions() {
+		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -384,6 +377,24 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getArgumentElement_ContentValidity() {
+		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getArgumentElement_Status() {
+		return (EReference)argumentElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStatefulElement() {
 		return statefulElementEClass;
 	}
@@ -402,42 +413,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStatefulElement_StateStatus() {
-		return (EReference)statefulElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getContentfulElement() {
-		return contentfulElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getContentfulElement_ContentValidity() {
-		return (EAttribute)contentfulElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getContentfulElement_ContentStatus() {
-		return (EReference)contentfulElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getASILfulElement() {
 		return asiLfulElementEClass;
 	}
@@ -449,15 +424,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 */
 	public EReference getASILfulElement_Asil() {
 		return (EReference)asiLfulElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getASILfulElement_AsilStatus() {
-		return (EReference)asiLfulElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -645,6 +611,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAssumption() {
+		return assumptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getASIL() {
 		return asilEClass;
 	}
@@ -672,8 +647,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getContentImpactAnnotation() {
-		return contentImpactAnnotationEClass;
+	public EReference getASIL_Status() {
+		return (EReference)asilEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -681,8 +656,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getContentImpactAnnotation_Type() {
-		return (EAttribute)contentImpactAnnotationEClass.getEStructuralFeatures().get(0);
+	public EClass getElementImpactAnnotation() {
+		return elementImpactAnnotationEClass;
 	}
 
 	/**
@@ -690,8 +665,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getContentImpactAnnotation_Source() {
-		return (EAttribute)contentImpactAnnotationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getElementImpactAnnotation_Type() {
+		return (EAttribute)elementImpactAnnotationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -699,26 +674,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStateImpactAnnotation() {
-		return stateImpactAnnotationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStateImpactAnnotation_Type() {
-		return (EAttribute)stateImpactAnnotationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStateImpactAnnotation_Source() {
-		return (EAttribute)stateImpactAnnotationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getElementImpactAnnotation_Source() {
+		return (EAttribute)elementImpactAnnotationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -771,17 +728,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getContentImpactType() {
-		return contentImpactTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getStateImpactType() {
-		return stateImpactTypeEEnum;
+	public EEnum getElementImpactType() {
+		return elementImpactTypeEEnum;
 	}
 
 	/**
@@ -821,28 +769,25 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		isCreated = true;
 
 		// Create classes and their features
-		safetyCaseEClass = createEClass(SAFETY_CASE);
-		createEReference(safetyCaseEClass, SAFETY_CASE__GOALS);
-		createEReference(safetyCaseEClass, SAFETY_CASE__STRATEGIES);
-		createEReference(safetyCaseEClass, SAFETY_CASE__SOLUTIONS);
-		createEReference(safetyCaseEClass, SAFETY_CASE__CONTEXTS);
-		createEReference(safetyCaseEClass, SAFETY_CASE__JUSTIFICATIONS);
+		assuranceCaseEClass = createEClass(ASSURANCE_CASE);
+		createEReference(assuranceCaseEClass, ASSURANCE_CASE__GOALS);
+		createEReference(assuranceCaseEClass, ASSURANCE_CASE__STRATEGIES);
+		createEReference(assuranceCaseEClass, ASSURANCE_CASE__SOLUTIONS);
+		createEReference(assuranceCaseEClass, ASSURANCE_CASE__CONTEXTS);
+		createEReference(assuranceCaseEClass, ASSURANCE_CASE__JUSTIFICATIONS);
+		createEReference(assuranceCaseEClass, ASSURANCE_CASE__ASSUMPTIONS);
 
 		argumentElementEClass = createEClass(ARGUMENT_ELEMENT);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__ID);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__DESCRIPTION);
+		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__CONTENT_VALIDITY);
+		createEReference(argumentElementEClass, ARGUMENT_ELEMENT__STATUS);
 
 		statefulElementEClass = createEClass(STATEFUL_ELEMENT);
 		createEAttribute(statefulElementEClass, STATEFUL_ELEMENT__STATE_VALIDITY);
-		createEReference(statefulElementEClass, STATEFUL_ELEMENT__STATE_STATUS);
-
-		contentfulElementEClass = createEClass(CONTENTFUL_ELEMENT);
-		createEAttribute(contentfulElementEClass, CONTENTFUL_ELEMENT__CONTENT_VALIDITY);
-		createEReference(contentfulElementEClass, CONTENTFUL_ELEMENT__CONTENT_STATUS);
 
 		asiLfulElementEClass = createEClass(ASI_LFUL_ELEMENT);
 		createEReference(asiLfulElementEClass, ASI_LFUL_ELEMENT__ASIL);
-		createEReference(asiLfulElementEClass, ASI_LFUL_ELEMENT__ASIL_STATUS);
 
 		coreElementEClass = createEClass(CORE_ELEMENT);
 		createEReference(coreElementEClass, CORE_ELEMENT__SUPPORTS);
@@ -876,17 +821,16 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		justificationEClass = createEClass(JUSTIFICATION);
 
+		assumptionEClass = createEClass(ASSUMPTION);
+
 		asilEClass = createEClass(ASIL);
 		createEAttribute(asilEClass, ASIL__VALUE);
 		createEReference(asilEClass, ASIL__TARGET);
+		createEReference(asilEClass, ASIL__STATUS);
 
-		contentImpactAnnotationEClass = createEClass(CONTENT_IMPACT_ANNOTATION);
-		createEAttribute(contentImpactAnnotationEClass, CONTENT_IMPACT_ANNOTATION__TYPE);
-		createEAttribute(contentImpactAnnotationEClass, CONTENT_IMPACT_ANNOTATION__SOURCE);
-
-		stateImpactAnnotationEClass = createEClass(STATE_IMPACT_ANNOTATION);
-		createEAttribute(stateImpactAnnotationEClass, STATE_IMPACT_ANNOTATION__TYPE);
-		createEAttribute(stateImpactAnnotationEClass, STATE_IMPACT_ANNOTATION__SOURCE);
+		elementImpactAnnotationEClass = createEClass(ELEMENT_IMPACT_ANNOTATION);
+		createEAttribute(elementImpactAnnotationEClass, ELEMENT_IMPACT_ANNOTATION__TYPE);
+		createEAttribute(elementImpactAnnotationEClass, ELEMENT_IMPACT_ANNOTATION__SOURCE);
 
 		asilImpactAnnotationEClass = createEClass(ASIL_IMPACT_ANNOTATION);
 		createEAttribute(asilImpactAnnotationEClass, ASIL_IMPACT_ANNOTATION__TYPE);
@@ -895,8 +839,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		// Create enums
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
 		validityValueEEnum = createEEnum(VALIDITY_VALUE);
-		contentImpactTypeEEnum = createEEnum(CONTENT_IMPACT_TYPE);
-		stateImpactTypeEEnum = createEEnum(STATE_IMPACT_TYPE);
+		elementImpactTypeEEnum = createEEnum(ELEMENT_IMPACT_TYPE);
 		asilImpactTypeEEnum = createEEnum(ASIL_IMPACT_TYPE);
 	}
 
@@ -928,7 +871,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		argumentElementEClass.getESuperTypes().add(this.getContentfulElement());
 		coreElementEClass.getESuperTypes().add(this.getArgumentElement());
 		decomposableCoreElementEClass.getESuperTypes().add(this.getCoreElement());
 		contextualElementEClass.getESuperTypes().add(this.getArgumentElement());
@@ -942,30 +884,28 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		solutionEClass.getESuperTypes().add(this.getStatefulElement());
 		contextEClass.getESuperTypes().add(this.getContextualElement());
 		justificationEClass.getESuperTypes().add(this.getContextualElement());
+		assumptionEClass.getESuperTypes().add(this.getContextualElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSafetyCase_Goals(), this.getGoal(), null, "goals", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSafetyCase_Strategies(), this.getStrategy(), null, "strategies", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSafetyCase_Solutions(), this.getSolution(), null, "solutions", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSafetyCase_Contexts(), this.getContext(), null, "contexts", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSafetyCase_Justifications(), this.getJustification(), null, "justifications", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(assuranceCaseEClass, AssuranceCase.class, "AssuranceCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssuranceCase_Goals(), this.getGoal(), null, "goals", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssuranceCase_Strategies(), this.getStrategy(), null, "strategies", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssuranceCase_Solutions(), this.getSolution(), null, "solutions", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssuranceCase_Contexts(), this.getContext(), null, "contexts", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssuranceCase_Justifications(), this.getJustification(), null, "justifications", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssuranceCase_Assumptions(), this.getAssumption(), null, "assumptions", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(argumentElementEClass, ArgumentElement.class, "ArgumentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getArgumentElement_Id(), ecorePackage.getEString(), "id", null, 1, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getArgumentElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArgumentElement_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArgumentElement_Status(), this.getElementImpactAnnotation(), null, "status", null, 0, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statefulElementEClass, StatefulElement.class, "StatefulElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStatefulElement_StateValidity(), this.getValidityValue(), "stateValidity", null, 0, 1, StatefulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStatefulElement_StateStatus(), this.getStateImpactAnnotation(), null, "stateStatus", null, 0, 1, StatefulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(contentfulElementEClass, ContentfulElement.class, "ContentfulElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContentfulElement_ContentValidity(), this.getValidityValue(), "contentValidity", null, 0, 1, ContentfulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getContentfulElement_ContentStatus(), this.getContentImpactAnnotation(), null, "contentStatus", null, 0, 1, ContentfulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(asiLfulElementEClass, ASILfulElement.class, "ASILfulElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getASILfulElement_Asil(), this.getASIL(), this.getASIL_Target(), "asil", null, 0, 1, ASILfulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getASILfulElement_AsilStatus(), this.getASILImpactAnnotation(), null, "asilStatus", null, 0, 1, ASILfulElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(coreElementEClass, CoreElement.class, "CoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCoreElement_Supports(), this.getSupportedBy(), this.getSupportedBy_Premise(), "supports", null, 0, -1, CoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -999,17 +939,16 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		initEClass(justificationEClass, Justification.class, "Justification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(assumptionEClass, Assumption.class, "Assumption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(asilEClass, edu.toronto.cs.se.modelepedia.safetycase.ASIL.class, "ASIL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getASIL_Value(), this.getASILLevel(), "value", null, 1, 1, edu.toronto.cs.se.modelepedia.safetycase.ASIL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getASIL_Target(), this.getASILfulElement(), this.getASILfulElement_Asil(), "target", null, 1, 1, edu.toronto.cs.se.modelepedia.safetycase.ASIL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getASIL_Status(), this.getASILImpactAnnotation(), null, "status", null, 0, 1, edu.toronto.cs.se.modelepedia.safetycase.ASIL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(contentImpactAnnotationEClass, ContentImpactAnnotation.class, "ContentImpactAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContentImpactAnnotation_Type(), this.getContentImpactType(), "type", null, 1, 1, ContentImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getContentImpactAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, ContentImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(stateImpactAnnotationEClass, StateImpactAnnotation.class, "StateImpactAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStateImpactAnnotation_Type(), this.getStateImpactType(), "type", null, 1, 1, StateImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStateImpactAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, StateImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(elementImpactAnnotationEClass, ElementImpactAnnotation.class, "ElementImpactAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getElementImpactAnnotation_Type(), this.getElementImpactType(), "type", null, 1, 1, ElementImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElementImpactAnnotation_Source(), ecorePackage.getEString(), "source", null, 0, 1, ElementImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(asilImpactAnnotationEClass, ASILImpactAnnotation.class, "ASILImpactAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getASILImpactAnnotation_Type(), this.getASILImpactType(), "type", null, 1, 1, ASILImpactAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1022,21 +961,17 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		addEEnumLiteral(asilLevelEEnum, ASILLevel.B);
 		addEEnumLiteral(asilLevelEEnum, ASILLevel.A);
 		addEEnumLiteral(asilLevelEEnum, ASILLevel.QM);
-		addEEnumLiteral(asilLevelEEnum, ASILLevel.NONE);
 
 		initEEnum(validityValueEEnum, ValidityValue.class, "ValidityValue");
 		addEEnumLiteral(validityValueEEnum, ValidityValue.INVALID);
 		addEEnumLiteral(validityValueEEnum, ValidityValue.VALID);
 		addEEnumLiteral(validityValueEEnum, ValidityValue.UNDETERMINED);
 
-		initEEnum(contentImpactTypeEEnum, ContentImpactType.class, "ContentImpactType");
-		addEEnumLiteral(contentImpactTypeEEnum, ContentImpactType.REVISE);
-		addEEnumLiteral(contentImpactTypeEEnum, ContentImpactType.RECHECK);
-		addEEnumLiteral(contentImpactTypeEEnum, ContentImpactType.REUSE);
-
-		initEEnum(stateImpactTypeEEnum, StateImpactType.class, "StateImpactType");
-		addEEnumLiteral(stateImpactTypeEEnum, StateImpactType.RECHECK);
-		addEEnumLiteral(stateImpactTypeEEnum, StateImpactType.REUSE);
+		initEEnum(elementImpactTypeEEnum, ElementImpactType.class, "ElementImpactType");
+		addEEnumLiteral(elementImpactTypeEEnum, ElementImpactType.REVISE);
+		addEEnumLiteral(elementImpactTypeEEnum, ElementImpactType.RECHECK_CONTENT);
+		addEEnumLiteral(elementImpactTypeEEnum, ElementImpactType.RECHECK_STATE);
+		addEEnumLiteral(elementImpactTypeEEnum, ElementImpactType.REUSE);
 
 		initEEnum(asilImpactTypeEEnum, ASILImpactType.class, "ASILImpactType");
 		addEEnumLiteral(asilImpactTypeEEnum, ASILImpactType.REVISE);

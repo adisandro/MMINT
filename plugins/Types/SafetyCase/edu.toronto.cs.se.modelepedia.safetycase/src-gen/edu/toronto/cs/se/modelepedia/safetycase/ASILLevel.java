@@ -76,17 +76,7 @@ public enum ASILLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QM(4, "QM", "QM"),
-
-	/**
-	 * The '<em><b>None</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NONE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NONE(5, "None", "None");
+	QM(4, "QM", "QM");
 
 	/**
 	 * The '<em><b>D</b></em>' literal value.
@@ -164,21 +154,6 @@ public enum ASILLevel implements Enumerator {
 	public static final int QM_VALUE = 4;
 
 	/**
-	 * The '<em><b>None</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #NONE
-	 * @model name="None"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int NONE_VALUE = 5;
-
-	/**
 	 * An array of all the '<em><b>ASIL Level</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,7 +166,6 @@ public enum ASILLevel implements Enumerator {
 			B,
 			A,
 			QM,
-			NONE,
 		};
 
 	/**
@@ -253,7 +227,6 @@ public enum ASILLevel implements Enumerator {
 			case B_VALUE: return B;
 			case A_VALUE: return A;
 			case QM_VALUE: return QM;
-			case NONE_VALUE: return NONE;
 		}
 		return null;
 	}

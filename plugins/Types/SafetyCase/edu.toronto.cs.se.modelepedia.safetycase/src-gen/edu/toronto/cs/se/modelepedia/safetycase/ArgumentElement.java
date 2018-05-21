@@ -12,6 +12,7 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,13 +25,15 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement()
  * @model abstract="true"
  * @generated
  */
-public interface ArgumentElement extends ContentfulElement {
+public interface ArgumentElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,5 +85,60 @@ public interface ArgumentElement extends ContentfulElement {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Content Validity</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Content Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setContentValidity(ValidityValue)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_ContentValidity()
+	 * @model
+	 * @generated
+	 */
+	ValidityValue getContentValidity();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Content Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #getContentValidity()
+	 * @generated
+	 */
+	void setContentValidity(ValidityValue value);
+
+	/**
+	 * Returns the value of the '<em><b>Status</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Status</em>' containment reference.
+	 * @see #setStatus(ElementImpactAnnotation)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Status()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ElementImpactAnnotation getStatus();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status</em>' containment reference.
+	 * @see #getStatus()
+	 * @generated
+	 */
+	void setStatus(ElementImpactAnnotation value);
 
 } // ArgumentElement

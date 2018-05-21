@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getValue <em>Value</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASIL()
@@ -88,5 +89,31 @@ public interface ASIL extends EObject {
 	 * @generated
 	 */
 	void setTarget(ASILfulElement value);
+
+	/**
+	 * Returns the value of the '<em><b>Status</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Status</em>' containment reference.
+	 * @see #setStatus(ASILImpactAnnotation)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASIL_Status()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ASILImpactAnnotation getStatus();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL#getStatus <em>Status</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status</em>' containment reference.
+	 * @see #getStatus()
+	 * @generated
+	 */
+	void setStatus(ASILImpactAnnotation value);
 
 } // ASIL

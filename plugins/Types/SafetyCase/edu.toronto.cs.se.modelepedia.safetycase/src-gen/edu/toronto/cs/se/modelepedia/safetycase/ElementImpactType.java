@@ -20,23 +20,43 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>State Impact Type</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Element Impact Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStateImpactType()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getElementImpactType()
  * @model
  * @generated
  */
-public enum StateImpactType implements Enumerator {
+public enum ElementImpactType implements Enumerator {
 	/**
-	 * The '<em><b>Recheck</b></em>' literal object.
+	 * The '<em><b>Revise</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RECHECK_VALUE
+	 * @see #REVISE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RECHECK(2, "Recheck", "Recheck"),
+	REVISE(1, "Revise", "Revise"),
+
+	/**
+	 * The '<em><b>Recheck Content</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RECHECK_CONTENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RECHECK_CONTENT(2, "RecheckContent", "RecheckConcent"),
+
+	/**
+	 * The '<em><b>Recheck State</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RECHECK_STATE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RECHECK_STATE(3, "RecheckState", "RecheckState"),
 
 	/**
 	 * The '<em><b>Reuse</b></em>' literal object.
@@ -46,22 +66,52 @@ public enum StateImpactType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REUSE(3, "Reuse", "Reuse");
+	REUSE(4, "Reuse", "Reuse");
 
 	/**
-	 * The '<em><b>Recheck</b></em>' literal value.
+	 * The '<em><b>Revise</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Recheck</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Revise</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RECHECK
-	 * @model name="Recheck"
+	 * @see #REVISE
+	 * @model name="Revise"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RECHECK_VALUE = 2;
+	public static final int REVISE_VALUE = 1;
+
+	/**
+	 * The '<em><b>Recheck Content</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Recheck Content</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RECHECK_CONTENT
+	 * @model name="RecheckContent" literal="RecheckConcent"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RECHECK_CONTENT_VALUE = 2;
+
+	/**
+	 * The '<em><b>Recheck State</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Recheck State</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RECHECK_STATE
+	 * @model name="RecheckState"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RECHECK_STATE_VALUE = 3;
 
 	/**
 	 * The '<em><b>Reuse</b></em>' literal value.
@@ -76,39 +126,41 @@ public enum StateImpactType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int REUSE_VALUE = 3;
+	public static final int REUSE_VALUE = 4;
 
 	/**
-	 * An array of all the '<em><b>State Impact Type</b></em>' enumerators.
+	 * An array of all the '<em><b>Element Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final StateImpactType[] VALUES_ARRAY =
-		new StateImpactType[] {
-			RECHECK,
+	private static final ElementImpactType[] VALUES_ARRAY =
+		new ElementImpactType[] {
+			REVISE,
+			RECHECK_CONTENT,
+			RECHECK_STATE,
 			REUSE,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>State Impact Type</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Element Impact Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<StateImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ElementImpactType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>State Impact Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Element Impact Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static StateImpactType get(String literal) {
+	public static ElementImpactType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			StateImpactType result = VALUES_ARRAY[i];
+			ElementImpactType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -117,16 +169,16 @@ public enum StateImpactType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>State Impact Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Element Impact Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static StateImpactType getByName(String name) {
+	public static ElementImpactType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			StateImpactType result = VALUES_ARRAY[i];
+			ElementImpactType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -135,16 +187,18 @@ public enum StateImpactType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>State Impact Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Element Impact Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static StateImpactType get(int value) {
+	public static ElementImpactType get(int value) {
 		switch (value) {
-			case RECHECK_VALUE: return RECHECK;
+			case REVISE_VALUE: return REVISE;
+			case RECHECK_CONTENT_VALUE: return RECHECK_CONTENT;
+			case RECHECK_STATE_VALUE: return RECHECK_STATE;
 			case REUSE_VALUE: return REUSE;
 		}
 		return null;
@@ -177,7 +231,7 @@ public enum StateImpactType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StateImpactType(int value, String name, String literal) {
+	private ElementImpactType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -221,4 +275,4 @@ public enum StateImpactType implements Enumerator {
 		return literal;
 	}
 	
-} //StateImpactType
+} //ElementImpactType

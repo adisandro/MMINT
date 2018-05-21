@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl#getValue <em>Value</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILImpl#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +64,16 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * @ordered
 	 */
 	protected ASILLevel value = VALUE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatus()
+	 * @generated
+	 * @ordered
+	 */
+	protected ASILImpactAnnotation status;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,6 +161,49 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ASILImpactAnnotation getStatus() {
+		return status;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStatus(ASILImpactAnnotation newStatus, NotificationChain msgs) {
+		ASILImpactAnnotation oldStatus = status;
+		status = newStatus;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASIL__STATUS, oldStatus, newStatus);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatus(ASILImpactAnnotation newStatus) {
+		if (newStatus != status) {
+			NotificationChain msgs = null;
+			if (status != null)
+				msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ASIL__STATUS, null, msgs);
+			if (newStatus != null)
+				msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ASIL__STATUS, null, msgs);
+			msgs = basicSetStatus(newStatus, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASIL__STATUS, newStatus, newStatus));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -170,6 +225,8 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 		switch (featureID) {
 			case SafetyCasePackage.ASIL__TARGET:
 				return basicSetTarget(null, msgs);
+			case SafetyCasePackage.ASIL__STATUS:
+				return basicSetStatus(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -200,6 +257,8 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 				return getValue();
 			case SafetyCasePackage.ASIL__TARGET:
 				return getTarget();
+			case SafetyCasePackage.ASIL__STATUS:
+				return getStatus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,6 +276,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 				return;
 			case SafetyCasePackage.ASIL__TARGET:
 				setTarget((ASILfulElement)newValue);
+				return;
+			case SafetyCasePackage.ASIL__STATUS:
+				setStatus((ASILImpactAnnotation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,6 +298,9 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 			case SafetyCasePackage.ASIL__TARGET:
 				setTarget((ASILfulElement)null);
 				return;
+			case SafetyCasePackage.ASIL__STATUS:
+				setStatus((ASILImpactAnnotation)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -252,6 +317,8 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 				return value != VALUE_EDEFAULT;
 			case SafetyCasePackage.ASIL__TARGET:
 				return getTarget() != null;
+			case SafetyCasePackage.ASIL__STATUS:
+				return status != null;
 		}
 		return super.eIsSet(featureID);
 	}

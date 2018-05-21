@@ -18,25 +18,26 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Safety Case</b></em>'.
+ * A representation of the model object '<em><b>Assurance Case</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getGoals <em>Goals</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getStrategies <em>Strategies</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getSolutions <em>Solutions</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getContexts <em>Contexts</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications <em>Justifications</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getGoals <em>Goals</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getStrategies <em>Strategies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getSolutions <em>Solutions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getJustifications <em>Justifications</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getAssumptions <em>Assumptions</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase()
  * @model
  * @generated
  */
-public interface SafetyCase extends EObject {
+public interface AssuranceCase extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Goals</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Goal}.
@@ -47,7 +48,7 @@ public interface SafetyCase extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Goals</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Goals()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase_Goals()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -63,7 +64,7 @@ public interface SafetyCase extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Strategies</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Strategies()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase_Strategies()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -79,7 +80,7 @@ public interface SafetyCase extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Solutions</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Solutions()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase_Solutions()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -95,7 +96,7 @@ public interface SafetyCase extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contexts</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Contexts()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase_Contexts()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -111,10 +112,26 @@ public interface SafetyCase extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Justifications</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Justifications()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase_Justifications()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Justification> getJustifications();
 
-} // SafetyCase
+	/**
+	 * Returns the value of the '<em><b>Assumptions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assumptions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assumptions</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getAssuranceCase_Assumptions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Assumption> getAssumptions();
+
+} // AssuranceCase

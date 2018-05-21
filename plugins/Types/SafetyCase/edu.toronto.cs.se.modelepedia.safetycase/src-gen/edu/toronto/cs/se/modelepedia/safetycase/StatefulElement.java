@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateValidity <em>State Validity</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateStatus <em>State Status</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStatefulElement()
@@ -60,31 +59,5 @@ public interface StatefulElement extends EObject {
 	 * @generated
 	 */
 	void setStateValidity(ValidityValue value);
-
-	/**
-	 * Returns the value of the '<em><b>State Status</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>State Status</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State Status</em>' containment reference.
-	 * @see #setStateStatus(StateImpactAnnotation)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStatefulElement_StateStatus()
-	 * @model containment="true"
-	 * @generated
-	 */
-	StateImpactAnnotation getStateStatus();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StatefulElement#getStateStatus <em>State Status</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State Status</em>' containment reference.
-	 * @see #getStateStatus()
-	 * @generated
-	 */
-	void setStateStatus(StateImpactAnnotation value);
 
 } // StatefulElement

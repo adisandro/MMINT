@@ -88,7 +88,6 @@ public class ASILfulElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -131,7 +130,6 @@ public class ASILfulElementItemProvider
 
 		switch (notification.getFeatureID(ASILfulElement.class)) {
 			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -153,11 +151,6 @@ public class ASILfulElementItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL,
 				 SafetyCaseFactory.eINSTANCE.createASIL()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation()));
 	}
 
 	/**

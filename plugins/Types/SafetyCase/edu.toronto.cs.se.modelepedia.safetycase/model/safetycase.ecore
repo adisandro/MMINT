@@ -23,6 +23,7 @@
         <details key="label" value="description"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentValidity" eType="#//ValidityValue"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ElementImpactAnnotation"
         containment="true"/>
   </eClassifiers>

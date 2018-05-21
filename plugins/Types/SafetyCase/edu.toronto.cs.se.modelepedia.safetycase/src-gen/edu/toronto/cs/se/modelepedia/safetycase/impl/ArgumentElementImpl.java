@@ -13,13 +13,18 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,11 +36,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getContentValidity <em>Content Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl#getStatus <em>Status</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ArgumentElementImpl extends ContentfulElementImpl implements ArgumentElement {
+public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container implements ArgumentElement {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -75,6 +82,36 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContentValidity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ValidityValue CONTENT_VALIDITY_EDEFAULT = ValidityValue.INVALID;
+
+	/**
+	 * The cached value of the '{@link #getContentValidity() <em>Content Validity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContentValidity()
+	 * @generated
+	 * @ordered
+	 */
+	protected ValidityValue contentValidity = CONTENT_VALIDITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getStatus() <em>Status</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStatus()
+	 * @generated
+	 * @ordered
+	 */
+	protected ElementImpactAnnotation status;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,6 +179,84 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ValidityValue getContentValidity() {
+		return contentValidity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContentValidity(ValidityValue newContentValidity) {
+		ValidityValue oldContentValidity = contentValidity;
+		contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY, oldContentValidity, contentValidity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementImpactAnnotation getStatus() {
+		return status;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStatus(ElementImpactAnnotation newStatus, NotificationChain msgs) {
+		ElementImpactAnnotation oldStatus = status;
+		status = newStatus;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, oldStatus, newStatus);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatus(ElementImpactAnnotation newStatus) {
+		if (newStatus != status) {
+			NotificationChain msgs = null;
+			if (status != null)
+				msgs = ((InternalEObject)status).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+			if (newStatus != null)
+				msgs = ((InternalEObject)newStatus).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, null, msgs);
+			msgs = basicSetStatus(newStatus, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ARGUMENT_ELEMENT__STATUS, newStatus, newStatus));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+				return basicSetStatus(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -149,6 +264,10 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 				return getId();
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return getDescription();
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				return getContentValidity();
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+				return getStatus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +285,12 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 				return;
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
+				return;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				setContentValidity((ValidityValue)newValue);
+				return;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+				setStatus((ElementImpactAnnotation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -185,6 +310,12 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				setContentValidity(CONTENT_VALIDITY_EDEFAULT);
+				return;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+				setStatus((ElementImpactAnnotation)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,6 +332,10 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case SafetyCasePackage.ARGUMENT_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case SafetyCasePackage.ARGUMENT_ELEMENT__CONTENT_VALIDITY:
+				return contentValidity != CONTENT_VALIDITY_EDEFAULT;
+			case SafetyCasePackage.ARGUMENT_ELEMENT__STATUS:
+				return status != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -219,6 +354,8 @@ public abstract class ArgumentElementImpl extends ContentfulElementImpl implemen
 		result.append(id);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", contentValidity: ");
+		result.append(contentValidity);
 		result.append(')');
 		return result.toString();
 	}

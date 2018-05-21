@@ -97,9 +97,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS);
 			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS);
 		}
 		return childrenFeatures;
 	}
@@ -158,9 +156,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 			case SafetyCasePackage.GOAL__STATE_VALIDITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SafetyCasePackage.GOAL__STATE_STATUS:
 			case SafetyCasePackage.GOAL__ASIL:
-			case SafetyCasePackage.GOAL__ASIL_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -180,18 +176,8 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.STATEFUL_ELEMENT__STATE_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createStateImpactAnnotation()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL,
 				 SafetyCaseFactory.eINSTANCE.createASIL()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.ASI_LFUL_ELEMENT__ASIL_STATUS,
-				 SafetyCaseFactory.eINSTANCE.createASILImpactAnnotation()));
 	}
 
 }

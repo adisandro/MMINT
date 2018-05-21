@@ -13,9 +13,9 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
+import edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.safetycase.StateImpactType;
 
 import java.util.Collection;
 import java.util.List;
@@ -37,12 +37,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateImpactAnnotationItemProvider 
+public class ElementImpactAnnotationItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +56,7 @@ public class StateImpactAnnotationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
+	public ElementImpactAnnotationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -88,9 +88,9 @@ public class StateImpactAnnotationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StateImpactAnnotation_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StateImpactAnnotation_type_feature", "_UI_StateImpactAnnotation_type"),
-				 SafetyCasePackage.Literals.STATE_IMPACT_ANNOTATION__TYPE,
+				 getString("_UI_ElementImpactAnnotation_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ElementImpactAnnotation_type_feature", "_UI_ElementImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.ELEMENT_IMPACT_ANNOTATION__TYPE,
 				 true,
 				 false,
 				 false,
@@ -110,9 +110,9 @@ public class StateImpactAnnotationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StateImpactAnnotation_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StateImpactAnnotation_source_feature", "_UI_StateImpactAnnotation_type"),
-				 SafetyCasePackage.Literals.STATE_IMPACT_ANNOTATION__SOURCE,
+				 getString("_UI_ElementImpactAnnotation_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ElementImpactAnnotation_source_feature", "_UI_ElementImpactAnnotation_type"),
+				 SafetyCasePackage.Literals.ELEMENT_IMPACT_ANNOTATION__SOURCE,
 				 true,
 				 false,
 				 false,
@@ -122,14 +122,14 @@ public class StateImpactAnnotationItemProvider
 	}
 
 	/**
-	 * This returns StateImpactAnnotation.gif.
+	 * This returns ElementImpactAnnotation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StateImpactAnnotation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementImpactAnnotation"));
 	}
 
 	/**
@@ -140,11 +140,11 @@ public class StateImpactAnnotationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		StateImpactType labelValue = ((StateImpactAnnotation)object).getType();
+		ElementImpactType labelValue = ((ElementImpactAnnotation)object).getType();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_StateImpactAnnotation_type") :
-			getString("_UI_StateImpactAnnotation_type") + " " + label;
+			getString("_UI_ElementImpactAnnotation_type") :
+			getString("_UI_ElementImpactAnnotation_type") + " " + label;
 	}
 	
 
@@ -159,9 +159,9 @@ public class StateImpactAnnotationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StateImpactAnnotation.class)) {
-			case SafetyCasePackage.STATE_IMPACT_ANNOTATION__TYPE:
-			case SafetyCasePackage.STATE_IMPACT_ANNOTATION__SOURCE:
+		switch (notification.getFeatureID(ElementImpactAnnotation.class)) {
+			case SafetyCasePackage.ELEMENT_IMPACT_ANNOTATION__TYPE:
+			case SafetyCasePackage.ELEMENT_IMPACT_ANNOTATION__SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

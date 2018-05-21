@@ -16,25 +16,25 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>State Impact Annotation</b></em>'.
+ * A representation of the model object '<em><b>Element Impact Annotation</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation#getType <em>Type</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getType <em>Type</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getSource <em>Source</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStateImpactAnnotation()
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getElementImpactAnnotation()
  * @model
  * @generated
  */
-public interface StateImpactAnnotation extends EObject {
+public interface ElementImpactAnnotation extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactType}.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -42,24 +42,24 @@ public interface StateImpactAnnotation extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.StateImpactType
-	 * @see #setType(StateImpactType)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStateImpactAnnotation_Type()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType
+	 * @see #setType(ElementImpactType)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getElementImpactAnnotation_Type()
 	 * @model required="true"
 	 * @generated
 	 */
-	StateImpactType getType();
+	ElementImpactType getType();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.StateImpactType
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactType
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(StateImpactType value);
+	void setType(ElementImpactType value);
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' attribute.
@@ -71,14 +71,14 @@ public interface StateImpactAnnotation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' attribute.
 	 * @see #setSource(String)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStateImpactAnnotation_Source()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getElementImpactAnnotation_Source()
 	 * @model
 	 * @generated
 	 */
 	String getSource();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation#getSource <em>Source</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation#getSource <em>Source</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' attribute.
@@ -87,4 +87,4 @@ public interface StateImpactAnnotation extends EObject {
 	 */
 	void setSource(String value);
 
-} // StateImpactAnnotation
+} // ElementImpactAnnotation

@@ -78,8 +78,8 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	protected SafetyCaseSwitch<Adapter> modelSwitch =
 		new SafetyCaseSwitch<Adapter>() {
 			@Override
-			public Adapter caseSafetyCase(SafetyCase object) {
-				return createSafetyCaseAdapter();
+			public Adapter caseAssuranceCase(AssuranceCase object) {
+				return createAssuranceCaseAdapter();
 			}
 			@Override
 			public Adapter caseArgumentElement(ArgumentElement object) {
@@ -88,10 +88,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseStatefulElement(StatefulElement object) {
 				return createStatefulElementAdapter();
-			}
-			@Override
-			public Adapter caseContentfulElement(ContentfulElement object) {
-				return createContentfulElementAdapter();
 			}
 			@Override
 			public Adapter caseASILfulElement(ASILfulElement object) {
@@ -146,16 +142,16 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createJustificationAdapter();
 			}
 			@Override
+			public Adapter caseAssumption(Assumption object) {
+				return createAssumptionAdapter();
+			}
+			@Override
 			public Adapter caseASIL(ASIL object) {
 				return createASILAdapter();
 			}
 			@Override
-			public Adapter caseContentImpactAnnotation(ContentImpactAnnotation object) {
-				return createContentImpactAnnotationAdapter();
-			}
-			@Override
-			public Adapter caseStateImpactAnnotation(StateImpactAnnotation object) {
-				return createStateImpactAnnotationAdapter();
+			public Adapter caseElementImpactAnnotation(ElementImpactAnnotation object) {
+				return createElementImpactAnnotationAdapter();
 			}
 			@Override
 			public Adapter caseASILImpactAnnotation(ASILImpactAnnotation object) {
@@ -182,16 +178,16 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase <em>Safety Case</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase <em>Assurance Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase
 	 * @generated
 	 */
-	public Adapter createSafetyCaseAdapter() {
+	public Adapter createAssuranceCaseAdapter() {
 		return null;
 	}
 
@@ -220,20 +216,6 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStatefulElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ContentfulElement <em>Contentful Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ContentfulElement
-	 * @generated
-	 */
-	public Adapter createContentfulElementAdapter() {
 		return null;
 	}
 
@@ -420,6 +402,20 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Assumption <em>Assumption</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Assumption
+	 * @generated
+	 */
+	public Adapter createAssumptionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ASIL <em>ASIL</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -434,30 +430,16 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation <em>Content Impact Annotation</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation <em>Element Impact Annotation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation
 	 * @generated
 	 */
-	public Adapter createContentImpactAnnotationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation <em>State Impact Annotation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation
-	 * @generated
-	 */
-	public Adapter createStateImpactAnnotationAdapter() {
+	public Adapter createElementImpactAnnotationAdapter() {
 		return null;
 	}
 

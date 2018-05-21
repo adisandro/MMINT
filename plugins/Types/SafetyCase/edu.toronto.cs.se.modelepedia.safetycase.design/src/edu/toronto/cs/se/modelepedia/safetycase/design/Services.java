@@ -1,14 +1,6 @@
 package edu.toronto.cs.se.modelepedia.safetycase.design;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EObject;
-
-import edu.toronto.cs.se.modelepedia.safetycase.Goal;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
-import edu.toronto.cs.se.modelepedia.safetycase.Solution;
-import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 
 /**
  * The services class used by VSM.

@@ -12,10 +12,11 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
+import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
+import edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
@@ -36,22 +37,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Safety Case</b></em>'.
+ * An implementation of the model object '<em><b>Assurance Case</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getGoals <em>Goals</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getStrategies <em>Strategies</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getSolutions <em>Solutions</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl#getGoals <em>Goals</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl#getStrategies <em>Strategies</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl#getSolutions <em>Solutions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl#getJustifications <em>Justifications</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl#getAssumptions <em>Assumptions</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements SafetyCase {
+public class AssuranceCaseImpl extends MinimalEObjectImpl.Container implements AssuranceCase {
 	/**
 	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -103,11 +105,21 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	protected EList<Justification> justifications;
 
 	/**
+	 * The cached value of the '{@link #getAssumptions() <em>Assumptions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssumptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Assumption> assumptions;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SafetyCaseImpl() {
+	protected AssuranceCaseImpl() {
 		super();
 	}
 
@@ -118,7 +130,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.SAFETY_CASE;
+		return SafetyCasePackage.Literals.ASSURANCE_CASE;
 	}
 
 	/**
@@ -128,7 +140,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	public EList<Goal> getGoals() {
 		if (goals == null) {
-			goals = new EObjectContainmentEList<Goal>(Goal.class, this, SafetyCasePackage.SAFETY_CASE__GOALS);
+			goals = new EObjectContainmentEList<Goal>(Goal.class, this, SafetyCasePackage.ASSURANCE_CASE__GOALS);
 		}
 		return goals;
 	}
@@ -140,7 +152,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	public EList<Strategy> getStrategies() {
 		if (strategies == null) {
-			strategies = new EObjectContainmentEList<Strategy>(Strategy.class, this, SafetyCasePackage.SAFETY_CASE__STRATEGIES);
+			strategies = new EObjectContainmentEList<Strategy>(Strategy.class, this, SafetyCasePackage.ASSURANCE_CASE__STRATEGIES);
 		}
 		return strategies;
 	}
@@ -152,7 +164,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	public EList<Solution> getSolutions() {
 		if (solutions == null) {
-			solutions = new EObjectContainmentEList<Solution>(Solution.class, this, SafetyCasePackage.SAFETY_CASE__SOLUTIONS);
+			solutions = new EObjectContainmentEList<Solution>(Solution.class, this, SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS);
 		}
 		return solutions;
 	}
@@ -164,7 +176,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	public EList<Context> getContexts() {
 		if (contexts == null) {
-			contexts = new EObjectContainmentEList<Context>(Context.class, this, SafetyCasePackage.SAFETY_CASE__CONTEXTS);
+			contexts = new EObjectContainmentEList<Context>(Context.class, this, SafetyCasePackage.ASSURANCE_CASE__CONTEXTS);
 		}
 		return contexts;
 	}
@@ -176,9 +188,21 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 */
 	public EList<Justification> getJustifications() {
 		if (justifications == null) {
-			justifications = new EObjectContainmentEList<Justification>(Justification.class, this, SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS);
+			justifications = new EObjectContainmentEList<Justification>(Justification.class, this, SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS);
 		}
 		return justifications;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Assumption> getAssumptions() {
+		if (assumptions == null) {
+			assumptions = new EObjectContainmentEList<Assumption>(Assumption.class, this, SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS);
+		}
+		return assumptions;
 	}
 
 	/**
@@ -189,16 +213,18 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.SAFETY_CASE__GOALS:
+			case SafetyCasePackage.ASSURANCE_CASE__GOALS:
 				return ((InternalEList<?>)getGoals()).basicRemove(otherEnd, msgs);
-			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
+			case SafetyCasePackage.ASSURANCE_CASE__STRATEGIES:
 				return ((InternalEList<?>)getStrategies()).basicRemove(otherEnd, msgs);
-			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS:
 				return ((InternalEList<?>)getSolutions()).basicRemove(otherEnd, msgs);
-			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.ASSURANCE_CASE__CONTEXTS:
 				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
-			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS:
 				return ((InternalEList<?>)getJustifications()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS:
+				return ((InternalEList<?>)getAssumptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -211,16 +237,18 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.SAFETY_CASE__GOALS:
+			case SafetyCasePackage.ASSURANCE_CASE__GOALS:
 				return getGoals();
-			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
+			case SafetyCasePackage.ASSURANCE_CASE__STRATEGIES:
 				return getStrategies();
-			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS:
 				return getSolutions();
-			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.ASSURANCE_CASE__CONTEXTS:
 				return getContexts();
-			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS:
 				return getJustifications();
+			case SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS:
+				return getAssumptions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -234,25 +262,29 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.SAFETY_CASE__GOALS:
+			case SafetyCasePackage.ASSURANCE_CASE__GOALS:
 				getGoals().clear();
 				getGoals().addAll((Collection<? extends Goal>)newValue);
 				return;
-			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
+			case SafetyCasePackage.ASSURANCE_CASE__STRATEGIES:
 				getStrategies().clear();
 				getStrategies().addAll((Collection<? extends Strategy>)newValue);
 				return;
-			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS:
 				getSolutions().clear();
 				getSolutions().addAll((Collection<? extends Solution>)newValue);
 				return;
-			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.ASSURANCE_CASE__CONTEXTS:
 				getContexts().clear();
 				getContexts().addAll((Collection<? extends Context>)newValue);
 				return;
-			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS:
 				getJustifications().clear();
 				getJustifications().addAll((Collection<? extends Justification>)newValue);
+				return;
+			case SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS:
+				getAssumptions().clear();
+				getAssumptions().addAll((Collection<? extends Assumption>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,20 +298,23 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SAFETY_CASE__GOALS:
+			case SafetyCasePackage.ASSURANCE_CASE__GOALS:
 				getGoals().clear();
 				return;
-			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
+			case SafetyCasePackage.ASSURANCE_CASE__STRATEGIES:
 				getStrategies().clear();
 				return;
-			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS:
 				getSolutions().clear();
 				return;
-			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.ASSURANCE_CASE__CONTEXTS:
 				getContexts().clear();
 				return;
-			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS:
 				getJustifications().clear();
+				return;
+			case SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS:
+				getAssumptions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -293,18 +328,20 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SAFETY_CASE__GOALS:
+			case SafetyCasePackage.ASSURANCE_CASE__GOALS:
 				return goals != null && !goals.isEmpty();
-			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
+			case SafetyCasePackage.ASSURANCE_CASE__STRATEGIES:
 				return strategies != null && !strategies.isEmpty();
-			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS:
 				return solutions != null && !solutions.isEmpty();
-			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.ASSURANCE_CASE__CONTEXTS:
 				return contexts != null && !contexts.isEmpty();
-			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+			case SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS:
 				return justifications != null && !justifications.isEmpty();
+			case SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS:
+				return assumptions != null && !assumptions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //SafetyCaseImpl
+} //AssuranceCaseImpl

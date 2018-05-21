@@ -76,28 +76,21 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SafetyCasePackage.SAFETY_CASE: {
-				SafetyCase safetyCase = (SafetyCase)theEObject;
-				T result = caseSafetyCase(safetyCase);
+			case SafetyCasePackage.ASSURANCE_CASE: {
+				AssuranceCase assuranceCase = (AssuranceCase)theEObject;
+				T result = caseAssuranceCase(assuranceCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case SafetyCasePackage.ARGUMENT_ELEMENT: {
 				ArgumentElement argumentElement = (ArgumentElement)theEObject;
 				T result = caseArgumentElement(argumentElement);
-				if (result == null) result = caseContentfulElement(argumentElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case SafetyCasePackage.STATEFUL_ELEMENT: {
 				StatefulElement statefulElement = (StatefulElement)theEObject;
 				T result = caseStatefulElement(statefulElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.CONTENTFUL_ELEMENT: {
-				ContentfulElement contentfulElement = (ContentfulElement)theEObject;
-				T result = caseContentfulElement(contentfulElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -111,7 +104,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				CoreElement coreElement = (CoreElement)theEObject;
 				T result = caseCoreElement(coreElement);
 				if (result == null) result = caseArgumentElement(coreElement);
-				if (result == null) result = caseContentfulElement(coreElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,7 +112,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				T result = caseDecomposableCoreElement(decomposableCoreElement);
 				if (result == null) result = caseCoreElement(decomposableCoreElement);
 				if (result == null) result = caseArgumentElement(decomposableCoreElement);
-				if (result == null) result = caseContentfulElement(decomposableCoreElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,7 +119,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				ContextualElement contextualElement = (ContextualElement)theEObject;
 				T result = caseContextualElement(contextualElement);
 				if (result == null) result = caseArgumentElement(contextualElement);
-				if (result == null) result = caseContentfulElement(contextualElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -152,7 +142,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseASILfulElement(goal);
 				if (result == null) result = caseCoreElement(goal);
 				if (result == null) result = caseArgumentElement(goal);
-				if (result == null) result = caseContentfulElement(goal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,7 +151,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(strategy);
 				if (result == null) result = caseCoreElement(strategy);
 				if (result == null) result = caseArgumentElement(strategy);
-				if (result == null) result = caseContentfulElement(strategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,7 +161,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(basicStrategy);
 				if (result == null) result = caseCoreElement(basicStrategy);
 				if (result == null) result = caseArgumentElement(basicStrategy);
-				if (result == null) result = caseContentfulElement(basicStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -184,7 +171,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
 				if (result == null) result = caseCoreElement(asilDecompositionStrategy);
 				if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
-				if (result == null) result = caseContentfulElement(asilDecompositionStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -194,7 +180,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCoreElement(solution);
 				if (result == null) result = caseStatefulElement(solution);
 				if (result == null) result = caseArgumentElement(solution);
-				if (result == null) result = caseContentfulElement(solution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -203,7 +188,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				T result = caseContext(context);
 				if (result == null) result = caseContextualElement(context);
 				if (result == null) result = caseArgumentElement(context);
-				if (result == null) result = caseContentfulElement(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -212,7 +196,14 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				T result = caseJustification(justification);
 				if (result == null) result = caseContextualElement(justification);
 				if (result == null) result = caseArgumentElement(justification);
-				if (result == null) result = caseContentfulElement(justification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.ASSUMPTION: {
+				Assumption assumption = (Assumption)theEObject;
+				T result = caseAssumption(assumption);
+				if (result == null) result = caseContextualElement(assumption);
+				if (result == null) result = caseArgumentElement(assumption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -222,15 +213,9 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SafetyCasePackage.CONTENT_IMPACT_ANNOTATION: {
-				ContentImpactAnnotation contentImpactAnnotation = (ContentImpactAnnotation)theEObject;
-				T result = caseContentImpactAnnotation(contentImpactAnnotation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SafetyCasePackage.STATE_IMPACT_ANNOTATION: {
-				StateImpactAnnotation stateImpactAnnotation = (StateImpactAnnotation)theEObject;
-				T result = caseStateImpactAnnotation(stateImpactAnnotation);
+			case SafetyCasePackage.ELEMENT_IMPACT_ANNOTATION: {
+				ElementImpactAnnotation elementImpactAnnotation = (ElementImpactAnnotation)theEObject;
+				T result = caseElementImpactAnnotation(elementImpactAnnotation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -245,17 +230,17 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Safety Case</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Assurance Case</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Safety Case</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Assurance Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSafetyCase(SafetyCase object) {
+	public T caseAssuranceCase(AssuranceCase object) {
 		return null;
 	}
 
@@ -286,21 +271,6 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStatefulElement(StatefulElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Contentful Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Contentful Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContentfulElement(ContentfulElement object) {
 		return null;
 	}
 
@@ -500,6 +470,21 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Assumption</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Assumption</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssumption(Assumption object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>ASIL</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -515,32 +500,17 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Content Impact Annotation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Element Impact Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Content Impact Annotation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Element Impact Annotation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseContentImpactAnnotation(ContentImpactAnnotation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Impact Annotation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Impact Annotation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateImpactAnnotation(StateImpactAnnotation object) {
+	public T caseElementImpactAnnotation(ElementImpactAnnotation object) {
 		return null;
 	}
 

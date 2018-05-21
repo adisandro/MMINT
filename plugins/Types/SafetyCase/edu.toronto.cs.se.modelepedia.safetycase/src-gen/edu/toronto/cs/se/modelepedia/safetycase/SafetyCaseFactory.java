@@ -32,13 +32,13 @@ public interface SafetyCaseFactory extends EFactory {
 	SafetyCaseFactory eINSTANCE = edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Safety Case</em>'.
+	 * Returns a new object of class '<em>Assurance Case</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Safety Case</em>'.
+	 * @return a new object of class '<em>Assurance Case</em>'.
 	 * @generated
 	 */
-	SafetyCase createSafetyCase();
+	AssuranceCase createAssuranceCase();
 
 	/**
 	 * Returns a new object of class '<em>Supported By</em>'.
@@ -113,6 +113,15 @@ public interface SafetyCaseFactory extends EFactory {
 	Justification createJustification();
 
 	/**
+	 * Returns a new object of class '<em>Assumption</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assumption</em>'.
+	 * @generated
+	 */
+	Assumption createAssumption();
+
+	/**
 	 * Returns a new object of class '<em>ASIL</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,22 +131,13 @@ public interface SafetyCaseFactory extends EFactory {
 	ASIL createASIL();
 
 	/**
-	 * Returns a new object of class '<em>Content Impact Annotation</em>'.
+	 * Returns a new object of class '<em>Element Impact Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Content Impact Annotation</em>'.
+	 * @return a new object of class '<em>Element Impact Annotation</em>'.
 	 * @generated
 	 */
-	ContentImpactAnnotation createContentImpactAnnotation();
-
-	/**
-	 * Returns a new object of class '<em>State Impact Annotation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Impact Annotation</em>'.
-	 * @generated
-	 */
-	StateImpactAnnotation createStateImpactAnnotation();
+	ElementImpactAnnotation createElementImpactAnnotation();
 
 	/**
 	 * Returns a new object of class '<em>ASIL Impact Annotation</em>'.

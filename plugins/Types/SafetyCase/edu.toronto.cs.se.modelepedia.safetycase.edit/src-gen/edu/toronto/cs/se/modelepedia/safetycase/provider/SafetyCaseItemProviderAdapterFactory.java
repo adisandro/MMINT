@@ -82,26 +82,26 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SafetyCaseItemProvider safetyCaseItemProvider;
+	protected AssuranceCaseItemProvider assuranceCaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSafetyCaseAdapter() {
-		if (safetyCaseItemProvider == null) {
-			safetyCaseItemProvider = new SafetyCaseItemProvider(this);
+	public Adapter createAssuranceCaseAdapter() {
+		if (assuranceCaseItemProvider == null) {
+			assuranceCaseItemProvider = new AssuranceCaseItemProvider(this);
 		}
 
-		return safetyCaseItemProvider;
+		return assuranceCaseItemProvider;
 	}
 
 	/**
@@ -289,6 +289,29 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssumptionItemProvider assumptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssumptionAdapter() {
+		if (assumptionItemProvider == null) {
+			assumptionItemProvider = new AssumptionItemProvider(this);
+		}
+
+		return assumptionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -312,49 +335,26 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContentImpactAnnotationItemProvider contentImpactAnnotationItemProvider;
+	protected ElementImpactAnnotationItemProvider elementImpactAnnotationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ContentImpactAnnotation}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ElementImpactAnnotation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createContentImpactAnnotationAdapter() {
-		if (contentImpactAnnotationItemProvider == null) {
-			contentImpactAnnotationItemProvider = new ContentImpactAnnotationItemProvider(this);
+	public Adapter createElementImpactAnnotationAdapter() {
+		if (elementImpactAnnotationItemProvider == null) {
+			elementImpactAnnotationItemProvider = new ElementImpactAnnotationItemProvider(this);
 		}
 
-		return contentImpactAnnotationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StateImpactAnnotationItemProvider stateImpactAnnotationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.StateImpactAnnotation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStateImpactAnnotationAdapter() {
-		if (stateImpactAnnotationItemProvider == null) {
-			stateImpactAnnotationItemProvider = new StateImpactAnnotationItemProvider(this);
-		}
-
-		return stateImpactAnnotationItemProvider;
+		return elementImpactAnnotationItemProvider;
 	}
 
 	/**
@@ -479,7 +479,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * @generated
 	 */
 	public void dispose() {
-		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
+		if (assuranceCaseItemProvider != null) assuranceCaseItemProvider.dispose();
 		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();
@@ -488,9 +488,9 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (contextItemProvider != null) contextItemProvider.dispose();
 		if (justificationItemProvider != null) justificationItemProvider.dispose();
+		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
-		if (contentImpactAnnotationItemProvider != null) contentImpactAnnotationItemProvider.dispose();
-		if (stateImpactAnnotationItemProvider != null) stateImpactAnnotationItemProvider.dispose();
+		if (elementImpactAnnotationItemProvider != null) elementImpactAnnotationItemProvider.dispose();
 		if (asilImpactAnnotationItemProvider != null) asilImpactAnnotationItemProvider.dispose();
 	}
 
