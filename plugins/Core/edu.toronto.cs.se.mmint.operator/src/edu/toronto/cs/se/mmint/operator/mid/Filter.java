@@ -57,8 +57,10 @@ public class Filter extends OperatorImpl {
             this.midModel = inputsByName.get(IN_MID);
             this.filterType = (Model) genericsByName.get(GENERIC_MODELTYPE);
             this.isRelFilter = this.filterType instanceof ModelRel;
-            this.isUnaryRelFilter = this.isRelFilter &&
-                                    ((ModelRel) this.filterType).getModelEndpointRefs().size() == 1;
+            this.isUnaryRelFilter =
+                this.isRelFilter &&
+                ((ModelRel) this.filterType).getModelEndpointRefs().size() == 1 &&
+                ((ModelRel) this.filterType).getModelEndpointRefs().get(0).getObject().getUpperBound() == 1;
         }
     }
 
@@ -116,7 +118,7 @@ public class Filter extends OperatorImpl {
 
         EList<Model> polyFilterTypes = (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
             ECollections.asEList(MIDTypeHierarchy.getSubtypes(this.input.filterType)) :
-            ECollections.emptyEList();
+            ECollections.newBasicEList();
         polyFilterTypes.add(this.input.filterType);
         Iterator<Model> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyFilterTypes);
         while (polyIter.hasNext()) { // start from the most specialized filter backwards
