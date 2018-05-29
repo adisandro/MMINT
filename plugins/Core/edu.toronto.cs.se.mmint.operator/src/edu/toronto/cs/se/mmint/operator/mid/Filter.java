@@ -49,6 +49,7 @@ public class Filter extends OperatorImpl {
         private final static @NonNull String IN_MODELREL = "criterion";
         private Model midModel;
         private Model filterType;
+        private EList<Model> polyFilterTypes;
         private boolean isRelFilter;
         private boolean isUnaryRelFilter;
 
@@ -61,6 +62,11 @@ public class Filter extends OperatorImpl {
                 this.isRelFilter &&
                 ((ModelRel) this.filterType).getModelEndpointRefs().size() == 1 &&
                 ((ModelRel) this.filterType).getModelEndpointRefs().get(0).getObject().getUpperBound() == 1;
+            this.polyFilterTypes = (Boolean.parseBoolean(
+                MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
+                    ECollections.asEList(MIDTypeHierarchy.getSubtypes(this.filterType)) :
+                    ECollections.newBasicEList();
+            polyFilterTypes.add(this.filterType);
         }
     }
 
@@ -116,11 +122,7 @@ public class Filter extends OperatorImpl {
 
     protected boolean isFiltered(@NonNull Model model) {
 
-        EList<Model> polyFilterTypes = (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
-            ECollections.asEList(MIDTypeHierarchy.getSubtypes(this.input.filterType)) :
-            ECollections.newBasicEList();
-        polyFilterTypes.add(this.input.filterType);
-        Iterator<Model> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyFilterTypes);
+        Iterator<Model> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(this.input.polyFilterTypes);
         while (polyIter.hasNext()) { // start from the most specialized filter backwards
             Model polyFilterType = polyIter.next();
             String filterTypeUri = (this.input.isUnaryRelFilter) ?
