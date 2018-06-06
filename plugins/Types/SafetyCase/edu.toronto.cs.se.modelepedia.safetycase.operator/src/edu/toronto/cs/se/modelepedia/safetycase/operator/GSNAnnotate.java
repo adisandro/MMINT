@@ -291,23 +291,26 @@ public class GSNAnnotate extends OperatorImpl {
             // ASIL can be reused.
             if (scObj instanceof ASILfulElement) {
             	CoreElement elem = (CoreElement) scObj;
-            	ImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
             	
-            	annotation.setType(ImpactType.REUSE);
-            	annotation.setSource("Not applicable.");
-        		((ASILfulElement) scObj).getAsil().setStatus(annotation);            	
-            	
-            	if (scReviseObjs.contains(scObj)) {
-            		boolean supportsAsilDecomp = false;
-            		for (SupportedBy rel : elem.getSupports()) {
-            			if (rel.getConclusion() instanceof ASILDecompositionStrategy) {
-            				supportsAsilDecomp = true;
+            	if (((ASILfulElement) scObj).getAsil() != null) {
+            		ImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
+
+            		annotation.setType(ImpactType.REUSE);
+            		annotation.setSource("Not applicable.");
+            		((ASILfulElement) scObj).getAsil().setStatus(annotation);            	
+
+            		if (scReviseObjs.contains(scObj)) {
+            			boolean supportsAsilDecomp = false;
+            			for (SupportedBy rel : elem.getSupports()) {
+            				if (rel.getConclusion() instanceof ASILDecompositionStrategy) {
+            					supportsAsilDecomp = true;
+            				}
             			}
-            		}
-            		
-            		if (supportsAsilDecomp) {
-                		annotation.setType(ImpactType.REVISE);
-                		annotation.setSource(scRevise2impactSrcs.get(scObj));
+
+            			if (supportsAsilDecomp) {
+            				annotation.setType(ImpactType.REVISE);
+            				annotation.setSource(scRevise2impactSrcs.get(scObj));
+            			}
             		}
             	}
             }
