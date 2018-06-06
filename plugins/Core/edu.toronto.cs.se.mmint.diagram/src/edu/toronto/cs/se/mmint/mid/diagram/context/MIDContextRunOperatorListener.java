@@ -29,8 +29,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
@@ -38,7 +36,6 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
-import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
@@ -78,24 +75,15 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+			    //TODO MMINT[GENERICS] with multiple dispatch enabled, show only the super allowed generics
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
 				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(operatorType, mid);
 				switch (mid.getLevel()) {
 					case TYPES:
 						throw new MMINTException("The TYPES level is not allowed");
 					case INSTANCES:
-					    String multipleDispatchPreference = null;
-					    if (!(operatorType instanceof WorkflowOperator)) {
-	                        // run with multiple dispatch disabled in case the operator is polymorphic on generics
-	                        multipleDispatchPreference = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED);
-	                        MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, "false");
-					    }
 						operatorType.startInstance(operatorInputs, null, operatorGenerics, outputMIDsByName, mid);
 						WorkspaceSynchronizer.getFile(mid.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
-                        if (multipleDispatchPreference != null) {
-                            // restore multiple dispatch preference
-                            MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, multipleDispatchPreference);
-                        }
 						break;
 					case WORKFLOWS:
 						operatorType.startWorkflowInstance(operatorInputs, operatorGenerics, mid);
