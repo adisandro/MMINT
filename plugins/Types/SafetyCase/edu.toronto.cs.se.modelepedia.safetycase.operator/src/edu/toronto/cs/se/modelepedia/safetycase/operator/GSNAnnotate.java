@@ -38,10 +38,10 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
@@ -104,7 +104,7 @@ public class GSNAnnotate extends OperatorImpl {
     private Model annotate(@NonNull Model scModel, @NonNull ModelRel reviseRel, @NonNull ModelRel recheckContentRel,
                            @NonNull ModelRel recheckStateRel, @Nullable MID outputMID) throws Exception {
 
-        AssuranceCase scRoot = (AssuranceCase) scModel.getEMFInstanceRoot();
+        SafetyCase scRoot = (SafetyCase) scModel.getEMFInstanceRoot();
         Resource scResource = scRoot.eResource();
 
         // Extract all argument elements that requires revision and prepare to extract their causes.
