@@ -47,7 +47,7 @@
         <containerMappings name="Class" semanticCandidatesExpression="feature:classes" domainClass="classdiagram.Class" childrenPresentation="VerticalStack">
           <subContainerMappings name="AttributeContainer" semanticCandidatesExpression="var:self" domainClass="classdiagram.Class" childrenPresentation="List">
             <subNodeMappings name="Attribute" semanticCandidatesExpression="feature:ownedAttributes" domainClass="classdiagram.Attribute">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then 'Void' else self.type.name endif in access + ' ' + self.name" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then 'Void' else self.type.name endif in access + ' ' + self.name + ': ' + type" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -62,7 +62,7 @@
           </subContainerMappings>
           <subContainerMappings name="OperationContainer" semanticCandidatesExpression="var:self" domainClass="classdiagram.Class" childrenPresentation="List">
             <subNodeMappings name="Operation" semanticCandidatesExpression="feature:ownedOperations" domainClass="classdiagram.Operation">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then 'Void' else self.type.name endif in access + ' ' + self.name" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then 'Void' else self.type.name endif in access + ' ' + self.name + ': ' + type" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
