@@ -253,7 +253,7 @@ public class GSNAnnotate extends OperatorImpl {
         Iterator<EObject> scIter = scRoot.eAllContents();
         while (scIter.hasNext()) {
             EObject scObj = scIter.next();
-            
+
             if (!(scObj instanceof CoreElement)) {
             	continue;
             }
@@ -271,11 +271,11 @@ public class GSNAnnotate extends OperatorImpl {
                 	annotation.setType(ImpactType.RECHECK_CONTENT);
                 	annotation.setSource(scRecheckContent2impactSrcs.get(scObj));
                     ((ArgumentElement) scObj).setStatus(annotation);
-                    
+
                 } else if (scRecheckStateObjs.contains(scObj)) {
                 		annotation.setType(ImpactType.RECHECK_STATE);
                 		annotation.setSource(scRecheckState2impactSrcs.get(scObj));
-                		((ArgumentElement) scObj).setStatus(annotation);                    
+                		((ArgumentElement) scObj).setStatus(annotation);
 
                 } else {
                 	annotation.setType(ImpactType.REUSE);
@@ -284,20 +284,20 @@ public class GSNAnnotate extends OperatorImpl {
                 }
 
             }
-            
+
             // Annotate the ASILs of the ASILful elements (i.e. goals).
             // An ASIL should be annotated as revised if the associated goal supports
             // an ASIL decomposition strategy and requires revision. Otherwise, the
             // ASIL can be reused.
             if (scObj instanceof ASILfulElement) {
             	CoreElement elem = (CoreElement) scObj;
-            	
+
             	if (((ASILfulElement) scObj).getAsil() != null) {
             		ImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
 
             		annotation.setType(ImpactType.REUSE);
             		annotation.setSource("Not applicable.");
-            		((ASILfulElement) scObj).getAsil().setStatus(annotation);            	
+            		((ASILfulElement) scObj).getAsil().setStatus(annotation);
 
             		if (scReviseObjs.contains(scObj)) {
             			boolean supportsAsilDecomp = false;
@@ -308,7 +308,7 @@ public class GSNAnnotate extends OperatorImpl {
             			}
 
             			if (supportsAsilDecomp) {
-            				annotation.setType(ImpactType.REVISE);
+            				annotation.setType(ImpactType.RECHECK_CONTENT);
             				annotation.setSource(scRevise2impactSrcs.get(scObj));
             			}
             		}
