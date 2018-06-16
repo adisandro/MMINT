@@ -13,12 +13,10 @@
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
-import edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
-import edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase;
 import edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
@@ -29,6 +27,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
@@ -57,7 +56,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass assuranceCaseEClass = null;
+	private EClass safetyCaseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,13 +206,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	private EEnum impactTypeEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum asilImpactTypeEEnum = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -279,8 +271,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAssuranceCase() {
-		return assuranceCaseEClass;
+	public EClass getSafetyCase() {
+		return safetyCaseEClass;
 	}
 
 	/**
@@ -288,8 +280,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssuranceCase_Goals() {
-		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(0);
+	public EReference getSafetyCase_Goals() {
+		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -297,8 +289,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssuranceCase_Strategies() {
-		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(1);
+	public EReference getSafetyCase_Strategies() {
+		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -306,8 +298,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssuranceCase_Solutions() {
-		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(2);
+	public EReference getSafetyCase_Solutions() {
+		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -315,8 +307,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssuranceCase_Contexts() {
-		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(3);
+	public EReference getSafetyCase_Contexts() {
+		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -324,8 +316,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssuranceCase_Justifications() {
-		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(4);
+	public EReference getSafetyCase_Justifications() {
+		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -333,8 +325,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssuranceCase_Assumptions() {
-		return (EReference)assuranceCaseEClass.getEStructuralFeatures().get(5);
+	public EReference getSafetyCase_Assumptions() {
+		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -702,15 +694,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getASILImpactType() {
-		return asilImpactTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SafetyCaseFactory getSafetyCaseFactory() {
 		return (SafetyCaseFactory)getEFactoryInstance();
 	}
@@ -734,13 +717,13 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		isCreated = true;
 
 		// Create classes and their features
-		assuranceCaseEClass = createEClass(ASSURANCE_CASE);
-		createEReference(assuranceCaseEClass, ASSURANCE_CASE__GOALS);
-		createEReference(assuranceCaseEClass, ASSURANCE_CASE__STRATEGIES);
-		createEReference(assuranceCaseEClass, ASSURANCE_CASE__SOLUTIONS);
-		createEReference(assuranceCaseEClass, ASSURANCE_CASE__CONTEXTS);
-		createEReference(assuranceCaseEClass, ASSURANCE_CASE__JUSTIFICATIONS);
-		createEReference(assuranceCaseEClass, ASSURANCE_CASE__ASSUMPTIONS);
+		safetyCaseEClass = createEClass(SAFETY_CASE);
+		createEReference(safetyCaseEClass, SAFETY_CASE__GOALS);
+		createEReference(safetyCaseEClass, SAFETY_CASE__STRATEGIES);
+		createEReference(safetyCaseEClass, SAFETY_CASE__SOLUTIONS);
+		createEReference(safetyCaseEClass, SAFETY_CASE__CONTEXTS);
+		createEReference(safetyCaseEClass, SAFETY_CASE__JUSTIFICATIONS);
+		createEReference(safetyCaseEClass, SAFETY_CASE__ASSUMPTIONS);
 
 		argumentElementEClass = createEClass(ARGUMENT_ELEMENT);
 		createEAttribute(argumentElementEClass, ARGUMENT_ELEMENT__ID);
@@ -801,7 +784,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
 		validityValueEEnum = createEEnum(VALIDITY_VALUE);
 		impactTypeEEnum = createEEnum(IMPACT_TYPE);
-		asilImpactTypeEEnum = createEEnum(ASIL_IMPACT_TYPE);
 	}
 
 	/**
@@ -848,13 +830,13 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		assumptionEClass.getESuperTypes().add(this.getContextualElement());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(assuranceCaseEClass, AssuranceCase.class, "AssuranceCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssuranceCase_Goals(), this.getGoal(), null, "goals", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssuranceCase_Strategies(), this.getStrategy(), null, "strategies", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssuranceCase_Solutions(), this.getSolution(), null, "solutions", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssuranceCase_Contexts(), this.getContext(), null, "contexts", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssuranceCase_Justifications(), this.getJustification(), null, "justifications", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssuranceCase_Assumptions(), this.getAssumption(), null, "assumptions", null, 0, -1, AssuranceCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSafetyCase_Goals(), this.getGoal(), null, "goals", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSafetyCase_Strategies(), this.getStrategy(), null, "strategies", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSafetyCase_Solutions(), this.getSolution(), null, "solutions", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSafetyCase_Contexts(), this.getContext(), null, "contexts", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSafetyCase_Justifications(), this.getJustification(), null, "justifications", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSafetyCase_Assumptions(), this.getAssumption(), null, "assumptions", null, 0, -1, SafetyCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(argumentElementEClass, ArgumentElement.class, "ArgumentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getArgumentElement_Id(), ecorePackage.getEString(), "id", null, 1, 1, ArgumentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -929,11 +911,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		addEEnumLiteral(impactTypeEEnum, ImpactType.RECHECK_CONTENT);
 		addEEnumLiteral(impactTypeEEnum, ImpactType.RECHECK_STATE);
 		addEEnumLiteral(impactTypeEEnum, ImpactType.REUSE);
-
-		initEEnum(asilImpactTypeEEnum, ASILImpactType.class, "ASILImpactType");
-		addEEnumLiteral(asilImpactTypeEEnum, ASILImpactType.REVISE);
-		addEEnumLiteral(asilImpactTypeEEnum, ASILImpactType.RECHECK);
-		addEEnumLiteral(asilImpactTypeEEnum, ASILImpactType.REUSE);
 
 		// Create resource
 		createResource(eNS_URI);

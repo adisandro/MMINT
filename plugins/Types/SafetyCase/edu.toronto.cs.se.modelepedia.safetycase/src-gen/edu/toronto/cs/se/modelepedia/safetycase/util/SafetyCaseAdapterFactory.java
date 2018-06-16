@@ -78,8 +78,8 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	protected SafetyCaseSwitch<Adapter> modelSwitch =
 		new SafetyCaseSwitch<Adapter>() {
 			@Override
-			public Adapter caseAssuranceCase(AssuranceCase object) {
-				return createAssuranceCaseAdapter();
+			public Adapter caseSafetyCase(SafetyCase object) {
+				return createSafetyCaseAdapter();
 			}
 			@Override
 			public Adapter caseArgumentElement(ArgumentElement object) {
@@ -174,16 +174,16 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase <em>Assurance Case</em>}'.
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase <em>Safety Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase
 	 * @generated
 	 */
-	public Adapter createAssuranceCaseAdapter() {
+	public Adapter createSafetyCaseAdapter() {
 		return null;
 	}
 

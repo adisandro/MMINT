@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="safetycase" nsURI="http://se.cs.toronto.edu/modelepedia/SafetyCase"
     nsPrefix="safetycase">
-  <eClassifiers xsi:type="ecore:EClass" name="AssuranceCase">
+  <eClassifiers xsi:type="ecore:EClass" name="SafetyCase">
     <eStructuralFeatures xsi:type="ecore:EReference" name="goals" upperBound="-1"
         eType="#//Goal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="strategies" upperBound="-1"
@@ -93,11 +93,6 @@
     <eLiterals name="RecheckContent" value="2" literal="RecheckConcent"/>
     <eLiterals name="RecheckState" value="3" literal="RecheckState"/>
     <eLiterals name="Reuse" value="4" literal="Reuse"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ASILImpactType">
-    <eLiterals name="Revise" value="1"/>
-    <eLiterals name="Recheck" value="2" literal="Recheck"/>
-    <eLiterals name="Reuse" value="3" literal="Reuse"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImpactAnnotation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ImpactType"/>

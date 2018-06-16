@@ -32,13 +32,13 @@ public interface SafetyCaseFactory extends EFactory {
 	SafetyCaseFactory eINSTANCE = edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Assurance Case</em>'.
+	 * Returns a new object of class '<em>Safety Case</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Assurance Case</em>'.
+	 * @return a new object of class '<em>Safety Case</em>'.
 	 * @generated
 	 */
-	AssuranceCase createAssuranceCase();
+	SafetyCase createSafetyCase();
 
 	/**
 	 * Returns a new object of class '<em>Supported By</em>'.

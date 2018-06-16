@@ -68,14 +68,14 @@ public interface SafetyCasePackage extends EPackage {
 	SafetyCasePackage eINSTANCE = edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl <em>Assurance Case</em>}' class.
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl <em>Safety Case</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSafetyCase()
 	 * @generated
 	 */
-	int ASSURANCE_CASE = 0;
+	int SAFETY_CASE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Goals</b></em>' containment reference list.
@@ -84,7 +84,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE__GOALS = 0;
+	int SAFETY_CASE__GOALS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Strategies</b></em>' containment reference list.
@@ -93,7 +93,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE__STRATEGIES = 1;
+	int SAFETY_CASE__STRATEGIES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Solutions</b></em>' containment reference list.
@@ -102,7 +102,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE__SOLUTIONS = 2;
+	int SAFETY_CASE__SOLUTIONS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Contexts</b></em>' containment reference list.
@@ -111,7 +111,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE__CONTEXTS = 3;
+	int SAFETY_CASE__CONTEXTS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Justifications</b></em>' containment reference list.
@@ -120,7 +120,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE__JUSTIFICATIONS = 4;
+	int SAFETY_CASE__JUSTIFICATIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Assumptions</b></em>' containment reference list.
@@ -129,25 +129,25 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE__ASSUMPTIONS = 5;
+	int SAFETY_CASE__ASSUMPTIONS = 5;
 
 	/**
-	 * The number of structural features of the '<em>Assurance Case</em>' class.
+	 * The number of structural features of the '<em>Safety Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE_FEATURE_COUNT = 6;
+	int SAFETY_CASE_FEATURE_COUNT = 6;
 
 	/**
-	 * The number of operations of the '<em>Assurance Case</em>' class.
+	 * The number of operations of the '<em>Safety Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSURANCE_CASE_OPERATION_COUNT = 0;
+	int SAFETY_CASE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl <em>Argument Element</em>}' class.
@@ -1430,92 +1430,82 @@ public interface SafetyCasePackage extends EPackage {
 	 */
 	int IMPACT_TYPE = 21;
 
+
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType <em>ASIL Impact Type</em>}' enum.
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase <em>Safety Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILImpactType()
+	 * @return the meta object for class '<em>Safety Case</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase
 	 * @generated
 	 */
-	int ASIL_IMPACT_TYPE = 22;
-
-
-	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase <em>Assurance Case</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Assurance Case</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase
-	 * @generated
-	 */
-	EClass getAssuranceCase();
+	EClass getSafetyCase();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getGoals <em>Goals</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getGoals <em>Goals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Goals</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getGoals()
-	 * @see #getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getGoals()
+	 * @see #getSafetyCase()
 	 * @generated
 	 */
-	EReference getAssuranceCase_Goals();
+	EReference getSafetyCase_Goals();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getStrategies <em>Strategies</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getStrategies <em>Strategies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Strategies</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getStrategies()
-	 * @see #getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getStrategies()
+	 * @see #getSafetyCase()
 	 * @generated
 	 */
-	EReference getAssuranceCase_Strategies();
+	EReference getSafetyCase_Strategies();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getSolutions <em>Solutions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getSolutions <em>Solutions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Solutions</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getSolutions()
-	 * @see #getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getSolutions()
+	 * @see #getSafetyCase()
 	 * @generated
 	 */
-	EReference getAssuranceCase_Solutions();
+	EReference getSafetyCase_Solutions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getContexts <em>Contexts</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getContexts <em>Contexts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Contexts</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getContexts()
-	 * @see #getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getContexts()
+	 * @see #getSafetyCase()
 	 * @generated
 	 */
-	EReference getAssuranceCase_Contexts();
+	EReference getSafetyCase_Contexts();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getJustifications <em>Justifications</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications <em>Justifications</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Justifications</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getJustifications()
-	 * @see #getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications()
+	 * @see #getSafetyCase()
 	 * @generated
 	 */
-	EReference getAssuranceCase_Justifications();
+	EReference getSafetyCase_Justifications();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getAssumptions <em>Assumptions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getAssumptions <em>Assumptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Assumptions</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase#getAssumptions()
-	 * @see #getAssuranceCase()
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getAssumptions()
+	 * @see #getSafetyCase()
 	 * @generated
 	 */
-	EReference getAssuranceCase_Assumptions();
+	EReference getSafetyCase_Assumptions();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement <em>Argument Element</em>}'.
@@ -1937,16 +1927,6 @@ public interface SafetyCasePackage extends EPackage {
 	EEnum getImpactType();
 
 	/**
-	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType <em>ASIL Impact Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>ASIL Impact Type</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType
-	 * @generated
-	 */
-	EEnum getASILImpactType();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1970,14 +1950,14 @@ public interface SafetyCasePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl <em>Assurance Case</em>}' class.
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl <em>Safety Case</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.AssuranceCaseImpl
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getAssuranceCase()
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getSafetyCase()
 		 * @generated
 		 */
-		EClass ASSURANCE_CASE = eINSTANCE.getAssuranceCase();
+		EClass SAFETY_CASE = eINSTANCE.getSafetyCase();
 
 		/**
 		 * The meta object literal for the '<em><b>Goals</b></em>' containment reference list feature.
@@ -1985,7 +1965,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSURANCE_CASE__GOALS = eINSTANCE.getAssuranceCase_Goals();
+		EReference SAFETY_CASE__GOALS = eINSTANCE.getSafetyCase_Goals();
 
 		/**
 		 * The meta object literal for the '<em><b>Strategies</b></em>' containment reference list feature.
@@ -1993,7 +1973,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSURANCE_CASE__STRATEGIES = eINSTANCE.getAssuranceCase_Strategies();
+		EReference SAFETY_CASE__STRATEGIES = eINSTANCE.getSafetyCase_Strategies();
 
 		/**
 		 * The meta object literal for the '<em><b>Solutions</b></em>' containment reference list feature.
@@ -2001,7 +1981,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSURANCE_CASE__SOLUTIONS = eINSTANCE.getAssuranceCase_Solutions();
+		EReference SAFETY_CASE__SOLUTIONS = eINSTANCE.getSafetyCase_Solutions();
 
 		/**
 		 * The meta object literal for the '<em><b>Contexts</b></em>' containment reference list feature.
@@ -2009,7 +1989,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSURANCE_CASE__CONTEXTS = eINSTANCE.getAssuranceCase_Contexts();
+		EReference SAFETY_CASE__CONTEXTS = eINSTANCE.getSafetyCase_Contexts();
 
 		/**
 		 * The meta object literal for the '<em><b>Justifications</b></em>' containment reference list feature.
@@ -2017,7 +1997,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSURANCE_CASE__JUSTIFICATIONS = eINSTANCE.getAssuranceCase_Justifications();
+		EReference SAFETY_CASE__JUSTIFICATIONS = eINSTANCE.getSafetyCase_Justifications();
 
 		/**
 		 * The meta object literal for the '<em><b>Assumptions</b></em>' containment reference list feature.
@@ -2025,7 +2005,7 @@ public interface SafetyCasePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSURANCE_CASE__ASSUMPTIONS = eINSTANCE.getAssuranceCase_Assumptions();
+		EReference SAFETY_CASE__ASSUMPTIONS = eINSTANCE.getSafetyCase_Assumptions();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ArgumentElementImpl <em>Argument Element</em>}' class.
@@ -2388,16 +2368,6 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum IMPACT_TYPE = eINSTANCE.getImpactType();
-
-		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType <em>ASIL Impact Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.ASILImpactType
-		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILImpactType()
-		 * @generated
-		 */
-		EEnum ASIL_IMPACT_TYPE = eINSTANCE.getASILImpactType();
 
 	}
 

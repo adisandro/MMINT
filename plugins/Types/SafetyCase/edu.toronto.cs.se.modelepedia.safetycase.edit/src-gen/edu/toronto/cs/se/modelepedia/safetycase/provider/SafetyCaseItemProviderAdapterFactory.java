@@ -82,26 +82,26 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AssuranceCaseItemProvider assuranceCaseItemProvider;
+	protected SafetyCaseItemProvider safetyCaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAssuranceCaseAdapter() {
-		if (assuranceCaseItemProvider == null) {
-			assuranceCaseItemProvider = new AssuranceCaseItemProvider(this);
+	public Adapter createSafetyCaseAdapter() {
+		if (safetyCaseItemProvider == null) {
+			safetyCaseItemProvider = new SafetyCaseItemProvider(this);
 		}
 
-		return assuranceCaseItemProvider;
+		return safetyCaseItemProvider;
 	}
 
 	/**
@@ -456,7 +456,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * @generated
 	 */
 	public void dispose() {
-		if (assuranceCaseItemProvider != null) assuranceCaseItemProvider.dispose();
+		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
 		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
 		if (goalItemProvider != null) goalItemProvider.dispose();

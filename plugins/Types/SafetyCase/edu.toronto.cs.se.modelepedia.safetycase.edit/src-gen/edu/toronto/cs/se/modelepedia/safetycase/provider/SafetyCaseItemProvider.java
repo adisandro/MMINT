@@ -13,7 +13,7 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase;
+import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
@@ -37,12 +37,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.AssuranceCase} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AssuranceCaseItemProvider 
+public class SafetyCaseItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +56,7 @@ public class AssuranceCaseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssuranceCaseItemProvider(AdapterFactory adapterFactory) {
+	public SafetyCaseItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,12 +87,12 @@ public class AssuranceCaseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASSURANCE_CASE__GOALS);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASSURANCE_CASE__STRATEGIES);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASSURANCE_CASE__SOLUTIONS);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASSURANCE_CASE__CONTEXTS);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASSURANCE_CASE__JUSTIFICATIONS);
-			childrenFeatures.add(SafetyCasePackage.Literals.ASSURANCE_CASE__ASSUMPTIONS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__GOALS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__SOLUTIONS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__ASSUMPTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -111,14 +111,14 @@ public class AssuranceCaseItemProvider
 	}
 
 	/**
-	 * This returns AssuranceCase.gif.
+	 * This returns SafetyCase.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AssuranceCase"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SafetyCase"));
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class AssuranceCaseItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AssuranceCase_type");
+		return getString("_UI_SafetyCase_type");
 	}
 	
 
@@ -144,13 +144,13 @@ public class AssuranceCaseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AssuranceCase.class)) {
-			case SafetyCasePackage.ASSURANCE_CASE__GOALS:
-			case SafetyCasePackage.ASSURANCE_CASE__STRATEGIES:
-			case SafetyCasePackage.ASSURANCE_CASE__SOLUTIONS:
-			case SafetyCasePackage.ASSURANCE_CASE__CONTEXTS:
-			case SafetyCasePackage.ASSURANCE_CASE__JUSTIFICATIONS:
-			case SafetyCasePackage.ASSURANCE_CASE__ASSUMPTIONS:
+		switch (notification.getFeatureID(SafetyCase.class)) {
+			case SafetyCasePackage.SAFETY_CASE__GOALS:
+			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
+			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
+			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -170,37 +170,37 @@ public class AssuranceCaseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__GOALS,
+				(SafetyCasePackage.Literals.SAFETY_CASE__GOALS,
 				 SafetyCaseFactory.eINSTANCE.createGoal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__STRATEGIES,
+				(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES,
 				 SafetyCaseFactory.eINSTANCE.createBasicStrategy()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__STRATEGIES,
+				(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES,
 				 SafetyCaseFactory.eINSTANCE.createASILDecompositionStrategy()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__SOLUTIONS,
+				(SafetyCasePackage.Literals.SAFETY_CASE__SOLUTIONS,
 				 SafetyCaseFactory.eINSTANCE.createSolution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__CONTEXTS,
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS,
 				 SafetyCaseFactory.eINSTANCE.createContext()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__JUSTIFICATIONS,
+				(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS,
 				 SafetyCaseFactory.eINSTANCE.createJustification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.ASSURANCE_CASE__ASSUMPTIONS,
+				(SafetyCasePackage.Literals.SAFETY_CASE__ASSUMPTIONS,
 				 SafetyCaseFactory.eINSTANCE.createAssumption()));
 	}
 
