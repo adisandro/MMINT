@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.edit.helpers;
 
-import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 
 /**
  * @generated

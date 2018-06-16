@@ -48,19 +48,19 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
-      <import plugin="org.eclipse.gmf.tooling.runtime"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime"/>
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.m2m.atl.engine.emfvm"/>
-      <import plugin="org.eclipse.emf.henshin.interpreter"/>
+      <!--<import plugin="org.eclipse.emf.henshin.interpreter"/>
       <import plugin="org.eclipse.emf.henshin.model"/>
-      <import plugin="org.eclipse.emf.henshin.trace"/>
+      <import plugin="org.eclipse.emf.henshin.trace"/>-->
       <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="edu.toronto.cs.se.modelepedia.z3"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.z3.operator"/>
+      <!--<import plugin="edu.toronto.cs.se.modelepedia.z3.operator"/>-->
       <import plugin="edu.toronto.cs.se.mmint.operator"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.sirius"/>
@@ -90,6 +90,27 @@ Famelis, Rick Salay. All rights reserved.
          unpack="false"/>
 
    <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.design"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="edu.toronto.cs.se.modelepedia.classdiagram_mavo"
          download-size="0"
          install-size="0"
@@ -111,31 +132,17 @@ Famelis, Rick Salay. All rights reserved.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.classdiagram.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
+   <!--<plugin
          id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.classdiagram.design"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         unpack="false"/>-->
 
 </feature>

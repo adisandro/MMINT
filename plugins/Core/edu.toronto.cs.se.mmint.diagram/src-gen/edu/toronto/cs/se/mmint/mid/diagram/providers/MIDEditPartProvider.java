@@ -11,7 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.mid.diagram.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DefaultEditPartProvider;
 
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPart;
 import edu.toronto.cs.se.mmint.mid.diagram.edit.parts.MIDEditPartFactory;

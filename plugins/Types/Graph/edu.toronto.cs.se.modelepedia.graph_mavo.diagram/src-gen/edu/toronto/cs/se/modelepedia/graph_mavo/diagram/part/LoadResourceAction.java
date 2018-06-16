@@ -13,7 +13,7 @@ package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.gmf.tooling.runtime.actions.DefaultLoadResourceAction;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.actions.DefaultLoadResourceAction;
 
 /**
  * @generated

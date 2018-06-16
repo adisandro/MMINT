@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.graph_mavo.diagram.part;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.UpdaterNodeDescriptor;
 
 /**
  * @generated

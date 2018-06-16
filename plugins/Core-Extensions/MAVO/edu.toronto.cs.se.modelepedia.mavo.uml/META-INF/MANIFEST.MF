@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.mavo.uml;singleton:=true
 Bundle-Version: 2.2.99.qualifier
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Require-Bundle: org.eclipse.papyrus.uml.diagram.wizards,
  org.eclipse.ui,
  org.eclipse.ui.ide,

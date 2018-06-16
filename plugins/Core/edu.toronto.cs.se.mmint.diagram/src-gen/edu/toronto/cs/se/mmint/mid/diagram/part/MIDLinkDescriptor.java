@@ -13,7 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.part;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.UpdaterLinkDescriptor;
 
 /**
  * @generated

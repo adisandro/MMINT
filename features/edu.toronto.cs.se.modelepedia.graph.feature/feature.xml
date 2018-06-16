@@ -49,7 +49,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
-      <import plugin="org.eclipse.gmf.tooling.runtime"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime"/>
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
    </requires>

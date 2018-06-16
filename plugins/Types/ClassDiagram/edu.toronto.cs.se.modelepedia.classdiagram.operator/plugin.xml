@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+ Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ Rick Salay.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+    Alessio Di Sandro - Implementation.
+-->
+
+<plugin>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Match"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch"
+               class="edu.toronto.cs.se.modelepedia.classdiagram.operator.CDMatch">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/Operator_Match">
+            </superType>
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+	                 name="model1"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-ClassDiagram/model1">
+                  <superType
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-Model/model1">
+                  </superType>
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+            <parameter>
+	           <type
+	                 name="model2"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-ClassDiagram/model2">
+                  <superType
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-Model/model2">
+                  </superType>
+
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/ClassDiagram">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+	                 name="overlap"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDMatch-Overlap/overlap">
+                  <superType
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Match-Overlap/overlap">
+                  </superType>
+
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Overlap">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="Slice"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_CDSlice"
+               class="edu.toronto.cs.se.modelepedia.classdiagram.operator.CDSlice">
+            <superType
+                  uri="http://se.cs.toronto.edu/mmint/Operator_Slice">
+            </superType>
+         </type>
+         <inputs>
+            <parameter>
+	           <type
+                     name="criterion"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDSlice-CDRel/criterion">
+                  <superType
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/criterion">
+                  </superType>
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+	           <type
+                     name="slice"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_CDSlice-CDRel/slice">
+                  <superType
+                        uri="http://se.cs.toronto.edu/mmint/Operator_Slice-ModelRel/slice">
+                  </superType>
+	           </type>
+	           <typeEndpoint
+	                 targetTypeUri="http://se.cs.toronto.edu/modelepedia/CDRel">
+	           </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+</plugin>

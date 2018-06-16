@@ -13,7 +13,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine.diagram.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DefaultEditPartProvider;
 
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPart;
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.edit.parts.StateMachineEditPartFactory;

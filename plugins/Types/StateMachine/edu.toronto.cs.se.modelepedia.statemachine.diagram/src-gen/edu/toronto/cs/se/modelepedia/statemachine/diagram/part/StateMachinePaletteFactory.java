@@ -19,8 +19,8 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gmf.tooling.runtime.part.DefaultLinkToolEntry;
-import org.eclipse.gmf.tooling.runtime.part.DefaultNodeToolEntry;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultLinkToolEntry;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultNodeToolEntry;
 
 import edu.toronto.cs.se.modelepedia.statemachine.diagram.providers.StateMachineElementTypes;
 

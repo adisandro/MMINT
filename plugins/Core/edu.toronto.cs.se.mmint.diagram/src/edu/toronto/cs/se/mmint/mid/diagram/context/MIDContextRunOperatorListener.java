@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid.diagram.context;
 
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -74,6 +75,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 			try {
+			    //TODO MMINT[GENERICS] with multiple dispatch enabled, show only the super allowed generics
 				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
 				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(operatorType, mid);
 				switch (mid.getLevel()) {

@@ -12,7 +12,7 @@
 package edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram.providers;
 
 import org.eclipse.gmf.runtime.common.ui.services.icon.IIconProvider;
-import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.providers.DefaultElementTypeIconProvider;
 
 /**
  * @generated

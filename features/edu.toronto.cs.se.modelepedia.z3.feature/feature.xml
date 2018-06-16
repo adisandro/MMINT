@@ -24,14 +24,14 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.modelepedia.libz3java"/>
-      <import plugin="org.eclipse.emf.henshin.interpreter"/>
-      <import plugin="org.eclipse.emf.henshin.trace"/>
+      <!--<import plugin="org.eclipse.emf.henshin.interpreter"/>
+      <import plugin="org.eclipse.emf.henshin.trace"/>-->
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.osgi"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="edu.toronto.cs.se.mmint.mavo"/>
       <import feature="edu.toronto.cs.se.modelepedia.libz3java.feature"/>
-      <import feature="org.eclipse.emf.henshin.sdk"/>
+      <!--<import feature="org.eclipse.emf.henshin.sdk"/>-->
    </requires>
 
    <plugin
@@ -41,11 +41,11 @@ Famelis, Rick Salay. All rights reserved.
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
+   <!--<plugin
          id="edu.toronto.cs.se.modelepedia.z3.operator"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
+         unpack="false"/>-->
 
 </feature>

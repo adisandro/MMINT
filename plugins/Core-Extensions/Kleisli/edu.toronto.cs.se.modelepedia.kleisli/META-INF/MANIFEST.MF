@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.kleisli;singleton:=true
 Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Export-Package: edu.toronto.cs.se.modelepedia.kleisli,
  edu.toronto.cs.se.modelepedia.kleisli.impl,
  edu.toronto.cs.se.modelepedia.kleisli.util

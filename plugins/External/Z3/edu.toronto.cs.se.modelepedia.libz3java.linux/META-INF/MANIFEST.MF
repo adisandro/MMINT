@@ -4,7 +4,7 @@ Bundle-Name: %fragmentName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.libz3java.linux;singleton:=true
 Bundle-Version: 2.2.99.qualifier
 Fragment-Host: edu.toronto.cs.se.modelepedia.libz3java
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Bundle-Vendor: %providerName
 Eclipse-PlatformFilter: (osgi.os=linux)
 Bundle-ClassPath: .,

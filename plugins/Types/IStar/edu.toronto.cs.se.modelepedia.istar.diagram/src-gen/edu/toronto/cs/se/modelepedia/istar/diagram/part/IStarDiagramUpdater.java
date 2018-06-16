@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update.DiagramUpdater;
 
 import edu.toronto.cs.se.modelepedia.istar.Actor;
 import edu.toronto.cs.se.modelepedia.istar.Contribution;

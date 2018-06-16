@@ -13,7 +13,7 @@
  */
 package edu.toronto.cs.se.modelepedia.statemachine.diagram.part;
 
-import org.eclipse.gmf.tooling.runtime.actions.DefaultDeleteElementAction;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.actions.DefaultDeleteElementAction;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**

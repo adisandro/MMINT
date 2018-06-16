@@ -150,9 +150,7 @@ public class SiriusUtils {
         if (sReprDesc == null) {
             return;
         }
-        Set<DRepresentationDescriptor> sReprDescs = new HashSet<>(); // TODO MMINT[JAVA9] Set.of()
-        sReprDescs.add(sReprDesc);
-        DeleteRepresentationCommand sCmd = new DeleteRepresentationCommand(sSession, sReprDescs);
+        DeleteRepresentationCommand sCmd = new DeleteRepresentationCommand(sSession, Set.of(sReprDesc));
         sSession.getTransactionalEditingDomain().getCommandStack().execute(sCmd);
     }
 

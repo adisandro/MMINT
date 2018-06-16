@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
+import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 
 import edu.toronto.cs.se.modelepedia.relationaldatabase.diagram.edit.commands.RelationalDatabaseCreateShortcutDecorationsCommand;
 import edu.toronto.cs.se.modelepedia.relationaldatabase.diagram.edit.policies.RelationalDatabaseCanonicalEditPolicy;
