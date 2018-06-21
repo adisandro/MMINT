@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="edu.toronto.cs.se.modelepedia.statemachine.feature"
-      label="Modelepedia StateMachine"
+      id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature"
+      label="Modelepedia ClassDiagramMAVO"
       version="2.2.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
-      A state machine to be used in MMINT.
+      A class diagram (MAVO version) to be used in MMINT.
    </description>
 
    <copyright>
@@ -21,19 +21,27 @@ Famelis, Rick Salay. All rights reserved.
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="edu.toronto.cs.se.mavo"/>
+      <import plugin="edu.toronto.cs.se.mmint"/>
+      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="edu.toronto.cs.se.mavo.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint.edit"/>
       <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.commands.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui.properties"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.printing"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.printing.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers.ide"/>
@@ -45,35 +53,42 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.emf.edit"/>
+      <import feature="org.eclipse.m2m.atl.sdk"/>
    </requires>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine"
+         id="edu.toronto.cs.se.modelepedia.classdiagram_mavo"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine.diagram"
+         id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine.edit"
+         id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.statemachine.editor"
+         id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+<!--   <plugin
+         id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>-->
 
 </feature>

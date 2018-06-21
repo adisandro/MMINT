@@ -18,6 +18,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature" version="2.2.99.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.graph.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.graph.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
@@ -36,10 +39,16 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.statemachine.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine.feature" version="2.2.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.statemachine_mavo.feature" version="2.2.99.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.models15.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.models15.feature" version="2.2.99.qualifier">
       <category name="Examples"/>
    </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.icse15.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.icse15.feature" version="2.2.99.qualifier">
+      <category name="Examples"/>
+   </feature>
+   <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.2.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.2.99.qualifier">
       <category name="Examples"/>
    </feature>
    <category-def name="Modeling" label="Modeling"/>

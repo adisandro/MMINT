@@ -202,14 +202,17 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.safetycase.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sequencediagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.sosym18.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>
   </modules>
