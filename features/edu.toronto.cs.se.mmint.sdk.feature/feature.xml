@@ -78,7 +78,7 @@ sets of related models.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.ocl.source"
+         id="edu.toronto.cs.se.mmint.ocl.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
