@@ -53,7 +53,6 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.sirius"/>
       <import plugin="org.eclipse.sirius.common.acceleo.aql"/>
       <import plugin="edu.toronto.cs.se.mmint.operator"/>
-      <import feature="org.eclipse.m2m.atl.sdk"/>
    </requires>
 
    <plugin
