@@ -36,6 +36,7 @@ sets of related models.
       <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.emf.ecore.editor"/>
       <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="org.eclipse.sirius.ui"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
@@ -60,12 +61,8 @@ sets of related models.
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.compare"/>
       <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.ocl.pivot"/>
       <import plugin="org.eclipse.swt"/>
-      <import plugin="org.eclipse.sirius.ui"/>
       <import plugin="org.eclipse.acceleo.engine"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
@@ -112,20 +109,6 @@ sets of related models.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.operator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.uml"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="edu.toronto.cs.se.mmint.ocl"
          download-size="0"
          install-size="0"
@@ -151,26 +134,5 @@ sets of related models.
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.primitive.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
 </feature>

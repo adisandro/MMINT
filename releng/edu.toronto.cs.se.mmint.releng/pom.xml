@@ -199,6 +199,7 @@
   	<module>../../features/edu.toronto.cs.se.mmint.feature</module>
   	<module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
   	<module>../../features/edu.toronto.cs.se.mummint.feature</module>
+  	<module>../../features/edu.toronto.cs.se.modelepedia.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
