@@ -17,7 +17,7 @@ sets of related models.
    </description>
 
    <copyright>
-      Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
+      Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis, Rick Salay. All rights reserved.
    </copyright>
 
    <license url="http://www.eclipse.org/legal/epl-v10.html">
@@ -78,7 +78,7 @@ sets of related models.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.ocl.source"
+         id="edu.toronto.cs.se.mmint.ocl.source"
          download-size="0"
          install-size="0"
          version="0.0.0"

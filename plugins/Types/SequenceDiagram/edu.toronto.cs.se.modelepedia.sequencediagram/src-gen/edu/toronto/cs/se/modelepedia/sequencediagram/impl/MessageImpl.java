@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -170,6 +170,27 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getContent() {
+		return content;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContent(String newContent) {
+		String oldContent = content;
+		content = newContent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__CONTENT, oldContent, content));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MessageType getType() {
 		return type;
 	}
@@ -325,27 +346,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 		guard = newGuard;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__GUARD, oldGuard, guard));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getContent() {
-		return content;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContent(String newContent) {
-		String oldContent = content;
-		content = newContent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SequenceDiagramPackage.MESSAGE__CONTENT, oldContent, content));
 	}
 
 	/**
@@ -647,7 +647,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (content: ");
 		result.append(content);
 		result.append(", type: ");

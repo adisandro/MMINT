@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sequencediagram.operator;singleton:=true
 Bundle-Version: 2.2.99.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-9
+Bundle-RequiredExecutionEnvironment: JavaSE-10
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.operator,
- edu.toronto.cs.se.modelepedia.sequencediagram,
- edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo
+ edu.toronto.cs.se.modelepedia.sequencediagram
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

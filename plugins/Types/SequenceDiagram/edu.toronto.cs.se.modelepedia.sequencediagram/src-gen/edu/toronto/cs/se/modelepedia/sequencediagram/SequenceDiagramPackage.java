@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -664,6 +664,17 @@ public interface SequenceDiagramPackage extends EPackage {
 	EClass getMessage();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent()
+	 * @see #getMessage()
+	 * @generated
+	 */
+	EAttribute getMessage_Content();
+
+	/**
 	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -706,17 +717,6 @@ public interface SequenceDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMessage_Guard();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Content</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent()
-	 * @see #getMessage()
-	 * @generated
-	 */
-	EAttribute getMessage_Content();
 
 	/**
 	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getPredecessor <em>Predecessor</em>}'.
@@ -932,6 +932,14 @@ public interface SequenceDiagramPackage extends EPackage {
 		EClass MESSAGE = eINSTANCE.getMessage();
 
 		/**
+		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MESSAGE__CONTENT = eINSTANCE.getMessage_Content();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -962,14 +970,6 @@ public interface SequenceDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MESSAGE__GUARD = eINSTANCE.getMessage_Guard();
-
-		/**
-		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MESSAGE__CONTENT = eINSTANCE.getMessage_Content();
 
 		/**
 		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.

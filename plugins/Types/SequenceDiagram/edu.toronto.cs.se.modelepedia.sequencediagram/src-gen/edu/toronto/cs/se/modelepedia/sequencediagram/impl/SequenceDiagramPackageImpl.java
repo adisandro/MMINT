@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -121,7 +121,7 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SequenceDiagramPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -135,7 +135,8 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		if (isInited) return (SequenceDiagramPackage)EPackage.Registry.INSTANCE.getEPackage(SequenceDiagramPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SequenceDiagramPackageImpl theSequenceDiagramPackage = (SequenceDiagramPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SequenceDiagramPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SequenceDiagramPackageImpl());
+		Object registeredSequenceDiagramPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SequenceDiagramPackageImpl theSequenceDiagramPackage = registeredSequenceDiagramPackage instanceof SequenceDiagramPackageImpl ? (SequenceDiagramPackageImpl)registeredSequenceDiagramPackage : new SequenceDiagramPackageImpl();
 
 		isInited = true;
 
@@ -148,7 +149,6 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 		// Mark meta-data to indicate it can't be changed
 		theSequenceDiagramPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SequenceDiagramPackage.eNS_URI, theSequenceDiagramPackage);
 		return theSequenceDiagramPackage;
@@ -321,6 +321,15 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMessage_Content() {
+		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getMessage_Type() {
 		return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
 	}
@@ -350,15 +359,6 @@ public class SequenceDiagramPackageImpl extends EPackageImpl implements Sequence
 	 */
 	public EAttribute getMessage_Guard() {
 		return (EAttribute)messageEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMessage_Content() {
-		return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**

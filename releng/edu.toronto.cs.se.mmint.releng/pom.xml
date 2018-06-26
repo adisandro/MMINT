@@ -5,15 +5,15 @@
   <version>2.2.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>1.1.0</tycho-version>
+    <tycho-version>1.2.0</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
     <repository>
-  	  <id>Oxygen</id>
+  	  <id>Photon</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/oxygen</url>
+  	  <url>http://download.eclipse.org/releases/photon</url>
     </repository>
     <!--<repository>
   	  <id>Henshin</id>
@@ -119,8 +119,8 @@
   	<module>../../plugins/Core/edu.toronto.cs.se.mmint.relationship.diagram</module>
   	<module>../../plugins/Core/edu.toronto.cs.se.mmint.java</module>
   	<module>../../plugins/Core/edu.toronto.cs.se.mmint.ecore</module>
+  	<module>../../plugins/Core/edu.toronto.cs.se.mmint.ocl</module>
   	<module>../../plugins/Core/edu.toronto.cs.se.mmint.operator</module>
-  	<module>../../plugins/Core-Extensions/Recommended/edu.toronto.cs.se.modelepedia.ocl</module>
   	<module>../../plugins/Core-Extensions/Recommended/edu.toronto.cs.se.modelepedia.uml</module>
   	<module>../../plugins/Core-Extensions/Recommended/edu.toronto.cs.se.modelepedia.operator</module>
   	<module>../../plugins/Core-Extensions/Recommended/edu.toronto.cs.se.modelepedia.primitive</module>
@@ -202,14 +202,17 @@
   	<module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.safetycase.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sequencediagram.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature</module>
   	<module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
+    <module>../../features/edu.toronto.cs.se.modelepedia.sosym18.feature</module>
   	<module>../../tests/edu.toronto.cs.se.modelepedia.tests</module>
   	<module>../edu.toronto.cs.se.mmint.install</module>
   </modules>

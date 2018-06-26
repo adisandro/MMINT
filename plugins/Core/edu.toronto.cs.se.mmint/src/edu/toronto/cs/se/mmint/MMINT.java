@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -968,10 +968,10 @@ public class MMINT implements MMINTConstants {
 		this.initPreference(preferences, PREFERENCE_TESTS_ENABLED, "false", true);
 		this.initPreference(preferences, PREFERENCE_MENU_ICONS_ENABLED, "true", false);
 		this.initPreference(preferences, PREFERENCE_MENU_MODELRELS_ENABLED, "true", false);
-		this.initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_MODELRELENDPOINTS_ENABLED, "false", false);
 		this.initPreference(preferences, PREFERENCE_MENU_OPERATORS_ENABLED, "true", false);
-		this.initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "true", false);
-		this.initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "true", false);
+		this.initPreference(preferences, PREFERENCE_MENU_OPERATORENDPOINTS_ENABLED, "false", false);
+		this.initPreference(preferences, PREFERENCE_MENU_OPENMODELEDITORS_ENABLED, "false", false);
 		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
 		this.initPreference(preferences, PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
 		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);

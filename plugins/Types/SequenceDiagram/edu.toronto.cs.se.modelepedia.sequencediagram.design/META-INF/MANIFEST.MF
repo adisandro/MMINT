@@ -13,5 +13,5 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.sequencediagram
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-9
+Bundle-RequiredExecutionEnvironment: JavaSE-10
 Bundle-Vendor: %providerName

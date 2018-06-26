@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -37,6 +37,32 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Message extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Content</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Content</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Content</em>' attribute.
+	 * @see #setContent(String)
+	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getMessage_Content()
+	 * @model
+	 * @generated
+	 */
+	String getContent();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Content</em>' attribute.
+	 * @see #getContent()
+	 * @generated
+	 */
+	void setContent(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * The default value is <code>"Synchronous"</code>.
@@ -148,32 +174,6 @@ public interface Message extends EObject {
 	 * @generated
 	 */
 	void setGuard(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Content</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Content</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content</em>' attribute.
-	 * @see #setContent(String)
-	 * @see edu.toronto.cs.se.modelepedia.sequencediagram.SequenceDiagramPackage#getMessage_Content()
-	 * @model
-	 * @generated
-	 */
-	String getContent();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.sequencediagram.Message#getContent <em>Content</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Content</em>' attribute.
-	 * @see #getContent()
-	 * @generated
-	 */
-	void setContent(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Predecessor</b></em>' reference.

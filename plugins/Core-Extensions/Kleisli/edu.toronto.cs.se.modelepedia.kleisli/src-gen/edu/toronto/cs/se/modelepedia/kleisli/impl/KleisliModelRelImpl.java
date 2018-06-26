@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -29,8 +29,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import edu.toronto.cs.se.mmint.MMINTException;
+
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -48,12 +49,12 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoningEngine;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpoint;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelEndpointReference;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliModelRel;
 import edu.toronto.cs.se.modelepedia.kleisli.KleisliPackage;
 import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
-import edu.toronto.cs.se.modelepedia.ocl.reasoning.OCLReasoningEngine;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,8 +113,9 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String getExtendedUri() {
-        return extendedUri;
+	@Override
+    public String getExtendedUri() {
+        return this.extendedUri;
     }
 
 	/**
@@ -121,11 +123,12 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void setExtendedUri(String newExtendedUri) {
-        String oldExtendedUri = extendedUri;
-        extendedUri = newExtendedUri;
+	@Override
+    public void setExtendedUri(String newExtendedUri) {
+        String oldExtendedUri = this.extendedUri;
+        this.extendedUri = newExtendedUri;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, extendedUri));
+            eNotify(new ENotificationImpl(this, Notification.SET, KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI, oldExtendedUri, this.extendedUri));
     }
 
 	/**
@@ -181,7 +184,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
             case KleisliPackage.KLEISLI_MODEL_REL__EXTENDED_URI:
-                return EXTENDED_URI_EDEFAULT == null ? extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(extendedUri);
+                return EXTENDED_URI_EDEFAULT == null ? this.extendedUri != null : !EXTENDED_URI_EDEFAULT.equals(this.extendedUri);
         }
         return super.eIsSet(featureID);
     }
@@ -197,14 +200,14 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (extendedUri: ");
-        result.append(extendedUri);
+        result.append(this.extendedUri);
         result.append(')');
         return result.toString();
     }
 
 	/**
 	 * Gets the uri of a Kleisli model relationship type extension.
-	 * 
+	 *
 	 * @param modelRelType
 	 *            The Kleisli model relationship type.
 	 * @return The uri of the Kleisli model relationship type extension.
@@ -217,7 +220,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 	/**
 	 * Kleisli version. {@inheritDoc}
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -306,7 +309,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 
 	/**
 	 * Kleisli version. {@inheritDoc}
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -450,7 +453,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					true
 				);
 				EObject kRootModelObj = kModelEndpoint.getExtendedTarget().getEMFInstanceRoot();
-				Map<String, Map<String, Map<EObject, EObject>>> queryMap = new HashMap<String, Map<String, Map<EObject, EObject>>>();
+				Map<String, Map<String, Map<EObject, EObject>>> queryMap = new HashMap<>();
 				// first pass: EClasses
 				for (ModelElementReference kModelElemTypeRef : kModelTypeEndpointRef.getModelElemRefs()) {
 					EMFInfo kModelElemTypeEInfo = kModelElemTypeRef.getObject().getEInfo();
@@ -462,7 +465,7 @@ public class KleisliModelRelImpl extends ModelRelImpl implements KleisliModelRel
 					) {
 						continue;
 					}
-					Map<String, Map<EObject, EObject>> queryUnion = new LinkedHashMap<String, Map<EObject, EObject>>();
+					Map<String, Map<EObject, EObject>> queryUnion = new LinkedHashMap<>();
 					queryMap.put(kModelElemTypeEInfo.getClassName(), queryUnion);
 					EClass kModelElemTypeClass = (EClass) kModelTypePackage.getEClassifier(kModelElemTypeEInfo.getClassName());
 					kReasoner.evaluateEClassQuery(kConstraint.getImplementation(), oclReasoner, kRootModelObj, kModelElemTypeClass, kModelTypeFactory, queryUnion);
