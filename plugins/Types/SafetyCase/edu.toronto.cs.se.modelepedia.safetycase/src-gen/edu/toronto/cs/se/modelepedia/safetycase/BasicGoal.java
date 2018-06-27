@@ -15,13 +15,13 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Goal</b></em>'.
+ * A representation of the model object '<em><b>Basic Goal</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getGoal()
- * @model abstract="true"
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getBasicGoal()
+ * @model
  * @generated
  */
-public interface Goal extends DecomposableCoreElement, StatefulElement, ASILfulElement {
-} // Goal
+public interface BasicGoal extends Goal {
+} // BasicGoal

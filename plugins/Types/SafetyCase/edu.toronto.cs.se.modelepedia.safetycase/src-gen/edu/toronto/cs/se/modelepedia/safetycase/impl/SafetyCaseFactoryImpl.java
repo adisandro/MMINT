@@ -70,7 +70,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.SAFETY_CASE: return createSafetyCase();
 			case SafetyCasePackage.SUPPORTED_BY: return createSupportedBy();
 			case SafetyCasePackage.IN_CONTEXT_OF: return createInContextOf();
-			case SafetyCasePackage.GOAL: return createGoal();
+			case SafetyCasePackage.BASIC_GOAL: return createBasicGoal();
+			case SafetyCasePackage.INDEPENDENCE_GOAL: return createIndependenceGoal();
 			case SafetyCasePackage.BASIC_STRATEGY: return createBasicStrategy();
 			case SafetyCasePackage.ASIL_DECOMPOSITION_STRATEGY: return createASILDecompositionStrategy();
 			case SafetyCasePackage.SOLUTION: return createSolution();
@@ -157,9 +158,19 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Goal createGoal() {
-		GoalImpl goal = new GoalImpl();
-		return goal;
+	public BasicGoal createBasicGoal() {
+		BasicGoalImpl basicGoal = new BasicGoalImpl();
+		return basicGoal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IndependenceGoal createIndependenceGoal() {
+		IndependenceGoalImpl independenceGoal = new IndependenceGoalImpl();
+		return independenceGoal;
 	}
 
 	/**

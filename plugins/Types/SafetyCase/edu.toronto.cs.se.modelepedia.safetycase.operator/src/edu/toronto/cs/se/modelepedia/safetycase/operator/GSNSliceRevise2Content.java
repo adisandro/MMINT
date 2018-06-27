@@ -20,11 +20,14 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
+import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
+import edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
@@ -63,7 +66,20 @@ public class GSNSliceRevise2Content extends Slice {
 			Goal g = (Goal) modelObj;
 			
 			for (SupportedBy rel : g.getSupports()) {
-				impacted.add(rel.getConclusion());
+				DecomposableCoreElement conclusion = rel.getConclusion();
+				impacted.add(conclusion);
+				
+				// If conclusion is an ASIL decomposition strategy,
+				// the content validity should be rechecked for the 
+				// independence goal.
+				if (conclusion instanceof ASILDecompositionStrategy) {
+					for (SupportedBy relInner : conclusion.getSupportedBy()) {
+						CoreElement premise = relInner.getPremise();
+						if (premise instanceof IndependenceGoal) {
+							impacted.add(premise);
+						}
+					}
+				}
 			}
 			
 			for (SupportedBy rel : g.getSupportedBy()) {

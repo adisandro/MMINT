@@ -151,26 +151,49 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Goal} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.BasicGoal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GoalItemProvider goalItemProvider;
+	protected BasicGoalItemProvider basicGoalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Goal}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.BasicGoal}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGoalAdapter() {
-		if (goalItemProvider == null) {
-			goalItemProvider = new GoalItemProvider(this);
+	public Adapter createBasicGoalAdapter() {
+		if (basicGoalItemProvider == null) {
+			basicGoalItemProvider = new BasicGoalItemProvider(this);
 		}
 
-		return goalItemProvider;
+		return basicGoalItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IndependenceGoalItemProvider independenceGoalItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIndependenceGoalAdapter() {
+		if (independenceGoalItemProvider == null) {
+			independenceGoalItemProvider = new IndependenceGoalItemProvider(this);
+		}
+
+		return independenceGoalItemProvider;
 	}
 
 	/**
@@ -459,7 +482,8 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
 		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
-		if (goalItemProvider != null) goalItemProvider.dispose();
+		if (basicGoalItemProvider != null) basicGoalItemProvider.dispose();
+		if (independenceGoalItemProvider != null) independenceGoalItemProvider.dispose();
 		if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
 		if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
 		if (solutionItemProvider != null) solutionItemProvider.dispose();

@@ -17,6 +17,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.ASILLevel;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
+import edu.toronto.cs.se.modelepedia.safetycase.BasicGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.ContextualElement;
@@ -26,6 +27,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
+import edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
@@ -120,6 +122,20 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * @generated
 	 */
 	private EClass goalEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass basicGoalEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass independenceGoalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -233,7 +249,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SafetyCasePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -247,7 +263,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		if (isInited) return (SafetyCasePackage)EPackage.Registry.INSTANCE.getEPackage(SafetyCasePackage.eNS_URI);
 
 		// Obtain or create and register package
-		SafetyCasePackageImpl theSafetyCasePackage = (SafetyCasePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SafetyCasePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SafetyCasePackageImpl());
+		Object registeredSafetyCasePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SafetyCasePackageImpl theSafetyCasePackage = registeredSafetyCasePackage instanceof SafetyCasePackageImpl ? (SafetyCasePackageImpl)registeredSafetyCasePackage : new SafetyCasePackageImpl();
 
 		isInited = true;
 
@@ -260,7 +277,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		// Mark meta-data to indicate it can't be changed
 		theSafetyCasePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SafetyCasePackage.eNS_URI, theSafetyCasePackage);
 		return theSafetyCasePackage;
@@ -541,6 +557,24 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBasicGoal() {
+		return basicGoalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIndependenceGoal() {
+		return independenceGoalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStrategy() {
 		return strategyEClass;
 	}
@@ -757,6 +791,10 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		goalEClass = createEClass(GOAL);
 
+		basicGoalEClass = createEClass(BASIC_GOAL);
+
+		independenceGoalEClass = createEClass(INDEPENDENCE_GOAL);
+
 		strategyEClass = createEClass(STRATEGY);
 
 		basicStrategyEClass = createEClass(BASIC_STRATEGY);
@@ -820,6 +858,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		goalEClass.getESuperTypes().add(this.getDecomposableCoreElement());
 		goalEClass.getESuperTypes().add(this.getStatefulElement());
 		goalEClass.getESuperTypes().add(this.getASILfulElement());
+		basicGoalEClass.getESuperTypes().add(this.getGoal());
+		independenceGoalEClass.getESuperTypes().add(this.getGoal());
 		strategyEClass.getESuperTypes().add(this.getDecomposableCoreElement());
 		basicStrategyEClass.getESuperTypes().add(this.getStrategy());
 		asilDecompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
@@ -868,7 +908,11 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEReference(getInContextOf_Context(), this.getContextualElement(), this.getContextualElement_ContextOf(), "context", null, 1, 1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInContextOf_ContextOf(), this.getDecomposableCoreElement(), this.getDecomposableCoreElement_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(goalEClass, Goal.class, "Goal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(goalEClass, Goal.class, "Goal", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(basicGoalEClass, BasicGoal.class, "BasicGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(independenceGoalEClass, IndependenceGoal.class, "IndependenceGoal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(strategyEClass, Strategy.class, "Strategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -927,12 +971,12 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * @generated
 	 */
 	protected void createGmfAnnotations() {
-		String source = "gmf.label";	
+		String source = "gmf.label";
 		addAnnotation
-		  (getArgumentElement_Description(), 
-		   source, 
+		  (getArgumentElement_Description(),
+		   source,
 		   new String[] {
-			 "label", "description"
+			   "label", "description"
 		   });
 	}
 

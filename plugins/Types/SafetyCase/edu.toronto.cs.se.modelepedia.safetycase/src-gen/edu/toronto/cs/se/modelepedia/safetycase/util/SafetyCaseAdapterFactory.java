@@ -118,6 +118,14 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createGoalAdapter();
 			}
 			@Override
+			public Adapter caseBasicGoal(BasicGoal object) {
+				return createBasicGoalAdapter();
+			}
+			@Override
+			public Adapter caseIndependenceGoal(IndependenceGoal object) {
+				return createIndependenceGoalAdapter();
+			}
+			@Override
 			public Adapter caseStrategy(Strategy object) {
 				return createStrategyAdapter();
 			}
@@ -310,6 +318,34 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGoalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.BasicGoal <em>Basic Goal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.BasicGoal
+	 * @generated
+	 */
+	public Adapter createBasicGoalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal <em>Independence Goal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal
+	 * @generated
+	 */
+	public Adapter createIndependenceGoalAdapter() {
 		return null;
 	}
 

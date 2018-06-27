@@ -171,7 +171,12 @@ public class SafetyCaseItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SafetyCasePackage.Literals.SAFETY_CASE__GOALS,
-				 SafetyCaseFactory.eINSTANCE.createGoal()));
+				 SafetyCaseFactory.eINSTANCE.createBasicGoal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__GOALS,
+				 SafetyCaseFactory.eINSTANCE.createIndependenceGoal()));
 
 		newChildDescriptors.add
 			(createChildParameter

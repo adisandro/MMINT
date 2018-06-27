@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
+public abstract class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	/**
 	 * The default value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -306,7 +306,7 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (stateValidity: ");
 		result.append(stateValidity);
 		result.append(')');

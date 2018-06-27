@@ -61,7 +61,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"
         eType="#//DecomposableCoreElement" eOpposite="#//DecomposableCoreElement/inContextOf"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//DecomposableCoreElement #//StatefulElement #//ASILfulElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" abstract="true" eSuperTypes="#//DecomposableCoreElement #//StatefulElement #//ASILfulElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicGoal" eSuperTypes="#//Goal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IndependenceGoal" eSuperTypes="#//Goal"/>
   <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//DecomposableCoreElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy"/>
   <eClassifiers xsi:type="ecore:EClass" name="ASILDecompositionStrategy" eSuperTypes="#//Strategy"/>

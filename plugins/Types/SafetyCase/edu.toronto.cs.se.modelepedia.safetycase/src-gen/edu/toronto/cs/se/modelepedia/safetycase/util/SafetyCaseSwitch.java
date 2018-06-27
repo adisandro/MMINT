@@ -145,6 +145,30 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SafetyCasePackage.BASIC_GOAL: {
+				BasicGoal basicGoal = (BasicGoal)theEObject;
+				T result = caseBasicGoal(basicGoal);
+				if (result == null) result = caseGoal(basicGoal);
+				if (result == null) result = caseDecomposableCoreElement(basicGoal);
+				if (result == null) result = caseStatefulElement(basicGoal);
+				if (result == null) result = caseASILfulElement(basicGoal);
+				if (result == null) result = caseCoreElement(basicGoal);
+				if (result == null) result = caseArgumentElement(basicGoal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.INDEPENDENCE_GOAL: {
+				IndependenceGoal independenceGoal = (IndependenceGoal)theEObject;
+				T result = caseIndependenceGoal(independenceGoal);
+				if (result == null) result = caseGoal(independenceGoal);
+				if (result == null) result = caseDecomposableCoreElement(independenceGoal);
+				if (result == null) result = caseStatefulElement(independenceGoal);
+				if (result == null) result = caseASILfulElement(independenceGoal);
+				if (result == null) result = caseCoreElement(independenceGoal);
+				if (result == null) result = caseArgumentElement(independenceGoal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SafetyCasePackage.STRATEGY: {
 				Strategy strategy = (Strategy)theEObject;
 				T result = caseStrategy(strategy);
@@ -370,6 +394,36 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGoal(Goal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Goal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Goal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBasicGoal(BasicGoal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Independence Goal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Independence Goal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndependenceGoal(IndependenceGoal object) {
 		return null;
 	}
 

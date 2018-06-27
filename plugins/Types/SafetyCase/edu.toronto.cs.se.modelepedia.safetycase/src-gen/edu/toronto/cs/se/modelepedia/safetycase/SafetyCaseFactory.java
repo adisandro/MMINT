@@ -59,13 +59,22 @@ public interface SafetyCaseFactory extends EFactory {
 	InContextOf createInContextOf();
 
 	/**
-	 * Returns a new object of class '<em>Goal</em>'.
+	 * Returns a new object of class '<em>Basic Goal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Goal</em>'.
+	 * @return a new object of class '<em>Basic Goal</em>'.
 	 * @generated
 	 */
-	Goal createGoal();
+	BasicGoal createBasicGoal();
+
+	/**
+	 * Returns a new object of class '<em>Independence Goal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Independence Goal</em>'.
+	 * @generated
+	 */
+	IndependenceGoal createIndependenceGoal();
 
 	/**
 	 * Returns a new object of class '<em>Basic Strategy</em>'.
