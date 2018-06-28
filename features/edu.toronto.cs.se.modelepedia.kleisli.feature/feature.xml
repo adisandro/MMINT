@@ -31,10 +31,10 @@
       <import plugin="edu.toronto.cs.se.mmint.diagram"/>
       <import plugin="edu.toronto.cs.se.mmint.relationship.diagram"/>
       <import plugin="edu.toronto.cs.se.mmint.java"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.ocl"/>
       <import plugin="edu.toronto.cs.se.modelepedia.operator"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="edu.toronto.cs.se.mmint.edit"/>
+      <import plugin="edu.toronto.cs.se.mmint.ocl"/>
    </requires>
 
    <plugin
