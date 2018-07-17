@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="classdiagram" version="11.1.1.201610211630">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="classdiagram" version="12.0.0.2017041100">
   <ownedViewpoints name="ClassDiagramViewpoint" modelFileExtension="classdiagram">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" label="ClassDiagramRepresentation" domainClass="classdiagram.ClassDiagram" enablePopupBars="true">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.classdiagram/model/classdiagram.ecore#/"/>
@@ -47,7 +47,7 @@
         <containerMappings name="Class" semanticCandidatesExpression="feature:classes" domainClass="classdiagram.Class" childrenPresentation="VerticalStack">
           <subContainerMappings name="AttributeContainer" semanticCandidatesExpression="var:self" domainClass="classdiagram.Class" childrenPresentation="List">
             <subNodeMappings name="Attribute" semanticCandidatesExpression="feature:ownedAttributes" domainClass="classdiagram.Attribute">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then 'Void' else self.type.name endif in access + ' ' + self.name + ': ' + type" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then '' else ': ' + self.type.name endif in access + ' ' + self.name + type" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -62,7 +62,7 @@
           </subContainerMappings>
           <subContainerMappings name="OperationContainer" semanticCandidatesExpression="var:self" domainClass="classdiagram.Class" childrenPresentation="List">
             <subNodeMappings name="Operation" semanticCandidatesExpression="feature:ownedOperations" domainClass="classdiagram.Operation">
-              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then 'Void' else self.type.name endif in access + ' ' + self.name + ': ' + type" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:let access = if self.public then '+' else '-' endif, type = if self.type = null then '' else ': ' + self.type.name endif in access + ' ' + self.name + type" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -83,7 +83,7 @@
           </style>
         </containerMappings>
         <containerMappings name="DataType" semanticCandidatesExpression="feature:datatypes" domainClass="classdiagram.DataType">
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" roundedCorner="true" widthComputationExpression="10" heightComputationExpression="3">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.name + ' (Data Type)'" roundedCorner="true" widthComputationExpression="10" heightComputationExpression="3">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
