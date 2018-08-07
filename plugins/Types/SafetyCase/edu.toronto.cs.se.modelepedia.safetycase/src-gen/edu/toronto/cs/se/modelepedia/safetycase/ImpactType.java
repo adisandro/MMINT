@@ -46,7 +46,7 @@ public enum ImpactType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RECHECK_CONTENT(2, "RecheckContent", "RecheckConcent"),
+	RECHECK_CONTENT(2, "RecheckContent", "RecheckContent"),
 
 	/**
 	 * The '<em><b>Recheck State</b></em>' literal object.
@@ -92,7 +92,7 @@ public enum ImpactType implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RECHECK_CONTENT
-	 * @model name="RecheckContent" literal="RecheckConcent"
+	 * @model name="RecheckContent"
 	 * @generated
 	 * @ordered
 	 */

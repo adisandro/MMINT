@@ -92,7 +92,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ImpactType">
     <eLiterals name="Revise" value="1"/>
-    <eLiterals name="RecheckContent" value="2" literal="RecheckConcent"/>
+    <eLiterals name="RecheckContent" value="2" literal="RecheckContent"/>
     <eLiterals name="RecheckState" value="3" literal="RecheckState"/>
     <eLiterals name="Reuse" value="4" literal="Reuse"/>
   </eClassifiers>
