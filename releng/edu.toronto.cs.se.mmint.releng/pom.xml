@@ -11,9 +11,9 @@
   </properties>
   <repositories>
     <repository>
-  	  <id>Photon</id>
+  	  <id>Eclipse</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/photon</url>
+  	  <url>http://download.eclipse.org/releases/latest</url>
     </repository>
     <!--<repository>
   	  <id>Henshin</id>
