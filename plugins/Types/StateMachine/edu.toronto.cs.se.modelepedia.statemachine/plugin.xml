@@ -32,5 +32,34 @@
          </type>
       </modelType>
    </extension>
+   
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/SMRel"
+            class="edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.relationships">
+      <relationshipType>
+         <modelType>
+            <type
+                  name="SMRel"
+                  uri="http://se.cs.toronto.edu/modelepedia/SMRel">
+            </type>
+         </modelType>
+         <modelTypeEndpoint>
+            <type
+                  name="SMEndpoint"
+                  uri="http://se.cs.toronto.edu/modelepedia/SMRel-StateMachine/SMEndpoint">
+            </type>
+            <typeEndpoint
+                  lowerBound="0"
+                  upperBound="-1"
+                  targetTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine">
+            </typeEndpoint>
+         </modelTypeEndpoint>
+      </relationshipType>
+   </extension>
 
 </plugin>

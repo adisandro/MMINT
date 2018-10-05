@@ -180,9 +180,11 @@
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.editor</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.operator</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine</module>
+    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.design</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.diagram</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.edit</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.editor</module>
+    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.operator</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram</module>
   	<module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.edit</module>

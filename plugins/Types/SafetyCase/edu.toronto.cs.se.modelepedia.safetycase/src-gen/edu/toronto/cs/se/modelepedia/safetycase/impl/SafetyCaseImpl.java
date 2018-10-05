@@ -12,9 +12,10 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
+import edu.toronto.cs.se.modelepedia.safetycase.Assumption;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.Justification;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
@@ -46,7 +47,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getStrategies <em>Strategies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getSolutions <em>Solutions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getASILLevels <em>ASIL Levels</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getAssumptions <em>Assumptions</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,14 +95,24 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	protected EList<Context> contexts;
 
 	/**
-	 * The cached value of the '{@link #getASILLevels() <em>ASIL Levels</em>}' containment reference list.
+	 * The cached value of the '{@link #getJustifications() <em>Justifications</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getASILLevels()
+	 * @see #getJustifications()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ASIL> asilLevels;
+	protected EList<Justification> justifications;
+
+	/**
+	 * The cached value of the '{@link #getAssumptions() <em>Assumptions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssumptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Assumption> assumptions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,11 +186,23 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ASIL> getASILLevels() {
-		if (asilLevels == null) {
-			asilLevels = new EObjectContainmentEList<ASIL>(ASIL.class, this, SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS);
+	public EList<Justification> getJustifications() {
+		if (justifications == null) {
+			justifications = new EObjectContainmentEList<Justification>(Justification.class, this, SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS);
 		}
-		return asilLevels;
+		return justifications;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Assumption> getAssumptions() {
+		if (assumptions == null) {
+			assumptions = new EObjectContainmentEList<Assumption>(Assumption.class, this, SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS);
+		}
+		return assumptions;
 	}
 
 	/**
@@ -197,8 +221,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return ((InternalEList<?>)getSolutions()).basicRemove(otherEnd, msgs);
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
-			case SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS:
-				return ((InternalEList<?>)getASILLevels()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				return ((InternalEList<?>)getJustifications()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
+				return ((InternalEList<?>)getAssumptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -219,8 +245,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return getSolutions();
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				return getContexts();
-			case SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS:
-				return getASILLevels();
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				return getJustifications();
+			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
+				return getAssumptions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -250,9 +278,13 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				getContexts().clear();
 				getContexts().addAll((Collection<? extends Context>)newValue);
 				return;
-			case SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS:
-				getASILLevels().clear();
-				getASILLevels().addAll((Collection<? extends ASIL>)newValue);
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				getJustifications().clear();
+				getJustifications().addAll((Collection<? extends Justification>)newValue);
+				return;
+			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
+				getAssumptions().clear();
+				getAssumptions().addAll((Collection<? extends Assumption>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -278,8 +310,11 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				getContexts().clear();
 				return;
-			case SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS:
-				getASILLevels().clear();
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				getJustifications().clear();
+				return;
+			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
+				getAssumptions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -301,8 +336,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return solutions != null && !solutions.isEmpty();
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 				return contexts != null && !contexts.isEmpty();
-			case SafetyCasePackage.SAFETY_CASE__ASIL_LEVELS:
-				return asilLevels != null && !asilLevels.isEmpty();
+			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
+				return justifications != null && !justifications.isEmpty();
+			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
+				return assumptions != null && !assumptions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

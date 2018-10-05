@@ -122,22 +122,22 @@ public interface StateMachinePackage extends EPackage {
 	int FIRING_ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIRING_ELEMENT__TRIGGER = 0;
-
-	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIRING_ELEMENT__ACTION = 1;
+	int FIRING_ELEMENT__ACTION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIRING_ELEMENT__TRIGGER = 1;
 
 	/**
 	 * The number of structural features of the '<em>Firing Element</em>' class.
@@ -397,15 +397,6 @@ public interface StateMachinePackage extends EPackage {
 	int TRANSITION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__TRIGGER = FIRING_ELEMENT__TRIGGER;
-
-	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,6 +404,15 @@ public interface StateMachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSITION__ACTION = FIRING_ELEMENT__ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__TRIGGER = FIRING_ELEMENT__TRIGGER;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -461,15 +461,6 @@ public interface StateMachinePackage extends EPackage {
 	int STATE_ACTION = 7;
 
 	/**
-	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_ACTION__TRIGGER = FIRING_ELEMENT__TRIGGER;
-
-	/**
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,6 +468,15 @@ public interface StateMachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_ACTION__ACTION = FIRING_ELEMENT__ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ACTION__TRIGGER = FIRING_ELEMENT__TRIGGER;
 
 	/**
 	 * The number of structural features of the '<em>State Action</em>' class.

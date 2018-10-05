@@ -151,49 +151,95 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Goal} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.BasicGoal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GoalItemProvider goalItemProvider;
+	protected BasicGoalItemProvider basicGoalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Goal}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.BasicGoal}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createGoalAdapter() {
-		if (goalItemProvider == null) {
-			goalItemProvider = new GoalItemProvider(this);
+	public Adapter createBasicGoalAdapter() {
+		if (basicGoalItemProvider == null) {
+			basicGoalItemProvider = new BasicGoalItemProvider(this);
 		}
 
-		return goalItemProvider;
+		return basicGoalItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy} instances.
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StrategyItemProvider strategyItemProvider;
+	protected IndependenceGoalItemProvider independenceGoalItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy}.
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createStrategyAdapter() {
-		if (strategyItemProvider == null) {
-			strategyItemProvider = new StrategyItemProvider(this);
+	public Adapter createIndependenceGoalAdapter() {
+		if (independenceGoalItemProvider == null) {
+			independenceGoalItemProvider = new IndependenceGoalItemProvider(this);
 		}
 
-		return strategyItemProvider;
+		return independenceGoalItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BasicStrategyItemProvider basicStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.BasicStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBasicStrategyAdapter() {
+		if (basicStrategyItemProvider == null) {
+			basicStrategyItemProvider = new BasicStrategyItemProvider(this);
+		}
+
+		return basicStrategyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ASILDecompositionStrategyItemProvider asilDecompositionStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createASILDecompositionStrategyAdapter() {
+		if (asilDecompositionStrategyItemProvider == null) {
+			asilDecompositionStrategyItemProvider = new ASILDecompositionStrategyItemProvider(this);
+		}
+
+		return asilDecompositionStrategyItemProvider;
 	}
 
 	/**
@@ -243,6 +289,52 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Justification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JustificationItemProvider justificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Justification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJustificationAdapter() {
+		if (justificationItemProvider == null) {
+			justificationItemProvider = new JustificationItemProvider(this);
+		}
+
+		return justificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssumptionItemProvider assumptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssumptionAdapter() {
+		if (assumptionItemProvider == null) {
+			assumptionItemProvider = new AssumptionItemProvider(this);
+		}
+
+		return assumptionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -263,6 +355,29 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		}
 
 		return asilItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImpactAnnotationItemProvider impactAnnotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImpactAnnotationAdapter() {
+		if (impactAnnotationItemProvider == null) {
+			impactAnnotationItemProvider = new ImpactAnnotationItemProvider(this);
+		}
+
+		return impactAnnotationItemProvider;
 	}
 
 	/**
@@ -367,11 +482,16 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
 		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
 		if (inContextOfItemProvider != null) inContextOfItemProvider.dispose();
-		if (goalItemProvider != null) goalItemProvider.dispose();
-		if (strategyItemProvider != null) strategyItemProvider.dispose();
+		if (basicGoalItemProvider != null) basicGoalItemProvider.dispose();
+		if (independenceGoalItemProvider != null) independenceGoalItemProvider.dispose();
+		if (basicStrategyItemProvider != null) basicStrategyItemProvider.dispose();
+		if (asilDecompositionStrategyItemProvider != null) asilDecompositionStrategyItemProvider.dispose();
 		if (solutionItemProvider != null) solutionItemProvider.dispose();
 		if (contextItemProvider != null) contextItemProvider.dispose();
+		if (justificationItemProvider != null) justificationItemProvider.dispose();
+		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
+		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
 	}
 
 }

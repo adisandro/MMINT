@@ -15,8 +15,12 @@
         eType="#//Dependency" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associations" upperBound="-1"
         eType="#//Association" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatypes" upperBound="-1"
+        eType="#//DataType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositions" upperBound="-1"
+        eType="#//Composition" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Typeable">
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
@@ -56,6 +60,10 @@
         eType="#//Association" eOpposite="#//Association/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associationsAsTarget" upperBound="-1"
         eType="#//Association" eOpposite="#//Association/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositionsAsConstituent"
+        upperBound="-1" eType="#//Composition" eOpposite="#//Composition/constituent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositionsAsComposite"
+        upperBound="-1" eType="#//Composition" eOpposite="#//Composition/composite"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//TypedElement">
     <eAnnotations source="gmf.node">
@@ -73,6 +81,8 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Class"
         eOpposite="#//Class/ownedOperations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterTypes" upperBound="-1"
+        eType="#//Typeable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dependency">
     <eAnnotations source="gmf.link">
@@ -93,7 +103,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Typeable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="public" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
@@ -109,5 +119,17 @@
         eType="#//Class" eOpposite="#//Class/associationsAsSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Class" eOpposite="#//Class/associationsAsTarget"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Typeable" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Typeable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Composition" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constituent" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/compositionsAsConstituent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/compositionsAsComposite"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
   </eClassifiers>
 </ecore:EPackage>

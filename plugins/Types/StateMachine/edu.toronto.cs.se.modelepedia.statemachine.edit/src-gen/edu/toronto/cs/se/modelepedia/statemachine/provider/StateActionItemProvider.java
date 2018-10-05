@@ -73,7 +73,7 @@ public class StateActionItemProvider extends FiringElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StateAction)object).getTrigger();
+		String label = ((StateAction)object).getAction();
 		return label == null || label.length() == 0 ?
 			getString("_UI_StateAction_type") :
 			getString("_UI_StateAction_type") + " " + label;

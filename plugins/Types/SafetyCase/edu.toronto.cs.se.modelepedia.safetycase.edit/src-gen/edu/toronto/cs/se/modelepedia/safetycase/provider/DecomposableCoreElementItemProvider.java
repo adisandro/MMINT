@@ -72,8 +72,8 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY);
 			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
+			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY);
 		}
 		return childrenFeatures;
 	}
@@ -99,7 +99,7 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DecomposableCoreElement)object).getName();
+		String label = ((DecomposableCoreElement)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DecomposableCoreElement_type") :
 			getString("_UI_DecomposableCoreElement_type") + " " + label;
@@ -118,8 +118,8 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DecomposableCoreElement.class)) {
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -139,13 +139,13 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
+				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
+				 SafetyCaseFactory.eINSTANCE.createInContextOf()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
-				 SafetyCaseFactory.eINSTANCE.createInContextOf()));
+				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
 	}
 
 }

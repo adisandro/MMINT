@@ -59,22 +59,40 @@ public interface SafetyCaseFactory extends EFactory {
 	InContextOf createInContextOf();
 
 	/**
-	 * Returns a new object of class '<em>Goal</em>'.
+	 * Returns a new object of class '<em>Basic Goal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Goal</em>'.
+	 * @return a new object of class '<em>Basic Goal</em>'.
 	 * @generated
 	 */
-	Goal createGoal();
+	BasicGoal createBasicGoal();
 
 	/**
-	 * Returns a new object of class '<em>Strategy</em>'.
+	 * Returns a new object of class '<em>Independence Goal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Strategy</em>'.
+	 * @return a new object of class '<em>Independence Goal</em>'.
 	 * @generated
 	 */
-	Strategy createStrategy();
+	IndependenceGoal createIndependenceGoal();
+
+	/**
+	 * Returns a new object of class '<em>Basic Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Basic Strategy</em>'.
+	 * @generated
+	 */
+	BasicStrategy createBasicStrategy();
+
+	/**
+	 * Returns a new object of class '<em>ASIL Decomposition Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ASIL Decomposition Strategy</em>'.
+	 * @generated
+	 */
+	ASILDecompositionStrategy createASILDecompositionStrategy();
 
 	/**
 	 * Returns a new object of class '<em>Solution</em>'.
@@ -95,6 +113,24 @@ public interface SafetyCaseFactory extends EFactory {
 	Context createContext();
 
 	/**
+	 * Returns a new object of class '<em>Justification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Justification</em>'.
+	 * @generated
+	 */
+	Justification createJustification();
+
+	/**
+	 * Returns a new object of class '<em>Assumption</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Assumption</em>'.
+	 * @generated
+	 */
+	Assumption createAssumption();
+
+	/**
 	 * Returns a new object of class '<em>ASIL</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,6 +138,15 @@ public interface SafetyCaseFactory extends EFactory {
 	 * @generated
 	 */
 	ASIL createASIL();
+
+	/**
+	 * Returns a new object of class '<em>Impact Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Impact Annotation</em>'.
+	 * @generated
+	 */
+	ImpactAnnotation createImpactAnnotation();
 
 	/**
 	 * Returns the package supported by this factory.

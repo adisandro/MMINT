@@ -173,6 +173,7 @@ public class SafetyCaseActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("safetycase-settings"));
 		toolBarManager.add(new Separator("safetycase-additions"));
 	}

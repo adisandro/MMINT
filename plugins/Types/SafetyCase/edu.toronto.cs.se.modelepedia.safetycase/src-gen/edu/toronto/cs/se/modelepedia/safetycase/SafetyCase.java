@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getStrategies <em>Strategies</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getSolutions <em>Solutions</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getContexts <em>Contexts</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getASILLevels <em>ASIL Levels</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications <em>Justifications</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getAssumptions <em>Assumptions</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase()
@@ -102,19 +103,35 @@ public interface SafetyCase extends EObject {
 	EList<Context> getContexts();
 
 	/**
-	 * Returns the value of the '<em><b>ASIL Levels</b></em>' containment reference list.
-	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.ASIL}.
+	 * Returns the value of the '<em><b>Justifications</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Justification}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>ASIL Levels</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Justifications</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>ASIL Levels</em>' containment reference list.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_ASILLevels()
+	 * @return the value of the '<em>Justifications</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Justifications()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ASIL> getASILLevels();
+	EList<Justification> getJustifications();
+
+	/**
+	 * Returns the value of the '<em><b>Assumptions</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assumptions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assumptions</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Assumptions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Assumption> getAssumptions();
 
 } // SafetyCase

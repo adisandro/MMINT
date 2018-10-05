@@ -195,7 +195,7 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 	 * @generated
 	 */
 	public EAttribute getFiringElement_Trigger() {
-		return (EAttribute)firingElementEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)firingElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 	 * @generated
 	 */
 	public EAttribute getFiringElement_Action() {
-		return (EAttribute)firingElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)firingElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -348,8 +348,8 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		createEReference(stateMachineEClass, STATE_MACHINE__TRANSITIONS);
 
 		firingElementEClass = createEClass(FIRING_ELEMENT);
-		createEAttribute(firingElementEClass, FIRING_ELEMENT__TRIGGER);
 		createEAttribute(firingElementEClass, FIRING_ELEMENT__ACTION);
+		createEAttribute(firingElementEClass, FIRING_ELEMENT__TRIGGER);
 
 		abstractStateEClass = createEClass(ABSTRACT_STATE);
 		createEAttribute(abstractStateEClass, ABSTRACT_STATE__NAME);
@@ -410,8 +410,8 @@ public class StateMachinePackageImpl extends EPackageImpl implements StateMachin
 		initEReference(getStateMachine_Transitions(), this.getTransition(), null, "transitions", null, 0, -1, StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(firingElementEClass, FiringElement.class, "FiringElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFiringElement_Trigger(), ecorePackage.getEString(), "trigger", null, 0, 1, FiringElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFiringElement_Action(), ecorePackage.getEString(), "action", null, 0, 1, FiringElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFiringElement_Trigger(), ecorePackage.getEString(), "trigger", null, 0, 1, FiringElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractStateEClass, AbstractState.class, "AbstractState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractState_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

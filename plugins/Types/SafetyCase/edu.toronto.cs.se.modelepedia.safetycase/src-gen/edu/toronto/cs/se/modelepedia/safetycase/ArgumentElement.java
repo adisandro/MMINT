@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getId <em>Id</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getName <em>Name</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getDescription <em>Description</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}</li>
  * </ul>
  *
@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.EObject;
 public interface ArgumentElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -46,7 +45,7 @@ public interface ArgumentElement extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Id()
-	 * @model default="" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getId();
@@ -60,32 +59,6 @@ public interface ArgumentElement extends EObject {
 	 * @generated
 	 */
 	void setId(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Name()
-	 * @model annotation="gmf.label label='description'"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -114,33 +87,58 @@ public interface ArgumentElement extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Status</b></em>' attribute.
-	 * The default value is <code>"Undetermined"</code>.
-	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.Status}.
+	 * Returns the value of the '<em><b>Content Validity</b></em>' attribute.
+	 * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Content Validity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Status</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Status
-	 * @see #setStatus(Status)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Status()
-	 * @model default="Undetermined"
+	 * @return the value of the '<em>Content Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #setContentValidity(ValidityValue)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_ContentValidity()
+	 * @model
 	 * @generated
 	 */
-	Status getStatus();
+	ValidityValue getContentValidity();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getContentValidity <em>Content Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Status</em>' attribute.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.Status
+	 * @param value the new value of the '<em>Content Validity</em>' attribute.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.ValidityValue
+	 * @see #getContentValidity()
+	 * @generated
+	 */
+	void setContentValidity(ValidityValue value);
+
+	/**
+	 * Returns the value of the '<em><b>Status</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Status</em>' containment reference.
+	 * @see #setStatus(ImpactAnnotation)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getArgumentElement_Status()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ImpactAnnotation getStatus();
+
+	/**
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement#getStatus <em>Status</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status</em>' containment reference.
 	 * @see #getStatus()
 	 * @generated
 	 */
-	void setStatus(Status value);
+	void setStatus(ImpactAnnotation value);
 
 } // ArgumentElement

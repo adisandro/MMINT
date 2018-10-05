@@ -11,5 +11,6 @@ Export-Package: edu.toronto.cs.se.modelepedia.statemachine,
  edu.toronto.cs.se.modelepedia.statemachine.impl,
  edu.toronto.cs.se.modelepedia.statemachine.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport,
+ edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

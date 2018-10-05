@@ -12,13 +12,18 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
+import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
+import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.TruthState;
+import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -30,31 +35,42 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalImpl#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalImpl#getStateValidity <em>State Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.GoalImpl#getAsil <em>Asil</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
+public abstract class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * The default value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getState()
+	 * @see #getStateValidity()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TruthState STATE_EDEFAULT = TruthState.FALSE;
+	protected static final ValidityValue STATE_VALIDITY_EDEFAULT = ValidityValue.INVALID;
 
 	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+	 * The cached value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getState()
+	 * @see #getStateValidity()
 	 * @generated
 	 * @ordered
 	 */
-	protected TruthState state = STATE_EDEFAULT;
+	protected ValidityValue stateValidity = STATE_VALIDITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAsil() <em>Asil</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAsil()
+	 * @generated
+	 * @ordered
+	 */
+	protected ASIL asil;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,8 +96,8 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TruthState getState() {
-		return state;
+	public ValidityValue getStateValidity() {
+		return stateValidity;
 	}
 
 	/**
@@ -89,11 +105,84 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(TruthState newState) {
-		TruthState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
+	public void setStateValidity(ValidityValue newStateValidity) {
+		ValidityValue oldStateValidity = stateValidity;
+		stateValidity = newStateValidity == null ? STATE_VALIDITY_EDEFAULT : newStateValidity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.GOAL__STATE, oldState, state));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.GOAL__STATE_VALIDITY, oldStateValidity, stateValidity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ASIL getAsil() {
+		return asil;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAsil(ASIL newAsil, NotificationChain msgs) {
+		ASIL oldAsil = asil;
+		asil = newAsil;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.GOAL__ASIL, oldAsil, newAsil);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAsil(ASIL newAsil) {
+		if (newAsil != asil) {
+			NotificationChain msgs = null;
+			if (asil != null)
+				msgs = ((InternalEObject)asil).eInverseRemove(this, SafetyCasePackage.ASIL__TARGET, ASIL.class, msgs);
+			if (newAsil != null)
+				msgs = ((InternalEObject)newAsil).eInverseAdd(this, SafetyCasePackage.ASIL__TARGET, ASIL.class, msgs);
+			msgs = basicSetAsil(newAsil, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.GOAL__ASIL, newAsil, newAsil));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.GOAL__ASIL:
+				if (asil != null)
+					msgs = ((InternalEObject)asil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.GOAL__ASIL, null, msgs);
+				return basicSetAsil((ASIL)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SafetyCasePackage.GOAL__ASIL:
+				return basicSetAsil(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -104,8 +193,10 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.GOAL__STATE:
-				return getState();
+			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+				return getStateValidity();
+			case SafetyCasePackage.GOAL__ASIL:
+				return getAsil();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +209,11 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.GOAL__STATE:
-				setState((TruthState)newValue);
+			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+				setStateValidity((ValidityValue)newValue);
+				return;
+			case SafetyCasePackage.GOAL__ASIL:
+				setAsil((ASIL)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +227,11 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.GOAL__STATE:
-				setState(STATE_EDEFAULT);
+			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+				setStateValidity(STATE_VALIDITY_EDEFAULT);
+				return;
+			case SafetyCasePackage.GOAL__ASIL:
+				setAsil((ASIL)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,10 +245,56 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.GOAL__STATE:
-				return state != STATE_EDEFAULT;
+			case SafetyCasePackage.GOAL__STATE_VALIDITY:
+				return stateValidity != STATE_VALIDITY_EDEFAULT;
+			case SafetyCasePackage.GOAL__ASIL:
+				return asil != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == StatefulElement.class) {
+			switch (derivedFeatureID) {
+				case SafetyCasePackage.GOAL__STATE_VALIDITY: return SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY;
+				default: return -1;
+			}
+		}
+		if (baseClass == ASILfulElement.class) {
+			switch (derivedFeatureID) {
+				case SafetyCasePackage.GOAL__ASIL: return SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == StatefulElement.class) {
+			switch (baseFeatureID) {
+				case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY: return SafetyCasePackage.GOAL__STATE_VALIDITY;
+				default: return -1;
+			}
+		}
+		if (baseClass == ASILfulElement.class) {
+			switch (baseFeatureID) {
+				case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL: return SafetyCasePackage.GOAL__ASIL;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -163,9 +306,9 @@ public class GoalImpl extends DecomposableCoreElementImpl implements Goal {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (state: ");
-		result.append(state);
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (stateValidity: ");
+		result.append(stateValidity);
 		result.append(')');
 		return result.toString();
 	}

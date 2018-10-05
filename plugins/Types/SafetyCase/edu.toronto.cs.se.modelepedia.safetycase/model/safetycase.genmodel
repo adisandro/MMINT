@@ -10,10 +10,6 @@
   <foreignModel>safetycase.ecore</foreignModel>
   <genPackages prefix="SafetyCase" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
       ecorePackage="safetycase.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//TruthState">
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//TruthState/False"/>
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//TruthState/True"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ASILLevel">
       <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/D"/>
       <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/C"/>
@@ -21,35 +17,43 @@
       <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/A"/>
       <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ASILLevel/QM"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ValidityState">
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityState/Invalid"/>
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityState/Valid"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ValidityValue">
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityValue/Invalid"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityValue/Valid"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ValidityValue/Undetermined"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//Status">
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//Status/Undetermined"/>
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//Status/Revise"/>
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//Status/Recheck"/>
-      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//Status/Reuse"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="safetycase.ecore#//ImpactType">
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/Revise"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/RecheckContent"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/RecheckState"/>
+      <genEnumLiterals ecoreEnumLiteral="safetycase.ecore#//ImpactType/Reuse"/>
     </genEnums>
     <genClasses ecoreClass="safetycase.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/goals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/strategies"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/solutions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/contexts"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/ASILLevels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/justifications"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//SafetyCase/assumptions"/>
     </genClasses>
     <genClasses image="false" ecoreClass="safetycase.ecore#//ArgumentElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/status"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ArgumentElement/contentValidity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//ArgumentElement/status"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//StatefulElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//StatefulElement/stateValidity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="safetycase.ecore#//ASILfulElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//ASILfulElement/asil"/>
     </genClasses>
     <genClasses image="false" ecoreClass="safetycase.ecore#//CoreElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//CoreElement/supports"/>
     </genClasses>
     <genClasses image="false" ecoreClass="safetycase.ecore#//DecomposableCoreElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DecomposableCoreElement/supportedBy"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DecomposableCoreElement/inContextOf"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//DecomposableCoreElement/supportedBy"/>
     </genClasses>
     <genClasses image="false" ecoreClass="safetycase.ecore#//ContextualElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//ContextualElement/contextOf"/>
@@ -62,20 +66,24 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//InContextOf/context"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//InContextOf/contextOf"/>
     </genClasses>
-    <genClasses ecoreClass="safetycase.ecore#//Goal">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//Goal/state"/>
-    </genClasses>
-    <genClasses ecoreClass="safetycase.ecore#//Strategy">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//Strategy/state"/>
-    </genClasses>
-    <genClasses ecoreClass="safetycase.ecore#//Solution">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//Solution/state"/>
-    </genClasses>
-    <genClasses ecoreClass="safetycase.ecore#//Context">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//Context/state"/>
-    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//Goal"/>
+    <genClasses ecoreClass="safetycase.ecore#//BasicGoal"/>
+    <genClasses ecoreClass="safetycase.ecore#//IndependenceGoal"/>
+    <genClasses ecoreClass="safetycase.ecore#//Strategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//BasicStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//ASILDecompositionStrategy"/>
+    <genClasses ecoreClass="safetycase.ecore#//Solution"/>
+    <genClasses ecoreClass="safetycase.ecore#//Context"/>
+    <genClasses ecoreClass="safetycase.ecore#//Justification"/>
+    <genClasses ecoreClass="safetycase.ecore#//Assumption"/>
     <genClasses ecoreClass="safetycase.ecore#//ASIL">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ASIL/level"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ASIL/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//ASIL/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference safetycase.ecore#//ASIL/status"/>
+    </genClasses>
+    <genClasses ecoreClass="safetycase.ecore#//ImpactAnnotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ImpactAnnotation/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//ImpactAnnotation/source"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

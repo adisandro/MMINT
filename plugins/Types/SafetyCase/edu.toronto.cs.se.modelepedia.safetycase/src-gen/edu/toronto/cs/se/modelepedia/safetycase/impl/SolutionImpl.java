@@ -14,7 +14,8 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
-import edu.toronto.cs.se.modelepedia.safetycase.ValidityState;
+import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -30,31 +31,31 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SolutionImpl#getState <em>State</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SolutionImpl#getStateValidity <em>State Validity</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SolutionImpl extends CoreElementImpl implements Solution {
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * The default value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getState()
+	 * @see #getStateValidity()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ValidityState STATE_EDEFAULT = ValidityState.INVALID;
+	protected static final ValidityValue STATE_VALIDITY_EDEFAULT = ValidityValue.INVALID;
 
 	/**
-	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+	 * The cached value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getState()
+	 * @see #getStateValidity()
 	 * @generated
 	 * @ordered
 	 */
-	protected ValidityState state = STATE_EDEFAULT;
+	protected ValidityValue stateValidity = STATE_VALIDITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,8 +81,8 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidityState getState() {
-		return state;
+	public ValidityValue getStateValidity() {
+		return stateValidity;
 	}
 
 	/**
@@ -89,11 +90,11 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setState(ValidityState newState) {
-		ValidityState oldState = state;
-		state = newState == null ? STATE_EDEFAULT : newState;
+	public void setStateValidity(ValidityValue newStateValidity) {
+		ValidityValue oldStateValidity = stateValidity;
+		stateValidity = newStateValidity == null ? STATE_VALIDITY_EDEFAULT : newStateValidity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SOLUTION__STATE, oldState, state));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SOLUTION__STATE_VALIDITY, oldStateValidity, stateValidity));
 	}
 
 	/**
@@ -104,8 +105,8 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE:
-				return getState();
+			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+				return getStateValidity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +119,8 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE:
-				setState((ValidityState)newValue);
+			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+				setStateValidity((ValidityValue)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +134,8 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE:
-				setState(STATE_EDEFAULT);
+			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+				setStateValidity(STATE_VALIDITY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,10 +149,42 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SOLUTION__STATE:
-				return state != STATE_EDEFAULT;
+			case SafetyCasePackage.SOLUTION__STATE_VALIDITY:
+				return stateValidity != STATE_VALIDITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == StatefulElement.class) {
+			switch (derivedFeatureID) {
+				case SafetyCasePackage.SOLUTION__STATE_VALIDITY: return SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == StatefulElement.class) {
+			switch (baseFeatureID) {
+				case SafetyCasePackage.STATEFUL_ELEMENT__STATE_VALIDITY: return SafetyCasePackage.SOLUTION__STATE_VALIDITY;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -163,9 +196,9 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (state: ");
-		result.append(state);
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (stateValidity: ");
+		result.append(stateValidity);
 		result.append(')');
 		return result.toString();
 	}

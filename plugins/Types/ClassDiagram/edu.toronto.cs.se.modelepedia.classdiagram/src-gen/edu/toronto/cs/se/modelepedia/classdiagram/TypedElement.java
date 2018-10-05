@@ -39,12 +39,12 @@ public interface TypedElement extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(edu.toronto.cs.se.modelepedia.classdiagram.Class)
+	 * @see #setType(Typeable)
 	 * @see edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage#getTypedElement_Type()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
-	edu.toronto.cs.se.modelepedia.classdiagram.Class getType();
+	Typeable getType();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.classdiagram.TypedElement#getType <em>Type</em>}' reference.
@@ -54,7 +54,7 @@ public interface TypedElement extends NamedElement {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(edu.toronto.cs.se.modelepedia.classdiagram.Class value);
+	void setType(Typeable value);
 
 	/**
 	 * Returns the value of the '<em><b>Public</b></em>' attribute.

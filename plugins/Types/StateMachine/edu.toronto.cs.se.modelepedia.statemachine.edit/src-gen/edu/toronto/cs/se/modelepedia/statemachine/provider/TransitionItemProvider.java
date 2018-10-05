@@ -121,7 +121,7 @@ public class TransitionItemProvider extends FiringElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Transition)object).getTrigger();
+		String label = ((Transition)object).getAction();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Transition_type") :
 			getString("_UI_Transition_type") + " " + label;

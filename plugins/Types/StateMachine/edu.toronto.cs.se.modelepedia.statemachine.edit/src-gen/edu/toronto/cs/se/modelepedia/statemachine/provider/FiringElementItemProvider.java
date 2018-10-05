@@ -69,8 +69,8 @@ public class FiringElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTriggerPropertyDescriptor(object);
 			addActionPropertyDescriptor(object);
+			addTriggerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,7 +127,7 @@ public class FiringElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FiringElement)object).getTrigger();
+		String label = ((FiringElement)object).getAction();
 		return label == null || label.length() == 0 ?
 			getString("_UI_FiringElement_type") :
 			getString("_UI_FiringElement_type") + " " + label;
@@ -146,8 +146,8 @@ public class FiringElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FiringElement.class)) {
-			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
 			case StateMachinePackage.FIRING_ELEMENT__ACTION:
+			case StateMachinePackage.FIRING_ELEMENT__TRIGGER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
