@@ -79,8 +79,10 @@ public class GSNAnnotate extends OperatorImpl {
             this.scModel = this.reviseRel.getModelEndpoints().get(0).getTarget();
             Model sameSCModelContent = this.recheckContentRel.getModelEndpoints().get(0).getTarget();
             Model sameSCModelState = this.recheckStateRel.getModelEndpoints().get(0).getTarget();
-            if (!(this.scModel.getUri().equals(sameSCModelContent.getUri()) &&
-            		this.scModel.getUri().equals(sameSCModelState.getUri()))) {
+            if (
+                !this.scModel.getUri().equals(sameSCModelContent.getUri()) ||
+            	!this.scModel.getUri().equals(sameSCModelState.getUri())
+            ) {
                 throw new IllegalArgumentException();
             }
         }
@@ -333,7 +335,8 @@ public class GSNAnnotate extends OperatorImpl {
         MID outputMID = outputMIDsByName.get(OUT_GSN);
 
         // annotate elements to be revised/rechecked/reused in the safety case model
-        Model annotSCModel = annotate(input.scModel, input.reviseRel, input.recheckContentRel, input.recheckStateRel, outputMID);
+        Model annotSCModel = annotate(input.scModel, input.reviseRel, input.recheckContentRel, input.recheckStateRel,
+                                      outputMID);
 
         // output
         Map<String, Model> outputsByName = new HashMap<>();

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2017 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,14 +12,11 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.operator.slice.Slice;
 import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.safetycase.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Context;
@@ -33,25 +30,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRevise2Content extends Slice {
-
-	// Get all model elements in a safety case that needs to be re-checked for content
-	// validity given the input element that contains contents requiring revision.
-    @Override
-	protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
-
-        Map<EObject, Set<EObject>> impacted = new HashMap<>();
-        alreadyImpacted.add(critModelObj);
-
-		// Iterate through the input set of revised elements to identify
-		// all model elements that require re-checking.
-        Set<EObject> impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
-        alreadyImpacted.addAll(impactedModelObjs);
-        impactedModelObjs.add(critModelObj);
-        impacted.put(critModelObj, impactedModelObjs);
-
-		return impacted;
-	}
+public class GSNSliceRevise2Content extends GSNSliceRevise {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
@@ -64,13 +43,13 @@ public class GSNSliceRevise2Content extends Slice {
 		// 2) Any child argument element
 		if (modelObj instanceof Goal) {
 			Goal g = (Goal) modelObj;
-			
+
 			for (SupportedBy rel : g.getSupports()) {
 				DecomposableCoreElement conclusion = rel.getConclusion();
 				impacted.add(conclusion);
-				
+
 				// If conclusion is an ASIL decomposition strategy,
-				// the content validity should be rechecked for the 
+				// the content validity should be rechecked for the
 				// independence goal.
 				if (conclusion instanceof ASILDecompositionStrategy) {
 					for (SupportedBy relInner : conclusion.getSupportedBy()) {
@@ -81,7 +60,7 @@ public class GSNSliceRevise2Content extends Slice {
 					}
 				}
 			}
-			
+
 			for (SupportedBy rel : g.getSupportedBy()) {
 				impacted.add(rel.getPremise());
 			}
@@ -91,11 +70,11 @@ public class GSNSliceRevise2Content extends Slice {
 		// 3) Any contexts and justifications connected to it.
 		} else if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
-			
+
 			for (SupportedBy rel : s.getSupportedBy()) {
 				impacted.add(rel.getPremise());
 			}
-			
+
 			for (InContextOf rel : s.getInContextOf()) {
 				impacted.add(rel.getContext());
 			}
@@ -104,22 +83,22 @@ public class GSNSliceRevise2Content extends Slice {
 		// 1) Any parent argument element.
 		} else if (modelObj instanceof Solution) {
 			Solution s = (Solution) modelObj;
-			
+
 			for (SupportedBy rel : s.getSupports()) {
 				impacted.add(rel.getConclusion());
 			}
-			
+
 		// If input is a context, then the content validity should be rechecked for:
 		// 1) All argument elements that uses or inherits input context.
 		} else if (modelObj instanceof Context) {
 			Context c = (Context) modelObj;
-			
+
 			for (InContextOf rel : c.getContextOf()) {
 				for (ArgumentElement elem : getDescendantElements(rel.getContextOf())) {
 					impacted.add(elem);
 				}
 			}
-		
+
 		// If input is a justification, then nothing else requires rechecking.
 		} else if (modelObj instanceof Justification) {
 
@@ -129,7 +108,7 @@ public class GSNSliceRevise2Content extends Slice {
 
 		return impacted;
 	}
-	
+
 	// Returns all the descendants of the input decomposable core element
 	// (including contextual elements).
 	public Set<ArgumentElement> getDescendantElements(DecomposableCoreElement elem) {
