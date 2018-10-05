@@ -10,7 +10,7 @@ Export-Package: edu.toronto.cs.se.modelepedia.sequencediagram,
  edu.toronto.cs.se.modelepedia.sequencediagram.impl,
  edu.toronto.cs.se.modelepedia.sequencediagram.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName

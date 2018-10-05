@@ -11,6 +11,6 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-10
 Export-Package: edu.toronto.cs.se.modelepedia.sequencediagram.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.edit;visibility:=reexport,
- edu.toronto.cs.se.modelepedia.sequencediagram;visibility:=reexport
+ org.eclipse.emf.edit,
+ edu.toronto.cs.se.modelepedia.sequencediagram
 Bundle-ActivationPolicy: lazy
