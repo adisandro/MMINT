@@ -6,6 +6,6 @@
   	<groupId>MMINT</groupId>
   	<artifactId>edu.toronto.cs.se.mmint.releng</artifactId>
   	<version>2.2.99-SNAPSHOT</version>
-  	<relativePath>../../../../releng/edu.toronto.cs.se.mmint.releng</relativePath>
+  	<relativePath>../../../releng/edu.toronto.cs.se.mmint.releng</relativePath>
   </parent>
 </project>
