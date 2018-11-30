@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -30,10 +30,10 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -49,488 +49,487 @@ import edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentSamples.Distr
 //TODO MMINT[OPERATOR] Create a separate feature for these generic megamodel operators
 public class ExperimentDriver extends OperatorImpl {
 
-	protected class ExperimentWatchdog implements Runnable {
+    protected class ExperimentWatchdog implements Runnable {
 
-		private ExperimentDriver driver;
-		private Model initialModel;
-		private int experimentIndex;
-		private boolean[] outputConfidences;
+        private ExperimentDriver driver;
+        private Model initialModel;
+        private int experimentIndex;
+        private boolean[] outputConfidences;
 
-		public ExperimentWatchdog(ExperimentDriver driver, Model initialModel, int experimentIndex) {
+        public ExperimentWatchdog(ExperimentDriver driver, Model initialModel, int experimentIndex) {
 
-			this.driver = driver;
-			this.initialModel = initialModel;
-			this.experimentIndex = experimentIndex;
-			outputConfidences = new boolean[outputs.length];
-			for (int out = 0; out < outputs.length; out++) {
-				outputConfidences[out] = (outputDoConfidences[out]) ? false : true;
-			}
-		}
+            this.driver = driver;
+            this.initialModel = initialModel;
+            this.experimentIndex = experimentIndex;
+            this.outputConfidences = new boolean[ExperimentDriver.this.outputs.length];
+            for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
+                this.outputConfidences[out] = (ExperimentDriver.this.outputDoConfidences[out]) ? false : true;
+            }
+        }
 
-		@Override
-		public void run() {
+        @Override
+        public void run() {
 
-			try {
-				// create experiment folder
-				IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex)));
-				if (!folder.exists(null)) {
-					folder.create(true, true, null);
-				}
-				List<Operator> outerOperatorWorkflow = new ArrayList<>();
-				EList<Model> outerInputModels = new BasicEList<>();
-				outerInputModels.add(initialModel);
-				for (int op = 0; op < experimentOperators.length; op++) {
-					try {
-						outerInputModels = executeOperator(experimentIndex, -1, op, experimentOperators[op], outerInputModels, outerOperatorWorkflow, outputConfidences);
-					}
-					catch (Exception e) {
-						MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
-						MIDOperatorIOUtils.writePropertiesFile(
-							writeProperties(null, experimentIndex),
-							driver,
-							initialModel,
-							EXPERIMENT_SUBDIR + experimentIndex,
-							MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
-						);
-						return;
-					}
-				}
-	
-				ExperimentSamples[] experiment = new ExperimentSamples[outputs.length];
-				for (int out = 0; out < outputs.length; out++) {
-					experiment[out] = new ExperimentSamples(minSamples, maxSamples - skipWarmupSamples, distribution, outputMins[out], outputMaxs[out], requestedConfidence, outputDoConfidences[out]);
-				}
-	
-				// inner cycle: experiment setup is fixed, vary randomness and statistics
-				int j;
-				for (j = 0; j < maxSamples; j++) {
-					// create sample folder
-					folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(initialModel.getUri(), EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
-					if (!folder.exists(null)) {
-						folder.create(true, true, null);
-					}
-					List<Operator> innerOperatorWorkflow = new ArrayList<>(outerOperatorWorkflow);
-					EList<Model> innerInputModels = outerInputModels;
-					boolean timedOut = false;
-					// run time-bounded chain of operators
-					ExecutorService executor = Executors.newSingleThreadExecutor();
-					try {
-						executor.submit(
-							new SampleWatchdog(experimentIndex, j, innerInputModels, innerOperatorWorkflow, outputConfidences)
-						).get(maxProcessingTime, TimeUnit.SECONDS);
-						executor.shutdown();
-					}
-					catch (Exception e) {
-						executor.shutdownNow();
-						timedOut = true;
-						MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + " ran over time limit", e);
-					}
-					// skip warmup phase
-					if (j < skipWarmupSamples) {
-						continue;
-					}
-					// get results
-					for (int out = 0; out < outputs.length; out++) {
-						try {
-							double sample = (timedOut) ?
-								outputDefaults[out] :
-								getOutput(initialModel, out, experimentIndex, j);
-							if (sample == Double.MAX_VALUE) {
-								MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " skipped", null);
-								continue;
-							}
-							outputConfidences[out] = experiment[out].addSample(sample);
-						}
-						catch (Exception e) {
-							MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + j + ", output " + outputs[out] + " not available", e);
-						}
-					}
-					// evaluate confidence intervals
-					boolean allConfident = true;
-					for (int out = 0; out < outputs.length; out++) {
-						allConfident = outputConfidences[out] && allConfident;
-					}
-					if (allConfident) {
-						break;
-					}
-				}
-	
-				// save output
-				MIDOperatorIOUtils.writePropertiesFile(
-					writeProperties(experiment, experimentIndex),
-					driver,
-					initialModel,
-					EXPERIMENT_SUBDIR + experimentIndex,
-					MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
-				);
-				writeGnuplotFile(driver, initialModel, experiment, experimentIndex, varX);
-			}
-			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + " failed", e);
-			}
-		}
-	}
+            try {
+                // create experiment folder
+                IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(this.initialModel.getUri(), EXPERIMENT_SUBDIR + this.experimentIndex)));
+                if (!folder.exists(null)) {
+                    folder.create(true, true, null);
+                }
+                List<Operator> outerOperatorWorkflow = new ArrayList<>();
+                EList<Model> outerInputModels = new BasicEList<>();
+                outerInputModels.add(this.initialModel);
+                for (int op = 0; op < ExperimentDriver.this.experimentOperators.length; op++) {
+                    try {
+                        outerInputModels = executeOperator(this.experimentIndex, -1, op, ExperimentDriver.this.experimentOperators[op], outerInputModels, outerOperatorWorkflow, this.outputConfidences);
+                    }
+                    catch (Exception e) {
+                        MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + " failed", e);
+                        MIDOperatorIOUtils.writePropertiesFile(
+                            writeProperties(null, this.experimentIndex),
+                            this.driver,
+                            this.initialModel,
+                            EXPERIMENT_SUBDIR + this.experimentIndex,
+                            MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
+                        );
+                        return;
+                    }
+                }
 
-	protected class SampleWatchdog implements Runnable {
+                ExperimentSamples[] experiment = new ExperimentSamples[ExperimentDriver.this.outputs.length];
+                for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
+                    experiment[out] = new ExperimentSamples(ExperimentDriver.this.minSamples, ExperimentDriver.this.maxSamples - ExperimentDriver.this.skipWarmupSamples, ExperimentDriver.this.distribution, ExperimentDriver.this.outputMins[out], ExperimentDriver.this.outputMaxs[out], ExperimentDriver.this.requestedConfidence, ExperimentDriver.this.outputDoConfidences[out]);
+                }
 
-		private int experimentIndex;
-		private int statisticsIndex;
-		private EList<Model> inputModels;
-		private List<Operator> operatorWorkflow;
-		private boolean[] outputConfidences;
+                // inner cycle: experiment setup is fixed, vary randomness and statistics
+                int j;
+                for (j = 0; j < ExperimentDriver.this.maxSamples; j++) {
+                    // create sample folder
+                    folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(this.initialModel.getUri(), EXPERIMENT_SUBDIR + this.experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+                    if (!folder.exists(null)) {
+                        folder.create(true, true, null);
+                    }
+                    List<Operator> innerOperatorWorkflow = new ArrayList<>(outerOperatorWorkflow);
+                    EList<Model> innerInputModels = outerInputModels;
+                    boolean timedOut = false;
+                    // run time-bounded chain of operators
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    try {
+                        executor.submit(
+                            new SampleWatchdog(this.experimentIndex, j, innerInputModels, innerOperatorWorkflow, this.outputConfidences)
+                        ).get(ExperimentDriver.this.maxProcessingTime, TimeUnit.SECONDS);
+                        executor.shutdown();
+                    }
+                    catch (Exception e) {
+                        executor.shutdownNow();
+                        timedOut = true;
+                        MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + j + " ran over time limit", e);
+                    }
+                    // skip warmup phase
+                    if (j < ExperimentDriver.this.skipWarmupSamples) {
+                        continue;
+                    }
+                    // get results
+                    for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
+                        try {
+                            double sample = (timedOut) ?
+                                ExperimentDriver.this.outputDefaults[out] :
+                                getOutput(this.initialModel, out, this.experimentIndex, j);
+                            if (sample == Double.MAX_VALUE) {
+                                MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + j + ", output " + ExperimentDriver.this.outputs[out] + " skipped", null);
+                                continue;
+                            }
+                            this.outputConfidences[out] = experiment[out].addSample(sample);
+                        }
+                        catch (Exception e) {
+                            MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + j + ", output " + ExperimentDriver.this.outputs[out] + " not available", e);
+                        }
+                    }
+                    // evaluate confidence intervals
+                    boolean allConfident = true;
+                    for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
+                        allConfident = this.outputConfidences[out] && allConfident;
+                    }
+                    if (allConfident) {
+                        break;
+                    }
+                }
 
-		public SampleWatchdog(int experimentIndex, int statisticsIndex, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) {
+                // save output
+                MIDOperatorIOUtils.writePropertiesFile(
+                    writeProperties(experiment, this.experimentIndex),
+                    this.driver,
+                    this.initialModel,
+                    EXPERIMENT_SUBDIR + this.experimentIndex,
+                    MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
+                );
+                writeGnuplotFile(this.driver, this.initialModel, experiment, this.experimentIndex, ExperimentDriver.this.varX);
+            }
+            catch (Exception e) {
+                MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + " failed", e);
+            }
+        }
+    }
 
-			this.experimentIndex = experimentIndex;
-			this.statisticsIndex = statisticsIndex;
-			this.inputModels = inputModels;
-			this.operatorWorkflow = operatorWorkflow;
-			this.outputConfidences = outputConfidences;
-		}
+    protected class SampleWatchdog implements Runnable {
 
-		@Override
-		public void run() {
+        private int experimentIndex;
+        private int statisticsIndex;
+        private EList<Model> inputModels;
+        private List<Operator> operatorWorkflow;
+        private boolean[] outputConfidences;
 
-			System.err.println("Running experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex);
-			for (int op = 0; op < statisticsOperators.length; op++) {
-				try {
-					inputModels = executeOperator(experimentIndex, statisticsIndex, op, statisticsOperators[op], inputModels, operatorWorkflow, outputConfidences);
-				}
-				catch (Exception e) {
-					MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", sample " + statisticsIndex + " failed", e);
-					return;
-				}
-			}
-		}
+        public SampleWatchdog(int experimentIndex, int statisticsIndex, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) {
 
-	}
+            this.experimentIndex = experimentIndex;
+            this.statisticsIndex = statisticsIndex;
+            this.inputModels = inputModels;
+            this.operatorWorkflow = operatorWorkflow;
+            this.outputConfidences = outputConfidences;
+        }
 
-	// input-output
-	private final static @NonNull String IN_MODEL = "initial";
-	/** The variables to variate the experiment setup. */
-	private static final String PROPERTY_IN_VARIABLES = "variables";
-	/** The variable values property suffix. */
-	private static final String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
-	private static final String PROPERTY_IN_VARIABLEX_SUFFIX = ".varX";
-	/** The initial seed for the pseudorandom generator. */
-	private static final String PROPERTY_IN_SEED = "seed";
-	/** Number of samples to discard at the beginning of each experiment (warmup phase). */
-	private static final String PROPERTY_IN_SKIPWARMUPSAMPLES = "skipWarmupSamples";
-	/** Min number of iterations (i.e. samples to generate). */
-	private static final String PROPERTY_IN_MINSAMPLES = "minSamples";
-	/** Max number of iterations (i.e. samples to generate). */
-	private static final String PROPERTY_IN_MAXSAMPLES = "maxSamples";
-	/** The distribution type to be used when evaluating the confidence. */
-	private static final String PROPERTY_IN_DISTRIBUTIONTYPE = "distributionType";
-	/** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
-	private static final String PROPERTY_IN_REQUESTEDCONFIDENCE = "requestedConfidence";
-	private static final String PROPERTY_IN_NUMTHREADS = "numThreads";
-	private static final int PROPERTY_IN_NUMTHREADS_DEFAULT = 1;
-	/** The operators to be launched in the outer experiment setup cycle. */
-	private static final String PROPERTY_IN_EXPERIMENTOPERATORS = "experimentOperators";
-	private static final String[] PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT = new String[] {};
-	/** The operators to be launched in the inner statistics cycle. */
-	private static final String PROPERTY_IN_STATISTICSOPERATORS = "statisticsOperators";
-	/** The variable operators property suffix. */
-	private static final String PROPERTY_IN_ALLOPERATORS_SUFFIX = ".operator";
-	/** The outputs of the experiment. */
-	private static final String PROPERTY_IN_OUTPUTS = "outputs";
-	private static final String[] PROPERTY_IN_OUTPUTS_DEFAULT = new String[0];
-	/** The output default result property suffix. */
-	private static final String PROPERTY_IN_OUTPUTDEFAULT_SUFFIX = ".defaultResult";
-	/** Min value a sample can take. */
-	private static final String PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX = ".minSampleValue";
-	/** Max value a sample can take, -1 for unlimited. */
-	private static final String PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX = ".maxSampleValue";
-	private static final String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
-	/** Max processing time to generate the outputs. */
-	private static final String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
-	public static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
-	public static final String PROPERTY_OUT_RESULTAVG_SUFFIX = ".resultAvg";
-	public static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
-	private static final String PROPERTY_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
-	public static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
-	private static final String EXPERIMENT_SUBDIR = "experiment";
-	private static final String SAMPLE_SUBDIR = "sample";
-	private static final String GNUPLOT_SUFFIX = MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";
+        @Override
+        public void run() {
 
-	// experiment setup parameters
-	private String[] vars;
-	private String[][] varValues;
-	private int varX;
-	private int numExperiments;
-	private String[][] experimentSetups;
-	// experiment randomness parameters
-	private long seed;
-	private Random[] state;
-	private int skipWarmupSamples;
-	private int minSamples;
-	private int maxSamples;
-	private DistributionType distribution;
-	private double requestedConfidence;
-	// experiment operators
-	private String[] experimentOperators;
-	private String[] statisticsOperators;
-	private String[][] varOperators;
-	// experiment outputs
-	private String[] outputs;
-	private String[] outputOperators;
-	private double[] outputDefaults;
-	private double[] outputMins;
-	private double[] outputMaxs;
-	private boolean[] outputDoConfidences;
-	// experiment efficiency
-	private int maxProcessingTime;
-	private int numThreads;
+            System.err.println("Running experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + this.statisticsIndex);
+            for (int op = 0; op < ExperimentDriver.this.statisticsOperators.length; op++) {
+                try {
+                    this.inputModels = executeOperator(this.experimentIndex, this.statisticsIndex, op, ExperimentDriver.this.statisticsOperators[op], this.inputModels, this.operatorWorkflow, this.outputConfidences);
+                }
+                catch (Exception e) {
+                    MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + this.statisticsIndex + " failed", e);
+                    return;
+                }
+            }
+        }
 
-	private @NonNull String[] getArrayStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
+    }
 
-		String property = MIDOperatorIOUtils.getStringProperty(properties, propertyName);
-		if (property.startsWith("[") && property.endsWith("]")) {
-			return property.substring(1, property.length()-1).split("\\],\\[");
-		}
-		else {
-			return MIDOperatorIOUtils.getStringProperties(properties, propertyName);
-		}
-	}
+    // input-output
+    private final static @NonNull String IN_MODEL = "initial";
+    /** The variables to variate the experiment setup. */
+    private static final String PROPERTY_IN_VARIABLES = "variables";
+    /** The variable values property suffix. */
+    private static final String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
+    private static final String PROPERTY_IN_VARIABLEX_SUFFIX = ".varX";
+    /** The initial seed for the pseudorandom generator. */
+    private static final String PROPERTY_IN_SEED = "seed";
+    /** Number of samples to discard at the beginning of each experiment (warmup phase). */
+    private static final String PROPERTY_IN_SKIPWARMUPSAMPLES = "skipWarmupSamples";
+    /** Min number of iterations (i.e. samples to generate). */
+    private static final String PROPERTY_IN_MINSAMPLES = "minSamples";
+    /** Max number of iterations (i.e. samples to generate). */
+    private static final String PROPERTY_IN_MAXSAMPLES = "maxSamples";
+    /** The distribution type to be used when evaluating the confidence. */
+    private static final String PROPERTY_IN_DISTRIBUTIONTYPE = "distributionType";
+    /** The requested range of confidence interval (% with respect to average value), after which the experiment can be stopped. */
+    private static final String PROPERTY_IN_REQUESTEDCONFIDENCE = "requestedConfidence";
+    private static final String PROPERTY_IN_NUMTHREADS = "numThreads";
+    private static final int PROPERTY_IN_NUMTHREADS_DEFAULT = 1;
+    /** The operators to be launched in the outer experiment setup cycle. */
+    private static final String PROPERTY_IN_EXPERIMENTOPERATORS = "experimentOperators";
+    private static final String[] PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT = new String[] {};
+    /** The operators to be launched in the inner statistics cycle. */
+    private static final String PROPERTY_IN_STATISTICSOPERATORS = "statisticsOperators";
+    /** The variable operators property suffix. */
+    private static final String PROPERTY_IN_ALLOPERATORS_SUFFIX = ".operator";
+    /** The outputs of the experiment. */
+    private static final String PROPERTY_IN_OUTPUTS = "outputs";
+    private static final String[] PROPERTY_IN_OUTPUTS_DEFAULT = new String[0];
+    /** The output default result property suffix. */
+    private static final String PROPERTY_IN_OUTPUTDEFAULT_SUFFIX = ".defaultResult";
+    /** Min value a sample can take. */
+    private static final String PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX = ".minSampleValue";
+    /** Max value a sample can take, -1 for unlimited. */
+    private static final String PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX = ".maxSampleValue";
+    private static final String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
+    /** Max processing time to generate the outputs. */
+    private static final String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
+    public static final String PROPERTY_OUT_RESULTLOW_SUFFIX = ".resultLow";
+    public static final String PROPERTY_OUT_RESULTAVG_SUFFIX = ".resultAvg";
+    public static final String PROPERTY_OUT_RESULTUP_SUFFIX = ".resultUp";
+    private static final String PROPERTY_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
+    public static final String PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX = ".instance";
+    private static final String EXPERIMENT_SUBDIR = "experiment";
+    private static final String SAMPLE_SUBDIR = "sample";
+    private static final String GNUPLOT_SUFFIX = MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";
 
-	@Override
-	public void readInputProperties(Properties inputProperties) throws MMINTException {
+    // experiment setup parameters
+    private String[] vars;
+    private String[][] varValues;
+    private int varX;
+    private int numExperiments;
+    private String[][] experimentSetups;
+    // experiment randomness parameters
+    private long seed;
+    private Random[] state;
+    private int skipWarmupSamples;
+    private int minSamples;
+    private int maxSamples;
+    private DistributionType distribution;
+    private double requestedConfidence;
+    // experiment operators
+    private String[] experimentOperators;
+    private String[] statisticsOperators;
+    private String[][] varOperators;
+    // experiment outputs
+    private String[] outputs;
+    private String[] outputOperators;
+    private double[] outputDefaults;
+    private double[] outputMins;
+    private double[] outputMaxs;
+    private boolean[] outputDoConfidences;
+    // experiment efficiency
+    private int maxProcessingTime;
+    private int numThreads;
 
-		// outer cycle parameters: vary experiment setup
-		vars = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_VARIABLES);
-		varValues = new String[vars.length][];
-		numExperiments = 1;
-		for (int i = 0; i < vars.length; i++) {
-			varValues[i] = getArrayStringProperties(inputProperties, vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
-			numExperiments *= varValues[i].length;
-			if (MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
-				varX = i;
-			}
-		}
+    private @NonNull String[] getArrayStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		// inner cycle parameters: experiment setup is fixed, vary randomness and statistics
-		seed = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
-		skipWarmupSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SKIPWARMUPSAMPLES);
-		minSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
-		maxSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
-		distribution = DistributionType.valueOf(MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_DISTRIBUTIONTYPE));
-		requestedConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_REQUESTEDCONFIDENCE);
+        String property = MIDOperatorIOUtils.getStringProperty(properties, propertyName);
+        if (property.startsWith("[") && property.endsWith("]")) {
+            return property.substring(1, property.length()-1).split("\\],\\[");
+        }
+        else {
+            return MIDOperatorIOUtils.getStringProperties(properties, propertyName);
+        }
+    }
 
-		// operators
-		experimentOperators = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
-		statisticsOperators = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_STATISTICSOPERATORS);
-		varOperators = new String[vars.length][];
-		for (int i = 0; i < vars.length; i++) {
-			varOperators[i] = MIDOperatorIOUtils.getStringProperties(inputProperties, vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
-		}
+    @Override
+    public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-		// outputs
-		outputs = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT);
-		outputOperators = new String[outputs.length];
-		outputDefaults = new double[outputs.length];
-		outputMins = new double[outputs.length];
-		outputMaxs = new double[outputs.length];
-		outputDoConfidences = new boolean[outputs.length];
-		for (int i = 0; i < outputs.length; i++) {
-			outputOperators[i] = MIDOperatorIOUtils.getStringProperty(inputProperties, outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
-			outputDefaults[i] = MIDOperatorIOUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
-			outputMins[i] = MIDOperatorIOUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
-			outputMaxs[i] = MIDOperatorIOUtils.getDoubleProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
-			outputDoConfidences[i] = MIDOperatorIOUtils.getBoolProperty(inputProperties, outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
-		}
+        // outer cycle parameters: vary experiment setup
+        this.vars = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_VARIABLES);
+        this.varValues = new String[this.vars.length][];
+        this.numExperiments = 1;
+        for (int i = 0; i < this.vars.length; i++) {
+            this.varValues[i] = getArrayStringProperties(inputProperties, this.vars[i]+PROPERTY_IN_VARIABLEVALUES_SUFFIX);
+            this.numExperiments *= this.varValues[i].length;
+            if (MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, this.vars[i]+PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
+                this.varX = i;
+            }
+        }
 
-		// efficiency
-		maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
-		numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
-	}
+        // inner cycle parameters: experiment setup is fixed, vary randomness and statistics
+        this.seed = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
+        this.skipWarmupSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SKIPWARMUPSAMPLES);
+        this.minSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
+        this.maxSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
+        this.distribution = DistributionType.valueOf(MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_DISTRIBUTIONTYPE));
+        this.requestedConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
-	private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex) {
+        // operators
+        this.experimentOperators = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
+        this.statisticsOperators = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_STATISTICSOPERATORS);
+        this.varOperators = new String[this.vars.length][];
+        for (int i = 0; i < this.vars.length; i++) {
+            this.varOperators[i] = MIDOperatorIOUtils.getStringProperties(inputProperties, this.vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+        }
 
-		Properties properties = new Properties();
+        // outputs
+        this.outputs = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT);
+        this.outputOperators = new String[this.outputs.length];
+        this.outputDefaults = new double[this.outputs.length];
+        this.outputMins = new double[this.outputs.length];
+        this.outputMaxs = new double[this.outputs.length];
+        this.outputDoConfidences = new boolean[this.outputs.length];
+        for (int i = 0; i < this.outputs.length; i++) {
+            this.outputOperators[i] = MIDOperatorIOUtils.getStringProperty(inputProperties, this.outputs[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+            this.outputDefaults[i] = MIDOperatorIOUtils.getDoubleProperty(inputProperties, this.outputs[i]+PROPERTY_IN_OUTPUTDEFAULT_SUFFIX);
+            this.outputMins[i] = MIDOperatorIOUtils.getDoubleProperty(inputProperties, this.outputs[i]+PROPERTY_IN_OUTPUTMINSAMPLEVALUE_SUFFIX);
+            this.outputMaxs[i] = MIDOperatorIOUtils.getDoubleProperty(inputProperties, this.outputs[i]+PROPERTY_IN_OUTPUTMAXSAMPLEVALUE_SUFFIX);
+            this.outputDoConfidences[i] = MIDOperatorIOUtils.getBoolProperty(inputProperties, this.outputs[i]+PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX);
+        }
 
-		if (experiment != null) { // only with outputs
-			for (int out = 0; out < outputs.length; out++) {
-				properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTAVG_SUFFIX, String.valueOf(experiment[out].getAverage()));
-				if (outputDoConfidences[out]) {
-					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
-					properties.setProperty(outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
-				}
-				properties.setProperty(outputs[out]+PROPERTY_OUT_NUMSAMPLES_SUFFIX, String.valueOf(experiment[out].getNumSamples()));
-			}
-		}
-		for (int i = 0; i < vars.length; i++) {
-			properties.setProperty(vars[i]+PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX, experimentSetups[experimentIndex][i]);
-		}
+        // efficiency
+        this.maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
+        this.numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS, PROPERTY_IN_NUMTHREADS_DEFAULT);
+    }
 
-		return properties;
-	}
+    private Properties writeProperties(ExperimentSamples[] experiment, int experimentIndex) {
 
-	private void writeGnuplotFile(Operator driver, Model initialModel, ExperimentSamples[] experiment, int experimentIndex, int varX) {
+        Properties properties = new Properties();
 
-		if (experiment == null) { // no outputs
-			return;
-		}
+        if (experiment != null) { // only with outputs
+            for (int out = 0; out < this.outputs.length; out++) {
+                properties.setProperty(this.outputs[out]+PROPERTY_OUT_RESULTAVG_SUFFIX, String.valueOf(experiment[out].getAverage()));
+                if (this.outputDoConfidences[out]) {
+                    properties.setProperty(this.outputs[out]+PROPERTY_OUT_RESULTUP_SUFFIX, String.valueOf(experiment[out].getUpperConfidence()));
+                    properties.setProperty(this.outputs[out]+PROPERTY_OUT_RESULTLOW_SUFFIX, String.valueOf(experiment[out].getLowerConfidence()));
+                }
+                properties.setProperty(this.outputs[out]+PROPERTY_OUT_NUMSAMPLES_SUFFIX, String.valueOf(experiment[out].getNumSamples()));
+            }
+        }
+        for (int i = 0; i < this.vars.length; i++) {
+            properties.setProperty(this.vars[i]+PROPERTY_OUT_VARIABLEINSTANCE_SUFFIX, this.experimentSetups[experimentIndex][i]);
+        }
 
-		// append outputs
-		StringBuilder gnuplotBuilder = new StringBuilder(experimentSetups[experimentIndex][varX]);
-		for (int out = 0; out < outputs.length; out++) {
-			gnuplotBuilder.append(' ');
-			gnuplotBuilder.append(experiment[out].getAverage());
-			if (outputDoConfidences[out]) {
-				gnuplotBuilder.append(' ');
-				gnuplotBuilder.append(experiment[out].getUpperConfidence());
-				gnuplotBuilder.append(' ');
-				gnuplotBuilder.append(experiment[out].getLowerConfidence());
-			}
-		}		
+        return properties;
+    }
 
-		// write output
-		try {
-			MIDOperatorIOUtils.writeTextFile(driver, initialModel, EXPERIMENT_SUBDIR + experimentIndex, GNUPLOT_SUFFIX, gnuplotBuilder);
-		}
-		catch (IOException e) {
-			MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (numExperiments-1) + ", gnuplot output failed", e);
-		}
-	}
+    private void writeGnuplotFile(Operator driver, Model initialModel, ExperimentSamples[] experiment, int experimentIndex, int varX) {
 
-	private void cartesianProduct(String[][] experimentSetups) {
+        if (experiment == null) { // no outputs
+            return;
+        }
 
-		for (int i = 0; i < numExperiments; i++) {
-			int k = 1;
-			for (int j = 0; j < varValues.length; j++) {
-				String[] value = varValues[j];
-				String choice = value[(i/k) % value.length];
-				experimentSetups[i][j] = choice;
-				k *= value.length;
-			}
-		}
-	}
+        // append outputs
+        StringBuilder gnuplotBuilder = new StringBuilder(this.experimentSetups[experimentIndex][varX]);
+        for (int out = 0; out < this.outputs.length; out++) {
+            gnuplotBuilder.append(' ');
+            gnuplotBuilder.append(experiment[out].getAverage());
+            if (this.outputDoConfidences[out]) {
+                gnuplotBuilder.append(' ');
+                gnuplotBuilder.append(experiment[out].getUpperConfidence());
+                gnuplotBuilder.append(' ');
+                gnuplotBuilder.append(experiment[out].getLowerConfidence());
+            }
+        }
 
-	private EList<Model> executeOperator(int experimentIndex, int statisticsIndex, int operatorIndex, String operatorUri, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) throws Exception {
+        // write output
+        try {
+            MIDOperatorIOUtils.writeTextFile(driver, initialModel, EXPERIMENT_SUBDIR + experimentIndex, GNUPLOT_SUFFIX, gnuplotBuilder);
+        }
+        catch (IOException e) {
+            MMINTException.print(IStatus.WARNING, "Experiment " + experimentIndex + " out of " + (this.numExperiments-1) + ", gnuplot output failed", e);
+        }
+    }
 
-		// empty operator list
-		if (operatorUri.equals("")) {
-			return inputModels;
-		}
+    private void cartesianProduct(String[][] experimentSetups) {
 
-		// get operator
-		Operator operatorType = MIDTypeRegistry.getType(operatorUri);
-		if (operatorType == null) {
-			throw new MMINTException("Operator uri " + operatorUri + " is not registered");
-		}
-		if (operatorType.getInputs().size() == 0) { // fix operator with no model input at the beginning of the experiment
-			inputModels = new BasicEList<>();
-		}
+        for (int i = 0; i < this.numExperiments; i++) {
+            int k = 1;
+            for (int j = 0; j < this.varValues.length; j++) {
+                String[] value = this.varValues[j];
+                String choice = value[(i/k) % value.length];
+                experimentSetups[i][j] = choice;
+                k *= value.length;
+            }
+        }
+    }
 
-		// write operator input properties
-		Properties inputProperties = new Properties();
-		for (int i = 0; i < varOperators.length; i++) {
-			for (int j = 0; j < varOperators[i].length; j++) {
-				if (varOperators[i][j].equals(operatorUri)) {
-					inputProperties.setProperty(vars[i], experimentSetups[experimentIndex][i]);
-					break;
-				}
-			}
-		}
-		for (int out = 0; out < outputs.length; out++) {
-			if (outputDoConfidences[out] && operatorUri.equals(outputOperators[out])) {
-				if (!outputConfidences[out]) {
-					inputProperties.setProperty(outputs[out]+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
-				}
-				else {
-					inputProperties.setProperty(outputs[out]+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
-				}
-			}
-		}
-		if (operatorIndex == 0) {
-			String nextSubdir;
-			if (statisticsIndex < 0) {
-				nextSubdir = EXPERIMENT_SUBDIR + experimentIndex;
-			}
-			else {
-				nextSubdir = (experimentOperators.length == 0) ?
-					EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
-					SAMPLE_SUBDIR + statisticsIndex;
-			}
-			inputProperties.setProperty(MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, nextSubdir);
-		}
-		inputProperties.setProperty(MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, "false");
+    private EList<Model> executeOperator(int experimentIndex, int statisticsIndex, int operatorIndex, String operatorUri, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) throws Exception {
 
-		// execute, get state and add to workflow
-		EList<OperatorInput> inputs = operatorType.checkAllowedInputs(inputModels);
-		EList<OperatorGeneric> generics = operatorType.selectAllowedGenerics(inputs);
-		Map<String, MID> outputMIDsByName = new HashMap<>();
-		if (operatorType instanceof RandomOperator) { // random state passing
-			((RandomOperator) operatorType).setState(state[experimentIndex]);
-		}
-		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
-			operatorType.setPreviousOperator(operatorWorkflow.get(operatorWorkflow.size()-1));
-		}
-		Operator operator = operatorType.startInstance(inputs, inputProperties, generics, outputMIDsByName, null);
-		if (operatorType instanceof RandomOperator) { // random state passing
-			state[experimentIndex] = ((RandomOperator) operator).getState();
-			((RandomOperator) operatorType).setState(null);
-		}
-		if (!operatorWorkflow.isEmpty()) { // operator workflow passing
-			operatorType.setPreviousOperator(null);
-		}
-		operatorWorkflow.add(operator);
-		EList<Model> outputModels = operator.getOutputModels();
+        // empty operator list
+        if (operatorUri.equals("")) {
+            return inputModels;
+        }
 
-		return outputModels;
-	}
+        // get operator
+        Operator operatorType = MIDTypeRegistry.getType(operatorUri);
+        if (operatorType == null) {
+            throw new MMINTException("Operator uri " + operatorUri + " is not registered");
+        }
+        if (operatorType.getInputs().size() == 0) { // fix operator with no model input at the beginning of the experiment
+            inputModels = new BasicEList<>();
+        }
 
-	private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
+        // write operator input properties
+        Properties inputProperties = new Properties();
+        for (int i = 0; i < this.varOperators.length; i++) {
+            for (int j = 0; j < this.varOperators[i].length; j++) {
+                if (this.varOperators[i][j].equals(operatorUri)) {
+                    inputProperties.setProperty(this.vars[i], this.experimentSetups[experimentIndex][i]);
+                    break;
+                }
+            }
+        }
+        for (int out = 0; out < this.outputs.length; out++) {
+            if (this.outputDoConfidences[out] && operatorUri.equals(this.outputOperators[out])) {
+                if (!outputConfidences[out]) {
+                    inputProperties.setProperty(this.outputs[out]+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "true");
+                }
+                else {
+                    inputProperties.setProperty(this.outputs[out]+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, "false");
+                }
+            }
+        }
+        if (operatorIndex == 0) {
+            String nextSubdir;
+            if (statisticsIndex < 0) {
+                nextSubdir = EXPERIMENT_SUBDIR + experimentIndex;
+            }
+            else {
+                nextSubdir = (this.experimentOperators.length == 0) ?
+                    EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
+                    SAMPLE_SUBDIR + statisticsIndex;
+            }
+            inputProperties.setProperty(MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, nextSubdir);
+        }
+        inputProperties.setProperty(MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, "false");
 
-		// get output operator
-		Operator operatorType = MIDTypeRegistry.getType(outputOperators[outputIndex]);
-		if (operatorType == null) {
-			throw new MMINTException("Operator uri " + outputOperators[outputIndex] + " is not registered");
-		}
+        // execute, get state and add to workflow
+        EList<OperatorInput> inputs = operatorType.checkAllowedInputs(inputModels);
+        EList<OperatorGeneric> generics = operatorType.selectAllowedGenerics(inputs);
+        Map<String, MID> outputMIDsByName = new HashMap<>();
+        if (operatorType instanceof RandomOperator) { // random state passing
+            ((RandomOperator) operatorType).setState(this.state[experimentIndex]);
+        }
+        if (!operatorWorkflow.isEmpty()) { // operator workflow passing
+            operatorType.setPreviousOperator(operatorWorkflow.get(operatorWorkflow.size()-1));
+        }
+        Operator operator = operatorType.startInstance(inputs, inputProperties, generics, outputMIDsByName, null);
+        if (operatorType instanceof RandomOperator) { // random state passing
+            this.state[experimentIndex] = ((RandomOperator) operator).getState();
+            ((RandomOperator) operatorType).setState(null);
+        }
+        if (!operatorWorkflow.isEmpty()) { // operator workflow passing
+            operatorType.setPreviousOperator(null);
+        }
+        operatorWorkflow.add(operator);
+        EList<Model> outputModels = operator.getOutputModels();
 
-		String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
-		Properties resultProperties = MIDOperatorIOUtils.getPropertiesFile(
-			operatorType,
-			initialModel,
-			experimentSubdir,
-			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
-		);
+        return outputModels;
+    }
 
-		return MIDOperatorIOUtils.getDoubleProperty(resultProperties, outputs[outputIndex]);
-	}
+    private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
 
-	@Override
-	public Map<String, Model> run(
-			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
-			Map<String, MID> outputMIDsByName) throws Exception {
+        // get output operator
+        Operator operatorType = MIDTypeRegistry.getType(this.outputOperators[outputIndex]);
+        if (operatorType == null) {
+            throw new MMINTException("Operator uri " + this.outputOperators[outputIndex] + " is not registered");
+        }
 
-		// prepare experiment setup
-		Model initialModel = inputsByName.get(IN_MODEL);
-		state = new Random[numExperiments];
-		for (int i = 0; i < numExperiments; i++) {
-			state[i] = new Random(seed + i);
-		}
-		experimentSetups = new String[numExperiments][vars.length];
-		cartesianProduct(experimentSetups);
+        String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
+        Properties resultProperties = MIDOperatorIOUtils.getPropertiesFile(
+            operatorType,
+            initialModel,
+            experimentSubdir,
+            MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
+        );
 
-		MIDTypeHierarchy.clearCachedRuntimeTypes();
-		ExecutorService executor = Executors.newFixedThreadPool(numThreads);
-		// outer cycle: vary experiment setup
-		for (int i = 0; i < numExperiments; i++) {
-			// run time-bounded chain of experiments
-			try {
-				executor.submit(new ExperimentWatchdog(this, initialModel, i));
-			}
-			catch (Exception e) {
-				MMINTException.print(IStatus.WARNING, "Experiment " + i + " out of " + (numExperiments-1) + " failed", e);
-			}
-		}
-		executor.shutdown();
-		executor.awaitTermination(24, TimeUnit.HOURS);
-		MIDTypeHierarchy.clearCachedRuntimeTypes();
+        return MIDOperatorIOUtils.getDoubleProperty(resultProperties, this.outputs[outputIndex]);
+    }
 
-		return new HashMap<>();
-	}
+    @Override
+    public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
+                                  Map<String, MID> outputMIDsByName) throws Exception {
+
+        // prepare experiment setup
+        Model initialModel = inputsByName.get(IN_MODEL);
+        this.state = new Random[this.numExperiments];
+        for (int i = 0; i < this.numExperiments; i++) {
+            this.state[i] = new Random(this.seed + i);
+        }
+        this.experimentSetups = new String[this.numExperiments][this.vars.length];
+        cartesianProduct(this.experimentSetups);
+
+        MIDTypeHierarchy.clearCachedRuntimeTypes();
+        ExecutorService executor = Executors.newFixedThreadPool(this.numThreads);
+        // outer cycle: vary experiment setup
+        for (int i = 0; i < this.numExperiments; i++) {
+            // run time-bounded chain of experiments
+            try {
+                executor.submit(new ExperimentWatchdog(this, initialModel, i));
+            }
+            catch (Exception e) {
+                MMINTException.print(IStatus.WARNING, "Experiment " + i + " out of " + (this.numExperiments-1) + " failed", e);
+            }
+        }
+        executor.shutdown();
+        executor.awaitTermination(24, TimeUnit.HOURS);
+        MIDTypeHierarchy.clearCachedRuntimeTypes();
+
+        return new HashMap<>();
+    }
 
 }
