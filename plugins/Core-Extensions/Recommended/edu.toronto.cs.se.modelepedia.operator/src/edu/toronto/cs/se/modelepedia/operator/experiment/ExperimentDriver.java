@@ -38,6 +38,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
@@ -61,9 +62,9 @@ public class ExperimentDriver extends OperatorImpl {
             this.driver = driver;
             this.initialModel = initialModel;
             this.experimentIndex = experimentIndex;
-            this.outputConfidences = new boolean[ExperimentDriver.this.outputs.length];
-            for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
-                this.outputConfidences[out] = (ExperimentDriver.this.outputDoConfidences[out]) ? false : true;
+            this.outputConfidences = new boolean[this.driver.outputs.length];
+            for (int out = 0; out < this.driver.outputs.length; out++) {
+                this.outputConfidences[out] = (this.driver.outputDoConfidences[out]) ? false : true;
             }
         }
 
@@ -79,12 +80,12 @@ public class ExperimentDriver extends OperatorImpl {
                 List<Operator> outerOperatorWorkflow = new ArrayList<>();
                 EList<Model> outerInputModels = new BasicEList<>();
                 outerInputModels.add(this.initialModel);
-                for (int op = 0; op < ExperimentDriver.this.experimentOperators.length; op++) {
+                for (int op = 0; op < this.driver.experimentOperators.length; op++) {
                     try {
-                        outerInputModels = executeOperator(this.experimentIndex, -1, op, ExperimentDriver.this.experimentOperators[op], outerInputModels, outerOperatorWorkflow, this.outputConfidences);
+                        outerInputModels = executeOperator(this.experimentIndex, -1, op, this.driver.experimentOperators[op], outerInputModels, outerOperatorWorkflow, this.outputConfidences);
                     }
                     catch (Exception e) {
-                        MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + " failed", e);
+                        MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + " failed", e);
                         MIDOperatorIOUtils.writePropertiesFile(
                             writeProperties(null, this.experimentIndex),
                             this.driver,
@@ -96,14 +97,14 @@ public class ExperimentDriver extends OperatorImpl {
                     }
                 }
 
-                ExperimentSamples[] experiment = new ExperimentSamples[ExperimentDriver.this.outputs.length];
-                for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
-                    experiment[out] = new ExperimentSamples(ExperimentDriver.this.minSamples, ExperimentDriver.this.maxSamples - ExperimentDriver.this.skipWarmupSamples, ExperimentDriver.this.distribution, ExperimentDriver.this.outputMins[out], ExperimentDriver.this.outputMaxs[out], ExperimentDriver.this.requestedConfidence, ExperimentDriver.this.outputDoConfidences[out]);
+                ExperimentSamples[] experiment = new ExperimentSamples[this.driver.outputs.length];
+                for (int out = 0; out < this.driver.outputs.length; out++) {
+                    experiment[out] = new ExperimentSamples(this.driver.minSamples, this.driver.maxSamples - this.driver.skipWarmupSamples, this.driver.distribution, this.driver.outputMins[out], this.driver.outputMaxs[out], this.driver.requestedConfidence, this.driver.outputDoConfidences[out]);
                 }
 
                 // inner cycle: experiment setup is fixed, vary randomness and statistics
                 int j;
-                for (j = 0; j < ExperimentDriver.this.maxSamples; j++) {
+                for (j = 0; j < this.driver.maxSamples; j++) {
                     // create sample folder
                     folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(this.initialModel.getUri(), EXPERIMENT_SUBDIR + this.experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
                     if (!folder.exists(null)) {
@@ -116,38 +117,38 @@ public class ExperimentDriver extends OperatorImpl {
                     ExecutorService executor = Executors.newSingleThreadExecutor();
                     try {
                         executor.submit(
-                            new SampleWatchdog(this.experimentIndex, j, innerInputModels, innerOperatorWorkflow, this.outputConfidences)
-                        ).get(ExperimentDriver.this.maxProcessingTime, TimeUnit.SECONDS);
+                            new SampleWatchdog(this.driver, this.experimentIndex, j, innerInputModels, innerOperatorWorkflow, this.outputConfidences)
+                        ).get(this.driver.maxProcessingTime, TimeUnit.SECONDS);
                         executor.shutdown();
                     }
                     catch (Exception e) {
                         executor.shutdownNow();
                         timedOut = true;
-                        MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + j + " ran over time limit", e);
+                        MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + ", sample " + j + " ran over time limit", e);
                     }
                     // skip warmup phase
-                    if (j < ExperimentDriver.this.skipWarmupSamples) {
+                    if (j < this.driver.skipWarmupSamples) {
                         continue;
                     }
                     // get results
-                    for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
+                    for (int out = 0; out < this.driver.outputs.length; out++) {
                         try {
                             double sample = (timedOut) ?
-                                ExperimentDriver.this.outputDefaults[out] :
-                                getOutput(this.initialModel, out, this.experimentIndex, j);
+                                this.driver.outputDefaults[out] :
+                                getOutput(innerOperatorWorkflow, this.initialModel, out, this.experimentIndex, j);
                             if (sample == Double.MAX_VALUE) {
-                                MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + j + ", output " + ExperimentDriver.this.outputs[out] + " skipped", null);
+                                MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + ", sample " + j + ", output " + this.driver.outputs[out] + " skipped", null);
                                 continue;
                             }
                             this.outputConfidences[out] = experiment[out].addSample(sample);
                         }
                         catch (Exception e) {
-                            MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + j + ", output " + ExperimentDriver.this.outputs[out] + " not available", e);
+                            MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + ", sample " + j + ", output " + this.driver.outputs[out] + " not available", e);
                         }
                     }
                     // evaluate confidence intervals
                     boolean allConfident = true;
-                    for (int out = 0; out < ExperimentDriver.this.outputs.length; out++) {
+                    for (int out = 0; out < this.driver.outputs.length; out++) {
                         allConfident = this.outputConfidences[out] && allConfident;
                     }
                     if (allConfident) {
@@ -163,24 +164,26 @@ public class ExperimentDriver extends OperatorImpl {
                     EXPERIMENT_SUBDIR + this.experimentIndex,
                     MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
                 );
-                writeGnuplotFile(this.driver, this.initialModel, experiment, this.experimentIndex, ExperimentDriver.this.varX);
+                writeGnuplotFile(this.driver, this.initialModel, experiment, this.experimentIndex, this.driver.varX);
             }
             catch (Exception e) {
-                MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + " failed", e);
+                MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + " failed", e);
             }
         }
     }
 
     protected class SampleWatchdog implements Runnable {
 
+        private ExperimentDriver driver;
         private int experimentIndex;
         private int statisticsIndex;
         private EList<Model> inputModels;
         private List<Operator> operatorWorkflow;
         private boolean[] outputConfidences;
 
-        public SampleWatchdog(int experimentIndex, int statisticsIndex, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) {
+        public SampleWatchdog(ExperimentDriver driver, int experimentIndex, int statisticsIndex, EList<Model> inputModels, List<Operator> operatorWorkflow, boolean[] outputConfidences) {
 
+            this.driver = driver;
             this.experimentIndex = experimentIndex;
             this.statisticsIndex = statisticsIndex;
             this.inputModels = inputModels;
@@ -191,13 +194,13 @@ public class ExperimentDriver extends OperatorImpl {
         @Override
         public void run() {
 
-            System.err.println("Running experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + this.statisticsIndex);
-            for (int op = 0; op < ExperimentDriver.this.statisticsOperators.length; op++) {
+            System.err.println("Running experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + ", sample " + this.statisticsIndex);
+            for (int op = 0; op < this.driver.statisticsOperators.length; op++) {
                 try {
-                    this.inputModels = executeOperator(this.experimentIndex, this.statisticsIndex, op, ExperimentDriver.this.statisticsOperators[op], this.inputModels, this.operatorWorkflow, this.outputConfidences);
+                    this.inputModels = executeOperator(this.experimentIndex, this.statisticsIndex, op, this.driver.statisticsOperators[op], this.inputModels, this.operatorWorkflow, this.outputConfidences);
                 }
                 catch (Exception e) {
-                    MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (ExperimentDriver.this.numExperiments-1) + ", sample " + this.statisticsIndex + " failed", e);
+                    MMINTException.print(IStatus.WARNING, "Experiment " + this.experimentIndex + " out of " + (this.driver.numExperiments-1) + ", sample " + this.statisticsIndex + " failed", e);
                     return;
                 }
             }
@@ -253,6 +256,7 @@ public class ExperimentDriver extends OperatorImpl {
     private static final String EXPERIMENT_SUBDIR = "experiment";
     private static final String SAMPLE_SUBDIR = "sample";
     private static final String GNUPLOT_SUFFIX = MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX + ".dat";
+    private static final String OUTPUT_EXECUTIONTIME = "executionTime";
 
     // experiment setup parameters
     private String[] vars;
@@ -414,6 +418,15 @@ public class ExperimentDriver extends OperatorImpl {
             return inputModels;
         }
 
+        // generic operator X<Y>
+        //TODO MMINT[GENERICS] Add support for more than one generic
+        String genericsUri = null;
+        int genericsIndex = operatorUri.indexOf('<');
+        if (genericsIndex > 0) {
+            genericsUri = operatorUri.substring(genericsIndex+1, operatorUri.length()-1);
+            operatorUri = operatorUri.substring(0, genericsIndex);
+        }
+
         // get operator
         Operator operatorType = MIDTypeRegistry.getType(operatorUri);
         if (operatorType == null) {
@@ -459,7 +472,17 @@ public class ExperimentDriver extends OperatorImpl {
 
         // execute, get state and add to workflow
         EList<OperatorInput> inputs = operatorType.checkAllowedInputs(inputModels);
-        EList<OperatorGeneric> generics = operatorType.selectAllowedGenerics(inputs);
+        EList<OperatorGeneric> generics = new BasicEList<>();
+        if (genericsUri != null) {
+            GenericElement genericType = MIDTypeRegistry.getType(genericsUri);
+            if (genericType == null) {
+                throw new MMINTException("Generic type uri " + genericsUri + " is not registered");
+            }
+            OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
+            generic.setGenericSuperTypeEndpoint(operatorType.getGenerics().get(0));
+            generic.setGeneric(genericType);
+            generics.add(generic);
+        }
         Map<String, MID> outputMIDsByName = new HashMap<>();
         if (operatorType instanceof RandomOperator) { // random state passing
             ((RandomOperator) operatorType).setState(this.state[experimentIndex]);
@@ -481,7 +504,7 @@ public class ExperimentDriver extends OperatorImpl {
         return outputModels;
     }
 
-    private double getOutput(Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
+    private double getOutput(List<Operator> operatorWorkflow, Model initialModel, int outputIndex, int experimentIndex, int statisticsIndex) throws Exception {
 
         // get output operator
         Operator operatorType = MIDTypeRegistry.getType(this.outputOperators[outputIndex]);
@@ -489,6 +512,13 @@ public class ExperimentDriver extends OperatorImpl {
             throw new MMINTException("Operator uri " + this.outputOperators[outputIndex] + " is not registered");
         }
 
+        if (this.outputs[outputIndex].startsWith(OUTPUT_EXECUTIONTIME)) {
+            for (Operator operator : operatorWorkflow) {
+                if (operator.getName().equals(operatorType.getName())) {
+                    return operator.getExecutionTime();
+                }
+            }
+        }
         String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
         Properties resultProperties = MIDOperatorIOUtils.getPropertiesFile(
             operatorType,
@@ -496,7 +526,6 @@ public class ExperimentDriver extends OperatorImpl {
             experimentSubdir,
             MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
         );
-
         return MIDOperatorIOUtils.getDoubleProperty(resultProperties, this.outputs[outputIndex]);
     }
 
