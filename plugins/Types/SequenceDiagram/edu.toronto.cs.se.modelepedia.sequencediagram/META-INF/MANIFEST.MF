@@ -5,7 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.sequencediagram;singleton:=tr
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.sequencediagram
 Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: edu.toronto.cs.se.modelepedia.sequencediagram,
  edu.toronto.cs.se.modelepedia.sequencediagram.impl,
  edu.toronto.cs.se.modelepedia.sequencediagram.util
