@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
- * Rick Salay, Naama Ben-David.
+ * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,7 +36,7 @@ public class ModelRelToText extends AcceleoOperator {
         private ModelRel rel;
         private Model firstModel;
 
-        public Input(Map<String, Model> inputsByName) {
+        public Input(@NonNull Map<String, Model> inputsByName) {
 
             this.rel = (ModelRel) inputsByName.get(IN_MODELREL);
             if (this.rel.getModelEndpoints().size() == 0) {
@@ -78,8 +78,8 @@ public class ModelRelToText extends AcceleoOperator {
         super.init(inputsByName, outputMIDsByName);
         this.input = new Input(inputsByName);
         this.output = new Output(outputMIDsByName);
-        this.folder = (new File(FileUtils.prependWorkspacePath(this.input.firstModel.getUri()))).getParentFile();
-        this.acceleoGen = new ModelRelToText_M2T(this.input.rel, this.folder, this.acceleoArgs);
+        super.folder = (new File(FileUtils.prependWorkspacePath(this.input.firstModel.getUri()))).getParentFile();
+        super.acceleoGen = new ModelRelToText_M2T(this.input.rel, this.folder, this.acceleoArgs);
     }
 
     @Override

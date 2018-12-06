@@ -18,9 +18,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -207,33 +205,14 @@ public class MIDOperatorIOUtils {
 		}
 	}
 
-	//TODO MMINT[OPERATOR] Remove
-	@Deprecated
-	public static @NonNull String[] getStringProperties(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
-
-		return getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR);
-	}
-
-	//TODO MMINT[OPERATOR] Remove
-	@Deprecated
-	public static @NonNull String[] getOptionalStringProperties(@NonNull Properties properties, @NonNull String propertyName, @NonNull String[] defaultValue) {
-
-		try {
-			return getStringProperties(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
-	}
-
 	public static @NonNull List<String> getStringPropertyList(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		return Arrays.asList(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
+		return List.of(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
 	}
 
 	public static @NonNull Set<String> getStringPropertySet(@NonNull Properties properties, @NonNull String propertyName) throws MMINTException {
 
-		return new HashSet<>(getStringPropertyList(properties, propertyName));
+	    return Set.of(getStringProperty(properties, propertyName).split(PROPERTY_SEPARATOR));
 	}
 
 	public static @NonNull List<String> getOptionalStringPropertyList(@NonNull Properties properties, @NonNull String propertyName, @NonNull List<String> defaultValue) {
