@@ -13,7 +13,7 @@
     <repository>
   	  <id>Eclipse</id>
   	  <layout>p2</layout>
-  	  <url>http://download.eclipse.org/releases/latest</url>
+  	  <url>http://download.eclipse.org/releases/2018-12</url>
     </repository>
     <!--<repository>
   	  <id>Henshin</id>
