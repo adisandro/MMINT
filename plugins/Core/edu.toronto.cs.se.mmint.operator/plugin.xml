@@ -1188,7 +1188,15 @@
          <generics>
             <parameter>
                <type
-                     name="WORKFLOW">
+                     name="SETUP">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/WorkflowOperator">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="SAMPLES">
                </type>
                <typeEndpoint
                      targetTypeUri="http://se.cs.toronto.edu/mmint/WorkflowOperator">

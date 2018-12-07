@@ -10,15 +10,21 @@
  */
 package edu.toronto.cs.se.mmint.operator.experiment;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -35,13 +41,16 @@ public class Experiment extends OperatorImpl {
 
   private static class Input {
     private final static @NonNull String IN_MODELS = "inputs";
-    private final static @NonNull String GENERIC_OPERATORTYPE = "WORKFLOW";
+    private final static @NonNull String GENERIC_OPERATORTYPE1 = "SETUP";
+    private final static @NonNull String GENERIC_OPERATORTYPE2 = "SAMPLES";
     private List<Model> inputs;
-    private WorkflowOperator workflow;
+    private WorkflowOperator setupWorkflow;
+    private WorkflowOperator samplesWorkflow;
 
     public Input(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, GenericElement> genericsByName) {
       this.inputs = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
-      this.workflow = (WorkflowOperator) genericsByName.get(GENERIC_OPERATORTYPE);
+      this.setupWorkflow = (WorkflowOperator) genericsByName.get(GENERIC_OPERATORTYPE1);
+      this.samplesWorkflow = (WorkflowOperator) genericsByName.get(GENERIC_OPERATORTYPE2);
     }
   }
 
@@ -57,7 +66,7 @@ public class Experiment extends OperatorImpl {
   private final static @NonNull String PROPERTY_IN_VARIABLES = "variables";
   private final static @NonNull String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
   private final static @NonNull String PROPERTY_IN_VARIABLEX_SUFFIX = ".varX";
-  private int numExperiments;
+  int numExperiments;
   private Map<String, List<String>> variables; // variables and their values
   private String varX; // The variable that represent the X axis of the gnuplot graph.
   /** The statistics parameters. */
@@ -152,10 +161,25 @@ public class Experiment extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
+      /* TODO
+       * - write all variables as input properties to all operators, in advance
+       * - experimentSetups?
+       */
     init(inputsByName, genericsByName, outputMIDsByName);
-    /* TODO
-     * - write all variables as input properties to all operators, in advance
-     */
+    MIDTypeHierarchy.clearCachedRuntimeTypes();
+    ExecutorService executor = Executors.newFixedThreadPool(this.numThreads);
+    for (int i = 0; i < this.numExperiments; i++) {
+        try {
+            executor.submit(new ExperimentRunner(this, i));
+        }
+        catch (Exception e) {
+            MMINTException.print(IStatus.WARNING,
+                                 MessageFormat.format("Experiment {0} out of {1} failed", i, this.numExperiments-1), e);
+        }
+    }
+    executor.shutdown();
+    executor.awaitTermination(24, TimeUnit.HOURS);
+    MIDTypeHierarchy.clearCachedRuntimeTypes();
 
     return this.output.packed();
   }
