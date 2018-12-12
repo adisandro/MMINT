@@ -120,7 +120,7 @@ public class ExperimentSamples {
   private double min;
   private double sup;
   private double max;
-  private double requestedConfidence;
+  private double targetConfidence;
   private boolean doConfidence;
 
   private double getDistributionValue(int index) {
@@ -159,7 +159,7 @@ public class ExperimentSamples {
     return value;
   }
 
-  public ExperimentSamples(int minSamples, int maxSamples, DistributionType distribution, double min, double max, double requestedConfidence, boolean doConfidence) {
+  public ExperimentSamples(int minSamples, int maxSamples, DistributionType distribution, double min, double max, double targetConfidence, boolean doConfidence) {
     this.samples = new double[maxSamples];
     this.minSamples = minSamples;
     this.numSamples = 0;
@@ -169,7 +169,7 @@ public class ExperimentSamples {
     this.distribution = distribution;
     this.min = min;
     this.max = max;
-    this.requestedConfidence = requestedConfidence;
+    this.targetConfidence = targetConfidence;
     this.doConfidence = doConfidence;
   }
 
@@ -192,7 +192,7 @@ public class ExperimentSamples {
       this.sup = avg + confidence;
       this.inf = ((this.inf < this.min) ? this.min : ((this.inf > this.max) ? this.max : this.inf));
       this.sup = ((this.sup < this.min) ? this.min : ((this.sup > this.max) ? this.max : this.sup));
-      if((this.numSamples >= this.minSamples) && ((this.sup - this.inf) <= (avg * this.requestedConfidence))) {
+      if((this.numSamples >= this.minSamples) && ((this.sup - this.inf) <= (avg * this.targetConfidence))) {
         return true;
       }
     }

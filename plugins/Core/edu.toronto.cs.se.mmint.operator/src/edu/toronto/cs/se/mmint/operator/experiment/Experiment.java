@@ -36,19 +36,19 @@ import edu.toronto.cs.se.mmint.operator.experiment.ExperimentSamples.Distributio
 
 public class Experiment extends OperatorImpl {
 
-  private Input input;
+  Input input;
   private Output output;
 
-  private static class Input {
+  static class Input {
     private final static @NonNull String IN_MODELS = "inputs";
     private final static @NonNull String GENERIC_OPERATORTYPE1 = "SETUP";
     private final static @NonNull String GENERIC_OPERATORTYPE2 = "SAMPLES";
-    private List<Model> inputs;
-    private WorkflowOperator setupWorkflow;
-    private WorkflowOperator samplesWorkflow;
+    List<Model> models;
+    WorkflowOperator setupWorkflow;
+    WorkflowOperator samplesWorkflow;
 
     public Input(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, GenericElement> genericsByName) {
-      this.inputs = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
+      this.models = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MODELS);
       this.setupWorkflow = (WorkflowOperator) genericsByName.get(GENERIC_OPERATORTYPE1);
       this.samplesWorkflow = (WorkflowOperator) genericsByName.get(GENERIC_OPERATORTYPE2);
     }
@@ -74,19 +74,19 @@ public class Experiment extends OperatorImpl {
   private final static @NonNull String PROPERTY_IN_SKIPWARMUPSAMPLES = "skipWarmupSamples";
   private final static @NonNull String PROPERTY_IN_MINSAMPLES = "minSamples";
   private final static @NonNull String PROPERTY_IN_MAXSAMPLES = "maxSamples";
-  private final static @NonNull String PROPERTY_IN_DISTRIBUTIONTYPE = "distributionType";
+  private final static @NonNull String PROPERTY_IN_DISTRIBUTION = "distribution";
   private final static @NonNull String PROPERTY_IN_TARGETCONFIDENCE = "targetConfidence";
   private long seed; // the seed to initialize the pseudorandom generator
-  private int skipWarmupSamples; // how many samples to discard as warmup phase, -1 for none
-  private int minSamples; // min number of samples to collect
-  private int maxSamples; // max number of samples to collect
-  private DistributionType distribution; // the type of distribution to calculate confidence intervals
-  private double targetConfidence; // the target confidence (% with respect to average value) to stop the experiment
+  int skipWarmupSamples; // how many samples to discard as warmup phase
+  int minSamples; // min number of samples to collect
+  int maxSamples; // max number of samples to collect
+  DistributionType distribution; // the type of distribution to calculate confidence intervals
+  double targetConfidence; // the target confidence (% with respect to average value) to stop the experiment
   /** The processing parameters. */
   private final static @NonNull String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
   private final static @NonNull String PROPERTY_IN_NUMTHREADS = "numThreads";
   private final static @NonNull int PROPERTY_IN_NUMTHREADS_DEFAULT = 1;
-  private int maxProcessingTime; // max time before timing out a sample
+  int maxProcessingTime; // max time before timing out a sample
   private int numThreads; // number of samples to process in parallel
   /** The outputs */
   private final static @NonNull String PROPERTY_IN_OUTPUTS = "outputs";
@@ -96,12 +96,12 @@ public class Experiment extends OperatorImpl {
   private final static @NonNull String PROPERTY_IN_OUTPUTMINVALUE_SUFFIX = ".minValue";
   private final static @NonNull String PROPERTY_IN_OUTPUTMAXVALUE_SUFFIX = ".maxValue";
   private final static @NonNull String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
-  private static class ExperimentOutput {
-    private String operatorUri;
-    private double timeoutValue;
-    private double minValue;
-    private double maxValue;
-    private boolean doConfidence;
+  static class ExperimentOutput {
+    String operatorUri;
+    double timeoutValue;
+    double minValue;
+    double maxValue;
+    boolean doConfidence;
     public ExperimentOutput(@NonNull String operatorUri, double timeoutValue, double minValue, double maxValue,
                             boolean doConfidence) {
       this.operatorUri = operatorUri; // the operator that generates the output
@@ -111,7 +111,7 @@ public class Experiment extends OperatorImpl {
       this.doConfidence = doConfidence; // whether to calculate the confidence interval or not
     }
   }
-  private Map<String, ExperimentOutput> outputs;
+  Map<String, ExperimentOutput> outputs;
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
@@ -133,13 +133,14 @@ public class Experiment extends OperatorImpl {
     this.minSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
     this.maxSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
     this.distribution = DistributionType.valueOf(MIDOperatorIOUtils.getStringProperty(inputProperties,
-                                                                                      PROPERTY_IN_DISTRIBUTIONTYPE));
+                                                                                      PROPERTY_IN_DISTRIBUTION));
     this.targetConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_TARGETCONFIDENCE);
     // processing
     this.maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
     this.numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS,
                                                                 PROPERTY_IN_NUMTHREADS_DEFAULT);
     // outputs
+    this.outputs = new HashMap<>();
     for (var output : MIDOperatorIOUtils.getOptionalStringPropertySet(inputProperties, PROPERTY_IN_OUTPUTS,
                                                                       PROPERTY_IN_OUTPUTS_DEFAULT)) {
       this.outputs.put(output, new ExperimentOutput(
@@ -163,6 +164,8 @@ public class Experiment extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
       /* TODO
        * - write all variables as input properties to all operators, in advance
+       * - previousOperator?
+       * - state?
        * - experimentSetups?
        */
     init(inputsByName, genericsByName, outputMIDsByName);
