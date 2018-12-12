@@ -8,7 +8,7 @@
     modelID="Relationship"
     diagramFileExtension="relationshipdiag"
     domainFileExtension="relationship"
-    copyrightText="Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    copyrightText="Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
     pluginDirectory="/edu.toronto.cs.se.mmint.relationship.diagram/src-gen">
   <diagram
       visualID="1000"

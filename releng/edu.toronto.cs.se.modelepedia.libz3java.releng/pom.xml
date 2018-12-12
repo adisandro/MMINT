@@ -5,9 +5,15 @@
   <version>2.2.99-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <tycho-version>1.2.0</tycho-version>
+    <tycho-version>1.3.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>tycho-1.3-staged</id>
+      <url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-1050/</url>
+    </pluginRepository>
+  </pluginRepositories>
   <build>
     <plugins>
       <plugin>

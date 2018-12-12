@@ -6,7 +6,7 @@ Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: edu.toronto.cs.se.modelepedia.relationaldatabase_mavo,
  edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.impl,
  edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.util
