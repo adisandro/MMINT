@@ -32,7 +32,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -106,7 +106,7 @@ public class ExperimentDriver extends OperatorImpl {
                 int j;
                 for (j = 0; j < this.driver.maxSamples; j++) {
                     // create sample folder
-                    folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(this.initialModel.getUri(), EXPERIMENT_SUBDIR + this.experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
+                    folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(FileUtils.replaceLastSegmentInPath(this.initialModel.getUri(), EXPERIMENT_SUBDIR + this.experimentIndex + MMINTConstants.URI_SEPARATOR + SAMPLE_SUBDIR + j)));
                     if (!folder.exists(null)) {
                         folder.create(true, true, null);
                     }
@@ -231,14 +231,14 @@ public class ExperimentDriver extends OperatorImpl {
     private static final int PROPERTY_IN_NUMTHREADS_DEFAULT = 1;
     /** The operators to be launched in the outer experiment setup cycle. */
     private static final String PROPERTY_IN_EXPERIMENTOPERATORS = "experimentOperators";
-    private static final String[] PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT = new String[] {};
+    private static final List<String> PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT = new ArrayList<>();
     /** The operators to be launched in the inner statistics cycle. */
     private static final String PROPERTY_IN_STATISTICSOPERATORS = "statisticsOperators";
     /** The variable operators property suffix. */
     private static final String PROPERTY_IN_ALLOPERATORS_SUFFIX = ".operator";
     /** The outputs of the experiment. */
     private static final String PROPERTY_IN_OUTPUTS = "outputs";
-    private static final String[] PROPERTY_IN_OUTPUTS_DEFAULT = new String[0];
+    private static final List<String> PROPERTY_IN_OUTPUTS_DEFAULT = new ArrayList<>();
     /** The output default result property suffix. */
     private static final String PROPERTY_IN_OUTPUTDEFAULT_SUFFIX = ".defaultResult";
     /** Min value a sample can take. */
@@ -294,7 +294,7 @@ public class ExperimentDriver extends OperatorImpl {
             return property.substring(1, property.length()-1).split("\\],\\[");
         }
         else {
-            return MIDOperatorIOUtils.getStringProperties(properties, propertyName);
+            return MIDOperatorIOUtils.getStringPropertyList(properties, propertyName).toArray(new String[] {});
         }
     }
 
@@ -302,7 +302,7 @@ public class ExperimentDriver extends OperatorImpl {
     public void readInputProperties(Properties inputProperties) throws MMINTException {
 
         // outer cycle parameters: vary experiment setup
-        this.vars = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_VARIABLES);
+        this.vars = MIDOperatorIOUtils.getStringPropertyList(inputProperties, PROPERTY_IN_VARIABLES).toArray(new String[] {});
         this.varValues = new String[this.vars.length][];
         this.numExperiments = 1;
         for (int i = 0; i < this.vars.length; i++) {
@@ -322,15 +322,15 @@ public class ExperimentDriver extends OperatorImpl {
         this.requestedConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_REQUESTEDCONFIDENCE);
 
         // operators
-        this.experimentOperators = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT);
-        this.statisticsOperators = MIDOperatorIOUtils.getStringProperties(inputProperties, PROPERTY_IN_STATISTICSOPERATORS);
+        this.experimentOperators = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, PROPERTY_IN_EXPERIMENTOPERATORS, PROPERTY_IN_EXPERIMENTOPERATORS_DEFAULT).toArray(new String[] {});
+        this.statisticsOperators = MIDOperatorIOUtils.getStringPropertyList(inputProperties, PROPERTY_IN_STATISTICSOPERATORS).toArray(new String[] {});
         this.varOperators = new String[this.vars.length][];
         for (int i = 0; i < this.vars.length; i++) {
-            this.varOperators[i] = MIDOperatorIOUtils.getStringProperties(inputProperties, this.vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX);
+            this.varOperators[i] = MIDOperatorIOUtils.getStringPropertyList(inputProperties, this.vars[i]+PROPERTY_IN_ALLOPERATORS_SUFFIX).toArray(new String[] {});
         }
 
         // outputs
-        this.outputs = MIDOperatorIOUtils.getOptionalStringProperties(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT);
+        this.outputs = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, PROPERTY_IN_OUTPUTS, PROPERTY_IN_OUTPUTS_DEFAULT).toArray(new String[] {});
         this.outputOperators = new String[this.outputs.length];
         this.outputDefaults = new double[this.outputs.length];
         this.outputMins = new double[this.outputs.length];
@@ -463,7 +463,7 @@ public class ExperimentDriver extends OperatorImpl {
             }
             else {
                 nextSubdir = (this.experimentOperators.length == 0) ?
-                    EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
+                    EXPERIMENT_SUBDIR + experimentIndex + MMINTConstants.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex:
                     SAMPLE_SUBDIR + statisticsIndex;
             }
             inputProperties.setProperty(MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, nextSubdir);
@@ -519,7 +519,7 @@ public class ExperimentDriver extends OperatorImpl {
                 }
             }
         }
-        String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINT.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
+        String experimentSubdir = EXPERIMENT_SUBDIR + experimentIndex + MMINTConstants.URI_SEPARATOR + SAMPLE_SUBDIR + statisticsIndex;
         Properties resultProperties = MIDOperatorIOUtils.getPropertiesFile(
             operatorType,
             initialModel,
