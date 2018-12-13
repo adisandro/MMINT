@@ -21,10 +21,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -86,6 +88,7 @@ public class Experiment extends OperatorImpl {
   private final static @NonNull String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
   private final static @NonNull String PROPERTY_IN_NUMTHREADS = "numThreads";
   private final static @NonNull int PROPERTY_IN_NUMTHREADS_DEFAULT = 1;
+  IPath path;
   int maxProcessingTime; // max time before timing out a sample
   private int numThreads; // number of samples to process in parallel
   /** The outputs */
@@ -136,6 +139,7 @@ public class Experiment extends OperatorImpl {
                                                                                       PROPERTY_IN_DISTRIBUTION));
     this.targetConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_TARGETCONFIDENCE);
     // processing
+    this.path = MMINT.getActiveInstanceMIDFile().getParent().getFullPath();
     this.maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
     this.numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS,
                                                                 PROPERTY_IN_NUMTHREADS_DEFAULT);

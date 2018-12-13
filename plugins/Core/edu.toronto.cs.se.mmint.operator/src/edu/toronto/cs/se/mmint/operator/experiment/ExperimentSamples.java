@@ -173,16 +173,16 @@ public class ExperimentSamples {
     this.doConfidence = doConfidence;
   }
 
-  public boolean addSample(double sample) {
+  public void addSample(double sample) {
     this.samples[this.numSamples] = sample;
     this.numSamples++;
     this.sum += sample;
-
     if (!this.doConfidence) {
-      return true;
+      return;
     }
+
     if (this.numSamples > 1) {
-      double avg = this.sum / this.numSamples;
+      double avg = getAverage();
       double diff = 0;
       for (int i = 0; i < this.numSamples; i++) {
         diff += Math.pow(this.samples[i]-avg, 2);
@@ -192,16 +192,11 @@ public class ExperimentSamples {
       this.sup = avg + confidence;
       this.inf = ((this.inf < this.min) ? this.min : ((this.inf > this.max) ? this.max : this.inf));
       this.sup = ((this.sup < this.min) ? this.min : ((this.sup > this.max) ? this.max : this.sup));
-      if((this.numSamples >= this.minSamples) && ((this.sup - this.inf) <= (avg * this.targetConfidence))) {
-        return true;
-      }
     }
     else {
       this.inf = this.min;
       this.sup = this.max;
     }
-
-    return false;
   }
 
   public double getLowerConfidence() {
@@ -218,6 +213,17 @@ public class ExperimentSamples {
 
   public int getNumSamples() {
     return this.numSamples;
+  }
+
+  public boolean isConfident() {
+    if (!this.doConfidence) {
+      return true;
+    }
+    if (this.numSamples > 1 && this.numSamples >= this.minSamples &&
+        (this.sup - this.inf) <= (getAverage() * this.targetConfidence)) {
+      return true;
+    }
+    return false;
   }
 
 }
