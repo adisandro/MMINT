@@ -255,8 +255,10 @@ public class Map extends NestingOperatorImpl {
 //			}
 		}
 		// pass 3: mapper MID, after output MIDs and MIDRels are serialized
-		super.createNestedInstanceMIDModelShortcuts(mapperShortcutModels);
-		super.writeNestedInstanceMID();
+		if (mapperMIDPath != null) {
+  		super.createNestedInstanceMIDModelShortcuts(mapperShortcutModels);
+  		super.writeNestedInstanceMID();
+		}
 
 		// pass 4: input MIDs and endpoint MIDs of input MIDRels, since model elements can be created there
 		java.util.Map<String, MID> inputMIDsToSerialize = new HashMap<>();
