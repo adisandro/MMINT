@@ -29,7 +29,7 @@ public class SampleRunner implements Runnable {
   private Experiment exp;
   private int expIndex;
   private int sampleIndex;
-  private IPath path;
+  IPath path;
 
   public SampleRunner(@NonNull ExperimentRunner experimentRunner, int sampleIndex) {
     this.exp = experimentRunner.exp;

@@ -116,9 +116,9 @@ public class ExperimentSamples {
   private int minSamples;
   private int numSamples;
   private double sum;
-  private double inf;
+  private double low;
   private double min;
-  private double sup;
+  private double up;
   private double max;
   private double targetConfidence;
   private boolean doConfidence;
@@ -164,8 +164,8 @@ public class ExperimentSamples {
     this.minSamples = minSamples;
     this.numSamples = 0;
     this.sum = 0;
-    this.inf = 0;
-    this.sup = 0;
+    this.low = 0;
+    this.up = 0;
     this.distribution = distribution;
     this.min = min;
     this.max = max;
@@ -188,19 +188,19 @@ public class ExperimentSamples {
         diff += Math.pow(this.samples[i]-avg, 2);
       }
       double confidence = getDistributionValue(this.numSamples-2) * Math.sqrt(diff / (this.numSamples*(this.numSamples-1)));
-      this.inf = avg - confidence;
-      this.sup = avg + confidence;
-      this.inf = ((this.inf < this.min) ? this.min : ((this.inf > this.max) ? this.max : this.inf));
-      this.sup = ((this.sup < this.min) ? this.min : ((this.sup > this.max) ? this.max : this.sup));
+      this.low = avg - confidence;
+      this.up = avg + confidence;
+      this.low = ((this.low < this.min) ? this.min : ((this.low > this.max) ? this.max : this.low));
+      this.up = ((this.up < this.min) ? this.min : ((this.up > this.max) ? this.max : this.up));
     }
     else {
-      this.inf = this.min;
-      this.sup = this.max;
+      this.low = this.min;
+      this.up = this.max;
     }
   }
 
   public double getLowerConfidence() {
-    return this.inf;
+    return this.low;
   }
 
   public double getAverage() {
@@ -208,19 +208,23 @@ public class ExperimentSamples {
   }
 
   public double getUpperConfidence() {
-    return this.sup;
+    return this.up;
   }
 
   public int getNumSamples() {
     return this.numSamples;
   }
 
-  public boolean isConfident() {
+  public boolean doConfidence() {
+    return this.doConfidence;
+  }
+
+  public boolean isWithinTargetConfidence() {
     if (!this.doConfidence) {
       return true;
     }
     if (this.numSamples > 1 && this.numSamples >= this.minSamples &&
-        (this.sup - this.inf) <= (getAverage() * this.targetConfidence)) {
+        (this.up - this.low) <= (getAverage() * this.targetConfidence)) {
       return true;
     }
     return false;

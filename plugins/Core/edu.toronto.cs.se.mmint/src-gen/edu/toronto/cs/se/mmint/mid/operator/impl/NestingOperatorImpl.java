@@ -131,8 +131,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String getNestedMIDPath() {
-        return nestedMIDPath;
+        return this.nestedMIDPath;
     }
 
     /**
@@ -140,11 +141,12 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setNestedMIDPath(String newNestedMIDPath) {
-        String oldNestedMIDPath = nestedMIDPath;
-        nestedMIDPath = newNestedMIDPath;
+        String oldNestedMIDPath = this.nestedMIDPath;
+        this.nestedMIDPath = newNestedMIDPath;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
+            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, this.nestedMIDPath));
     }
 
     /**
@@ -200,7 +202,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
+                return NESTED_MID_PATH_EDEFAULT == null ? this.nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(this.nestedMIDPath);
         }
         return super.eIsSet(featureID);
     }
@@ -243,7 +245,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (nestedMIDPath: ");
-        result.append(nestedMIDPath);
+        result.append(this.nestedMIDPath);
         result.append(')');
         return result.toString();
     }
@@ -251,6 +253,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     /**
      * @generated NOT
      */
+    @Override
     public MID getNestedInstanceMID() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -310,7 +313,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         super.addInstance(newOperator, midLevel, instanceMID);
         if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
             /* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
-             * (find the cases where it could be useful)
+             * (could be useful for experiments, to fetch execution times)
              */
             return;
         }
@@ -479,6 +482,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     /**
      * @generated NOT
      */
+    @Override
     public Operator startNestedInstance(Operator nestedOperatorType, EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName) throws Exception {
 
         //TODO MMINT[NESTED] Add option to detect when the nested MID is enabled, different from when operator instances are enabled (WorkflowOperator too)

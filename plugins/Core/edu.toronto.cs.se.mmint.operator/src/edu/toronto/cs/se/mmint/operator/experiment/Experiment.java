@@ -168,9 +168,12 @@ public class Experiment extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
       /* TODO
        * - write all variables as input properties to all operators, in advance
+       * - experimentSetups? (cartesian product + input + output)
        * - previousOperator?
        * - state?
-       * - experimentSetups?
+       * - remove updateMID (replaced by a null instanceMID)
+       * - evaluate inputSubdir (it would be similar to outputMIDsByName for non-models)
+       *   - what is the path of operators' output models? next to input model, next to outputMID (which can be null), next to inputSubdir?
        */
     init(inputsByName, genericsByName, outputMIDsByName);
     MIDTypeHierarchy.clearCachedRuntimeTypes();

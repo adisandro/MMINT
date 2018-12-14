@@ -10,6 +10,7 @@
  */
 package edu.toronto.cs.se.mmint.operator.experiment;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -24,13 +25,19 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 class ExperimentRunner implements Runnable {
 
   final static @NonNull String EXPERIMENT_SUBDIR = "experiment";
+  private final static @NonNull String PROPERTY_OUT_LOWER_SUFFIX = ".lower";
+  private final static @NonNull String PROPERTY_OUT_AVG_SUFFIX = ".avg";
+  private final static @NonNull String PROPERTY_OUT_UPPER_SUFFIX = ".upper";
+  private final static @NonNull String PROPERTY_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
 
   Experiment exp;
   int expIndex;
@@ -65,25 +72,26 @@ class ExperimentRunner implements Runnable {
       var setup = this.exp.input.setupWorkflow.startInstance(inputs, new Properties(), ECollections.emptyEList(),
                                                              new HashMap<>(), null);
       // run samples
-      for (var i = 0; i < this.exp.maxSamples + this.exp.skipWarmupSamples; i++) {
-        // run one sample
+      for (var s = 0; s < this.exp.maxSamples + this.exp.skipWarmupSamples; s++) {
+        // run one sample with timeout
         var executor = Executors.newSingleThreadExecutor();
+        var sampleRunner = new SampleRunner(this, s);
         var timedOut = false;
         try {
-          executor.submit(new SampleRunner(this, i)).get(this.exp.maxProcessingTime, TimeUnit.SECONDS);
+          executor.submit(sampleRunner).get(this.exp.maxProcessingTime, TimeUnit.SECONDS);
           executor.shutdown();
         }
         catch (Exception e) {
           MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} timed out",
-                                                                     this.expIndex, this.exp.numExperiments-1, i), e);
+                                                                     this.expIndex, this.exp.numExperiments-1, s), e);
           timedOut = true;
           executor.shutdownNow();
         }
         // skip warmup
-        if (i < this.exp.skipWarmupSamples) {
+        if (s < this.exp.skipWarmupSamples) {
           MMINTException.print(IStatus.WARNING,
                                MessageFormat.format("Experiment {0} out of {1}, sample {2} used to warm up",
-                                                    this.expIndex, this.exp.numExperiments-1, i), null);
+                                                    this.expIndex, this.exp.numExperiments-1, s), null);
           continue;
         }
         // update sample statistics
@@ -92,16 +100,30 @@ class ExperimentRunner implements Runnable {
           var output = outputEntry.getKey();
           var outputSpecs = outputEntry.getValue();
           var outputSamples = this.samples.get(output);
-          var sample = (timedOut) ? outputSpecs.timeoutValue : 666.666;//TODO
+          double sample;
+          if (timedOut) {
+            sample = outputSpecs.timeoutValue;
+          }
+          else {
+            Operator operatorType = MIDTypeRegistry.getType(outputSpecs.operatorUri);
+            var samplePropertiesPath = FileUtils.prependWorkspacePath(
+                                         sampleRunner.path.append(operatorType.getName() +
+                                                                  MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
+                                                                  MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                                                          .toOSString());
+            var sampleProperties = new Properties();
+            sampleProperties.load(new FileInputStream(samplePropertiesPath));
+            sample = MIDOperatorIOUtils.getDoubleProperty(sampleProperties, output);
+          }
           if (sample == Double.MAX_VALUE) {
             MMINTException.print(IStatus.WARNING,
                                  MessageFormat.format("Experiment {0} out of {1}, sample {2} output {3} skipped",
-                                                      this.expIndex, this.exp.numExperiments-1, i, output), null);
-            allConfident = outputSamples.isConfident() && allConfident;
+                                                      this.expIndex, this.exp.numExperiments-1, s, output), null);
+            allConfident = outputSamples.isWithinTargetConfidence() && allConfident;
             continue;
           }
           outputSamples.addSample(sample);
-          allConfident = outputSamples.isConfident() && allConfident;
+          allConfident = outputSamples.isWithinTargetConfidence() && allConfident;
         }
         if (allConfident) {
           break;
@@ -109,11 +131,25 @@ class ExperimentRunner implements Runnable {
       }
 
       // save outputs
-      var properties = new Properties();//TODO
-      var propertiesPath = FileUtils.prependWorkspacePath(
-                             this.path.append(this.exp.getName() + MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX)
-                                      .toOSString());
-      properties.store(new FileOutputStream(propertiesPath), null);
+      var expProperties = new Properties();
+      for (var sampleEntry : this.samples.entrySet()) {
+        var output = sampleEntry.getKey();
+        var outputSamples = sampleEntry.getValue();
+        expProperties.setProperty(output + PROPERTY_OUT_AVG_SUFFIX, String.valueOf(outputSamples.getAverage()));
+        if (outputSamples.doConfidence()) {
+          expProperties.setProperty(output + PROPERTY_OUT_UPPER_SUFFIX,
+                                 String.valueOf(outputSamples.getUpperConfidence()));
+          expProperties.setProperty(output + PROPERTY_OUT_LOWER_SUFFIX,
+                                 String.valueOf(outputSamples.getLowerConfidence()));
+        }
+        expProperties.setProperty(output + PROPERTY_OUT_NUMSAMPLES_SUFFIX,
+                                  String.valueOf(outputSamples.getNumSamples()));
+      }
+      var expPropertiesPath = FileUtils.prependWorkspacePath(
+                                this.path.append(this.exp.getName() + MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
+                                                 MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                                         .toOSString());
+      expProperties.store(new FileOutputStream(expPropertiesPath), null);
     }
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1} failed", this.expIndex,
