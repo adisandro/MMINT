@@ -12,15 +12,16 @@ package edu.toronto.cs.se.mmint.operator.experiment;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
-import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.Model;
 
 public class SampleRunner implements Runnable {
 
@@ -28,12 +29,14 @@ public class SampleRunner implements Runnable {
 
   private Experiment exp;
   private int expIndex;
+  private EList<Model> sampleInputs;
   private int sampleIndex;
   IPath path;
 
-  public SampleRunner(@NonNull ExperimentRunner experimentRunner, int sampleIndex) {
+  public SampleRunner(@NonNull ExperimentRunner experimentRunner, @NonNull EList<Model> sampleInputs, int sampleIndex) {
     this.exp = experimentRunner.exp;
     this.expIndex = experimentRunner.expIndex;
+    this.sampleInputs = sampleInputs;
     this.sampleIndex = sampleIndex;
     this.path = experimentRunner.path.append(SAMPLE_SUBDIR + this.sampleIndex);
   }
@@ -46,12 +49,13 @@ public class SampleRunner implements Runnable {
       if (!folder.exists(null)) {
         folder.create(true, true, null);
       }
+      this.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString());
+
       // run samples workflow
       System.err.println(MessageFormat.format("Running experiment {0} out of {1}, sample {2}", this.expIndex,
                                               this.exp.numExperiments-1, this.sampleIndex));
-      var inputs = this.exp.input.samplesWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
-      var samples = this.exp.input.samplesWorkflow.startInstance(inputs, new Properties(), ECollections.emptyEList(),
-                                                                 new HashMap<>(), null);
+      var inputs = this.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
+      this.exp.input.samplesWorkflow.startInstance(inputs, null, ECollections.emptyEList(), new HashMap<>(), null);
     }
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} failed",

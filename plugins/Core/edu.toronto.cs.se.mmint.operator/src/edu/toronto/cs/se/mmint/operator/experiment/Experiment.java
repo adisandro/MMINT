@@ -66,10 +66,19 @@ public class Experiment extends OperatorImpl {
 
   /** The variables (degrees of freedom) of the experiment. */
   private final static @NonNull String PROPERTY_IN_VARIABLES = "variables";
+  private final static @NonNull String PROPERTY_IN_VARIABLEOPERATORNAME_SUFFIX = ".operatorName";
   private final static @NonNull String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
   private final static @NonNull String PROPERTY_IN_VARIABLEX_SUFFIX = ".varX";
+  static class ExperimentVariable {
+    String operatorName; // the operator that needs the variable as input
+    List<String> values; // the list of values the variable has
+    public ExperimentVariable(@NonNull String operatorName, @NonNull List<String> values) {
+      this.operatorName = operatorName;
+      this.values = values;
+    }
+  }
+  private Map<String, ExperimentVariable> variables;
   int numExperiments;
-  private Map<String, List<String>> variables; // variables and their values
   private String varX; // The variable that represent the X axis of the gnuplot graph.
   /** The statistics parameters. */
   private final static @NonNull String PROPERTY_IN_SEED = "seed";
@@ -94,24 +103,24 @@ public class Experiment extends OperatorImpl {
   /** The outputs */
   private final static @NonNull String PROPERTY_IN_OUTPUTS = "outputs";
   private final static @NonNull Set<String> PROPERTY_IN_OUTPUTS_DEFAULT = new HashSet<>();
-  private final static @NonNull String PROPERTY_IN_OUTPUTOPERATORURI_SUFFIX = ".operatorUri";
+  private final static @NonNull String PROPERTY_IN_OUTPUTOPERATORNAME_SUFFIX = ".operatorName";
   private final static @NonNull String PROPERTY_IN_OUTPUTTIMEOUTVALUE_SUFFIX = ".timeoutValue";
   private final static @NonNull String PROPERTY_IN_OUTPUTMINVALUE_SUFFIX = ".minValue";
   private final static @NonNull String PROPERTY_IN_OUTPUTMAXVALUE_SUFFIX = ".maxValue";
   private final static @NonNull String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
   static class ExperimentOutput {
-    String operatorUri;
-    double timeoutValue;
-    double minValue;
-    double maxValue;
-    boolean doConfidence;
-    public ExperimentOutput(@NonNull String operatorUri, double timeoutValue, double minValue, double maxValue,
+    String operatorName; // the operator that generates the output
+    double timeoutValue; // sample value in case of timeout, -1 to skip it
+    double minValue; // min sample value that has a meaning
+    double maxValue; // max sample value that has a meaning, -1 for no limit
+    boolean doConfidence; // whether to calculate the confidence interval or not
+    public ExperimentOutput(@NonNull String operatorName, double timeoutValue, double minValue, double maxValue,
                             boolean doConfidence) {
-      this.operatorUri = operatorUri; // the operator that generates the output
-      this.timeoutValue = timeoutValue; // sample value in case of timeout, -1 to skip it
-      this.minValue = minValue; // min sample value that has a meaning
-      this.maxValue = maxValue; // max sample value that has a meaning, -1 for no limit
-      this.doConfidence = doConfidence; // whether to calculate the confidence interval or not
+      this.operatorName = operatorName;
+      this.timeoutValue = timeoutValue;
+      this.minValue = minValue;
+      this.maxValue = maxValue;
+      this.doConfidence = doConfidence;
     }
   }
   Map<String, ExperimentOutput> outputs;
@@ -124,11 +133,14 @@ public class Experiment extends OperatorImpl {
     for (var variable : MIDOperatorIOUtils.getStringPropertySet(inputProperties, PROPERTY_IN_VARIABLES)) {
       var values = MIDOperatorIOUtils.getStringPropertyList(inputProperties,
                                                             variable + PROPERTY_IN_VARIABLEVALUES_SUFFIX);
-      this.variables.put(variable, values);
-      this.numExperiments *= values.size();
+      this.variables.put(variable, new ExperimentVariable(
+        MIDOperatorIOUtils.getStringProperty(inputProperties, variable + PROPERTY_IN_VARIABLEOPERATORNAME_SUFFIX),
+        values
+      ));
       if (MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, variable + PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
         this.varX = variable;
       }
+      this.numExperiments *= values.size();
     }
     // statistics
     this.seed = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
@@ -148,7 +160,7 @@ public class Experiment extends OperatorImpl {
     for (var output : MIDOperatorIOUtils.getOptionalStringPropertySet(inputProperties, PROPERTY_IN_OUTPUTS,
                                                                       PROPERTY_IN_OUTPUTS_DEFAULT)) {
       this.outputs.put(output, new ExperimentOutput(
-        MIDOperatorIOUtils.getStringProperty(inputProperties, output + PROPERTY_IN_OUTPUTOPERATORURI_SUFFIX),
+        MIDOperatorIOUtils.getStringProperty(inputProperties, output + PROPERTY_IN_OUTPUTOPERATORNAME_SUFFIX),
         MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROPERTY_IN_OUTPUTTIMEOUTVALUE_SUFFIX),
         MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROPERTY_IN_OUTPUTMINVALUE_SUFFIX),
         MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROPERTY_IN_OUTPUTMAXVALUE_SUFFIX),
@@ -169,23 +181,31 @@ public class Experiment extends OperatorImpl {
       /* TODO
        * - write all variables as input properties to all operators, in advance
        * - experimentSetups? (cartesian product + input + output)
-       * - previousOperator?
-       * - state?
-       * - remove updateMID (replaced by a null instanceMID)
-       * - evaluate inputSubdir (it would be similar to outputMIDsByName for non-models)
-       *   - what is the path of operators' output models? next to input model, next to outputMID (which can be null), next to inputSubdir?
+       * - previousOperator? (check OperatorImpl.createInstance())
+       * - state? (check RandomOperatorImpl.createInstance())
+       * - remove updateMID, rename inputSubdir to workingPath, then regen
        */
     init(inputsByName, genericsByName, outputMIDsByName);
     MIDTypeHierarchy.clearCachedRuntimeTypes();
     ExecutorService executor = Executors.newFixedThreadPool(this.numThreads);
     for (int i = 0; i < this.numExperiments; i++) {
-        try {
-            executor.submit(new ExperimentRunner(this, i));
-        }
-        catch (Exception e) {
-            MMINTException.print(IStatus.WARNING,
-                                 MessageFormat.format("Experiment {0} out of {1} failed", i, this.numExperiments-1), e);
-        }
+      int j = 1;
+      var instances = new HashMap<String, String>();
+      // cartesian product
+      for (var variableEntry : this.variables.entrySet()) {
+        var variable = variableEntry.getKey();
+        var variableSpecs = variableEntry.getValue();
+        var value = variableSpecs.values.get((i / j) % variableSpecs.values.size());
+        instances.put(variable, value);
+        j *= variableSpecs.values.size();
+      }
+      try {
+        executor.submit(new ExperimentRunner(this, instances, i));
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.WARNING,
+                             MessageFormat.format("Experiment {0} out of {1} failed", i, this.numExperiments-1), e);
+      }
     }
     executor.shutdown();
     executor.awaitTermination(24, TimeUnit.HOURS);

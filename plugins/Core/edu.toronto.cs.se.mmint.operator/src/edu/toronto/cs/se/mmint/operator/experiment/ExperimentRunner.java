@@ -25,9 +25,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
@@ -40,12 +38,14 @@ class ExperimentRunner implements Runnable {
   private final static @NonNull String PROPERTY_OUT_NUMSAMPLES_SUFFIX = ".numSamples";
 
   Experiment exp;
+  Map<String, String> instances;
   int expIndex;
   IPath path;
   private Map<String, ExperimentSamples> samples;
 
-  ExperimentRunner(@NonNull Experiment experiment, int experimentIndex) {
+  ExperimentRunner(@NonNull Experiment experiment, @NonNull Map<String, String> instances, int experimentIndex) {
     this.exp = experiment;
+    this.instances = instances;
     this.expIndex = experimentIndex;
     this.path = this.exp.path.append(EXPERIMENT_SUBDIR + this.expIndex);
     this.samples = new HashMap<>(this.exp.outputs.size());
@@ -66,16 +66,22 @@ class ExperimentRunner implements Runnable {
       if (!folder.exists(null)) {
         folder.create(true, true, null);
       }
+      this.exp.input.setupWorkflow.setInputSubdir(this.path.toOSString());
+
+      // write input properties
+      Properties inputProperties = new Properties();
 
       // run setup workflow
       var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
-      var setup = this.exp.input.setupWorkflow.startInstance(inputs, new Properties(), ECollections.emptyEList(),
-                                                             new HashMap<>(), null);
+      var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(), new HashMap<>(),
+                                                             null);
+      var sampleInputs = setup.getOutputModels();
+
       // run samples
       for (var s = 0; s < this.exp.maxSamples + this.exp.skipWarmupSamples; s++) {
         // run one sample with timeout
         var executor = Executors.newSingleThreadExecutor();
-        var sampleRunner = new SampleRunner(this, s);
+        var sampleRunner = new SampleRunner(this, sampleInputs, s);
         var timedOut = false;
         try {
           executor.submit(sampleRunner).get(this.exp.maxProcessingTime, TimeUnit.SECONDS);
@@ -105,9 +111,8 @@ class ExperimentRunner implements Runnable {
             sample = outputSpecs.timeoutValue;
           }
           else {
-            Operator operatorType = MIDTypeRegistry.getType(outputSpecs.operatorUri);
             var samplePropertiesPath = FileUtils.prependWorkspacePath(
-                                         sampleRunner.path.append(operatorType.getName() +
+                                         sampleRunner.path.append(outputSpecs.operatorName +
                                                                   MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
                                                                   MIDOperatorIOUtils.PROPERTIES_SUFFIX)
                                                           .toOSString());
@@ -138,9 +143,9 @@ class ExperimentRunner implements Runnable {
         expProperties.setProperty(output + PROPERTY_OUT_AVG_SUFFIX, String.valueOf(outputSamples.getAverage()));
         if (outputSamples.doConfidence()) {
           expProperties.setProperty(output + PROPERTY_OUT_UPPER_SUFFIX,
-                                 String.valueOf(outputSamples.getUpperConfidence()));
+                                    String.valueOf(outputSamples.getUpperConfidence()));
           expProperties.setProperty(output + PROPERTY_OUT_LOWER_SUFFIX,
-                                 String.valueOf(outputSamples.getLowerConfidence()));
+                                    String.valueOf(outputSamples.getLowerConfidence()));
         }
         expProperties.setProperty(output + PROPERTY_OUT_NUMSAMPLES_SUFFIX,
                                   String.valueOf(outputSamples.getNumSamples()));

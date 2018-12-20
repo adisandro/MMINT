@@ -115,7 +115,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             else {
                 //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
                 String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
-                                         MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                                         MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
                 String workflowMIDBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
                 workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, false);
             }
@@ -158,7 +158,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         else {
             //TODO MMINT[WORKFLOW] Generalize addSubtype for heavy factory, setting nestedMIDPath there, then use it
             String workflowMIDPath = this.getClass().getName().replace(".", File.separator) +
-                                     MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                                     MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
             // in a binary install, extracts the file from the jar as a side effect
             MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
             String workflowMIDDiagramBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath +
@@ -240,6 +240,10 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                         break;
                     }
                 }
+            }
+            var workingPath = this.getInputSubdir();
+            if (workingPath != null) {
+                workflowOperatorType.setInputSubdir(workingPath);
             }
             Map<String, Model> workflowOutputsByName = workflowOperatorType.startInstance(
                 workflowInputs,

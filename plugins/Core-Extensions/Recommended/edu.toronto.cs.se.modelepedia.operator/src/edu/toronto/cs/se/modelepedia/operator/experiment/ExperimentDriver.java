@@ -493,10 +493,6 @@ public class ExperimentDriver extends OperatorImpl {
         Operator operator = operatorType.startInstance(inputs, inputProperties, generics, outputMIDsByName, null);
         if (operatorType instanceof RandomOperator) { // random state passing
             this.state[experimentIndex] = ((RandomOperator) operator).getState();
-            ((RandomOperator) operatorType).setState(null);
-        }
-        if (!operatorWorkflow.isEmpty()) { // operator workflow passing
-            operatorType.setPreviousOperator(null);
         }
         operatorWorkflow.add(operator);
         EList<Model> outputModels = operator.getOutputModels();

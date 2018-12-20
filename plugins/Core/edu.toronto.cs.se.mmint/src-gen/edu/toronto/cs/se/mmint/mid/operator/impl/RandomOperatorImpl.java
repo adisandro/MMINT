@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -81,8 +81,9 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Random getState() {
-        return state;
+        return this.state;
     }
 
     /**
@@ -90,11 +91,12 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setState(Random newState) {
-        Random oldState = state;
-        state = newState;
+        Random oldState = this.state;
+        this.state = newState;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, state));
+            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, this.state));
     }
 
     /**
@@ -150,7 +152,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case OperatorPackage.RANDOM_OPERATOR__STATE:
-                return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
+                return STATE_EDEFAULT == null ? this.state != null : !STATE_EDEFAULT.equals(this.state);
         }
         return super.eIsSet(featureID);
     }
@@ -166,7 +168,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (state: ");
-        result.append(state);
+        result.append(this.state);
         result.append(')');
         return result.toString();
     }
@@ -178,11 +180,13 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
     public Operator createInstance(MID instanceMID) throws MMINTException {
 
         RandomOperator newOperator = (RandomOperator) super.createInstance(instanceMID);
+        //TODO MMINT[OPERATOR] This is an ugly way to run a callback
         if (this.getState() == null) {
             newOperator.setState(new Random());
         }
         else {
             newOperator.setState(this.getState());
+            this.setState(null);
         }
 
         return newOperator;

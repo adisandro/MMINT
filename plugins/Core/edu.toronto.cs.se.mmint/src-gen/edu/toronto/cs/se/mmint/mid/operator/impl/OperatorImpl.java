@@ -28,7 +28,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -238,6 +237,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<ModelEndpoint> getInputs() {
         if (this.inputs == null) {
             this.inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
@@ -250,6 +250,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<ModelEndpoint> getOutputs() {
         if (this.outputs == null) {
             this.outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
@@ -262,6 +263,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<GenericEndpoint> getGenerics() {
         if (this.generics == null) {
             this.generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
@@ -274,6 +276,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String getInputSubdir() {
         return this.inputSubdir;
     }
@@ -283,6 +286,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setInputSubdir(String newInputSubdir) {
         String oldInputSubdir = this.inputSubdir;
         this.inputSubdir = newInputSubdir;
@@ -295,6 +299,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Operator getPreviousOperator() {
         if (this.previousOperator != null && this.previousOperator.eIsProxy()) {
             InternalEObject oldPreviousOperator = (InternalEObject)this.previousOperator;
@@ -321,6 +326,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setPreviousOperator(Operator newPreviousOperator) {
         Operator oldPreviousOperator = this.previousOperator;
         this.previousOperator = newPreviousOperator;
@@ -333,6 +339,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean isUpdateMID() {
         return this.updateMID;
     }
@@ -342,6 +349,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setUpdateMID(boolean newUpdateMID) {
         boolean oldUpdateMID = this.updateMID;
         this.updateMID = newUpdateMID;
@@ -354,6 +362,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public long getExecutionTime() {
         return this.executionTime;
     }
@@ -363,6 +372,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setExecutionTime(long newExecutionTime) {
         long oldExecutionTime = this.executionTime;
         this.executionTime = newExecutionTime;
@@ -375,6 +385,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean isCommutative() {
         return this.commutative;
     }
@@ -384,6 +395,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setCommutative(boolean newCommutative) {
         boolean oldCommutative = this.commutative;
         this.commutative = newCommutative;
@@ -811,6 +823,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public String getTypeSignature(EList<OperatorInput> inputs) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -894,7 +907,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             }
             else { // make a copy of the Workflow MID files
                 workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
-                newWorkflowMIDPath = newOperatorTypeName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
+                newWorkflowMIDPath = newOperatorTypeName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
                 FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDPath);
                 FileUtils.copyTextFileAndReplaceText(
                     FileUtils.prependWorkspacePath(workflowMIDPath + GMFUtils.DIAGRAM_SUFFIX),
@@ -911,7 +924,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 Model workflowModel = inoutWorkflowModel.getKey();
                 ModelEndpoint newModelTypeEndpoint = MIDFactory.eINSTANCE.createModelEndpoint();
                 Model modelType = typeMID.getExtendibleElement(workflowModel.getMetatypeUri());
-                MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINT.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
+                MIDTypeFactory.addType(newModelTypeEndpoint, null, newOperatorType.getUri() + MMINTConstants.URI_SEPARATOR + workflowModel.getUri(), workflowModel.getName(), typeMID);
                 newModelTypeEndpoint.setDynamic(true);
                 MIDTypeFactory.addModelTypeEndpoint(newModelTypeEndpoint, modelType, newOperatorType, inoutWorkflowModel.getValue());
             }
@@ -925,6 +938,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Operator createSubtype(String newOperatorTypeName, String implementationUri) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -940,6 +954,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteType() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -960,6 +975,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void openType() throws Exception {
 
         MMINTException.mustBeType(this);
@@ -1112,6 +1128,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1127,6 +1144,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1145,6 +1163,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1187,6 +1206,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Map<String, Model> getOutputsByName() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -1200,6 +1220,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public EList<Model> getOutputModels() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -1234,20 +1255,27 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Operator createInstance(MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
         Operator newOperator;
         try {
-            newOperator = this.getClass().newInstance();
+            newOperator = getClass().getDeclaredConstructor().newInstance();
         }
         catch (Exception e) {
             throw new MMINTException("Can't invoke constructor");
         }
+        //TODO MMINT[OPERATOR] This is an ugly way to run a callback
         if (this.getPreviousOperator() != null) {
             newOperator.setPreviousOperator(this.getPreviousOperator());
+            this.setPreviousOperator(null);
         }
+        if (this.getInputSubdir() != null) {
+          newOperator.setInputSubdir(this.getInputSubdir());
+          this.setInputSubdir(null);
+      }
         this.addInstance(newOperator, MIDLevel.INSTANCES, instanceMID);
 
         return newOperator;
@@ -1269,6 +1297,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstance() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -1279,6 +1308,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public EList<OperatorGeneric> selectAllowedGenerics(EList<OperatorInput> inputs) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1305,12 +1335,16 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private String getPropertiesUri(@NonNull String suffix) {
 
-        IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
-        if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
-            return null;
+        String workingPath = this.getInputSubdir();
+        if (workingPath == null) {
+            IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
+            if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor
+                return null;
+            }
+            workingPath = instanceMIDFile.getParent().getFullPath().toString();
         }
-        String propertiesUri = FileUtils.prependWorkspacePath(instanceMIDFile.getParent().getFullPath().toString());
-        propertiesUri += IPath.SEPARATOR + this.getName() + suffix + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+        String propertiesUri = FileUtils.prependWorkspacePath(workingPath) + File.separator + this.getName() + suffix +
+                               MIDOperatorIOUtils.PROPERTIES_SUFFIX;
 
         return propertiesUri;
     }
@@ -1318,6 +1352,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Properties getInputProperties() {
 
         String propertiesUri =  this.getPropertiesUri(MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX);
@@ -1335,6 +1370,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void readInputProperties(Properties inputProperties) throws MMINTException {
 
         this.setUpdateMID(
@@ -1348,6 +1384,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
             Map<String, MID> outputMIDsByName) throws Exception {
 
@@ -1519,6 +1556,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception {
 
         MMINTException.mustBeType(this);
@@ -1569,6 +1607,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void openInstance() throws Exception {
 
         MMINTException.mustBeInstance(this);
@@ -1579,6 +1618,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Operator createWorkflowInstance(MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1592,6 +1632,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void deleteWorkflowInstance() throws MMINTException {
 
         MMINTException.mustBeWorkflow(this);
@@ -1665,6 +1706,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void createWorkflowInstanceOutputs(Operator newOperator, Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1704,6 +1746,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -1721,6 +1764,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * @generated NOT
      */
+    @Override
     public void openWorkflowInstance() throws Exception {
 
         MMINTException.mustBeWorkflow(this);
