@@ -77,16 +77,16 @@ public class Experiment extends OperatorImpl {
       this.values = values;
     }
   }
-  private Map<String, ExperimentVariable> variables;
+  Map<String, ExperimentVariable> variables;
   int numExperiments;
   private String varX; // The variable that represent the X axis of the gnuplot graph.
   /** The statistics parameters. */
-  private final static @NonNull String PROPERTY_IN_SEED = "seed";
-  private final static @NonNull String PROPERTY_IN_SKIPWARMUPSAMPLES = "skipWarmupSamples";
-  private final static @NonNull String PROPERTY_IN_MINSAMPLES = "minSamples";
-  private final static @NonNull String PROPERTY_IN_MAXSAMPLES = "maxSamples";
-  private final static @NonNull String PROPERTY_IN_DISTRIBUTION = "distribution";
-  private final static @NonNull String PROPERTY_IN_TARGETCONFIDENCE = "targetConfidence";
+  private final static @NonNull String PROP_IN_SEED = "seed";
+  private final static @NonNull String PROP_IN_SKIPWARMUPSAMPLES = "skipWarmupSamples";
+  private final static @NonNull String PROP_IN_MINSAMPLES = "minSamples";
+  private final static @NonNull String PROP_IN_MAXSAMPLES = "maxSamples";
+  private final static @NonNull String PROP_IN_DISTRIBUTION = "distribution";
+  private final static @NonNull String PROP_IN_TARGETCONFIDENCE = "targetConfidence";
   private long seed; // the seed to initialize the pseudorandom generator
   int skipWarmupSamples; // how many samples to discard as warmup phase
   int minSamples; // min number of samples to collect
@@ -94,20 +94,20 @@ public class Experiment extends OperatorImpl {
   DistributionType distribution; // the type of distribution to calculate confidence intervals
   double targetConfidence; // the target confidence (% with respect to average value) to stop the experiment
   /** The processing parameters. */
-  private final static @NonNull String PROPERTY_IN_MAXPROCESSINGTIME = "maxProcessingTime";
-  private final static @NonNull String PROPERTY_IN_NUMTHREADS = "numThreads";
-  private final static @NonNull int PROPERTY_IN_NUMTHREADS_DEFAULT = 1;
+  private final static @NonNull String PROP_IN_MAXPROCESSINGTIME = "maxProcessingTime";
+  private final static @NonNull String PROP_IN_NUMTHREADS = "numThreads";
+  private final static @NonNull int PROP_IN_NUMTHREADS_DEFAULT = 1;
   IPath path;
   int maxProcessingTime; // max time before timing out a sample
   private int numThreads; // number of samples to process in parallel
   /** The outputs */
-  private final static @NonNull String PROPERTY_IN_OUTPUTS = "outputs";
-  private final static @NonNull Set<String> PROPERTY_IN_OUTPUTS_DEFAULT = new HashSet<>();
-  private final static @NonNull String PROPERTY_IN_OUTPUTOPERATORNAME_SUFFIX = ".operatorName";
-  private final static @NonNull String PROPERTY_IN_OUTPUTTIMEOUTVALUE_SUFFIX = ".timeoutValue";
-  private final static @NonNull String PROPERTY_IN_OUTPUTMINVALUE_SUFFIX = ".minValue";
-  private final static @NonNull String PROPERTY_IN_OUTPUTMAXVALUE_SUFFIX = ".maxValue";
-  private final static @NonNull String PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
+  private final static @NonNull String PROP_IN_OUTPUTS = "outputs";
+  private final static @NonNull Set<String> PROP_IN_OUTPUTS_DEFAULT = new HashSet<>();
+  private final static @NonNull String PROP_IN_OUTPUTOPERATORNAME_SUFFIX = ".operatorName";
+  private final static @NonNull String PROP_IN_OUTPUTTIMEOUTVALUE_SUFFIX = ".timeoutValue";
+  private final static @NonNull String PROP_IN_OUTPUTMINVALUE_SUFFIX = ".minValue";
+  private final static @NonNull String PROP_IN_OUTPUTMAXVALUE_SUFFIX = ".maxValue";
+  private final static @NonNull String PROP_IN_OUTPUTDOCONFIDENCE_SUFFIX = ".doConfidence";
   static class ExperimentOutput {
     String operatorName; // the operator that generates the output
     double timeoutValue; // sample value in case of timeout, -1 to skip it
@@ -143,28 +143,28 @@ public class Experiment extends OperatorImpl {
       this.numExperiments *= values.size();
     }
     // statistics
-    this.seed = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SEED);
-    this.skipWarmupSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_SKIPWARMUPSAMPLES);
-    this.minSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MINSAMPLES);
-    this.maxSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXSAMPLES);
+    this.seed = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_SEED);
+    this.skipWarmupSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_SKIPWARMUPSAMPLES);
+    this.minSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_MINSAMPLES);
+    this.maxSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_MAXSAMPLES);
     this.distribution = DistributionType.valueOf(MIDOperatorIOUtils.getStringProperty(inputProperties,
-                                                                                      PROPERTY_IN_DISTRIBUTION));
-    this.targetConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_TARGETCONFIDENCE);
+                                                                                      PROP_IN_DISTRIBUTION));
+    this.targetConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROP_IN_TARGETCONFIDENCE);
     // processing
     this.path = MMINT.getActiveInstanceMIDFile().getParent().getFullPath();
-    this.maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MAXPROCESSINGTIME);
-    this.numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMTHREADS,
-                                                                PROPERTY_IN_NUMTHREADS_DEFAULT);
+    this.maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_MAXPROCESSINGTIME);
+    this.numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROP_IN_NUMTHREADS,
+                                                                PROP_IN_NUMTHREADS_DEFAULT);
     // outputs
     this.outputs = new HashMap<>();
-    for (var output : MIDOperatorIOUtils.getOptionalStringPropertySet(inputProperties, PROPERTY_IN_OUTPUTS,
-                                                                      PROPERTY_IN_OUTPUTS_DEFAULT)) {
+    for (var output : MIDOperatorIOUtils.getOptionalStringPropertySet(inputProperties, PROP_IN_OUTPUTS,
+                                                                      PROP_IN_OUTPUTS_DEFAULT)) {
       this.outputs.put(output, new ExperimentOutput(
-        MIDOperatorIOUtils.getStringProperty(inputProperties, output + PROPERTY_IN_OUTPUTOPERATORNAME_SUFFIX),
-        MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROPERTY_IN_OUTPUTTIMEOUTVALUE_SUFFIX),
-        MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROPERTY_IN_OUTPUTMINVALUE_SUFFIX),
-        MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROPERTY_IN_OUTPUTMAXVALUE_SUFFIX),
-        MIDOperatorIOUtils.getBoolProperty(inputProperties, output + PROPERTY_IN_OUTPUTDOCONFIDENCE_SUFFIX)
+        MIDOperatorIOUtils.getStringProperty(inputProperties, output + PROP_IN_OUTPUTOPERATORNAME_SUFFIX),
+        MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROP_IN_OUTPUTTIMEOUTVALUE_SUFFIX),
+        MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROP_IN_OUTPUTMINVALUE_SUFFIX),
+        MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + PROP_IN_OUTPUTMAXVALUE_SUFFIX),
+        MIDOperatorIOUtils.getBoolProperty(inputProperties, output + PROP_IN_OUTPUTDOCONFIDENCE_SUFFIX)
       ));
     }
   }
@@ -179,7 +179,6 @@ public class Experiment extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
       /* TODO
-       * - write all variables as input properties to all operators, in advance
        * - experimentSetups? (cartesian product + input + output)
        * - previousOperator? (check OperatorImpl.createInstance())
        * - state? (check RandomOperatorImpl.createInstance())
@@ -190,17 +189,17 @@ public class Experiment extends OperatorImpl {
     ExecutorService executor = Executors.newFixedThreadPool(this.numThreads);
     for (int i = 0; i < this.numExperiments; i++) {
       int j = 1;
-      var instances = new HashMap<String, String>();
+      var expVariables = new HashMap<String, String>();
       // cartesian product
       for (var variableEntry : this.variables.entrySet()) {
         var variable = variableEntry.getKey();
         var variableSpecs = variableEntry.getValue();
         var value = variableSpecs.values.get((i / j) % variableSpecs.values.size());
-        instances.put(variable, value);
+        expVariables.put(variable, value);
         j *= variableSpecs.values.size();
       }
       try {
-        executor.submit(new ExperimentRunner(this, instances, i));
+        executor.submit(new ExperimentRunner(this, expVariables, i));
       }
       catch (Exception e) {
         MMINTException.print(IStatus.WARNING,

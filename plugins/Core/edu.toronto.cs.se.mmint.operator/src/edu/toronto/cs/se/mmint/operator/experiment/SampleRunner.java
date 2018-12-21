@@ -10,8 +10,11 @@
  */
 package edu.toronto.cs.se.mmint.operator.experiment;
 
+import java.io.FileOutputStream;
 import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -22,23 +25,26 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class SampleRunner implements Runnable {
 
   private final static @NonNull String SAMPLE_SUBDIR = "sample";
 
-  private Experiment exp;
-  private int expIndex;
+  private ExperimentRunner runner;
+  private Map<String, Properties> operatorProps;
   private EList<Model> sampleInputs;
   private int sampleIndex;
   IPath path;
 
-  public SampleRunner(@NonNull ExperimentRunner experimentRunner, @NonNull EList<Model> sampleInputs, int sampleIndex) {
-    this.exp = experimentRunner.exp;
-    this.expIndex = experimentRunner.expIndex;
+  public SampleRunner(@NonNull ExperimentRunner experimentRunner, @NonNull Map<String, Properties> operatorProperties,
+                      @NonNull EList<Model> sampleInputs, int sampleIndex) {
+    this.runner = experimentRunner;
+    this.operatorProps = operatorProperties;
     this.sampleInputs = sampleInputs;
     this.sampleIndex = sampleIndex;
-    this.path = experimentRunner.path.append(SAMPLE_SUBDIR + this.sampleIndex);
+    this.path = this.runner.path.append(SAMPLE_SUBDIR + this.sampleIndex);
   }
 
   @Override
@@ -49,17 +55,40 @@ public class SampleRunner implements Runnable {
       if (!folder.exists(null)) {
         folder.create(true, true, null);
       }
-      this.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString());
+      this.runner.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString());
+
+      // write operator properties
+      for (var samplesEntry : this.runner.samples.entrySet()) {
+        var output = samplesEntry.getKey();
+        var outputSpecs = this.runner.exp.outputs.get(output);
+        if (!outputSpecs.doConfidence) {
+          continue;
+        }
+        var outputSamples = samplesEntry.getValue();
+        var props = this.operatorProps.merge(outputSpecs.operatorName, new Properties(), (oldP, newP) -> oldP);
+        props.setProperty(output + MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX,
+                          String.valueOf(!outputSamples.isWithinTargetConfidence()));
+      }
+      for (var propsEntry : this.operatorProps.entrySet()) {
+        var operatorName = propsEntry.getKey();
+        var props = propsEntry.getValue();
+        var propsPath = FileUtils.prependWorkspacePath(
+                          this.path.append(operatorName + MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX +
+                                           MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                          .toOSString());
+        props.store(new FileOutputStream(propsPath), null);
+      }
 
       // run samples workflow
-      System.err.println(MessageFormat.format("Running experiment {0} out of {1}, sample {2}", this.expIndex,
-                                              this.exp.numExperiments-1, this.sampleIndex));
-      var inputs = this.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
-      this.exp.input.samplesWorkflow.startInstance(inputs, null, ECollections.emptyEList(), new HashMap<>(), null);
+      System.err.println(MessageFormat.format("Running experiment {0} out of {1}, sample {2}", this.runner.expIndex,
+                                              this.runner.exp.numExperiments-1, this.sampleIndex));
+      var inputs = this.runner.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
+      this.runner.exp.input.samplesWorkflow.startInstance(inputs, null, ECollections.emptyEList(), new HashMap<>(),
+                                                          null);
     }
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} failed",
-                                                                 this.expIndex, this.exp.numExperiments-1,
+                                                                 this.runner.expIndex, this.runner.exp.numExperiments-1,
                                                                  this.sampleIndex), e);
     }
   }
