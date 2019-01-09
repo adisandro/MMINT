@@ -1,5 +1,4 @@
 bin/
 target/
 xtend-gen/
-.settings/
 *.asm
