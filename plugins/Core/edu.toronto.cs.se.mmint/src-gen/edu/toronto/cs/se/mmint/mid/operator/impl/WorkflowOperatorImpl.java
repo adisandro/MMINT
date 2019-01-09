@@ -256,7 +256,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
                 Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());
                 allModelsByName.put(outputModelEndpoint.getTargetUri(), outputModel); // ids are unique in a workflowMID
-                if (workflowOutputMIDsByName.get(outputModelEndpoint.getName()) != nestedMID) { // final outputs
+                if (outputMIDsByName.containsKey(outputModelEndpoint.getTargetUri())) { // final outputs
                     outputsByName.put(outputModelEndpoint.getTargetUri(), outputModel);
                     outputModels.add(outputModel);
                 }
