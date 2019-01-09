@@ -12,7 +12,6 @@ package edu.toronto.cs.se.mmint.operator.experiment;
 
 import java.io.FileOutputStream;
 import java.text.MessageFormat;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -25,11 +24,13 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class SampleRunner implements Runnable {
 
+  final static @NonNull String OUTPUT_SAMPLESTIME = "samplesTime";
   private final static @NonNull String SAMPLE_SUBDIR = "sample";
 
   private ExperimentRunner runner;
@@ -37,6 +38,7 @@ public class SampleRunner implements Runnable {
   private EList<Model> sampleInputs;
   private int sampleIndex;
   IPath path;
+  Operator sample;
 
   public SampleRunner(@NonNull ExperimentRunner experimentRunner, @NonNull Map<String, Properties> operatorProperties,
                       @NonNull EList<Model> sampleInputs, int sampleIndex) {
@@ -61,7 +63,7 @@ public class SampleRunner implements Runnable {
       for (var samplesEntry : this.runner.samples.entrySet()) {
         var output = samplesEntry.getKey();
         var outputSpecs = this.runner.exp.outputs.get(output);
-        if (!outputSpecs.doConfidence) {
+        if (output.equals(OUTPUT_SAMPLESTIME) || !outputSpecs.doConfidence) {
           continue;
         }
         var outputSamples = samplesEntry.getValue();
@@ -83,8 +85,10 @@ public class SampleRunner implements Runnable {
       System.err.println(MessageFormat.format("Running experiment {0} out of {1}, sample {2}", this.runner.expIndex,
                                               this.runner.exp.numExperiments-1, this.sampleIndex));
       var inputs = this.runner.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
-      this.runner.exp.input.samplesWorkflow.startInstance(inputs, null, ECollections.emptyEList(), new HashMap<>(),
-                                                          null);
+      var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.runner.exp.input.samplesWorkflow, null);
+      this.runner.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString());
+      this.sample = this.runner.exp.input.samplesWorkflow.startInstance(inputs, null, ECollections.emptyEList(),
+                                                                        outputMIDsByName, null);
     }
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} failed",

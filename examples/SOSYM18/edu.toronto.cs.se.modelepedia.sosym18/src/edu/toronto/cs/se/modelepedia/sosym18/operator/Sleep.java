@@ -26,34 +26,32 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class Sleep extends OperatorImpl {
 
-    private final static @NonNull String PROPERTY_IN_MILLISECONDS = "ms";
-    private final static @NonNull int PROPERTY_IN_MILLISECONDS_DEFAULT = 0;
-    private int ms;
+  private final static @NonNull String PROP_IN_MILLISECONDS = "ms";
+  private final static @NonNull int PROP_IN_MILLISECONDS_DEFAULT = 0;
+  private long ms;
 
-    @Override
-    public void readInputProperties(Properties inputProperties) throws MMINTException {
+  @Override
+  public void readInputProperties(Properties inputProperties) throws MMINTException {
 
-        this.ms = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_MILLISECONDS,
-                                                            PROPERTY_IN_MILLISECONDS_DEFAULT);
+    this.ms = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROP_IN_MILLISECONDS,
+                                                        PROP_IN_MILLISECONDS_DEFAULT);
+  }
+
+  private void sleep() {
+    try {
+      Thread.sleep(this.ms);
     }
+    catch (InterruptedException e) {
+      // continue
+    }
+  }
 
-	private void sleep() {
-
-		try {
-			Thread.sleep(this.ms);
-		}
-		catch (InterruptedException e) {
-			// continue
-		}
-	}
-
-	@Override
+  @Override
     public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                   Map<String, MID> outputMIDsByName) throws Exception {
+      sleep();
 
-		sleep();
-
-		return new HashMap<>();
+      return new HashMap<>();
     }
 
 }

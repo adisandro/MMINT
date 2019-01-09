@@ -90,7 +90,9 @@ class ExperimentRunner implements Runnable {
 
       // run setup workflow
       var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
-      var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(), new HashMap<>(),
+      var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
+      this.exp.input.setupWorkflow.setInputSubdir(this.path.toOSString());
+      var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(), outputMIDsByName,
                                                              null);
       var sampleInputs = setup.getOutputModels();
 
@@ -128,14 +130,19 @@ class ExperimentRunner implements Runnable {
             sample = outputSpecs.timeoutValue;
           }
           else {
-            var samplePropsPath = FileUtils.prependWorkspacePath(
-                                    sampleRunner.path.append(outputSpecs.operatorName +
-                                                             MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
-                                                             MIDOperatorIOUtils.PROPERTIES_SUFFIX)
-                                    .toOSString());
-            var sampleProps = new Properties();
-            sampleProps.load(new FileInputStream(samplePropsPath));
-            sample = MIDOperatorIOUtils.getDoubleProperty(sampleProps, output);
+            if (output.equals(SampleRunner.OUTPUT_SAMPLESTIME)) {
+              sample = sampleRunner.sample.getExecutionTime();
+            }
+            else {
+              var samplePropsPath = FileUtils.prependWorkspacePath(
+                                      sampleRunner.path.append(outputSpecs.operatorName +
+                                                               MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
+                                                               MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                                      .toOSString());
+              var sampleProps = new Properties();
+              sampleProps.load(new FileInputStream(samplePropsPath));
+              sample = MIDOperatorIOUtils.getDoubleProperty(sampleProps, output);
+            }
           }
           if (sample == Double.MAX_VALUE) {
             MMINTException.print(IStatus.WARNING,

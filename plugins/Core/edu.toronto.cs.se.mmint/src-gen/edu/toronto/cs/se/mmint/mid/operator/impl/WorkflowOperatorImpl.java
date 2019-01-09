@@ -241,7 +241,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                     }
                 }
             }
-            var workingPath = this.getInputSubdir();
+            var workingPath = getInputSubdir();
             if (workingPath != null) {
                 workflowOperatorType.setInputSubdir(workingPath);
             }

@@ -1273,9 +1273,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             this.setPreviousOperator(null);
         }
         if (this.getInputSubdir() != null) {
-          newOperator.setInputSubdir(this.getInputSubdir());
-          this.setInputSubdir(null);
-      }
+            newOperator.setInputSubdir(this.getInputSubdir());
+            this.setInputSubdir(null);
+        }
         this.addInstance(newOperator, MIDLevel.INSTANCES, instanceMID);
 
         return newOperator;
@@ -1375,9 +1375,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         this.setUpdateMID(
             MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, true)
-        );
-        this.setInputSubdir(
-            MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_SUBDIR, null)
         );
     }
 

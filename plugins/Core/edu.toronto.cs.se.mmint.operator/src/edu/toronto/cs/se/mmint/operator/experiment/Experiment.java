@@ -65,10 +65,10 @@ public class Experiment extends OperatorImpl {
   }
 
   /** The variables (degrees of freedom) of the experiment. */
-  private final static @NonNull String PROPERTY_IN_VARIABLES = "variables";
-  private final static @NonNull String PROPERTY_IN_VARIABLEOPERATORNAME_SUFFIX = ".operatorName";
-  private final static @NonNull String PROPERTY_IN_VARIABLEVALUES_SUFFIX = ".values";
-  private final static @NonNull String PROPERTY_IN_VARIABLEX_SUFFIX = ".varX";
+  private final static @NonNull String PROP_IN_VARIABLES = "variables";
+  private final static @NonNull String PROP_IN_VARIABLEOPERATORNAME_SUFFIX = ".operatorName";
+  private final static @NonNull String PROP_IN_VARIABLEVALUES_SUFFIX = ".values";
+  private final static @NonNull String PROP_IN_VARIABLEX_SUFFIX = ".varX";
   static class ExperimentVariable {
     String operatorName; // the operator that needs the variable as input
     List<String> values; // the list of values the variable has
@@ -130,14 +130,13 @@ public class Experiment extends OperatorImpl {
     // variables of the experiment
     this.numExperiments = 1;
     this.variables = new HashMap<>();
-    for (var variable : MIDOperatorIOUtils.getStringPropertySet(inputProperties, PROPERTY_IN_VARIABLES)) {
-      var values = MIDOperatorIOUtils.getStringPropertyList(inputProperties,
-                                                            variable + PROPERTY_IN_VARIABLEVALUES_SUFFIX);
+    for (var variable : MIDOperatorIOUtils.getStringPropertySet(inputProperties, PROP_IN_VARIABLES)) {
+      var values = MIDOperatorIOUtils.getStringPropertyList(inputProperties, variable + PROP_IN_VARIABLEVALUES_SUFFIX);
       this.variables.put(variable, new ExperimentVariable(
-        MIDOperatorIOUtils.getStringProperty(inputProperties, variable + PROPERTY_IN_VARIABLEOPERATORNAME_SUFFIX),
+        MIDOperatorIOUtils.getStringProperty(inputProperties, variable + PROP_IN_VARIABLEOPERATORNAME_SUFFIX),
         values
       ));
-      if (MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, variable + PROPERTY_IN_VARIABLEX_SUFFIX, false)) {
+      if (MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, variable + PROP_IN_VARIABLEX_SUFFIX, false)) {
         this.varX = variable;
       }
       this.numExperiments *= values.size();
