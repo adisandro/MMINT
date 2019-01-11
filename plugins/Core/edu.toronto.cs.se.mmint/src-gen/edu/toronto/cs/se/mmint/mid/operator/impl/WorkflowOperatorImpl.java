@@ -14,8 +14,6 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -223,17 +221,18 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 workflowOutputMIDsByName.put(outputModelEndpoint.getName(), outputMID); // ..with operator output names
             }
             Operator workflowOperatorType = workflowOperator.getMetatype();
-            if (Boolean.parseBoolean( // multiple dispatch enabled
-                MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))
-            ) {
-                EList<Operator> polyOperators = ECollections.asEList(MIDTypeHierarchy.getSubtypes(workflowOperatorType));
-                Iterator<Operator> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
-                List<Model> inputModels = workflowInputs.stream()
+            if (Boolean.parseBoolean(MMINT.getPreference(
+                                       MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))
+            ) { // multiple dispatch enabled
+                var polyOperators = ECollections.asEList(MIDTypeHierarchy.getSubtypes(workflowOperatorType));
+                var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
+                var inputModels = ECollections.asEList(
+                  workflowInputs.stream()
                     .map(OperatorInput::getModel)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
                 while (polyIter.hasNext()) { // start from the most specialized operator backwards
-                    Operator polyOperator = polyIter.next();
-                    EList<OperatorInput> polyInputs = polyOperator.checkAllowedInputs(ECollections.toEList(inputModels));
+                    var polyOperator = polyIter.next();
+                    var polyInputs = polyOperator.checkAllowedInputs(inputModels);
                     if (polyInputs != null) {
                         workflowOperatorType = polyOperator;
                         workflowInputs = polyInputs;

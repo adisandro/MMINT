@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
@@ -97,18 +98,37 @@ public class Reduce extends NestingOperatorImpl {
 		Operator compositionOperatorType = MIDTypeRegistry.getType(MODELRELCOMPOSITION_OPERATORTYPE_URI);
 		Operator mergeOperatorType = MIDTypeRegistry.getType(MODELRELMERGE_OPERATORTYPE_URI);
 		// reduce loop
-		EList<OperatorInput> accumulatorInputs;
+		EList<OperatorInput> accumulatorInputs = null;
 		Map<String, Model> accumulatorOutputsByName = null;
-		Set<Model> accumulatorOutputModels = new HashSet<>();
-		Set<Model> intermediateModelsAndRels = new HashSet<>();
+		var accumulatorOutputModels = new HashSet<Model>();
+		var intermediateModelsAndRels = new HashSet<Model>();
+		var polyAccumulators = ECollections.newBasicEList(accumulatorOperatorType);
+		if (Boolean.parseBoolean(MMINT.getPreference(
+		                           MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
+		  polyAccumulators.addAll(MIDTypeHierarchy.getSubtypes(accumulatorOperatorType));
+		}
 		int i = 0;
-        //TODO MMINT[POLY] Reduce should support multiple dispatch, trying the first allowed input from the most specific operator
-		while ((accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(
-				ECollections.newBasicEList(reducedMID),
-				ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels))
-		) != null) {
-			Set<Model> accumulatorInputModels = new HashSet<>();
-			Set<ModelRel> accumulatorInputModelRels = new HashSet<>();
+		while (true) {
+      var inputMIDs = ECollections.newBasicEList(reducedMID);
+      var inputModelBlacklists = ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels);
+      if (polyAccumulators.size() == 1) { // multiple dispatch disabled, or the accumulator is not a multimethod
+        accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+      }
+      else {
+        var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyAccumulators);
+        while (polyIter.hasNext()) { // start from the most specialized operator backwards
+          var polyAccumulator = polyIter.next();
+          accumulatorInputs = polyAccumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+          if (accumulatorInputs != null) {
+            break;
+          }
+        }
+      }
+      if (accumulatorInputs == null) { // no more inputs to reduce
+        break;
+      }
+			var accumulatorInputModels = new HashSet<Model>();
+			var accumulatorInputModelRels = new HashSet<ModelRel>();
 			try {
 				// get all model inputs, including the ones attached to model rel inputs
 				for (OperatorInput accumulatorInput : accumulatorInputs) {

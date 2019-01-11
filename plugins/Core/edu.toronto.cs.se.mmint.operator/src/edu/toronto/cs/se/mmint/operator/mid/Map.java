@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint.operator.mid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -322,27 +321,28 @@ public class Map extends NestingOperatorImpl {
 		java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
 
 		// find all possible combinations of inputs and execute them
-		java.util.Map<Operator, Set<EList<OperatorInput>>> mapperSpecs = new LinkedHashMap<>(); // reproducible order
-		EList<Operator> polyOperators = (Boolean.parseBoolean(MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) ?
-			ECollections.asEList(MIDTypeHierarchy.getSubtypes(mapperOperatorType)) :
-			ECollections.emptyEList();
-		if (polyOperators.isEmpty()) { // multiple dispatch disabled, or the mapper operator is not a multimethod
+		var mapperSpecs = new LinkedHashMap<Operator, Set<EList<OperatorInput>>>(); // reproducible order
+		var polyMappers = ECollections.newBasicEList(mapperOperatorType);
+		if (Boolean.parseBoolean(MMINT.getPreference(
+                               MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
+		  polyMappers.addAll(MIDTypeHierarchy.getSubtypes(mapperOperatorType));
+		}
+		if (polyMappers.size() == 1) { // multiple dispatch disabled, or the mapper is not a multimethod
 			mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs, modelBlacklists));
 		}
 		else {
-			polyOperators.add(mapperOperatorType);
-			java.util.Map<String, EList<OperatorInput>> assignedInputs = new HashMap<>();
-			Iterator<Operator> polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
+			var assignedInputs = new HashMap<String, EList<OperatorInput>>();
+			var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyMappers);
 			while (polyIter.hasNext()) { // start from the most specialized operator backwards
-				Operator polyMapper = polyIter.next();
+				var polyMapper = polyIter.next();
 				// assign at each step the allowed inputs that have not been already assigned
-				Set<EList<OperatorInput>> mapperInputs = polyMapper.findAllowedInputs(inputMIDs, modelBlacklists);
-				java.util.Map<String, EList<OperatorInput>> newInputs = this.diffMultipleDispatchInputs(assignedInputs, mapperInputs);
+				var mapperInputs = polyMapper.findAllowedInputs(inputMIDs, modelBlacklists);
+				var newInputs = this.diffMultipleDispatchInputs(assignedInputs, mapperInputs);
 				mapperSpecs.put(polyMapper, new LinkedHashSet<>(newInputs.values())); // reproducible order
 				assignedInputs.putAll(newInputs);
 			}
 		}
-		java.util.Map<String, Model> outputsByName = this.map(inputMIDModels, inputMIDs, mapperOperatorType, mapperSpecs, instanceMIDsByMapperOutput);
+		var outputsByName = map(inputMIDModels, inputMIDs, mapperOperatorType, mapperSpecs, instanceMIDsByMapperOutput);
 
 		return outputsByName;
 	}
