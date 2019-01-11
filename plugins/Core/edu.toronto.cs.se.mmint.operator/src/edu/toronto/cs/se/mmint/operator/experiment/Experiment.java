@@ -178,7 +178,6 @@ public class Experiment extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
       /* TODO
-       * - experimentSetups? (cartesian product + input + output)
        * - previousOperator? (check OperatorImpl.createInstance())
        * - state? (check RandomOperatorImpl.createInstance())
        * - remove updateMID, rename inputSubdir to workingPath, then regen

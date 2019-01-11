@@ -159,7 +159,7 @@ class ExperimentRunner implements Runnable {
         }
       }
 
-      // save outputs
+      // save outputs and variables
       var expProps = new Properties();
       for (var sampleEntry : this.samples.entrySet()) {
         var output = sampleEntry.getKey();
@@ -170,6 +170,11 @@ class ExperimentRunner implements Runnable {
           expProps.setProperty(output + PROP_OUT_LOWER_SUFFIX, String.valueOf(outputSamples.getLowerConfidence()));
         }
         expProps.setProperty(output + PROP_OUT_NUMSAMPLES_SUFFIX, String.valueOf(outputSamples.getNumSamples()));
+      }
+      for (var expVariable : this.expVariables.entrySet()) {
+        var variable = expVariable.getKey();
+        var value = expVariable.getValue();
+        expProps.setProperty(variable, value);
       }
       var expPropsPath = FileUtils.prependWorkspacePath(
                            this.path.append(this.exp.getName() + MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
