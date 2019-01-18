@@ -240,10 +240,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                     }
                 }
             }
-            var workingPath = getInputSubdir();
-            if (workingPath != null) {
-                workflowOperatorType.setInputSubdir(workingPath);
-            }
+            workflowOperatorType.setInputSubdir(getInputSubdir());
             Map<String, Model> workflowOutputsByName = workflowOperatorType.startInstance(
                 workflowInputs,
                 null,

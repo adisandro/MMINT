@@ -66,9 +66,12 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 	protected class MIDContextRunOperatorCommand extends AbstractTransactionalCommand {
 
-		public MIDContextRunOperatorCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
+	  private List<IFile> affectedFiles;
+
+	  public MIDContextRunOperatorCommand(TransactionalEditingDomain domain, String label, List<IFile> affectedFiles) {
 
 			super(domain, label, affectedFiles);
+			this.affectedFiles = affectedFiles;
 		}
 
 		@Override
@@ -82,6 +85,9 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 					case TYPES:
 						throw new MMINTException("The TYPES level is not allowed");
 					case INSTANCES:
+					  if (this.affectedFiles.size() > 0) {
+					    operatorType.setInputSubdir(this.affectedFiles.get(0).getParent().getFullPath().toString());
+					  }
 						operatorType.startInstance(operatorInputs, null, operatorGenerics, outputMIDsByName, mid);
 						WorkspaceSynchronizer.getFile(mid.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
 						break;
