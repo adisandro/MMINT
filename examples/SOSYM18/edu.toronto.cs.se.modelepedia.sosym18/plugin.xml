@@ -586,6 +586,59 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
+               name="SOSYM18"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_SOSYM18"
+               class="edu.toronto.cs.se.modelepedia.sosym18.operator.SOSYM18">
+         </type>
+         <inputs>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="polyMID">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/MID">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://se.cs.toronto.edu/modelepedia/OtherType"
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="OtherType"
+               uri="http://se.cs.toronto.edu/modelepedia/OtherType">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/OtherType"
+            id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
+            isDiagram="false"
+            wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
+         <type
+               name="OtherType tree"
+               uri="http://se.cs.toronto.edu/modelepedia/OtherType_Tree">
+         </type>
+      </editorType>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
                name="Sleep"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">

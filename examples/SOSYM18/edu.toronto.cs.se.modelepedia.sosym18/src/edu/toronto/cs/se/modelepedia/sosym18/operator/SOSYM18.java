@@ -11,12 +11,14 @@
 package edu.toronto.cs.se.modelepedia.sosym18.operator;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -33,14 +35,14 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 public class SOSYM18 extends OperatorImpl {
 
   private Output output;
-  private final static @NonNull String PROP_IN_POLYTYPENAME = "polyTypeName";
-  private final static @NonNull String PROP_IN_OTHERTYPENAME = "otherTypeName";
+  private final static @NonNull String PROP_IN_POLYTYPEID = "polyTypeId";
+  private final static @NonNull String PROP_IN_OTHERTYPEID = "otherTypeId";
   private final static @NonNull String PROP_IN_NUMPOLYTYPES = "numPolyTypes";
   private final static @NonNull String PROP_IN_NUMAPPLICATIONSITES = "numApplicationSites";
   private final static @NonNull String PROP_IN_NUMNONAPPLICATIONSITES = "numNonApplicationSites";
   private final static @NonNull String PROP_IN_MODE = "mode";
-  private String polyTypeName;
-  private String otherTypeName;
+  private String polyTypeId;
+  private String otherTypeId;
   private int numPolyTypes;
   private int numApplicationSites;
   private int numNonApplicationSites;
@@ -48,7 +50,8 @@ public class SOSYM18 extends OperatorImpl {
 
   private static class Output {
     private final static @NonNull String OUT_MID = "polyMID";
-    private final static @NonNull String OUT_MID_NAME = "poly";
+    private final static @NonNull String POLY_NAME = "poly";
+    private final static @NonNull String OTHER_NAME = "other";
     private MID polyMIDModelContainer;
     private Model polyMIDModel;
 
@@ -65,8 +68,8 @@ public class SOSYM18 extends OperatorImpl {
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.polyTypeName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_POLYTYPENAME);
-    this.otherTypeName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_OTHERTYPENAME);
+    this.polyTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_POLYTYPEID);
+    this.otherTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_OTHERTYPEID);
     this.numPolyTypes = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMPOLYTYPES);
     this.numApplicationSites = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMAPPLICATIONSITES);
     this.numNonApplicationSites = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMNONAPPLICATIONSITES);
@@ -82,23 +85,44 @@ public class SOSYM18 extends OperatorImpl {
     polyMID.setLevel(MIDLevel.INSTANCES);
     switch (this.mode) {
     case "model":
-      for (int i = 0; i < this.numApplicationSites; i++) {
-
+      // poly types
+      var polyModelTypes = new ArrayList<Model>();
+      var polyEFactories = new ArrayList<EFactory>();
+      var polyEClasses = new ArrayList<EClass>();
+      for (var i = 0; i < this.numPolyTypes; i++) {
+        Model polyModelType = MIDTypeRegistry.getType(this.polyTypeId + i);
+        polyModelTypes.add(polyModelType);
+        var polyEPackage = polyModelType.getEMFTypeRoot();
+        polyEFactories.add(polyEPackage.getEFactoryInstance());
+        polyEClasses.add((EClass) polyEPackage.eContents().get(0));
       }
-      Model otherModelType = MIDTypeRegistry.getType(this.otherTypeName);
+      var polyIndex = 0;
+      for (var i = 0; i < this.numApplicationSites; i++) {
+        var polyModelType = polyModelTypes.get(polyIndex);
+        var polyModelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}.{2}", Output.POLY_NAME, i,
+                                                                           polyModelType.getFileExtension()));
+        polyModelType.createInstance(polyEFactories.get(polyIndex).create(polyEClasses.get(polyIndex)),
+                                     polyModelPath.toString(), polyMID);
+        polyIndex = (polyIndex + 1) % this.numPolyTypes;
+      }
+      // other types
+      if (this.numNonApplicationSites == 0) {
+        break;
+      }
+      Model otherModelType = MIDTypeRegistry.getType(this.otherTypeId);
       var otherEPackage = otherModelType.getEMFTypeRoot();
       var otherEFactory = otherEPackage.getEFactoryInstance();
       var otherEClass = (EClass) otherEPackage.eContents().get(0);
       for (int i = 0; i < this.numNonApplicationSites; i++) {
-        var otherModelPath = "";//TODO create unique name, and maybe add them in a subdir?
-        var otherModel = otherModelType.createInstance(otherEFactory.create(otherEClass), otherModelPath, polyMID);
-        polyMID.getModels().add(otherModel);
+        var otherModelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}.{2}", Output.OTHER_NAME, i,
+                                                                            otherModelType.getFileExtension()));
+        otherModelType.createInstance(otherEFactory.create(otherEClass), otherModelPath.toString(), polyMID);
       }
       break;
     case "rel":
       break;
     }
-    Path polyMIDPath = Paths.get(getInputSubdir(), Output.OUT_MID_NAME + "." + MIDPackage.eNAME);
+    var polyMIDPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{1}", Output.POLY_NAME, MIDPackage.eNAME));
     this.output.polyMIDModel = MIDTypeRegistry.getMIDModelType()
       .createInstanceAndEditor(polyMID, polyMIDPath.toString(), this.output.polyMIDModelContainer);
   }
@@ -106,7 +130,9 @@ public class SOSYM18 extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    //TODO inputs?
+    //TODO are 0 inputs ok to create a workflow?
+    //TODO are the polyMID and all the models not going to be serialized because this.output.polyMIDModelContainer is null within the experiment?
+    //TODO Sleep(Model) can be applied to OtherType
     init(inputsByName, outputMIDsByName);
     generate();
 
