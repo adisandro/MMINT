@@ -132,7 +132,6 @@ public class SOSYM18 extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     //TODO are 0 inputs ok to create a workflow?
     //TODO are the polyMID and all the models not going to be serialized because this.output.polyMIDModelContainer is null within the experiment?
-    //TODO Sleep(Model) can be applied to OtherType
     init(inputsByName, outputMIDsByName);
     generate();
 

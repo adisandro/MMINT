@@ -607,6 +607,23 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType"
+            class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.models">
+      <modelType>
+         <type
+               name="PolyType"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType"
+               isAbstract="true">
+         </type>
+      </modelType>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
             uri="http://se.cs.toronto.edu/modelepedia/OtherType"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
@@ -647,10 +664,10 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -661,7 +678,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType0"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType0"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -669,8 +686,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType0"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType0">
+               name="PolyType0"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType0">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -678,13 +698,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType0"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType0"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType0 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType0_Tree">
+               name="PolyType0 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType0_Tree">
          </type>
       </editorType>
    </extension>
@@ -694,7 +714,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT0Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT0Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -704,13 +724,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT0Sleep1-MT0/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT0Sleep1-PT0/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType0">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType0">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -721,7 +741,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType1"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType1"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -729,8 +749,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType1"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType1">
+               name="PolyType1"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType1">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -738,13 +761,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType1"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType1"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType1 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType1_Tree">
+               name="PolyType1 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType1_Tree">
          </type>
       </editorType>
    </extension>
@@ -754,7 +777,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT1Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT1Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -764,13 +787,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT1Sleep1-MT1/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT1Sleep1-PT1/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType1">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType1">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -781,7 +804,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType2"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType2"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -789,8 +812,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType2"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType2">
+               name="PolyType2"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType2">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -798,13 +824,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType2"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType2"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType2 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType2_Tree">
+               name="PolyType2 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType2_Tree">
          </type>
       </editorType>
    </extension>
@@ -814,7 +840,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT2Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT2Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -824,13 +850,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT2Sleep1-MT2/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT2Sleep1-PT2/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType2">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType2">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -841,7 +867,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType3"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType3"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -849,8 +875,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType3"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType3">
+               name="PolyType3"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType3">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -858,13 +887,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType3"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType3"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType3 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType3_Tree">
+               name="PolyType3 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType3_Tree">
          </type>
       </editorType>
    </extension>
@@ -874,7 +903,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT3Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT3Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -884,13 +913,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT3Sleep1-MT3/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT3Sleep1-PT3/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType3">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType3">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -901,7 +930,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType4"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType4"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -909,8 +938,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType4"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType4">
+               name="PolyType4"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType4">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -918,13 +950,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType4"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType4"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType4 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType4_Tree">
+               name="PolyType4 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType4_Tree">
          </type>
       </editorType>
    </extension>
@@ -934,7 +966,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT4Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT4Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -944,13 +976,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT4Sleep1-MT4/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT4Sleep1-PT4/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType4">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType4">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -961,7 +993,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType5"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType5"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -969,8 +1001,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType5"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType5">
+               name="PolyType5"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType5">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -978,13 +1013,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType5"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType5"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType5 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType5_Tree">
+               name="PolyType5 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType5_Tree">
          </type>
       </editorType>
    </extension>
@@ -994,7 +1029,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT5Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT5Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -1004,13 +1039,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT5Sleep1-MT5/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT5Sleep1-PT5/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType5">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType5">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -1021,7 +1056,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType6"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType6"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -1029,8 +1064,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType6"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType6">
+               name="PolyType6"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType6">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -1038,13 +1076,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType6"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType6"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType6 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType6_Tree">
+               name="PolyType6 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType6_Tree">
          </type>
       </editorType>
    </extension>
@@ -1054,7 +1092,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT6Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT6Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -1064,13 +1102,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT6Sleep1-MT6/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT6Sleep1-PT6/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType6">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType6">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -1081,7 +1119,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType7"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType7"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -1089,8 +1127,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType7"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType7">
+               name="PolyType7"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType7">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -1098,13 +1139,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType7"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType7"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType7 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType7_Tree">
+               name="PolyType7 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType7_Tree">
          </type>
       </editorType>
    </extension>
@@ -1114,7 +1155,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT7Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT7Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -1124,13 +1165,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT7Sleep1-MT7/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT7Sleep1-PT7/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType7">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType7">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -1141,7 +1182,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType8"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType8"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -1149,8 +1190,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType8"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType8">
+               name="PolyType8"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType8">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -1158,13 +1202,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType8"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType8"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType8 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType8_Tree">
+               name="PolyType8 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType8_Tree">
          </type>
       </editorType>
    </extension>
@@ -1174,7 +1218,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT8Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT8Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -1184,13 +1228,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT8Sleep1-MT8/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT8Sleep1-PT8/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType8">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType8">
                </typeEndpoint>
             </parameter>
          </inputs>
@@ -1201,7 +1245,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://se.cs.toronto.edu/modelepedia/ModelType9"
+            uri="http://se.cs.toronto.edu/modelepedia/PolyType9"
             class="edu.toronto.cs.se.mmint.mid.MIDPackage"/>
    </extension>
 
@@ -1209,8 +1253,11 @@
          point="edu.toronto.cs.se.mmint.models">
       <modelType>
          <type
-               name="ModelType9"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType9">
+               name="PolyType9"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType9">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/PolyType">
+            </superType>
          </type>
       </modelType>
    </extension>
@@ -1218,13 +1265,13 @@
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            modelTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType9"
+            modelTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType9"
             id="edu.toronto.cs.se.mmint.mid.presentation.MIDEditorID"
             isDiagram="false"
             wizardId="edu.toronto.cs.se.mmint.mid.presentation.MIDModelWizardID">
          <type
-               name="ModelType9 tree"
-               uri="http://se.cs.toronto.edu/modelepedia/ModelType9_Tree">
+               name="PolyType9 tree"
+               uri="http://se.cs.toronto.edu/modelepedia/PolyType9_Tree">
          </type>
       </editorType>
    </extension>
@@ -1234,7 +1281,7 @@
       <operatorType>
          <type
                name="Sleep"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MT9Sleep1"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_PT9Sleep1"
                class="edu.toronto.cs.se.modelepedia.sosym18.operator.Sleep">
             <superType
                   uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1">
@@ -1244,13 +1291,13 @@
             <parameter>
                <type
                      name="in0"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_MT9Sleep1-MT9/in0">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PT9Sleep1-PT9/in0">
                   <superType
-                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-Model/in0">
+                        uri="http://se.cs.toronto.edu/modelepedia/Operator_Sleep1-PolyType/in0">
                   </superType>
                </type>
                <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/ModelType9">
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/PolyType9">
                </typeEndpoint>
             </parameter>
          </inputs>
