@@ -155,6 +155,7 @@ public interface Model extends GenericElement {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (Model) metatype;'"
      * @generated
      */
+    @Override
     Model getMetatype();
 
     /**
@@ -168,6 +169,7 @@ public interface Model extends GenericElement {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Model) supertype;'"
      * @generated
      */
+    @Override
     Model getSupertype();
 
     /**
@@ -177,6 +179,7 @@ public interface Model extends GenericElement {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
      * @generated
      */
+    @Override
     MID getMIDContainer();
 
     /**
@@ -249,8 +252,8 @@ public interface Model extends GenericElement {
      *            not going to be created.
      * @return The created model.
      * @throws MMINTException
-     *             If this is not a model type, or the path of the new model instance is already registered in the
-     *             Instance MID.
+     *             If this is not a model type, if this model type is abstract, or if the path of the new model instance
+     *             is already registered in the Instance MID.
      * @throws IOException
      *             If the ECore model file could not be created or overwritten. <!-- end-user-doc -->
      * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException edu.toronto.cs.se.mmint.mid.IOException" newModelPathRequired="true"

@@ -46,7 +46,7 @@ import org.osgi.framework.Bundle;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -660,8 +660,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
                 if (editorType instanceof Diagram) {
                     continue;
                 }
-                newEditorTypeName = MMINT.ROOT_EDITOR_NAME;
-                editorId = MMINT.ROOT_EDITOR_ID;
+                newEditorTypeName = MMINTConstants.ROOT_EDITOR_NAME;
+                editorId = MMINTConstants.ROOT_EDITOR_ID;
                 wizardId = null;
                 wizardDialogClassName = null;
             }
@@ -827,7 +827,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             }
             else { // get metamodel files from bundle
                 Bundle bundle = MIDTypeRegistry.getTypeBundle(modelType.getUri());
-                Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
+                Enumeration<URL> metamodels = bundle.findEntries("/", "*" + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME, true);
                 List<String> tempMetamodelPaths = new ArrayList<>();
                 String tempMetamodelPath = null;
                 while (metamodels.hasMoreElements()) {
@@ -904,6 +904,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public Model createInstance(EObject rootModelObj, String newModelPath, MID instanceMID) throws MMINTException, IOException {
 
         MMINTException.mustBeType(this);
+        if (this.isAbstract()) {
+            throw new MMINTException("Can't instanciate an abstract model type");
+        }
 
         Model newModel = super.createThisEClass();
         this.addInstance(
@@ -1064,8 +1067,8 @@ public class ModelImpl extends GenericElementImpl implements Model {
                     FileUtils.copyTextFileAndReplaceText(
                         oldEditor.getUri(),
                         FileUtils.replaceFileNameInPath(oldEditor.getUri(), newModelName),
-                        origModel.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
-                        newModelName + MMINT.MODEL_FILEEXTENSION_SEPARATOR,
+                        origModel.getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR,
+                        newModelName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR,
                         true);
                 } catch (Exception e) {
                     MMINTException.print(IStatus.WARNING, "Error copying diagram file, skipping it", e);

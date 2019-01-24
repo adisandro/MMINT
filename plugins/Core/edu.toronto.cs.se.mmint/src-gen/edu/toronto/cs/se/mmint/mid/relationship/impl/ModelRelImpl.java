@@ -35,7 +35,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -143,6 +143,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<ModelEndpoint> getModelEndpoints() {
         if (this.modelEndpoints == null) {
             this.modelEndpoints = new EObjectContainmentEList<>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
@@ -155,6 +156,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<Mapping> getMappings() {
         if (this.mappings == null) {
             this.mappings = new EObjectContainmentEList<>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
@@ -167,6 +169,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<ModelEndpointReference> getModelEndpointRefs() {
         if (this.modelEndpointRefs == null) {
             this.modelEndpointRefs = new EObjectContainmentEList<>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
@@ -179,6 +182,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<MappingReference> getMappingRefs() {
         if (this.mappingRefs == null) {
             this.mappingRefs = new EObjectContainmentEList<>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
@@ -469,6 +473,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createBinarySubtype(String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -482,6 +487,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
         ModelRel newModelRelType = (origModelRelType instanceof BinaryModelRel) ?
@@ -603,6 +609,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ResourceSet getOutlineResourceTypes() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -695,13 +702,16 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
      * @return The created model relationship.
      * @throws MMINTException
-     *             If this is not a model relationship type.
+     *             If this is not a model relationship type, or if this model relationship type is abstract.
      * @generated NOT
      */
     @Override
     public Model createInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
+        if (this.isAbstract()) {
+            throw new MMINTException("Can't instanciate an abstract model relationship type");
+        }
 
         //TODO MMINT[EDITOR] Add editor for modelrel too and relative api?
         ModelRel newModelRel = super.createThisEClass();
@@ -740,6 +750,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -756,9 +767,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
+        if (this.isAbstract()) {
+            throw new MMINTException("Can't instanciate an abstract model relationship type");
+        }
 
         BinaryModelRel newModelRel = super.createThisBinaryEClass();
         this.addInstance(
@@ -776,6 +791,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -899,6 +915,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ResourceSet getOutlineResourceInstances() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -936,7 +953,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             newModelRelId,
             newModelRelId,
             ModelOrigin.CREATED,
-            MMINT.EMPTY_MODEL_FILE_EXTENSION,
+            MMINTConstants.EMPTY_MODEL_FILE_EXTENSION,
             MIDLevel.WORKFLOWS,
             workflowMID);
 
@@ -946,6 +963,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ModelRel createWorkflowInstanceAndEndpoints(String newModelRelId, EList<Model> endpointModels, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -968,6 +986,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createWorkflowBinaryInstance(String newModelRelId, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -978,7 +997,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             newModelRelId,
             newModelRelId,
             ModelOrigin.CREATED,
-            MMINT.EMPTY_MODEL_FILE_EXTENSION,
+            MMINTConstants.EMPTY_MODEL_FILE_EXTENSION,
             MIDLevel.WORKFLOWS,
             workflowMID);
 
@@ -988,6 +1007,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createWorkflowBinaryInstanceAndEndpoints(String newModelRelId, Model endpointSourceModel, Model endpointTargetModel, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);

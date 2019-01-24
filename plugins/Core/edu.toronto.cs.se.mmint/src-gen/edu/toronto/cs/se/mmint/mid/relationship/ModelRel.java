@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -115,6 +115,7 @@ public interface ModelRel extends Model {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ModelRel) metatype;'"
      * @generated
      */
+    @Override
     ModelRel getMetatype();
 
     /**
@@ -128,6 +129,7 @@ public interface ModelRel extends Model {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (Model) supertype;'"
      * @generated
      */
+    @Override
     Model getSupertype();
 
     /**
@@ -137,11 +139,12 @@ public interface ModelRel extends Model {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer();'"
      * @generated
      */
+    @Override
     MID getMIDContainer();
 
     /**
      * <!-- begin-user-doc --> Creates and adds a binary subtype of this model relationship type to the Type MID.
-     * 
+     *
      * @param newModelRelTypeName
      *            The name of the new model relationship type.
      * @param isMetamodelExtension
@@ -158,7 +161,7 @@ public interface ModelRel extends Model {
     /**
      * <!-- begin-user-doc --> Creates and adds a subtype of this model relationship type to the Type MID, copying its
      * structure from another model relationship type.
-     * 
+     *
      * @param origModelRelType
      *            The original model relationship type to be copied into the new one.
      * @return The created model relationship type.
@@ -173,7 +176,7 @@ public interface ModelRel extends Model {
     /**
      * <!-- begin-user-doc --> Gets the model type resources to be used in the Relationship diagram outline for this
      * model relationship type.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model relationship type. <!-- end-user-doc -->
      * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -193,7 +196,7 @@ public interface ModelRel extends Model {
      * <li>(null, str, models, mid) model rel file not created, model rel added to the MID;
      * </ol>
      * </p>
-     * 
+     *
      * @param rootModelRelObj
      *            Always considered to be null.
      * @param newModelRelName
@@ -222,7 +225,7 @@ public interface ModelRel extends Model {
      * <li>(null, str, mid) model rel file not created, model rel added to the MID;
      * </ol>
      * </p>
-     * 
+     *
      * @param rootModelRelObj
      *            Always considered to be null.
      * @param newModelRelName
@@ -231,7 +234,8 @@ public interface ModelRel extends Model {
      *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
      * @return The created binary model relationship.
      * @throws MMINTException
-     *             If this is not a model relationship type. <!-- end-user-doc -->
+     *             If this is not a model relationship type, or if this model relationship type is abstract.
+     * <!-- end-user-doc -->
      * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelRelNameRequired="true"
      * @generated
      */
@@ -249,7 +253,7 @@ public interface ModelRel extends Model {
      * <li>(null, str, model, model, mid) model rel file not created, model rel added to the MID;
      * </ol>
      * </p>
-     * 
+     *
      * @param rootModelRelObj
      *            Always considered to be null.
      * @param newModelRelName
@@ -272,7 +276,7 @@ public interface ModelRel extends Model {
     /**
      * <!-- begin-user-doc --> Gets the model instance resources to be used in the Relationship diagram outline for this
      * model relationship instance.
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model relationship instance. <!-- end-user-doc -->
      * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -283,7 +287,7 @@ public interface ModelRel extends Model {
     /**
      * <!-- begin-user-doc --> Creates and possibly adds a model relationship instance of this model relationship type
      * to a Workflow MID, together with its model instance endpoints.
-     * 
+     *
      * @param newModelRelId
      *            The id of the new model relationship.
      * @param endpointModels
@@ -302,7 +306,7 @@ public interface ModelRel extends Model {
     /**
      * <!-- begin-user-doc --> Creates and possibly adds a binary model relationship instance of this model relationship
      * type to a Workflow MID.
-     * 
+     *
      * @param newModelRelId
      *            The id of the new model relationship.
      * @param workflowMID
@@ -319,7 +323,7 @@ public interface ModelRel extends Model {
     /**
      * <!-- begin-user-doc --> Creates and possibly adds a binary model relationship instance of this model relationship
      * type to a Workflow MID, together with its model instance endpoints.
-     * 
+     *
      * @param newModelRelId
      *            The id of the new model relationship.
      * @param endpointSourceModel
