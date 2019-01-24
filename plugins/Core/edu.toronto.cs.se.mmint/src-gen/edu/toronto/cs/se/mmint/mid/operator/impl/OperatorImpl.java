@@ -1172,12 +1172,12 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         EList<OperatorInput> inputs = new BasicEList<>();
         int i = 0;
         for (ModelEndpoint inputModelTypeEndpoint : this.getInputs()) {
-            // check 1: not enough actual parameters, considering formal parameters with upper bound > 1 too
-            if (i >= inputModels.size()) {
+            // check 1: not enough actual parameters, excluding optional ones (lower bound == 0)
+            if (i >= inputModels.size() && inputModelTypeEndpoint.getLowerBound() > 0) {
                 return null;
             }
             // check 2: type or substitutable types
-            while (i < inputModels.size()) {
+            while (i < inputModels.size()) { // loop is only for upper bound > 1
                 OperatorInput operatorInput = this.checkAllowedInput(inputModelTypeEndpoint, inputModels.get(i));
                 if (operatorInput == null) {
                     return null;

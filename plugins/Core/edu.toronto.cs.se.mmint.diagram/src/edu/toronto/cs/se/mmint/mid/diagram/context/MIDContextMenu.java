@@ -134,7 +134,7 @@ public class MIDContextMenu extends ContributionItem {
 				doCopy = false;
 				doModelepedia = false;
 				doRefineByConstraint = false;
-				if (((MID) editPartElement).isInstancesLevel()) { // instances only
+				if (((MID) editPartElement).isInstancesLevel() || ((MID) editPartElement).isWorkflowsLevel()) {
 					mid = (MID) editPartElement;
 				}
 			}

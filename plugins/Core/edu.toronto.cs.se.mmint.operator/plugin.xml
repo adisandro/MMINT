@@ -1209,7 +1209,7 @@
                      name="inputs">
                </type>
                <typeEndpoint
-                     lowerBound="1"
+                     lowerBound="0"
                      upperBound="-1"
                      targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
                </typeEndpoint>
