@@ -15,6 +15,7 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -38,6 +39,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -193,6 +195,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
         MID nestedMID = this.getNestedInstanceMID();
         String nestedMIDPath = this.getNestedMIDPath();
         Map<String, Model> allModelsByName = new HashMap<>(inputsByName);
+        Random state = null;
         // create shortcuts to input models
         if (nestedMIDPath != null) {
             super.createNestedInstanceMIDModelShortcuts(ECollections.toEList(inputsByName.values()));
@@ -241,13 +244,19 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 }
             }
             workflowOperatorType.setInputSubdir(getInputSubdir());
-            Map<String, Model> workflowOutputsByName = workflowOperatorType.startInstance(
+            if (state != null && workflowOperatorType instanceof RandomOperator) {
+                ((RandomOperator) workflowOperatorType).setState(state);
+            }
+            var operator = workflowOperatorType.startInstance(
                 workflowInputs,
                 null,
                 workflowGenerics,
                 workflowOutputMIDsByName,
-                nestedMID)
-                    .getOutputsByName();
+                nestedMID);
+            if (operator instanceof RandomOperator) {
+               state = ((RandomOperator) operator).getState();
+            }
+            var workflowOutputsByName = operator.getOutputsByName();
             EList<Model> outputModels = new BasicEList<>();
             for (ModelEndpoint outputModelEndpoint : workflowOperator.getOutputs()) {
                 Model outputModel = workflowOutputsByName.get(outputModelEndpoint.getName());

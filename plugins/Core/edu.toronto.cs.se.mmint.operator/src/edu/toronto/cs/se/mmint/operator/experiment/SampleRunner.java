@@ -25,6 +25,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
@@ -86,7 +87,12 @@ public class SampleRunner implements Runnable {
                                               this.runner.exp.numExperiments-1, this.sampleIndex));
       var inputs = this.runner.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
       var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.runner.exp.input.samplesWorkflow, null);
-      this.runner.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString());
+      this.runner.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString()); // init with samples dir
+      this.runner.exp.input.samplesWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
+        .map(o -> o.getMetatype())
+        .filter(o -> o instanceof RandomOperator)
+        .findFirst()
+        .ifPresent(o -> ((RandomOperator) o).setState(this.runner.state));
       this.sample = this.runner.exp.input.samplesWorkflow.startInstance(inputs, null, ECollections.emptyEList(),
                                                                         outputMIDsByName, null);
     }

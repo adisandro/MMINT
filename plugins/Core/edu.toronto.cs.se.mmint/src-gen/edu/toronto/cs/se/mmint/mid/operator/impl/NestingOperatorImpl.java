@@ -313,7 +313,8 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         super.addInstance(newOperator, midLevel, instanceMID);
         if (instanceMID == null || midLevel == MIDLevel.WORKFLOWS) {
             /* TODO MMINT[OPERATOR] Could we put a nestedMID in memory when not serialized too, or will it defeat the purpose of having a null instanceMID?
-             * (could be useful for experiments, to fetch execution times)
+             * (could be useful for experiments, to keep track of random states and fetch execution times)
+             * (normal operators that receive the nestedMID need to be able to create models in it without serializing them: need two different flags)
              */
             return;
         }

@@ -87,7 +87,7 @@ public class Experiment extends OperatorImpl {
   private final static @NonNull String PROP_IN_MAXSAMPLES = "maxSamples";
   private final static @NonNull String PROP_IN_DISTRIBUTION = "distribution";
   private final static @NonNull String PROP_IN_TARGETCONFIDENCE = "targetConfidence";
-  private long seed; // the seed to initialize the pseudorandom generator
+  long seed; // the seed to initialize the pseudorandom generator
   int skipWarmupSamples; // how many samples to discard as warmup phase
   int minSamples; // min number of samples to collect
   int maxSamples; // max number of samples to collect

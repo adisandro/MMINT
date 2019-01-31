@@ -16,6 +16,7 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
@@ -41,6 +43,7 @@ class ExperimentRunner implements Runnable {
   Map<String, String> expVariables;
   int expIndex;
   IPath path;
+  Random state;
   Map<String, ExperimentSamples> samples;
 
   ExperimentRunner(@NonNull Experiment experiment, @NonNull Map<String, String> experimentVariables,
@@ -49,6 +52,7 @@ class ExperimentRunner implements Runnable {
     this.expVariables = experimentVariables;
     this.expIndex = experimentIndex;
     this.path = this.exp.path.append(EXPERIMENT_SUBDIR + this.expIndex);
+    this.state = new Random(this.exp.seed + this.expIndex);
     this.samples = new HashMap<>(this.exp.outputs.size());
     for (var outputEntry : this.exp.outputs.entrySet()) {
       var output = outputEntry.getKey();
@@ -91,7 +95,12 @@ class ExperimentRunner implements Runnable {
       // run setup workflow
       var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
       var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
-      this.exp.input.setupWorkflow.setInputSubdir(this.path.toOSString());
+      this.exp.input.setupWorkflow.setInputSubdir(this.path.toOSString()); // init with experiment dir
+      this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
+        .map(o -> o.getMetatype())
+        .filter(o -> o instanceof RandomOperator)
+        .findFirst()
+        .ifPresent(o -> ((RandomOperator) o).setState(this.state));
       var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(), outputMIDsByName,
                                                              null);
       var sampleInputs = setup.getOutputModels();

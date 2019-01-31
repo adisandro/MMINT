@@ -83,7 +83,7 @@ public class SOSYM18 extends RandomOperatorImpl {
   private Model generateModel(@NonNull Model modelType, @NonNull EFactory modelTypeFactory,
                               @NonNull EClass modelTypeRootObj, @NonNull String modelName,
                               @NonNull MID polyMID) throws Exception {
-    var modelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{2}", modelName, modelType.getFileExtension()));
+    var modelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{1}", modelName, modelType.getFileExtension()));
 
     return modelType.createInstance(modelTypeFactory.create(modelTypeRootObj), modelPath.toString(), polyMID);
   }
@@ -124,15 +124,15 @@ public class SOSYM18 extends RandomOperatorImpl {
                                     @NonNull String baseName, @NonNull MID polyMID) throws Exception {
     var models = polyMID.getModels();
     Model model1, model2;
-    switch (super.state.nextInt(3)) {
+    switch (getState().nextInt(3)) {
     case 1:
       //create new rel between existing models
-      model1 = models.get(super.state.nextInt(models.size()));
-      model2 = models.get(super.state.nextInt(models.size()));
+      model1 = models.get(getState().nextInt(models.size()));
+      model2 = models.get(getState().nextInt(models.size()));
       break;
     case 2:
       // create new rel between 1 existing model and 1 new model
-      model1 = models.get(super.state.nextInt(models.size()));
+      model1 = models.get(getState().nextInt(models.size()));
       model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
       break;
     case 3:
@@ -181,7 +181,7 @@ public class SOSYM18 extends RandomOperatorImpl {
     }
   }
 
-  private void generate() throws Exception {
+  private void generatePolyMID() throws Exception {
     var polyMID = MIDFactory.eINSTANCE.createMID();
     polyMID.setLevel(MIDLevel.INSTANCES);
     Model polyBaseType = MIDTypeRegistry.getType(this.polyTypeId);
@@ -199,10 +199,10 @@ public class SOSYM18 extends RandomOperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    //TODO are the polyMID and all the models not going to be serialized because this.output.polyMIDModelContainer is null within the experiment?
+    //TODO are the polyMID and all the models not going to be serialized because this.output.polyMIDModelContainer is null within the experiment? (only the polyMID)
     //TODO count and print numModels
     init(inputsByName, outputMIDsByName);
-    generate();
+    generatePolyMID();
 
     return this.output.packed();
   }
