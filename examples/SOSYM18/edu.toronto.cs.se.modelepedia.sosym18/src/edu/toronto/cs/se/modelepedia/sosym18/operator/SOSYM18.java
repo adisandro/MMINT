@@ -30,11 +30,11 @@ import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.operator.impl.RandomOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
-public class SOSYM18 extends OperatorImpl {
+public class SOSYM18 extends RandomOperatorImpl {
 
   private Output output;
   private final static @NonNull String PROP_IN_POLYTYPEID = "polyTypeId";
@@ -80,6 +80,14 @@ public class SOSYM18 extends OperatorImpl {
       this.output = new Output(outputMIDsByName);
   }
 
+  private Model generateModel(@NonNull Model modelType, @NonNull EFactory modelTypeFactory,
+                              @NonNull EClass modelTypeRootObj, @NonNull String modelName,
+                              @NonNull MID polyMID) throws Exception {
+    var modelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{2}", modelName, modelType.getFileExtension()));
+
+    return modelType.createInstance(modelTypeFactory.create(modelTypeRootObj), modelPath.toString(), polyMID);
+  }
+
   private void generateModels(@NonNull MID polyMID) throws Exception {
     // poly types
     var polyModelTypes = new ArrayList<Model>();
@@ -94,11 +102,8 @@ public class SOSYM18 extends OperatorImpl {
     }
     var polyIndex = 0;
     for (var i = 0; i < this.numApplicationSites; i++) {
-      var polyModelType = polyModelTypes.get(polyIndex);
-      var polyModelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}.{2}", Output.POLY_NAME, i,
-                                                                         polyModelType.getFileExtension()));
-      polyModelType.createInstance(polyEFactories.get(polyIndex).create(polyEClasses.get(polyIndex)),
-                                   polyModelPath.toString(), polyMID);
+      generateModel(polyModelTypes.get(polyIndex), polyEFactories.get(polyIndex), polyEClasses.get(polyIndex),
+                    Output.POLY_NAME + i, polyMID);
       polyIndex = (polyIndex + 1) % this.numPolyTypes;
     }
     // other types
@@ -110,10 +115,35 @@ public class SOSYM18 extends OperatorImpl {
     var otherEFactory = otherEPackage.getEFactoryInstance();
     var otherEClass = (EClass) otherEPackage.eContents().get(0);
     for (int i = 0; i < this.numNonApplicationSites; i++) {
-      var otherModelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}.{2}", Output.OTHER_NAME, i,
-                                                                          otherModelType.getFileExtension()));
-      otherModelType.createInstance(otherEFactory.create(otherEClass), otherModelPath.toString(), polyMID);
+      generateModel(otherModelType, otherEFactory, otherEClass, Output.OTHER_NAME + i, polyMID);
     }
+  }
+
+  private ModelRel generateModelRel(@NonNull ModelRel relType, @NonNull Model modelType,
+                                    @NonNull EFactory modelTypeFactory, @NonNull EClass modelTypeRootObj,
+                                    @NonNull String baseName, @NonNull MID polyMID) throws Exception {
+    var models = polyMID.getModels();
+    Model model1, model2;
+    switch (super.state.nextInt(3)) {
+    case 1:
+      //create new rel between existing models
+      model1 = models.get(super.state.nextInt(models.size()));
+      model2 = models.get(super.state.nextInt(models.size()));
+      break;
+    case 2:
+      // create new rel between 1 existing model and 1 new model
+      model1 = models.get(super.state.nextInt(models.size()));
+      model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
+      break;
+    case 3:
+    default:
+      // create new rel between 2 new models
+      model1 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "a", polyMID);
+      model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
+      break;
+    }
+
+    return relType.createInstanceAndEndpoints(null, baseName, ECollections.asEList(model1, model2), polyMID);
   }
 
   private void generateModelRels(@NonNull MID polyMID) throws Exception {
@@ -133,19 +163,8 @@ public class SOSYM18 extends OperatorImpl {
     }
     var polyIndex = 0;
     for (var i = 0; i < this.numApplicationSites; i++) {
-      //TODO add random choice among: 1) no new models, rel only, 2) 1 new model and 1 existing, 3) 2 new models
-      var polyModelType = polyModelTypes.get(polyIndex);
-      var polyModelPath1 = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}a.{2}", Output.POLY_NAME, i,
-                                                                          polyModelType.getFileExtension()));
-      var polyModel1 = polyModelType.createInstance(polyEFactories.get(polyIndex).create(polyEClasses.get(polyIndex)),
-                                                    polyModelPath1.toString(), polyMID);
-      var polyModelPath2 = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}b.{2}", Output.POLY_NAME, i,
-                                                                          polyModelType.getFileExtension()));
-      var polyModel2 = polyModelType.createInstance(polyEFactories.get(polyIndex).create(polyEClasses.get(polyIndex)),
-                                                    polyModelPath2.toString(), polyMID);
-      var polyRelType = polyRelTypes.get(polyIndex);
-      polyRelType.createInstanceAndEndpoints(null, Output.POLY_NAME + i, ECollections.asEList(polyModel1, polyModel2),
-                                             polyMID);
+      generateModelRel(polyRelTypes.get(polyIndex), polyModelTypes.get(polyIndex), polyEFactories.get(polyIndex),
+                       polyEClasses.get(polyIndex), Output.POLY_NAME + i, polyMID);
       polyIndex = (polyIndex + 1) % this.numPolyTypes;
     }
     // other types
@@ -158,17 +177,7 @@ public class SOSYM18 extends OperatorImpl {
     var otherEFactory = otherEPackage.getEFactoryInstance();
     var otherEClass = (EClass) otherEPackage.eContents().get(0);
     for (int i = 0; i < this.numNonApplicationSites; i++) {
-      //TODO add random choice among: 1) no new models, rel only, 2) 1 new model and 1 existing, 3) 2 new models
-      var otherModelPath1 = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}a.{2}", Output.OTHER_NAME, i,
-                                                                          otherModelType.getFileExtension()));
-      var otherModel1 = otherModelType.createInstance(otherEFactory.create(otherEClass), otherModelPath1.toString(),
-                                                      polyMID);
-      var otherModelPath2 = Path.of(getInputSubdir(), MessageFormat.format("{0}{1}b.{2}", Output.OTHER_NAME, i,
-                                                                          otherModelType.getFileExtension()));
-      var otherModel2 = otherModelType.createInstance(otherEFactory.create(otherEClass), otherModelPath2.toString(),
-                                                      polyMID);
-      otherRelType.createInstanceAndEndpoints(null, Output.OTHER_NAME + i,
-                                              ECollections.asEList(otherModel1, otherModel2), polyMID);
+      generateModelRel(otherRelType, otherModelType, otherEFactory, otherEClass, Output.OTHER_NAME + i, polyMID);
     }
   }
 
