@@ -199,7 +199,7 @@ public class SOSYM18 extends RandomOperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    //TODO are the polyMID and all the models not going to be serialized because this.output.polyMIDModelContainer is null within the experiment? (only the polyMID)
+    //TODO should not serialize all the models and polyMID because this.output.polyMIDModelContainer is null within the experiment
     //TODO count and print numModels
     init(inputsByName, outputMIDsByName);
     generatePolyMID();

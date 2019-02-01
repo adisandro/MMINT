@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:operator="http://se.cs.toronto.edu/mmint/MID/Operator" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Operator http://se.cs.toronto.edu/mmint/MID#//operator" xmi:id="_s4V0ACZpEemA8-gdXL6BPQ" type="MID" name="samples_reduce_model.middiag" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_tn9TECZpEemA8-gdXL6BPQ" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_tn9TFSZpEemA8-gdXL6BPQ" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_tn9TFiZpEemA8-gdXL6BPQ" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_tn9TESZpEemA8-gdXL6BPQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_tn9TEiZpEemA8-gdXL6BPQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_tn9TEyZpEemA8-gdXL6BPQ" hint="Mid"/>
+    <element xmi:type="mid:Model" href="samples_reduce_model.mid#//@models.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tn9TFCZpEemA8-gdXL6BPQ" x="128" y="80"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_vJ_tkCZpEemA8-gdXL6BPQ" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_vJ_tlSZpEemA8-gdXL6BPQ" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_vJ_tliZpEemA8-gdXL6BPQ" type="5002"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_vJ_tkSZpEemA8-gdXL6BPQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vJ_tkiZpEemA8-gdXL6BPQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vJ_tkyZpEemA8-gdXL6BPQ" hint="Mid"/>
+    <element xmi:type="mid:Model" href="samples_reduce_model.mid#//@models.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vJ_tlCZpEemA8-gdXL6BPQ" x="672" y="80"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_vJ_tlyZpEemA8-gdXL6BPQ" type="2005">
+    <children xmi:type="notation:DecorationNode" xmi:id="_vKAUoCZpEemA8-gdXL6BPQ" type="5009"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_vJ_tmCZpEemA8-gdXL6BPQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vJ_tmSZpEemA8-gdXL6BPQ" fontName="Cantarell" fontHeight="12"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vJ_tmiZpEemA8-gdXL6BPQ" hint="Mid"/>
+    <element xmi:type="operator:Operator" href="samples_reduce_model.mid#//@operators.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vJ_tmyZpEemA8-gdXL6BPQ" x="400" y="96"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_s4V0ASZpEemA8-gdXL6BPQ"/>
+  <element xmi:type="mid:MID" href="samples_reduce_model.mid#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_vKEmECZpEemA8-gdXL6BPQ" type="4004" source="_vJ_tlyZpEemA8-gdXL6BPQ" target="_tn9TECZpEemA8-gdXL6BPQ">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_vKEmESZpEemA8-gdXL6BPQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vKEmEiZpEemA8-gdXL6BPQ" fontName="Cantarell" fontHeight="12"/>
+    <element xmi:type="mid:ModelEndpoint" href="samples_reduce_model.mid#//@operators.0/@inputs.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vKEmEyZpEemA8-gdXL6BPQ" points="[0, 0, -199, -110]$[144, 80, -55, -30]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_vKFNICZpEemA8-gdXL6BPQ" type="4005" source="_vJ_tlyZpEemA8-gdXL6BPQ" target="_vJ_tkCZpEemA8-gdXL6BPQ">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_vKFNISZpEemA8-gdXL6BPQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vKFNIiZpEemA8-gdXL6BPQ" fontName="Cantarell" fontHeight="12"/>
+    <element xmi:type="mid:ModelEndpoint" href="samples_reduce_model.mid#//@operators.0/@outputs.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vKFNIyZpEemA8-gdXL6BPQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+</notation:Diagram>
