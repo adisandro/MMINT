@@ -117,7 +117,7 @@ class ExperimentRunner implements Runnable {
         }
         catch (Exception e) {
           MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} timed out",
-                                                                     this.expIndex, this.exp.numExperiments-1, s), e);
+                                                                     this.expIndex+1, this.exp.numExperiments, s), e);
           timedOut = true;
           executor.shutdownNow();
         }
@@ -125,7 +125,7 @@ class ExperimentRunner implements Runnable {
         if (s < this.exp.skipWarmupSamples) {
           MMINTException.print(IStatus.WARNING,
                                MessageFormat.format("Experiment {0} out of {1}, sample {2} used to warm up",
-                                                    this.expIndex, this.exp.numExperiments-1, s), null);
+                                                    this.expIndex+1, this.exp.numExperiments, s), null);
           continue;
         }
         // update sample statistics
@@ -156,7 +156,7 @@ class ExperimentRunner implements Runnable {
           if (sample == Double.MAX_VALUE) {
             MMINTException.print(IStatus.WARNING,
                                  MessageFormat.format("Experiment {0} out of {1}, sample {2} output {3} skipped",
-                                                      this.expIndex, this.exp.numExperiments-1, s, output), null);
+                                                      this.expIndex+1, this.exp.numExperiments, s, output), null);
             allConfident = outputSamples.isWithinTargetConfidence() && allConfident;
             continue;
           }
@@ -192,8 +192,8 @@ class ExperimentRunner implements Runnable {
       expProps.store(new FileOutputStream(expPropsPath), null);
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1} failed", this.expIndex,
-                                                                 this.exp.numExperiments-1), e);
+      MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1} failed", this.expIndex+1,
+                                                                 this.exp.numExperiments), e);
     }
   }
 }

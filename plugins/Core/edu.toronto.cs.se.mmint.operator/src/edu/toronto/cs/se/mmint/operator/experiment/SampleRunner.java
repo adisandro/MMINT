@@ -83,8 +83,8 @@ public class SampleRunner implements Runnable {
       }
 
       // run samples workflow
-      System.err.println(MessageFormat.format("Running experiment {0} out of {1}, sample {2}", this.runner.expIndex,
-                                              this.runner.exp.numExperiments-1, this.sampleIndex));
+      System.err.println(MessageFormat.format("Running experiment {0} out of {1}, sample {2}", this.runner.expIndex+1,
+                                              this.runner.exp.numExperiments, this.sampleIndex+1));
       var inputs = this.runner.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
       var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.runner.exp.input.samplesWorkflow, null);
       this.runner.exp.input.samplesWorkflow.setInputSubdir(this.path.toOSString()); // init with samples dir
@@ -98,8 +98,8 @@ public class SampleRunner implements Runnable {
     }
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1}, sample {2} failed",
-                                                                 this.runner.expIndex, this.runner.exp.numExperiments-1,
-                                                                 this.sampleIndex), e);
+                                                                 this.runner.expIndex+1, this.runner.exp.numExperiments,
+                                                                 this.sampleIndex+1), e);
     }
   }
 

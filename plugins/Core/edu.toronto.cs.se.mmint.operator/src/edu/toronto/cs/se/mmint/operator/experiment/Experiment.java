@@ -181,6 +181,8 @@ public class Experiment extends OperatorImpl {
        * - previousOperator? (check OperatorImpl.createInstance())
        * - state? (check RandomOperatorImpl.createInstance())
        * - remove updateMID, rename inputSubdir to workingPath, then regen
+       * - better mechanism for fetching execution times of operators
+       * - review the old experiment, check that there are no diffs, then remove it
        */
     init(inputsByName, genericsByName, outputMIDsByName);
     MIDTypeHierarchy.clearCachedRuntimeTypes();
@@ -201,7 +203,7 @@ public class Experiment extends OperatorImpl {
       }
       catch (Exception e) {
         MMINTException.print(IStatus.WARNING,
-                             MessageFormat.format("Experiment {0} out of {1} failed", i, this.numExperiments-1), e);
+                             MessageFormat.format("Experiment {0} out of {1} failed", i+1, this.numExperiments), e);
       }
     }
     executor.shutdown();
