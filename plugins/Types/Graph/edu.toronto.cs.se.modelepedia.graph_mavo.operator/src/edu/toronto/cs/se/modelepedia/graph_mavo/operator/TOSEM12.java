@@ -448,7 +448,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			outputProperties,
 			this,
 			mayModel,
-			getInputSubdir(),
+			getWorkingPath(),
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
 

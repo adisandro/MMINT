@@ -3337,7 +3337,7 @@ public interface OperatorPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Input Subdir</em>'.
-     * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir()
+     * @see edu.toronto.cs.se.mmint.mid.operator.Operator#getWorkingPath()
      * @see #getOperator()
      * @generated
      */

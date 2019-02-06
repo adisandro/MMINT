@@ -86,7 +86,7 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 						throw new MMINTException("The TYPES level is not allowed");
 					case INSTANCES:
 					  if (this.affectedFiles.size() > 0) {
-					    operatorType.setInputSubdir(this.affectedFiles.get(0).getParent().getFullPath().toString());
+					    operatorType.setWorkingPath(this.affectedFiles.get(0).getParent().getFullPath().toString());
 					  }
 						operatorType.startInstance(operatorInputs, null, operatorGenerics, outputMIDsByName, mid);
 						WorkspaceSynchronizer.getFile(mid.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);

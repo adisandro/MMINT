@@ -196,7 +196,7 @@ public class GenerateRandomGraphMAVO extends RandomOperatorImpl {
 		// create random graph
 		Graph randomGraph = generateRandomGraph();
 		String lastSegmentUri = RANDOM_MODEL_NAME + (new Date()).getTime() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + Graph_MAVOPackage.eNAME;
-		String subdir = getInputSubdir();
+		String subdir = getWorkingPath();
 		if (subdir != null) {
 			lastSegmentUri = subdir + MMINT.URI_SEPARATOR + lastSegmentUri;
 		}

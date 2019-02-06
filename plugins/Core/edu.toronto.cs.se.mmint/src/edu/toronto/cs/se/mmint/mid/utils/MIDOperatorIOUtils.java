@@ -93,7 +93,7 @@ public class MIDOperatorIOUtils {
 	}
 
 	public static void writeOutputProperties(Operator operator, Properties outProps) throws Exception {
-	  var outPropsPath = Path.of(operator.getInputSubdir(),
+	  var outPropsPath = Path.of(operator.getWorkingPath(),
 	                             MessageFormat.format("{0}{1}{2}", operator.getName(), OUTPUT_PROPERTIES_SUFFIX,
 	                                                  PROPERTIES_SUFFIX));
 	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(outPropsPath.toString())), null);

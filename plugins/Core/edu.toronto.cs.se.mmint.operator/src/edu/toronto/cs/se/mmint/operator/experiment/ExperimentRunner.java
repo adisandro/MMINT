@@ -71,7 +71,7 @@ class ExperimentRunner implements Runnable {
       if (!folder.exists(null)) {
         folder.create(true, true, null);
       }
-      this.exp.input.setupWorkflow.setInputSubdir(this.path.toOSString());
+      this.exp.input.setupWorkflow.setWorkingPath(this.path.toOSString());
 
       // write operator properties
       var operatorProps = new HashMap<String, Properties>();
@@ -95,7 +95,7 @@ class ExperimentRunner implements Runnable {
       // run setup workflow
       var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
       var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
-      this.exp.input.setupWorkflow.setInputSubdir(this.path.toOSString()); // init with experiment dir
+      this.exp.input.setupWorkflow.setWorkingPath(this.path.toOSString()); // init with experiment dir
       this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
         .map(o -> o.getMetatype())
         .filter(o -> o instanceof RandomOperator)

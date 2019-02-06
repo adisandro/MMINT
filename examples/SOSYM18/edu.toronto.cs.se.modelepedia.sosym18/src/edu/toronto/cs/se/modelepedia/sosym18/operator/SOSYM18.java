@@ -96,7 +96,7 @@ public class SOSYM18 extends RandomOperatorImpl {
   private Model generateModel(@NonNull Model modelType, @NonNull EFactory modelTypeFactory,
                               @NonNull EClass modelTypeRootObj, @NonNull String modelName,
                               @NonNull MID polyMID) throws Exception {
-    var modelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{1}", modelName, modelType.getFileExtension()));
+    var modelPath = Path.of(getWorkingPath(), MessageFormat.format("{0}.{1}", modelName, modelType.getFileExtension()));
     var model = modelType.createInstance(modelTypeFactory.create(modelTypeRootObj), modelPath.toString(), polyMID);
     if (modelName.contains(Output.POLY_NAME)) {
       this.output.numPolyModels++;
@@ -211,7 +211,7 @@ public class SOSYM18 extends RandomOperatorImpl {
     else {
       generateModels(polyMID);
     }
-    var polyMIDPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{1}", Output.POLY_NAME, MIDPackage.eNAME));
+    var polyMIDPath = Path.of(getWorkingPath(), MessageFormat.format("{0}.{1}", Output.POLY_NAME, MIDPackage.eNAME));
     this.output.polyMIDModel = MIDTypeRegistry.getMIDModelType()
       .createInstanceAndEditor(polyMID, polyMIDPath.toString(), this.output.polyMIDModelContainer);
   }

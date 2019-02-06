@@ -243,7 +243,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                     }
                 }
             }
-            workflowOperatorType.setInputSubdir(getInputSubdir());
+            workflowOperatorType.setWorkingPath(getWorkingPath());
             if (state != null && workflowOperatorType instanceof RandomOperator) {
                 ((RandomOperator) workflowOperatorType).setState(state);
             }

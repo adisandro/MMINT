@@ -104,22 +104,22 @@ public interface Operator extends GenericElement {
      * The subdirectory from where to get the input, when used in an operator chain.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Input Subdir</em>' attribute.
-     * @see #setInputSubdir(String)
+     * @see #setWorkingPath(String)
      * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_InputSubdir()
      * @model
      * @generated
      */
-    String getInputSubdir();
+    String getWorkingPath();
 
     /**
      * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getInputSubdir <em>Input Subdir</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Input Subdir</em>' attribute.
-     * @see #getInputSubdir()
+     * @see #getWorkingPath()
      * @generated
      */
-    void setInputSubdir(String value);
+    void setWorkingPath(String value);
 
     /**
      * Returns the value of the '<em><b>Previous Operator</b></em>' reference.

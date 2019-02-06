@@ -155,9 +155,9 @@ public class Map extends NestingOperatorImpl {
 			for (EList<OperatorInput> mapperInputs : mapperSpec.getValue()) {
 				try {
 					EList<OperatorGeneric> mapperGenerics = mapper.selectAllowedGenerics(mapperInputs);
-          var workingPath = getInputSubdir();
+          var workingPath = getWorkingPath();
           if (workingPath != null) {
-            mapper.setInputSubdir(workingPath);
+            mapper.setWorkingPath(workingPath);
           }
 					java.util.Map<String, Model> mapperOutputsByName = mapper.startInstance(
 						mapperInputs,

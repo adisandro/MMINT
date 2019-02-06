@@ -124,20 +124,20 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     protected EList<GenericEndpoint> generics;
 
     /**
-     * The default value of the '{@link #getInputSubdir() <em>Input Subdir</em>}' attribute.
+     * The default value of the '{@link #getWorkingPath() <em>Input Subdir</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInputSubdir()
+     * @see #getWorkingPath()
      * @generated
      * @ordered
      */
     protected static final String INPUT_SUBDIR_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getInputSubdir() <em>Input Subdir</em>}' attribute.
+     * The cached value of the '{@link #getWorkingPath() <em>Input Subdir</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInputSubdir()
+     * @see #getWorkingPath()
      * @generated
      * @ordered
      */
@@ -277,7 +277,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     @Override
-    public String getInputSubdir() {
+    public String getWorkingPath() {
         return this.inputSubdir;
     }
 
@@ -287,7 +287,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated
      */
     @Override
-    public void setInputSubdir(String newInputSubdir) {
+    public void setWorkingPath(String newInputSubdir) {
         String oldInputSubdir = this.inputSubdir;
         this.inputSubdir = newInputSubdir;
         if (this.eNotificationRequired())
@@ -436,7 +436,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             case OperatorPackage.OPERATOR__GENERICS:
                 return this.getGenerics();
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                return this.getInputSubdir();
+                return this.getWorkingPath();
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
                 if (resolve) return this.getPreviousOperator();
                 return this.basicGetPreviousOperator();
@@ -472,7 +472,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 this.getGenerics().addAll((Collection<? extends GenericEndpoint>)newValue);
                 return;
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                this.setInputSubdir((String)newValue);
+                this.setWorkingPath((String)newValue);
                 return;
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
                 this.setPreviousOperator((Operator)newValue);
@@ -508,7 +508,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 this.getGenerics().clear();
                 return;
             case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                this.setInputSubdir(INPUT_SUBDIR_EDEFAULT);
+                this.setWorkingPath(INPUT_SUBDIR_EDEFAULT);
                 return;
             case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
                 this.setPreviousOperator((Operator)null);
@@ -1272,9 +1272,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             newOperator.setPreviousOperator(this.getPreviousOperator());
             this.setPreviousOperator(null);
         }
-        if (this.getInputSubdir() != null) {
-            newOperator.setInputSubdir(this.getInputSubdir());
-            this.setInputSubdir(null);
+        if (this.getWorkingPath() != null) {
+            newOperator.setWorkingPath(this.getWorkingPath());
+            this.setWorkingPath(null);
         }
         this.addInstance(newOperator, MIDLevel.INSTANCES, instanceMID);
 
@@ -1335,7 +1335,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private String getPropertiesUri(@NonNull String suffix) {
 
-        String workingPath = this.getInputSubdir();
+        String workingPath = this.getWorkingPath();
         if (workingPath == null) {
             IFile instanceMIDFile = MMINT.getActiveInstanceMIDFile();
             if (instanceMIDFile == null) { // can happen when an operator is invoked from a model editor

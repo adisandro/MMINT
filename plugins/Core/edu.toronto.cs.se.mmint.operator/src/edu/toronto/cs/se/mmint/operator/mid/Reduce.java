@@ -156,9 +156,9 @@ public class Reduce extends NestingOperatorImpl {
 						.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
 				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
 					accumulatorInputs);
-        var workingPath = getInputSubdir();
+        var workingPath = getWorkingPath();
         if (workingPath != null) {
-          accumulatorOperatorType.setInputSubdir(workingPath);
+          accumulatorOperatorType.setWorkingPath(workingPath);
         }
 				Operator accumulatorOperator = accumulatorOperatorType.startInstance(
 					accumulatorInputs,
