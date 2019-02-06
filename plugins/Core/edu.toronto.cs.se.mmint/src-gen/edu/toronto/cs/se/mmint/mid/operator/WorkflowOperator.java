@@ -30,13 +30,13 @@ import edu.toronto.cs.se.mmint.mid.MID;
  */
 public interface WorkflowOperator extends NestingOperator {
     /**
-     * <!-- begin-user-doc --> Gets the Workflow MID that implements this operator type.
+   * <!-- begin-user-doc --> Gets the Workflow MID that implements this operator type.
      *
      * @throws MMINTException
      *             If this is not an operator type.<!-- end-user-doc -->
-     * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
     MID getNestedWorkflowMID() throws MMINTException;
 
 } // WorkflowOperator

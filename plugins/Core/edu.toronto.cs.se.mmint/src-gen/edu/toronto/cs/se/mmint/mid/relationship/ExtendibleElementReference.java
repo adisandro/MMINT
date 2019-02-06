@@ -41,168 +41,168 @@ import edu.toronto.cs.se.mmint.mid.MID;
  */
 public interface ExtendibleElementReference extends EObject {
     /**
-     * Returns the value of the '<em><b>Referenced Object</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Referenced Object</b></em>' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The referenced element, when owned by some other entity.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Referenced Object</em>' reference.
-     * @see #setReferencedObject(ExtendibleElement)
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_ReferencedObject()
-     * @model
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The referenced element, when owned by some other entity.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Referenced Object</em>' reference.
+   * @see #setReferencedObject(ExtendibleElement)
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_ReferencedObject()
+   * @model
+   * @generated
+   */
     ExtendibleElement getReferencedObject();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getReferencedObject <em>Referenced Object</em>}' reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getReferencedObject <em>Referenced Object</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Referenced Object</em>' reference.
-     * @see #getReferencedObject()
-     * @generated
-     */
+   * @param value the new value of the '<em>Referenced Object</em>' reference.
+   * @see #getReferencedObject()
+   * @generated
+   */
     void setReferencedObject(ExtendibleElement value);
 
     /**
-     * Returns the value of the '<em><b>Contained Object</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Contained Object</b></em>' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The referenced element, when owned by this reference itself.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Contained Object</em>' containment reference.
-     * @see #setContainedObject(ExtendibleElement)
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_ContainedObject()
-     * @model containment="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The referenced element, when owned by this reference itself.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Contained Object</em>' containment reference.
+   * @see #setContainedObject(ExtendibleElement)
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_ContainedObject()
+   * @model containment="true"
+   * @generated
+   */
     ExtendibleElement getContainedObject();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getContainedObject <em>Contained Object</em>}' containment reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getContainedObject <em>Contained Object</em>}' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Contained Object</em>' containment reference.
-     * @see #getContainedObject()
-     * @generated
-     */
+   * @param value the new value of the '<em>Contained Object</em>' containment reference.
+   * @see #getContainedObject()
+   * @generated
+   */
     void setContainedObject(ExtendibleElement value);
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The referenced element. It can be owned by some other entity or by this reference itself, but not both.
-     * <!-- end-model-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this.getContainedObject() == null) ?\n\tthis.getReferencedObject() :\n\tthis.getContainedObject();'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The referenced element. It can be owned by some other entity or by this reference itself, but not both.
+   * <!-- end-model-doc -->
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (this.getContainedObject() == null) ?\n\tthis.getReferencedObject() :\n\tthis.getContainedObject();'"
+   * @generated
+   */
     ExtendibleElement getObject();
 
     /**
-     * Returns the value of the '<em><b>Supertype Ref</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Supertype Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The reference to the supertype of the referenced element.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Supertype Ref</em>' reference.
-     * @see #setSupertypeRef(ExtendibleElementReference)
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_SupertypeRef()
-     * @model
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The reference to the supertype of the referenced element.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Supertype Ref</em>' reference.
+   * @see #setSupertypeRef(ExtendibleElementReference)
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_SupertypeRef()
+   * @model
+   * @generated
+   */
     ExtendibleElementReference getSupertypeRef();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getSupertypeRef <em>Supertype Ref</em>}' reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#getSupertypeRef <em>Supertype Ref</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Supertype Ref</em>' reference.
-     * @see #getSupertypeRef()
-     * @generated
-     */
+   * @param value the new value of the '<em>Supertype Ref</em>' reference.
+   * @see #getSupertypeRef()
+   * @generated
+   */
     void setSupertypeRef(ExtendibleElementReference value);
 
     /**
-     * Returns the value of the '<em><b>Modifiable</b></em>' attribute.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Modifiable</b></em>' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * True if the referenced element can be modified through this reference.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Modifiable</em>' attribute.
-     * @see #setModifiable(boolean)
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_Modifiable()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * True if the referenced element can be modified through this reference.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Modifiable</em>' attribute.
+   * @see #setModifiable(boolean)
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getExtendibleElementReference_Modifiable()
+   * @model required="true"
+   * @generated
+   */
     boolean isModifiable();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isModifiable <em>Modifiable</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference#isModifiable <em>Modifiable</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Modifiable</em>' attribute.
-     * @see #isModifiable()
-     * @generated
-     */
+   * @param value the new value of the '<em>Modifiable</em>' attribute.
+   * @see #isModifiable()
+   * @generated
+   */
     void setModifiable(boolean value);
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The uri of the referenced element.
-     * <!-- end-model-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = this.getObject();\nreturn (object == null) ? null : object.getUri();'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The uri of the referenced element.
+   * <!-- end-model-doc -->
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement object = this.getObject();\nreturn (object == null) ? null : object.getUri();'"
+   * @generated
+   */
     String getUri();
 
     /**
-     * <!-- begin-user-doc --> Returns the MID container.
+   * <!-- begin-user-doc --> Returns the MID container.
      * 
      * @return The MID container, or null if this references an element that is not contained in a MID.
      * <!-- end-user-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().getMIDContainer();'"
-     * @generated
-     */
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().getMIDContainer();'"
+   * @generated
+   */
     MID getMIDContainer();
 
     /**
-     * <!-- begin-user-doc --> Checks whether this is a reference to a type.
+   * <!-- begin-user-doc --> Checks whether this is a reference to a type.
      * 
      * @return True if this is a reference to a type, false otherwise. <!-- end-user-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isTypesLevel();'"
-     * @generated
-     */
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isTypesLevel();'"
+   * @generated
+   */
     boolean isTypesLevel();
 
     /**
-     * <!-- begin-user-doc --> Checks whether this is a reference to an instance.
+   * <!-- begin-user-doc --> Checks whether this is a reference to an instance.
      * 
      * @return True if this is a reference to an instance, false otherwise. <!-- end-user-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isInstancesLevel();'"
-     * @generated
-     */
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isInstancesLevel();'"
+   * @generated
+   */
     boolean isInstancesLevel();
 
     /**
-     * <!-- begin-user-doc --> Checks whether this is a reference to a workflow element.
+   * <!-- begin-user-doc --> Checks whether this is a reference to a workflow element.
      * 
      * @return True if this is a reference to a workflow element, false otherwise. <!-- end-user-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isWorkflowsLevel();'"
-     * @generated
-     */
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getObject().isWorkflowsLevel();'"
+   * @generated
+   */
     boolean isWorkflowsLevel();
 
 } // ExtendibleElementReference

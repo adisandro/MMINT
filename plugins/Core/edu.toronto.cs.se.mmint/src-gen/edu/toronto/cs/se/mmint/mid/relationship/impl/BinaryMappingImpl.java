@@ -29,23 +29,23 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected BinaryMappingImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return RelationshipPackage.Literals.BINARY_MAPPING;
-    }
+    return RelationshipPackage.Literals.BINARY_MAPPING;
+  }
 
     /**
      * Creates and adds a reference to this binary mapping type to the Type MID.

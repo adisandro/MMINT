@@ -63,446 +63,446 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public class EditorImpl extends ExtendibleElementImpl implements Editor {
     /**
-     * The default value of the '{@link #getModelUri() <em>Model Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getModelUri() <em>Model Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModelUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getModelUri()
+   * @generated
+   * @ordered
+   */
     protected static final String MODEL_URI_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getModelUri() <em>Model Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelUri() <em>Model Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModelUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getModelUri()
+   * @generated
+   * @ordered
+   */
     protected String modelUri = MODEL_URI_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
+   * @see #getId()
+   * @generated
+   * @ordered
+   */
     protected static final String ID_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
+   * @see #getId()
+   * @generated
+   * @ordered
+   */
     protected String id = ID_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getWizardId() <em>Wizard Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getWizardId() <em>Wizard Id</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getWizardId()
-     * @generated
-     * @ordered
-     */
+   * @see #getWizardId()
+   * @generated
+   * @ordered
+   */
     protected static final String WIZARD_ID_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getWizardId() <em>Wizard Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getWizardId() <em>Wizard Id</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getWizardId()
-     * @generated
-     * @ordered
-     */
+   * @see #getWizardId()
+   * @generated
+   * @ordered
+   */
     protected String wizardId = WIZARD_ID_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getFileExtensions() <em>File Extensions</em>}' attribute list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getFileExtensions() <em>File Extensions</em>}' attribute list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFileExtensions()
-     * @generated
-     * @ordered
-     */
+   * @see #getFileExtensions()
+   * @generated
+   * @ordered
+   */
     protected EList<String> fileExtensions;
 
     /**
-     * The default value of the '{@link #getWizardDialogClass() <em>Wizard Dialog Class</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getWizardDialogClass() <em>Wizard Dialog Class</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getWizardDialogClass()
-     * @generated
-     * @ordered
-     */
+   * @see #getWizardDialogClass()
+   * @generated
+   * @ordered
+   */
     protected static final String WIZARD_DIALOG_CLASS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getWizardDialogClass() <em>Wizard Dialog Class</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getWizardDialogClass() <em>Wizard Dialog Class</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getWizardDialogClass()
-     * @generated
-     * @ordered
-     */
+   * @see #getWizardDialogClass()
+   * @generated
+   * @ordered
+   */
     protected String wizardDialogClass = WIZARD_DIALOG_CLASS_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected EditorImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return EditorPackage.Literals.EDITOR;
-    }
+    return EditorPackage.Literals.EDITOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String getModelUri() {
-        return this.modelUri;
-    }
+    return modelUri;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setModelUri(String newModelUri) {
-        String oldModelUri = this.modelUri;
-        this.modelUri = newModelUri;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__MODEL_URI, oldModelUri, this.modelUri));
-    }
+    String oldModelUri = modelUri;
+    modelUri = newModelUri;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__MODEL_URI, oldModelUri, modelUri));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String getId() {
-        return this.id;
-    }
+    return id;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setId(String newId) {
-        String oldId = this.id;
-        this.id = newId;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__ID, oldId, this.id));
-    }
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__ID, oldId, id));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String getWizardId() {
-        return this.wizardId;
-    }
+    return wizardId;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setWizardId(String newWizardId) {
-        String oldWizardId = this.wizardId;
-        this.wizardId = newWizardId;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_ID, oldWizardId, this.wizardId));
-    }
+    String oldWizardId = wizardId;
+    wizardId = newWizardId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_ID, oldWizardId, wizardId));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public EList<String> getFileExtensions() {
-        if (this.fileExtensions == null) {
-            this.fileExtensions = new EDataTypeUniqueEList<>(String.class, this, EditorPackage.EDITOR__FILE_EXTENSIONS);
-        }
-        return this.fileExtensions;
+    if (fileExtensions == null) {
+      fileExtensions = new EDataTypeUniqueEList<String>(String.class, this, EditorPackage.EDITOR__FILE_EXTENSIONS);
     }
+    return fileExtensions;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String getWizardDialogClass() {
-        return this.wizardDialogClass;
-    }
+    return wizardDialogClass;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setWizardDialogClass(String newWizardDialogClass) {
-        String oldWizardDialogClass = this.wizardDialogClass;
-        this.wizardDialogClass = newWizardDialogClass;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, this.wizardDialogClass));
-    }
+    String oldWizardDialogClass = wizardDialogClass;
+    wizardDialogClass = newWizardDialogClass;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, wizardDialogClass));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Editor getMetatype() {
-        ExtendibleElement metatype = super.getMetatype();
-        return (metatype == null) ? null : (Editor) metatype;
-    }
+    ExtendibleElement metatype = super.getMetatype();
+    return (metatype == null) ? null : (Editor) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Editor getSupertype() {
-        ExtendibleElement supertype = super.getSupertype();
-        return (supertype == null) ? null : (Editor) supertype;
-    }
+    ExtendibleElement supertype = super.getSupertype();
+    return (supertype == null) ? null : (Editor) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer();
-    }
+    return (MID) this.eContainer();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EditorPackage.EDITOR__MODEL_URI:
-                return this.getModelUri();
-            case EditorPackage.EDITOR__ID:
-                return this.getId();
-            case EditorPackage.EDITOR__WIZARD_ID:
-                return this.getWizardId();
-            case EditorPackage.EDITOR__FILE_EXTENSIONS:
-                return this.getFileExtensions();
-            case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
-                return this.getWizardDialogClass();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case EditorPackage.EDITOR__MODEL_URI:
+        return getModelUri();
+      case EditorPackage.EDITOR__ID:
+        return getId();
+      case EditorPackage.EDITOR__WIZARD_ID:
+        return getWizardId();
+      case EditorPackage.EDITOR__FILE_EXTENSIONS:
+        return getFileExtensions();
+      case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+        return getWizardDialogClass();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EditorPackage.EDITOR__MODEL_URI:
-                this.setModelUri((String)newValue);
-                return;
-            case EditorPackage.EDITOR__ID:
-                this.setId((String)newValue);
-                return;
-            case EditorPackage.EDITOR__WIZARD_ID:
-                this.setWizardId((String)newValue);
-                return;
-            case EditorPackage.EDITOR__FILE_EXTENSIONS:
-                this.getFileExtensions().clear();
-                this.getFileExtensions().addAll((Collection<? extends String>)newValue);
-                return;
-            case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
-                this.setWizardDialogClass((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case EditorPackage.EDITOR__MODEL_URI:
+        setModelUri((String)newValue);
+        return;
+      case EditorPackage.EDITOR__ID:
+        setId((String)newValue);
+        return;
+      case EditorPackage.EDITOR__WIZARD_ID:
+        setWizardId((String)newValue);
+        return;
+      case EditorPackage.EDITOR__FILE_EXTENSIONS:
+        getFileExtensions().clear();
+        getFileExtensions().addAll((Collection<? extends String>)newValue);
+        return;
+      case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+        setWizardDialogClass((String)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case EditorPackage.EDITOR__MODEL_URI:
-                this.setModelUri(MODEL_URI_EDEFAULT);
-                return;
-            case EditorPackage.EDITOR__ID:
-                this.setId(ID_EDEFAULT);
-                return;
-            case EditorPackage.EDITOR__WIZARD_ID:
-                this.setWizardId(WIZARD_ID_EDEFAULT);
-                return;
-            case EditorPackage.EDITOR__FILE_EXTENSIONS:
-                this.getFileExtensions().clear();
-                return;
-            case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
-                this.setWizardDialogClass(WIZARD_DIALOG_CLASS_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case EditorPackage.EDITOR__MODEL_URI:
+        setModelUri(MODEL_URI_EDEFAULT);
+        return;
+      case EditorPackage.EDITOR__ID:
+        setId(ID_EDEFAULT);
+        return;
+      case EditorPackage.EDITOR__WIZARD_ID:
+        setWizardId(WIZARD_ID_EDEFAULT);
+        return;
+      case EditorPackage.EDITOR__FILE_EXTENSIONS:
+        getFileExtensions().clear();
+        return;
+      case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+        setWizardDialogClass(WIZARD_DIALOG_CLASS_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EditorPackage.EDITOR__MODEL_URI:
-                return MODEL_URI_EDEFAULT == null ? this.modelUri != null : !MODEL_URI_EDEFAULT.equals(this.modelUri);
-            case EditorPackage.EDITOR__ID:
-                return ID_EDEFAULT == null ? this.id != null : !ID_EDEFAULT.equals(this.id);
-            case EditorPackage.EDITOR__WIZARD_ID:
-                return WIZARD_ID_EDEFAULT == null ? this.wizardId != null : !WIZARD_ID_EDEFAULT.equals(this.wizardId);
-            case EditorPackage.EDITOR__FILE_EXTENSIONS:
-                return this.fileExtensions != null && !this.fileExtensions.isEmpty();
-            case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
-                return WIZARD_DIALOG_CLASS_EDEFAULT == null ? this.wizardDialogClass != null : !WIZARD_DIALOG_CLASS_EDEFAULT.equals(this.wizardDialogClass);
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case EditorPackage.EDITOR__MODEL_URI:
+        return MODEL_URI_EDEFAULT == null ? modelUri != null : !MODEL_URI_EDEFAULT.equals(modelUri);
+      case EditorPackage.EDITOR__ID:
+        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case EditorPackage.EDITOR__WIZARD_ID:
+        return WIZARD_ID_EDEFAULT == null ? wizardId != null : !WIZARD_ID_EDEFAULT.equals(wizardId);
+      case EditorPackage.EDITOR__FILE_EXTENSIONS:
+        return fileExtensions != null && !fileExtensions.isEmpty();
+      case EditorPackage.EDITOR__WIZARD_DIALOG_CLASS:
+        return WIZARD_DIALOG_CLASS_EDEFAULT == null ? wizardDialogClass != null : !WIZARD_DIALOG_CLASS_EDEFAULT.equals(wizardDialogClass);
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return EditorPackage.EDITOR___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return EditorPackage.EDITOR___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return EditorPackage.EDITOR___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return EditorPackage.EDITOR___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case EditorPackage.EDITOR___GET_METATYPE:
-                return this.getMetatype();
-            case EditorPackage.EDITOR___GET_SUPERTYPE:
-                return this.getSupertype();
-            case EditorPackage.EDITOR___GET_MID_CONTAINER:
-                return this.getMIDContainer();
-            case EditorPackage.EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING:
-                try {
-                    return this.createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (String)arguments.get(3), (String)arguments.get(4), (String)arguments.get(5));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case EditorPackage.EDITOR___DELETE_TYPE:
-                try {
-                    this.deleteType();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID:
-                try {
-                    return this.createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case EditorPackage.EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION:
-                try {
-                    return this.invokeInstanceWizard((IStructuredSelection)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case EditorPackage.EDITOR___DELETE_INSTANCE:
-                try {
-                    this.deleteInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case EditorPackage.EDITOR___GET_METATYPE:
+        return getMetatype();
+      case EditorPackage.EDITOR___GET_SUPERTYPE:
+        return getSupertype();
+      case EditorPackage.EDITOR___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case EditorPackage.EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING:
+        try {
+          return createSubtype((String)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (String)arguments.get(3), (String)arguments.get(4), (String)arguments.get(5));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case EditorPackage.EDITOR___DELETE_TYPE:
+        try {
+          deleteType();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case EditorPackage.EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID:
+        try {
+          return createInstance((String)arguments.get(0), (Boolean)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case EditorPackage.EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION:
+        try {
+          return invokeInstanceWizard((IStructuredSelection)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case EditorPackage.EDITOR___DELETE_INSTANCE:
+        try {
+          deleteInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        if (this.eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (modelUri: ");
-        result.append(this.modelUri);
-        result.append(", id: ");
-        result.append(this.id);
-        result.append(", wizardId: ");
-        result.append(this.wizardId);
-        result.append(", fileExtensions: ");
-        result.append(this.fileExtensions);
-        result.append(", wizardDialogClass: ");
-        result.append(this.wizardDialogClass);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (modelUri: ");
+    result.append(modelUri);
+    result.append(", id: ");
+    result.append(id);
+    result.append(", wizardId: ");
+    result.append(wizardId);
+    result.append(", fileExtensions: ");
+    result.append(fileExtensions);
+    result.append(", wizardDialogClass: ");
+    result.append(wizardDialogClass);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
      * Adds a subtype of this editor type to the Type MID.

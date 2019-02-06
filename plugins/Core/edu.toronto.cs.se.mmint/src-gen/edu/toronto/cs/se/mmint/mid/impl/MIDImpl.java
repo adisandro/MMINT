@@ -63,179 +63,188 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     /**
-     * The cached value of the '{@link #getModels() <em>Models</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModels() <em>Models</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModels()
-     * @generated
-     * @ordered
-     */
+   * @see #getModels()
+   * @generated
+   * @ordered
+   */
     protected EList<Model> models;
 
     /**
-     * The cached value of the '{@link #getEditors() <em>Editors</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEditors() <em>Editors</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEditors()
-     * @generated
-     * @ordered
-     */
+   * @see #getEditors()
+   * @generated
+   * @ordered
+   */
     protected EList<Editor> editors;
 
     /**
-     * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getOperators() <em>Operators</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOperators()
-     * @generated
-     * @ordered
-     */
+   * @see #getOperators()
+   * @generated
+   * @ordered
+   */
     protected EList<Operator> operators;
 
     /**
-     * The cached value of the '{@link #getExtendibleTable() <em>Extendible Table</em>}' map.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getExtendibleTable() <em>Extendible Table</em>}' map.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getExtendibleTable()
-     * @generated
-     * @ordered
-     */
+   * @see #getExtendibleTable()
+   * @generated
+   * @ordered
+   */
     protected EMap<String, ExtendibleElement> extendibleTable;
 
     /**
-     * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLevel()
-     * @generated
-     * @ordered
-     */
+   * @see #getLevel()
+   * @generated
+   * @ordered
+   */
     protected static final MIDLevel LEVEL_EDEFAULT = MIDLevel.INSTANCES;
 
     /**
-     * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLevel()
-     * @generated
-     * @ordered
-     */
+   * @see #getLevel()
+   * @generated
+   * @ordered
+   */
     protected MIDLevel level = LEVEL_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected MIDImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.MID;
-    }
+    return MIDPackage.Literals.MID;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<Model> getModels() {
-        if (models == null) {
-            models = new EObjectContainmentEList<Model>(Model.class, this, MIDPackage.MID__MODELS);
-        }
-        return models;
+    if (models == null) {
+      models = new EObjectContainmentEList<Model>(Model.class, this, MIDPackage.MID__MODELS);
     }
+    return models;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<Editor> getEditors() {
-        if (editors == null) {
-            editors = new EObjectContainmentEList<Editor>(Editor.class, this, MIDPackage.MID__EDITORS);
-        }
-        return editors;
+    if (editors == null) {
+      editors = new EObjectContainmentEList<Editor>(Editor.class, this, MIDPackage.MID__EDITORS);
     }
+    return editors;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<Operator> getOperators() {
-        if (operators == null) {
-            operators = new EObjectContainmentEList<Operator>(Operator.class, this, MIDPackage.MID__OPERATORS);
-        }
-        return operators;
+    if (operators == null) {
+      operators = new EObjectContainmentEList<Operator>(Operator.class, this, MIDPackage.MID__OPERATORS);
     }
+    return operators;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EMap<String, ExtendibleElement> getExtendibleTable() {
-        if (extendibleTable == null) {
-            extendibleTable = new EcoreEMap<String,ExtendibleElement>(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MIDPackage.MID__EXTENDIBLE_TABLE);
-        }
-        return extendibleTable;
+    if (extendibleTable == null) {
+      extendibleTable = new EcoreEMap<String,ExtendibleElement>(MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP, EStringToExtendibleElementMapImpl.class, this, MIDPackage.MID__EXTENDIBLE_TABLE);
     }
+    return extendibleTable;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MIDLevel getLevel() {
-        return level;
-    }
+    return level;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setLevel(MIDLevel newLevel) {
-        MIDLevel oldLevel = level;
-        level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__LEVEL, oldLevel, level));
-    }
+    MIDLevel oldLevel = level;
+    level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__LEVEL, oldLevel, level));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public boolean isTypesLevel() {
-        return this.getLevel() == MIDLevel.TYPES;
-    }
+    return this.getLevel() == MIDLevel.TYPES;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public boolean isInstancesLevel() {
-        return this.getLevel() == MIDLevel.INSTANCES;
-    }
+    return this.getLevel() == MIDLevel.INSTANCES;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public boolean isWorkflowsLevel() {
-        return this.getLevel() == MIDLevel.WORKFLOWS;
-    }
+    return this.getLevel() == MIDLevel.WORKFLOWS;
+  }
 
     /**
      * @generated NOT
@@ -257,179 +266,180 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<ModelRel> getModelRels() {
-        EList<ModelRel> modelRels = new BasicEList<>();
-        for (Model model : this.getModels()) {
-            if (model instanceof ModelRel) {
-                modelRels.add((ModelRel) model);
-            }
-        }
-        return modelRels;
+    EList<ModelRel> modelRels = new BasicEList<>();
+    for (Model model : this.getModels()) {
+      if (model instanceof ModelRel) {
+        modelRels.add((ModelRel) model);
+      }
     }
+    return modelRels;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MIDPackage.MID__MODELS:
-                return ((InternalEList<?>)getModels()).basicRemove(otherEnd, msgs);
-            case MIDPackage.MID__EDITORS:
-                return ((InternalEList<?>)getEditors()).basicRemove(otherEnd, msgs);
-            case MIDPackage.MID__OPERATORS:
-                return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
-            case MIDPackage.MID__EXTENDIBLE_TABLE:
-                return ((InternalEList<?>)getExtendibleTable()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case MIDPackage.MID__MODELS:
+        return ((InternalEList<?>)getModels()).basicRemove(otherEnd, msgs);
+      case MIDPackage.MID__EDITORS:
+        return ((InternalEList<?>)getEditors()).basicRemove(otherEnd, msgs);
+      case MIDPackage.MID__OPERATORS:
+        return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
+      case MIDPackage.MID__EXTENDIBLE_TABLE:
+        return ((InternalEList<?>)getExtendibleTable()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.MID__MODELS:
-                return getModels();
-            case MIDPackage.MID__EDITORS:
-                return getEditors();
-            case MIDPackage.MID__OPERATORS:
-                return getOperators();
-            case MIDPackage.MID__EXTENDIBLE_TABLE:
-                if (coreType) return getExtendibleTable();
-                else return getExtendibleTable().map();
-            case MIDPackage.MID__LEVEL:
-                return getLevel();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.MID__MODELS:
+        return getModels();
+      case MIDPackage.MID__EDITORS:
+        return getEditors();
+      case MIDPackage.MID__OPERATORS:
+        return getOperators();
+      case MIDPackage.MID__EXTENDIBLE_TABLE:
+        if (coreType) return getExtendibleTable();
+        else return getExtendibleTable().map();
+      case MIDPackage.MID__LEVEL:
+        return getLevel();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.MID__MODELS:
-                getModels().clear();
-                getModels().addAll((Collection<? extends Model>)newValue);
-                return;
-            case MIDPackage.MID__EDITORS:
-                getEditors().clear();
-                getEditors().addAll((Collection<? extends Editor>)newValue);
-                return;
-            case MIDPackage.MID__OPERATORS:
-                getOperators().clear();
-                getOperators().addAll((Collection<? extends Operator>)newValue);
-                return;
-            case MIDPackage.MID__EXTENDIBLE_TABLE:
-                ((EStructuralFeature.Setting)getExtendibleTable()).set(newValue);
-                return;
-            case MIDPackage.MID__LEVEL:
-                setLevel((MIDLevel)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.MID__MODELS:
+        getModels().clear();
+        getModels().addAll((Collection<? extends Model>)newValue);
+        return;
+      case MIDPackage.MID__EDITORS:
+        getEditors().clear();
+        getEditors().addAll((Collection<? extends Editor>)newValue);
+        return;
+      case MIDPackage.MID__OPERATORS:
+        getOperators().clear();
+        getOperators().addAll((Collection<? extends Operator>)newValue);
+        return;
+      case MIDPackage.MID__EXTENDIBLE_TABLE:
+        ((EStructuralFeature.Setting)getExtendibleTable()).set(newValue);
+        return;
+      case MIDPackage.MID__LEVEL:
+        setLevel((MIDLevel)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.MID__MODELS:
-                getModels().clear();
-                return;
-            case MIDPackage.MID__EDITORS:
-                getEditors().clear();
-                return;
-            case MIDPackage.MID__OPERATORS:
-                getOperators().clear();
-                return;
-            case MIDPackage.MID__EXTENDIBLE_TABLE:
-                getExtendibleTable().clear();
-                return;
-            case MIDPackage.MID__LEVEL:
-                setLevel(LEVEL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.MID__MODELS:
+        getModels().clear();
+        return;
+      case MIDPackage.MID__EDITORS:
+        getEditors().clear();
+        return;
+      case MIDPackage.MID__OPERATORS:
+        getOperators().clear();
+        return;
+      case MIDPackage.MID__EXTENDIBLE_TABLE:
+        getExtendibleTable().clear();
+        return;
+      case MIDPackage.MID__LEVEL:
+        setLevel(LEVEL_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.MID__MODELS:
-                return models != null && !models.isEmpty();
-            case MIDPackage.MID__EDITORS:
-                return editors != null && !editors.isEmpty();
-            case MIDPackage.MID__OPERATORS:
-                return operators != null && !operators.isEmpty();
-            case MIDPackage.MID__EXTENDIBLE_TABLE:
-                return extendibleTable != null && !extendibleTable.isEmpty();
-            case MIDPackage.MID__LEVEL:
-                return level != LEVEL_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.MID__MODELS:
+        return models != null && !models.isEmpty();
+      case MIDPackage.MID__EDITORS:
+        return editors != null && !editors.isEmpty();
+      case MIDPackage.MID__OPERATORS:
+        return operators != null && !operators.isEmpty();
+      case MIDPackage.MID__EXTENDIBLE_TABLE:
+        return extendibleTable != null && !extendibleTable.isEmpty();
+      case MIDPackage.MID__LEVEL:
+        return level != LEVEL_EDEFAULT;
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case MIDPackage.MID___IS_TYPES_LEVEL:
-                return isTypesLevel();
-            case MIDPackage.MID___IS_INSTANCES_LEVEL:
-                return isInstancesLevel();
-            case MIDPackage.MID___IS_WORKFLOWS_LEVEL:
-                return isWorkflowsLevel();
-            case MIDPackage.MID___GET_EXTENDIBLE_ELEMENT__STRING:
-                return getExtendibleElement((String)arguments.get(0));
-            case MIDPackage.MID___GET_MODEL_RELS:
-                return getModelRels();
-        }
-        return super.eInvoke(operationID, arguments);
+    switch (operationID) {
+      case MIDPackage.MID___IS_TYPES_LEVEL:
+        return isTypesLevel();
+      case MIDPackage.MID___IS_INSTANCES_LEVEL:
+        return isInstancesLevel();
+      case MIDPackage.MID___IS_WORKFLOWS_LEVEL:
+        return isWorkflowsLevel();
+      case MIDPackage.MID___GET_EXTENDIBLE_ELEMENT__STRING:
+        return getExtendibleElement((String)arguments.get(0));
+      case MIDPackage.MID___GET_MODEL_RELS:
+        return getModelRels();
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (level: ");
-        result.append(level);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (level: ");
+    result.append(level);
+    result.append(')');
+    return result.toString();
+  }
 
 } //MIDImpl

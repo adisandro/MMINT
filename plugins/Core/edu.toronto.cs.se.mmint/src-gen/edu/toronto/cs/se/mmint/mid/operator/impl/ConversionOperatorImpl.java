@@ -38,34 +38,34 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
     }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return OperatorPackage.Literals.CONVERSION_OPERATOR;
-    }
+    return OperatorPackage.Literals.CONVERSION_OPERATOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case OperatorPackage.CONVERSION_OPERATOR___CLEANUP:
-                try {
-                    cleanup();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case OperatorPackage.CONVERSION_OPERATOR___CLEANUP:
+        try {
+          cleanup();
+          return null;
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * @generated NOT

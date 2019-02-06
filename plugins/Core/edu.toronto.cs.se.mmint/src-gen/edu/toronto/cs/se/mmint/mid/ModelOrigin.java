@@ -31,194 +31,203 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ModelOrigin implements Enumerator {
     /**
-     * The '<em><b>IMPORTED</b></em>' literal object.
-     * <!-- begin-user-doc -->
+   * The '<em><b>IMPORTED</b></em>' literal object.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #IMPORTED_VALUE
-     * @generated
-     * @ordered
-     */
+   * <!-- begin-model-doc -->
+   * When a model exists outside of MMINT and gets imported.
+   * <!-- end-model-doc -->
+   * @see #IMPORTED_VALUE
+   * @generated
+   * @ordered
+   */
     IMPORTED(0, "IMPORTED", "IMPORTED"),
 
     /**
-     * The '<em><b>CREATED</b></em>' literal object.
-     * <!-- begin-user-doc -->
+   * The '<em><b>CREATED</b></em>' literal object.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #CREATED_VALUE
-     * @generated
-     * @ordered
-     */
+   * <!-- begin-model-doc -->
+   * When a model is created through MMINT.
+   * <!-- end-model-doc -->
+   * @see #CREATED_VALUE
+   * @generated
+   * @ordered
+   */
     CREATED(1, "CREATED", "CREATED");
 
     /**
-     * The '<em><b>IMPORTED</b></em>' literal value.
-     * <!-- begin-user-doc -->
+   * The '<em><b>IMPORTED</b></em>' literal value.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * When a model exists outside of MMINT and gets imported.
-     * <!-- end-model-doc -->
-     * @see #IMPORTED
-     * @model
-     * @generated
-     * @ordered
-     */
+   * <!-- begin-model-doc -->
+   * When a model exists outside of MMINT and gets imported.
+   * <!-- end-model-doc -->
+   * @see #IMPORTED
+   * @model
+   * @generated
+   * @ordered
+   */
     public static final int IMPORTED_VALUE = 0;
 
     /**
-     * The '<em><b>CREATED</b></em>' literal value.
-     * <!-- begin-user-doc -->
+   * The '<em><b>CREATED</b></em>' literal value.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * When a model is created through MMINT.
-     * <!-- end-model-doc -->
-     * @see #CREATED
-     * @model
-     * @generated
-     * @ordered
-     */
+   * <!-- begin-model-doc -->
+   * When a model is created through MMINT.
+   * <!-- end-model-doc -->
+   * @see #CREATED
+   * @model
+   * @generated
+   * @ordered
+   */
     public static final int CREATED_VALUE = 1;
 
     /**
-     * An array of all the '<em><b>Model Origin</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+   * An array of all the '<em><b>Model Origin</b></em>' enumerators.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     private static final ModelOrigin[] VALUES_ARRAY =
         new ModelOrigin[] {
-            IMPORTED,
-            CREATED,
-        };
+      IMPORTED,
+      CREATED,
+    };
 
     /**
-     * A public read-only list of all the '<em><b>Model Origin</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+   * A public read-only list of all the '<em><b>Model Origin</b></em>' enumerators.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public static final List<ModelOrigin> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Model Origin</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+   * Returns the '<em><b>Model Origin</b></em>' literal with the specified literal value.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param literal the literal.
-     * @return the matching enumerator or <code>null</code>.
-     * @generated
-     */
+   * @param literal the literal.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
     public static ModelOrigin get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            ModelOrigin result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
+    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+      ModelOrigin result = VALUES_ARRAY[i];
+      if (result.toString().equals(literal)) {
+        return result;
+      }
     }
+    return null;
+  }
 
     /**
-     * Returns the '<em><b>Model Origin</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+   * Returns the '<em><b>Model Origin</b></em>' literal with the specified name.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param name the name.
-     * @return the matching enumerator or <code>null</code>.
-     * @generated
-     */
+   * @param name the name.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
     public static ModelOrigin getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            ModelOrigin result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
+    for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+      ModelOrigin result = VALUES_ARRAY[i];
+      if (result.getName().equals(name)) {
+        return result;
+      }
     }
+    return null;
+  }
 
     /**
-     * Returns the '<em><b>Model Origin</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+   * Returns the '<em><b>Model Origin</b></em>' literal with the specified integer value.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the integer value.
-     * @return the matching enumerator or <code>null</code>.
-     * @generated
-     */
+   * @param value the integer value.
+   * @return the matching enumerator or <code>null</code>.
+   * @generated
+   */
     public static ModelOrigin get(int value) {
-        switch (value) {
-            case IMPORTED_VALUE: return IMPORTED;
-            case CREATED_VALUE: return CREATED;
-        }
-        return null;
+    switch (value) {
+      case IMPORTED_VALUE: return IMPORTED;
+      case CREATED_VALUE: return CREATED;
     }
+    return null;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     private final int value;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     private final String name;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     private final String literal;
 
     /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+   * Only this class can construct instances.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     private ModelOrigin(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+    this.value = value;
+    this.name = name;
+    this.literal = literal;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public int getValue() {
-      return value;
-    }
+    return value;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getName() {
-      return name;
-    }
+    return name;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getLiteral() {
-      return literal;
-    }
+    return literal;
+  }
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+   * Returns the literal value of the enumerator, which is its string representation.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        return literal;
-    }
+    return literal;
+  }
     
 } //ModelOrigin

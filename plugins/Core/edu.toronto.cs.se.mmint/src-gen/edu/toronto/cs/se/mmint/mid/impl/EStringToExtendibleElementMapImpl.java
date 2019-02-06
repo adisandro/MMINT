@@ -39,274 +39,280 @@ import edu.toronto.cs.se.mmint.mid.MIDPackage;
  */
 public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,ExtendibleElement> {
     /**
-     * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypedKey()
-     * @generated
-     * @ordered
-     */
+   * @see #getTypedKey()
+   * @generated
+   * @ordered
+   */
     protected static final String KEY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypedKey()
-     * @generated
-     * @ordered
-     */
+   * @see #getTypedKey()
+   * @generated
+   * @ordered
+   */
     protected String key = KEY_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypedValue()
-     * @generated
-     * @ordered
-     */
+   * @see #getTypedValue()
+   * @generated
+   * @ordered
+   */
     protected ExtendibleElement value;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected EStringToExtendibleElementMapImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP;
-    }
+    return MIDPackage.Literals.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public String getTypedKey() {
-        return key;
-    }
+    return key;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public void setTypedKey(String newKey) {
-        String oldKey = key;
-        key = newKey;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, key));
-    }
+    String oldKey = key;
+    key = newKey;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, key));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public ExtendibleElement getTypedValue() {
-        if (value != null && value.eIsProxy()) {
-            InternalEObject oldValue = (InternalEObject)value;
-            value = (ExtendibleElement)eResolveProxy(oldValue);
-            if (value != oldValue) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
-            }
-        }
-        return value;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ExtendibleElement basicGetTypedValue() {
-        return value;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTypedValue(ExtendibleElement newValue) {
-        ExtendibleElement oldValue = value;
-        value = newValue;
+    if (value != null && value.eIsProxy()) {
+      InternalEObject oldValue = (InternalEObject)value;
+      value = (ExtendibleElement)eResolveProxy(oldValue);
+      if (value != oldValue) {
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+      }
     }
+    return value;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    public ExtendibleElement basicGetTypedValue() {
+    return value;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    public void setTypedValue(ExtendibleElement newValue) {
+    ExtendibleElement oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
-                return getTypedKey();
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
-                if (resolve) return getTypedValue();
-                return basicGetTypedValue();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+        return getTypedKey();
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+        if (resolve) return getTypedValue();
+        return basicGetTypedValue();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
-                setTypedKey((String)newValue);
-                return;
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
-                setTypedValue((ExtendibleElement)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+        setTypedKey((String)newValue);
+        return;
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+        setTypedValue((ExtendibleElement)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
-                setTypedKey(KEY_EDEFAULT);
-                return;
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
-                setTypedValue((ExtendibleElement)null);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+        setTypedKey(KEY_EDEFAULT);
+        return;
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+        setTypedValue((ExtendibleElement)null);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
-                return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-            case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
-                return value != null;
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
+        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
+        return value != null;
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (key: ");
-        result.append(key);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (key: ");
+    result.append(key);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected int hash = -1;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public int getHash() {
-        if (hash == -1) {
-            Object theKey = getKey();
-            hash = (theKey == null ? 0 : theKey.hashCode());
-        }
-        return hash;
+    if (hash == -1) {
+      Object theKey = getKey();
+      hash = (theKey == null ? 0 : theKey.hashCode());
     }
+    return hash;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setHash(int hash) {
-        this.hash = hash;
-    }
+    this.hash = hash;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public String getKey() {
-        return getTypedKey();
-    }
+    return getTypedKey();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setKey(String key) {
-        setTypedKey(key);
-    }
+    setTypedKey(key);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ExtendibleElement getValue() {
-        return getTypedValue();
-    }
+    return getTypedValue();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ExtendibleElement setValue(ExtendibleElement value) {
-        ExtendibleElement oldValue = getValue();
-        setTypedValue(value);
-        return oldValue;
-    }
+    ExtendibleElement oldValue = getValue();
+    setTypedValue(value);
+    return oldValue;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     public EMap<String, ExtendibleElement> getEMap() {
-        EObject container = eContainer();
-        return container == null ? null : (EMap<String, ExtendibleElement>)container.eGet(eContainmentFeature());
-    }
+    EObject container = eContainer();
+    return container == null ? null : (EMap<String, ExtendibleElement>)container.eGet(eContainmentFeature());
+  }
 
 } //EStringToExtendibleElementMapImpl

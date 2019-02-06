@@ -70,23 +70,23 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
  */
 public class NestingOperatorImpl extends OperatorImpl implements NestingOperator {
     /**
-     * The default value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNestedMIDPath()
-     * @generated
-     * @ordered
-     */
+   * @see #getNestedMIDPath()
+   * @generated
+   * @ordered
+   */
     protected static final String NESTED_MID_PATH_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getNestedMIDPath() <em>Nested MID Path</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNestedMIDPath()
-     * @generated
-     * @ordered
-     */
+   * @see #getNestedMIDPath()
+   * @generated
+   * @ordered
+   */
     protected String nestedMIDPath = NESTED_MID_PATH_EDEFAULT;
 
     /**
@@ -108,147 +108,147 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     protected Diagram inMemoryNestedMIDDiagramRoot;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected NestingOperatorImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return OperatorPackage.Literals.NESTING_OPERATOR;
-    }
+    return OperatorPackage.Literals.NESTING_OPERATOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String getNestedMIDPath() {
-        return this.nestedMIDPath;
-    }
+    return nestedMIDPath;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setNestedMIDPath(String newNestedMIDPath) {
-        String oldNestedMIDPath = this.nestedMIDPath;
-        this.nestedMIDPath = newNestedMIDPath;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, this.nestedMIDPath));
-    }
+    String oldNestedMIDPath = nestedMIDPath;
+    nestedMIDPath = newNestedMIDPath;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, nestedMIDPath));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                return getNestedMIDPath();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        return getNestedMIDPath();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                setNestedMIDPath((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        setNestedMIDPath((String)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        setNestedMIDPath(NESTED_MID_PATH_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
-                return NESTED_MID_PATH_EDEFAULT == null ? this.nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(this.nestedMIDPath);
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH:
+        return NESTED_MID_PATH_EDEFAULT == null ? nestedMIDPath != null : !NESTED_MID_PATH_EDEFAULT.equals(nestedMIDPath);
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     @SuppressWarnings("unchecked")
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID:
-                try {
-                    return getNestedInstanceMID();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP:
-                try {
-                    return startNestedInstance((Operator)arguments.get(0), (EList<OperatorInput>)arguments.get(1), (Properties)arguments.get(2), (EList<OperatorGeneric>)arguments.get(3), (Map<String, MID>)arguments.get(4));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case OperatorPackage.NESTING_OPERATOR___GET_NESTED_INSTANCE_MID:
+        try {
+          return getNestedInstanceMID();
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.NESTING_OPERATOR___START_NESTED_INSTANCE__OPERATOR_ELIST_PROPERTIES_ELIST_MAP:
+        try {
+          return startNestedInstance((Operator)arguments.get(0), (EList<OperatorInput>)arguments.get(1), (Properties)arguments.get(2), (EList<OperatorGeneric>)arguments.get(3), (Map<String, MID>)arguments.get(4));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toStringGen() {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nestedMIDPath: ");
-        result.append(this.nestedMIDPath);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (nestedMIDPath: ");
+    result.append(nestedMIDPath);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
      * @generated NOT

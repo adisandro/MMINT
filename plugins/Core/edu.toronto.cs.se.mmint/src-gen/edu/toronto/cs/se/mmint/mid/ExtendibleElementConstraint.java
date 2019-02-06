@@ -36,53 +36,53 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ExtendibleElementConstraint extends EObject {
     /**
-     * Returns the value of the '<em><b>Implementation</b></em>' attribute.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Implementation</b></em>' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The constraint implementation.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Implementation</em>' attribute.
-     * @see #setImplementation(String)
-     * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint_Implementation()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The constraint implementation.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Implementation</em>' attribute.
+   * @see #setImplementation(String)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint_Implementation()
+   * @model required="true"
+   * @generated
+   */
     String getImplementation();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint#getImplementation <em>Implementation</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint#getImplementation <em>Implementation</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Implementation</em>' attribute.
-     * @see #getImplementation()
-     * @generated
-     */
+   * @param value the new value of the '<em>Implementation</em>' attribute.
+   * @see #getImplementation()
+   * @generated
+   */
     void setImplementation(String value);
 
     /**
-     * Returns the value of the '<em><b>Language</b></em>' attribute.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The constraint language.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Language</em>' attribute.
-     * @see #setLanguage(String)
-     * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint_Language()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The constraint language.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Language</em>' attribute.
+   * @see #setLanguage(String)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getExtendibleElementConstraint_Language()
+   * @model required="true"
+   * @generated
+   */
     String getLanguage();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint#getLanguage <em>Language</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint#getLanguage <em>Language</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Language</em>' attribute.
-     * @see #getLanguage()
-     * @generated
-     */
+   * @param value the new value of the '<em>Language</em>' attribute.
+   * @see #getLanguage()
+   * @generated
+   */
     void setLanguage(String value);
 
 } // ExtendibleElementConstraint

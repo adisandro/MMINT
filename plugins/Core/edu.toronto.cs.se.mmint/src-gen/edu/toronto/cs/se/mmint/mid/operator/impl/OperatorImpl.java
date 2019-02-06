@@ -83,9 +83,8 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getGenerics <em>Generics</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getInputSubdir <em>Input Subdir</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getWorkingPath <em>Working Path</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isUpdateMID <em>Update MID</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getExecutionTime <em>Execution Time</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isCommutative <em>Commutative</em>}</li>
  * </ul>
@@ -94,123 +93,103 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
-     * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInputs()
-     * @generated
-     * @ordered
-     */
+   * @see #getInputs()
+   * @generated
+   * @ordered
+   */
     protected EList<ModelEndpoint> inputs;
 
     /**
-     * The cached value of the '{@link #getOutputs() <em>Outputs</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getOutputs() <em>Outputs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOutputs()
-     * @generated
-     * @ordered
-     */
+   * @see #getOutputs()
+   * @generated
+   * @ordered
+   */
     protected EList<ModelEndpoint> outputs;
 
     /**
-     * The cached value of the '{@link #getGenerics() <em>Generics</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getGenerics() <em>Generics</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getGenerics()
-     * @generated
-     * @ordered
-     */
+   * @see #getGenerics()
+   * @generated
+   * @ordered
+   */
     protected EList<GenericEndpoint> generics;
 
     /**
-     * The default value of the '{@link #getWorkingPath() <em>Input Subdir</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getWorkingPath()
-     * @generated
-     * @ordered
-     */
-    protected static final String INPUT_SUBDIR_EDEFAULT = null;
+   * The default value of the '{@link #getWorkingPath() <em>Working Path</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWorkingPath()
+   * @generated
+   * @ordered
+   */
+  protected static final String WORKING_PATH_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getWorkingPath() <em>Input Subdir</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getWorkingPath()
-     * @generated
-     * @ordered
-     */
-    protected String inputSubdir = INPUT_SUBDIR_EDEFAULT;
+   * The cached value of the '{@link #getWorkingPath() <em>Working Path</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWorkingPath()
+   * @generated
+   * @ordered
+   */
+  protected String workingPath = WORKING_PATH_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getPreviousOperator() <em>Previous Operator</em>}' reference.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getPreviousOperator() <em>Previous Operator</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPreviousOperator()
-     * @generated
-     * @ordered
-     */
+   * @see #getPreviousOperator()
+   * @generated
+   * @ordered
+   */
     protected Operator previousOperator;
 
     /**
-     * The default value of the '{@link #isUpdateMID() <em>Update MID</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isUpdateMID()
-     * @generated
-     * @ordered
-     */
-    protected static final boolean UPDATE_MID_EDEFAULT = false;
-
-    /**
-     * The cached value of the '{@link #isUpdateMID() <em>Update MID</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isUpdateMID()
-     * @generated
-     * @ordered
-     */
-    protected boolean updateMID = UPDATE_MID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getExecutionTime()
-     * @generated
-     * @ordered
-     */
+   * @see #getExecutionTime()
+   * @generated
+   * @ordered
+   */
     protected static final long EXECUTION_TIME_EDEFAULT = 0L;
 
     /**
-     * The cached value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getExecutionTime()
-     * @generated
-     * @ordered
-     */
+   * @see #getExecutionTime()
+   * @generated
+   * @ordered
+   */
     protected long executionTime = EXECUTION_TIME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isCommutative()
-     * @generated
-     * @ordered
-     */
+   * @see #isCommutative()
+   * @generated
+   * @ordered
+   */
     protected static final boolean COMMUTATIVE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #isCommutative() <em>Commutative</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isCommutative()
-     * @generated
-     * @ordered
-     */
+   * @see #isCommutative()
+   * @generated
+   * @ordered
+   */
     protected boolean commutative = COMMUTATIVE_EDEFAULT;
 
     /**
@@ -223,551 +202,516 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return OperatorPackage.Literals.OPERATOR;
-    }
+    return OperatorPackage.Literals.OPERATOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public EList<ModelEndpoint> getInputs() {
-        if (this.inputs == null) {
-            this.inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
-        }
-        return this.inputs;
+    if (this.inputs == null) {
+      this.inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
     }
+    return this.inputs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public EList<ModelEndpoint> getOutputs() {
-        if (this.outputs == null) {
-            this.outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
-        }
-        return this.outputs;
+    if (this.outputs == null) {
+      this.outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
     }
+    return this.outputs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public EList<GenericEndpoint> getGenerics() {
-        if (this.generics == null) {
-            this.generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
-        }
-        return this.generics;
+    if (this.generics == null) {
+      this.generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
     }
+    return this.generics;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String getWorkingPath() {
-        return this.inputSubdir;
-    }
+    return this.workingPath;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
-    public void setWorkingPath(String newInputSubdir) {
-        String oldInputSubdir = this.inputSubdir;
-        this.inputSubdir = newInputSubdir;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__INPUT_SUBDIR, oldInputSubdir, this.inputSubdir));
-    }
+    public void setWorkingPath(String newWorkingPath) {
+    String oldWorkingPath = this.workingPath;
+    this.workingPath = newWorkingPath;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__WORKING_PATH, oldWorkingPath, this.workingPath));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Operator getPreviousOperator() {
-        if (this.previousOperator != null && this.previousOperator.eIsProxy()) {
-            InternalEObject oldPreviousOperator = (InternalEObject)this.previousOperator;
-            this.previousOperator = (Operator)this.eResolveProxy(oldPreviousOperator);
-            if (this.previousOperator != oldPreviousOperator) {
-                if (this.eNotificationRequired())
-                    this.eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
-            }
-        }
-        return this.previousOperator;
+    if (this.previousOperator != null && this.previousOperator.eIsProxy()) {
+      InternalEObject oldPreviousOperator = (InternalEObject)this.previousOperator;
+      this.previousOperator = (Operator)eResolveProxy(oldPreviousOperator);
+      if (this.previousOperator != oldPreviousOperator) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
+      }
     }
+    return this.previousOperator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public Operator basicGetPreviousOperator() {
-        return this.previousOperator;
-    }
+    return this.previousOperator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setPreviousOperator(Operator newPreviousOperator) {
-        Operator oldPreviousOperator = this.previousOperator;
-        this.previousOperator = newPreviousOperator;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
-    }
+    Operator oldPreviousOperator = this.previousOperator;
+    this.previousOperator = newPreviousOperator;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean isUpdateMID() {
-        return this.updateMID;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void setUpdateMID(boolean newUpdateMID) {
-        boolean oldUpdateMID = this.updateMID;
-        this.updateMID = newUpdateMID;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__UPDATE_MID, oldUpdateMID, this.updateMID));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public long getExecutionTime() {
-        return this.executionTime;
-    }
+    return this.executionTime;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setExecutionTime(long newExecutionTime) {
-        long oldExecutionTime = this.executionTime;
-        this.executionTime = newExecutionTime;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, this.executionTime));
-    }
+    long oldExecutionTime = this.executionTime;
+    this.executionTime = newExecutionTime;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, this.executionTime));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean isCommutative() {
-        return this.commutative;
-    }
+    return this.commutative;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void setCommutative(boolean newCommutative) {
-        boolean oldCommutative = this.commutative;
-        this.commutative = newCommutative;
-        if (this.eNotificationRequired())
-            this.eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, this.commutative));
-    }
+    boolean oldCommutative = this.commutative;
+    this.commutative = newCommutative;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, this.commutative));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case OperatorPackage.OPERATOR__INPUTS:
-                return ((InternalEList<?>)this.getInputs()).basicRemove(otherEnd, msgs);
-            case OperatorPackage.OPERATOR__OUTPUTS:
-                return ((InternalEList<?>)this.getOutputs()).basicRemove(otherEnd, msgs);
-            case OperatorPackage.OPERATOR__GENERICS:
-                return ((InternalEList<?>)this.getGenerics()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case OperatorPackage.OPERATOR__INPUTS:
+        return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
+      case OperatorPackage.OPERATOR__OUTPUTS:
+        return ((InternalEList<?>)getOutputs()).basicRemove(otherEnd, msgs);
+      case OperatorPackage.OPERATOR__GENERICS:
+        return ((InternalEList<?>)getGenerics()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case OperatorPackage.OPERATOR__INPUTS:
-                return this.getInputs();
-            case OperatorPackage.OPERATOR__OUTPUTS:
-                return this.getOutputs();
-            case OperatorPackage.OPERATOR__GENERICS:
-                return this.getGenerics();
-            case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                return this.getWorkingPath();
-            case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                if (resolve) return this.getPreviousOperator();
-                return this.basicGetPreviousOperator();
-            case OperatorPackage.OPERATOR__UPDATE_MID:
-                return this.isUpdateMID();
-            case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                return this.getExecutionTime();
-            case OperatorPackage.OPERATOR__COMMUTATIVE:
-                return this.isCommutative();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case OperatorPackage.OPERATOR__INPUTS:
+        return getInputs();
+      case OperatorPackage.OPERATOR__OUTPUTS:
+        return getOutputs();
+      case OperatorPackage.OPERATOR__GENERICS:
+        return getGenerics();
+      case OperatorPackage.OPERATOR__WORKING_PATH:
+        return getWorkingPath();
+      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+        if (resolve) return getPreviousOperator();
+        return basicGetPreviousOperator();
+      case OperatorPackage.OPERATOR__EXECUTION_TIME:
+        return getExecutionTime();
+      case OperatorPackage.OPERATOR__COMMUTATIVE:
+        return isCommutative();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case OperatorPackage.OPERATOR__INPUTS:
-                this.getInputs().clear();
-                this.getInputs().addAll((Collection<? extends ModelEndpoint>)newValue);
-                return;
-            case OperatorPackage.OPERATOR__OUTPUTS:
-                this.getOutputs().clear();
-                this.getOutputs().addAll((Collection<? extends ModelEndpoint>)newValue);
-                return;
-            case OperatorPackage.OPERATOR__GENERICS:
-                this.getGenerics().clear();
-                this.getGenerics().addAll((Collection<? extends GenericEndpoint>)newValue);
-                return;
-            case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                this.setWorkingPath((String)newValue);
-                return;
-            case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                this.setPreviousOperator((Operator)newValue);
-                return;
-            case OperatorPackage.OPERATOR__UPDATE_MID:
-                this.setUpdateMID((Boolean)newValue);
-                return;
-            case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                this.setExecutionTime((Long)newValue);
-                return;
-            case OperatorPackage.OPERATOR__COMMUTATIVE:
-                this.setCommutative((Boolean)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case OperatorPackage.OPERATOR__INPUTS:
+        getInputs().clear();
+        getInputs().addAll((Collection<? extends ModelEndpoint>)newValue);
+        return;
+      case OperatorPackage.OPERATOR__OUTPUTS:
+        getOutputs().clear();
+        getOutputs().addAll((Collection<? extends ModelEndpoint>)newValue);
+        return;
+      case OperatorPackage.OPERATOR__GENERICS:
+        getGenerics().clear();
+        getGenerics().addAll((Collection<? extends GenericEndpoint>)newValue);
+        return;
+      case OperatorPackage.OPERATOR__WORKING_PATH:
+        setWorkingPath((String)newValue);
+        return;
+      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+        setPreviousOperator((Operator)newValue);
+        return;
+      case OperatorPackage.OPERATOR__EXECUTION_TIME:
+        setExecutionTime((Long)newValue);
+        return;
+      case OperatorPackage.OPERATOR__COMMUTATIVE:
+        setCommutative((Boolean)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case OperatorPackage.OPERATOR__INPUTS:
-                this.getInputs().clear();
-                return;
-            case OperatorPackage.OPERATOR__OUTPUTS:
-                this.getOutputs().clear();
-                return;
-            case OperatorPackage.OPERATOR__GENERICS:
-                this.getGenerics().clear();
-                return;
-            case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                this.setWorkingPath(INPUT_SUBDIR_EDEFAULT);
-                return;
-            case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                this.setPreviousOperator((Operator)null);
-                return;
-            case OperatorPackage.OPERATOR__UPDATE_MID:
-                this.setUpdateMID(UPDATE_MID_EDEFAULT);
-                return;
-            case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                this.setExecutionTime(EXECUTION_TIME_EDEFAULT);
-                return;
-            case OperatorPackage.OPERATOR__COMMUTATIVE:
-                this.setCommutative(COMMUTATIVE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case OperatorPackage.OPERATOR__INPUTS:
+        getInputs().clear();
+        return;
+      case OperatorPackage.OPERATOR__OUTPUTS:
+        getOutputs().clear();
+        return;
+      case OperatorPackage.OPERATOR__GENERICS:
+        getGenerics().clear();
+        return;
+      case OperatorPackage.OPERATOR__WORKING_PATH:
+        setWorkingPath(WORKING_PATH_EDEFAULT);
+        return;
+      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+        setPreviousOperator((Operator)null);
+        return;
+      case OperatorPackage.OPERATOR__EXECUTION_TIME:
+        setExecutionTime(EXECUTION_TIME_EDEFAULT);
+        return;
+      case OperatorPackage.OPERATOR__COMMUTATIVE:
+        setCommutative(COMMUTATIVE_EDEFAULT);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case OperatorPackage.OPERATOR__INPUTS:
-                return this.inputs != null && !this.inputs.isEmpty();
-            case OperatorPackage.OPERATOR__OUTPUTS:
-                return this.outputs != null && !this.outputs.isEmpty();
-            case OperatorPackage.OPERATOR__GENERICS:
-                return this.generics != null && !this.generics.isEmpty();
-            case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-                return INPUT_SUBDIR_EDEFAULT == null ? this.inputSubdir != null : !INPUT_SUBDIR_EDEFAULT.equals(this.inputSubdir);
-            case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-                return this.previousOperator != null;
-            case OperatorPackage.OPERATOR__UPDATE_MID:
-                return this.updateMID != UPDATE_MID_EDEFAULT;
-            case OperatorPackage.OPERATOR__EXECUTION_TIME:
-                return this.executionTime != EXECUTION_TIME_EDEFAULT;
-            case OperatorPackage.OPERATOR__COMMUTATIVE:
-                return this.commutative != COMMUTATIVE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case OperatorPackage.OPERATOR__INPUTS:
+        return this.inputs != null && !this.inputs.isEmpty();
+      case OperatorPackage.OPERATOR__OUTPUTS:
+        return this.outputs != null && !this.outputs.isEmpty();
+      case OperatorPackage.OPERATOR__GENERICS:
+        return this.generics != null && !this.generics.isEmpty();
+      case OperatorPackage.OPERATOR__WORKING_PATH:
+        return WORKING_PATH_EDEFAULT == null ? this.workingPath != null : !WORKING_PATH_EDEFAULT.equals(this.workingPath);
+      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
+        return this.previousOperator != null;
+      case OperatorPackage.OPERATOR__EXECUTION_TIME:
+        return this.executionTime != EXECUTION_TIME_EDEFAULT;
+      case OperatorPackage.OPERATOR__COMMUTATIVE:
+        return this.commutative != COMMUTATIVE_EDEFAULT;
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.OPERATOR___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return OperatorPackage.OPERATOR___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.OPERATOR___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return OperatorPackage.OPERATOR___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     @SuppressWarnings("unchecked")
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case OperatorPackage.OPERATOR___GET_METATYPE:
-                return this.getMetatype();
-            case OperatorPackage.OPERATOR___GET_SUPERTYPE:
-                return this.getSupertype();
-            case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
-                return this.getMIDContainer();
-            case OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST:
-                try {
-                    return this.getTypeSignature((EList<OperatorInput>)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING:
-                try {
-                    return this.createSubtype((String)arguments.get(0), (String)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___DELETE_TYPE:
-                try {
-                    this.deleteType();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___OPEN_TYPE:
-                try {
-                    this.openType();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST:
-                try {
-                    return this.findAllowedInputs((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST:
-                try {
-                    return this.findFirstAllowedInput((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST:
-                try {
-                    return this.checkAllowedInputs((EList<Model>)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME:
-                try {
-                    return this.getOutputsByName();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___GET_OUTPUT_MODELS:
-                try {
-                    return this.getOutputModels();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___CREATE_INSTANCE__MID:
-                try {
-                    return this.createInstance((MID)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___DELETE_INSTANCE:
-                try {
-                    this.deleteInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST:
-                try {
-                    return this.selectAllowedGenerics((EList<OperatorInput>)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES:
-                return this.getInputProperties();
-            case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
-                try {
-                    this.readInputProperties((Properties)arguments.get(0));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
-                try {
-                    return this.run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID:
-                try {
-                    return this.startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___OPEN_INSTANCE:
-                try {
-                    this.openInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID:
-                try {
-                    return this.createWorkflowInstance((MID)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE:
-                try {
-                    this.deleteWorkflowInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID:
-                try {
-                    this.createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID:
-                try {
-                    return this.startWorkflowInstance((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE:
-                try {
-                    this.openWorkflowInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case OperatorPackage.OPERATOR___GET_METATYPE:
+        return getMetatype();
+      case OperatorPackage.OPERATOR___GET_SUPERTYPE:
+        return getSupertype();
+      case OperatorPackage.OPERATOR___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case OperatorPackage.OPERATOR___GET_TYPE_SIGNATURE__ELIST:
+        try {
+          return getTypeSignature((EList<OperatorInput>)arguments.get(0));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___CREATE_SUBTYPE__STRING_STRING:
+        try {
+          return createSubtype((String)arguments.get(0), (String)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___DELETE_TYPE:
+        try {
+          deleteType();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___OPEN_TYPE:
+        try {
+          openType();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___FIND_ALLOWED_INPUTS__ELIST_ELIST:
+        try {
+          return findAllowedInputs((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___FIND_FIRST_ALLOWED_INPUT__ELIST_ELIST:
+        try {
+          return findFirstAllowedInput((EList<MID>)arguments.get(0), (EList<Set<Model>>)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___CHECK_ALLOWED_INPUTS__ELIST:
+        try {
+          return checkAllowedInputs((EList<Model>)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___GET_OUTPUTS_BY_NAME:
+        try {
+          return getOutputsByName();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___GET_OUTPUT_MODELS:
+        try {
+          return getOutputModels();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___CREATE_INSTANCE__MID:
+        try {
+          return createInstance((MID)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___DELETE_INSTANCE:
+        try {
+          deleteInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST:
+        try {
+          return selectAllowedGenerics((EList<OperatorInput>)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES:
+        return getInputProperties();
+      case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
+        try {
+          readInputProperties((Properties)arguments.get(0));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP:
+        try {
+          return run((Map<String, Model>)arguments.get(0), (Map<String, GenericElement>)arguments.get(1), (Map<String, MID>)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID:
+        try {
+          return startInstance((EList<OperatorInput>)arguments.get(0), (Properties)arguments.get(1), (EList<OperatorGeneric>)arguments.get(2), (Map<String, MID>)arguments.get(3), (MID)arguments.get(4));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___OPEN_INSTANCE:
+        try {
+          openInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID:
+        try {
+          return createWorkflowInstance((MID)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE:
+        try {
+          deleteWorkflowInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MID:
+        try {
+          createWorkflowInstanceOutputs((Operator)arguments.get(0), (Map<String, Model>)arguments.get(1), (MID)arguments.get(2));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___START_WORKFLOW_INSTANCE__ELIST_ELIST_MID:
+        try {
+          return startWorkflowInstance((EList<OperatorInput>)arguments.get(0), (EList<OperatorGeneric>)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___OPEN_WORKFLOW_INSTANCE:
+        try {
+          openWorkflowInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String toStringGen() {
-        if (this.eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (inputSubdir: ");
-        result.append(this.inputSubdir);
-        result.append(", updateMID: ");
-        result.append(this.updateMID);
-        result.append(", executionTime: ");
-        result.append(this.executionTime);
-        result.append(", commutative: ");
-        result.append(this.commutative);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (workingPath: ");
+    result.append(this.workingPath);
+    result.append(", executionTime: ");
+    result.append(this.executionTime);
+    result.append(", commutative: ");
+    result.append(this.commutative);
+    result.append(')');
+    return result.toString();
+  }
 
     /**
      * @generated NOT
@@ -789,36 +733,36 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Operator getMetatype() {
-        ExtendibleElement metatype = super.getMetatype();
-        return (metatype == null) ? null : (Operator) metatype;
-    }
+    ExtendibleElement metatype = super.getMetatype();
+    return (metatype == null) ? null : (Operator) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Operator getSupertype() {
-        ExtendibleElement supertype = super.getSupertype();
-        return (supertype == null) ? null : (Operator) supertype;
-    }
+    ExtendibleElement supertype = super.getSupertype();
+    return (supertype == null) ? null : (Operator) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer();
-    }
+    return (MID) this.eContainer();
+  }
 
     /**
      * @generated NOT
@@ -1372,10 +1316,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     @Override
     public void readInputProperties(Properties inputProperties) throws MMINTException {
-
-        this.setUpdateMID(
-            MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, MIDOperatorIOUtils.PROPERTY_IN_UPDATEMID, true)
-        );
+      // do nothing
     }
 
     /**

@@ -37,304 +37,280 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 public class OperatorItemProvider
 	extends GenericElementItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public OperatorItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+    super(adapterFactory);
+  }
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
 
-			addGenericsPropertyDescriptor(object);
-			addInputSubdirPropertyDescriptor(object);
-			addPreviousOperatorPropertyDescriptor(object);
-			addUpdateMIDPropertyDescriptor(object);
-			addExecutionTimePropertyDescriptor(object);
-			addCommutativePropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+      addGenericsPropertyDescriptor(object);
+      addWorkingPathPropertyDescriptor(object);
+      addPreviousOperatorPropertyDescriptor(object);
+      addExecutionTimePropertyDescriptor(object);
+      addCommutativePropertyDescriptor(object);
+    }
+    return itemPropertyDescriptors;
+  }
 
 	/**
-	 * This adds a property descriptor for the Generics feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Generics feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addGenericsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Operator_generics_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_generics_feature", "_UI_Operator_type"),
-				 OperatorPackage.Literals.OPERATOR__GENERICS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Operator_generics_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Operator_generics_feature", "_UI_Operator_type"),
+         OperatorPackage.Literals.OPERATOR__GENERICS,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
 
 	/**
-	 * This adds a property descriptor for the Input Subdir feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInputSubdirPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Operator_inputSubdir_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_inputSubdir_feature", "_UI_Operator_type"),
-				 OperatorPackage.Literals.OPERATOR__INPUT_SUBDIR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+   * This adds a property descriptor for the Working Path feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addWorkingPathPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Operator_workingPath_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Operator_workingPath_feature", "_UI_Operator_type"),
+         OperatorPackage.Literals.OPERATOR__WORKING_PATH,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
 
-	/**
-	 * This adds a property descriptor for the Previous Operator feature.
-	 * <!-- begin-user-doc -->
+  /**
+   * This adds a property descriptor for the Previous Operator feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addPreviousOperatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Operator_previousOperator_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_previousOperator_feature", "_UI_Operator_type"),
-				 OperatorPackage.Literals.OPERATOR__PREVIOUS_OPERATOR,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Operator_previousOperator_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Operator_previousOperator_feature", "_UI_Operator_type"),
+         OperatorPackage.Literals.OPERATOR__PREVIOUS_OPERATOR,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
+  }
 
 	/**
-	 * This adds a property descriptor for the Update MID feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Execution Time feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUpdateMIDPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Operator_updateMID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_updateMID_feature", "_UI_Operator_type"),
-				 OperatorPackage.Literals.OPERATOR__UPDATE_MID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Execution Time feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addExecutionTimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Operator_executionTime_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_executionTime_feature", "_UI_Operator_type"),
-				 OperatorPackage.Literals.OPERATOR__EXECUTION_TIME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Operator_executionTime_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Operator_executionTime_feature", "_UI_Operator_type"),
+         OperatorPackage.Literals.OPERATOR__EXECUTION_TIME,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This adds a property descriptor for the Commutative feature.
-	 * <!-- begin-user-doc -->
+   * This adds a property descriptor for the Commutative feature.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected void addCommutativePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Operator_commutative_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Operator_commutative_feature", "_UI_Operator_type"),
-				 OperatorPackage.Literals.OPERATOR__COMMUTATIVE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Operator_commutative_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Operator_commutative_feature", "_UI_Operator_type"),
+         OperatorPackage.Literals.OPERATOR__COMMUTATIVE,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+         null,
+         null));
+  }
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
-			childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
-		}
-		return childrenFeatures;
-	}
+    if (childrenFeatures == null) {
+      super.getChildrenFeatures(object);
+      childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
+      childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
+    }
+    return childrenFeatures;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
 
-		return super.getChildFeature(object, child);
-	}
+    return super.getChildFeature(object, child);
+  }
 
 	/**
-	 * This returns Operator.gif.
-	 * <!-- begin-user-doc -->
+   * This returns Operator.gif.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Operator"));
-	}
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Operator"));
+  }
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String getText(Object object) {
-		String label = ((Operator)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Operator_type") :
-			getString("_UI_Operator_type") + " " + label;
-	}
+    String label = ((Operator)object).getName();
+    return label == null || label.length() == 0 ?
+      getString("_UI_Operator_type") :
+      getString("_UI_Operator_type") + " " + label;
+  }
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    updateChildren(notification);
 
-		switch (notification.getFeatureID(Operator.class)) {
-			case OperatorPackage.OPERATOR__INPUT_SUBDIR:
-			case OperatorPackage.OPERATOR__UPDATE_MID:
-			case OperatorPackage.OPERATOR__EXECUTION_TIME:
-			case OperatorPackage.OPERATOR__COMMUTATIVE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case OperatorPackage.OPERATOR__INPUTS:
-			case OperatorPackage.OPERATOR__OUTPUTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+    switch (notification.getFeatureID(Operator.class)) {
+      case OperatorPackage.OPERATOR__WORKING_PATH:
+      case OperatorPackage.OPERATOR__EXECUTION_TIME:
+      case OperatorPackage.OPERATOR__COMMUTATIVE:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+      case OperatorPackage.OPERATOR__INPUTS:
+      case OperatorPackage.OPERATOR__OUTPUTS:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        return;
+    }
+    super.notifyChanged(notification);
+  }
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
+    super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__INPUTS,
-				 MIDFactory.eINSTANCE.createModelEndpoint()));
+    newChildDescriptors.add
+      (createChildParameter
+        (OperatorPackage.Literals.OPERATOR__INPUTS,
+         MIDFactory.eINSTANCE.createModelEndpoint()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(OperatorPackage.Literals.OPERATOR__OUTPUTS,
-				 MIDFactory.eINSTANCE.createModelEndpoint()));
-	}
+    newChildDescriptors.add
+      (createChildParameter
+        (OperatorPackage.Literals.OPERATOR__OUTPUTS,
+         MIDFactory.eINSTANCE.createModelEndpoint()));
+  }
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+   * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
+    Object childFeature = feature;
+    Object childObject = child;
 
-		boolean qualify =
-			childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
-			childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
+    boolean qualify =
+      childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
+      childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
 
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
-	}
+    if (qualify) {
+      return getString
+        ("_UI_CreateChild_text2",
+         new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
+  }
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
+   * Return the resource locator for this item provider's resources.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MIDEditPlugin.INSTANCE;
-	}
+    return MIDEditPlugin.INSTANCE;
+  }
 
 }

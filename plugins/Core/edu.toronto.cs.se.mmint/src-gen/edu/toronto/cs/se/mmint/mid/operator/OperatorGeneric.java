@@ -38,53 +38,53 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface OperatorGeneric extends EObject {
     /**
-     * Returns the value of the '<em><b>Generic</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Generic</b></em>' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The generic actual parameter.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Generic</em>' reference.
-     * @see #setGeneric(GenericElement)
-     * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorGeneric_Generic()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The generic actual parameter.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Generic</em>' reference.
+   * @see #setGeneric(GenericElement)
+   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorGeneric_Generic()
+   * @model required="true"
+   * @generated
+   */
     GenericElement getGeneric();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric#getGeneric <em>Generic</em>}' reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric#getGeneric <em>Generic</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Generic</em>' reference.
-     * @see #getGeneric()
-     * @generated
-     */
+   * @param value the new value of the '<em>Generic</em>' reference.
+   * @see #getGeneric()
+   * @generated
+   */
     void setGeneric(GenericElement value);
 
     /**
-     * Returns the value of the '<em><b>Generic Super Type Endpoint</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Generic Super Type Endpoint</b></em>' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The generic formal parameter.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Generic Super Type Endpoint</em>' reference.
-     * @see #setGenericSuperTypeEndpoint(GenericEndpoint)
-     * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorGeneric_GenericSuperTypeEndpoint()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The generic formal parameter.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Generic Super Type Endpoint</em>' reference.
+   * @see #setGenericSuperTypeEndpoint(GenericEndpoint)
+   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperatorGeneric_GenericSuperTypeEndpoint()
+   * @model required="true"
+   * @generated
+   */
     GenericEndpoint getGenericSuperTypeEndpoint();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric#getGenericSuperTypeEndpoint <em>Generic Super Type Endpoint</em>}' reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric#getGenericSuperTypeEndpoint <em>Generic Super Type Endpoint</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Generic Super Type Endpoint</em>' reference.
-     * @see #getGenericSuperTypeEndpoint()
-     * @generated
-     */
+   * @param value the new value of the '<em>Generic Super Type Endpoint</em>' reference.
+   * @see #getGenericSuperTypeEndpoint()
+   * @generated
+   */
     void setGenericSuperTypeEndpoint(GenericEndpoint value);
 
 } // OperatorGeneric

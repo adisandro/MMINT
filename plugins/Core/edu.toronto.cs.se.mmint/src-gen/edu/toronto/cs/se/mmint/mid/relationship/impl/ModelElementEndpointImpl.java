@@ -47,158 +47,162 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public class ModelElementEndpointImpl extends ExtendibleElementEndpointImpl implements ModelElementEndpoint {
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ModelElementEndpointImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return RelationshipPackage.Literals.MODEL_ELEMENT_ENDPOINT;
-    }
+    return RelationshipPackage.Literals.MODEL_ELEMENT_ENDPOINT;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelElementEndpoint getSupertype() {
-        ExtendibleElementEndpoint supertype = super.getSupertype();
-        return (supertype == null) ? null : (ModelElementEndpoint) supertype;
-    }
+    ExtendibleElementEndpoint supertype = super.getSupertype();
+    return (supertype == null) ? null : (ModelElementEndpoint) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer().eContainer().eContainer();
-    }
+    return (MID) this.eContainer().eContainer().eContainer();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelElement getTarget() {
-        ExtendibleElement target = super.getTarget();
-        return (target == null) ? null : (ModelElement) target;
-    }
+    ExtendibleElement target = super.getTarget();
+    return (target == null) ? null : (ModelElement) target;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ModelElementEndpoint getMetatype() {
-        ExtendibleElementEndpoint metatype = super.getMetatype();
-        return (metatype == null) ? null : (ModelElementEndpoint) metatype;
-    }
+    ExtendibleElementEndpoint metatype = super.getMetatype();
+    return (metatype == null) ? null : (ModelElementEndpoint) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        if (baseClass == ExtendibleElementEndpoint.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    if (baseClass == ExtendibleElementEndpoint.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE:
-                return getMetatype();
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE:
-                return getSupertype();
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER:
-                return getMIDContainer();
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_TARGET:
-                return getTarget();
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_MAPPINGREFERENCE:
-                try {
-                    return createTypeReference((ModelElementEndpointReference)arguments.get(0), (ModelElementReference)arguments.get(1), (Boolean)arguments.get(2), (Boolean)arguments.get(3), (MappingReference)arguments.get(4));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_MAPPINGREFERENCE:
-                try {
-                    return createSubtypeAndReference((String)arguments.get(0), (ModelElementReference)arguments.get(1), (Boolean)arguments.get(2), (MappingReference)arguments.get(3));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE:
-                try {
-                    replaceSubtypeAndReference((ModelElementEndpointReference)arguments.get(0), (String)arguments.get(1), (ModelElementReference)arguments.get(2));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN:
-                try {
-                    deleteType((Boolean)arguments.get(0));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE:
-                try {
-                    return createInstanceReference((ModelElementReference)arguments.get(0), (MappingReference)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE:
-                try {
-                    return createInstanceAndReference((ModelElementReference)arguments.get(0), (MappingReference)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE:
-                try {
-                    replaceInstanceAndReference((ModelElementEndpointReference)arguments.get(0), (ModelElementReference)arguments.get(1));
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_METATYPE:
+        return getMetatype();
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE:
+        return getSupertype();
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___GET_TARGET:
+        return getTarget();
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_MAPPINGREFERENCE:
+        try {
+          return createTypeReference((ModelElementEndpointReference)arguments.get(0), (ModelElementReference)arguments.get(1), (Boolean)arguments.get(2), (Boolean)arguments.get(3), (MappingReference)arguments.get(4));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_MAPPINGREFERENCE:
+        try {
+          return createSubtypeAndReference((String)arguments.get(0), (ModelElementReference)arguments.get(1), (Boolean)arguments.get(2), (MappingReference)arguments.get(3));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE:
+        try {
+          replaceSubtypeAndReference((ModelElementEndpointReference)arguments.get(0), (String)arguments.get(1), (ModelElementReference)arguments.get(2));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN:
+        try {
+          deleteType((Boolean)arguments.get(0));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE:
+        try {
+          return createInstanceReference((ModelElementReference)arguments.get(0), (MappingReference)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE:
+        try {
+          return createInstanceAndReference((ModelElementReference)arguments.get(0), (MappingReference)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE:
+        try {
+          replaceInstanceAndReference((ModelElementEndpointReference)arguments.get(0), (ModelElementReference)arguments.get(1));
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * @generated NOT

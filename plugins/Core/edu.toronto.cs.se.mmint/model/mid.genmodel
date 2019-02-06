@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,&#xA;Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Rick Salay.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;   Alessio Di Sandro - Implementation."
     modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
     modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="MID" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
@@ -28,14 +28,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/operators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//MID/extendibleTable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//MID/level"/>
-      <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel"/>
-      <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel"/>
-      <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isTypesLevel" body="return this.getLevel() == MIDLevel.TYPES;"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isInstancesLevel" body="return this.getLevel() == MIDLevel.INSTANCES;"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/isWorkflowsLevel" body="return this.getLevel() == MIDLevel.WORKFLOWS;"/>
       <genOperations ecoreOperation="mid.ecore#//MID/getExtendibleElement">
         <genParameters ecoreParameter="mid.ecore#//MID/getExtendibleElement/uri"/>
         <genTypeParameters ecoreTypeParameter="mid.ecore#//MID/getExtendibleElement/T"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//MID/getModelRels"/>
+      <genOperations ecoreOperation="mid.ecore#//MID/getModelRels" body="EList&lt;ModelRel> modelRels = new BasicEList&lt;>();&#xA;for (Model model : this.getModels()) {&#xA;&#x9;if (model instanceof ModelRel) {&#xA;&#x9;&#x9;modelRels.add((ModelRel) model);&#xA;&#x9;}&#xA;}&#xA;return modelRels;"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//EStringToExtendibleElementMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//EStringToExtendibleElementMap/key"/>
@@ -49,12 +49,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/metatypeUri"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElement/dynamic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElement/constraint"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMetatype"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMIDContainer"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isLevel">
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMetatype" body="return MIDTypeRegistry.getType(getMetatypeUri());"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getMIDContainer"
+          body="return null;"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isLevel" body="return this.getLevel() == midLevel;">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/isLevel/midLevel"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isTypesLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isTypesLevel" body="return this.isLevel(MIDLevel.TYPES);"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/createSubtypeUri">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeFragmentUri"/>
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/createSubtypeUri/newTypeName"/>
@@ -63,7 +64,8 @@
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/addTypeConstraint/language"/>
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/addTypeConstraint/implementation"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isInstancesLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isInstancesLevel"
+          body="return this.isLevel(MIDLevel.INSTANCES);"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/getRuntimeTypes">
         <genTypeParameters ecoreTypeParameter="mid.ecore#//ExtendibleElement/getRuntimeTypes/T"/>
       </genOperations>
@@ -75,7 +77,8 @@
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/validateInstanceInEditor">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/validateInstanceInEditor/context"/>
       </genOperations>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isWorkflowsLevel"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/isWorkflowsLevel"
+          body="return this.isLevel(MIDLevel.WORKFLOWS);"/>
       <genOperations ecoreOperation="mid.ecore#//ExtendibleElement/updateWorkflowInstanceId">
         <genParameters ecoreParameter="mid.ecore#//ExtendibleElement/updateWorkflowInstanceId/newInstanceId"/>
       </genOperations>
@@ -89,9 +92,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/lowerBound"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//ExtendibleElementEndpoint/upperBound"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//ExtendibleElementEndpoint/target"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getMetatype"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getSupertype"/>
-      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getTargetUri"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getMetatype"
+          body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ExtendibleElementEndpoint) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getSupertype"
+          body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ExtendibleElementEndpoint) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ExtendibleElementEndpoint/getTargetUri"
+          body="ExtendibleElement target = this.getTarget();&#xA;return (target == null) ? null : target.getUri();"/>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//Model/origin"/>
@@ -99,9 +105,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
-      <genOperations ecoreOperation="mid.ecore#//Model/getMetatype"/>
-      <genOperations ecoreOperation="mid.ecore#//Model/getSupertype"/>
-      <genOperations ecoreOperation="mid.ecore#//Model/getMIDContainer"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Model) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//Model/getMIDContainer" body="return (MID) this.eContainer();"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createSubtype">
         <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/newModelTypeName"/>
         <genParameters ecoreParameter="mid.ecore#//Model/createSubtype/isMetamodelExtension"/>
@@ -157,9 +163,9 @@
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//ModelElement/eInfo"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMIDContainer"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElement) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElement) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelElement/getMIDContainer" body="return (MID) this.eContainer().eContainer();"/>
       <genOperations ecoreOperation="mid.ecore#//ModelElement/createTypeReference">
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/modelElemTypeRef"/>
         <genParameters ecoreParameter="mid.ecore#//ModelElement/createTypeReference/isModifiable"/>
@@ -189,10 +195,10 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="mid.ecore#//ModelEndpoint">
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMIDContainer"/>
-      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMetatype" body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelEndpoint) metatype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getSupertype" body="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelEndpoint) supertype;"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getMIDContainer" body="return (MID) this.eContainer().eContainer();"/>
+      <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/getTarget" body="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (Model) target;"/>
       <genOperations ecoreOperation="mid.ecore#//ModelEndpoint/createTypeReference">
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/isModifiable"/>
         <genParameters ecoreParameter="mid.ecore#//ModelEndpoint/createTypeReference/containerModelRelType"/>
@@ -263,9 +269,12 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/mappings"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/modelEndpointRefs"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelRel/mappingRefs"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMetatype"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getSupertype"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMetatype"
+            body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelRel) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getSupertype"
+            body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/getMIDContainer"
+            body="return (MID) this.eContainer();"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelRel/createBinarySubtype">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/newModelRelTypeName"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelRel/createBinarySubtype/isMetamodelExtension"/>
@@ -326,22 +335,33 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ExtendibleElementReference/supertypeRef"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//relationship/ExtendibleElementReference/modifiable"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getUri"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getMIDContainer"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isTypesLevel"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isInstancesLevel"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isWorkflowsLevel"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getUri"
+            body="ExtendibleElement object = this.getObject();&#xA;return (object == null) ? null : object.getUri();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getObject"
+            body="return (this.getContainedObject() == null) ?&#xA;&#x9;this.getReferencedObject() :&#xA;&#x9;this.getContainedObject();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/getMIDContainer"
+            body="return this.getObject().getMIDContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isTypesLevel"
+            body="return this.getObject().isTypesLevel();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isInstancesLevel"
+            body="return this.getObject().isInstancesLevel();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementReference/isWorkflowsLevel"
+            body="return this.getObject().isWorkflowsLevel();"/>
       </genClasses>
       <genClasses image="false" ecoreClass="mid.ecore#//relationship/ExtendibleElementEndpointReference">
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getSupertypeRef"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getTargetUri"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ExtendibleElementEndpoint) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getSupertypeRef"
+            body="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ExtendibleElementEndpointReference/getTargetUri"
+            body="ExtendibleElementEndpoint object = this.getObject();&#xA;return (object == null) ? null : object.getTargetUri();"/>
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelEndpointReference">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelEndpointReference/modelElemRefs"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/getObject"
+            body="ExtendibleElementEndpoint object = super.getObject();&#xA;return (object == null) ? null : (ModelEndpoint) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/getSupertypeRef"
+            body="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelEndpointReference) supertypeRef;"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementType">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelEndpointReference/acceptModelElementType/metamodelObj"/>
         </genOperations>
@@ -359,8 +379,10 @@
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementReference/modelElemEndpointRefs"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (ModelElement) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/getSupertypeRef"
+            body="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/deleteTypeReference"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementReference/deleteInstanceReference"/>
       </genClasses>
@@ -368,9 +390,12 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/Mapping/modelElemEndpoints"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/Mapping/modelElemEndpointRefs"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getMetatype"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getSupertype"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getMetatype"
+            body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Mapping) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getSupertype"
+            body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Mapping) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/getMIDContainer"
+            body="return (MID) this.eContainer().eContainer();"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/Mapping/createTypeReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createTypeReference/mappingTypeRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/Mapping/createTypeReference/isModifiable"/>
@@ -398,10 +423,14 @@
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/BinaryMapping"/>
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpoint">
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMetatype"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getSupertype"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMIDContainer"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getTarget"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMetatype"
+            body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (ModelElementEndpoint) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getSupertype"
+            body="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (ModelElementEndpoint) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getMIDContainer"
+            body="return (MID) this.eContainer().eContainer().eContainer();"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/getTarget"
+            body="ExtendibleElement target = super.getTarget();&#xA;return (target == null) ? null : (ModelElement) target;"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/modelElemTypeEndpointRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpoint/createTypeReference/targetModelElemTypeRef"/>
@@ -438,8 +467,10 @@
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//relationship/MappingReference">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//relationship/MappingReference/modelElemEndpointRefs"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (Mapping) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/getSupertypeRef"
+            body="ExtendibleElementReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (MappingReference) supertypeRef;"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteTypeReference"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteTypeAndReference"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/MappingReference/deleteInstanceReference"/>
@@ -450,7 +481,8 @@
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryMappingReference/sourceModelElemRef"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/BinaryMappingReference/targetModelElemRef"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMappingReference/getObject"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMappingReference/getObject"
+            body="ExtendibleElement object = super.getObject();&#xA;return (object == null) ? null : (BinaryMapping) object;"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/BinaryMappingReference/addModelElementTypeReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMappingReference/addModelElementTypeReference/modelElemTypeRef"/>
           <genParameters ecoreParameter="mid.ecore#//relationship/BinaryMappingReference/addModelElementTypeReference/isBinarySrc"/>
@@ -459,8 +491,10 @@
       <genClasses ecoreClass="mid.ecore#//relationship/ModelElementEndpointReference">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//relationship/ModelElementEndpointReference/modelElemRef"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getObject"/>
-        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getSupertypeRef"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getObject"
+            body="ExtendibleElementEndpoint object = super.getObject();&#xA;return (object == null) ? null : (ModelElementEndpoint) object;"/>
+        <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/getSupertypeRef"
+            body="ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();&#xA;return (supertypeRef == null) ? null : (ModelElementEndpointReference) supertypeRef;"/>
         <genOperations ecoreOperation="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeReference">
           <genParameters ecoreParameter="mid.ecore#//relationship/ModelElementEndpointReference/deleteTypeReference/isFullDelete"/>
         </genOperations>
@@ -482,9 +516,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/wizardId"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/fileExtensions"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//editor/Editor/wizardDialogClass"/>
-        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMetatype"/>
-        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getSupertype"/>
-        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Editor) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Editor) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//editor/Editor/getMIDContainer"
+            body="return (MID) this.eContainer();"/>
         <genOperations ecoreOperation="mid.ecore#//editor/Editor/createSubtype">
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/newEditorTypeFragmentUri"/>
           <genParameters ecoreParameter="mid.ecore#//editor/Editor/createSubtype/newEditorTypeName"/>
@@ -519,15 +554,17 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/outputs"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/generics"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/inputSubdir"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/workingPath"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mid.ecore#//operator/Operator/previousOperator"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/updateMID"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/executionTime"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/Operator/commutative"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMetatype"
+            body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Operator) metatype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getSupertype"
+            body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Operator) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/Operator/getMIDContainer"
+            body="return (MID) this.eContainer();"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getTypeSignature">
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/getTypeSignature/inputs"/>
         </genOperations>
@@ -613,12 +650,16 @@
       </genClasses>
       <genClasses ecoreClass="mid.ecore#//operator/GenericEndpoint">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mid.ecore#//operator/GenericEndpoint/metatargetUri"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getSupertype"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getTarget"/>
-        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/setTarget">
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getSupertype"
+            body="ExtendibleElementEndpoint supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (GenericEndpoint) supertype;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getTarget"
+            body="GenericElement target = MIDTypeRegistry.getType(getMetatargetUri());&#xA;return target;"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/setTarget"
+            body="setMetatargetUri(newTarget.getUri());">
           <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/setTarget/newTarget"/>
         </genOperations>
-        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getMetatype"/>
+        <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/getMetatype"
+            body="ExtendibleElementEndpoint metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (GenericEndpoint) metatype;"/>
         <genOperations ecoreOperation="mid.ecore#//operator/GenericEndpoint/createInstance">
           <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/targetGeneric"/>
           <genParameters ecoreParameter="mid.ecore#//operator/GenericEndpoint/createInstance/containerOperator"/>

@@ -58,273 +58,275 @@ import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
  */
 public class ModelElementImpl extends ExtendibleElementImpl implements ModelElement {
     /**
-     * The cached value of the '{@link #getEInfo() <em>EInfo</em>}' containment reference.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getEInfo() <em>EInfo</em>}' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEInfo()
-     * @generated
-     * @ordered
-     */
+   * @see #getEInfo()
+   * @generated
+   * @ordered
+   */
     protected EMFInfo eInfo;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ModelElementImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return MIDPackage.Literals.MODEL_ELEMENT;
-    }
+    return MIDPackage.Literals.MODEL_ELEMENT;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EMFInfo getEInfo() {
-        return eInfo;
-    }
+    return eInfo;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public NotificationChain basicSetEInfo(EMFInfo newEInfo, NotificationChain msgs) {
-        EMFInfo oldEInfo = eInfo;
-        eInfo = newEInfo;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
+    EMFInfo oldEInfo = eInfo;
+    eInfo = newEInfo;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
+    return msgs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public void setEInfo(EMFInfo newEInfo) {
-        if (newEInfo != eInfo) {
-            NotificationChain msgs = null;
-            if (eInfo != null)
-                msgs = ((InternalEObject)eInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
-            if (newEInfo != null)
-                msgs = ((InternalEObject)newEInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
-            msgs = basicSetEInfo(newEInfo, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, newEInfo, newEInfo));
+    if (newEInfo != eInfo) {
+      NotificationChain msgs = null;
+      if (eInfo != null)
+        msgs = ((InternalEObject)eInfo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
+      if (newEInfo != null)
+        msgs = ((InternalEObject)newEInfo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
+      msgs = basicSetEInfo(newEInfo, msgs);
+      if (msgs != null) msgs.dispatch();
     }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, newEInfo, newEInfo));
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public ModelElement getMetatype() {
-        ExtendibleElement metatype = super.getMetatype();
-        return (metatype == null) ? null : (ModelElement) metatype;
-    }
+    ExtendibleElement metatype = super.getMetatype();
+    return (metatype == null) ? null : (ModelElement) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public ModelElement getSupertype() {
-        ExtendibleElement supertype = super.getSupertype();
-        return (supertype == null) ? null : (ModelElement) supertype;
-    }
+    ExtendibleElement supertype = super.getSupertype();
+    return (supertype == null) ? null : (ModelElement) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer().eContainer();
-    }
+    return (MID) this.eContainer().eContainer();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MIDPackage.MODEL_ELEMENT__EINFO:
-                return basicSetEInfo(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case MIDPackage.MODEL_ELEMENT__EINFO:
+        return basicSetEInfo(null, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MIDPackage.MODEL_ELEMENT__EINFO:
-                return getEInfo();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case MIDPackage.MODEL_ELEMENT__EINFO:
+        return getEInfo();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MIDPackage.MODEL_ELEMENT__EINFO:
-                setEInfo((EMFInfo)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case MIDPackage.MODEL_ELEMENT__EINFO:
+        setEInfo((EMFInfo)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MIDPackage.MODEL_ELEMENT__EINFO:
-                setEInfo((EMFInfo)null);
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case MIDPackage.MODEL_ELEMENT__EINFO:
+        setEInfo((EMFInfo)null);
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MIDPackage.MODEL_ELEMENT__EINFO:
-                return eInfo != null;
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case MIDPackage.MODEL_ELEMENT__EINFO:
+        return eInfo != null;
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ELEMENT___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.MODEL_ELEMENT___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case MIDPackage.MODEL_ELEMENT___GET_METATYPE:
-                return getMetatype();
-            case MIDPackage.MODEL_ELEMENT___GET_SUPERTYPE:
-                return getSupertype();
-            case MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER:
-                return getMIDContainer();
-            case MIDPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
-                try {
-                    return createTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (ModelEndpointReference)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
-                try {
-                    return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (EMFInfo)arguments.get(3), (ModelEndpointReference)arguments.get(4));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___DELETE_TYPE:
-                try {
-                    deleteType();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___GET_EMF_TYPE_OBJECT:
-                try {
-                    return getEMFTypeObject();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE:
-                try {
-                    return createInstanceReference((ModelEndpointReference)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
-                try {
-                    return createInstanceAndReference((String)arguments.get(0), (String)arguments.get(1), (EMFInfo)arguments.get(2), (ModelEndpointReference)arguments.get(3));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___DELETE_INSTANCE:
-                try {
-                    deleteInstance();
-                    return null;
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE:
-                try {
-                    return getEMFInstanceObject((Resource)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case MIDPackage.MODEL_ELEMENT___GET_METATYPE:
+        return getMetatype();
+      case MIDPackage.MODEL_ELEMENT___GET_SUPERTYPE:
+        return getSupertype();
+      case MIDPackage.MODEL_ELEMENT___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case MIDPackage.MODEL_ELEMENT___CREATE_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN_MODELENDPOINTREFERENCE:
+        try {
+          return createTypeReference((ModelElementReference)arguments.get(0), (Boolean)arguments.get(1), (ModelEndpointReference)arguments.get(2));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___CREATE_SUBTYPE_AND_REFERENCE__MODELELEMENTREFERENCE_STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
+        try {
+          return createSubtypeAndReference((ModelElementReference)arguments.get(0), (String)arguments.get(1), (String)arguments.get(2), (EMFInfo)arguments.get(3), (ModelEndpointReference)arguments.get(4));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___DELETE_TYPE:
+        try {
+          deleteType();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___GET_EMF_TYPE_OBJECT:
+        try {
+          return getEMFTypeObject();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___CREATE_INSTANCE_REFERENCE__MODELENDPOINTREFERENCE:
+        try {
+          return createInstanceReference((ModelEndpointReference)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___CREATE_INSTANCE_AND_REFERENCE__STRING_STRING_EMFINFO_MODELENDPOINTREFERENCE:
+        try {
+          return createInstanceAndReference((String)arguments.get(0), (String)arguments.get(1), (EMFInfo)arguments.get(2), (ModelEndpointReference)arguments.get(3));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___DELETE_INSTANCE:
+        try {
+          deleteInstance();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case MIDPackage.MODEL_ELEMENT___GET_EMF_INSTANCE_OBJECT__RESOURCE:
+        try {
+          return getEMFInstanceObject((Resource)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * @generated NOT

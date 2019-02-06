@@ -55,23 +55,23 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
  */
 public class DiagramImpl extends EditorImpl implements Diagram {
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected DiagramImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return EditorPackage.Literals.DIAGRAM;
-    }
+    return EditorPackage.Literals.DIAGRAM;
+  }
 
     /**
      * Creates and adds a diagram instance of this diagram type to an Instance MID.

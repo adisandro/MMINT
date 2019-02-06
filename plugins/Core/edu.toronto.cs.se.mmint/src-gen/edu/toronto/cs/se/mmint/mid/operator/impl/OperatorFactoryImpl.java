@@ -35,201 +35,210 @@ import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
  */
 public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory {
     /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public static OperatorFactory init() {
-        try {
-            OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
-            if (theOperatorFactory != null) {
-                return theOperatorFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new OperatorFactoryImpl();
+    try {
+      OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
+      if (theOperatorFactory != null) {
+        return theOperatorFactory;
+      }
     }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new OperatorFactoryImpl();
+  }
 
     /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public OperatorFactoryImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case OperatorPackage.OPERATOR: return createOperator();
-            case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
-            case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
-            case OperatorPackage.NESTING_OPERATOR: return createNestingOperator();
-            case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
-            case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
-            case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
-            case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
+    switch (eClass.getClassifierID()) {
+      case OperatorPackage.OPERATOR: return createOperator();
+      case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
+      case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
+      case OperatorPackage.NESTING_OPERATOR: return createNestingOperator();
+      case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
+      case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
+      case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
+      case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case OperatorPackage.RANDOM:
-                return createRandomFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
+    switch (eDataType.getClassifierID()) {
+      case OperatorPackage.RANDOM:
+        return createRandomFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case OperatorPackage.RANDOM:
-                return convertRandomToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
+    switch (eDataType.getClassifierID()) {
+      case OperatorPackage.RANDOM:
+        return convertRandomToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public Operator createOperator() {
-        OperatorImpl operator = new OperatorImpl();
-        return operator;
-    }
+    OperatorImpl operator = new OperatorImpl();
+    return operator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public ConversionOperator createConversionOperator() {
-        ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
-        return conversionOperator;
-    }
+    ConversionOperatorImpl conversionOperator = new ConversionOperatorImpl();
+    return conversionOperator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public RandomOperator createRandomOperator() {
-        RandomOperatorImpl randomOperator = new RandomOperatorImpl();
-        return randomOperator;
-    }
+    RandomOperatorImpl randomOperator = new RandomOperatorImpl();
+    return randomOperator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public NestingOperator createNestingOperator() {
-        NestingOperatorImpl nestingOperator = new NestingOperatorImpl();
-        return nestingOperator;
-    }
+    NestingOperatorImpl nestingOperator = new NestingOperatorImpl();
+    return nestingOperator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public WorkflowOperator createWorkflowOperator() {
-        WorkflowOperatorImpl workflowOperator = new WorkflowOperatorImpl();
-        return workflowOperator;
-    }
+    WorkflowOperatorImpl workflowOperator = new WorkflowOperatorImpl();
+    return workflowOperator;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public GenericEndpoint createGenericEndpoint() {
-        GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
-        return genericEndpoint;
-    }
+    GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
+    return genericEndpoint;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public OperatorInput createOperatorInput() {
-        OperatorInputImpl operatorInput = new OperatorInputImpl();
-        return operatorInput;
-    }
+    OperatorInputImpl operatorInput = new OperatorInputImpl();
+    return operatorInput;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public OperatorGeneric createOperatorGeneric() {
-        OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
-        return operatorGeneric;
-    }
+    OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
+    return operatorGeneric;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public Random createRandomFromString(EDataType eDataType, String initialValue) {
-        return (Random)super.createFromString(eDataType, initialValue);
-    }
+    return (Random)super.createFromString(eDataType, initialValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     public String convertRandomToString(EDataType eDataType, Object instanceValue) {
-        return super.convertToString(eDataType, instanceValue);
-    }
+    return super.convertToString(eDataType, instanceValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public OperatorPackage getOperatorPackage() {
-        return (OperatorPackage)getEPackage();
-    }
+    return (OperatorPackage)getEPackage();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+   * @deprecated
+   * @generated
+   */
     @Deprecated
     public static OperatorPackage getPackage() {
-        return OperatorPackage.eINSTANCE;
-    }
+    return OperatorPackage.eINSTANCE;
+  }
 
 } //OperatorFactoryImpl

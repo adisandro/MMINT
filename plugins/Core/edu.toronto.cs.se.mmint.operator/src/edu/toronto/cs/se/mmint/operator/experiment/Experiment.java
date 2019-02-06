@@ -179,7 +179,6 @@ public class Experiment extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
       /* TODO
        * - previousOperator? (check OperatorImpl.createInstance())
-       * - remove updateMID, rename inputSubdir to workingPath, then regen
        * - better mechanism for fetching execution times of operators
        * - review the old experiment, check that there are no diffs, then remove it
        */

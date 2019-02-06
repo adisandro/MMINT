@@ -62,33 +62,33 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
     }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return OperatorPackage.Literals.WORKFLOW_OPERATOR;
-    }
+    return OperatorPackage.Literals.WORKFLOW_OPERATOR;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case OperatorPackage.WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID:
-                try {
-                    return getNestedWorkflowMID();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case OperatorPackage.WORKFLOW_OPERATOR___GET_NESTED_WORKFLOW_MID:
+        try {
+          return getNestedWorkflowMID();
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * @generated NOT

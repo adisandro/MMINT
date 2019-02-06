@@ -41,67 +41,67 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
  */
 public interface ModelElement extends ExtendibleElement {
     /**
-     * Returns the value of the '<em><b>EInfo</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>EInfo</b></em>' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The EMF information (types: metamodel info; instances: metamodel info).
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>EInfo</em>' containment reference.
-     * @see #setEInfo(EMFInfo)
-     * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement_EInfo()
-     * @model containment="true" required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The EMF information (types: metamodel info; instances: metamodel info).
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>EInfo</em>' containment reference.
+   * @see #setEInfo(EMFInfo)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModelElement_EInfo()
+   * @model containment="true" required="true"
+   * @generated
+   */
     EMFInfo getEInfo();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEInfo <em>EInfo</em>}' containment reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.ModelElement#getEInfo <em>EInfo</em>}' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>EInfo</em>' containment reference.
-     * @see #getEInfo()
-     * @generated
-     */
+   * @param value the new value of the '<em>EInfo</em>' containment reference.
+   * @see #getEInfo()
+   * @generated
+   */
     void setEInfo(EMFInfo value);
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * {@inheritDoc}<br />
-     * Gets the model element type of this model element instance.
-     * <!-- end-model-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ModelElement) metatype;'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * {@inheritDoc}<br />
+   * Gets the model element type of this model element instance.
+   * <!-- end-model-doc -->
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement metatype = super.getMetatype();\nreturn (metatype == null) ? null : (ModelElement) metatype;'"
+   * @generated
+   */
     ModelElement getMetatype();
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * {@inheritDoc}<br />
-     * Gets the model element supertype of this model element type.
-     * <!-- end-model-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (ModelElement) supertype;'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * {@inheritDoc}<br />
+   * Gets the model element supertype of this model element type.
+   * <!-- end-model-doc -->
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElement supertype = super.getSupertype();\nreturn (supertype == null) ? null : (ModelElement) supertype;'"
+   * @generated
+   */
     ModelElement getSupertype();
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
-     * @generated
-     */
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (MID) this.eContainer().eContainer();'"
+   * @generated
+   */
     MID getMIDContainer();
 
     /**
-     * <!-- begin-user-doc --> Creates and adds a reference to this model
+   * <!-- begin-user-doc --> Creates and adds a reference to this model
      * element type to the Type MID.
      *
      * @param modelElemTypeRef
@@ -117,13 +117,13 @@ public interface ModelElement extends ExtendibleElement {
      * @return The created reference to the model element type.
      * @throws MMINTException
      *             If this is a model element instance. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelTypeEndpointRefRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isModifiableRequired="true" containerModelTypeEndpointRefRequired="true"
+   * @generated
+   */
     ModelElementReference createTypeReference(ModelElementReference modelElemTypeRef, boolean isModifiable, ModelEndpointReference containerModelTypeEndpointRef) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Creates and adds a subtype of this model element
+   * <!-- begin-user-doc --> Creates and adds a subtype of this model element
      * type and a reference to it to the Type MID.
      *
      * @param modelElemTypeRef
@@ -144,36 +144,36 @@ public interface ModelElement extends ExtendibleElement {
      *             If this is a model element instance, or if the uri of the new
      *             model element type is already registered in the Type MID.
      *             <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemTypeUriRequired="true" newModelElemTypeNameRequired="true" eInfoRequired="true" containerModelTypeEndpointRefRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemTypeUriRequired="true" newModelElemTypeNameRequired="true" eInfoRequired="true" containerModelTypeEndpointRefRequired="true"
+   * @generated
+   */
     ModelElementReference createSubtypeAndReference(ModelElementReference modelElemTypeRef, String newModelElemTypeUri, String newModelElemTypeName, EMFInfo eInfo, ModelEndpointReference containerModelTypeEndpointRef) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Deletes this model element type from the Type
+   * <!-- begin-user-doc --> Deletes this model element type from the Type
      * MID.
      *
      * @throws MMINTException
      *             If this is a model element instance. <!-- end-user-doc -->
-     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
     void deleteType() throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Gets the EMF metamodel object of this model
+   * <!-- begin-user-doc --> Gets the EMF metamodel object of this model
      * element type.
      *
      * @throws MMINTException
      *             If this is a model element instance, or if the metamodel file
      *             can't be accessed. <!-- end-user-doc -->
-     * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
     ENamedElement getEMFTypeObject() throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Creates and adds a reference to this model
+   * <!-- begin-user-doc --> Creates and adds a reference to this model
      * element to an Instance MID.
      *
      * @param containerModelEndpointRef
@@ -182,13 +182,13 @@ public interface ModelElement extends ExtendibleElement {
      * @return The created reference to the model element.
      * @throws MMINTException
      *             If this is a model element type. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelEndpointRefRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" containerModelEndpointRefRequired="true"
+   * @generated
+   */
     ModelElementReference createInstanceReference(ModelEndpointReference containerModelEndpointRef) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Creates and adds a model element instance of this
+   * <!-- begin-user-doc --> Creates and adds a model element instance of this
      * model element type and a reference to it to an Instance MID.
      *
      * @param newModelElemUri
@@ -205,33 +205,33 @@ public interface ModelElement extends ExtendibleElement {
      *             If this is a model element instance, or if the uri of the new
      *             model element is already registered in the Instance MID.
      *             <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemUriRequired="true" newModelElemNameRequired="true" eInfoRequired="true" containerModelEndpointRefRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" newModelElemUriRequired="true" newModelElemNameRequired="true" eInfoRequired="true" containerModelEndpointRefRequired="true"
+   * @generated
+   */
     ModelElementReference createInstanceAndReference(String newModelElemUri, String newModelElemName, EMFInfo eInfo, ModelEndpointReference containerModelEndpointRef) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Deletes this model element instance from the
+   * <!-- begin-user-doc --> Deletes this model element instance from the
      * Instance MID that contains it.
      *
      * @throws MMINTException
      *             If this is a model element type. <!-- end-user-doc -->
-     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
     void deleteInstance() throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Gets the EMF model object of this model element instance.
+   * <!-- begin-user-doc --> Gets the EMF model object of this model element instance.
      *
      * @param emfResource
      *            An existing EMF model resource to get the model from.
      *
      * @throws MMINTException
      *             If this is a model element type, or if the model file can't be accessed. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * @generated
+   */
     EObject getEMFInstanceObject(Resource emfResource) throws MMINTException;
 
 } // ModelElement

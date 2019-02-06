@@ -39,57 +39,57 @@ import edu.toronto.cs.se.mmint.mid.Model;
 public interface BinaryModelRel extends ModelRel {
 
     /**
-     * Returns the value of the '<em><b>Source Model</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Source Model</b></em>' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The source model.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Source Model</em>' reference.
-     * @see #setSourceModel(Model)
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_SourceModel()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The source model.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Source Model</em>' reference.
+   * @see #setSourceModel(Model)
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_SourceModel()
+   * @model required="true"
+   * @generated
+   */
     Model getSourceModel();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#getSourceModel <em>Source Model</em>}' reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#getSourceModel <em>Source Model</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Source Model</em>' reference.
-     * @see #getSourceModel()
-     * @generated
-     */
+   * @param value the new value of the '<em>Source Model</em>' reference.
+   * @see #getSourceModel()
+   * @generated
+   */
     void setSourceModel(Model value);
 
     /**
-     * Returns the value of the '<em><b>Target Model</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Target Model</b></em>' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The target model.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Target Model</em>' reference.
-     * @see #setTargetModel(Model)
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_TargetModel()
-     * @model required="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The target model.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Target Model</em>' reference.
+   * @see #setTargetModel(Model)
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getBinaryModelRel_TargetModel()
+   * @model required="true"
+   * @generated
+   */
     Model getTargetModel();
 
     /**
-     * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#getTargetModel <em>Target Model</em>}' reference.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel#getTargetModel <em>Target Model</em>}' reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Target Model</em>' reference.
-     * @see #getTargetModel()
-     * @generated
-     */
+   * @param value the new value of the '<em>Target Model</em>' reference.
+   * @see #getTargetModel()
+   * @generated
+   */
     void setTargetModel(Model value);
 
     /**
-     * <!-- begin-user-doc --> Adds the source or target model type to this
+   * <!-- begin-user-doc --> Adds the source or target model type to this
      * binary model relationship type.
      * 
      * @param modelType
@@ -101,9 +101,9 @@ public interface BinaryModelRel extends ModelRel {
      * @throws MMINTException
      *             If this is a model relationship instance.
      *             <!-- end-user-doc -->
-     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelTypeRequired="true" isBinarySrcRequired="true"
-     * @generated
-     */
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelTypeRequired="true" isBinarySrcRequired="true"
+   * @generated
+   */
     void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException;
 
 } // BinaryModelRel

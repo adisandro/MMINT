@@ -40,48 +40,48 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
  */
 public interface ModelEndpointReference extends ExtendibleElementEndpointReference {
     /**
-     * Returns the value of the '<em><b>Model Elem Refs</b></em>' containment reference list.
-     * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference}.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Model Elem Refs</b></em>' containment reference list.
+   * The list contents are of type {@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference}.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * The list of references to model elements. This is a subset of the list of model elements in the model.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Model Elem Refs</em>' containment reference list.
-     * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelEndpointReference_ModelElemRefs()
-     * @model containment="true"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * The list of references to model elements. This is a subset of the list of model elements in the model.
+   * <!-- end-model-doc -->
+   * @return the value of the '<em>Model Elem Refs</em>' containment reference list.
+   * @see edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage#getModelEndpointReference_ModelElemRefs()
+   * @model containment="true"
+   * @generated
+   */
     EList<ModelElementReference> getModelElemRefs();
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * {@inheritDoc}<br />
-     * Gets the referenced model endpoint.
-     * <!-- end-model-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = super.getObject();\nreturn (object == null) ? null : (ModelEndpoint) object;'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * {@inheritDoc}<br />
+   * Gets the referenced model endpoint.
+   * <!-- end-model-doc -->
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpoint object = super.getObject();\nreturn (object == null) ? null : (ModelEndpoint) object;'"
+   * @generated
+   */
     ModelEndpoint getObject();
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * {@inheritDoc}<br />
-     * Gets the model supertype endpoint reference of this model type endpoint reference.
-     * <!-- end-model-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ModelEndpointReference) supertypeRef;'"
-     * @generated
-     */
+   * <!-- begin-model-doc -->
+   * {@inheritDoc}<br />
+   * Gets the model supertype endpoint reference of this model type endpoint reference.
+   * <!-- end-model-doc -->
+   * @model kind="operation"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();\nreturn (supertypeRef == null) ? null : (ModelEndpointReference) supertypeRef;'"
+   * @generated
+   */
     ModelEndpointReference getSupertypeRef();
 
     /**
-     * <!-- begin-user-doc --> Accepts a metamodel object as model element type
+   * <!-- begin-user-doc --> Accepts a metamodel object as model element type
      * in this reference to model type endpoint.
      * 
      * @param metamodelObj
@@ -90,13 +90,13 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
      * @throws MMINTException
      *             If this is a reference to a model instance endpoint.
      *             <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" metamodelObjRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" metamodelObjRequired="true"
+   * @generated
+   */
     boolean acceptModelElementType(EObject metamodelObj) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Deletes this reference to a model type endpoint
+   * <!-- begin-user-doc --> Deletes this reference to a model type endpoint
      * from the Type MID.
      * 
      * @param isFullDelete
@@ -105,13 +105,13 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
      * @throws MMINTException
      *             If this is a reference to a model instance endpoint.
      *             <!-- end-user-doc -->
-     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
-     * @generated
-     */
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" isFullDeleteRequired="true"
+   * @generated
+   */
     void deleteTypeReference(boolean isFullDelete) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Accepts a model object as model element instance
+   * <!-- begin-user-doc --> Accepts a model object as model element instance
      * in this reference to model instance endpoint.
      * 
      * @param modelObj
@@ -121,13 +121,13 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
      * @throws MMINTException
      *             If this is a reference to a model type endpoint.
      *             <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true"
+   * @generated
+   */
     ModelElement acceptModelElementInstance(EObject modelObj) throws MMINTException;
 
     /**
-     * <!-- begin-user-doc --> Creates and adds a model element instance of a type to be automatically detected and a
+   * <!-- begin-user-doc --> Creates and adds a model element instance of a type to be automatically detected and a
      * reference to it to an Instance MID.
      * 
      * @param modelObj
@@ -138,9 +138,9 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
      * @throws MMINTException
      *             If this is a reference to a model instance endpoint, or if the uri of the new model element is
      *             already registered in the Instance MID. <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true" newModelElemNameRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" modelObjRequired="true" newModelElemNameRequired="true"
+   * @generated
+   */
     ModelElementReference createModelElementInstanceAndReference(EObject modelObj, String newModelElemName) throws MMINTException;
 
 } // ModelEndpointReference
