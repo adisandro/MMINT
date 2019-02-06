@@ -180,7 +180,6 @@ public class Experiment extends OperatorImpl {
       /* TODO
        * - previousOperator? (check OperatorImpl.createInstance())
        * - better mechanism for fetching execution times of operators
-       * - review the old experiment, check that there are no diffs, then remove it
        */
     init(inputsByName, genericsByName, outputMIDsByName);
     MIDTypeHierarchy.clearCachedRuntimeTypes();

@@ -87,7 +87,6 @@ public class SampleRunner implements Runnable {
                                               this.runner.exp.numExperiments, this.sampleIndex+1));
       var inputs = this.runner.exp.input.samplesWorkflow.checkAllowedInputs(this.sampleInputs);
       var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.runner.exp.input.samplesWorkflow, null);
-      this.runner.exp.input.samplesWorkflow.setWorkingPath(this.path.toOSString()); // init with samples dir
       this.runner.exp.input.samplesWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
         .map(o -> o.getMetatype())
         .filter(o -> o instanceof RandomOperator)

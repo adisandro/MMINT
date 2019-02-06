@@ -19,27 +19,6 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ExperimentDriver"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_ExperimentDriver"
-               class="edu.toronto.cs.se.modelepedia.operator.experiment.ExperimentDriver">
-         </type>
-         <inputs>
-            <parameter>
-	           <type
-	                 name="initial">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-	           </typeEndpoint>
-            </parameter>
-         </inputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
                name="ModelDifference"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ModelDifference"
                class="edu.toronto.cs.se.modelepedia.operator.diff.ModelDifference">

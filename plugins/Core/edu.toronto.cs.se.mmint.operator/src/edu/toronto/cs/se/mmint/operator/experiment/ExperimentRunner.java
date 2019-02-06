@@ -95,7 +95,6 @@ class ExperimentRunner implements Runnable {
       // run setup workflow
       var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(ECollections.asEList(this.exp.input.models));
       var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
-      this.exp.input.setupWorkflow.setWorkingPath(this.path.toOSString()); // init with experiment dir
       this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
         .map(o -> o.getMetatype())
         .filter(o -> o instanceof RandomOperator)
@@ -136,9 +135,7 @@ class ExperimentRunner implements Runnable {
           var outputSamples = this.samples.get(output);
           double sample;
           sample = outputSpecs.timeoutValue;
-          if (timedOut) {
-          }
-          else {
+          if (!timedOut) {
             if (output.equals(SampleRunner.OUTPUT_SAMPLESTIME)) {
               sample = sampleRunner.sample.getExecutionTime();
             }
@@ -194,6 +191,7 @@ class ExperimentRunner implements Runnable {
     catch (Exception e) {
       MMINTException.print(IStatus.WARNING, MessageFormat.format("Experiment {0} out of {1} failed", this.expIndex+1,
                                                                  this.exp.numExperiments), e);
+      //TODO Write output properties on failure too?
     }
   }
 }
