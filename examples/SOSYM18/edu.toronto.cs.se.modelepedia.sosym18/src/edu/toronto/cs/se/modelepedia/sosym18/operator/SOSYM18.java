@@ -53,11 +53,17 @@ public class SOSYM18 extends RandomOperatorImpl {
     private final static @NonNull String OUT_MID = "polyMID";
     private final static @NonNull String POLY_NAME = "poly";
     private final static @NonNull String OTHER_NAME = "other";
+    private final static @NonNull String PROP_OUT_NUMPOLYMODELS = "numPolyModels";
+    private final static @NonNull String PROP_OUT_NUMOTHERMODELS = "numOtherModels";
     private MID polyMIDModelContainer;
     private Model polyMIDModel;
+    private int numPolyModels;
+    private int numOtherModels;
 
     public Output(@NonNull Map<String, MID> outputMIDsByName) {
       this.polyMIDModelContainer = outputMIDsByName.get(OUT_MID);
+      this.numPolyModels = 0;
+      this.numOtherModels = 0;
     }
 
     public @NonNull Map<String, Model> packed() {
@@ -65,6 +71,13 @@ public class SOSYM18 extends RandomOperatorImpl {
       outputsByName.put(OUT_MID, this.polyMIDModel);
       return outputsByName;
     }
+  }
+
+  public void writeOutputProperties() throws Exception {
+    var outProps = new Properties();
+    outProps.setProperty(Output.PROP_OUT_NUMPOLYMODELS, String.valueOf(this.output.numPolyModels));
+    outProps.setProperty(Output.PROP_OUT_NUMOTHERMODELS, String.valueOf(this.output.numOtherModels));
+    MIDOperatorIOUtils.writeOutputProperties(this, outProps);
   }
 
   @Override
@@ -84,8 +97,15 @@ public class SOSYM18 extends RandomOperatorImpl {
                               @NonNull EClass modelTypeRootObj, @NonNull String modelName,
                               @NonNull MID polyMID) throws Exception {
     var modelPath = Path.of(getInputSubdir(), MessageFormat.format("{0}.{1}", modelName, modelType.getFileExtension()));
+    var model = modelType.createInstance(modelTypeFactory.create(modelTypeRootObj), modelPath.toString(), polyMID);
+    if (modelName.contains(Output.POLY_NAME)) {
+      this.output.numPolyModels++;
+    }
+    else {
+      this.output.numOtherModels++;
+    }
 
-    return modelType.createInstance(modelTypeFactory.create(modelTypeRootObj), modelPath.toString(), polyMID);
+    return model;
   }
 
   private void generateModels(@NonNull MID polyMID) throws Exception {
@@ -199,10 +219,9 @@ public class SOSYM18 extends RandomOperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    //TODO should not serialize all the models and polyMID because this.output.polyMIDModelContainer is null within the experiment
-    //TODO count and print numModels
     init(inputsByName, outputMIDsByName);
     generatePolyMID();
+    writeOutputProperties();
 
     return this.output.packed();
   }

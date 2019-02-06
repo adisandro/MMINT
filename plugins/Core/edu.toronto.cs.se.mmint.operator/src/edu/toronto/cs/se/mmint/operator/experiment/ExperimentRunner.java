@@ -135,8 +135,8 @@ class ExperimentRunner implements Runnable {
           var outputSpecs = outputEntry.getValue();
           var outputSamples = this.samples.get(output);
           double sample;
+          sample = outputSpecs.timeoutValue;
           if (timedOut) {
-            sample = outputSpecs.timeoutValue;
           }
           else {
             if (output.equals(SampleRunner.OUTPUT_SAMPLESTIME)) {

@@ -917,7 +917,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
             FileUtils.getFileExtensionFromPath(newModelPath),
             MIDLevel.INSTANCES,
             instanceMID);
-        //TODO MMINT[OPERATOR] Separate using instanceMID = null from not creating the model file, with a setting flag enabled by operators that need it?
+        /*TODO MMINT[OPERATOR] Separate using instanceMID = null from creating the model file,
+         *                     using a flag set by invokers of startInstance
+         */
         if (rootModelObj != null) {
             if (instanceMID == null) {
                 /* TODO MMINT[OPERATOR] Could we put it in memory when serialized too as optimization, or will it consume too much memory?
