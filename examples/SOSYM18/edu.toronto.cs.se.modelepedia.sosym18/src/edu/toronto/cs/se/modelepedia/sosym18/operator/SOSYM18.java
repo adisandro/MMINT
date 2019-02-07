@@ -40,14 +40,16 @@ public class SOSYM18 extends RandomOperatorImpl {
   private final static @NonNull String PROP_IN_POLYTYPEID = "polyTypeId";
   private final static @NonNull String PROP_IN_OTHERTYPEID = "otherTypeId";
   private final static @NonNull String PROP_IN_NUMPOLYTYPES = "numPolyTypes";
-  private final static @NonNull String PROP_IN_NUMAPPLICATIONSITES = "numApplicationSites";
-  private final static @NonNull String PROP_IN_NUMNONAPPLICATIONSITES = "numNonApplicationSites";
+  private final static @NonNull String PROP_IN_NUMSIGNATURESITES = "numSignatureSites";
+  private final static @NonNull String PROP_IN_RATIOPOLYSITES = "ratioPolySites";
   private final static @NonNull String PROP_IN_MODE = "mode";
   private String polyTypeId;
   private String otherTypeId;
   private int numPolyTypes;
-  private int numApplicationSites;
-  private int numNonApplicationSites;
+  private int numSignatureSites;
+  private double ratioPolySites;
+  private int numPolySites;
+  private int numOtherSites;
 
   private static class Output {
     private final static @NonNull String OUT_MID = "polyMID";
@@ -85,12 +87,14 @@ public class SOSYM18 extends RandomOperatorImpl {
     this.polyTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_POLYTYPEID);
     this.otherTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_OTHERTYPEID);
     this.numPolyTypes = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMPOLYTYPES);
-    this.numApplicationSites = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMAPPLICATIONSITES);
-    this.numNonApplicationSites = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMNONAPPLICATIONSITES);
+    this.numSignatureSites = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMSIGNATURESITES);
+    this.ratioPolySites = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROP_IN_RATIOPOLYSITES);
   }
 
   private void init(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, MID> outputMIDsByName) {
-      this.output = new Output(outputMIDsByName);
+    this.output = new Output(outputMIDsByName);
+    this.numPolySites = Math.min(this.numSignatureSites, (int) Math.ceil(this.ratioPolySites * this.numSignatureSites));
+    this.numOtherSites = this.numSignatureSites - this.numPolySites;
   }
 
   private Model generateModel(@NonNull Model modelType, @NonNull EFactory modelTypeFactory,
@@ -121,20 +125,20 @@ public class SOSYM18 extends RandomOperatorImpl {
       polyEClasses.add((EClass) polyEPackage.eContents().get(0));
     }
     var polyIndex = 0;
-    for (var i = 0; i < this.numApplicationSites; i++) {
+    for (var i = 0; i < this.numPolySites; i++) {
       generateModel(polyModelTypes.get(polyIndex), polyEFactories.get(polyIndex), polyEClasses.get(polyIndex),
                     Output.POLY_NAME + i, polyMID);
       polyIndex = (polyIndex + 1) % this.numPolyTypes;
     }
     // other types
-    if (this.numNonApplicationSites == 0) {
+    if (this.numOtherSites == 0) {
       return;
     }
     Model otherModelType = MIDTypeRegistry.getType(this.otherTypeId);
     var otherEPackage = otherModelType.getEMFTypeRoot();
     var otherEFactory = otherEPackage.getEFactoryInstance();
     var otherEClass = (EClass) otherEPackage.eContents().get(0);
-    for (int i = 0; i < this.numNonApplicationSites; i++) {
+    for (int i = 0; i < this.numOtherSites; i++) {
       generateModel(otherModelType, otherEFactory, otherEClass, Output.OTHER_NAME + i, polyMID);
     }
   }
@@ -182,13 +186,13 @@ public class SOSYM18 extends RandomOperatorImpl {
       polyEClasses.add((EClass) polyEPackage.eContents().get(0));
     }
     var polyIndex = 0;
-    for (var i = 0; i < this.numApplicationSites; i++) {
+    for (var i = 0; i < this.numPolySites; i++) {
       generateModelRel(polyRelTypes.get(polyIndex), polyModelTypes.get(polyIndex), polyEFactories.get(polyIndex),
                        polyEClasses.get(polyIndex), Output.POLY_NAME + i, polyMID);
       polyIndex = (polyIndex + 1) % this.numPolyTypes;
     }
     // other types
-    if (this.numNonApplicationSites == 0) {
+    if (this.numOtherSites == 0) {
       return;
     }
     ModelRel otherRelType = MIDTypeRegistry.getType(this.otherTypeId);
@@ -196,7 +200,7 @@ public class SOSYM18 extends RandomOperatorImpl {
     var otherEPackage = otherModelType.getEMFTypeRoot();
     var otherEFactory = otherEPackage.getEFactoryInstance();
     var otherEClass = (EClass) otherEPackage.eContents().get(0);
-    for (int i = 0; i < this.numNonApplicationSites; i++) {
+    for (int i = 0; i < this.numOtherSites; i++) {
       generateModelRel(otherRelType, otherModelType, otherEFactory, otherEClass, Output.OTHER_NAME + i, polyMID);
     }
   }
