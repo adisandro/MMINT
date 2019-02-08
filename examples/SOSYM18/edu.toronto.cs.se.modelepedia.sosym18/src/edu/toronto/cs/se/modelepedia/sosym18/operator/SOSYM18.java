@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EClass;
@@ -146,27 +147,41 @@ public class SOSYM18 extends RandomOperatorImpl {
   private ModelRel generateModelRel(@NonNull ModelRel relType, @NonNull Model modelType,
                                     @NonNull EFactory modelTypeFactory, @NonNull EClass modelTypeRootObj,
                                     @NonNull String baseName, @NonNull MID polyMID) throws Exception {
-    var models = polyMID.getModels();
+    var models = polyMID.getModels().stream()
+      .filter(m -> m.getMetatypeUri().equals(modelType.getUri()))
+      .collect(Collectors.toList());
+    var numModels = models.size();
+    int choices;
+    if (numModels > 1) { // can pick at least two existing models
+      choices = 3;
+    }
+    else if (numModels > 0) { // can pick at least one existing model
+      choices = 2;
+    }
+    else { // can only create new models
+      choices = 1;
+    }
     Model model1, model2;
-    switch (getState().nextInt(3)) {
-    case 1:
-      //create new rel between existing models
-      model1 = models.get(getState().nextInt(models.size()));
-      model2 = models.get(getState().nextInt(models.size()));
-      break;
-    case 2:
-      // create new rel between 1 existing model and 1 new model
-      model1 = models.get(getState().nextInt(models.size()));
-      model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
-      break;
-    case 3:
+    switch (getState().nextInt(choices)) {
+    case 0:
     default:
       // create new rel between 2 new models
       model1 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "a", polyMID);
       model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
       break;
+    case 1:
+      // create new rel between 1 existing model and 1 new model
+      model1 = models.get(getState().nextInt(numModels));
+      model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
+      break;
+    case 2:
+      //create new rel between existing models
+      model1 = models.get(getState().nextInt(numModels));
+      model2 = models.get(getState().nextInt(numModels));
+      break;
     }
 
+    //TODO It creates with endpoint types of the abstract superclass
     return relType.createInstanceAndEndpoints(null, baseName, ECollections.asEList(model1, model2), polyMID);
   }
 
