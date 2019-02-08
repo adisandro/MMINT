@@ -108,8 +108,8 @@ public class RE13 extends OperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeModelEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeTargetsEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeModelEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEMODEL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		timeTargetsEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMETARGETS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
 		targetsProperty = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_TARGETSPROPERTY, PROPERTY_IN_TARGETSPROPERTY_DEFAULT);
 	}
 

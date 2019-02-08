@@ -45,9 +45,7 @@ public class MIDOperatorIOUtils {
 	public static final String PROPERTIES_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
 	private static final String PROPERTY_SEPARATOR = ",";
-	public static final String PROPERTY_IN_UPDATEMID = "updateMID";
-	public static final String PROPERTY_IN_SUBDIR = "subdir";
-	public static final String PROPERTY_IN_OUTPUTENABLED_SUFFIX = ".enabled";
+	public static final String PROP_OUTENABLED_SUFFIX = ".enabled";
 
 //	public void writeOutputPropertiesFile(Properties properties) throws Exception {
 //

@@ -53,11 +53,11 @@ public class REJ15 extends FASE14 {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
-		timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
 		modelConstraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
 		generateTargetsConcretization = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
-		timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX);
+		timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
 	}
 
 	@Override

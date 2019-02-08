@@ -18,6 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,10 @@ public class Map extends NestingOperatorImpl {
 	private final static @NonNull String IN_MIDS = "mids";
 	private final static @NonNull String OUT_MIDS = "mappedMids";
 	private final static @NonNull String GENERIC_OPERATORTYPE = "MAPPER";
+  private final static @NonNull String PROP_OUT_TIMEOVERHEAD = "timeOverhead";
+  private boolean timeOverheadEnabled;
+  private long timeOverhead;
+  private long timeCheckpoint;
 	// constants
 	private final static @NonNull String MAPPED_MID_SUFFIX = "_map";
 	private final static @NonNull String MIDREL_MODELTYPE_URI_SUFFIX = "Rel";
@@ -67,20 +72,32 @@ public class Map extends NestingOperatorImpl {
 		@Override
 		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-            final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
-            final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
-            final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
-            final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
-            if (
-                genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
-                genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
-            ) {
-                return false;
-            }
+      final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+      final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
+      final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+      final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+      if (
+        genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
+        genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
+      ) {
+        return false;
+      }
 
 			return true;
 		}
 	}
+
+  @Override
+  public void readInputProperties(Properties inputProps) throws MMINTException {
+    this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
+                                 inputProps, PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+  }
+
+	public void writeOutputProperties() throws Exception {
+    var outProps = new Properties();
+    outProps.setProperty(PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
+    MIDOperatorIOUtils.writeOutputProperties(this, outProps);
+  }
 
 	@Override
 	public void createWorkflowInstanceOutputs(Operator newOperator, java.util.Map<String, Model> inputsByName, MID workflowMID) throws MMINTException {
@@ -159,13 +176,19 @@ public class Map extends NestingOperatorImpl {
           if (workingPath != null) {
             mapper.setWorkingPath(workingPath);
           }
-					java.util.Map<String, Model> mapperOutputsByName = mapper.startInstance(
+          if (this.timeOverheadEnabled) {
+            this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
+          }
+					var mapperOperator = mapper.startInstance(
 						mapperInputs,
 						null,
 						mapperGenerics,
 						mapperOutputMIDsByName,
-						mapperMID)
-							.getOutputsByName();
+						mapperMID);
+					if (this.timeOverheadEnabled) {
+					  this.timeCheckpoint = System.nanoTime();
+					}
+					var mapperOutputsByName = mapperOperator.getOutputsByName();
 					if (mapperMIDPath != null) {
 						mapperShortcutModels.addAll(mapperInputs.stream()
 							.map(OperatorInput::getModel)
@@ -309,6 +332,10 @@ public class Map extends NestingOperatorImpl {
 			java.util.Map<String, Model> inputsByName, java.util.Map<String, GenericElement> genericsByName,
 			java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
+    if (this.timeOverheadEnabled) {
+      this.timeOverhead = 0;
+  	  this.timeCheckpoint = System.nanoTime();
+    }
 		// input
 		List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
 		EList<MID> inputMIDs = ECollections.newBasicEList();
@@ -343,6 +370,10 @@ public class Map extends NestingOperatorImpl {
 			}
 		}
 		var outputsByName = map(inputMIDModels, inputMIDs, mapperOperatorType, mapperSpecs, instanceMIDsByMapperOutput);
+		if (this.timeOverheadEnabled) {
+		  this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
+		  writeOutputProperties();
+		}
 
 		return outputsByName;
 	}

@@ -89,9 +89,9 @@ public class TOSEM12 extends RandomOperatorImpl {
 		super.readInputProperties(inputProperties);
 		numConcretizations = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
 		propertyId = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
-		timeClassicalEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
-		timeMAVOBackboneEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
-		timeMAVOAllsatEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX, false);
+		timeClassicalEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		timeMAVOBackboneEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		timeMAVOAllsatEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
 	}
 
 	private MAVORoot init(Model mayModel) throws Exception {

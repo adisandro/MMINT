@@ -75,13 +75,6 @@ public class SOSYM18 extends RandomOperatorImpl {
     }
   }
 
-  public void writeOutputProperties() throws Exception {
-    var outProps = new Properties();
-    outProps.setProperty(Output.PROP_OUT_NUMPOLYMODELS, String.valueOf(this.output.numPolyModels));
-    outProps.setProperty(Output.PROP_OUT_NUMOTHERMODELS, String.valueOf(this.output.numOtherModels));
-    MIDOperatorIOUtils.writeOutputProperties(this, outProps);
-  }
-
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
     this.polyTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_POLYTYPEID);
@@ -95,6 +88,13 @@ public class SOSYM18 extends RandomOperatorImpl {
     this.output = new Output(outputMIDsByName);
     this.numPolySites = Math.min(this.numSignatureSites, (int) Math.ceil(this.ratioPolySites * this.numSignatureSites));
     this.numOtherSites = this.numSignatureSites - this.numPolySites;
+  }
+
+  public void writeOutputProperties() throws Exception {
+    var outProps = new Properties();
+    outProps.setProperty(Output.PROP_OUT_NUMPOLYMODELS, String.valueOf(this.output.numPolyModels));
+    outProps.setProperty(Output.PROP_OUT_NUMOTHERMODELS, String.valueOf(this.output.numOtherModels));
+    MIDOperatorIOUtils.writeOutputProperties(this, outProps);
   }
 
   private Model generateModel(@NonNull Model modelType, @NonNull EFactory modelTypeFactory,

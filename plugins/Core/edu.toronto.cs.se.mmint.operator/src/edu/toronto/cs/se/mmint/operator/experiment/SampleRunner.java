@@ -69,7 +69,7 @@ public class SampleRunner implements Runnable {
         }
         var outputSamples = samplesEntry.getValue();
         var props = this.operatorProps.merge(outputSpecs.operatorName, new Properties(), (oldP, newP) -> oldP);
-        props.setProperty(output + MIDOperatorIOUtils.PROPERTY_IN_OUTPUTENABLED_SUFFIX,
+        props.setProperty(output + MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
                           String.valueOf(!outputSamples.isWithinTargetConfidence()));
       }
       for (var propsEntry : this.operatorProps.entrySet()) {

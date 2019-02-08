@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,7 +40,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -52,6 +52,10 @@ public class Reduce extends NestingOperatorImpl {
 	private final static @NonNull String IN_MID = "mid";
 	private final static @NonNull String OUT_MID = "reducedMid";
 	private final static @NonNull String GENERIC_OPERATORTYPE = "ACCUMULATOR";
+  private final static @NonNull String PROP_OUT_TIMEOVERHEAD = "timeOverhead";
+  private boolean timeOverheadEnabled;
+  private long timeOverhead;
+  private long timeCheckpoint;
 	// constants
 	private final static @NonNull String REDUCED_MID_SUFFIX = "_reduced";
 	private final static @NonNull String MODELRELCOMPOSITION_OPERATORTYPE_URI = "http://se.cs.toronto.edu/mmint/Operator_ModelRelComposition";
@@ -62,20 +66,32 @@ public class Reduce extends NestingOperatorImpl {
 		@Override
 		public boolean isAllowedGeneric(@NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
 
-            final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
-            final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
-            final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
-            final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
-            if (
-                genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
-                genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
-            ) {
-                return false;
-            }
+      final String FILTER_URI = "http://se.cs.toronto.edu/mmint/Operator_Filter";
+      final String FILTERNOT_URI = "http://se.cs.toronto.edu/mmint/Operator_FilterNot";
+      final String MAP_URI = "http://se.cs.toronto.edu/mmint/Operator_Map";
+      final String REDUCE_URI = "http://se.cs.toronto.edu/mmint/Operator_Reduce";
+      if (
+        genericType.getUri().equals(FILTER_URI) || genericType.getUri().equals(FILTERNOT_URI) ||
+        genericType.getUri().equals(MAP_URI) || genericType.getUri().equals(REDUCE_URI)
+      ) {
+        return false;
+      }
 
 			return true;
 		}
 	}
+
+  @Override
+  public void readInputProperties(Properties inputProps) throws MMINTException {
+    this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
+                                 inputProps, PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+  }
+
+  public void writeOutputProperties() throws Exception {
+    var outProps = new Properties();
+    outProps.setProperty(PROP_OUT_TIMEOVERHEAD, String.valueOf(this.timeOverhead));
+    MIDOperatorIOUtils.writeOutputProperties(this, outProps);
+  }
 
 	private @NonNull Set<ModelRel> getConnectedModelRels(@NonNull MID instanceMID, @NonNull Set<Model> models, @NonNull Set<ModelRel> modelRelBlacklist) {
 
@@ -107,12 +123,13 @@ public class Reduce extends NestingOperatorImpl {
 		                           MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
 		  polyAccumulators.addAll(MIDTypeHierarchy.getSubtypes(accumulatorOperatorType));
 		}
+    var accumulator = accumulatorOperatorType;
 		int i = 0;
 		while (true) {
       var inputMIDs = ECollections.newBasicEList(reducedMID);
       var inputModelBlacklists = ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels);
       if (polyAccumulators.size() == 1) { // multiple dispatch disabled, or the accumulator is not a multimethod
-        accumulatorInputs = accumulatorOperatorType.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+        accumulatorInputs = accumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
       }
       else {
         var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyAccumulators);
@@ -120,6 +137,7 @@ public class Reduce extends NestingOperatorImpl {
           var polyAccumulator = polyIter.next();
           accumulatorInputs = polyAccumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
           if (accumulatorInputs != null) {
+            accumulator = polyAccumulator;
             break;
           }
         }
@@ -152,20 +170,24 @@ public class Reduce extends NestingOperatorImpl {
 					.collect(Collectors.toSet());
 				Set<ModelRel> connectedModelRels = this.getConnectedModelRels(reducedMID, accumulatorInputModels, modelRelBlacklist);
 				// run the ACCUMULATOR operator
-				Map<String, MID> accumulatorOutputMIDsByName = MIDOperatorIOUtils
-						.createSameOutputMIDsByName(accumulatorOperatorType, reducedMID);
-				EList<OperatorGeneric> accumulatorGenerics = accumulatorOperatorType.selectAllowedGenerics(
-					accumulatorInputs);
+				var accumulatorOutputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(accumulator, reducedMID);
+				var accumulatorGenerics = accumulator.selectAllowedGenerics(accumulatorInputs);
         var workingPath = getWorkingPath();
         if (workingPath != null) {
-          accumulatorOperatorType.setWorkingPath(workingPath);
+          accumulator.setWorkingPath(workingPath);
         }
-				Operator accumulatorOperator = accumulatorOperatorType.startInstance(
+        if (this.timeOverheadEnabled) {
+          this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
+        }
+				var accumulatorOperator = accumulator.startInstance(
 					accumulatorInputs,
 					null,
 					accumulatorGenerics,
 					accumulatorOutputMIDsByName,
 					(nestedMIDPath != null) ? reducedMID : null);
+        if (this.timeOverheadEnabled) {
+          this.timeCheckpoint = System.nanoTime();
+        }
 				accumulatorOperator.setName(accumulatorOperator.getName() + i);
 				accumulatorOutputsByName = accumulatorOperator.getOutputsByName();
 				accumulatorOutputModels.addAll(
@@ -256,7 +278,7 @@ public class Reduce extends NestingOperatorImpl {
 			catch (Exception e) {
 				MMINTException.print(
 					IStatus.WARNING,
-					"Operator " + accumulatorOperatorType + " execution error, skipping it",
+					"Operator " + accumulator + " execution error, skipping it",
 					e);
 			}
 			finally { // even in case of failure, some actions must be taken to prevent endless loops
@@ -334,6 +356,10 @@ public class Reduce extends NestingOperatorImpl {
 	public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
+    if (this.timeOverheadEnabled) {
+      this.timeOverhead = 0;
+      this.timeCheckpoint = System.nanoTime();
+    }
 		// input
 		Model inputMIDModel = inputsByName.get(IN_MID);
 		Operator accumulatorOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
@@ -359,6 +385,10 @@ public class Reduce extends NestingOperatorImpl {
 			reducedMID, reducedMIDModelPath, instanceMID);
 		Map<String, Model> outputsByName = new HashMap<>();
 		outputsByName.put(OUT_MID, reducedMIDModel);
+    if (this.timeOverheadEnabled) {
+      this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
+      writeOutputProperties();
+    }
 
 		return outputsByName;
 	}
