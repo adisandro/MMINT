@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
@@ -226,6 +227,7 @@ public class MIDConstraintChecker {
 
 	public static @Nullable List<String> getAllowedModelEndpoints(@NonNull ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
 
+	  //TODO MMINT[TYPES] Should return List<ModelEndpoint> directly
 		if (targetModel == null) { // model not added yet
 			return new ArrayList<>();
 		}
@@ -262,9 +264,13 @@ public class MIDConstraintChecker {
 
 		HashMap<String, Integer> cardinalityTable = new HashMap<>();
 		for (ModelEndpoint modelEndpoint : modelRel.getModelEndpoints()) {
-			boolean isAllowed = false;
-			//TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
-			for (ModelEndpointReference modelTypeEndpointRef : newModelRelType.getModelEndpointRefs()) {
+			var isAllowed = false;
+			var nonOverriddenModelTypeEndpointRefs = newModelRelType.getModelEndpointRefs().stream()
+			  .filter(mer -> newModelRelType.getModelEndpointRefs().stream()
+			                   .noneMatch(overriding -> overriding.getSupertypeRef() == mer))
+			  .collect(Collectors.toList());
+      //TODO MMINT[INTROSPECTION] order of visit might affect the result, should be from the most specific to the less
+			for (ModelEndpointReference modelTypeEndpointRef : nonOverriddenModelTypeEndpointRefs) {
 				if (isAllowed = isAllowedModelEndpoint(modelTypeEndpointRef, modelEndpoint.getTarget(), cardinalityTable)) {
 					MIDRegistry.addEndpointCardinality(modelTypeEndpointRef.getUri(), cardinalityTable);
 					break;
