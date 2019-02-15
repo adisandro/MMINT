@@ -42,6 +42,7 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -291,7 +292,8 @@ public class Reduce extends NestingOperatorImpl {
 						this.getConnectedModelRels(reducedMID, accumulatorInputModels, new HashSet<>()));
 				}
 				else {
-					// delete accumulator inputs (connected model rels are deleted as a side effect of deleting the models, composed included)
+					// delete accumulator input models
+				  // (connected binary model rels are deleted as a side effect, composed included)
 					for (Model accumulatorInputModel : accumulatorInputModels) {
 						try {
 							if (accumulatorOutputModels.contains(accumulatorInputModel)) { // intermediate artifact
@@ -303,6 +305,13 @@ public class Reduce extends NestingOperatorImpl {
 							}
 						}
 						catch (MMINTException e) {}
+					}
+					// delete accumulator input nary model rels
+					for (ModelRel accumulatorInputModelRel : accumulatorInputModelRels) {
+					  if (accumulatorInputModelRel instanceof BinaryModelRel) {
+					    continue;
+					  }
+					  accumulatorInputModelRel.deleteInstance();
 					}
 				}
 				i++;
