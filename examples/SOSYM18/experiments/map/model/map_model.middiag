@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_IB948C8LEemBee_0vK-zgw" type="MID" name="map_model.middiag" measurementUnit="Pixel">
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_IB948S8LEemBee_0vK-zgw"/>
+  <element xmi:type="mid:MID" href="map_model.mid#/"/>
+</notation:Diagram>
