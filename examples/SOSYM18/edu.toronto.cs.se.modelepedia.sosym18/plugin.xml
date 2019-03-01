@@ -1069,7 +1069,7 @@
             <parameter>
                <type
                      name="poly"
-                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PRT2Sleep-PRT1/poly">
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_PRT2Sleep-PRT2/poly">
                   <superType
                         uri="http://se.cs.toronto.edu/modelepedia/Operator_PRTSleep-PRT/poly">
                   </superType>
