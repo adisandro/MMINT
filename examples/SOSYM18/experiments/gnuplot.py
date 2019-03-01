@@ -54,11 +54,15 @@ if __name__ == '__main__':
         out = ''
         for num_types in ['1', '2', '5', '10', '20', '30']:
             out += num_types
-            for signature in ['model', 'rel']:
-                for operator in ['filter', 'map', 'reduce']:
-                    props_path = os.path.join('poly', f'{operator}_{signature}_{num_types}', 'ExperimentOut.properties')
-                    values = get_values(props_path, var_x='numPolyTypes', var_y='timeOverhead')
-                    out += ' ' + ' '.join(str(n) for n in values['y'])
+            for hierarchy in ['', 'deep_']:
+                for signature in ['model', 'rel']:
+                    for operator in ['map', 'reduce', 'filter']:
+                        props_path = os.path.join('poly', f'{hierarchy}{operator}_{signature}_{num_types}',
+                                                  'ExperimentOut.properties')
+                        if os.path.exists(props_path):
+                            values = get_values(props_path, var_x='numPolyTypes', var_y='timeOverhead')
+                            out += ' ' + ' '.join(str(n) for n in values['y'])
             out += '\n'
         dat_file.write(out)
+
 
