@@ -125,11 +125,11 @@ public class SOSYM18 extends RandomOperatorImpl {
       polyEFactories.add(polyEPackage.getEFactoryInstance());
       polyEClasses.add((EClass) polyEPackage.eContents().get(0));
     }
-    var polyIndex = 0;
+    var polyIndex = getState().nextInt(this.numPolyTypes); // start from a random poly type
     for (var i = 0; i < this.numPolySites; i++) {
       generateModel(polyModelTypes.get(polyIndex), polyEFactories.get(polyIndex), polyEClasses.get(polyIndex),
                     Output.POLY_NAME + i, polyMID);
-      polyIndex = (polyIndex + 1) % this.numPolyTypes;
+      polyIndex = (polyIndex + 1) % this.numPolyTypes; // uniformely distributed
     }
     // other types
     if (this.numOtherSites == 0) {
@@ -200,11 +200,11 @@ public class SOSYM18 extends RandomOperatorImpl {
       polyEFactories.add(polyEPackage.getEFactoryInstance());
       polyEClasses.add((EClass) polyEPackage.eContents().get(0));
     }
-    var polyIndex = 0;
+    var polyIndex = getState().nextInt(this.numPolyTypes); // start from a random poly type
     for (var i = 0; i < this.numPolySites; i++) {
       generateModelRel(polyRelTypes.get(polyIndex), polyModelTypes.get(polyIndex), polyEFactories.get(polyIndex),
                        polyEClasses.get(polyIndex), Output.POLY_NAME + i, polyMID);
-      polyIndex = (polyIndex + 1) % this.numPolyTypes;
+      polyIndex = (polyIndex + 1) % this.numPolyTypes; // uniformely distributed
     }
     // other types
     if (this.numOtherSites == 0) {
