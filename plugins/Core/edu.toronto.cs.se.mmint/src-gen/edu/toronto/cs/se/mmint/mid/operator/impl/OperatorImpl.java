@@ -1000,6 +1000,87 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     }
 
     /**
+     * @generated NOT
+     */
+    private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs2(@NonNull EList<MID> inputMIDs,
+                                                                      @NonNull EList<Set<Model>> inputBlacklists,
+                                                                      boolean firstOnly) {
+        var allInputs = new LinkedHashSet<EList<OperatorInput>>(); // reproducible order
+        if (inputMIDs.stream().anyMatch(mid -> mid.getModels().size() <= 0)) { // empty input MID
+            return allInputs;
+        }
+        // init structures for cartesian product
+        var cartIndexes = new int[getInputs().size()];
+        var cartInputs = new ArrayList<Map<Integer, OperatorInput>>(getInputs().size());
+        for (int i = 0; i < cartIndexes.length; i++) {
+            cartIndexes[i] = 0;
+            cartInputs.add(new HashMap<>());
+        }
+        while (true) {
+            // find next valid inputs
+            var nextInputs = ECollections.<OperatorInput>newBasicEList();
+            for (int i = 0; i < cartIndexes.length; i++) {
+                var cartEndpointInputs = cartInputs.get(i);
+                var input = cartEndpointInputs.get(cartIndexes[i]);
+                if (input == null) { // either not tried yet, or not valid
+                    if (cartEndpointInputs.containsKey(cartIndexes[i])) { // not a valid input
+                        break;
+                    }
+                    // TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
+                    MID inputMID;
+                    Set<Model> inputBlacklist;
+                    if (i < inputMIDs.size()) {
+                        inputMID = inputMIDs.get(i);
+                        inputBlacklist = inputBlacklists.get(i);
+                    }
+                    else {
+                        inputMID = inputMIDs.get(inputMIDs.size()-1);
+                        inputBlacklist = inputBlacklists.get(inputBlacklists.size()-1);
+                    }
+                    var inputModel = inputMID.getModels().get(cartIndexes[i]);
+                    var inputEndpoint = getInputs().get(i);
+                    input = (inputBlacklist.contains(inputModel)) ? null : checkAllowedInput(inputEndpoint, inputModel);
+                    cartEndpointInputs.put(cartIndexes[i], input); // save for later iterations
+                    if (input == null) { // not a valid input
+                        break;
+                    }
+                    //TODO MMINT[MAP] Add support for varargs (upper bound = -1) and optional args (lower bound = 0)
+                }
+                nextInputs.add(input); // add to valid inputs
+            }
+            if (nextInputs.size() == getInputs().size()) { // tentative valid inputs
+                var inputsByName = getInputsByName(nextInputs);
+                try {
+                    if (MIDConstraintChecker.checkOperatorInputConstraint(getClosestTypeConstraint(), inputsByName)) {
+                        //TODO handle commutativity
+                        allInputs.add(nextInputs);
+                        if (firstOnly) {
+                            return allInputs;
+                        }
+                    }
+                }
+                catch (MMINTException e) {
+                    // can't happen
+                }
+            }
+            // advance indexes for cartesian product
+            int i = 0;
+            while (true) {
+                cartIndexes[i] += 1;
+                var inputMID = (i < inputMIDs.size()) ? inputMIDs.get(i) : inputMIDs.get(inputMIDs.size()-1);
+                if (cartIndexes[i] < inputMID.getModels().size()) { // done advancing indexes
+                    break;
+                }
+                cartIndexes[i] = 0;
+                i += 1; // carry over to next index
+                if (i >= cartIndexes.length) { // overflow, cartesian product done
+                    return allInputs;
+                }
+            }
+        }
+    }
+
+    /**
      * Checks if an input model can be used as actual parameter for a formal parameter of an operator type.
      *
      * @param inputModelTypeEndpoint
@@ -1037,7 +1118,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MID> inputMIDs, @NonNull EList<Set<Model>> inputModelBlacklists) {
 
-        //TODO MMINT[MAP] Add support for upper bound = -1
         EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
         for (int i = 0; i < this.getInputs().size(); i++) {
             ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
@@ -1073,14 +1153,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     @Override
-    public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException {
-
+    public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists)
+                                     throws MMINTException {
         MMINTException.mustBeType(this);
-
-        // get inputs by model type endpoint
-        EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs, inputModelBlacklists);
-        // do cartesian product of inputs
-        Set<EList<OperatorInput>> operatorTypeInputSet = this.getOperatorTypeInputs(modelTypeEndpointInputs, false);
+        var operatorTypeInputSet = this.getOperatorTypeInputs2(inputMIDs, inputModelBlacklists, false);
 
         return operatorTypeInputSet;
     }
@@ -1089,14 +1165,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     @Override
-    public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException {
-
+    public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists)
+                                throws MMINTException {
         MMINTException.mustBeType(this);
-
-        // get inputs by model type endpoint
-        EList<EList<OperatorInput>> modelTypeEndpointInputs = this.getModelTypeEndpointInputs(inputMIDs, inputModelBlacklists);
-        // get the first allowed input
-        Set<EList<OperatorInput>> operatorTypeInputSet = this.getOperatorTypeInputs(modelTypeEndpointInputs, true);
+        var operatorTypeInputSet = this.getOperatorTypeInputs2(inputMIDs, inputModelBlacklists, true);
         if (operatorTypeInputSet.isEmpty()) {
             return null;
         }
