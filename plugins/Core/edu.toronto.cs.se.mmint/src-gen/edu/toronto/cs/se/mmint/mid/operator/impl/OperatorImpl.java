@@ -932,83 +932,25 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     /**
      * Computes the cartesian product of inputs for this operator type.
      *
-     * @param modelTypeEndpointInputs
-     *            The allowed inputs for each formal parameter.
+     * @param inputMIDs
+     *          A list of instance MIDs where to get input models. Each formal parameter gets input models from a
+     *          different instance MID, following their order. If there are not enough instance MIDs, the last instance
+     *          MID is used for all subsequent formal parameters.
+     * @param inputBlacklists
+     *          A list of blacklisted models not to be considered as input, following the same order as the inputMIDs.
      * @param firstOnly
-     *            True if only the first input is returned, false if the whole cartesian product is returned.
+     *          True if only the first input is returned, false if the whole cartesian product is returned.
      * @return A set of inputs to the operator type, including necessary conversions.
      * @generated NOT
      */
-    private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<EList<OperatorInput>> modelTypeEndpointInputs, boolean firstOnly) {
-
-        Set<EList<OperatorInput>> operatorTypeInputSet = new LinkedHashSet<>(); // reproducible order
-        // if at least one is empty, there is no way to have a proper input for this operator
-        if (modelTypeEndpointInputs.stream().anyMatch(modelTypeEndpointInput -> modelTypeEndpointInput.isEmpty())) {
-            return operatorTypeInputSet;
-        }
-        Set<Set<Model>> operatorTypeInputSetCommutative = new HashSet<>();
-        int[] indexes = new int[modelTypeEndpointInputs.size()];
-        for (int i = 0; i < indexes.length; i++) {
-            indexes[i] = 0;
-        }
-        while (true) {
-            // get current inputs
-            EList<OperatorInput> operatorTypeInputs = ECollections.newBasicEList();
-            for (int i = 0; i < indexes.length; i++) {
-                EList<OperatorInput> modelTypeEndpointInput = modelTypeEndpointInputs.get(i);
-                operatorTypeInputs.add(modelTypeEndpointInput.get(indexes[i]));
-            }
-            try {
-                // add only if allowed and passes commutativity check
-                Map<String, Model> inputsByName = this.getInputsByName(operatorTypeInputs);
-                if (MIDConstraintChecker.checkOperatorInputConstraint(this.getClosestTypeConstraint(), inputsByName)) {
-                    boolean commutativeInput = false;
-                    if (this.isCommutative()) {
-                        Set<Model> operatorTypeInputsCommutative = new HashSet<>(inputsByName.values());
-                        if (operatorTypeInputSetCommutative.contains(operatorTypeInputsCommutative)) {
-                            commutativeInput = true;
-                        }
-                        else {
-                            operatorTypeInputSetCommutative.add(operatorTypeInputsCommutative);
-                        }
-                    }
-                    if (!commutativeInput) {
-                        operatorTypeInputSet.add(operatorTypeInputs);
-                        if (firstOnly) { // just return the first allowed
-                            return operatorTypeInputSet;
-                        }
-                    }
-                }
-            }
-            catch (Exception e) {
-                // do nothing
-            }
-            // move indexes
-            int j = indexes.length - 1;
-            while (true) {
-                indexes[j] += 1;
-                if (indexes[j] < modelTypeEndpointInputs.get(j).size()) {
-                    break;
-                }
-                indexes[j] = 0;
-                j -= 1;
-                if (j < 0) { // overflow, cartesian product done
-                    return operatorTypeInputSet;
-                }
-            }
-        }
-    }
-
-    /**
-     * @generated NOT
-     */
-    private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs2(@NonNull EList<MID> inputMIDs,
+    private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<MID> inputMIDs,
                                                                       @NonNull EList<Set<Model>> inputBlacklists,
                                                                       boolean firstOnly) {
         var allInputs = new LinkedHashSet<EList<OperatorInput>>(); // reproducible order
         if (inputMIDs.stream().anyMatch(mid -> mid.getModels().size() <= 0)) { // empty input MID
             return allInputs;
         }
+        var allCommutativeInputs = new HashSet<Set<Model>>();
         // init structures for cartesian product
         var cartIndexes = new int[getInputs().size()];
         var cartInputs = new ArrayList<Map<Integer, OperatorInput>>(getInputs().size());
@@ -1020,10 +962,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             // find next valid inputs
             var nextInputs = ECollections.<OperatorInput>newBasicEList();
             for (int i = 0; i < cartIndexes.length; i++) {
+                var cartIndex = cartIndexes[i];
                 var cartEndpointInputs = cartInputs.get(i);
-                var input = cartEndpointInputs.get(cartIndexes[i]);
+                var input = cartEndpointInputs.get(cartIndex);
                 if (input == null) { // either not tried yet, or not valid
-                    if (cartEndpointInputs.containsKey(cartIndexes[i])) { // not a valid input
+                    if (cartEndpointInputs.containsKey(cartIndex)) { // not a valid input
                         break;
                     }
                     // TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
@@ -1037,10 +980,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                         inputMID = inputMIDs.get(inputMIDs.size()-1);
                         inputBlacklist = inputBlacklists.get(inputBlacklists.size()-1);
                     }
-                    var inputModel = inputMID.getModels().get(cartIndexes[i]);
+                    var inputModel = inputMID.getModels().get(cartIndex);
                     var inputEndpoint = getInputs().get(i);
                     input = (inputBlacklist.contains(inputModel)) ? null : checkAllowedInput(inputEndpoint, inputModel);
-                    cartEndpointInputs.put(cartIndexes[i], input); // save for later iterations
+                    cartEndpointInputs.put(cartIndex, input); // save for successive iterations
                     if (input == null) { // not a valid input
                         break;
                     }
@@ -1050,17 +993,29 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             }
             if (nextInputs.size() == getInputs().size()) { // tentative valid inputs
                 var inputsByName = getInputsByName(nextInputs);
+                boolean valid = false;
                 try {
-                    if (MIDConstraintChecker.checkOperatorInputConstraint(getClosestTypeConstraint(), inputsByName)) {
-                        //TODO handle commutativity
-                        allInputs.add(nextInputs);
-                        if (firstOnly) {
-                            return allInputs;
-                        }
-                    }
+                    valid = MIDConstraintChecker.checkOperatorInputConstraint(getClosestTypeConstraint(), inputsByName);
                 }
                 catch (MMINTException e) {
                     // can't happen
+                }
+                if (valid) {
+                    if (isCommutative()) {
+                        var nextCommutativeInputs = new HashSet<>(inputsByName.values());
+                        if (allCommutativeInputs.contains(nextCommutativeInputs)) {
+                            valid = false;
+                        }
+                        else {
+                            allCommutativeInputs.add(nextCommutativeInputs);
+                        }
+                    }
+                    if (valid) {
+                        allInputs.add(nextInputs);
+                        if (firstOnly) { // just return the first
+                            return allInputs;
+                        }
+                    }
                 }
             }
             // advance indexes for cartesian product
@@ -1071,8 +1026,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 if (cartIndexes[i] < inputMID.getModels().size()) { // done advancing indexes
                     break;
                 }
+                // carry over to next index
                 cartIndexes[i] = 0;
-                i += 1; // carry over to next index
+                i += 1;
                 if (i >= cartIndexes.length) { // overflow, cartesian product done
                     return allInputs;
                 }
@@ -1105,58 +1061,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     }
 
     /**
-     * Gets all allowed inputs for each formal parameter of this operator type.
-     *
-     * @param inputMIDs
-     *            A list of instance MIDs where to get input models. Each formal parameter gets input models from a
-     *            different instance MID, following their order. If there are not enough instance MIDs, the last
-     *            instance MID is used for all subsequent formal parameters.
-     * @param inputModelBlacklists
-     *            A List of blacklisted models not to be considered as input, following the same order as the inputMIDs.
-     * @return The allowed inputs for each formal parameter, including necessary conversions.
-     * @generated NOT
-     */
-    private @NonNull EList<EList<OperatorInput>> getModelTypeEndpointInputs(@NonNull EList<MID> inputMIDs, @NonNull EList<Set<Model>> inputModelBlacklists) {
-
-        EList<EList<OperatorInput>> modelTypeEndpointInputs = new BasicEList<>();
-        for (int i = 0; i < this.getInputs().size(); i++) {
-            ModelEndpoint inputModelTypeEndpoint = this.getInputs().get(i);
-            // TODO MMINT[MAP] Add support for arbitrary combinations of input MIDs to input arguments
-            MID inputMID;
-            Set<Model> inputModelBlacklist;
-            if (i < inputMIDs.size()) {
-                inputMID = inputMIDs.get(i);
-                inputModelBlacklist = inputModelBlacklists.get(i);
-            }
-            else {
-                inputMID = inputMIDs.get(inputMIDs.size()-1);
-                inputModelBlacklist = inputModelBlacklists.get(inputModelBlacklists.size()-1);
-            }
-            EList<OperatorInput> modelTypeEndpointInputSet = new BasicEList<>();
-            modelTypeEndpointInputs.add(modelTypeEndpointInputSet);
-            for (Model inputModel : inputMID.getModels()) {
-                if (inputModelBlacklist.contains(inputModel)) {
-                    continue;
-                }
-                OperatorInput operatorInput = this.checkAllowedInput(inputModelTypeEndpoint, inputModel);
-                if (operatorInput == null) {
-                    continue;
-                }
-                modelTypeEndpointInputSet.add(operatorInput);
-            }
-        }
-
-        return modelTypeEndpointInputs;
-    }
-
-    /**
      * @generated NOT
      */
     @Override
     public Set<EList<OperatorInput>> findAllowedInputs(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists)
                                      throws MMINTException {
         MMINTException.mustBeType(this);
-        var operatorTypeInputSet = this.getOperatorTypeInputs2(inputMIDs, inputModelBlacklists, false);
+        var operatorTypeInputSet = this.getOperatorTypeInputs(inputMIDs, inputModelBlacklists, false);
 
         return operatorTypeInputSet;
     }
@@ -1168,7 +1079,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists)
                                 throws MMINTException {
         MMINTException.mustBeType(this);
-        var operatorTypeInputSet = this.getOperatorTypeInputs2(inputMIDs, inputModelBlacklists, true);
+        var operatorTypeInputSet = this.getOperatorTypeInputs(inputMIDs, inputModelBlacklists, true);
         if (operatorTypeInputSet.isEmpty()) {
             return null;
         }
