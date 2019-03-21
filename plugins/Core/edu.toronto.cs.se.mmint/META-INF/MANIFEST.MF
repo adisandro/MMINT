@@ -7,7 +7,7 @@ Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-12
 Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.extensions,
  edu.toronto.cs.se.mmint.mid,

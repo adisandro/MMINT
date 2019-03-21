@@ -6,7 +6,7 @@ Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-12
 Export-Package: edu.toronto.cs.se.modelepedia.models15_java,
  edu.toronto.cs.se.modelepedia.models15_java.impl,
  edu.toronto.cs.se.modelepedia.models15_java.util
