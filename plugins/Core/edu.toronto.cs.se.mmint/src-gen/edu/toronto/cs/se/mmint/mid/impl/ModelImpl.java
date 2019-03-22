@@ -192,7 +192,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public ModelOrigin getOrigin() {
-    return this.origin;
+    return origin;
   }
 
     /**
@@ -202,10 +202,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
-    ModelOrigin oldOrigin = this.origin;
-    this.origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
+    ModelOrigin oldOrigin = origin;
+    origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, origin));
   }
 
     /**
@@ -215,7 +215,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public String getFileExtension() {
-    return this.fileExtension;
+    return fileExtension;
   }
 
     /**
@@ -225,10 +225,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setFileExtension(String newFileExtension) {
-    String oldFileExtension = this.fileExtension;
-    this.fileExtension = newFileExtension;
+    String oldFileExtension = fileExtension;
+    fileExtension = newFileExtension;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
   }
 
     /**
@@ -238,10 +238,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<Editor> getEditors() {
-    if (this.editors == null) {
-      this.editors = new EObjectResolvingEList<>(Editor.class, this, MIDPackage.MODEL__EDITORS);
+    if (editors == null) {
+      editors = new EObjectResolvingEList<Editor>(Editor.class, this, MIDPackage.MODEL__EDITORS);
     }
-    return this.editors;
+    return editors;
   }
 
     /**
@@ -251,10 +251,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<ModelElement> getModelElems() {
-    if (this.modelElems == null) {
-      this.modelElems = new EObjectContainmentEList<>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
+    if (modelElems == null) {
+      modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
     }
-    return this.modelElems;
+    return modelElems;
   }
 
     /**
@@ -264,10 +264,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<ConversionOperator> getConversionOperators() {
-    if (this.conversionOperators == null) {
-      this.conversionOperators = new EObjectResolvingEList<>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
+    if (conversionOperators == null) {
+      conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
     }
-    return this.conversionOperators;
+    return conversionOperators;
   }
 
     /**
@@ -405,15 +405,15 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.MODEL__ORIGIN:
-        return this.origin != ORIGIN_EDEFAULT;
+        return origin != ORIGIN_EDEFAULT;
       case MIDPackage.MODEL__FILE_EXTENSION:
-        return FILE_EXTENSION_EDEFAULT == null ? this.fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(this.fileExtension);
+        return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
       case MIDPackage.MODEL__EDITORS:
-        return this.editors != null && !this.editors.isEmpty();
+        return editors != null && !editors.isEmpty();
       case MIDPackage.MODEL__MODEL_ELEMS:
-        return this.modelElems != null && !this.modelElems.isEmpty();
+        return modelElems != null && !modelElems.isEmpty();
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
-        return this.conversionOperators != null && !this.conversionOperators.isEmpty();
+        return conversionOperators != null && !conversionOperators.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -589,9 +589,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (origin: ");
-    result.append(this.origin);
+    result.append(origin);
     result.append(", fileExtension: ");
-    result.append(this.fileExtension);
+    result.append(fileExtension);
     result.append(')');
     return result.toString();
   }

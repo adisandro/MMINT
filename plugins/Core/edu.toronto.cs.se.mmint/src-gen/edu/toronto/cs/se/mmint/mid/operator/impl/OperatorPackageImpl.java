@@ -262,18 +262,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     @Override
-    public EReference getOperator_PreviousOperator() {
-    return (EReference)operatorEClass.getEStructuralFeatures().get(4);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
     public EAttribute getOperator_ExecutionTime() {
-    return (EAttribute)operatorEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)operatorEClass.getEStructuralFeatures().get(4);
   }
 
     /**
@@ -283,7 +273,7 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    */
     @Override
     public EAttribute getOperator_Commutative() {
-    return (EAttribute)operatorEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)operatorEClass.getEStructuralFeatures().get(5);
   }
 
     /**
@@ -870,7 +860,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     createEReference(operatorEClass, OPERATOR__OUTPUTS);
     createEReference(operatorEClass, OPERATOR__GENERICS);
     createEAttribute(operatorEClass, OPERATOR__WORKING_PATH);
-    createEReference(operatorEClass, OPERATOR__PREVIOUS_OPERATOR);
     createEAttribute(operatorEClass, OPERATOR__EXECUTION_TIME);
     createEAttribute(operatorEClass, OPERATOR__COMMUTATIVE);
     createEOperation(operatorEClass, OPERATOR___GET_METATYPE);
@@ -984,7 +973,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     initEReference(getOperator_Outputs(), theMIDPackage.getModelEndpoint(), null, "outputs", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOperator_Generics(), this.getGenericEndpoint(), null, "generics", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOperator_WorkingPath(), ecorePackage.getEString(), "workingPath", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getOperator_PreviousOperator(), this.getOperator(), null, "previousOperator", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOperator_ExecutionTime(), ecorePackage.getELong(), "executionTime", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOperator_Commutative(), ecorePackage.getEBoolean(), "commutative", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

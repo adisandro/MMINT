@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getGenerics <em>Generics</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getWorkingPath <em>Working Path</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getExecutionTime <em>Execution Time</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.Operator#isCommutative <em>Commutative</em>}</li>
  * </ul>
@@ -119,31 +118,6 @@ public interface Operator extends GenericElement {
    * @generated
    */
     void setWorkingPath(String value);
-
-    /**
-   * Returns the value of the '<em><b>Previous Operator</b></em>' reference.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * <!-- begin-model-doc -->
-   * The previous operator, when used in an operator chain.
-   * <!-- end-model-doc -->
-   * @return the value of the '<em>Previous Operator</em>' reference.
-   * @see #setPreviousOperator(Operator)
-   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorPackage#getOperator_PreviousOperator()
-   * @model
-   * @generated
-   */
-    Operator getPreviousOperator();
-
-    /**
-   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#getPreviousOperator <em>Previous Operator</em>}' reference.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Previous Operator</em>' reference.
-   * @see #getPreviousOperator()
-   * @generated
-   */
-    void setPreviousOperator(Operator value);
 
     /**
    * Returns the value of the '<em><b>Execution Time</b></em>' attribute.

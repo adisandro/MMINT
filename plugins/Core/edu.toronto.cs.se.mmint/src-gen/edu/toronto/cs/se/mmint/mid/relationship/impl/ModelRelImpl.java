@@ -145,10 +145,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<ModelEndpoint> getModelEndpoints() {
-    if (this.modelEndpoints == null) {
-      this.modelEndpoints = new EObjectContainmentEList<>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
+    if (modelEndpoints == null) {
+      modelEndpoints = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
     }
-    return this.modelEndpoints;
+    return modelEndpoints;
   }
 
     /**
@@ -158,10 +158,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<Mapping> getMappings() {
-    if (this.mappings == null) {
-      this.mappings = new EObjectContainmentEList<>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
+    if (mappings == null) {
+      mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
     }
-    return this.mappings;
+    return mappings;
   }
 
     /**
@@ -171,10 +171,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<ModelEndpointReference> getModelEndpointRefs() {
-    if (this.modelEndpointRefs == null) {
-      this.modelEndpointRefs = new EObjectContainmentEList<>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
+    if (modelEndpointRefs == null) {
+      modelEndpointRefs = new EObjectContainmentEList<ModelEndpointReference>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
     }
-    return this.modelEndpointRefs;
+    return modelEndpointRefs;
   }
 
     /**
@@ -184,10 +184,10 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
    */
     @Override
     public EList<MappingReference> getMappingRefs() {
-    if (this.mappingRefs == null) {
-      this.mappingRefs = new EObjectContainmentEList<>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
+    if (mappingRefs == null) {
+      mappingRefs = new EObjectContainmentEList<MappingReference>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
     }
-    return this.mappingRefs;
+    return mappingRefs;
   }
 
     /**
@@ -324,13 +324,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-        return this.modelEndpoints != null && !this.modelEndpoints.isEmpty();
+        return modelEndpoints != null && !modelEndpoints.isEmpty();
       case RelationshipPackage.MODEL_REL__MAPPINGS:
-        return this.mappings != null && !this.mappings.isEmpty();
+        return mappings != null && !mappings.isEmpty();
       case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-        return this.modelEndpointRefs != null && !this.modelEndpointRefs.isEmpty();
+        return modelEndpointRefs != null && !modelEndpointRefs.isEmpty();
       case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-        return this.mappingRefs != null && !this.mappingRefs.isEmpty();
+        return mappingRefs != null && !mappingRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

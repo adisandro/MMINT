@@ -84,7 +84,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getGenerics <em>Generics</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getWorkingPath <em>Working Path</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getPreviousOperator <em>Previous Operator</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#getExecutionTime <em>Execution Time</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl#isCommutative <em>Commutative</em>}</li>
  * </ul>
@@ -141,16 +140,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    * @ordered
    */
   protected String workingPath = WORKING_PATH_EDEFAULT;
-
-    /**
-   * The cached value of the '{@link #getPreviousOperator() <em>Previous Operator</em>}' reference.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @see #getPreviousOperator()
-   * @generated
-   * @ordered
-   */
-    protected Operator previousOperator;
 
     /**
    * The default value of the '{@link #getExecutionTime() <em>Execution Time</em>}' attribute.
@@ -279,46 +268,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    * @generated
    */
     @Override
-    public Operator getPreviousOperator() {
-    if (this.previousOperator != null && this.previousOperator.eIsProxy()) {
-      InternalEObject oldPreviousOperator = (InternalEObject)this.previousOperator;
-      this.previousOperator = (Operator)eResolveProxy(oldPreviousOperator);
-      if (this.previousOperator != oldPreviousOperator) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
-      }
-    }
-    return this.previousOperator;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    public Operator basicGetPreviousOperator() {
-    return this.previousOperator;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public void setPreviousOperator(Operator newPreviousOperator) {
-    Operator oldPreviousOperator = this.previousOperator;
-    this.previousOperator = newPreviousOperator;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__PREVIOUS_OPERATOR, oldPreviousOperator, this.previousOperator));
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
     public long getExecutionTime() {
     return this.executionTime;
   }
@@ -393,9 +342,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         return getGenerics();
       case OperatorPackage.OPERATOR__WORKING_PATH:
         return getWorkingPath();
-      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-        if (resolve) return getPreviousOperator();
-        return basicGetPreviousOperator();
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
         return getExecutionTime();
       case OperatorPackage.OPERATOR__COMMUTATIVE:
@@ -428,9 +374,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
       case OperatorPackage.OPERATOR__WORKING_PATH:
         setWorkingPath((String)newValue);
         return;
-      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-        setPreviousOperator((Operator)newValue);
-        return;
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
         setExecutionTime((Long)newValue);
         return;
@@ -461,9 +404,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
       case OperatorPackage.OPERATOR__WORKING_PATH:
         setWorkingPath(WORKING_PATH_EDEFAULT);
         return;
-      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-        setPreviousOperator((Operator)null);
-        return;
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
         setExecutionTime(EXECUTION_TIME_EDEFAULT);
         return;
@@ -490,8 +430,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         return this.generics != null && !this.generics.isEmpty();
       case OperatorPackage.OPERATOR__WORKING_PATH:
         return WORKING_PATH_EDEFAULT == null ? this.workingPath != null : !WORKING_PATH_EDEFAULT.equals(this.workingPath);
-      case OperatorPackage.OPERATOR__PREVIOUS_OPERATOR:
-        return this.previousOperator != null;
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
         return this.executionTime != EXECUTION_TIME_EDEFAULT;
       case OperatorPackage.OPERATOR__COMMUTATIVE:
@@ -1195,10 +1133,6 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             throw new MMINTException("Can't invoke constructor");
         }
         //TODO MMINT[OPERATOR] This is an ugly way to run a callback
-        if (this.getPreviousOperator() != null) {
-            newOperator.setPreviousOperator(this.getPreviousOperator());
-            this.setPreviousOperator(null);
-        }
         if (this.getWorkingPath() != null) {
             newOperator.setWorkingPath(this.getWorkingPath());
             this.setWorkingPath(null);
