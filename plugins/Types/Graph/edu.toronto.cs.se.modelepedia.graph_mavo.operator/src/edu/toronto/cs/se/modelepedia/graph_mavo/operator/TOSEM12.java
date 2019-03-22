@@ -109,7 +109,8 @@ public class TOSEM12 extends RandomOperatorImpl {
 		z3ModelParser = z3Reasoner.generateSMTLIBEncoding(mayModel);
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		MAVORoot rootMayModelObj = (MAVORoot) mayModel.getEMFInstanceRoot();
-		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
+//		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
+		Operator previousOperator = null;
 		if (previousOperator != null) {
 			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
 			generateSMTLIBGroundedProperty((Graph) rootMayModelObj);
@@ -433,7 +434,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 			if (timeMAVOBackboneEnabled) {
 				doMAVOBackbone();
 			}
-			if (timeMAVOAllsatEnabled && getPreviousOperator() != null) {
+			if (timeMAVOAllsatEnabled) {
 				doMAVOAllsat(rootMayModelObj);
 			}
 			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {

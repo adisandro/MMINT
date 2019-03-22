@@ -178,7 +178,6 @@ public class Experiment extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
       /* TODO
-       * - previousOperator? (check OperatorImpl.createInstance())
        * - better mechanism for fetching execution times of operators
        */
     init(inputsByName, genericsByName, outputMIDsByName);

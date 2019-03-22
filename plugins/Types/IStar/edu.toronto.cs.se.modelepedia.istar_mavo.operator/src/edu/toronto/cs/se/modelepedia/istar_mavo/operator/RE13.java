@@ -119,9 +119,10 @@ public class RE13 extends OperatorImpl {
 		istar = null;
 		intentions = new HashMap<String, Intention>();
 		initialIntentions = new HashSet<String>();
-		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
-			(IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
-			(IStarMAVOToSMTLIB) getPreviousOperator();
+//		IStarMAVOToSMTLIB previousOperator = (getPreviousOperator() == null) ?
+//			(IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI) :
+//			(IStarMAVOToSMTLIB) getPreviousOperator();
+		IStarMAVOToSMTLIB previousOperator = (IStarMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(PREVIOUS_OPERATOR_URI);
 		z3ModelParser = previousOperator.getZ3MAVOModelParser();
 		smtEncoding = z3ModelParser.getSMTLIBEncoding();
 		// output

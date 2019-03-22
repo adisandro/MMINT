@@ -247,6 +247,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             if (state != null && workflowOperatorType instanceof RandomOperator) {
                 ((RandomOperator) workflowOperatorType).setState(state);
             }
+            //TODO MMINT[WORKFLOW] Add api getWorkflowData(Operator prevOperator) to fetch in-memory data
             var operator = workflowOperatorType.startInstance(
                 workflowInputs,
                 null,
