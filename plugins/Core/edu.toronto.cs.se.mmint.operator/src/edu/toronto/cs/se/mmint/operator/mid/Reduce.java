@@ -127,9 +127,9 @@ public class Reduce extends NestingOperatorImpl {
     int i = 0;
     while (true) {
       var inputMIDs = ECollections.newBasicEList(reducedMID);
-      var inputModelBlacklists = ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels);
+      var blacklists = ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels);
       var accumulator = accumulatorOperatorType;
-      accumulatorInputs = accumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+      accumulatorInputs = accumulator.findFirstAllowedInput(inputMIDs, blacklists);
       if (accumulatorInputs == null) { // no more inputs to reduce
         break;
       }

@@ -14,8 +14,6 @@ package edu.toronto.cs.se.mmint.operator.mid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -43,7 +41,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
@@ -150,68 +147,86 @@ public class Map extends NestingOperatorImpl {
     return outputMIDModel;
   }
 
-  private java.util.@NonNull Map<String, Model> map(
-      @NonNull List<Model> inputMIDModels,
-      @NonNull EList<MID> inputMIDs,
-      Operator mapperOperatorType,
-      java.util.@NonNull Map<Operator, Set<EList<OperatorInput>>> mapperSpecs,
-      java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput) throws Exception {
+  private java.util.@NonNull Map<String, Model> map(@NonNull List<Model> inputMIDModels, @NonNull EList<MID> inputMIDs,
+                                                    @NonNull EList<Set<Model>> blacklists,
+                                                    @NonNull Operator mapperOperatorType,
+                                                    java.util.@NonNull Map<String, MID> instanceMIDsByMapperOutput)
+                                                   throws Exception {
 
     // create output MIDs
-    java.util.Map<String, MID> mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
+    var mapperOutputMIDsByName = mapperOperatorType.getOutputs().stream()
       .collect(Collectors.toMap(
         outputModelTypeEndpoint -> outputModelTypeEndpoint.getName(),
         outputModelTypeEndpoint -> MIDFactory.eINSTANCE.createMID()));
-    String mapperMIDPath = this.getNestedMIDPath();
-    MID mapperMID = super.getNestedInstanceMID();
-    // start operator types
-    java.util.Map<String, Set<Model>> midrelEndpointModelsByOutputName = new HashMap<>();
-    EList<Model> mapperShortcutModels = new BasicEList<>();
-    for (Entry<Operator, Set<EList<OperatorInput>>> mapperSpec : mapperSpecs.entrySet()) {
-      Operator mapper = mapperSpec.getKey();
-      for (EList<OperatorInput> mapperInputs : mapperSpec.getValue()) {
-        try {
-          EList<OperatorGeneric> mapperGenerics = mapper.selectAllowedGenerics(mapperInputs);
-          var workingPath = getWorkingPath();
-          if (workingPath != null) {
-            mapper.setWorkingPath(workingPath);
+    var mapperMIDPath = this.getNestedMIDPath();
+    var mapperMID = super.getNestedInstanceMID();
+    // map loop
+    var midrelEndpointModelsByOutputName = new HashMap<String, Set<Model>>();
+    var mapperShortcutModels = new BasicEList<Model>();
+    var polyMappers = ECollections.newBasicEList(mapperOperatorType);
+    if (Boolean.parseBoolean(MMINT.getPreference(
+                               MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
+      polyMappers.addAll(MIDTypeHierarchy.getSubtypes(mapperOperatorType));
+    }
+    var mapper = mapperOperatorType;
+    var allMapperInputs = mapper.findAllowedInputs(inputMIDs, blacklists);
+    for (var mapperInputs : allMapperInputs) {
+      if (polyMappers.size() > 1) { // polymorphic multiple dispatch
+        var mapperInputModels = ECollections.toEList(
+                                  mapperInputs.stream()
+                                              .map(OperatorInput::getModel)
+                                              .collect(Collectors.toList()));
+        var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyMappers);
+        while (polyIter.hasNext()) { // start from the most specialized operator backwards
+          var polyMapper = polyIter.next();
+          mapperInputs = polyMapper.checkAllowedInputs(mapperInputModels);
+          if (mapperInputs != null) {
+            mapper = polyMapper;
+            break;
           }
-          if (this.timeOverheadEnabled) {
-            this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
+        }
+      }
+      try {
+        var mapperGenerics = mapper.selectAllowedGenerics(mapperInputs);
+        var workingPath = getWorkingPath();
+        if (workingPath != null) {
+          mapper.setWorkingPath(workingPath);
+        }
+        if (this.timeOverheadEnabled) {
+          this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
+        }
+        var mapperOperator = mapper.startInstance(
+          mapperInputs,
+          null,
+          mapperGenerics,
+          mapperOutputMIDsByName,
+          mapperMID);
+        if (this.timeOverheadEnabled) {
+          this.timeCheckpoint = System.nanoTime();
+        }
+        var mapperOutputsByName = mapperOperator.getOutputsByName();
+        if (mapperMIDPath != null) {
+          mapperShortcutModels.addAll(mapperInputs.stream()
+            .map(OperatorInput::getModel)
+            .collect(Collectors.toList()));
+          mapperShortcutModels.addAll(mapperOutputsByName.values());
+        }
+        // get model shortcuts to create for output MIDRels (to model endpoints)
+        for (var mapperOutput : mapperOutputsByName.entrySet()) {
+          var mapperOutputModel = mapperOutput.getValue();
+          if (!(mapperOutputModel instanceof ModelRel)) {
+            continue;
           }
-          var mapperOperator = mapper.startInstance(
-            mapperInputs,
-            null,
-            mapperGenerics,
-            mapperOutputMIDsByName,
-            mapperMID);
-          if (this.timeOverheadEnabled) {
-            this.timeCheckpoint = System.nanoTime();
+          var mapperOutputName = mapperOutput.getKey();
+          var newMidrelEndpointModels = ((ModelRel) mapperOutputModel).getModelEndpoints().stream()
+            .map(ModelEndpoint::getTarget)
+            .collect(Collectors.toSet());
+          var midrelEndpointModels = midrelEndpointModelsByOutputName.putIfAbsent(mapperOutputName,
+                                                                                  newMidrelEndpointModels);
+          if (midrelEndpointModels != null) {
+            midrelEndpointModels.addAll(newMidrelEndpointModels);
           }
-          var mapperOutputsByName = mapperOperator.getOutputsByName();
-          if (mapperMIDPath != null) {
-            mapperShortcutModels.addAll(mapperInputs.stream()
-              .map(OperatorInput::getModel)
-              .collect(Collectors.toList()));
-            mapperShortcutModels.addAll(mapperOutputsByName.values());
-          }
-          // get model shortcuts to create for output MIDRels (to model endpoints)
-          for (Entry<String, Model> mapperOutput : mapperOutputsByName.entrySet()) {
-            Model mapperOutputModel = mapperOutput.getValue();
-            if (!(mapperOutputModel instanceof ModelRel)) {
-              continue;
-            }
-            String mapperOutputName = mapperOutput.getKey();
-            Set<Model> newMidrelEndpointModels = ((ModelRel) mapperOutputModel).getModelEndpoints().stream()
-              .map(ModelEndpoint::getTarget)
-              .collect(Collectors.toSet());
-            Set<Model> midrelEndpointModels = midrelEndpointModelsByOutputName.putIfAbsent(
-              mapperOutputName,
-              newMidrelEndpointModels);
-            if (midrelEndpointModels != null) {
-              midrelEndpointModels.addAll(newMidrelEndpointModels);
-            }
-            //TODO MMINT[MAP] Not needed unless we reactivate the fake endpoints
+          //TODO MMINT[MAP] Not needed unless we reactivate the fake endpoints
 //            Set<MID> newMidrelEndpointMIDs = ((ModelRel) mapperOutputModel).getModelEndpoints().stream()
 //              .map(modelEndpoint -> modelEndpoint.getTarget().getMIDContainer())
 //              .collect(Collectors.toSet());
@@ -221,13 +236,11 @@ public class Map extends NestingOperatorImpl {
 //            if (midrelEndpointMIDs != null) {
 //              midrelEndpointMIDs.addAll(newMidrelEndpointMIDs);
 //            }
-          }
         }
-        catch (Exception e) {
-          // other than errors, the operator can fail because of input constraints due to the cartesian product
-          MMINTException.print(
-            IStatus.WARNING, "Operator " + mapper + " execution error, skipping it", e);
-        }
+      }
+      catch (Exception e) {
+        // other than errors, the operator can fail because of input constraints due to the cartesian product
+        MMINTException.print(IStatus.WARNING, "Operator " + mapper + " execution error, skipping it", e);
       }
     }
     // store all involved MIDs
@@ -312,64 +325,28 @@ public class Map extends NestingOperatorImpl {
     return MIDOperatorIOUtils.setVarargs(outputMIDModels, OUT_MIDS);
   }
 
-  private java.util.@NonNull Map<String, EList<OperatorInput>> diffMultipleDispatchInputs(java.util.@NonNull Map<String, EList<OperatorInput>> assignedInputs, @NonNull Set<EList<OperatorInput>> mapperInputs) {
-
-    java.util.Map<String, EList<OperatorInput>> newInputs = new LinkedHashMap<>(); // reproducible order
-    for (EList<OperatorInput> mapperInput : mapperInputs) {
-      String key = mapperInput.stream()
-        .map(input -> MIDRegistry.getModelElementUri(input.getModel()))
-        .collect(Collectors.joining(";"));
-      if (!assignedInputs.containsKey(key)) {
-        newInputs.put(key, mapperInput);
-      }
-    }
-
-    return newInputs;
-  }
-
   @Override
-  public java.util.Map<String, Model> run(
-      java.util.Map<String, Model> inputsByName, java.util.Map<String, GenericElement> genericsByName,
-      java.util.Map<String, MID> outputMIDsByName) throws Exception {
+  public java.util.Map<String, Model> run(java.util.Map<String, Model> inputsByName,
+                                          java.util.Map<String, GenericElement> genericsByName,
+                                          java.util.Map<String, MID> outputMIDsByName) throws Exception {
 
     if (this.timeOverheadEnabled) {
       this.timeOverhead = 0;
       this.timeCheckpoint = System.nanoTime();
     }
     // input
-    List<Model> inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
-    EList<MID> inputMIDs = ECollections.newBasicEList();
-    EList<Set<Model>> modelBlacklists = ECollections.newBasicEList();
-    for (Model inputMIDModel : inputMIDModels) {
+    var inputMIDModels = MIDOperatorIOUtils.getVarargs(inputsByName, IN_MIDS);
+    var inputMIDs = ECollections.<MID>newBasicEList();
+    var blacklists = ECollections.<Set<Model>>newBasicEList();
+    for (var inputMIDModel : inputMIDModels) {
       inputMIDs.add((MID) inputMIDModel.getEMFInstanceRoot());
-      modelBlacklists.add(new HashSet<>());
+      blacklists.add(new HashSet<>());
     }
-    Operator mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
-    java.util.Map<String, MID> instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
+    var mapperOperatorType = (Operator) genericsByName.get(GENERIC_OPERATORTYPE);
+    var instanceMIDsByMapperOutput = MIDOperatorIOUtils.getVarargOutputMIDsByOtherName(outputMIDsByName, OUT_MIDS, mapperOperatorType.getOutputs());
 
     // find all possible combinations of inputs and execute them
-    var mapperSpecs = new LinkedHashMap<Operator, Set<EList<OperatorInput>>>(); // reproducible order
-    var polyMappers = ECollections.newBasicEList(mapperOperatorType);
-    if (Boolean.parseBoolean(MMINT.getPreference(
-                               MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
-      polyMappers.addAll(MIDTypeHierarchy.getSubtypes(mapperOperatorType));
-    }
-    if (polyMappers.size() == 1) { // multiple dispatch disabled, or the mapper is not a multimethod
-      mapperSpecs.put(mapperOperatorType, mapperOperatorType.findAllowedInputs(inputMIDs, modelBlacklists));
-    }
-    else {
-      var assignedInputs = new HashMap<String, EList<OperatorInput>>();
-      var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyMappers);
-      while (polyIter.hasNext()) { // start from the most specialized operator backwards
-        var polyMapper = polyIter.next();
-        // assign at each step the allowed inputs that have not been already assigned
-        var mapperInputs = polyMapper.findAllowedInputs(inputMIDs, modelBlacklists);
-        var newInputs = this.diffMultipleDispatchInputs(assignedInputs, mapperInputs);
-        mapperSpecs.put(polyMapper, new LinkedHashSet<>(newInputs.values())); // reproducible order
-        assignedInputs.putAll(newInputs);
-      }
-    }
-    var outputsByName = map(inputMIDModels, inputMIDs, mapperOperatorType, mapperSpecs, instanceMIDsByMapperOutput);
+    var outputsByName = map(inputMIDModels, inputMIDs, blacklists, mapperOperatorType, instanceMIDsByMapperOutput);
     if (this.timeOverheadEnabled) {
       this.timeOverhead += System.nanoTime() - this.timeCheckpoint;
       writeOutputProperties();
