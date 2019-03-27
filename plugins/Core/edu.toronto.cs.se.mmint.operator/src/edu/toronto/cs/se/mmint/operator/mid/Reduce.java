@@ -124,27 +124,29 @@ public class Reduce extends NestingOperatorImpl {
                                MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED))) {
       polyAccumulators.addAll(MIDTypeHierarchy.getSubtypes(accumulatorOperatorType));
     }
-    var accumulator = accumulatorOperatorType;
     int i = 0;
     while (true) {
       var inputMIDs = ECollections.newBasicEList(reducedMID);
       var inputModelBlacklists = ECollections.<Set<Model>>newBasicEList(intermediateModelsAndRels);
-      if (polyAccumulators.size() == 1) { // multiple dispatch disabled, or the accumulator is not a multimethod
-        accumulatorInputs = accumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+      var accumulator = accumulatorOperatorType;
+      accumulatorInputs = accumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+      if (accumulatorInputs == null) { // no more inputs to reduce
+        break;
       }
-      else {
+      if (polyAccumulators.size() > 1) { // polymorphic multiple dispatch
+        var accumulatorInputModels = ECollections.toEList(
+                                       accumulatorInputs.stream()
+                                                        .map(OperatorInput::getModel)
+                                                        .collect(Collectors.toList()));
         var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyAccumulators);
         while (polyIter.hasNext()) { // start from the most specialized operator backwards
           var polyAccumulator = polyIter.next();
-          accumulatorInputs = polyAccumulator.findFirstAllowedInput(inputMIDs, inputModelBlacklists);
+          accumulatorInputs = polyAccumulator.checkAllowedInputs(accumulatorInputModels);
           if (accumulatorInputs != null) {
             accumulator = polyAccumulator;
             break;
           }
         }
-      }
-      if (accumulatorInputs == null) { // no more inputs to reduce
-        break;
       }
       var accumulatorInputModels = new HashSet<Model>();
       var accumulatorInputModelRels = new HashSet<ModelRel>();

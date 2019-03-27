@@ -882,8 +882,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     private @NonNull Set<EList<OperatorInput>> getOperatorTypeInputs(@NonNull EList<MID> inputMIDs,
-                                                                      @NonNull EList<Set<Model>> inputBlacklists,
-                                                                      boolean firstOnly) {
+                                                                     @NonNull EList<Set<Model>> inputBlacklists,
+                                                                     boolean firstOnly) {
         var allInputs = new LinkedHashSet<EList<OperatorInput>>(); // reproducible order
         if (inputMIDs.stream().anyMatch(mid -> mid.getModels().size() <= 0)) { // empty input MID
             return allInputs;
