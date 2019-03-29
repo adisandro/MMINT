@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.viatra;singleton:=true
+Bundle-Version: 2.2.99.qualifier
+Bundle-Vendor: %providerName
+Export-Package: edu.toronto.cs.se.mmint.viatra.mid
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.viatra.query.runtime,
+ org.eclipse.viatra.query.runtime.rete,
+ org.eclipse.viatra.query.runtime.localsearch,
+ org.eclipse.xtext.xbase.lib,
+ org.apache.log4j,
+ edu.toronto.cs.se.mmint
+Bundle-RequiredExecutionEnvironment: JavaSE-12
+Automatic-Module-Name: edu.toronto.cs.se.mmint.viatra
+Bundle-ActivationPolicy: lazy

@@ -64,6 +64,11 @@ sets of related models.
       <import plugin="org.eclipse.ocl.pivot"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.acceleo.engine"/>
+      <import plugin="org.eclipse.viatra.query.runtime"/>
+      <import plugin="org.eclipse.viatra.query.runtime.rete"/>
+      <import plugin="org.eclipse.viatra.query.runtime.localsearch"/>
+      <import plugin="org.eclipse.xtext.xbase.lib"/>
+      <import plugin="org.apache.log4j"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
@@ -71,6 +76,7 @@ sets of related models.
       <import feature="org.eclipse.acceleo"/>
       <import feature="org.eclipse.sirius.specifier"/>
       <import feature="org.eclipse.sirius.specifier.properties.feature"/>
+      <import feature="org.eclipse.viatra.query.sdk.feature.source"/>
    </requires>
 
    <plugin
@@ -131,6 +137,12 @@ sets of related models.
 
    <plugin
          id="edu.toronto.cs.se.mmint.operator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.viatra"
          download-size="0"
          install-size="0"
          version="0.0.0"/>

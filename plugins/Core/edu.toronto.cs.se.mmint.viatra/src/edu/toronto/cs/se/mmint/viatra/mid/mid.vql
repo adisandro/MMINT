@@ -1,0 +1,8 @@
+package edu.toronto.cs.se.mmint.viatra.mid
+
+import "http://se.cs.toronto.edu/mmint/MID"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+
+pattern temp(m: MID) {
+  MID.level(m, ::INSTANCES);
+}
