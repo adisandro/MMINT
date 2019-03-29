@@ -11,7 +11,7 @@
 --><plugin>
   <extension id="edu.toronto.cs.se.mmint.viatra.mid.Mid" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.viatra.mid.Mid" id="edu.toronto.cs.se.mmint.viatra.mid.Mid">
-      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.temp"/>
+      <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements"/>
     </group>
   </extension>
 </plugin>
