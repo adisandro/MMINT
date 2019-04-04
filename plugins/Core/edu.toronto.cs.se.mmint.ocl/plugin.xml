@@ -18,7 +18,7 @@
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
             class="edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoningEngine"
-            name="OCL Pivot">
+            name="OCL">
          <language
                id="OCL">
          </language>

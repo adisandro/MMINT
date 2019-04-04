@@ -14,4 +14,16 @@
       <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements"/>
     </group>
   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.reasoners">
+      <reasoner
+            class="edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoningEngine"
+            name="Viatra">
+         <language
+               id="VIATRA">
+         </language>
+      </reasoner>
+   </extension>
+
 </plugin>

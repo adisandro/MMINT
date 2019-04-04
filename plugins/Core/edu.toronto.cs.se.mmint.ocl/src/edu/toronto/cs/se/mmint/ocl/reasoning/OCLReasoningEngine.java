@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -14,12 +14,14 @@ package edu.toronto.cs.se.mmint.ocl.reasoning;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.values.CollectionValue;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.OCLHelper;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SetValue;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -100,14 +102,15 @@ public class OCLReasoningEngine implements IReasoningEngine {
 		}
 	}
 
-	public Object evaluateQuery(EObject modelObj, String oclConstraint) {
+	@Override
+	public @Nullable Object evaluateQuery(EObject context, String oclQuery) {
 
 		OCL ocl = OCL.newInstance();
 
 		try {
-			OCLHelper helper = ocl.createOCLHelper(modelObj.eClass());
-			ExpressionInOCL expression = helper.createQuery(oclConstraint);
-			Object evaluation = ocl.evaluate(modelObj, expression);
+			OCLHelper helper = ocl.createOCLHelper(context.eClass());
+			ExpressionInOCL expression = helper.createQuery(oclQuery);
+			Object evaluation = ocl.evaluate(context, expression);
 			if (evaluation instanceof CollectionValue.Accumulator) {
 				evaluation = ((CollectionValue.Accumulator) evaluation).getElements();
 			}
@@ -120,7 +123,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 			return evaluation;
 		}
 		catch (Exception e) {
-			MMINTException.print(IStatus.ERROR, "OCL derivation error: " + oclConstraint, e);
+			MMINTException.print(IStatus.ERROR, "OCL query error: " + oclQuery, e);
 			return null;
 		}
 	}
