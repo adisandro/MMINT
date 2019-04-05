@@ -41,15 +41,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTActivator;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.GMFUtils;
 import edu.toronto.cs.se.mmint.mid.ui.SiriusUtils;
@@ -97,7 +97,7 @@ public class FileUtils {
 	public static @NonNull String getFileNameFromPath(@NonNull String path) {
 
 		String lastSegment = FileUtils.getLastSegmentFromPath(path);
-		int sepIndex = lastSegment.lastIndexOf(MMINT.MODEL_FILEEXTENSION_SEPARATOR);
+		int sepIndex = lastSegment.lastIndexOf(MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR);
 		if (sepIndex == -1) { // the last segment is already the file name
 			return lastSegment;
 		}
@@ -108,7 +108,7 @@ public class FileUtils {
 	public static @NonNull String getFileExtensionFromPath(@NonNull String path) {
 
 		String lastSegment = FileUtils.getLastSegmentFromPath(path);
-		int sepIndex = lastSegment.lastIndexOf(MMINT.MODEL_FILEEXTENSION_SEPARATOR);
+		int sepIndex = lastSegment.lastIndexOf(MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR);
 		if (sepIndex == -1) { // no extension
 			return "";
 		}
@@ -126,7 +126,7 @@ public class FileUtils {
 		String fileExtension = FileUtils.getFileExtensionFromPath(path);
 		String newLastSegment = fileExtension.equals("") ?
 			newFileName :
-			newFileName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + fileExtension;
+			newFileName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + fileExtension;
 
 		return FileUtils.replaceLastSegmentInPath(path, newLastSegment);
 	}
@@ -134,7 +134,7 @@ public class FileUtils {
 	public static @NonNull String replaceFileExtensionInPath(@NonNull String path, @NonNull String newFileExtension) {
 
 		String fileName = FileUtils.getFileNameFromPath(path);
-		String newLastSegment = fileName + MMINT.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension;
+		String newLastSegment = fileName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + newFileExtension;
 
 		return FileUtils.replaceLastSegmentInPath(path, newLastSegment);
 	}
@@ -358,7 +358,7 @@ public class FileUtils {
 		Resource resource = resourceSet.createResource(emfUri);
 		resource.getContents().add(rootModelObj);
 		Map<String, Object> options = new HashMap<>();
-		options.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
+		options.put(XMLResource.OPTION_SCHEMA_LOCATION, true);
 		resource.save(options);
 	}
 
@@ -372,9 +372,11 @@ public class FileUtils {
 		URI emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
 		ResourceSet set = new ResourceSetImpl();
 		Resource resource = set.getResource(emfUri, true);
-		EObject rootModelObj = resource.getContents().get(0);
+		if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
+		  throw new MMINTException("Error loading model resource");
+		}
 
-		return rootModelObj;
+		return resource.getContents().get(0);
 	}
 
 	public static @NonNull EObject readModelFileInState(@NonNull String relativeFilePath) throws Exception {
@@ -429,7 +431,7 @@ public class FileUtils {
 
         //TODO MMINT[OO] Move all into Editor/Diagram
 	    String sReprUri = null;
-	    if (filePath.contains(MMINT.MODEL_URI_SEPARATOR)) { // Sirius
+	    if (filePath.contains(MMINTConstants.MODEL_URI_SEPARATOR)) { // Sirius
 	        sReprUri = filePath;
 	        filePath = MIDRegistry.getModelUri(sReprUri);
 	    }

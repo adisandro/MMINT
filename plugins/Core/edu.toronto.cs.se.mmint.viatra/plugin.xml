@@ -9,21 +9,14 @@
  Contributors:
     Alessio Di Sandro - Implementation.
 --><plugin>
+  <extension point="edu.toronto.cs.se.mmint.reasoners">
+    <reasoner class="edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoningEngine" name="Viatra">
+      <language id="VIATRA"/>
+    </reasoner>
+  </extension>
   <extension id="edu.toronto.cs.se.mmint.viatra.mid.Mid" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.viatra.mid.Mid" id="edu.toronto.cs.se.mmint.viatra.mid.Mid">
       <query-specification fqn="edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements"/>
     </group>
   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.reasoners">
-      <reasoner
-            class="edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoningEngine"
-            name="Viatra">
-         <language
-               id="VIATRA">
-         </language>
-      </reasoner>
-   </extension>
-
 </plugin>

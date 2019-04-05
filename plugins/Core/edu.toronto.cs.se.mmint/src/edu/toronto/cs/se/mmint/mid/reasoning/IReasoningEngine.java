@@ -60,7 +60,7 @@ public interface IReasoningEngine {
 		return null;
 	}
 
-  public default @Nullable Object evaluateQuery(@NonNull EObject context, @NonNull String queryPath) {
+  public default @Nullable Object evaluateQuery(@NonNull EObject context, @NonNull String queryFilePath) {
     return null;
   }
 
