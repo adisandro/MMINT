@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.kleisli.reasoning;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -54,7 +55,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			String unionName = kQueryAssignment[0].substring(kQueryAssignment[0].indexOf(UNION_KEYWORD)+UNION_KEYWORD.length(), kQueryAssignment[0].length()).trim();
 			Map<EObject, EObject> queryRow = new LinkedHashMap<>();
 			queryUnion.put(unionName, queryRow);
-			Object queryObjs = oclReasoner.evaluateQuery(kRootModelObj, oclQuery);
+			Object queryObjs = oclReasoner.evaluateQuery("", oclQuery, kRootModelObj, List.of());
 			if (!(queryObjs instanceof Collection<?>)) {
 				continue;
 			}
@@ -95,7 +96,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			}
 			for (Entry<EObject, EObject> queryRowEntry : queryRow.entrySet()) {
 				EObject modelObj = queryRowEntry.getKey(), kModelObj = queryRowEntry.getValue();
-				EObject modelObjReferrer = (EObject) oclReasoner.evaluateQuery(modelObj, oclQuery);
+				EObject modelObjReferrer = (EObject) oclReasoner.evaluateQuery("", oclQuery, modelObj, List.of());
 				if (mapIndex != null && unionIndex != null) {
 					modelObjReferrer = queryMap.get(mapIndex).get(unionIndex).get(modelObjReferrer);
 				}
@@ -122,7 +123,7 @@ public class KleisliReasoningEngine implements IReasoningEngine {
 			if (!MIDConstraintChecker.instanceofEMFClass(kModelObj, kModelElemTypeEInfo.getClassName())) {
 				continue;
 			}
-			Object kModelObjAttr = oclReasoner.evaluateQuery(kModelObj, kQuery);
+			Object kModelObjAttr = oclReasoner.evaluateQuery("", kQuery, kModelObj, List.of());
 			try {
 				FileUtils.setModelObjectFeature(kModelObj, kModelElemTypeEInfo.getFeatureName(), kModelObjAttr);
 			}

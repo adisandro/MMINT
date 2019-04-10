@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
@@ -50,6 +49,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.mid.utils.PrimitiveEObjectWrapper;
 
@@ -225,7 +225,7 @@ public class MIDConstraintChecker {
 		return false;
 	}
 
-	public static @Nullable List<String> getAllowedModelEndpoints(@NonNull ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
+	public static @Nullable List<String> getAllowedModelEndpoints(ModelRel modelRel, @Nullable ModelEndpoint oldModelEndpoint, @Nullable Model targetModel) {
 
 	  //TODO MMINT[TYPES] Should return List<ModelEndpoint> directly
 		if (targetModel == null) { // model not added yet
@@ -481,14 +481,14 @@ mappingTypes:
 		return null;
 	}
 
-	public static @NonNull IReasoningEngine getReasoner(@NonNull String constraintLanguage) throws MMINTException {
+	public static IReasoningEngine getReasoner( String language) throws MMINTException {
 
-		Map<String, IReasoningEngine> reasoners = MMINT.getLanguageReasoners(constraintLanguage);
+		var reasoners = MMINT.getLanguageReasoners(language);
 		if (reasoners == null || reasoners.isEmpty()) {
-			throw new MMINTException("Can't find a reasoner for language " + constraintLanguage);
+			throw new MMINTException("Can't find a reasoner for language " + language);
 		}
-		String reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + constraintLanguage);
-		IReasoningEngine reasoner = reasoners.get(reasonerName);
+		var reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + language);
+		var reasoner = reasoners.get(reasonerName);
 		if (reasoner == null) {
 			throw new MMINTException("Can't find reasoner " + reasonerName);
 		}
@@ -505,7 +505,7 @@ mappingTypes:
 	 *            The constraint.
 	 * @return True if the constraint is satisfied, false otherwise.
 	 */
-	public static boolean checkModelConstraint(@NonNull Model model, @Nullable ExtendibleElementConstraint constraint) {
+	public static boolean checkModelConstraint(Model model, @Nullable ExtendibleElementConstraint constraint) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
@@ -529,7 +529,7 @@ mappingTypes:
 		return reasoner.checkModelConstraint(model, constraint, constraintLevel);
 	}
 
-	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+	public static boolean checkOperatorGenericConstraint(@Nullable ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
@@ -546,7 +546,7 @@ mappingTypes:
 		return reasoner.checkOperatorGenericConstraint(constraint, genericTypeEndpoint, genericType, inputs);
 	}
 
-	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+	public static boolean checkOperatorInputConstraint(@Nullable ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return true;
@@ -563,7 +563,7 @@ mappingTypes:
 		return reasoner.checkOperatorInputConstraint(constraint, inputsByName);
 	}
 
-	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public static Map<ModelRel, List<Model>> getOperatorOutputConstraints(@Nullable ExtendibleElementConstraint constraint, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 		if (constraint == null || constraint.getImplementation() == null || constraint.getImplementation().equals("")) {
 			return new HashMap<>();
@@ -598,7 +598,7 @@ mappingTypes:
 	}
 
 	//TODO MMINT[REFINE] Should really throw an exception with errors instead of returning null
-	public static @Nullable Model refineModelByConstraint(@NonNull Model model) {
+	public static @Nullable Model refineModelByConstraint(Model model) {
 
 		if (model.getConstraint() == null) {
 			return null;
@@ -616,5 +616,30 @@ mappingTypes:
 		//TODO MMINT[MU-MMINT] Should copy the model constraint to the new model? option to do it or not?
 		return reasoner.refineModelByConstraint(model);
 	}
+
+  public static @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+                                               List<? extends EObject> queryArguments) {
+    IReasoningEngine reasoner;
+    try {
+      String language;
+      switch(FileUtils.getFileExtensionFromPath(queryFilePath)) {
+      case "vql":
+        language = "VIATRA";
+        break;
+      case "ocl":
+        language = "OCL";
+        break;
+      default:
+        throw new MMINTException("Unsupported query file");
+      }
+      reasoner = getReasoner(language);
+    }
+    catch (MMINTException e) {
+      MMINTException.print(IStatus.WARNING, "Skipping query evaluation", e);
+      return null;
+    }
+
+    return reasoner.evaluateQuery(queryFilePath, queryName, context, queryArguments);
+  }
 
 }

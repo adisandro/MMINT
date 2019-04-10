@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -29,38 +28,39 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 
 public interface IReasoningEngine {
 
-	public default boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public default boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		return true;
 	}
 
-	public default boolean checkOperatorGenericConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull GenericEndpoint genericTypeEndpoint, @NonNull GenericElement genericType, @NonNull List<OperatorInput> inputs) {
+	public default boolean checkOperatorGenericConstraint(ExtendibleElementConstraint constraint, GenericEndpoint genericTypeEndpoint, GenericElement genericType, List<OperatorInput> inputs) {
 
 		return true;
 	}
 
-	public default boolean checkOperatorInputConstraint(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName) {
+	public default boolean checkOperatorInputConstraint(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName) {
 
 		return true;
 	}
 
-	public default @NonNull Map<ModelRel, List<Model>> getOperatorOutputConstraints(@NonNull ExtendibleElementConstraint constraint, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
+	public default Map<ModelRel, List<Model>> getOperatorOutputConstraints(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName, Map<String, Model> outputsByName) {
 
 		return new HashMap<>();
 	}
 
-	public default boolean checkModelConstraintConsistency(@NonNull Model modelType, String constraint) {
+	public default boolean checkModelConstraintConsistency(Model modelType, String constraint) {
 
 		return true;
 	}
 
 	//TODO MMINT[REFINE] Is this really for all models? == Can I refine a model based on a false property, to make it true?
-	public default @Nullable Model refineModelByConstraint(@NonNull Model model) {
+	public default @Nullable Model refineModelByConstraint(Model model) {
 
 		return null;
 	}
 
-  public default @Nullable Object evaluateQuery(@NonNull EObject context, @NonNull String queryFilePath) {
+  public default @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+                                                List<? extends EObject> queryArguments) {
     return null;
   }
 

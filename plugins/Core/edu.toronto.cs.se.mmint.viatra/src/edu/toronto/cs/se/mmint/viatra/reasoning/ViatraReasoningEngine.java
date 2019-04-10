@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.viatra.reasoning;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -29,20 +30,20 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class ViatraReasoningEngine implements IReasoningEngine {
 
   @Override
-  public @Nullable Object evaluateQuery(EObject context, String queryFilePath) {
+  public @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName,
+                                        EObject context, List<? extends EObject> queryArguments) {
     try {
-      String patternName = "";//TODO this must be an input
-      var engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context.eResource()));
+      var engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context));
       var queryRoot = FileUtils.readModelFile(queryFilePath, true);
       if (!(queryRoot instanceof PatternModel)) {
         throw new MMINTException("Bad query file");
       }
       var pattern = ((PatternModel) queryRoot).getPatterns().stream()
-        .filter(p -> patternName.equals(PatternLanguageHelper.getFullyQualifiedName(p)))
+        .filter(p -> queryName.equals(PatternLanguageHelper.getFullyQualifiedName(p)))
         .findFirst()
         .get();
       if (pattern == null) {
-        throw new MMINTException(MessageFormat.format("Pattern {0} not found", patternName));
+        throw new MMINTException(MessageFormat.format("Pattern {0} not found", queryName));
       }
       var builder = new SpecificationBuilder();
       var matcher = engine.getMatcher(builder.getOrCreateSpecification(pattern));
@@ -50,7 +51,6 @@ public class ViatraReasoningEngine implements IReasoningEngine {
         //TODO?
       }
       var matches = matcher.getAllMatches();
-      //TODO think about a way to display them
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "VIATRA query error: " + queryFilePath, e);

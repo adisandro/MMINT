@@ -11,9 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.ocl.reasoning;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -68,7 +69,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public boolean checkModelConstraint(@NonNull Model model, @NonNull ExtendibleElementConstraint constraint, @NonNull MIDLevel constraintLevel) {
+	public boolean checkModelConstraint(Model model, ExtendibleElementConstraint constraint, MIDLevel constraintLevel) {
 
 		String oclConstraint = constraint.getImplementation();
 		try {
@@ -103,7 +104,8 @@ public class OCLReasoningEngine implements IReasoningEngine {
 	}
 
 	@Override
-	public @Nullable Object evaluateQuery(EObject context, String oclQuery) {
+	public @Nullable Object evaluateQuery(String oclQuery, @Nullable String queryName, EObject context,
+	                                      List<? extends EObject> queryArguments) {
 
 		OCL ocl = OCL.newInstance();
 

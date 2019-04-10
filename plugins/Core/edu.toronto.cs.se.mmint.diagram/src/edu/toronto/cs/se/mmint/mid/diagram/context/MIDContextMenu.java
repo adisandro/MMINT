@@ -19,13 +19,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.ContributionItem;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
@@ -68,6 +67,7 @@ public class MIDContextMenu extends ContributionItem {
   private static final String MMINT_MENU_ADDCONSTRAINT_LABEL = "Add/Modify Constraint";
   private static final String MMINT_MENU_CHECKCONSTRAINT_LABEL = "Check Constraint";
   private static final String MMINT_MENU_REFINEBYCONSTRAINT_LABEL = "Refine by Constraint";
+  private static final String MMINT_MENU_EVALUATEQUERY_LABEL = "Evaluate Query";
   private static final String MMINT_MENU_COPY_LABEL = "Copy Model";
   private static final String MMINT_MENU_MODELEPEDIA_LABEL = "Wiki";
   private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL = "Open Wiki Page";
@@ -92,12 +92,13 @@ public class MIDContextMenu extends ContributionItem {
   public void fill(Menu menu, int index) {
 
     // check selection
-    ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getSelection();
+    var selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getSelection();
     if (selection == null || selection.isEmpty() || !(selection instanceof StructuredSelection)) {
       return;
     }
-    Object[] objects = ((StructuredSelection) selection).toArray();
-    boolean doAddConstraint = true, doCast = true, doCheckConstraint = true, doCoherence = true, doCopy = true, doModelepedia = true, doOperator = true, doRefineByConstraint = true;
+    var objects = ((StructuredSelection) selection).toArray();
+    boolean doAddConstraint = true, doCast = true, doCheckConstraint = true, doCoherence = true, doCopy = true,
+            doModelepedia = true, doOperator = true, doQuery = true, doRefineByConstraint = true;
     if (objects.length > 1) { // actions that don't work on multiple objects
       doAddConstraint = false;
       doCast = false;
@@ -109,10 +110,10 @@ public class MIDContextMenu extends ContributionItem {
 
     // get model selection
     MID mid = null;
-    EList<Model> selectedModels = new BasicEList<>();
+    var selectedModels = ECollections.<Model>newBasicEList();
     ITextAwareEditPart editPartLabel = null;
-    List<GraphicalEditPart> editParts = new ArrayList<>();
-    for (Object object : objects) {
+    var editParts = new ArrayList<GraphicalEditPart>();
+    for (var object : objects) {
       if (!(
         object instanceof MIDEditPart ||
         object instanceof ModelEditPart ||
@@ -123,8 +124,8 @@ public class MIDContextMenu extends ContributionItem {
       )) {
         continue;
       }
-      GraphicalEditPart editPart = (GraphicalEditPart) object;
-      EObject editPartElement = ((View) editPart.getModel()).getElement();
+      var editPart = (GraphicalEditPart) object;
+      var editPartElement = ((View) editPart.getModel()).getElement();
       if (editPartElement instanceof MID) {
         doAddConstraint = false;
         doCast = false;
@@ -138,7 +139,7 @@ public class MIDContextMenu extends ContributionItem {
         }
       }
       else {
-        Model model = (Model) editPartElement;
+        var model = (Model) editPartElement;
         // filter actions based on the MID level
         if (model.isTypesLevel() || model.isWorkflowsLevel()) {
           doCast = false;
@@ -156,11 +157,12 @@ public class MIDContextMenu extends ContributionItem {
         if (model instanceof ModelRel) { // actions that don't work on model relationships
           doCopy = false;
         }
-        if (doAddConstraint || doCast || doCheckConstraint || doCoherence || doCopy || doModelepedia || doOperator || doRefineByConstraint) {
+        if (doAddConstraint || doCast || doCheckConstraint || doCoherence || doCopy || doModelepedia || doOperator ||
+            doQuery || doRefineByConstraint) {
           selectedModels.add(model);
         }
         if (doCast) {
-          for (Object child : editPart.getChildren()) {
+          for (var child : editPart.getChildren()) {
             if (child instanceof ITextAwareEditPart) {
               editPartLabel = (ITextAwareEditPart) child;
               break;
@@ -171,7 +173,8 @@ public class MIDContextMenu extends ContributionItem {
           editParts.add(editPart);
         }
       }
-      if (!doOperator && !doCast && !doCheckConstraint && !doCopy && !doAddConstraint && !doModelepedia && !doCoherence && !doRefineByConstraint) { // no action available
+      if (!doOperator && !doCast && !doCheckConstraint && !doCopy && !doAddConstraint && !doModelepedia && !doCoherence
+          && !doQuery && !doRefineByConstraint) { // no action available
         return;
       }
     }
@@ -180,9 +183,9 @@ public class MIDContextMenu extends ContributionItem {
     }
 
     // create dynamic menus
-    MenuItem mmintItem = new MenuItem(menu, SWT.CASCADE, index);
+    var mmintItem = new MenuItem(menu, SWT.CASCADE, index);
     mmintItem.setText(MMINT_MENU_LABEL);
-    Menu mmintMenu = new Menu(menu);
+    var mmintMenu = new Menu(menu);
     mmintItem.setMenu(mmintMenu);
     MMINT.stashActiveInstanceMIDFile();
     // operator
@@ -313,12 +316,23 @@ public class MIDContextMenu extends ContributionItem {
         new MIDContextCheckConstraintListener(MMINT_MENU_CHECKCONSTRAINT_LABEL, selectedModels.get(0), editParts.get(0))
       );
     }
-    // refine
+    // refine by constraint
     if (doRefineByConstraint) {
       MenuItem refineItem = new MenuItem(mmintMenu, SWT.NONE);
       refineItem.setText(MMINT_MENU_REFINEBYCONSTRAINT_LABEL);
       refineItem.addSelectionListener(
         new MIDContextRefineByConstraintListener(MMINT_MENU_REFINEBYCONSTRAINT_LABEL, selectedModels.get(0))
+      );
+    }
+    // evaluate query
+    if (doQuery) {
+      var queryItem = new MenuItem(mmintMenu, SWT.NONE);
+      queryItem.setText(MMINT_MENU_EVALUATEQUERY_LABEL);
+      if (mid == null) {
+        mid = selectedModels.get(0).getMIDContainer();
+      }
+      queryItem.addSelectionListener(
+        new MIDContextEvaluateQueryListener(MMINT_MENU_EVALUATEQUERY_LABEL, mid, selectedModels)
       );
     }
     // copy
