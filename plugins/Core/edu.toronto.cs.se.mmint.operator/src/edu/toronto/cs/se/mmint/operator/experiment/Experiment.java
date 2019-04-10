@@ -96,7 +96,7 @@ public class Experiment extends OperatorImpl {
   /** The processing parameters. */
   private final static @NonNull String PROP_IN_MAXPROCESSINGTIME = "maxProcessingTime";
   private final static @NonNull String PROP_IN_NUMTHREADS = "numThreads";
-  private final static @NonNull int PROP_IN_NUMTHREADS_DEFAULT = 1;
+  private final static int PROP_IN_NUMTHREADS_DEFAULT = 1;
   IPath path;
   int maxProcessingTime; // max time before timing out a sample
   private int numThreads; // number of samples to process in parallel

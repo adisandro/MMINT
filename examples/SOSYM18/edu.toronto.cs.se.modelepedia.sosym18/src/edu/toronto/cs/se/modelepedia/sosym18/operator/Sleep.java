@@ -27,7 +27,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 public class Sleep extends OperatorImpl {
 
   private final static @NonNull String PROP_IN_MILLISECONDS = "ms";
-  private final static @NonNull int PROP_IN_MILLISECONDS_DEFAULT = 0;
+  private final static int PROP_IN_MILLISECONDS_DEFAULT = 0;
   private long ms;
 
   @Override
