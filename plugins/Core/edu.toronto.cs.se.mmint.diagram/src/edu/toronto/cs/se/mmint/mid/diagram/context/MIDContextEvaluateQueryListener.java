@@ -29,6 +29,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
 
@@ -56,17 +58,20 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
 
     @Override
     protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-      //TODO Show dialog to select query file
       //TODO (Deduct language from file extension? Need a mechanism to register allowed extensions)
-      //TODO Show dialog to input query name
       //TODO Adapt ocl and check that it still works
       //TODO Add javadoc for IReasoningEngine.evaluateQuery
-      String queryFilePath = "";
-      String queryName = "";
-      MIDConstraintChecker.evaluateQuery(queryFilePath, queryName, MIDContextEvaluateQueryListener.this.mid,
-                                         MIDContextEvaluateQueryListener.this.models);
       //TODO Display results
-      return CommandResult.newOKCommandResult();
+      try {
+        var queryFilePath = MIDDialogs.selectQueryFileToEvaluate();
+        var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert pattern name to run", null);
+        MIDConstraintChecker.evaluateQuery(queryFilePath, queryName, MIDContextEvaluateQueryListener.this.mid,
+                                           MIDContextEvaluateQueryListener.this.models);
+        return CommandResult.newOKCommandResult();
+      }
+      catch (MIDDialogCancellation e) {
+        return CommandResult.newCancelledCommandResult();
+      }
     }
 
   }

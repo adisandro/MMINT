@@ -71,7 +71,6 @@ import edu.toronto.cs.se.mmint.mid.ui.NewModelRelDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelRelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewModelTypeDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogFilter;
-import edu.toronto.cs.se.mmint.mid.ui.NewOperatorTypeDialogSelectionValidator;
 import edu.toronto.cs.se.mmint.mid.ui.NewWorkflowModelDialogContentProvider;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -320,7 +319,8 @@ public class MIDTypeRegistry {
 			ResourcesPlugin.getWorkspace().getRoot()
 		);
 		dialog.addFilter(new NewOperatorTypeDialogFilter());
-		dialog.setValidator(new NewOperatorTypeDialogSelectionValidator());
+		dialog.setValidator(new FilesOnlyDialogSelectionValidator("Workflow MID file selected",
+		                                                          "Please select a Workflow MID file"));
 
 		return dialog;
 	}
@@ -334,7 +334,7 @@ public class MIDTypeRegistry {
 		genericTypes.add(0, genericSuperType);
 		Set<GenericElement> filteredGenericTypes = new HashSet<>();
 		for (GenericElement genericType : genericTypes) {
-		    if (genericType.getUri().equals(MMINT.ROOT_URI + MMINT.URI_SEPARATOR +
+		    if (genericType.getUri().equals(MMINTConstants.ROOT_URI + MMINTConstants.URI_SEPARATOR +
 		                                    WorkflowOperator.class.getSimpleName())) {
 		        continue;
 		    }
@@ -538,7 +538,7 @@ public class MIDTypeRegistry {
 		if (!modelType.isDynamic()) {
 			return null;
 		}
-		String metamodelUri = modelType.getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
+		String metamodelUri = modelType.getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + EcorePackage.eNAME;
 
 		return (FileUtils.isFileOrDirectoryInState(metamodelUri)) ?
 			FileUtils.prependStatePath(metamodelUri) :

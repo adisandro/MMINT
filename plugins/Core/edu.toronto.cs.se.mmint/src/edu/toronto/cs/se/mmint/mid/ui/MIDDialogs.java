@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -330,6 +331,18 @@ public class MIDDialogs {
 
 		return (ModelRel) openSelectionDialogWithDefault(dialog, title, message);
 	}
+
+  public static String selectQueryFileToEvaluate() throws MIDDialogCancellation {
+    var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
+                                            ResourcesPlugin.getWorkspace().getRoot());
+//    dialog.addFilter(new NewOperatorTypeDialogFilter());
+    dialog.setValidator(new FilesOnlyDialogSelectionValidator());
+    String title = "Evaluate query";
+    String message = "Select query file";
+    IFile queryFile = (IFile) openSelectionDialog(dialog, title, message);
+
+    return queryFile.getFullPath().toString();
+  }
 
 	public static boolean getBooleanInput(String dialogTitle, String dialogMessage) {
 

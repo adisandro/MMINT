@@ -21,20 +21,30 @@ import edu.toronto.cs.se.mmint.MMINTActivator;
 
 public class FilesOnlyDialogSelectionValidator implements ISelectionStatusValidator {
 
-    /**
-	 * {@inheritDoc} The selection of a project or folder is not allowed, only
-	 * files.
-	 */
-	@Override
-	public IStatus validate(Object[] selection) {
+  private String okMessage;
+  private String errorMessage;
 
-		for (Object object : selection) {
-			if (object instanceof IFolder || object instanceof IProject) {
-				return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, "Please select a file");
-			}
-		}
+  public FilesOnlyDialogSelectionValidator() {
+    this.okMessage = "File selected";
+    this.errorMessage = "Please select a file";
+  }
 
-		return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, "File selected");
-	}
+  public FilesOnlyDialogSelectionValidator(String okMessage, String errorMessage) {
+    this.okMessage = okMessage;
+    this.errorMessage = errorMessage;
+  }
+
+  /**
+   * {@inheritDoc} The selection of a project or folder is not allowed, only files.
+   */
+  @Override
+  public IStatus validate(Object[] selection) {
+    for (Object object : selection) {
+      if (object instanceof IFolder || object instanceof IProject) {
+        return new Status(IStatus.ERROR, MMINTActivator.PLUGIN_ID, this.errorMessage);
+      }
+    }
+    return new Status(IStatus.OK, MMINTActivator.PLUGIN_ID, this.okMessage);
+  }
 
 }
