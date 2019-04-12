@@ -58,14 +58,17 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
 
     @Override
     protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+      //TODO Need to insert nulls in a query with some in and some out args?
       //TODO Adapt ocl and check that it still works
       //TODO Add javadoc for IReasoningEngine.evaluateQuery
       //TODO Display results
       try {
         var queryFilePath = MIDDialogs.selectQueryFileToEvaluate();
         var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert pattern name to run", null);
-        MIDConstraintChecker.evaluateQuery(queryFilePath, queryName, MIDContextEvaluateQueryListener.this.mid,
-                                           MIDContextEvaluateQueryListener.this.models);
+        var queryResult = MIDConstraintChecker.evaluateQuery(queryFilePath, queryName,
+                                                             MIDContextEvaluateQueryListener.this.mid,
+                                                             MIDContextEvaluateQueryListener.this.models);
+        System.err.println(queryResult);
         return CommandResult.newOKCommandResult();
       }
       catch (MIDDialogCancellation e) {

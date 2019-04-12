@@ -13,14 +13,15 @@ package edu.toronto.cs.se.mmint.viatra.reasoning;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.viatra.query.patternlanguage.emf.helper.PatternLanguageHelper;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.PatternModel;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
+import org.eclipse.viatra.query.runtime.api.GenericPatternMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -39,25 +40,24 @@ public class ViatraReasoningEngine implements IReasoningEngine {
         throw new MMINTException("Bad query file");
       }
       var pattern = ((PatternModel) queryRoot).getPatterns().stream()
-        .filter(p -> queryName.equals(PatternLanguageHelper.getFullyQualifiedName(p)))
+        .filter(p -> queryName.equals(p.getName()))
         .findFirst()
-        .get();
-      if (pattern == null) {
-        throw new MMINTException(MessageFormat.format("Pattern {0} not found", queryName));
-      }
+        .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
       var builder = new SpecificationBuilder();
-      var matcher = engine.getMatcher(builder.getOrCreateSpecification(pattern));
+      var matcher = (GenericPatternMatcher) engine.getMatcher(builder.getOrCreateSpecification(pattern));
       if (matcher == null) {
-        //TODO?
+        throw new MMINTException("Can't initialize matching engine");
       }
-      var matches = matcher.getAllMatches();
+      var matches = (queryArguments.isEmpty()) ?
+        matcher.getAllMatches() :
+        matcher.getAllMatches(matcher.newMatch(queryArguments.toArray()));
+      return matches.stream().map(m -> m.prettyPrint()).collect(Collectors.toList());
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.ERROR, "VIATRA query error: " + queryFilePath, e);
+      MMINTException.print(IStatus.ERROR,
+                           MessageFormat.format("Query {0}, pattern {1} error: ", queryFilePath, queryName), e);
       return null;
     }
-
-    return null;
   }
 
 }
