@@ -35,7 +35,7 @@
             </type>
             <constraint
                   implementation="edu.toronto.cs.se.modelepedia.kleisli.constraint.KleisliModelRelTypeConstraint"
-                  language="JAVA">
+                  language="java">
             </constraint>
          </modelType>
          <modelTypeEndpoint>
@@ -124,9 +124,7 @@
       <reasoner
             class="edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine"
             name="Kleisli Query Language">
-         <language
-               id="KLEISLI">
-         </language>
+         <file extension="kleisli" />
       </reasoner>
    </extension>
 

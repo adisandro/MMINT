@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.mid.ui;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -36,6 +37,7 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -191,7 +193,7 @@ public class MIDDialogs {
 	    // ..or let the user choose otherwise
         MIDTreeSelectionDialog dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(),
                                                                    new BaseWorkbenchContentProvider(), dialogRoot);
-        dialog.addFilter(new FileExtensionsDialogFilter(List.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
+        dialog.addFilter(new FileExtensionsDialogFilter(Set.of(SiriusUtil.SESSION_RESOURCE_EXTENSION)));
         dialog.setValidator(new FilesOnlyDialogSelectionValidator());
 
         String title = "Model with Sirius Representation";
@@ -335,7 +337,7 @@ public class MIDDialogs {
   public static String selectQueryFileToEvaluate() throws MIDDialogCancellation {
     var dialog = new MIDTreeSelectionDialog(new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider(),
                                             ResourcesPlugin.getWorkspace().getRoot());
-//    dialog.addFilter(new NewOperatorTypeDialogFilter());
+    dialog.addFilter(new FileExtensionsDialogFilter(MMINT.getReasonerFileExtensions()));
     dialog.setValidator(new FilesOnlyDialogSelectionValidator());
     String title = "Evaluate query";
     String message = "Select query file";
@@ -406,7 +408,7 @@ public class MIDDialogs {
 		String[] constraint = new String[2];
 		int separatorIndex = text.indexOf(CONSTRAINT_LANGUAGE_SEPARATOR);
 		if (separatorIndex == -1) {
-			constraint[0] = "OCL";
+			constraint[0] = "ocl";
 			constraint[1] = text;
 		}
 		else {

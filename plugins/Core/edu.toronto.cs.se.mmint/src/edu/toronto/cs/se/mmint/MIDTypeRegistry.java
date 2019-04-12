@@ -155,13 +155,11 @@ public class MIDTypeRegistry {
 	 *
 	 * @return The list of file extensions for model types.
 	 */
-	public static List<String> getModelTypeFileExtensions() {
+	public static Set<String> getModelTypeFileExtensions() {
 
-		List<String> fileExtensions = getModelTypes().stream()
+		return getModelTypes().stream()
 			.map(Model::getFileExtension)
-			.collect(Collectors.toList());
-
-		return fileExtensions;
+			.collect(Collectors.toSet());
 	}
 
 	public static @Nullable Model getMIDModelType() {
@@ -318,7 +316,7 @@ public class MIDTypeRegistry {
 			new BaseWorkbenchContentProvider(),
 			ResourcesPlugin.getWorkspace().getRoot()
 		);
-		dialog.addFilter(new NewOperatorTypeDialogFilter());
+		dialog.addFilter(new NewOperatorTypeDialogFilter(Set.of(MIDPackage.eNAME)));
 		dialog.setValidator(new FilesOnlyDialogSelectionValidator("Workflow MID file selected",
 		                                                          "Please select a Workflow MID file"));
 

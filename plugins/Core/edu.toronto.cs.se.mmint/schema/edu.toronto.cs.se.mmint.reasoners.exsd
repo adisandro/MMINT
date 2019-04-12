@@ -55,7 +55,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="language" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="file" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="name" type="string" use="required">
             <annotation>
@@ -77,17 +77,17 @@
       </complexType>
    </element>
 
-   <element name="language">
+   <element name="file">
       <annotation>
          <documentation>
-            A reasoning engine&apos;s supported language.
+            A reasoning engine&apos;s supported files.
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="id" type="string" use="required">
+         <attribute name="extension" type="string" use="required">
             <annotation>
                <documentation>
-                  The id of the language.
+                  The file extension.
                </documentation>
             </annotation>
          </attribute>

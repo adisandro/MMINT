@@ -25,7 +25,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation$Constraint"
-               language="JAVA">
+               language="java">
          </constraint>
          <inputs>
             <parameter>
@@ -68,7 +68,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation$Constraint"
-               language="JAVA">
+               language="java">
          </constraint>
          <inputs>
             <parameter>
@@ -111,7 +111,7 @@
          </type>
          <constraint
                implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.HenshinTransformation$Constraint"
-               language="JAVA">
+               language="java">
          </constraint>
          <inputs>
             <parameter>

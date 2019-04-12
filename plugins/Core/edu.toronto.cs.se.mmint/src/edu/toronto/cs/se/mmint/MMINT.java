@@ -109,7 +109,7 @@ public class MMINT implements MMINTConstants {
 	/** The table to map type uris to their bundle name. */
 	static Map<String, String> bundleTable;
 	/** The reasoners table. */
-	static Map<String, Map<String, IReasoningEngine>> languageReasoners;
+	static Map<String, Map<String, IReasoningEngine>> reasoners;
 	/** The cache of runtime types. */
 	static Map<ExtendibleElement, List<? extends ExtendibleElement>> cachedRuntimeTypes;
 	/** The cached MID view provider */
@@ -747,18 +747,17 @@ public class MMINT implements MMINTConstants {
 	}
 
 	public static IReasoningEngine createReasoner(IConfigurationElement extensionConfig) throws CoreException {
-
-		String reasonerName = extensionConfig.getAttribute(REASONERS_REASONER_ATTR_NAME);
-		IReasoningEngine reasoner = (IReasoningEngine) extensionConfig.createExecutableExtension(REASONERS_REASONER_ATTR_CLASS);
-		IConfigurationElement[] languageConfigs = extensionConfig.getChildren(REASONERS_REASONER_CHILD_LANGUAGE);
-		for (IConfigurationElement languageConfig : languageConfigs) {
-			String languageId = languageConfig.getAttribute(REASONERS_REASONER_LANGUAGE_ATTR_ID).toUpperCase();
-			Map<String, IReasoningEngine> reasoners = languageReasoners.get(languageId);
-			if (reasoners == null) {
-				reasoners = new HashMap<>();
-				languageReasoners.put(languageId, reasoners);
+		var reasonerName = extensionConfig.getAttribute(REASONERS_REASONER_ATTR_NAME);
+		var reasoner = (IReasoningEngine) extensionConfig.createExecutableExtension(REASONERS_REASONER_ATTR_CLASS);
+		var fileConfigs = extensionConfig.getChildren(REASONERS_REASONER_CHILD_FILE);
+		for (var fileConfig : fileConfigs) {
+			var extension = fileConfig.getAttribute(REASONERS_REASONER_FILE_ATTR_EXTENSION);
+			var fileReasoners = reasoners.get(extension);
+			if (fileReasoners == null) {
+				fileReasoners = new HashMap<>();
+				reasoners.put(extension, fileReasoners);
 			}
-			reasoners.put(reasonerName, reasoner);
+			fileReasoners.put(reasonerName, reasoner);
 		}
 
 		return reasoner;
@@ -778,18 +777,16 @@ public class MMINT implements MMINTConstants {
 		bundleTable = new HashMap<>();
 		multipleInheritanceTable = new HashMap<>();
 		typeFactory = new MIDHeavyTypeFactory();
-		languageReasoners = new HashMap<>();
+		reasoners = new HashMap<>();
 		activeInstanceMIDFile = null;
 		cachedMIDViewProvider = null;
-		IConfigurationElement[] configs;
 		Iterator<IConfigurationElement> extensionsIter;
-		IConfigurationElement config;
 
 		// model types
-		configs = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
+		var configs = registry.getConfigurationElementsFor(MODELS_EXT_POINT);
 		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_MODEL_URI);
 		while (extensionsIter.hasNext()) {
-			config = extensionsIter.next();
+			var config = extensionsIter.next();
 			try {
 				Model modelType = createModelType(config);
 				bundleTable.put(modelType.getUri(), config.getContributor().getName());
@@ -802,7 +799,7 @@ public class MMINT implements MMINTConstants {
 		configs = registry.getConfigurationElementsFor(MODELRELS_EXT_POINT);
 		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, MODELS_CHILD_MODELTYPE, ROOT_MODELREL_URI);
 		while (extensionsIter.hasNext()) {
-			config = extensionsIter.next();
+			var config = extensionsIter.next();
 			try {
 				ModelRel modelRelType = createModelRelType(config);
 				bundleTable.put(modelRelType.getUri(), config.getContributor().getName());
@@ -815,7 +812,7 @@ public class MMINT implements MMINTConstants {
 		configs = registry.getConfigurationElementsFor(EDITORS_EXT_POINT);
 		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, ROOT_EDITOR_URI);
 		while (extensionsIter.hasNext()) {
-			config = extensionsIter.next();
+			var config = extensionsIter.next();
 			try {
 				Editor editorType = createEditorType(config);
 				bundleTable.put(editorType.getUri(), config.getContributor().getName());
@@ -829,7 +826,7 @@ public class MMINT implements MMINTConstants {
 		configs = registry.getConfigurationElementsFor(OPERATORS_EXT_POINT);
 		extensionsIter = MIDTypeHierarchy.getExtensionHierarchyIterator(configs, null, null);
 		while (extensionsIter.hasNext()) {
-			config = extensionsIter.next();
+			var config = extensionsIter.next();
 			try {
 				Operator operatorType = createOperatorType(config);
 				bundleTable.put(operatorType.getUri(), config.getContributor().getName());
@@ -838,20 +835,18 @@ public class MMINT implements MMINTConstants {
 				MMINTException.print(IStatus.ERROR, "Operator type can't be created in " + config.getContributor().getName(), e);
 			}
 		}
-		for (IConfigurationElement config2 : configs) { // second pass to add generics, which can be operator types and thus not created yet at first pass
+		for (var config : configs) { // second pass to add generics, which can be operator types and thus not created yet at first pass
 			try {
-				createOperatorTypeGenerics(config2);
+				createOperatorTypeGenerics(config);
 			}
 			catch (MMINTException e) {
-				MMINTException.print(IStatus.ERROR, "Generics can't be created for operator type in " + config2.getContributor().getName(), e);
+				MMINTException.print(IStatus.ERROR, "Generics can't be created for operator type in " + config.getContributor().getName(), e);
 			}
 		}
 		// dynamic types from last shutdown
 		this.createDynamicTypes();
 		// reasoners
-		configs = registry.getConfigurationElementsFor(REASONERS_EXT_POINT);
-		for (int i = 0; i < configs.length; i++) {
-			config = configs[i];
+		for (var config : registry.getConfigurationElementsFor(REASONERS_EXT_POINT)) {
 			try {
 				createReasoner(config);
 			}
@@ -976,15 +971,15 @@ public class MMINT implements MMINTConstants {
 		this.initPreference(preferences, PREFERENCE_MENU_DELETEMODELFILE_ENABLED, "true", false);
 		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED, "true", false);
 		this.initPreference(preferences, PREFERENCE_MENU_POLYMORPHISM_MULTIPLEDISPATCH_ENABLED, "true", false);
-		for (String languageId : languageReasoners.keySet()) {
+		for (String languageId : reasoners.keySet()) {
 			String reasonerName = preferences.get(PREFERENCE_MENU_LANGUAGE_REASONER + languageId, null);
 			if (reasonerName != null) {
-				IReasoningEngine reasoner = languageReasoners.get(languageId).get(reasonerName);
+				IReasoningEngine reasoner = reasoners.get(languageId).get(reasonerName);
 				if (reasoner != null) {
 					continue;
 				}
 			}
-			reasonerName = languageReasoners.get(languageId).keySet().iterator().next();
+			reasonerName = reasoners.get(languageId).keySet().iterator().next();
 			this.initPreference(preferences, PREFERENCE_MENU_LANGUAGE_REASONER + languageId, reasonerName, true);
 		}
 	}
@@ -1030,14 +1025,12 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
-	public static Map<String, IReasoningEngine> getLanguageReasoners(String languageId) {
-
-		return languageReasoners.get(languageId.toUpperCase());
+	public static Map<String, IReasoningEngine> getReasoners(String fileExtension) {
+		return reasoners.get(fileExtension);
 	}
 
-	public static Set<String> getReasonerLanguages() {
-
-		return languageReasoners.keySet();
+	public static Set<String> getReasonerFileExtensions() {
+		return reasoners.keySet();
 	}
 
 	public static boolean isInitialized() {

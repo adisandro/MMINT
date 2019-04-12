@@ -61,10 +61,10 @@ public class ReasonerExtensionPointListener extends MMINTExtensionPointListener 
 			configs = extension.getConfigurationElements();
 			for (IConfigurationElement config : configs) {
 				String reasonerName = config.getAttribute(MMINT.REASONERS_REASONER_ATTR_NAME);
-				IConfigurationElement[] languageConfigs = config.getChildren(MMINT.REASONERS_REASONER_CHILD_LANGUAGE);
+				IConfigurationElement[] languageConfigs = config.getChildren(MMINT.REASONERS_REASONER_CHILD_FILE);
 				for (IConfigurationElement languageConfig : languageConfigs) {
-					String languageId = languageConfig.getAttribute(MMINT.REASONERS_REASONER_LANGUAGE_ATTR_ID);
-					MMINT.getLanguageReasoners(languageId).remove(reasonerName);
+					String languageId = languageConfig.getAttribute(MMINT.REASONERS_REASONER_FILE_ATTR_EXTENSION);
+					MMINT.getReasoners(languageId).remove(reasonerName);
 				}
 			}
 		}

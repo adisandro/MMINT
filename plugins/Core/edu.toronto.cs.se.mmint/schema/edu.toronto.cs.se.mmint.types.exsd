@@ -57,16 +57,18 @@
          <attribute name="language" use="required">
             <annotation>
                <documentation>
-                  The constraint language (OCL | JAVA | SMTLIB).
+                  The constraint language (ocl | java | smt | vql).
                </documentation>
             </annotation>
             <simpleType>
                <restriction base="string">
-                  <enumeration value="OCL">
+                  <enumeration value="ocl">
                   </enumeration>
-                  <enumeration value="JAVA">
+                  <enumeration value="java">
                   </enumeration>
-                  <enumeration value="SMTLIB">
+                  <enumeration value="smt">
+                  </enumeration>
+                  <enumeration value="vql">
                   </enumeration>
                </restriction>
             </simpleType>

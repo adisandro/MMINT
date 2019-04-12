@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -18,15 +18,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
 import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOReasoningEngine.MAVOTruthValue;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -36,11 +37,11 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Edge;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Graph;
 import edu.toronto.cs.se.modelepedia.graph_mavo.Node;
-import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
-import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
+import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
+import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine.MAVOCheckStrategy;
@@ -58,7 +59,7 @@ public class TOSEM12 extends RandomOperatorImpl {
 	private static final String PROPERTY_OUT_SPEEDUPCLASSICALMAVO = "speedupClassicalMAVO";
 	private static final String PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE = "speedupMAVOAllsatMAVOBackbone";
 	// constants
-	private static final String Z3_LANGUAGE = "SMTLIB";
+	private static final String Z3_LANGUAGE = "smt";
 
 	// input
 	private int numConcretizations;
@@ -87,41 +88,41 @@ public class TOSEM12 extends RandomOperatorImpl {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		numConcretizations = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
-		propertyId = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
-		timeClassicalEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
-		timeMAVOBackboneEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
-		timeMAVOAllsatEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		this.numConcretizations = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_NUMCONCRETIZATIONS, 1);
+		this.propertyId = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROPERTY_IN_PROPERTYID, 0);
+		this.timeClassicalEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		this.timeMAVOBackboneEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOBACKBONE+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+		this.timeMAVOAllsatEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_OUT_TIMEMAVOALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
 	}
 
 	private MAVORoot init(Model mayModel) throws Exception {
 
 		// output
-		timeMAVO = -1;
-		timeClassical = -1;
-		timeMAVOBackbone = -1;
-		timeMAVOAllsat = -1;
-		speedupClassicalMAVO = -1;
-		speedupMAVOAllsatMAVOBackbone = -1;
+		this.timeMAVO = -1;
+		this.timeClassical = -1;
+		this.timeMAVOBackbone = -1;
+		this.timeMAVOAllsat = -1;
+		this.speedupClassicalMAVO = -1;
+		this.speedupMAVOAllsatMAVOBackbone = -1;
 
 		// state
-		z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner(Z3_LANGUAGE);
-		z3ModelParser = z3Reasoner.generateSMTLIBEncoding(mayModel);
-		smtEncoding = z3ModelParser.getSMTLIBEncoding();
+		this.z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner(Z3_LANGUAGE);
+		this.z3ModelParser = this.z3Reasoner.generateSMTLIBEncoding(mayModel);
+		this.smtEncoding = this.z3ModelParser.getSMTLIBEncoding();
 		MAVORoot rootMayModelObj = (MAVORoot) mayModel.getEMFInstanceRoot();
 //		Operator previousOperator = getPreviousOperator(); // GenerateRandomGraphMAVO
 		Operator previousOperator = null;
 		if (previousOperator != null) {
-			mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
+			this.mayModelObjs = ((GenerateRandomGraphMAVO) previousOperator).getMAVOModelObjects();
 			generateSMTLIBGroundedProperty((Graph) rootMayModelObj);
 			generateRandomSMTLIBConcretizations();
-			smtEncodingAndConcretizations = smtEncoding + Z3Utils.assertion(smtConcretizationsConstraint);
+			this.smtEncodingAndConcretizations = this.smtEncoding + Z3Utils.assertion(this.smtConcretizationsConstraint);
 		}
 		else {
-			timeMAVOAllsatEnabled = true;
-			mayModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(mayModel);
-			smtProperty = mayModel.getConstraint().getImplementation();
-			smtEncodingAndConcretizations = smtEncoding;
+			this.timeMAVOAllsatEnabled = true;
+			this.mayModelObjs = MAVOUtils.getAnnotatedMAVOModelObjects(mayModel);
+			this.smtProperty = mayModel.getConstraint().getImplementation();
+			this.smtEncodingAndConcretizations = this.smtEncoding;
 			generateAllsatSMTLIBConcretizations(rootMayModelObj);
 		}
 
@@ -130,25 +131,25 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 	private void writeProperties(Properties properties) {
 
-		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(timeMAVO));
-		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(timeClassical));
-		properties.setProperty(PROPERTY_OUT_TIMEMAVOBACKBONE, String.valueOf(timeMAVOBackbone));
-		properties.setProperty(PROPERTY_OUT_TIMEMAVOALLSAT, String.valueOf(timeMAVOAllsat));
-		properties.setProperty(PROPERTY_OUT_SPEEDUPCLASSICALMAVO, String.valueOf(speedupClassicalMAVO));
-		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE, String.valueOf(speedupMAVOAllsatMAVOBackbone));
+		properties.setProperty(PROPERTY_OUT_TIMEMAVO, String.valueOf(this.timeMAVO));
+		properties.setProperty(PROPERTY_OUT_TIMECLASSICAL, String.valueOf(this.timeClassical));
+		properties.setProperty(PROPERTY_OUT_TIMEMAVOBACKBONE, String.valueOf(this.timeMAVOBackbone));
+		properties.setProperty(PROPERTY_OUT_TIMEMAVOALLSAT, String.valueOf(this.timeMAVOAllsat));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPCLASSICALMAVO, String.valueOf(this.speedupClassicalMAVO));
+		properties.setProperty(PROPERTY_OUT_SPEEDUPMAVOALLSATMAVOBACKBONE, String.valueOf(this.speedupMAVOAllsatMAVOBackbone));
 	}
 
 	private String generateRandomSMTLIBConcretization() {
 
 		String smtConcretization = "";
-		Map<String, Boolean> wellFormedModelObjs = new HashMap<String, Boolean>();
-		for (MAVOElement mayModelObj : mayModelObjs.values()) {
+		Map<String, Boolean> wellFormedModelObjs = new HashMap<>();
+		for (MAVOElement mayModelObj : this.mayModelObjs.values()) {
 			String mayModelObjSmtEncoding = (mayModelObj instanceof Node) ?
 				Z3Utils.predicate(Z3Utils.SMTLIB_NODE_FUNCTION, mayModelObj.getFormulaVariable()) :
 				Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, mayModelObj.getFormulaVariable());
 			Boolean exists = wellFormedModelObjs.get(mayModelObjSmtEncoding);
 			if (exists == null) {
-				exists = state.nextBoolean();
+				exists = this.state.nextBoolean();
 				if (mayModelObj instanceof Node) {
 					if (!exists) { // enforce future well-formedness
 						for (Edge edgeAsSrc : ((Node) mayModelObj).getEdgesAsSource()) {
@@ -190,33 +191,33 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 	private void generateRandomSMTLIBConcretizations() throws MMINTException {
 
-		long maxConcretizations = Math.round(Math.pow(2, mayModelObjs.size()));
-		if (numConcretizations > maxConcretizations) {
-			throw new MMINTException("numConcretizations (" + numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");
+		long maxConcretizations = Math.round(Math.pow(2, this.mayModelObjs.size()));
+		if (this.numConcretizations > maxConcretizations) {
+			throw new MMINTException("numConcretizations (" + this.numConcretizations + ") > maxConcretizations (" + maxConcretizations + ")");
 		}
 		if (maxConcretizations <= 1) {
 			return;
 		}
 
 		//TODO MMINT[TOSEM] add heuristics to detect large number of concretizations (when it's more efficient to generate them all and then cut some)
-		smtConcretizations = new HashSet<>();
-		smtConcretizationsConstraint = "";
-		for (int i = 0; i < numConcretizations; i++) {
+		this.smtConcretizations = new HashSet<>();
+		this.smtConcretizationsConstraint = "";
+		for (int i = 0; i < this.numConcretizations; i++) {
 			String smtConcretization = generateRandomSMTLIBConcretization();
-			if (smtConcretizations.contains(smtConcretization)) { // duplicate
+			if (this.smtConcretizations.contains(smtConcretization)) { // duplicate
 				i--;
 				continue;
 			}
-			smtConcretizations.add(smtConcretization);
-			smtConcretizationsConstraint += smtConcretization + '\n';
+			this.smtConcretizations.add(smtConcretization);
+			this.smtConcretizationsConstraint += smtConcretization + '\n';
 		}
-		smtConcretizationsConstraint = Z3Utils.or(smtConcretizationsConstraint);
+		this.smtConcretizationsConstraint = Z3Utils.or(this.smtConcretizationsConstraint);
 	}
 
 	private void generateAllsatSMTLIBConcretizations(MAVORoot rootMayModelObj) {
 
-		smtConcretizations = doMAVOAllsat(rootMayModelObj);
-		smtConcretizationsConstraint = Z3Utils.or(String.join(" ", smtConcretizations));
+		this.smtConcretizations = doMAVOAllsat(rootMayModelObj);
+		this.smtConcretizationsConstraint = Z3Utils.or(String.join(" ", this.smtConcretizations));
 	}
 
 	private void groundProperty5(Node node) {
@@ -224,28 +225,28 @@ public class TOSEM12 extends RandomOperatorImpl {
 		// property 5: at most one outgoing edge per node
 		// true by construction
 		if (node.getEdgesAsSource().size() <= 1) {
-			smtProperty += Z3Utils.SMTLIB_TRUE;
+			this.smtProperty += Z3Utils.SMTLIB_TRUE;
 			return;
 		}
-		smtProperty += Z3Utils.SMTLIB_OR;
+		this.smtProperty += Z3Utils.SMTLIB_OR;
 		// no edges
-		smtProperty += Z3Utils.SMTLIB_AND;
+		this.smtProperty += Z3Utils.SMTLIB_AND;
 		for (Edge outEdge : node.getEdgesAsSource()) {
-			smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
+			this.smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
 		}
-		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 		// one edge only
 		for (Edge outEdgeI : node.getEdgesAsSource()) {
-			smtProperty += Z3Utils.SMTLIB_AND + Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeI.getFormulaVariable());
+			this.smtProperty += Z3Utils.SMTLIB_AND + Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeI.getFormulaVariable());
 			for (Edge outEdgeJ : node.getEdgesAsSource()) {
 				if (outEdgeI == outEdgeJ) {
 					continue;
 				}
-				smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeJ.getFormulaVariable()));
+				this.smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeJ.getFormulaVariable()));
 			}
-			smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+			this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 		}
-		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 	}
 
 	private void groundProperty6(Node node) {
@@ -253,16 +254,16 @@ public class TOSEM12 extends RandomOperatorImpl {
 		// property 6: not more than one edge from a node to another
 		// true by construction
 		if (node.getEdgesAsSource().size() <= 1) {
-			smtProperty += Z3Utils.SMTLIB_TRUE;
+			this.smtProperty += Z3Utils.SMTLIB_TRUE;
 			return;
 		}
-		smtProperty += Z3Utils.SMTLIB_AND;
+		this.smtProperty += Z3Utils.SMTLIB_AND;
 		// construct map of target nodes
-		Map<Node, List<Edge>> tgtNode2EdgesMap = new HashMap<Node, List<Edge>>();
+		Map<Node, List<Edge>> tgtNode2EdgesMap = new HashMap<>();
 		for (Edge outEdge : node.getEdgesAsSource()) {
 			List<Edge> tgtNode2Edges = tgtNode2EdgesMap.get(outEdge.getTarget());
 			if (tgtNode2Edges == null) {
-				tgtNode2Edges = new ArrayList<Edge>();
+				tgtNode2Edges = new ArrayList<>();
 				tgtNode2Edges.add(outEdge);
 				tgtNode2EdgesMap.put(outEdge.getTarget(), tgtNode2Edges);
 			}
@@ -274,30 +275,30 @@ public class TOSEM12 extends RandomOperatorImpl {
 		for (List<Edge> tgtNode2Edges : tgtNode2EdgesMap.values()) {
 			// true by construction
 			if (tgtNode2Edges.size() <= 1) {
-				smtProperty += Z3Utils.SMTLIB_TRUE;
+				this.smtProperty += Z3Utils.SMTLIB_TRUE;
 				continue;
 			}
-			smtProperty += Z3Utils.SMTLIB_OR;
+			this.smtProperty += Z3Utils.SMTLIB_OR;
 			// no edges
-			smtProperty += Z3Utils.SMTLIB_AND;
+			this.smtProperty += Z3Utils.SMTLIB_AND;
 			for (Edge outEdge : tgtNode2Edges) {
-				smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
+				this.smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
 			}
-			smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+			this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 			// one edge only
 			for (Edge outEdgeI : tgtNode2Edges) {
-				smtProperty += Z3Utils.SMTLIB_AND + Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeI.getFormulaVariable());
+				this.smtProperty += Z3Utils.SMTLIB_AND + Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeI.getFormulaVariable());
 				for (Edge outEdgeJ : tgtNode2Edges) {
 					if (outEdgeI == outEdgeJ) {
 						continue;
 					}
-					smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeJ.getFormulaVariable()));
+					this.smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdgeJ.getFormulaVariable()));
 				}
-				smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+				this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 			}
-			smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+			this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 		}
-		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 	}
 
 	private void groundProperty8(Node node) {
@@ -307,13 +308,13 @@ public class TOSEM12 extends RandomOperatorImpl {
 		for (Edge outEdge : node.getEdgesAsSource()) {
 			// same src and tgt
 			if (outEdge.getTarget() == node) {
-				smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
+				this.smtProperty += Z3Utils.not(Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable()));
 				noSelfLoops = false;
 			}
 		}
 		// true by construction
 		if (noSelfLoops) {
-			smtProperty += Z3Utils.SMTLIB_TRUE;
+			this.smtProperty += Z3Utils.SMTLIB_TRUE;
 		}
 	}
 
@@ -322,18 +323,18 @@ public class TOSEM12 extends RandomOperatorImpl {
 		// property 10: at least one incoming or outgoing edge per node
 		// false by construction
 		if ((node.getEdgesAsSource().size() + node.getEdgesAsTarget().size()) < 1) {
-			smtProperty += Z3Utils.SMTLIB_FALSE;
+			this.smtProperty += Z3Utils.SMTLIB_FALSE;
 			return;
 		}
 		// at least one edge
-		smtProperty += Z3Utils.SMTLIB_OR;
+		this.smtProperty += Z3Utils.SMTLIB_OR;
 		for (Edge outEdge : node.getEdgesAsSource()) {
-			smtProperty += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable());
+			this.smtProperty += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, outEdge.getFormulaVariable());
 		}
 		for (Edge inEdge : node.getEdgesAsTarget()) {
-			smtProperty += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, inEdge.getFormulaVariable());
+			this.smtProperty += Z3Utils.predicate(Z3Utils.SMTLIB_EDGE_FUNCTION, inEdge.getFormulaVariable());
 		}
-		smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
+		this.smtProperty += Z3Utils.SMTLIB_PREDICATE_END;
 	}
 
 	private void generateSMTLIBGroundedProperty(Graph graph) {
@@ -343,10 +344,10 @@ public class TOSEM12 extends RandomOperatorImpl {
 			return;
 		}
 
-		smtProperty = Z3Utils.SMTLIB_AND;
+		this.smtProperty = Z3Utils.SMTLIB_AND;
 		for (Node node : nodes) {
-			smtProperty += '\n';
-			switch (propertyId) {
+			this.smtProperty += '\n';
+			switch (this.propertyId) {
 				case 5:
 					groundProperty5(node);
 					break;
@@ -361,14 +362,14 @@ public class TOSEM12 extends RandomOperatorImpl {
 					break;
 			}
 		}
-		smtProperty += '\n' + Z3Utils.SMTLIB_PREDICATE_END;
+		this.smtProperty += '\n' + Z3Utils.SMTLIB_PREDICATE_END;
 	}
 
 	private MAVOTruthValue doMAVOPropertyCheck() {
 
 		long startTime = System.nanoTime();
-		MAVOTruthValue resultMAVO = z3Reasoner.checkMAVOConstraint(smtEncodingAndConcretizations, "", smtProperty, MAVOCheckStrategy.DOUBLE_CHECK);
-		timeMAVO = System.nanoTime() - startTime;
+		MAVOTruthValue resultMAVO = this.z3Reasoner.checkMAVOConstraint(this.smtEncodingAndConcretizations, "", this.smtProperty, MAVOCheckStrategy.DOUBLE_CHECK);
+		this.timeMAVO = System.nanoTime() - startTime;
 
 		return resultMAVO;
 	}
@@ -378,9 +379,9 @@ public class TOSEM12 extends RandomOperatorImpl {
 		long startTime = System.nanoTime();
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
 		Z3Result firstZ3Bool = null;
-		z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
-		for (String smtConcretization : smtConcretizations) {
-			Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConcretization) + Z3Utils.assertion(smtProperty), Z3IncrementalBehavior.POP);
+		z3IncSolver.firstCheckSatAndGetModel(this.smtEncoding);
+		for (String smtConcretization : this.smtConcretizations) {
+			Z3Model z3Model = z3IncSolver.checkSatAndGetModel(Z3Utils.assertion(smtConcretization) + Z3Utils.assertion(this.smtProperty), Z3IncrementalBehavior.POP);
 			Z3Result z3Bool = z3Model.getZ3Result();
 			if (firstZ3Bool == null) { // first run only
 				firstZ3Bool = z3Bool;
@@ -389,28 +390,28 @@ public class TOSEM12 extends RandomOperatorImpl {
 				break;
 			}
 		}
-		timeClassical = System.nanoTime() - startTime;
+		this.timeClassical = System.nanoTime() - startTime;
 	}
 
 	private void doMAVOBackbone() throws MMINTException {
 
 		long startTime = System.nanoTime();
-		z3Reasoner.mayBackbone(
-			smtEncodingAndConcretizations + Z3Utils.assertion(smtProperty),
-			z3ModelParser,
-			new HashSet<>(mayModelObjs.values()));
-		timeMAVOBackbone = System.nanoTime() - startTime;
+		this.z3Reasoner.mayBackbone(
+			this.smtEncodingAndConcretizations + Z3Utils.assertion(this.smtProperty),
+			this.z3ModelParser,
+			new HashSet<>(this.mayModelObjs.values()));
+		this.timeMAVOBackbone = System.nanoTime() - startTime;
 	}
 
 	private Set<String> doMAVOAllsat(MAVORoot rootMayModelObj) {
 
 		long startTime = System.nanoTime();
-		Set<String> smtConcretizations = z3Reasoner.allSAT(
-			smtEncodingAndConcretizations + Z3Utils.assertion(smtProperty),
-			z3ModelParser,
-			new HashSet<>(mayModelObjs.values()),
+		Set<String> smtConcretizations = this.z3Reasoner.allSAT(
+			this.smtEncodingAndConcretizations + Z3Utils.assertion(this.smtProperty),
+			this.z3ModelParser,
+			new HashSet<>(this.mayModelObjs.values()),
 			rootMayModelObj);
-		timeMAVOAllsat = System.nanoTime() - startTime;
+		this.timeMAVOAllsat = System.nanoTime() - startTime;
 
 		return smtConcretizations;
 	}
@@ -426,19 +427,19 @@ public class TOSEM12 extends RandomOperatorImpl {
 
 		// run
 		MAVOTruthValue resultMAVO = doMAVOPropertyCheck();
-		if (timeClassicalEnabled) {
+		if (this.timeClassicalEnabled) {
 			doClassicalPropertyCheck();
-			speedupClassicalMAVO = ((double) timeClassical) / timeMAVO;
+			this.speedupClassicalMAVO = ((double) this.timeClassical) / this.timeMAVO;
 		}
 		if (resultMAVO == MAVOTruthValue.MAYBE) {
-			if (timeMAVOBackboneEnabled) {
+			if (this.timeMAVOBackboneEnabled) {
 				doMAVOBackbone();
 			}
-			if (timeMAVOAllsatEnabled) {
+			if (this.timeMAVOAllsatEnabled) {
 				doMAVOAllsat(rootMayModelObj);
 			}
-			if (timeMAVOBackboneEnabled && timeMAVOAllsatEnabled) {
-				speedupMAVOAllsatMAVOBackbone = ((double) timeMAVOAllsat) / timeMAVOBackbone;
+			if (this.timeMAVOBackboneEnabled && this.timeMAVOAllsatEnabled) {
+				this.speedupMAVOAllsatMAVOBackbone = ((double) this.timeMAVOAllsat) / this.timeMAVOBackbone;
 			}
 		}
 

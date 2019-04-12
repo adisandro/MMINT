@@ -19,9 +19,7 @@
       <reasoner
             class="edu.toronto.cs.se.mmint.java.reasoning.JavaReasoningEngine"
             name="Java">
-         <language
-               id="JAVA">
-         </language>
+         <file extension="java" />
       </reasoner>
    </extension>
 

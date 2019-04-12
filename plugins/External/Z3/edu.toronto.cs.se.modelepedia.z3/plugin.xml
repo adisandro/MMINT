@@ -20,9 +20,7 @@
       <reasoner
             class="edu.toronto.cs.se.modelepedia.z3.reasoning.Z3ReasoningEngine"
             name="Z3 Solver">
-         <language
-               id="SMTLIB">
-         </language>
+         <file extension="smt" />
       </reasoner>
    </extension>
 

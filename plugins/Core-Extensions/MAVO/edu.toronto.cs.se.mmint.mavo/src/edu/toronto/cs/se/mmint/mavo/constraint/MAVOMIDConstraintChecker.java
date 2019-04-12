@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -67,7 +67,7 @@ public class MAVOMIDConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may alternative", e);
@@ -82,7 +82,7 @@ public class MAVOMIDConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on var domain", e);
@@ -97,7 +97,7 @@ public class MAVOMIDConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping refinement based on may model object", e);
@@ -111,7 +111,7 @@ public class MAVOMIDConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO decision highlighting", e);
@@ -125,7 +125,7 @@ public class MAVOMIDConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO collection highlighting", e);
@@ -139,7 +139,7 @@ public class MAVOMIDConstraintChecker {
 
 		IMAVOReasoningEngine reasoner;
 		try {
-			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+			reasoner = MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping MAVO element highlighting", e);

@@ -481,13 +481,13 @@ mappingTypes:
 		return null;
 	}
 
-	public static IReasoningEngine getReasoner( String language) throws MMINTException {
+	public static IReasoningEngine getReasoner(String fileExtension) throws MMINTException {
 
-		var reasoners = MMINT.getLanguageReasoners(language);
+		var reasoners = MMINT.getReasoners(fileExtension);
 		if (reasoners == null || reasoners.isEmpty()) {
-			throw new MMINTException("Can't find a reasoner for language " + language);
+			throw new MMINTException("Can't find a reasoner for language " + fileExtension);
 		}
-		var reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + language);
+		var reasonerName = MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + fileExtension);
 		var reasoner = reasoners.get(reasonerName);
 		if (reasoner == null) {
 			throw new MMINTException("Can't find reasoner " + reasonerName);
@@ -619,27 +619,15 @@ mappingTypes:
 
   public static @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
                                                List<? extends EObject> queryArguments) {
-    IReasoningEngine reasoner;
     try {
-      String language;
-      switch(FileUtils.getFileExtensionFromPath(queryFilePath)) {
-      case "vql":
-        language = "VIATRA";
-        break;
-      case "ocl":
-        language = "OCL";
-        break;
-      default:
-        throw new MMINTException("Unsupported query file");
-      }
-      reasoner = getReasoner(language);
+      var reasoner = getReasoner(FileUtils.getFileExtensionFromPath(queryFilePath));
+      return reasoner.evaluateQuery(queryFilePath, queryName, context, queryArguments);
     }
     catch (MMINTException e) {
       MMINTException.print(IStatus.WARNING, "Skipping query evaluation", e);
       return null;
     }
 
-    return reasoner.evaluateQuery(queryFilePath, queryName, context, queryArguments);
   }
 
 }

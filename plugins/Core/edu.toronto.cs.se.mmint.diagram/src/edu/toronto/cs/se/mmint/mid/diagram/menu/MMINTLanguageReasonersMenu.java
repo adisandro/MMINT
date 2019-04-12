@@ -36,12 +36,12 @@ public class MMINTLanguageReasonersMenu extends ContributionItem {
 		reasonersItem.setText("Reasoners");
 		Menu reasonersMenu = new Menu(menu);
 		reasonersItem.setMenu(reasonersMenu);
-		for (final String languageId : MMINT.getReasonerLanguages()) {
+		for (final String languageId : MMINT.getReasonerFileExtensions()) {
 			MenuItem languageItem = new MenuItem(reasonersMenu, SWT.CASCADE);
 			languageItem.setText(languageId);
 			Menu languageMenu = new Menu(menu);
 			languageItem.setMenu(languageMenu);
-			for (final String reasonerName : MMINT.getLanguageReasoners(languageId).keySet()) {
+			for (final String reasonerName : MMINT.getReasoners(languageId).keySet()) {
 				final MenuItem languageSubitem = new MenuItem(languageMenu, SWT.CHECK);
 				languageSubitem.setText(reasonerName);
 				final boolean selection = (MMINT.getPreference(MMINTConstants.PREFERENCE_MENU_LANGUAGE_REASONER + languageId).equals(reasonerName)) ?

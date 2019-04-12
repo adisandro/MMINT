@@ -11,7 +11,7 @@
 --><plugin>
   <extension point="edu.toronto.cs.se.mmint.reasoners">
     <reasoner class="edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoningEngine" name="Viatra">
-      <language id="VIATRA"/>
+      <file extension="vql"/>
     </reasoner>
   </extension>
   <extension id="edu.toronto.cs.se.mmint.viatra.mid.Mid" point="org.eclipse.viatra.query.runtime.queryspecification">

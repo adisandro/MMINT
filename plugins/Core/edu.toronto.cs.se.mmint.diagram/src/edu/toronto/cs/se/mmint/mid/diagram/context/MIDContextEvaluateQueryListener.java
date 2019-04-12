@@ -58,7 +58,6 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
 
     @Override
     protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-      //TODO (Deduct language from file extension? Need a mechanism to register allowed extensions)
       //TODO Adapt ocl and check that it still works
       //TODO Add javadoc for IReasoningEngine.evaluateQuery
       //TODO Display results

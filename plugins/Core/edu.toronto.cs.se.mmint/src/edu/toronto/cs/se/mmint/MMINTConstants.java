@@ -165,10 +165,10 @@ public interface MMINTConstants {
 	public final static String REASONERS_REASONER_ATTR_NAME = "name";
 	/** The Reasoners extension point's reasoner's class attribute. */
 	public final static String REASONERS_REASONER_ATTR_CLASS = "class";
-	/** The Reasoners extension point's reasoner's language child. */
-	public final static String REASONERS_REASONER_CHILD_LANGUAGE = "language";
-	/** The Reasoners extension point's reasoner's language child's id attribute. */
-	public final static String REASONERS_REASONER_LANGUAGE_ATTR_ID = "id";
+	/** The Reasoners extension point's reasoner's file child. */
+	public final static String REASONERS_REASONER_CHILD_FILE = "file";
+	/** The Reasoners extension point's reasoner's file child's extension attribute. */
+	public final static String REASONERS_REASONER_FILE_ATTR_EXTENSION = "extension";
 
 	public final static String PREFERENCE_MMINT_ID = "edu.toronto.cs.se.mmint";
 	public final static String PREFERENCE_TESTS_ENABLED = PREFERENCE_MMINT_ID + ".TestsEnabled";

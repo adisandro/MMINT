@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -49,9 +49,9 @@ public class Z3Test extends MMINTTest {
 		Bundle testBundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		MID instanceMID = createInstanceMID();
 		Model model = addInputModel(instanceMID, testBundle, "model/z3", "ecore.classdiagram_mavo");
-		Z3ReasoningEngine z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
+		Z3ReasoningEngine z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("smt");
 		EcoreMAVOToSMTLIB ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(Z3ReasoningEngine.ECOREMAVOTOSMTLIB_OPERATOR_URI);
-		EList<Model> inputModels = new BasicEList<Model>();
+		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = ecore2smt.checkAllowedInputs(inputModels);
 		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(ecore2smt, instanceMID);

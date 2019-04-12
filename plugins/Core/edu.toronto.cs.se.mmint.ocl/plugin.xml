@@ -19,9 +19,7 @@
       <reasoner
             class="edu.toronto.cs.se.mmint.ocl.reasoning.OCLReasoningEngine"
             name="OCL">
-         <language
-               id="OCL">
-         </language>
+         <file extension="ocl" />
       </reasoner>
    </extension>
 

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Map;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
@@ -36,10 +37,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
-import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -96,7 +98,7 @@ public class KleisliTest extends MMINTTest {
 		"_QTable/_Qcolumns",
 		"_QTable/_QprimaryKeys"
 	};
-	private final static String TGT_MODELELEM_QUERYLANGUAGE = "KLEISLI";
+	private final static String TGT_MODELELEM_QUERYLANGUAGE = "kleisli";
 	private final static String[] TGT_MODELELEM_OCLQUERIES = {
 		null,
 		null,
@@ -118,7 +120,7 @@ public class KleisliTest extends MMINTTest {
 
 	private ModelElementReference dropMetamodelObject(EPackage metamodelRootObj, String metamodelObjName, ModelEndpointReference containerModelTypeEndpointRef, ModelElement rootModelElemType) throws MMINTException {
 
-		String[] names = metamodelObjName.split(MMINT.URI_SEPARATOR);
+		String[] names = metamodelObjName.split(MMINTConstants.URI_SEPARATOR);
 		EObject metamodelObj;
 		if (names.length == 1) {
 			metamodelObj = metamodelRootObj.getEClassifier(names[0]);
@@ -142,7 +144,7 @@ public class KleisliTest extends MMINTTest {
 
 		Bundle testBundle = Platform.getBundle(TESTS_BUNDLE_NAME);
 		// model types
-		Model rootModelType = MIDTypeRegistry.getType(MMINT.ROOT_MODEL_URI);
+		Model rootModelType = MIDTypeRegistry.getType(MMINTConstants.ROOT_MODEL_URI);
 		Model srcModelType = rootModelType.createSubtype(SRC_MODELTYPE_NAME, true);
 		MMINT.createTypeHierarchy();
 		URL srcMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, SRC_METAMODEL_NAME, false).nextElement();
@@ -159,7 +161,7 @@ public class KleisliTest extends MMINTTest {
 		KleisliModelEndpoint kRootModelTypeEndpoint = (KleisliModelEndpoint) kRootModelRelType.getModelEndpoints().get(0);
 		ModelEndpointReference srcModelTypeEndpointRef = kRootModelTypeEndpoint.createSubtype(SRC_MODELTYPEENDPOINT_NAME, srcModelType, false, kModelRelType);
 		URL kTgtMetamodelUrl = testBundle.findEntries(TESTS_BUNDLE_MODEL_DIR, KLEISLI_TGT_METAMODEL_NAME, false).nextElement();
-		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(MODELRELTYPE_NAME + MMINT.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(Paths.get(FileLocator.toFileURL(kTgtMetamodelUrl).getFile()), Paths.get(FileUtils.prependStatePath(MODELRELTYPE_NAME + MMINTConstants.URI_SEPARATOR + KLEISLI_TGT_METAMODEL_NAME)), StandardCopyOption.REPLACE_EXISTING);
 		KleisliModelEndpointReference kTgtModelTypeEndpointRef = (KleisliModelEndpointReference) kRootModelTypeEndpoint.createSubtype(TGT_MODELTYPEENDPOINT_NAME, tgtModelType, false, kModelRelType);
 		// model element types and link types
 		EPackage srcMetamodelRootObj = srcModelType.getEMFTypeRoot();
@@ -176,7 +178,7 @@ public class KleisliTest extends MMINTTest {
 				constraint.setImplementation(TGT_MODELELEM_OCLQUERIES[i]);
 				tgtModelElemTypeRef.getObject().setConstraint(constraint);
 			}
-			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINT.BINARY_MODELREL_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
+			String newLinkTypeName = srcModelElemTypeRef.getObject().getName() + MMINTConstants.BINARY_MODELREL_SEPARATOR + tgtModelElemTypeRef.getObject().getName();
 			MappingReference mappingTypeRef = rootMappingType.createSubtypeAndReference(null, newLinkTypeName, true, kModelRelType);
 			MMINT.createTypeHierarchy();
 			String srcModelElemTypeEndpointName = srcModelElemTypeRef.getObject().getName(), tgtModelElemTypeEndpointName = tgtModelElemTypeRef.getObject().getName();
@@ -202,7 +204,7 @@ public class KleisliTest extends MMINTTest {
 		Model inputModel =  tgtModelType.createInstanceAndEditor(null, INPUT_MODEL_PATH, instanceMID);
 		FileUtils.writeModelFile(instanceMID, TESTS_INSTANCEMID_URI, true); // this is needed for correct uris in the operator
 		Operator transformationOperator = MIDTypeRegistry.<Operator>getType(KLEISLI_TRANSFORMATIONOPERATORTYPE_URI);
-		EList<Model> transformationInputModels = new BasicEList<Model>();
+		EList<Model> transformationInputModels = new BasicEList<>();
 		transformationInputModels.add(inputModel);
 		EList<OperatorInput> transformationInputs = transformationOperator.checkAllowedInputs(transformationInputModels);
 		EList<OperatorGeneric> transformationGenerics = new BasicEList<>();

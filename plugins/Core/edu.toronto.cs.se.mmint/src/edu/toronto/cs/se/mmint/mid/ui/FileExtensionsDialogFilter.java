@@ -11,42 +11,34 @@
  */
 package edu.toronto.cs.se.mmint.mid.ui;
 
-import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 public class FileExtensionsDialogFilter extends ViewerFilter {
 
-    private List<String> fileExtensions;
+  private Set<String> fileExtensions;
 
-    public FileExtensionsDialogFilter(List<String> fileExtensions) {
+  public FileExtensionsDialogFilter(Set<String> fileExtensions) {
+    super();
+    this.fileExtensions = fileExtensions;
+  }
 
-        super();
-        this.fileExtensions = fileExtensions;
+  /**
+   * {@inheritDoc} Filters file extensions.
+   */
+  @Override
+  public boolean select(Viewer viewer, Object parentElement, Object element) {
+    if (element instanceof IResource && ((IResource) element).getName().startsWith(".")) {
+      return false;
     }
-
-    /**
-	 * {@inheritDoc} Filters file extensions.
-	 */
-	@Override
-	public boolean select(Viewer viewer, Object parentElement, Object element) {
-
-	    if (element instanceof IFolder) {
-	        if (((IFolder) element).getName().startsWith(".")) {
-	            return false;
-	        }
-	        else {
-	            return true;
-	        }
-	    }
-	    if (!(element instanceof IFile)) {
-	        return true;
-	    }
-
-		return this.fileExtensions.contains(((IFile) element).getFileExtension());
-	}
+    if (!(element instanceof IFile)) {
+      return true;
+    }
+    return this.fileExtensions.contains(((IFile) element).getFileExtension());
+  }
 
 }

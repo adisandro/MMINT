@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.constraint.MAVOMIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -53,11 +54,11 @@ public class REJ15 extends FASE14 {
 	public void readInputProperties(Properties inputProperties) throws MMINTException {
 
 		super.readInputProperties(inputProperties);
-		timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
-		timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
-		modelConstraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
-		generateTargetsConcretization = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
-		timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		this.timeAnalysisEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEANALYSIS+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		this.timeRNFEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMERNF+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
+		this.modelConstraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, PROPERTY_IN_MODELCONSTRAINT, PROPERTY_IN_MODELCONSTRAINT_DEFAULT);
+		this.generateTargetsConcretization = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, PROPERTY_IN_GENERATETARGETSCONCRETIZATION, PROPERTY_IN_GENERATETARGETSCONCRETIZATION_DEFAULT);
+		this.timeAllSATEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, PROPERTY_OUT_TIMEALLSAT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
 	}
 
 	@Override
@@ -66,33 +67,33 @@ public class REJ15 extends FASE14 {
 		super.init();
 
 		// state
-		if (modelConstraint != null) {
-			smtEncoding += Z3Utils.assertion(modelConstraint);
+		if (this.modelConstraint != null) {
+			this.smtEncoding += Z3Utils.assertion(this.modelConstraint);
 		}
 		// output
-		timeAllSAT = -1;
-		numSolutions = 0;
+		this.timeAllSAT = -1;
+		this.numSolutions = 0;
 	}
 
 	@Override
 	protected void writeProperties(Properties properties) {
 
 		super.writeProperties(properties);
-		properties.setProperty(PROPERTY_OUT_TIMEALLSAT, String.valueOf(timeAllSAT));
-		properties.setProperty(PROPERTY_OUT_NUMSOLUTIONS, String.valueOf(numSolutions));
+		properties.setProperty(PROPERTY_OUT_TIMEALLSAT, String.valueOf(this.timeAllSAT));
+		properties.setProperty(PROPERTY_OUT_NUMSOLUTIONS, String.valueOf(this.numSolutions));
 	}
 
 	@Override
 	protected Z3Model doTargets(Z3IncrementalSolver z3IncSolver) {
 
 		long extraTime = 0;
-		if (!timeAnalysisEnabled) {
+		if (!this.timeAnalysisEnabled) {
 			long startTime = System.nanoTime();
-			z3IncSolver.firstCheckSatAndGetModel(smtEncoding);
+			z3IncSolver.firstCheckSatAndGetModel(this.smtEncoding);
 			extraTime = System.nanoTime() - startTime;
 		}
 		Z3Model z3Model = super.doTargets(z3IncSolver);
-		timeTargets += extraTime;
+		this.timeTargets += extraTime;
 
 		return z3Model;
 	}
@@ -103,15 +104,15 @@ public class REJ15 extends FASE14 {
 
 		Z3ReasoningEngine z3Reasoner;
 		try {
-			z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("SMTLIB");
-			numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, z3ModelParser, z3Model, new HashSet<>(mavoModelObjs.values()), istar).size();
+			z3Reasoner = (Z3ReasoningEngine) MAVOMIDConstraintChecker.getMAVOReasoner("smt");
+			this.numSolutions = z3Reasoner.allSATWithSolver(z3IncSolver, this.z3ModelParser, z3Model, new HashSet<>(this.mavoModelObjs.values()), this.istar).size();
 		}
 		catch (MMINTException e) {
 			MMINTException.print(IStatus.WARNING, "Skipping allSAT", e);
 			return;
 		}
 
-		timeAllSAT = System.nanoTime() - startTime;
+		this.timeAllSAT = System.nanoTime() - startTime;
 	}
 
 //		private String[] getConcretization(IStar istar, Z3Model z3Model) {
@@ -210,19 +211,19 @@ public class REJ15 extends FASE14 {
 		// run
 		collectAnalysisModelObjects(istarModel);
 		Z3IncrementalSolver z3IncSolver = new Z3IncrementalSolver();
-		if (timeAnalysisEnabled) {
+		if (this.timeAnalysisEnabled) {
 			doAnalysis(z3IncSolver);
 		}
-		if (timeTargetsEnabled) {
+		if (this.timeTargetsEnabled) {
 			Z3Model z3Model = doTargets(z3IncSolver);
-			if (targets == Z3Result.SAT) {
-				if (timeRNFEnabled) {
+			if (this.targets == Z3Result.SAT) {
+				if (this.timeRNFEnabled) {
 					doRNF(z3IncSolver, z3Model);
 				}
-				if (timeAllSATEnabled) {
+				if (this.timeAllSATEnabled) {
 					doAllSAT(z3IncSolver, z3Model);
 				}
-				if (generateTargetsConcretization) {
+				if (this.generateTargetsConcretization) {
 //					while (true) {
 //						String[] concretization = getConcretization(copyIStarRootModelObj(), z3Model);
 //						//TODO MMINT[MAVO] Integrate with mu-mmint code to show concretization model
@@ -249,7 +250,7 @@ public class REJ15 extends FASE14 {
 			null,
 			MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX
 		);
-		if (timeRNF != -1) {
+		if (this.timeRNF != -1) {
 			writeRNF(istarModel);
 		}
 
