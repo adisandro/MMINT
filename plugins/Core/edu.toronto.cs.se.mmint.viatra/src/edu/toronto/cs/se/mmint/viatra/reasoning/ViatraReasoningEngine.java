@@ -32,7 +32,7 @@ public class ViatraReasoningEngine implements IReasoningEngine {
 
   @Override
   public @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName,
-                                        EObject context, List<? extends EObject> queryArguments) {
+                                        EObject context, List<@Nullable ? extends EObject> queryArguments) {
     try {
       var engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context));
       var queryRoot = FileUtils.readModelFile(queryFilePath, true);
@@ -43,6 +43,20 @@ public class ViatraReasoningEngine implements IReasoningEngine {
         .filter(p -> queryName.equals(p.getName()))
         .findFirst()
         .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
+      if (!queryArguments.isEmpty()) { // bound input arguments
+        var numFormal = pattern.getParameters().size();
+        var numActual = queryArguments.size();
+        var diffArgs = numFormal - numActual;
+        if (diffArgs < 0) {
+          throw new MMINTException(MessageFormat.format("Pattern {0} has {1} parameters but {2} were passed", queryName,
+                                                        numFormal, numActual));
+        }
+        if (diffArgs > 0) { // partially bound, add extra null arguments
+          for (var i = 0; i < diffArgs; i++) {
+            queryArguments.add(null);
+          }
+        }
+      }
       var builder = new SpecificationBuilder();
       var matcher = (GenericPatternMatcher) engine.getMatcher(builder.getOrCreateSpecification(pattern));
       if (matcher == null) {

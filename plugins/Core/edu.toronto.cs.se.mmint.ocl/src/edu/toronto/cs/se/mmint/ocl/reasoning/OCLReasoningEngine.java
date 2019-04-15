@@ -105,7 +105,7 @@ public class OCLReasoningEngine implements IReasoningEngine {
 
 	@Override
 	public @Nullable Object evaluateQuery(String oclQuery, @Nullable String queryName, EObject context,
-	                                      List<? extends EObject> queryArguments) {
+	                                      List<@Nullable ? extends EObject> queryArguments) {
 
 		OCL ocl = OCL.newInstance();
 

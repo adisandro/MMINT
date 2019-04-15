@@ -60,7 +60,7 @@ public interface IReasoningEngine {
 	}
 
   public default @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
-                                                List<? extends EObject> queryArguments) {
+                                                List<@Nullable ? extends EObject> queryArguments) {
     return null;
   }
 
