@@ -617,15 +617,15 @@ mappingTypes:
 		return reasoner.refineModelByConstraint(model);
 	}
 
-  public static @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
-                                               List<? extends EObject> queryArguments) {
+  public static List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+                                           List<? extends EObject> queryArguments) {
     try {
       var reasoner = getReasoner(FileUtils.getFileExtensionFromPath(queryFilePath));
       return reasoner.evaluateQuery(queryFilePath, queryName, context, queryArguments);
     }
     catch (MMINTException e) {
       MMINTException.print(IStatus.WARNING, "Skipping query evaluation", e);
-      return null;
+      return List.of();
     }
 
   }

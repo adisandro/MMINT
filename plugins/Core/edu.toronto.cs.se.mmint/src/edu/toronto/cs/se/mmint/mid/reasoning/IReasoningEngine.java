@@ -59,9 +59,10 @@ public interface IReasoningEngine {
 		return null;
 	}
 
-  public default @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
-                                                List<@Nullable ? extends EObject> queryArguments) {
-    return null;
+  //TODO Add javadoc for IReasoningEngine.evaluateQuery
+  public default List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+                                            List<? extends EObject> queryArgs) {
+    return List.of();
   }
 
 }

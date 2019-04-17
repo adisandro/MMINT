@@ -31,21 +31,24 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class ViatraReasoningEngine implements IReasoningEngine {
 
   @Override
-  public @Nullable Object evaluateQuery(String queryFilePath, @Nullable String queryName,
-                                        EObject context, List<@Nullable ? extends EObject> queryArguments) {
+  public List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+                                    List<? extends EObject> queryArgs) {
+    AdvancedViatraQueryEngine engine = null;
     try {
-      var engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context));
+      // get model representation of query file
       var queryRoot = FileUtils.readModelFile(queryFilePath, true);
       if (!(queryRoot instanceof PatternModel)) {
         throw new MMINTException("Bad query file");
       }
+      // find named query
       var pattern = ((PatternModel) queryRoot).getPatterns().stream()
         .filter(p -> queryName.equals(p.getName()))
         .findFirst()
         .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
-      if (!queryArguments.isEmpty()) { // bound input arguments
+      // handle query arguments
+      if (!queryArgs.isEmpty()) { // bound input arguments
         var numFormal = pattern.getParameters().size();
-        var numActual = queryArguments.size();
+        var numActual = queryArgs.size();
         var diffArgs = numFormal - numActual;
         if (diffArgs < 0) {
           throw new MMINTException(MessageFormat.format("Pattern {0} has {1} parameters but {2} were passed", queryName,
@@ -53,24 +56,32 @@ public class ViatraReasoningEngine implements IReasoningEngine {
         }
         if (diffArgs > 0) { // partially bound, add extra null arguments
           for (var i = 0; i < diffArgs; i++) {
-            queryArguments.add(null);
+            queryArgs.add(null);
           }
         }
       }
+      // find query matches within context
+      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context));
       var builder = new SpecificationBuilder();
-      var matcher = (GenericPatternMatcher) engine.getMatcher(builder.getOrCreateSpecification(pattern));
+      var spec = builder.getOrCreateSpecification(pattern);
+      var matcher = (GenericPatternMatcher) engine.getMatcher(spec);
       if (matcher == null) {
         throw new MMINTException("Can't initialize matching engine");
       }
-      var matches = (queryArguments.isEmpty()) ?
+      var matches = (queryArgs.isEmpty()) ?
         matcher.getAllMatches() :
-        matcher.getAllMatches(matcher.newMatch(queryArguments.toArray()));
+        matcher.getAllMatches(matcher.newMatch(queryArgs.toArray()));
       return matches.stream().map(m -> m.prettyPrint()).collect(Collectors.toList());
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR,
-                           MessageFormat.format("Query {0}, pattern {1} error: ", queryFilePath, queryName), e);
-      return null;
+                           MessageFormat.format("Viatra file {0}, pattern {1} error: ", queryFilePath, queryName), e);
+      return List.of();
+    }
+    finally {
+      if (engine != null) {
+        engine.dispose();
+      }
     }
   }
 
