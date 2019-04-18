@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -25,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
@@ -34,18 +34,19 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
 
-  private MID mid;
-  private List<? extends ExtendibleElement> midElems;
+  private EObject context;
+  private List<? extends ExtendibleElement> queryArgs;
 
-  public MIDContextEvaluateQueryListener(String menuLabel, MID mid, List<? extends ExtendibleElement> midElems) {
+  public MIDContextEvaluateQueryListener(String menuLabel, EObject context,
+                                         List<? extends ExtendibleElement> queryArgs) {
     super(menuLabel);
-    this.mid = mid;
-    this.midElems = midElems;
+    this.context = context;
+    this.queryArgs = queryArgs;
   }
 
   @Override
   public void widgetSelected(SelectionEvent e) {
-    var command = new MIDContextEvaluateQueryCommand(TransactionUtil.getEditingDomain(this.mid), this.menuLabel,
+    var command = new MIDContextEvaluateQueryCommand(TransactionUtil.getEditingDomain(this.context), this.menuLabel,
                                                      MIDDiagramUtils.getActiveInstanceMIDFiles());
     runListenerCommand(command);
   }
@@ -62,8 +63,8 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
         var queryFilePath = MIDDialogs.selectQueryFileToEvaluate();
         var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
         var queryResult = MIDConstraintChecker.evaluateQuery(queryFilePath, queryName,
-                                                             MIDContextEvaluateQueryListener.this.mid,
-                                                             MIDContextEvaluateQueryListener.this.midElems);
+                                                             MIDContextEvaluateQueryListener.this.context,
+                                                             MIDContextEvaluateQueryListener.this.queryArgs);
         //TODO MMINT[QUERY] Display results in a better way (ui?)
         System.err.println(queryResult);
         return CommandResult.newOKCommandResult();

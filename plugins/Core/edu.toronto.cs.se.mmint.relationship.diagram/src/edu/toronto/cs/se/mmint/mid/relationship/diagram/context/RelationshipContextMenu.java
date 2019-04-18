@@ -12,8 +12,8 @@
 package edu.toronto.cs.se.mmint.mid.relationship.diagram.context;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.ContributionItem;
@@ -24,10 +24,10 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
 
 import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextEvaluateQueryListener;
 import edu.toronto.cs.se.mmint.mid.diagram.context.MIDContextMenu;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelElementReferenceEditPart;
 import edu.toronto.cs.se.mmint.mid.relationship.diagram.edit.parts.ModelRelEditPart;
 
@@ -58,8 +58,8 @@ public class RelationshipContextMenu extends ContributionItem {
     boolean doQuery = true;
 
     // get model selection
-    var selectedElems = ECollections.<ExtendibleElement>newBasicEList();
-    var editParts = new ArrayList<GraphicalEditPart>();
+    ModelRel rel = null;
+    var selectedRefs = new ArrayList<ExtendibleElementReference>();
     for (var object : objects) {
       if (!(
         object instanceof ModelRelEditPart ||
@@ -69,12 +69,17 @@ public class RelationshipContextMenu extends ContributionItem {
       }
       var editPart = (GraphicalEditPart) object;
       var editPartElement = ((View) editPart.getModel()).getElement();
-      selectedElems.add((ExtendibleElement) editPartElement);
+      if (editPartElement instanceof ModelRel) {
+        rel = (ModelRel) editPartElement;
+      }
+      else {
+        selectedRefs.add((ExtendibleElementReference) editPartElement);
+      }
       if (!doQuery) { // no action available
         return;
       }
     }
-    if (selectedElems.isEmpty()) { // no relevant edit parts selected
+    if (rel == null && selectedRefs.isEmpty()) { // no relevant edit parts selected
       return;
     }
 
@@ -86,11 +91,16 @@ public class RelationshipContextMenu extends ContributionItem {
     MMINT.stashActiveInstanceMIDFile();
     // evaluate query
     if (doQuery) {
-      MID mid = selectedElems.get(0).getMIDContainer();
+      if (rel == null) {
+        rel = (ModelRel) selectedRefs.get(0).eContainer().eContainer();
+      }
+      var selectedElems = selectedRefs.stream()
+        .map(ExtendibleElementReference::getObject)
+        .collect(Collectors.toList());
       var queryItem = new MenuItem(mmintMenu, SWT.NONE);
       queryItem.setText(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL);
       queryItem.addSelectionListener(
-        new MIDContextEvaluateQueryListener(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL, mid, selectedElems)
+        new MIDContextEvaluateQueryListener(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL, rel, selectedElems)
       );
     }
   }
