@@ -59,7 +59,19 @@ public interface IReasoningEngine {
 		return null;
 	}
 
-  //TODO Add javadoc for IReasoningEngine.evaluateQuery
+  /**
+   * Evaluates a query to find elements within a megamodel.
+   *
+   * @param queryFilePath
+   *          The path to the query file.
+   * @param queryName
+   *          The name of the query to be evaluated within the query file (which can contain multiple queries).
+   * @param context
+   *          The context of the query, i.e. a megamodel, or one of its contained elements.
+   * @param queryArgs
+   *          The actual arguments to the query.
+   * @return A list of elements that match the query.
+   */
   public default List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
                                             List<? extends EObject> queryArgs) {
     return List.of();
