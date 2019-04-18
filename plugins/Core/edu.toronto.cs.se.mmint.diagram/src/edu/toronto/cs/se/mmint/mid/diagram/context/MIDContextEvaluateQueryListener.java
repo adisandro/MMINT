@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.swt.events.SelectionEvent;
 
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
@@ -35,12 +35,12 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
 
   private MID mid;
-  private List<Model> models;
+  private List<? extends ExtendibleElement> midElems;
 
-  public MIDContextEvaluateQueryListener(String menuLabel, MID mid, List<Model> models) {
+  public MIDContextEvaluateQueryListener(String menuLabel, MID mid, List<? extends ExtendibleElement> midElems) {
     super(menuLabel);
     this.mid = mid;
-    this.models = models;
+    this.midElems = midElems;
   }
 
   @Override
@@ -60,10 +60,10 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
     protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
       try {
         var queryFilePath = MIDDialogs.selectQueryFileToEvaluate();
-        var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert pattern name to run", null);
+        var queryName = MIDDialogs.getStringInput("Evaluate query", "Insert query name to run", null);
         var queryResult = MIDConstraintChecker.evaluateQuery(queryFilePath, queryName,
                                                              MIDContextEvaluateQueryListener.this.mid,
-                                                             MIDContextEvaluateQueryListener.this.models);
+                                                             MIDContextEvaluateQueryListener.this.midElems);
         //TODO MMINT[QUERY] Display results in a better way (ui?)
         System.err.println(queryResult);
         return CommandResult.newOKCommandResult();

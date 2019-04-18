@@ -67,7 +67,7 @@ public class MIDContextMenu extends ContributionItem {
   private static final String MMINT_MENU_ADDCONSTRAINT_LABEL = "Add/Modify Constraint";
   private static final String MMINT_MENU_CHECKCONSTRAINT_LABEL = "Check Constraint";
   private static final String MMINT_MENU_REFINEBYCONSTRAINT_LABEL = "Refine by Constraint";
-  private static final String MMINT_MENU_EVALUATEQUERY_LABEL = "Evaluate Query";
+  public static final String MMINT_MENU_EVALUATEQUERY_LABEL = "Evaluate Query";
   private static final String MMINT_MENU_COPY_LABEL = "Copy Model";
   private static final String MMINT_MENU_MODELEPEDIA_LABEL = "Wiki";
   private static final String MMINT_MENU_MODELEPEDIA_SUBMENU_OPEN_LABEL = "Open Wiki Page";

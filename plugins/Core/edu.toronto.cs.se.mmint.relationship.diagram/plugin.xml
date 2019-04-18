@@ -696,6 +696,20 @@ Contributors:
 
    <!-- optionally, specify keybindings -->
 
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <dynamic
+               class="edu.toronto.cs.se.mmint.mid.relationship.diagram.context.RelationshipContextMenu"
+               id="edu.toronto.cs.se.mmint.mid.relationship.diagram.context.RelationshipContextMenu">
+            <visibleWhen>
+               <with variable="activePartId">
+                  <equals value="edu.toronto.cs.se.mmint.mid.relationship.diagram.part.RelationshipDiagramEditorID"/>
+               </with>
+            </visibleWhen>
+         </dynamic>
+      </menuContribution>
+   </extension>
+
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
