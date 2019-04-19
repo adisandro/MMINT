@@ -44,7 +44,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern connectedModelElements(in modelElemSrc: ModelElement, out modelElemTgt: ModelElement) {
+ *         pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
  *           modelElemSrc != modelElemTgt;
  *           Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
  *           Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
@@ -249,7 +249,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern connectedModelElements(in modelElemSrc: ModelElement, out modelElemTgt: ModelElement) {
+   * pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
    *   modelElemSrc != modelElemTgt;
    *   Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
    *   Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
