@@ -91,16 +91,14 @@ public class RelationshipContextMenu extends ContributionItem {
     MMINT.stashActiveInstanceMIDFile();
     // evaluate query
     if (doQuery) {
-      if (rel == null) {
-        rel = (ModelRel) selectedRefs.get(0).eContainer().eContainer();
-      }
+      var mid = (rel == null) ? selectedRefs.get(0).getMIDContainer() : rel.getMIDContainer();
       var selectedElems = selectedRefs.stream()
         .map(ExtendibleElementReference::getObject)
         .collect(Collectors.toList());
       var queryItem = new MenuItem(mmintMenu, SWT.NONE);
       queryItem.setText(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL);
       queryItem.addSelectionListener(
-        new MIDContextEvaluateQueryListener(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL, rel, selectedElems)
+        new MIDContextEvaluateQueryListener(MIDContextMenu.MMINT_MENU_EVALUATEQUERY_LABEL, mid, selectedElems)
       );
     }
   }

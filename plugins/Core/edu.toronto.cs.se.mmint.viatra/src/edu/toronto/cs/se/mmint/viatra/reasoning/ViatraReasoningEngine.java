@@ -12,6 +12,7 @@
 package edu.toronto.cs.se.mmint.viatra.reasoning;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,7 @@ public class ViatraReasoningEngine implements IReasoningEngine {
         var numFormal = pattern.getParameters().size();
         var numActual = queryArgs.size();
         var diffArgs = numFormal - numActual;
-        if (diffArgs < 0) {
+        if (diffArgs < 0) { // too many actual
           throw new MMINTException(MessageFormat.format("Pattern {0} has {1} parameters but {2} were passed", queryName,
                                                         numFormal, numActual));
         }
@@ -68,10 +69,17 @@ public class ViatraReasoningEngine implements IReasoningEngine {
       if (matcher == null) {
         throw new MMINTException("Can't initialize matching engine");
       }
-      var matches = (queryArgs.isEmpty()) ?
+      var vMatches = (queryArgs.isEmpty()) ?
         matcher.getAllMatches() :
         matcher.getAllMatches(matcher.newMatch(queryArgs.toArray()));
-      return matches.stream().map(m -> m.prettyPrint()).collect(Collectors.toList());
+      var matches = new ArrayList<>();
+      for (var vMatch : vMatches) {
+        var match = (vMatch.parameterNames().size() == 1) ?
+          vMatch.get(0) :
+          vMatch.parameterNames().stream().map(p -> vMatch.get(p)).collect(Collectors.toList());
+        matches.add(match);
+      }
+      return matches;
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR,

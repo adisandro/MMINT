@@ -13,7 +13,6 @@ package edu.toronto.cs.se.mmint.ocl.reasoning;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -111,8 +110,8 @@ public class OCLReasoningEngine implements IReasoningEngine {
     }
   }
 
-  private @Nullable Object evaluateOCLExpressionRaw(OCL ocl, ExpressionInOCL expression, EObject context,
-                                                    List<? extends EObject> args) {
+  private @Nullable Object evaluateOCLExpression(OCL ocl, ExpressionInOCL expression, EObject context,
+                                                 List<? extends EObject> args) {
     Object evaluation;
     if (expression.getOwnedParameters().size() > 0) {
       var visitor = ocl.createEvaluationVisitor(context, expression);
@@ -137,27 +136,12 @@ public class OCLReasoningEngine implements IReasoningEngine {
     return evaluation;
   }
 
-  private List<Object> evaluateOCLExpression(OCL ocl, ExpressionInOCL expression, EObject context,
-                                             List<? extends EObject> args) {
-    var matches = new ArrayList<>();
-    var evaluation = evaluateOCLExpressionRaw(ocl, expression, context, args);
-    if (evaluation != null) {
-      if (evaluation instanceof Collection<?>) {
-        matches.addAll((Collection<?>) evaluation);
-      }
-      else {
-        matches.add(evaluation);
-      }
-    }
-    return matches;
-  }
-
   public @Nullable Object evaluateQuery(String oclQuery, EObject context) {
     OCL ocl = OCL.newInstance();
     try {
       OCLHelper helper = ocl.createOCLHelper(context.eClass());
       ExpressionInOCL expression = helper.createQuery(oclQuery);
-      return evaluateOCLExpressionRaw(ocl, expression, context, List.of());
+      return evaluateOCLExpression(ocl, expression, context, List.of());
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "OCL query error: " + oclQuery, e);
@@ -192,23 +176,42 @@ public class OCLReasoningEngine implements IReasoningEngine {
         (ExpressionInOCL) ((Operation) feat).getBodyExpression();
       var numFormal = featExpression.getOwnedParameters().size();
       var numActual = queryArgs.size();
-      if (numFormal != numActual) {
+      var diffArgs = numFormal - numActual;
+      if (diffArgs < 0) { // too many actual
         throw new MMINTException(MessageFormat.format("Def {0} has {1} parameters but {2} were passed", queryName,
                                                       numFormal, numActual));
       }
       // find query matches within context
       var matches = new ArrayList<>();
-      var featContext = (org.eclipse.ocl.pivot.Class) feat.eContainer();
-      if (featContext.getName().equals(context.eClass().getName())) {
-        matches.addAll(evaluateOCLExpression(ocl, featExpression, context, queryArgs));
+      var formalContext = ((org.eclipse.ocl.pivot.Class) feat.eContainer()).getName();
+      var actualContext = context.eClass().getName();
+      if (!formalContext.equals(actualContext)) {
+        throw new MMINTException(MessageFormat.format("Def {0} is defined in a {1} context, but a {2} was used instead",
+                                                      queryName, formalContext, actualContext));
+      }
+      if (diffArgs > 0) { // partially bound, find unbound arguments within the context
+        //TODO MMINT[QUERY] Do cartesian product properly
+        for (var i = numActual; i < numFormal; i++) {
+          var formalArgClassName = featExpression.getOwnedParameters().get(i).getType().getName();
+          for (var iter = context.eAllContents(); iter.hasNext();) {
+            var actualArg = iter.next();
+            //TODO MMINT[QUERY] Inheritance?
+            if (!formalArgClassName.equals(actualArg.eClass().getName())) {
+              continue;
+            }
+            var allQueryArgs = new ArrayList<EObject>(queryArgs);
+            allQueryArgs.add(actualArg);
+            var evaluation = evaluateOCLExpression(ocl, featExpression, context, allQueryArgs);
+            if (evaluation != null) {
+              matches.add(evaluation);
+            }
+          }
+        }
       }
       else {
-        for (var iter = context.eAllContents(); iter.hasNext();) {
-          var subContext = iter.next();
-          if (!featContext.getName().equals(subContext.eClass().getName())) {
-            continue;
-          }
-          matches.addAll(evaluateOCLExpression(ocl, featExpression, subContext, queryArgs));
+        var evaluation = evaluateOCLExpression(ocl, featExpression, context, queryArgs);
+        if (evaluation != null) {
+          matches.add(evaluation);
         }
       }
       return matches;
