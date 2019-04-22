@@ -74,6 +74,7 @@ public interface IReasoningEngine {
    */
   public default List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
                                             List<? extends EObject> queryArgs) {
+    //TODO MMINT[QUERY] Think about a proper return interface to receive inputs and outputs (because of unbound vars)
     return List.of();
   }
 

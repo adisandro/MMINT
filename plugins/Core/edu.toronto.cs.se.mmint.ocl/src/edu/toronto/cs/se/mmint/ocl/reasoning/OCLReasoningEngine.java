@@ -13,6 +13,8 @@ package edu.toronto.cs.se.mmint.ocl.reasoning;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -152,6 +154,27 @@ public class OCLReasoningEngine implements IReasoningEngine {
     }
   }
 
+  private List<Object> evaluateOCLExpression2(OCL ocl, ExpressionInOCL expression, EObject context,
+                                               List<? extends EObject> args) {
+    var result = new ArrayList<>();
+    var evaluation = evaluateOCLExpression(ocl, expression, context, args);
+    if (evaluation != null) {
+      if (evaluation instanceof Collection<?>) {
+        for (var iter = ((Collection<? extends EObject>) evaluation).iterator(); iter.hasNext();) {
+          var allQueryArgs = new ArrayList<Object>(args);
+          allQueryArgs.add(iter.next());
+          result.add(allQueryArgs);
+        }
+      }
+      else {
+        var allQueryArgs = new ArrayList<Object>(args);
+        allQueryArgs.add(evaluation);
+        result.add(allQueryArgs);
+      }
+    }
+    return result;
+  }
+
   @Override
   public List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
                                     List<? extends EObject> queryArgs) {
@@ -189,32 +212,59 @@ public class OCLReasoningEngine implements IReasoningEngine {
         throw new MMINTException(MessageFormat.format("Def {0} is defined in a {1} context, but a {2} was used instead",
                                                       queryName, formalContext, actualContext));
       }
-      if (diffArgs > 0) { // partially bound, find unbound arguments within the context
-        //TODO MMINT[QUERY] Do cartesian product properly
-        for (var i = numActual; i < numFormal; i++) {
-          var formalArgClassName = featExpression.getOwnedParameters().get(i).getType().getName();
-          for (var iter = context.eAllContents(); iter.hasNext();) {
-            var actualArg = iter.next();
-            //TODO MMINT[QUERY] Inheritance?
-            if (!formalArgClassName.equals(actualArg.eClass().getName())) {
-              continue;
-            }
-            var allQueryArgs = new ArrayList<EObject>(queryArgs);
-            allQueryArgs.add(actualArg);
-            var evaluation = evaluateOCLExpression(ocl, featExpression, context, allQueryArgs);
-            if (evaluation != null) {
-              matches.add(evaluation);
-            }
+      if (diffArgs == 0) { // all args bound
+        matches.addAll(evaluateOCLExpression2(ocl, featExpression, context, queryArgs));
+        return matches;
+      }
+      // partially bound (diffArgs > 0)
+      // find unbound arguments within the context
+      var unboundArgs = new HashMap<Integer, List<EObject>>();
+      for (var iter = context.eAllContents(); iter.hasNext();) {
+        var actualArg = iter.next();
+        for (var i = 0; i < diffArgs; i++) {
+          var formalArgClassName = featExpression.getOwnedParameters().get(numActual+i).getType().getName();
+          //TODO MMINT[QUERY] Inheritance?
+          if (!formalArgClassName.equals(actualArg.eClass().getName())) {
+            continue;
+          }
+          var actualArgs = unboundArgs.get(i);
+          if (actualArgs == null) {
+            actualArgs = new ArrayList<>();
+            unboundArgs.put(i, actualArgs);
+          }
+          actualArgs.add(actualArg);
+        }
+      }
+      if (unboundArgs.size() != diffArgs) { // no matches are possible
+        return matches;
+      }
+      // do cartesian product
+      var unboundIndexes = new int[diffArgs];
+      for (var i = 0; i < diffArgs; i++) {
+        unboundIndexes[i] = 0;
+      }
+      while (true) {
+        var allQueryArgs = new ArrayList<EObject>(queryArgs);
+        for (var i = 0; i < diffArgs; i++) {
+          var actualArg = unboundArgs.get(i).get(unboundIndexes[i]);
+          allQueryArgs.add(actualArg);
+        }
+        matches.addAll(evaluateOCLExpression2(ocl, featExpression, context, allQueryArgs));
+        // advance indexes for cartesian product
+        var i = 0;
+        while (true) {
+          unboundIndexes[i] += 1;
+          if (unboundIndexes[i] < unboundArgs.get(i).size()) { // done advancing indexes
+            break;
+          }
+          // carry over to next index
+          unboundIndexes[i] = 0;
+          i += 1;
+          if (i >= unboundIndexes.length) { // overflow, cartesian product done
+            return matches;
           }
         }
       }
-      else {
-        var evaluation = evaluateOCLExpression(ocl, featExpression, context, queryArgs);
-        if (evaluation != null) {
-          matches.add(evaluation);
-        }
-      }
-      return matches;
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR,
