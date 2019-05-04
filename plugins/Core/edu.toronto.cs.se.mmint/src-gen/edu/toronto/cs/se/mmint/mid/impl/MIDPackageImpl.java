@@ -762,6 +762,16 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
 
     /**
    * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getModel_EMFInstanceRoot() {
+    return (EReference)modelEClass.getEStructuralFeatures().get(5);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    */
@@ -916,16 +926,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    * @generated
    */
     @Override
-    public EOperation getModel__GetEMFInstanceRoot() {
-    return modelEClass.getEOperations().get(16);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
     public EOperation getModel__OpenType() {
     return modelEClass.getEOperations().get(6);
   }
@@ -937,7 +937,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    */
     @Override
     public EOperation getModel__OpenInstance() {
-    return modelEClass.getEOperations().get(17);
+    return modelEClass.getEOperations().get(16);
   }
 
     /**
@@ -947,7 +947,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    */
     @Override
     public EOperation getModel__CreateWorkflowInstance__String_MID() {
-    return modelEClass.getEOperations().get(18);
+    return modelEClass.getEOperations().get(17);
   }
 
     /**
@@ -957,7 +957,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    */
     @Override
     public EOperation getModel__DeleteWorkflowInstance() {
-    return modelEClass.getEOperations().get(19);
+    return modelEClass.getEOperations().get(18);
   }
 
     /**
@@ -1535,6 +1535,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     createEReference(modelEClass, MODEL__EDITORS);
     createEReference(modelEClass, MODEL__MODEL_ELEMS);
     createEReference(modelEClass, MODEL__CONVERSION_OPERATORS);
+    createEReference(modelEClass, MODEL__EMF_INSTANCE_ROOT);
     createEOperation(modelEClass, MODEL___GET_METATYPE);
     createEOperation(modelEClass, MODEL___GET_SUPERTYPE);
     createEOperation(modelEClass, MODEL___GET_MID_CONTAINER);
@@ -1551,7 +1552,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     createEOperation(modelEClass, MODEL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID);
     createEOperation(modelEClass, MODEL___DELETE_INSTANCE);
     createEOperation(modelEClass, MODEL___DELETE_INSTANCE_AND_FILE);
-    createEOperation(modelEClass, MODEL___GET_EMF_INSTANCE_ROOT);
     createEOperation(modelEClass, MODEL___OPEN_INSTANCE);
     createEOperation(modelEClass, MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID);
     createEOperation(modelEClass, MODEL___DELETE_WORKFLOW_INSTANCE);
@@ -1768,6 +1768,7 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     initEReference(getModel_Editors(), theEditorPackage.getEditor(), null, "editors", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_ModelElems(), this.getModelElement(), null, "modelElems", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_ConversionOperators(), theOperatorPackage.getConversionOperator(), null, "conversionOperators", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_EMFInstanceRoot(), ecorePackage.getEObject(), null, "EMFInstanceRoot", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEOperation(getModel__GetMetatype(), this.getModel(), "getMetatype", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1836,9 +1837,6 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
     addEException(op, this.getMMINTException());
 
     op = initEOperation(getModel__DeleteInstanceAndFile(), null, "deleteInstanceAndFile", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEException(op, this.getMMINTException());
-
-    op = initEOperation(getModel__GetEMFInstanceRoot(), ecorePackage.getEObject(), "getEMFInstanceRoot", 1, 1, IS_UNIQUE, IS_ORDERED);
     addEException(op, this.getMMINTException());
 
     op = initEOperation(getModel__OpenInstance(), null, "openInstance", 0, 1, IS_UNIQUE, IS_ORDERED);

@@ -17,8 +17,6 @@
       <eParameters name="containerModelEndpoint" lowerBound="1" eType="#//KleisliModelEndpoint"/>
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException"/>
-    <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.mmint/model/mid.ecore#//MMINTException"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="KleisliModelEndpoint" eSuperTypes="../../edu.toronto.cs.se.mmint/model/mid.ecore#//ModelEndpoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

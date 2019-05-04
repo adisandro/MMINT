@@ -236,6 +236,15 @@ public interface RelationshipPackage extends EPackage {
     int MODEL_REL__CONVERSION_OPERATORS = MIDPackage.MODEL__CONVERSION_OPERATORS;
 
     /**
+   * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL_REL__EMF_INSTANCE_ROOT = MIDPackage.MODEL__EMF_INSTANCE_ROOT;
+
+    /**
    * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -533,15 +542,6 @@ public interface RelationshipPackage extends EPackage {
     int MODEL_REL___DELETE_INSTANCE_AND_FILE = MIDPackage.MODEL___DELETE_INSTANCE_AND_FILE;
 
     /**
-   * The operation id for the '<em>Get EMF Instance Root</em>' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-    int MODEL_REL___GET_EMF_INSTANCE_ROOT = MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT;
-
-    /**
    * The operation id for the '<em>Open Instance</em>' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -810,6 +810,15 @@ public interface RelationshipPackage extends EPackage {
    * @ordered
    */
     int BINARY_MODEL_REL__CONVERSION_OPERATORS = MODEL_REL__CONVERSION_OPERATORS;
+
+    /**
+   * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BINARY_MODEL_REL__EMF_INSTANCE_ROOT = MODEL_REL__EMF_INSTANCE_ROOT;
 
     /**
    * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -1125,15 +1134,6 @@ public interface RelationshipPackage extends EPackage {
    * @ordered
    */
     int BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE = MODEL_REL___DELETE_INSTANCE_AND_FILE;
-
-    /**
-   * The operation id for the '<em>Get EMF Instance Root</em>' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-    int BINARY_MODEL_REL___GET_EMF_INSTANCE_ROOT = MODEL_REL___GET_EMF_INSTANCE_ROOT;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.

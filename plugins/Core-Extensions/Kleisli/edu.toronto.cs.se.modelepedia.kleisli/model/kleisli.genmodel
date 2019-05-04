@@ -20,7 +20,6 @@
         <genParameters ecoreParameter="kleisli.ecore#//KleisliModel/kleisliCreateInstance/containerModelEndpoint"/>
       </genOperations>
       <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/deleteInstance"/>
-      <genOperations ecoreOperation="kleisli.ecore#//KleisliModel/getEMFInstanceRoot"/>
     </genClasses>
     <genClasses ecoreClass="kleisli.ecore#//KleisliModelEndpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference kleisli.ecore#//KleisliModelEndpoint/extendedTarget"/>

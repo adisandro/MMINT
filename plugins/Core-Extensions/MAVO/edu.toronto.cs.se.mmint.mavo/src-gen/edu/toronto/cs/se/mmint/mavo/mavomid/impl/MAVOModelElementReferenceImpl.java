@@ -36,68 +36,69 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class MAVOModelElementReferenceImpl extends ModelElementReferenceImpl implements MAVOModelElementReference {
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	protected MAVOModelElementReferenceImpl() {
-        super();
-    }
+    super();
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-        return MAVOMIDPackage.Literals.MAVO_MODEL_ELEMENT_REFERENCE;
-    }
+    return MAVOMIDPackage.Literals.MAVO_MODEL_ELEMENT_REFERENCE;
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public MAVOModelElement getObject() {
-        ExtendibleElement object = super.getObject();
-        return (object == null) ? null : (MAVOModelElement) object;
-    }
+   * @generated
+   */
+	@Override
+  public MAVOModelElement getObject() {
+    ExtendibleElement object = super.getObject();
+    return (object == null) ? null : (MAVOModelElement) object;
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElementReference.class) {
-            switch (baseOperationID) {
-                case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        if (baseClass == ModelElementReference.class) {
-            switch (baseOperationID) {
-                case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElementReference.class) {
+      switch (baseOperationID) {
+        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    if (baseClass == ModelElementReference.class) {
+      switch (baseOperationID) {
+        case RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT: return MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT:
-                return getObject();
-        }
-        return super.eInvoke(operationID, arguments);
+    switch (operationID) {
+      case MAVOMIDPackage.MAVO_MODEL_ELEMENT_REFERENCE___GET_OBJECT:
+        return getObject();
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
 } //MAVOModelElementReferenceImpl

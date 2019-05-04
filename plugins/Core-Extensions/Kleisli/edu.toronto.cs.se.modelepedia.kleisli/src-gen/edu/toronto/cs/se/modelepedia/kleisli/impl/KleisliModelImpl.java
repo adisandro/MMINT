@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,11 +15,10 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -44,53 +43,53 @@ import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
  */
 public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	protected KleisliModelImpl() {
-        super();
-    }
+    super();
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-        return KleisliPackage.Literals.KLEISLI_MODEL;
-    }
+    return KleisliPackage.Literals.KLEISLI_MODEL;
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT:
-                try {
-                    return kleisliCreateType((KleisliModelEndpoint)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT:
-                try {
-                    return kleisliCreateInstance((KleisliModelEndpoint)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_TYPE__KLEISLIMODELENDPOINT:
+        try {
+          return kleisliCreateType((KleisliModelEndpoint)arguments.get(0));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case KleisliPackage.KLEISLI_MODEL___KLEISLI_CREATE_INSTANCE__KLEISLIMODELENDPOINT:
+        try {
+          return kleisliCreateInstance((KleisliModelEndpoint)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
 	/**
 	 * Gets the uri of a Kleisli model type extension.
-	 * 
+	 *
 	 * @param modelRelType
 	 *            The Kleisli model relationship.
 	 * @param modelType
@@ -105,16 +104,17 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		return
 			modelRelType.getExtendedUri() +
-			MMINT.URI_SEPARATOR +
+			MMINTConstants.URI_SEPARATOR +
 			modelTypeEndpointName +
-			MMINT.ENDPOINT_SEPARATOR +
+			MMINTConstants.ENDPOINT_SEPARATOR +
 			modelType.getName() + "." + EcorePackage.eNAME;
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMINTException {
+	@Override
+  public KleisliModel kleisliCreateType(KleisliModelEndpoint containerModelTypeEndpoint) throws MMINTException {
 
 		//TODO MMINT[KLEISLI] should try to emulate normal api structure
 		MMINTException.mustBeType(this);
@@ -184,7 +184,7 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 	/**
 	 * Gets the uri of a Kleisli model instance extension.
-	 * 
+	 *
 	 * @param modelEndpoint
 	 *            The Kleisli model endpoint whose target is to be extended.
 	 * @return The uri of the Kleisli model extension.
@@ -194,16 +194,17 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 
 		return
 			((KleisliModelRel) modelEndpoint.eContainer()).getExtendedUri() +
-			MMINT.URI_SEPARATOR +
+			MMINTConstants.URI_SEPARATOR +
 			modelEndpoint.getMetatype().getName() +
-			MMINT.ENDPOINT_SEPARATOR +
-			modelEndpoint.getTarget().getName() + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
+			MMINTConstants.ENDPOINT_SEPARATOR +
+			modelEndpoint.getTarget().getName() + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDTypeFactory.ECORE_REFLECTIVE_FILE_EXTENSION;
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMINTException {
+	@Override
+  public KleisliModel kleisliCreateInstance(KleisliModelEndpoint containerModelEndpoint) throws MMINTException {
 
 		MMINTException.mustBeType(this);
 
@@ -231,15 +232,6 @@ public class KleisliModelImpl extends ModelImpl implements KleisliModel {
 		MMINTException.mustBeInstance(this);
 
 		FileUtils.deleteFile(getUri(), true);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public EObject getEMFInstanceRoot() throws MMINTException {
-
-		return super.getEMFInstanceRoot();
 	}
 
 } //KleisliModelImpl

@@ -37,172 +37,178 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  */
 public class StringPackageImpl extends EPackageImpl implements StringPackage {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	private EClass stringEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the model <b>Package</b>, registered with
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * package URI value.
+   * <p>Note: the correct way to create the package is via the static
+   * factory method {@link #init init()}, which also performs
+   * initialization of the package, or returns the registered package,
+   * if one already exists.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see edu.toronto.cs.se.modelepedia.primitive.string.StringPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
+   * @see org.eclipse.emf.ecore.EPackage.Registry
+   * @see edu.toronto.cs.se.modelepedia.primitive.string.StringPackage#eNS_URI
+   * @see #init()
+   * @generated
+   */
 	private StringPackageImpl() {
-		super(eNS_URI, StringFactory.eINSTANCE);
-	}
+    super(eNS_URI, StringFactory.eINSTANCE);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link StringPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   *
+   * <p>This method is used to initialize {@link StringPackage#eINSTANCE} when that field is accessed.
+   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #eNS_URI
-	 * @see #createPackageContents()
-	 * @see #initializePackageContents()
-	 * @generated
-	 */
+   * @see #eNS_URI
+   * @see #createPackageContents()
+   * @see #initializePackageContents()
+   * @generated
+   */
 	public static StringPackage init() {
-		if (isInited) return (StringPackage)EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI);
+    if (isInited) return (StringPackage)EPackage.Registry.INSTANCE.getEPackage(StringPackage.eNS_URI);
 
-		// Obtain or create and register package
-		StringPackageImpl theStringPackage = (StringPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StringPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StringPackageImpl());
+    // Obtain or create and register package
+    Object registeredStringPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    StringPackageImpl theStringPackage = registeredStringPackage instanceof StringPackageImpl ? (StringPackageImpl)registeredStringPackage : new StringPackageImpl();
 
-		isInited = true;
+    isInited = true;
 
-		// Initialize simple dependencies
-		MIDPackage.eINSTANCE.eClass();
+    // Initialize simple dependencies
+    MIDPackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		IntPackageImpl theIntPackage = (IntPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) instanceof IntPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI) : IntPackage.eINSTANCE);
-		FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
-		BooleanPackageImpl theBooleanPackage = (BooleanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) instanceof BooleanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI) : BooleanPackage.eINSTANCE);
+    // Obtain or create and register interdependencies
+    Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(IntPackage.eNS_URI);
+    IntPackageImpl theIntPackage = (IntPackageImpl)(registeredPackage instanceof IntPackageImpl ? registeredPackage : IntPackage.eINSTANCE);
+    registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI);
+    FilePackageImpl theFilePackage = (FilePackageImpl)(registeredPackage instanceof FilePackageImpl ? registeredPackage : FilePackage.eINSTANCE);
+    registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BooleanPackage.eNS_URI);
+    BooleanPackageImpl theBooleanPackage = (BooleanPackageImpl)(registeredPackage instanceof BooleanPackageImpl ? registeredPackage : BooleanPackage.eINSTANCE);
 
-		// Create package meta-data objects
-		theStringPackage.createPackageContents();
-		theIntPackage.createPackageContents();
-		theFilePackage.createPackageContents();
-		theBooleanPackage.createPackageContents();
+    // Create package meta-data objects
+    theStringPackage.createPackageContents();
+    theIntPackage.createPackageContents();
+    theFilePackage.createPackageContents();
+    theBooleanPackage.createPackageContents();
 
-		// Initialize created meta-data
-		theStringPackage.initializePackageContents();
-		theIntPackage.initializePackageContents();
-		theFilePackage.initializePackageContents();
-		theBooleanPackage.initializePackageContents();
+    // Initialize created meta-data
+    theStringPackage.initializePackageContents();
+    theIntPackage.initializePackageContents();
+    theFilePackage.initializePackageContents();
+    theBooleanPackage.initializePackageContents();
 
-		// Mark meta-data to indicate it can't be changed
-		theStringPackage.freeze();
+    // Mark meta-data to indicate it can't be changed
+    theStringPackage.freeze();
 
-  
-		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(StringPackage.eNS_URI, theStringPackage);
-		return theStringPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getString() {
-		return stringEClass;
-	}
+    // Update the registry and return the package
+    EPackage.Registry.INSTANCE.put(StringPackage.eNS_URI, theStringPackage);
+    return theStringPackage;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getString_Value() {
-		return (EAttribute)stringEClass.getEStructuralFeatures().get(0);
-	}
+   * @generated
+   */
+	@Override
+  public EClass getString() {
+    return stringEClass;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringFactory getStringFactory() {
-		return (StringFactory)getEFactoryInstance();
-	}
+   * @generated
+   */
+	@Override
+  public EAttribute getString_Value() {
+    return (EAttribute)stringEClass.getEStructuralFeatures().get(0);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
+	@Override
+  public StringFactory getStringFactory() {
+    return (StringFactory)getEFactoryInstance();
+  }
+
+	/**
+   * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+   * @generated
+   */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+   * Creates the meta-model objects for the package.  This method is
+   * guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void createPackageContents() {
-		if (isCreated) return;
-		isCreated = true;
+    if (isCreated) return;
+    isCreated = true;
 
-		// Create classes and their features
-		stringEClass = createEClass(STRING);
-		createEAttribute(stringEClass, STRING__VALUE);
-	}
+    // Create classes and their features
+    stringEClass = createEClass(STRING);
+    createEAttribute(stringEClass, STRING__VALUE);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+   * Complete the initialization of the package and its meta-model.  This
+   * method is guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void initializePackageContents() {
-		if (isInitialized) return;
-		isInitialized = true;
+    if (isInitialized) return;
+    isInitialized = true;
 
-		// Initialize package
-		setName(eNAME);
-		setNsPrefix(eNS_PREFIX);
-		setNsURI(eNS_URI);
+    // Initialize package
+    setName(eNAME);
+    setNsPrefix(eNS_PREFIX);
+    setNsURI(eNS_URI);
 
-		// Create type parameters
+    // Create type parameters
 
-		// Set bounds for type parameters
+    // Set bounds for type parameters
 
-		// Add supertypes to classes
+    // Add supertypes to classes
 
-		// Initialize classes, features, and operations; add parameters
-		initEClass(stringEClass, edu.toronto.cs.se.modelepedia.primitive.string.String.class, "String", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getString_Value(), ecorePackage.getEString(), "value", null, 1, 1, edu.toronto.cs.se.modelepedia.primitive.string.String.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    // Initialize classes, features, and operations; add parameters
+    initEClass(stringEClass, edu.toronto.cs.se.modelepedia.primitive.string.String.class, "String", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getString_Value(), ecorePackage.getEString(), "value", null, 1, 1, edu.toronto.cs.se.modelepedia.primitive.string.String.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		// Create resource
-		createResource(eNS_URI);
-	}
+    // Create resource
+    createResource(eNS_URI);
+  }
 
 } //StringPackageImpl

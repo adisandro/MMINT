@@ -30,76 +30,78 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class BooleanFactoryImpl extends EFactoryImpl implements BooleanFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static BooleanFactory init() {
-		try {
-			BooleanFactory theBooleanFactory = (BooleanFactory)EPackage.Registry.INSTANCE.getEFactory(BooleanPackage.eNS_URI);
-			if (theBooleanFactory != null) {
-				return theBooleanFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new BooleanFactoryImpl();
-	}
+    try {
+      BooleanFactory theBooleanFactory = (BooleanFactory)EPackage.Registry.INSTANCE.getEFactory(BooleanPackage.eNS_URI);
+      if (theBooleanFactory != null) {
+        return theBooleanFactory;
+      }
+    }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new BooleanFactoryImpl();
+  }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public BooleanFactoryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case BooleanPackage.BOOLEAN: return createBoolean();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eClass.getClassifierID()) {
+      case BooleanPackage.BOOLEAN: return createBoolean();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean createBoolean() {
-		BooleanImpl boolean_ = new BooleanImpl();
-		return boolean_;
-	}
+   * @generated
+   */
+	@Override
+  public edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean createBoolean() {
+    BooleanImpl boolean_ = new BooleanImpl();
+    return boolean_;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanPackage getBooleanPackage() {
-		return (BooleanPackage)getEPackage();
-	}
+   * @generated
+   */
+	@Override
+  public BooleanPackage getBooleanPackage() {
+    return (BooleanPackage)getEPackage();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+   * @deprecated
+   * @generated
+   */
 	@Deprecated
 	public static BooleanPackage getPackage() {
-		return BooleanPackage.eINSTANCE;
-	}
+    return BooleanPackage.eINSTANCE;
+  }
 
 } //BooleanFactoryImpl

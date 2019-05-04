@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -31,9 +31,9 @@ import edu.toronto.cs.se.mmint.mid.ui.ModelElementLabelProvider;
 
 /**
  * The outline page of the Mapping diagram.
- * 
+ *
  * @author Alessio Di Sandro
- * 
+ *
  */
 public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
@@ -47,22 +47,22 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 	/**
 	 * Constructor: initialises superclass, diagram and creates the adapter
 	 * factory.
-	 * 
+	 *
 	 * @param diagram
 	 *            The Relationship diagram.
 	 */
 	public RelationshipDiagramOutlinePage(Diagram diagram) {
 
 		super();
-		modelRel = (ModelRel) diagram.getElement();
-		adapterFactory = GMFUtils.getAdapterFactory();
+		this.modelRel = (ModelRel) diagram.getElement();
+		this.adapterFactory = GMFUtils.getAdapterFactory();
 	}
 
 	/**
 	 * {@inheritDoc}<br />
 	 * Initialises the tree viewer with a content and label provider, enables
 	 * drag and drop, sets the input of the tree viewer.
-	 * 
+	 *
 	 * @param parent
 	 *            The parent.
 	 */
@@ -71,15 +71,15 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 
 		super.createControl(parent);
 
-		contentOutlineViewer = getTreeViewer();
-		contentOutlineViewer.addSelectionChangedListener(this);
-		contentOutlineViewer.setContentProvider(new RelationshipDiagramOutlineContentProvider(adapterFactory, modelRel.getLevel()));
-		contentOutlineViewer.setLabelProvider(new ModelElementLabelProvider(adapterFactory, modelRel.getLevel()));
+		this.contentOutlineViewer = getTreeViewer();
+		this.contentOutlineViewer.addSelectionChangedListener(this);
+		this.contentOutlineViewer.setContentProvider(new RelationshipDiagramOutlineContentProvider(this.adapterFactory, this.modelRel.getLevel()));
+		this.contentOutlineViewer.setLabelProvider(new ModelElementLabelProvider(this.adapterFactory, this.modelRel.getLevel()));
 
 		// add drag support
 		int ops = DND.DROP_LINK | DND.DROP_MOVE;
 		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
-		contentOutlineViewer.addDragSupport(ops, transfers, new RelationshipDiagramOutlineDragListener(contentOutlineViewer, modelRel));
+		this.contentOutlineViewer.addDragSupport(ops, transfers, new RelationshipDiagramOutlineDragListener(this.contentOutlineViewer, this.modelRel));
 
 		// populate tree viewer
 		loadOutlineModels();
@@ -93,12 +93,12 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		//TODO MMINT[MODELREL] with two rel types open on the same metamodels, only one will show them
 		ResourceSet resourceSet;
 		try {
-			switch (modelRel.getLevel()) {
+			switch (this.modelRel.getLevel()) {
 				case TYPES:
-					resourceSet = modelRel.getOutlineResourceTypes();
+					resourceSet = this.modelRel.getOutlineResourceTypes();
 					break;
 				case INSTANCES:
-					resourceSet = modelRel.getOutlineResourceInstances();
+					resourceSet = this.modelRel.getOutlineResourceInstances();
 					break;
 				case WORKFLOWS:
 					throw new MMINTException("The WORKFLOWS level is not allowed");
@@ -109,22 +109,22 @@ public class RelationshipDiagramOutlinePage extends ContentOutlinePage {
 		catch (MMINTException e) {
 			resourceSet = new ResourceSetImpl();
 		}
-		contentOutlineViewer.setInput(resourceSet);
+		this.contentOutlineViewer.setInput(resourceSet);
 	}
 
 	/**
 	 * Adds a new model to the outline tree viewer.
-	 * 
+	 *
 	 * @param model
 	 *            The model to be added.
 	 */
 	public void addInput(Model model) {
 
-		ResourceSet resourceSet = (ResourceSet) contentOutlineViewer.getInput();
+		ResourceSet resourceSet = (ResourceSet) this.contentOutlineViewer.getInput();
 		try {
 			resourceSet.getResources().add(model.getEMFInstanceRoot().eResource());
 		}
-		catch (MMINTException e) {
+		catch (Exception e) {
 			MMINTException.print(IStatus.WARNING, "Can't get model root, skipping addition to outline", e);;
 		}
 	}

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -29,11 +29,9 @@ public class ComponentsDeployedConstraint implements IJavaModelConstraint {
 
 		BinaryModelRel deplRel = (BinaryModelRel) model;
 		org.eclipse.uml2.uml.Model srcUmlModel;
-		try {
-			srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFInstanceRoot();
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.ERROR, "Can't get model root, skipping validation", e);
+		srcUmlModel = (org.eclipse.uml2.uml.Model) deplRel.getSourceModel().getEMFInstanceRoot();
+		if (srcUmlModel == null) {
+			MMINTException.print(IStatus.ERROR, "Can't get model root, skipping validation", null);
 			return false;
 		}
 		for (PackageableElement umlModelObj : srcUmlModel.getPackagedElements()) {

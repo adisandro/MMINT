@@ -310,8 +310,6 @@
     </eOperations>
     <eOperations name="deleteInstance" eExceptions="#//MMINTException"/>
     <eOperations name="deleteInstanceAndFile" eExceptions="#//MMINTException"/>
-    <eOperations name="getEMFInstanceRoot" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        eExceptions="#//MMINTException"/>
     <eOperations name="openInstance" eExceptions="#//operator/Exception"/>
     <eOperations name="createWorkflowInstance" lowerBound="1" eType="#//Model" eExceptions="#//MMINTException">
       <eParameters name="newModelId" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -348,6 +346,7 @@
         <details key="documentation" value="The conversion operator types that use this model type as input (instances: always null)."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EMFInstanceRoot" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModelOrigin">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

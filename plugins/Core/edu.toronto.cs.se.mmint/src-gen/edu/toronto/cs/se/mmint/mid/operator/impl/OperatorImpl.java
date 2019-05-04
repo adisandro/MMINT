@@ -207,10 +207,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public EList<ModelEndpoint> getInputs() {
-    if (this.inputs == null) {
-      this.inputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
+    if (inputs == null) {
+      inputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__INPUTS);
     }
-    return this.inputs;
+    return inputs;
   }
 
     /**
@@ -220,10 +220,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public EList<ModelEndpoint> getOutputs() {
-    if (this.outputs == null) {
-      this.outputs = new EObjectContainmentEList<>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
+    if (outputs == null) {
+      outputs = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, OperatorPackage.OPERATOR__OUTPUTS);
     }
-    return this.outputs;
+    return outputs;
   }
 
     /**
@@ -233,10 +233,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public EList<GenericEndpoint> getGenerics() {
-    if (this.generics == null) {
-      this.generics = new EObjectContainmentEList<>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
+    if (generics == null) {
+      generics = new EObjectContainmentEList<GenericEndpoint>(GenericEndpoint.class, this, OperatorPackage.OPERATOR__GENERICS);
     }
-    return this.generics;
+    return generics;
   }
 
     /**
@@ -246,7 +246,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public String getWorkingPath() {
-    return this.workingPath;
+    return workingPath;
   }
 
     /**
@@ -256,10 +256,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public void setWorkingPath(String newWorkingPath) {
-    String oldWorkingPath = this.workingPath;
-    this.workingPath = newWorkingPath;
+    String oldWorkingPath = workingPath;
+    workingPath = newWorkingPath;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__WORKING_PATH, oldWorkingPath, this.workingPath));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__WORKING_PATH, oldWorkingPath, workingPath));
   }
 
     /**
@@ -269,7 +269,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public long getExecutionTime() {
-    return this.executionTime;
+    return executionTime;
   }
 
     /**
@@ -279,10 +279,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public void setExecutionTime(long newExecutionTime) {
-    long oldExecutionTime = this.executionTime;
-    this.executionTime = newExecutionTime;
+    long oldExecutionTime = executionTime;
+    executionTime = newExecutionTime;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, this.executionTime));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__EXECUTION_TIME, oldExecutionTime, executionTime));
   }
 
     /**
@@ -292,7 +292,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public boolean isCommutative() {
-    return this.commutative;
+    return commutative;
   }
 
     /**
@@ -302,10 +302,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
    */
     @Override
     public void setCommutative(boolean newCommutative) {
-    boolean oldCommutative = this.commutative;
-    this.commutative = newCommutative;
+    boolean oldCommutative = commutative;
+    commutative = newCommutative;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, this.commutative));
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.OPERATOR__COMMUTATIVE, oldCommutative, commutative));
   }
 
     /**
@@ -423,17 +423,17 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.OPERATOR__INPUTS:
-        return this.inputs != null && !this.inputs.isEmpty();
+        return inputs != null && !inputs.isEmpty();
       case OperatorPackage.OPERATOR__OUTPUTS:
-        return this.outputs != null && !this.outputs.isEmpty();
+        return outputs != null && !outputs.isEmpty();
       case OperatorPackage.OPERATOR__GENERICS:
-        return this.generics != null && !this.generics.isEmpty();
+        return generics != null && !generics.isEmpty();
       case OperatorPackage.OPERATOR__WORKING_PATH:
-        return WORKING_PATH_EDEFAULT == null ? this.workingPath != null : !WORKING_PATH_EDEFAULT.equals(this.workingPath);
+        return WORKING_PATH_EDEFAULT == null ? workingPath != null : !WORKING_PATH_EDEFAULT.equals(workingPath);
       case OperatorPackage.OPERATOR__EXECUTION_TIME:
-        return this.executionTime != EXECUTION_TIME_EDEFAULT;
+        return executionTime != EXECUTION_TIME_EDEFAULT;
       case OperatorPackage.OPERATOR__COMMUTATIVE:
-        return this.commutative != COMMUTATIVE_EDEFAULT;
+        return commutative != COMMUTATIVE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -642,11 +642,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (workingPath: ");
-    result.append(this.workingPath);
+    result.append(workingPath);
     result.append(", executionTime: ");
-    result.append(this.executionTime);
+    result.append(executionTime);
     result.append(", commutative: ");
-    result.append(this.commutative);
+    result.append(commutative);
     result.append(')');
     return result.toString();
   }

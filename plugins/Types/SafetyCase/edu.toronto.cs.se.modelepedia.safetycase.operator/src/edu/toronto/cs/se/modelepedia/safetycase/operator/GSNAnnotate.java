@@ -75,7 +75,7 @@ public class GSNAnnotate extends OperatorImpl {
                 MID recheckState = (MID) inputsByName.get(IN_RECHECK_STATE).getEMFInstanceRoot();
                 this.recheckStateRel = recheckState.getModelRels().get(0);
             }
-            catch (MMINTException e) {
+            catch (Exception e) {
                 throw new IllegalArgumentException();
             }
             this.scModel = this.reviseRel.getModelEndpoints().get(0).getTarget();

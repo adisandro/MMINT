@@ -105,6 +105,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/editors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mid.ecore#//Model/modelElems"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mid.ecore#//Model/conversionOperators"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference mid.ecore#//Model/EMFInstanceRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMetatype" body="ExtendibleElement metatype = super.getMetatype();&#xA;return (metatype == null) ? null : (Model) metatype;"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getSupertype" body="ExtendibleElement supertype = super.getSupertype();&#xA;return (supertype == null) ? null : (Model) supertype;"/>
       <genOperations ecoreOperation="mid.ecore#//Model/getMIDContainer" body="return (MID) this.eContainer();"/>
@@ -149,7 +151,6 @@
       </genOperations>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/deleteInstanceAndFile"/>
-      <genOperations ecoreOperation="mid.ecore#//Model/getEMFInstanceRoot"/>
       <genOperations ecoreOperation="mid.ecore#//Model/openInstance"/>
       <genOperations ecoreOperation="mid.ecore#//Model/createWorkflowInstance">
         <genParameters ecoreParameter="mid.ecore#//Model/createWorkflowInstance/newModelId"/>

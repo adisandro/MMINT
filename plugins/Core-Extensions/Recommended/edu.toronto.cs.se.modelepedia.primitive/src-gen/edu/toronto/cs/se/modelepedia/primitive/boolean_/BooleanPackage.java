@@ -33,107 +33,107 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface BooleanPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+   * The package name.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	String eNAME = "boolean";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+   * The package namespace URI.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	String eNS_URI = "http://se.cs.toronto.edu/modelepedia/Boolean";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+   * The package namespace name.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	String eNS_PREFIX = "boolean";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+   * The singleton instance of the package.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	BooleanPackage eINSTANCE = edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl <em>Boolean</em>}' class.
-	 * <!-- begin-user-doc -->
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl <em>Boolean</em>}' class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl
-	 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl#getBoolean()
-	 * @generated
-	 */
+   * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl
+   * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl#getBoolean()
+   * @generated
+   */
 	int BOOLEAN = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
 	int BOOLEAN__VALUE = 0;
 
 	/**
-	 * The number of structural features of the '<em>Boolean</em>' class.
-	 * <!-- begin-user-doc -->
+   * The number of structural features of the '<em>Boolean</em>' class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
 	int BOOLEAN_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Boolean</em>' class.
-	 * <!-- begin-user-doc -->
+   * The number of operations of the '<em>Boolean</em>' class.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+   * @generated
+   * @ordered
+   */
 	int BOOLEAN_OPERATION_COUNT = 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean <em>Boolean</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Boolean</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean
-	 * @generated
-	 */
+   * @return the meta object for class '<em>Boolean</em>'.
+   * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean
+   * @generated
+   */
 	EClass getBoolean();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean#isValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean#isValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean#isValue()
-	 * @see #getBoolean()
-	 * @generated
-	 */
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean#isValue()
+   * @see #getBoolean()
+   * @generated
+   */
 	EAttribute getBoolean_Value();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+   * Returns the factory that creates the instances of the model.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+   * @return the factory that creates the instances of the model.
+   * @generated
+   */
 	BooleanFactory getBooleanFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -143,25 +143,25 @@ public interface BooleanPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl <em>Boolean</em>}' class.
-		 * <!-- begin-user-doc -->
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl <em>Boolean</em>}' class.
+     * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl
-		 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl#getBoolean()
-		 * @generated
-		 */
+     * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanImpl
+     * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanPackageImpl#getBoolean()
+     * @generated
+     */
 		EClass BOOLEAN = eINSTANCE.getBoolean();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+     * @generated
+     */
 		EAttribute BOOLEAN__VALUE = eINSTANCE.getBoolean_Value();
 
 	}

@@ -82,6 +82,7 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getConversionOperators <em>Conversion Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.impl.ModelImpl#getEMFInstanceRoot <em>EMF Instance Root</em>}</li>
  * </ul>
  *
  * @generated
@@ -158,6 +159,16 @@ public class ModelImpl extends GenericElementImpl implements Model {
     protected EList<ConversionOperator> conversionOperators;
 
     /**
+   * The cached value of the '{@link #getEMFInstanceRoot() <em>EMF Instance Root</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEMFInstanceRoot()
+   * @generated
+   * @ordered
+   */
+  protected EObject emfInstanceRoot;
+
+    /**
      * The root model object when it is not serialized in an ECore model file (different from
      * {@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#inMemoryNestedMID}, this is NOT for
      * performance reasons).
@@ -192,7 +203,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public ModelOrigin getOrigin() {
-    return origin;
+    return this.origin;
   }
 
     /**
@@ -202,10 +213,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
-    ModelOrigin oldOrigin = origin;
-    origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
+    ModelOrigin oldOrigin = this.origin;
+    this.origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, origin));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
   }
 
     /**
@@ -215,7 +226,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public String getFileExtension() {
-    return fileExtension;
+    return this.fileExtension;
   }
 
     /**
@@ -225,10 +236,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setFileExtension(String newFileExtension) {
-    String oldFileExtension = fileExtension;
-    fileExtension = newFileExtension;
+    String oldFileExtension = this.fileExtension;
+    this.fileExtension = newFileExtension;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
   }
 
     /**
@@ -238,10 +249,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<Editor> getEditors() {
-    if (editors == null) {
-      editors = new EObjectResolvingEList<Editor>(Editor.class, this, MIDPackage.MODEL__EDITORS);
+    if (this.editors == null) {
+      this.editors = new EObjectResolvingEList<>(Editor.class, this, MIDPackage.MODEL__EDITORS);
     }
-    return editors;
+    return this.editors;
   }
 
     /**
@@ -251,10 +262,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<ModelElement> getModelElems() {
-    if (modelElems == null) {
-      modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
+    if (this.modelElems == null) {
+      this.modelElems = new EObjectContainmentEList<>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
     }
-    return modelElems;
+    return this.modelElems;
   }
 
     /**
@@ -264,10 +275,70 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<ConversionOperator> getConversionOperators() {
-    if (conversionOperators == null) {
-      conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
+    if (this.conversionOperators == null) {
+      this.conversionOperators = new EObjectResolvingEList<>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
     }
-    return conversionOperators;
+    return this.conversionOperators;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EObject getEMFInstanceRootGen() {
+    if (this.emfInstanceRoot != null && this.emfInstanceRoot.eIsProxy()) {
+      InternalEObject oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
+      this.emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
+      if (this.emfInstanceRoot != oldEMFInstanceRoot) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
+      }
+    }
+    return this.emfInstanceRoot;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EObject getEMFInstanceRoot() {
+    try {
+      MMINTException.mustBeInstance(this);
+      if (this.inMemoryRootModelObj != null) {
+        return EcoreUtil.copy(this.inMemoryRootModelObj);
+      }
+      var rootModelObj = getEMFInstanceRootGen();
+      if (rootModelObj == null) {
+        rootModelObj = FileUtils.readModelFile(this.getUri(), true);
+      }
+      return rootModelObj;
+    }
+    catch (Exception e) {
+      return null;
+    }
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EObject basicGetEMFInstanceRoot() {
+    return this.emfInstanceRoot;
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setEMFInstanceRoot(EObject newEMFInstanceRoot) {
+    EObject oldEMFInstanceRoot = this.emfInstanceRoot;
+    this.emfInstanceRoot = newEMFInstanceRoot;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
   }
 
     /**
@@ -334,6 +405,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
         return getModelElems();
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
         return getConversionOperators();
+      case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
+        if (resolve) return getEMFInstanceRoot();
+        return basicGetEMFInstanceRoot();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -365,6 +439,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
         getConversionOperators().clear();
         getConversionOperators().addAll((Collection<? extends ConversionOperator>)newValue);
         return;
+      case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
+        setEMFInstanceRoot((EObject)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -392,6 +469,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
         getConversionOperators().clear();
         return;
+      case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
+        setEMFInstanceRoot((EObject)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -405,15 +485,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.MODEL__ORIGIN:
-        return origin != ORIGIN_EDEFAULT;
+        return this.origin != ORIGIN_EDEFAULT;
       case MIDPackage.MODEL__FILE_EXTENSION:
-        return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
+        return FILE_EXTENSION_EDEFAULT == null ? this.fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(this.fileExtension);
       case MIDPackage.MODEL__EDITORS:
-        return editors != null && !editors.isEmpty();
+        return this.editors != null && !this.editors.isEmpty();
       case MIDPackage.MODEL__MODEL_ELEMS:
-        return modelElems != null && !modelElems.isEmpty();
+        return this.modelElems != null && !this.modelElems.isEmpty();
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
-        return conversionOperators != null && !conversionOperators.isEmpty();
+        return this.conversionOperators != null && !this.conversionOperators.isEmpty();
+      case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
+        return this.emfInstanceRoot != null;
     }
     return super.eIsSet(featureID);
   }
@@ -544,13 +626,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case MIDPackage.MODEL___GET_EMF_INSTANCE_ROOT:
-        try {
-          return getEMFInstanceRoot();
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
       case MIDPackage.MODEL___OPEN_INSTANCE:
         try {
           openInstance();
@@ -589,9 +664,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (origin: ");
-    result.append(origin);
+    result.append(this.origin);
     result.append(", fileExtension: ");
-    result.append(fileExtension);
+    result.append(this.fileExtension);
     result.append(')');
     return result.toString();
   }
@@ -931,6 +1006,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             }
             else {
                 FileUtils.writeModelFile(rootModelObj, newModelPath, true);
+                newModel.setEMFInstanceRoot(rootModelObj);
             }
         }
 
@@ -1185,27 +1261,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
         }
         FileUtils.deleteFile(this.getUri(), true);
         this.deleteInstance();
-    }
-
-    /**
-     * @generated NOT
-     */
-    @Override
-    public EObject getEMFInstanceRoot() throws MMINTException {
-
-        MMINTException.mustBeInstance(this);
-
-        if (this.inMemoryRootModelObj != null) {
-            return EcoreUtil.copy(this.inMemoryRootModelObj);
-        }
-
-        try {
-            EObject rootModelObj = FileUtils.readModelFile(this.getUri(), true);
-            return rootModelObj;
-        }
-        catch (Exception e) {
-            throw new MMINTException("Error accessing the model file for model " + this.getUri(), e);
-        }
     }
 
     /**

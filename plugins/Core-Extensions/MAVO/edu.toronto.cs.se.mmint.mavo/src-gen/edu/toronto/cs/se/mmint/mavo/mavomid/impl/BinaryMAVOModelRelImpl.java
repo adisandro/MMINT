@@ -27,22 +27,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class BinaryMAVOModelRelImpl extends BinaryModelRelImpl implements BinaryMAVOModelRel {
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	protected BinaryMAVOModelRelImpl() {
-        super();
-    }
+    super();
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-        return MAVOMIDPackage.Literals.BINARY_MAVO_MODEL_REL;
-    }
+    return MAVOMIDPackage.Literals.BINARY_MAVO_MODEL_REL;
+  }
 
 } //MAVOBinaryModelRelImpl

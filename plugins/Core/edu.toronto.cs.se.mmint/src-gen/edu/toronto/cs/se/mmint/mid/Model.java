@@ -39,6 +39,7 @@ import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEditors <em>Editors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getModelElems <em>Model Elems</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getConversionOperators <em>Conversion Operators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot <em>EMF Instance Root</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel()
@@ -428,14 +429,26 @@ public interface Model extends GenericElement {
     void deleteInstanceAndFile() throws MMINTException;
 
     /**
-   * <!-- begin-user-doc --> Gets the EMF object root of this model.
-     *
-     * @throws MMINTException
-     *             If this is not a model instance, or if the model file can't be accessed. <!-- end-user-doc -->
-   * @model kind="operation" required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+   * Returns the value of the '<em><b>EMF Instance Root</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>EMF Instance Root</em>' reference.
+   * @see #setEMFInstanceRoot(EObject)
+   * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel_EMFInstanceRoot()
+   * @model
    * @generated
    */
-    EObject getEMFInstanceRoot() throws MMINTException;
+    EObject getEMFInstanceRoot();
+
+    /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot <em>EMF Instance Root</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>EMF Instance Root</em>' reference.
+   * @see #getEMFInstanceRoot()
+   * @generated
+   */
+  void setEMFInstanceRoot(EObject value);
 
     /**
    * <!-- begin-user-doc --> Opens the editor associated with this model instance.

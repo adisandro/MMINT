@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -27,13 +27,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
+import edu.toronto.cs.se.mavo.MAVOCollection;
+import edu.toronto.cs.se.mavo.MAVOElement;
+import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModel;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElement;
 import edu.toronto.cs.se.mmint.mavo.mavomid.MAVOModelElementReference;
-import edu.toronto.cs.se.mavo.MAVOCollection;
-import edu.toronto.cs.se.mavo.MAVOElement;
-import edu.toronto.cs.se.mavo.MAVORoot;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -167,14 +167,7 @@ public class MAVOUtils {
 	}
 
 	public static boolean isMAVOModel(Model model) {
-
-		try {
-			return isMAVOModel(model.getEMFInstanceRoot());
-		}
-		catch (MMINTException e) {
-			MMINTException.print(IStatus.WARNING, "Can't get model root object, skipping MAVO evaluation", e);
-			return false;
-		}
+	  return isMAVOModel(model.getEMFInstanceRoot());
 	}
 
 	public static boolean isMAVOElement(ModelElement modelElem) {

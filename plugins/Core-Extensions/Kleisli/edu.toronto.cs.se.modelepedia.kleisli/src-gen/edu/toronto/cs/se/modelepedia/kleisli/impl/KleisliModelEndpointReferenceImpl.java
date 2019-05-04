@@ -40,71 +40,72 @@ import edu.toronto.cs.se.modelepedia.kleisli.reasoning.KleisliReasoningEngine;
  */
 public class KleisliModelEndpointReferenceImpl extends ModelEndpointReferenceImpl implements KleisliModelEndpointReference {
 	/**
-     * The default value of the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getExtendedTargetUri() <em>Extended Target Uri</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getExtendedTargetUri()
-     * @generated
-     * @ordered
-     */
+   * @see #getExtendedTargetUri()
+   * @generated
+   * @ordered
+   */
 	protected static final String EXTENDED_TARGET_URI_EDEFAULT = null;
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	protected KleisliModelEndpointReferenceImpl() {
-        super();
-    }
+    super();
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-        return KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE;
-    }
+    return KleisliPackage.Literals.KLEISLI_MODEL_ENDPOINT_REFERENCE;
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public String getExtendedTargetUri() {
-        // TODO: implement this method to return the 'Extended Target Uri' attribute
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
+   * @generated
+   */
+	@Override
+  public String getExtendedTargetUri() {
+    // TODO: implement this method to return the 'Extended Target Uri' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
-                return getExtendedTargetUri();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
+        return getExtendedTargetUri();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
-                return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case KleisliPackage.KLEISLI_MODEL_ENDPOINT_REFERENCE__EXTENDED_TARGET_URI:
+        return EXTENDED_TARGET_URI_EDEFAULT == null ? getExtendedTargetUri() != null : !EXTENDED_TARGET_URI_EDEFAULT.equals(getExtendedTargetUri());
     }
+    return super.eIsSet(featureID);
+  }
 
 	/**
 	 * @generated NOT

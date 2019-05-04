@@ -23,29 +23,29 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface BooleanFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+   * The singleton instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	BooleanFactory eINSTANCE = edu.toronto.cs.se.modelepedia.primitive.boolean_.impl.BooleanFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Boolean</em>'.
-	 * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Boolean</em>'.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Boolean</em>'.
-	 * @generated
-	 */
+   * @return a new object of class '<em>Boolean</em>'.
+   * @generated
+   */
 	Boolean createBoolean();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+   * Returns the package supported by this factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+   * @return the package supported by this factory.
+   * @generated
+   */
 	BooleanPackage getBooleanPackage();
 
 } //BooleanFactory

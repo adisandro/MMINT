@@ -31,29 +31,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Boolean extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(boolean)
-	 * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage#getBoolean_Value()
-	 * @model required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(boolean)
+   * @see edu.toronto.cs.se.modelepedia.primitive.boolean_.BooleanPackage#getBoolean_Value()
+   * @model required="true"
+   * @generated
+   */
 	boolean isValue();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean#isValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.primitive.boolean_.Boolean#isValue <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
-	 * @see #isValue()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #isValue()
+   * @generated
+   */
 	void setValue(boolean value);
 
 } // Boolean

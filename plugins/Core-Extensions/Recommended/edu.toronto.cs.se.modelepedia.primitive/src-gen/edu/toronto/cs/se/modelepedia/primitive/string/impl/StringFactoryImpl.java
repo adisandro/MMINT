@@ -30,76 +30,78 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class StringFactoryImpl extends EFactoryImpl implements StringFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static StringFactory init() {
-		try {
-			StringFactory theStringFactory = (StringFactory)EPackage.Registry.INSTANCE.getEFactory(StringPackage.eNS_URI);
-			if (theStringFactory != null) {
-				return theStringFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new StringFactoryImpl();
-	}
+    try {
+      StringFactory theStringFactory = (StringFactory)EPackage.Registry.INSTANCE.getEFactory(StringPackage.eNS_URI);
+      if (theStringFactory != null) {
+        return theStringFactory;
+      }
+    }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new StringFactoryImpl();
+  }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public StringFactoryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case StringPackage.STRING: return createString();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eClass.getClassifierID()) {
+      case StringPackage.STRING: return createString();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public edu.toronto.cs.se.modelepedia.primitive.string.String createString() {
-		StringImpl string = new StringImpl();
-		return string;
-	}
+   * @generated
+   */
+	@Override
+  public edu.toronto.cs.se.modelepedia.primitive.string.String createString() {
+    StringImpl string = new StringImpl();
+    return string;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringPackage getStringPackage() {
-		return (StringPackage)getEPackage();
-	}
+   * @generated
+   */
+	@Override
+  public StringPackage getStringPackage() {
+    return (StringPackage)getEPackage();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+   * @deprecated
+   * @generated
+   */
 	@Deprecated
 	public static StringPackage getPackage() {
-		return StringPackage.eINSTANCE;
-	}
+    return StringPackage.eINSTANCE;
+  }
 
 } //StringFactoryImpl

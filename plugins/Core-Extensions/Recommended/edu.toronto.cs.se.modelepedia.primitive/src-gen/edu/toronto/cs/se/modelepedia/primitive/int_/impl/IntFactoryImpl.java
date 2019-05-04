@@ -29,76 +29,78 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class IntFactoryImpl extends EFactoryImpl implements IntFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static IntFactory init() {
-		try {
-			IntFactory theIntFactory = (IntFactory)EPackage.Registry.INSTANCE.getEFactory(IntPackage.eNS_URI);
-			if (theIntFactory != null) {
-				return theIntFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new IntFactoryImpl();
-	}
+    try {
+      IntFactory theIntFactory = (IntFactory)EPackage.Registry.INSTANCE.getEFactory(IntPackage.eNS_URI);
+      if (theIntFactory != null) {
+        return theIntFactory;
+      }
+    }
+    catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new IntFactoryImpl();
+  }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public IntFactoryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case IntPackage.INT: return createInt();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eClass.getClassifierID()) {
+      case IntPackage.INT: return createInt();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Int createInt() {
-		IntImpl int_ = new IntImpl();
-		return int_;
-	}
+   * @generated
+   */
+	@Override
+  public Int createInt() {
+    IntImpl int_ = new IntImpl();
+    return int_;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntPackage getIntPackage() {
-		return (IntPackage)getEPackage();
-	}
+   * @generated
+   */
+	@Override
+  public IntPackage getIntPackage() {
+    return (IntPackage)getEPackage();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+   * @deprecated
+   * @generated
+   */
 	@Deprecated
 	public static IntPackage getPackage() {
-		return IntPackage.eINSTANCE;
-	}
+    return IntPackage.eINSTANCE;
+  }
 
 } //IntFactoryImpl

@@ -1146,13 +1146,22 @@ public interface MIDPackage extends EPackage {
     int MODEL__CONVERSION_OPERATORS = GENERIC_ELEMENT_FEATURE_COUNT + 4;
 
     /**
+   * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__EMF_INSTANCE_ROOT = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+
+    /**
    * The number of structural features of the '<em>Model</em>' class.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 5;
+    int MODEL_FEATURE_COUNT = GENERIC_ELEMENT_FEATURE_COUNT + 6;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -1434,22 +1443,13 @@ public interface MIDPackage extends EPackage {
     int MODEL___DELETE_INSTANCE_AND_FILE = GENERIC_ELEMENT_OPERATION_COUNT + 15;
 
     /**
-   * The operation id for the '<em>Get EMF Instance Root</em>' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-    int MODEL___GET_EMF_INSTANCE_ROOT = GENERIC_ELEMENT_OPERATION_COUNT + 16;
-
-    /**
    * The operation id for the '<em>Open Instance</em>' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-    int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 17;
+    int MODEL___OPEN_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 16;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1458,7 +1458,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 18;
+    int MODEL___CREATE_WORKFLOW_INSTANCE__STRING_MID = GENERIC_ELEMENT_OPERATION_COUNT + 17;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -1467,7 +1467,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL___DELETE_WORKFLOW_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 19;
+    int MODEL___DELETE_WORKFLOW_INSTANCE = GENERIC_ELEMENT_OPERATION_COUNT + 18;
 
     /**
    * The number of operations of the '<em>Model</em>' class.
@@ -1476,7 +1476,7 @@ public interface MIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 20;
+    int MODEL_OPERATION_COUNT = GENERIC_ELEMENT_OPERATION_COUNT + 19;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementConstraintImpl <em>Extendible Element Constraint</em>}' class.
@@ -2962,6 +2962,17 @@ public interface MIDPackage extends EPackage {
     EReference getModel_ConversionOperators();
 
     /**
+   * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot <em>EMF Instance Root</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>EMF Instance Root</em>'.
+   * @see edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot()
+   * @see #getModel()
+   * @generated
+   */
+  EReference getModel_EMFInstanceRoot();
+
+    /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#getMetatype() <em>Get Metatype</em>}' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3110,16 +3121,6 @@ public interface MIDPackage extends EPackage {
    * @generated
    */
     EOperation getModel__DeleteInstanceAndFile();
-
-    /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot() <em>Get EMF Instance Root</em>}' operation.
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get EMF Instance Root</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mid.Model#getEMFInstanceRoot()
-   * @generated
-   */
-    EOperation getModel__GetEMFInstanceRoot();
 
     /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.Model#openType() <em>Open Type</em>}' operation.
@@ -4125,6 +4126,14 @@ public interface MIDPackage extends EPackage {
         EReference MODEL__CONVERSION_OPERATORS = eINSTANCE.getModel_ConversionOperators();
 
         /**
+     * The meta object literal for the '<em><b>EMF Instance Root</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL__EMF_INSTANCE_ROOT = eINSTANCE.getModel_EMFInstanceRoot();
+
+        /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4243,14 +4252,6 @@ public interface MIDPackage extends EPackage {
      * @generated
      */
         EOperation MODEL___DELETE_INSTANCE_AND_FILE = eINSTANCE.getModel__DeleteInstanceAndFile();
-
-        /**
-     * The meta object literal for the '<em><b>Get EMF Instance Root</b></em>' operation.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        EOperation MODEL___GET_EMF_INSTANCE_ROOT = eINSTANCE.getModel__GetEMFInstanceRoot();
 
         /**
      * The meta object literal for the '<em><b>Open Type</b></em>' operation.

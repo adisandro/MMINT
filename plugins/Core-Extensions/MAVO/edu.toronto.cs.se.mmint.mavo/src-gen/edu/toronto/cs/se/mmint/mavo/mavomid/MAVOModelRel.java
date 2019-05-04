@@ -33,11 +33,11 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 public interface MAVOModelRel extends ModelRel {
 
 	/**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * MAVO version. {@inheritDoc}
 	 * <!-- end-user-doc -->
-     * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
-     * @generated
-     */
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" origModelRequired="true" newModelNameRequired="true" instanceMIDRequired="true"
+   * @generated
+   */
 	Model copyInstance(Model origModel, String newModelName, MID instanceMID) throws MMINTException;
 } // MAVOModelRel
