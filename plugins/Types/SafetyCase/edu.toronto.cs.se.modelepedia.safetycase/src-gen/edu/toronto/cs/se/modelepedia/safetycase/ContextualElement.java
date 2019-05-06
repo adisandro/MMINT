@@ -28,6 +28,8 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getContextualElement()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContextualElementSupporter ContextualElementContext'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ContextualElementSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()' ContextualElementContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
  * @generated
  */
 public interface ContextualElement extends ArgumentElement {

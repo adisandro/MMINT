@@ -31,10 +31,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getContexts <em>Contexts</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getAssumptions <em>Assumptions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase#getConnectors <em>Connectors</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SingleRoot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SingleRoot='Supporter.allInstances() -&gt; \n\t\t\tselect(d | d.supports.source -&gt; isEmpty()) -&gt; size() = 1'"
  * @generated
  */
 public interface SafetyCase extends EObject {
@@ -133,5 +135,21 @@ public interface SafetyCase extends EObject {
 	 * @generated
 	 */
 	EList<Assumption> getAssumptions();
+
+	/**
+	 * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
+	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportConnector}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Connectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Connectors</em>' containment reference list.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Connectors()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<SupportConnector> getConnectors();
 
 } // SafetyCase

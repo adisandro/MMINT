@@ -137,6 +137,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -146,6 +147,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -158,6 +160,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -167,6 +170,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -179,6 +183,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValidityValue getContentValidity() {
 		return contentValidity;
 	}
@@ -188,6 +193,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContentValidity(ValidityValue newContentValidity) {
 		ValidityValue oldContentValidity = contentValidity;
 		contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
@@ -200,6 +206,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ImpactAnnotation getStatus() {
 		return status;
 	}
@@ -224,6 +231,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatus(ImpactAnnotation newStatus) {
 		if (newStatus != status) {
 			NotificationChain msgs = null;

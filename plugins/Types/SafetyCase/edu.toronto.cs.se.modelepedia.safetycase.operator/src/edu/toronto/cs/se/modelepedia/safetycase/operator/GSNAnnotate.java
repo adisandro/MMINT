@@ -44,6 +44,8 @@ import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.StatefulElement;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNAnnotate extends OperatorImpl {
@@ -103,7 +105,7 @@ public class GSNAnnotate extends OperatorImpl {
         }
     }
 
-    private Model annotate(@NonNull Model scModel, @NonNull ModelRel reviseRel, @NonNull ModelRel recheckContentRel,
+    protected Model annotate(@NonNull Model scModel, @NonNull ModelRel reviseRel, @NonNull ModelRel recheckContentRel,
                            @NonNull ModelRel recheckStateRel, @Nullable MID outputMID) throws Exception {
 
         SafetyCase scRoot = (SafetyCase) scModel.getEMFInstanceRoot();
@@ -256,11 +258,6 @@ public class GSNAnnotate extends OperatorImpl {
         while (scIter.hasNext()) {
             EObject scObj = scIter.next();
 
-            if (!(scObj instanceof CoreElement)) {
-            	continue;
-            }
-
-
             if (scObj instanceof ArgumentElement) {
             	ImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
 
@@ -301,10 +298,41 @@ public class GSNAnnotate extends OperatorImpl {
             		annotation.setSource("Not applicable.");
             		((ASILfulElement) scObj).getAsil().setStatus(annotation);
 
-            		if (scReviseObjs.contains(scObj)) {
+            		if (scReviseObjs.contains(scObj)) {          			
+            			// Find the parent decomposable core elements.
+            			Set<Supportable> supportableCur = new HashSet<>();
+            			Set<Supportable> supportableNext = new HashSet<>();
+            			Set<Supportable> supportableAll = new HashSet<>();
+            			
+            			for (SupportedBy rel: elem.getSupports()) {
+            				supportableCur.add(rel.getSource());
+            				supportableAll.add(rel.getSource());
+            			}
+            			
+            			while (!supportableCur.isEmpty()) {
+            				for (Supportable curElem: supportableCur) {
+            					if (curElem instanceof SupportConnector) {
+            						for (SupportedBy rel: curElem.getSupports()) {
+            							supportableNext.add(rel.getSource());
+            						}
+            					}
+            				}
+            				
+            				supportableCur.clear();
+            				for (Supportable nextElem: supportableNext) {
+            					if (!supportableAll.contains(nextElem)) {
+            						supportableAll.add(nextElem);
+            						supportableCur.add(nextElem);
+            					}
+            				}
+            				
+            				supportableNext.clear();
+            			}
+            			
+            			// Check if any parent is an ASIL decomposition strategy.
             			boolean supportsAsilDecomp = false;
-            			for (SupportedBy rel : elem.getSupports()) {
-            				if (rel.getConclusion() instanceof ASILDecompositionStrategy) {
+            			for (Supportable curElem: supportableAll) {
+            				if  (curElem instanceof ASILDecompositionStrategy) {
             					supportsAsilDecomp = true;
             				}
             			}

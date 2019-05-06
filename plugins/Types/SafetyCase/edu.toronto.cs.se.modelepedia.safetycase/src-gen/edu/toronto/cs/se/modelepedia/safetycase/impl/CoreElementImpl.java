@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.impl;
 import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
 import java.util.Collection;
 
@@ -76,9 +77,10 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SupportedBy> getSupports() {
 		if (supports == null) {
-			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__PREMISE);
+			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__TARGET);
 		}
 		return supports;
 	}
@@ -170,6 +172,38 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 				return supports != null && !supports.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Supporter.class) {
+			switch (derivedFeatureID) {
+				case SafetyCasePackage.CORE_ELEMENT__SUPPORTS: return SafetyCasePackage.SUPPORTER__SUPPORTS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Supporter.class) {
+			switch (baseFeatureID) {
+				case SafetyCasePackage.SUPPORTER__SUPPORTS: return SafetyCasePackage.CORE_ELEMENT__SUPPORTS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //CoreElementImpl

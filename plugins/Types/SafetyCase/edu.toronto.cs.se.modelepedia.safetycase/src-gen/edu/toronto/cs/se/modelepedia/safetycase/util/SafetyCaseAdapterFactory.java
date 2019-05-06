@@ -162,6 +162,34 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createImpactAnnotationAdapter();
 			}
 			@Override
+			public Adapter caseSupportable(Supportable object) {
+				return createSupportableAdapter();
+			}
+			@Override
+			public Adapter caseSupporter(Supporter object) {
+				return createSupporterAdapter();
+			}
+			@Override
+			public Adapter caseSupportConnector(SupportConnector object) {
+				return createSupportConnectorAdapter();
+			}
+			@Override
+			public Adapter caseAndSupporter(AndSupporter object) {
+				return createAndSupporterAdapter();
+			}
+			@Override
+			public Adapter caseOrSupporter(OrSupporter object) {
+				return createOrSupporterAdapter();
+			}
+			@Override
+			public Adapter caseXorSupporter(XorSupporter object) {
+				return createXorSupporterAdapter();
+			}
+			@Override
+			public Adapter caseMofNSupporter(MofNSupporter object) {
+				return createMofNSupporterAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -472,6 +500,104 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImpactAnnotationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Supportable <em>Supportable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Supportable
+	 * @generated
+	 */
+	public Adapter createSupportableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.Supporter <em>Supporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Supporter
+	 * @generated
+	 */
+	public Adapter createSupporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportConnector <em>Support Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportConnector
+	 * @generated
+	 */
+	public Adapter createSupportConnectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.AndSupporter <em>And Supporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.AndSupporter
+	 * @generated
+	 */
+	public Adapter createAndSupporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.OrSupporter <em>Or Supporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.OrSupporter
+	 * @generated
+	 */
+	public Adapter createOrSupporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter <em>Xor Supporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.XorSupporter
+	 * @generated
+	 */
+	public Adapter createXorSupporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter <em>Mof NSupporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter
+	 * @generated
+	 */
+	public Adapter createMofNSupporterAdapter() {
 		return null;
 	}
 

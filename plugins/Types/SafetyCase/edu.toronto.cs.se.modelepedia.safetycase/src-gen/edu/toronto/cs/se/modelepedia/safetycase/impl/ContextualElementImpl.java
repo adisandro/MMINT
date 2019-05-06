@@ -76,6 +76,7 @@ public abstract class ContextualElementImpl extends ArgumentElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InContextOf> getContextOf() {
 		if (contextOf == null) {
 			contextOf = new EObjectWithInverseResolvingEList<InContextOf>(InContextOf.class, this, SafetyCasePackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, SafetyCasePackage.IN_CONTEXT_OF__CONTEXT);

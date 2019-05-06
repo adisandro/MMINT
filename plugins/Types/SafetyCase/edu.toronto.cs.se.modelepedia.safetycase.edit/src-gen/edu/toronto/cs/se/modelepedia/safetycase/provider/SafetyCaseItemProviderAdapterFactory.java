@@ -381,11 +381,104 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.AndSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AndSupporterItemProvider andSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.AndSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAndSupporterAdapter() {
+		if (andSupporterItemProvider == null) {
+			andSupporterItemProvider = new AndSupporterItemProvider(this);
+		}
+
+		return andSupporterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.OrSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrSupporterItemProvider orSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.OrSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrSupporterAdapter() {
+		if (orSupporterItemProvider == null) {
+			orSupporterItemProvider = new OrSupporterItemProvider(this);
+		}
+
+		return orSupporterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected XorSupporterItemProvider xorSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createXorSupporterAdapter() {
+		if (xorSupporterItemProvider == null) {
+			xorSupporterItemProvider = new XorSupporterItemProvider(this);
+		}
+
+		return xorSupporterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MofNSupporterItemProvider mofNSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMofNSupporterAdapter() {
+		if (mofNSupporterItemProvider == null) {
+			mofNSupporterItemProvider = new MofNSupporterItemProvider(this);
+		}
+
+		return mofNSupporterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -396,6 +489,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -444,6 +538,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -454,6 +549,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -464,6 +560,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -478,6 +575,7 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (safetyCaseItemProvider != null) safetyCaseItemProvider.dispose();
 		if (supportedByItemProvider != null) supportedByItemProvider.dispose();
@@ -492,6 +590,10 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
 		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
+		if (andSupporterItemProvider != null) andSupporterItemProvider.dispose();
+		if (orSupporterItemProvider != null) orSupporterItemProvider.dispose();
+		if (xorSupporterItemProvider != null) xorSupporterItemProvider.dispose();
+		if (mofNSupporterItemProvider != null) mofNSupporterItemProvider.dispose();
 	}
 
 }

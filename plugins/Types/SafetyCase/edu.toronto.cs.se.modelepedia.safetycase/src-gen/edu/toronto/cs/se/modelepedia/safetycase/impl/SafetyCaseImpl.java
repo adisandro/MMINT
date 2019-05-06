@@ -20,6 +20,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 
 import java.util.Collection;
 
@@ -49,6 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getAssumptions <em>Assumptions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getConnectors <em>Connectors</em>}</li>
  * </ul>
  *
  * @generated
@@ -115,6 +117,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	protected EList<Assumption> assumptions;
 
 	/**
+	 * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SupportConnector> connectors;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -138,6 +150,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Goal> getGoals() {
 		if (goals == null) {
 			goals = new EObjectContainmentEList<Goal>(Goal.class, this, SafetyCasePackage.SAFETY_CASE__GOALS);
@@ -150,6 +163,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Strategy> getStrategies() {
 		if (strategies == null) {
 			strategies = new EObjectContainmentEList<Strategy>(Strategy.class, this, SafetyCasePackage.SAFETY_CASE__STRATEGIES);
@@ -162,6 +176,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Solution> getSolutions() {
 		if (solutions == null) {
 			solutions = new EObjectContainmentEList<Solution>(Solution.class, this, SafetyCasePackage.SAFETY_CASE__SOLUTIONS);
@@ -174,6 +189,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Context> getContexts() {
 		if (contexts == null) {
 			contexts = new EObjectContainmentEList<Context>(Context.class, this, SafetyCasePackage.SAFETY_CASE__CONTEXTS);
@@ -186,6 +202,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Justification> getJustifications() {
 		if (justifications == null) {
 			justifications = new EObjectContainmentEList<Justification>(Justification.class, this, SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS);
@@ -198,11 +215,25 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Assumption> getAssumptions() {
 		if (assumptions == null) {
 			assumptions = new EObjectContainmentEList<Assumption>(Assumption.class, this, SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS);
 		}
 		return assumptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SupportConnector> getConnectors() {
+		if (connectors == null) {
+			connectors = new EObjectContainmentEList<SupportConnector>(SupportConnector.class, this, SafetyCasePackage.SAFETY_CASE__CONNECTORS);
+		}
+		return connectors;
 	}
 
 	/**
@@ -225,6 +256,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return ((InternalEList<?>)getJustifications()).basicRemove(otherEnd, msgs);
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				return ((InternalEList<?>)getAssumptions()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -249,6 +282,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return getJustifications();
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				return getAssumptions();
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				return getConnectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,6 +321,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				getAssumptions().clear();
 				getAssumptions().addAll((Collection<? extends Assumption>)newValue);
 				return;
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				getConnectors().clear();
+				getConnectors().addAll((Collection<? extends SupportConnector>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -316,6 +355,9 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				getAssumptions().clear();
 				return;
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				getConnectors().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -340,6 +382,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return justifications != null && !justifications.isEmpty();
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				return assumptions != null && !assumptions.isEmpty();
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				return connectors != null && !connectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

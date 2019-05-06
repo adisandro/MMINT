@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="safetycase" version="11.1.1.201610211630">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="safetycase" version="12.0.0.2017041100">
   <ownedViewpoints name="SafetyCaseViewpoint" modelFileExtension="safetycase">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SafetyCaseRepresentation" domainClass="safetycase.SafetyCase">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore#/"/>
@@ -110,7 +110,35 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetFinderExpression="feature:premise" sourceFinderExpression="feature:eContainer" domainClass="safetycase.SupportedBy" useDomainElement="true">
+        <nodeMappings name="AndSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.AndSupporter">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="And" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="OrSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.OrSupporter">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Or" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="XorSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.XorSupporter">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Xor" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="MofNSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.MofNSupporter">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:let denominator = self.supportedBy -> size() in self.target + ' of ' + denominator" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='OrSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AndSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='MofNSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='XorSupporterNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AndSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='OrSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='MofNSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='XorSupporterNode']" targetFinderExpression="feature:target" sourceFinderExpression="feature:eContainer" domainClass="safetycase.SupportedBy" useDomainElement="true">
           <style targetArrow="InputFillClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -127,12 +155,21 @@
           </style>
         </edgeMappings>
         <toolSections name="Tools">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateGoal" label="Create goal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateBasicGoal" label="Create basic goal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.Goal" referenceName="goals"/>
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.BasicGoal" referenceName="goals"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateIndependenceGoal" label="Create independence goal" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.IndependenceGoal" referenceName="goals"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -225,8 +262,8 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.SupportedBy" referenceName="supportedBy">
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="conclusion" valueExpression="var:source"/>
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="premise" valueExpression="var:target"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -245,6 +282,42 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAndSupporter" label="Create And-supporter" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AndSupporterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.AndSupporter" referenceName="connectors"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateOrSupporter" label="Create Or-supporter" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='OrSupporterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.OrSupporter" referenceName="connectors"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateXorSupporter" label="Create Xor-supporter" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='XorSupporterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.XorSupporter" referenceName="connectors"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateMofNSupporter" label="Create M-of-N-supporter" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='MofNSupporterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.MofNSupporter" referenceName="connectors"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
@@ -254,7 +327,6 @@
       <ownedLineMappings name="RecheckContentLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Recheck Content"/>
       <ownedLineMappings name="RecheckStateLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Recheck State"/>
       <ownedLineMappings name="ReuseLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Reuse"/>
-      <ownedLineMappings name="UndeterminedLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Blank"/>
       <ownedLineMappings name="TotalLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Total"/>
       <ownedColumnMappings name="GoalColumn" headerLabelExpression="Goals" featureName="goals" labelExpression="aql:let s = self.goals in let total = s -> size(), revise = s -> select(x | x.status.type = safetycase::ImpactType::Revise) -> size(), recheckContent = s -> select(x | x.status.type = safetycase::ImpactType::RecheckContent) -> size(), recheckState = s -> select(x | x.status.type = safetycase::ImpactType::RecheckState) -> size(), reuse = s -> select(x | x.status.type = safetycase::ImpactType::Reuse) -> size() in let undet = total - revise - recheckContent - recheckState - reuse in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck Content' then recheckContent + ' (' + recheckContent*100/total + '%)' else if line.label = 'Recheck State' then recheckState + ' (' + recheckState*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Blank' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif endif"/>
       <ownedColumnMappings name="StrategyColumn" headerLabelExpression="Strategies" featureName="strategies" labelExpression="aql:let s = self.strategies in let total = s -> size(), revise = s -> select(x | x.status.type = safetycase::ImpactType::Revise) -> size(), recheckContent = s -> select(x | x.status.type = safetycase::ImpactType::RecheckContent) -> size(), recheckState = s -> select(x | x.status.type = safetycase::ImpactType::RecheckState) -> size(), reuse = s -> select(x | x.status.type = safetycase::ImpactType::Reuse) -> size() in let undet = total - revise - recheckContent - recheckState - reuse in if line.label = 'Revise' then revise + ' (' + revise*100/total + '%)' else if line.label = 'Recheck Content' then recheckContent + ' (' + recheckContent*100/total + '%)' else if line.label = 'Recheck State' then recheckState + ' (' + recheckState*100/total + '%)' else if line.label = 'Reuse' then reuse + ' (' + reuse*100/total + '%)' else if line.label = 'Blank' then undet + ' (' + undet*100/total + '%)' else if line.label = 'Total' then total else 'Error' endif endif endif endif endif endif"/>
@@ -275,6 +347,29 @@
       <ownedLineMappings name="ASILLine" domainClass="safetycase.ASIL" semanticCandidatesExpression="aql:self.goals.asil" headerLabelExpression="aql:'ASIL for Goal ' + self.target.id"/>
       <ownedColumnMappings name="ImpactColumn" headerLabelExpression="Impact Type" featureName="status" labelExpression="aql:self.status.type"/>
       <ownedColumnMappings name="ImpactSourceColumn" headerLabelExpression="Impact Source" featureName="status" labelExpression="aql:self.status.source"/>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:EditionTableDescription" name="SafetyCaseCount" domainClass="safetycase.SafetyCase">
+      <metamodel href="../../edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore#/"/>
+      <ownedLineMappings name="CountLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Count"/>
+      <ownedColumnMappings name="GoalColumn" headerLabelExpression="Goal" featureName="goals" labelExpression="aql:self.goals -> size()"/>
+      <ownedColumnMappings name="StrategyColumn" headerLabelExpression="Strategy" featureName="strategies" labelExpression="aql:self.strategies -> size()"/>
+      <ownedColumnMappings name="SolutionColumn" headerLabelExpression="Solution" featureName="solutions" labelExpression="aql:self.solutions -> size()"/>
+      <ownedColumnMappings name="ContextColumn" headerLabelExpression="Context" featureName="contexts" labelExpression="aql:self.contexts -> size()"/>
+      <ownedColumnMappings name="AssumptionColumn" headerLabelExpression="Assumption" featureName="assumptions" labelExpression="aql:self.assumptions -> size()"/>
+      <ownedColumnMappings name="JustificationColumn" headerLabelExpression="Justification" featureName="justifications" labelExpression="aql:self.justifications -> size()"/>
+      <ownedColumnMappings name="ASILColumn" headerLabelExpression="ASIL" featureName="goals" labelExpression="aql:self.goals.asil -> size()"/>
+      <ownedColumnMappings name="TotalColumn" headerLabelExpression="Total" featureName="goals" labelExpression="aql:let goalNum = self.goals -> size(), strategyNum = self.strategies -> size(), solutionNum = self.solutions -> size(), contextNum = self.contexts -> size(), assumptionNum = self.assumptions -> size(), justificationNum = self.justifications -> size(), asilNum = self.goals.asil -> size() in goalNum + strategyNum + solutionNum + contextNum + justificationNum + assumptionNum + asilNum"/>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:EditionTableDescription" name="SafetyCaseCost" domainClass="safetycase.SafetyCase">
+      <metamodel href="../../edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore#/"/>
+      <ownedLineMappings name="ValueLine" domainClass="safetycase.SafetyCase" semanticCandidatesExpression="aql:root" headerLabelExpression="Value"/>
+      <ownedColumnMappings name="ReviseColumn" headerLabelExpression="Revised No. (E_V)" featureName="goals" labelExpression="aql:self.eAllContents() -> filter(safetycase::ImpactAnnotation) -> select(a | a.type = safetycase::ImpactType::Revise) -> size()"/>
+      <ownedColumnMappings name="RecheckColumn" headerLabelExpression="Recheck No. (E_R)" featureName="goals" labelExpression="aql:self.eAllContents() -> filter(safetycase::ImpactAnnotation) -> select(a | a.type = safetycase::ImpactType::RecheckContent or a.type = safetycase::ImpactType::RecheckState) -> size()"/>
+      <ownedColumnMappings name="KvColumn" headerLabelExpression="K_V" featureName="goals" labelExpression="2"/>
+      <ownedColumnMappings name="KrColumn" headerLabelExpression="K_R" featureName="goals" labelExpression="1"/>
+      <ownedColumnMappings name="CostColumn" headerLabelExpression="Cost_CIA" featureName="goals" labelExpression="aql:let anno = self.eAllContents() -> filter(safetycase::ImpactAnnotation) in let revise = anno -> select(a | a.type = safetycase::ImpactType::Revise) -> size(), recheck = anno -> select(a | a.type = safetycase::ImpactType::RecheckContent or a.type = safetycase::ImpactType::RecheckState) -> size() in 2 * revise + recheck"/>
+      <ownedColumnMappings name="CountColumn" headerLabelExpression="Total No. (N)" featureName="goals" labelExpression="aql:let goalNum = self.goals -> size(), strategyNum = self.strategies -> size(), solutionNum = self.solutions -> size(), contextNum = self.contexts -> size(), assumptionNum = self.assumptions -> size(), justificationNum = self.justifications -> size(), asilNum = self.goals.asil -> size() in goalNum + strategyNum + solutionNum + contextNum + justificationNum + assumptionNum + asilNum"/>
+      <ownedColumnMappings name="ManualColumn" headerLabelExpression="Cost_MIA" featureName="goals" labelExpression="aql:let goalNum = self.goals -> size(), strategyNum = self.strategies -> size(), solutionNum = self.solutions -> size(), contextNum = self.contexts -> size(), assumptionNum = self.assumptions -> size(), justificationNum = self.justifications -> size(), asilNum = self.goals.asil -> size() in goalNum + strategyNum + solutionNum + contextNum + justificationNum + assumptionNum + asilNum"/>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.safetycase.design.Services"/>
   </ownedViewpoints>
