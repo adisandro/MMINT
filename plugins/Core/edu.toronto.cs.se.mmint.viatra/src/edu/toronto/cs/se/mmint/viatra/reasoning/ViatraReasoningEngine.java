@@ -37,7 +37,7 @@ public class ViatraReasoningEngine implements IReasoningEngine {
     AdvancedViatraQueryEngine engine = null;
     try {
       // get model representation of query file
-      var queryRoot = FileUtils.readModelFile(queryFilePath, true);
+      var queryRoot = FileUtils.readModelFile(queryFilePath, null, true);
       if (!(queryRoot instanceof PatternModel)) {
         throw new MMINTException("Bad query file");
       }
@@ -62,7 +62,7 @@ public class ViatraReasoningEngine implements IReasoningEngine {
         }
       }
       // find query matches within context
-      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context));
+      engine = AdvancedViatraQueryEngine.createUnmanagedEngine(new EMFScope(context.eResource().getResourceSet()));
       var builder = new SpecificationBuilder();
       var spec = builder.getOrCreateSpecification(pattern);
       var matcher = (GenericPatternMatcher) engine.getMatcher(spec);
