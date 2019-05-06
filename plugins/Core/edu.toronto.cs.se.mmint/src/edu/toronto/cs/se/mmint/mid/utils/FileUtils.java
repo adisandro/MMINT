@@ -367,21 +367,23 @@ public class FileUtils {
 		FileUtils.writeModelFile(rootModelObj, FileUtils.prependStatePath(relativeFilePath), false);
 	}
 
-	public static @NonNull EObject readModelFile(@NonNull String filePath, boolean isWorkspaceRelative) throws Exception {
+  public static @NonNull EObject readModelFile(@NonNull String filePath, @Nullable ResourceSet resourceSet,
+                                               boolean isWorkspaceRelative) throws Exception {
+    if (resourceSet == null) {
+      resourceSet = new ResourceSetImpl();
+    }
+    URI emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
+    Resource resource = resourceSet.getResource(emfUri, true);
+    if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
+      throw new MMINTException("Error loading model resource");
+    }
 
-		URI emfUri = FileUtils.createEMFUri(filePath, isWorkspaceRelative);
-		ResourceSet set = new ResourceSetImpl();
-		Resource resource = set.getResource(emfUri, true);
-		if (resource.getErrors().size() > 0 || resource.getContents().size() == 0) {
-		  throw new MMINTException("Error loading model resource");
-		}
-
-		return resource.getContents().get(0);
+    return resource.getContents().get(0);
 	}
 
 	public static @NonNull EObject readModelFileInState(@NonNull String relativeFilePath) throws Exception {
 
-		return FileUtils.readModelFile(FileUtils.prependStatePath(relativeFilePath), false);
+		return FileUtils.readModelFile(FileUtils.prependStatePath(relativeFilePath), null, false);
 	}
 
 	public static @NonNull EObject readModelObject(@NonNull String fileObjectUri, @Nullable Resource resource) throws Exception {

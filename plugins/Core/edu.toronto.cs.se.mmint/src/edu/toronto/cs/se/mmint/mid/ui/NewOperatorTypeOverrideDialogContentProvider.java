@@ -40,7 +40,7 @@ public class NewOperatorTypeOverrideDialogContentProvider implements ITreeConten
                                                         @NonNull String newOperatorName)
                                                         throws Exception {
 
-        this.workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
+        this.workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, null, true);
         this.newOperatorName = newOperatorName;
         this.overridableOperators = null;
     }

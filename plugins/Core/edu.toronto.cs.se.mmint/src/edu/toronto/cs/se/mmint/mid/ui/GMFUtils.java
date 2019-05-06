@@ -92,7 +92,7 @@ public class GMFUtils {
 
 	public static @NonNull IFile getModelFileFromDiagramFile(@NonNull IFile diagramFile) throws Exception {
 
-		Diagram diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), true);
+		Diagram diagram = (Diagram) FileUtils.readModelFile(diagramFile.getFullPath().toString(), null, true);
 		String modelUri = MIDRegistry.getModelUri(diagram.getElement());
 		IFile modelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modelUri));
 

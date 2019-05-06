@@ -30,7 +30,7 @@ public abstract class UMLModelConstraint implements IJavaModelConstraint {
 
 		String notationFileUri = FileUtils.replaceFileExtensionInPath(model.getUri(), NOTATION_FILEEXTENSION);
 		try {
-			Diagram diagram = (Diagram) FileUtils.readModelFile(notationFileUri, true);
+			Diagram diagram = (Diagram) FileUtils.readModelFile(notationFileUri, null, true);
 			return diagram.getType().equals(modelTypeName);
 		}
 		catch (Exception e) {

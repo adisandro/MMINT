@@ -225,8 +225,8 @@ public class MAVORefiner {
 			instanceMID);
 
 		// refine
-		MAVORoot rootModelObj = (MAVORoot) FileUtils.readModelFile(model.getUri(), true);
-		MAVORoot refinedRootModelObj = (MAVORoot) FileUtils.readModelFile(refinedModelPath, true);
+		MAVORoot rootModelObj = (MAVORoot) FileUtils.readModelFile(model.getUri(), null, true);
+		MAVORoot refinedRootModelObj = (MAVORoot) FileUtils.readModelFile(refinedModelPath, null, true);
 		Map<MAVOElement, MAVOElement> refinementMap = new HashMap<>();
 		Map<String, MAVOElement> modelObjsToRefine = this.getModelObjectsToRefine(rootModelObj, refinedRootModelObj, refinedModelPath, refinementMap);
 		Map<String, MAVOTruthValue> refinedTruthValues = this.reasoner.mayBackbone(smtEncoding, z3ModelParser, new HashSet<>(modelObjsToRefine.values()));
@@ -239,7 +239,7 @@ public class MAVORefiner {
 		// write refinement to file
 		FileUtils.writeModelFile(refinedRootModelObj, refinedModelPath, true);
 		if (modelDiagram != null) {
-			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), true);
+			org.eclipse.gmf.runtime.notation.Diagram refinedDiagram = (org.eclipse.gmf.runtime.notation.Diagram) FileUtils.readModelFile(modelDiagram.getUri(), null, true);
 			this.refineDiagram(refinedDiagram, refinedRootModelObj, refinementMap);
 			String refinedModelDiagramUri = FileUtils.replaceFileExtensionInPath(refinedModelPath, modelDiagram.getFileExtensions().get(0));
 			FileUtils.writeModelFile(refinedDiagram, refinedModelDiagramUri, true);

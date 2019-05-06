@@ -86,7 +86,7 @@ public class Union extends OperatorImpl {
 				// create a model shortcut
 				if (unionMIDDiagramPath == null) {
 					unionMIDDiagramPath = MIDRegistry.getModelDiagram(unionMIDModel).getUri();
-					unionMIDDiagramRoot = (Diagram) FileUtils.readModelFile(unionMIDDiagramPath, true);
+					unionMIDDiagramRoot = (Diagram) FileUtils.readModelFile(unionMIDDiagramPath, null, true);
 					gmfViewProvider = new MIDDiagramViewProvider();
 					midModelType = MIDTypeRegistry.getMIDModelType();
 					midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();

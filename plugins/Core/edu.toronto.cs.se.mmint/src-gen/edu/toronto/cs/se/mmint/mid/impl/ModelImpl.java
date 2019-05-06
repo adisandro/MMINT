@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -169,15 +168,6 @@ public class ModelImpl extends GenericElementImpl implements Model {
   protected EObject emfInstanceRoot;
 
     /**
-     * The root model object when it is not serialized in an ECore model file (different from
-     * {@link edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl#inMemoryNestedMID}, this is NOT for
-     * performance reasons).
-     *
-     * @generated NOT
-     */
-    protected EObject inMemoryRootModelObj;
-
-    /**
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @generated
@@ -203,7 +193,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public ModelOrigin getOrigin() {
-    return this.origin;
+    return origin;
   }
 
     /**
@@ -213,10 +203,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setOrigin(ModelOrigin newOrigin) {
-    ModelOrigin oldOrigin = this.origin;
-    this.origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
+    ModelOrigin oldOrigin = origin;
+    origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, origin));
   }
 
     /**
@@ -226,7 +216,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public String getFileExtension() {
-    return this.fileExtension;
+    return fileExtension;
   }
 
     /**
@@ -236,10 +226,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public void setFileExtension(String newFileExtension) {
-    String oldFileExtension = this.fileExtension;
-    this.fileExtension = newFileExtension;
+    String oldFileExtension = fileExtension;
+    fileExtension = newFileExtension;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, fileExtension));
   }
 
     /**
@@ -249,10 +239,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<Editor> getEditors() {
-    if (this.editors == null) {
-      this.editors = new EObjectResolvingEList<>(Editor.class, this, MIDPackage.MODEL__EDITORS);
+    if (editors == null) {
+      editors = new EObjectResolvingEList<Editor>(Editor.class, this, MIDPackage.MODEL__EDITORS);
     }
-    return this.editors;
+    return editors;
   }
 
     /**
@@ -262,10 +252,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<ModelElement> getModelElems() {
-    if (this.modelElems == null) {
-      this.modelElems = new EObjectContainmentEList<>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
+    if (modelElems == null) {
+      modelElems = new EObjectContainmentEList<ModelElement>(ModelElement.class, this, MIDPackage.MODEL__MODEL_ELEMS);
     }
-    return this.modelElems;
+    return modelElems;
   }
 
     /**
@@ -275,10 +265,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public EList<ConversionOperator> getConversionOperators() {
-    if (this.conversionOperators == null) {
-      this.conversionOperators = new EObjectResolvingEList<>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
+    if (conversionOperators == null) {
+      conversionOperators = new EObjectResolvingEList<ConversionOperator>(ConversionOperator.class, this, MIDPackage.MODEL__CONVERSION_OPERATORS);
     }
-    return this.conversionOperators;
+    return conversionOperators;
   }
 
     /**
@@ -287,15 +277,15 @@ public class ModelImpl extends GenericElementImpl implements Model {
    * @generated
    */
   public EObject getEMFInstanceRootGen() {
-    if (this.emfInstanceRoot != null && this.emfInstanceRoot.eIsProxy()) {
-      InternalEObject oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
-      this.emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
-      if (this.emfInstanceRoot != oldEMFInstanceRoot) {
+    if (emfInstanceRoot != null && emfInstanceRoot.eIsProxy()) {
+      InternalEObject oldEMFInstanceRoot = (InternalEObject)emfInstanceRoot;
+      emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
+      if (emfInstanceRoot != oldEMFInstanceRoot) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, emfInstanceRoot));
       }
     }
-    return this.emfInstanceRoot;
+    return emfInstanceRoot;
   }
 
   /**
@@ -305,12 +295,13 @@ public class ModelImpl extends GenericElementImpl implements Model {
   public EObject getEMFInstanceRoot() {
     try {
       MMINTException.mustBeInstance(this);
-      if (this.inMemoryRootModelObj != null) {
-        return EcoreUtil.copy(this.inMemoryRootModelObj);
-      }
+      /*TODO MMINT[OPERATOR]
+       * Previously, if rootModelObj was in memory, it would be copied (EcoreUtil.copy(this.inMemoryRootModelObj))
+       * Having to copy it is tricky because one never modifies a model in place with an operator (only with a MID diagram) but a new model is always created
+       */
       var rootModelObj = getEMFInstanceRootGen();
       if (rootModelObj == null) {
-        rootModelObj = FileUtils.readModelFile(this.getUri(), true);
+        rootModelObj = FileUtils.readModelFile(this.getUri(), this.eResource().getResourceSet(), true);
       }
       return rootModelObj;
     }
@@ -325,7 +316,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
    * @generated
    */
   public EObject basicGetEMFInstanceRoot() {
-    return this.emfInstanceRoot;
+    return emfInstanceRoot;
   }
 
     /**
@@ -335,10 +326,10 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
   @Override
   public void setEMFInstanceRoot(EObject newEMFInstanceRoot) {
-    EObject oldEMFInstanceRoot = this.emfInstanceRoot;
-    this.emfInstanceRoot = newEMFInstanceRoot;
+    EObject oldEMFInstanceRoot = emfInstanceRoot;
+    emfInstanceRoot = newEMFInstanceRoot;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, emfInstanceRoot));
   }
 
     /**
@@ -485,17 +476,17 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.MODEL__ORIGIN:
-        return this.origin != ORIGIN_EDEFAULT;
+        return origin != ORIGIN_EDEFAULT;
       case MIDPackage.MODEL__FILE_EXTENSION:
-        return FILE_EXTENSION_EDEFAULT == null ? this.fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(this.fileExtension);
+        return FILE_EXTENSION_EDEFAULT == null ? fileExtension != null : !FILE_EXTENSION_EDEFAULT.equals(fileExtension);
       case MIDPackage.MODEL__EDITORS:
-        return this.editors != null && !this.editors.isEmpty();
+        return editors != null && !editors.isEmpty();
       case MIDPackage.MODEL__MODEL_ELEMS:
-        return this.modelElems != null && !this.modelElems.isEmpty();
+        return modelElems != null && !modelElems.isEmpty();
       case MIDPackage.MODEL__CONVERSION_OPERATORS:
-        return this.conversionOperators != null && !this.conversionOperators.isEmpty();
+        return conversionOperators != null && !conversionOperators.isEmpty();
       case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
-        return this.emfInstanceRoot != null;
+        return emfInstanceRoot != null;
     }
     return super.eIsSet(featureID);
   }
@@ -664,9 +655,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (origin: ");
-    result.append(this.origin);
+    result.append(origin);
     result.append(", fileExtension: ");
-    result.append(this.fileExtension);
+    result.append(fileExtension);
     result.append(')');
     return result.toString();
   }
@@ -863,7 +854,7 @@ public class ModelImpl extends GenericElementImpl implements Model {
             String metamodelUri = MIDTypeRegistry.getExtendedMetamodelPath(this);
             if (metamodelUri != null) { // get package from metamodel file
                 try {
-                    rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, false);
+                    rootModelTypeObj = (EPackage) FileUtils.readModelFile(metamodelUri, null, false);
                 }
                 catch (Exception e) {
                     throw new MMINTException("Error accessing the metamodel file for model type" + this.getUri(), e);
@@ -996,18 +987,14 @@ public class ModelImpl extends GenericElementImpl implements Model {
          *                     using a flag set by invokers of startInstance
          */
         if (rootModelObj != null) {
-            if (instanceMID == null) {
-                /* TODO MMINT[OPERATOR] Could we put it in memory when serialized too as optimization, or will it consume too much memory?
-                 * (find the cases where it really stays in memory, which shouldn't happen when working with a MID diagram, only in a workflow)
-                 * Also, should cache it when using getEMFInstanceRoot() in that case.
-                 * This thing (having to copy it) is tricky because one never modifies a model in place with an operator (only with a MID diagram) but a new model is always created
-                 */
-                ((ModelImpl) newModel).inMemoryRootModelObj = rootModelObj;
-            }
-            else {
+            if (instanceMID != null) {
                 FileUtils.writeModelFile(rootModelObj, newModelPath, true);
-                newModel.setEMFInstanceRoot(rootModelObj);
             }
+            /* TODO MMINT[OPERATOR] Will it consume too much memory?
+             * (find the cases where it really stays in memory, which shouldn't happen when working with a MID diagram, only in a workflow)
+             * Also, should cache it when using getEMFInstanceRoot() in that case, but it's not in a write transaction.
+             */
+            newModel.setEMFInstanceRoot(rootModelObj);
         }
 
         return newModel;

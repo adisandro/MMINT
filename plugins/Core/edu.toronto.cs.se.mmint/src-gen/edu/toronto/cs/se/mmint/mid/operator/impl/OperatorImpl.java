@@ -788,7 +788,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
                 newWorkflowMIDPath = workflowMIDPath;
             }
             else { // make a copy of the Workflow MID files
-                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, true);
+                workflowMID = (MID) FileUtils.readModelFile(workflowMIDPath, null, true);
                 newWorkflowMIDPath = newOperatorTypeName + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
                 FileUtils.writeModelFileInState(workflowMID, newWorkflowMIDPath);
                 FileUtils.copyTextFileAndReplaceText(

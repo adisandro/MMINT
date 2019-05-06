@@ -117,7 +117,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 String workflowMIDPath = this.getClass().getName().replace('.', IPath.SEPARATOR) +
                                          MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
                 String workflowMIDBundlePath = MIDTypeRegistry.getFileBundlePath(this, workflowMIDPath);
-                workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, false);
+                workflowMID = (MID) FileUtils.readModelFile(workflowMIDBundlePath, null, false);
             }
             return workflowMID;
         }

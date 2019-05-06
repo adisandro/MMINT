@@ -141,7 +141,7 @@ public class Map extends NestingOperatorImpl {
     Model outputMIDModel = createOutputMIDModel(outputName, outputMID, midrelModelType, instanceMID);
     // create gmf shortcuts
     edu.toronto.cs.se.mmint.mid.editor.Diagram outputMIDModelDiagram = MIDRegistry.getModelDiagram(outputMIDModel);
-    Diagram gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), true);
+    Diagram gmfDiagram = (Diagram) FileUtils.readModelFile(outputMIDModelDiagram.getUri(), null, true);
     for (Model midrelEndpointModel : midrelEndpointModels) {
       GMFUtils.createGMFNodeShortcut(midrelEndpointModel, gmfDiagram, midDiagramPluginId, midModelType.getName(), MIDTypeRegistry.getCachedMIDViewProvider());
     }

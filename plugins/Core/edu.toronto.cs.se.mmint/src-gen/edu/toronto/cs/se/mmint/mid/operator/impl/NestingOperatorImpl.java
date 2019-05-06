@@ -267,7 +267,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
             if (nestedMIDPath == null) {
                 return null;
             }
-            MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, true);
+            MID nestedMID = (MID) FileUtils.readModelFile(nestedMIDPath, null, true);
             this.inMemoryNestedMID = nestedMID;
             return nestedMID;
         }
@@ -294,7 +294,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
                 return null;
             }
             String nestedMIDDiagramPath = nestedMIDPath + GMFUtils.DIAGRAM_SUFFIX;
-            Diagram nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath, true);
+            Diagram nestedMIDDiagramRoot = (Diagram) FileUtils.readModelFile(nestedMIDDiagramPath, null, true);
             this.inMemoryNestedMIDDiagramRoot = nestedMIDDiagramRoot;
             return nestedMIDDiagramRoot;
         }

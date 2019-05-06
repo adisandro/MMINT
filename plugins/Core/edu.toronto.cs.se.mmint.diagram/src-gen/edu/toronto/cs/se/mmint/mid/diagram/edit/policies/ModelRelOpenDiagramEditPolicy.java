@@ -243,7 +243,7 @@ public class ModelRelOpenDiagramEditPolicy extends OpenEditPolicy {
 
 			String modelRelUri = MIDRegistry.getModelElementUri(modelRel);
 			String instanceMIDPath = MIDRegistry.getModelUri(modelRel);
-			Diagram instanceMIDDiagramRoot = (Diagram) FileUtils.readModelFile(instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX, true);
+			Diagram instanceMIDDiagramRoot = (Diagram) FileUtils.readModelFile(instanceMIDPath + GMFUtils.DIAGRAM_SUFFIX, null, true);
 			View shortcutView = null;
 			if (modelRel instanceof BinaryModelRel) {
 				for (Object gmfEdge : instanceMIDDiagramRoot.getEdges()) {

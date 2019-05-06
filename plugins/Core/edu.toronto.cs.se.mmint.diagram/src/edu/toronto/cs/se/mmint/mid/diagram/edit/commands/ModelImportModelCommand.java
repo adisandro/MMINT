@@ -62,7 +62,7 @@ public class ModelImportModelCommand extends Model2CreateCommand {
 
 		MID instanceMID = (MID) getElementToEdit();
 		String modelUri = MIDDialogs.selectModelToImport(false);
-		Model modelType = MIDTypeRegistry.getType(FileUtils.readModelFile(modelUri, true).eClass().getEPackage().getNsURI());
+		Model modelType = MIDTypeRegistry.getType(FileUtils.readModelFile(modelUri, null, true).eClass().getEPackage().getNsURI());
 		if (modelType == null) { // unregistered dynamic EMF file
 			modelType = MIDTypeHierarchy.getRootModelType();
 		}

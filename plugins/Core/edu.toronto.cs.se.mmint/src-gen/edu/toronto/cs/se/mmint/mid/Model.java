@@ -435,7 +435,7 @@ public interface Model extends GenericElement {
    * @return the value of the '<em>EMF Instance Root</em>' reference.
    * @see #setEMFInstanceRoot(EObject)
    * @see edu.toronto.cs.se.mmint.mid.MIDPackage#getModel_EMFInstanceRoot()
-   * @model
+   * @model transient="true"
    * @generated
    */
     EObject getEMFInstanceRoot();
