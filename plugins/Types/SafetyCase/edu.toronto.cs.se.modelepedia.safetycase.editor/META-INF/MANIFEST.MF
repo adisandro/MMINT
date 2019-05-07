@@ -11,11 +11,11 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-12
 Export-Package: edu.toronto.cs.se.modelepedia.safetycase.presentation
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.resources,
  edu.toronto.cs.se.modelepedia.safetycase,
- edu.toronto.cs.se.modelepedia.safetycase.edit;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport,
+ edu.toronto.cs.se.modelepedia.safetycase.edit,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.ui.ide,
  edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy
