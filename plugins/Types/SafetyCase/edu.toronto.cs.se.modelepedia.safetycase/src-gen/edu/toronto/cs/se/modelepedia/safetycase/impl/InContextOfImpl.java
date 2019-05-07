@@ -77,6 +77,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ContextualElement getContext() {
 		if (context != null && context.eIsProxy()) {
 			InternalEObject oldContext = (InternalEObject)context;
@@ -118,6 +119,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContext(ContextualElement newContext) {
 		if (newContext != context) {
 			NotificationChain msgs = null;
@@ -137,6 +139,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DecomposableCoreElement getContextOf() {
 		if (eContainerFeatureID() != SafetyCasePackage.IN_CONTEXT_OF__CONTEXT_OF) return null;
 		return (DecomposableCoreElement)eInternalContainer();
@@ -157,6 +160,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContextOf(DecomposableCoreElement newContextOf) {
 		if (newContextOf != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.IN_CONTEXT_OF__CONTEXT_OF && newContextOf != null)) {
 			if (EcoreUtil.isAncestor(this, newContextOf))

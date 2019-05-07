@@ -99,6 +99,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ASILLevel getValue() {
 		return value;
 	}
@@ -108,6 +109,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(ASILLevel newValue) {
 		ASILLevel oldValue = value;
 		value = newValue == null ? VALUE_EDEFAULT : newValue;
@@ -120,6 +122,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ASILfulElement getTarget() {
 		if (eContainerFeatureID() != SafetyCasePackage.ASIL__TARGET) return null;
 		return (ASILfulElement)eInternalContainer();
@@ -140,6 +143,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(ASILfulElement newTarget) {
 		if (newTarget != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.ASIL__TARGET && newTarget != null)) {
 			if (EcoreUtil.isAncestor(this, newTarget))
@@ -161,6 +165,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ImpactAnnotation getStatus() {
 		return status;
 	}
@@ -185,6 +190,7 @@ public class ASILImpl extends MinimalEObjectImpl.Container implements ASIL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatus(ImpactAnnotation newStatus) {
 		if (newStatus != status) {
 			NotificationChain msgs = null;

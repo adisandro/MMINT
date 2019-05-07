@@ -81,6 +81,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValidityValue getStateValidity() {
 		return stateValidity;
 	}
@@ -90,6 +91,7 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStateValidity(ValidityValue newStateValidity) {
 		ValidityValue oldStateValidity = stateValidity;
 		stateValidity = newStateValidity == null ? STATE_VALIDITY_EDEFAULT : newStateValidity;

@@ -20,7 +20,8 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSolution()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SolutionSupporter SolutionContext'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SolutionSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()' SolutionContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
  * @generated
  */
 public interface Solution extends CoreElement, StatefulElement {

@@ -181,5 +181,58 @@
             </parameter></outputs>
       </operatorType>
    </extension>
+   
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="GSNAnnotateRel"
+               class="edu.toronto.cs.se.modelepedia.safetycase.operator.GSNAnnotateRel"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotateRel">
+            <superType
+                  uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotate">
+            </superType>
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="revise"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotateRel-SCRel/revise">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/SCRel">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="recheck_content"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotateRel-SCRel/recheck_content">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/SCRel">
+               </typeEndpoint>
+            </parameter>
+            <parameter>
+               <type
+                     name="recheck_state"
+                     uri="http://se.cs.toronto.edu/modelepedia/Operator_GSNAnnotateRel-SCRel/recheck_state">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/SCRel">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="annotated">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/SafetyCase">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>   
 
 </plugin>

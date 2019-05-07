@@ -93,6 +93,7 @@ public class SafetyCaseItemProvider
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS);
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
 			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__ASSUMPTIONS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -151,6 +152,7 @@ public class SafetyCaseItemProvider
 			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
 			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -207,6 +209,26 @@ public class SafetyCaseItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.SAFETY_CASE__ASSUMPTIONS,
 				 SafetyCaseFactory.eINSTANCE.createAssumption()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
+				 SafetyCaseFactory.eINSTANCE.createAndSupporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
+				 SafetyCaseFactory.eINSTANCE.createOrSupporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
+				 SafetyCaseFactory.eINSTANCE.createXorSupporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
+				 SafetyCaseFactory.eINSTANCE.createMofNSupporter()));
 	}
 
 	/**

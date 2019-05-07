@@ -12,18 +12,65 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.modelepedia.safetycase.ASILDecompositionStrategy;
+import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
+import edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRevise2State extends GSNSliceRevise {
+public class GSNSliceRevise2State extends GSNSlice {
+	
+    // Get all model elements in a safety case that needs to be re-checked for 
+	// state validity given the input element that requires revision.
+    @Override
+    protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
 
+        Map<EObject, Set<EObject>> impacted = new HashMap<>();
+        Set<EObject> impactedModelObjs = new HashSet<>();
+        impactedModelObjs.add(critModelObj);
+        alreadyImpacted.add(critModelObj);
+        
+        // Slice all elements iteratively until a fixed point is reached.
+        Set<EObject> impactedCur = new HashSet<>();
+        Set<EObject> impactedNext = new HashSet<>();
+        
+        impactedCur.addAll(alreadyImpacted);
+        while (!impactedCur.isEmpty()) {
+        	for (EObject elem: alreadyImpacted) {
+        		impactedNext.addAll(getDirectlyImpactedElements(elem, alreadyImpacted));
+        	}
+        	
+        	boolean isRepeat = false;
+        	impactedCur.clear();
+        	for (EObject elem: impactedNext) {
+        		if (!alreadyImpacted.contains(elem)) {
+        			isRepeat = true;
+        			alreadyImpacted.add(elem);
+        			impactedModelObjs.add(elem);
+        		}
+        	}
+        	
+        	if (isRepeat) {
+        		impactedCur.addAll(alreadyImpacted);
+        	}
+        }
+        
+        impacted.put(critModelObj, impactedModelObjs);
+
+        return impacted;
+    }
+	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
@@ -35,9 +82,7 @@ public class GSNSliceRevise2State extends GSNSliceRevise {
 		if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
 
-			for (Goal g : getAncestorGoals(s)) {
-				impacted.add(g);
-			}
+			impacted.addAll(getAncestorGoals(s, alreadyImpacted));
 		}
 
 		impacted.removeAll(alreadyImpacted);
@@ -45,48 +90,5 @@ public class GSNSliceRevise2State extends GSNSliceRevise {
 		return impacted;
 	}
 
-	// Returns all ancestor goals of the input strategy.
-	public Set<Goal> getAncestorGoals(Strategy elem) {
-		Set<DecomposableCoreElement> ancestorsAll = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsCur = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsNext = new HashSet<>();
 
-		// Iterate through the current set of newly added ancestors
-		// to identify the next generation of ancestors.
-		for (SupportedBy rel : elem.getSupports()) {
-			ancestorsNext.add(rel.getConclusion());
-		}
-
-		ancestorsAll.addAll(ancestorsNext);
-		ancestorsCur.addAll(ancestorsNext);
-		ancestorsNext.clear();
-
-		while (!ancestorsCur.isEmpty()) {
-			for (DecomposableCoreElement curElem : ancestorsCur) {
-				for (SupportedBy rel : curElem.getSupports()) {
-					ancestorsNext.add(rel.getConclusion());
-				}
-			}
-
-			ancestorsCur.clear();
-			for (DecomposableCoreElement newElem : ancestorsNext) {
-				if (!ancestorsAll.contains(newElem)) {
-					ancestorsAll.add(newElem);
-					ancestorsCur.add(newElem);
-				}
-			}
-
-			ancestorsNext.clear();
-		}
-
-		// Return the ancestors that are goals.
-		Set<Goal> goalAncestors = new HashSet<>();
-		for (DecomposableCoreElement newElem : ancestorsAll) {
-			if (newElem instanceof Goal) {
-				goalAncestors.add((Goal) newElem);
-			}
-		}
-
-		return goalAncestors;
-	}
 }

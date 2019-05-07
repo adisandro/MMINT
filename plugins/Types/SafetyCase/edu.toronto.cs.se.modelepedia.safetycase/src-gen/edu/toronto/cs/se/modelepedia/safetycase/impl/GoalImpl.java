@@ -96,6 +96,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValidityValue getStateValidity() {
 		return stateValidity;
 	}
@@ -105,6 +106,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStateValidity(ValidityValue newStateValidity) {
 		ValidityValue oldStateValidity = stateValidity;
 		stateValidity = newStateValidity == null ? STATE_VALIDITY_EDEFAULT : newStateValidity;
@@ -117,6 +119,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ASIL getAsil() {
 		return asil;
 	}
@@ -141,6 +144,7 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAsil(ASIL newAsil) {
 		if (newAsil != asil) {
 			NotificationChain msgs = null;

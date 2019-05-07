@@ -69,9 +69,9 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CoreElement_supports_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CoreElement_supports_feature", "_UI_CoreElement_type"),
-				 SafetyCasePackage.Literals.CORE_ELEMENT__SUPPORTS,
+				 getString("_UI_Supporter_supports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Supporter_supports_feature", "_UI_Supporter_type"),
+				 SafetyCasePackage.Literals.SUPPORTER__SUPPORTS,
 				 true,
 				 false,
 				 true,

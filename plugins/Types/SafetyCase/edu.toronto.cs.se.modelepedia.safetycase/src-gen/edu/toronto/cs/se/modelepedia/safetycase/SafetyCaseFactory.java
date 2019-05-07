@@ -149,6 +149,42 @@ public interface SafetyCaseFactory extends EFactory {
 	ImpactAnnotation createImpactAnnotation();
 
 	/**
+	 * Returns a new object of class '<em>And Supporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>And Supporter</em>'.
+	 * @generated
+	 */
+	AndSupporter createAndSupporter();
+
+	/**
+	 * Returns a new object of class '<em>Or Supporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Or Supporter</em>'.
+	 * @generated
+	 */
+	OrSupporter createOrSupporter();
+
+	/**
+	 * Returns a new object of class '<em>Xor Supporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Xor Supporter</em>'.
+	 * @generated
+	 */
+	XorSupporter createXorSupporter();
+
+	/**
+	 * Returns a new object of class '<em>Mof NSupporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mof NSupporter</em>'.
+	 * @generated
+	 */
+	MofNSupporter createMofNSupporter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
