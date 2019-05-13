@@ -194,6 +194,12 @@
             </initialOperation>
           </ownedTools>
         </toolSections>
+        <toolSections name="Menus">
+          <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="EvaluateQueryCall" action="//@ownedViewpoints[name='ClassDiagramViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_ClassDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='MMINT']/@menuItemDescription.0"/>
+          </ownedTools>
+        </toolSections>
       </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.modelepedia.classdiagram.design.Services"/>
