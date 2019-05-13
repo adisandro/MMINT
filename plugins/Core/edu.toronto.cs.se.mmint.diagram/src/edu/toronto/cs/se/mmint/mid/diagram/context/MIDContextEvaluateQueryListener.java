@@ -95,7 +95,7 @@ public class MIDContextEvaluateQueryListener extends MIDContextMenuListener {
           printResults.add(printResult);
         }
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        MessageDialog.openInformation(shell, "Query Results", printResults.toString());
+        MessageDialog.openInformation(shell, "Query Results", String.join("\n", printResults));
         return CommandResult.newOKCommandResult();
       }
       catch (MIDDialogCancellation e) {
