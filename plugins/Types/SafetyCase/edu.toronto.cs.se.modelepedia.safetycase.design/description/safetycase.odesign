@@ -319,6 +319,12 @@
             </initialOperation>
           </ownedTools>
         </toolSections>
+        <toolSections name="Menus">
+          <ownedTools xsi:type="tool_1:PopupMenu" name="MMINT">
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="EvaluateQuery" label="Evaluate Query" id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaActionCall" name="EvaluateQueryCall" action="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@toolSections.1/@ownedTools[name='MMINT']/@menuItemDescription.0"/>
+          </ownedTools>
+        </toolSections>
       </defaultLayer>
     </ownedRepresentations>
     <ownedRepresentations xsi:type="description_2:EditionTableDescription" name="SafetyCaseStatistics" domainClass="safetycase.SafetyCase">
