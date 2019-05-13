@@ -958,4 +958,12 @@ Contributors:
       </editorType>
    </extension>
 
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery"
+            id="edu.toronto.cs.se.mmint.mid.diagram.context.SiriusEvaluateQuery">
+      </javaActions>
+   </extension>
+
 </plugin>
