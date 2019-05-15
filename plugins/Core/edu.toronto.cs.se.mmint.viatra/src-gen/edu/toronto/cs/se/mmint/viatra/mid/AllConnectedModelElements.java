@@ -4,6 +4,7 @@
 package edu.toronto.cs.se.mmint.viatra.mid;
 
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -31,6 +32,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Inequality;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -44,13 +46,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
+ *         pattern allConnectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
  *           modelElemSrc != modelElemTgt;
  *           Model.modelElems(modelSrc, modelElemSrc);
  *           Model.modelElems(modelTgt, modelElemTgt);
  *           modelSrc != modelTgt;
- *           Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
- *           Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
+ *           find connectedModelElements+(modelElemSrc, modelElemTgt);
  *         }
  * </pre></code>
  * 
@@ -59,9 +60,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecification<ConnectedModelElements.Matcher> {
+public final class AllConnectedModelElements extends BaseGeneratedEMFQuerySpecification<AllConnectedModelElements.Matcher> {
   /**
-   * Pattern-specific match representation of the edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements pattern,
+   * Pattern-specific match representation of the edu.toronto.cs.se.mmint.viatra.mid.allConnectedModelElements pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -125,12 +126,12 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public String patternName() {
-      return "edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements";
+      return "edu.toronto.cs.se.mmint.viatra.mid.allConnectedModelElements";
     }
     
     @Override
     public List<String> parameterNames() {
-      return ConnectedModelElements.Match.parameterNames;
+      return AllConnectedModelElements.Match.parameterNames;
     }
     
     @Override
@@ -139,7 +140,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     }
     
     @Override
-    public ConnectedModelElements.Match toImmutable() {
+    public AllConnectedModelElements.Match toImmutable() {
       return isMutable() ? newMatch(fModelElemSrc, fModelElemTgt) : this;
     }
     
@@ -163,8 +164,8 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof ConnectedModelElements.Match)) {
-          ConnectedModelElements.Match other = (ConnectedModelElements.Match) obj;
+      if ((obj instanceof AllConnectedModelElements.Match)) {
+          AllConnectedModelElements.Match other = (AllConnectedModelElements.Match) obj;
           return Objects.equals(fModelElemSrc, other.fModelElemSrc) && Objects.equals(fModelElemTgt, other.fModelElemTgt);
       } else {
           // this should be infrequent
@@ -177,8 +178,8 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     }
     
     @Override
-    public ConnectedModelElements specification() {
-      return ConnectedModelElements.instance();
+    public AllConnectedModelElements specification() {
+      return AllConnectedModelElements.instance();
     }
     
     /**
@@ -188,7 +189,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the empty match.
      * 
      */
-    public static ConnectedModelElements.Match newEmptyMatch() {
+    public static AllConnectedModelElements.Match newEmptyMatch() {
       return new Mutable(null, null);
     }
     
@@ -201,7 +202,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static ConnectedModelElements.Match newMutableMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
+    public static AllConnectedModelElements.Match newMutableMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return new Mutable(pModelElemSrc, pModelElemTgt);
     }
     
@@ -214,11 +215,11 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the (partial) match object.
      * 
      */
-    public static ConnectedModelElements.Match newMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
+    public static AllConnectedModelElements.Match newMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return new Immutable(pModelElemSrc, pModelElemTgt);
     }
     
-    private static final class Mutable extends ConnectedModelElements.Match {
+    private static final class Mutable extends AllConnectedModelElements.Match {
       Mutable(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
         super(pModelElemSrc, pModelElemTgt);
       }
@@ -229,7 +230,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
       }
     }
     
-    private static final class Immutable extends ConnectedModelElements.Match {
+    private static final class Immutable extends AllConnectedModelElements.Match {
       Immutable(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
         super(pModelElemSrc, pModelElemTgt);
       }
@@ -242,7 +243,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
   }
   
   /**
-   * Generated pattern matcher API of the edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements pattern,
+   * Generated pattern matcher API of the edu.toronto.cs.se.mmint.viatra.mid.allConnectedModelElements pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -252,21 +253,20 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
+   * pattern allConnectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
    *   modelElemSrc != modelElemTgt;
    *   Model.modelElems(modelSrc, modelElemSrc);
    *   Model.modelElems(modelTgt, modelElemTgt);
    *   modelSrc != modelTgt;
-   *   Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
-   *   Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
+   *   find connectedModelElements+(modelElemSrc, modelElemTgt);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see ConnectedModelElements
+   * @see AllConnectedModelElements
    * 
    */
-  public static class Matcher extends BaseMatcher<ConnectedModelElements.Match> {
+  public static class Matcher extends BaseMatcher<AllConnectedModelElements.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -275,7 +275,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static ConnectedModelElements.Matcher on(final ViatraQueryEngine engine) {
+    public static AllConnectedModelElements.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -290,7 +290,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static ConnectedModelElements.Matcher create() {
+    public static AllConnectedModelElements.Matcher create() {
       return new Matcher();
     }
     
@@ -298,7 +298,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     
     private static final int POSITION_MODELELEMTGT = 1;
     
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(ConnectedModelElements.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AllConnectedModelElements.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -319,7 +319,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<ConnectedModelElements.Match> getAllMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
+    public Collection<AllConnectedModelElements.Match> getAllMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return rawStreamAllMatches(new Object[]{pModelElemSrc, pModelElemTgt}).collect(Collectors.toSet());
     }
     
@@ -334,7 +334,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<ConnectedModelElements.Match> streamAllMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
+    public Stream<AllConnectedModelElements.Match> streamAllMatches(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return rawStreamAllMatches(new Object[]{pModelElemSrc, pModelElemTgt});
     }
     
@@ -346,7 +346,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<ConnectedModelElements.Match> getOneArbitraryMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
+    public Optional<AllConnectedModelElements.Match> getOneArbitraryMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
       return rawGetOneArbitraryMatch(new Object[]{pModelElemSrc, pModelElemTgt});
     }
     
@@ -382,7 +382,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Consumer<? super ConnectedModelElements.Match> processor) {
+    public boolean forOneArbitraryMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt, final Consumer<? super AllConnectedModelElements.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pModelElemSrc, pModelElemTgt}, processor);
     }
     
@@ -395,8 +395,8 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the (partial) match object.
      * 
      */
-    public ConnectedModelElements.Match newMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
-      return ConnectedModelElements.Match.newMatch(pModelElemSrc, pModelElemTgt);
+    public AllConnectedModelElements.Match newMatch(final ModelElement pModelElemSrc, final ModelElement pModelElemTgt) {
+      return AllConnectedModelElements.Match.newMatch(pModelElemSrc, pModelElemTgt);
     }
     
     /**
@@ -436,7 +436,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<ModelElement> streamAllValuesOfmodelElemSrc(final ConnectedModelElements.Match partialMatch) {
+    public Stream<ModelElement> streamAllValuesOfmodelElemSrc(final AllConnectedModelElements.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemSrc(partialMatch.toArray());
     }
     
@@ -459,7 +459,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<ModelElement> getAllValuesOfmodelElemSrc(final ConnectedModelElements.Match partialMatch) {
+    public Set<ModelElement> getAllValuesOfmodelElemSrc(final AllConnectedModelElements.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemSrc(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -509,7 +509,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<ModelElement> streamAllValuesOfmodelElemTgt(final ConnectedModelElements.Match partialMatch) {
+    public Stream<ModelElement> streamAllValuesOfmodelElemTgt(final AllConnectedModelElements.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemTgt(partialMatch.toArray());
     }
     
@@ -532,7 +532,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<ModelElement> getAllValuesOfmodelElemTgt(final ConnectedModelElements.Match partialMatch) {
+    public Set<ModelElement> getAllValuesOfmodelElemTgt(final AllConnectedModelElements.Match partialMatch) {
       return rawStreamAllValuesOfmodelElemTgt(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -546,9 +546,9 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     }
     
     @Override
-    protected ConnectedModelElements.Match tupleToMatch(final Tuple t) {
+    protected AllConnectedModelElements.Match tupleToMatch(final Tuple t) {
       try {
-          return ConnectedModelElements.Match.newMatch((ModelElement) t.get(POSITION_MODELELEMSRC), (ModelElement) t.get(POSITION_MODELELEMTGT));
+          return AllConnectedModelElements.Match.newMatch((ModelElement) t.get(POSITION_MODELELEMSRC), (ModelElement) t.get(POSITION_MODELELEMTGT));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -556,9 +556,9 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     }
     
     @Override
-    protected ConnectedModelElements.Match arrayToMatch(final Object[] match) {
+    protected AllConnectedModelElements.Match arrayToMatch(final Object[] match) {
       try {
-          return ConnectedModelElements.Match.newMatch((ModelElement) match[POSITION_MODELELEMSRC], (ModelElement) match[POSITION_MODELELEMTGT]);
+          return AllConnectedModelElements.Match.newMatch((ModelElement) match[POSITION_MODELELEMSRC], (ModelElement) match[POSITION_MODELELEMTGT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -566,9 +566,9 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     }
     
     @Override
-    protected ConnectedModelElements.Match arrayToMatchMutable(final Object[] match) {
+    protected AllConnectedModelElements.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return ConnectedModelElements.Match.newMutableMatch((ModelElement) match[POSITION_MODELELEMSRC], (ModelElement) match[POSITION_MODELELEMTGT]);
+          return AllConnectedModelElements.Match.newMutableMatch((ModelElement) match[POSITION_MODELELEMSRC], (ModelElement) match[POSITION_MODELELEMTGT]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -580,12 +580,12 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<ConnectedModelElements.Matcher> querySpecification() {
-      return ConnectedModelElements.instance();
+    public static IQuerySpecification<AllConnectedModelElements.Matcher> querySpecification() {
+      return AllConnectedModelElements.instance();
     }
   }
   
-  private ConnectedModelElements() {
+  private AllConnectedModelElements() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -594,7 +594,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static ConnectedModelElements instance() {
+  public static AllConnectedModelElements instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -603,35 +603,35 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
   }
   
   @Override
-  protected ConnectedModelElements.Matcher instantiate(final ViatraQueryEngine engine) {
-    return ConnectedModelElements.Matcher.on(engine);
+  protected AllConnectedModelElements.Matcher instantiate(final ViatraQueryEngine engine) {
+    return AllConnectedModelElements.Matcher.on(engine);
   }
   
   @Override
-  public ConnectedModelElements.Matcher instantiate() {
-    return ConnectedModelElements.Matcher.create();
+  public AllConnectedModelElements.Matcher instantiate() {
+    return AllConnectedModelElements.Matcher.create();
   }
   
   @Override
-  public ConnectedModelElements.Match newEmptyMatch() {
-    return ConnectedModelElements.Match.newEmptyMatch();
+  public AllConnectedModelElements.Match newEmptyMatch() {
+    return AllConnectedModelElements.Match.newEmptyMatch();
   }
   
   @Override
-  public ConnectedModelElements.Match newMatch(final Object... parameters) {
-    return ConnectedModelElements.Match.newMatch((edu.toronto.cs.se.mmint.mid.ModelElement) parameters[0], (edu.toronto.cs.se.mmint.mid.ModelElement) parameters[1]);
+  public AllConnectedModelElements.Match newMatch(final Object... parameters) {
+    return AllConnectedModelElements.Match.newMatch((edu.toronto.cs.se.mmint.mid.ModelElement) parameters[0], (edu.toronto.cs.se.mmint.mid.ModelElement) parameters[1]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements (visibility: PUBLIC, simpleName: ConnectedModelElements, identifier: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModelElements (visibility: PUBLIC, simpleName: AllConnectedModelElements, identifier: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModelElements, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements (visibility: PUBLIC, simpleName: ConnectedModelElements, identifier: edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link JvmGenericType: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModelElements (visibility: PUBLIC, simpleName: AllConnectedModelElements, identifier: edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModelElements, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: edu.toronto.cs.se.mmint.viatra.mid) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final ConnectedModelElements INSTANCE = new ConnectedModelElements();
+    private static final AllConnectedModelElements INSTANCE = new AllConnectedModelElements();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -649,7 +649,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final ConnectedModelElements.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final AllConnectedModelElements.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
     private final PParameter parameter_modelElemSrc = new PParameter("modelElemSrc", "edu.toronto.cs.se.mmint.mid.ModelElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/mmint/MID", "ModelElement")), PParameterDirection.INOUT);
     
@@ -663,7 +663,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public String getFullyQualifiedName() {
-      return "edu.toronto.cs.se.mmint.viatra.mid.connectedModelElements";
+      return "edu.toronto.cs.se.mmint.viatra.mid.allConnectedModelElements";
     }
     
     @Override
@@ -686,7 +686,6 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
           PVariable var_modelElemTgt = body.getOrCreateVariableByName("modelElemTgt");
           PVariable var_modelSrc = body.getOrCreateVariableByName("modelSrc");
           PVariable var_modelTgt = body.getOrCreateVariableByName("modelTgt");
-          PVariable var_mapping = body.getOrCreateVariableByName("mapping");
           new TypeConstraint(body, Tuples.flatTupleOf(var_modelElemSrc), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_modelElemTgt), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ModelElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
@@ -709,24 +708,8 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
           new Equality(body, var__virtual_1_, var_modelElemTgt);
           //   modelSrc != modelTgt
           new Inequality(body, var_modelSrc, var_modelTgt);
-          //   Mapping.modelElemEndpoints.target(mapping, modelElemSrc)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_mapping), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID/Relationship", "Mapping")));
-          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_mapping, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID/Relationship", "Mapping", "modelElemEndpoints")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID/Relationship", "ModelElementEndpoint")));
-          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ExtendibleElementEndpoint", "target")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ExtendibleElement")));
-          new Equality(body, var__virtual_3_, var_modelElemSrc);
-          //   Mapping.modelElemEndpoints.target(mapping, modelElemTgt)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_mapping), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID/Relationship", "Mapping")));
-          PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_mapping, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID/Relationship", "Mapping", "modelElemEndpoints")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_4_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID/Relationship", "ModelElementEndpoint")));
-          PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_4_, var__virtual_5_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ExtendibleElementEndpoint", "target")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_5_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/mmint/MID", "ExtendibleElement")));
-          new Equality(body, var__virtual_5_, var_modelElemTgt);
+          //   find connectedModelElements+(modelElemSrc, modelElemTgt)
+          new BinaryTransitiveClosure(body, Tuples.flatTupleOf(var_modelElemSrc, var_modelElemTgt), ConnectedModelElements.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;

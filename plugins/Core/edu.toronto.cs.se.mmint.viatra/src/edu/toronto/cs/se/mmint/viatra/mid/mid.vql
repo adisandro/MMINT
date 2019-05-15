@@ -11,6 +11,22 @@ pattern connectedModels(modelSrc: Model, modelTgt: Model) {
 
 pattern connectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
   modelElemSrc != modelElemTgt;
+  Model.modelElems(modelSrc, modelElemSrc);
+  Model.modelElems(modelTgt, modelElemTgt);
+  modelSrc != modelTgt;
   Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
   Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
+}
+
+pattern allConnectedModels(modelSrc: Model, modelTgt: Model) {
+  modelSrc != modelTgt;
+  find connectedModels+(modelSrc, modelTgt);
+}
+
+pattern allConnectedModelElements(modelElemSrc: ModelElement, modelElemTgt: ModelElement) {
+  modelElemSrc != modelElemTgt;
+  Model.modelElems(modelSrc, modelElemSrc);
+  Model.modelElems(modelTgt, modelElemTgt);
+  modelSrc != modelTgt;
+  find connectedModelElements+(modelElemSrc, modelElemTgt);
 }

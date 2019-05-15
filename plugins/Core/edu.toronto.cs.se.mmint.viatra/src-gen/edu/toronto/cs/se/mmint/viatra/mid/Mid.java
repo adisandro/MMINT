@@ -3,6 +3,8 @@
  */
 package edu.toronto.cs.se.mmint.viatra.mid;
 
+import edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModelElements;
+import edu.toronto.cs.se.mmint.viatra.mid.AllConnectedModels;
 import edu.toronto.cs.se.mmint.viatra.mid.ConnectedModelElements;
 import edu.toronto.cs.se.mmint.viatra.mid.ConnectedModels;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -18,6 +20,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <p> From package edu.toronto.cs.se.mmint.viatra.mid, the group contains the definition of the following patterns: <ul>
  * <li>connectedModels</li>
  * <li>connectedModelElements</li>
+ * <li>allConnectedModels</li>
+ * <li>allConnectedModelElements</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -44,6 +48,8 @@ public final class Mid extends BaseGeneratedPatternGroup {
   private Mid() {
     querySpecifications.add(ConnectedModels.instance());
     querySpecifications.add(ConnectedModelElements.instance());
+    querySpecifications.add(AllConnectedModels.instance());
+    querySpecifications.add(AllConnectedModelElements.instance());
   }
   
   public ConnectedModels getConnectedModels() {
@@ -60,5 +66,21 @@ public final class Mid extends BaseGeneratedPatternGroup {
   
   public ConnectedModelElements.Matcher getConnectedModelElements(final ViatraQueryEngine engine) {
     return ConnectedModelElements.Matcher.on(engine);
+  }
+  
+  public AllConnectedModels getAllConnectedModels() {
+    return AllConnectedModels.instance();
+  }
+  
+  public AllConnectedModels.Matcher getAllConnectedModels(final ViatraQueryEngine engine) {
+    return AllConnectedModels.Matcher.on(engine);
+  }
+  
+  public AllConnectedModelElements getAllConnectedModelElements() {
+    return AllConnectedModelElements.instance();
+  }
+  
+  public AllConnectedModelElements.Matcher getAllConnectedModelElements(final ViatraQueryEngine engine) {
+    return AllConnectedModelElements.Matcher.on(engine);
   }
 }
