@@ -22,19 +22,33 @@
     <genClasses ecoreClass="mm.ecore#//Model"/>
     <genClasses ecoreClass="mm.ecore#//ModelType">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelType/t"/>
+      <genOperations ecoreOperation="mm.ecore#//ModelType/getPackage"/>
+      <genOperations ecoreOperation="mm.ecore#//ModelType/createInstance">
+        <genParameters ecoreParameter="mm.ecore#//ModelType/createInstance/root"/>
+        <genParameters ecoreParameter="mm.ecore#//ModelType/createInstance/path"/>
+        <genParameters ecoreParameter="mm.ecore#//ModelType/createInstance/serialize"/>
+        <genParameters ecoreParameter="mm.ecore#//ModelType/createInstance/mm"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//ModelInstance">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/i"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//ModelInstance/root"/>
     </genClasses>
     <genClasses image="false" ecoreClass="mm.ecore#//Instance">
       <genOperations ecoreOperation="mm.ecore#//Instance/getType"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="mm.ecore#//Type"/>
+    <genClasses image="false" ecoreClass="mm.ecore#//Type">
+      <genOperations ecoreOperation="mm.ecore#//Type/isDynamic"/>
+      <genOperations ecoreOperation="mm.ecore#//Type/isAbstract"/>
+    </genClasses>
     <genClasses ecoreClass="mm.ecore#//MMInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMInstance/typeId"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//MMType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/superType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMType/dynamic"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/supertype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//MMType/subtypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//MMType/abstract"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
