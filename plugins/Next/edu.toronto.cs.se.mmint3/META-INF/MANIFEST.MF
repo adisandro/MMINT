@@ -1,10 +1,13 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: edu.toronto.cs.se.mmint3
 Bundle-ManifestVersion: 2
-Bundle-Name: edu.toronto.cs.se.mmint3
-Bundle-SymbolicName: edu.toronto.cs.se.mmint3; singleton:=true
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint3;singleton:=true
 Bundle-Version: 2.9.99.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-12
 Bundle-ActivationPolicy: lazy
