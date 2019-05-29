@@ -36,11 +36,11 @@
     <eOperations name="isDynamic" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="isAbstract" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MMInstance" abstract="true" eSuperTypes="#//MMElement #//Instance">
+  <eClassifiers xsi:type="ecore:EClass" name="MMInstance" eSuperTypes="#//MMElement #//Instance">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeId" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MMType" abstract="true" eSuperTypes="#//MMElement #//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="MMType" eSuperTypes="#//MMElement #//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dynamic" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" eType="#//MMType"
