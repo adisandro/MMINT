@@ -134,12 +134,12 @@ public class ModelTypeImpl extends ModelImpl implements ModelType {
       // throw exception
     }
     var name = FileUtils.getFileNameFromPath(path);
-    var i = MMFactory.eINSTANCE.createMMInstance();
-    i.setId(path);
-    i.setName(name);
-    i.setTypeId(getT().getId());
+    var inst = MMFactory.eINSTANCE.createMMInstance();
+    inst.setId(path);
+    inst.setName(name);
+    inst.setTypeId(getT().getId());
     var model = MMFactory.eINSTANCE.createModelInstance();
-    model.setI(i);
+    model.setI(inst);
     if (root != null) {
       model.setRoot(root);
       if (serialize) {

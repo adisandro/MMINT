@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint3.mm.Instance;
 import edu.toronto.cs.se.mmint3.mm.MMInstance;
 import edu.toronto.cs.se.mmint3.mm.MMPackage;
@@ -77,7 +78,7 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
    */
   @Override
   public MMInstance getI() {
-    return i;
+    return this.i;
   }
 
   /**
@@ -86,8 +87,8 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
    * @generated
    */
   public NotificationChain basicSetI(MMInstance newI, NotificationChain msgs) {
-    MMInstance oldI = i;
-    i = newI;
+    MMInstance oldI = this.i;
+    this.i = newI;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MMPackage.MODEL_INSTANCE__I, oldI,
                                                              newI);
@@ -106,10 +107,10 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
    */
   @Override
   public void setI(MMInstance newI) {
-    if (newI != i) {
+    if (newI != this.i) {
       NotificationChain msgs = null;
-      if (i != null)
-        msgs = ((InternalEObject) i).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null,
+      if (this.i != null)
+        msgs = ((InternalEObject) this.i).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null,
                                                     msgs);
       if (newI != null)
         msgs = ((InternalEObject) newI).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MMPackage.MODEL_INSTANCE__I, null,
@@ -127,15 +128,30 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EObject getRootGen() {
+    if (this.root != null && this.root.eIsProxy()) {
+      InternalEObject oldRoot = (InternalEObject) this.root;
+      this.root = eResolveProxy(oldRoot);
+      if (this.root != oldRoot) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MMPackage.MODEL_INSTANCE__ROOT, oldRoot, this.root));
+      }
+    }
+    return this.root;
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public EObject getRoot() {
-    if (root != null && root.eIsProxy()) {
-      InternalEObject oldRoot = (InternalEObject) root;
-      root = eResolveProxy(oldRoot);
-      if (root != oldRoot) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MMPackage.MODEL_INSTANCE__ROOT, oldRoot, root));
+    var root = getRootGen();
+    if (root == null) {
+      try {
+        root = FileUtils.readModelFile(getI().getId(), this.eResource().getResourceSet(), true);
+        this.root = root;
       }
+      catch (Exception e) {}
     }
     return root;
   }
@@ -146,7 +162,7 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
    * @generated
    */
   public EObject basicGetRoot() {
-    return root;
+    return this.root;
   }
 
   /**
@@ -156,10 +172,10 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
    */
   @Override
   public void setRoot(EObject newRoot) {
-    EObject oldRoot = root;
-    root = newRoot;
+    EObject oldRoot = this.root;
+    this.root = newRoot;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MMPackage.MODEL_INSTANCE__ROOT, oldRoot, root));
+      eNotify(new ENotificationImpl(this, Notification.SET, MMPackage.MODEL_INSTANCE__ROOT, oldRoot, this.root));
   }
 
   /**
@@ -247,9 +263,9 @@ public class ModelInstanceImpl extends ModelImpl implements ModelInstance {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case MMPackage.MODEL_INSTANCE__I:
-      return i != null;
+      return this.i != null;
     case MMPackage.MODEL_INSTANCE__ROOT:
-      return root != null;
+      return this.root != null;
     }
     return super.eIsSet(featureID);
   }
