@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" name="mmi" version="12.0.0.2017041100">
+  <ownedViewpoints name="MegaModelInstanceViewpoint" modelFileExtension="mm">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="MegaModelInstanceDiagram" domainClass="mm.MegaModelInstance" enablePopupBars="true">
+      <metamodel href="../../edu.toronto.cs.se.mmint3/model/mm.ecore#/"/>
+      <defaultLayer name="Default"/>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint3.design.Services"/>
+  </ownedViewpoints>
+</description:Group>

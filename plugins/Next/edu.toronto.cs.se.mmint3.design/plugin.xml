@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="edu.toronto.cs.se.mmint3.design.Activator"
+               id="edu.toronto.cs.se.mmint3.design"
+	       name="mm">
+    </component>
+  </extension>
+</plugin>
