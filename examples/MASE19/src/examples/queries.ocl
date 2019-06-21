@@ -1,0 +1,58 @@
+import 'http://se.cs.toronto.edu/mmint/MID'
+import 'http://se.cs.toronto.edu/modelepedia/SafetyCase'
+
+context mid::Model
+
+def: _connectedModels : OrderedSet(Model) =
+  let mid = self.oclContainer().oclAsType(MID) in
+  mid.models->select(modelTgt |
+    not modelTgt.oclIsTypeOf(ModelRel) and
+    self <> modelTgt and
+    mid.models->exists(rel |
+      rel.oclIsTypeOf(ModelRel) and
+      rel.oclAsType(ModelRel).modelEndpoints
+        ->collect(target)->includesAll(Set{self, modelTgt}))
+  )
+
+context mid::ModelElement
+
+def: _connectedModelElems : OrderedSet(ModelElement) =
+  let mid = self.oclContainer().oclContainer().oclAsType(MID) in
+  let rels = mid.models->select(rel |
+    rel.oclIsTypeOf(ModelRel))->collect(oclAsType(ModelRel)) in
+  let modelElems = rels->collect(mappings)
+                       ->collect(modelElemEndpoints)
+                       ->collect(target.oclAsType(ModelElement))
+                       ->asOrderedSet() in
+  modelElems->select(modelElemTgt |
+    self <> modelElemTgt and
+    rels->exists(rel |
+      rel.mappings->exists(mapping |
+        mapping.modelElemEndpoints->collect(target)
+                                  ->includesAll(Set{self, modelElemTgt}))))
+
+context mid::MID
+
+def: connectedModels(modelSrc : Model) : Set(Model) =
+  modelSrc._connectedModels->asSet()
+
+def: allConnectedModels(modelSrc : Model) : Set(Model) =
+  modelSrc->closure(_connectedModels)->excluding(modelSrc)
+
+def: connectedModelElems(modelElemSrc : ModelElement) : Set(ModelElement) =
+  modelElemSrc._connectedModelElems->asSet()
+
+def: allConnectedModelElems(modelElemSrc : ModelElement) : Set(ModelElement) =
+  modelElemSrc->closure(_connectedModelElems)->excluding(modelElemSrc)
+
+def: asilBConnectedModelElems(goal : safetycase::Goal) : Set(ModelElement) =
+  if goal.asil.value = safetycase::ASILLevel::B then
+    let goalElem = ModelElement.allInstances()->any(e | e.name = 'Goal '.concat(goal.id)) in
+    if goalElem.oclIsUndefined() then null else goalElem._connectedModelElems->asSet() endif
+  else
+    null
+  endif
+
+def: highlyConnectedModelElems(modelElem : ModelElement) : Integer =
+  let connections = modelElem._connectedModelElems->size() in
+  if connections > 5 then connections else null endif

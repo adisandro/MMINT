@@ -1,0 +1,39 @@
+package examples
+
+import "http://se.cs.toronto.edu/mmint/MID"
+import "http://se.cs.toronto.edu/mmint/MID/Relationship"
+import "http://se.cs.toronto.edu/modelepedia/SafetyCase"
+
+pattern connectedModelElems(modelElemSrc: ModelElement,
+                            modelElemTgt: ModelElement) {
+  modelElemSrc != modelElemTgt;
+  Model.modelElems(modelSrc, modelElemSrc);
+  Model.modelElems(modelTgt, modelElemTgt);
+  modelSrc != modelTgt;
+  Mapping.modelElemEndpoints.target(mapping, modelElemSrc);
+  Mapping.modelElemEndpoints.target(mapping, modelElemTgt);
+}
+
+pattern allConnectedModelElems(modelElemSrc: ModelElement,
+                               modelElemTgt: ModelElement) {
+  modelElemSrc != modelElemTgt;
+  Model.modelElems(modelSrc, modelElemSrc);
+  Model.modelElems(modelTgt, modelElemTgt);
+  modelSrc != modelTgt;
+  find connectedModelElems+(modelElemSrc, modelElemTgt);
+}
+
+pattern asilBConnectedModelElems(goal: Goal,
+                                 modelElem: ModelElement) {
+  Goal.asil.value(goal, ASILLevel::B);
+  Goal.id(goal, goalId);
+  ModelElement.name(goalElem, goalName);
+  check(goalName.contains(goalId));
+  find connectedModelElems(goalElem, modelElem);
+}
+
+pattern highlyConnectedModelElems(modelElem: ModelElement,
+                                  connections: java Integer) {
+  connections == count find connectedModelElems(modelElem, _);
+  check(connections > 5);
+}

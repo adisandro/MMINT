@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequencediagram:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequencediagram="http://se.cs.toronto.edu/modelepedia/SequenceDiagram">
+  <objects xsi:type="sequencediagram:Component" type="SupervisoryControlSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.0 //@messages.2 //@messages.4 //@messages.6 //@messages.7" messagesAsTarget="//@messages.1 //@messages.3 //@messages.5 //@messages.6"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="ImageProcessing">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.1 //@messages.3" messagesAsTarget="//@messages.0 //@messages.2"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="PathPredictionSystem">
+    <lifeline>
+      <activationBoxes messagesAsSource="//@messages.5" messagesAsTarget="//@messages.4"/>
+    </lifeline>
+  </objects>
+  <objects xsi:type="sequencediagram:Component" type="Steering">
+    <lifeline>
+      <activationBoxes messagesAsTarget="//@messages.7"/>
+    </lifeline>
+  </objects>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="CheckStatus()" successor="//@messages.1"/>
+  <messages type="Return" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0" content="true" predecessor="//@messages.0" successor="//@messages.2"/>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.1/@lifeline/@activationBoxes.0" content="GetConditions()" predecessor="//@messages.1" successor="//@messages.3"/>
+  <messages type="Return" source="//@objects.1/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0" content="-10" predecessor="//@messages.2" successor="//@messages.4"/>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.2/@lifeline/@activationBoxes.0" content="GetCurrentPath(currentSpeed, currentSteeringAngle, ..." predecessor="//@messages.3" successor="//@messages.5"/>
+  <messages type="Return" source="//@objects.2/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0" content="0" predecessor="//@messages.4" successor="//@messages.6"/>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.0/@lifeline/@activationBoxes.0" content="..." predecessor="//@messages.5" successor="//@messages.7"/>
+  <messages source="//@objects.0/@lifeline/@activationBoxes.0" target="//@objects.3/@lifeline/@activationBoxes.0" content="Turn(-10)" predecessor="//@messages.6"/>
+</sequencediagram:SequenceDiagram>

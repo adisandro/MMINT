@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="examples.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:examples.Queries" id="examples.Queries">
+      <query-specification fqn="examples.connectedModelElems"/>
+      <query-specification fqn="examples.allConnectedModelElems"/>
+      <query-specification fqn="examples.asilBConnectedModelElems"/>
+      <query-specification fqn="examples.highlyConnectedModelElems"/>
+    </group>
+  </extension>
+</plugin>
