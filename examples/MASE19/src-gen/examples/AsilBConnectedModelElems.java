@@ -57,7 +57,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *           Goal.asil.value(goal, ASILLevel::B);
  *           Goal.id(goal, goalId);
  *           ModelElement.name(goalElem, goalName);
- *           check(goalName.contains(goalId));
+ *           check(goalName.endsWith(goalId));
  *           find connectedModelElems(goalElem, modelElem);
  *         }
  * </pre></code>
@@ -265,7 +265,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
    *   Goal.asil.value(goal, ASILLevel::B);
    *   Goal.id(goal, goalId);
    *   ModelElement.name(goalElem, goalName);
-   *   check(goalName.contains(goalId));
+   *   check(goalName.endsWith(goalId));
    *   find connectedModelElems(goalElem, modelElem);
    * }
    * </pre></code>
@@ -724,7 +724,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
           new TypeConstraint(body, Tuples.flatTupleOf(var_goalElem, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/mmint/MID", "ExtendibleElement", "name")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_4_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_4_, var_goalName);
-          //   check(goalName.contains(goalId))
+          //   check(goalName.endsWith(goalId))
           new ExpressionEvaluation(body, new IExpressionEvaluator() {
           
               @Override
@@ -752,7 +752,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
   }
   
   private static boolean evaluateExpression_1_1(final String goalId, final String goalName) {
-    boolean _contains = goalName.contains(goalId);
-    return _contains;
+    boolean _endsWith = goalName.endsWith(goalId);
+    return _endsWith;
   }
 }

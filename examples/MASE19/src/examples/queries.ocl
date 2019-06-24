@@ -40,14 +40,24 @@ def: allConnectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
 def: allConnectedModelElems3(modelElemSrc : ModelElement, modelElemTgt : ModelElement) : Boolean =
   allConnectedModelElems2(modelElemSrc)->includes(modelElemTgt)
 
-def: asilBConnectedModelElems(goal : safetycase::Goal) : Set(ModelElement) =
-  if goal.asil.value = safetycase::ASILLevel::B then
-    let goalElem = ModelElement.allInstances()->any(e | e.name = 'Goal '.concat(goal.id)) in
-    if goalElem.oclIsUndefined() then null else goalElem.connectedModelElems->asSet() endif
-  else
-    null
-  endif
+def: asilBConnectedModelElems : Set(Tuple(goal : safetycase::Goal, elem : ModelElement)) =
+  let safetyCases = Model.allInstances()
+                         ->collect(EMFInstanceRoot)
+                         ->select(oclIsTypeOf(safetycase::SafetyCase))
+                         ->collect(oclAsType(safetycase::SafetyCase)) in
+  let goals = safetyCases->collect(goals)
+                         ->select(not asil.oclIsUndefined())
+                         ->select(asil.value = safetycase::ASILLevel::B) in
+  let modelElems = ModelElement.allInstances() in
+  goals->collect(g | Set{g}->product(
+         let goalElem = modelElems->any(e |
+           e.name.substring(e.name.size()-g.id.size()+1, e.name.size()) = g.id) in
+         if goalElem.oclIsUndefined() then Set{} else connectedModelElems2(goalElem) endif))
+       ->asSet()
 
-def: highlyConnectedModelElems(modelElem : ModelElement) : Integer =
-  let connections = connectedModelElems2(modelElem)->size() in
-  if connections > 5 then connections else null endif
+def: highlyConnectedModelElems : Set(Tuple(elem : ModelElement, conn : Integer)) =
+  let modelElems = ModelElement.allInstances() in
+  modelElems->select(e | connectedModelElems2(e)->size() > 5)
+            ->collect(he | Tuple{elem=he, conn=connectedModelElems2(he)->size()})
+            ->asSet()
+  

@@ -28,7 +28,7 @@ pattern asilBConnectedModelElems(goal: Goal,
   Goal.asil.value(goal, ASILLevel::B);
   Goal.id(goal, goalId);
   ModelElement.name(goalElem, goalName);
-  check(goalName.contains(goalId));
+  check(goalName.endsWith(goalId));
   find connectedModelElems(goalElem, modelElem);
 }
 
