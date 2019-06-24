@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.utilities.OCLHelper;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.ocl.pivot.values.TupleValue;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
@@ -155,14 +156,27 @@ public class OCLReasoningEngine implements IReasoningEngine {
   }
 
   private List<Object> evaluateOCLExpression2(OCL ocl, ExpressionInOCL expression, EObject context,
-                                               List<? extends EObject> args) {
+                                              List<? extends EObject> args) {
     var result = new ArrayList<>();
     var evaluation = evaluateOCLExpression(ocl, expression, context, args);
     if (evaluation != null) {
       if (evaluation instanceof Collection<?>) {
-        for (var iter = ((Collection<? extends EObject>) evaluation).iterator(); iter.hasNext();) {
+        for (var iter = ((Collection<?>) evaluation).iterator(); iter.hasNext();) {
           var allQueryArgs = new ArrayList<Object>(args);
-          allQueryArgs.add(iter.next());
+          var obj = iter.next();
+          if (obj instanceof TupleValue) {
+            for (int i = 0;; i++) {
+              try {
+                allQueryArgs.add(((TupleValue) obj).getValue(i));
+              }
+              catch (ArrayIndexOutOfBoundsException e) {
+                break;
+              }
+            }
+          }
+          else {
+            allQueryArgs.add(obj);
+          }
           result.add(allQueryArgs);
         }
       }
