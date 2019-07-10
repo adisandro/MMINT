@@ -9,3 +9,11 @@ script:
  - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
  - mvn -f releng/edu.toronto.cs.se.modelepedia.libz3java.releng/pom.xml clean install
  - mvn -f releng/edu.toronto.cs.se.mmint.releng/pom.xml clean install
+after_success:
+ - test $TRAVIS_PULL_REQUEST = false &&
+   git clone https://github.com/adisandro/adisandro.github.io.git &&
+   cd adisandro.github.io &&
+   rm -rf mmint/${TRAVIS_BRANCH/master/release} &&
+   mv releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${TRAVIS_BRANCH/master/release} &&
+   git add . &&
+   git commit -c user.name='Alessio Di Sandro' -c user.email='alessio.disandro@gmail.com' -m 'New MMINT build'
