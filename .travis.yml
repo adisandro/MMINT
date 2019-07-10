@@ -14,6 +14,6 @@ after_success:
    git clone https://github.com/adisandro/adisandro.github.io.git &&
    cd adisandro.github.io &&
    rm -rf mmint/${TRAVIS_BRANCH/master/release} &&
-   mv releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${TRAVIS_BRANCH/master/release} &&
+   mv $TRAVIS_BUILD_DIR/releng/edu.toronto.cs.se.mmint.install/target/repository mmint/${TRAVIS_BRANCH/master/release} &&
    git add . &&
    git commit -c user.name='Alessio Di Sandro' -c user.email='alessio.disandro@gmail.com' -m 'New MMINT build'
