@@ -617,7 +617,7 @@ mappingTypes:
 		return reasoner.refineModelByConstraint(model);
 	}
 
-  public static List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+  public static List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
                                            List<? extends EObject> queryArguments) {
     try {
       var reasoner = getReasoner(FileUtils.getFileExtensionFromPath(queryFilePath));

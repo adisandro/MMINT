@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class ViatraReasoningEngine implements IReasoningEngine {
 
   @Override
-  public List<Object> evaluateQuery(String queryFilePath, @Nullable String queryName, EObject context,
+  public List<Object> evaluateQuery(String queryFilePath, String queryName, EObject context,
                                     List<? extends EObject> queryArgs) {
     AdvancedViatraQueryEngine engine = null;
     try {
