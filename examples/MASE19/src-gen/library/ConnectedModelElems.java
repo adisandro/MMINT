@@ -1,7 +1,7 @@
 /**
- * Generated from platform:/resource/MASE19/src/examples/queries.vql
+ * Generated from platform:/resource/MASE19/src/library/MID.vql
  */
-package examples;
+package library;
 
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import java.util.Arrays;
@@ -62,7 +62,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
 @SuppressWarnings("all")
 public final class ConnectedModelElems extends BaseGeneratedEMFQuerySpecification<ConnectedModelElems.Matcher> {
   /**
-   * Pattern-specific match representation of the examples.connectedModelElems pattern,
+   * Pattern-specific match representation of the library.connectedModelElems pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -126,7 +126,7 @@ public final class ConnectedModelElems extends BaseGeneratedEMFQuerySpecificatio
     
     @Override
     public String patternName() {
-      return "examples.connectedModelElems";
+      return "library.connectedModelElems";
     }
     
     @Override
@@ -243,7 +243,7 @@ public final class ConnectedModelElems extends BaseGeneratedEMFQuerySpecificatio
   }
   
   /**
-   * Generated pattern matcher API of the examples.connectedModelElems pattern,
+   * Generated pattern matcher API of the library.connectedModelElems pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -625,9 +625,9 @@ public final class ConnectedModelElems extends BaseGeneratedEMFQuerySpecificatio
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: examples.ConnectedModelElems (visibility: PUBLIC, simpleName: ConnectedModelElems, identifier: examples.ConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: examples) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link JvmGenericType: library.ConnectedModelElems (visibility: PUBLIC, simpleName: ConnectedModelElems, identifier: library.ConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: library) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: examples.ConnectedModelElems (visibility: PUBLIC, simpleName: ConnectedModelElems, identifier: examples.ConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: examples) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link JvmGenericType: library.ConnectedModelElems (visibility: PUBLIC, simpleName: ConnectedModelElems, identifier: library.ConnectedModelElems, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: library) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -665,7 +665,7 @@ public final class ConnectedModelElems extends BaseGeneratedEMFQuerySpecificatio
     
     @Override
     public String getFullyQualifiedName() {
-      return "examples.connectedModelElems";
+      return "library.connectedModelElems";
     }
     
     @Override

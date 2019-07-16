@@ -4,7 +4,8 @@ Bundle-Name: MMINT MASE19
 Bundle-SymbolicName: MASE19;singleton:=true
 Bundle-Version: 2.2.99.qualifier
 Bundle-Vendor: Software Engineering Group
-Export-Package: examples
+Export-Package: examples,
+ library
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.viatra.query.runtime,
  org.eclipse.viatra.query.runtime.rete,

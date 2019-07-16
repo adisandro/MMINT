@@ -20,24 +20,28 @@ def: connectedModelElems : OrderedSet(ModelElement) =
 
 context mid::MID
 
-def: connectedModelElems1 : Set(Tuple(src : ModelElement, tgt : ModelElement)) =
+def: connectedModelElems1 : Set(Tuple(src : ModelElement,
+                                      tgt : ModelElement)) =
   let modelElems = ModelElement.allInstances() in
   modelElems->collect(e | Set{e}->product(connectedModelElems2(e)))->asSet()
 
 def: connectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
   modelElemSrc.connectedModelElems->asSet()
 
-def: connectedModelElems3(modelElemSrc : ModelElement, modelElemTgt : ModelElement) : Boolean =
+def: connectedModelElems3(modelElemSrc : ModelElement,
+                          modelElemTgt : ModelElement) : Boolean =
   connectedModelElems2(modelElemSrc)->includes(modelElemTgt)
 
-def: allConnectedModelElems1 : Set(Tuple(src : ModelElement, tgt : ModelElement)) =
+def: allConnectedModelElems1 : Set(Tuple(src : ModelElement,
+                                         tgt : ModelElement)) =
   let modelElems = ModelElement.allInstances() in
   modelElems->collect(e | Set{e}->product(allConnectedModelElems2(e)))->asSet()
 
 def: allConnectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
   modelElemSrc->closure(connectedModelElems)->excluding(modelElemSrc)
 
-def: allConnectedModelElems3(modelElemSrc : ModelElement, modelElemTgt : ModelElement) : Boolean =
+def: allConnectedModelElems3(modelElemSrc : ModelElement,
+                             modelElemTgt : ModelElement) : Boolean =
   allConnectedModelElems2(modelElemSrc)->includes(modelElemTgt)
 
 def: asilBConnectedModelElems : Set(Tuple(goal : safetycase::Goal, elem : ModelElement)) =

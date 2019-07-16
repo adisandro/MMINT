@@ -4,7 +4,6 @@
 package examples;
 
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import examples.ConnectedModelElems;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -15,6 +14,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import library.ConnectedModelElems;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
@@ -51,7 +51,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *         <code><pre>
  *         pattern highlyConnectedModelElems(modelElem: ModelElement,
  *                                           connections: java Integer) {
- *           connections == count find connectedModelElems(modelElem, _);
+ *           connections == count find library.connectedModelElems(modelElem, _);
  *           check(connections {@literal >} 5);
  *         }
  * </pre></code>
@@ -256,7 +256,7 @@ public final class HighlyConnectedModelElems extends BaseGeneratedEMFQuerySpecif
    * <code><pre>
    * pattern highlyConnectedModelElems(modelElem: ModelElement,
    *                                   connections: java Integer) {
-   *   connections == count find connectedModelElems(modelElem, _);
+   *   connections == count find library.connectedModelElems(modelElem, _);
    *   check(connections {@literal >} 5);
    * }
    * </pre></code>
@@ -690,7 +690,7 @@ public final class HighlyConnectedModelElems extends BaseGeneratedEMFQuerySpecif
              new ExportedParameter(body, var_modelElem, parameter_modelElem),
              new ExportedParameter(body, var_connections, parameter_connections)
           ));
-          //   connections == count find connectedModelElems(modelElem, _)
+          //   connections == count find library.connectedModelElems(modelElem, _)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new PatternMatchCounter(body, Tuples.flatTupleOf(var_modelElem, var___0_), ConnectedModelElems.instance().getInternalQueryRepresentation(), var__virtual_0_);
           new Equality(body, var_connections, var__virtual_0_);

@@ -1775,6 +1775,54 @@
       <modelElemEndpointRefs referencedObject="//@models.18/@mappings.34/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.18/@modelEndpointRefs.0/@modelElemRefs.20"/>
     </mappingRefs>
   </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - sd_drivingstraight" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_sd_drivingstraight" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <modelEndpointRefs referencedObject="//@models.19/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.19/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - sd_failurestate" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_sd_failurestate" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <modelEndpointRefs referencedObject="//@models.20/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.20/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - sd_leftcurve" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_sd_leftcurve" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <modelEndpointRefs referencedObject="//@models.21/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.21/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - sd_systemon" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_sd_systemon" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+    <modelEndpointRefs referencedObject="//@models.22/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.22/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - state_lms" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_state_lms" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.15"/>
+    <modelEndpointRefs referencedObject="//@models.23/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.23/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - state_lks" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_state_lks" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.13"/>
+    <modelEndpointRefs referencedObject="//@models.24/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.24/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - state_ldws" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_state_ldws" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.11"/>
+    <modelEndpointRefs referencedObject="//@models.25/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.25/@modelEndpoints.1" modifiable="true"/>
+  </models>
+  <models xsi:type="relationship:ModelRel" uri="" name="sc - state_lcs" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel" dynamic="true" origin="CREATED" fileExtension="">
+    <modelEndpoints uri="" name="lms_sc" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.17"/>
+    <modelEndpoints uri="" name="lms_state_lcs" metatypeUri="http://se.cs.toronto.edu/mmint/ModelRel-Model/ModelEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.9"/>
+    <modelEndpointRefs referencedObject="//@models.26/@modelEndpoints.0" modifiable="true"/>
+    <modelEndpointRefs referencedObject="//@models.26/@modelEndpoints.1" modifiable="true"/>
+  </models>
   <editors xsi:type="editor:Diagram" uri="/MASE19/representations.aird#__zFl8SixEeihd4XNMicbhg" name="ClassDiagram representation for model /MASE19/model/lms_cd.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_ClassDiagram" dynamic="true" modelUri="/MASE19/model/lms_cd.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.design" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
     <fileExtensions>aird</fileExtensions>
   </editors>

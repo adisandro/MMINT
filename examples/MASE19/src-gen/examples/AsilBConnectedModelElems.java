@@ -5,7 +5,6 @@ package examples;
 
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
-import examples.ConnectedModelElems;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -16,6 +15,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import library.ConnectedModelElems;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -58,7 +58,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *           Goal.id(goal, goalId);
  *           ModelElement.name(goalElem, goalName);
  *           check(goalName.endsWith(goalId));
- *           find connectedModelElems(goalElem, modelElem);
+ *           find library.connectedModelElems(goalElem, modelElem);
  *         }
  * </pre></code>
  * 
@@ -266,7 +266,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
    *   Goal.id(goal, goalId);
    *   ModelElement.name(goalElem, goalName);
    *   check(goalName.endsWith(goalId));
-   *   find connectedModelElems(goalElem, modelElem);
+   *   find library.connectedModelElems(goalElem, modelElem);
    * }
    * </pre></code>
    * 
@@ -743,7 +743,7 @@ public final class AsilBConnectedModelElems extends BaseGeneratedEMFQuerySpecifi
                   return evaluateExpression_1_1(goalId, goalName);
               }
           },  null); 
-          //   find connectedModelElems(goalElem, modelElem)
+          //   find library.connectedModelElems(goalElem, modelElem)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_goalElem, var_modelElem), ConnectedModelElems.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
