@@ -1,38 +1,41 @@
 import 'http://se.cs.toronto.edu/mmint/MID'
-
-context mid::Model
-
-def: connectedModels : OrderedSet(Model) =
-  let mid = self.oclContainer().oclAsType(MID) in
-  mid.models->select(modelTgt |
-    not modelTgt.oclIsTypeOf(ModelRel) and
-    self <> modelTgt and
-    mid.models->exists(rel |
-      rel.oclIsTypeOf(ModelRel) and
-      rel.oclAsType(ModelRel).modelEndpoints->collect(target)->includesAll(Set{self, modelTgt})
-    )
-  )
+import 'http://se.cs.toronto.edu/modelepedia/SafetyCase'
 
 context mid::ModelElement
 
-def: connectedModelElements : OrderedSet(ModelElement) =
+def: connectedModelElems : OrderedSet(ModelElement) =
   let mid = self.oclContainer().oclContainer().oclAsType(MID) in
-  let rels = mid.models->select(rel | rel.oclIsTypeOf(ModelRel))->collect(oclAsType(ModelRel)) in
-  let modelElems = rels->collect(mappings)->collect(modelElemEndpoints)->collect(target.oclAsType(ModelElement))->asOrderedSet() in
+  let rels = mid.models->select(rel |
+    rel.oclIsTypeOf(ModelRel))->collect(oclAsType(ModelRel)) in
+  let modelElems = rels->collect(mappings)
+                       ->collect(modelElemEndpoints)
+                       ->collect(target.oclAsType(ModelElement))
+                       ->asOrderedSet() in
   modelElems->select(modelElemTgt |
     self <> modelElemTgt and
     rels->exists(rel |
       rel.mappings->exists(mapping |
-        mapping.modelElemEndpoints->collect(target)->includesAll(Set{self, modelElemTgt})
-      )
-    )
-  )
+        mapping.modelElemEndpoints->collect(target)
+                                  ->includesAll(Set{self, modelElemTgt}))))
 
 context mid::MID
 
-def: allConnectedModels(modelSrc : Model) : Set(Model) =
-  modelSrc->closure(connectedModels)->excluding(modelSrc)
+def: connectedModelElems1 : Set(Tuple(src : ModelElement, tgt : ModelElement)) =
+  let modelElems = ModelElement.allInstances() in
+  modelElems->collect(e | Set{e}->product(connectedModelElems2(e)))->asSet()
 
-def: allConnectedModelElements(modelElemSrc : ModelElement) : Set(ModelElement) =
-  modelElemSrc->closure(connectedModelElements)->excluding(modelElemSrc)
-  
+def: connectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
+  modelElemSrc.connectedModelElems->asSet()
+
+def: connectedModelElems3(modelElemSrc : ModelElement, modelElemTgt : ModelElement) : Boolean =
+  connectedModelElems2(modelElemSrc)->includes(modelElemTgt)
+
+def: allConnectedModelElems1 : Set(Tuple(src : ModelElement, tgt : ModelElement)) =
+  let modelElems = ModelElement.allInstances() in
+  modelElems->collect(e | Set{e}->product(allConnectedModelElems2(e)))->asSet()
+
+def: allConnectedModelElems2(modelElemSrc : ModelElement) : Set(ModelElement) =
+  modelElemSrc->closure(connectedModelElems)->excluding(modelElemSrc)
+
+def: allConnectedModelElems3(modelElemSrc : ModelElement, modelElemTgt : ModelElement) : Boolean =
+  allConnectedModelElems2(modelElemSrc)->includes(modelElemTgt)
