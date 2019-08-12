@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.sequencediagram.feature"
       label="Modelepedia SequenceDiagram"
-      version="2.3.0"
+      version="2.3.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
