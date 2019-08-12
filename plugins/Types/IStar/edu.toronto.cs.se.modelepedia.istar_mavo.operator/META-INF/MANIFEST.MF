@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.istar_mavo.operator;singleton:=true
-Bundle-Version: 2.2.99.qualifier
+Bundle-Version: 2.3.0
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine,
